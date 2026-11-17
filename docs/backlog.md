@@ -240,6 +240,156 @@ O que sobrou depois da sessão de correções de 12/11/2026 (`devlog.md`, "Corre
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
 - **O motor segue com `@ts-nocheck` em 96 de 105 arquivos** (os exercícios do port e os 4 arquivos de base dele: `esqueleto.ts`, `math.ts`, `svg.ts`, `qa.ts`): tipá-los pede reescrever a animação. Em 12/11/2026 saiu de `desenho.ts`, `cena.ts` e `estilo/` (tipos em `engine/tipos.ts`, sem `any`, regressão do motor sem diferença). Achado da tipagem, sem mudança de comportamento: o estilo `a2` chega a funções cujo tipo declarado é `a` ou `b` (`vistaDaMiniatura`, `montarSvgEstilo`), e as classes saem `ea2-…`; conferir se é o desejado.
 
+## Da sessão "treino para todos", etapa 1 (12 e 13/11/2026)
+
+Detalhes e números em `revisoes/treino-para-todos/` (`diagnostico.md`, `proposta.md`, `exemplos/`). Nada mudou no app; o que está abaixo é o que **não** entra na proposta, ou o que espera decisão.
+
+**Esperando a decisão do Gustavo** (`proposta.md`, seção 10)
+- As 9 decisões da proposta: o tempo que sobra vira série para todos (reabre o E-c descartado em 07/11), os exercícios de referência antes da animação, os ajoelhados fora com dor forte no joelho, a semana em corpo todo quando a dor esvazia um dia, o iniciante sem drop set, a janela do aviso de "sem melhora", a pergunta "60 anos ou mais", a revisão por profissional, a ordem das entregas.
+
+**Para a etapa 2 (se a proposta for aprovada), com protótipo e medida antes de entrar**
+- **Zerar os resíduos do protótipo:** empurrar ÷ puxar acima de 1,5 sobe 0,1 a 0,4 ponto em alguns grupos; frente ÷ trás da coxa, 0,1 a 0,6 ponto com dor forte no quadril; o dia acima do tempo com 3 dias, de 4,9% para 5,2%. O critério de pronto é nenhum defeito pior em nenhum grupo.
+- **Dias próprios para o iniciante** (dois treinos que se alternam, com 5 ou 6 exercícios): os três revisores pedem; o limite de 6 com os dias de hoje foi medido e recusado (músculos esquecidos: 10,4% → 14,1% dos iniciantes).
+- **Quem é forte e não tem carga:** uma perna de cada vez na vaga de agachar; hoje a regra das 2 famílias do quadríceps devolve o agachamento comum. Mexer nas duas regras juntas.
+- **A ordem da lista do afundo sem carga** (o mais simples primeiro): o Fábio trocou o afundo para trás pelo búlgaro sem motivo de treino, e um revisor baixou a nota.
+- **"Ficar mais forte":** o mesmo movimento 2 vezes por semana, mais séries nos levantamentos, e o iniciante incluído (`pesquisa-v2/24`); hoje só os 2 primeiros exercícios grandes de cada dia mudam.
+- **Mais séries por igual dentro do dia:** a Marina recebe 4 séries de supino e 2 de puxada no mesmo treino; a regra leva cada músculo ao alvo, e não iguala os exercícios do dia.
+- **A reserva (RIR) em séries longas:** a pessoa erra ~1 repetição para menos, e mais acima de 12 (`halperin2022`); texto, não número.
+- **O descanso dos exercícios grandes** (1 min 45 s × os 2 min do consenso da IUSCA): não medido; custaria 2 a 3 min por treino de 60.
+
+**Para um profissional de Educação Física e um fisioterapeuta (pauta em `proposta.md`, seção 9)**
+- Dor acima de 5: tirar tudo o que carrega a articulação ou trocar por variações toleradas (com dor 7 no joelho, o quadríceps fica com zero séries).
+- O que carrega cada articulação: a panturrilha no leg press com dor no joelho; o agachamento com a barra nas costas e a rosca Scott com dor no ombro.
+- A triagem mais rígida que o PAR-Q+ 2025 (pressão alta, doença crônica e remédio contínuo controlados; gestação).
+- Barra fixa só na descida, flexão nórdica sem apoio e duplas de exercícios grandes para iniciantes e pessoas de 60 anos ou mais.
+
+**Fora do escopo (a pesquisa sugere; o MVP não cobre)**
+- Nutrição no objetivo "manter na dieta"; atividade aeróbia no objetivo "saúde"; treino de potência para 60 anos ou mais; semana leve planejada e periodização (sem ganho nos ensaios); restrição de fluxo sanguíneo e excêntrica acentuada.
+
+**Medidas e scripts que ficaram**
+- `scripts/auditoria/retrato.ts` (os 20 cuidados em 680.625 programas, grade e ponderada), `cuidados.ts`, `populacao.ts` (os pesos são estimativa: recalibrar quando houver uso real), `estabilidade.ts`, `biblioteca-cobertura.ts`, `comparar-retratos.ts`, `piores.ts`, `exemplos.ts`, `exemplos-paginas.ts`, `ver.ts` e o protótipo em `scripts/auditoria/prototipo/`. O retrato ainda não entrou em `npm run auditoria` nem em `auditoria:verificar`: entra na etapa 2, quando as medidas virarem parte da régua e do avaliador do app.
+- O retrato não cobre: as semanas de aprendizado e de volta de pausa, as divisões escolhidas à mão, os exercícios a evitar, o 2º local, duas dores ao mesmo tempo, e os objetivos (só "ficar mais forte" muda números, e não foi medido nesta etapa).
+
+## Da sessão "treino para todos", etapa 2, pacote 1 (13/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-1.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **As séries a mais no meio da montagem do dia** (a 1ª versão do protótipo): tomavam o lugar de exercícios; em treinos de 30 min, um dia ficava sem exercício grande, e o empurrar passava do puxar com foco em peito. Entrou a versão que age no fim, com o programa pronto.
+- **O iniciante com séries em todos os exercícios até o alvo de 8** (`PROT=usa-tempo,inic-tudo` no protótipo): na revisão cega, a nota caiu em 2 de 5 iniciantes com tempo sobrando (dia no limite, 3 a 4 séries nos exercícios pequenos). Entrou "só os exercícios grandes, até 3 séries". Rever no pacote 4, quando o iniciante tiver menos exercícios por dia: em dois perfis com folga de tempo (4 dias de 60 min e 3 de 75), a versão recusada teve a nota mais alta.
+- **Séries a mais em dia com bi-set ou drop set:** o dia já está no limite; a série a mais deixava os dois exercícios da dupla com séries diferentes e passava de 0,45 série por minuto.
+
+**Ficou de fora, com o número**
+- **Dias de treino seguidos:** "o mesmo músculo com 3 séries diretas ou mais em dias seguidos" foi de 4,8% para 5,3% dos programas (ponderada). O gerador não sabe quais dias são seguidos na semana da pessoa, e não há regra sobre isso em `regras.md`; pede pesquisa (recuperação entre sessões) e, talvez, a ordem dos dias na rotina.
+- **Quem tem 3 grupos de foco ou mais** continua com dias curtos (o Inferior A do Bruno, 40 min em 70): o foco fica na meta e os outros músculos, 6 séries abaixo. O aviso novo de `tempo.sobra` diz isso quando o dia típico fica abaixo de 70%.
+- **O iniciante:** quase todo o ganho na régua vem do aviso, e não do tempo usado; as séries sobem de 56,5 para 57,1 por semana, em média.
+- **O dia de 5 exercícios ou mais com 2 séries em todos** cai de 21,8% para 15,1% (ponderada); a 1ª versão chegava a 11,4%, à custa dos defeitos acima.
+
+## Da sessão "treino para todos", etapa 2, pacote 0 (14/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-0.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Trocar também a vaga de um isolador que a dor esvazia** (o tríceps acima da cabeça, com dor no ombro): o substituto entrava com 4 séries e estourava os treinos de 30 min; com dor 7 no ombro, "dia acima do tempo" ia de 626 para 793 programas de 45.375. A troca ficou só para a vaga de exercício grande.
+- **Trocar a vaga por qualquer função do mesmo músculo, sem olhar o tipo:** a vaga do agachamento virava a cadeira extensora e o dia ficava sem exercício grande (em uma amostra de 28.875 programas com dor forte, 96 ganhavam esse defeito).
+
+**Ficou de fora, com o número**
+- **Quem só tem puxada ajoelhada** (só elásticos; só a estação de polia dupla) e marca dor forte no joelho fica só com remadas; foram as duas pessoas com nota menor na revisão cega (−1,0 e −0,7). O remédio é de conteúdo: a versão sentada das puxadas (`pedidos-a-animacao.md`).
+- **Resíduo na contagem bruta:** 28 pares de grupo e defeito sobem de 1 a 8 programas em relação à `main` (nenhum mais de 0,05 ponto; nos totais nenhum sobe): programas que cruzam um limite da régua porque a lista de exercícios encolheu.
+- **A extensão de tríceps com o peso do corpo** tem o último degrau de dificuldade "no chão, de joelhos": o app pode sugerir esse degrau a quem tem dor no joelho. Não mexi (é a progressão, e o exercício em si não ajoelha); fica para a pauta do profissional.
+- **A panturrilha no leg press e o agachamento com a barra nas costas** com dor no joelho e no ombro: os revisores voltaram a apontar; continua na pauta do profissional (`proposta.md`, seção 9).
+- **A remada de um lado só com elástico "sob o pé da frente"** pede base em passo; um revisor apontou que isso carrega o joelho com dor. Conferir o texto de execução.
+
+## Da sessão "treino para todos", etapa 2, pacote 3 (15/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-3.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Proibir a dupla com exercício livre com barra, proibir a dupla de dois exercícios que carregam a lombar e tirar o drop set do iniciante:** as três põem treinos curtos acima do tempo (em 23.470 programas da amostra: 11, 35 e 9 ganham um dia acima de 110%). Para entrarem, o corte de tempo (`tempo.corte`) precisa de outra saída antes das duplas e do drop set (menos séries, ou menos exercícios para o iniciante). Fazer junto com o pacote 4.
+- **Trocar a divisão por causa da dor sem olhar o custo:** 301 de 35.292 programas com dor forte ganhavam um músculo sem nenhuma série, e 32 tiravam a coxa do equilíbrio. A regra que entrou tem as travas.
+
+**Decidido e feito em 15/11**
+- **O Corpo todo 6x para quem tem dor forte** (antes, só o recuo de `divisao.sem-puxar`): entrou; os programas com um dia fraco foram de 41.471 para 29.159.
+
+**Para medir depois**
+- **Uma folga de 5 a 10% do tempo no 2º passo de `tempo.sobra-series` (pacote 1):** é a terceira vez que os revisores baixam a nota de um dia cheio até o limite (o Leandro e o iniciante do condomínio, no pacote 1; o avançado de 5 × 75 min com dor na lombar e foco em pernas, agora: as mesmas duas páginas tiveram +0,3 num painel e −3,3 no outro). A Marina e o avançado de 90 min, que também enchem o tempo, foram os que mais subiram; por isso é para medir, e não para mudar já.
+- **O foco em "pernas" leva a panturrilha junto até o máximo do nível** (16 séries no avançado): três revisores chamaram de volume demais. A regra é a do foco primeiro (R5d); rever com o pacote 2 ou 4.
+- **As notas que sobem com o corpo todo:** o mesmo músculo em dias seguidos (5,3% → 5,9% dos programas, ponderada) e o mesmo exercício em todos os dias sem opção (16,6% → 18,7%, grade). Pede a mesma pesquisa sobre dias seguidos anotada no pacote 1.
+
+## Da sessão "treino para todos", etapa 2, pacote 2 (15/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-2.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **"Para o iniciante, o exercício mais simples primeiro":** em 23.470 programas da amostra, 300 iniciantes deixam de ter mais de 12 exercícios diferentes na semana, mas 4 programas ganham um dia fraco (iniciante com dor forte no quadril) e o supino com halteres, animado, dá lugar a máquinas em cartão de texto. Volta no pacote do iniciante, com decisão do Gustavo.
+- **Dois lados antes de um lado só também com halter e kettlebell (a versão larga):** a revisão cega achou duas pessoas piores (dor leve na lombar: terra romeno com barra no lugar do stiff de um lado só; avançado com halteres de até 20 kg). Entrou a versão estreita (máquina, polia e barra).
+- **Poupar a série de puxar no corte de tempo:** só 20 de 23.470 programas mudam; não é o caminho do defeito.
+
+**Para medir depois**
+- **A razão empurrar ÷ puxar na distribuição inicial das séries:** quem treina 2 dias e quer peito ficou com 65 programas a mais acima de 1,5 (1.955 → 2.020 de 136.125), porque a 4ª série do supino do foco sai da distribuição inicial, e a trava nova só vale no laço das séries.
+- **O 4º exercício do foco quando o dia tem tempo e já está no número máximo de exercícios:** é o que deixa o avançado de 2 dias de 75 ou 90 min com o foco abaixo da meta (10.212 programas; +44 neste pacote, porque os dias ficaram mais curtos).
+- **O hip thrust para quem marcou dor leve na lombar:** três revisores contaram como carga na lombar; a biblioteca não marca. Pede fonte (tema de dor).
+- **A puxada ajoelhado com barra reta como 2ª puxada da semana** (34,7% dos programas, ponderada): os revisores a chamam de exótica. Rever a ordem da lista (a barra fixa ou a remada antes dela) quando houver a versão sentada.
+- **A semana leve chega uma semana mais cedo para quem repete exercícios nos dois dias de Superior** (o Bruno): efeito da escolha nova sobre a contagem de "3 treinos sem progresso". Conferir no pacote 5.
+
+**Decidido em 16/11 (pacote 2)**
+- A trava do empurrar do foco fica. Os resíduos do pacote foram aceitos; as duas correções de cima ("a razão na distribuição inicial" e "o 4º exercício do foco") continuam para medir.
+- **O hip thrust e a dor leve na lombar:** não muda sem fonte. Pergunta para o tema de dor da pesquisa: o hip thrust com barra carrega a lombar a ponto de entrar na lista de articulações do exercício?
+- O próximo pacote é o 4 (o iniciante).
+
+## Da sessão "treino para todos", etapa 2, pacote 4 (16/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-4.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Limite de 6 exercícios por treino para o iniciante de 3 dias ou mais** (com trava de custo): na população, o foco abaixo da meta sobe 179 programas e os programas sem defeito dos 20 cuidados caem de 57,5% para 50,0% (ponderada); na revisão cega de 8 iniciantes, a nota de eficiência cai de 6,21 para 5,96 (o tempo sobra). Os três que sobem são de 3 dias de 60 min: a forma estreita ("3 dias, até 60 min") fica para um teste próprio.
+- **"O mais simples primeiro" para o iniciante, com trava de custo:** continua criando dia fraco (4 de 23.470) e troca animação por cartão. Segunda recusa.
+- **Proibir a dupla com barra livre e tirar o drop set do iniciante, como último recurso:** continuam criando empurrar ÷ puxar acima de 1,5 e dia fraco em 2 a 4 programas de 23.470. Segunda recusa.
+
+**Para medir depois**
+- **As travas de custo ficam por dentro da montagem de uma divisão; a semana remontada pela dor é escolhida por fora:** com dor forte no quadril, 12 a 15 programas a mais ficam com dia fraco ou com empurrar ÷ puxar acima de 1,5 (de 45.375). Levar a comparação "com e sem a regra" para fora da troca de divisão.
+- **O iniciante de 5 dias de 60 min** recebe sessões de 26 a 46 min e os revisores acham demais para quem começa (nota 14 a 15 de 30, a mais baixa dos iniciantes). É assunto de divisão e de frequência, não deste pacote.
+- **A elevação lateral de um lado só na polia para o iniciante da academia:** ganha da com halteres por ser "estável" (o critério do iniciante vem antes do de dois lados). Rever a marca de estável dos exercícios de polia de um lado só.
+- **Quem quer glúteos em casa com halteres** fica sem ponte de glúteo com halter em 30 min (3,5 a 4 séries de glúteo): os três revisores apontaram.
+
+**Decidido em 16/11 (pacote 4)**
+- A prática do iniciante e a dupla de lombar como último recurso ficam.
+- **O limite de 6 exercícios para o iniciante de 3 dias de até 60 min** terá um teste próprio (medida na população e revisão cega só dele), depois do pacote 5.
+- O próximo pacote é o 5 (o aviso de "sem melhora").
+
+## Da sessão "treino para todos", etapa 2, pacote 5 (16/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-5.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Para medir ou decidir depois**
+- **Recalibrar a janela do aviso de "sem melhora" (4, 8 e 16 sessões) com um export de uso real** (decisão de 02/11): os números são escolha do projeto, sem estudo.
+- **Uma vez parado, o aviso se repete a cada treino** (17 de 48 sessões no simulador, nos três níveis). Avisar uma vez e voltar a avisar só depois de outra janela é uma mudança de tela e de regra; não foi feita.
+- **Oferecer a revisão do nível aos ~6 meses** (a regra do próprio app reclassificaria): pede estado novo e tela.
+- **A carência de 3 semanas depois de uma pausa** deixou de fazer diferença para a estagnação do intermediário e do avançado (a janela só enche depois dela). Rever se a carência ainda precisa existir para esse sinal.
+- **Um teste antigo ainda fraco:** "as sessões da semana leve ficam fora da dupla progressão" não distingue a sessão leve que ficou de fora da que contou; precisa de um treino normal depois da semana leve.
+
+
+## Da sessão "treino para todos", fechamento da etapa 2 (17/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está fechada no ramo da sessão; a junção com a `main` espera a decisão do Gustavo.
+
+**Feito no fechamento**
+- **A marca do ombro:** o agachamento livre com barra e o do Smith passaram a marcar o ombro (`seguranca.dor.programa`; `tests/unit/articulacoes.test.ts`). Sai da pauta do profissional o item "o agachamento com a barra nas costas com dor no ombro" (pacote 0). A panturrilha no leg press com dor no joelho continua lá.
+
+**Para medir ou decidir depois (em ordem de recomendação)**
+- **O iniciante com menos exercícios por dia** (o teste próprio do limite de 6 exercícios, decidido em 16/11): é o caminho provável para tirar as duplas e o drop set de quem está começando. Na revisão final, é a crítica que mais se repete (Gilberto, 67 anos; Ana; Diego).
+- **Com 3 focos ou mais, a série que sobra não deveria ir para o braço enquanto a perna está no mínimo:** o Bruno foi a única pessoa com nota menor na revisão final (eficiência 5,7 → 5,3; bíceps de 12,5 para 13,5 séries, pernas com 8).
+- **Quem tem muito tempo fica com dias curtos** (a Carla: dias de 43 a 48 min em 75): o teto de séries segura o tempo que sobra. Decidir o que fazer com a sobra (mais um exercício? outro teto para o avançado?).
+- **Pernas sem equipamento com dor forte no ombro: dia acima do tempo.** 4 programas de 45.375 (quem só tem o Smith) passaram a receber esse treino com a marca do ombro; o defeito é o de quem não tem equipamento (dia de 51 a 54 min em 45; 34 em 30). O corte de tempo não alcança esse dia.
+- **A rosca Scott com dor forte no ombro:** 2 de 3 revisores contaram como carga no ombro; a biblioteca não marca. Pede fonte, junto com a pergunta do hip thrust e a lombar (pacote 2).
+- **Com dor forte, o app tira o grupo inteiro** (dor 7 no ombro: peito, costas e ombros com zero série). Os revisores pedem movimento adaptado (amplitude, pegada). O app não diagnostica; qualquer mudança aqui passa pela pauta do profissional.
+- **Para o objetivo de força, a escolha entre barra e halteres** (a Marina ficou sem supino com barra e sem desenvolvimento): pede fonte.
+- **Idade e equilíbrio:** a flexão de joelho na bola suíça e a panturrilha no degrau para o Gilberto (67 anos). O app não pergunta nada sobre equilíbrio; ligado à decisão 7 da proposta ("tenho 60 anos ou mais"), que ficou em "não agora".
+
+**Na junção com a `main`**
+- **Passo 1, feito em 17/11:** a `main` está dentro do ramo (três junções no dia), com `check`, testes de tela, a medida da população e a auditoria conferidos (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.1).
+- **Para a sessão de textos rever:** as 13 frases em linguagem simples das regras que a etapa 2 criou ou mudou (`revisoes/treino-para-todos/frases-das-regras.md`). Duas perderam conteúdo para caber em 80 palavras (`tempo.sobra-series` e `tempo.corte`): decidir se essas duas entram na lista das regras longas do teste. **Passo 2, à espera do ok do Gustavo:** juntar o ramo na `main`, sem forçar, com o aviso de exportar os dados antes (versão 9). Se a `main` andar antes disso, repetir o passo 1.
+
 ## Do frontend novo (13/11/2026)
 
 O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend novo"; conferência em `revisoes/frontend-novo/qa.md`).

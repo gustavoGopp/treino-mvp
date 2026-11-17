@@ -5918,7 +5918,7 @@
   "porFuncao": {
    "abdomen": {
     "aparece2": 4596,
-    "repeteComOpcao": 90,
+    "repeteComOpcao": 1122,
     "repeteSemOpcao": 63
    },
    "abducao": {
@@ -5927,38 +5927,38 @@
     "repeteSemOpcao": 0
    },
    "afundo": {
-    "aparece2": 3109,
-    "repeteComOpcao": 0,
+    "aparece2": 3223,
+    "repeteComOpcao": 1056,
     "repeteSemOpcao": 69
    },
    "agachar": {
-    "aparece2": 768,
-    "repeteComOpcao": 0,
+    "aparece2": 762,
+    "repeteComOpcao": 58,
     "repeteSemOpcao": 576
    },
    "biceps": {
     "aparece2": 1386,
-    "repeteComOpcao": 0,
+    "repeteComOpcao": 340,
     "repeteSemOpcao": 366
    },
    "crucifixo": {
     "aparece2": 345,
-    "repeteComOpcao": 15,
+    "repeteComOpcao": 72,
     "repeteSemOpcao": 153
    },
    "dobrar-quadril": {
     "aparece2": 858,
-    "repeteComOpcao": 0,
+    "repeteComOpcao": 211,
     "repeteSemOpcao": 225
    },
    "elevacao-lateral": {
     "aparece2": 1523,
-    "repeteComOpcao": 75,
+    "repeteComOpcao": 357,
     "repeteSemOpcao": 998
    },
    "empurrar-horizontal": {
     "aparece2": 2964,
-    "repeteComOpcao": 792,
+    "repeteComOpcao": 846,
     "repeteSemOpcao": 1092
    },
    "empurrar-inclinado": {
@@ -5973,7 +5973,7 @@
    },
    "extensao-quadril": {
     "aparece2": 495,
-    "repeteComOpcao": 108,
+    "repeteComOpcao": 144,
     "repeteSemOpcao": 315
    },
    "extensora": {
@@ -5982,38 +5982,38 @@
     "repeteSemOpcao": 702
    },
    "flexao-joelho": {
-    "aparece2": 4200,
-    "repeteComOpcao": 0,
-    "repeteSemOpcao": 1773
+    "aparece2": 4212,
+    "repeteComOpcao": 52,
+    "repeteSemOpcao": 1785
    },
    "ombro-posterior": {
     "aparece2": 3663,
-    "repeteComOpcao": 133,
+    "repeteComOpcao": 630,
     "repeteSemOpcao": 2571
    },
    "panturrilha-em-pe": {
     "aparece2": 2475,
-    "repeteComOpcao": 0,
+    "repeteComOpcao": 105,
     "repeteSemOpcao": 2160
    },
    "puxar-horizontal": {
     "aparece2": 1352,
-    "repeteComOpcao": 57,
+    "repeteComOpcao": 210,
     "repeteSemOpcao": 380
    },
    "puxar-vertical": {
     "aparece2": 1854,
-    "repeteComOpcao": 359,
+    "repeteComOpcao": 483,
     "repeteSemOpcao": 723
    },
    "triceps-acima-cabeca": {
     "aparece2": 1980,
-    "repeteComOpcao": 0,
+    "repeteComOpcao": 168,
     "repeteSemOpcao": 1476
    },
    "triceps-complemento": {
     "aparece2": 450,
-    "repeteComOpcao": 68,
+    "repeteComOpcao": 80,
     "repeteSemOpcao": 346
    }
   }

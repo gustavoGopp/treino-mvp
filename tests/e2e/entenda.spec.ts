@@ -64,7 +64,7 @@ test('o que saiu das telas está na página: definições, o programa, cada exer
   await expect(programa.getByText(/^Semana 1\./)).toBeVisible();
   for (const rotulo of [/^Avisos \(\d+\)$/, /^Fases \(\d+\)$/, /^Por que este programa \(\d+\)$/, 'Séries por músculo']) await expect(programa.locator('summary', { hasText: rotulo })).toBeVisible();
   // "Por que este exercício" e o motivo da carga (eram da folha do exercício, do treino e do fim do treino)
-  const exercicio = await porQueDaSugestao(page, 'Agachamento búlgaro com apoio');
+  const exercicio = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
   await expect(exercicio).toContainText(/1ª vez neste exercício/);
   await expect(exercicio.locator('ul.lista li').first()).toBeVisible();
   await expect(exercicio.locator('.selo').first()).toBeVisible();

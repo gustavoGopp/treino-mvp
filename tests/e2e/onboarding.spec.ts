@@ -10,7 +10,10 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
-  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–12 cada lado$/);
+  // Pacote 2 (15/11/2026): o 1º do Corpo todo A é o goblet (dois lados, 8–15); antes era o búlgaro ("8–12 cada lado").
+  // O "cada lado" segue conferido no exercício de um lado só do dia, a remada unilateral.
+  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–15$/);
+  await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d × 8–12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   // Sem animação aprovada: "guia em texto", nunca uma animação improvisada. A flexão de joelho deslizante ganhou a
@@ -19,7 +22,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // Semana 1 (fase de aprendizado da iniciante): RIR 3–4. Sessão de textos (16/11/2026): o porquê do exercício, com o
   // selo de evidência, saiu da folha e está em "Entenda o treino" → "Os exercícios" (conferido no fim deste teste).
-  let folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  let folha = await abrirExercicio(page, /Agachamento goblet/);
   await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
   await expect(folha.locator('.selo, .porque')).toHaveCount(0);
   await folha.getByRole('button', { name: 'Fechar' }).click();
@@ -29,10 +32,10 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
   await expect(painel.getByRole('button', { name: /Stiff com halteres/ })).toBeVisible();
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
-  folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  folha = await abrirExercicio(page, /Agachamento goblet/);
   await folha.getByRole('link', { name: 'Ver como fazer' }).click();
-  await expect(page).toHaveURL(/\/guia\/bulgaro\?de=programa&dia=corpo-a&ex=bulgaro$/);
-  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  await expect(page).toHaveURL(/\/guia\/goblet\?de=programa&dia=corpo-a&ex=goblet$/);
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
 
   // Avisos de meta por músculo em "Entenda o treino" → "O seu programa" (era a folha "Sobre o programa").
   const sobre = await sobreOPrograma(page);
@@ -43,7 +46,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(sobre.getByText(/Foco abaixo da meta: .* Para chegar lá, mais minutos, mais dias ou menos grupos de foco\./)).toBeVisible();
   await expect(sobre.locator('.selo').first()).toBeVisible();
   // R5b: o porquê do exercício começa pelo específico (a vaga, o músculo, o foco, as séries da semana e por que ganhou).
-  const exercicio = await porQueDaSugestao(page, 'Agachamento búlgaro com apoio');
+  const exercicio = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
   await expect(exercicio.getByText(/^Vaga de agachar, para o quadríceps, o seu foco: \d+ das \d+ séries da semana/)).toBeVisible();
   await expect(exercicio.locator('.selo').first()).toBeVisible();
 });
@@ -375,12 +378,15 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
 
 test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o exercício escolhido', async ({ page }) => {
   await ana(page);
+  // Pacote 2 (15/11/2026): o exercício a evitar é o goblet, que está no programa da Ana (antes, o búlgaro, que saiu dele:
+  // com o búlgaro, a última verificação passaria sem provar nada).
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(1);
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
   await page.getByText('Exercícios a evitar', { exact: true }).click();
-  await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+  await page.getByLabel('Agachamento goblet com calcanhar elevado', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
-  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(0);
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(0);
 });

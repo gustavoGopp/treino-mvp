@@ -869,6 +869,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/33671664/",
   "leitura": "busca"
  },
+ "schoenfeld2021b": {
+  "citacao": "Schoenfeld BJ, Fisher JP, Grgic J, Haun C, et al. (2021). Resistance Training Recommendations to Maximize Muscle Hypertrophy in an Athletic Population: Position Stand of the IUSCA. Int J Strength Cond 1(1).",
+  "link": "https://doi.org/10.47206/ijsc.v1i1.81",
+  "leitura": "busca"
+ },
  "schwartz2021": {
   "citacao": "Schwartz J, Takito MY, Warburton DER, et al. (2021). Translation, Cultural Adaptation, and Reproducibility of the Physical Activity Readiness Questionnaire for Everyone (PAR-Q+): The Brazilian Portuguese Version. Front Cardiovasc Med (volume não conferido).",
   "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8350392/",
@@ -912,6 +917,11 @@
  "spiering2021": {
   "citacao": "Spiering BA, Mujika I, Sharp MA, Foulis SA (2021). Maintaining Physical Performance: The Minimal Dose of Exercise Needed to Preserve Endurance and Strength Over Time. J Strength Cond Res 35(5):1449–1458.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
+  "leitura": "resumo"
+ },
+ "steele2023": {
+  "citacao": "Steele J, Fisher JP, Giessing J, et al. (2023). Long-Term Time-Course of Strength Adaptation to Minimal Dose Resistance Training Through Retrospective Longitudinal Growth Modeling. Res Q Exerc Sport 94(4):913-930.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/35591809/",
   "leitura": "resumo"
  },
  "svensen2025": {

@@ -1,0 +1,171 @@
+[
+ {
+  "id": "i1",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "i2",
+  "descricao": "Iniciante; academia completa; 4 dias de 45 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "4",
+   "min": 45,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "i3",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "i4",
+  "descricao": "Iniciante; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "i5",
+  "descricao": "Iniciante; academia completa; 5 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "5",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "i6",
+  "descricao": "Iniciante; em casa, com halteres de 1 a 12 kg e banco reto; 3 dias de 30 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "halteres-banco",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 30,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "t1",
+  "descricao": "Avançado; academia completa; 3 dias de 30 min; sem dor; quer peito e costas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "3",
+   "min": 30,
+   "focos": [
+    "peito",
+    "costas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "t2",
+  "descricao": "Intermediária; academia completa; 2 dias de 30 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "2",
+   "min": 30,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "t3",
+  "descricao": "Intermediário; academia completa; 4 dias de 45 min; sem dor; quer pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 45,
+   "focos": [
+    "pernas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "l1",
+  "descricao": "Intermediário; em casa, só com halteres de 2 a 20 kg, sem banco; 3 dias de 30 min; sem dor; quer costas.",
+  "pedido": {
+   "cenario": "halteres",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 30,
+   "focos": [
+    "costas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "l2",
+  "descricao": "Avançado; em casa, só com halteres de 2 a 20 kg, sem banco; 2 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "halteres",
+   "nivel": "avancado",
+   "dias": "2",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "l3",
+  "descricao": "Intermediária; em casa, só com halteres de 2 a 20 kg, sem banco; 2 dias de 30 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "halteres",
+   "nivel": "intermediario",
+   "dias": "2",
+   "min": 30,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ }
+]

@@ -489,7 +489,7 @@ describe('regras do R0b no gerador', () => {
     expect(achar(prog.dias, 'ponte-gluteo-halter').porque.map((q) => q.regraId)).toContain('rir.carga-baixa');
     expect(achar(prescricaoDaSemana(prog, 1), 'ponte-gluteo-halter').rir).toEqual([3, 4]); // fase de aprendizado
     expect(achar(prescricaoDaSemana(prog, 3), 'ponte-gluteo-halter').rir).toEqual([1, 2]);
-    expect(achar(prog.dias, 'bulgaro').rir).toEqual([2, 3]); // 8–12 repetições: não muda
+    expect(achar(prog.dias, 'afundo').rir).toEqual([2, 3]); // 8–12 repetições: não muda (até o pacote 2, o exemplo era o búlgaro, que saiu do programa da Ana)
   });
   it('só halteres, sem banco: costas, ombro posterior e glúteo com carga (auditoria, achado 6; antes, 0 série de costas e de ombro posterior)', () => {
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
@@ -641,10 +641,13 @@ describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.s
       }
     }
   });
-  it('com o equipamento completo, nada muda: nenhum exercício entra por vaga vazia e as séries não sobem por sobra', () => {
+  // Até 13/11/2026 este teste dizia "as séries não sobem por sobra". Desde o 2º passo de tempo.sobra-series (decisão do
+  // Gustavo em 13/11), o tempo que sobra vira série em todos os dias (tests/unit/tempo-que-sobra.test.ts): com o equipamento
+  // completo, o que não existe é o texto dos dias com vaga vazia.
+  it('com o equipamento completo, nenhum exercício entra por vaga vazia, e o texto das séries não fala de vaga sem exercício', () => {
     const p = ok(carla.perfil, carla.inventario);
     expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'))).toBe(false);
-    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series')).toBe(false);
+    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series' && /vaga sem exercício possível/.test(q.texto))).toBe(false);
   });
   it('só barra fixa (o Fábio): a vaga vazia de puxar horizontal recebe a outra pegada, e as costas chegam ao alvo do intermediário', () => {
     const p = ok(fabio.perfil, fabio.inventario);

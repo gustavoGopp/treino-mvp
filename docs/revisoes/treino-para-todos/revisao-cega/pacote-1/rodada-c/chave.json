@@ -1,0 +1,62 @@
+{
+ "U01": {
+  "pessoa": "leandro",
+  "versao": "compostos"
+ },
+ "U02": {
+  "pessoa": "i3",
+  "versao": "compostos"
+ },
+ "U03": {
+  "pessoa": "i4",
+  "versao": "todas"
+ },
+ "U04": {
+  "pessoa": "i1",
+  "versao": "main"
+ },
+ "U05": {
+  "pessoa": "i3",
+  "versao": "todas"
+ },
+ "U06": {
+  "pessoa": "i1",
+  "versao": "todas"
+ },
+ "U07": {
+  "pessoa": "i3",
+  "versao": "main"
+ },
+ "U08": {
+  "pessoa": "i2",
+  "versao": "compostos"
+ },
+ "U09": {
+  "pessoa": "i1",
+  "versao": "compostos"
+ },
+ "U10": {
+  "pessoa": "leandro",
+  "versao": "todas"
+ },
+ "U11": {
+  "pessoa": "leandro",
+  "versao": "main"
+ },
+ "U12": {
+  "pessoa": "i2",
+  "versao": "todas"
+ },
+ "U13": {
+  "pessoa": "i4",
+  "versao": "main"
+ },
+ "U14": {
+  "pessoa": "i2",
+  "versao": "main"
+ },
+ "U15": {
+  "pessoa": "i4",
+  "versao": "compostos"
+ }
+}

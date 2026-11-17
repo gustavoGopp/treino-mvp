@@ -1,0 +1,1208 @@
+{
+ "medias": {
+  "hoje": [
+   5.43,
+   5.85,
+   5.15
+  ],
+  "proposta": [
+   5.91,
+   6.31,
+   5.52
+  ]
+ },
+ "porPessoa": {
+  "ana": {
+   "hoje": [
+    5.33,
+    5.0,
+    4.67
+   ],
+   "proposta": [
+    5.33,
+    5.67,
+    4.67
+   ]
+  },
+  "bruno": {
+   "hoje": [
+    5.67,
+    6.0,
+    5.0
+   ],
+   "proposta": [
+    5.33,
+    6.0,
+    5.0
+   ]
+  },
+  "carla": {
+   "hoje": [
+    7.0,
+    8.0,
+    6.0
+   ],
+   "proposta": [
+    7.0,
+    8.0,
+    6.0
+   ]
+  },
+  "diego": {
+   "hoje": [
+    6.0,
+    6.33,
+    5.67
+   ],
+   "proposta": [
+    6.0,
+    6.33,
+    5.67
+   ]
+  },
+  "elisa": {
+   "hoje": [
+    5.67,
+    6.67,
+    5.33
+   ],
+   "proposta": [
+    5.67,
+    6.67,
+    5.33
+   ]
+  },
+  "fabio": {
+   "hoje": [
+    6.67,
+    7.33,
+    6.33
+   ],
+   "proposta": [
+    6.67,
+    7.33,
+    6.33
+   ]
+  },
+  "gilberto": {
+   "hoje": [
+    4.67,
+    3.0,
+    4.0
+   ],
+   "proposta": [
+    5.67,
+    4.0,
+    4.67
+   ]
+  },
+  "iris": {
+   "hoje": [
+    6.0,
+    6.67,
+    5.67
+   ],
+   "proposta": [
+    6.0,
+    6.67,
+    5.67
+   ]
+  },
+  "jonas": {
+   "hoje": [
+    5.67,
+    5.33,
+    5.33
+   ],
+   "proposta": [
+    6.0,
+    6.67,
+    5.67
+   ]
+  },
+  "katia": {
+   "hoje": [
+    4.0,
+    4.67,
+    4.0
+   ],
+   "proposta": [
+    4.0,
+    4.67,
+    4.0
+   ]
+  },
+  "leandro": {
+   "hoje": [
+    6.0,
+    6.0,
+    5.67
+   ],
+   "proposta": [
+    6.67,
+    6.67,
+    6.0
+   ]
+  },
+  "marina": {
+   "hoje": [
+    4.67,
+    6.0,
+    5.33
+   ],
+   "proposta": [
+    7.0,
+    7.67,
+    6.67
+   ]
+  },
+  "x1": {
+   "hoje": [
+    5.0,
+    5.33,
+    5.0
+   ],
+   "proposta": [
+    6.0,
+    6.67,
+    6.0
+   ]
+  },
+  "x2": {
+   "hoje": [
+    3.67,
+    4.33,
+    4.33
+   ],
+   "proposta": [
+    6.0,
+    6.67,
+    6.0
+   ]
+  },
+  "x3": {
+   "hoje": [
+    3.67,
+    5.0,
+    3.33
+   ],
+   "proposta": [
+    5.0,
+    4.0,
+    4.67
+   ]
+  },
+  "x4": {
+   "hoje": [
+    5.33,
+    6.0,
+    5.0
+   ],
+   "proposta": [
+    5.33,
+    6.0,
+    5.0
+   ]
+  },
+  "x5": {
+   "hoje": [
+    7.0,
+    7.67,
+    7.0
+   ],
+   "proposta": [
+    7.0,
+    7.67,
+    7.0
+   ]
+  },
+  "x6": {
+   "hoje": [
+    5.67,
+    6.0,
+    5.0
+   ],
+   "proposta": [
+    5.67,
+    6.33,
+    5.0
+   ]
+  }
+ },
+ "notas": {
+  "1|carla|proposta": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "1|diego|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|iris|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|diego|hoje": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|gilberto|proposta": [
+   6.0,
+   4.0,
+   5.0
+  ],
+  "1|x6|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "1|ana|hoje": [
+   5.0,
+   5.0,
+   5.0
+  ],
+  "1|x3|hoje": [
+   4.0,
+   6.0,
+   4.0
+  ],
+  "1|ana|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "1|gilberto|hoje": [
+   5.0,
+   3.0,
+   4.0
+  ],
+  "1|leandro|hoje": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "1|x5|hoje": [
+   7.0,
+   7.0,
+   7.0
+  ],
+  "1|katia|hoje": [
+   4.0,
+   5.0,
+   4.0
+  ],
+  "1|leandro|proposta": [
+   7.0,
+   7.0,
+   6.0
+  ],
+  "1|x1|proposta": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "1|x4|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|x2|proposta": [
+   7.0,
+   7.0,
+   7.0
+  ],
+  "1|x2|hoje": [
+   4.0,
+   4.0,
+   5.0
+  ],
+  "1|carla|hoje": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "1|elisa|hoje": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|x5|proposta": [
+   7.0,
+   7.0,
+   7.0
+  ],
+  "1|x1|hoje": [
+   5.0,
+   5.0,
+   5.0
+  ],
+  "1|bruno|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "1|marina|proposta": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "1|marina|hoje": [
+   5.0,
+   6.0,
+   6.0
+  ],
+  "1|bruno|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "1|iris|hoje": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|fabio|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|jonas|hoje": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "1|katia|proposta": [
+   4.0,
+   5.0,
+   4.0
+  ],
+  "1|x4|hoje": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|elisa|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|x6|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "1|jonas|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|fabio|hoje": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "1|x3|proposta": [
+   5.0,
+   5.0,
+   5.0
+  ],
+  "2|carla|proposta": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "2|diego|proposta": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "2|iris|proposta": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "2|diego|hoje": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "2|gilberto|proposta": [
+   6.0,
+   4.0,
+   5.0
+  ],
+  "2|x6|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|ana|hoje": [
+   6.0,
+   5.0,
+   5.0
+  ],
+  "2|x3|hoje": [
+   4.0,
+   4.0,
+   3.0
+  ],
+  "2|ana|proposta": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|gilberto|hoje": [
+   5.0,
+   3.0,
+   4.0
+  ],
+  "2|leandro|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|x5|hoje": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "2|katia|hoje": [
+   4.0,
+   5.0,
+   4.0
+  ],
+  "2|leandro|proposta": [
+   7.0,
+   7.0,
+   6.0
+  ],
+  "2|x1|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "2|x4|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "2|x2|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "2|x2|hoje": [
+   4.0,
+   5.0,
+   4.0
+  ],
+  "2|carla|hoje": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "2|elisa|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "2|x5|proposta": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "2|x1|hoje": [
+   5.0,
+   5.0,
+   5.0
+  ],
+  "2|bruno|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|marina|proposta": [
+   7.0,
+   7.0,
+   6.0
+  ],
+  "2|marina|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "2|bruno|proposta": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|iris|hoje": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "2|fabio|proposta": [
+   7.0,
+   7.0,
+   6.0
+  ],
+  "2|jonas|hoje": [
+   5.0,
+   5.0,
+   5.0
+  ],
+  "2|katia|proposta": [
+   4.0,
+   5.0,
+   4.0
+  ],
+  "2|x4|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "2|elisa|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "2|x6|proposta": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "2|jonas|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "2|fabio|hoje": [
+   7.0,
+   7.0,
+   6.0
+  ],
+  "2|x3|proposta": [
+   6.0,
+   4.0,
+   5.0
+  ],
+  "3|carla|proposta": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "3|diego|proposta": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "3|iris|proposta": [
+   6.0,
+   7.0,
+   5.0
+  ],
+  "3|diego|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "3|gilberto|proposta": [
+   5.0,
+   4.0,
+   4.0
+  ],
+  "3|x6|hoje": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "3|ana|hoje": [
+   5.0,
+   5.0,
+   4.0
+  ],
+  "3|x3|hoje": [
+   3.0,
+   5.0,
+   3.0
+  ],
+  "3|ana|proposta": [
+   5.0,
+   5.0,
+   4.0
+  ],
+  "3|gilberto|hoje": [
+   4.0,
+   3.0,
+   4.0
+  ],
+  "3|leandro|hoje": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "3|x5|hoje": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "3|katia|hoje": [
+   4.0,
+   4.0,
+   4.0
+  ],
+  "3|leandro|proposta": [
+   6.0,
+   6.0,
+   6.0
+  ],
+  "3|x1|proposta": [
+   6.0,
+   7.0,
+   6.0
+  ],
+  "3|x4|proposta": [
+   5.0,
+   5.0,
+   4.0
+  ],
+  "3|x2|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "3|x2|hoje": [
+   3.0,
+   4.0,
+   4.0
+  ],
+  "3|carla|hoje": [
+   7.0,
+   8.0,
+   6.0
+  ],
+  "3|elisa|hoje": [
+   6.0,
+   7.0,
+   5.0
+  ],
+  "3|x5|proposta": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "3|x1|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "3|bruno|hoje": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "3|marina|proposta": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "3|marina|hoje": [
+   4.0,
+   6.0,
+   5.0
+  ],
+  "3|bruno|proposta": [
+   5.0,
+   6.0,
+   5.0
+  ],
+  "3|iris|hoje": [
+   6.0,
+   7.0,
+   5.0
+  ],
+  "3|fabio|proposta": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "3|jonas|hoje": [
+   6.0,
+   5.0,
+   5.0
+  ],
+  "3|katia|proposta": [
+   4.0,
+   4.0,
+   4.0
+  ],
+  "3|x4|hoje": [
+   5.0,
+   5.0,
+   4.0
+  ],
+  "3|elisa|proposta": [
+   6.0,
+   7.0,
+   5.0
+  ],
+  "3|x6|proposta": [
+   6.0,
+   7.0,
+   5.0
+  ],
+  "3|jonas|proposta": [
+   6.0,
+   6.0,
+   5.0
+  ],
+  "3|fabio|hoje": [
+   7.0,
+   8.0,
+   7.0
+  ],
+  "3|x3|proposta": [
+   4.0,
+   3.0,
+   4.0
+  ]
+ },
+ "txt": {
+  "1|carla|proposta": [
+   "Volume bom (14 a 15 séries nos grandes), mas glúteos ficam em 9 e a elevação lateral aparece 3 vezes em dias seguidos (inclusive no dia de puxar), enquanto os dias de empurrar/puxar usam só 43 a 48 dos 75 min.",
+   "Dar menos elevação lateral por dia (distribuir) e mover séries de glúteo (hip thrust/agachamento) para somar 12+ séries, usando o tempo ocioso dos dias curtos."
+  ],
+  "1|diego|proposta": [
+   "Pernas muito fracas (quadríceps 6, glúteos 5,5, só 2 séries de agachamento com elástico por dia) e 4 séries diárias de abdominal que rendem pouco.",
+   "Tirar séries de abdômen e panturrilha e passar para agachamento/ponte/afundo, subindo quadríceps e glúteos para 8 a 10."
+  ],
+  "1|iris|proposta": [
+   "Costas com só 6 séries (puxada 2x2 e remada 2) contra glúteos 10,5 e tríceps 6, e agachamento com elástico em apenas 2 séries para quem tem 3 intensidades de elástico.",
+   "Subir remada/puxada para 9 a 10 séries semanais e usar o elástico mais forte nas pernas (agachamento unilateral)."
+  ],
+  "1|diego|hoje": [
+   "Igual à S02: perna e glúteo subdimensionados, abdômen 4x12-20 em excesso, e barra fixa só em negativa 4x3-6 no primeiro dia.",
+   "Redistribuir as 4 séries de abdominal do dia C para ponte de glúteo e agachamento."
+  ],
+  "1|gilberto|proposta": [
+   "Para quem tem 67 anos e nunca treinou há duplas e até drop set (rosca) e agachamento goblet com calcanhar elevado: complexidade, fadiga e equilíbrio demais para esse perfil.",
+   "Tirar os pares e o drop set e trocar o goblet com calcanhar elevado por sentar-e-levantar do banco ou leg press/agachamento no apoio."
+  ],
+  "1|x6|hoje": [
+   "Halteres só até 12 kg para avançada: carga insuficiente para 8 a 12 repetições em perna, e os dias de superior (41 a 46 min) ficam muito mais curtos que os de inferior (74 min) com peito em 6 séries.",
+   "Usar faixas de repetição altas e unilaterais mais lentas/pausadas nas pernas e equilibrar o tempo, subindo peito/costas para ~10 séries."
+  ],
+  "1|ana|hoje": [
+   "Iniciante com agachamento búlgaro 4x8-12 como primeiro exercício, pares com número de séries diferente (4 e 2) e três drop sets em quem está aprendendo; quadríceps só 6 para quem quer pernas.",
+   "Trocar o búlgaro por agachamento goblet/afundo estático, tirar os drop sets e subir quadríceps para 8 a 10 séries."
+  ],
+  "1|x3|hoje": [
+   "Os dias superiores têm só 12 min (rosca e tríceps), peito e costas em zero, e o app usa 104 min de 240 disponíveis: são 4 dias para menos de 2 dias de trabalho real.",
+   "Concentrar tudo em 3 dias (ou 2 de pernas fortes) e usar o tempo sobrante para mais volume de perna e braço, ou então oferecer exercícios de costas sem carga no ombro."
+  ],
+  "1|ana|proposta": [
+   "Mesmos problemas da S07 (halteres de 12 kg, drop sets para iniciante, quadríceps 6 para quem quer pernas), com ponte de glúteo em 2 séries apenas por dia.",
+   "Tirar os drop sets e redistribuir séries de abdômen/panturrilha para quadríceps e glúteo."
+  ],
+  "1|gilberto|hoje": [
+   "Agachamento búlgaro em dupla com supino para uma pessoa de 67 anos que nunca treinou é arriscado (equilíbrio, queda), e ainda há drop set e abdominal na bola.",
+   "Trocar búlgaro por agachamento no apoio/sentar-levantar, tirar pares e drop set, e abdominal no chão ou na bola por prancha/abdominal simples."
+  ],
+  "1|leandro|hoje": [
+   "Dor no joelho 7 e ainda leg press na panturrilha; quadríceps em zero por 3 dias e 21 exercícios diferentes para um iniciante, bagunçando o aprendizado.",
+   "Tirar o leg press e repetir os mesmos exercícios entre A/B/C para o iniciante dominar a técnica."
+  ],
+  "1|x5|hoje": [
+   "Pernas só em 6 séries semanais com abdômen também em 6, panturrilha em 4: pouco para ficar no mesmo patamar de peito/costas (12).",
+   "Trocar parte do abdômen por mais agachamento/ponte e deixar abdômen em 4."
+  ],
+  "1|katia|hoje": [
+   "Avançado sem equipamento fazendo agachamento sem carga 4x12-20 e flexão comum: estímulo baixo, costas e bíceps em zero e peito 14/tríceps 13 por flexões, gerando desequilíbrio postural.",
+   "Usar variações bem mais difíceis (flexão arqueiro/declinada, agachamento pistol/assistido, tempo lento) e puxada em qualquer objeto firme se permitido, senão reduzir peito/tríceps."
+  ],
+  "1|leandro|proposta": [
+   "Iniciante com dor no joelho 7, mas quadríceps em zero e glúteos só com hip thrust; 8 exercícios por dia faz o treino parecer longo.",
+   "Incluir exercício de quadríceps seguro (extensora leve ou isometria) se o limite permitir, senão informar claramente a ausência."
+  ],
+  "1|x1|proposta": [
+   "Sessão A estimada em 33 min para quem tem 30; só 21 séries, sem ombro nem braço direto e isquiotibiais 3 séries em um único dia.",
+   "Cortar o stiff ou a panturrilha para caber em 30 min e mover o stiff para o dia B para dar 2 dias de posteriores."
+  ],
+  "1|x4|proposta": [
+   "Peito/tríceps com flexões em todo dia (9 e 8 séries) enquanto costas é zero, e quadríceps só 6 para quem quer glúteos.",
+   "Reduzir uma flexão e ampliar glúteo unilateral (ponte de uma perna, afundo) e usar pausa para progredir."
+  ],
+  "1|x2|proposta": [
+   "Usa em média 54 min dos 90 min diários (puxar 40 min) e 14 séries por músculo: um avançado com 5 dias de 90 min poderia render mais.",
+   "Subir para 16 a 18 séries por músculo nos dias curtos (puxar) e incluir mais um exercício de glúteo."
+  ],
+  "1|x2|hoje": [
+   "Avançado com 5 dias de 90 min recebe 26 a 46 min por dia e apenas 2 séries por exercício (66 séries): subdosagem clara, 5 idas à academia para pouco trabalho.",
+   "Dobrar o volume por exercício (3 a 4 séries) para ao menos 12 a 14 séries por músculo ou reduzir o número de dias."
+  ],
+  "1|carla|hoje": [
+   "Elevação lateral 14 séries em quatro dias (inclusive no dia de puxar), glúteos em 9 e abdômen em 4.",
+   "Reduzir lateral para 10 a 12 e acrescentar hip thrust ou glúteo na máquina para chegar a 12 séries."
+  ],
+  "1|elisa|hoje": [
+   "Costas e bíceps em zero e abdômen 4x12-20 num treino de 30 min, enquanto pernas têm 5 séries.",
+   "Cortar as séries de abdômen para 2 e passar para agachamento/afundo."
+  ],
+  "1|x5|proposta": [
+   "Parecida com S12: chega a 13 séries de peito, mas quadríceps só 6 e panturrilha 4, com abdômen 6.",
+   "Passar uma série de abdômen para agachamento e manter peito/costas em 12."
+  ],
+  "1|x1|hoje": [
+   "Remada curvada em dupla com stiff: duas cargas de coluna lombar sem descanso, e sessão A de 36 min para quem tem 30; só 22 séries.",
+   "Separar o par remada/stiff (ou usar remada apoiada) e cortar para caber em 30 min."
+  ],
+  "1|bruno|hoje": [
+   "Braços e ombros com 12 a 12,5 séries e pernas só 8: volume invertido; dia superior com 9 exercícios (70 min) e elevação lateral 4x no dia de inferior.",
+   "Cortar braço/ombro para ~9 séries e dar quadríceps/posteriores 10 a 12, e tirar elevação lateral do dia de inferior."
+  ],
+  "1|marina|proposta": [
+   "Para força, o stiff 4x5-8 vem logo após o agachamento 4x5-8 (fadiga alta) e os acessórios de 12-20 repetições são muitos; falta desenvolvimento de ombro como exercício de força.",
+   "Dar menos séries de acessório e incluir um empurrar vertical pesado (desenvolvimento) em 3 a 5 séries."
+  ],
+  "1|marina|hoje": [
+   "Para objetivo força, os levantamentos principais recebem só 2 séries (bem pouco) e as sessões duram 37 a 46 min dos 60 disponíveis.",
+   "Subir os principais (agachamento, supino, remada) para 3 a 4 séries e usar os 15 a 20 min livres."
+  ],
+  "1|bruno|proposta": [
+   "Mesmo problema da S23: braços 13,5 e ombro 13 contra quadríceps 8; Inferior A só 39 min e Superior 67 a 69 min.",
+   "Passar séries de rosca e lateral para perna, equilibrando os dias a ~55 min."
+  ],
+  "1|iris|hoje": [
+   "Igual à S03: costas só 6 séries e agachamento em 2 séries.",
+   "Subir costas para 9 a 10 e pernas para 8, usando o elástico mais forte."
+  ],
+  "1|fabio|proposta": [
+   "Pernas só com peso do corpo (agachamento 4x12-20) para intermediário rende pouco, e a barra fixa pesada (4x5-10) mais a negativa (4x3-6) no mesmo dia somam 8 séries de falha.",
+   "Trocar parte das séries de agachamento por unilaterais mais difíceis (búlgaro com cadeira não permitido: usar afundo lento/pistol assistido) e reduzir o conjunto barra fixa + negativa."
+  ],
+  "1|jonas|hoje": [
+   "Sessão A estimada em 38 min para quem tem 30 e só 24 séries: sobram pouca coisa para ombro e braços.",
+   "Cortar panturrilha/abdômen do dia A para caber em 30 min e manter agachamento e supino em pares."
+  ],
+  "1|katia|proposta": [
+   "Igual à S13: agachamento sem carga e flexões comuns para avançado, costas e bíceps em zero, peito/tríceps muito altos.",
+   "Usar variações mais difíceis e dar tempo lento; reduzir flexões em dias seguidos."
+  ],
+  "1|x4|hoje": [
+   "Igual à S16: flexões todo dia e costas em zero, pernas só 6 séries.",
+   "Reduzir uma flexão e dobrar o trabalho unilateral de glúteo."
+  ],
+  "1|elisa|proposta": [
+   "Igual à S20: costas/bíceps em zero e abdômen 4x12-20 em sessão de 30 min.",
+   "Cortar abdômen para 2 séries e dar para agachamento."
+  ],
+  "1|x6|proposta": [
+   "Dois dias de inferior com 74 a 75 min cada, 8 a 9 exercícios leves (halteres de 12 kg) e panturrilha em 14 séries e adução sem carga 15-30 repetições: muito tempo para pouco estímulo.",
+   "Cortar panturrilha para 8 a 10 e adução sem carga, e usar tempo lento/unilaterais nas pernas para ter carga efetiva."
+  ],
+  "1|jonas|proposta": [
+   "Semana de 21 séries em 58 min: quadríceps 5, isquiotibiais 3, sem ombro nem braço; stiff em dupla com puxada é uma escolha que rende.",
+   "Aumentar 1 a 2 séries de posteriores e incluir uma lateral de ombro em dupla."
+  ],
+  "1|fabio|hoje": [
+   "Igual à S28: pernas só com o peso do corpo e dois dias de barra fixa até a falha.",
+   "Mesmo da S28."
+  ],
+  "1|x3|proposta": [
+   "Com dor no ombro 7, ainda prescreve agachamento livre com barra (barra nas costas) e rosca Scott (carga no ombro), e deixa peito, costas e ombro em zero: o braço fica com 20 séries e o resto sem trabalho.",
+   "Trocar o agachamento com barra por leg press/hack e a Scott por rosca no banco inclinado, e usar o tempo livre (43 a 51 dos 60 min) para pernas/glúteos."
+  ],
+  "2|carla|proposta": [
+   "Avançada com 75 min por dia, mas Puxar e Empurrar levam só 43 a 48 min; elevação lateral 4 × 12 a 20 repetida em quase todos os dias, sem agachamento/leg press pesado variado e glúteos só com 9 séries.",
+   "Preencher os dias curtos com mais volume de costas e glúteos e tirar a elevação lateral repetida em 3 dias, dividindo as séries em 2 dias."
+  ],
+  "2|diego|proposta": [
+   "Iniciante com negativa de barra fixa 4 × 3 a 6 (e 2 × no dia C) em dupla com flexão, perto da falha para quem nunca treinou.",
+   "Trocar a negativa por remada com elástico como base e usar a negativa como 2 séries opcionais; dar versão de flexão com joelhos no chão."
+  ],
+  "2|iris|proposta": [
+   "Intermediária que quer glúteos faz ponte de glúteo só com o peso do corpo e agachamento com elástico: estímulo fraco, só 10,5 séries de glúteo.",
+   "Colocar ponte com elástico no quadril/unilateral e coice com elástico forte nos 3 dias, subindo para 12 a 16 séries de glúteo."
+  ],
+  "2|diego|hoje": [
+   "Igual à S02: negativa de barra fixa 4 × 3 a 6 em dupla com flexão para iniciante, sem versão mais leve da flexão.",
+   "Reduzir a negativa para 2 séries por dia e oferecer a flexão com joelhos apoiados."
+  ],
+  "2|gilberto|proposta": [
+   "Pessoa de 67 anos que nunca treinou recebe pares sem descanso (agachamento com supino), drop set na rosca e flexão de joelho na bola suíça e panturrilha no degrau (risco de equilíbrio e de levantar do chão).",
+   "Tirar o drop set e os pares, usar a máquina multifuncional (leg press ou cadeira) e panturrilha segurando no apoio; descansar de verdade entre as séries."
+  ],
+  "2|x6|hoje": [
+   "Avançada que quer pernas, com halter máximo de 12 kg: os dias de Superior ocupam só 41 a 46 de 75 min e a nórdica (6 a 10 reps, 0 a 1 de sobra) exige ancoragem e é arriscada para o posterior.",
+   "Ampliar as repetições dos exercícios unilaterais para faixas altas/tempo sob tensão, usar o tempo extra dos dias superiores para pernas e trocar a nórdica por variação com apoio."
+  ],
+  "2|ana|hoje": [
+   "Iniciante começa o dia por agachamento búlgaro (exercício de equilíbrio e joelho) 4 × 8 a 12 e recebe 3 drop sets na semana.",
+   "Trocar o búlgaro por agachamento goblet, tirar os drop sets e manter os pares só entre empurrar e puxar."
+  ],
+  "2|x3|hoje": [
+   "Dor no ombro nota 7: os dois dias de Superior têm só rosca e tríceps (12 min) e todo o peito, costas e ombro vão a zero, mas o agachamento livre com barra nas costas pesa o ombro.",
+   "Trocar o agachamento com barra por leg press/hack, usar o tempo restante para algo seguro e avisar de forma clara para procurar avaliação profissional."
+  ],
+  "2|ana|proposta": [
+   "Iniciante com halteres de 1 a 12 kg faz 4 séries de flexão de joelho deslizando em dupla com tríceps e drops de rosca/crucifixo; os pesos de 12 kg limitam o agachamento.",
+   "Tirar os drop sets de iniciante e pôr série mais longa (até 20 repetições) para compensar o peso máximo."
+  ],
+  "2|gilberto|hoje": [
+   "Pessoa de 67 anos que nunca treinou faz agachamento búlgaro em dupla com supino, drop set e abdominal na bola suíça: o búlgaro é inseguro nessa idade.",
+   "Trocar o búlgaro por agachamento goblet ou leg press, tirar o drop set e o abdominal na bola."
+  ],
+  "2|leandro|hoje": [
+   "Dor no joelho nota 7: sem quadríceps, o que é coerente, mas a panturrilha no leg press carrega o joelho sob carga; 8 exercícios por dia com 2 séries é bagunçado para iniciante.",
+   "Trocar a panturrilha no leg press pela panturrilha em pé na máquina leve e cortar exercícios de braço e abdômen para dar espaço aos básicos."
+  ],
+  "2|x5|hoje": [
+   "Peito e costas (foco) têm só 12 séries cada e o dia tem 8 exercícios em 60 min, com pernas pouco trabalhadas (6 séries de quadríceps).",
+   "Subir peito e costas para 14 a 16 séries cortando a elevação lateral repetida e o abdômen."
+  ],
+  "2|katia|hoje": [
+   "Avançada em casa sem equipamento: costas e bíceps ficam em 0 séries na semana e a nórdica 7 séries com 0 a 1 de sobra é risco para o posterior; o dia B e o D quase iguais.",
+   "Avisar claramente que costas não dá para treinar sem equipamento e pôr o pulo/remada deitada no chão apenas se houver apoio seguro; reduzir a nórdica."
+  ],
+  "2|leandro|proposta": [
+   "Dor no joelho nota 7: sem quadríceps e sem agachamento (bom), mas 2 a 3 séries por exercício com 16 exercícios é fragmentado e a panturrilha em pé carrega o joelho.",
+   "Trocar a panturrilha em pé por sentada, juntar em menos exercícios mais bem feitos e recomendar avaliação."
+  ],
+  "2|x1|proposta": [
+   "Iniciante com 2 dias de 30 min: o dia A passa de 30 min (33) e há pouco para ombro e braços.",
+   "Cortar uma série do stiff e a panturrilha para o dia A caber em 30 min."
+  ],
+  "2|x4|proposta": [
+   "Iniciante em casa sem equipamento que quer glúteos: costas em 0 séries e flexão de braço sem versão mais fácil; o dia B tem pares estranhos (panturrilha com abertura em T).",
+   "Dar flexão com joelhos no chão e pôr mais ênfase em ponte/ponte unilateral com tempo; tirar os pares artificiais do dia B."
+  ],
+  "2|x2|proposta": [
+   "Avançado com 90 min por dia usa só 270 de 450 min; o dia Puxar tem 40 min e a elevação lateral só 8 séries.",
+   "Pôr mais volume nos dias curtos (costas e elevação lateral) em vez de deixar 180 min sobrando."
+  ],
+  "2|x2|hoje": [
+   "Avançado com 90 min por dia: o Puxar tem 26 min e a semana só 66 séries (181 de 450 min), muito abaixo do que ele aguenta.",
+   "Dobrar o volume e preencher os dias para chegar a 12 a 16 séries por grupo."
+  ],
+  "2|carla|hoje": [
+   "Mesmo defeito da S01: dia Puxar com 41 min contra 75 disponíveis, elevação lateral 4 × 12 a 20 repetida em três dias e quadríceps só com 14 séries com pouca variedade pesada.",
+   "Redistribuir a elevação lateral em 2 dias e dar o tempo sobrante ao quadríceps e às costas."
+  ],
+  "2|elisa|hoje": [
+   "Iniciante na sala: costas em 0, dia B com 4 exercícios finos e descanso de 1 min 45 s entre flexões leves, desperdício de tempo.",
+   "Cortar o descanso para 1 min nos exercícios de peso do corpo e pôr o tempo em mais séries de glúteo e pernas."
+  ],
+  "2|x5|proposta": [
+   "Intermediário (peito e costas): 13 e 12 séries são boas, mas 8 exercícios por dia e a elevação lateral dobrada deixam o treino corrido.",
+   "Cortar abdômen e uma lateral e dar mais 2 séries de remada."
+  ],
+  "2|x1|hoje": [
+   "Dia A de 36 min para quem tem 30 min e par de remada curvada com stiff (duas dobras de quadril seguidas) cansa a lombar de iniciante.",
+   "Tirar o par remada-stiff, cortar o abdômen e a panturrilha para voltar a 30 min."
+  ],
+  "2|bruno|hoje": [
+   "Desequilíbrio: dias de Superior com 70 min e Inferior A com 40 min; 12 séries de lateral e de bíceps contra 8 de quadríceps, e elevação lateral dentro do dia de pernas.",
+   "Equilibrar a divisão: mais séries de pernas, tirar a lateral do dia de pernas e limitar braços a 8 a 10 séries."
+  ],
+  "2|marina|proposta": [
+   "Objetivo de força, mas os principais levantamentos têm 3 a 4 séries e ficam no supino com halteres e afundo com halter 5 a 8 (desajeitado); muito tempo em elevação lateral 4 × 12 a 20.",
+   "Trocar o supino por barra, cortar um dos dois blocos de lateral e usar leg press/hack no lugar do afundo pesado."
+  ],
+  "2|marina|hoje": [
+   "Força com 60 min por dia, mas as sessões ficam em 37 a 46 min com 26 exercícios em 60 séries (2 séries de cada), pouca prática dos básicos.",
+   "Subir as séries dos básicos para 4 a 5 e cortar acessórios."
+  ],
+  "2|bruno|proposta": [
+   "Mesmo desequilíbrio da S23 (cima 67 a 69 min, pernas 39 e 57 min) com goblet de 2 séries para quem retoma e braços com 13,5 séries.",
+   "Dar mais séries às pernas e menos aos braços e à elevação lateral."
+  ],
+  "2|iris|hoje": [
+   "Igual à S03: glúteo só com ponte sem carga e elástico, 10,5 séries para quem quer glúteos.",
+   "Dar ponte unilateral/elástico mais forte e subir para 12 a 16 séries."
+  ],
+  "2|fabio|proposta": [
+   "Costas bem atendidas (16 séries), mas ombro lateral 0, bíceps só indireto e nórdica 6 a 10 com 0 a 1 de sobra sem apoio garantido.",
+   "Reduzir a nórdica a poucas séries com 2 de sobra e usar a barra com pegada supinada também para bíceps."
+  ],
+  "2|jonas|hoje": [
+   "Dia A de 38 min para quem tem 30 min; agachamento pesado em par sem descanso com supino e stiff em par com puxada: muito pesado em 2 dias e costas só 4 séries.",
+   "Cortar o dia A para 30 min, tirar o par do agachamento e priorizar básicos com descanso real."
+  ],
+  "2|katia|proposta": [
+   "Igual à S13: avançada sem equipamento com costas e bíceps em 0 séries, nórdica em excesso e dias B e D quase iguais.",
+   "Avisar da falta de puxada e reduzir a nórdica; variar o dia D."
+  ],
+  "2|x4|hoje": [
+   "Igual à S16: sem costas e sem flexão mais fácil, par de panturrilha com abertura em T no dia B.",
+   "Dar flexão com joelhos no chão e tirar os pares artificiais."
+  ],
+  "2|elisa|proposta": [
+   "Igual à S20: sem costas, dia B magro e descanso de 1 min 45 s entre exercícios leves.",
+   "Descanso de 1 min para peso do corpo e mais séries de pernas."
+  ],
+  "2|x6|proposta": [
+   "Avançada com halter de 12 kg: goblet 4 × 8 a 15 e agachamento com 2 halteres são leves demais e a nórdica sem ancoragem é arriscada; o dia Inferior B tem 75 min.",
+   "Subir as repetições ou usar exercícios unilaterais de 15 a 30 repetições e trocar a nórdica por variação com apoio."
+  ],
+  "2|jonas|proposta": [
+   "Intermediário com 2 dias de 30 min: só 21 séries e 3 séries de posterior da coxa; o resto cabe no tempo, mas o treino é fraco para o nível.",
+   "Usar os 2 dias para mais séries nos básicos (agachamento, supino, remada) em vez do abdômen."
+  ],
+  "2|fabio|hoje": [
+   "Igual à S28: costas bem atendidas, mas ombro lateral 0, bíceps só indireto e nórdica sem apoio.",
+   "Reduzir a nórdica e acrescentar pegada supinada para bíceps."
+  ],
+  "2|x3|proposta": [
+   "Dor no ombro nota 7: o agachamento com barra nas costas, a rosca Scott e a barra reta carregam o ombro; \"corpo todo\" vira pernas e braços (costas, peito, ombro em 0).",
+   "Trocar o agachamento com barra por leg press/hack, tirar a rosca Scott e avisar para avaliar o ombro."
+  ],
+  "3|carla|proposta": [
+   "Academia completa e nenhum leg press, hack, remada com barra ou máquina de peito: sobra puxada ajoelhado, kettlebell e panturrilha em três exercícios (14 séries), com glúteo em só 9 séries.",
+   "Trocar os exercícios \"de catálogo\" (puxada ajoelhado, kettlebell, adutora) por leg press/hack e remada pesada e subir o glúteo."
+  ],
+  "3|diego|proposta": [
+   "Iniciante em bi-sets de negativa de barra fixa 4×3-6 com flexão, tudo o tempo todo emparelhado; bi-set de crucifixo com flexão de joelho não tem lógica.",
+   "Tirar os pares do iniciante e deixar um exercício de cada vez, com a negativa em 2 a 3 séries."
+  ],
+  "3|iris|proposta": [
+   "Quer glúteo mas tem 10,5 séries na semana, quase tudo ponte de glúteo sem carga 12-20 para intermediária, e pares de exercícios sem relação.",
+   "Dar ao glúteo um dia com ponte unilateral/elástico pesado e coice, e cortar os bi-sets aleatórios."
+  ],
+  "3|diego|hoje": [
+   "Igual à S02: negativa em bi-set com flexão para iniciante, volume de ombro lateral só 4, sem bíceps/costas além da remada.",
+   "Tirar o bi-set de negativa e distribuir melhor remada e puxada ao longo dos três dias."
+  ],
+  "3|gilberto|proposta": [
+   "Senhora de 67 anos que nunca treinou recebe bi-sets pesados e drop set; goblet com calcanhar elevado e búlgaro-like não são para quem nunca treinou.",
+   "Tirar drop set e pares, usar leg press/sentar e levantar e máquina guiada, séries simples com descanso inteiro."
+  ],
+  "3|x6|hoje": [
+   "Avançada com halteres de até 12 kg: adução deitada sem carga 15-30, goblet e búlgaro leves demais, peito com só 6 séries.",
+   "Pôr as pernas em unilateral pesado (búlgaro/afundo com tempo) e tirar o exercício sem carga."
+  ],
+  "3|ana|hoje": [
+   "Iniciante abre o dia com búlgaro 4×8-12, em dupla com supino, e ainda faz drop set; sem ombro lateral.",
+   "Trocar o búlgaro por agachamento goblet/afundo básico, tirar drop sets e pares do iniciante."
+  ],
+  "3|x3|hoje": [
+   "Dois dos quatro dias têm 12 min (só rosca e tríceps), enquanto a pessoa tem 60 min por dia; ainda agacha com barra nas costas com dor no ombro 7.",
+   "Montar quatro dias de perna e braços com 40-50 min e trocar o agachamento de barra por leg press/hack."
+  ],
+  "3|ana|proposta": [
+   "Mesmo problema da S07: drop set e bi-sets em iniciante, flexão de joelho deslizando 4 séries em dupla com tríceps.",
+   "Cortar drop set e pares e dar mais séries ao glúteo e perna."
+  ],
+  "3|gilberto|hoje": [
+   "Senhora de 67 anos nunca treinou, com búlgaro, bola suíça (flexão de joelho e abdominal) e drop set: risco de queda e carga alta.",
+   "Trocar búlgaro e bola suíça por agachamento na cadeira e exercícios estáveis, sem drop."
+  ],
+  "3|leandro|hoje": [
+   "Dor de joelho 7 e ainda tem panturrilha no leg press e coice na máquina de glúteo; zero quadríceps e dia com 8 exercícios de 2 séries.",
+   "Tirar o leg press da panturrilha e reduzir para 6 exercícios por dia com mais séries nos principais."
+  ],
+  "3|x5|hoje": [
+   "Peito e costas com foco só 12 séries cada; as remadas do multifuncional ficaram fora e os exercícios se repetem de A para C.",
+   "Subir peito e costas para 14-16 séries e usar a remada baixa do multifuncional."
+  ],
+  "3|katia|hoje": [
+   "Avançada em casa, costas e bíceps zerados e tríceps 13: só flexão de todos os tipos, sem nada para puxar, e dias de 40 e 60 min desbalanceados.",
+   "Incluir exercícios de costas possíveis sem equipamento (superman, remada no chão) e nivelar o tempo dos dias."
+  ],
+  "3|leandro|proposta": [
+   "Dor de joelho 7: quadríceps zero e dois dias de abdominal/panturrilha em máquina, mas Stiff 3×8-12 de iniciante como primeiro exercício.",
+   "Abrir com supino/puxada e deixar o Stiff leve; subir o hip thrust."
+  ],
+  "3|x1|proposta": [
+   "21 séries por semana, ombro e braço quase zerados e os elásticos nunca aparecem.",
+   "Usar os elásticos para ombro, bíceps e tríceps no lugar do segundo abdominal."
+  ],
+  "3|x4|proposta": [
+   "Quer glúteo, mas peito+tríceps somam 17 séries, o glúteo só 13,5, e costas/bíceps zero; abdução e adução de 15-30 sem carga.",
+   "Tirar flexão extra e pôr ponte unilateral e passada com mais séries."
+  ],
+  "3|x2|proposta": [
+   "Avançado com 90 min por dia e usa 40-65: Puxar de 40 min, sem leg press, hack nem remada pesada com barra.",
+   "Preencher a sessão de 90 min com agachamento/leg press e remada pesada e subir glúteo/panturrilha."
+  ],
+  "3|x2|hoje": [
+   "Avançado com 90 min e o programa dura 26 a 46 min por dia, apenas 2 séries por exercício: 66 séries na semana.",
+   "Voltar a 3-4 séries nos principais e usar os 90 min."
+  ],
+  "3|carla|hoje": [
+   "Boa duração, mas escolhas estranhas: Stiff com kettlebell tendo barra, elevação lateral em três dias e 14 séries de panturrilha.",
+   "Trocar kettlebell por barra, deixar a elevação lateral em 2 dias e abrir espaço para leg press."
+  ],
+  "3|elisa|hoje": [
+   "Iniciante sem equipamento: costas e bíceps zerados, 33 séries na semana, pouco de puxar.",
+   "Pôr superman e remada no chão na segunda sessão."
+  ],
+  "3|x5|proposta": [
+   "Quase igual à S12: peito e costas 13/12 para foco, a remada do multifuncional nunca é usada.",
+   "Subir costas a 14-16 séries com remada baixa do multifuncional."
+  ],
+  "3|x1|hoje": [
+   "Dia A tem 36 min e o total 67 min para 60 disponíveis; o dia B é curto e sem dobradiça de quadril.",
+   "Cortar um exercício do dia A e pôr Stiff no dia B."
+  ],
+  "3|bruno|hoje": [
+   "Superior de 70 min com 12 séries por músculo, inferior de 40 min com 8; elevação lateral no dia de pernas e extensão de joelho com elástico numa academia com halteres.",
+   "Equilibrar a divisão, tirar elevação lateral do dia de pernas e dar mais séries às pernas."
+  ],
+  "3|marina|proposta": [
+   "Meta é força, mas não há desenvolvimento nem supino com barra, e o Stiff de 5-8 com halteres para força é fraco.",
+   "Incluir desenvolvimento pesado e supino com barra e Stiff com barra."
+  ],
+  "3|marina|hoje": [
+   "Pessoa de força com 60 min usa 37-46 min e só 2 séries nos exercícios pesados.",
+   "Voltar a 4 séries pesadas nos principais, como a semana S24."
+  ],
+  "3|bruno|proposta": [
+   "Mesmo desequilíbrio da S23 (superior 67-69 min, inferior 39 min) e elevação lateral dentro do dia de pernas.",
+   "Dar mais séries de perna e tirar a elevação lateral do dia inferior."
+  ],
+  "3|iris|hoje": [
+   "Mesma que S03: glúteo com ponte sem carga e pares aleatórios (ponte com flexão, agachamento com puxada) pouco naturais.",
+   "Priorizar glúteo com elástico forte e retirar os pares."
+  ],
+  "3|fabio|proposta": [
+   "Pernas só com peso do corpo (agachamento 4×12-20) para intermediário, e os dias têm só 5 exercícios.",
+   "Trocar agachamento livre por unilateral lento e pôr mais séries de pernas."
+  ],
+  "3|jonas|hoje": [
+   "Dia A tem 38 min para 30 disponíveis (agachamento pesado em dupla com supino); semana de 24 séries.",
+   "Cortar o dia A para 30 min e tirar o par agachamento+supino."
+  ],
+  "3|katia|proposta": [
+   "Idêntica à S13: avançada sem nada de costas nem bíceps e flexões em tudo.",
+   "Incluir exercícios de costas possíveis sem equipamento."
+  ],
+  "3|x4|hoje": [
+   "Igual à S16: peito/tríceps mais volume que o glúteo, que era o foco; costas zero.",
+   "Mais séries de ponte e passada e incluir superman."
+  ],
+  "3|elisa|proposta": [
+   "Igual à S20: costas e bíceps zerados.",
+   "Incluir superman e remada no chão."
+  ],
+  "3|x6|proposta": [
+   "Remada unilateral sem banco e com banco no mesmo dia, e adução sem carga 15-30 para uma avançada.",
+   "Tirar a remada repetida e o exercício sem carga e dar mais carga para as pernas."
+  ],
+  "3|jonas|proposta": [
+   "Só 21 séries na semana, cada dia faz 28-30 min; o dia B tem peito com 6 séries e quase nada além.",
+   "Aproveitar o dia B com mais um exercício de costas/ombro com par."
+  ],
+  "3|fabio|hoje": [
+   "Igual à S28: pernas só com peso do corpo e dias de 5 exercícios.",
+   "Trocar o agachamento livre por unilateral lento e pôr mais séries de pernas."
+  ],
+  "3|x3|proposta": [
+   "Dor no ombro 7: agacha com barra nas costas, e sai sem nada de tronco superior além de bíceps (12) e tríceps (8), com 188 min de 240.",
+   "Tirar o agachamento de barra e usar leg press/hack, com mais perna e braço."
+  ]
+ }
+}

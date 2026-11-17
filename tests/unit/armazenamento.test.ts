@@ -325,7 +325,7 @@ describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
     expect(antigo.versao).toBe(7);
     const r = migrar(antigo);
     if (!r.ok) throw new Error(r.erro);
-    expect(r.estado.versao).toBe(8);
+    expect(r.estado.versao).toBe(VERSAO_ESTADO);
     const { versao: _a, ...antes } = antigo;
     const { versao: _b, ...depois } = r.estado;
     void _a;
@@ -423,5 +423,67 @@ describe('ids de exercício que saíram da biblioteca (storage/ids.ts)', () => {
     const lido = acertarIds(bruto, { 'nome-antigo': feito.exId });
     expect(lido).toEqual(JSON.parse(JSON.stringify(e)));
     expect(estadoSchema.safeParse(lido).success).toBe(true);
+  });
+});
+
+describe('versão 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gustavo em 16/11/2026)', () => {
+  /** O estado como o app da versão 8 o guardava: o programa gerado com o cadastro, sem dizer o nível. */
+  const estadoV8 = (persona = PERSONAS.bruno) => {
+    const base = estadoSchema.parse(estadoDe(persona));
+    const r = gerarPrograma(perfilDe(base)!, base.locais![0]!.inventario);
+    if (r.status !== 'ok') throw new Error('persona bloqueada');
+    const { nivel: _n, ...semNivel } = r.programa;
+    void _n;
+    return { v8: { ...base, versao: 8, programa: { programa: semNivel, geradoEm: '2026-11-10T12:00:00.000Z', localId: base.locais![0]!.id } } as Record<string, unknown>, gerado: r.programa, base };
+  };
+
+  it('o programa gerado com o cadastro de agora passa a dizer o nível, e fica igual ao que o app geraria hoje', () => {
+    for (const persona of [PERSONAS.bruno, PERSONAS.ana, PERSONAS.carla]) {
+      const { v8, gerado, base } = estadoV8(persona);
+      const r = migrar(v8);
+      if (!r.ok) throw new Error(r.erro);
+      expect(r.estado.versao).toBe(9);
+      expect(r.estado.programa!.programa.nivel).toBe(base.nivel!.escolhido);
+      // igual ao programa de hoje: ninguém vê "há uma versão nova" só por causa do campo novo
+      expect(r.estado.programa!.programa).toEqual(gerado);
+      // e nada mais mudou
+      const { programa: _p, versao: _v, ...resto } = r.estado;
+      const { programa: _q, versao: _w, ...antes } = base;
+      void [_p, _v, _q, _w];
+      expect(resto).toEqual(antes);
+    }
+  });
+
+  it('nada é inventado: se o cadastro mudou depois do programa, o programa fica sem nível (vale a janela de antes)', () => {
+    const { v8, base } = estadoV8();
+    const outroNivel = base.nivel!.escolhido === 'avancado' ? 'intermediario' : 'avancado';
+    const r = migrar({ ...v8, nivel: { ...base.nivel!, escolhido: outroNivel } });
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.versao).toBe(9);
+    expect(r.estado.programa!.programa.nivel).toBeUndefined();
+    // também quando muda a rotina (os minutos), e não o nível
+    const s = migrar({ ...v8, rotina: { ...base.rotina!, minutosSessao: base.rotina!.minutosSessao === 60 ? 45 : 60 } });
+    if (!s.ok) throw new Error(s.erro);
+    expect(s.estado.programa!.programa.nivel).toBeUndefined();
+  });
+
+  it('sem programa guardado, só a versão muda; o programa que já diz o nível não é tocado', () => {
+    const { v8, gerado } = estadoV8();
+    const { programa: _p, ...semPrograma } = v8;
+    void _p;
+    const r = migrar(semPrograma);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.versao).toBe(9);
+    expect(r.estado.programa).toBeUndefined();
+    const comNivel = migrar({ ...v8, programa: { ...(v8.programa as object), programa: { ...gerado, nivel: 'iniciante' } } });
+    if (!comNivel.ok) throw new Error(comNivel.erro);
+    expect(comNivel.estado.programa!.programa.nivel).toBe('iniciante');
+  });
+
+  it('um app da versão 8 recusa o dado da 9, e o esquema recusa um nível que não existe', () => {
+    const { v8, gerado } = estadoV8();
+    expect(migrar({ ...v8, versao: 9 }, MIGRACOES, 8)).toEqual({ ok: false, erro: expect.stringMatching(/versão mais nova/) });
+    const invalido = migrar({ ...v8, versao: 9, programa: { ...(v8.programa as object), programa: { ...gerado, nivel: 'mestre' } } });
+    expect(invalido.ok).toBe(false);
   });
 });

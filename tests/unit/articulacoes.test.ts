@@ -1,3 +1,5 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, type Articulacao, type Padrao } from '../../src/domain/biblioteca';
 
@@ -31,5 +33,39 @@ describe('articulações que cada exercício carrega (seguranca.dor.programa)', 
   it('todo exercício marca as articulações do seu padrão de movimento', () => {
     const faltando = BIBLIOTECA.flatMap((e) => ESPERADAS[e.padrao].filter((a) => !e.articulacoes.includes(a)).map((a) => `${e.id}: ${a}`));
     expect(faltando).toEqual([]);
+  });
+
+  // Pacote 0 da sessão "treino para todos" (14/11/2026): com dor forte no joelho, o app tirava o agachamento e ainda
+  // mandava ajoelhar na puxada e no abdominal. A posição de base vem do texto de execução do próprio app.
+  it('o exercício cuja posição de base apoia o peso do corpo no joelho marca o joelho', () => {
+    const APOIA = /ajoelh|quatro apoios|joelho apoiado/i;
+    // "De pé ou ajoelhado atrás do banco": dá para fazer de pé; não conta.
+    const OPCIONAL = new Set(['rosca-scott-banco-inclinado']);
+    const pasta = 'src/conteudo/exercicios';
+    const apoiam = readdirSync(pasta)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(join(pasta, f), 'utf8')) as { id: string; name?: string; setupEq?: string[]; setupBody?: string[] })
+      .filter((c) => APOIA.test([c.name ?? '', ...(c.setupEq ?? []), ...(c.setupBody ?? [])].join(' ')) && !OPCIONAL.has(c.id))
+      .map((c) => c.id)
+      .sort();
+    expect(apoiam).toEqual(['abdominal-polia', 'coice-caneleira', 'coice-elastico', 'coice-maquina', 'nordico', 'puxada-barra-reta', 'puxada-elastico', 'puxada-unilateral', 'roda-abdominal']);
+    const semMarca = BIBLIOTECA.filter((e) => apoiam.includes(e.id) && !e.articulacoes.includes('joelho')).map((e) => e.id);
+    expect(semMarca).toEqual([]);
+  });
+
+  // Fechamento da etapa 2 da sessão "treino para todos" (17/11/2026): com dor forte no ombro, o app ainda mandava agachar
+  // com a barra nas costas (achado dos três revisores da revisão cega final). A posição vem do texto de execução do app.
+  it('o exercício com a barra apoiada no alto das costas marca o ombro', () => {
+    const NAS_COSTAS = /barra (apoiada )?no alto das costas/i;
+    const pasta = 'src/conteudo/exercicios';
+    const comABarra = readdirSync(pasta)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(join(pasta, f), 'utf8')) as { id: string; setupEq?: string[]; setupBody?: string[] })
+      .filter((c) => NAS_COSTAS.test([...(c.setupEq ?? []), ...(c.setupBody ?? [])].join(' ')))
+      .map((c) => c.id)
+      .sort();
+    expect(comABarra).toEqual(['agachamento-barra', 'agachamento-smith']);
+    const semMarca = BIBLIOTECA.filter((e) => comABarra.includes(e.id) && !e.articulacoes.includes('ombro')).map((e) => e.id);
+    expect(semMarca).toEqual([]);
   });
 });

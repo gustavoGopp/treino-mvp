@@ -164,7 +164,7 @@ describe('a semana em vários locais', () => {
     e = treinar(e, 1, 'superior-a', 'local-2');
     const r = semana(e, 2);
     expect(r.feitos).toBe(2);
-    expect(e.historico[1]!.exercicios.some((x) => x.exId === 'barra-fixa' && x.noLugarDe === 'puxada-unilateral')).toBe(true);
+    expect(e.historico[1]!.exercicios.some((x) => x.exId === 'barra-fixa' && x.noLugarDe === 'puxada-barra-reta')).toBe(true);
     const so = (k: number) => seriesEfetivas([e.historico[k]!]).costas;
     expect(musculo(r, 'costas').feitas).toBeCloseTo(so(0)! + so(1)!, 5);
   });

@@ -6,15 +6,16 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
     "avisos": [],
     "dia": "Superior A: supino-reto 3×6–10 | barra-fixa 3×5–10 | remada-apoiada 3×8–12 | desenvolvimento 2×8–12 | triceps-frances-halter 4×10–15 | elevacao-halteres 4×12–20 | rosca-inclinada 4×8–12 | crucifixo-halteres 3×10–15 | crucifixo-inverso 2×12–20",
     "trocas": [
-      "aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa",
+      "aqui não tem polia alta: puxada ajoelhado na polia alta com barra reta → barra fixa",
+      "aqui não tem polia baixa: remada baixa com triângulo → remada com halteres, peito apoiado no banco inclinado",
       "aqui não tem polia baixa: tríceps francês na polia com corda → tríceps francês sentado com halter",
       "aqui não tem polia dupla: crucifixo na polia (crossover) → crucifixo com halteres no banco plano",
-      "aqui não tem polia dupla: crucifixo invertido na polia, com os cabos cruzados → crucifixo inverso com halteres, peito apoiado no banco inclinado",
+      "aqui não tem polia alta: face pull com corda → crucifixo inverso com halteres, peito apoiado no banco inclinado",
     ],
   },
   {
     "avisos": [],
-    "dia": "Inferior A: bulgaro 2×8–12 | stiff 2×8–12 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
+    "dia": "Inferior A: goblet 2×8–15 | stiff 2×8–12 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
     "trocas": [
       "aqui não tem bola suíça: flexão de joelho na bola suíça → flexão de joelho na cadeira flexora (sentado)",
       "aqui não tem elásticos: extensão de joelho sentado com elástico → cadeira extensora",
@@ -24,19 +25,16 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
   },
   {
     "avisos": [],
-    "dia": "Superior B: supino-inclinado 3×6–10 | remada-apoiada 3×8–12 | barra-fixa 2×5–10 | desenvolvimento-unilateral 2×8–12 | elevacao-halteres 3×12–20 | rosca-inclinada 3×8–12 | mergulho 3×6–12 | crucifixo-halteres 3×10–15 | crucifixo-inverso 2×12–20",
+    "dia": "Superior B: supino-inclinado 3×6–10 | remada-apoiada 3×8–12 | barra-fixa 2×5–10 | desenvolvimento-unilateral 2×8–12 | elevacao-halteres 3×12–20 | rosca-scott-banco-inclinado 4×8–12 | mergulho 3×6–12 | crucifixo-halteres 3×10–15 | crucifixo-inverso 2×12–20",
     "trocas": [
-      "aqui não tem polia baixa: remada baixa com triângulo → remada com halteres, peito apoiado no banco inclinado",
       "aqui não tem polia alta: puxada ajoelhado na polia alta com barra reta → barra fixa",
-      "aqui não tem polia baixa: elevação lateral unilateral na polia → elevação lateral com halteres",
-      "aqui não tem polia baixa: rosca na polia baixa, de costas para a torre → rosca inclinada com halteres",
       "aqui não tem polia alta: tríceps na polia com corda → mergulho nas paralelas",
-      "aqui não tem polia alta: face pull com corda → crucifixo inverso com halteres, peito apoiado no banco inclinado",
+      "aqui não tem polia dupla: crucifixo invertido na polia, com os cabos cruzados → crucifixo inverso com halteres, peito apoiado no banco inclinado",
     ],
   },
   {
     "avisos": [],
-    "dia": "Inferior B: afundo 2×8–12 | ponte-gluteo-halter 2×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 3×12–20 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
+    "dia": "Inferior B: afundo 2×8–12 | ponte-gluteo-halter 2×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 4×12–20 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
     "trocas": [
       "aqui não tem elásticos: flexão de joelho com elástico → flexão de joelho na cadeira flexora (sentado)",
       "aqui não tem elásticos: extensão de joelho sentado com elástico → cadeira extensora",

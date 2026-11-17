@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 8;
+export const VERSAO_ESTADO = 9;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -83,6 +83,8 @@ const volume = z.record(musculo, z.number()).transform((v) => v as Partial<Recor
 export const programaSchema = z.object({
   versao: z.literal(1),
   entradasHash: z.string(),
+  /** O nível para o qual o programa foi montado (versão 9; progressao.estagnacao). Ausente no programa antigo. */
+  nivel: enumDe(NIVEIS).optional(),
   divisao: z.string(),
   divisaoId: enumDe(DIVISAO_IDS).optional(),
   dias: z.array(

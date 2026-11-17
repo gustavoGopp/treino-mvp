@@ -1,0 +1,98 @@
+{
+ "V01": {
+  "pessoa": "o4",
+  "versao": "depois"
+ },
+ "V02": {
+  "pessoa": "o3",
+  "versao": "antes"
+ },
+ "V03": {
+  "pessoa": "o1",
+  "versao": "depois"
+ },
+ "V04": {
+  "pessoa": "k2",
+  "versao": "antes"
+ },
+ "V05": {
+  "pessoa": "k1",
+  "versao": "antes"
+ },
+ "V06": {
+  "pessoa": "k3",
+  "versao": "antes"
+ },
+ "V07": {
+  "pessoa": "k3",
+  "versao": "depois"
+ },
+ "V08": {
+  "pessoa": "o4",
+  "versao": "antes"
+ },
+ "V09": {
+  "pessoa": "k6",
+  "versao": "depois"
+ },
+ "V10": {
+  "pessoa": "k5",
+  "versao": "depois"
+ },
+ "V11": {
+  "pessoa": "o1",
+  "versao": "antes"
+ },
+ "V12": {
+  "pessoa": "k5",
+  "versao": "antes"
+ },
+ "V13": {
+  "pessoa": "k1",
+  "versao": "depois"
+ },
+ "V14": {
+  "pessoa": "k0",
+  "versao": "depois"
+ },
+ "V15": {
+  "pessoa": "o2",
+  "versao": "antes"
+ },
+ "V16": {
+  "pessoa": "k6",
+  "versao": "antes"
+ },
+ "V17": {
+  "pessoa": "o2",
+  "versao": "depois"
+ },
+ "V18": {
+  "pessoa": "k4",
+  "versao": "depois"
+ },
+ "V19": {
+  "pessoa": "k2",
+  "versao": "depois"
+ },
+ "V20": {
+  "pessoa": "k0",
+  "versao": "antes"
+ },
+ "V21": {
+  "pessoa": "o3",
+  "versao": "depois"
+ },
+ "V22": {
+  "pessoa": "o5",
+  "versao": "antes"
+ },
+ "V23": {
+  "pessoa": "k4",
+  "versao": "antes"
+ },
+ "V24": {
+  "pessoa": "o5",
+  "versao": "depois"
+ }
+}

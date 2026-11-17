@@ -1,0 +1,240 @@
+[
+ {
+  "id": "d1",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; marcou dor no ombro, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "ombro",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d2",
+  "descricao": "Intermediário; academia completa; 4 dias de 60 min; marcou dor no cotovelo, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "cotovelo",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d3",
+  "descricao": "Intermediária; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 45 min; marcou dor no quadril, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "quadril",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d4",
+  "descricao": "Avançado; academia completa; 5 dias de 75 min; marcou dor na lombar, nota 7 hoje; quer pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "5",
+   "min": 75,
+   "focos": [
+    "pernas"
+   ],
+   "dores": [
+    {
+     "articulacao": "lombar",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d5",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 45 min; marcou dor no cotovelo, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "cotovelo",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d6",
+  "descricao": "Avançada; halteres de 1 a 12 kg e banco reto; 5 dias de 75 min; marcou dor no ombro, nota 7 hoje; quer glúteos e pernas.",
+  "pedido": {
+   "cenario": "halteres-banco",
+   "nivel": "avancado",
+   "dias": "5",
+   "min": 75,
+   "focos": [
+    "inferiores"
+   ],
+   "dores": [
+    {
+     "articulacao": "ombro",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d7",
+  "descricao": "Iniciante; academia completa; 6 dias de 45 min; marcou dor no ombro, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "6",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "ombro",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d8",
+  "descricao": "Intermediário; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 5 dias de 60 min; marcou dor no punho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "intermediario",
+   "dias": "5",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "punho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "d9",
+  "descricao": "Avançada; academia completa; 4 dias de 60 min; marcou dor no quadril, nota 7 hoje; quer costas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "4",
+   "min": 60,
+   "focos": [
+    "costas"
+   ],
+   "dores": [
+    {
+     "articulacao": "quadril",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "c1",
+  "descricao": "Intermediário; academia completa; só consegue 2 dias de 30 min; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "2",
+   "min": 30,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "c2",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 2 dias de 30 min; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "2",
+   "min": 30,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "c3",
+  "descricao": "Iniciante; academia completa; 3 dias de 30 min; quer pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 30,
+   "focos": [
+    "pernas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b1",
+  "descricao": "Intermediária; treina em casa só com elásticos (3 intensidades); 4 dias de 30 min; sem grupo de foco.",
+  "pedido": {
+   "cenario": "elasticos",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 30,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b2",
+  "descricao": "Avançado; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 45 min; quer peito e costas.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "avancado",
+   "dias": "3",
+   "min": 45,
+   "focos": [
+    "peito",
+    "costas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ }
+]

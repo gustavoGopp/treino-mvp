@@ -1,0 +1,32 @@
+{
+ "T01": {
+  "pessoa": "carla",
+  "versao": "ramo",
+  "paginaNaRodadaFinal": "S01"
+ },
+ "T02": {
+  "pessoa": "x3",
+  "versao": "ramo com a marca do ombro",
+  "paginaNaRodadaFinal": "S36"
+ },
+ "T03": {
+  "pessoa": "gilberto",
+  "versao": "main",
+  "paginaNaRodadaFinal": "S10"
+ },
+ "T04": {
+  "pessoa": "x3",
+  "versao": "main",
+  "paginaNaRodadaFinal": "S08"
+ },
+ "T05": {
+  "pessoa": "leandro",
+  "versao": "ramo",
+  "paginaNaRodadaFinal": "S14"
+ },
+ "T06": {
+  "pessoa": "x3",
+  "versao": "ramo antes da marca do ombro",
+  "paginaNaRodadaFinal": "S36"
+ }
+}
