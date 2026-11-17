@@ -37,3 +37,6 @@ export { REGRAS_MINI_BAND } from './mini-band';
 export { REGRAS_EXTENSAO_MINI_BAND } from './extensao-joelho-mini-band';
 export { REGRAS_CAMINHADA_LATERAL } from './caminhada-lateral';
 export { REGRAS_QUATRO_APOIOS } from './quatro-apoios';
+export { REGRAS_TRICEPS_ELASTICO_ALTO } from './triceps-elastico-alto';
+export { REGRAS_ELEVACAO_UNILATERAL_ELASTICO } from './elevacao-lateral-unilateral-elastico';
+export { REGRAS_ABERTURA_ELASTICO } from './abertura-elastico';

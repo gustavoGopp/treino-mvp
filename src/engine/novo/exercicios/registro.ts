@@ -105,3 +105,7 @@ export { abducaoDeitadoMiniBand } from './abducao-deitado-mini-band';
 export { extensaoJoelhoMiniBand } from './extensao-joelho-mini-band';
 export { caminhadaLateralMiniBand } from './caminhada-lateral-mini-band';
 export { coiceElastico } from './coice-elastico';
+export { roscaMarteloElastico } from './rosca-martelo-elastico';
+export { tricepsElasticoAlto } from './triceps-elastico-alto';
+export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral-elastico';
+export { aberturaElastico } from './abertura-elastico';

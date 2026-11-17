@@ -1,0 +1,58 @@
+{
+ "id": "rosca-martelo-elastico",
+ "nome": "Rosca martelo com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-martelo-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-martelo-elastico.md, tabela Técnica): pegada neutra (palmas uma para a outra); cotovelos colados, só eles dobram; consenso de treinadores (11, B.2.4). Segurança: elástico sob os pés, pés inteiros (ng2022)",
+  "app": "Cartão do app (src/conteudo/exercicios/rosca-martelo-elastico.json): em pé, os dois pés inteiros no meio do elástico, uma ponta em cada mão, pegada neutra, braços estendidos ao lado do corpo; ~1 s subindo sem girar a pegada, pausa curta no alto, ~2 s descendo até os braços quase estenderem; as dicas e os erros",
+  "elastico": "Rosca com elástico aprovada (src/engine/novo/dados/movimentos/rosca-elastico.json e exercicios/rosca-elastico.ts): o mesmo corpo em pé, o mesmo tubo pisado no meio pelos dois pés, os mesmos ângulos do cotovelo e os erros de cotovelo e de tronco. Não há animação de hoje deste exercício",
+  "martelo": "Rosca martelo com halteres aprovada (src/engine/novo/dados/movimentos/rosca-martelo.json): a pegada neutra (o polegar para a frente do antebraço, sem girar)",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol, que estica até 3 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "app", "o": "os dois pés inteiros no meio do elástico, na largura do quadril, apontando para a frente (o da rosca com elástico aprovada)"},
+  "joelho": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "elastico", "o": "joelhos destravados (a ficha não dá número; o da rosca com elástico aprovada)"},
+  "braco.paraFora": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço ao lado do tronco, aberto 10°: com a pegada neutra o pegador (12,7 cm) fica de frente para trás, rente ao lado da coxa, e a fita em triângulo não encosta nela (a rosca com elástico aprovada, de palmas para a frente, usa 12°); a ficha diz \"cotovelos colados\""},
+  "braco.aFrente": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o braço na vertical, parado ao lado do tronco: só o cotovelo dobra"},
+  "cotovelo.baixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, os braços quase estendidos (o da rosca com elástico aprovada)"},
+  "cotovelo.cima": {"v": 132, "un": "graus", "selo": "consenso", "fonte": "elastico", "o": "em cima, as mãos perto dos ombros (o da rosca com elástico aprovada; a regra mede a distância da mão ao ombro)"},
+  "maos.supinacao": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pegada neutra: o polegar aponta para a frente do antebraço (para cima no alto), palmas uma para a outra, sem girar (a da rosca martelo aprovada)"},
+  "elastico.folgaNaPerna": {"v": 0.8, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "o tubo passa rente ao lado de fora da perna: o raio do tubo e a roupa (o da rosca com elástico aprovada)"},
+  "erro.cotovelo.braco": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "erro: os cotovelos vão para a frente (o braço sobe 35° à frente do tronco) e o ombro ajuda a subir"},
+  "erro.cotovelo.cotovelo": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "erro: com o cotovelo à frente, o antebraço dobra menos"},
+  "erro.balanco.tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "erro: o peito vai para trás enquanto as mãos sobem (o embalo); o quadril vai à frente pelo equilíbrio"},
+  "erro.balanco.lombar": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "erro: parte do embalo é a lombar arqueando"},
+  "erro.pe.calcanhar": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pé direito pisa só com a ponta: o calcanhar sobe 20° e o peso fica na bola do pé e nos dedos"},
+  "erro.pe.escapa": {"v": 1.05, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: \"o elástico pode escapar\": com o pé na ponta, o tubo sai de baixo da bola do pé (0) e escorrega para a frente enquanto estica, até a borda da ponta dos dedos (1 = a ponta do pé; 1,05 = já saindo dela)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "palmas uma para a outra", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos colados", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "cotovelo-parado-na-rosca", "pede": "cotovelos colados ao lado do tronco: só eles dobram", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado, sem dar embalo", "selo": "consenso", "fonte": "app"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, os braços quase estendidos", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-perto-do-ombro-no-topo", "pede": "em cima, as mãos perto dos ombros, com os cotovelos ainda ao lado do tronco", "selo": "consenso", "fonte": "app"},
+  {"id": "palmas-uma-para-a-outra-na-rosca", "pede": "pegada neutra: palmas uma para a outra, sem girar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elastico-pisado-no-meio-da-sola", "pede": "os dois pés inteiros no chão, pisando no meio do elástico, no meio da sola", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elastico-livre-do-corpo", "pede": "o tubo sobe pelo lado de fora das pernas, sem entrar nelas", "selo": "desenho", "fonte": "objetos"},
+  {"id": "elastico-nas-maos", "pede": "uma ponta em cada mão", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-bracos-juntos", "pede": "os dois antebraços sobem juntos", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "cotovelos", "instante": 1, "titulo": "Cotovelos para a frente", "vista": "lateral", "oQueMuda": "os braços sobem à frente do tronco e o ombro ajuda a subir", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "tronco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o peito vai para trás e o quadril à frente para dar embalo", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "pe", "instante": 1, "titulo": "Pisar só com a ponta do pé", "vista": "lateral", "oQueMuda": "o pé direito pisa no elástico só com a ponta: o calcanhar sobe e o tubo escorrega para a frente, saindo de baixo dos dedos", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "pegada neutra", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "pés inteiros no elástico", "ponto": "tornozelo:L", "selo": "consenso", "fonte": "app"}
+ ]
+}
