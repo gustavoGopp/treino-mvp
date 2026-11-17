@@ -1,0 +1,405 @@
+{
+ "id": "remada-unilateral-elastico",
+ "nome": "Remada unilateral com elástico sob o pé da frente",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-unilateral-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral-elastico.md): pé da frente inteiro sobre o elástico, tronco inclinado, mão livre na coxa; cotovelo para trás, sem girar o tronco; consenso de treinadores (docs/pesquisa-v2/17-biblioteca-ampliada.md, G4)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-unilateral-elastico.json): um pé à frente pisando com o pé inteiro no meio do elástico, o outro atrás; a mão livre apoiada na coxa da frente; a ponta do elástico na mão do lado de trás, braço estendido; puxa até a mão chegar perto do quadril, pausa curta, ~2 s voltando; as dicas e os erros",
+  "semBanco": "A ficha de movimento da remada unilateral sem banco aprovada (src/engine/novo/dados/movimentos/remada-unilateral-sem-banco.json): a mesma base (o pé esquerdo à frente, o direito atrás, a mão esquerda na coxa da frente, o tronco inclinado), o mesmo braço que puxa e os mesmos erros de girar e de arredondar; este exercício não tinha animação, e o que a ficha da técnica não dá em número sai dela",
+  "curvada": "A ficha de movimento da remada curvada com elástico (src/engine/novo/dados/movimentos/remada-curvada-elastico.json): o tubo pisado e o erro de pisar só com a ponta do pé",
+  "rosca": "A ficha de movimento da rosca com elástico aprovada (src/engine/novo/dados/movimentos/rosca-elastico.json): o tubo pisado sob o meio da sola",
+  "fisica": "Física do elástico: pisado e seguro pelo mesmo corpo, ele puxa a mão para o pé e o pé para a mão (força interna) e não muda o equilíbrio; a borracha não muda de volume, então o tubo afina ao esticar",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol, que estica até 3 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": {
+   "v": 55,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "tronco inclinado à frente: o peito a 55° da vertical, parado a série toda (o número da remada unilateral sem banco aprovada; a ficha não dá número)"
+  },
+  "cervical": {
+   "v": -10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "cabeça na linha do pescoço"
+  },
+  "pes.paraFora": {
+   "v": 2,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "de frente, cada pé 2 cm para fora da linha do quadril"
+  },
+  "joelho.frente": {
+   "v": 30,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "o joelho da frente dobrado (o número da sem banco aprovada; a ficha não dá número); o pé vai para a frente até o joelho ficar nesse ângulo"
+  },
+  "joelho.tras": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "a perna de trás quase estendida, sem travar; o pé vai para trás até o joelho ficar nesse ângulo"
+  },
+  "pe.tras.calcanhar": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "o pé de trás com o calcanhar um pouco levantado (15°), a bola do pé no chão"
+  },
+  "pes.passo": {
+   "v": 66,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril"
+  },
+  "apoio.cotovelo": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia"
+  },
+  "braco.inicio.atras": {
+   "v": 3,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar)"
+  },
+  "braco.inicio.fora": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (a mão passa ao lado do joelho)"
+  },
+  "braco.fim.alemDasCostas": {
+   "v": 26,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "semBanco",
+   "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas"
+  },
+  "braco.fim.fora": {
+   "v": 16,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "semBanco",
+   "o": "fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para a mão passar ao lado do quadril"
+  },
+  "escapula.prot.inicio": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "começo: 'ombro solto um pouco para baixo': a escápula vai à frente (na sem banco aprovada, vindo do guia antigo: +6)"
+  },
+  "escapula.retr.fim": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "fim: a escápula se junta à coluna (na sem banco aprovada, vindo do guia antigo: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo)"
+  },
+  "escapula.elev.inicio": {
+   "v": 1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "começo: a escápula como na sem banco aprovada (+1)"
+  },
+  "escapula.elev.fim": {
+   "v": -1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "fim: ombro baixo, longe da orelha (na sem banco aprovada, vindo do guia antigo: −1)"
+  },
+  "erro.girar.giro": {
+   "v": 18,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (na sem banco aprovada, vindo do guia antigo: 18°)"
+  },
+  "erro.girar.lombar": {
+   "v": 0.35,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "erro: quanto do giro fica na lombar (o resto na torácica)"
+  },
+  "erro.arredondar.lombar": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "erro: a lombar curva 22° além da curva de repouso (na sem banco aprovada, vindo do guia antigo: lombar de 74 para 60)"
+  },
+  "erro.arredondar.toracica": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "erro: a parte de cima das costas curva 22° (na sem banco aprovada, vindo do guia antigo: torácica de 76 para 100)"
+  },
+  "erro.arredondar.cervical": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "semBanco",
+   "o": "erro: o pescoço estende para o olhar não ir ao peito"
+  },
+  "elastico.folgaNaPerna": {
+   "v": 0.8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "rosca",
+   "o": "o tubo passa rente à perna da frente: o raio do tubo e a roupa (o número da rosca com elástico aprovada)"
+  },
+  "elastico.entreOsTrechos": {
+   "v": 3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tubo dobrado ao meio: os dois trechos passam lado a lado sob a sola, 3 cm um do outro (de frente para trás), e sobem juntos até a mão"
+  },
+  "erro.pe.calcanhar": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: o pé da frente apoia só na ponta, com o calcanhar levantado 25° (a bola do pé no chão; o número da curvada com elástico)"
+  },
+  "erro.pe.sola": {
+   "v": 0.97,
+   "un": "fração do pé",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: o tubo passa sob a ponta dos dedos (97% do caminho do calcanhar à ponta do pé, a borda de onde ele escapa), e não no meio da sola"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.45,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Fim · segura",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.1,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "simetrico": false,
+ "regras": [
+  {
+   "id": "lombar-neutra",
+   "pede": "costas retas (a lombar não arredonda)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-parado-na-remada",
+   "pede": "tronco parado, sem girar",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-bem-inclinado",
+   "pede": "tronco inclinado à frente",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "pe-da-carga-atras",
+   "pede": "um pé à frente do outro, o do lado da mão que puxa atrás",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "mao-de-apoio-na-coxa",
+   "pede": "mão livre apoiada na coxa da frente",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "mao-de-apoio-parada",
+   "pede": "a mão livre fica parada na coxa",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cotovelo-passa-as-costas",
+   "pede": "fim: cotovelo atrás do tronco",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "cotovelo-rente-na-remada",
+   "pede": "cotovelo para trás, perto do corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "carga-perto-do-quadril-no-fim",
+   "pede": "fim: a mão perto do quadril",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "braco-estendido-no-comeco",
+   "pede": "começo: braço estendido",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "escapulas-se-juntam",
+   "pede": "no fim a escápula se junta à coluna",
+   "selo": "consenso",
+   "fonte": "semBanco"
+  },
+  {
+   "id": "palmas-uma-para-a-outra",
+   "pede": "pegada neutra (palma virada para o corpo), como na sem banco",
+   "selo": "desenho",
+   "fonte": "semBanco"
+  },
+  {
+   "id": "elastico-pisado-no-meio-da-sola",
+   "pede": "o pé da frente inteiro sobre o elástico: ele passa sob o meio da sola, com o calcanhar no chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o elástico não atravessa o corpo",
+   "selo": "consenso",
+   "fonte": "desenho"
+  }
+ ],
+ "erros": [
+  {
+   "id": "gira",
+   "instante": 1,
+   "titulo": "Girar o tronco",
+   "vista": "quina",
+   "oQueMuda": "o peito abre para o lado do braço que puxa: o ombro direito sobe",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "acromioclavicular:R",
+    "acromioclavicular:L"
+   ],
+   "foco": "acromioclavicular:R"
+  },
+  {
+   "id": "costas",
+   "instante": 1,
+   "titulo": "Arredondar as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e a parte de cima das costas curvam",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "pe",
+   "instante": 1,
+   "titulo": "Pisar só com a ponta do pé",
+   "vista": "lateral",
+   "oQueMuda": "o calcanhar da frente sai do chão e o elástico fica só sob a ponta dos dedos, de onde pode escapar",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "calcanhar:L",
+    "ponta:L"
+   ],
+   "foco": "ponta:L"
+  }
+ ],
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "costas retas",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app",
+   "guia": [
+    "pelve",
+    "c7"
+   ]
+  },
+  {
+   "vista": "quina",
+   "texto": "tronco sem girar",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}
