@@ -1,4 +1,16 @@
-# Treino para todos (12 e 13/11/2026)
+# Treino para todos (12 a 17/11/2026)
+
+> **Etapa 2 fechada no ramo da sessão, em 17/11/2026. Nada foi para a `main`.** O resumo para decidir está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md); as doze pessoas, com a semana de antes ao lado da de agora, em [`exemplos-finais/`](exemplos-finais/README.md); a revisão cega final, em [`revisao-cega/final/`](revisao-cega/final/README.md); a régua por grupo, na última seção de [`qa.md`](qa.md). Falta a decisão do Gustavo sobre a ida para a `main`.
+
+| Para | Abra |
+|---|---|
+| Decidir o próximo passo | [`fechamento-etapa-2.md`](fechamento-etapa-2.md) |
+| Ver doze pessoas, antes e depois | [`exemplos-finais/`](exemplos-finais/README.md) |
+| Ver cada pacote, com as decisões | [`pacote-1.md`](pacote-1.md), [`pacote-0.md`](pacote-0.md), [`pacote-3.md`](pacote-3.md), [`pacote-2.md`](pacote-2.md), [`pacote-4.md`](pacote-4.md), [`pacote-5.md`](pacote-5.md) |
+| Ver todos os números, por grupo | [`qa.md`](qa.md) e [`medidas/final/retrato.md`](medidas/final/retrato.md) |
+| Ver o que depende das outras sessões | [`pedidos-ao-design.md`](pedidos-ao-design.md), [`pedidos-a-animacao.md`](pedidos-a-animacao.md) |
+
+## Como a etapa 2 andou (histórico)
 
 > **Etapa 2 em andamento, no ramo da sessão.** O Gustavo disse sim à decisão 1 (o tempo que sobra vira série para todos). O pacote 1 (o tempo que sobra vira série) foi feito e revisto por ele em 13/11: [`pacote-1.md`](pacote-1.md). O pacote 0 (com dor forte no joelho, ninguém ajoelha) foi feito e revisto em 14/11: [`pacote-0.md`](pacote-0.md). O pacote 3 (a dor que não desmonta a semana, os 30 minutos e as duplas) está feito e parado para a revisão dele: [`pacote-3.md`](pacote-3.md). A régua por grupo dos três está em [`qa.md`](qa.md). O resto desta página descreve a etapa 1. **Pacote 2 (a escolha entre exercícios equivalentes), em 15/11: feito, medido e parado para a revisão do Gustavo; relatório em [`pacote-2.md`](pacote-2.md).** Em 16/11 o Gustavo decidiu as cinco questões do pacote 2 (os registros regravados; a trava do empurrar do foco fica; o hip thrust não muda sem fonte; os resíduos aceitos, com as correções no backlog) e escolheu o próximo: **o pacote 4, o do iniciante.** **Pacote 4 (o corte de tempo revisto e o iniciante), em 16/11: feito, medido e parado para a revisão do Gustavo; relatório em [`pacote-4.md`](pacote-4.md).** Em 16/11 o Gustavo decidiu as quatro questões do pacote 4 (a prática do iniciante e a dupla de lombar como último recurso ficam; o limite de 6 exercícios terá um teste próprio depois) e escolheu o próximo: **o pacote 5, o aviso de "sem melhora".** **Pacote 5, em 16/11: feito (com a decisão do Gustavo de guardar o nível no programa, versão 9 dos dados), medido e parado para a revisão; relatório em [`pacote-5.md`](pacote-5.md).** Com ele, a proposta inteira está no ramo; falta o fechamento da etapa 2.
 

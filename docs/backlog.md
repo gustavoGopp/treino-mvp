@@ -368,3 +368,23 @@ Detalhes em `revisoes/treino-para-todos/pacote-5.md`. O pacote está no ramo da 
 - **A carência de 3 semanas depois de uma pausa** deixou de fazer diferença para a estagnação do intermediário e do avançado (a janela só enche depois dela). Rever se a carência ainda precisa existir para esse sinal.
 - **Um teste antigo ainda fraco:** "as sessões da semana leve ficam fora da dupla progressão" não distingue a sessão leve que ficou de fora da que contou; precisa de um treino normal depois da semana leve.
 
+
+## Da sessão "treino para todos", fechamento da etapa 2 (17/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está fechada no ramo da sessão; a junção com a `main` espera a decisão do Gustavo.
+
+**Feito no fechamento**
+- **A marca do ombro:** o agachamento livre com barra e o do Smith passaram a marcar o ombro (`seguranca.dor.programa`; `tests/unit/articulacoes.test.ts`). Sai da pauta do profissional o item "o agachamento com a barra nas costas com dor no ombro" (pacote 0). A panturrilha no leg press com dor no joelho continua lá.
+
+**Para medir ou decidir depois (em ordem de recomendação)**
+- **O iniciante com menos exercícios por dia** (o teste próprio do limite de 6 exercícios, decidido em 16/11): é o caminho provável para tirar as duplas e o drop set de quem está começando. Na revisão final, é a crítica que mais se repete (Gilberto, 67 anos; Ana; Diego).
+- **Com 3 focos ou mais, a série que sobra não deveria ir para o braço enquanto a perna está no mínimo:** o Bruno foi a única pessoa com nota menor na revisão final (eficiência 5,7 → 5,3; bíceps de 12,5 para 13,5 séries, pernas com 8).
+- **Quem tem muito tempo fica com dias curtos** (a Carla: dias de 43 a 48 min em 75): o teto de séries segura o tempo que sobra. Decidir o que fazer com a sobra (mais um exercício? outro teto para o avançado?).
+- **Pernas sem equipamento com dor forte no ombro: dia acima do tempo.** 4 programas de 45.375 (quem só tem o Smith) passaram a receber esse treino com a marca do ombro; o defeito é o de quem não tem equipamento (dia de 51 a 54 min em 45; 34 em 30). O corte de tempo não alcança esse dia.
+- **A rosca Scott com dor forte no ombro:** 2 de 3 revisores contaram como carga no ombro; a biblioteca não marca. Pede fonte, junto com a pergunta do hip thrust e a lombar (pacote 2).
+- **Com dor forte, o app tira o grupo inteiro** (dor 7 no ombro: peito, costas e ombros com zero série). Os revisores pedem movimento adaptado (amplitude, pegada). O app não diagnostica; qualquer mudança aqui passa pela pauta do profissional.
+- **Para o objetivo de força, a escolha entre barra e halteres** (a Marina ficou sem supino com barra e sem desenvolvimento): pede fonte.
+- **Idade e equilíbrio:** a flexão de joelho na bola suíça e a panturrilha no degrau para o Gilberto (67 anos). O app não pergunta nada sobre equilíbrio; ligado à decisão 7 da proposta ("tenho 60 anos ou mais"), que ficou em "não agora".
+
+**Na junção com a `main`**
+- Trazer a `main` para o ramo; resolver os 4 conflitos (`docs/backlog.md`, `docs/devlog.md`, `src/styles.css`, `tests/e2e/treino.spec.ts`); ajustar os testes de tela novos que citam o búlgaro (21 lugares); refazer a correção do zoom de 200% no estilo novo; rodar `check`, testes de tela, auditoria em duas rodadas e a medida da população; só então juntar, com o ok do Gustavo e o aviso de exportar os dados (versão 9).

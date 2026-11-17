@@ -1782,3 +1782,19 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "O app avisava 'três sessões sem melhora' para todo mundo. Para um iniciante, três sessões paradas dizem alguma coisa. Para quem treina há anos, o ganho de uma sessão para a outra é pequeno demais para aparecer: no simulador, um avançado no ritmo normal lia o aviso em 41 de 48 treinos. Agora a paciência do app cresce com o nível: 4, 8 e 16 sessões. Esses números são aposta minha, e está escrito assim na regra."
 
+
+## Sessão "treino para todos", fechamento da etapa 2 (17/11/2026)
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** A etapa 2 está fechada no ramo: os pacotes 0 a 5 e, no último dia, uma correção de segurança. Na revisão cega final, os três revisores apontaram o agachamento com a barra nas costas para quem marcou dor forte no ombro; o defeito já existia na `main` (o dado do exercício não marcava o ombro). Com o ok do Gustavo, o agachamento livre com barra e o do Smith passaram a marcar o ombro, com um teste que confere o texto do exercício contra a marca.
+
+**Medido na população (680.625 programas fictícios), da `main` de antes ao ramo de agora.** Programas sem nenhum defeito da régua: de 79,4% para 91,0% (cada combinação uma vez) e de 78,1% para 97,1% (com os pesos, que são estimativa). "Tempo sobrando sem aviso", "o mesmo exercício em todos os dias" e "exercício em região com dor forte" foram a zero; "dia fraco" caiu de 71.999 para 28.380 programas. O pior grupo era o da dor forte no cotovelo (50,0% sem defeito); agora é o dos treinos de 30 minutos (73,8%).
+
+**Revisão cega final (18 pessoas fictícias, 3 revisores simulados).** Notas médias de 5,43 · 5,85 · 5,15 para 5,91 · 6,31 · 5,52. Nove pessoas melhoram, oito ficam iguais, uma cai 0,3 ponto em uma nota (o Bruno). A marca do ombro, numa mini-rodada: "adequada" de 3,7 para 5,0.
+
+**O que não fecha por inteiro.** 27 pares "grupo × defeito" acima da `main` na contagem bruta (o maior, 28 programas de 45.375); o Bruno com 0,3 ponto a menos em eficiência; e 4 programas (de 45.375 com dor forte no ombro) que ganham um dia longo demais com a marca do ombro: pessoas que só têm o Smith e passam a receber o treino de quem não tem equipamento. Em troca, 1.925 programas deixam de pôr a barra nas costas de quem tem dor forte no ombro.
+
+**A `main`.** Andou 280 commits (o frontend novo). O ensaio da junção deu 4 conflitos e mostrou que os testes de tela novos citam o búlgaro em 21 lugares. A junção fica para depois da decisão do Gustavo, em dois passos: trazer a `main` para o ramo e rodar tudo; só então juntar.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação. As doze pessoas, com a semana de antes ao lado da de agora, estão em `docs/revisoes/treino-para-todos/exemplos-finais/`.
+
+**Rascunho de post.** "Passei cinco dias fazendo o app montar um treino melhor para qualquer pessoa, não só para mim. A regra da casa: melhorar um perfil piorando outro não é melhoria. Medi 680 mil programas de pessoas inventadas antes e depois de cada mudança, e pedi a treinadores simulados que dessem nota sem saber qual versão estavam lendo. O que mais rendeu não foi nada esperto: o app deixava minutos sobrando no treino, e agora usa. O que eu não consegui resolver também está escrito: quem treina em casa sem equipamento continua sem exercício para as costas, e o iniciante ainda recebe exercícios em dupla para caber no tempo. No último dia, os revisores acharam um erro que estava lá desde o começo: agachamento com a barra nas costas para quem marcou dor forte no ombro. Corrigido no mesmo dia, com teste."
