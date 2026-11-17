@@ -98,3 +98,4 @@ export { crucifixoInverso } from './crucifixo-inverso';
 export { roscaScottBancoInclinado } from './rosca-scott-banco-inclinado';
 export { crucifixoHalteres } from './crucifixo-halteres';
 export { crucifixoInclinadoHalteres } from './crucifixo-inclinado-halteres';
+export { abducaoDeitadoMiniBand } from './abducao-deitado-mini-band';

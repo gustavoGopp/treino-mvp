@@ -1,0 +1,324 @@
+{
+ "id": "abducao-deitado-mini-band",
+ "nome": "Abdução de quadril deitado de lado, com mini-band nos tornozelos",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abducao-deitado-mini-band.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abducao-deitado-mini-band.md): deitado de lado, quadril empilhado, mini-band nos tornozelos (consenso, a mesma posição da abducao-deitado); a perna de cima estendida e um pouco para trás (um estudo, EMG, macadam2015)",
+  "app": "Texto do app (src/conteudo/exercicios/abducao-deitado-mini-band.json): a cabeça no braço de baixo, a perna de baixo dobrada; a mini-band em volta dos tornozelos; a perna de cima estendida, um pouco atrás da linha do corpo; quadril empilhado; sobe ~1 s, pausa curta, desce ~2 s até a perna quase encostar na de baixo; em cima, até onde a perna sobe sem o quadril rolar; erros 'Rolar o quadril para trás', 'Levar a perna para a frente', 'Subir alto demais com tranco' (a cintura dobra)",
+  "aprovada": "A abdução deitado de lado aprovada (dados/movimentos/abducao-deitado.json e abducao-caneleira.json; exercicios/quadril-abrir-deitado.ts): o mesmo corpo deitado, as mesmas linhas de desenho e os mesmos três erros, com os mesmos títulos",
+  "aaos": "Amplitude do quadril da AAOS (src/engine/novo/dados/amplitudes.json, quadril.abducao: média 40°, máximo 60°)",
+  "objetos": "src/engine/novo/dados/objetos/mini-band.json (a mini band de 12 pol: o laço de 61 cm em repouso, 5,1 cm de largura, estica até 2,5 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "piso": {
+   "v": 0,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "deitado no chão, sem colchonete, como na abdução deitado e na abdução com caneleira aprovadas (o cartão lista o colchonete; ele não muda o movimento)"
+  },
+  "bracoDeBaixo.abre": {
+   "v": 28,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o braço de baixo estendido acima da cabeça, deitado no chão, um pouco à frente da linha do corpo"
+  },
+  "bracoDeBaixo.prot": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o ombro de baixo não vai para a frente (protração da escápula, em graus da clavícula): com ele à frente, o tronco subia e a cabeça ficava longe do braço"
+  },
+  "bracoDeBaixo.elev": {
+   "v": 30,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "com o braço acima da cabeça e o peso do corpo em cima, o ombro de baixo sobe 30° de clavícula além do ritmo do braço (a escápula escorrega para a cabeça): o lado do peito apoia no chão e a cabeça desce até o braço com o pescoço inclinado só ~14°; sem isso, o pescoço precisava dobrar 45°"
+  },
+  "bracoDeBaixo.cotovelo": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o cotovelo de baixo quase estendido"
+  },
+  "maoDeCima.frente": {
+   "v": 20,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a mão de cima espalmada no chão, 20 cm à frente do ombro, para dar apoio (na animação de hoje, 16 cm); de costas para quem vê, ela fica escondida atrás do corpo"
+  },
+  "maoDeCima.abaixo": {
+   "v": 2,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a mão de cima na altura do ombro (2 cm na direção dos pés): mais para baixo, ela aparecia debaixo do peito, no vão entre o corpo e o chão"
+  },
+  "cabecaNoBraco": {
+   "v": 0.5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "a cabeça apoiada no braço de baixo (a pele da cabeça a 0,5 cm da do braço)"
+  },
+  "pernaDeBaixo.quadril": {
+   "v": 35,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a perna de baixo dobrada (o cartão): a coxa 35° à frente da linha do corpo, menos que os 45° da abdução sem carga aprovada, para o tornozelo de baixo ficar perto do de cima e a faixa começar só um pouco esticada (com 45° e 90°, ela já começava 1,3 vez esticada)"
+  },
+  "pernaDeBaixo.joelho": {
+   "v": 70,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o joelho de baixo dobrado a 70° (a aprovada: 90°), pelo mesmo motivo"
+  },
+  "pernaDeCima.atras": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "a perna de cima um pouco atrás da linha do corpo: 10° de extensão do quadril (a ficha não dá número)"
+  },
+  "abducao.embaixo": {
+   "v": -8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "embaixo, a perna de cima quase encosta na de baixo: 8° para dentro da linha do quadril"
+  },
+  "abducao.topo": {
+   "v": 30,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "em cima, até onde o quadril não rola nem a cintura dobra: 30° (a ficha não dá número). Com a faixa nos tornozelos, 35° (o da abdução sem carga aprovada) esticavam a faixa 2,5 vezes, o máximo do fabricante; com 30°, 2,3 vezes. Abaixo dos ~45° em que o cartão diz que a cintura dobra"
+  },
+  "pe.flexaoPlantar": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé de cima relaxado, 10° de flexão plantar, com os dedos para a frente"
+  },
+  "erro.rola.graus": {
+   "v": 30,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: a bacia e o tronco rolam 30° para trás (na aprovada, o roll cai de 90 para 60)"
+  },
+  "erro.rola.flexao": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: com o quadril rolado, a perna sobe pela frente (25° de flexão do quadril) e os dedos viram para o teto"
+  },
+  "erro.rola.giroDaPerna": {
+   "v": 35,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: a perna gira para fora 35°, os dedos apontam para o teto"
+  },
+  "erro.frente.flexao": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: a perna sobe 25° à frente da linha do corpo (na aprovada, o tornozelo vai uns 25 cm à frente)"
+  },
+  "erro.alto.topo": {
+   "v": 46,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a perna é jogada até 46°, além dos ~45° em que a cintura dobra (na aprovada sem faixa, 58°; com a faixa nos tornozelos, mais que isso passaria do máximo de 2,5 vezes do fabricante: a 46°, ela estica 2,46 vezes)"
+  },
+  "erro.alto.cintura": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: a cintura dobra 10° para o lado de cima (na aprovada, a lombar vai de −90 a −100)"
+  },
+  "faixa.acimaDoTornozelo": {
+   "v": 7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "a mini-band em volta dos tornozelos: o meio dela a 7 cm do centro do tornozelo, ao longo da canela (a borda de baixo fica ~4,5 cm acima dele, acima dos maléolos; o cartão não dá número)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Embaixo",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "quadril empilhado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Topo · segura",
+   "tipo": "pausa",
+   "dur": 1,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "1 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "contatos": [
+  "pelve",
+  "mao.R",
+  "joelho.L"
+ ],
+ "regras": [
+  {
+   "id": "quadril-deitado-de-lado-no-chao",
+   "pede": "deitado de lado: a bacia e o peito no chão, a cabeça apoiada no braço de baixo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "quadril-empilhado",
+   "pede": "quadril empilhado, sem rolar para trás nem dobrar a cintura",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "quadril-perna-um-pouco-atras",
+   "pede": "a perna de cima estendida, um pouco atrás da linha do corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "quadril-dedos-para-a-frente",
+   "pede": "os dedos apontam para a frente, não para o teto",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "quadril-abducao-sem-passar-de-45",
+   "pede": "a perna sobe sem passar de ~45°",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "mini-band-nos-tornozelos",
+   "pede": "a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "quadril-pernas-sem-se-atravessar",
+   "pede": "as duas pernas não se atravessam",
+   "selo": "desenho",
+   "fonte": "desenho"
+  }
+ ],
+ "erros": [
+  {
+   "id": "rola",
+   "instante": 1,
+   "titulo": "Rolar o quadril para trás",
+   "vista": "quina",
+   "oQueMuda": "a bacia rola para trás, a perna sobe pela frente e os dedos viram para o teto",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "ombro:L",
+    "ombro:R"
+   ],
+   "foco": "pelve"
+  },
+  {
+   "id": "frente",
+   "instante": 1,
+   "titulo": "Levar a perna para a frente",
+   "vista": "cima",
+   "oQueMuda": "a perna sobe à frente da linha do corpo",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "pelve",
+    "joelho:R",
+    "tornozelo:R"
+   ],
+   "foco": "tornozelo:R"
+  },
+  {
+   "id": "alto",
+   "instante": 1,
+   "titulo": "Subir alto demais com tranco",
+   "vista": "frontal",
+   "oQueMuda": "a perna passa de 45° e a cintura dobra",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "quadril:R",
+    "tornozelo:R"
+   ],
+   "foco": "tornozelo:R"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "frontal",
+   "texto": "quadril empilhado",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "frontal",
+   "texto": "dedos para a frente",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}
