@@ -43,3 +43,5 @@ export { REGRAS_ABERTURA_ELASTICO } from './abertura-elastico';
 export { REGRAS_ELEVACAO_UNILATERAL } from './elevacao-lateral-unilateral';
 export { REGRAS_DESENVOLVIMENTOS_EM_PE } from './desenvolvimentos-em-pe';
 export { REGRAS_TRICEPS_FRANCES_UNILATERAL_HALTER } from './triceps-frances-unilateral-halter';
+export { regrasDoAgachamentoComHalteres } from './agachamento-halteres';
+export { regrasDoGobletKettlebell } from './goblet-kettlebell';

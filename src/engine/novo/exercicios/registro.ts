@@ -114,3 +114,7 @@ export { elevacaoLateralUnilateral } from './elevacao-lateral-unilateral';
 export { desenvolvimentoUnilateral } from './desenvolvimento-unilateral';
 export { desenvolvimentoEmPeHalteres } from './desenvolvimento-em-pe-halteres';
 export { tricepsFrancesUnilateralHalter } from './triceps-frances-unilateral-halter';
+export { afundoTras } from './afundo-tras';
+export { agachamentoHalteres } from './agachamento-halteres';
+export { gobletKettlebell } from './goblet-kettlebell';
+export { stiffUnilateralKettlebell } from './stiff-unilateral-kettlebell';
