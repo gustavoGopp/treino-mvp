@@ -129,4 +129,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A3 | `agachamento-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (os braços abrem só o que o halter precisa para passar pela perna: 7° em cima e 12° embaixo) |
 | A3 | `goblet-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (calcanhares no chão, sem anilha; o kettlebell inclina com o tronco) |
 | A3 | `stiff-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o kettlebell na mão do lado oposto à perna de apoio; de lado ele fica atrás da perna) |
+| A4 | `elevacao-lateral-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o corpo deitado da abdução aprovada; de frente, os joelhos dobrados parecem pernas esticadas, porque as coxas vêm na direção de quem olha) |
+| A4 | `elevacao-lateral-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a caneleira no antebraço, a mão solta; "Parar longe da falha" sem desenho) |
+| A4 | `coice-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o núcleo de quatro apoios do coice com elástico; segunda vista de três quartos pela frente; "Parar longe da falha" sem desenho) |
 
