@@ -1,8 +1,7 @@
-// Regra medida do tríceps francês unilateral com halter: a outra mão segura o braço que trabalha, logo acima do
-// cotovelo, e fica com ele (as outras regras são as dos tríceps franceses: ./triceps-frances.ts e
-// ./triceps-frances-unilateral.ts).
+// Regra medida do tríceps francês unilateral com halter: o halter não encosta no corpo, medido com a forma das cabeças
+// (as outras regras são as dos tríceps franceses: ./triceps-frances.ts e ./triceps-frances-unilateral.ts).
 import { pontosDoBoneco } from '../boneco';
-import { f1, faixa } from '../conferir-util';
+import { f1 } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Prim } from '../desenho';
 import { dist, dot, norm, sub } from '../vec';
@@ -46,23 +45,5 @@ export const REGRAS_TRICEPS_FRANCES_UNILATERAL_HALTER: Record<string, Regra> = {
       }
     }
     return { medido: `o halter passa a no mínimo ${f1(min)} cm da pele (${qual})`, ok: min >= 1 };
-  },
-  'triceps-frances-mao-no-cotovelo': (q) => {
-    // a menor distância entre a pele da mão esquerda e a do braço direito (perto do cotovelo), e onde a mão fica
-    const folgas: number[] = [],
-      doCotovelo: number[] = [];
-    for (const [i, x] of q.entries()) {
-      doCotovelo.push(dist(x.esq.lado.L.pegada, x.esq.lado.R.cotovelo));
-      if (i % 4 && i !== q.length - 1) continue;
-      const pts = pontosDoBoneco(x.esq);
-      const mao = pts.filter((p) => (p.parte === 'mao' || p.parte === 'polegar') && p.p[0] > x.esq.lado.R.cotovelo[0] && dist(p.p, x.esq.lado.L.pegada) < 12).map((p) => p.p);
-      const braco = pts.filter((p) => p.parte === 'braco' && dist(p.p, x.esq.lado.R.cotovelo) < 14).map((p) => p.p);
-      let m = 1e9;
-      for (const a of mao) for (const b of braco) m = Math.min(m, dist(a, b));
-      folgas.push(m);
-    }
-    const [a, b] = faixa(folgas),
-      [c, d] = faixa(doCotovelo);
-    return { medido: `a pele da mão esquerda fica de ${f1(a)} a ${f1(b)} cm da pele do braço direito; o centro da mão fica de ${f1(c)} a ${f1(d)} cm do cotovelo`, ok: b <= 1.5 && d <= 12 };
   },
 };

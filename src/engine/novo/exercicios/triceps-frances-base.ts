@@ -17,7 +17,7 @@
 // pé de trás, é montada por quem usa o núcleo.
 // Com um halter numa mão só (`carga: 'halter-unilateral'`, acréscimo de 17/11/2026): em pé, o tronco na vertical (os pés
 // lado a lado, pelas linhas da ficha), a mão direita fecha no cabo do halter com a pegada neutra (a do estribo) e o
-// cabo atravessa a mão; a mão esquerda segura o braço direito logo acima do cotovelo.
+// cabo atravessa a mão; a mão esquerda fica na cintura, como com o estribo.
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
@@ -189,15 +189,15 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     const eixo = eixoDe(phi);
     const R = montaLado('R', phi, eixo),
       L = montaLado('L', phi, eixo);
-    // com o estribo, a outra mão fica na cintura
-    const poseL = carga === 'estribo' ? maoNaCintura(corpo, t) : carga === 'halter-unilateral' ? maoNoCotovelo(T, R.cot, e0.lado.R.ombro) : L.m.pose;
+    // com o estribo e com o halter numa mão, a outra mão fica na cintura
+    const poseL = carga === 'estribo' || carga === 'halter-unilateral' ? maoNaCintura(corpo, t) : L.m.pose;
     const e = resolverMembros(t, { R: R.m.pose, L: poseL }, pernas);
     return { e, eixo, maos: { R: R.m, L: L.m }, phi };
   }
 
   /**
-   * A mão esquerda na cintura (só com o estribo): a palma aberta sobre a crista do osso do quadril, os dedos para a
-   * frente e para baixo, o polegar para cima, o cotovelo para fora e para trás.
+   * A mão esquerda na cintura (com o estribo e com o halter numa mão): a palma aberta sobre a crista do osso do
+   * quadril, os dedos para a frente e para baixo, o polegar para cima, o cotovelo para fora e para trás.
    */
   function maoNaCintura(corpo: Corpo, t: Tronco): PoseBraco {
     const P = t.pelve;
@@ -205,18 +205,6 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     const punho = noRef(P, [s * f('maoNaCintura.x'), corpo.m('altura.cristaIliaca') - corpo.m('altura.trocanter') + f('maoNaCintura.acima'), f('maoNaCintura.z')]);
     const dedos = norm(dirRef(P, [0, -0.45, 1]));
     return { punho, polo: dirRef(P, [s * 0.6, 0, -1]), mao: { dedos, polegar: dirRef(P, [0, 1, 0]), forma: 'aberta' } };
-  }
-
-  /**
-   * A mão esquerda segurando o braço direito (só com o halter numa mão): a mão fecha em volta do braço, a
-   * `maoNoCotovelo.doCotovelo` cm do cotovelo, vinda da frente e por cima da cabeça; o polegar aponta para o ombro
-   * direito (assim o antebraço esquerdo fica dentro da rotação que ele tem), o cotovelo esquerdo para a frente, para
-   * fora e um pouco para cima (o antebraço passa na altura da testa, e não na frente dos olhos).
-   */
-  function maoNoCotovelo(T: Tronco['torax'], cot: V3, ombro: V3): PoseBraco {
-    const u = norm(sub(ombro, cot));
-    const pegada = add(cot, mul(u, f('maoNoCotovelo.doCotovelo')));
-    return { pegada, polo: norm(dirRef(T, [f('maoNoCotovelo.poloFora'), -f('maoNoCotovelo.poloBaixo'), 1])), mao: { polegar: u, forma: 'pegada', diam: f('maoNoCotovelo.diam') } };
   }
 
   /* ---------------- calibração (uma vez por corpo) ---------------- */
@@ -362,7 +350,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const centro = R.pegada,
         eixo = R.mao.x;
       marcas.halter = centro;
-      marcas.maoNoBraco = L.pegada;
+      marcas.maoDeApoio = L.pegada;
       return { esq: e, prims: [chao(-70, 70, -60, 90), ...halter(centro, eixo, 0.2)], pecas: [{ t: 'halter', centro, eixo }], fios: [], cargas: [{ massa: obj('halter', 'massa'), pos: centro }], marcas, vies: { maoR: 1 } };
     }
     const meio = mul(add(R.pegada, L.pegada), 0.5);
