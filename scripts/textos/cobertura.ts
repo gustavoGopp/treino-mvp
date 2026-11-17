@@ -102,7 +102,7 @@ export const COBERTURA: Linha[] = [
   l('src/features/onboarding/Rotina.tsx:124', 'aviso condicional', 'campo "Outro: quantos minutos?"', ['cadastro/rotina-minutos-outro']),
   l('src/features/onboarding/Rotina.tsx:157', 'aviso condicional', 'nota do foco (3 frases, em src/domain/gerador/opcoes.ts)', ['cadastro/rotina-respondida', 'cadastro/rotina-foco-3-grupos', 'cadastro/rotina-foco-bracos']),
   l('src/features/onboarding/Rotina.tsx:190', 'aviso condicional', '"Como prefere dividir? (opcional)", com as divisões de cada número de dias, "Recomendada" e "Deixar o app escolher"', ['dados-e-locais/rotina-e-divisao', 'dados-e-locais/rotina-e-divisao-com-escolhas', 'dados-e-locais/rotina-e-divisao-2-dias', 'dados-e-locais/rotina-e-divisao-4-dias', 'dados-e-locais/rotina-e-divisao-5-dias', 'dados-e-locais/rotina-e-divisao-6-dias']),
-  l('src/features/onboarding/Restricoes.tsx:60', 'bloco que abre', '"Algum exercício que você quer evitar? (opcional)"', ['dados-e-locais/algo-a-evitar-exercicios']),
+  l('src/features/onboarding/Restricoes.tsx:60', 'bloco que abre', '"Exercícios a evitar"', ['dados-e-locais/algo-a-evitar-exercicios']),
   l('src/features/onboarding/Inventario.tsx:492', 'erro ou validação', '"Há 1 detalhe para completar." / "Há N detalhes para completar."', ['cadastro/equipamento-erro-um-detalhe', 'cadastro/equipamento-erro-detalhes-por-completar']),
   l('src/features/onboarding/Inventario.tsx:520', 'aviso condicional', 'depois de um atalho de lugar: o que o toque marcou, "Às vezes tem" e "Conferir os N itens ›"', ['cadastro/equipamento-lugar-academia', 'cadastro/equipamento-lugar-condominio', 'cadastro/equipamento-lugar-casa', 'cadastro/equipamento-lugar-corpo']),
   l('src/features/onboarding/Inventario.tsx:554', 'bloco que abre', '"Item por item": marcados, busca, categorias e grade', ['cadastro/equipamento-item-por-item-vazio', 'cadastro/equipamento-item-por-item', 'cadastro/equipamento-item-por-item-academia', 'cadastro/equipamento-categoria-bancos', 'cadastro/equipamento-categoria-polias-e-acessorios', 'cadastro/equipamento-categoria-barras', 'cadastro/equipamento-categoria-maquinas', 'cadastro/equipamento-categoria-outros-acessorios']),
@@ -288,9 +288,9 @@ export const COBERTURA: Linha[] = [
   l('src/features/dados/Dados.tsx:302', 'folha', '"Foto do equipamento" (retirar a autorização)', ['dados-e-locais/meus-dados-folha-foto-do-equipamento']),
   l('src/features/dados/Dados.tsx:314', 'resposta de uma ação', '"Autorização da foto retirada."', ['dados-e-locais/meus-dados-autorizacao-retirada']),
   l('src/features/dados/Dados.tsx:323', 'folha', '"Apagar todos os dados?"', ['dados-e-locais/meus-dados-folha-apagar-todos-os-dados']),
-  l('src/features/locais/Locais.tsx:56', 'resposta de uma ação', '"<local> é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino."', ['dados-e-locais/locais-local-principal-trocado']),
+  l('src/features/locais/Locais.tsx:56', 'resposta de uma ação', '"<local> é o principal. O programa muda quando você tocar em "Atualizar" no início."', ['dados-e-locais/locais-local-principal-trocado']),
   l('src/features/locais/Locais.tsx:91', 'erro ou validação', '"Dê um nome ao local, por exemplo "Prédio" ou "Academia do bairro"."', ['dados-e-locais/locais-novo-erro-sem-nome']),
-  l('src/features/locais/Locais.tsx:145', 'aviso condicional', 'título do equipamento do local ("Que equipamento tem neste local?" / "…em "<nome>"?")', ['dados-e-locais/locais-novo', 'dados-e-locais/locais-novo-com-nome']),
+  l('src/features/locais/Locais.tsx:145', 'aviso condicional', 'título do equipamento do local ("Equipamento")', ['dados-e-locais/locais-novo', 'dados-e-locais/locais-novo-com-nome']),
 
   // ---- termos ----
   l('src/features/termos/Termos.tsx:57', 'aviso condicional', '"Contato: fale direto com essa pessoa." e "quem te mandou o link do app" (sem e-mail e sem responsável no build)', ['termos-e-foto/termos']),

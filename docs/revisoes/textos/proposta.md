@@ -202,7 +202,7 @@ O que muda, peça por peça:
 
 **Testes da proposta:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
 
-## 7. Meus dados e Meus locais (proposta preparada; mostrar depois da decisão do fluxo 6)
+## 7. Meus dados e Meus locais (aprovado como está e aplicado em 17/11/2026, commit `ab0caf4`)
 
 A regra da linha: a 2ª linha só fica quando mostra um **valor** (o que está escolhido); quando só descreve o que o título já diz, sai. Proposta em `propostas/7-meus-dados-e-locais.patch` (aplica por cima da 6); imagens em `folhas/7a-meus-dados.png`, `7b-meus-locais.png`, `7c-novo-local-e-evitar.png`.
 

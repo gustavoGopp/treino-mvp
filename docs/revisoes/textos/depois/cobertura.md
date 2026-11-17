@@ -140,7 +140,7 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 
 | Linha | O que é | Tipo | Na colheita |
 |---|---|---|---|
-| 60 | "Algum exercício que você quer evitar? (opcional)" | bloco que abre | `dados-e-locais/37-algo-a-evitar-exercicios` |
+| 60 | "Exercícios a evitar" | bloco que abre | `dados-e-locais/37-algo-a-evitar-exercicios` |
 
 ### `src/features/onboarding/Inventario.tsx`
 
@@ -412,9 +412,9 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 
 | Linha | O que é | Tipo | Na colheita |
 |---|---|---|---|
-| 56 | "<local> é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino." | resposta de uma ação | `dados-e-locais/50-locais-local-principal-trocado` |
+| 56 | "<local> é o principal. O programa muda quando você tocar em "Atualizar" no início." | resposta de uma ação | `dados-e-locais/50-locais-local-principal-trocado` |
 | 91 | "Dê um nome ao local, por exemplo "Prédio" ou "Academia do bairro"." | erro ou validação | `dados-e-locais/47-locais-novo-erro-sem-nome` |
-| 145 | título do equipamento do local ("Que equipamento tem neste local?" / "…em "<nome>"?") | aviso condicional | `dados-e-locais/46-locais-novo`<br>`dados-e-locais/48-locais-novo-com-nome` |
+| 145 | título do equipamento do local ("Equipamento") | aviso condicional | `dados-e-locais/46-locais-novo`<br>`dados-e-locais/48-locais-novo-com-nome` |
 
 ### `src/features/termos/Termos.tsx`
 
@@ -482,12 +482,12 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 14-semana | `fim-e-semana/06-semana-1-treino` | 101 | 66 | -35 |
 | 15-evolucao | `fim-e-semana/08-evolucao-1-treino` | 29 | 20 | -9 |
 | 06c-inicio-depois-do-1o-treino | `inicio/01-inicio-depois-do-1o-treino` | 109 | 82 | -27 |
-| 16-meus-dados | `dados-e-locais/01-meus-dados` | 144 | 155 | +11 |
+| 16-meus-dados | `dados-e-locais/01-meus-dados` | 144 | 99 | -45 |
 | 16b-meus-dados-estilo-do-boneco | `dados-e-locais/04-meus-dados-folha-estilo-do-boneco` | 46 | 6 | -40 |
-| 17-locais | `dados-e-locais/44-locais` | 38 | 35 | -3 |
-| 17b-locais-editar | `dados-e-locais/45-locais-editar` | 125 | 90 | -35 |
+| 17-locais | `dados-e-locais/44-locais` | 38 | 17 | -21 |
+| 17b-locais-editar | `dados-e-locais/45-locais-editar` | 125 | 77 | -48 |
 | 18-termos | `termos-e-foto/01-termos` | 793 | 792 | -1 |
-| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.383** | -1434 |
+| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.296** | -1521 |
 
 Saíram do app (não entram na soma):
 
@@ -495,8 +495,8 @@ Saíram do app (não entram na soma):
 
 ## Totais
 
-- Telas colhidas: **424**, do app na versão `57a6348` (publicada em 17/11/2026; colheita de 2026-11-17).
-- Soma de `palavrasNaTela`: **45.534** (a mesma frase conta de novo em cada tela ou folha em que aparece).
+- Telas colhidas: **424**, do app na versão `ab0caf4` (publicada em 17/11/2026; colheita de 2026-11-17).
+- Soma de `palavrasNaTela`: **44.516** (a mesma frase conta de novo em cada tela ou folha em que aparece).
 - Linhas da tabela de cobertura: 242 (por tipo: rota 37, folha 22, bloco que abre 28, por quê 3, aviso condicional 86, estado vazio 5, carregando 6, erro ou validação 40, resposta de uma ação 15); não alcançados: 9.
 - Falhas anotadas na colheita: 0 (em `colheita.json`, campo `falhas`).
 
@@ -504,20 +504,20 @@ Saíram do app (não entram na soma):
 |---|---|---|---|---|---|
 | cadastro | 80 | 6.114 | 21 | 1 | 32 |
 | inicio | 85 | 11.414 | 14 | 28 | 10 |
-| treino | 69 | 4.184 | 9 | 3 | 41 |
-| guia | 45 | 5.983 | 0 | 12 | 0 |
+| treino | 69 | 4.183 | 9 | 3 | 41 |
+| guia | 45 | 5.977 | 0 | 12 | 0 |
 | fim-e-semana | 38 | 3.763 | 4 | 4 | 21 |
-| dados-e-locais | 53 | 8.173 | 8 | 7 | 13 |
+| dados-e-locais | 53 | 7.266 | 8 | 7 | 13 |
 | termos-e-foto | 29 | 3.622 | 9 | 1 | 18 |
-| avisos-e-erros | 25 | 2.281 | 0 | 0 | 25 |
+| avisos-e-erros | 25 | 2.177 | 0 | 0 | 25 |
 
 | Persona | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| ana | 311 | 30.503 | 57 | 33 | 128 |
+| ana | 311 | 29.721 | 57 | 33 | 128 |
 | ana + saúde | 12 | 2.186 | 2 | 3 | 3 |
-| bruno | 16 | 1.797 | 0 | 3 | 2 |
-| carla | 28 | 2.961 | 0 | 6 | 9 |
+| bruno | 16 | 1.716 | 0 | 3 | 2 |
+| carla | 28 | 2.960 | 0 | 6 | 9 |
 | diego | 10 | 1.245 | 1 | 3 | 3 |
-| elisa | 22 | 2.710 | 1 | 5 | 5 |
+| elisa | 22 | 2.712 | 1 | 5 | 5 |
 | fabio | 11 | 1.191 | 1 | 3 | 3 |
-| ninguém | 14 | 2.941 | 3 | 0 | 7 |
+| ninguém | 14 | 2.785 | 3 | 0 | 7 |

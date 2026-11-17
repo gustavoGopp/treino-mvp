@@ -1515,7 +1515,7 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
     await page.getByRole('link', { name: /^Algo a evitar/ }).click();
     await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
     await r.foto('algo-a-evitar', { titulo: 'Algo a evitar', comoChegar: 'Meus dados → "Algo a evitar".' });
-    await page.locator('summary', { hasText: 'Algum exercício que você quer evitar' }).click();
+    await page.locator('summary', { hasText: /Algum exercício que você quer evitar|^Exercícios a evitar$/ }).click();
     await r.foto('algo-a-evitar-exercicios', { titulo: 'Algo a evitar, com a lista de exercícios aberta', comoChegar: 'Algo a evitar → "Algum exercício que você quer evitar? (opcional)".', tipo: 'bloco aberto' });
     await page.locator('details[open] label.opcao').first().getByRole('checkbox').check();
     await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
@@ -1551,7 +1551,7 @@ roteiro('locais', 30, 'dados-e-locais', 'ana', async (r, page) => {
   });
   await r.passo('locais, novo', async () => {
     await page.goto('/locais');
-    await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
+    await page.getByRole('link', { name: /^(Cadastrar outro local|Novo local)$/ }).click();
     await expect(page.getByRole('heading', { name: 'Novo local' })).toBeVisible();
     await r.foto('locais-novo', { titulo: 'Novo local, vazio', comoChegar: 'Meus locais → "Cadastrar outro local".', tipo: 'estado vazio' });
     await page.getByRole('button', { name: 'Salvar local' }).click();
@@ -1563,7 +1563,7 @@ roteiro('locais', 30, 'dados-e-locais', 'ana', async (r, page) => {
     await page.getByRole('button', { name: 'Salvar local' }).click();
     await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
     await r.foto('locais-2-locais', { titulo: 'Meus locais, com 2 locais (a Ana com a "Academia")', comoChegar: 'Novo local → "Academia", 4 itens → "Salvar local".' });
-    await page.getByRole('button', { name: 'Montar o programa para este local' }).click();
+    await page.getByRole('button', { name: /^(Montar o programa para este local|Tornar principal)$/ }).click();
     await r.foto('locais-local-principal-trocado', { titulo: 'Meus locais, depois de "Montar o programa para este local"', comoChegar: 'Meus locais com 2 locais → "Montar o programa para este local".', tipo: 'aviso' });
     await page.goto('/programa');
     await inicioPronto(page);
@@ -1760,7 +1760,7 @@ roteiro('avisos-copia', 20, 'avisos-e-erros', 'ana', async (r, page) => {
   await r.foto('lembrete-de-copia', { titulo: 'Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda)', comoChegar: 'Histórico fictício: 3 treinos terminados, nenhuma cópia exportada → Início.', tipo: 'aviso' });
   await folhaDoSelo(r, 'lembrete-de-copia-folha-selo', lembrete.locator('button.selo'), { titulo: 'Folha "De onde vem isto" (o selo do lembrete de cópia)', comoChegar: 'Lembrete de cópia → toque no selo "fonte".' });
   await r.passo('lembrete de cópia, exportar agora', async () => {
-    await Promise.all([page.waitForEvent('download'), lembrete.getByRole('button', { name: 'Exportar agora' }).click()]);
+    await Promise.all([page.waitForEvent('download'), lembrete.getByRole('button', { name: /^Exportar( agora)?$/ }).click()]);
     await expect(page.getByText(/^Arquivo exportado\./)).toBeVisible();
     await page.getByText(/^Arquivo exportado\./).scrollIntoViewIfNeeded();
     await r.foto('lembrete-de-copia-exportado', { titulo: 'Início logo depois de "Exportar agora" no lembrete de cópia', comoChegar: 'Lembrete de cópia → "Exportar agora".', tipo: 'aviso' });
@@ -1784,7 +1784,7 @@ roteiro('erros', 30, 'avisos-e-erros', 'ana', async (r, page) => {
     await r.foto('dado-ilegivel-boas-vindas', { titulo: 'Boas-vindas com um dado guardado que o app não leu', comoChegar: 'Estado gravado no aparelho num formato inválido → abrir o app.', tipo: 'erro', persona: 'ninguém' });
     await meusDados(page);
     await r.foto('dado-ilegivel-meus-dados', { titulo: 'Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos")', comoChegar: 'Estado gravado no aparelho num formato inválido → Meus dados.', tipo: 'erro', persona: 'ninguém' });
-    await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar os dados que não foram lidos' }).click()]);
+    await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: /^Exportar (os dados que não foram lidos|esses dados)$/ }).click()]);
     await expect(page.getByRole('status').filter({ hasText: 'Arquivo exportado' })).toBeVisible();
     await r.foto('dado-ilegivel-exportado', { titulo: 'Meus dados depois de exportar os dados que não foram lidos', comoChegar: 'Meus dados com dado ilegível → "Exportar os dados que não foram lidos".', tipo: 'aviso', persona: 'ninguém' });
   });

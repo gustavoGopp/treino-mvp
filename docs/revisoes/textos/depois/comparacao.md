@@ -1,8 +1,8 @@
 # Antes e depois dos cortes: palavras por tela
 
-> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: 57a6348 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
+> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: ab0caf4 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
 
-**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 45.534 palavras.
+**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 44.516 palavras.
 
 ## Por fluxo (só as telas que existem nas duas)
 
@@ -10,13 +10,13 @@
 |---|---|---|---|---|---|---|---|---|
 | cadastro | 80 | 7727 | 6114 | −21% | 58 | 28 | 19 | 0 |
 | inicio | 85 | 13426 | 11414 | −15% | 202 | 147 | 252 | 188 |
-| treino | 69 | 4587 | 4184 | −9% | 30 | 28 | 44 | 0 |
-| guia | 45 | 14535 | 5983 | −59% | 230 | 65 | 1 | 0 |
+| treino | 69 | 4587 | 4183 | −9% | 30 | 28 | 44 | 0 |
+| guia | 45 | 14535 | 5977 | −59% | 230 | 65 | 1 | 0 |
 | fim-e-semana | 36 | 5055 | 3450 | −32% | 59 | 30 | 52 | 6 |
-| dados-e-locais | 47 | 6284 | 5821 | −7% | 36 | 29 | 8 | 1 |
+| dados-e-locais | 47 | 6284 | 4914 | −22% | 36 | 28 | 8 | 1 |
 | termos-e-foto | 29 | 3627 | 3622 | −0% | 84 | 84 | 8 | 3 |
-| avisos-e-erros | 23 | 2399 | 2174 | −9% | 25 | 23 | 9 | 1 |
-| **Tudo** | 414 | 57640 | 42762 | −26% | 724 | 434 | 393 | 199 |
+| avisos-e-erros | 23 | 2399 | 2070 | −14% | 25 | 23 | 9 | 1 |
+| **Tudo** | 414 | 57640 | 41744 | −28% | 724 | 433 | 393 | 199 |
 
 ## cadastro: as 54 telas que mudaram
 
@@ -170,24 +170,23 @@
 |---|---|---|---|---|
 | Treino: a última série, com "Drop set (opcional)" e as 2 quedas | ana | 107 | 89 | −17% |
 | Treino da Carla: dia "Inferior", 1º exercício, 1ª série vazia (Agachamento livre com barra (profundo)) | carla | 111 | 98 | −12% |
+| Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 54 | −18% |
 | Treino da Carla: dia "Inferior", 6º exercício, 1ª série vazia (Panturrilha sentada na máquina) | carla | 87 | 76 | −13% |
 | Treino do Diego (elásticos e barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | diego | 89 | 78 | −12% |
 | Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | fabio | 91 | 80 | −12% |
 | Treino: a série com o guia pausado | ana | 70 | 60 | −14% |
-| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 57 | −15% |
+| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 58 | −15% |
 | Treino: nota de dor 4 antes da 1ª série | ana | 91 | 81 | −11% |
 | Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | ana | 63 | 53 | −16% |
-| Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 56 | −15% |
 | Treino da Carla: dia "Inferior", 3º exercício, 1ª série vazia (Flexão de joelho na cadeira flexora (sentado)) | carla | 59 | 49 | −17% |
 | Treino da Carla: dia "Inferior", 4º exercício, 1ª série vazia (Cadeira extensora) | carla | 54 | 44 | −19% |
 | Treino da Carla: dia "Inferior", 7º exercício, 1ª série vazia (Adução na cadeira adutora) | carla | 56 | 46 | −18% |
 | Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso) | carla | 85 | 75 | −12% |
 | Treino: a série com o guia no modo "Erros" | ana | 70 | 61 | −13% |
 | Treino: a série com o guia no modo "Músculos" | ana | 70 | 61 | −13% |
-| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 60 | −13% |
 | Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | ana | 66 | 57 | −14% |
+| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 58 | −13% |
 | Treino: 3º exercício do dia A, 1ª série vazia (Supino reto com halteres) | ana | 68 | 59 | −13% |
-| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 59 | −13% |
 | Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 56 | −14% |
 | Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 57 | −14% |
 | Treino da Elisa (peso do corpo): 2º exercício, 1ª série vazia (Flexão de braço) | elisa | 64 | 55 | −14% |
@@ -195,6 +194,7 @@
 | Treino do Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico) | diego | 64 | 55 | −14% |
 | Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 54 | −14% |
 | Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 56 | −14% |
+| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 61 | −12% |
 | Treino: 2ª série, com a mensagem da calibração e as séries feitas (uma com dor) | ana | 104 | 96 | −8% |
 | Treino: exercício com a última série em drop set (Tríceps francês sentado com halter) | ana | 66 | 58 | −12% |
 | Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa) | bruno | 71 | 63 | −11% |
@@ -245,14 +245,14 @@
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Erros | ana | 302 | 98 | −68% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | ana | 306 | 102 | −67% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 97 | −68% |
-| Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | carla | 296 | 95 | −68% |
+| Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | carla | 296 | 93 | −69% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | carla | 307 | 106 | −65% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | carla | 300 | 99 | −67% |
 | Guia sem contexto, grupo "Novas" (os nomes curtos de todas as animações novas) | ninguém | 524 | 327 | −38% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | carla | 257 | 62 | −76% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 85 | −69% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | carla | 282 | 91 | −68% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | carla | 291 | 100 | −66% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 86 | −69% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | elisa | 248 | 62 | −75% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | elisa | 291 | 107 | −63% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Técnica | elisa | 247 | 64 | −74% |
@@ -261,18 +261,18 @@
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Trajetória | elisa | 278 | 97 | −65% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Erros | elisa | 281 | 102 | −64% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 114 | −61% |
+| Guia: só o bloco "Amplitude" aberto | ana | 253 | 96 | −62% |
+| Guia: só o bloco "Respiração" aberto | ana | 226 | 69 | −69% |
+| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 98 | −62% |
+| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 128 | −55% |
+| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 99 | −61% |
 | Guia: só o bloco "Montagem" aberto | ana | 295 | 140 | −53% |
 | Guia: só o bloco "Execução e tempo" aberto | ana | 267 | 112 | −58% |
-| Guia: só o bloco "Amplitude" aberto | ana | 253 | 98 | −61% |
-| Guia: só o bloco "Respiração" aberto | ana | 226 | 71 | −69% |
-| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 100 | −61% |
-| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 130 | −54% |
-| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 101 | −61% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | elisa | 562 | 418 | −26% |
-| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 292 | −33% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 365 | −28% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 318 | −30% |
-| Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 398 | −25% |
+| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 294 | −32% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 320 | −30% |
+| Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 401 | −25% |
 | Guia: "Confira em 5 segundos", com um item marcado | ana | 215 | 90 | −58% |
 
 ## fim-e-semana: as 36 telas que mudaram
@@ -316,48 +316,50 @@
 | Folha "Sobre o programa" na volta da pausa (a fase da semana 1) | ana | 107 | 138 | +29% |
 | Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") | ana | 108 | 139 | +29% |
 
-## dados-e-locais: as 38 telas que mudaram
+## dados-e-locais: as 40 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
 | Experiência de quem já tem programa (as respostas guardadas e "Meu programa" no alto) | ana | 147 | 89 | −39% |
+| Editar local (nome e equipamento) | ana | 125 | 77 | −38% |
+| Meus dados (a Ana) | ana | 144 | 99 | −31% |
+| Meus dados logo depois de exportar ("Arquivo exportado…", "Última cópia: hoje") | ana | 154 | 109 | −29% |
+| Meus dados logo depois de importar ("Dados importados.") | ana | 144 | 99 | −31% |
+| Meus dados, com "Avisar um problema" aberto (sem e-mail de contato no build) | ana | 227 | 182 | −20% |
+| Meus dados: resposta de "Copiar as informações" (sem a permissão da área de transferência) | ana | 237 | 192 | −19% |
+| Meus dados: resposta de "Copiar as informações" (com a permissão da área de transferência) | ana | 239 | 194 | −19% |
+| Meus dados de quem já autorizou a foto (a linha "Foto do equipamento") | ana | 148 | 103 | −30% |
+| Meus dados logo depois de retirar a autorização da foto | ana | 146 | 101 | −31% |
+| Meus dados com a última cópia de dias atrás ("Última cópia: há 16 dias") | ana | 144 | 99 | −31% |
 | Rotina e divisão (a rotina aberta por Meus dados, com o objetivo e a divisão) | ana | 296 | 251 | −15% |
 | Rotina e divisão, com um objetivo e uma divisão escolhidos ("Deixar o app escolher" aparece) | ana | 300 | 255 | −15% |
 | Rotina e divisão com 4 dias: as divisões oferecidas | ana | 294 | 249 | −15% |
 | Rotina e divisão com 5 dias: as divisões oferecidas | ana | 294 | 249 | −15% |
 | Rotina e divisão com 6 dias: as divisões oferecidas | ana | 247 | 202 | −18% |
 | Objetivo (a mesma tela da rotina, aberta na pergunta do objetivo) | ana | 296 | 251 | −15% |
+| Meus dados do Bruno (2 locais, 4 dias) | bruno | 145 | 100 | −31% |
 | Rotina e divisão com 2 dias: as divisões oferecidas | ana | 129 | 86 | −33% |
+| Meus dados com o objetivo "Ficar mais forte" | ana | 143 | 100 | −30% |
+| Meus dados com 1 exercício a evitar ("1 marcado") | ana | 143 | 100 | −30% |
+| Novo local, vazio | ana | 87 | 44 | −49% |
+| Novo local, sem nome | ana | 99 | 56 | −43% |
+| Novo local, com o nome "Academia" (o título do equipamento muda) | ana | 87 | 44 | −49% |
+| Meus dados de quem ainda não tem nada guardado | ninguém | 114 | 73 | −36% |
 | Equipamento de quem já tem programa (a lista já vem aberta, com os marcados) | ana | 111 | 71 | −36% |
-| Editar local (nome e equipamento) | ana | 125 | 90 | −28% |
-| Novo local, vazio | ana | 87 | 56 | −36% |
-| Novo local, sem nome | ana | 99 | 68 | −31% |
-| Novo local, com o nome "Academia" (o título do equipamento muda) | ana | 87 | 56 | −36% |
+| Meus locais, depois de "Montar o programa para este local" | ana | 68 | 37 | −46% |
+| Meus locais, com 2 locais (a Ana com a "Academia") | ana | 51 | 23 | −55% |
+| Meus locais do Bruno (Prédio e Academia do bairro) | bruno | 52 | 24 | −54% |
 | Experiência aberta por "Refazer o nível" (a pausa e o nível vêm sem resposta) | ana | 84 | 60 | −29% |
+| Algo a evitar | ana | 43 | 22 | −49% |
+| Algo a evitar, com a lista de exercícios aberta | ana | 308 | 287 | −7% |
+| Meus locais, com 1 local (a Ana) | ana | 38 | 17 | −55% |
 | Refazer a triagem: "Vamos pausar o programa automático" (com o programa já feito) | ana + saúde | 115 | 103 | −10% |
 | Refazer a triagem (quem tinha um "sim": abre em "Quais valem", com as marcas, as regiões e as notas) | ana + saúde | 334 | 323 | −3% |
 | Refazer a triagem (a mesma tela da saúde, com "Meu programa" no alto) | ana | 89 | 85 | −4% |
-| Meus locais, com 1 local (a Ana) | ana | 38 | 35 | −8% |
-| Meus locais, com 2 locais (a Ana com a "Academia") | ana | 51 | 48 | −6% |
-| Meus locais, depois de "Montar o programa para este local" | ana | 68 | 65 | −4% |
-| Meus locais do Bruno (Prédio e Academia do bairro) | bruno | 52 | 49 | −6% |
 | Folha "Guardar uma cópia" (sem nenhuma cópia ainda) | ana | 38 | 37 | −3% |
 | Folha "Guardar uma cópia" (com a cópia de hoje) | ana | 38 | 37 | −3% |
 | Folha "Foto do equipamento" (retirar a autorização) | ana | 36 | 35 | −3% |
 | Folha "Guardar uma cópia" de quem não tem nada guardado (o botão fica desligado) | ninguém | 38 | 37 | −3% |
-| Meus dados (a Ana) | ana | 144 | 155 | +8% |
-| Meus dados logo depois de exportar ("Arquivo exportado…", "Última cópia: hoje") | ana | 154 | 165 | +7% |
-| Meus dados logo depois de importar ("Dados importados.") | ana | 144 | 155 | +8% |
-| Meus dados, com "Avisar um problema" aberto (sem e-mail de contato no build) | ana | 227 | 238 | +5% |
-| Meus dados: resposta de "Copiar as informações" (sem a permissão da área de transferência) | ana | 237 | 248 | +5% |
-| Meus dados: resposta de "Copiar as informações" (com a permissão da área de transferência) | ana | 239 | 250 | +5% |
-| Meus dados de quem já autorizou a foto (a linha "Foto do equipamento") | ana | 148 | 159 | +7% |
-| Meus dados logo depois de retirar a autorização da foto | ana | 146 | 157 | +8% |
-| Meus dados de quem ainda não tem nada guardado | ninguém | 114 | 125 | +10% |
-| Meus dados com a última cópia de dias atrás ("Última cópia: há 16 dias") | ana | 144 | 155 | +8% |
-| Meus dados com o objetivo "Ficar mais forte" | ana | 143 | 154 | +8% |
-| Meus dados com 1 exercício a evitar ("1 marcado") | ana | 143 | 154 | +8% |
-| Meus dados do Bruno (2 locais, 4 dias) | bruno | 145 | 156 | +8% |
 
 ## termos-e-foto: as 5 telas que mudaram
 
@@ -375,6 +377,8 @@
 |---|---|---|---|---|
 | Folha do exercício sem animação quando o guia em texto não baixa ("Tentar de novo") | ana | 96 | 40 | −58% |
 | Folha do exercício sem animação quando o guia em texto falha de novo ("Recarregar o app") | ana | 96 | 40 | −58% |
+| Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos") | ninguém | 145 | 104 | −28% |
+| Meus dados depois de exportar os dados que não foram lidos | ninguém | 163 | 122 | −25% |
 | Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios | ana | 190 | 162 | −15% |
 | Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda) | ana | 135 | 112 | −17% |
 | Início com o lembrete de cópia de quem já exportou ("Você tem treinos novos desde a última cópia.") | ana | 137 | 114 | −17% |
@@ -385,8 +389,6 @@
 | Treino com o aviso "Não foi possível salvar neste aparelho." | ana | 92 | 83 | −10% |
 | Treino quando o guia animado não carrega (o registro da série continua) | ana | 78 | 69 | −12% |
 | Treino num exercício sem animação quando o guia em texto não baixa | ana | 72 | 65 | −10% |
-| Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos") | ninguém | 145 | 156 | +8% |
-| Meus dados depois de exportar os dados que não foram lidos | ninguém | 163 | 174 | +7% |
 | Folha "Sobre o programa" quando o avaliador não baixa | ana | 72 | 108 | +50% |
 
 ## Telas que só existem na medida de antes
