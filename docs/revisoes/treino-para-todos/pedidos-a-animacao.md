@@ -118,3 +118,24 @@ Em % dos programas em que o exercício aparece.
 
 Puxada unilateral ajoelhado na polia alta: de 39,8% para 1,8% dos programas (ponderada). Agachamento búlgaro com apoio: de 22,9% para 2,5% (continua na vaga de afundo de quem escolhe e como alternativa). Elevação lateral unilateral na polia: de 34,9% para 17,5%. Stiff com kettlebell: de 10,9% para 0,8%. Crucifixo invertido na polia com os cabos cruzados: de 18,6% para 9,0%. Nenhuma sai da biblioteca: todas continuam como alternativa na troca e para quem marcar "prefiro este".
 
+
+## Atualização do fechamento da etapa 2 (17/11/2026)
+
+Medida de ponta a ponta, da `main` de antes da etapa 2 ao ramo com os pacotes 0 a 5 e a marca do ombro (amostra fixa de 23.470 programas, `scripts/auditoria/trocas.ts`):
+
+| | `main` | ramo |
+|---|---:|---:|
+| Cartões de texto por dia (média ponderada) | 1,90 | 1,94 |
+| Idem, na grade | 0,72 | 0,72 |
+| Programas com um dia de 3 cartões de texto ou mais (ponderada) | 62,9% | 61,0% |
+| Idem, na grade | 14,5% | 12,6% |
+
+Em resumo: a etapa 2 quase não muda a quantidade de cartões de texto (um pouco mais na média, um pouco menos nos dias com muitos), mas muda **quais** exercícios pedem animação.
+
+**Os que mais entram sem animação** (em % dos programas em que passam a aparecer, ponderada): puxada pela frente no puxador (38,8%), hip thrust (30,9%), voador (22,3%), leg press (19,6%; inclui quem tem dor forte no ombro e perdeu o agachamento com a barra nas costas), rosca Scott (9,6%), voador invertido (9,4%).
+
+**Os que mais saem e já tinham animação:** puxada unilateral ajoelhado (40,8%), agachamento búlgaro (23,8%), elevação lateral unilateral na polia (20,9%), remada com o peito apoiado (14,6%), stiff unilateral (13,5%).
+
+**A ordem do pedido não muda** em relação à do pacote 2: 1º a puxada pela frente; 2º o hip thrust; depois a cadeira flexora e a extensora; depois o voador, o leg press e a rosca Scott. O pedido do pacote 0 (uma versão sentada das puxadas ajoelhadas) continua valendo.
+
+**Atenção na junção com a `main`:** a `main` andou 280 commits desde o início desta sessão (o frontend novo). Se alguma dessas animações já tiver sido feita lá, a lista encurta; conferir depois da junção, rodando `scripts/auditoria/trocas.ts` de novo.
