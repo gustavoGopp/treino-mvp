@@ -5,6 +5,7 @@ import { NOME_MUSCULO } from '../../domain/gerador';
 import { mensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { numeroBr } from '../../domain/numero';
 import { NOME_NIVEL } from '../../domain/nivel';
+import { carregarFrasesDasRegras, type FraseDaRegra } from '../../conteudo/frasesDasRegras';
 import { carregarRegras } from '../../domain/regras/carregar';
 import { RIR, VOLUME, type Regra } from '../../domain/regras';
 import { sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
@@ -63,19 +64,19 @@ const GRUPO_DA_REGRA: [RegExp, string][] = [
   [/^(dados|privacidade|registro|treino)\./, 'O app: dados, privacidade e registro'],
 ];
 const grupoDe = (id: string) => GRUPO_DA_REGRA.find(([re]) => re.test(id))?.[1] ?? 'Outras regras';
-/** O começo da regra, para servir de título do bloco (a regra inteira aparece ao abrir). */
-const tituloDaRegra = (r: Regra) => {
-  const t = r.regra.split(/[:(;]|\. /)[0]!.trim();
-  return t.length > 72 ? `${t.slice(0, 70).trimEnd()}…` : t;
-};
 
 /** Todas as regras do app, com o nível de evidência e as fontes; baixadas quando o bloco abre. */
 function TodasAsRegras() {
   const [regras, setRegras] = useState<Regra[] | null | 'erro'>(null);
+  const [frases, setFrases] = useState<Record<string, FraseDaRegra>>({});
   useEffect(() => {
     let vivo = true;
-    carregarRegras().then(
-      (r) => vivo && setRegras(Object.values(r)),
+    Promise.all([carregarRegras(), carregarFrasesDasRegras()]).then(
+      ([r, f]) => {
+        if (!vivo) return;
+        setFrases(f);
+        setRegras(Object.values(r));
+      },
       () => vivo && setRegras('erro'),
     );
     return () => {
@@ -94,7 +95,7 @@ function TodasAsRegras() {
           </h3>
           {g.lista.map((r) => (
             <details key={r.id} className="box dobra regra-do-catalogo" data-regra={r.id}>
-              <summary>{tituloDaRegra(r)}</summary>
+              <summary>{frases[r.id]?.titulo ?? r.id}</summary>
               <SeloFolha regra={r} />
             </details>
           ))}

@@ -7,6 +7,7 @@ import { useApp } from './estado';
 import { Folha } from './Folha';
 import { Icone, type NomeIcone } from './icones';
 import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
+import { carregarFrasesDasRegras, type FraseDaRegra } from '../../conteudo/frasesDasRegras';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
 
@@ -152,10 +153,22 @@ export function SeloFolha({ regra }: { regra: Regra }) {
       vivo = false;
     };
   }, []);
+  // a frase em linguagem simples; se o arquivo dela não baixar, fica o texto técnico da regra (nunca um vazio)
+  const [frases, setFrases] = useState<Record<string, FraseDaRegra> | null | 'erro'>(null);
+  useEffect(() => {
+    let vivo = true;
+    carregarFrasesDasRegras().then(
+      (f) => vivo && setFrases(f),
+      () => vivo && setFrases('erro'),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, []);
   const texto = TEXTO_SELO[regra.selo];
   return (
     <div className="selo-folha">
-      <p className="regra">{regra.regra}</p>
+      {frases === null ? <p role="status">Carregando a regra…</p> : <p className="regra">{(frases !== 'erro' && frases[regra.id]?.frase) || regra.regra}</p>}
       <p className="sentido">
         <b>{texto[0]!.toUpperCase() + texto.slice(1)}.</b> {SENTIDO_SELO[regra.selo]}
       </p>

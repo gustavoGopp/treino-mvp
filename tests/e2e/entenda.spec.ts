@@ -22,6 +22,7 @@ test('chega-se a "Entenda o treino" por Meus dados, e os blocos vêm fechados', 
 
 test('todas as regras do app estão na página, cada uma com o texto, o nível de evidência e as fontes', async ({ page }) => {
   const noArquivo = JSON.parse(readFileSync('src/domain/regras/regras.json', 'utf8')) as { id: string; fontes: string[] }[];
+  const frases = JSON.parse(readFileSync('src/conteudo/frases-das-regras.json', 'utf8')) as Record<string, { titulo: string; frase: string }>;
   await ana(page);
   const bloco = await entenda(page, 'Todas as regras e as fontes');
   const regras = bloco.locator('.regra-do-catalogo');
@@ -33,9 +34,16 @@ test('todas as regras do app estão na página, cada uma com o texto, o nível d
   for (const i of [0, 40, 80, 120, ids.length - 1]) {
     const r = regras.nth(i);
     await r.locator(':scope > summary').click();
-    await expect(r.locator('.regra')).not.toBeEmpty();
+    // o título e o texto são os de linguagem simples (src/conteudo/frases-das-regras.json), sem o jargão de quem desenvolve
+    const frase = frases[ids[i]!]!;
+    await expect(r.locator(':scope > summary')).toHaveText(frase.titulo);
+    await expect(r.locator('.regra')).toHaveText(frase.frase);
     await expect(r.locator('.sentido')).toContainText(/(Evidência (robusta|moderada)|Um estudo|Consenso de especialistas)\./);
   }
+  // nenhuma das 163 mostra sigla de etapa, nome de arquivo ou data de decisão (as fontes, que têm datas, ficam fora da conta)
+  await expect(regras.locator('.regra')).toHaveCount(ids.length);
+  const textos = await regras.locator(':scope > summary, .regra').evaluateAll((els) => els.map((e) => e.textContent ?? ''));
+  expect(textos.filter((t) => /\bR\d[a-z]?\b|pesquisa-v2|\d{2}\/\d{2}\/\d{4}|`/.test(t))).toEqual([]);
   // e, quando a regra tem fontes, elas vêm por extenso, com o link
   const comFontes = noArquivo.find((r) => r.fontes.length > 0)!;
   const r = bloco.locator(`.regra-do-catalogo[data-regra="${comFontes.id}"]`);
