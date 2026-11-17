@@ -1147,14 +1147,26 @@ roteiro('fim-ana', 10, 'fim-e-semana', 'ana', async (r, page) => {
     await page.getByRole('button', { name: 'Manter', exact: true }).click();
   });
   // o botão "Ver a sua semana" do fim do treino pode sair: a Semana abre pelo endereço, e o caminho é o que houver na tela
-  const verASemana = await haNaTela(page.getByRole('link', { name: 'Ver a sua semana' }));
+  const caminhoDaSemana = (await haNaTela(page.getByRole('link', { name: 'Ver a sua semana' })))
+    ? 'Fim do treino → "Ver a sua semana".'
+    : (await haNaTela(page.locator('main a[href="/semana"]')))
+      ? `Fim do treino → toque em "${(await page.locator('main a[href="/semana"] b').first().innerText()).trim()}".`
+      : 'Fim do treino → "Voltar ao início" → "Semana" na barra de baixo.';
   await page.goto('/semana');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await r.foto('semana-1-treino', { titulo: 'Semana com 1 treino', comoChegar: verASemana ? 'Fim do treino → "Ver a sua semana".' : 'Fim do treino → "Voltar ao início" → "Semana" na barra de baixo.' });
+  await r.foto('semana-1-treino', { titulo: 'Semana com 1 treino', comoChegar: caminhoDaSemana });
   await r.passo('evolução', async () => {
+    // a lista "Sua evolução" pode virar um bloco fechado ("Evolução (N)"): aí, abre o bloco (e fotografa) antes do toque
+    const blocoDaEvolucao = page.locator('main summary', { hasText: /^Evolução \(\d+\)$/ });
+    const temBloco = await haNaTela(blocoDaEvolucao);
+    if (temBloco) {
+      await blocoDaEvolucao.click();
+      await blocoDaEvolucao.scrollIntoViewIfNeeded();
+      await r.foto('semana-1-treino-evolucao-aberta', { titulo: `Semana com 1 treino, com "${(await blocoDaEvolucao.innerText()).trim()}" aberto`, comoChegar: 'Semana → "Evolução (N)".', tipo: 'bloco aberto' });
+    }
     await page.locator('a[href^="/evolucao/"]').first().click();
     await expect(page).toHaveURL(/\/evolucao\//);
-    await r.foto('evolucao-1-treino', { titulo: 'Evolução de um exercício com 1 treino', comoChegar: 'Semana → "Sua evolução" → toque no exercício.' });
+    await r.foto('evolucao-1-treino', { titulo: 'Evolução de um exercício com 1 treino', comoChegar: `Semana → ${temBloco ? '"Evolução (N)"' : '"Sua evolução"'} → toque no exercício.` });
     await folhaDoSelo(r, 'evolucao-folha-selo', page.locator('main button.selo').first(), { titulo: 'Folha "De onde vem isto" (o selo da evolução)', comoChegar: 'Evolução → toque no selo.' });
   });
   await r.passo('início depois do 1º treino', async () => {

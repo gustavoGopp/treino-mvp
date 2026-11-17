@@ -151,7 +151,9 @@ Em imagem, do app rodando: `folhas/5c-aplicado-inicio-e-folha.png`, `5d-aplicado
 | Folha do exercício | 93 | 22 |
 | Série do treino | 69 | 61 |
 
-No app inteiro (só as telas que existem nas duas medições): 56.539 → 42.962 palavras (−24%); guia −59%, cadastro −21%, início −15%. A conta do início ainda carrega o texto que foi para "Entenda o treino" (as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome). A tabela completa está em `depois/comparacao.md`.
+No app inteiro, pela medição refeita em 17/11 com o roteiro consertado (60 roteiros, 0 falhas): nas 415 telas que existem nas duas medições, 57.789 → 44.199 palavras (−24%); guia −59%, cadastro −21%, início −15%, treino −9%. Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 424 telas e 46.703 agora (as folhas de "por quê?" e de selo que saíram das telas não existem mais). A conta do início ainda carrega o texto que foi para "Entenda o treino" (as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome). A tabela completa está em `depois/comparacao.md`.
+
+Achado da medição, para o backlog: a página "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e não só quando o bloco "Todas as regras e as fontes" é aberto (o comentário no código diz o contrário). Não quebra nada; custa um download a mais nessa página.
 
 ## 6. Fim do treino e semana (proposta; esperando a decisão)
 
@@ -232,4 +234,28 @@ A regra da linha: a 2ª linha só fica quando mostra um **valor** (o que está e
 **O que não muda (privacidade e proteção dos dados):** "Tudo fica guardado só neste aparelho." com "o que sai daqui"; o aviso "Este navegador pode apagar seus dados."; as folhas "Guardar uma cópia", "Trazer uma cópia", "Foto do equipamento" e "Apagar todos os dados?"; o texto de "Avisar um problema" (o que vai na mensagem e o pedido de não escrever sobre a saúde).
 
 **Testes da proposta:** 177 de ponta a ponta e os tokens passando. Os unitários precisam ser repetidos com a máquina livre (na 1ª rodada deram tempo esgotado em testes do motor e do gerador, que a proposta não toca, porque a medição rodava junto).
+
+## 8. Avisos e erros (proposta preparada; mostrar depois dos fluxos 6 e 7)
+
+São textos que protegem os dados da pessoa: a frase pode encurtar, mas o que ela precisa saber e o botão ficam. Proposta em `propostas/8-avisos-e-erros.patch` (aplica por cima da 7); imagens em `folhas/8a-avisos.png` e `8b-lembrete-de-copia.png`.
+
+| Tela | Hoje | Proposta |
+|---|---|---|
+| Tela de erro | 76 | 35 |
+| Aviso de instalar no iPhone (nas boas-vindas) | 137 | 111 |
+| Início com o lembrete de cópia | 112 | 105 |
+
+| Onde | Hoje | Proposta | Desfecho |
+|---|---|---|---|
+| Tela de erro | 3 blocos com título, frase e botão ("Guardar uma cópia", "Tentar de novo", "Avisar o problema") | a frase do alto ("Seus dados continuam neste aparelho. Guarde uma cópia antes de tentar de novo.") e os 3 botões | tirar os títulos e as frases que repetem o botão |
+| Não foi possível salvar | "…O que você registrar agora pode se perder ao fechar o app. Exporte uma cópia para não perder seus dados." | "Não foi possível salvar neste aparelho. Exporte uma cópia para não perder o que registrar." (o botão não muda) | encurtar |
+| Instalar no iPhone | 2 frases de explicação + os 3 passos + "Se já tem treinos aqui, exporte uma cópia antes em "Meus dados": o app instalado pode começar vazio, e aí é só importar." | "O Safari apaga os dados de um site que fica 7 dias sem ser aberto." + os 3 passos + "Já tem treinos aqui? Exporte uma cópia antes, em "Meus dados"." | encurtar; o resto vai para Entenda |
+| Lembrete de cópia | "Você ainda não exportou nenhuma cópia. Os dados ficam só neste aparelho, e o navegador pode apagá-los." · "Exportar agora" | "Os dados ficam só neste aparelho, e o navegador pode apagá-los." (ou "Há treinos novos desde a última cópia.") · "Exportar" | encurtar |
+| Dado que o app não leu | botão "Exportar os dados que não foram lidos" | "Exportar esses dados" (a frase não muda) | encurtar |
+
+O que saiu vai para "Entenda o treino" → "Por que o app pergunta e sugere" → "Os seus dados", com as regras `dados.instalar-iphone`, `dados.copia` e `dados.persistente`.
+
+**O que não muda:** as mensagens de falha de carregamento (já são de uma frase com o botão "Tentar de novo"), o alerta "Série N anotada, mas não salva" e o texto de "Avisar um problema".
+
+**Testes da pilha de propostas (6 + 7 + 8):** 904 unitários e os tokens passando; os testes de ponta a ponta ligados aos avisos, também. A rodada completa de ponta a ponta fica registrada no fim desta seção quando terminar.
 

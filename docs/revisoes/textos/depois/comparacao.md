@@ -1,22 +1,22 @@
 # Antes e depois dos cortes: palavras por tela
 
-> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: f81e484 (2026-11-16). Só entram na conta as telas que existem nas duas medições.
+> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: d3babf4 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
 
-**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 409 telas, 45.215 palavras.
+**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 46.703 palavras.
 
 ## Por fluxo (só as telas que existem nas duas)
 
 | Fluxo | Telas | Palavras antes | Palavras depois | Mudança | Blocos de 15 ou mais, antes | Depois | Selos à vista, antes | Depois |
 |---|---|---|---|---|---|---|---|---|
 | cadastro | 80 | 7727 | 6114 | −21% | 58 | 28 | 19 | 0 |
-| inicio | 82 | 13057 | 11106 | −15% | 195 | 141 | 251 | 188 |
-| treino | 66 | 4242 | 3844 | −9% | 24 | 22 | 44 | 0 |
-| guia | 45 | 14535 | 5979 | −59% | 230 | 65 | 1 | 0 |
-| fim-e-semana | 35 | 4891 | 4525 | −7% | 58 | 54 | 49 | 3 |
+| inicio | 85 | 13426 | 11416 | −15% | 202 | 147 | 252 | 188 |
+| treino | 69 | 4587 | 4193 | −9% | 30 | 28 | 44 | 0 |
+| guia | 45 | 14535 | 5992 | −59% | 230 | 65 | 1 | 0 |
+| fim-e-semana | 37 | 5204 | 4867 | −6% | 61 | 57 | 54 | 6 |
 | dados-e-locais | 47 | 6284 | 5821 | −7% | 36 | 29 | 8 | 1 |
 | termos-e-foto | 29 | 3627 | 3622 | −0% | 84 | 84 | 8 | 3 |
-| avisos-e-erros | 19 | 2176 | 1951 | −10% | 20 | 18 | 9 | 1 |
-| **Tudo** | 403 | 56539 | 42962 | −24% | 705 | 441 | 389 | 196 |
+| avisos-e-erros | 23 | 2399 | 2174 | −9% | 25 | 23 | 9 | 1 |
+| **Tudo** | 415 | 57789 | 44199 | −24% | 726 | 461 | 395 | 199 |
 
 ## cadastro: as 54 telas que mudaram
 
@@ -77,7 +77,7 @@
 | Folha "Seus dados ficam no aparelho" | ana | 93 | 92 | −1% |
 | Folha "Reconhecer pela foto" (como abre na 1ª vez) | ana | 194 | 193 | −1% |
 
-## inicio: as 81 telas que mudaram
+## inicio: as 82 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
@@ -96,6 +96,7 @@
 | Folha do exercício com histórico ("Ver a evolução deste exercício") | ana | 98 | 27 | −72% |
 | Folha do exercício como abre (o 1º do dia A: agachamento búlgaro) | ana | 93 | 22 | −76% |
 | Folha do 1º exercício (a Carla), com os motivos abertos | carla | 166 | 102 | −39% |
+| Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado | ana | 87 | 28 | −68% |
 | Folha de um exercício em bi-set e com a última série em drop set (o último do dia A) | ana | 111 | 53 | −52% |
 | Início, antes do 1º treino (o Fábio: intermediário, só com uma barra fixa) | fabio | 98 | 69 | −30% |
 | Início, aba "Inferior A" (o Fábio) | fabio | 110 | 81 | −26% |
@@ -163,64 +164,63 @@
 | Folha "Sobre o programa", com os 2 blocos abertos (a Carla) | carla | 310 | 344 | +11% |
 | Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…") | ana | 60 | 96 | +60% |
 
-## treino: as 55 telas que mudaram
+## treino: as 54 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
 | Treino: a última série, com "Drop set (opcional)" e as 2 quedas | ana | 107 | 89 | −17% |
 | Treino da Carla: dia "Inferior", 1º exercício, 1ª série vazia (Agachamento livre com barra (profundo)) | carla | 111 | 98 | −12% |
-| Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 54 | −18% |
 | Treino da Carla: dia "Inferior", 6º exercício, 1ª série vazia (Panturrilha sentada na máquina) | carla | 87 | 76 | −13% |
 | Treino do Diego (elásticos e barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | diego | 89 | 78 | −12% |
 | Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | fabio | 91 | 80 | −12% |
 | Treino: a série com o guia no modo "Músculos" | ana | 70 | 60 | −14% |
-| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 57 | −15% |
-| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 58 | −15% |
 | Treino: nota de dor 4 antes da 1ª série | ana | 91 | 81 | −11% |
+| Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | ana | 63 | 53 | −16% |
+| Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 56 | −15% |
 | Treino da Carla: dia "Inferior", 3º exercício, 1ª série vazia (Flexão de joelho na cadeira flexora (sentado)) | carla | 59 | 49 | −17% |
 | Treino da Carla: dia "Inferior", 4º exercício, 1ª série vazia (Cadeira extensora) | carla | 54 | 44 | −19% |
 | Treino da Carla: dia "Inferior", 7º exercício, 1ª série vazia (Adução na cadeira adutora) | carla | 56 | 46 | −18% |
 | Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso) | carla | 85 | 75 | −12% |
 | Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 53 | −16% |
-| Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | ana | 67 | 58 | −13% |
 | Treino: a série com o guia no modo "Erros" | ana | 70 | 61 | −13% |
 | Treino: a série com o guia pausado | ana | 70 | 61 | −13% |
 | Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | ana | 66 | 57 | −14% |
+| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 58 | −13% |
 | Treino: 3º exercício do dia A, 1ª série vazia (Supino reto com halteres) | ana | 68 | 59 | −13% |
-| Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 56 | −14% |
-| Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 57 | −14% |
+| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 59 | −13% |
+| Treino: nota de dor 2 antes da 1ª série | ana | 75 | 66 | −12% |
 | Treino da Elisa (peso do corpo): 2º exercício, 1ª série vazia (Flexão de braço) | elisa | 64 | 55 | −14% |
-| Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | diego | 63 | 54 | −14% |
 | Treino do Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico) | diego | 64 | 55 | −14% |
-| Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 56 | −14% |
 | Treino: a série com o guia no modo "Trajetória" | ana | 69 | 61 | −12% |
 | Treino: 2ª série, com a mensagem da calibração e as séries feitas (uma com dor) | ana | 104 | 96 | −8% |
+| Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 57 | −12% |
 | Treino: exercício com a última série em drop set (Tríceps francês sentado com halter) | ana | 66 | 58 | −12% |
+| Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 58 | −12% |
+| Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | diego | 63 | 55 | −13% |
 | Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa) | bruno | 71 | 63 | −11% |
+| Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | ana | 67 | 60 | −10% |
 | Treino: 4º exercício do dia A, 1ª série vazia (Remada unilateral com halter apoiada no banco) | ana | 64 | 57 | −11% |
 | Treino: 5º exercício do dia A, 1ª série vazia (Flexão de joelho deslizando os pés no chão) | ana | 60 | 53 | −12% |
 | Treino: 6º exercício do dia A, 1ª série vazia (Tríceps francês sentado com halter) | ana | 60 | 53 | −12% |
-| Treino: nota de dor 2 antes da 1ª série | ana | 75 | 68 | −9% |
-| Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.") | ana | 65 | 58 | −11% |
 | Treino da Carla: dia "Inferior", 2º exercício, 1ª série vazia (Stiff com halteres) | carla | 58 | 51 | −12% |
 | Treino da Carla: dia "Inferior", 5º exercício, 1ª série vazia (Panturrilha unilateral no step) | carla | 61 | 54 | −11% |
 | Treino da Carla: dia "Inferior", 8º exercício, 1ª série vazia (Abdominal na polia com corda, ajoelhado) | carla | 60 | 53 | −12% |
 | Treino da Elisa (peso do corpo): 3º exercício, 1ª série vazia (Flexão de joelho deslizando os pés no chão) | elisa | 60 | 53 | −12% |
 | Treino da Elisa (peso do corpo): 4º exercício, 1ª série vazia (Extensão de tríceps com o peso do corpo) | elisa | 60 | 53 | −12% |
 | Treino do Fábio (barra fixa): 3º exercício, 1ª série vazia (Flexão de braço) | fabio | 57 | 50 | −12% |
+| Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 59 | −9% |
+| Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.") | ana | 65 | 60 | −8% |
 | Folha "Terminar o treino agora?" (sem nenhuma série) | ana | 32 | 27 | −16% |
 | Treino: 2º exercício do dia A, 1ª série vazia (Ponte de glúteo com halter) | ana | 59 | 55 | −7% |
 | Treino: exercício encerrado pela dor (a orientação e "Exercício encerrado.") | ana | 73 | 69 | −5% |
 | Folha "Terminar o treino agora?" (com série registrada) | ana | 23 | 21 | −9% |
 | Folha "Terminar o treino agora?" (com exercícios feitos e por fazer) | ana | 23 | 21 | −9% |
 | Folha "O que você sentiu?" | ana | 73 | 72 | −1% |
-| Treino: 2ª série com o descanso numa faixa (e a mensagem da calibração) | ana | 64 | 63 | −2% |
 | Treino: nota de dor 4 com o halter mais leve (não há carga menor) | ana | 79 | 78 | −1% |
 | Treino: nota de dor 4 depois de uma série ("Reduza a carga…") | ana | 95 | 94 | −1% |
 | Treino: descanso depois da última série do exercício ("A seguir · exercício 2 de 6") | ana | 100 | 99 | −1% |
 | Folha de troca aberta pela nota de dor 7, com a orientação | ana | 53 | 52 | −2% |
 | Folha de troca aberta por "Formigamento ou dormência", com a orientação | ana | 36 | 35 | −3% |
-| Treino: último exercício com as séries completas ("Terminar treino") | ana | 61 | 60 | −2% |
 | Treino: 1ª série preenchida | ana | 62 | 63 | +2% |
 
 ## guia: as 45 telas que mudaram
@@ -239,41 +239,41 @@
 | Guia: agachamento búlgaro, modo Músculos | ana | 340 | 109 | −68% |
 | Guia: agachamento búlgaro, modo Trajetória | ana | 326 | 95 | −71% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Técnica | ana | 269 | 61 | −77% |
-| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | ana | 306 | 99 | −68% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Técnica | carla | 267 | 62 | −77% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Erros | ana | 302 | 98 | −68% |
+| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | ana | 306 | 102 | −67% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 100 | −67% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | carla | 296 | 95 | −68% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | carla | 307 | 106 | −65% |
-| Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | carla | 300 | 100 | −67% |
+| Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | carla | 300 | 99 | −67% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | carla | 257 | 59 | −77% |
 | Guia sem contexto, grupo "Novas" (os nomes curtos de todas as animações novas) | ninguém | 524 | 327 | −38% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | carla | 282 | 91 | −68% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 86 | −69% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 88 | −68% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | carla | 291 | 103 | −65% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | elisa | 248 | 62 | −75% |
+| Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | elisa | 291 | 107 | −63% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Técnica | elisa | 247 | 64 | −74% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Erros | elisa | 272 | 90 | −67% |
-| Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | elisa | 291 | 109 | −63% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Trajetória | elisa | 277 | 95 | −66% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Trajetória | elisa | 278 | 97 | −65% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Erros | elisa | 281 | 102 | −64% |
-| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 114 | −61% |
-| Guia: só o bloco "Execução e tempo" aberto | ana | 267 | 110 | −59% |
-| Guia: só o bloco "Amplitude" aberto | ana | 253 | 96 | −62% |
-| Guia: só o bloco "Respiração" aberto | ana | 226 | 69 | −69% |
-| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 98 | −62% |
-| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 128 | −55% |
-| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 99 | −61% |
+| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 112 | −62% |
 | Guia: só o bloco "Montagem" aberto | ana | 295 | 140 | −53% |
+| Guia: só o bloco "Execução e tempo" aberto | ana | 267 | 112 | −58% |
+| Guia: só o bloco "Amplitude" aberto | ana | 253 | 98 | −61% |
+| Guia: só o bloco "Respiração" aberto | ana | 226 | 71 | −69% |
+| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 100 | −61% |
+| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 130 | −54% |
+| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 101 | −61% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | elisa | 562 | 418 | −26% |
-| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 365 | −28% |
 | Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 294 | −32% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 318 | −30% |
-| Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 401 | −25% |
+| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 367 | −27% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 320 | −30% |
+| Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 398 | −25% |
 | Guia: "Confira em 5 segundos", com um item marcado | ana | 215 | 90 | −58% |
 
-## fim-e-semana: as 35 telas que mudaram
+## fim-e-semana: as 37 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
@@ -303,6 +303,7 @@
 | Semana, com "Como ler este quadro" aberto | ana | 149 | 147 | −1% |
 | Semana completa (3 de 3), com "O que subiu nesta semana", as últimas semanas e a evolução | ana | 293 | 291 | −1% |
 | Semana com a oferta "Semana leve? (opcional)" | ana | 277 | 275 | −1% |
+| Semana com a semana leve ativa (a meta é a prescrita para a semana) | ana | 205 | 203 | −1% |
 | Semana sem nenhum treino (programa novo) | ana | 79 | 78 | −1% |
 | Evolução de um exercício sem treino registrado | ana | 34 | 33 | −3% |
 | Semana com 1 treino | ana | 101 | 100 | −1% |
@@ -312,6 +313,7 @@
 | Semana com 2 de 3 treinos e uma semana anterior sem treino | ana | 174 | 173 | −1% |
 | Evolução de um exercício de polia com 2 locais (uma lista por local) | bruno | 75 | 74 | −1% |
 | Folha "Sobre o programa" na volta da pausa (a fase da semana 1) | ana | 107 | 138 | +29% |
+| Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") | ana | 108 | 139 | +29% |
 
 ## dados-e-locais: as 38 telas que mudaram
 
@@ -399,9 +401,6 @@
 - `inicio/folha-do-exercicio-por-que` Folha do exercício, com "Por que este exercício" aberto (200 palavras)
 - `inicio/folha-do-exercicio-folha-selo` Folha "De onde vem isto" (o selo do 1º motivo do exercício) (224 palavras)
 - `inicio/folha-avisos-folha-selo` Folha "De onde vem isto" (o selo dos ajustes possíveis) (265 palavras)
-- `inicio/folha-do-exercicio-sem-animacao` Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado (87 palavras)
-- `inicio/folha-como-fazer-em-texto` Folha "Como fazer (em texto)" como abre (78 palavras)
-- `inicio/folha-como-fazer-em-texto-passo-a-passo` Folha "Como fazer (em texto)", com "Posição, execução e carga, passo a passo" aberto (204 palavras)
 - `inicio/programa-pausado-folha-selo` Folha "De onde vem isto" (o selo do programa pausado) (237 palavras)
 - `inicio/inicio-bruno-folha-selo-do-local` Folha "De onde vem isto" (o selo da troca de local) (75 palavras)
 - `treino/folha-por-que-da-1a-vez` Folha "Por quê" de "1ª vez: comece leve." (a calibração da carga) (295 palavras)
@@ -414,9 +413,6 @@
 - `treino/folha-trocar-depois-do-sinal-folha-selo` Folha "De onde vem isto" (o selo do sinal de alerta do exercício) (151 palavras)
 - `treino/folha-por-que-da-sugestao-do-dia` Folha "Por quê" da sugestão do dia (60 palavras)
 - `treino/serie-com-drop-set-folha-selo` Folha "De onde vem isto" (o selo do drop set) (201 palavras)
-- `treino/exercicio-sem-animacao` Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) (63 palavras)
-- `treino/exercicio-sem-animacao-folha-como-fazer` Treino: folha "Como fazer (em texto)" como abre (78 palavras)
-- `treino/exercicio-sem-animacao-folha-como-fazer-passo-a-passo` Treino: folha "Como fazer (em texto)", com o passo a passo aberto (204 palavras)
 - `treino/treino-na-volta-folha-por-que` Folha "Por quê" da sugestão do dia na volta da pausa (170 palavras)
 - `guia/folha-por-que-da-prescricao` Folha "A prescrição de hoje" (por quê?) (314 palavras)
 - `guia/catalogo-nota-de-montagem-segura-folha-selo` Folha "De onde vem isto" (o selo da montagem segura) (130 palavras)
@@ -431,76 +427,21 @@
 - `fim-e-semana/inicio-volta-15-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 15 dias (313 palavras)
 - `fim-e-semana/inicio-volta-60-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 60 dias (321 palavras)
 - `fim-e-semana/inicio-volta-200-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 200 dias (332 palavras)
-- `fim-e-semana/sobre-o-programa-na-semana-leve` Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") (108 palavras)
-- `fim-e-semana/semana-na-semana-leve` Semana com a semana leve ativa (a meta é a prescrita para a semana) (205 palavras)
 - `fim-e-semana/fim-com-dor-folha-por-que` Folha do "por quê?" de um exercício com "Ajustar" (dor) (215 palavras)
 - `dados-e-locais/rotina-e-divisao-folha-o-objetivo` Folha "O objetivo" (o que muda) (150 palavras)
 - `dados-e-locais/rotina-e-divisao-folha-as-divisoes` Folha "As divisões" (por quê?) (282 palavras)
 - `dados-e-locais/locais-folha-varios-locais` Folha "Vários locais" (e nos outros?) (104 palavras)
 - `avisos-e-erros/instalar-no-iphone-folha-selo` Folha "De onde vem isto" (o selo do aviso de instalar) (88 palavras)
 - `avisos-e-erros/lembrete-de-copia-folha-selo` Folha "De onde vem isto" (o selo do lembrete de cópia) (181 palavras)
-- `avisos-e-erros/selo-carregando-a-regra` Folha "De onde vem isto" enquanto a regra chega ("Carregando a regra…") (8 palavras)
-- `avisos-e-erros/selo-carregando-as-fontes` Folha "De onde vem isto" enquanto as fontes chegam ("Carregando as fontes…") (91 palavras)
-- `avisos-e-erros/selo-sem-as-fontes` Folha "De onde vem isto" quando as fontes não baixam (104 palavras)
-- `avisos-e-erros/selo-sem-a-regra` Folha "De onde vem isto" quando a regra não baixa (20 palavras)
 
 ## Telas que só existem na medição de agora
 
+- `fim-e-semana/entenda-a-sua-semana-e-as-pausas` "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) (144 palavras)
 - `dados-e-locais/entenda` "Entenda o treino", com os blocos fechados (46 palavras)
 - `dados-e-locais/entenda-os-exercicios` "Entenda o treino", com "Os exercícios: por que cada um e a próxima carga" aberto (275 palavras)
 - `dados-e-locais/entenda-a-sua-semana` "Entenda o treino", com "A sua semana e as pausas" aberto (102 palavras)
 - `dados-e-locais/entenda-por-que-o-app-pergunta` "Entenda o treino", com "Por que o app pergunta e sugere" aberto (415 palavras)
 - `dados-e-locais/entenda-seguranca` "Entenda o treino", com "Segurança" aberto (215 palavras)
 - `dados-e-locais/entenda-todas-as-regras` "Entenda o treino", com "Todas as regras e as fontes" aberto (as regras fechadas) (1200 palavras)
-
-## Passos da colheita de agora que falharam
-
-- [claro/inicio-ana] início, folha do exercício: TimeoutError: locator.click: Timeout 8000ms exceeded.
-- [claro/inicio-ana] início, exercício sem animação: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [claro/treino-ana-texto] exercício sem animação: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [claro/volta-e-semana-leve] semana leve, ativa: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [claro/erros-de-carga] a regra e as fontes, carregando e sem carregar: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [escuro/inicio-ana] início, folha do exercício: TimeoutError: locator.click: Timeout 8000ms exceeded.
-- [escuro/inicio-ana] início, exercício sem animação: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [escuro/treino-ana-texto] exercício sem animação: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [escuro/volta-e-semana-leve] semana leve, ativa: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [escuro/erros-de-carga] a regra e as fontes, carregando e sem carregar: Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-- [cobertura] a tabela cita "inicio/folha-do-exercicio-por-que", que não está na colheita
-- [cobertura] a tabela cita "treino/folha-por-que-da-reserva", que não está na colheita
-- [cobertura] a tabela cita "cadastro/rotina-folha-por-que-grupos", que não está na colheita
-- [cobertura] a tabela cita "avisos-e-erros/selo-carregando-a-regra", que não está na colheita
-- [cobertura] a tabela cita "avisos-e-erros/selo-sem-a-regra", que não está na colheita
-- [cobertura] a tabela cita "avisos-e-erros/selo-carregando-as-fontes", que não está na colheita
-- [cobertura] a tabela cita "avisos-e-erros/selo-sem-as-fontes", que não está na colheita
-- [cobertura] a tabela cita "cadastro/saude-folha-por-que-perguntamos", que não está na colheita
-- [cobertura] a tabela cita "cadastro/rotina-folha-por-que-dias", que não está na colheita
-- [cobertura] a tabela cita "cadastro/rotina-folha-por-que-grupos", que não está na colheita
-- [cobertura] a tabela cita "dados-e-locais/rotina-e-divisao-folha-o-objetivo", que não está na colheita
-- [cobertura] a tabela cita "dados-e-locais/rotina-e-divisao-folha-as-divisoes", que não está na colheita
-- [cobertura] a tabela cita "cadastro/equipamento-folha-selo-da-menor-anilha", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/inicio-volta-15-dias-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/inicio-volta-22-dias-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/inicio-volta-60-dias-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/inicio-volta-200-dias-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "inicio/folha-do-exercicio-por-que", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/sobre-o-programa-na-semana-leve", que não está na colheita
-- [cobertura] a tabela cita "inicio/folha-do-exercicio-sem-animacao", que não está na colheita
-- [cobertura] a tabela cita "treino/exercicio-sem-animacao", que não está na colheita
-- [cobertura] a tabela cita "inicio/folha-como-fazer-em-texto", que não está na colheita
-- [cobertura] a tabela cita "treino/exercicio-sem-animacao-folha-como-fazer", que não está na colheita
-- [cobertura] a tabela cita "inicio/folha-como-fazer-em-texto-passo-a-passo", que não está na colheita
-- [cobertura] a tabela cita "treino/exercicio-sem-animacao-folha-como-fazer-passo-a-passo", que não está na colheita
-- [cobertura] a tabela cita "treino/folha-por-que-da-1a-vez", que não está na colheita
-- [cobertura] a tabela cita "treino/folha-por-que-da-sugestao-do-dia", que não está na colheita
-- [cobertura] a tabela cita "treino/treino-na-volta-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "treino/folha-por-que-da-reserva", que não está na colheita
-- [cobertura] a tabela cita "treino/folha-por-que-na-2a-serie", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/fim-folha-o-que-conta", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/fim-folha-para-que-serve", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/fim-folha-por-que-da-proxima-vez", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/fim-com-recorde-folha-por-que-subir", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/fim-com-dor-folha-por-que", que não está na colheita
-- [cobertura] a tabela cita "fim-e-semana/semana-na-semana-leve", que não está na colheita
-- [cobertura] a tabela cita "guia/folha-por-que-da-prescricao", que não está na colheita
-- [cobertura] a tabela cita "dados-e-locais/locais-folha-varios-locais", que não está na colheita
-- [montagem] comparação com 13/11: falta treino/folha-por-que-na-2a-serie
+- `avisos-e-erros/entenda-todas-as-regras-carregando` "Entenda o treino", com "Todas as regras e as fontes" aberto enquanto as regras chegam ("Carregando as regras…") (49 palavras)
+- `avisos-e-erros/entenda-todas-as-regras-sem-carregar` "Entenda o treino", com "Todas as regras e as fontes" aberto quando as regras não baixam (58 palavras)
