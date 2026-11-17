@@ -93,3 +93,4 @@ export { aducaoCaneleira } from './aducao-caneleira';
 export { abducaoMiniBand } from './abducao-mini-band';
 export { extensaoJoelhoCaneleira } from './extensao-joelho-caneleira';
 export { crucifixoHalteres } from './crucifixo-halteres';
+export { crucifixoInclinadoHalteres } from './crucifixo-inclinado-halteres';

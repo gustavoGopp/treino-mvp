@@ -52,8 +52,8 @@ O corpo ocupa 65% × 77% do palco em três quartos, 70% × 77% de cima e 79% × 
 
 | Erro (texto do app) | Vista | O que o boneco faz (medido) |
 |---|---|---|
-| Dobrar e esticar os cotovelos | frontal, no fundo | o cotovelo dobra de 25° a 90° na descida, desce à mesma altura do certo (2 cm abaixo do ombro) e o halter fica a 45,5 cm do ombro (o certo: 62,7), 21,8 cm mais alto: vira supino e o peito sai do alongamento |
-| Descer demais | frontal, no fundo | o cotovelo desce 13 cm abaixo do centro do ombro (o certo: 2) e o halter fica 33 cm acima do chão, 10 cm abaixo do tampo do banco |
+| Dobrar e esticar os cotovelos | frontal, no fundo | o cotovelo dobra de 25° a 90° na descida, desce à mesma altura do certo (2 cm abaixo do ombro) e o halter fica a 45,5 cm do ombro (o certo: 62,7), 21,7 cm mais alto: vira supino e o peito sai do alongamento |
+| Descer demais | frontal, no fundo | o cotovelo desce 13 cm abaixo do centro do ombro (o certo: 2) e o halter fica 33 cm acima do chão, 10,5 cm abaixo do tampo do banco |
 | Bater os halteres em cima | de cima, no topo | os braços fecham até as pontas dos halteres se encostarem (0 cm; o certo: 3 cm) |
 | Tirar as escápulas do banco | frontal, no topo | a clavícula vai 5° para cima e para a frente (de 9,6° a 14,6°) e a ponta do ombro sobe 3,5 cm do banco |
 
