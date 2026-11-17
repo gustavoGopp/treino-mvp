@@ -110,3 +110,4 @@ export { tricepsElasticoAlto } from './triceps-elastico-alto';
 export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral-elastico';
 export { aberturaElastico } from './abertura-elastico';
 export { afundoTras } from './afundo-tras';
+export { agachamentoHalteres } from './agachamento-halteres';
