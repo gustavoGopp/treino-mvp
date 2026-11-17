@@ -289,14 +289,14 @@
  ],
  "contagem": {
   "volume.zero.costas": 36480,
-  "volume.abaixo-sem-aviso": 721225,
+  "volume.abaixo-sem-aviso": 721224,
   "volume.zero.ombro_lateral": 23173,
   "volume.zero.ombro_posterior": 2928,
   "volume.zero.biceps": 33792,
   "vaga.so-aviso-do-musculo.puxar-vertical": 310395,
   "vaga.so-aviso-do-musculo.elevacao-lateral": 400816,
   "vaga.so-aviso-do-musculo.puxar-horizontal": 307889,
-  "vaga.so-aviso-do-musculo.biceps": 336092,
+  "vaga.so-aviso-do-musculo.biceps": 336091,
   "equilibrio.sem-puxar": 36480,
   "vaga.so-aviso-do-musculo.crucifixo": 195731,
   "dia.superior-sem-superior": 59088,
@@ -3392,8 +3392,8 @@
      "aviso da vaga": 11520
     },
     "biceps": {
-     "só aviso do músculo": 7306,
-     "músculo coberto por outra vaga": 4214
+     "só aviso do músculo": 7305,
+     "músculo coberto por outra vaga": 4215
     },
     "panturrilha-sentada": {
      "aviso da vaga": 6912
@@ -3404,13 +3404,13 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
-   "abaixoDoLimiarSemAviso": 18792,
+   "abaixoDoLimiarSemAviso": 18791,
    "guia": {
-    "animacao": 194381,
-    "cartao": 38283,
+    "animacao": 198901,
+    "cartao": 33627,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 83.5
+    "animacaoPct": 85.5
    },
    "dor": {
     "sem dor": {
@@ -3509,7 +3509,6 @@
       "afundo-peso-corpo",
       "afundo-tras-peso-corpo",
       "agachamento-peso-corpo",
-      "agachamento-smith",
       "bulgaro-peso-corpo",
       "flexao-joelho-deslizante",
       "nordico",

@@ -8,7 +8,7 @@
 
 | problema | ocorrências |
 | --- | ---: |
-| `monotonia.repete-com-opcao` | 94.736 |
+| `monotonia.repete-com-opcao` | 94.739 |
 | `tempo.sobra-com-meta-abaixo` | 31.680 |
 | `volume.abaixo-sem-aviso` | 11.452 |
 | `volume.excesso.gluteos` | 5.541 |
@@ -37,8 +37,8 @@ Limiar: a meta, se o músculo é prioridade; senão, 4 séries (o piso do mínim
 | casa+ | 39.5% | 47% | 46.7% | 28.7% | 24.9% | 31.2% | 40.3% | 36.4% | 13.7% | 35.6% | 38.4% |
 | condominio | 39.3% | 47.3% | 46.6% | 27.9% | 24.4% | 49.1% | 51.6% | 38.5% | 11% | 31.5% | 38.3% |
 | condominio+ | 39.2% | 47.1% | 46.7% | 28.7% | 25% | 31.1% | 38.7% | 34.7% | 17.1% | 35.8% | 38.3% |
-| academia | 39.2% | 47% | 46.5% | 28.6% | 24.2% | 27.6% | 38.4% | 34.2% | 15.4% | 35% | 38% |
-| academia+ | 39.2% | 47.1% | 46.5% | 28.6% | 24.2% | 27.6% | 38.4% | 34.2% | 15.4% | 35% | 38.1% |
+| academia | 39.2% | 47% | 46.5% | 28.6% | 24.2% | 27.6% | 38.4% | 34.2% | 15.7% | 35% | 38% |
+| academia+ | 39.2% | 47.1% | 46.5% | 28.6% | 24.2% | 27.6% | 38.4% | 34.2% | 15.6% | 35% | 38.1% |
 | peso-corpo | 44.5% | 100% | 99.4% | 28% | 100% | 43.2% | 43.6% | 45.5% | 10.1% | 25% | 34.7% |
 | elasticos | 43.3% | 50.7% | 47.4% | 28.3% | 26.7% | 32.6% | 42% | 41.6% | 20.5% | 39.4% | 38.6% |
 | halteres | 53.7% | 69.3% | 44.5% | 28.9% | 25% | 47.3% | 48% | 36.1% | 11.7% | 30.4% | 38.5% |
@@ -127,7 +127,7 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 ## Equilíbrio
 
 - Séries de puxar ÷ séries de empurrar: mediana 1.08 (10% dos programas abaixo de 0.8, 10% acima de 1.6).
-- Posteriores ÷ quadríceps (volume semanal): mediana 1 (p10 0.7, p90 1.1).
+- Posteriores ÷ quadríceps (volume semanal): mediana 1 (p10 0.7, p90 1.11).
 
 ## Escolha
 
@@ -138,21 +138,21 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | elevacao-halteres | 168.632 | animação |
 | panturrilha-degrau | 136.814 | animação |
 | abdominal-chao | 135.769 | animação |
-| stiff | 115.909 | animação |
+| stiff | 115.910 | animação |
 | ponte-gluteo-halter | 111.486 | animação |
 | afundo | 99.191 | animação |
 | supino-reto | 88.192 | animação |
 | aducao-deitado | 81.643 | animação |
 | flexao | 66.160 | animação |
 | goblet | 64.810 | animação |
-| cadeira-flexora | 64.607 | sem animação |
-| hip-thrust | 61.627 | sem animação |
+| cadeira-flexora | 64.614 | sem animação |
+| hip-thrust | 61.628 | sem animação |
 | remada-apoiada | 61.341 | animação |
 | flexao-joelho-elastico | 59.209 | animação |
 | supino-inclinado | 58.710 | animação |
 | rosca-scott-banco-inclinado | 54.843 | sem animação |
-| triceps-frances-halter | 51.970 | animação |
-| puxada-frente | 51.127 | sem animação |
+| triceps-frances-halter | 51.968 | animação |
+| puxada-frente | 51.133 | sem animação |
 | flexao-joelho-deslizante | 50.963 | animação |
 | panturrilha-sentada-halter | 49.648 | animação |
 | crucifixo-halteres | 49.569 | sem animação |
@@ -169,8 +169,8 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | casa+ | 111 | 54 | flexao, flexao-elastico, crucifixo-elastico, puxada-elastico, remada-elastico, desenvolvimento-unilateral, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-elastico, triceps-elastico-acima, agachamento-elastico, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, goblet-kettlebell, remada-suspensao, supino-chao-halteres, flexao-fechada, pike, nordico, remada-unilateral-sem-banco, rosca-suspensao, yt-suspensao, flexao-joelho-suspensao, bulgaro-suspensao, ponte-pes-bola, abducao-mini-band, remada-unilateral-kettlebell, abducao-deitado, aducao-deitado, extensao-joelho-elastico, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, abducao-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, caminhada-lateral-mini-band, elevacao-lateral-caneleira, crucifixo-invertido-caneleira, extensao-joelho-mini-band, abducao-deitado-mini-band, face-pull-suspensao | — |
 | condominio | 59 | 44 | flexao, agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, supino-chao-halteres, flexao-fechada, pike, remada-unilateral-sem-banco, ponte-pes-bola, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres | — |
 | condominio+ | 114 | 55 | flexao, flexao-elastico, crucifixo-elastico, barra-fixa-supinada, puxada-elastico, remada-barra, remada-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-elastico, triceps-elastico-acima, agachamento-elastico, agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, goblet-kettlebell, supino-chao-halteres, flexao-fechada, pike, flexao-joelho-deslizante, nordico, remada-unilateral-sem-banco, ponte-pes-bola, extensao-joelho-caneleira, abducao-mini-band, remada-unilateral-kettlebell, rosca-kettlebell, triceps-frances-kettlebell, afundo-kettlebell, desenvolvimento-unilateral-kettlebell, ponte-kettlebell, abducao-deitado, aducao-deitado, extensao-joelho-elastico, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, abducao-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, barra-fixa-negativa, caminhada-lateral-mini-band, elevacao-lateral-caneleira, crucifixo-invertido-caneleira, coice-caneleira, extensao-joelho-mini-band, abducao-deitado-mini-band, stiff-unilateral-kettlebell | — |
-| academia | 118 | 72 | supino-polia, flexao, barra-fixa-supinada, remada-barra, remada-invertida, desenvolvimento-unilateral, rosca-barra-w, rosca-polia-costas, agachamento-halteres, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, elevacao-joelhos, terra-hexagonal, supino-smith, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, hiperextensao, coice-maquina, coice-polia, abducao-polia, crucifixo-invertido-curvado, supino-chao-halteres, flexao-fechada, pike, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, elevacao-joelhos-paralelas, abducao-deitado, aducao-deitado, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, barra-fixa-negativa | — |
-| academia+ | 171 | 74 | supino-polia, flexao, flexao-elastico, crucifixo-elastico, barra-fixa-supinada, puxada-elastico, remada-barra, remada-invertida, remada-elastico, desenvolvimento-barra, desenvolvimento-unilateral, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-barra-w, rosca-polia-costas, rosca-elastico, triceps-elastico-acima, goblet, agachamento-halteres, agachamento-elastico, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, flexao-joelho-elastico, elevacao-joelhos, abdominal-chao, terra-hexagonal, goblet-kettlebell, supino-smith, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, remada-suspensao, hiperextensao, coice-maquina, coice-polia, abducao-polia, crucifixo-invertido-curvado, supino-chao-halteres, flexao-fechada, pike, flexao-joelho-deslizante, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, rosca-suspensao, yt-suspensao, triceps-suspensao, flexao-joelho-suspensao, bulgaro-suspensao, elevacao-joelhos-paralelas, abdominal-bola, ponte-pes-bola, extensao-joelho-caneleira, abducao-caneleira, aducao-caneleira, abducao-mini-band, roda-abdominal, remada-unilateral-kettlebell, rosca-kettlebell, triceps-frances-kettlebell, abducao-deitado, aducao-deitado, extensao-joelho-elastico, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, abdominal-invertido, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, crucifixo-invertido-sentado, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, abducao-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, triceps-elastico-alto, barra-fixa-negativa, caminhada-lateral-mini-band, elevacao-lateral-caneleira, crucifixo-invertido-caneleira, coice-caneleira, extensao-joelho-mini-band, abducao-deitado-mini-band, face-pull-suspensao | — |
+| academia | 118 | 71 | supino-polia, flexao, barra-fixa-supinada, remada-barra, remada-invertida, desenvolvimento-unilateral, rosca-barra-w, rosca-polia-costas, agachamento-halteres, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, elevacao-joelhos, agachamento-smith, terra-hexagonal, supino-smith, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, hiperextensao, coice-maquina, coice-polia, abducao-polia, crucifixo-invertido-curvado, supino-chao-halteres, flexao-fechada, pike, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, elevacao-joelhos-paralelas, abducao-deitado, aducao-deitado, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, barra-fixa-negativa | — |
+| academia+ | 171 | 73 | supino-polia, flexao, flexao-elastico, crucifixo-elastico, barra-fixa-supinada, puxada-elastico, remada-barra, remada-invertida, remada-elastico, desenvolvimento-barra, desenvolvimento-unilateral, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-barra-w, rosca-polia-costas, rosca-elastico, triceps-elastico-acima, goblet, agachamento-halteres, agachamento-elastico, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, flexao-joelho-elastico, elevacao-joelhos, abdominal-chao, agachamento-smith, terra-hexagonal, goblet-kettlebell, supino-smith, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, remada-suspensao, hiperextensao, coice-maquina, coice-polia, abducao-polia, crucifixo-invertido-curvado, supino-chao-halteres, flexao-fechada, pike, flexao-joelho-deslizante, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, rosca-suspensao, yt-suspensao, triceps-suspensao, flexao-joelho-suspensao, bulgaro-suspensao, elevacao-joelhos-paralelas, abdominal-bola, ponte-pes-bola, extensao-joelho-caneleira, abducao-caneleira, aducao-caneleira, abducao-mini-band, roda-abdominal, remada-unilateral-kettlebell, rosca-kettlebell, triceps-frances-kettlebell, abducao-deitado, aducao-deitado, extensao-joelho-elastico, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, abdominal-invertido, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, crucifixo-invertido-sentado, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, abducao-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, triceps-elastico-alto, barra-fixa-negativa, caminhada-lateral-mini-band, elevacao-lateral-caneleira, crucifixo-invertido-caneleira, coice-caneleira, extensao-joelho-mini-band, abducao-deitado-mini-band, face-pull-suspensao | — |
 | peso-corpo | 19 | 19 | — | — |
 | elasticos | 40 | 39 | bulgaro-peso-corpo | — |
 | halteres | 43 | 34 | agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, flexao-fechada, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo, desenvolvimento-em-pe-halteres | — |
@@ -200,11 +200,11 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 ## Monotonia
 
 - Programas de 3 dias ou mais com um exercício (fora o abdominal) em **todos** os dias: 4.193 de 137.280 (3.1%).
-- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 94.736 (69%).
+- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 94.739 (69%).
 
 ## Tempo
 
-- Dias acima dos minutos: 53.667 de 624.000 (8.6%); **sem aviso: 0**.
+- Dias acima dos minutos: 53.693 de 624.000 (8.6%); **sem aviso: 0**.
 - Programas cujo dia mais longo usa menos de 70% dos minutos: 37.771 (25.2%); destes, 0 ainda dizem que a meta ficou de fora "porque cabem cerca de N exercícios".
 
 | minutos | programas | dia mais longo (mediana, min) | sobra > 30% |

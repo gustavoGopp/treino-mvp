@@ -60,9 +60,9 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 
 | problema | ocorrências |
 | --- | ---: |
-| `volume.abaixo-sem-aviso` | 721.225 |
+| `volume.abaixo-sem-aviso` | 721.224 |
 | `vaga.so-aviso-do-musculo.elevacao-lateral` | 400.816 |
-| `vaga.so-aviso-do-musculo.biceps` | 336.092 |
+| `vaga.so-aviso-do-musculo.biceps` | 336.091 |
 | `vaga.so-aviso-do-musculo.puxar-vertical` | 310.395 |
 | `vaga.so-aviso-do-musculo.puxar-horizontal` | 307.889 |
 | `vaga.so-aviso-do-musculo.crucifixo` | 195.731 |
@@ -218,7 +218,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | rack_de_agachamento | elevacao-lateral | 0 | 11486 | 34 | 0 | 0 |
 | rack_de_agachamento | extensora | 11520 | 0 | 0 | 0 | 0 |
 | rack_de_agachamento | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
-| smith | biceps | 0 | 7306 | 4214 | 0 | 0 |
+| smith | biceps | 0 | 7305 | 4215 | 0 | 0 |
 | smith | crucifixo | 0 | 5284 | 6236 | 0 | 0 |
 | smith | elevacao-lateral | 0 | 11486 | 34 | 0 | 0 |
 | smith | extensora | 11520 | 0 | 0 | 0 | 0 |
@@ -424,7 +424,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 
 - Avisos que sugerem comprar algo, em todos os cenários: **0**.
 - "Nenhum exercício possível" dito para um músculo que tinha exercício possível: **0**.
-- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721225**.
+- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721224**.
 - Programas sem nenhuma série de puxar com o aviso `equipamento.sem-puxada-vertical`: **0** (ele só dispara quando a puxada cai para uma remada).
 
 ## Equilíbrio (sem dor)
@@ -721,7 +721,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | barra_longa | 90,4% | 9,6% | 0% |
 | barra_w | 91,1% | 8,9% | 0% |
 | rack_de_agachamento | 89,5% | 10,5% | 0% |
-| smith | 83,5% | 16,5% | 0% |
+| smith | 85,5% | 14,5% | 0% |
 | leg_press | 81,3% | 18,7% | 0% |
 | cadeira_extensora | 93,4% | 6,6% | 0% |
 | mesa_flexora | 90,1% | 9,9% | 0% |
@@ -813,7 +813,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | rack_de_agachamento | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-invertida |
 | smith | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-invertida |
 | smith | punho 7 | 0 | 35 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, agachamento-smith, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, remada-invertida |
-| smith | ombro 7 | 0 | 1880 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, agachamento-smith, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| smith | ombro 7 | 0 | 1880 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | smith | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-invertida |
 | smith | cotovelo 7 | 0 | 71 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, agachamento-smith, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | smith | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-invertida |

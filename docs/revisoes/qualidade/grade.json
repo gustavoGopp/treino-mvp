@@ -6,7 +6,7 @@
   "academia|ajustar": 779,
   "academia|bom": 6029,
   "academia|limite": 9767,
-  "ajustar": 65474,
+  "ajustar": 65480,
   "bairro|ajustar": 1014,
   "bairro|bom": 6000,
   "bairro|limite": 9561,
@@ -44,7 +44,7 @@
   "halteres|ajustar": 1243,
   "halteres|bom": 6061,
   "halteres|limite": 9271,
-  "limite": 742225,
+  "limite": 742219,
   "so:abdominal_maquina|ajustar": 973,
   "so:abdominal_maquina|limite": 15602,
   "so:anilhas_e_manoplas|ajustar": 1243,
@@ -111,8 +111,8 @@
   "so:roda_abdominal|limite": 15488,
   "so:rosca_maquina|ajustar": 1199,
   "so:rosca_maquina|limite": 15376,
-  "so:smith|ajustar": 1225,
-  "so:smith|limite": 15350,
+  "so:smith|ajustar": 1231,
+  "so:smith|limite": 15344,
   "so:step|ajustar": 1220,
   "so:step|limite": 15355,
   "so:supino_maquina|ajustar": 1109,
@@ -141,21 +141,21 @@
   "selecao.alongado": 153000,
   "selecao.dia-sem-principal": 266710,
   "selecao.isolador-obrigatorio": 679575,
-  "tempo.corte": 329685,
-  "tempo.sobra": 336702,
-  "volume.prioridade.competicao": 142555,
+  "tempo.corte": 329714,
+  "tempo.sobra": 336696,
+  "volume.prioridade.competicao": 142558,
   "volume.semanal.alvo": 613269
  },
  "avisosPorCenario": {
   "academia+|seguranca.dor.programa": 6825,
   "academia+|selecao.dia-sem-principal": 4117,
-  "academia+|tempo.corte": 6443,
+  "academia+|tempo.corte": 6447,
   "academia+|tempo.sobra": 4896,
   "academia+|volume.prioridade.competicao": 2755,
   "academia+|volume.semanal.alvo": 10524,
   "academia|seguranca.dor.programa": 6825,
   "academia|selecao.dia-sem-principal": 4132,
-  "academia|tempo.corte": 6437,
+  "academia|tempo.corte": 6441,
   "academia|tempo.sobra": 4883,
   "academia|volume.prioridade.competicao": 2772,
   "academia|volume.semanal.alvo": 10524,
@@ -583,9 +583,9 @@
   "so:smith|selecao.alongado": 3825,
   "so:smith|selecao.dia-sem-principal": 5152,
   "so:smith|selecao.isolador-obrigatorio": 16575,
-  "so:smith|tempo.corte": 5811,
-  "so:smith|tempo.sobra": 7523,
-  "so:smith|volume.prioridade.competicao": 3141,
+  "so:smith|tempo.corte": 5832,
+  "so:smith|tempo.sobra": 7517,
+  "so:smith|volume.prioridade.competicao": 3144,
   "so:smith|volume.semanal.alvo": 16575,
   "so:step|divisao.sem-puxar": 24,
   "so:step|equipamento.escada-carga-leve": 16575,
@@ -787,8 +787,8 @@
    "n": 23375
   },
   "iniciante|pernas+gluteos+abdomen": {
-   "abaixo": 15746,
-   "competem": 12565,
+   "abaixo": 15748,
+   "competem": 12567,
    "n": 23375
   },
   "intermediario|abdomen": {
@@ -837,13 +837,13 @@
    "n": 23375
   },
   "intermediario|pernas": {
-   "abaixo": 12900,
+   "abaixo": 12901,
    "competem": 7161,
    "n": 23375
   },
   "intermediario|pernas+gluteos": {
-   "abaixo": 15818,
-   "competem": 10223,
+   "abaixo": 15819,
+   "competem": 10222,
    "n": 23375
   },
   "intermediario|pernas+gluteos+abdomen": {
@@ -854,16 +854,16 @@
  },
  "contagem": {
   "avaliador.ajustar-sem-aviso": 198,
-  "dia.poucos-exercicios": 273987,
-  "monotonia.todos-os-dias": 176261,
+  "dia.poucos-exercicios": 273993,
+  "monotonia.todos-os-dias": 176260,
   "prioridade.abaixo-com-tempo": 23863,
   "regua.A2": 40414,
-  "regua.A3": 35328,
+  "regua.A3": 35335,
   "regua.C1": 15624,
   "regua.D1": 4857,
   "regua.D3": 1365,
   "regua.E1": 6,
-  "tempo.uso-baixo": 157660
+  "tempo.uso-baixo": 157623
  },
  "distintos": {
   "academia": {
@@ -875,8 +875,8 @@
    "12": 552,
    "13": 776,
    "14": 494,
-   "15": 742,
-   "16": 1236,
+   "15": 746,
+   "16": 1232,
    "17": 941,
    "18": 1403,
    "19": 1290,
@@ -908,8 +908,8 @@
    "12": 551,
    "13": 767,
    "14": 493,
-   "15": 738,
-   "16": 1208,
+   "15": 742,
+   "16": 1204,
    "17": 917,
    "18": 1418,
    "19": 1298,
@@ -1826,20 +1826,20 @@
   "so:smith": {
    "5": 3,
    "6": 88,
-   "7": 441,
-   "8": 837,
-   "9": 958,
-   "10": 1405,
-   "11": 2089,
-   "12": 2711,
-   "13": 1821,
-   "14": 1952,
-   "15": 1996,
-   "16": 1478,
-   "17": 493,
+   "7": 443,
+   "8": 831,
+   "9": 914,
+   "10": 1357,
+   "11": 2010,
+   "12": 2608,
+   "13": 2049,
+   "14": 1936,
+   "15": 2028,
+   "16": 1496,
+   "17": 490,
    "18": 232,
-   "19": 65,
-   "20": 6
+   "19": 78,
+   "20": 12
   },
   "so:step": {
    "6": 85,
@@ -2540,9 +2540,9 @@
   "30|so:smith": {
    "1": 1,
    "2": 148,
-   "3": 4407,
-   "4": 8167,
-   "5": 537
+   "3": 4417,
+   "4": 8159,
+   "5": 535
   },
   "30|so:step": {
    "2": 4,
@@ -2929,9 +2929,9 @@
   "45|so:smith": {
    "2": 45,
    "3": 1934,
-   "4": 2193,
-   "5": 3348,
-   "6": 5740
+   "4": 2199,
+   "5": 3354,
+   "6": 5728
   },
   "45|so:step": {
    "3": 15,
@@ -2992,16 +2992,16 @@
    "4": 8,
    "5": 1201,
    "6": 3481,
-   "7": 2219,
-   "8": 6291
+   "7": 2226,
+   "8": 6284
   },
   "60|academia+": {
    "3": 60,
    "4": 8,
    "5": 1223,
    "6": 3494,
-   "7": 2229,
-   "8": 6246
+   "7": 2236,
+   "8": 6239
   },
   "60|bairro": {
    "3": 58,
@@ -3393,10 +3393,10 @@
    "2": 41,
    "3": 1929,
    "4": 2110,
-   "5": 2598,
-   "6": 2930,
+   "5": 2603,
+   "6": 2926,
    "7": 2265,
-   "8": 1386
+   "8": 1385
   },
   "60|so:step": {
    "3": 10,
@@ -3952,10 +3952,10 @@
    "3": 1929,
    "4": 2112,
    "5": 2578,
-   "6": 2742,
-   "7": 1744,
-   "8": 1300,
-   "9": 767,
+   "6": 2743,
+   "7": 1745,
+   "8": 1309,
+   "9": 756,
    "10": 42
   },
   "75|so:step": {
@@ -4579,9 +4579,9 @@
    "5": 2579,
    "6": 2745,
    "7": 1688,
-   "8": 1041,
-   "9": 747,
-   "10": 373
+   "8": 1042,
+   "9": 751,
+   "10": 368
   },
   "90|so:step": {
    "3": 10,
@@ -15912,7 +15912,7 @@
   "so:smith": {
    "comOpcao": 0,
    "programas": 13260,
-   "todosOsDias": 4908
+   "todosOsDias": 4907
   },
   "so:step": {
    "comOpcao": 0,
@@ -16249,15 +16249,15 @@
   "30|academia": {
    "85": 17,
    "90": 58,
-   "95": 586,
-   "100": 1859,
-   "105": 252,
+   "95": 576,
+   "100": 1857,
+   "105": 264,
    "110": 86,
-   "115": 31,
+   "115": 30,
    "120": 2,
-   "125": 136,
-   "130": 61,
-   "135": 86,
+   "125": 137,
+   "130": 59,
+   "135": 88,
    "140": 55,
    "145": 42,
    "150": 21,
@@ -16266,15 +16266,15 @@
   "30|academia+": {
    "85": 17,
    "90": 57,
-   "95": 587,
-   "100": 1859,
-   "105": 252,
+   "95": 577,
+   "100": 1857,
+   "105": 264,
    "110": 73,
-   "115": 44,
+   "115": 43,
    "120": 2,
-   "125": 136,
-   "130": 58,
-   "135": 89,
+   "125": 137,
+   "130": 56,
+   "135": 91,
    "140": 55,
    "145": 42,
    "150": 21,
@@ -17034,13 +17034,13 @@
   "30|so:smith": {
    "75": 4,
    "80": 2,
-   "85": 48,
+   "85": 11,
    "90": 29,
-   "95": 382,
-   "100": 1988,
-   "105": 199,
+   "95": 411,
+   "100": 1991,
+   "105": 201,
    "110": 62,
-   "115": 187,
+   "115": 190,
    "120": 65,
    "125": 83,
    "130": 101,
@@ -17199,11 +17199,11 @@
    "80": 172,
    "85": 124,
    "90": 136,
-   "95": 236,
-   "100": 2443,
-   "105": 97,
-   "110": 68,
-   "115": 17,
+   "95": 237,
+   "100": 2442,
+   "105": 92,
+   "110": 71,
+   "115": 19,
    "120": 3
   },
   "45|academia+": {
@@ -17211,11 +17211,11 @@
    "80": 167,
    "85": 124,
    "90": 141,
-   "95": 243,
-   "100": 2436,
-   "105": 97,
-   "110": 68,
-   "115": 17,
+   "95": 242,
+   "100": 2437,
+   "105": 92,
+   "110": 71,
+   "115": 19,
    "120": 3
   },
   "45|bairro": {
@@ -17878,16 +17878,16 @@
   },
   "45|so:smith": {
    "70": 6,
-   "75": 123,
-   "80": 244,
-   "85": 47,
-   "90": 64,
-   "95": 377,
-   "100": 2308,
+   "75": 99,
+   "80": 268,
+   "85": 43,
+   "90": 68,
+   "95": 351,
+   "100": 2332,
    "105": 68,
    "110": 58,
-   "115": 10,
-   "120": 9,
+   "115": 11,
+   "120": 10,
    "135": 1
   },
   "45|so:step": {
@@ -18029,8 +18029,8 @@
    "80": 278,
    "85": 215,
    "90": 240,
-   "95": 411,
-   "100": 1864
+   "95": 408,
+   "100": 1867
   },
   "60|academia+": {
    "65": 58,
@@ -18039,8 +18039,8 @@
    "80": 271,
    "85": 215,
    "90": 230,
-   "95": 415,
-   "100": 1874
+   "95": 412,
+   "100": 1877
   },
   "60|bairro": {
    "60": 8,
@@ -18709,16 +18709,16 @@
    "125": 11
   },
   "60|so:smith": {
-   "55": 129,
-   "60": 196,
-   "65": 26,
-   "70": 163,
-   "75": 146,
-   "80": 174,
-   "85": 234,
-   "90": 352,
-   "95": 606,
-   "100": 1263,
+   "55": 105,
+   "60": 220,
+   "65": 24,
+   "70": 130,
+   "75": 173,
+   "80": 165,
+   "85": 214,
+   "90": 372,
+   "95": 598,
+   "100": 1288,
    "105": 20,
    "110": 2,
    "115": 3,
@@ -18853,12 +18853,12 @@
    "60": 84,
    "65": 215,
    "70": 405,
-   "75": 333,
-   "80": 178,
-   "85": 354,
-   "90": 177,
-   "95": 305,
-   "100": 1098
+   "75": 329,
+   "80": 181,
+   "85": 353,
+   "90": 179,
+   "95": 303,
+   "100": 1100
   },
   "75|academia+": {
    "50": 52,
@@ -18866,12 +18866,12 @@
    "60": 84,
    "65": 213,
    "70": 403,
-   "75": 338,
-   "80": 178,
-   "85": 350,
-   "90": 180,
-   "95": 280,
-   "100": 1123
+   "75": 334,
+   "80": 181,
+   "85": 349,
+   "90": 182,
+   "95": 278,
+   "100": 1125
   },
   "75|bairro": {
    "50": 96,
@@ -19501,18 +19501,18 @@
    "100": 777
   },
   "75|so:smith": {
-   "45": 252,
-   "50": 88,
-   "55": 174,
-   "60": 146,
-   "65": 193,
-   "70": 464,
-   "75": 311,
-   "80": 175,
-   "85": 191,
-   "90": 260,
-   "95": 350,
-   "100": 711
+   "45": 220,
+   "50": 118,
+   "55": 141,
+   "60": 173,
+   "65": 182,
+   "70": 456,
+   "75": 331,
+   "80": 162,
+   "85": 203,
+   "90": 265,
+   "95": 356,
+   "100": 708
   },
   "75|so:step": {
    "45": 20,
@@ -19639,13 +19639,13 @@
    "55": 333,
    "60": 408,
    "65": 298,
-   "70": 440,
-   "75": 172,
-   "80": 194,
-   "85": 313,
-   "90": 243,
-   "95": 131,
-   "100": 527
+   "70": 438,
+   "75": 174,
+   "80": 193,
+   "85": 314,
+   "90": 244,
+   "95": 129,
+   "100": 528
   },
   "90|academia+": {
    "40": 46,
@@ -19654,13 +19654,13 @@
    "55": 331,
    "60": 412,
    "65": 294,
-   "70": 439,
-   "75": 175,
-   "80": 188,
-   "85": 312,
-   "90": 246,
-   "95": 134,
-   "100": 528
+   "70": 437,
+   "75": 177,
+   "80": 187,
+   "85": 313,
+   "90": 247,
+   "95": 132,
+   "100": 529
   },
   "90|bairro": {
    "40": 30,
@@ -20348,18 +20348,18 @@
   "90|so:smith": {
    "35": 80,
    "40": 253,
-   "45": 91,
-   "50": 277,
-   "55": 280,
-   "60": 415,
-   "65": 332,
-   "70": 266,
-   "75": 240,
+   "45": 74,
+   "50": 276,
+   "55": 292,
+   "60": 418,
+   "65": 330,
+   "70": 263,
+   "75": 244,
    "80": 241,
-   "85": 171,
-   "90": 114,
-   "95": 92,
-   "100": 463
+   "85": 172,
+   "90": 112,
+   "95": 99,
+   "100": 461
   },
   "90|so:step": {
    "35": 12,
@@ -34517,7 +34517,7 @@
   "academia+|avancado": {
    "comExercicio": 154706,
    "dias": 22100,
-   "foraPorMinutos": 19443,
+   "foraPorMinutos": 19448,
    "programas": 5525,
    "vagas": 167714
   },
@@ -34531,14 +34531,14 @@
   "academia+|intermediario": {
    "comExercicio": 155091,
    "dias": 22100,
-   "foraPorMinutos": 19408,
+   "foraPorMinutos": 19410,
    "programas": 5525,
    "vagas": 168246
   },
   "academia|avancado": {
    "comExercicio": 154747,
    "dias": 22100,
-   "foraPorMinutos": 19452,
+   "foraPorMinutos": 19457,
    "programas": 5525,
    "vagas": 167764
   },
@@ -34552,7 +34552,7 @@
   "academia|intermediario": {
    "comExercicio": 155145,
    "dias": 22100,
-   "foraPorMinutos": 19418,
+   "foraPorMinutos": 19420,
    "programas": 5525,
    "vagas": 168314
   },
@@ -35483,21 +35483,21 @@
   "so:smith|avancado": {
    "comExercicio": 114282,
    "dias": 22100,
-   "foraPorMinutos": 13292,
+   "foraPorMinutos": 13293,
    "programas": 5525,
    "vagas": 170135
   },
   "so:smith|iniciante": {
    "comExercicio": 113787,
    "dias": 22100,
-   "foraPorMinutos": 14624,
+   "foraPorMinutos": 14627,
    "programas": 5525,
    "vagas": 170931
   },
   "so:smith|intermediario": {
    "comExercicio": 114398,
    "dias": 22100,
-   "foraPorMinutos": 13330,
+   "foraPorMinutos": 13335,
    "programas": 5525,
    "vagas": 170339
   },
@@ -35685,7 +35685,7 @@
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 48553,
+   "soma": 48544.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35694,16 +35694,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 51024.5,
+   "soma": 51021.5,
    "zero": 354,
    "zeroSemAviso": 0
   },
   "avancado|academia+|gluteos": {
-   "abaixoMeta": 552,
+   "abaixoMeta": 555,
    "abaixoPiso": 527,
    "n": 5525,
    "prio": 1275,
-   "soma": 49673,
+   "soma": 49666,
    "zero": 321,
    "zeroSemAviso": 0
   },
@@ -35721,7 +35721,7 @@
    "abaixoPiso": 952,
    "n": 5525,
    "prio": 0,
-   "soma": 41714,
+   "soma": 41712.5,
    "zero": 354,
    "zeroSemAviso": 0
   },
@@ -35730,7 +35730,7 @@
    "abaixoPiso": 941,
    "n": 5525,
    "prio": 1275,
-   "soma": 34668,
+   "soma": 34659,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35739,7 +35739,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 52347,
+   "soma": 52341,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35748,7 +35748,7 @@
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 51134,
+   "soma": 51130,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -35757,7 +35757,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 50802,
+   "soma": 50796,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -35766,7 +35766,7 @@
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 49110.5,
+   "soma": 49099.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -35784,7 +35784,7 @@
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 48572.5,
+   "soma": 48564,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35793,16 +35793,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 51030.5,
+   "soma": 51027.5,
    "zero": 354,
    "zeroSemAviso": 0
   },
   "avancado|academia|gluteos": {
-   "abaixoMeta": 552,
+   "abaixoMeta": 555,
    "abaixoPiso": 527,
    "n": 5525,
    "prio": 1275,
-   "soma": 49695.5,
+   "soma": 49682,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35820,7 +35820,7 @@
    "abaixoPiso": 952,
    "n": 5525,
    "prio": 0,
-   "soma": 41713.5,
+   "soma": 41712,
    "zero": 354,
    "zeroSemAviso": 0
   },
@@ -35829,7 +35829,7 @@
    "abaixoPiso": 941,
    "n": 5525,
    "prio": 1275,
-   "soma": 34712,
+   "soma": 34703,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35838,7 +35838,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 52348,
+   "soma": 52342,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35856,7 +35856,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 50732,
+   "soma": 50728,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -35865,7 +35865,7 @@
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 49118.5,
+   "soma": 49107.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -40226,11 +40226,11 @@
    "zeroSemAviso": 0
   },
   "avancado|so:smith|abdomen": {
-   "abaixoMeta": 341,
+   "abaixoMeta": 343,
    "abaixoPiso": 555,
    "n": 5525,
    "prio": 850,
-   "soma": 32908,
+   "soma": 32890,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40239,7 +40239,7 @@
    "abaixoPiso": 1453,
    "n": 5525,
    "prio": 850,
-   "soma": 21866,
+   "soma": 21865.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -40248,16 +40248,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43732,
+   "soma": 43731,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "avancado|so:smith|gluteos": {
-   "abaixoMeta": 523,
+   "abaixoMeta": 524,
    "abaixoPiso": 214,
    "n": 5525,
    "prio": 1275,
-   "soma": 59106.5,
+   "soma": 59053,
    "zero": 20,
    "zeroSemAviso": 0
   },
@@ -40275,16 +40275,16 @@
    "abaixoPiso": 718,
    "n": 5525,
    "prio": 0,
-   "soma": 43305,
+   "soma": 43302.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|so:smith|panturrilha": {
-   "abaixoMeta": 897,
+   "abaixoMeta": 899,
    "abaixoPiso": 370,
    "n": 5525,
    "prio": 1275,
-   "soma": 38524,
+   "soma": 38488,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40293,7 +40293,7 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 46819,
+   "soma": 46811,
    "zero": 975,
    "zeroSemAviso": 0
   },
@@ -40302,16 +40302,16 @@
    "abaixoPiso": 497,
    "n": 5525,
    "prio": 1275,
-   "soma": 50265,
+   "soma": 50259,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|so:smith|quadriceps": {
-   "abaixoMeta": 770,
+   "abaixoMeta": 771,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 44377,
+   "soma": 44328,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -40320,7 +40320,7 @@
    "abaixoPiso": 1041,
    "n": 5525,
    "prio": 850,
-   "soma": 48211,
+   "soma": 48206.5,
    "zero": 975,
    "zeroSemAviso": 0
   },
@@ -45671,20 +45671,20 @@
    "zeroSemAviso": 0
   },
   "iniciante|so:smith|abdomen": {
-   "abaixoMeta": 231,
+   "abaixoMeta": 233,
    "abaixoPiso": 543,
    "n": 5525,
    "prio": 850,
-   "soma": 29652,
+   "soma": 29640,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|so:smith|biceps": {
    "abaixoMeta": 850,
-   "abaixoPiso": 1287,
+   "abaixoPiso": 1288,
    "n": 5525,
    "prio": 850,
-   "soma": 19275.5,
+   "soma": 19275,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -45693,7 +45693,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 38551,
+   "soma": 38550,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -45702,7 +45702,7 @@
    "abaixoPiso": 39,
    "n": 5525,
    "prio": 1275,
-   "soma": 56750,
+   "soma": 56752,
    "zero": 10,
    "zeroSemAviso": 0
   },
@@ -45720,16 +45720,16 @@
    "abaixoPiso": 691,
    "n": 5525,
    "prio": 0,
-   "soma": 36829.5,
+   "soma": 36829,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|so:smith|panturrilha": {
-   "abaixoMeta": 632,
+   "abaixoMeta": 633,
    "abaixoPiso": 370,
    "n": 5525,
    "prio": 1275,
-   "soma": 32467,
+   "soma": 32463,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46575,7 +46575,7 @@
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 44704.5,
+   "soma": 44703.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46593,7 +46593,7 @@
    "abaixoPiso": 526,
    "n": 5525,
    "prio": 1275,
-   "soma": 46370,
+   "soma": 46372.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46620,7 +46620,7 @@
    "abaixoPiso": 944,
    "n": 5525,
    "prio": 1275,
-   "soma": 33390,
+   "soma": 33381,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46629,7 +46629,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 49125,
+   "soma": 49121,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46638,7 +46638,7 @@
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 46919,
+   "soma": 46915,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -46647,7 +46647,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 46711,
+   "soma": 46710,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -46656,7 +46656,7 @@
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 46311,
+   "soma": 46301.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -46674,7 +46674,7 @@
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 44727,
+   "soma": 44720,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46692,7 +46692,7 @@
    "abaixoPiso": 526,
    "n": 5525,
    "prio": 1275,
-   "soma": 46370.5,
+   "soma": 46370,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46719,7 +46719,7 @@
    "abaixoPiso": 944,
    "n": 5525,
    "prio": 1275,
-   "soma": 33402,
+   "soma": 33393,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46728,7 +46728,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 49148,
+   "soma": 49144,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46737,7 +46737,7 @@
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 46929,
+   "soma": 46925,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -46746,7 +46746,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 46697,
+   "soma": 46696,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -46755,7 +46755,7 @@
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 46333,
+   "soma": 46323.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -51116,17 +51116,17 @@
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|abdomen": {
-   "abaixoMeta": 290,
+   "abaixoMeta": 291,
    "abaixoPiso": 554,
    "n": 5525,
    "prio": 850,
-   "soma": 31703,
+   "soma": 31682,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|biceps": {
    "abaixoMeta": 850,
-   "abaixoPiso": 1390,
+   "abaixoPiso": 1389,
    "n": 5525,
    "prio": 850,
    "soma": 20995.5,
@@ -51143,11 +51143,11 @@
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|gluteos": {
-   "abaixoMeta": 455,
+   "abaixoMeta": 458,
    "abaixoPiso": 227,
    "n": 5525,
    "prio": 1275,
-   "soma": 55508.5,
+   "soma": 55469.5,
    "zero": 20,
    "zeroSemAviso": 0
   },
@@ -51165,16 +51165,16 @@
    "abaixoPiso": 720,
    "n": 5525,
    "prio": 0,
-   "soma": 41304.5,
+   "soma": 41301.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|panturrilha": {
-   "abaixoMeta": 717,
+   "abaixoMeta": 720,
    "abaixoPiso": 370,
    "n": 5525,
    "prio": 1275,
-   "soma": 36474,
+   "soma": 36432,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -51183,25 +51183,25 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 43756,
+   "soma": 43751,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|posteriores": {
-   "abaixoMeta": 469,
+   "abaixoMeta": 470,
    "abaixoPiso": 497,
    "n": 5525,
    "prio": 1275,
-   "soma": 46593,
+   "soma": 46591,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|so:smith|quadriceps": {
-   "abaixoMeta": 648,
+   "abaixoMeta": 649,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 41582,
+   "soma": 41544,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -51210,7 +51210,7 @@
    "abaixoPiso": 1041,
    "n": 5525,
    "prio": 850,
-   "soma": 45116.5,
+   "soma": 45113.5,
    "zero": 975,
    "zeroSemAviso": 0
   },

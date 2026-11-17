@@ -11,7 +11,7 @@ Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-b
 | defeito | o que é | sem dor | % | linha de base | com dor | % | linha de base |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | A2 | dia com menos de 3 exercícios ou sem multiarticular | 355 | 1,0% | 7,5% | 3.697 | 5,1% | 23,5% |
-| A3 | dia mais longo acima de 110% dos minutos | 1.924 | 5,3% | 9,8% | 2.104 | 2,9% | 4,5% |
+| A3 | dia mais longo acima de 110% dos minutos | 1.924 | 5,3% | 9,8% | 2.108 | 2,9% | 4,5% |
 | A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 0 | 0,0% | 5,3% | 0 | 0,0% | 0,0% |
 | B1 | o mesmo exercício em todos os dias havendo outro do mesmo nível | 0 | 0,0% | 0,3% | 0 | 0,0% | 1,3% |
 | C1 | prioritário abaixo da meta com tempo e exercício | 440 | 1,2% | 4,1% | 697 | 1,0% | 5,8% |
@@ -19,8 +19,8 @@ Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-b
 | D3 | quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto) | 0 | 0,0% | 1,6% | 0 | 0,0% | 0,3% |
 | E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 0 | 0,0% | 0,2% | 0 | 0,0% | 0,0% |
 | seguranca | exercício impossível, acima da complexidade ou numa região com dor > 5 | 0 | 0,0% | 0,0% | 0 | 0,0% | 0,0% |
-| **sem nenhum defeito** |  | 33.532 | **92,4%** |  | 66.340 | 91,4% |  |
-| sem defeito, fora o D1 |  | 33.667 | 92,7% |  | 66.389 | 91,4% |  |
+| **sem nenhum defeito** |  | 33.532 | **92,4%** |  | 66.336 | 91,4% |  |
+| sem defeito, fora o D1 |  | 33.667 | 92,7% |  | 66.385 | 91,4% |  |
 
 Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampliada.md` foram descartadas com o rascunho; estas reproduzem a linha de base dele em todos os números publicados, menos o D1): o dia típico (A4) é a mediana dos dias; "tem tempo" (C1, E1) é o dia mais longo abaixo de 85% dos minutos; o foco (C1, C2) só conta músculos com exercício possível, e C2 compara com a mediana dos não prioritários que têm exercício possível; D1 e D3 só valem quando o equipamento permite puxar, e treinar quadríceps e posteriores. **O D1 usa o limite escrito na tabela 4.7 (empurrar ÷ puxar acima de 1,5)**: dá 6,1% na `main`, e não os 0,9% do protótipo, cuja leitura exata se perdeu. Por isso a linha "fora o D1" é a comparável com os 73,4% (hoje) e os 83,8% (final) do protótipo.
 

@@ -10,11 +10,11 @@
 
 | suspeito | ocorrências | % (dos dias ou dos programas) |
 | --- | ---: | ---: |
-| `dia.poucos-exercicios` | 273.987 | 7,5% dos dias |
-| `monotonia.todos-os-dias` | 176.261 | 19,3% dos programas |
-| `tempo.uso-baixo` | 157.660 | 17,3% dos programas |
+| `dia.poucos-exercicios` | 273.993 | 7,5% dos dias |
+| `monotonia.todos-os-dias` | 176.260 | 19,3% dos programas |
+| `tempo.uso-baixo` | 157.623 | 17,3% dos programas |
 | `regua.A2` | 40.414 | 4,4% dos programas |
-| `regua.A3` | 35.328 | 3,9% dos programas |
+| `regua.A3` | 35.335 | 3,9% dos programas |
 | `prioridade.abaixo-com-tempo` | 23.863 | 2,6% dos programas |
 | `regua.C1` | 15.624 | 1,7% dos programas |
 | `regua.D1` | 4.857 | 0,5% dos programas |
@@ -106,7 +106,7 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:remada_articulada | item | 20,4% | 17,7% | 48,6% | 13,4% | 5 | 15,4% | 21,7% |
 | so:roda_abdominal | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 25,7% |
 | so:rosca_maquina | item | 0% | 0% | 84,9% | 15,1% | 6 | 0% | 17,5% |
-| so:smith | item | 20,4% | 17,7% | 48,4% | 13,5% | 5 | 14,9% | 22,1% |
+| so:smith | item | 20,4% | 17,7% | 48,4% | 13,5% | 5 | 14,9% | 21,9% |
 | so:step | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 24% |
 | so:supino_maquina | item | 0% | 0,1% | 90% | 9,8% | 6 | 0,1% | 24,6% |
 | so:suspensao | item | 4,4% | 23,8% | 54,8% | 17% | 6 | 4,4% | 18,2% |
@@ -397,7 +397,7 @@ Mediana de exercícios distintos por programa; com 3 dias ou mais, % dos program
 | so:remada_articulada | 13 | 29,9% | 0% |
 | so:roda_abdominal | 12 | 36,3% | 0% |
 | so:rosca_maquina | 13 | 54,3% | 0% |
-| so:smith | 12 | 37% | 0% |
+| so:smith | 13 | 37% | 0% |
 | so:step | 12 | 36,3% | 0% |
 | so:supino_maquina | 13 | 29,7% | 0% |
 | so:suspensao | 14 | 30,4% | 0% |
@@ -653,12 +653,12 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | `volume.semanal.alvo` | 613.269 | 67,3% |
 | `equipamento.sem-ancoragem` | 419.900 | 46,1% |
 | `seguranca.dor.programa` | 375.375 | 41,2% |
-| `tempo.sobra` | 336.702 | 36,9% |
-| `tempo.corte` | 329.685 | 36,2% |
+| `tempo.sobra` | 336.696 | 36,9% |
+| `tempo.corte` | 329.714 | 36,2% |
 | `selecao.dia-sem-principal` | 266.710 | 29,3% |
 | `equipamento.sem-puxada-vertical` | 240.175 | 26,3% |
 | `selecao.alongado` | 153.000 | 16,8% |
-| `volume.prioridade.competicao` | 142.555 | 15,6% |
+| `volume.prioridade.competicao` | 142.558 | 15,6% |
 | `divisao.sem-puxar` | 744 | 0,1% |
 
 ## Piores casos
