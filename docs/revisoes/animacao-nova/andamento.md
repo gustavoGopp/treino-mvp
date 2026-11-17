@@ -116,4 +116,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A2 | `extensao-joelho-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos, onde se vê o encosto; "Parar longe da falha" sem desenho) |
 | A2 | `abducao-deitado-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a perna sobe 30°, o que a faixa permite pela medida do fabricante) |
 | A2 | `caminhada-lateral-mini-band` | feita, refeita uma vez (o passo e o meio agachamento não se liam) e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (dois passos para cada lado; o pé sobe 9 cm; abre de três quartos pela frente) |
-
+| A2 | `rosca-martelo-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação |
+| A2 | `triceps-elastico-alto` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a âncora no alto da porta; "Não testar o ponto alto" sem desenho: não muda o movimento) |
+| A2 | `elevacao-lateral-unilateral-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o pé pisa o tubo perto da ponta, para ele ficar esticado desde embaixo; o resto do tubo fica no chão) |
+| A2 | `abertura-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o laço longo dobrado; abre de cima; de trás as pontas penduradas parecem dois ganchos) |
