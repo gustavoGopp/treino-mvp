@@ -120,3 +120,6 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A2 | `triceps-elastico-alto` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a âncora no alto da porta; "Não testar o ponto alto" sem desenho: não muda o movimento) |
 | A2 | `elevacao-lateral-unilateral-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o pé pisa o tubo perto da ponta, para ele ficar esticado desde embaixo; o resto do tubo fica no chão) |
 | A2 | `abertura-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o laço longo dobrado; abre de cima; de trás as pontas penduradas parecem dois ganchos) |
+| A3 | `crucifixo-invertido-curvado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o tronco da remada curvada e o arco do crucifixo inverso; abre de três quartos por trás) |
+| A3 | `elevacao-lateral-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a mão livre na parede só equilibra; o tronco inclina 15° na coluna, com a bacia nivelada) |
+
