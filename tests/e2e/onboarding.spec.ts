@@ -265,7 +265,7 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
 test('Meus dados mostra a versão do app e a data da publicação', async ({ page }) => {
   // R3: para a pessoa conferir se o celular já está com a versão nova.
   await page.goto('/dados');
-  await expect(page.getByText(/^Versão do app: ([0-9a-f]{7}|local), publicada em \d{2}\/\d{2}\/\d{4}\.$/)).toBeVisible();
+  await expect(page.getByText(/^Versão ([0-9a-f]{7}|local) · \d{2}\/\d{2}\/\d{4}$/)).toBeVisible();
 });
 
 test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
@@ -378,7 +378,7 @@ test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
+  await page.getByText('Exercícios a evitar', { exact: true }).click();
   await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();

@@ -51,8 +51,8 @@ export function EscolhaEstiloBoneco() {
   const estilo = useEstiloBoneco();
   return (
     <section className="box">
-      <h2>Estilo do boneco</h2>
-      <div className="estilos-boneco" role="radiogroup" aria-label="Estilo do boneco">
+      <h2>Estilo do Boneco</h2>
+      <div className="estilos-boneco" role="radiogroup" aria-label="Estilo do Boneco">
         {OPCOES.map((o) => (
           <label key={o.id} className="estilo-boneco">
             <input type="radio" name="estilo-boneco" value={o.id} checked={estilo === o.id} onChange={() => definirEstiloBoneco(o.id)} />

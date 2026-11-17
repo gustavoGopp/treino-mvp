@@ -43,11 +43,10 @@ export function Restricoes() {
       <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
       <main className="conteudo">
         <Titulo>Algo a evitar</Titulo>
-        <p className="lede">Opcional. O programa é gerado de novo sem o que você marcar.</p>
         <form onSubmit={enviar} noValidate className="form">
           {meusItens.length > 0 && (
             <fieldset className="campo">
-              <legend>Algum equipamento que você tem, mas prefere não usar? (opcional)</legend>
+              <legend>Equipamento que prefere não usar</legend>
               <div className="opcoes">
                 {meusItens.map((id) => (
                   <Marcar key={id} marcado={evitarEq.includes(id)} aoMudar={(v) => setEvitarEq((x) => (v ? [...x, id] : x.filter((y) => y !== id)))}>
@@ -58,7 +57,7 @@ export function Restricoes() {
             </fieldset>
           )}
           <details className="campo dobra" open={evitarEx.length > 0}>
-            <summary>Algum exercício que você quer evitar? (opcional)</summary>
+            <summary>Exercícios a evitar</summary>
             <div className="opcoes">
               {possiveis.map((ex) => (
                 <Marcar

@@ -17,7 +17,7 @@ test('erro forçado numa tela: mostra a saída, exporta os dados dali, avisa o p
   await page.evaluate(() => sessionStorage.setItem('treino-teste-erro', '1'));
   await page.goto('/programa');
   await expect(page.getByRole('heading', { name: 'Algo deu errado nesta tela' })).toBeVisible();
-  await expect(page.getByText(/^Versão do app:/)).toBeVisible();
+  await expect(page.getByText(/^Versão /)).toBeVisible();
   for (const tema of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: tema });
     await conferir(page);

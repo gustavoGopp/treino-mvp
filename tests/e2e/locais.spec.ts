@@ -18,7 +18,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await page.getByRole('link', { name: 'Meus locais' }).click();
   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Meu local');
-  await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
+  await page.getByRole('link', { name: 'Novo local' }).click();
 
   // 2. O 2º local: nome por toque e a mesma tela de equipamento (atalhos e foto incluídos).
   await expect(page.getByRole('heading', { name: 'Novo local' })).toBeVisible();

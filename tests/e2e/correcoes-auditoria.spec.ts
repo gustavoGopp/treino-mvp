@@ -90,7 +90,7 @@ test('com um treino aberto, o programa não é gerado de novo: a mudança espera
   await page.getByRole('link', { name: /Voltar ao início/ }).click();
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
+  await page.getByText('Exercícios a evitar', { exact: true }).click();
   await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();

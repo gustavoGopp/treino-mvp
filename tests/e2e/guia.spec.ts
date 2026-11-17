@@ -40,8 +40,8 @@ test('o cinza é o padrão, o cor de pele fica em Meus dados e os desenhos de an
   await page.goto('/dados');
   await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
   // sessão de textos (16/11/2026): a folha são os dois bonecos, cada um com um nome de uma palavra embaixo
-  const folha = page.getByRole('dialog', { name: 'Escolha o Boneco' });
-  const grupo = folha.getByRole('radiogroup', { name: 'Estilo do boneco' });
+  const folha = page.getByRole('dialog', { name: 'Estilo do Boneco' });
+  const grupo = folha.getByRole('radiogroup', { name: 'Estilo do Boneco' });
   await expect(grupo.getByRole('radio', { name: 'Manequim', exact: true })).toBeChecked();
   await expect(grupo.getByRole('radio')).toHaveCount(2);
   // à vista, só o título, o "Fechar" e os dois nomes: nenhuma frase de explicação nem descrição

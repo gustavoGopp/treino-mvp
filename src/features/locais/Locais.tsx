@@ -23,9 +23,6 @@ export function Locais() {
       <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
       <main className="conteudo">
         <Titulo>Meus locais</Titulo>
-        <p className="lede">
-          O programa é montado para o local principal.
-        </p>
         <p role="status" className="status">
           {aviso}
         </p>
@@ -35,11 +32,11 @@ export function Locais() {
               <h2>{l.nome}</h2>
               <p className="ajuda">
                 {Object.keys(l.inventario).length === 1 ? '1 equipamento' : `${Object.keys(l.inventario).length} equipamentos`}
-                {l.id === principal?.id ? ' · o programa é montado para este local' : ''}
+                {l.id === principal?.id ? ' · principal' : ''}
               </p>
               <div className="acoes-local">
                 <Link className="btn sec pequeno" to={`/locais/${l.id}`} aria-label={`Editar ${l.nome}`}>
-                  Editar nome e equipamento
+                  Editar
                 </Link>
                 {l.id !== principal?.id && (
                   <button
@@ -47,10 +44,10 @@ export function Locais() {
                     className="btn sec pequeno"
                     onClick={() => {
                       atualizar((s) => ({ ...s, localPrincipalId: l.id }));
-                      setAviso(`${l.nome} é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino.`);
+                      setAviso(`${l.nome} é o principal. O programa muda quando você tocar em "Atualizar" no início.`);
                     }}
                   >
-                    Montar o programa para este local
+                    Tornar principal
                   </button>
                 )}
               </div>
@@ -58,7 +55,7 @@ export function Locais() {
           ))}
         </ul>
         <Link className="btn" to="/locais/novo">
-          Cadastrar outro local
+          Novo local
         </Link>
       </main>
       <NavInferior atual="dados" />
@@ -99,9 +96,6 @@ export function EditarLocal() {
           <label htmlFor="nome-local" className="rotulo">
             Nome do local
           </label>
-          <p className="ajuda" id="nome-local-ajuda">
-            Toque numa sugestão ou escreva o seu.
-          </p>
           {erroNome && (
             <p className="erro" id="nome-local-erro">
               {erroNome}
@@ -128,7 +122,7 @@ export function EditarLocal() {
             type="text"
             maxLength={40}
             value={nome}
-            aria-describedby={erroNome ? 'nome-local-ajuda nome-local-erro' : 'nome-local-ajuda'}
+            aria-describedby={erroNome ? 'nome-local-erro' : undefined}
             aria-invalid={!!erroNome || undefined}
             onChange={(e) => {
               setNome(e.target.value);
@@ -136,7 +130,7 @@ export function EditarLocal() {
             }}
           />
         </div>
-        <h2 className="secao">Que equipamento tem {nome.trim() ? `em "${nome.trim()}"` : 'neste local'}?</h2>
+        <h2 className="secao">Equipamento</h2>
         <FormularioInventario inicial={local?.inventario} aoSalvar={salvar} textoBotao="Salvar local" />
       </main>
     </div>
