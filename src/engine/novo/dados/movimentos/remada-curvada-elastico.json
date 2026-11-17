@@ -1,0 +1,372 @@
+{
+ "id": "remada-curvada-elastico",
+ "nome": "Remada curvada em pé com elástico, pisando no meio",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-curvada-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-curvada-elastico.md): pés inteiros no meio do elástico, tronco inclinado, costas retas; cotovelos para trás, perto do corpo; consenso de treinadores (Will Harlow, vídeo listado em docs/pesquisa-v2/17-biblioteca-ampliada.md, G2; a técnica do vídeo não foi conferida por dentro)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-curvada-elastico.json): pés na largura do quadril, joelhos levemente dobrados, uma ponta em cada mão, braços estendidos; puxa até as mãos chegarem perto do quadril, pausa curta, ~2 s voltando; as dicas e os erros",
+  "curvada": "A ficha de movimento da remada curvada com halteres aprovada (src/engine/novo/dados/movimentos/remada-curvada-halteres.json): a mesma postura (tronco, joelhos, pés), o mesmo braço que puxa e os mesmos erros de costas e de tronco; este exercício não tinha animação, e o que a ficha da técnica não dá em número sai dela",
+  "rosca": "A ficha de movimento da rosca com elástico aprovada (src/engine/novo/dados/movimentos/rosca-elastico.json): o tubo pisado no meio pelos dois pés, sob o meio da sola, subindo rente ao lado de fora das pernas",
+  "fisica": "Física do elástico: pisado e seguro pelo mesmo corpo, ele puxa as mãos para os pés e os pés para as mãos (força interna) e não muda o equilíbrio; a borracha não muda de volume, então o tubo afina ao esticar",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol, que estica até 3 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado",
+  "remadaSentada": "A ficha de movimento da remada sentada com elástico aprovada (src/engine/novo/dados/movimentos/remada-elastico.json): o tubo que dá voltas na mão, por cima do pegador ('segure curto'), para não começar frouxo"
+ },
+ "param": {
+  "tronco.inclinacao": {
+   "v": 62,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "tronco 'bem inclinado': o peito a 62° da vertical, parado a série toda, como na remada curvada com halteres aprovada (a ficha não dá número)"
+  },
+  "joelho": {
+   "v": 20,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "joelhos 'levemente dobrados': 20°, parados (o número da curvada com halteres aprovada)"
+  },
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"
+  },
+  "cervical": {
+   "v": -10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "cabeça na linha do pescoço"
+  },
+  "braco.inicio.atras": {
+   "v": 3,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar)"
+  },
+  "braco.inicio.fora": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (a mão passa ao lado do joelho)"
+  },
+  "braco.fim.alemDasCostas": {
+   "v": 26,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "curvada",
+   "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas"
+  },
+  "braco.fim.fora": {
+   "v": 16,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "curvada",
+   "o": "fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para a mão passar ao lado do quadril"
+  },
+  "escapula.prot.inicio": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "começo: 'ombro solto um pouco para baixo': a escápula vai à frente (na curvada com halteres aprovada, vindo do guia antigo: +6)"
+  },
+  "escapula.retr.fim": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "fim: a escápula se junta à coluna (na curvada com halteres aprovada, vindo do guia antigo: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo)"
+  },
+  "escapula.elev.inicio": {
+   "v": 1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "começo: a escápula como hoje (+1)"
+  },
+  "escapula.elev.fim": {
+   "v": -1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "fim: ombro baixo, longe da orelha (na curvada com halteres aprovada, vindo do guia antigo: −1)"
+  },
+  "erro.arredondar.lombar": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: a lombar curva 22° além da curva de repouso (na curvada com halteres aprovada, vindo do guia antigo: lombar de 74 para 60)"
+  },
+  "erro.arredondar.toracica": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: a parte de cima das costas curva 22° (na curvada com halteres aprovada, vindo do guia antigo: torácica de 76 para 100)"
+  },
+  "erro.arredondar.cervical": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: o pescoço estende para o olhar não ir ao peito"
+  },
+  "erro.subir.tronco": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "curvada",
+   "o": "erro: o tronco sobe 25° na puxada 'para esticar o elástico' (o cartão); o número é o da curvada com halteres aprovada"
+  },
+  "elastico.folgaNaPerna": {
+   "v": 0.8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "rosca",
+   "o": "o tubo sobe rente ao lado de fora da perna: o raio do tubo e a roupa (o número da rosca com elástico aprovada)"
+  },
+  "erro.pe.calcanhar": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o pé apoia só na ponta, com o calcanhar levantado 25° (a bola do pé no chão)"
+  },
+  "erro.pe.sola": {
+   "v": 0.97,
+   "un": "fração do pé",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o tubo passa sob a ponta dos dedos (97% do caminho do calcanhar à ponta do pé, a borda de onde ele escapa), e não no meio da sola"
+  },
+  "elastico.voltaNaMao": {
+   "v": 2.4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "remadaSentada",
+   "o": "raio da volta que o tubo dá em cada mão, por cima do pegador ('segure curto'; o número da remada sentada com elástico aprovada)"
+  },
+  "elastico.voltas": {
+   "v": 1,
+   "un": "voltas",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "uma volta em cada mão: sem ela, o tubo de 48 pol pisado no meio fica frouxo com os braços estendidos (0,9 vez o comprimento em repouso, medido)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.45,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Fim · segura",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.1,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "simetrico": true,
+ "regras": [
+  {
+   "id": "lombar-neutra",
+   "pede": "costas retas (a lombar não arredonda)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-parado-na-remada",
+   "pede": "tronco parado: sem subir o tronco para esticar o elástico",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "tronco-bem-inclinado",
+   "pede": "tronco bem inclinado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cotovelo-passa-as-costas",
+   "pede": "fim: cotovelos atrás do tronco",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "cotovelo-rente-na-remada",
+   "pede": "cotovelos para trás, perto do corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "carga-perto-do-quadril-no-fim",
+   "pede": "fim: as mãos perto do quadril",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "braco-estendido-no-comeco",
+   "pede": "começo: braços estendidos",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "escapulas-se-juntam",
+   "pede": "no fim as escápulas se juntam",
+   "selo": "consenso",
+   "fonte": "curvada"
+  },
+  {
+   "id": "palmas-uma-para-a-outra",
+   "pede": "pegada neutra (palmas uma para a outra), como na curvada com halteres",
+   "selo": "desenho",
+   "fonte": "curvada"
+  },
+  {
+   "id": "elastico-pisado-no-meio-da-sola",
+   "pede": "pés inteiros sobre o elástico: ele passa sob o meio da sola, com o calcanhar no chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o elástico não atravessa o corpo",
+   "selo": "consenso",
+   "fonte": "desenho"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "uma ponta em cada mão: o pegador dentro da mão fechada",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "costas",
+   "instante": 1,
+   "titulo": "Arredondar as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e a parte de cima das costas curvam",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "tronco",
+   "instante": 1,
+   "titulo": "Subir o tronco",
+   "vista": "lateral",
+   "oQueMuda": "o tronco levanta na puxada para esticar o elástico",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "pe",
+   "instante": 1,
+   "titulo": "Pisar só com a ponta do pé",
+   "vista": "lateral",
+   "oQueMuda": "os calcanhares saem do chão e o elástico fica só sob a ponta dos dedos, de onde pode escapar",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "calcanhar",
+    "ponta"
+   ],
+   "foco": "ponta"
+  }
+ ],
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "costas retas",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app",
+   "guia": [
+    "pelve",
+    "c7"
+   ]
+  },
+  {
+   "vista": "lateral",
+   "texto": "pés inteiros no elástico",
+   "ponto": "ponta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quinaTras",
+   "texto": "cotovelos para trás",
+   "ponto": "cotovelo:R",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

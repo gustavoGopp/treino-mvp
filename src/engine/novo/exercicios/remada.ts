@@ -41,7 +41,11 @@ export type ErroDaRemada = 'girar' | 'arredondar' | 'subir' | 'encolher' | 'curt
 export interface OpcoesDaRemada {
   /** Quem puxa: só o braço direito (o de perto na vista de lado) ou os dois. */
   bracos: 'R' | 'dois';
-  carga: 'halter' | 'kettlebell';
+  /**
+   * O que a mão segura. 'elastico' (acréscimo de 17/11, as remadas com elástico pisado): o pegador do tubo da tabela; o
+   * núcleo não desenha carga nenhuma (quem usa desenha o elástico) e o equilíbrio não ganha peso.
+   */
+  carga: 'halter' | 'kettlebell' | 'elastico';
   base(corpo: Corpo): BaseDaRemada;
   erros: Record<string, ErroDaRemada>;
   /**
@@ -129,7 +133,7 @@ export function criarRemada(fichaJson: unknown, op: OpcoesDaRemada): Remada {
     const uu = tipo === 'soBracos' ? 0 : u;
     // pegada neutra: o cabo (ou a alça) atravessa a palma de frente para trás; o polegar aponta para a frente
     const polegar = norm(perp([0, 0, 1], ante));
-    const diam = op.carga === 'kettlebell' ? obj('kettlebell', 'alcaDiam') : obj('halter', 'caboDiam');
+    const diam = op.carga === 'kettlebell' ? obj('kettlebell', 'alcaDiam') : op.carga === 'elastico' ? obj('elastico', 'pegadorDiam') : obj('halter', 'caboDiam');
     return {
       umero,
       antebraco: ante,
@@ -200,7 +204,7 @@ export function criarRemada(fichaJson: unknown, op: OpcoesDaRemada): Remada {
           q.pecas!.push({ t: 'halter', centro, eixo });
           q.cargas.push({ massa: f('carga'), pos: centro });
           if (k === 'R') q.marcas.halter = centro;
-        } else {
+        } else if (op.carga === 'kettlebell') {
           const K = kettlebellNaMao(e, k, f('kettlebell.folga'));
           q.prims.push(...K.prims);
           q.pecas!.push(K.peca);
