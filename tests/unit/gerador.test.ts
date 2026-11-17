@@ -287,7 +287,10 @@ for (const [nome, base] of Object.entries(PERSONAS))
       });
 const GRUPOS_GRANDES: Musculo[] = ['peito', 'costas', 'ombro_lateral', 'quadriceps', 'posteriores', 'gluteos'];
 
-describe(`propriedade do R1: dor em 1 ou 2 regiões (${comDores.length} combinações)`, () => {
+// Limite de 30 s, como as outras propriedades deste arquivo: desde a etapa 2 da sessão "treino para todos" (pacote 3),
+// com dor forte o gerador monta a semana em mais de uma divisão e fica com a melhor; as 672 combinações passaram de
+// ~1,9 s para ~2,7 s (cerca de 4 ms por programa) e, com a medida de cobertura, estouravam os 5 s na verificação automática.
+describe(`propriedade do R1: dor em 1 ou 2 regiões (${comDores.length} combinações)`, { timeout: 30_000 }, () => {
   it('nenhum dia sem exercício principal, e nenhum grupo grande com 0 série sem aviso com o motivo', () => {
     for (const v of comDores) {
       const p = ok(v.perfil, v.inv);
