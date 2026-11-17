@@ -82,5 +82,5 @@ A medida agora usa a regra do próprio app (antes, a janela era aplicada por for
 
 ## 8. Decisões (uma por vez)
 
-1. **Os números da janela (4, 8 e 16) ficam assim até haver um export de uso real?** *Recomendo sim.* São os da proposta; a alternativa medida (3, 5 e 8) reduz bem menos o aviso (24, 28 e 31 sessões em 48).
-2. **Fechar a etapa 2?** Com o pacote 5, a proposta inteira está no ramo. O fechamento é: a revisão cega final contra a `main` (todas as mudanças juntas), a simulação, os doze exemplos finais, o resumo e a lista do que fica para depois. *Recomendo sim.* Depois disso vem a sua decisão sobre a ida para a `main`.
+1. ~~Os números da janela (4, 8 e 16) ficam assim até haver um export de uso real?~~ **Decidido em 17/11/2026: ficam.** São os da proposta; a alternativa medida (3, 5 e 8) reduz bem menos o aviso (24, 28 e 31 sessões em 48).
+2. ~~Fechar a etapa 2?~~ **Decidido em 17/11/2026: sim.** O fechamento está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md). A ida para a `main` continua sendo uma decisão à parte do Gustavo.
