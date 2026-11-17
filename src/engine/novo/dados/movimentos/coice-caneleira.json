@@ -1,0 +1,236 @@
+{
+ "id": "coice-caneleira",
+ "nome": "Coice de glúteo em quatro apoios com caneleira",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/coice-caneleira.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/coice-caneleira.md): quatro apoios, caneleira no tornozelo (consenso, 17, G3); estender o quadril até a coxa ficar na linha do tronco (consenso, selkowitz2013); 'o mesmo do coice com elástico'",
+  "app": "Texto do app (src/conteudo/exercicios/coice-caneleira.json): uma caneleira bem presa no tornozelo e um colchonete; em quatro apoios, mãos sob os ombros, joelhos sob o quadril; costas retas, abdômen firme; coice ~1 s, levando o pé para trás e para cima, com o joelho dobrado, até a coxa ficar na linha do tronco; pausa curta no alto, apertando o glúteo; volta ~2 s até o joelho voltar para baixo do quadril; 'Coxa na linha do tronco'; 'Lombar parada'; erros 'Arquear a lombar no fim' (a perna sobe acima do tronco e a lombar dobra), 'Girar o quadril' (o quadril abre para o lado), 'Parar longe da falha'",
+  "aprovada": "Animação do coice com elástico, aprovada por delegação (exercicios/coice-elastico.ts e dados/movimentos/coice-elastico.json): o mesmo corpo em quatro apoios (o núcleo exercicios/quatro-apoios.ts), o mesmo caminho da coxa e os mesmos erros desenhados",
+  "objetos": "src/engine/novo/dados/objetos/caneleira.json (a caneleira de 2 lb: 30,5 × 10,8 × 1,27 cm, 0,91 kg) e dados/objetos.json (o colchonete: 100 × 50 × 1,5 cm, medidas provisórias)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "maos.meiaDistancia": {
+   "v": 17,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "as mãos sob os ombros (o cartão): o centro da palma a 17 cm do meio do corpo (o centro do ombro, na tabela do corpo, fica a ~17 cm; o do coice com elástico)"
+  },
+  "cotovelo": {
+   "v": 5,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "os braços estendidos, sem travar o cotovelo: 5° de flexão (o do coice com elástico); a inclinação das costas sai daí (a mão chega ao colchonete sob o ombro)"
+  },
+  "lombar": {
+   "v": 6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "costas retas, abdômen firme (o cartão): a lombar 6° menos curva que em pé (o do coice com elástico; a ficha não dá número)"
+  },
+  "cervical": {
+   "v": -4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "a cabeça na linha das costas, o olhar no colchonete um pouco à frente das mãos: o pescoço estende 4° (o do coice com elástico)"
+  },
+  "coxa.inicio": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "no começo, o joelho sob o quadril (o cartão), sem apoiar: a coxa 12° atrás da vertical, e o joelho fica ~1 cm acima do colchonete (o do coice com elástico)"
+  },
+  "joelho": {
+   "v": 90,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "o joelho dobrado a 90° o tempo todo (o cartão: 'com o joelho dobrado'; o do coice com elástico)"
+  },
+  "pe.flexaoPlantar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o pé em ângulo reto com a canela: no alto, a sola para o teto (o do coice com elástico)"
+  },
+  "colchonete.recua": {
+   "v": -13,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o meio do colchonete 13 cm atrás do meio entre as mãos e os joelhos: as mãos e os joelhos cabem nele (o do coice com elástico; o colchonete tem 100 cm, medida provisória da tabela)"
+  },
+  "erro.lombar.acima": {
+   "v": 20,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a perna sobe acima do tronco (o cartão): a coxa passa 20° da linha do tronco (o do coice com elástico)"
+  },
+  "erro.lombar.bacia": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a lombar dobra (o cartão): a bacia vira 14° para a frente e a lombar arqueia o mesmo tanto, com o peito parado (o do coice com elástico)"
+  },
+  "erro.gira.rola": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: o quadril abre para o lado (o cartão): a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio (o do coice com elástico)"
+  },
+  "erro.gira.abre": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "erro: com a bacia rolada, a coxa sobe abrindo 22° para fora, e o pé vai para o lado (o do coice com elástico)"
+  },
+  "caneleira.massa": {
+   "v": 0.91,
+   "un": "kg",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "uma caneleira de 2 lb no tornozelo da perna que trabalha (a ficha não dá a carga; é a da tabela)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Joelho sob o quadril",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "costas retas",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Coice · concêntrica",
+   "tipo": "conc",
+   "dur": 1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "No alto · aperta o glúteo",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "mao.R",
+  "mao.L",
+  "joelho.L",
+  "pe.L",
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "quatro-apoios-maos-e-joelhos",
+   "pede": "em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "coice-coxa-na-linha-do-tronco",
+   "pede": "estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "coice-quadril-nao-gira",
+   "pede": "o quadril de frente para o chão, sem girar",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "quadril-caneleira-presa-no-tornozelo",
+   "pede": "a caneleira bem presa no tornozelo da perna que trabalha: não escorrega e não entra no colchonete",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "lombar",
+   "instante": 1,
+   "titulo": "Arquear a lombar no fim",
+   "vista": "lateral",
+   "oQueMuda": "a perna sobe acima do tronco e a lombar dobra",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "c7",
+    "pelve",
+    "joelho:R"
+   ],
+   "foco": "pelve"
+  },
+  {
+   "id": "gira",
+   "instante": 1,
+   "titulo": "Girar o quadril",
+   "vista": "posterior",
+   "oQueMuda": "a bacia rola para o lado da perna que trabalha e a coxa abre para fora",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "quadril:L",
+    "quadril:R"
+   ],
+   "foco": "quadril:R"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "coxa na linha do tronco",
+   "ponto": "joelho:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "lombar parada",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}
