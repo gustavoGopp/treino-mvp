@@ -126,7 +126,7 @@ export const tricepsTestaHalteres: Exercicio = {
   ficha: F,
   // de lado (o cotovelo dobra no plano de lado) e de três quartos (o tríceps e o halter ao lado da cabeça); de cima o
   // braço aponta para quem olha e o tríceps não aparece (medido: 0 cm²); de frente as coxas tapam a cabeça e os braços
-  vistas: ['lateral', 'quina'],
+  vistas: ['quina', 'lateral'], // de três quartos primeiro: de lado, no fim da descida, o halter parece estar no rosto (fica 6 cm ao lado)
   quadro,
   // só o tríceps (principal), como a ficha da técnica e a biblioteca
   papeis: { triceps: 'p' },
