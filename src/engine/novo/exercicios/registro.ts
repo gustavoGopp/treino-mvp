@@ -93,3 +93,4 @@ export { aducaoCaneleira } from './aducao-caneleira';
 export { abducaoMiniBand } from './abducao-mini-band';
 export { extensaoJoelhoCaneleira } from './extensao-joelho-caneleira';
 export { crucifixoInverso } from './crucifixo-inverso';
+export { roscaScottBancoInclinado } from './rosca-scott-banco-inclinado';
