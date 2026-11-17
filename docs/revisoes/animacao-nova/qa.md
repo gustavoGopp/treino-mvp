@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 90 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 96 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 1710 células dos cuidados 1 a 19: M 692, M! 82, O 643, C 270, – 22, ✗ 1.
+Contagem das 1824 células dos cuidados 1 a 19: M 738, M! 83, O 691, C 288, – 22, ✗ 2.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -66,6 +66,9 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `bulgaro-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-peso-corpo.png) |
 | `bulgaro-suspensao` | 1 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-suspensao.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
+| `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
+| `crucifixo-inclinado-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-inclinado-halteres.png) |
+| `crucifixo-inverso` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/crucifixo-inverso.png) |
 | `crucifixo-invertido-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-polia.png) |
 | `crucifixo-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia.png) |
 | `desenvolvimento` | 3 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento.png) |
@@ -119,11 +122,13 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `rosca-kettlebell` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-kettlebell.png) |
 | `rosca-martelo` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo.png) |
 | `rosca-polia` | 5 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia.png) |
+| `rosca-scott-banco-inclinado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/rosca-scott-banco-inclinado.png) |
 | `rosca-suspensao` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-suspensao.png) |
 | `stiff` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff.png) |
 | `stiff-elastico` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-elastico.png) |
 | `stiff-kettlebell` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-kettlebell.png) |
 | `stiff-unilateral` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-unilateral.png) |
+| `supino-chao-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/supino-chao-halteres.png) |
 | `supino-inclinado` | 3 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-inclinado.png) |
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
 | `triceps-corda` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-corda.png) |
@@ -133,6 +138,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `triceps-frances-kettlebell` | 5 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-frances-kettlebell.png) |
 | `triceps-frances-polia-unilateral` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-frances-polia-unilateral.png) |
 | `triceps-suspensao` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/triceps-suspensao.png) |
+| `triceps-testa-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-testa-halteres.png) |
 | `yt-suspensao` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/yt-suspensao.png) |
 
 ## Os avisos e o que não foi cumprido
@@ -140,7 +146,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 Dois avisos aparecem em quase todas e não entram na lista abaixo:
 
 - **Cuidado 1, linhas provisórias** (0 animações): linhas da ficha do movimento que são escolha de desenho, sem número na ficha da técnica. Estão listadas, animação por animação, em `prototipos/conferencia.md`.
-- **Cuidado 8, diferenças de músculo aceitas** (24 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
+- **Cuidado 8, diferenças de músculo aceitas** (25 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
 
 Os demais:
 
@@ -178,6 +184,8 @@ Os demais:
   - cuidado 2: extensão do quadril → 25°
 - `crucifixo-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (198,1 a 263,6 cm); em cima, 1,3 vezes
+- `crucifixo-inverso`
+  - cuidado 14: o erro "Carga pesada demais" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `desenvolvimento-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 2,3 a 2,8 vezes (344,4 a 428 cm); em cima, 2,3 vezes
 - `desenvolvimento-unilateral-kettlebell`
@@ -294,6 +302,9 @@ Os demais:
 - `bulgaro-peso-corpo`: aprovada por delegação (risco baixo)
 - `bulgaro-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o berço com uma tira de cada lado do pé, o pé girando no berço)
 - `crucifixo-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo de 60 pol preso numa porta atrás, na altura do peito)
+- `crucifixo-halteres`: (sem linha no andamento)
+- `crucifixo-inclinado-halteres`: (sem linha no andamento)
+- `crucifixo-inverso`: (sem linha no andamento)
 - `crucifixo-invertido-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de trás)
 - `crucifixo-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (duas colunas; a vista padrão passou a ser a de frente)
 - `desenvolvimento`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável agora é um desenho só, o mesmo da rosca inclinada)
@@ -347,11 +358,13 @@ Os demais:
 - `rosca-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `rosca-martelo`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb)
 - `rosca-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a barra reta, que é peça nova; a coluna é cortada em cima pelo quadro)
+- `rosca-scott-banco-inclinado`: (sem linha no andamento)
 - `rosca-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `stiff`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (desce até o meio da canela, como a ficha pede; hoje para no joelho)
 - `stiff-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (uma volta do elástico em cada mão, para ele não ficar frouxo embaixo)
 - `stiff-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `stiff-unilateral`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
+- `supino-chao-halteres`: (sem linha no andamento)
 - `supino-inclinado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): encosto a 30°, com o ângulo marcado no banco e no rótulo
 - `supino-reto`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `triceps-corda`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
@@ -361,4 +374,5 @@ Os demais:
 - `triceps-frances-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `triceps-frances-polia-unilateral`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `triceps-suspensao`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje
+- `triceps-testa-halteres`: (sem linha no andamento)
 - `yt-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação

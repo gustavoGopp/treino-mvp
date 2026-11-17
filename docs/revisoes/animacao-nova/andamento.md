@@ -96,3 +96,16 @@ Resumo: as 90 animações estão feitas e aprovadas. 23 aprovadas pelo Gustavo (
 | 7 | `extensao-joelho-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `extensao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado na ponta do banco; o joelho dobra 69° embaixo, porque mais que isso o pé encosta no chão) |
 | 7 | `roda-abdominal` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a roda é peça nova e gira conforme anda) |
+
+## As animações restantes (desde 17/11/2026)
+
+Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-restantes/plano.md`). "Espera a ligação" = conferida e aprovada, mas fora do app até o `animacaoId` entrar na biblioteca com o texto do guia, o que muda o treino gerado e espera o ok do Gustavo (`ESPERAM_A_LIGACAO` em `src/engine/novo/aprovados.ts`). "Para o Gustavo ver" = risco médio ou alto, fora do app até ele olhar (`PARA_O_GUSTAVO_VER`). As conferências escritas ficam em `lote-A1/`.
+
+| Lote | Exercício | Estado |
+|---|---|---|
+| A1 | `crucifixo-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de cima, como os outros crucifixos desde 05/11; de três quartos o braço de perto aponta para quem olha) |
+| A1 | `crucifixo-inclinado-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de cima; o erro das escápulas é sutil, como no supino inclinado) |
+| A1 | `crucifixo-inverso` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a cena da remada apoiada; "Carga pesada demais" não é desenhado: o cartão só descreve ritmo) |
+| A1 | `supino-chao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o braço desce até encostar no chão, medido na pele) |
+| A1 | `triceps-testa-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (no chão, com colchonete; abre de três quartos, porque de lado o halter parece estar no rosto) |
+| A1 | `rosca-scott-banco-inclinado` | **para o Gustavo ver**: em pé, encosto a 60°; o braço livre fica pendurado ao lado do banco, o braço que trabalha deita 9 cm fora do meio do encosto e o erro "travar o cotovelo" é discreto |

@@ -70,7 +70,7 @@ const { quadro } = crucifixoDeitado(F, deitar);
 
 export const crucifixoHalteres: Exercicio = {
   ficha: F,
-  vistas: ['quina', 'cima'],
+  vistas: ['cima', 'quina'], // abre de cima, como os outros crucifixos (decisão do Gustavo de 05/11/2026: de cima se vê o arco das mãos e o cotovelo fixo; de três quartos o braço de perto aponta para quem olha)
   quadro,
   // o peito (principal) e a frente do ombro (secundário): a ficha da técnica e a biblioteca
   papeis: { peitoral: 'p', deltAnt: 's' },
