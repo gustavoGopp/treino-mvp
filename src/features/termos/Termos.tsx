@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { CONTATO_EMAIL, FOTO_LIGADA, RESPONSAVEL } from '../app/contato';
 import { useApp } from '../app/estado';
 import { ParaOndeVaiAFoto } from '../app/privacidade';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { Explicacoes, Selo, Titulo, Topo } from '../app/ui';
 
 // Termos de uso e aviso de privacidade (R5c, P2). Sem revisão jurídica: o Gustavo decidiu dispensá-la em 08/11/2026.
 // O conteúdo segue a LGPD (lgpd: arts. 5º, 8º, 9º, 11, 18 e 33), a Res. CD/ANPD 2/2022 (anpd2-2022) e o que a Anthropic
@@ -26,6 +26,8 @@ export function Termos() {
       <Topo voltar={{ para: voltar, rotulo: estado.programa ? 'Meus dados' : 'Início' }} />
       <main className="conteudo termos">
         <Titulo>Termos de uso e privacidade</Titulo>
+        {/* os termos são um documento para ler: os selos dele (a regra e a fonte de cada afirmação) continuam aqui */}
+        <Explicacoes>
         <p className="muted">
           Versão {TERMOS_VERSAO}.
         </p>
@@ -142,6 +144,7 @@ export function Termos() {
           Fontes: LGPD (Lei nº 13.709/2018), arts. 5º, 8º, 9º, 11, 18 e 33; Resolução CD/ANPD nº 2/2022; páginas da Anthropic sobre
           retenção de dados, localização dos servidores e termos comerciais, lidas em 07/11/2026.
         </p>
+        </Explicacoes>
       </main>
     </div>
   );

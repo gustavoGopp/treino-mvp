@@ -42,14 +42,13 @@ export function BoasVindas() {
           </div>
         )}
         <AvisoSalvar />
-        <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
         <section className="nota-aviso" aria-labelledby="nao-faz">
           <Icone nome="info" />
           <div>
             <h2 id="nao-faz">O app orienta, não diagnostica</h2>
             <p>
               Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.{' '}
-              <PorQue regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
+              <PorQue essencial regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
                 <p>
                   O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não
                   uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.
@@ -80,7 +79,7 @@ export function BoasVindas() {
             Começar
           </button>
           <p className="ajuda termos-linha">
-            4 passos, uns 3 minutos. Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+            Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
           </p>
         </div>
       </main>

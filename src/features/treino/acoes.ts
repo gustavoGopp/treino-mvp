@@ -129,9 +129,9 @@ export function trocarExercicio(e: Estado, i: number, alternativa: string): Esta
 }
 
 /** Termina o treino: vai para o histórico. Exercícios sem série nenhuma continuam registrados (sem séries). */
-export function terminarSessao(e: Estado, agora: string, porAlerta = false): Estado {
+export function terminarSessao(e: Estado, agora: string, porAlerta = false, alerta?: Sessao['alerta']): Estado {
   if (!e.sessaoAtual) return e;
-  const feita: Sessao = { ...e.sessaoAtual, fim: agora, ...(porAlerta ? { encerradaPorAlerta: true } : {}) };
+  const feita: Sessao = { ...e.sessaoAtual, fim: agora, ...(porAlerta ? { encerradaPorAlerta: true } : {}), ...(porAlerta && alerta ? { alerta } : {}) };
   const { sessaoAtual, ...resto } = e;
   void sessaoAtual;
   return { ...resto, historico: [...e.historico, feita] };

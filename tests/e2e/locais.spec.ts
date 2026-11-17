@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { abrirExercicio, ana, marcarItem, porQueDaSugestao, terminarTreino } from './jornada';
+import { abrirExercicio, ana, marcarItem, terminarTreino } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -18,7 +18,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await page.getByRole('link', { name: 'Meus locais' }).click();
   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Meu local');
-  await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
+  await page.getByRole('link', { name: 'Novo local' }).click();
 
   // 2. O 2º local: nome por toque e a mesma tela de equipamento (atalhos e foto incluídos).
   await expect(page.getByRole('heading', { name: 'Novo local' })).toBeVisible();
@@ -43,6 +43,9 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(onde.getByRole('button', { name: 'Academia' })).toHaveAttribute('aria-pressed', 'true');
   // Pacote 2 (15/11/2026): o exercício de agachar da Ana é o goblet (antes, o búlgaro); na Academia, sem halteres, ele
   // vira o leg press, com o mesmo motivo.
+  // sessão de textos (16/11/2026): a lista das trocas fica a um toque (a lista do dia, logo abaixo, já mostra os exercícios)
+  await expect(onde).toContainText('Em Academia: o treino muda.');
+  await onde.locator('summary', { hasText: /^\d+ trocas?$/ }).click();
   const trocas = page.getByRole('list', { name: 'Trocas em Academia' });
   await expect(trocas).toContainText('Aqui não tem halteres: agachamento goblet com calcanhar elevado → leg press.');
   await onde.scrollIntoViewIfNeeded();
@@ -53,8 +56,8 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
   await expect(page.getByText('Aqui não tem halteres: agachamento goblet com calcanhar elevado → leg press.')).toBeVisible();
   await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
-  await expect(await porQueDaSugestao(page)).toContainText(/Calibração da carga/);
-  await page.keyboard.press('Escape');
+  // sessão de textos (16/11/2026): o motivo da 1ª vez não fica mais a um toque na tela do treino (está em "Entenda o
+  // treino"); a regra da calibração num aparelho novo continua conferida em tests/unit/calibracao.test.ts
   await print(page, 'troca-explicada');
 
   const mais = page.getByRole('button', { name: 'Mais anilha de cada lado' });
@@ -67,7 +70,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
 
   // 8 kg por lado × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg por lado × 20 · RIR 4+ · acerto da carga');
-  await expect(page.getByText('Calibração: Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
+  await expect(page.getByText('Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
   await expect(page.getByRole('group', { name: 'Anilhas por lado' })).toContainText('12 kg');
   await print(page, 'calibracao');
 
@@ -87,8 +90,8 @@ test('"prefiro este" nas alternativas: um toque marca, outro desfaz, e o program
   const nome = (await prefiro.innerText()).replace(/^Prefiro /, '');
   await prefiro.click();
   await expect(cartao.getByRole('button', { name: `Você prefere ${nome} · desfazer` })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toBeVisible();
+  await expect(page.getByText('Versão nova do programa.')).toBeVisible();
   await cartao.getByRole('button', { name: `Você prefere ${nome} · desfazer` }).click();
   await expect(cartao.getByRole('button', { name: `Prefiro ${nome}` })).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
 });

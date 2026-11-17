@@ -1,0 +1,104 @@
+{
+  "_como_ler": "Decisões à mão do inventário de textos (16/11/2026). `exatos`: texto inteiro → função, vale antes de qualquer regra. `padroes`: só para o que nenhuma regra do script classificou; o 1º padrão que casar vale. Funções: ver FUNCOES em classificar.mjs.",
+  "exatos": {
+    "Monta o programa, mostra cada exercício e diz o porquê.": "descreve o que já se vê",
+    "Você pode escolher um nível abaixo do sugerido, nunca acima.": "descreve o que já se vê",
+    "Nada vem marcado.": "descreve o que já se vê",
+    "Dá para mudar depois, em Meus dados.": "descreve o que já se vê",
+    "Como o guia desenha os exercícios": "descreve o que já se vê"
+  },
+  "padroes": [
+    [
+      "^Você (tem hoje|está com febre|toma remédio)|PAR-Q|sem a nota de hoje|pinos de segurança|Travas nas anilhas|Nunca agache|barra bem presa|Solte a trava",
+      "segurança"
+    ],
+    [
+      "^Você autorizou o envio|^Sem autorizar|Ao começar, você concorda",
+      "privacidade"
+    ],
+    [
+      "^(\\d{2}/\\d{2}|\\dª|Hoje:|recorde) .*(kg|placa)|^até \\d+ min$|^\\d+ das últimas \\d+ semanas|^\\d{2}/\\d{2} a \\d{2}/\\d{2}|^\\d+ × |^\\d+ equipamentos? ·|^(kg|min|—)$",
+      "número"
+    ],
+    [
+      "^Aqui não tem |: o que muda neste treino\\.$|^(Está bom|Dá para melhorar)|^Ajustar: |^Motivo: |^Há \\d+ detalhes?|^(Diga|Escolha quant|Informe|Marque pelo menos|Nenhuma marcada|Faltam responder)|versão nova do seu programa|será atualizado depois|ficaram abaixo da meta|^Seus treinos levam|^Nas últimas \\d+ semanas|^1 treino nesta semana|^Faz \\d+ dias|^Hora da próxima série$|^Conferindo|^(Nenhum arquivo|Escolhido:)|^Versão do app|Provável|Com certeza|Talvez|^Reconhecida|^Não reconhecemos|^Você (respondeu|não marcou|terminou|não registrou)|^Nada com |não tem alternativa|com carga para subir|^Ainda não há|^No lugar de |^guia em texto$|^escolha$|^Um toque marcou|^Sem equipamento: o programa|^Apagar este treino\\?|O programa só muda se você escolher|^(Corpo todo|Superior/Inferior)|^(Iniciante|Intermediário|Avançado)$",
+      "estado"
+    ],
+    [
+      "^Toque |^Abra o app|^Recarrega o app|^Escolha até 2\\.$|^Entre 20 e 150|^Logo depois da série|^Bi-set com|mais placa = mais ajuda|^Marque as que valem|^Confira cada item|^Para dar a nota de hoje",
+      "instrução"
+    ],
+    [
+      "^Conte só o tempo|^Tempo total|contam como meia série|^Conta a série|^A barra é o que foi feito|^Sua evolução:|termos de sempre|^Cada estação vale|costuma estar (pintado|escrito)|cada local tem a sua lista|^Cerca de metade das séries|^Vale para |^Sem contar o peso|montado para o local principal|^Opcional\\. O programa",
+      "definição"
+    ],
+    [
+      "^Depois de uma pausa|^Isso define|porque dependem|^Rendem o mesmo|^Sem escolha, o programa|classificamos para baixo|^Os grupos prioritários|^Com 2 a 6 dias|^Com o mesmo volume|^O treino é de força|^Nada vem marcado\\. Com|^Com o ajuste|^Para descansar, não para crescer|^Ainda calibrando|leve demais para a faixa|^Semana leve\\?",
+      "justificativa"
+    ],
+    [
+      "^A sua semana \\d",
+      "número"
+    ],
+    [
+      "^Semana leve até",
+      "estado"
+    ],
+    [
+      "^(Descanso|O tempo dos seus treinos|Polia dupla \\(crossover\\)|Banco romano ou GHD|Barra reta|Hack ou pendular|Abdutora e adutora)$",
+      "título ou rótulo"
+    ],
+    [
+      "^Sem nada marcado|itens? marcados?\\. Tire",
+      "estado"
+    ],
+    [
+      "^Com aquecimento e descansos|^Não sabe\\? O app usa",
+      "definição"
+    ],
+    [
+      "^Tocar numa opção gera",
+      "instrução"
+    ],
+    [
+      "abaixo da meta\\.$|passa do tempo\\.$|: o treino (muda|é o mesmo)\\.$|^Versão nova do programa",
+      "estado"
+    ],
+    [
+      "^Termos comuns do treino",
+      "definição"
+    ],
+    [
+      "^Vaga de |^Descanso de \\d.*(rende|crescimento)|perto da falha|^Multiarticular: |^Ordem da sessão: |^A semana leve é sugerida",
+      "justificativa"
+    ],
+    [
+      "^No quadro da semana, conta a série",
+      "definição"
+    ],
+    [
+      "^\\d+ de \\d+ treinos\\. |^Nenhuma série registrada|^\\d+ de \\d+ exercícios feitos\\.",
+      "estado"
+    ],
+    [
+      "traz a montagem segura",
+      "segurança"
+    ],
+    [
+      "^Sem descansar, tire ",
+      "instrução"
+    ],
+    [
+      "^Metade das séries",
+      "instrução"
+    ],
+    [
+      "^Nova semana\\. O próximo treino é|^Ainda sem treino registrado",
+      "estado"
+    ],
+    [
+      "^Até \\d+ fotos do lugar onde você treina",
+      "instrução"
+    ]
+  ]
+}

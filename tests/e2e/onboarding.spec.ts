@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, pronto, sobreOPrograma, triagem, verAvisos } from './jornada';
+import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, porQueDaSugestao, pronto, sobreOPrograma, triagem, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -20,32 +20,35 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // animação em 04/11/2026 e a ponte com halter em 10/11/2026 (R5-anim, lote 2): o dia A não tem mais cartão; o B tem
   // um (o crucifixo invertido sentado), conferido abaixo.
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
-  // Semana 1 (fase de aprendizado da iniciante): RIR 3–4; o porquê, com o selo de evidência, fica na folha do exercício.
+  // Semana 1 (fase de aprendizado da iniciante): RIR 3–4. Sessão de textos (16/11/2026): o porquê do exercício, com o
+  // selo de evidência, saiu da folha e está em "Entenda o treino" → "Os exercícios" (conferido no fim deste teste).
   let folha = await abrirExercicio(page, /Agachamento goblet/);
   await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
-  await expect(folha.locator('.selo').first()).toBeVisible();
-  // R5b: o porquê começa pelo específico (a vaga, o músculo, o foco, as séries da semana e por que ganhou).
-  await expect(folha.getByText(/^Vaga de agachar, para o quadríceps, o seu foco: \d+ das \d+ séries da semana/)).toBeVisible();
+  await expect(folha.locator('.selo, .porque')).toHaveCount(0);
   await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
   // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
   await expect(painel.getByRole('button', { name: /Stiff com halteres/ })).toBeVisible();
-  // Avisos de meta por músculo em "Sobre o programa".
-  folha = await sobreOPrograma(page);
-  await expect(folha.getByText(/Abaixo da meta/).first()).toBeVisible();
-  // R5b: "Como está o seu programa", a saída do avaliador, com o selo e o próximo passo de cada achado.
-  await expect(folha.getByRole('heading', { name: 'Como está o seu programa' })).toBeVisible();
-  await expect(folha.getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
-  await expect(folha.getByText(/Foco abaixo da meta: .* Para chegar lá, mais minutos, mais dias ou menos grupos de foco\./)).toBeVisible();
-  await folha.getByRole('button', { name: 'Fechar' }).click();
-
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
   folha = await abrirExercicio(page, /Agachamento goblet/);
   await folha.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/goblet\?de=programa&dia=corpo-a&ex=goblet$/);
-  await expect(page.getByTestId('prescricao')).toContainText('RIR 3–4');
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+
+  // Avisos de meta por músculo em "Entenda o treino" → "O seu programa" (era a folha "Sobre o programa").
+  const sobre = await sobreOPrograma(page);
+  await expect(sobre.getByText(/Abaixo da meta/).first()).toBeVisible();
+  // R5b: "Como está o seu programa", a saída do avaliador, com o selo e o próximo passo de cada achado.
+  await expect(sobre.getByRole('heading', { name: 'Como está o seu programa' })).toBeAttached();
+  await expect(sobre.getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
+  await expect(sobre.getByText(/Foco abaixo da meta: .* Para chegar lá, mais minutos, mais dias ou menos grupos de foco\./)).toBeVisible();
+  await expect(sobre.locator('.selo').first()).toBeVisible();
+  // R5b: o porquê do exercício começa pelo específico (a vaga, o músculo, o foco, as séries da semana e por que ganhou).
+  const exercicio = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
+  await expect(exercicio.getByText(/^Vaga de agachar, para o quadríceps, o seu foco: \d+ das \d+ séries da semana/)).toBeVisible();
+  await expect(exercicio.locator('.selo').first()).toBeVisible();
 });
 
 test('divisão: escolhida em Meus dados, sem nada marcado, com a recomendada explicada, e a escolha vira o programa', async ({ page }) => {
@@ -88,18 +91,15 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await triagem(page, { simEm: ['coração'] });
   await page.getByLabel('Confirmo que fui avaliado e liberado').check();
   await continuar.click();
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
 });
 
 test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
-  // estudo dos textos (13/11/2026): a explicação da pergunta fica a um toque ("por que perguntamos")
-  await page.getByRole('button', { name: 'por que perguntamos' }).click();
-  const porQue = page.getByRole('dialog', { name: 'Por que esta pergunta' });
-  await expect(porQue).toContainText('Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.');
-  await page.keyboard.press('Escape');
-  await expect(porQue).toBeHidden();
+  // sessão de textos (16/11/2026): a explicação da pergunta saiu da tela ("por que perguntamos") e está em "Entenda o
+  // treino" → "Por que o app pergunta e sugere" (tests/e2e/entenda.spec.ts)
+  await expect(page.getByRole('button', { name: 'por que perguntamos' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
   const completas = page.getByRole('dialog', { name: 'As 9 perguntas completas' });
   await expect(completas.getByRole('listitem')).toHaveCount(9);
@@ -135,14 +135,13 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
       await expect(dialogo).toContainText('Você não marcou estas 8:');
       await expect(dialogo).toContainText('Algum médico já disse que você tem problema no coração ou pressão alta?');
       await confirmarNaoMarcadas(p);
-      await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+      await expect(p.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
     },
   });
   // lote 3 do redesign: o resumo da dor da triagem é o 1º aviso do programa novo, com o selo, até o 1º treino
   await expect(page.locator('.aviso-linha')).toContainText('Pela triagem: ombro (dor 7 hoje).');
   const avisos = await verAvisos(page);
   await expect(avisos.getByRole('region', { name: /Pela triagem/ })).toContainText('Ombro, dor 7 hoje: os exercícios que carregam a região ficam de fora.');
-  await expect(avisos.getByRole('region', { name: /Pela triagem/ }).locator('.selo')).toBeVisible();
   await page.keyboard.press('Escape');
   await sobreOPrograma(page);
   await expect(page.getByText(/peito 0 de \d+ séries por semana\. Os exercícios que carregam o ombro saíram por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
@@ -180,7 +179,7 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await page.getByRole('button', { name: 'Academia completa' }).click();
   await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
   // lote 3 do redesign: o que o app supôs em 1 linha; conferir abre os marcados
-  await expect(page.locator('.supos')).toContainText(/Um toque marcou \d+ itens típicos/);
+  await expect(page.locator('.supos')).toContainText(/\d+ itens marcados/);
   // a Ana já tinha itens, então a lista já vem aberta (no cadastro novo, "Conferir os N itens ›" abre)
   await abrirLista(page);
   const marcados = page.getByRole('region', { name: /^Marcados/ });
@@ -210,10 +209,10 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
 test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
-  await page.getByLabel('Procurar pelo nome').fill('extensora');
+  await page.getByLabel('Procurar', { exact: true }).fill('extensora');
   await expect(page.locator('.grade-2 .item-eq')).toHaveCount(1);
   await page.locator('.grade-2').getByLabel('Cadeira extensora', { exact: true }).check();
-  await page.getByLabel('Procurar pelo nome').fill('xyz');
+  await page.getByLabel('Procurar', { exact: true }).fill('xyz');
   await expect(page.getByText('Nada com “xyz”. Confira a escrita ou procure pela categoria.')).toBeVisible();
   // marcar a polia simples abre os detalhes; fechar sem responder e gerar abre de novo, com o erro
   const polia = await marcarItem(page, 'Polia simples');
@@ -228,22 +227,25 @@ test('escolher uma opção calculada gera o programa de novo com o novo perfil',
   await ana(page, { minutos: '40' });
   // Os ajustes entram na linha de aviso (um por vez); nenhuma opção vem escolhida.
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
-  await expect(page.locator('.aviso-linha')).toContainText('Dá para ajustar.');
+  await expect(page.locator('.aviso-linha')).toContainText(/abaixo da meta\.|passa do tempo\./);
+  await expect(page.locator('.aviso-linha').getByRole('button', { name: 'Ajustar', exact: true })).toBeVisible();
   let avisos = await verAvisos(page);
   await avisos.getByRole('region', { name: 'Ajustes possíveis' }).getByRole('button', { name: /^4 treinos de 40 min/ }).click();
   await expect(page.getByRole('status')).toContainText('4 treinos de 40 min');
   await expect((await sobreOPrograma(page)).getByRole('list', { name: 'Resumo' })).toContainText('4x por semana');
-  await page.getByRole('dialog', { name: 'Sobre o programa' }).getByRole('button', { name: 'Fechar' }).click();
+  await page.goto('/programa');
   // Com 4 dias, a recomendada é Superior/Inferior 2x.
   await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toBeVisible();
 
-  // "Manter" tira o aviso da tela; dá para reabrir em "Sobre o programa".
-  if (await page.locator('.aviso-linha').filter({ hasText: 'Dá para ajustar.' }).isVisible()) {
+  // "Manter" tira o aviso da tela; dá para trazê-lo de volta em "Entenda o treino" → "O seu programa".
+  if (await page.locator('.aviso-linha').filter({ hasText: /abaixo da meta\.|passa do tempo\./ }).isVisible()) {
     avisos = await verAvisos(page);
     await avisos.getByRole('button', { name: /^Manter/ }).click();
     await expect(page.locator('.aviso-linha')).toHaveCount(0);
     await (await sobreOPrograma(page)).getByRole('button', { name: 'Ver ajustes possíveis' }).click();
-    await expect(page.getByRole('region', { name: 'Ajustes possíveis' })).toBeVisible();
+    await expect(page).toHaveURL(/\/programa$/);
+    avisos = await verAvisos(page);
+    await expect(avisos.getByRole('region', { name: 'Ajustes possíveis' })).toBeVisible();
   }
 });
 
@@ -266,7 +268,7 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
 test('Meus dados mostra a versão do app e a data da publicação', async ({ page }) => {
   // R3: para a pessoa conferir se o celular já está com a versão nova.
   await page.goto('/dados');
-  await expect(page.getByText(/^Versão do app: ([0-9a-f]{7}|local), publicada em \d{2}\/\d{2}\/\d{4}\.$/)).toBeVisible();
+  await expect(page.getByText(/^Versão ([0-9a-f]{7}|local) · \d{2}\/\d{2}\/\d{4}$/)).toBeVisible();
 });
 
 test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
@@ -365,8 +367,9 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   const cartao = await abrirExercicio(page, /Agachamento no hack/);
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
   await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
-  // As alternativas mostram 3 e guardam o resto em "ver mais".
-  await expect(cartao.getByText(/^Ver mais \d+ opç/)).toBeVisible();
+  // sessão de textos (16/11/2026): as alternativas ficam a um toque, todas de uma vez (antes: 3 à vista e "ver mais")
+  await expect(cartao.locator('summary', { hasText: /^Alternativas \(\d+\)$/ })).toBeVisible();
+  await expect(cartao.getByText(/^Ver mais \d+ opç/)).toHaveCount(0);
   await cartao.getByRole('button', { name: 'Fechar' }).click();
   // A extensora vem da estação do multifuncional (no dia B).
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
@@ -381,7 +384,7 @@ test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
+  await page.getByText('Exercícios a evitar', { exact: true }).click();
   await page.getByLabel('Agachamento goblet com calcanhar elevado', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();

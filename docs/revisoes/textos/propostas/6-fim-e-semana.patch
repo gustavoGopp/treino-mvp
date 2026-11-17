@@ -1,0 +1,511 @@
+diff --git a/src/domain/acompanhamento/semana.ts b/src/domain/acompanhamento/semana.ts
+index 37ec699..8026cc2 100644
+--- a/src/domain/acompanhamento/semana.ts
++++ b/src/domain/acompanhamento/semana.ts
+@@ -217,7 +217,7 @@ function revisaoDaMeta(
+   return {
+     media,
+     opcoes,
+-    texto: `${quando} Quer um programa de ${juntar(opcoes.map(String)).replace(' e ', ' ou ')} dias? Ele cabe melhor e rende o mesmo por treino.`,
++    texto: quando,
+     regraId: r('acompanhamento.mensagens'),
+   };
+ }
+diff --git a/src/features/acompanhamento/Evolucao.tsx b/src/features/acompanhamento/Evolucao.tsx
+index 3a75bda..5fb8390 100644
+--- a/src/features/acompanhamento/Evolucao.tsx
++++ b/src/features/acompanhamento/Evolucao.tsx
+@@ -29,10 +29,7 @@ export function Evolucao() {
+       <Topo voltar={dePrograma ? { para: '/programa', rotulo: 'Treino' } : { para: '/semana', rotulo: 'Semana' }} />
+       <main className="conteudo evolucao">
+         <Titulo>{ex.nome}</Titulo>
+-        <p className="ajuda">
+-          Sua evolução: a melhor série de cada treino.
+-        </p>
+-        {!linhas.length && <p>Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele.</p>}
++        {!linhas.length && <p>Ainda sem treino registrado deste exercício.</p>}
+         {linhas.map((l) => (
+           <section key={l.localId ?? 'todos'} className="pilha" aria-label={l.localId ? `Em ${localPorId(estado, l.localId)?.nome ?? 'outro local'}` : ex.nome}>
+             {cargaDaMaquina(exId) && variosLocais && <h2 className="secao">Em {localPorId(estado, l.localId)?.nome ?? 'outro local'}</h2>}
+@@ -55,7 +52,6 @@ export function Evolucao() {
+             </ol>
+           </section>
+         ))}
+-        {cargaDaMaquina(exId) && variosLocais && <p className="ajuda">Nas máquinas, cada local tem a sua lista: a placa de uma torre não pesa o mesmo que a de outra.</p>}
+       </main>
+       <NavInferior atual={dePrograma ? 'treino' : 'semana'} />
+     </div>
+diff --git a/src/features/acompanhamento/Semana.tsx b/src/features/acompanhamento/Semana.tsx
+index 994a60f..f053377 100644
+--- a/src/features/acompanhamento/Semana.tsx
++++ b/src/features/acompanhamento/Semana.tsx
+@@ -1,5 +1,4 @@
+ import { Link, Navigate } from 'react-router-dom';
+-import { RIR, VOLUME } from '../../domain/regras';
+ import { diaEMes as dataCurta, numeroBr } from '../../domain/numero';
+ import { POR_ID } from '../../domain/biblioteca';
+ import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
+@@ -60,7 +59,7 @@ export function Semana() {
+         <div className="cabeca-treino">
+           <Titulo>A sua semana</Titulo>
+           <p className="ajuda">
+-            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}, em qualquer local
++            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}
+           </p>
+         </div>
+ 
+@@ -69,7 +68,6 @@ export function Semana() {
+             {r.feitos} <small>de {r.planejados} treinos</small>
+           </h2>
+           <Pontos r={r} />
+-          <p className="fase">{r.mensagem}</p>
+         </section>
+ 
+         {/* sem semana nenhuma contada ainda (programa novo, sem treino), a faixa das semanas não aparece */}
+@@ -83,18 +81,13 @@ export function Semana() {
+                 <i key={i} className={t ? 'on' : ''} />
+               ))}
+             </span>
+-            <p className="ajuda">
+-              {r.semanas.length === 1
+-                ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
+-                : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
+-            </p>
+           </section>
+         )}
+ 
+         {subiu.length > 0 && (
+           <section aria-labelledby="subiu" className="pilha">
+             <h2 id="subiu" className="secao">
+-              O que subiu nesta semana
++              Subiu nesta semana
+             </h2>
+             <ul className="lista-subiu">
+               {subiu.map((m) => (
+@@ -133,33 +126,17 @@ export function Semana() {
+                 <span className="m-num">
+                   {num(m.feitas)} de {num(m.meta)}
+                 </span>
+-                {(m.feitas > 0 || m.planejado !== undefined) && (
+-                  <span className="m-estado">
+-                    {m.feitas > 0 ? TEXTO_ESTADO[m.estado] : ''}
+-                    {m.planejado !== undefined && `${m.feitas > 0 ? ' · ' : ''}o seu programa planeja ${num(m.planejado)} de ${num(m.meta)}: ${m.motivo}`}
+-                  </span>
+-                )}
++                {m.feitas > 0 && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
+               </li>
+             ))}
+           </ul>
+-          <details className="box dobra">
+-            <summary>Como ler este quadro</summary>
+-          <p className="ajuda">
+-            Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
+-            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'}
+-          </p>
+-          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
+-          </details>
+         </section>
+ 
+         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
+         {r.revisao && !estado.sessaoAtual && (
+           <section className="box volta" aria-labelledby="revisao">
+-            <h2 id="revisao">Um programa que cabe melhor?</h2>
+-            <p>
+-              {r.revisao.texto}
+-            </p>
+-            <p className="ajuda">O programa só muda se você escolher.</p>
++            <h2 id="revisao">Um programa com menos dias?</h2>
++            <p>{r.revisao.texto}</p>
+             <div className="opcoes linha">
+               {r.revisao.opcoes.map((n) => (
+                 <button key={n} type="button" className="btn sec pequeno" onClick={() => atualizar((s) => aceitarMenosDias(s, n as 2 | 3 | 4 | 5, agoraIso()))}>
+@@ -176,10 +153,8 @@ export function Semana() {
+         <SemanaLeve />
+ 
+         {exercicios.length > 0 && (
+-          <section aria-labelledby="evolucao" className="pilha">
+-            <h2 id="evolucao" className="secao">
+-              Sua evolução
+-            </h2>
++          <details className="box dobra">
++            <summary>Evolução ({exercicios.length})</summary>
+             <ul className="lista-evolucao">
+               {exercicios.map((id) => (
+                 <li key={id}>
+@@ -190,7 +165,7 @@ export function Semana() {
+                 </li>
+               ))}
+             </ul>
+-          </section>
++          </details>
+         )}
+ 
+       </main>
+diff --git a/src/features/acompanhamento/SemanaLeve.tsx b/src/features/acompanhamento/SemanaLeve.tsx
+index 22a3a8e..22f9479 100644
+--- a/src/features/acompanhamento/SemanaLeve.tsx
++++ b/src/features/acompanhamento/SemanaLeve.tsx
+@@ -25,9 +25,7 @@ export function SemanaLeve({ partes = ['dor', 'ativa', 'oferta'] }: { partes?: P
+       {s.ativa && (
+         <section className="box volta" aria-labelledby="leve-ativa">
+           <h2 id="leve-ativa">Semana leve{s.ate ? ` até ${dataCurta(s.ate)}` : ''}</h2>
+-          <p>
+-            Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.
+-          </p>
++          <p>Metade das séries, RIR 3–4, mesma carga.</p>
+           <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => encerrarSemanaLeve(e, agoraIso()))}>
+             Voltar ao normal
+           </button>
+@@ -35,16 +33,11 @@ export function SemanaLeve({ partes = ['dor', 'ativa', 'oferta'] }: { partes?: P
+       )}
+       {s.mostrar && (
+         <section className="box volta" aria-labelledby="leve">
+-          <h2 id="leve">Semana leve? (opcional)</h2>
+-          <p>
+-            <b>Motivo:</b> {s.motivos.join('; ')}.
+-          </p>
+-          <p>
+-            {s.texto}
+-          </p>
++          <h2 id="leve">Semana leve?</h2>
++          <p>Metade das séries por 7 dias, mesma carga.</p>
+           <div className="opcoes linha">
+             <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => aceitarSemanaLeve(e, agoraIso()))}>
+-              Fazer a semana leve
++              Fazer
+             </button>
+             <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => recusarSemanaLeve(e, agoraIso()))}>
+               Agora não
+diff --git a/src/features/entenda/Entenda.tsx b/src/features/entenda/Entenda.tsx
+index a218bf2..caf1ce7 100644
+--- a/src/features/entenda/Entenda.tsx
++++ b/src/features/entenda/Entenda.tsx
+@@ -6,10 +6,10 @@ import { mensagemDeVolta } from '../../domain/acompanhamento/volta';
+ import { numeroBr } from '../../domain/numero';
+ import { NOME_NIVEL } from '../../domain/nivel';
+ import { carregarRegras } from '../../domain/regras/carregar';
+-import type { Regra } from '../../domain/regras';
++import { RIR, VOLUME, type Regra } from '../../domain/regras';
+ import { sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
+ import { inventarioPrincipal, perfilDe, primeiroPassoPendente } from '../../storage/esquema';
+-import { semanaDoEstado } from '../acompanhamento/acoes';
++import { semanaDoEstado, semanaLeveDoEstado } from '../acompanhamento/acoes';
+ import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
+ import { Explicacoes, NavInferior, Selo, SeloFolha, Titulo, Topo } from '../app/ui';
+ import { ComoEsta } from '../programa/ComoEsta';
+@@ -118,6 +118,8 @@ export function Entenda() {
+   const hoje = programa ? hojeDoEstado(estado, agora, fuso) : null;
+   const semana = programa ? semanaDoEstado(estado, agora, fuso) : null;
+   const volta = hoje ? mensagemDeVolta(hoje) : null;
++  const leve = programa ? semanaLeveDoEstado(estado, agora, fuso) : null;
++  const abaixo = (semana?.musculos ?? []).filter((m) => m.planejado !== undefined);
+   const fase = hoje?.fase ?? programa?.fases[0];
+   // a carga sugerida é a de um treino que começasse agora, no local do programa (como a tela do treino a mostra)
+   const opcoes = programa ? opcoesDaCarga(estado, { id: agora, inicio: agora, ...(hoje?.semanaLeve ? { semanaLeve: true } : {}) }, fuso) : {};
+@@ -258,9 +260,6 @@ export function Entenda() {
+             <Bloco titulo="A sua semana e as pausas">
+               {semana && (
+                 <p>
+-                  <b>
+-                    {semana.feitos} de {semana.planejados} treinos.
+-                  </b>{' '}
+                   {semana.mensagem} <Selo id={semana.regraId} />
+                 </p>
+               )}
+@@ -269,9 +268,46 @@ export function Entenda() {
+                   <b>{volta.titulo}</b> {volta.texto} <Selo id={volta.regraId} />
+                 </p>
+               )}
++              {semana?.revisao && (
++                <p>
++                  <b>Um programa com menos dias?</b> {semana.revisao.texto} Ele cabe melhor e rende o mesmo por treino. O programa só muda se você
++                  escolher. <Selo id={semana.revisao.regraId} />
++                </p>
++              )}
++              {leve?.mostrar && (
++                <p>
++                  <b>Semana leve sugerida.</b> Motivo: {leve.motivos.join('; ')}. {leve.texto} <Selo id={leve.regraId} />
++                </p>
++              )}
++              {abaixo.length > 0 && (
++                <>
++                  <h3>Músculos que o programa planeja abaixo da meta</h3>
++                  <ul className="lista">
++                    {abaixo.map((m) => (
++                      <li key={m.musculo}>
++                        {m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}: {numeroBr(m.planejado!)} de {numeroBr(m.meta)} ({m.motivo}).
++                      </li>
++                    ))}
++                  </ul>
++                </>
++              )}
++              <h3>Como ler o quadro da semana</h3>
+               <ul className="lista">
+-                <Frase regra="deload.semana-leve">A semana leve é sugerida quando o treino pesa demais ou para de progredir; é opcional e serve para descansar, não para crescer.</Frase>
+-                <Frase regra="rir.serie-efetiva">No quadro da semana, conta a série com até 4 repetições de reserva e amplitude completa.</Frase>
++                <Frase regra="rir.serie-efetiva">
++                  Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma
++                  indireta vale meia. {semana?.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'}
++                </Frase>
++                <Frase regra="acompanhamento.semana">
++                  A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) ·
++                  claro: mantendo · vazio: ainda sem treino na semana. A semana conta os treinos de qualquer local.
++                </Frase>
++                <Frase regra="deload.semana-leve">
++                  A semana leve é sugerida quando o treino pesa demais ou para de progredir; é opcional e serve para descansar, não para crescer.
++                </Frase>
++                <Frase regra="acompanhamento.evolucao">
++                  Na evolução de um exercício, cada linha é a melhor série daquele treino. Nas máquinas, cada local tem a sua lista: a placa de uma
++                  torre não pesa o mesmo que a de outra.
++                </Frase>
+               </ul>
+             </Bloco>
+           )}
+diff --git a/src/features/programa/Programa.tsx b/src/features/programa/Programa.tsx
+index e1b067c..922419a 100644
+--- a/src/features/programa/Programa.tsx
++++ b/src/features/programa/Programa.tsx
+@@ -183,7 +183,7 @@ export function Programa() {
+     });
+   if (!volta && !estado.sessaoAtual) {
+     if (leve?.ativa) fila.push({ id: 'leve-ativa', linha: <b>Semana leve{leve.ate ? ` até ${dataCurta(leve.ate)}` : ''}</b>, bloco: <SemanaLeve partes={['ativa']} /> });
+-    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve? (opcional)</b>, bloco: <SemanaLeve partes={['oferta']} /> });
++    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve?</b>, bloco: <SemanaLeve partes={['oferta']} /> });
+     if (tempoProposto)
+       fila.push({
+         id: 'tempo',
+diff --git a/src/features/treino/Resumo.tsx b/src/features/treino/Resumo.tsx
+index 79a9c0f..33c3a93 100644
+--- a/src/features/treino/Resumo.tsx
++++ b/src/features/treino/Resumo.tsx
+@@ -8,7 +8,7 @@ import { AvisoSalvar } from '../app/avisos';
+ import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
+ import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
+ import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
+-import { Pontos } from '../acompanhamento/Semana';
++import { FaixaSemana } from '../acompanhamento/Semana';
+ import { SemanaLeve } from '../acompanhamento/SemanaLeve';
+ import { Titulo } from '../app/ui';
+ 
+@@ -57,7 +57,6 @@ export function Resumo() {
+   // "O que mudou hoje" (lote 4; agente 1, 4.1): a semana já com o treino de hoje, os recordes do dia e as cargas que sobem.
+   const semana = semanaDoEstado(estado, agoraIso(), fuso);
+   const marcas = marcasDaSessao(estado.historico, s.id, (x) => localDaSessao(estado, x));
+-  const sobem = itens.filter((i) => i.sug.acao === 'subir').length;
+ 
+   return (
+     <div className="wrap app">
+@@ -94,19 +93,10 @@ export function Resumo() {
+             <span className="rotulo">{itens.length === 1 ? 'exercício' : 'exercícios'}</span>
+           </div>
+         </div>
+-        {(semana || marcas.length > 0 || sobem > 0) && (
++        {(semana || marcas.length > 0) && (
+           <section className="mudou" aria-labelledby="mudou">
+-            <h2 id="mudou">O que mudou hoje</h2>
+-            {semana && (
+-              <>
+-                <p className="mudou-semana">
+-                  <b>A sua semana</b> <Pontos r={semana} />{' '}
+-                  <b className="num">
+-                    {semana.feitos} de {semana.planejados}
+-                  </b>
+-                </p>
+-              </>
+-            )}
++            <h2 id="mudou" className="sr">O que mudou hoje</h2>
++            {semana && <FaixaSemana r={semana} />}
+             {marcas.length > 0 && (
+               <ul className="marcas-hoje" aria-label="Recordes de hoje">
+                 {marcas.map((m) => (
+@@ -124,11 +114,10 @@ export function Resumo() {
+                 ))}
+               </ul>
+             )}
+-            {sobem > 0 && <p>{sobem === 1 ? '1 exercício com carga para subir na próxima vez.' : `${sobem} exercícios com carga para subir na próxima vez.`}</p>}
+           </section>
+         )}
+         <fieldset className="campo hoje-foi">
+-          <legend>Hoje foi: (opcional)</legend>
++          <legend>Hoje foi</legend>
+           <div className="opcoes linha">
+             {HOJE_FOI.map(([v, t]) => (
+               <button key={v} type="button" className="btn sec pequeno" aria-pressed={s.hojeFoi === v} onClick={() => atualizar((e) => marcarHojeFoi(e, s.id, v))}>
+@@ -139,7 +128,7 @@ export function Resumo() {
+         </fieldset>
+         <section aria-labelledby="proxima" className="pilha">
+           <h2 id="proxima" className="rotulo">
+-            Para a próxima vez
++            Próxima vez
+           </h2>
+           <ul className="lista-proxima">
+             {/* a chave leva a posição: o mesmo exercício pode aparecer duas vezes no treino (feito e, depois, como alternativa de outra vaga) */}
+@@ -155,9 +144,6 @@ export function Resumo() {
+           </ul>
+         </section>
+         <SemanaLeve />
+-        <Link className="btn sec" to="/semana">
+-          Ver a sua semana
+-        </Link>
+         {apagar ? (
+           <div className="warnbox" role="group" aria-label="Apagar este treino?">
+             <p>
+@@ -181,7 +167,7 @@ export function Resumo() {
+           </div>
+         ) : (
+           <button type="button" className="link-sec" onClick={() => setApagar(true)}>
+-            Registrei algo errado: apagar este treino
++            Apagar este treino
+           </button>
+         )}
+         {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}
+diff --git a/tests/e2e/acompanhamento.spec.ts b/tests/e2e/acompanhamento.spec.ts
+index 3192279..e3f3457 100644
+--- a/tests/e2e/acompanhamento.spec.ts
++++ b/tests/e2e/acompanhamento.spec.ts
+@@ -142,10 +142,10 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
+   await faixa.click();
+ 
+   await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
+-  await expect(page.getByText('02/11 a 08/11, em qualquer local')).toBeVisible();
++  await expect(page.getByText('02/11 a 08/11', { exact: true })).toBeVisible();
+   await expect(page.getByRole('heading', { name: /2 de 3 treinos/ })).toBeVisible();
+-  // lote 4 do redesign: a frase saiu da faixa do início e fica aqui
+-  await expect(page.getByText('2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.')).toBeVisible();
++  // sessão de textos (16/11/2026): a frase da semana saiu da tela e fica em "Entenda o treino"
++  await expect(page.getByText(/Se der, o Corpo todo C/)).toHaveCount(0);
+   const musculos = page.getByRole('list', { name: 'Séries efetivas por músculo nesta semana' });
+   await expect(musculos).toBeVisible();
+   await expect(musculos.getByRole('listitem').first()).toBeVisible();
+@@ -155,9 +155,15 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
+   expect(cores.every((c) => c === cores[0])).toBe(true);
+   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
+   await expect(page.getByRole('heading', { name: 'Últimas 3 semanas' })).toBeVisible();
+-  await expect(page.getByText('2 das últimas 3 semanas com treino.')).toBeVisible();
++  // a contagem em palavras fica no nome acessível dos quadradinhos
++  await expect(page.getByRole('img', { name: '2 de 3 semanas com treino' })).toBeVisible();
+   await print(page, 'semana');
+   await semToquePequeno(page);
++  // o que saiu da tela está em "Entenda o treino": a frase da semana e como ler o quadro
++  const pausas = await entenda(page, 'A sua semana e as pausas');
++  await expect(pausas).toContainText('Se der, o Corpo todo C cabe até domingo.');
++  await expect(pausas).toContainText('A barra é o que foi feito; o traço tracejado é a meta.');
++  await expect(pausas).toContainText('conta os treinos de qualquer local');
+ });
+ 
+ test('vê a evolução de um exercício: a melhor série de cada treino, com "recorde" e "subiu a carga"', async ({ page }) => {
+@@ -167,6 +173,7 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
+     { dia: 0, quando: '2026-10-19T13:00:00.000Z', series: { 'supino-reto': [[9, 8], [9, 8]] } },
+   ]);
+   await page.getByRole('link', { name: /A sua semana/ }).click();
++  await page.locator('summary', { hasText: /^Evolução \(\d+\)$/ }).click();
+   await page.getByRole('link', { name: 'Supino reto com halteres' }).click();
+   await expect(page.getByRole('heading', { name: 'Supino reto com halteres' })).toBeVisible();
+   const pontos = page.locator('.pontos-evolucao li');
+@@ -184,7 +191,7 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
+   await semToquePequeno(page);
+ });
+ 
+-test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subiu nesta semana", e leva à evolução', async ({ page }) => {
++test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "Subiu nesta semana", e leva à evolução', async ({ page }) => {
+   // Semana de 02/11: supino 8 kg × 10 na segunda e 8 kg × 12 na terça (recorde).
+   await comHistorico(page, [
+     { dia: 0, quando: '2026-11-02T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
+@@ -199,7 +206,7 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subi
+   await semToquePequeno(page);
+ 
+   await page.goto('/semana');
+-  const subiu = page.getByRole('region', { name: 'O que subiu nesta semana' });
++  const subiu = page.getByRole('region', { name: 'Subiu nesta semana' });
+   await expect(subiu).toContainText('Supino reto com halteres');
+   await expect(subiu).toContainText('recorde');
+   await semToquePequeno(page);
+@@ -215,7 +222,7 @@ test('R5a: na fase de aprendizado da iniciante, o mesmo sinal não traz a semana
+     { dia: 1, quando: '2026-11-03T13:00:00.000Z', hojeFoi: 'pesado' },
+   ]);
+   await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo C' })).toBeVisible();
+-  await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
++  await expect(page.getByRole('region', { name: 'Semana leve?' })).toHaveCount(0);
+   await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
+ });
+ 
+@@ -236,18 +243,22 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim
+ 
+   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
+   await semToquePequeno(page);
+-  const hojeFoi = page.getByRole('group', { name: 'Hoje foi: (opcional)' });
++  const hojeFoi = page.getByRole('group', { name: 'Hoje foi' });
+   for (const b of ['leve', 'normal', 'pesado demais']) await expect(hojeFoi.getByRole('button', { name: b, exact: true })).toHaveAttribute('aria-pressed', 'false');
+-  await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
++  await expect(page.getByRole('region', { name: 'Semana leve?' })).toHaveCount(0);
+   await hojeFoi.getByRole('button', { name: 'pesado demais' }).click();
+   await expect(hojeFoi.getByRole('button', { name: 'pesado demais' })).toHaveAttribute('aria-pressed', 'true');
+ 
+-  const leve = page.getByRole('region', { name: 'Semana leve? (opcional)' });
+-  await expect(leve).toContainText('Motivo: "pesado demais" em 2 dos últimos 3 treinos.');
+-  await expect(leve).toContainText('Para descansar, não para crescer.');
++  const leve = page.getByRole('region', { name: 'Semana leve?' });
++  await expect(leve).toContainText('Metade das séries por 7 dias, mesma carga.');
++  // o motivo e a explicação ficam em "Entenda o treino"
++  const pausas = await entenda(page, 'A sua semana e as pausas');
++  await expect(pausas).toContainText('Motivo: "pesado demais" em 2 dos últimos 3 treinos.');
++  await expect(pausas).toContainText('Para descansar, não para crescer.');
++  await page.goto('/treino/fim');
+   await print(page, 'semana-leve');
+   await semToquePequeno(page);
+-  await leve.getByRole('button', { name: 'Fazer a semana leve' }).click();
++  await leve.getByRole('button', { name: 'Fazer', exact: true }).click();
+   await expect(page.getByRole('region', { name: /^Semana leve até / })).toBeVisible();
+ 
+   // No Seu treino, a semana leve já vale: metade das séries e RIR 3–4.
+diff --git a/tests/e2e/cenarios.spec.ts b/tests/e2e/cenarios.spec.ts
+index c3b1f5f..a71c577 100644
+--- a/tests/e2e/cenarios.spec.ts
++++ b/tests/e2e/cenarios.spec.ts
+@@ -153,6 +153,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
+     await page.goto('/semana');
+     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+     await criterios(page); // semana
++    await page.locator('summary', { hasText: /^Evolução \(\d+\)$/ }).click();
+     await page.locator('.lista-evolucao a').first().click();
+     await expect(page).toHaveURL(/\/evolucao\//);
+     await criterios(page); // evolução
+diff --git a/tests/e2e/registro.spec.ts b/tests/e2e/registro.spec.ts
+index 2281064..2ce32ce 100644
+--- a/tests/e2e/registro.spec.ts
++++ b/tests/e2e/registro.spec.ts
+@@ -130,7 +130,7 @@ test('apagar o último treino, com confirmação, volta a rotação ao dia dele'
+   await umaSerie(page);
+   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+   await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
+-  await page.getByRole('button', { name: 'Registrei algo errado: apagar este treino' }).click();
++  await page.getByRole('button', { name: 'Apagar este treino', exact: true }).click();
+   // frontend novo (revisão de 13/11/2026): a confirmação é um grupo com nome (não um alerta de segurança)
+   await expect(page.getByRole('group', { name: 'Apagar este treino?' })).toContainText(`o próximo treino volta a ser ${dia}`);
+   await page.getByRole('button', { name: 'Apagar', exact: true }).click();
+diff --git a/tests/e2e/treino.spec.ts b/tests/e2e/treino.spec.ts
+index 844c59b..ff89899 100644
+--- a/tests/e2e/treino.spec.ts
++++ b/tests/e2e/treino.spec.ts
+@@ -81,7 +81,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para
+   await expect(page.locator('.subtitulo')).toContainText('Corpo todo A');
+   // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje
+   await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
+-  await expect(page.getByRole('heading', { name: 'Para a próxima vez' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Próxima vez' })).toBeVisible();
+   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
+   // sessão de textos (16/11/2026): o motivo da sugestão, com o selo, saiu do fim do treino e está em "Entenda o treino"
+   await expect(page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' })).toHaveCount(0);
+diff --git a/tests/unit/acompanhamento.test.ts b/tests/unit/acompanhamento.test.ts
+index 137df5c..aa9170f 100644
+--- a/tests/unit/acompanhamento.test.ts
++++ b/tests/unit/acompanhamento.test.ts
+@@ -111,7 +111,7 @@ describe('os casos W1 a W7 do T6', () => {
+     const antes = JSON.stringify(e);
+     const r = semana(e, 28);
+     expect(r.revisao).toMatchObject({ opcoes: [2, 3], regraId: 'acompanhamento.mensagens' });
+-    expect(r.revisao!.texto).toBe('Nas últimas 4 semanas você treinou cerca de 2 vezes por semana. Quer um programa de 2 ou 3 dias? Ele cabe melhor e rende o mesmo por treino.');
++    expect(r.revisao!.texto).toBe('Nas últimas 4 semanas você treinou cerca de 2 vezes por semana.');
+     expect(JSON.stringify(e)).toBe(antes);
+     // "Manter" esconde a oferta por 4 semanas.
+     expect(semana(e, 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeUndefined();

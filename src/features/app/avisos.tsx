@@ -4,7 +4,6 @@ import type { Estado } from '../../storage/esquema';
 import { baixarCopia } from './copia';
 import { agoraIso, useApp } from './estado';
 import { gravarLocal, lerLocal, LOCAL } from './local';
-import { Selo } from './ui';
 
 // Avisos que protegem os dados (R5c): instalar no iPhone (dados.instalar-iphone) e o lembrete de cópia (dados.copia).
 
@@ -24,8 +23,7 @@ export function AvisoSalvar() {
   return (
     <div className="caixa-erro pilha" role="alert">
       <p>
-        <b>Não foi possível salvar neste aparelho.</b> O que você registrar agora pode se perder ao fechar o app. Exporte uma cópia para
-        não perder seus dados.
+        <b>Não foi possível salvar neste aparelho.</b> Exporte uma cópia para não perder o que registrar.
       </p>
       <button type="button" className="btn sec" onClick={() => baixarCopia(estado)}>
         Exportar meus dados
@@ -47,16 +45,13 @@ export function AvisoInstalar() {
       <h2 id={id} className="secao">
         Instale o app para não perder seus dados
       </h2>
-      <p>
-        No iPhone, o Safari apaga os dados de um site depois de 7 dias de uso sem abri-lo. Instalado na tela de início, o app não entra
-        nessa contagem. <Selo id="dados.instalar-iphone" />
-      </p>
+      <p>O Safari apaga os dados de um site que fica 7 dias sem ser aberto.</p>
       <ol>
         <li>Toque em Compartilhar (o quadrado com a seta para cima).</li>
         <li>Toque em “Adicionar à Tela de Início”.</li>
         <li>Abra o app pelo ícone novo.</li>
       </ol>
-      <p className="ajuda">Se já tem treinos aqui, exporte uma cópia antes em “Meus dados”: o app instalado pode começar vazio, e aí é só importar.</p>
+      <p className="ajuda">Já tem treinos aqui? Exporte uma cópia antes, em “Meus dados”.</p>
       <button
         type="button"
         className="btn sec pequeno"
@@ -91,8 +86,7 @@ export function LembreteCopia({ estado }: { estado: Estado }) {
         Guarde uma cópia dos seus treinos
       </h2>
       <p>
-        {ultima ? 'Você tem treinos novos desde a última cópia.' : 'Você ainda não exportou nenhuma cópia.'} Os dados ficam só neste
-        aparelho, e o navegador pode apagá-los. <Selo id="dados.copia" />
+        {ultima ? 'Há treinos novos desde a última cópia.' : 'Os dados ficam só neste aparelho, e o navegador pode apagá-los.'}
       </p>
       <div className="opcoes linha">
         <button
@@ -104,7 +98,7 @@ export function LembreteCopia({ estado }: { estado: Estado }) {
             setFeito('Arquivo exportado. Guarde-o num lugar seguro: ele tem seus dados de saúde.');
           }}
         >
-          Exportar agora
+          Exportar
         </button>
         <button
           type="button"

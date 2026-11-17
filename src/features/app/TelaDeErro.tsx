@@ -51,10 +51,8 @@ export function TelaDeErro({ erro }: { erro: Error }) {
     <div className="wrap app">
       <main className="conteudo">
         <Titulo>Algo deu errado nesta tela</Titulo>
-        <p className="lede">Seus dados continuam guardados neste aparelho. Antes de tentar de novo, guarde uma cópia.</p>
-        <section className="bloco-linha pilha" aria-labelledby="erro-copia">
-          <h2 id="erro-copia">Guardar uma cópia</h2>
-          <p>O arquivo tem tudo o que está neste aparelho e pode ser importado depois, em “Meus dados”.</p>
+        <p className="lede">Seus dados continuam neste aparelho. Guarde uma cópia antes de tentar de novo.</p>
+        <div className="pilha">
           <button type="button" className="btn" onClick={() => void exportar()}>
             Exportar meus dados
           </button>
@@ -66,20 +64,13 @@ export function TelaDeErro({ erro }: { erro: Error }) {
               {falha}
             </div>
           )}
-        </section>
-        <section className="bloco-linha pilha" aria-labelledby="erro-tentar">
-          <h2 id="erro-tentar">Tentar de novo</h2>
-          <p>Recarrega o app. Se o erro voltar, avise o problema.</p>
           <button type="button" className="btn sec" onClick={() => window.location.reload()}>
             Tentar de novo
           </button>
-        </section>
-        <section className="bloco-linha pilha" aria-labelledby="erro-avisar">
-          <h2 id="erro-avisar">Avisar o problema</h2>
           <AvisarProblema erro={erro} />
-        </section>
+        </div>
         <p className="muted">
-          Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.{' '}
+          Versão {__VERSAO__} · {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')} ·{' '}
           <a href="/termos">Termos e privacidade</a>
         </p>
       </main>

@@ -70,7 +70,7 @@ export async function ana(
   else await triagemNenhuma(page);
   await p();
 
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
@@ -78,7 +78,7 @@ export async function ana(
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, minutos);
   await page.getByLabel('Pernas', { exact: true }).check();
@@ -87,7 +87,7 @@ export async function ana(
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   // lote 3 do redesign: item por item; marcar um item com detalhes abre a folha dele
   const halteres = await marcarItem(page, 'Halteres fixos');
   await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
@@ -144,10 +144,26 @@ export async function proximoExercicio(page: Page) {
   await (await maisOpcoes(page)).getByRole('button', { name: 'Próximo', exact: true }).click();
 }
 
-/** Abre o "por quê?" da linha da sugestão do dia (acima do painel da série) e devolve a folha, com o motivo e o selo. */
-export async function porQueDaSugestao(page: Page) {
-  await page.locator('p.dica').filter({ has: page.getByRole('button', { name: 'por quê?' }) }).first().getByRole('button', { name: 'por quê?' }).click();
-  return page.getByRole('dialog', { name: 'Por quê' });
+// Sessão de textos (16/11/2026, decisão do Gustavo): a explicação saiu das telas e mora em "Entenda o treino" (Meus
+// dados). Os ajudantes abaixo abrem a página e o bloco pedido; quem chama no meio de um fluxo volta depois com
+// `page.goto(...)` (o treino em andamento fica guardado no aparelho).
+/** Abre "Entenda o treino" e o bloco pedido (pelo começo do título), e devolve o bloco aberto. */
+export async function entenda(page: Page, bloco: RegExp | string) {
+  await page.goto('/entenda');
+  await expect(page.getByRole('heading', { name: 'Entenda o treino' })).toBeVisible();
+  const d = page.locator('main > details').filter({ has: page.locator(':scope > summary', { hasText: bloco }) });
+  await d.locator(':scope > summary').click();
+  return d;
+}
+/**
+ * O motivo da carga sugerida de um exercício (antes: o "por quê?" ao lado de "1ª vez: comece leve." ou de "Hoje: 9 kg"),
+ * em "Entenda o treino" → "Os exercícios". Devolve o bloco do exercício aberto.
+ */
+export async function porQueDaSugestao(page: Page, exercicio: RegExp | string = /./) {
+  const bloco = await entenda(page, /^Os exercícios/);
+  const ex = bloco.locator('details').filter({ has: page.locator(':scope > summary', { hasText: exercicio }) }).first();
+  await ex.locator(':scope > summary').click();
+  return ex;
 }
 
 // Início (redesign, lote 4): cada exercício da lista abre uma folha com o resto; "Sobre o programa" e os avisos também.
@@ -156,22 +172,25 @@ export async function abrirExercicio(page: Page, nome: string | RegExp) {
   await page.getByRole('tabpanel').getByRole('button', { name: nome }).first().click();
   await folhaPronta(page);
   const folha = page.getByRole('dialog').last();
-  // estudo dos textos (13/11/2026): os motivos ficam a um toque, num bloco que abre no lugar
-  const porque = folha.locator('summary', { hasText: /^Por que este exercício/ });
-  if (await porque.count()) await porque.click();
+  // sessão de textos (16/11/2026): as alternativas e o "prefiro este" ficam a um toque; os motivos do exercício
+  // saíram da folha e estão em "Entenda o treino" → "Os exercícios"
+  const bloco = folha.locator('summary', { hasText: /^Alternativas \(\d+\)$/ });
+  if (await bloco.count()) await bloco.click();
   return folha;
 }
-/** Abre "Sobre o programa" (o resumo, a fase, os avisos do programa e o porquê) e devolve a folha. */
+/**
+ * "O seu programa" (o resumo, a fase, a avaliação, os avisos e o porquê), em "Entenda o treino", com os blocos de dentro
+ * abertos. Até 16/11/2026 era a folha "Sobre o programa" do início.
+ */
 export async function sobreOPrograma(page: Page) {
-  await page.getByRole('button', { name: 'Sobre o programa' }).click();
-  await folhaPronta(page);
-  const folha = page.getByRole('dialog', { name: 'Sobre o programa' });
-  // estudo dos textos (13/11/2026): os avisos e os limites ficam a um toque, em blocos que abrem no lugar
+  const bloco = await entenda(page, 'O seu programa');
+  // "Como está o seu programa" chega num pedaço à parte
+  await expect(bloco.getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
   for (const rotulo of [/^Avisos \(\d+\)$/, /^Limites e observações \(\d+\)$/]) {
-    const bloco = folha.locator('summary', { hasText: rotulo });
-    if (await bloco.count()) await bloco.click();
+    const dentro = bloco.locator('summary', { hasText: rotulo });
+    if (await dentro.count()) await dentro.click();
   }
-  return folha;
+  return bloco;
 }
 
 /** Abre um bloco que abre no lugar (um `summary`), pelo começo do rótulo. */
@@ -180,9 +199,10 @@ export async function abrirBloco(onde: Page | Locator, rotulo: RegExp | string) 
 }
 /** Abre a folha dos avisos pelo "Ver" (ou "Mais N avisos") da linha do aviso e devolve a folha. */
 export async function verAvisos(page: Page) {
-  await page.locator('.aviso-linha').getByRole('button', { name: /^(Ver|Mais \d+ avisos?)$/ }).click();
+  await page.locator('.aviso-linha').getByRole('button', { name: /^(Ver|Ajustar|Mais \d+ avisos?)$/ }).click();
   await folhaPronta(page);
-  return page.getByRole('dialog', { name: 'Avisos' });
+  // com um bloco só (os ajustes), o título da folha é o do bloco
+  return page.getByRole('dialog', { name: /^(Avisos|Ajustes possíveis)$/ });
 }
 
 // Equipamento (redesign, lote 3): o lugar primeiro; "Item por item" abre os marcados, a busca, as categorias e a grade.

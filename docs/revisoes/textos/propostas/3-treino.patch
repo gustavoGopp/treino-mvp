@@ -1,0 +1,193 @@
+From bf05ba0f2ee5484f0a8d190d9d487fb2ac4a0812 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 19:30:05 +0000
+Subject: [PATCH] =?UTF-8?q?Proposta=20do=20treino=20enxuto=20(ainda=20sem?=
+ =?UTF-8?q?=20aprova=C3=A7=C3=A3o)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/features/programa/CartaoTexto.tsx |  2 +-
+ src/features/treino/Treino.tsx        | 25 +++++++------------------
+ tests/e2e/cenarios.spec.ts            |  2 +-
+ tests/e2e/locais.spec.ts              |  2 +-
+ tests/e2e/registro.spec.ts            |  2 +-
+ tests/e2e/treino.spec.ts              |  6 +++---
+ 6 files changed, 14 insertions(+), 25 deletions(-)
+
+diff --git a/src/features/programa/CartaoTexto.tsx b/src/features/programa/CartaoTexto.tsx
+index 70a8f60..5011062 100644
+--- a/src/features/programa/CartaoTexto.tsx
++++ b/src/features/programa/CartaoTexto.tsx
+@@ -72,7 +72,7 @@ export function CartaoTexto({ exId }: { exId: string }) {
+         </section>
+       )}
+       <button type="button" className="link-guia como-fazer" aria-haspopup="dialog" onClick={() => setAberto(true)}>
+-        Como fazer: dicas e erros
++        Como fazer
+         <Icone nome="chevron-right" />
+       </button>
+       {aberto && (
+diff --git a/src/features/treino/Treino.tsx b/src/features/treino/Treino.tsx
+index ac17b28..3ce8f59 100644
+--- a/src/features/treino/Treino.tsx
++++ b/src/features/treino/Treino.tsx
+@@ -339,7 +339,7 @@ export function Treino() {
+ 
+           {feito.interrompido ? (
+             <div className="warnbox">
+-              Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
++              Exercício encerrado. Troque pela alternativa ou siga para o próximo.
+             </div>
+           ) : !completo ? (
+             <>
+@@ -348,14 +348,13 @@ export function Treino() {
+                   <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
+                   {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                     <p className="dica">
+-                      Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
++                      Aqueça antes: 1–2 séries leves, sem contar. <Selo id={REGRA_AQUECIMENTO} />
+                     </p>
+                   )}
+                 </div>
+               )}
+               {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
+                 <p className="dica calibracao" role="status">
+-                  {calNaSessao.fim ? '' : 'Calibração: '}
+                   {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+                 </p>
+               )}
+@@ -369,7 +368,6 @@ export function Treino() {
+                 estado={estado}
+                 inventario={inventario}
+                 opcoes={opcoesCargaHoje}
+-                descansando={descanso.ativo}
+               />
+             </>
+           ) : (
+@@ -491,13 +489,12 @@ export function Treino() {
+             {semSerie(estado) ? (
+               // registro.treino-feito (R5a): sem nenhuma série, o treino não conta e o dia não muda; descartar é a saída principal.
+               <p>
+-                Você não registrou nenhuma série. Um treino sem série não conta, e o próximo continua sendo este dia.{' '}
++                Nenhuma série registrada: este treino não conta, e o próximo continua sendo este dia.{' '}
+                 <Selo id="registro.treino-feito" />
+               </p>
+             ) : (
+               <p>
+-                Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
+-                salvo.
++                {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios feitos. O que foi registrado fica salvo.
+               </p>
+             )}
+             <button type="button" className="btn" onClick={() => setPainel('nenhum')}>
+@@ -629,9 +626,7 @@ function RegistroSerie({
+   estado,
+   inventario,
+   opcoes,
+-  descansando = false,
+ }: {
+-  descansando?: boolean;
+   x: ExercicioPrescrito;
+   numero: number;
+   anteriores: SerieRegistrada[];
+@@ -739,7 +734,7 @@ function RegistroSerie({
+         <fieldset className="campo quedas">
+           <legend>Drop set (opcional)</legend>
+           <p className="ajuda">
+-            Logo depois da série, sem descansar: tire cerca de 20–30% da carga e faça mais repetições; repita uma vez. Anote as quedas se quiser.
++            Sem descansar, tire 20–30% da carga e faça mais repetições. Repita uma vez.
+             <Selo id="tempo.drop-set" />
+           </p>
+           {quedas.map((q, n) => (
+@@ -773,14 +768,8 @@ function RegistroSerie({
+         </fieldset>
+       )}
+       <button type="button" className="btn salvar" disabled={!pronto} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
+-        {descansando ? (
+-          'Série feita'
+-        ) : (
+-          // um bloco só de texto: o botão é uma linha flexível, e dois pedaços soltos virariam duas colunas
+-          <span>
+-            Série feita · <span className="nw">descansar {tempo(x.descansoSeg)}</span>
+-          </span>
+-        )}
++        {/* sessão de textos (16/11/2026): o tempo do descanso saiu do botão; o relógio o mostra logo depois do toque */}
++        Série feita
+       </button>
+       {!pronto && (
+         <p className="falta" id={`${uid}-falta`}>
+diff --git a/tests/e2e/cenarios.spec.ts b/tests/e2e/cenarios.spec.ts
+index 50a8769..ca72e54 100644
+--- a/tests/e2e/cenarios.spec.ts
++++ b/tests/e2e/cenarios.spec.ts
+@@ -132,7 +132,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
+     for (let i = 0; i < 3; i++) await proximoExercicio(page);
+     await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
+     await criterios(page); // exercício sem animação, cartão fechado
+-    await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
++    await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
+     await criterios(page); // cartão aberto
+   },
+   // lote 2
+diff --git a/tests/e2e/locais.spec.ts b/tests/e2e/locais.spec.ts
+index e8a122e..86a44d8 100644
+--- a/tests/e2e/locais.spec.ts
++++ b/tests/e2e/locais.spec.ts
+@@ -68,7 +68,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
+ 
+   // 8 kg por lado × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
+   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg por lado × 20 · RIR 4+ · acerto da carga');
+-  await expect(page.getByText('Calibração: Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
++  await expect(page.getByText('Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
+   await expect(page.getByRole('group', { name: 'Anilhas por lado' })).toContainText('12 kg');
+   await print(page, 'calibracao');
+ 
+diff --git a/tests/e2e/registro.spec.ts b/tests/e2e/registro.spec.ts
+index 0fa09fd..7531b47 100644
+--- a/tests/e2e/registro.spec.ts
++++ b/tests/e2e/registro.spec.ts
+@@ -108,7 +108,7 @@ for (const nome of NOMES) {
+       const dia = await comecar(page);
+       await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+       const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
+-      await expect(confirma).toContainText('Você não registrou nenhuma série.');
++      await expect(confirma).toContainText('Nenhuma série registrada');
+       await confirma.getByRole('button', { name: 'Descartar este treino' }).click();
+       await expect(page).toHaveURL(/\/programa$/);
+       await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();
+diff --git a/tests/e2e/treino.spec.ts b/tests/e2e/treino.spec.ts
+index 8202a64..af115ec 100644
+--- a/tests/e2e/treino.spec.ts
++++ b/tests/e2e/treino.spec.ts
+@@ -54,7 +54,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para
+   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2 · acerto da carga');
+ 
+   // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 7 kg).
+-  await expect(page.getByText('Calibração: Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
++  await expect(page.getByText('Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
+   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
+   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
+   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
+@@ -218,7 +218,7 @@ test('terminar no meio do treino pede confirmação; "Continuar treinando" volta
+   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+   const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
+   // R5a (registro.treino-feito): sem nenhuma série, a confirmação oferece descartar.
+-  await expect(confirma).toContainText('Você não registrou nenhuma série.');
++  await expect(confirma).toContainText('Nenhuma série registrada');
+   await expect(confirma.getByRole('button', { name: 'Descartar este treino' })).toBeVisible();
+   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+   await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
+@@ -265,7 +265,7 @@ test('exercício sem animação: a montagem segura vem sempre aberta, com o selo
+   await expect(montagem).toBeVisible();
+   await expect(montagem.getByRole('listitem').first()).toBeVisible();
+   await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
+-  await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
++  await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
+   const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
+   await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
+   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+-- 
+2.43.0
+

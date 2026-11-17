@@ -10,19 +10,19 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await triagemNenhuma(page);
 
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, '30');
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   // O 4º atalho: a escolha explícita de treinar sem equipamento (equipamento.atalhos). Nada vem pré-marcado.
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   const corpoLivre = page.getByRole('button', { name: /^(✓ )?Corpo livre$/ });
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'false');
   // Mesmo com algo marcado antes, o toque desmarca tudo.
@@ -37,10 +37,10 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
 
   // Sem nada para puxar, a divisão é de corpo todo, e o aviso diz o que falta, sem sugerir compra.
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
-  await sobreOPrograma(page);
-  await expect(page.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral e bíceps ficam sem exercício/)).toBeVisible();
-  await expect(page.getByText(/compr/i)).toHaveCount(0);
-  await page.keyboard.press('Escape');
+  const sobre = await sobreOPrograma(page);
+  await expect(sobre.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral e bíceps ficam sem exercício/)).toBeVisible();
+  await expect(sobre.getByText(/compr/i)).toHaveCount(0);
+  await page.goto('/programa');
 
   // A flexão de joelho deslizante cobre os posteriores da coxa sem equipamento.
   const painel = page.getByRole('tabpanel');

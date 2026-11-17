@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ARTICULACOES, type Articulacao } from '../../domain/biblioteca';
 import { avaliarTriagem, PERGUNTAS, respostasNenhuma, type DorRegiao, type PerguntaId, type Respostas } from '../../domain/triagem';
 import { agoraIso, useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Passo, PorQue, Selo } from '../app/ui';
+import { Erros, Escolha, Marcar, Passo } from '../app/ui';
 import { Folha } from '../app/Folha';
 
 // Passo 2: triagem no estilo do PAR-Q+ (seguranca.triagem). Perguntas próprias do app (seguranca.triagem.texto).
@@ -110,9 +110,9 @@ export function Triagem() {
           </ul>
         </div>
         <p>
-          {r.mensagem} <Selo id={r.regraId} />
+          {r.mensagem}
         </p>
-        <p className="ajuda">O app não pede o nome nem o registro do profissional: só guarda, neste aparelho, a data da sua confirmação.</p>
+        <p className="ajuda">O app guarda só a data da confirmação, neste aparelho.</p>
         <Marcar marcado={liberado} aoMudar={setLiberado}>
           Confirmo que fui avaliado e liberado por um médico ou profissional de Educação Física
         </Marcar>
@@ -130,12 +130,7 @@ export function Triagem() {
     return (
       <Passo id="triagem" titulo="Alguma destas vale para você?">
         <p className="ajuda">
-          Hoje, ou algo que um médico já disse.{' '}
-          <PorQue regras={['seguranca.triagem', 'seguranca.triagem.nenhuma']} titulo="Por que esta pergunta" rotulo="por que perguntamos">
-            <p>Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.</p>
-            <p>Um “sim” não impede o treino; pede uma avaliação antes do programa automático. Suas respostas ficam só neste celular.</p>
-            <p>Se nenhuma vale, um toque responde “não” a todas.</p>
-          </PorQue>
+          Hoje, ou algo que um médico já disse.
         </p>
         <ul className="condicoes" aria-label="As 9 condições">
           {PERGUNTAS.map((p) => (
@@ -171,7 +166,7 @@ export function Triagem() {
 
   return (
     <Passo id="triagem" titulo="Quais valem para você?" aoVoltar={() => setGeral(true)}>
-      <p className="lede">Marque as que valem. No fim, você confirma que as outras não valem.</p>
+      <p className="lede">Marque as que valem.</p>
       <form onSubmit={continuar} noValidate className="form">
         <Erros erros={erros} />
         <div className="pilha">
@@ -186,7 +181,7 @@ export function Triagem() {
                   <legend>Quais regiões?</legend>
                   <p className="ajuda">
                     Para cada região, o app pergunta a dor de hoje. Acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o
-                    app prefere outros; até 2, o programa fica normal, com um lembrete. <Selo id="seguranca.dor.programa" />
+                    app prefere outros; até 2, o programa fica normal, com um lembrete.
                   </p>
                   <div className="opcoes grade">
                     {ARTICULACOES.map((a) => (

@@ -47,7 +47,7 @@ export function ComoEsta({ programa, perfil, inventario }: { programa: Programa;
   const leves = avaliacao.achados.filter((a) => a.gravidade === 'limite' || a.gravidade === 'info');
   return (
     <section aria-labelledby="como-esta" className="pilha">
-      <h3 id="como-esta">Como está o seu programa</h3>
+      <h3 id="como-esta" className="sr">Como está o seu programa</h3>
       <p>
         <b>{avaliacao.resumo}</b> <Selo id="avaliador.gravidade" />
       </p>

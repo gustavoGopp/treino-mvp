@@ -1,11 +1,10 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID, type Musculo } from '../../domain/biblioteca';
-import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
-import { diaEMes as dataCurta, faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
-import { NOME_NIVEL } from '../../domain/nivel';
+import { diaEMes as dataCurta, faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
@@ -16,17 +15,13 @@ import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { Icone } from '../app/icones';
-import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
-import { ComoLer } from './ComoLer';
+import { NavInferior, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, semanaLeveDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
-import { ComoEsta } from './ComoEsta';
-import type { Perfil } from '../../domain/gerador';
-import type { Inventario } from '../../domain/taxonomia/equipamentos';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
@@ -70,11 +65,11 @@ export function Programa() {
           <div className="warnbox seguranca">
             {semExercicio && !triagem.bloqueado ? (
               <p>
-                {semExercicio.texto} <Selo id={semExercicio.regraId} />
+                {semExercicio.texto}
               </p>
             ) : (
               <p>
-                {triagem.mensagem} <Selo id={triagem.regraId} />
+                {triagem.mensagem}
               </p>
             )}
           </div>
@@ -122,7 +117,6 @@ export function Programa() {
   const agora = agoraIso();
   const fuso = fusoDoAparelho();
   const hoje = hojeDoEstado(estado, agora, fuso)!;
-  const semana = hoje.semana;
   const diasDaSemana = hoje.dias;
   const diaDoPrograma = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
   const locais = estado.locais ?? [];
@@ -140,7 +134,6 @@ export function Programa() {
   const tempoProposto = volta ? null : tempoDoEstado(estado, fuso);
   const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
   const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
-  const faseAtual = salvo.fases[0];
   const prefixoAbas = prefixoComum(diasDaSemana.map((d) => d.nome));
 
   // Uma mensagem por vez (lote 4; agente 1, 4.5A): a dor fica sempre à vista; o resto entra numa fila, na ordem
@@ -158,7 +151,7 @@ export function Programa() {
       bloco: (
         <section className="box" aria-labelledby="dor-triagem">
           <h2 id="dor-triagem">
-            Pela triagem <Selo id="seguranca.dor.programa" />
+            Pela triagem
           </h2>
           <ul className="lista">
             {doresTriagem.map((d) => (
@@ -178,7 +171,7 @@ export function Programa() {
   if (versaoNova && !estado.sessaoAtual)
     fila.push({
       id: 'versao',
-      linha: 'Há uma versão nova do seu programa.',
+      linha: 'Versão nova do programa.',
       acao: {
         rotulo: 'Atualizar',
         fazer: () => {
@@ -190,7 +183,7 @@ export function Programa() {
     });
   if (!volta && !estado.sessaoAtual) {
     if (leve?.ativa) fila.push({ id: 'leve-ativa', linha: <b>Semana leve{leve.ate ? ` até ${dataCurta(leve.ate)}` : ''}</b>, bloco: <SemanaLeve partes={['ativa']} /> });
-    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve? (opcional)</b>, bloco: <SemanaLeve partes={['oferta']} /> });
+    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve?</b>, bloco: <SemanaLeve partes={['oferta']} /> });
     if (tempoProposto)
       fila.push({
         id: 'tempo',
@@ -199,7 +192,7 @@ export function Programa() {
           <section className="box volta" aria-labelledby="tempo-real">
             <h2 id="tempo-real">O tempo dos seus treinos</h2>
             <p>
-              {tempoProposto.texto} <Selo id={tempoProposto.regraId} />
+              {tempoProposto.texto}
             </p>
             <p className="ajuda">Com o ajuste, o que cabe nos seus minutos pode mudar; o programa só muda quando você atualizar.</p>
             <div className="opcoes linha">
@@ -223,7 +216,8 @@ export function Programa() {
     if (opcoes.length > 0 && !estado.ajustes?.recolhido)
       fila.push({
         id: 'ajustes',
-        linha: `${abaixo ? 'Alguns músculos ficaram abaixo da meta.' : 'Algum treino passa do tempo.'} Dá para ajustar.`,
+        linha: abaixo ? 'Músculos abaixo da meta.' : 'Treino passa do tempo.',
+        rotuloVer: 'Ajustar',
         bloco: <Ajustes opcoes={opcoes} escolher={escolher} />,
       });
   }
@@ -265,7 +259,6 @@ export function Programa() {
                 {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
                 {d.nome.slice(prefixoAbas.length)}
               </b>
-              <small aria-hidden="true">~{d.minutosEstimados} min</small>
             </button>
           ))}
         </div>
@@ -288,7 +281,6 @@ export function Programa() {
             />
           ) : (
             <>
-              <p className="rotulo">Semana {semana}</p>
               <h2 id="hoje-t">{dia.nome}</h2>
               <div className="numeros num">
                 <div>
@@ -316,16 +308,19 @@ export function Programa() {
                 <div className="box">
                   <p>
                     <b>Em {nomeLocal}:</b>{' '}
-                    {noLocal.trocas.length ? 'o que muda neste treino.' : 'tudo do programa é possível aqui.'} <Selo id="local.treino-do-dia" />
+                    {noLocal.trocas.length ? 'o treino muda.' : 'o treino é o mesmo.'}
                   </p>
                   {noLocal.trocas.length > 0 && (
-                    <ul className="trocas-local" aria-label={`Trocas em ${nomeLocal}`}>
-                      {noLocal.trocas.map((t) => (
-                        <li key={t.vaga}>{t.motivo.charAt(0).toUpperCase() + t.motivo.slice(1)}.</li>
-                      ))}
-                    </ul>
+                    <details className="dobra">
+                      <summary>{noLocal.trocas.length === 1 ? '1 troca' : `${noLocal.trocas.length} trocas`}</summary>
+                      <ul className="trocas-local" aria-label={`Trocas em ${nomeLocal}`}>
+                        {noLocal.trocas.map((t) => (
+                          <li key={t.vaga}>{t.motivo.charAt(0).toUpperCase() + t.motivo.slice(1)}.</li>
+                        ))}
+                      </ul>
+                      <p className="ajuda">Séries, RIR e descanso continuam os mesmos. Num aparelho novo, a 1ª série acerta a carga.</p>
+                    </details>
                   )}
-                  <p className="ajuda">Séries, RIR e descanso de cada vaga continuam os mesmos. Num aparelho novo, a 1ª série acerta a carga.</p>
                 </div>
               )}
               <Link className="link-sec" to="/locais">
@@ -347,7 +342,7 @@ export function Programa() {
               </button>
             ) : (
               <button type="button" className="btn sec pequeno" aria-haspopup="dialog" aria-describedby="aviso-linha-t" onClick={() => setVerAvisos(true)}>
-                Ver
+                {primeiro.rotuloVer ?? 'Ver'}
               </button>
             )}
             {primeiro.acao && outros.length > 0 && (
@@ -358,9 +353,9 @@ export function Programa() {
           </div>
         )}
         {verAvisos && naFolha.length > 0 && (
-          <Folha titulo="Avisos" aoFechar={() => setVerAvisos(false)}>
+          <Folha titulo={naFolha.length === 1 && naFolha[0]!.id === 'ajustes' ? 'Ajustes possíveis' : 'Avisos'} aoFechar={() => setVerAvisos(false)}>
             {naFolha.map((a, i) => (
-              <div key={a.id} className="pilha">
+              <div key={a.id} className={naFolha.length === 1 ? 'pilha so-um' : 'pilha'}>
                 {i === 1 && naFolha === fila && <h3 className="rotulo">{outros.length === 1 ? 'Mais 1 aviso' : `Mais ${outros.length} avisos`}</h3>}
                 {a.bloco}
               </div>
@@ -392,25 +387,10 @@ export function Programa() {
         {/* o convite para instalar (iPhone) vem depois dos exercícios: na 1ª tela, o treino de hoje */}
         <AvisoInstalar />
 
-        {/* R5c (B2; treino.leitura): o vocabulário do treino, a um toque; e o lembrete de cópia (dados.copia) */}
-        <ComoLer iniciante={perfil!.nivel === 'iniciante'} />
+        {/* o lembrete de cópia (dados.copia). Sessão de textos (16/11/2026): "Como ler o seu treino" e "Sobre o programa"
+            saíram daqui e moram em "Entenda o treino" (Meus dados) */}
         {!estado.sessaoAtual && <LembreteCopia estado={estado} />}
 
-        <Sobre
-          programa={salvo}
-          perfil={perfil!}
-          inventario={inventario}
-          semana={semana}
-          fase={hoje.fase ?? faseAtual}
-          reabrirAjustes={
-            opcoes.length > 0 && !!estado.ajustes?.recolhido && !estado.sessaoAtual
-              ? () => {
-                  atualizar((s) => ({ ...s, ajustes: { recolhido: false } }));
-                  setVerAvisos(true);
-                }
-              : undefined
-          }
-        />
 
         {/* A ação principal fica presa embaixo, acima da barra, em qualquer estado (lote 4; agente 1, 4.2). */}
         <div className="acao-fixa">
@@ -422,7 +402,7 @@ export function Programa() {
             <button type="button" className="btn" onClick={iniciar}>
               {/* um bloco só de texto: o botão é uma linha flexível, e pedaços soltos virariam colunas */}
               <span>
-                Começar o treino <span className="so-largo">{dia.nome}</span>
+                Começar o treino<span className="sr"> {dia.nome}</span>
                 {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
               </span>
             </button>
@@ -434,7 +414,7 @@ export function Programa() {
   );
 }
 
-type AvisoDaFila = { id: string; linha: ReactNode; bloco: ReactNode; acao?: { rotulo: string; fazer: () => void } };
+type AvisoDaFila = { id: string; linha: ReactNode; bloco: ReactNode; acao?: { rotulo: string; fazer: () => void }; /** o que o botão da linha diz quando abre a folha ("Ver", se nada for dito) */ rotuloVer?: string };
 
 /** O começo comum dos nomes dos dias ("Corpo todo "), que sai das abas para elas caberem a 320 px; o leitor de tela lê o nome inteiro. */
 function prefixoComum(nomes: string[]): string {
@@ -495,11 +475,6 @@ function Volta({
           <dd>{faixa(rir)} repetições</dd>
         </div>
       </dl>
-      <p className="apoio">
-        <PorQue regras={[m.regraId]} titulo={m.titulo}>
-          <p>{m.texto}</p>
-        </PorQue>
-      </p>
       {m.refazerNivel && !respondida && (
         <div className="opcoes linha">
           <button type="button" className="btn sec pequeno" onClick={refazer}>
@@ -519,7 +494,7 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
     <section className="box ajustes" aria-labelledby="ajustes">
       <h2 id="ajustes">Ajustes possíveis</h2>
       <p className="ajuda">
-        Toque numa opção para gerar o programa de novo. Nada muda sem a sua escolha. <Selo id="tempo.corte" />
+        Tocar numa opção gera o programa de novo.
       </p>
       <ul className="opcoes-ajuste">
         {opcoes.map((o) => (
@@ -607,17 +582,22 @@ function LinhaExercicio({
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
           {/* o que se faz na folha (trocar, preferir, ver a evolução) vem antes do que se lê (o porquê) */}
-          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
-          <Preferencias
-            funcao={x.funcao}
-            atual={x.exId}
-            alternativas={x.alternativas}
-            preferidos={preferidos}
-            aoPreferir={(f, id) => {
-              aoPreferir(f, id);
-              setPreferiu(true);
-            }}
-          />
+          {x.alternativas.length > 0 && (
+            <details className="box dobra">
+              <summary>Alternativas ({x.alternativas.length})</summary>
+              <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />
+              <Preferencias
+                funcao={x.funcao}
+                atual={x.exId}
+                alternativas={x.alternativas}
+                preferidos={preferidos}
+                aoPreferir={(f, id) => {
+                  aoPreferir(f, id);
+                  setPreferiu(true);
+                }}
+              />
+            </details>
+          )}
           <p role="status" className="status">
             {preferiu ? 'Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.' : ''}
           </p>
@@ -626,144 +606,13 @@ function LinhaExercicio({
               Ver a evolução deste exercício
             </Link>
           )}
-          <details className="box dobra">
-            <summary>Por que este exercício ({x.porque.length === 1 ? '1 motivo' : `${x.porque.length} motivos`})</summary>
-            <ul className="lista">
-              {x.porque.map((q) => (
-                <li key={q.regraId}>
-                  {q.texto} <Selo id={q.regraId} />
-                </li>
-              ))}
-            </ul>
-          </details>
         </Folha>
       )}
     </li>
   );
 }
 
-/** "Sobre o programa" (lote 4): o resumo da rotina, a fase, os avisos e o porquê, numa folha a um toque. */
-function Sobre({
-  programa,
-  perfil,
-  inventario,
-  semana,
-  fase,
-  reabrirAjustes,
-}: {
-  programa: TipoPrograma;
-  perfil: Perfil;
-  inventario: Inventario | null | undefined;
-  semana: number;
-  fase?: TipoPrograma['fases'][number];
-  reabrirAjustes?: () => void;
-}) {
-  const [aberta, setAberta] = useState(false);
-  const linhas = (Object.entries(programa.metas) as [Musculo, number][]).map(([m, meta]) => ({ m, meta, v: programa.volumeSemanal[m] ?? 0 }));
-  return (
-    <>
-      <button type="button" className="linha-sobre" aria-haspopup="dialog" onClick={() => setAberta(true)}>
-        Sobre o programa
-        <span className="seta" aria-hidden="true">
-          <Icone nome="chevron-right" />
-        </span>
-      </button>
-      {aberta && (
-        <Folha titulo="Sobre o programa" aoFechar={() => setAberta(false)}>
-          <ul className="fichas" aria-label="Resumo">
-            <li>{perfil.diasSemana}x por semana</li>
-            <li>até {perfil.minutosSessao} min</li>
-            <li>{NOME_NIVEL[perfil.nivel]}</li>
-          </ul>
-          {fase && (
-            <p className="fase">
-              <b>Você está na semana {semana}.</b> {fase.texto} <Selo id={fase.regraId} />
-            </p>
-          )}
-          <p>
-            <b>{programa.divisao}.</b>
-          </p>
-          {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
-          {programa.avisos.length > 0 && (
-            <details className="box dobra">
-              <summary>Avisos ({programa.avisos.length})</summary>
-              <div className="avisos-lista">
-                {programa.avisos.map((a, i) => (
-                  <div key={i} className="warnbox">
-                    {a.texto} <Selo id={a.regraId} />
-                  </div>
-                ))}
-              </div>
-            </details>
-          )}
-          {programa.fases.length > 0 && (
-            <details className="box dobra">
-              <summary>Fases ({programa.fases.length})</summary>
-              <ul className="lista">
-                {programa.fases.map((f) => (
-                  <li key={f.semanas}>
-                    <b>{/^\d/.test(f.semanas) ? `Semana ${f.semanas}` : f.semanas}:</b> {f.texto} <Selo id={f.regraId} />
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
-          <details className="box dobra">
-            <summary>Por que este programa ({programa.porque.length})</summary>
-            <ul className="lista">
-              {programa.porque.map((q) => (
-                <li key={q.regraId}>
-                  {q.texto} <Selo id={q.regraId} />
-                </li>
-              ))}
-            </ul>
-          </details>
-          <details className="box dobra">
-            <summary>Séries por músculo na semana</summary>
-          <p className="ajuda">
-            Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
-          </p>
-          <table className="vol">
-            <thead>
-              <tr>
-                <th scope="col">Músculo</th>
-                <th scope="col">Meta</th>
-                <th scope="col">Programa</th>
-              </tr>
-            </thead>
-            <tbody>
-              {linhas.map(({ m, meta, v }) => (
-                <tr key={m} className={v < meta ? 'abaixo' : undefined}>
-                  <th scope="row">{NOME_MUSCULO[m]}</th>
-                  <td>{meta}</td>
-                  <td>
-                    {numeroBr(v)}
-                    {v < meta && <span className="sr"> (abaixo da meta)</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </details>
-          {reabrirAjustes && (
-            <button
-              type="button"
-              className="btn sec"
-              onClick={() => {
-                setAberta(false);
-                reabrirAjustes();
-              }}
-            >
-              Ver ajustes possíveis
-            </button>
-          )}
-        </Folha>
-      )}
-    </>
-  );
-}
-
-/** Alternativas da mesma função: as 3 melhores à mostra e o resto em "ver mais" (decisão de 01/11/2026). */
+/** Alternativas da mesma função. Sessão de textos (16/11/2026): ficam a um toque, dentro de "Alternativas (N)", todas de uma vez (antes, decisão de 01/11/2026: as 3 melhores à mostra e o resto em "ver mais"). */
 function Alternativas({ ids, diaId, vaga }: { ids: string[]; diaId: string; vaga: string }) {
   // cada alternativa numa linha de toque inteira (48 px), com a seta quando leva ao guia dela
   const lista = (xs: string[]) => (
@@ -786,17 +635,10 @@ function Alternativas({ ids, diaId, vaga }: { ids: string[]; diaId: string; vaga
       })}
     </ul>
   );
-  const [mostra, resto] = [ids.slice(0, ALTERNATIVAS_A_MOSTRA), ids.slice(ALTERNATIVAS_A_MOSTRA)];
   return (
     <div className="alternativas">
       <p className="rotulo">Se o equipamento estiver ocupado</p>
-      {lista(mostra)}
-      {resto.length > 0 && (
-        <details className="ver-mais">
-          <summary>Ver mais {resto.length === 1 ? '1 opção' : `${resto.length} opções`}</summary>
-          {lista(resto)}
-        </details>
-      )}
+      {lista(ids)}
     </div>
   );
 }

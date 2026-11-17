@@ -1990,3 +1990,122 @@ O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num 
 > 2. "Passou em todos os testes do motor" não é "funciona no app". Com tudo ligado, um exercício levava 7 segundos para aparecer. Os números que causavam a espera nunca mudam; hoje vêm calculados de antemão.
 > 3. O que eu não consegui fazer está escrito: um erro de ritmo sem desenho, medidas ainda sem fonte, e 66 animações que o dono do produto não viu uma a uma.
 
+## Bem menos texto: fica o número e a ação, a explicação mora num lugar só (16 e 17/11/2026)
+
+**Por quê.** Depois da sessão de 13/11 ("uma linha na tela, o resto a um toque"), o Gustavo olhou o app de novo e pediu um corte maciço. A pergunta para cada palavra passou a ser "isto precisa existir?". No meio da sessão, vendo os primeiros cortes, ele foi mais longe: "quero bem menos que isso, ainda acho que tem muita margem para diminuir, que podem parecer necessárias, como a explicação do projeto, mas que não são".
+
+**O inventário.** Um roteiro percorre o app inteiro com as personas fictícias, nos dois temas, e conta as palavras de cada tela: 458 telas e 66.352 palavras no começo (`revisoes/textos/inventario/`). Cada texto ganhou um dono (o arquivo de onde vem) e uma função (rótulo, instrução, estado, justificativa, definição, segurança, privacidade). Três pesquisas em páginas públicas deram a régua (`revisoes/textos/pesquisa/`): telas quase sem texto, ícone e imagem no lugar da palavra, e rótulo, título e ajuda.
+
+**A mudança de princípio.** Até aqui, toda regra e todo texto técnico mostravam o nível de evidência e a fonte ao lado. Com o sim do Gustavo às duas perguntas, isso mudou:
+- A explicação, o selo de evidência e o "por quê?" saíram de todas as telas e moram na página **"Entenda o treino"** (Meus dados), em 7 blocos fechados: como ler o treino; o seu programa; os exercícios (por que cada um e a próxima carga); a sua semana e as pausas; por que o app pergunta e sugere; segurança; todas as regras e as fontes. Um teste confere que as 163 regras estão lá, cada uma com o texto, o nível e as fontes. O `CLAUDE.md` foi reescrito para dizer isso.
+- No guia, a segurança à vista é uma frase com os sinais e a ação ("Dor forte ou em pontada, formigamento ou perda de força? Pare e procure avaliação."). O texto inteiro está em "Entenda o treino" e nos termos.
+
+**O que mudou, fluxo por fluxo** (cada um aprovado pelo Gustavo em imagem, do app rodando; as folhas estão em `revisoes/textos/folhas/` e o registro, em `revisoes/textos/proposta.md`)
+- **Estilo do Boneco:** dois bonecos para tocar, com um nome cada ("Manequim" e "Pessoa").
+- **Cadastro:** títulos de uma palavra, opções só com o número, o "×" no lugar de "tirar".
+- **Início:** abas só com o nome do dia, uma linha de aviso com "Ajustar", a folha do exercício com a prescrição, "Ver como fazer" e "Alternativas (N)".
+- **Treino:** "Série feita", sem o "por quê?" e sem o selo.
+- **Guia:** as 3 dicas, "Conferir (N)" e os blocos fechados.
+- **Fim do treino e semana:** o número, os quadradinhos e as barras; as ofertas ("Semana leve?", "Um programa com menos dias?") com uma frase e os botões; a lista de evolução num bloco fechado.
+- **Meus dados e Meus locais:** a 2ª linha só fica quando mostra o que está escolhido; "Editar", "Tornar principal", "Novo local".
+- **Avisos e tela de erro:** a frase encurta; o que a pessoa precisa saber para não perder os dados e o botão ficam.
+- **Termos e foto:** os termos e a caixa de consentimento ficaram inteiros (opção A); só a frase de instrução da foto encurtou.
+
+![Início, folha do exercício, fim do treino e Meus locais: antes e depois](revisoes/textos/antes-e-depois.png)
+
+![A série e o guia, do começo do dia até agora](revisoes/textos/folhas/5d-aplicado-treino-e-guia.png)
+
+| Tela (persona Ana, tema claro) | Antes | Depois |
+|---|---|---|
+| Guia (modo Técnica) | 295 | 60 |
+| Semana com a oferta de menos dias | 329 | 114 |
+| Semana completa | 293 | 111 |
+| Fim do treino com recorde | 180 | 97 |
+| Meus dados | 144 | 99 |
+| Experiência respondida | 121 | 78 |
+| Rotina respondida | 108 | 60 |
+| Início | 105 | 78 |
+| Folha do exercício | 93 | 22 |
+| Tela de erro | 76 | 35 |
+| Série do treino | 67 | 60 |
+| Meus locais | 38 | 17 |
+| Folha da foto, antes de autorizar | 194 | 179 |
+| Termos | 792 | 792 |
+
+| Fluxo (as 414 telas que existem nas duas medições) | Antes | Depois | Mudança |
+|---|---|---|---|
+| Guia | 14.535 | 5.980 | −59% |
+| Fim do treino e semana | 5.055 | 3.380 | −33% |
+| Avisos e erros | 2.399 | 1.834 | −24% |
+| Meus dados e Meus locais | 6.284 | 4.914 | −22% |
+| Cadastro | 7.727 | 6.100 | −21% |
+| Início | 13.426 | 11.400 | −15% |
+| Treino | 4.587 | 4.185 | −9% |
+| Termos e foto | 3.627 | 3.314 | −9% |
+| **Tudo** | 57.640 | 41.107 | −29% |
+
+Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 424 telas e 44.017 depois (as folhas de "por quê?" e de selo não existem mais). Os blocos de 15 palavras ou mais foram de 724 para 391, e os selos à vista, de 393 para 199: os que restam estão em "Entenda o treino", nos termos e na folha de privacidade "o que sai daqui". A conta do início ainda carrega o texto que foi para "Entenda o treino": as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome, para a comparação casar. A tabela completa, tela por tela, está em `revisoes/textos/depois/comparacao.md`.
+
+**O que não se perdeu.**
+- Segurança: a triagem, o "Senti algo", os sinais de alerta, o aviso de dor que se repete e o "Treino encerrado por segurança" com o SAMU 192 não mudaram.
+- Privacidade: "o que sai daqui", o aviso de que o navegador pode apagar os dados, os termos e a caixa de consentimento da foto ficaram inteiros.
+- Regras: nenhuma mudou. Em `src/domain/` só encurtaram 3 frases (a oferta de menos dias, a nota do foco e a resposta "Sim" do nível).
+- Acessibilidade: onde o texto saiu da vista, o nome acessível ficou (o título "O que mudou hoje", a contagem das últimas semanas, "Tirar <item>").
+
+**Decisões anteriores que mudaram, com o sim do Gustavo:** o nível de evidência e a fonte deixaram de aparecer ao lado de cada coisa (princípio do `CLAUDE.md`); a segurança do guia ficou com uma frase à vista; "Ver a sua semana" saiu do fim do treino (a linha da semana virou o toque); a frase da semana e "Como ler este quadro" saíram da tela da semana.
+
+**Um conserto no caminho.** O teste do cartão de texto que não baixou falhava de vez em quando na rodada completa: depois de "Recarregar o app", dava só 5 segundos para o app inteiro voltar. Agora ele espera o recarregamento terminar; o que ele confere não mudou.
+
+**Resultado:** `npm run check` com 904 testes, `npm run test:e2e` com 177 e os tokens, tudo passando; a medição, com 60 roteiros e nenhuma falha.
+
+**Rascunho de post para o LinkedIn**
+
+> Cortei 29% das palavras do meu app. O que saiu foi, quase tudo, explicação.
+>
+> O app monta um treino de força com base em evidência. Eu fazia questão de mostrar, ao lado de cada regra, o motivo, o nível de evidência e a fonte. Parecia respeito por quem usa.
+>
+> Até eu olhar para a tela do guia de um exercício: 295 palavras. Ninguém lê 295 palavras entre uma série e outra.
+>
+> A pergunta que mudou tudo foi simples: "isto precisa existir aqui?". Quase sempre a resposta era "precisa existir, mas não aqui".
+>
+> Então a explicação ganhou um endereço só: uma página chamada "Entenda o treino", com o porquê de cada coisa e as 163 regras com as fontes. Nada foi apagado. Um teste automático confere que toda regra continua lá.
+>
+> Nas telas ficou o número e a ação. O guia caiu para 60 palavras. A tela da semana, de 293 para 111.
+>
+> Três coisas eu não cortei: o aviso de segurança (ficou mais curto, com a ação dentro), o que o app faz com os dados e o texto do consentimento da foto. Texto de consentimento não se resume: a pessoa autoriza o que leu.
+>
+> O que aprendi: explicar tudo em todo lugar é um jeito de não escolher o que importa em cada tela.
+
+## As regras em linguagem simples (17/11/2026)
+
+**Por quê.** A página "Entenda o treino" reuniu as 163 regras do app, mas mostrava o texto delas como foi escrito para quem desenvolve: em 91 havia siglas de etapa, nomes de arquivo e datas de decisão, e em muitas o texto era só um título, porque o que a regra faz estava num campo que a tela não mostrava. O Gustavo pediu as frases em linguagem simples.
+
+**Como foi feito.** Cada regra ganhou um título curto e uma frase para quem treina, tirados só do texto e dos valores dela (`src/conteudo/frases-das-regras.json`). Quatro redatores escreveram, com um guia de estilo; quatro revisores independentes conferiram cada frase contra a regra e, nas dúvidas, contra o código. A revisão trouxe 61 correções: 6 por erro de sentido, 34 por algo essencial que tinha ficado de fora e 21 de linguagem. Um teste novo confere que toda regra tem a sua frase, que nenhuma traz jargão interno e que nenhum número aparece numa frase sem estar na regra dela.
+
+![Quatro regras abertas, antes e depois](revisoes/textos/folhas/10c-regras-abertas.png)
+
+**O que não mudou de tamanho.** O texto do catálogo foi de 8.140 para cerca de 8.700 palavras: não ficou mais curto, ficou legível e completo. A frase típica tem 45 palavras; as de segurança e de privacidade são as mais longas, porque ali nada podia sair.
+
+**O que a revisão achou nas próprias regras, e foi arrumado** (com o ok do Gustavo). Escrever o que cada regra faz em palavras simples mostrou onde a regra e o app não diziam a mesma coisa:
+- A regra de reduzir a carga falava em 5 a 10% com dor; o app sempre reduziu 10 a 20%, pela regra da nota de dor. A regra agora remete a ela.
+- Os sinais que pedem atendimento urgente por compressão dos nervos no fim da coluna (cauda equina) estavam na regra, em jargão médico, e em nenhuma tela. A regra ganhou palavras simples, e o "Senti algo" ganhou o sinal "Dormência entre as pernas ou descontrole da urina ou das fezes", que encerra o treino e diz "procure um pronto-socorro agora".
+- Quatro acertos menores: o descanso mínimo (60 s ou mais), a conta do lote de elástico (8, não 9), o que o mínimo semanal faz, e duas regras que passaram a dizer que ainda não estão no app.
+
+![O "Senti algo" com o sinal novo](revisoes/textos/folhas/11-senti-algo.png)
+
+**Ficou para decidir:** a regra dos sinais do coração diz que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app não bloqueia (só orienta). A frase da regra diz isso com todas as letras; fazer o bloqueio é decisão do Gustavo.
+
+**Resultado:** `npm run check` com 909 testes e `npm run test:e2e` com 178, tudo passando.
+
+**Rascunho de post para o LinkedIn**
+
+> Reescrevi as 163 regras do meu app em linguagem simples. O que eu não esperava: a tradução achou erros.
+>
+> As regras estavam escritas para quem desenvolve: siglas, nomes de arquivo, datas de decisão. Pedi uma frase para cada uma, do jeito que eu explicaria a alguém na academia.
+>
+> Quem escreve não revisa: outros revisores conferiram cada frase contra a regra. Vieram 61 correções.
+>
+> E, ao dizer com clareza o que cada regra faz, apareceu onde a regra e o app não diziam a mesma coisa. Uma regra falava em reduzir 5 a 10% da carga com dor; o app sempre reduziu 10 a 20%. Um sinal de alerta que pede pronto-socorro estava descrito num termo médico, e não aparecia em tela nenhuma.
+>
+> Texto difícil esconde erro. Enquanto a regra estava em jargão, ninguém lia; quando virou uma frase simples, bastou ler.
+

@@ -92,7 +92,7 @@ test('com um treino aberto, o programa não é gerado de novo: a mudança espera
   await page.getByRole('link', { name: /Voltar ao início/ }).click();
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
+  await page.getByText('Exercícios a evitar', { exact: true }).click();
   await page.getByLabel('Agachamento goblet com calcanhar elevado', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
@@ -197,14 +197,13 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
 test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a quem abriu', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await ana(page);
-  // uma folha (o exercício) e outra por cima (o selo de uma regra)
-  // o 1º exercício do Corpo todo A (o goblet desde o pacote 2, de 15/11/2026; antes, o búlgaro)
-  await page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ }).first().click();
+  // uma folha e outra por cima (o selo de uma regra). Sessão de textos (16/11/2026): os selos saíram da folha do
+  // exercício; a folha sobre folha que resta é a da privacidade em Meus dados ("o que sai daqui", com o selo da foto).
+  await page.goto('/dados');
+  await page.getByRole('button', { name: 'o que sai daqui' }).click();
   const deBaixo = page.getByRole('dialog').first();
   await expect(deBaixo).toBeVisible();
-  // o selo de uma regra do "Por que este exercício" (frontend novo: as alternativas e o "Prefiro" vêm antes na folha)
-  await deBaixo.locator('summary', { hasText: /^Por que este exercício/ }).click();
-  const selo = deBaixo.locator('ul.lista').getByRole('button', { name: /ver de onde vem$/ }).first();
+  const selo = deBaixo.getByRole('button', { name: /ver de onde vem$/ }).first();
   await selo.click();
   const deCima = page.getByRole('dialog', { name: 'De onde vem isto' });
   await expect(deCima).toBeVisible();
@@ -234,6 +233,7 @@ test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a 
   await expect(page.getByRole('dialog')).toHaveCount(0);
 
   // no treino: "⋯" → "Trocar exercício" troca uma folha pela outra; ao fechar, o foco volta ao "⋯"
+  await page.goto('/programa');
   await comecar(page);
   const mais = page.getByRole('button', { name: /^Mais opções/ });
   await mais.click();
@@ -265,9 +265,11 @@ test('o cartão de texto que não baixou avisa, tenta de novo e, se o navegador 
   const montagem = page.getByRole('region', { name: /Montagem segura/ });
   const recarregar = page.getByRole('button', { name: 'Recarregar o app' });
   await expect(montagem.or(recarregar)).toBeVisible();
-  if (await recarregar.isVisible()) await recarregar.click();
-  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
-  await expect(montagem).toBeVisible();
+  // o recarregar troca o documento inteiro: o teste espera o app novo carregar antes de conferir. Com a máquina
+  // ocupada (a rodada completa, em paralelo), isso passava dos 5 s da espera padrão e o teste falhava de vez em quando.
+  if (await recarregar.isVisible()) await Promise.all([page.waitForEvent('load'), recarregar.click()]);
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible({ timeout: 15_000 });
+  await expect(montagem).toBeVisible({ timeout: 15_000 });
   await expect(page.getByText('Não deu para carregar o guia em texto')).toHaveCount(0);
   await contexto.close();
 });

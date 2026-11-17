@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { abrirExercicio, abrirTrocar, ana, detalhesDo, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
+import { abrirExercicio, abrirTrocar, ana, detalhesDo, entenda, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -102,9 +102,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await abrirExercicio(page, /./);
     await criterios(page); // a folha do exercício
     await page.keyboard.press('Escape');
-    await sobreOPrograma(page);
-    await criterios(page); // "Sobre o programa"
-    await page.keyboard.press('Escape');
+    // sessão de textos (16/11/2026): "Sobre o programa" saiu do início; a página "Entenda o treino" entra em Meus dados
     if (await page.locator('.aviso-linha').count()) {
       await verAvisos(page);
       await criterios(page); // a folha dos avisos
@@ -132,7 +130,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     for (let i = 0; i < 3; i++) await proximoExercicio(page);
     await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
     await criterios(page); // exercício sem animação, cartão fechado
-    await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
+    await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
     await criterios(page); // cartão aberto
   },
   // lote 2
@@ -155,6 +153,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await page.goto('/semana');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await criterios(page); // semana
+    await page.locator('summary', { hasText: /^Evolução \(\d+\)$/ }).click();
     await page.locator('.lista-evolucao a').first().click();
     await expect(page).toHaveURL(/\/evolucao\//);
     await criterios(page); // evolução
@@ -174,6 +173,24 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     }
     await page.goto('/locais');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await criterios(page);
+  },
+  // sessão de textos (16/11/2026): a página que reúne as explicações, fechada, com cada bloco aberto e com uma regra aberta
+  entenda: async (page) => {
+    await ana(page);
+    await page.goto('/entenda');
+    await expect(page.getByRole('heading', { name: 'Entenda o treino' })).toBeVisible();
+    await criterios(page);
+    await sobreOPrograma(page);
+    await criterios(page); // "O seu programa", com os avisos e os limites abertos
+    for (const bloco of ['Como ler o treino', /^Os exercícios/, 'A sua semana e as pausas', 'Por que o app pergunta e sugere', 'Segurança']) {
+      await entenda(page, bloco);
+      await criterios(page);
+    }
+    const regras = await entenda(page, 'Todas as regras e as fontes');
+    await expect(regras.locator('.regra-do-catalogo').first()).toBeVisible();
+    await regras.locator('.regra-do-catalogo > summary').first().click();
+    await expect(regras.locator('.regra-do-catalogo .sentido').first()).toBeVisible();
     await criterios(page);
   },
 };

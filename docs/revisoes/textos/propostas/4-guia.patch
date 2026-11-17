@@ -1,0 +1,114 @@
+From 2852e2b4d17bb82069a9dbf5862cff94603dc2af Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 19:37:31 +0000
+Subject: [PATCH] =?UTF-8?q?Proposta=20do=20guia=20enxuto=20(ainda=20sem=20?=
+ =?UTF-8?q?aprova=C3=A7=C3=A3o)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/features/guia/Guia.tsx | 24 ++++++------------------
+ src/styles.css             |  1 +
+ tests/e2e/treino.spec.ts   |  6 +++++-
+ 3 files changed, 12 insertions(+), 19 deletions(-)
+
+diff --git a/src/features/guia/Guia.tsx b/src/features/guia/Guia.tsx
+index b5e0edd..749e097 100644
+--- a/src/features/guia/Guia.tsx
++++ b/src/features/guia/Guia.tsx
+@@ -408,7 +408,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
+ 
+         <section className="exhead">
+           <div className="exhead-topo">
+-            <p className="rotulo">
++            {/* sessão de textos (16/11/2026): "Exercício 1 de 6" fica só para o leitor de tela; as setas ao lado levam ao anterior e ao próximo */}
++            <p className="sr">
+               Exercício {pos + 1} de {dia.ex.length}
+             </p>
+             <div className="nav">
+@@ -425,10 +426,9 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
+             {minha ? (
+               <div className="rx" data-testid="prescricao">
+                 {[
+-                  `Semana ${minha.semana}: ${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
++                  `${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
+                   `RIR ${faixa(minha.x.rir)}`,
+                   `descanso ${tempo(minha.x.descansoSeg)}`,
+-                  ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
+                 ].map((t, i) => (
+                   <span key={t}>
+                     {i > 0 && ' '}
+@@ -477,18 +477,10 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
+           <p>Dor muscular de treino é esperada: queimação durante a série e dolorimento difuso por 1–3 dias.</p>
+           <p>
+             <b>Pare o exercício</b> e procure avaliação (fisioterapeuta ou médico do esporte) se aparecer dor articular forte ou em
+-            pontada, formigamento, perda de força incomum ou sensação de lesão. Nesses casos, não continue achando que é normal.
+-          </p>
+-          <p className="note">
+-            As animações usam um modelo simplificado com medidas aproximadas e não substituem uma avaliação presencial. A sensação
+-            muscular sozinha não prova que a execução está certa: confira também a montagem, a trajetória e a amplitude.
++            pontada, formigamento, perda de força incomum ou sensação de lesão.
+           </p>
++          <p className="note">As animações são um modelo simplificado e não substituem uma avaliação presencial.</p>
+         </div>
+-        {minha && (
+-          <Link className="btn sec" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+-            Voltar para {ctx!.de === 'treino' ? 'o treino' : 'o programa'}
+-          </Link>
+-        )}
+       </footer>
+     </div>
+   );
+@@ -519,10 +511,6 @@ function InfoModo({
+             <i className="sw c-guide" />
+             linhas de referência
+           </span>
+-          <span>
+-            <i className="sw c-joint" />
+-            articulações
+-          </span>
+         </div>
+       </>
+     );
+@@ -636,7 +624,7 @@ const Lista = ({ itens }: { itens: string[] }) => (
+ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
+   return (
+     <section className="secao-guia">
+-      <details className="box" open>
++      <details className="box">
+         <summary>Montagem</summary>
+         <div className="dbody">
+           <h3>Equipamento</h3>
+diff --git a/src/styles.css b/src/styles.css
+index d54379d..8497f99 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -376,6 +376,7 @@ details.campo .opcoes{margin-top:var(--s8)}
+ .exhead{display:block}
+ .exhead-topo{display:flex;align-items:center;justify-content:space-between;gap:var(--s16)}
+ .exhead-topo .rotulo{margin:0}
++.exhead-topo .nav{margin-left:auto}
+ .exhead h1{font-weight:700;font-size:var(--t-titulo);line-height:1.1;margin:var(--s4) 0 0;letter-spacing:-.03em;overflow-wrap:break-word}
+ .exhead .rx{font-size:var(--t-apoio);color:var(--texto-2);margin-top:var(--s4)}
+ .exhead .tg{font-size:var(--t-apoio);margin-top:var(--s4)}
+diff --git a/tests/e2e/treino.spec.ts b/tests/e2e/treino.spec.ts
+index af115ec..c145ee8 100644
+--- a/tests/e2e/treino.spec.ts
++++ b/tests/e2e/treino.spec.ts
+@@ -180,7 +180,11 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
+   await page.getByRole('link', { name: 'Ver como fazer' }).click();
+   await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
+   const rx = page.getByTestId('prescricao');
+-  await expect(rx).toHaveText(new RegExp(`^Semana 1: ${series} × 8–12 cada lado · RIR 3–4 · descanso 1:45 · fase de aprendizado$`));
++  // sessão de textos (16/11/2026): a linha fica só com os números; a semana e a fase estão a um toque, no "por quê?"
++  await expect(rx).toHaveText(new RegExp(`^${series} × 8–12 cada lado · RIR 3–4 · descanso 1:45$`));
++  await page.locator('.exhead').getByRole('button', { name: 'por quê?' }).click();
++  await expect(page.getByRole('dialog', { name: 'A prescrição de hoje' })).toContainText(/Fase de aprendizado do iniciante/);
++  await page.keyboard.press('Escape');
+   // Nada da prescrição do programa de referência ("3 × 8–12 por perna · RIR 1–2 · 1,5 min").
+   await expect(page.locator('body')).not.toContainText('RIR 1–2');
+   await expect(page.locator('body')).not.toContainText('por perna');
+-- 
+2.43.0
+

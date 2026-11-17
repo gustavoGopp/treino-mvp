@@ -9,10 +9,10 @@ import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
 import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
-import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
-import { apagarEstiloBoneco } from '../app/estiloBoneco';
+import { apagarEstiloBoneco, useEstiloBoneco } from '../app/estiloBoneco';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
 // R5c: a data da última cópia (dados.copia), o aviso quando o navegador nega o armazenamento persistente
@@ -23,6 +23,7 @@ const OBJETIVO = { cutting: 'Manter o músculo enquanto perco peso', forca: 'Fic
 export function Dados() {
   const { estado, carregado, persistente, erroCarga, cargaFalhou, substituir, limpar } = useApp();
   const navigate = useNavigate();
+  const estilo = useEstiloBoneco();
   const arquivo = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState('');
   const [erro, setErro] = useState('');
@@ -128,7 +129,7 @@ export function Dados() {
         <p className="ajuda">
           Tudo fica guardado só neste aparelho.{' '}
           {/* o texto da foto, com o selo dele (a regra e a fonte), vem inteiro de privacidade.tsx */}
-          <PorQue regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
+          <PorQue essencial regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
             <p>
               <TextoFotoCurto />
             </p>
@@ -138,7 +139,7 @@ export function Dados() {
           <div className="warnbox" role="note">
             <p>
               <b>Este navegador pode apagar seus dados.</b> Guarde uma cópia.{' '}
-              <PorQue regras={['dados.persistente']} titulo="O navegador e os seus dados">
+              <PorQue essencial regras={['dados.persistente']} titulo="O navegador e os seus dados">
                 <p>
                   Este navegador não garantiu guardar seus dados de forma permanente: ele pode apagá-los se faltar espaço. Instalar o app na
                   tela inicial ajuda; exportar uma cópia protege.
@@ -156,7 +157,7 @@ export function Dados() {
           <div className="warnbox pilha" role="note">
             <p>Os dados que o app não conseguiu ler continuam guardados neste aparelho. Exporte-os para não perdê-los.</p>
             <button type="button" className="btn sec" onClick={() => void exportarNaoLido()}>
-              Exportar os dados que não foram lidos
+              Exportar esses dados
             </button>
           </div>
         )}
@@ -177,7 +178,7 @@ export function Dados() {
             )}
             {r && (
               <LinhaDados para="/comecar/rotina?de=dados&foco=objetivo" titulo="Objetivo">
-                {r.objetivo && r.objetivo !== 'hipertrofia' ? OBJETIVO[r.objetivo] : 'Ganhar músculo (o padrão)'}
+                {OBJETIVO[r.objetivo ?? 'hipertrofia']}
               </LinhaDados>
             )}
             {estado.programa && (
@@ -187,11 +188,14 @@ export function Dados() {
             )}
             {locais.length > 0 && (
               <LinhaDados para="/locais" titulo="Meus locais">
-                {locais.length === 1 ? `1 local: ${locais[0]!.nome}` : `${locais.length} locais: ${locais.map((l) => l.nome).join(', ')}`}
+                {locais.map((l) => l.nome).join(', ')}
               </LinhaDados>
             )}
+            <LinhaDados para="/entenda" titulo="Entenda o treino">
+              O porquê e as fontes
+            </LinhaDados>
             <LinhaDados aoTocar={() => setFolha('estilo')} titulo="Estilo do Boneco">
-              Como o guia desenha os exercícios
+              {estilo === 'pele' ? 'Pessoa' : 'Manequim'}
             </LinhaDados>
           </GrupoLinhas>
 
@@ -199,23 +203,17 @@ export function Dados() {
           <LinhaDados aoTocar={() => setFolha('guardar')} titulo="Guardar uma cópia">
             Última cópia: {textoUltimaCopia(ultimaCopia || undefined, agoraIso())}
           </LinhaDados>
-          <LinhaDados aoTocar={() => setFolha('trazer')} titulo="Trazer uma cópia">
-            De um arquivo exportado por este app
-          </LinhaDados>
+          <LinhaDados aoTocar={() => setFolha('trazer')} titulo="Trazer uma cópia" />
         </GrupoLinhas>
 
         <GrupoLinhas rotulo="Saúde e privacidade">
-          <LinhaDados para="/comecar/triagem" titulo="Refazer a triagem">
-            As 9 perguntas e a dor de hoje; o programa é gerado de novo no fim
-          </LinhaDados>
+          <LinhaDados para="/comecar/triagem" titulo="Refazer a triagem" />
           {fotoEm && (
             <LinhaDados aoTocar={() => setFolha('foto')} titulo="Foto do equipamento">
               Autorizada em {dataCurta(fotoEm)}
             </LinhaDados>
           )}
-          <LinhaDados para="/termos" titulo="Termos de uso e privacidade">
-            O que o app faz e não faz, onde ficam os dados e os seus direitos
-          </LinhaDados>
+          <LinhaDados para="/termos" titulo="Termos de uso e privacidade" />
         </GrupoLinhas>
 
         <AvisarProblema />
@@ -225,7 +223,7 @@ export function Dados() {
         </button>
 
         <p className="muted">
-          Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.
+          Versão {__VERSAO__} · {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}
         </p>
 
         {folha === 'estilo' && (
@@ -236,8 +234,7 @@ export function Dados() {
         {folha === 'guardar' && (
           <Folha titulo="Guardar uma cópia" aoFechar={() => setFolha(null)}>
             <p>
-              O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.{' '}
-              <Selo id="dados.copia" />
+              O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.
             </p>
             <p>
               <b>Última cópia: {textoUltimaCopia(ultimaCopia || undefined, agoraIso())}</b>
@@ -302,7 +299,7 @@ export function Dados() {
           <Folha titulo="Foto do equipamento" aoFechar={() => setFolha(null)}>
             <p>
               Você autorizou o envio das fotos à Anthropic, nos EUA, em {dataCurta(fotoEm)}. Se retirar, a foto pede a autorização de novo
-              antes do próximo envio. <Selo id="privacidade.foto" />
+              antes do próximo envio.
             </p>
             <button
               type="button"
@@ -351,12 +348,12 @@ function GrupoLinhas({ rotulo, children }: { rotulo: string; children: ReactNode
   );
 }
 
-function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; children: ReactNode; para?: string; aoTocar?: () => void }) {
+function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; children?: ReactNode; para?: string; aoTocar?: () => void }) {
   const corpo = (
     <>
       <span>
         <b>{titulo}</b>
-        <small>{children}</small>
+        {children !== undefined && <small>{children}</small>}
       </span>
       <span className="seta" aria-hidden="true">
         <Icone nome="chevron-right" />

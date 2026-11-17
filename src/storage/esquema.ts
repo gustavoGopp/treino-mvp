@@ -127,6 +127,7 @@ export const sessaoSchema = z.object({
   inicio: data,
   fim: data.optional(),
   encerradaPorAlerta: z.boolean().optional(),
+  alerta: z.enum(['cauda-equina']).optional(),
   /** Local onde o treino foi feito (R1b). Sessão sem local = de antes do R1b, feita no 1º local (o único que existia). */
   localId: z.string().optional(),
   exercicios: z.array(

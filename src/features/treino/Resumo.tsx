@@ -8,9 +8,9 @@ import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
-import { Pontos } from '../acompanhamento/Semana';
+import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { PorQue, Selo, Titulo } from '../app/ui';
+import { Titulo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
@@ -57,7 +57,6 @@ export function Resumo() {
   // "O que mudou hoje" (lote 4; agente 1, 4.1): a semana já com o treino de hoje, os recordes do dia e as cargas que sobem.
   const semana = semanaDoEstado(estado, agoraIso(), fuso);
   const marcas = marcasDaSessao(estado.historico, s.id, (x) => localDaSessao(estado, x));
-  const sobem = itens.filter((i) => i.sug.acao === 'subir').length;
 
   return (
     <div className="wrap app">
@@ -65,11 +64,19 @@ export function Resumo() {
         <AvisoSalvar />
         <p className="rotulo subtitulo">{dia.nome}</p>
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
-        {s.encerradaPorAlerta && (
+        {/* sinal de cauda equina (seguranca.alerta.musculoesqueletico): atendimento urgente, sem esperar o sintoma passar */}
+        {s.encerradaPorAlerta && s.alerta === 'cauda-equina' && (
+          <div className="caixa-erro" role="alert">
+            <p>
+              Pare o treino. Esse sinal pede atendimento urgente: <b>procure um pronto-socorro agora</b>.
+            </p>
+          </div>
+        )}
+        {s.encerradaPorAlerta && !s.alerta && (
           <div className="caixa-erro" role="alert">
             <p>
               Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
-              voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+              voltar a treinar, procure avaliação.
             </p>
             {/* o número a um toque (o texto da orientação não muda) */}
             <a className="btn ligar" href="tel:192">
@@ -94,22 +101,10 @@ export function Resumo() {
             <span className="rotulo">{itens.length === 1 ? 'exercício' : 'exercícios'}</span>
           </div>
         </div>
-        {(semana || marcas.length > 0 || sobem > 0) && (
+        {(semana || marcas.length > 0) && (
           <section className="mudou" aria-labelledby="mudou">
-            <h2 id="mudou">O que mudou hoje</h2>
-            {semana && (
-              <>
-                <p className="mudou-semana">
-                  <b>A sua semana</b> <Pontos r={semana} />{' '}
-                  <b className="num">
-                    {semana.feitos} de {semana.planejados}
-                  </b>{' '}
-                  <PorQue regras={[semana.regraId]} titulo="A sua semana" rotulo="o que conta">
-                    <p>{semana.mensagem}</p>
-                  </PorQue>
-                </p>
-              </>
-            )}
+            <h2 id="mudou" className="sr">O que mudou hoje</h2>
+            {semana && <FaixaSemana r={semana} />}
             {marcas.length > 0 && (
               <ul className="marcas-hoje" aria-label="Recordes de hoje">
                 {marcas.map((m) => (
@@ -127,11 +122,10 @@ export function Resumo() {
                 ))}
               </ul>
             )}
-            {sobem > 0 && <p>{sobem === 1 ? '1 exercício com carga para subir na próxima vez.' : `${sobem} exercícios com carga para subir na próxima vez.`}</p>}
           </section>
         )}
         <fieldset className="campo hoje-foi">
-          <legend>Hoje foi: (opcional)</legend>
+          <legend>Hoje foi</legend>
           <div className="opcoes linha">
             {HOJE_FOI.map(([v, t]) => (
               <button key={v} type="button" className="btn sec pequeno" aria-pressed={s.hojeFoi === v} onClick={() => atualizar((e) => marcarHojeFoi(e, s.id, v))}>
@@ -139,15 +133,10 @@ export function Resumo() {
               </button>
             ))}
           </div>
-          <p className="ajuda">
-            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi" rotulo="para que serve">
-              <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
-            </PorQue>
-          </p>
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
           <h2 id="proxima" className="rotulo">
-            Para a próxima vez
+            Próxima vez
           </h2>
           <ul className="lista-proxima">
             {/* a chave leva a posição: o mesmo exercício pode aparecer duas vezes no treino (feito e, depois, como alternativa de outra vaga) */}
@@ -156,24 +145,17 @@ export function Resumo() {
                 <b>{POR_ID[e.exId]?.nome}</b>
                 <span>
                   <span className={`acao acao-${sug.acao}`}>{ACAO[sug.acao]}</span>
-                  {sug.proxima && <> · próxima: {textoCarga(sug.proxima, e.exId)}</>}{' '}
-                  <PorQue regras={[sug.regraId]} titulo={POR_ID[e.exId]?.nome}>
-                    <p>Hoje: {e.series.map((x) => `${textoCarga(x.carga, e.exId)} × ${x.reps}`).join(' · ')}.</p>
-                    <p>{sug.motivo}</p>
-                  </PorQue>
+                  {sug.proxima && <> · próxima: {textoCarga(sug.proxima, e.exId)}</>}
                 </span>
               </li>
             ))}
           </ul>
         </section>
         <SemanaLeve />
-        <Link className="btn sec" to="/semana">
-          Ver a sua semana
-        </Link>
         {apagar ? (
           <div className="warnbox" role="group" aria-label="Apagar este treino?">
             <p>
-              Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}. <Selo id="registro.treino-feito" />
+              Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}.
             </p>
             <div className="dois">
               <button type="button" className="btn sec" autoFocus onClick={() => setApagar(false)}>
@@ -193,7 +175,7 @@ export function Resumo() {
           </div>
         ) : (
           <button type="button" className="link-sec" onClick={() => setApagar(true)}>
-            Registrei algo errado: apagar este treino
+            Apagar este treino
           </button>
         )}
         {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}

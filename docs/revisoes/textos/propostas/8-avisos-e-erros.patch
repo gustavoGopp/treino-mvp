@@ -1,0 +1,156 @@
+diff --git a/src/features/app/TelaDeErro.tsx b/src/features/app/TelaDeErro.tsx
+index 173e0a4..e7d957c 100644
+--- a/src/features/app/TelaDeErro.tsx
++++ b/src/features/app/TelaDeErro.tsx
+@@ -51,10 +51,8 @@ export function TelaDeErro({ erro }: { erro: Error }) {
+     <div className="wrap app">
+       <main className="conteudo">
+         <Titulo>Algo deu errado nesta tela</Titulo>
+-        <p className="lede">Seus dados continuam guardados neste aparelho. Antes de tentar de novo, guarde uma cópia.</p>
+-        <section className="bloco-linha pilha" aria-labelledby="erro-copia">
+-          <h2 id="erro-copia">Guardar uma cópia</h2>
+-          <p>O arquivo tem tudo o que está neste aparelho e pode ser importado depois, em “Meus dados”.</p>
++        <p className="lede">Seus dados continuam neste aparelho. Guarde uma cópia antes de tentar de novo.</p>
++        <div className="pilha">
+           <button type="button" className="btn" onClick={() => void exportar()}>
+             Exportar meus dados
+           </button>
+@@ -66,20 +64,13 @@ export function TelaDeErro({ erro }: { erro: Error }) {
+               {falha}
+             </div>
+           )}
+-        </section>
+-        <section className="bloco-linha pilha" aria-labelledby="erro-tentar">
+-          <h2 id="erro-tentar">Tentar de novo</h2>
+-          <p>Recarrega o app. Se o erro voltar, avise o problema.</p>
+           <button type="button" className="btn sec" onClick={() => window.location.reload()}>
+             Tentar de novo
+           </button>
+-        </section>
+-        <section className="bloco-linha pilha" aria-labelledby="erro-avisar">
+-          <h2 id="erro-avisar">Avisar o problema</h2>
+           <AvisarProblema erro={erro} />
+-        </section>
++        </div>
+         <p className="muted">
+-          Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.{' '}
++          Versão {__VERSAO__} · {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')} ·{' '}
+           <a href="/termos">Termos e privacidade</a>
+         </p>
+       </main>
+diff --git a/src/features/app/avisos.tsx b/src/features/app/avisos.tsx
+index dee6738..9cb7b60 100644
+--- a/src/features/app/avisos.tsx
++++ b/src/features/app/avisos.tsx
+@@ -23,8 +23,7 @@ export function AvisoSalvar() {
+   return (
+     <div className="caixa-erro pilha" role="alert">
+       <p>
+-        <b>Não foi possível salvar neste aparelho.</b> O que você registrar agora pode se perder ao fechar o app. Exporte uma cópia para
+-        não perder seus dados.
++        <b>Não foi possível salvar neste aparelho.</b> Exporte uma cópia para não perder o que registrar.
+       </p>
+       <button type="button" className="btn sec" onClick={() => baixarCopia(estado)}>
+         Exportar meus dados
+@@ -46,16 +45,13 @@ export function AvisoInstalar() {
+       <h2 id={id} className="secao">
+         Instale o app para não perder seus dados
+       </h2>
+-      <p>
+-        No iPhone, o Safari apaga os dados de um site depois de 7 dias de uso sem abri-lo. Instalado na tela de início, o app não entra
+-        nessa contagem.
+-      </p>
++      <p>O Safari apaga os dados de um site que fica 7 dias sem ser aberto.</p>
+       <ol>
+         <li>Toque em Compartilhar (o quadrado com a seta para cima).</li>
+         <li>Toque em “Adicionar à Tela de Início”.</li>
+         <li>Abra o app pelo ícone novo.</li>
+       </ol>
+-      <p className="ajuda">Se já tem treinos aqui, exporte uma cópia antes em “Meus dados”: o app instalado pode começar vazio, e aí é só importar.</p>
++      <p className="ajuda">Já tem treinos aqui? Exporte uma cópia antes, em “Meus dados”.</p>
+       <button
+         type="button"
+         className="btn sec pequeno"
+@@ -90,8 +86,7 @@ export function LembreteCopia({ estado }: { estado: Estado }) {
+         Guarde uma cópia dos seus treinos
+       </h2>
+       <p>
+-        {ultima ? 'Você tem treinos novos desde a última cópia.' : 'Você ainda não exportou nenhuma cópia.'} Os dados ficam só neste
+-        aparelho, e o navegador pode apagá-los.
++        {ultima ? 'Há treinos novos desde a última cópia.' : 'Os dados ficam só neste aparelho, e o navegador pode apagá-los.'}
+       </p>
+       <div className="opcoes linha">
+         <button
+@@ -103,7 +98,7 @@ export function LembreteCopia({ estado }: { estado: Estado }) {
+             setFeito('Arquivo exportado. Guarde-o num lugar seguro: ele tem seus dados de saúde.');
+           }}
+         >
+-          Exportar agora
++          Exportar
+         </button>
+         <button
+           type="button"
+diff --git a/src/features/dados/Dados.tsx b/src/features/dados/Dados.tsx
+index 9d7a012..d583abc 100644
+--- a/src/features/dados/Dados.tsx
++++ b/src/features/dados/Dados.tsx
+@@ -157,7 +157,7 @@ export function Dados() {
+           <div className="warnbox pilha" role="note">
+             <p>Os dados que o app não conseguiu ler continuam guardados neste aparelho. Exporte-os para não perdê-los.</p>
+             <button type="button" className="btn sec" onClick={() => void exportarNaoLido()}>
+-              Exportar os dados que não foram lidos
++              Exportar esses dados
+             </button>
+           </div>
+         )}
+diff --git a/src/features/entenda/Entenda.tsx b/src/features/entenda/Entenda.tsx
+index caf1ce7..69c11be 100644
+--- a/src/features/entenda/Entenda.tsx
++++ b/src/features/entenda/Entenda.tsx
+@@ -348,6 +348,25 @@ export function Entenda() {
+               </Frase>
+               <Frase regra="registro.treino-feito">Um treino sem nenhuma série não conta, e o próximo continua sendo o mesmo dia.</Frase>
+             </ul>
++            <h3>Os seus dados</h3>
++            <ul className="lista">
++              <Frase regra="dados.instalar-iphone">
++                No iPhone, o Safari apaga os dados de um site depois de 7 dias sem abri-lo. Instalado na tela de início, o app não entra nessa
++                contagem. Se já tem treinos, exporte uma cópia antes: o app instalado pode começar vazio, e aí é só importar.
++              </Frase>
++              <Frase regra="dados.copia">
++                Os dados ficam só neste aparelho, e o navegador pode apagá-los. A cópia exportada tem tudo o que está aqui e pode ser importada
++                depois, em “Meus dados”.
++              </Frase>
++              <Frase regra="dados.persistente">
++                O app pede ao navegador para não apagar os dados por falta de espaço; o navegador decide e pode negar. Instalar o app ajuda;
++                exportar uma cópia protege.
++              </Frase>
++              <li>
++                Quando o aparelho recusa gravar (sem espaço ou em aba anônima), o que você registrar pode se perder ao fechar o app; por isso o
++                aviso oferece exportar na hora.
++              </li>
++            </ul>
+           </Bloco>
+ 
+           <Bloco titulo="Segurança">
+diff --git a/tests/e2e/dado-ilegivel.spec.ts b/tests/e2e/dado-ilegivel.spec.ts
+index 338cadf..36a7ef2 100644
+--- a/tests/e2e/dado-ilegivel.spec.ts
++++ b/tests/e2e/dado-ilegivel.spec.ts
+@@ -39,7 +39,7 @@ test('dado ilegível não é apagado pelo primeiro salvar: fica guardado à part
+   await expect(page.getByRole('alert')).toContainText('Meus dados');
+   // antes de qualquer toque, o dado antigo segue na chave principal e já pode ser exportado
+   await page.goto('/dados');
+-  const exportar = page.getByRole('button', { name: 'Exportar os dados que não foram lidos' });
++  const exportar = page.getByRole('button', { name: 'Exportar esses dados' });
+   await expect(exportar).toBeVisible();
+   const [antes] = await Promise.all([page.waitForEvent('download'), exportar.click()]);
+   expect(Buffer.concat(await (await antes.createReadStream()).toArray()).toString('utf8')).toContain('dado-antigo');
+@@ -53,6 +53,6 @@ test('dado ilegível não é apagado pelo primeiro salvar: fica guardado à part
+ 
+   // e continua exportável em Meus dados
+   await page.goto('/dados');
+-  const [depois] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar os dados que não foram lidos' }).click()]);
++  const [depois] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar esses dados' }).click()]);
+   expect(Buffer.concat(await (await depois.createReadStream()).toArray()).toString('utf8')).toContain('dado-antigo');
+ });

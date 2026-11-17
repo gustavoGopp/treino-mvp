@@ -59,6 +59,11 @@ describe('dor e sinais de alerta', () => {
     expect(s.acao).toBe('encerrar-sessao');
     expect(s.mensagem).toContain('192');
     expect(avaliarSinal('formigamento').acao).toBe('encerrar-exercicio');
+    // seguranca.alerta.musculoesqueletico: sinal de cauda equina pede atendimento urgente, e o treino acaba
+    const urgente = avaliarSinal('cauda-equina');
+    expect(urgente.acao).toBe('encerrar-sessao');
+    expect(urgente.mensagem).toContain('pronto-socorro');
+    expect(urgente.regraId).toBe('seguranca.alerta.musculoesqueletico');
   });
 });
 

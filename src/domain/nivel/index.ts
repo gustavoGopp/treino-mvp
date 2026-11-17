@@ -12,7 +12,7 @@ export const TEMPOS_DE_TREINO = [
 export type TempoDeTreino = (typeof TEMPOS_DE_TREINO)[number]['id'];
 
 export const CONFIANCA_TECNICA = [
-  { id: 'sim', texto: 'Sim, faço os exercícios básicos com segurança' },
+  { id: 'sim', texto: 'Sim' },
   { id: 'mais-ou-menos', texto: 'Mais ou menos' },
   { id: 'nao', texto: 'Não' },
 ] as const;

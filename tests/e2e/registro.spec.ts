@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
 import type { Estado } from '../../src/storage/esquema';
-import { ana, maisOpcoes } from './jornada';
+import { ana, maisOpcoes, porQueDaSugestao } from './jornada';
 
 // R5a, o registro que não engana (seguranca.dor.escala; registro.treino-feito), nas 6 personas fictícias. O estado de
 // cada uma é gravado direto no aparelho (IndexedDB), com o cadastro feito e o programa do gerador, sem histórico
@@ -98,9 +98,11 @@ for (const nome of NOMES) {
       // "Para a próxima vez": o exercício com dor vem com "Ajustar" (dor de 3 a 5: reduzir), pela regra de dor.
       const linha = page.locator('.resumo-ex').first();
       await expect(linha).toContainText('Ajustar');
-      await linha.getByRole('button', { name: 'por quê?' }).click();
-      await expect(page.getByRole('dialog')).toContainText(temMenor ? 'Dor entre 3 e 5/10: reduza a carga' : 'Dor entre 3 e 5/10, e não há carga menor aqui');
-      await expect(page.getByRole('dialog')).toContainText('Hoje:');
+      // sessão de textos (16/11/2026): o motivo saiu do fim do treino e está em "Entenda o treino" → "Os exercícios"
+      await expect(linha.getByRole('button', { name: 'por quê?' })).toHaveCount(0);
+      const exercicio = (await linha.locator('b').first().innerText()).trim();
+      const motivo = await porQueDaSugestao(page, exercicio);
+      await expect(motivo).toContainText(temMenor ? 'Dor entre 3 e 5/10: reduza a carga' : 'Dor entre 3 e 5/10, e não há carga menor aqui');
     });
 
     test('"Começar" e "Terminar" sem série mantém o mesmo dia e oferece descartar', async ({ page }) => {
@@ -108,7 +110,7 @@ for (const nome of NOMES) {
       const dia = await comecar(page);
       await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
       const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
-      await expect(confirma).toContainText('Você não registrou nenhuma série.');
+      await expect(confirma).toContainText('Nenhuma série registrada');
       await confirma.getByRole('button', { name: 'Descartar este treino' }).click();
       await expect(page).toHaveURL(/\/programa$/);
       await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();
@@ -128,7 +130,7 @@ test('apagar o último treino, com confirmação, volta a rotação ao dia dele'
   await umaSerie(page);
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
   await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
-  await page.getByRole('button', { name: 'Registrei algo errado: apagar este treino' }).click();
+  await page.getByRole('button', { name: 'Apagar este treino', exact: true }).click();
   // frontend novo (revisão de 13/11/2026): a confirmação é um grupo com nome (não um alerta de segurança)
   await expect(page.getByRole('group', { name: 'Apagar este treino?' })).toContainText(`o próximo treino volta a ser ${dia}`);
   await page.getByRole('button', { name: 'Apagar', exact: true }).click();
@@ -136,7 +138,7 @@ test('apagar o último treino, com confirmação, volta a rotação ao dia dele'
   await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();
 });
 
-// R5a, a checagem lateral (proximos-passos.md, 2.6): a faixa "Há uma versão nova do seu programa" que a frente C e o
+// R5a, a checagem lateral (proximos-passos.md, 2.6): a faixa "Versão nova do programa" que a frente C e o
 // redesign viram no Bruno e na Carla vinha do estado semeado sem passar pelo esquema do app (a ordem das chaves do
 // inventário muda o `entradasHash`). Com o inventário lido pelo esquema, ela não aparece; e quem faz o cadastro pela tela
 // também não a vê, nem depois de recarregar (o app relê tudo pelo esquema).
@@ -144,14 +146,33 @@ for (const nome of NOMES)
   test(`${nome}: o estado semeado pelo esquema do app não mostra "versão nova"`, async ({ page }) => {
     await semear(page, estadoDaPersona(nome));
     await expect(page.getByRole('button', { name: /^Começar o treino / })).toBeVisible();
-    await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+    await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
+  });
+
+// Sessão de textos (16/11/2026): com 4 ou 5 dias, as abas cortavam o nome do dia ("Supe", "Inferic", "Empu"); a persona
+// dos outros testes tem 3 dias e não mostrava o defeito. Vale para as 6 personas: todo nome inteiro, toda aba na tela.
+for (const nome of NOMES)
+  test(`${nome}: as abas dos dias mostram o nome inteiro de cada dia, todas dentro da tela`, async ({ page }) => {
+    await semear(page, estadoDaPersona(nome));
+    const abas = page.getByRole('tab');
+    await expect(abas.first()).toBeVisible();
+    const cortadas = await abas.evaluateAll((els) =>
+      els
+        .filter((e) => {
+          const aba = e.getBoundingClientRect();
+          const texto = e.querySelector('b')!.getBoundingClientRect();
+          return texto.right > aba.right + 0.5 || texto.left < aba.left - 0.5 || aba.right > window.innerWidth || aba.left < 0 || e.scrollWidth > e.clientWidth + 1;
+        })
+        .map((e) => e.textContent),
+    );
+    expect(cortadas, 'abas com o nome cortado ou fora da tela').toEqual([]);
   });
 
 test('o cadastro pela tela não mostra "versão nova", nem depois de recarregar', async ({ page }) => {
   await ana(page);
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
 });
 

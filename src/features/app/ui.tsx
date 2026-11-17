@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { SELOS, type Regra, type Selo as TipoSelo } from '../../domain/regras';
 import { carregarRegras } from '../../domain/regras/carregar';
@@ -7,6 +7,7 @@ import { useApp } from './estado';
 import { Folha } from './Folha';
 import { Icone, type NomeIcone } from './icones';
 import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
+import { carregarFrasesDasRegras, type FraseDaRegra } from '../../conteudo/frasesDasRegras';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
 
@@ -30,13 +31,26 @@ const SENTIDO_SELO: Record<TipoSelo, string> = {
 };
 
 /**
+ * Sessão de textos (16/11/2026, decisão do Gustavo: "quero bem menos que isso"): a explicação sai das telas. O selo de
+ * evidência e o "por quê?" só desenham dentro de <Explicacoes>, que é a página "Entenda o treino" (Meus dados), onde
+ * ficam juntos o porquê de cada coisa, o nível de evidência e as fontes. Fora dela, as duas peças não mostram nada. A
+ * exceção é o "por quê?" marcado como `essencial`: a camada de segurança ou de privacidade que fica a um toque da frase
+ * curta (o que o app não faz; o que sai do aparelho), e dentro da folha dele os selos também aparecem.
+ */
+const ComExplicacoes = createContext(false);
+export function Explicacoes({ children }: { children: ReactNode }) {
+  return <ComExplicacoes.Provider value={true}>{children}</ComExplicacoes.Provider>;
+}
+
+/**
  * Selo de evidência de uma regra de docs/pesquisa/regras.md. A pílula mostra o nível; um toque abre uma folha com a
  * regra, o que o nível quer dizer e as fontes por extenso (src/conteudo/fontes.json, baixado só nessa hora).
  */
 export function Selo({ id }: { id: string }) {
   const [aberto, setAberto] = useState(false);
+  const mostrar = useContext(ComExplicacoes);
   const selo = SELOS[id];
-  if (!selo) return null;
+  if (!selo || !mostrar) return null;
   const texto = TEXTO_SELO[selo];
   // Frases sobre como o app funciona (privacidade, onde os dados ficam, locais, registro): não são regra de treino, e a
   // palavra do nível ("consenso") solta ali não diz de quê. O selo mostra "fonte"; o nível continua na folha.
@@ -62,8 +76,23 @@ export function Selo({ id }: { id: string }) {
  * `rotulo` (estudo dos textos, 13/11/2026): o toque diz o que há dentro ("o que sai daqui", "por que perguntamos");
  * "por quê?" fica para quando é mesmo um porquê.
  */
-export function PorQue({ regras, titulo = 'Por quê', rotulo = 'por quê?', children }: { regras: string[]; titulo?: string; rotulo?: string; children?: ReactNode }) {
+export function PorQue({
+  regras,
+  titulo = 'Por quê',
+  rotulo = 'por quê?',
+  essencial = false,
+  children,
+}: {
+  regras: string[];
+  titulo?: string;
+  rotulo?: string;
+  /** camada de segurança ou de privacidade: fica a um toque mesmo fora de "Entenda o treino" */
+  essencial?: boolean;
+  children?: ReactNode;
+}) {
   const [aberto, setAberto] = useState(false);
+  const mostrar = useContext(ComExplicacoes);
+  if (!mostrar && !essencial) return null;
   return (
     <>
       <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
@@ -71,8 +100,10 @@ export function PorQue({ regras, titulo = 'Por quê', rotulo = 'por quê?', chil
       </button>
       {aberto && (
         <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
-          {children && <div className="porque-texto">{children}</div>}
-          {regras.some((id) => SELOS[id]) && <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />}
+          <Explicacoes>
+            {children && <div className="porque-texto">{children}</div>}
+            {regras.some((id) => SELOS[id]) && <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />}
+          </Explicacoes>
         </Folha>
       )}
     </>
@@ -109,7 +140,8 @@ function RegrasPorExtenso({ ids }: { ids: string[] }) {
   );
 }
 
-function SeloFolha({ regra }: { regra: Regra }) {
+/** A regra por extenso: o texto, o que o nível de evidência quer dizer e as fontes (baixadas quando a folha ou o bloco abre). */
+export function SeloFolha({ regra }: { regra: Regra }) {
   const [fontes, setFontes] = useState<Record<string, Fonte> | null | 'erro'>(null);
   useEffect(() => {
     let vivo = true;
@@ -121,10 +153,22 @@ function SeloFolha({ regra }: { regra: Regra }) {
       vivo = false;
     };
   }, []);
+  // a frase em linguagem simples; se o arquivo dela não baixar, fica o texto técnico da regra (nunca um vazio)
+  const [frases, setFrases] = useState<Record<string, FraseDaRegra> | null | 'erro'>(null);
+  useEffect(() => {
+    let vivo = true;
+    carregarFrasesDasRegras().then(
+      (f) => vivo && setFrases(f),
+      () => vivo && setFrases('erro'),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, []);
   const texto = TEXTO_SELO[regra.selo];
   return (
     <div className="selo-folha">
-      <p className="regra">{regra.regra}</p>
+      {frases === null ? <p role="status">Carregando a regra…</p> : <p className="regra">{(frases !== 'erro' && frases[regra.id]?.frase) || regra.regra}</p>}
       <p className="sentido">
         <b>{texto[0]!.toUpperCase() + texto.slice(1)}.</b> {SENTIDO_SELO[regra.selo]}
       </p>
@@ -305,7 +349,8 @@ export function Passo({
             )
           )}
           <span>
-            Passo {indice} de {total}
+            <span className="sr">Passo </span>
+            {indice} de {total}
           </span>
         </div>
         <div className="barra" aria-hidden="true">

@@ -14,7 +14,7 @@ import {
 } from '../../domain/nivel';
 import type { Nivel as TipoNivel } from '../../domain/regras';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Passo, Revelar, Selo } from '../app/ui';
+import { Erros, Escolha, Passo, Revelar } from '../app/ui';
 
 // Passo 3: experiência de treino → nível (nivel.classificacao). Na dúvida, para baixo; a pessoa pode baixar, não subir.
 export function Nivel() {
@@ -68,13 +68,12 @@ export function Nivel() {
   };
 
   return (
-    <Passo id="nivel" titulo="Sua experiência com musculação">
+    <Passo id="nivel" titulo="Experiência">
       <form onSubmit={enviar} noValidate className="form">
         {tentou && <Erros erros={erros} />}
         <Escolha
           nome="tempo"
           legenda="Há quanto tempo você treina musculação sem parar?"
-          ajuda="Conte só o tempo contínuo, sem pausas de meses."
           opcoes={TEMPOS_DE_TREINO}
           valor={tempo}
           aoMudar={setTempo}
@@ -86,7 +85,6 @@ export function Nivel() {
             <Escolha
               nome="pausa"
               legenda="Você está treinando agora?"
-              ajuda="Depois de uma pausa, o programa começa com semanas mais leves."
               opcoes={PAUSAS}
               valor={pausa}
               aoMudar={setPausa}
@@ -109,15 +107,13 @@ export function Nivel() {
         {sugestao && (
           <Revelar>
             <section className="resultado" aria-live="polite">
+              {/* sessão de textos (16/11/2026): o motivo repete o que a pessoa acabou de responder; a regra do nível está em
+                  "Entenda o treino" */}
               <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
-              <p>
-                {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
-              </p>
               {permitidos.length > 1 && (
                 <Escolha
                   nome="nivel-escolhido"
                   legenda="Quer começar num nível mais leve?"
-                  ajuda="Você pode escolher um nível abaixo do sugerido, nunca acima."
                   opcoes={[...permitidos].reverse().map((n) => ({
                     id: n,
                     texto: n === sugestao.nivel ? `${NOME_NIVEL[n]} (sugerido)` : NOME_NIVEL[n],
