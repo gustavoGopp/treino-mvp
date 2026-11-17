@@ -124,5 +124,5 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A3 | `elevacao-lateral-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a mão livre na parede só equilibra; o tronco inclina 15° na coluna, com a bacia nivelada) |
 | A3 | `desenvolvimento-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente: de lado o halter passa na frente do rosto; o cotovelo vai 70° à frente no topo, como no desenvolvimento com kettlebell) |
 | A3 | `desenvolvimento-em-pe-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente, pelo mesmo motivo) |
-| A3 | `triceps-frances-unilateral-halter` | **em correção**: a mão que segura o cotovelo cruza por cima da cabeça e tapa o rosto de lado; vai para a cintura, como o cartão permite |
+| A3 | `triceps-frances-unilateral-halter` | feita, refeita uma vez (a mão que segurava o cotovelo tapava o rosto) e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (em pé, a mão livre na cintura, como no unilateral na polia) |
 
