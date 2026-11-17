@@ -336,7 +336,7 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 O que sobrou do corte de texto (`devlog.md`, "Bem menos texto"; o registro das decisões em `revisoes/textos/proposta.md`).
 
 **Para decidir com o Gustavo** (uma por vez, com imagem)
-- **A junção com a `main`**: tudo está no ramo `claude/nifty-curie-oc512n`; falta o ok dele.
+- **A junção com a `main`**: feita em 17/11/2026, com o ok dele ("pode juntar com a main"), por avanço direto, sem pull request.
 - **As frases das regras em "Entenda o treino"**: o bloco "Todas as regras e as fontes" mostra o texto de cada regra como está em `regras.json`, e 91 das 163 trazem jargão interno ("R1b", "pesquisa-v2/07…", datas de decisão). Uma frase em linguagem simples para cada regra pede uma sessão própria: só a frase muda, nunca a regra, e cada frase precisa bater com a fonte.
 - **As outras frases que vêm do domínio** (avisos do programa, porquês de cada exercício, fases, ajustes possíveis): agora aparecem só em "Entenda o treino" e na folha de ajustes, e continuam longas.
 - **A caixa de consentimento da foto e os termos** ficaram inteiros por decisão (opção A). A opção B (resumo à vista, o resto a um toque) está em `revisoes/textos/folhas/9-foto.png`, se ele quiser rever.
