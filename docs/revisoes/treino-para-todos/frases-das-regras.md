@@ -1,6 +1,8 @@
 # As frases em linguagem simples das regras que a etapa 2 mudou (17/11/2026)
 
-> Sessão "treino para todos", passo 1 da junção com a `main`. A sessão de textos (na `main`) criou uma frase em linguagem simples para cada regra, mostrada em "Entenda o treino" → "Todas as regras e as fontes", e um teste que exige uma frase por regra (`tests/repo/frases-das-regras.test.ts`). As frases da `main` foram escritas a partir das regras de antes da etapa 2. Para a junção ficar verdadeira, escrevi a frase das 2 regras novas e atualizei a de 11 regras que a etapa 2 mudou, seguindo o guia da própria sessão de textos (`docs/revisoes/textos/frases-das-regras/guia-de-redacao.md`): só o que está no texto ou nos valores da regra, sem número novo, sem jargão, até 80 palavras (220 nas de segurança e nas de muitos passos). **É texto que aparece no app: está aqui para o Gustavo e a sessão de textos reverem.**
+> Sessão "treino para todos". A sessão de textos criou uma frase em linguagem simples para cada regra, mostrada em "Entenda o treino" → "Todas as regras e as fontes", e um teste que exige uma frase por regra (`tests/repo/frases-das-regras.test.ts`). As frases dela foram escritas a partir das regras de antes da etapa 2. Para a junção ficar verdadeira, escrevi a frase das 2 regras novas e atualizei a de 11 regras que a etapa 2 mudou, seguindo o guia da própria sessão de textos (`docs/revisoes/textos/frases-das-regras/guia-de-redacao.md`): só o que está no texto ou nos valores da regra, sem número novo, sem jargão.
+
+**Aprovadas pelo Gustavo em 17/11/2026.** No mesmo dia, duas delas (`tempo.sobra-series` e `tempo.corte`) recuperaram os limites que tinham perdido para caber em 80 palavras, e as duas regras entraram na lista das regras longas do teste (até 220 palavras), pelo critério que a sessão de textos já usava: regras de muitos passos ou limites, em que a frase curta deixava de fora um limite que muda o que a pessoa entende. A sessão de textos pode rever a redação quando quiser; o conteúdo é o das regras.
 
 Não mexi em duas frases de regras que a etapa 2 também mudou, porque continuam verdadeiras como estão: `volume.prioridade.foco-primeiro` (a trava do empurrar do foco já cabe em "há travas para não desequilibrar empurrar e puxar") e `tempo.musculo-protegido` (a mudança é de ordem interna).
 
@@ -44,13 +46,13 @@ Não mexi em duas frases de regras que a etapa 2 também mudou, porque continuam
 
 ## 5. `tempo.sobra-series`
 
-**O que mudou na regra.** Pacote 1: a frase dizia "nos dias em que falta exercício possível"; agora vale em todos os dias, e o iniciante tem um limite próprio. Para caber em 80 palavras, saíram "20 na semana" e "o abdômen sem foco fica na meta dele".
+**O que mudou na regra.** Pacote 1: a frase dizia "nos dias em que falta exercício possível"; agora vale em todos os dias, e o iniciante tem um limite próprio. Entrou na lista das regras longas do teste, para não perder os limites (20 séries na semana; o abdômen sem foco; 3 grupos de foco ou mais).
 
 **Título (igual):** Séries a mais no tempo que sobra
 
 **Frase antes (80 palavras):** Nos dias em que falta exercício possível com o equipamento, as séries sobem enquanto couber no tempo, primeiro no músculo mais longe da meta. Sem foco, cada músculo vai até 8 séries por semana (iniciante), 12 (intermediário) ou 14 (avançado). Com foco, ele sobe primeiro, até 10, 16 ou 20, e os outros até 6 séries abaixo dele. Limites: 4 séries por exercício, 10 por músculo no treino e 20 na semana. O abdômen sem foco fica na meta dele.
 
-**Frase agora (78 palavras):** Em todos os dias, o tempo que sobra vira série, enquanto o dia couber nos minutos. Sem foco, cada músculo vai até 8 séries por semana (iniciante), 12 (intermediário) ou 14 (avançado). Com 1 ou 2 grupos de foco, o foco sobe primeiro, até 10, 16 ou 20, e os outros até 6 abaixo dele. Limites: 4 séries por exercício e 10 por músculo no treino. No iniciante, fora do foco, só os multiarticulares sobem, até 3 séries.
+**Frase agora (152 palavras):** Em todos os dias, o tempo que sobra vira série, enquanto o dia couber nos minutos: os exercícios são os mesmos e só as séries sobem, primeiro no foco, depois no músculo mais longe da meta. Sem foco, cada músculo vai até 8 séries por semana (iniciante), 12 (intermediário) ou 14 (avançado). Com 1 ou 2 grupos de foco, o foco sobe primeiro, até 10, 16 ou 20, e os outros até 6 abaixo dele. Com 3 grupos ou mais, o foco fica na meta e só os outros sobem. Limites: 4 séries por exercício, 10 por músculo no treino e 20 na semana. O abdômen sem foco fica na meta dele. O dia que precisou de supersérie ou drop set para caber fica como está, e nenhuma série de empurrar entra se desequilibrar empurrar e puxar (razão até 1,5). No iniciante, fora do foco, só os multiarticulares sobem, até 3 séries.
 
 ## 6. `volume.semanal.alvo`
 
@@ -104,13 +106,13 @@ Não mexi em duas frases de regras que a etapa 2 também mudou, porque continuam
 
 ## 11. `tempo.corte`
 
-**O que mudou na regra.** Pacote 4: a ordem do corte ganhou um passo (dois lados no lugar de um lado só). Para caber em 80 palavras, "(0,5 a 2)" virou "desequilibra a coxa".
+**O que mudou na regra.** Pacote 4: a ordem do corte ganhou um passo (dois lados no lugar de um lado só). Entrou na lista das regras longas do teste, para manter a faixa de 0,5 a 2 da coxa.
 
 **Título (igual):** Quando o treino não cabe no tempo
 
 **Frase antes (80 palavras):** Ordem do corte: 1) só o aquecimento do próprio exercício; 2) superséries entre músculos que não competem; 3) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores.
 
-**Frase agora (80 palavras):** Na ordem: 1) só o aquecimento do próprio exercício; 2) dois lados no lugar de um lado só; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) menos séries: sem foco até o mínimo de 4, depois o foco. Nenhum corte desequilibra a coxa nem tira o único exercício direto de posteriores.
+**Frase agora (107 palavras):** Ordem do corte: 1) só o aquecimento do próprio exercício; 2) exercício de dois lados no lugar do de um lado só, havendo equivalente; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores. A troca pelo exercício de dois lados não tira nenhuma série da semana.
 
 ## 12. `tempo.superserie`
 

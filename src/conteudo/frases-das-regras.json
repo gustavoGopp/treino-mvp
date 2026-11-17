@@ -533,7 +533,7 @@
   },
   "tempo.corte": {
     "titulo": "Quando o treino não cabe no tempo",
-    "frase": "Na ordem: 1) só o aquecimento do próprio exercício; 2) dois lados no lugar de um lado só; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) menos séries: sem foco até o mínimo de 4, depois o foco. Nenhum corte desequilibra a coxa nem tira o único exercício direto de posteriores."
+    "frase": "Ordem do corte: 1) só o aquecimento do próprio exercício; 2) exercício de dois lados no lugar do de um lado só, havendo equivalente; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores. A troca pelo exercício de dois lados não tira nenhuma série da semana."
   },
   "tempo.sobra": {
     "titulo": "Quando sobra tempo no treino",
@@ -541,7 +541,7 @@
   },
   "tempo.sobra-series": {
     "titulo": "Séries a mais no tempo que sobra",
-    "frase": "Em todos os dias, o tempo que sobra vira série, enquanto o dia couber nos minutos. Sem foco, cada músculo vai até 8 séries por semana (iniciante), 12 (intermediário) ou 14 (avançado). Com 1 ou 2 grupos de foco, o foco sobe primeiro, até 10, 16 ou 20, e os outros até 6 abaixo dele. Limites: 4 séries por exercício e 10 por músculo no treino. No iniciante, fora do foco, só os multiarticulares sobem, até 3 séries."
+    "frase": "Em todos os dias, o tempo que sobra vira série, enquanto o dia couber nos minutos: os exercícios são os mesmos e só as séries sobem, primeiro no foco, depois no músculo mais longe da meta. Sem foco, cada músculo vai até 8 séries por semana (iniciante), 12 (intermediário) ou 14 (avançado). Com 1 ou 2 grupos de foco, o foco sobe primeiro, até 10, 16 ou 20, e os outros até 6 abaixo dele. Com 3 grupos ou mais, o foco fica na meta e só os outros sobem. Limites: 4 séries por exercício, 10 por músculo no treino e 20 na semana. O abdômen sem foco fica na meta dele. O dia que precisou de supersérie ou drop set para caber fica como está, e nenhuma série de empurrar entra se desequilibrar empurrar e puxar (razão até 1,5). No iniciante, fora do foco, só os multiarticulares sobem, até 3 séries."
   },
   "tempo.musculo-protegido": {
     "titulo": "Abdômen e panturrilha nos treinos curtos",

@@ -25,6 +25,10 @@ const LONGAS = [
   'selecao.gluteo',
   'selecao.dia-sem-principal',
   'selecao.funcao-da-vaga',
+  // Depois da etapa 2 da sessão "treino para todos" (17/11/2026): as duas regras ganharam um passo e limites novos, e em
+  // 80 palavras a frase perdia limites que estavam nela antes (20 séries na semana; a faixa de 0,5 a 2 da coxa).
+  'tempo.corte',
+  'tempo.sobra-series',
 ];
 
 const porId = new Map(regras.map((r) => [r.id, r]));
