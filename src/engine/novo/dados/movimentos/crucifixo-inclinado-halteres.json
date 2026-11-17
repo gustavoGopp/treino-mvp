@@ -1,0 +1,57 @@
+{
+ "id": "crucifixo-inclinado-halteres",
+ "nome": "Crucifixo inclinado com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-inclinado-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-inclinado-halteres.md): banco a ~30°, halteres acima do peito, cotovelos levemente dobrados; abrir e fechar em arco, sem virar supino; o mesmo movimento do crucifixo com halteres, no banco inclinado; não descer além do alongamento confortável; consenso de treinadores",
+  "tecnica08c3": "docs/pesquisa/08-tecnica-guia.md, conclusão 3 (tecnica.supino-inclinado.angulo): banco a ~30°, aceitável de 15° a 45°; um estudo de EMG (rodriguezridao2020), de ativação e não de crescimento",
+  "crucifixo": "Ficha da técnica do crucifixo com halteres no banco plano (docs/pesquisa/animacoes/crucifixo-halteres.md), que a ficha do inclinado manda seguir ('o mesmo movimento do crucifixo com halteres'): cotovelos fixos levemente dobrados, cotovelos mais ou menos na altura do tronco embaixo, volta pelo mesmo arco; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-inclinado-halteres.json): 'Deitado no banco inclinado, pés firmes no chão'; 'Escápulas juntas e para baixo'; 'Abertura ~2 a 3 s'; 'Embaixo: halteres perto da altura do peito'; 'Em cima: halteres acima do peito, sem bater'; as dicas e os erros",
+  "supinoInclinado": "O corpo sentado no banco regulável a 30° é o do supino inclinado aprovado (src/engine/novo/exercicios/supino-inclinado.ts, ficha src/engine/novo/dados/movimentos/supino-inclinado.json: o encosto a 30°, o glúteo, as costas e a cabeça apoiados, os pés à frente): o mesmo banco e a mesma pessoa, calculados lá",
+  "objetos": "Tabela de objetos (src/engine/novo/dados/objetos.json): o banco regulável (Rogue Adjustable Bench 3.0) e o halter sextavado de 25 lb",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado. Esta é a primeira animação do crucifixo inclinado: o que a ficha não dá em número sai das animações aprovadas mais parecidas (supino inclinado e supino reto com halteres) e do crucifixo com halteres no banco plano, feito junto"
+ },
+ "param": {
+  "cotovelo": { "v": 25, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cotovelos levemente dobrados, no mesmo ângulo a série toda (a ficha não dá número; 25° de flexão, como no crucifixo com halteres)" },
+  "arco.el.topo": { "v": 20, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima, halteres acima do peito: com o tronco a 30°, a linha do ombro ao halter vai 20° para o lado da cabeça e o braço fica perto da vertical (a ficha não dá número; a conferência mede onde o halter fica)" },
+  "arco.el.baixo": { "v": -10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, halteres perto da altura do peito: a linha do ombro ao halter vai 10° para o lado dos pés (como no crucifixo com halteres)" },
+  "cotovelo.paraOsPes": { "v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para fora e para o chão, um pouco para o lado dos pés (o mesmo do crucifixo com halteres)" },
+  "halteres.folgaNoTopo": { "v": 3, "un": "cm", "selo": "consenso", "fonte": "app", "o": "em cima, os halteres acima do peito, sem bater: as cabeças de dentro ficam a 3 cm (o fim do arco é calculado por esta folga)" },
+  "embaixo.cotovelo": { "v": -2, "un": "cm", "selo": "consenso", "fonte": "crucifixo", "o": "embaixo, os cotovelos mais ou menos na altura do tronco, no alongamento confortável: o centro do cotovelo 2 cm abaixo do centro do ombro, medido na direção do peito (o fundo do arco é calculado por esta altura)" },
+  "escapula.retracao": { "v": 9, "un": "graus", "selo": "consenso", "fonte": "app", "o": "escápulas juntas (a ficha não dá número; o mesmo do supino inclinado aprovado)" },
+  "escapula.depressao": { "v": 4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "escápulas para baixo (a ficha não dá número; o mesmo do supino inclinado aprovado)" },
+  "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb)" },
+  "erro.supino.dobra": { "v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o cotovelo dobra 90° (as mãos vêm para o lado do peito, como num supino) e estica de novo na subida" },
+  "erro.fundo.cotovelo": { "v": -13, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o cotovelo desce 13 cm abaixo do centro do ombro e os halteres passam muito da linha do peito" },
+  "erro.escap.protracao": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, os ombros vão para a frente e sobem do banco (a clavícula 16° à frente, como no erro do supino reto)" },
+  "erro.escap.elevacao": { "v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o ombro sobe junto (a clavícula 5° acima, como no erro do supino reto)" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "desenho", "fonte": "desenho" },
+  { "nome": "Abertura · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Embaixo · pausa curta", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app" },
+  { "nome": "Fechamento · concêntrica", "tipo": "conc", "dur": 1.5, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "supino-inclinado-encosto-30", "pede": "banco a ~30° (aceitável de 15° a 45°)", "selo": "um estudo", "fonte": "tecnica08c3" },
+  { "id": "supino-inclinado-apoiado-no-banco", "pede": "deitado no banco inclinado: glúteo, costas e cabeça apoiados a série toda", "selo": "consenso", "fonte": "app" },
+  { "id": "crucifixo-cotovelo-fixo", "pede": "cotovelos levemente dobrados, no mesmo ângulo a série toda", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-arco", "pede": "abrir e fechar em arco, sem virar supino: o halter fica sempre à mesma distância do ombro", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-halteres-acima-do-peito", "pede": "em cima: halteres acima do peito, palmas uma para a outra", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-cotovelos-na-altura-do-tronco", "pede": "embaixo: cotovelos mais ou menos na altura do tronco, halteres perto da altura do peito", "selo": "consenso", "fonte": "crucifixo" },
+  { "id": "supino-inclinado-halteres-nao-batem", "pede": "em cima, sem bater um halter no outro", "selo": "consenso", "fonte": "app" },
+  { "id": "carga-livre-do-corpo-e-do-banco", "pede": "o halter não bate no corpo nem no banco", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "supino", "instante": 1, "titulo": "Virar supino", "vista": "quina", "oQueMuda": "o cotovelo dobra 90° na abertura e as mãos vêm para o lado do peito: o movimento vira empurrar", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "fundo", "instante": 1, "titulo": "Descer demais", "vista": "quina", "oQueMuda": "o cotovelo desce bem abaixo da linha do tronco e os halteres passam muito da linha do peito", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "escapulas", "instante": 0, "titulo": "Soltar as escápulas", "vista": "lateral", "oQueMuda": "em cima, os ombros vão para a frente e sobem do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "cotovelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "quina", "texto": "arco, não supino", "ponto": "pegada:L", "selo": "consenso", "fonte": "app" },
+  { "vista": "quina", "texto": "cotovelos levemente dobrados", "ponto": "punho:R", "selo": "consenso", "fonte": "app" },
+  { "vista": "cima", "texto": "escápulas para baixo", "ponto": "ombro:L", "selo": "consenso", "fonte": "app" }
+ ]
+}

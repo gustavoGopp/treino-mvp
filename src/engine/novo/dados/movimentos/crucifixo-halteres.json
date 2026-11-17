@@ -1,0 +1,64 @@
+{
+ "id": "crucifixo-halteres",
+ "nome": "Crucifixo com halteres no banco plano",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-halteres.md): deitado no banco, pés firmes no chão; halteres acima do peito, palmas uma para a outra, cotovelos levemente dobrados; abre os braços em arco, cotovelos fixos levemente dobrados, até sentir o peito alongar, com os cotovelos mais ou menos na altura do tronco; volta pelo mesmo arco, como num abraço; escápulas encostadas no banco; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-halteres.json): 'Em cima: halteres acima do peito, sem encostar um no outro'; 'Embaixo: cotovelos na altura do tronco, peito alongado'; as dicas e os erros",
+  "objetos": "Tabela de objetos (src/engine/novo/dados/objetos.json): o banco reto e o halter sextavado de 25 lb",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado. Esta é a primeira animação do crucifixo: o que a ficha não dá em número sai das animações aprovadas mais parecidas (supino reto e supino inclinado com halteres, src/engine/novo/dados/movimentos/supino-reto.json e supino-inclinado.json)"
+ },
+ "param": {
+  "deitado.pelve.z": { "v": 24, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde o quadril fica na cena (só posiciona o corpo; o banco é posto pela cabeça): o mesmo do supino reto aprovado" },
+  "apoio.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabeça, costas e glúteo apoiados no banco: quanto o estofado amassa sob o corpo (o mesmo do supino inclinado aprovado); a bacia inclina e o quadril desce até as costas e o glúteo apoiarem, e o pescoço dobra até a nuca apoiar" },
+  "deitado.lombar": { "v": -4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a lombar na curva natural, apoiada (a mesma do supino reto aprovado)" },
+  "deitado.cervical.min": { "v": -15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a nuca apoia no banco com o pescoço dobrado para trás no máximo 15° além da curva de repouso (o mesmo limite do supino inclinado aprovado)" },
+  "deitado.cervical.max": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "e dobrado para a frente no máximo 20° (o queixo longe do peito)" },
+  "deitado.cabeca": { "v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço (a mesma do supino reto aprovado)" },
+  "cabeca.folgaNoBanco": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "do topo da cabeça à ponta do banco: cabeça, costas e glúteo apoiados (o mesmo do supino reto aprovado, pedido do Gustavo em 15/11/2026)" },
+  "pes.meiaDistancia": { "v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés firmes no chão, um pouco mais abertos que o quadril (a ficha não dá número; o mesmo do supino reto aprovado)" },
+  "pes.alemDaCoxa": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé fica um comprimento de coxa mais 9 cm à frente do quadril, com a canela quase na vertical (o mesmo do supino reto aprovado)" },
+  "cotovelo": { "v": 25, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cotovelos levemente dobrados, no mesmo ângulo a série toda (a ficha não dá número; 25° de flexão)" },
+  "arco.el.topo": { "v": -10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, halteres acima do peito, e não do ombro: a linha do ombro ao halter vai 10° para o lado dos pés (a ficha não dá número; a conferência mede onde o halter fica)" },
+  "arco.el.baixo": { "v": -10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, os halteres ao lado do peito: a mesma inclinação de cima (no banco plano, o arco fica num plano só)" },
+  "cotovelo.paraOsPes": { "v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para fora e para o chão, um pouco para o lado dos pés (o braço gira para dentro, como num abraço)" },
+  "halteres.folgaNoTopo": { "v": 3, "un": "cm", "selo": "consenso", "fonte": "app", "o": "em cima, os halteres acima do peito sem encostar um no outro: as cabeças de dentro ficam a 3 cm (o fim do arco é calculado por esta folga)" },
+  "embaixo.cotovelo": { "v": -2, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "embaixo, os cotovelos mais ou menos na altura do tronco: o centro do cotovelo 2 cm abaixo do centro do ombro, medido na direção do peito (o fundo do arco é calculado por esta altura)" },
+  "escapula.retracao": { "v": 9, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "escápulas encostadas no banco, levemente juntas (a ficha não dá número; o mesmo do supino reto aprovado)" },
+  "escapula.depressao": { "v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "escápulas para baixo (a ficha não dá número; o mesmo do supino reto aprovado)" },
+  "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb)" },
+  "erro.supino.dobra": { "v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o cotovelo dobra 90° (as mãos vêm para o lado do peito, como num supino) e estica de novo na subida" },
+  "erro.fundo.cotovelo": { "v": -13, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o cotovelo desce 13 cm abaixo do centro do ombro (bem abaixo da linha do tronco), além do conforto do ombro" },
+  "erro.bater.folga": { "v": 0, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, as cabeças dos halteres se encostam (0 cm)" },
+  "erro.escap.protracao": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, os ombros vão para a frente e as escápulas saem do banco (a clavícula 16° à frente, como no erro do supino reto)" },
+  "erro.escap.elevacao": { "v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o ombro sobe junto (a clavícula 5° acima, como no erro do supino reto)" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "desenho", "fonte": "desenho" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "desenho", "fonte": "desenho" },
+  { "nome": "Embaixo · peito alongado", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.5, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "crucifixo-cotovelo-fixo", "pede": "cotovelos levemente dobrados e fixos: o mesmo ângulo a série toda", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-arco", "pede": "abre e volta em arco: o halter fica sempre à mesma distância do ombro (não vira supino)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-halteres-acima-do-peito", "pede": "em cima: halteres acima do peito, palmas uma para a outra", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-cotovelos-na-altura-do-tronco", "pede": "embaixo: cotovelos mais ou menos na altura do tronco", "selo": "consenso", "fonte": "ficha" },
+  { "id": "supino-inclinado-halteres-nao-batem", "pede": "em cima, sem encostar um halter no outro", "selo": "consenso", "fonte": "app" },
+  { "id": "crucifixo-deitado-no-banco-reto", "pede": "cabeça, costas e glúteo apoiados no banco a série toda", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carga-livre-do-corpo-e-do-banco", "pede": "o halter não bate no corpo nem no banco", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "supino", "instante": 1, "titulo": "Dobrar e esticar os cotovelos", "vista": "frontal", "oQueMuda": "o cotovelo dobra 90° na descida e as mãos vêm para o lado do peito, como num supino; o peito sai da posição alongada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "fundo", "instante": 1, "titulo": "Descer demais", "vista": "frontal", "oQueMuda": "o cotovelo desce bem abaixo da linha do tronco, além do conforto do ombro", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "bater", "instante": 0, "titulo": "Bater os halteres em cima", "vista": "cima", "oQueMuda": "em cima, os braços fecham até os halteres se encostarem", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "escapulas", "instante": 0, "titulo": "Tirar as escápulas do banco", "vista": "frontal", "oQueMuda": "em cima, os ombros vão para a frente e as escápulas descolam do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "cotovelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "quina", "texto": "cotovelos fixos", "ponto": "punho:R", "selo": "consenso", "fonte": "app" },
+  { "vista": "quina", "texto": "abre em arco", "ponto": "pegada:L", "selo": "consenso", "fonte": "app" },
+  { "vista": "cima", "texto": "abraço na volta", "ponto": "pegada:L", "selo": "consenso", "fonte": "app" }
+ ]
+}

@@ -31,3 +31,4 @@ export { regrasDaExtensaoComCaneleira } from './extensao-joelho-caneleira';
 export { regrasDoDeitadoNoChao } from './deitado-no-chao';
 export { REGRAS_CRUCIFIXO_INVERSO } from './crucifixo-inverso';
 export { REGRAS_ROSCA_SCOTT } from './rosca-scott';
+export { REGRAS_CRUCIFIXOS } from './crucifixos';
