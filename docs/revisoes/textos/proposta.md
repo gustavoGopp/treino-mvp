@@ -274,3 +274,30 @@ O pedido da sessão diz: não tirar conteúdo dos termos nem da folha da foto se
 
 Por que A: a autorização vale pelo que a pessoa leu antes de marcar (LGPD, consentimento informado). Na opção B ela pode autorizar sem abrir os detalhes (por exemplo, a exceção de 2 anos e o processamento em outros países), e isso é uma decisão sobre privacidade, não sobre texto.
 
+## 10. As frases das regras em linguagem simples (proposta; esperando a decisão)
+
+Pedido do Gustavo em 17/11/2026: "pode reescrever as frases das regras em linguagem simples". Proposta em `propostas/10-frases-das-regras.patch`; imagens em `folhas/10a-regras-lista.png`, `10b-regras-abertas.png` e `10c-regras-abertas.png`.
+
+**O problema.** Em "Entenda o treino" → "Todas as regras e as fontes", cada regra mostrava o campo `regra` do arquivo de regras, escrito para quem desenvolve. Em 91 das 163 havia siglas de etapa ("R5d"), nomes de arquivo e datas de decisão. E em muitas o texto era só um título ("Dupla progressão: quando subir a carga"): o que a regra faz estava no campo `valores`, que a tela não mostrava.
+
+**O que muda.** Cada regra ganha um título curto e uma frase para quem treina, num arquivo próprio (`src/conteudo/frases-das-regras.json`). A frase junta o texto da regra e os valores dela, por nível quando muda por nível. O arquivo das regras não foi tocado: a regra, o nível de evidência e as fontes são os mesmos.
+
+**Como foi feito.**
+1. Um guia de estilo com exemplos (só entra o que está na regra ou nos valores; nenhum número muda; sai a história das decisões).
+2. Quatro redatores, um lote de regras cada.
+3. Quatro revisores independentes, que conferiram cada frase contra a regra e, nas dúvidas, contra o código: 61 correções (6 por erro de sentido, 34 por algo essencial que tinha ficado de fora, 21 de linguagem).
+4. Leitura final das de segurança e das mais longas, e 4 ajustes.
+5. Testes novos (`tests/repo/frases-das-regras.test.ts`): toda regra tem a sua frase; nenhuma traz sigla interna, nome de arquivo ou data de decisão; nenhum número aparece numa frase sem estar na regra dela; o tamanho tem limite.
+
+**Em números.** O texto mostrado no catálogo vai de 8.140 para 8.694 palavras: não ficou mais curto, ficou legível e completo. A frase típica tem 45 palavras. As de segurança, privacidade e dados não perderam nada e por isso são as mais longas (a da foto tem 196; a da nota de dor, 185).
+
+**Testes da proposta:** 909 unitários, 177 de ponta a ponta e os tokens, tudo passando.
+
+**Achados da revisão, para decidir depois** (são das regras, não das frases; nenhuma regra foi mudada)
+- `progressao.reduzir`: a regra diz "dor → −5 a −10%", mas o app, pela regra da nota de dor, reduz de 10 a 20% (dor de 3 a 5) ou encerra o exercício (acima de 5). A frase diz "com dor, quem manda é a regra da nota de dor", sem o número que diverge.
+- `seguranca.alerta.musculoesqueletico`: os sinais de cauda equina (que pedem atendimento urgente) estão na regra, mas não aparecem em nenhuma tela do app; e a regra os cita em jargão médico ("sela"). A descrição simples existe na anotação da fonte, não no texto da regra.
+- `descanso.piso` diz "acima de 60 s" e `descanso.por-tipo` dá 60 a 90 s para isoladores.
+- `selecao.elastico-ampliado`: o valor diz "os 9", e o texto e a biblioteca têm 8 exercícios no lote.
+- `rir.calibracao` e `volume.manutencao.piso` descrevem coisas que o app ainda não faz (o teste semanal até a falha e um modo manutenção).
+- `volume.semanal.minimo`: o texto não diz o que o mínimo faz na prática (no código, é o piso dos cortes de tempo para os músculos em foco).
+
