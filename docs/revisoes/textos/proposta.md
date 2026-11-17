@@ -289,7 +289,7 @@ Pedido do Gustavo em 17/11/2026: "pode reescrever as frases das regras em lingua
 4. Leitura final das de segurança e das mais longas, e 4 ajustes.
 5. Testes novos (`tests/repo/frases-das-regras.test.ts`): toda regra tem a sua frase; nenhuma traz sigla interna, nome de arquivo ou data de decisão; nenhum número aparece numa frase sem estar na regra dela; o tamanho tem limite.
 
-**Em números.** O texto mostrado no catálogo vai de 8.140 para 8.694 palavras: não ficou mais curto, ficou legível e completo. A frase típica tem 45 palavras. As de segurança, privacidade e dados não perderam nada e por isso são as mais longas (a da foto tem 196; a da nota de dor, 185).
+**Em números.** O texto mostrado no catálogo vai de 8.140 para 8.694 palavras: não ficou mais curto, ficou legível e completo. A frase típica tem 45 palavras. As de segurança, privacidade e dados não perderam nada e por isso são as mais longas (a da foto tem 218; a da nota de dor, 197).
 
 **Testes da proposta:** 909 unitários, 177 de ponta a ponta e os tokens, tudo passando.
 
