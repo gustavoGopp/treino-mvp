@@ -124,3 +124,14 @@ O Gustavo avisou que a qualidade caiu nas animações feitas em paralelo: "o fat
 9. **Tema escuro e cor de pele:** olhe os dois (`id:vista:modo:f1::pele` e `id:vista:modo:f1::cinza:escuro`).
 
 Se depois disso algum item ainda falhar, diga qual, com o quadro, e marque o risco como alto. Uma animação a menos, bem feita, vale mais que uma a mais com defeito.
+
+## 9. Nos exercícios que eram cartão de texto (desde 17/11/2026)
+
+A frente das animações restantes (`docs/revisoes/animacoes-restantes/plano.md`) anima os 81 exercícios que nunca tiveram animação. O que muda, aprendido no lote A1:
+
+- **Não há animação de hoje.** As distâncias que a ficha da técnica não dá saem das animações aprovadas parecidas, com selo `desenho` e o motivo no campo `o`. Não use `src/engine/exercicios/`. A folha (`prototipos.mjs so-folhas`) não serve, porque compara com a de hoje: entregue só os quadros grandes.
+- **Os erros vêm do cartão** (`src/conteudo/exercicios/<id>.json`, campo `errors`), com o mesmo título e na mesma ordem. Desenhe a consequência visível que a ficha ou a descrição do erro dizem (precedente: "Ir até a falha" virou a repetição em que a forma cede). Erro que é só ritmo ou só esforço, sem nenhuma consequência visível ("Parar longe da falha", "Não testar o ponto alto", "Carga pesada demais" quando a descrição só fala de tranco): não invente; deixe fora da ficha e diga na resposta. Quem integra põe a exceção na lista `SEM_DESENHO` do teste da ponte.
+- **Não mexa em `aprovados.ts` nem no catálogo do guia.** Quem integra registra a animação como aprovada e "esperando a ligação" (`ESPERAM_A_LIGACAO`) ou "para o Gustavo ver" (`PARA_O_GUSTAVO_VER`). O teste da ponte que falha na sua cópia ("todas as animações estão aprovadas e no catálogo") é esperado; qualquer outra falha não.
+- **A vista que o app abre é a que se lê de relance, não a de maior área medida.** No tríceps testa, de lado o halter parecia estar no rosto (estava 6 cm ao lado): o app abre de três quartos. Nos crucifixos, o app abre de cima, como os crucifixos aprovados (decisão do Gustavo de 05/11/2026), porque de três quartos o braço de perto aponta para quem olha.
+- **Reaproveitar uma animação aprovada:** só por exportação aditiva (`export` numa função que já existe), sem mudar o que ela desenha; o preparo dela não pode mudar. Diga na resposta.
+- **Conflito no `dados/preparo/registro.ts`** ao juntar ramos: é arquivo gerado; quem integra o regrava com `preparo.mjs`.
