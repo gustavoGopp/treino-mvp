@@ -51,7 +51,7 @@ function corpoParado(corpo: Corpo): CorpoEmPe {
 }
 
 /** As bordas da sola por onde o tubo passa no pé na ponta: a fração `s` do caminho da bola do pé (0) à ponta (1). */
-function bordasNaPonta(corpo: Corpo, e: Esq, k: Lado, s: number): { fora: V3; dentro: V3 } {
+export function bordasNaPonta(corpo: Corpo, e: Esq, k: Lado, s: number): { fora: V3; dentro: V3 } {
   const L = e.lado[k];
   const c = add(L.bola, mul(sub(L.ponta, L.bola), s));
   const dirPe = norm(sub(L.ponta, L.bola));
