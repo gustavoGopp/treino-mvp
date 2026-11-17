@@ -111,3 +111,4 @@ export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral
 export { aberturaElastico } from './abertura-elastico';
 export { desenvolvimentoUnilateral } from './desenvolvimento-unilateral';
 export { desenvolvimentoEmPeHalteres } from './desenvolvimento-em-pe-halteres';
+export { tricepsFrancesUnilateralHalter } from './triceps-frances-unilateral-halter';

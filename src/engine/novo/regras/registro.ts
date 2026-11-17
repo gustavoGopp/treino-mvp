@@ -41,3 +41,4 @@ export { REGRAS_TRICEPS_ELASTICO_ALTO } from './triceps-elastico-alto';
 export { REGRAS_ELEVACAO_UNILATERAL_ELASTICO } from './elevacao-lateral-unilateral-elastico';
 export { REGRAS_ABERTURA_ELASTICO } from './abertura-elastico';
 export { REGRAS_DESENVOLVIMENTOS_EM_PE } from './desenvolvimentos-em-pe';
+export { REGRAS_TRICEPS_FRANCES_UNILATERAL_HALTER } from './triceps-frances-unilateral-halter';
