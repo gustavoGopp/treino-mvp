@@ -94,3 +94,5 @@ export { abducaoMiniBand } from './abducao-mini-band';
 export { extensaoJoelhoCaneleira } from './extensao-joelho-caneleira';
 export { supinoChaoHalteres } from './supino-chao-halteres';
 export { tricepsTestaHalteres } from './triceps-testa-halteres';
+export { crucifixoInverso } from './crucifixo-inverso';
+export { roscaScottBancoInclinado } from './rosca-scott-banco-inclinado';

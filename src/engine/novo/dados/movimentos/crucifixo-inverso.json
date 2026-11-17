@@ -1,0 +1,62 @@
+{
+ "id": "crucifixo-inverso",
+ "nome": "Crucifixo inverso com halteres, peito apoiado no banco inclinado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-inverso.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-inverso.md): banco a ~30–45°, deitado de bruços com o peito apoiado e os pés no chão; halteres pendurados, palmas uma para a outra; abre os braços para os lados, cotovelos levemente dobrados e fixos, até os braços chegarem perto da linha dos ombros; pausa curta; sem encolher os ombros nem juntar as escápulas com força; descida controlada, até os braços pendurarem de novo; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-inverso.json): 'Banco inclinado a cerca de 30–45°', 'Um par de halteres leves', 'Halteres pendurados, palmas uma para a outra, cotovelos levemente dobrados', as dicas ('Peito no banco.', 'Ombros longe das orelhas.', 'Abre para os lados.') e os erros",
+  "anatomia": "Revisão de anatomia, achado 5 (docs/revisoes/anatomia.md; docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linha 189): nos crucifixos invertidos, quem trabalha é o ombro de trás, sem secundário; o cartão pede para não juntar as escápulas com força",
+  "remada": "A remada com o peito apoiado no banco inclinado, aprovada (src/engine/novo/exercicios/remada-apoiada.ts e dados/movimentos/remada-apoiada.json): o banco regulável com o encosto a 45° e o corpo deitado nele (peito, queixo, pés e joelhos) vêm de lá, sem mudança; a escápula que 'se junta' de verdade, na remada, vai 10° para trás",
+  "polia": "O crucifixo invertido na polia, aprovado (src/engine/novo/dados/movimentos/crucifixo-invertido-polia.json): os ombros longe das orelhas (a clavícula 2° abaixo do ritmo), o erro de encolher (+16°) e o de dobrar os cotovelos (até 85°)",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json (o halter sextavado de 10 lb) e src/engine/novo/dados/objetos.json (o banco regulável)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "inicio.fora": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "começo: os braços pendem quase na vertical, a linha do ombro à mão 8° para fora (como o começo da remada apoiada aprovada, para o halter passar ao lado do encosto)"},
+  "fim.abaixo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: 'até os braços chegarem perto da linha dos ombros': a linha do ombro à mão fica 5° abaixo da horizontal, para o lado (a ficha não dá número)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cotovelos levemente dobrados e fixos: 15° a série toda (a ficha não dá número; o crucifixo invertido na polia usa 10°)"},
+  "cotovelo.paraTras": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "para onde o cotovelo aponta: para fora, no sentido em que o braço abre, e um pouco para trás (0,4 da direção para trás); o antebraço dobra para dentro e para a frente"},
+  "escapula.prot.inicio": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "polia", "o": "começo: com os braços pendurados, a escápula vai um pouco à frente (a clavícula 4° além do ritmo, como no crucifixo invertido na polia)"},
+  "escapula.retr.fim": {"v": 2, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "fim: a escápula só acompanha o braço, sem se juntar com força (a clavícula 2° para trás do ritmo; na remada, que junta as escápulas, são 10°)"},
+  "escapula.elev": {"v": -2, "un": "graus", "selo": "consenso", "fonte": "polia", "o": "ombros longe das orelhas: a clavícula 2° abaixo do ritmo, a série toda (como no crucifixo invertido na polia)"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "'um par de halteres leves': o sextavado de 10 lb (dados/objetos/halter-leve.json), um em cada mão"},
+  "erro.encolher.elev": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "polia", "o": "erro: no fim, a clavícula sobe 16° além do ritmo (os ombros vão em direção às orelhas), como no crucifixo invertido na polia"},
+  "erro.cotovelo.dobra": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "polia", "o": "erro: os cotovelos dobram até 85° e o antebraço fica pendurado embaixo do cotovelo: vira uma remada com os cotovelos abertos (no crucifixo invertido na polia, também 85°)"},
+  "erro.cotovelo.abaixo": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o braço (do ombro ao cotovelo) sobe até 5° abaixo da horizontal, como o certo; quem fica embaixo é a mão"},
+  "erro.peito.tronco": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: o tronco levanta 18° do encosto enquanto os braços abrem (o embalo; na remada apoiada, o mesmo erro usa 18°)"},
+  "erro.peito.lombar": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 6° junto com o embalo"}
+ },
+ "fases": [
+  {"nome": "Braços pendurados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "desenho", "fonte": "desenho"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "abre para os lados", "selo": "desenho", "fonte": "desenho"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "controlada", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "remada-apoiada-peito-no-encosto", "pede": "deitado de bruços com o peito apoiado no encosto, que não sai do banco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-apoiada-queixo-alem-da-ponta", "pede": "o rosto fora do estofado: o queixo além da ponta do encosto", "selo": "desenho", "fonte": "remada"},
+  {"id": "remada-apoiada-pernas-fora-do-banco", "pede": "pés no chão, sem as pernas atravessarem o banco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "costas retas, apoiadas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "o tronco não se mexe: o peito apoia o movimento todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-bracos-pendurados-no-comeco", "pede": "começo: halteres pendurados, os braços quase na vertical", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-cotovelos-fixos", "pede": "cotovelos levemente dobrados e fixos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-abre-para-os-lados", "pede": "abre os braços para os lados (a mão sobe para o lado, sem ir para a frente nem para trás)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-ate-a-linha-dos-ombros", "pede": "fim: os braços perto da linha dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-escapulas-sem-encolher-nem-juntar", "pede": "sem encolher os ombros nem juntar as escápulas com força", "selo": "consenso", "fonte": "anatomia"},
+  {"id": "crucifixo-inverso-palmas-uma-para-a-outra", "pede": "palmas uma para a outra (embaixo); a mão não gira", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-livre-do-corpo-e-do-banco", "pede": "os halteres não batem no corpo nem no banco", "selo": "consenso", "fonte": "desenho"},
+  {"id": "remada-apoiada-halter-longe-do-chao", "pede": "o halter não encosta no chão com os braços pendurados", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "no fim, os ombros sobem em direção às orelhas: o trapézio assume o trabalho", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "posterior", "oQueMuda": "os cotovelos dobram e a mão fica embaixo do cotovelo: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "peito", "instante": 1, "titulo": "Tirar o peito do banco", "vista": "quinaTras", "oQueMuda": "o tronco levanta do encosto enquanto os braços abrem: o embalo", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "posterior", "texto": "abre para os lados", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "peito no banco", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+ ]
+}

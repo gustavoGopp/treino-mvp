@@ -29,3 +29,5 @@ export { REGRAS_RODA_ABDOMINAL } from './roda-abdominal';
 export { regrasDoQuadril } from './quadril-abrir-e-fechar';
 export { regrasDaExtensaoComCaneleira } from './extensao-joelho-caneleira';
 export { regrasDoDeitadoNoChao } from './deitado-no-chao';
+export { REGRAS_CRUCIFIXO_INVERSO } from './crucifixo-inverso';
+export { REGRAS_ROSCA_SCOTT } from './rosca-scott';
