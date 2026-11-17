@@ -3,13 +3,13 @@
 // frente, as mãos na cintura; a mini band em volta das duas coxas, logo acima dos joelhos (../pecas-de-cena/mini-band.ts,
 // `lacoNasCoxas`, como na abdução com mini band aprovada). É o primeiro exercício em que os pés saem do lugar: o pé
 // direito dá um passo para o lado (sai do chão, anda no ar e apoia), e o esquerdo acompanha devagar, até a largura do
-// quadril, sem juntar; depois o mesmo para o outro lado, e o corpo volta ao lugar do começo (o ciclo fecha). Cada pé
+// quadril, sem juntar; dois passos para um lado, dois de volta, e o corpo volta ao lugar do começo (o ciclo fecha). Cada pé
 // fica preso no chão só enquanto apoia (`pe.R:noChao` nos contatos).
 //
-// O ciclo, em u (0 a 1): de 0 a 0,25 o pé direito sai; de 0,25 a 0,5 o esquerdo acompanha; de 0,5 a 0,75 o esquerdo
-// volta para o lado dele; de 0,75 a 1 o direito acompanha. O quadril fica no meio dos dois pés, na altura em que, com
-// os pés na largura do quadril, o joelho dobra o que a ficha pede; para a frente e para trás, onde o centro de massa
-// fica sobre o meio dos pés.
+// O ciclo, em u (0 a 1), tem oito trechos de 1/8: dois passos para a direita (o pé direito abre, o esquerdo
+// acompanha, duas vezes) e dois de volta para a esquerda (o esquerdo abre, o direito acompanha); o último quadro é o
+// primeiro. O quadril fica no meio dos dois pés, na altura em que, com os pés na largura do quadril, o joelho dobra o
+// que a ficha pede; para a frente e para trás, onde o centro de massa fica sobre o meio dos pés.
 import ficha from '../dados/movimentos/caminhada-lateral-mini-band.json';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PosePerna } from '../esqueleto';
@@ -31,30 +31,55 @@ interface Pes {
   x: Record<Lado, number>;
   y: Record<Lado, number>;
 }
-function pes(u: number, erro?: string): Pes {
+/** Os oito trechos do ciclo: quem anda e se é o passo para fora (o pé que abre) ou o outro pé que acompanha. */
+const TRECHOS: { quem: Lado; abre: boolean }[] = [
+  { quem: 'R', abre: true },
+  { quem: 'L', abre: false },
+  { quem: 'R', abre: true },
+  { quem: 'L', abre: false },
+  { quem: 'L', abre: true },
+  { quem: 'R', abre: false },
+  { quem: 'L', abre: true },
+  { quem: 'R', abre: false },
+];
+/** Onde ficam os pés no fim de cada trecho (o começo é o fim do anterior; o primeiro começa na largura do quadril). */
+function marcos(erro?: string): Record<Lado, number>[] {
   const w = f('pes.meiaDistancia'),
-    d = f('passo'),
-    h = f('passo.altura');
-  // o pé que acompanha, no erro, vem até quase encostar no outro; o passo seguinte devolve o pé ao lugar
-  const vao = erro === 'frouxa' ? f('erro.frouxa.vao') : 2 * w;
-  const marcos: Record<Lado, number>[] = [
-    { R: -w, L: w },
-    { R: -w - d, L: w },
-    { R: -w - d, L: -w - d + vao },
-    { R: -w - d, L: w },
-    { R: -w, L: w },
-  ];
-  const quem: Lado[] = ['R', 'L', 'L', 'R'];
-  const k = Math.min(3, Math.floor(u * 4)),
-    s = entre(u * 4 - k);
-  const a = marcos[k]!,
-    b = marcos[k + 1]!;
+    d = f('passo');
+  const m: Record<Lado, number>[] = [{ R: -w, L: w }];
+  TRECHOS.forEach((t, i) => {
+    const a = m[i]!;
+    const b = { ...a };
+    // para a direita (−x) nos quatro primeiros trechos, de volta para a esquerda nos outros
+    const sentido = i < 4 ? -1 : 1;
+    if (t.abre) b[t.quem] = a[t.quem] + sentido * d;
+    else {
+      // o pé que acompanha para na largura do quadril; no erro, no primeiro passo, vem até quase encostar no outro
+      const vao = erro === 'frouxa' && i === 1 ? f('erro.frouxa.vao') : 2 * w;
+      const outro: Lado = t.quem === 'R' ? 'L' : 'R';
+      b[t.quem] = a[outro] + (t.quem === 'R' ? -vao : vao);
+    }
+    m.push(b);
+  });
+  return m;
+}
+/** O trecho em que u cai e quanto dele já andou (0 a 1). */
+function trecho(u: number): { k: number; s: number } {
+  const n = TRECHOS.length;
+  const k = Math.min(n - 1, Math.floor(u * n));
+  return { k, s: entre(u * n - k) };
+}
+function pes(u: number, erro?: string): Pes {
+  const M = marcos(erro);
+  const { k, s } = trecho(u);
+  const a = M[k]!,
+    b = M[k + 1]!;
   // o pé sobe antes de andar para o lado e só apoia depois de chegar: no chão, ele não arrasta
   const r = entre((s - 0.1) / 0.8);
   const lado = r * r * (3 - 2 * r);
   const x = { R: mix(a.R, b.R, lado), L: mix(a.L, b.L, lado) };
   const y = { R: 0, L: 0 };
-  y[quem[k]!] = h * Math.sin(Math.PI * s) ** 2;
+  y[TRECHOS[k]!.quem] = f('passo.altura') * Math.sin(Math.PI * s) ** 2;
   return { x, y };
 }
 
@@ -95,11 +120,16 @@ function montar(corpo: Corpo, p: Pes, giro: number, y: number, z: number, balanc
 
 function esqueleto(corpo: Corpo, u: number, erro?: string): Esq {
   const c = calibrar(corpo);
-  // os joelhos caem para dentro mais quando a faixa está mais esticada (os pés afastados)
-  const giro = erro === 'joelhos' ? f('erro.joelhos.giro') * Math.sin(2 * Math.PI * u) ** 2 : 0;
-  // o tronco joga para o lado do passo: para a direita no primeiro, para a esquerda no outro
-  const balanca = erro === 'balanca' ? -f('erro.balanca.graus') * Math.sin(2 * Math.PI * u) : 0;
-  return montar(corpo, pes(u, erro), giro, c.y, c.z, balanca);
+  const p = pes(u, erro);
+  // os joelhos caem para dentro mais quando a faixa está mais esticada: com os pés mais afastados
+  const w = f('pes.meiaDistancia');
+  const abertos = entre((Math.abs(p.x.L - p.x.R) - 2 * w) / f('passo'));
+  const giro = erro === 'joelhos' ? f('erro.joelhos.giro') * abertos : 0;
+  // o tronco joga para o lado do passo enquanto o pé abre, e volta enquanto o outro acompanha
+  const { k, s } = trecho(u);
+  const r = s * s * (3 - 2 * s);
+  const balanca = erro === 'balanca' ? (k < 4 ? -1 : 1) * f('erro.balanca.graus') * (TRECHOS[k]!.abre ? r : 1 - r) : 0;
+  return montar(corpo, p, giro, c.y, c.z, balanca);
 }
 
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
@@ -118,7 +148,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const caminhadaLateralMiniBand: Exercicio = {
   ficha: F,
-  vistas: ['frontal', 'quinaTras'],
+  // de três quartos pela frente: o meio agachado e o passo, lidos de relance; de frente: a largura do passo e a faixa;
+  // de três quartos por trás: o glúteo (o modo Músculos, por medida)
+  vistas: ['quina', 'frontal', 'quinaTras'],
   quadro,
   // glúteos (médio e parte de cima), dos dois lados: o desenho tem um glúteo só, que não separa o médio
   papeis: { gluteo: 'p' },

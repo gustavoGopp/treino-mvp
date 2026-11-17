@@ -10,43 +10,362 @@
   "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
  },
  "param": {
-  "pes.meiaDistancia": {"v": 10, "un": "cm", "selo": "consenso", "fonte": "app", "o": "pés na largura do quadril: o meio de cada pé a 10 cm do meio do corpo (os quadris ficam a 8,4 cm)"},
-  "passo": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o passo para o lado: o pé que sai anda 22 cm, e os pés ficam a 42 cm um do outro, além da largura do quadril (o cartão não dá número)"},
-  "passo.altura": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o pé que anda sobe só 3 cm do chão (um passo raso, arrastado, que não solta a tensão); o cartão não dá número"},
-  "joelho": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "meio agachado, joelhos levemente dobrados: 30° de flexão com os pés na largura do quadril (o cartão não dá número); a altura do quadril sai daí e fica parada no ciclo"},
-  "tronco": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "tronco reto, inclinado 15° à frente a partir do quadril, como num agachamento curto (o cartão não dá número)"},
-  "faixa.acimaDoJoelho": {"v": 8, "un": "cm", "selo": "consenso", "fonte": "aprovada", "o": "a mini-band acima dos joelhos: o meio dela a 8 cm do centro do joelho, como na abdução com mini-band aprovada (a borda de baixo fica ~5,5 cm acima dele)"},
-  "maos.naCintura.acima": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "as mãos na cintura, como no afundo aprovado (o cartão não diz onde ficam as mãos): a mão 11 cm acima do centro do quadril"},
-  "erro.joelhos.giro": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a faixa puxa os joelhos para dentro; o joelho gira 18° para dentro da linha do pé no fim do passo"},
-  "erro.balanca.graus": {"v": 9, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco joga para o lado do passo, 9° de inclinação da lombar para o lado, no fim de cada passo"},
-  "erro.frouxa.vao": {"v": 8, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o pé que acompanha vem até quase encostar no outro (8 cm entre o meio dos dois pés, contra 20 cm na largura do quadril); a faixa fica frouxa"}
+  "pes.meiaDistancia": {
+   "v": 10,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "pés na largura do quadril: o meio de cada pé a 10 cm do meio do corpo (os quadris ficam a 8,4 cm)"
+  },
+  "passo": {
+   "v": 46,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o passo para o lado: o pé que sai anda 46 cm, e os pés ficam a 66 cm um do outro, bem além da largura do quadril (o cartão não dá número). É o maior passo em que a perna de apoio continua dobrada (20°) com o quadril na altura do meio agachado; com 50 cm, ela ficava quase reta (14°), e com 42 cm não alcançava o chão sem o quadril descer. A faixa chega a 1,9 vez: o máximo do fabricante (2,5 vezes) pediria os joelhos a ~58 cm um do outro, e as pernas não chegam lá sem sair do meio agachado"
+  },
+  "passo.altura": {
+   "v": 9,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé que anda sobe 9 cm do chão no meio do passo, para se distinguir do pé que apoia (o cartão não dá número; com 3 cm, no quadro parado, o pé no ar parecia apoiado)"
+  },
+  "joelho": {
+   "v": 40,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "meio agachado, joelhos levemente dobrados: 40° de flexão com os pés na largura do quadril (o cartão não dá número); a altura do quadril sai daí e fica parada no ciclo. Com 30°, o meio agachado não se via e a perna de apoio ficava reta no passo largo"
+  },
+  "tronco": {
+   "v": 15,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "tronco reto, inclinado 15° à frente a partir do quadril, como num agachamento curto (o cartão não dá número)"
+  },
+  "faixa.acimaDoJoelho": {
+   "v": 8,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "aprovada",
+   "o": "a mini-band acima dos joelhos: o meio dela a 8 cm do centro do joelho, como na abdução com mini-band aprovada (a borda de baixo fica ~5,5 cm acima dele)"
+  },
+  "maos.naCintura.acima": {
+   "v": 11,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "as mãos na cintura, como no afundo aprovado (o cartão não diz onde ficam as mãos): a mão 11 cm acima do centro do quadril"
+  },
+  "erro.joelhos.giro": {
+   "v": 18,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a faixa puxa os joelhos para dentro; o joelho gira 18° para dentro da linha do pé no fim do passo"
+  },
+  "erro.balanca.graus": {
+   "v": 9,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o tronco joga para o lado do passo, 9° de inclinação da lombar para o lado, no fim de cada passo"
+  },
+  "erro.frouxa.vao": {
+   "v": 8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: o pé que acompanha vem até quase encostar no outro (8 cm entre o meio dos dois pés, contra 20 cm na largura do quadril); a faixa fica frouxa"
+  }
  },
  "fases": [
-  {"nome": "Pés na largura do quadril", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "mini-band já esticada", "selo": "consenso", "fonte": "app"},
-  {"nome": "Passo · para o lado", "tipo": "conc", "dur": 0.8, "de": 0, "ate": 0.25, "respira": "EXPIRA", "tempo": "um passo", "selo": "desenho", "fonte": "desenho"},
-  {"nome": "Afastado · segura", "tipo": "pausa", "dur": 0.4, "de": 0.25, "ate": 0.25, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
-  {"nome": "Volta · o outro pé acompanha", "tipo": "exc", "dur": 1.2, "de": 0.25, "ate": 0.5, "respira": "INSPIRA", "tempo": "devagar", "selo": "consenso", "fonte": "app"},
-  {"nome": "Pés na largura do quadril", "tipo": "pausa", "dur": 0.3, "de": 0.5, "ate": 0.5, "respira": "INSPIRA", "tempo": "sem soltar a tensão", "selo": "consenso", "fonte": "app"},
-  {"nome": "Passo · para o outro lado", "tipo": "conc", "dur": 0.8, "de": 0.5, "ate": 0.75, "respira": "EXPIRA", "tempo": "um passo", "selo": "desenho", "fonte": "desenho"},
-  {"nome": "Afastado · segura", "tipo": "pausa", "dur": 0.4, "de": 0.75, "ate": 0.75, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
-  {"nome": "Volta · o outro pé acompanha", "tipo": "exc", "dur": 1.2, "de": 0.75, "ate": 1, "respira": "INSPIRA", "tempo": "devagar", "selo": "consenso", "fonte": "app"}
+  {
+   "nome": "Pés na largura do quadril",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "mini-band já esticada",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Passo · para o lado",
+   "tipo": "conc",
+   "dur": 0.8,
+   "de": 0.0,
+   "ate": 0.125,
+   "respira": "EXPIRA",
+   "tempo": "um passo",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "nome": "Afastado · segura",
+   "tipo": "pausa",
+   "dur": 0.3,
+   "de": 0.125,
+   "ate": 0.125,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · o outro pé acompanha",
+   "tipo": "exc",
+   "dur": 1.0,
+   "de": 0.125,
+   "ate": 0.25,
+   "respira": "INSPIRA",
+   "tempo": "devagar",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Pés na largura do quadril",
+   "tipo": "pausa",
+   "dur": 0.2,
+   "de": 0.25,
+   "ate": 0.25,
+   "respira": "INSPIRA",
+   "tempo": "sem soltar a tensão",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Passo · para o lado",
+   "tipo": "conc",
+   "dur": 0.8,
+   "de": 0.25,
+   "ate": 0.375,
+   "respira": "EXPIRA",
+   "tempo": "um passo",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "nome": "Afastado · segura",
+   "tipo": "pausa",
+   "dur": 0.3,
+   "de": 0.375,
+   "ate": 0.375,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · o outro pé acompanha",
+   "tipo": "exc",
+   "dur": 1.0,
+   "de": 0.375,
+   "ate": 0.5,
+   "respira": "INSPIRA",
+   "tempo": "devagar",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Pés na largura do quadril",
+   "tipo": "pausa",
+   "dur": 0.2,
+   "de": 0.5,
+   "ate": 0.5,
+   "respira": "INSPIRA",
+   "tempo": "sem soltar a tensão",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Passo · de volta para o outro lado",
+   "tipo": "conc",
+   "dur": 0.8,
+   "de": 0.5,
+   "ate": 0.625,
+   "respira": "EXPIRA",
+   "tempo": "um passo",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "nome": "Afastado · segura",
+   "tipo": "pausa",
+   "dur": 0.3,
+   "de": 0.625,
+   "ate": 0.625,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · o outro pé acompanha",
+   "tipo": "exc",
+   "dur": 1.0,
+   "de": 0.625,
+   "ate": 0.75,
+   "respira": "INSPIRA",
+   "tempo": "devagar",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Pés na largura do quadril",
+   "tipo": "pausa",
+   "dur": 0.2,
+   "de": 0.75,
+   "ate": 0.75,
+   "respira": "INSPIRA",
+   "tempo": "sem soltar a tensão",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Passo · de volta para o outro lado",
+   "tipo": "conc",
+   "dur": 0.8,
+   "de": 0.75,
+   "ate": 0.875,
+   "respira": "EXPIRA",
+   "tempo": "um passo",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "nome": "Afastado · segura",
+   "tipo": "pausa",
+   "dur": 0.3,
+   "de": 0.875,
+   "ate": 0.875,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · o outro pé acompanha",
+   "tipo": "exc",
+   "dur": 1.0,
+   "de": 0.875,
+   "ate": 1.0,
+   "respira": "INSPIRA",
+   "tempo": "devagar",
+   "selo": "consenso",
+   "fonte": "app"
+  }
  ],
- "contatos": ["pe.R:noChao", "pe.L:noChao"],
+ "contatos": [
+  "pe.R:noChao",
+  "pe.L:noChao"
+ ],
  "regras": [
-  {"id": "quadril-faixa-acima-dos-joelhos", "pede": "a mini-band acima dos joelhos, já esticada no começo", "selo": "consenso", "fonte": "ficha"},
-  {"id": "caminhada-meio-agachado", "pede": "meio agachado: joelhos e quadril levemente dobrados, tronco reto, sem balançar para o lado", "selo": "consenso", "fonte": "app"},
-  {"id": "caminhada-dedos-para-a-frente", "pede": "dedos para a frente", "selo": "consenso", "fonte": "ficha"},
-  {"id": "caminhada-passo-alem-do-quadril", "pede": "pés na largura do quadril no começo e afastados além do quadril no passo; o outro pé fica parado", "selo": "consenso", "fonte": "app"}
+  {
+   "id": "quadril-faixa-acima-dos-joelhos",
+   "pede": "a mini-band acima dos joelhos, já esticada no começo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "caminhada-meio-agachado",
+   "pede": "meio agachado: joelhos e quadril levemente dobrados, tronco reto, sem balançar para o lado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "caminhada-dedos-para-a-frente",
+   "pede": "dedos para a frente",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "caminhada-passo-alem-do-quadril",
+   "pede": "pés na largura do quadril no começo e afastados além do quadril no passo; o outro pé fica parado",
+   "selo": "consenso",
+   "fonte": "app"
+  }
  ],
  "erros": [
-  {"id": "joelhos", "instante": 0.25, "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "a faixa puxa os joelhos para dentro da linha dos pés", "destaca": ["pernas"], "linha": ["joelho:R", "joelho:L"], "foco": "joelho:R"},
-  {"id": "balanca", "instante": 0.25, "titulo": "Balançar o tronco", "vista": "frontal", "oQueMuda": "o tronco joga para o lado do passo", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
-  {"id": "frouxa", "instante": 0.5, "titulo": "Deixar a mini-band frouxa", "vista": "frontal", "oQueMuda": "o pé que acompanha vem até quase encostar no outro, e a faixa afrouxa", "destaca": ["pernas"], "linha": ["ponta:R", "ponta:L"], "foco": "ponta:L"}
+  {
+   "id": "joelhos",
+   "instante": 0.125,
+   "titulo": "Joelhos para dentro",
+   "vista": "frontal",
+   "oQueMuda": "a faixa puxa os joelhos para dentro da linha dos pés",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "joelho:R",
+    "joelho:L"
+   ],
+   "foco": "joelho:R"
+  },
+  {
+   "id": "balanca",
+   "instante": 0.125,
+   "titulo": "Balançar o tronco",
+   "vista": "frontal",
+   "oQueMuda": "o tronco joga para o lado do passo",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "frouxa",
+   "instante": 0.25,
+   "titulo": "Deixar a mini-band frouxa",
+   "vista": "frontal",
+   "oQueMuda": "o pé que acompanha vem até quase encostar no outro, e a faixa afrouxa",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "ponta:R",
+    "ponta:L"
+   ],
+   "foco": "ponta:L"
+  }
  ],
  "simetrico": false,
  "rotulos": [
-  {"vista": "frontal", "texto": "mini-band sempre esticada", "ponto": "joelho:L", "selo": "consenso", "fonte": "app"},
-  {"vista": "frontal", "texto": "dedos para a frente", "ponto": "ponta:R", "selo": "consenso", "fonte": "app"},
-  {"vista": "quina", "texto": "meio agachado", "ponto": "pelve", "selo": "consenso", "fonte": "app"}
+  {
+   "vista": "frontal",
+   "texto": "mini-band sempre esticada",
+   "ponto": "joelho:L",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "frontal",
+   "texto": "dedos para a frente",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "meio agachado",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "mini-band sempre esticada",
+   "ponto": "joelho:L",
+   "selo": "consenso",
+   "fonte": "app"
+  }
  ]
 }
