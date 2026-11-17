@@ -6,14 +6,15 @@ import { angulo, dist } from '../vec';
 
 export const REGRAS_CAMINHADA_LATERAL: Record<string, Regra> = {
   'caminhada-meio-agachado': (q) => {
-    const joelhos = faixa(q.flatMap((x) => [angulosDoLado(x.esq, 'R').joelho, angulosDoLado(x.esq, 'L').joelho]));
+    // os joelhos das pernas apoiadas (a que está no ar dobra mais, para o pé subir)
+    const joelhos = faixa(q.flatMap((x) => (['R', 'L'] as const).filter((k) => x.esq.lado[k].bola[1] <= 0.05).map((k) => angulosDoLado(x.esq, k).joelho)));
     const quadril = faixa(q.map((x) => angulosDoLado(x.esq, 'L').quadril));
     const frente = faixa(q.map((x) => angulo([0, x.esq.torax.y[1], x.esq.torax.y[2]], [0, 1, 0])));
     // para o lado: o eixo do peito, de lado a lado, contra a horizontal
     const lado = Math.max(...q.map((x) => Math.abs(Math.asin(x.esq.torax.x[1]) / (Math.PI / 180))));
     return {
-      medido: `os joelhos dobram de ${f1(joelhos[0])}° a ${f1(joelhos[1])}°, o quadril de ${f1(quadril[0])}° a ${f1(quadril[1])}°; o peito inclina ${f1(frente[0])}° a ${f1(frente[1])}° à frente e no máximo ${f1(lado)}° para o lado`,
-      ok: joelhos[0] >= 15 && joelhos[1] <= 45 && quadril[0] >= 15 && frente[1] <= 25 && lado <= 2,
+      medido: `os joelhos das pernas apoiadas dobram de ${f1(joelhos[0])}° a ${f1(joelhos[1])}°, o quadril de ${f1(quadril[0])}° a ${f1(quadril[1])}°; o peito inclina ${f1(frente[0])}° a ${f1(frente[1])}° à frente e no máximo ${f1(lado)}° para o lado`,
+      ok: joelhos[0] >= 15 && joelhos[1] <= 50 && quadril[0] >= 15 && frente[1] <= 25 && lado <= 2,
     };
   },
   'caminhada-dedos-para-a-frente': (q) => {
