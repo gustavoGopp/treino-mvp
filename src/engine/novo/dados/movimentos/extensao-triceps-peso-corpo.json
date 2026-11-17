@@ -1,0 +1,49 @@
+{
+ "id": "extensao-triceps-peso-corpo",
+ "nome": "Extensão de tríceps com o peso do corpo",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md",
+ "fontes": {
+  "guia": "Ficha da técnica (docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md) e cartão do app (src/conteudo/exercicios/extensao-triceps-peso-corpo.json): consenso (Jacob Zemer, vídeo, em 17, G2); a posição do braço acima da cabeça tem um estudo (maeo2023)",
+  "hoje": "Animação de hoje (src/engine/exercicios/extensao-triceps-peso-corpo.ts, aprovada em 10/11/2026) e a conferência dela (docs/revisoes/r5-anim/conferencia/extensao-triceps-peso-corpo.md)",
+  "pike": "O núcleo da família (exercicios/apoio-no-chao.ts): pés na ponta com o calcanhar parado, como no pike",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "maos.alemDoOmbro": { "v": 0, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "mãos na largura dos ombros: o centro da pegada na linha do centro do ombro (18,4 cm do meio do corpo)" },
+  "maos.dentroDaBeirada": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "mãos espalmadas no tampo, junto da beirada: o centro do punho fica 1 cm para dentro dela" },
+  "pes.atrasDaBeirada": { "v": 132, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "distância no chão da bola do pé à beirada da bancada. Hoje as mãos ficam a ~125 cm do tornozelo (~112 da bola do pé); com 112, embaixo o cotovelo passa à frente da mão e o punho dobra 109° (o máximo observado é 95°): os pés recuam até o cotovelo ficar atrás da beirada" },
+  "pes.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "desenho", "fonte": "pike", "o": "pés na largura do quadril" },
+  "calcanhar.sobe": { "v": 30, "un": "graus", "selo": "desenho", "fonte": "pike", "o": "apoio na ponta dos pés, com o calcanhar levantado e parado" },
+  "joelho": { "v": 5, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "corpo reto: pernas estendidas" },
+  "cotovelo.cima": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "em cima: braços estendidos (hoje: 28° de dobra)" },
+  "testa.aoApoio": { "v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo: a testa chega perto do apoio (a menor distância da cabeça à bancada; a ficha não dá número)" },
+  "pescoco.flexao": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço e cabeça na linha do corpo" },
+  "erro.quadril.dobra": { "v": 26, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril dobra (hoje: 24°), o tronco fica mais em pé sobre as mãos" },
+  "erro.cotovelos.abre": { "v": 1, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: os cotovelos apontam para os lados em vez de para a frente" },
+  "erro.falha.testa": { "v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o cotovelo cede e a testa chega ao tampo" }
+ },
+ "fases": [
+  { "nome": "Braços estendidos", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto, inclinado", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "2 a 3 s", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "testa perto da bancada", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Volta · concêntrica", "tipo": "conc", "dur": 1.1, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia" }
+ ],
+ "contatos": ["pe.R", "pe.L", "mao.R", "mao.L"],
+ "regras": [
+  { "id": "so-o-cotovelo-dobra", "pede": "corpo reto; só os cotovelos dobram", "selo": "consenso", "fonte": "guia" },
+  { "id": "cotovelos-para-a-frente", "pede": "cotovelos apontando para a frente", "selo": "consenso", "fonte": "guia" },
+  { "id": "testa-perto-do-apoio", "pede": "embaixo, a testa chega perto do apoio, sem bater", "selo": "consenso", "fonte": "guia" },
+  { "id": "braco-acima-da-cabeca", "pede": "embaixo, braços acima da cabeça", "selo": "um estudo", "fonte": "guia" }
+ ],
+ "erros": [
+  { "id": "quadril", "instante": 1, "titulo": "Dobrar o quadril", "vista": "lateral", "oQueMuda": "o quadril dobra e fica para trás e para cima", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril" },
+  { "id": "cotovelos", "instante": 1, "titulo": "Abrir os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "falha", "instante": 1, "titulo": "Ir até a falha", "vista": "lateral", "oQueMuda": "o cotovelo cede e a testa chega ao apoio", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cabeca" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "corpo reto", "ponto": "pelve", "selo": "consenso", "fonte": "guia", "guia": ["calcanhar", "cabeca"] },
+  { "vista": "lateral", "texto": "só o cotovelo dobra", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia" },
+  { "vista": "cima", "texto": "cotovelos para a frente", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia" }
+ ]
+}

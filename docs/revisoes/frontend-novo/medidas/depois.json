@@ -1,0 +1,181 @@
+{
+  "medidoEm": "2026-11-13T05:33:04.409Z",
+  "fase": "depois",
+  "commit": "4eeca5b",
+  "bundle": {
+    "arquivosJs": 191,
+    "totalJsGzipKB": 546.4,
+    "maiorJs": [
+      {
+        "arquivo": "index.js",
+        "gzipKB": 156.3
+      },
+      {
+        "arquivo": "boneco.worker.js",
+        "gzipKB": 48.5
+      },
+      {
+        "arquivo": "trabalhoBoneco.js",
+        "gzipKB": 38.3
+      },
+      {
+        "arquivo": "regras.js",
+        "gzipKB": 32.3
+      },
+      {
+        "arquivo": "fontes.js",
+        "gzipKB": 21.7
+      }
+    ],
+    "css": [
+      {
+        "arquivo": "index.css",
+        "gzipKB": 13.8
+      }
+    ],
+    "letras": [
+      {
+        "arquivo": "geist-latin.woff2",
+        "kB": 29.4
+      }
+    ]
+  },
+  "lighthouse": [
+    {
+      "situacao": "instalado",
+      "rota": "/",
+      "url": "/programa",
+      "versao": "13.6.0",
+      "desempenho": 98,
+      "acessibilidade": 97,
+      "boasPraticas": 100,
+      "fcpMs": 66,
+      "lcpMs": 66,
+      "tbtMs": 175,
+      "cls": 0,
+      "pedidos": 8,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/comecar/triagem",
+      "url": "/comecar/triagem",
+      "versao": "13.6.0",
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "fcpMs": 60,
+      "lcpMs": 60,
+      "tbtMs": 21,
+      "cls": 0,
+      "pedidos": 8,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": []
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/programa",
+      "url": "/programa",
+      "versao": "13.6.0",
+      "desempenho": 98,
+      "acessibilidade": 97,
+      "boasPraticas": 100,
+      "fcpMs": 61,
+      "lcpMs": 61,
+      "tbtMs": 163,
+      "cls": 0,
+      "pedidos": 8,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/treino",
+      "url": "/programa",
+      "versao": "13.6.0",
+      "desempenho": 97,
+      "acessibilidade": 97,
+      "boasPraticas": 100,
+      "fcpMs": 70,
+      "lcpMs": 70,
+      "tbtMs": 184,
+      "cls": 0,
+      "pedidos": 10,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/guia/bulgaro",
+      "url": "/guia/bulgaro",
+      "versao": "13.6.0",
+      "desempenho": 85,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "fcpMs": 161,
+      "lcpMs": 161,
+      "tbtMs": 589,
+      "cls": 0,
+      "pedidos": 182,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": []
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/semana",
+      "url": "/semana",
+      "versao": "13.6.0",
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "fcpMs": 61,
+      "lcpMs": 61,
+      "tbtMs": 14,
+      "cls": 0,
+      "pedidos": 7,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": []
+    },
+    {
+      "situacao": "instalado",
+      "rota": "/dados",
+      "url": "/dados",
+      "versao": "13.6.0",
+      "desempenho": 94,
+      "acessibilidade": 96,
+      "boasPraticas": 100,
+      "fcpMs": 17,
+      "lcpMs": 109,
+      "tbtMs": 19,
+      "cls": 0.157,
+      "pedidos": 8,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
+    },
+    {
+      "situacao": "primeira-visita",
+      "rota": "/",
+      "url": "/",
+      "versao": "13.6.0",
+      "desempenho": 100,
+      "acessibilidade": 100,
+      "boasPraticas": 100,
+      "fcpMs": 905,
+      "lcpMs": 905,
+      "tbtMs": 32,
+      "cls": 0,
+      "pedidos": 8,
+      "pedidosExternos": 0,
+      "falhasAcessibilidade": []
+    }
+  ]
+}

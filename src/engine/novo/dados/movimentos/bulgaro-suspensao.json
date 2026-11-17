@@ -1,0 +1,63 @@
+{
+ "id": "bulgaro-suspensao",
+ "nome": "Búlgaro com o pé de trás na suspensão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/bulgaro-suspensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/bulgaro-suspensao.md): de costas para a âncora, peito do pé de trás na alça à altura do meio da canela; a mesma lógica do búlgaro com o peso do corpo; consenso de treinadores (nsca2021, não verificado)",
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md, de onde vem a pose dos búlgaros: consenso de treinadores",
+  "aprovado": "Búlgaro com apoio do motor novo, aprovado pelo Gustavo em 15/11/2026 (src/engine/novo/dados/movimentos/bulgaro.json): as distâncias dos pés ao quadril",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): quanto o pé de trás anda com a fita e os erros, que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos/suspensao.json: a altura da âncora e a do berço no meio da canela, das páginas do fabricante",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio)"},
+  "peDaFrente.aFrenteDoQuadril": {"v": 42.5, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "pé da frente longe da alça: quanto o tornozelo da frente fica à frente do quadril (o mesmo do búlgaro aprovado: 42,5 cm)"},
+  "peDeTras.tornozeloAtrasDoQuadril": {"v": 43.5, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "em cima, quanto o tornozelo do pé de trás, na alça, fica atrás do quadril (o mesmo do búlgaro aprovado: 43,5 cm)"},
+  "fita.alcaAFrenteDaAncora": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "em cima, quanto o fundo do berço fica à frente da vertical da âncora: a fita quase a prumo, o pé pendurado; como ele anda 8 cm para trás, embaixo fica 4 cm atrás dela"},
+  "fita.peVaiParaTras": {"v": 8, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "quanto o fundo do berço (e o pé de trás) anda para trás no arco da fita, de cima até embaixo (8 cm na animação de hoje)"},
+  "fita.contatoAteOTornozelo": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o peito do pé apoia no berço perto do tornozelo, não nos dedos: o ponto de apoio é o mais baixo do pé a até 10 cm do tornozelo (visto de lado)"},
+  "fita.flexaoPlantarEmCima": {"v": 52, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "em cima, o pé gira no berço até o tornozelo de trás ficar esticado como no búlgaro aprovado (52°, abaixo da média de 57°); na descida ele volta à inclinação do banco"},
+  "fita.bercoFolga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "folga do berço: as tiras laterais passam a esta distância de cada lado do pé, e se juntam a esta distância acima do ponto mais alto do pé e do tornozelo"},
+  "fita.giroDaFita": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "quanto a fita gira em volta do comprimento: a 45°, a face larga aparece de lado e de frente (a fita real torce um pouco)"},
+  "joelho.cima": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: joelho da frente quase estendido; a ficha manda parar antes de travar"},
+  "joelhoDeTras.aoChao": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "embaixo: o joelho de trás vai em direção ao chão e fica a poucos centímetros dele (da pele do joelho ao chão), como no búlgaro aprovado"},
+  "tronco": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "tronco levemente inclinado à frente (a ficha não dá número; o mesmo do búlgaro aprovado)"},
+  "maos.naCintura.acima": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "mãos na cintura: altura da mão acima do centro do quadril (a mesma do afundo com o peso do corpo)"},
+  "erro.valgo.joelho": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto o joelho da frente cai para dentro (o mesmo do búlgaro aprovado)"},
+  "erro.empurra.peMaisAtras": {"v": 14, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: a perna de trás estica e empurra a alça 14 cm mais para trás (como na animação de hoje)"},
+  "erro.empurra.quadrilAtras": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril vai 9 cm para trás (como na animação de hoje)"},
+  "erro.empurra.fracao": {"v": 0.8, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril desce só 80% do caminho (na animação de hoje, para 6 cm acima do certo)"},
+  "erro.raso.fracao": {"v": 0.47, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: desce só 47% do caminho (como na animação de hoje)"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "firme o abdômen", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.3, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R"],
+ "regras": [
+  {"id": "joelho-da-frente-quase-estendido-em-cima", "pede": "em cima, o joelho da frente fica quase estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "desce-reto", "pede": "a descida é reta: o quadril desce sem ir para a frente nem para trás", "selo": "consenso", "fonte": "ficha"},
+  {"id": "joelho-de-tras-perto-do-chao", "pede": "embaixo, o joelho de trás fica a poucos centímetros do chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "coxa-da-frente-perto-da-horizontal", "pede": "embaixo, a coxa da frente fica perto da horizontal", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-levemente-a-frente", "pede": "o tronco fica levemente inclinado à frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pe-da-frente-inteiro-no-chao", "pede": "o pé da frente fica inteiro no chão, com o calcanhar apoiado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-na-perna-da-frente", "pede": "o peso fica na perna da frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peito-do-pe-na-alca", "pede": "o peito do pé de trás fica no berço da alça, com o cadarço para baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "alca-no-meio-da-canela", "pede": "a alça fica na altura do meio da canela", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pe-de-tras-vai-com-a-fita", "pede": "na descida, o pé de trás vai para trás com a fita, que não estica", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "valgo", "instante": 1, "titulo": "Joelho da frente para dentro", "vista": "frontal", "oQueMuda": "o joelho da frente sai da linha do pé, para dentro", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "empurra", "instante": 1, "titulo": "Empurrar com o pé de trás", "vista": "lateral", "oQueMuda": "a perna de trás estica e empurra a alça para trás; o quadril recua e desce menos", "destaca": ["pernas"], "linha": ["quadril:L", "joelho:L", "tornozelo:L"], "foco": "joelho:L"},
+  {"id": "raso", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só 47% do caminho", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "desce reto", "ponto": "pelve", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "lateral", "texto": "pé de trás só acompanha", "ponto": "tornozelo:L", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "frontal", "texto": "joelho sobre o pé", "ponto": "joelho:R", "selo": "consenso", "fonte": "guia", "prumo": {"de": "ponta:R", "alt": 62}}
+ ]
+}

@@ -388,3 +388,95 @@ Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está 
 
 **Na junção com a `main`**
 - Trazer a `main` para o ramo; resolver os 4 conflitos (`docs/backlog.md`, `docs/devlog.md`, `src/styles.css`, `tests/e2e/treino.spec.ts`); ajustar os testes de tela novos que citam o búlgaro (21 lugares); refazer a correção do zoom de 200% no estilo novo; rodar `check`, testes de tela, auditoria em duas rodadas e a medida da população; só então juntar, com o ok do Gustavo e o aviso de exportar os dados (versão 9).
+
+## Do frontend novo (13/11/2026)
+
+O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend novo"; conferência em `revisoes/frontend-novo/qa.md`).
+
+**Do revisor independente** (`revisoes/frontend-novo/revisao-bloco-2.md`; os números são os do parecer)
+- **23. A etiqueta "FIRME" no palco do guia** não se explica (é a respiração). O texto vem do motor: pedido 5 em `pedidos-ao-dominio.md`.
+- **25. Legenda do modo Técnica com duas amostras da mesma cor** ("linhas de referência" e "articulações", o mesmo verde): diferenciar pela forma (traço e círculo). As amostras usam as cores do desenho do Boneco.
+- **26. Linha de controles do guia**: pausar, voltar e "Lento" ficam à esquerda, com a vista (Lateral, Frontal) na linha de baixo; e o cartão marca "escolhido" de 3 jeitos (bloco preto, traço sob a aba, negrito na lista de erros). Pede um redesenho do cartão do palco.
+- **29. Folha do "por quê?"**: o texto da regra é o maior elemento e traz referências internas ("revista no R2"); o link "abrir a fonte" quebra no meio e tem cerca de 18 px de altura; fonte "título não conferido" aparece para a pessoa (pedido 8).
+- **31. Acessibilidade, o que faltou**: depois de salvar a série, o foco cai no corpo da página (deveria ir para o descanso); o botão "Série feita" desligado sai da ordem de foco (hoje a frase "Falta…" fica logo abaixo dele); no guia, nada recebe o foco ao abrir; o nome do exercício vem depois do palco na ordem de leitura.
+- **32. Miudezas**: "Calibração: Ficou pesada: …" com dois dois-pontos (pedido 6); as notas de dor de 0 a 10 quebram em 6 + 5; ícones de 20 e de 24 px na mesma barra; na tela invertida do fim do descanso, a miniatura continua clara e uma folha aberta sai no tema normal; "Desmarcar tudo" ligado sem nada marcado; o título da folha "Trocar só neste treino por:" termina em dois-pontos.
+- **10 (em parte). "Senti algo" em 320 px**: a nota de dor de 0 a 10, o uso mais comum, fica abaixo da dobra da folha, depois das 7 opções; e encerrar o treino por um sinal de alerta não pede confirmação (pedido 7).
+- **22 (em parte). Linha do tempo do guia**: o cursor passa por cima das palavras "descida" e "subida".
+- **30 (em parte). O guia completo sem estado de carregando nem de erro**: tela em branco enquanto carrega; se um arquivo de texto falhar, cai na tela de erro (pedido 9).
+
+**Do que só eu conferi**
+- **Revisão independente dos outros blocos (feita em 13/11/2026)**: dois pareceres, 85 achados, nenhum bloqueio; 37 corrigidos, 18 em parte e 30 não feitos (`revisoes/frontend-novo/qa.md`, seção 6.2). O que sobrou está logo abaixo.
+- **O "selo" atrás do "por quê?"**: a proposta B2 previa um "por quê?" por bloco, juntando as regras do bloco. Ficou feito no treino (reserva, sugestão de carga) e na prescrição do guia; em "Sobre o programa", na folha do exercício e na semana, o selo continua no fim de cada frase.
+- **Contraste dos fundos cinza**: o fundo do botão secundário e dos botões de valor (#E9E9E6 sobre #F6F6F4) passa nos testes de texto, mas é fraco como forma sob luz forte. Opção: uma borda fina na cor da borda.
+- **Celular de 320 × 640**: o registro da série não cabe em 75% da tela, então a tela rola e o palco fica em cima, sem as abas dos modos (que seguem no guia completo, pelo livro do cabeçalho). Emagrecer o registro nesse tamanho devolveria as abas.
+- **O conferidor de tokens não olha letra nem largura**: o botão principal usa um 9º tamanho de letra (1,1875rem), fora dos 8 tokens, e passa.
+- **O Lighthouse acusa uma linha da lista meio coberta pela barra presa** (início 97, Meus dados 96 de acessibilidade): dar à lista uma folga no fim, do tamanho da barra presa embaixo, para a última linha visível nunca ficar pela metade sob ela.
+- **Um teste intermitente**: "o cartão de texto que não baixou avisa, tenta de novo e, se o navegador guardou a falha, oferece recarregar" (`correcoes-auditoria.spec.ts`). Contagem de 13/11/2026 na máquina da sessão: falhou em 4 das 6 rodadas em que `npm run test:e2e` rodou logo depois de `npm run check`; passou nas outras 11 rodadas completas (3 delas com o rastro ligado), em 15 repetições sozinho e nas 5 verificações do GitHub. Na falha, 5 s depois do toque em "Recarregar o app" a tela ainda era a de antes de recarregar. É compatível com a recarga passar de 5 s com a máquina ocupada, mas a causa não foi vista num rastro. Opção: dar ao teste uma espera maior depois de recarregar (a conferência continua a mesma). Não se sabe se já acontecia antes desta sessão.
+- **Não medido**: o app instalado num iPhone e num Android de verdade (tudo foi conferido no Chromium, em tamanhos simulados); o leitor de tela de verdade (TalkBack, VoiceOver).
+
+**Da 2ª rodada de revisão** (`revisoes/frontend-novo/revisao-inicio-fim-semana.md` e `revisao-cadastro-dados-locais.md`; os números são os dos pareceres)
+- **Uma decisão do Gustavo ainda aberta**: o fundo cinza dos botões secundários (13), com a comparação em `revisoes/frontend-novo/capturas/decisoes/3-botoes-cinza-*.png`. Já tomadas em 13/11/2026: o escolhido em contorno no cadastro e no equipamento (I4); o selo "fonte" nas frases que não são regra de treino (I6 e 24); e "Voltar ao início" como ação principal do fim do treino, presa embaixo (16).
+- **Início**: a ação de ajuste do programa gera tudo de novo num toque, sem confirmar nem desfazer (9); a folha "Avisos" com um aviso só repete o título "Ajustes possíveis" (26); "Semana 1" (do programa) logo acima de "A sua semana" (do calendário) (38); as abas não mostram qual dia já foi feito na semana (39); a miniatura do Boneco na lista tem 64 px, e antes tinha cerca de 96 (42); "Sobre o programa" repete o que ficou abaixo da meta em 3 lugares e tem a linha solta "Corpo todo A/B/C." (37); a ação principal é a última na ordem de foco (40).
+- **Fim e semana**: "Hoje foi: (opcional)" e "Nada vem marcado." (32); a semana sem treino não tem link para o treino (33); as linhas de "Sua evolução" não mostram a última série (35); o "↑" das marcas é um caractere, não o ícone (30); o tom do "mantendo" nas barras tem contraste baixo (13).
+- **Cadastro**: "Refazer a triagem" passa pelos 4 passos do cadastro (I1); os botões da triagem ficam depois da lista das 9 condições, e há 2 selos na tela (I5); o "código de convite" da foto não é explicado e a folha da foto não tem ação principal (I11); "Gerar meu programa" sempre aceso, sem dizer com o que vai gerar (A5); "Item por item" não mostra que está aberto (A6); a busca sem a lupa e sem anunciar "Nada com…" (A7); cartões de item com faixa vazia e nomes em alturas diferentes (A8); a folha dos halteres com grupos colados e "Pronto" que fecha em branco (A10); duas perguntas seguidas no equipamento e três ao editar um local (A4); os dias por semana em 3 + 2 esticados em 390 px (A1); a barra de progresso cheia no passo 4 (A21); a caixa "Seu nível" com cara de opção (A22).
+- **Meus dados, locais, termos e erro**: o texto de privacidade ocupa metade da 1ª tela de Meus dados (I7); "Importar dados" não diz que substitui tudo nem oferece guardar antes (I13); a confirmação de apagar tem três saídas, e depois de apagar não há "dados apagados" (A13); o campo de arquivo tem rótulo diferente do nome acessível (A14); não há como apagar um local (A16; já não havia antes); na tela de erro, título e botão com o mesmo texto e o link dos termos com menos de 44 px (A18); o mesmo aviso do navegador em 4 lugares (A26).
+- **Miudezas das duas**: a área de toque do selo invade a 1ª opção logo abaixo (A3); cantos aninhados de 8 dentro de 8 (A24); aspas retas em 3 textos (A23); as 9 caixas de "Quais valem" sem `fieldset` e `legend` (A25); no tema escuro a folha tem a cor da página, só com uma linha fina em cima (A20).
+
+**Pedidos ao domínio e ao conteúdo**: os 12 itens de `revisoes/frontend-novo/pedidos-ao-dominio.md` (título curto dos avisos, nome curto do exercício, legenda da trajetória por exercício, a reserva em palavras, o rótulo da respiração, a frase da calibração, confirmar o encerramento por sinal de alerta, fonte não conferida, o índice de textos do guia, um nome só para a série de acerto, a saída "volto depois da avaliação" na triagem que pausa, os textos das fases e dos porquês).
+
+**Para conciliar com a `main`**
+- `package.json` ganhou o comando `conferir:tokens`; `vite.config.ts` trocou a cor de fundo do app instalado e incluiu o arquivo de licença dos ícones; `index.html` pré-carrega a letra nova. Os três ficam fora da lista do que a sessão podia alterar e foram mudados no mínimo necessário.
+- `scripts/icones-app.mjs` (fora da lista) continua gerando o ícone índigo; o ícone novo sai de `scripts/design/frontend-novo/icone-app.mjs`. Na junção, vale ficar com um só.
+
+**Estudo dos textos (13/11/2026): etapa 1 aplicada, etapas 2 a 5 abertas**
+- O estudo, as referências e as 10 regras estão em `revisoes/frontend-novo/textos/estudo-dos-textos.md`. A etapa 1 (as 11 telas do exemplo) foi aprovada e aplicada em 13/11/2026: de 6.311 para 5.019 palavras à vista nas 41 telas medidas, de 55 para 30 blocos longos e de 63 para 16 selos à vista.
+- **Falta:** etapa 2 (o resto do texto das telas: experiência, equipamento, editar local, tela de erro, avisos de instalar e de cópia, rótulos longos); etapa 3 (o guia: o que fica aberto e o que fica a um toque); etapa 4 (frases do domínio e do conteúdo, em sessão própria: título curto dos avisos, porquês mais curtos, um nome só para a série de acerto); etapa 5 (termos e folha da foto em camadas, com revisão jurídica).
+- **Para conferir com gente de verdade:** os estudos de leitura usados são de computador, e esconder texto pode piorar para quem não toca. Vale observar 2 ou 3 pessoas usando a abertura e o início e ver se acham "o que o app não faz", "Como ler o seu treino" e os avisos de "Sobre o programa".
+- **Conferir a margem a 206 px antes de juntar com a main**: `MARGEM=1 node scripts/design/frontend-novo/olhar.mjs <pasta> 206x420 claro <telas>` lista o que passa da margem da página. Em 13/11/2026 uma tela passou nos testes locais por 2,6 px e falhou na verificação do GitHub, onde a letra renderiza um pouco mais larga. Vale virar um teste de verdade (uma folga mínima de alguns pixels no cenário de zoom de 200%).
+
+## Da animação nova (14 a 16/11/2026)
+
+O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animação nova"; a conferência, animação por animação, em `revisoes/animacao-nova/qa.md`; o estado de cada uma em `revisoes/animacao-nova/andamento.md`).
+
+**Decididas pelo Gustavo em 16/11/2026** ("Não quero olhar mais nenhuma, pode ligar a opção, tirar o motor de hoje, e fazer o resto necessário")
+- **A abdução sentada com mini band** foi aprovada depois de um ajuste que ele pediu (de frente, a mão aparecia dentro da faixa; agora a coxa que abre a esconde). Com ela, as 90 estão no app.
+- **As 67 aprovadas por delegação** ficam como estão; as imagens de todas continuam em `revisoes/animacao-nova/quadros/` e `prototipos/`.
+- **O cor de pele** virou a opção de "Meus dados" → "Estilo do Boneco" (o cinza é o padrão). Quem tinha a Silhueta ou outro desenho de antes guardado passa ao cinza.
+- **O motor de hoje saiu do app**, com o Boneco de antes e a Silhueta: o Worker do Boneco só carrega o motor novo.
+
+**Decisões ainda abertas** (uma por vez, com imagem)
+- **A junção com a `main`**: tudo está no ramo `claude/friendly-goldberg-hwf6dl`; falta o ok dele.
+- **O segundo corpo**: a tabela da mulher existe e a conferência roda nela; duas regras falham na `remada-baixa` e duas na `remada-apoiada`. O app usa só o corpo do homem.
+- **Do cor de pele**, que entrou com as recomendações da proposta sem ele olhar uma a uma: o secundário num tom claro do vermelho (no cinza é laranja); um tom de pele só; e, no tema escuro, o short claro com pouco contraste contra a pele.
+- **Do corpo**: a ponta do trapézio 4,9 cm acima de onde a fonte diz; o abdômen que termina na cintura; o glúteo médio e as outras porções que o desenho não separa; a forma do músculo engrossar ao encurtar.
+
+**O código do motor de hoje continua no repositório, fora do app**
+- `src/engine/` (menos a pasta `novo/`) não é mais carregado por nenhuma tela de produção, mas ainda serve a ferramentas: a auditoria de anatomia (`npm run auditoria:anatomia`), a pessoa dos cartões de equipamento (`scripts/desenhos-equipamento/realista/pessoa.mjs`), as folhas de comparação "hoje × novo" (`scripts/animacao-nova/prototipos.mjs`, `antes-e-depois.mjs`) e o laboratório do Boneco (`/lab/boneco`, que só existe em desenvolvimento e nas prévias). Os testes dele continuam rodando (`tests/unit/` e `tests/motor/equivalencia.spec.ts` e `estilo-a.spec.ts`, com as linhas de base).
+- **Para apagar de vez**: levar a auditoria de anatomia para o motor novo (hoje ela confere um desenho que o app não mostra mais; a conferência nova já mede se o músculo realçado é o do conteúdo), trocar a pessoa dos cartões, aposentar o laboratório e as folhas de comparação, e então apagar o código, os testes, as três linhas de base antigas e as regras de CSS do desenho de antes em `src/styles.css` (`.estilo-a`, `.estilo-b`, `.ea-*`, `.eb-*`).
+
+**O que não ficou no nível**
+- **Erro de ritmo sem desenho**: "Quicar embaixo", da panturrilha no degrau, não foi desenhado (o motor novo ainda não muda o tempo das fases por erro; ideia: `fases` opcionais por erro na ficha e em `cena.ts`). Nesse erro o app mostra o movimento certo.
+- **Face pull com elástico**: os antebraços não chegam à vertical.
+- **De três quartos, na abdução com mini band**, aparece entre as pernas um pedaço solto do trecho de baixo da faixa.
+- **A legenda do modo Técnica fala de "articulações"**, que o desenho novo não marca com bolinha (só o ponto de cada rótulo).
+- **A primeira volta de seis animações é pesada** (abdução deitado e com caneleira, ponte com os pés na bola, panturrilha no chão e no degrau, stiff de uma perna): de 12 a 27 ms por pose no computador, o que num celular lento dá uma primeira volta aos trancos; da segunda em diante o desenho já está guardado. A conta por quadro é uma medida da pele contra o piso a cada pose (`pernaNoPiso`, em `quadril-deitado-de-lado.ts`, e parecidas).
+- **Pintura por profundidade**: o corpo é pintado parte por parte, cada parte numa profundidade só. A cadeira e as colunas de cenário ficam sempre atrás do corpo (`cenario`), e a mini band decide sozinha o que as pernas escondem. Uma pintura por profundidade de verdade dispensaria esses casos.
+- **Rótulo só aponta para ponto do corpo**: não dá para apontar para uma peça (a faixa, o banco).
+- **Sem revisor independente por animação**: a revisão independente foi do corpo e das regras do motor. Nas animações por delegação, quem fez foi um subagente e quem conferiu foi quem integrou.
+
+**Medidas**
+- **Provisórias**: 6 do corpo e 42 dos objetos seguem sem fonte lida (`revisoes/animacao-nova/tabelas.md` marca cada uma).
+- **Não medido**: num celular de verdade (tudo foi medido no Chromium, com a CPU 4 vezes mais lenta); o Lighthouse do guia; a memória com a animação na tela.
+- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). A tela do programa baixa 275 kB de código na primeira visita (eram 209 kB com o motor de antes), e o limite do teste (`tests/e2e/orcamento.spec.ts`) subiu de 220 para 285 kB. Caminhos para baixar: tirar os textos de fonte; ou desenhar as miniaturas na hora de publicar, para a tela do programa não precisar do motor. O app instalado guarda 668 arquivos (3,8 MB; eram 4,1 MB com os dois motores).
+
+**Ideias**
+- **Dizer em que nível pôr o banco**, por modelo de banco (pedido do Gustavo em 15/11; `revisoes/animacao-nova/pedidos-ao-conteudo.md`, item 3).
+- **Refazer os cartões de equipamento fora de medida** no gerador realista, com a folha de comparação (previsto na seção 6 do prompt da frente; não foi feito).
+
+**Pedidos ao conteúdo**: os 6 itens de `revisoes/animacao-nova/pedidos-ao-conteudo.md` (o ângulo dos cotovelos no supino; os músculos que a conferência mostra diferentes; o nível do banco; "meio passo" da torre na puxada; "quase nenhuma tensão embaixo" no agachamento com elástico; e os que vieram das famílias). Nada foi alterado em `src/conteudo/`.
+
+**Para conciliar com a `main`**
+- Fora da lista do que a frente podia alterar, mudaram no mínimo necessário: `package.json` (o comando `conferir:animacao`), `vite.config.ts` (o Worker em módulos, para carregar cada exercício só ao abrir), `src/main.tsx` (as duas folhas de estilo do motor novo), `.gitattributes` (os registros de uma linha por item) e três testes que esperavam o desenho de hoje (`tests/e2e/guia.spec.ts`, `tests/e2e/correcoes-auditoria.spec.ts`, `tests/unit/ids-do-desenho.test.ts`).
+- Em `src/features/`: o Worker do Boneco (só o motor novo), o pedido com o tema da tela, a preferência de desenho (`app/estiloBoneco.ts`, agora `cinza` ou `pele`), a folha "Estilo do Boneco" de Meus dados e, no guia, o nome das vistas e a legenda. `src/domain/`, `src/storage/`, `api/`, as personas e o `CLAUDE.md` não mudaram.
+- **Depois de mudar um exercício do motor novo**, regravar as tabelas calculadas de antemão: `node scripts/animacao-nova/preparo.mjs`.
+

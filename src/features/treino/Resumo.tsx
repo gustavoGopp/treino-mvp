@@ -10,7 +10,7 @@ import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } f
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
 import { Pontos } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { PorQue, Selo, Titulo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
@@ -33,7 +33,6 @@ const HOJE_FOI = [
 ] as const;
 
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
-const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
 
 export function Resumo() {
   const { estado, atualizar } = useApp();
@@ -62,20 +61,39 @@ export function Resumo() {
 
   return (
     <div className="wrap app">
-      <Topo direita={<Link to="/programa">Início</Link>} />
-      <main className="conteudo">
+      <main className="conteudo fim-do-treino">
         <AvisoSalvar />
+        <p className="rotulo subtitulo">{dia.nome}</p>
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
         {s.encerradaPorAlerta && (
           <div className="caixa-erro" role="alert">
-            Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
-            voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+            <p>
+              Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
+              voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+            </p>
+            {/* o número a um toque (o texto da orientação não muda) */}
+            <a className="btn ligar" href="tel:192">
+              Ligar para o SAMU: 192
+            </a>
           </div>
         )}
-        <p className="apoio num subtitulo">
-          {dia.nome}
-          {r.minutos !== undefined && ` · ${r.minutos} min`} · {plural(r.series, 'série', 'séries')}
-        </p>
+        {/* o placar do treino: os números de hoje são o maior elemento da tela */}
+        <div className={`numeros num${s.encerradaPorAlerta ? '' : ' placar'}`}>
+          <div>
+            <b>{r.series}</b>
+            <span className="rotulo">{r.series === 1 ? 'série' : 'séries'}</span>
+          </div>
+          {r.minutos !== undefined && (
+            <div>
+              <b>{r.minutos}</b>
+              <span className="rotulo">{r.minutos === 1 ? 'minuto' : 'minutos'}</span>
+            </div>
+          )}
+          <div>
+            <b>{itens.length}</b>
+            <span className="rotulo">{itens.length === 1 ? 'exercício' : 'exercícios'}</span>
+          </div>
+        </div>
         {(semana || marcas.length > 0 || sobem > 0) && (
           <section className="mudou" aria-labelledby="mudou">
             <h2 id="mudou">O que mudou hoje</h2>
@@ -85,10 +103,10 @@ export function Resumo() {
                   <b>A sua semana</b> <Pontos r={semana} />{' '}
                   <b className="num">
                     {semana.feitos} de {semana.planejados}
-                  </b>
-                </p>
-                <p>
-                  {semana.mensagem} <Selo id={semana.regraId} />
+                  </b>{' '}
+                  <PorQue regras={[semana.regraId]} titulo="A sua semana" rotulo="o que conta">
+                    <p>{semana.mensagem}</p>
+                  </PorQue>
                 </p>
               </>
             )}
@@ -122,14 +140,13 @@ export function Resumo() {
             ))}
           </div>
           <p className="ajuda">
-            Nada vem marcado.{' '}
-            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi">
+            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi" rotulo="para que serve">
               <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
             </PorQue>
           </p>
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
-          <h2 id="proxima" className="secao">
+          <h2 id="proxima" className="rotulo">
             Para a próxima vez
           </h2>
           <ul className="lista-proxima">
@@ -150,19 +167,16 @@ export function Resumo() {
           </ul>
         </section>
         <SemanaLeve />
-        <Link className="btn" to="/semana">
+        <Link className="btn sec" to="/semana">
           Ver a sua semana
         </Link>
-        <Link className="btn sec" to="/programa">
-          Voltar ao início
-        </Link>
         {apagar ? (
-          <div className="warnbox" role="alert">
+          <div className="warnbox" role="group" aria-label="Apagar este treino?">
             <p>
               Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}. <Selo id="registro.treino-feito" />
             </p>
             <div className="dois">
-              <button type="button" className="btn sec" onClick={() => setApagar(false)}>
+              <button type="button" className="btn sec" autoFocus onClick={() => setApagar(false)}>
                 Manter
               </button>
               <button
@@ -182,6 +196,12 @@ export function Resumo() {
             Registrei algo errado: apagar este treino
           </button>
         )}
+        {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}
+        <div className="acao-fixa">
+          <Link className="btn" to="/programa">
+            Voltar ao início
+          </Link>
+        </div>
       </main>
     </div>
   );

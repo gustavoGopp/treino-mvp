@@ -1,0 +1,23 @@
+{
+ "fontes": {
+  "ikea-hyltarp": "IKEA, sofá HYLTARP (Gransel gray), aba Measurements; https://www.ikea.com/us/en/p/hyltarp-sofa-gransel-gray-s89514930/ (página pública lida em 15/11/2026; medidas em polegadas, convertidas a 2,54 cm)"
+ },
+ "objetos": {
+  "sofa": {
+   "nome": "Sofá de três lugares com pés (a âncora dos calcanhares no nórdico)",
+   "medidas": {
+    "alturaDebaixo": {"v": 14, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Height under furniture: 5 1/2 pol (do chão à parte de baixo da estrutura, onde os calcanhares ficam presos)"},
+    "assentoAltura": {"v": 47.9, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Seat height: 18 7/8 pol (do chão ao alto da almofada do assento)"},
+    "assentoProf": {"v": 60, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Seat depth: 23 5/8 pol (da borda da frente ao encosto)"},
+    "prof": {"v": 93, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Depth: 36 5/8 pol (da frente ao fundo)"},
+    "encostoAltura": {"v": 81.9, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Backrest height: 32 1/4 pol (do chão ao alto da estrutura do encosto)"},
+    "alturaComAlmofadas": {"v": 91.1, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Height including back cushions: 35 7/8 pol"},
+    "bracoAltura": {"v": 62.9, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Armrest height: 24 3/4 pol"},
+    "bracoLarg": {"v": 11.1, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Armrest width: 4 3/8 pol"},
+    "larg": {"v": 232.1, "un": "cm", "tipo": "medida", "fonte": "ikea-hyltarp", "onde": "Width: 91 3/8 pol"},
+    "almofadaEsp": {"v": 14, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "espessura da almofada do assento: a ficha não traz (o resto, até a altura do assento, é a estrutura)"},
+    "peLado": {"v": 4, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "lado da seção de cada pé: a ficha não traz"}
+   }
+  }
+ }
+}

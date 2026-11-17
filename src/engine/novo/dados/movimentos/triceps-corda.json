@@ -1,0 +1,58 @@
+{
+ "id": "triceps-corda",
+ "nome": "Tríceps na polia com corda",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-corda.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/triceps-corda.md e no texto do app (src/conteudo/exercicios/triceps-corda.json): consenso de treinadores",
+  "hoje": "A animação de hoje (src/engine/exercicios/triceps-corda.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json e src/engine/novo/dados/objetos/corda-triceps.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio"},
+  "pe.z": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola dos pés, à frente do meio da pelve"},
+  "pelve.z": {"v": -3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a pelve um pouco atrás, para o peso ficar sobre o meio dos pés com o tronco inclinado"},
+  "joelho": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco.inclinacao": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco levemente inclinado à frente (o texto do app: de reto até ~20°, preferência): o eixo do tórax, da vertical"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço estende um pouco a partir da linha do tronco inclinado: o olhar à frente"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça acompanha o pescoço: o olhar à frente, não para o chão"},
+  "braco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "cotovelos colados nas laterais do tronco: o braço na linha do tronco, sem ir à frente"},
+  "braco.paraDentro": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço vai um pouco para o meio, até o cotovelo encostar ao lado das costelas"},
+  "cotovelo.alto": {"v": 112, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: cotovelos dobrados, mãos na altura do peito (a ficha não dá número; a conferência mede a altura das mãos)"},
+  "cotovelo.baixo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo: cotovelo totalmente estendido"},
+  "maos.meiaDistancia.alto": {"v": 6.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "em cima, as mãos perto uma da outra, cada uma num ramo, junto da ponta de borracha"},
+  "antebraco.giroParaFora.baixo": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo, a corda abre: o antebraço gira para fora em volta do braço e leva as mãos para os lados das coxas (a conferência mede a abertura)"},
+  "cabo.inclinacao": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "em cima, o cabo sai da roldana um pouco à frente da bucha: de frente para a coluna, a cerca de meio passo"},
+  "erro.cotovelo.frente": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, o braço sobe à frente e sai do tronco"},
+  "erro.cotovelo.cotovelo": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, com o braço à frente, o cotovelo dobra mais e as mãos sobem acima do peito"},
+  "erro.tronco.inclinacao": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco debruça sobre a corda enquanto as mãos descem"},
+  "erro.tronco.toracica": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas arredondam um pouco ao debruçar"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cotovelos colados", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Extensão · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Embaixo · corda aberta", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "contrai", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "triceps-corda-cotovelo-parado", "pede": "os cotovelos ficam no mesmo lugar do início ao fim: só o antebraço se mexe", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-corda-cotovelos-colados", "pede": "cotovelos colados nas laterais do tronco", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-corda-maos-no-peito", "pede": "em cima, mãos na altura do peito, cotovelos dobrados", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-corda-estende-embaixo", "pede": "embaixo, cotovelo totalmente estendido", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-corda-abre-no-fim", "pede": "no fim, abra a corda levando as mãos para os lados das coxas", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-corda-tronco-parado", "pede": "tronco levemente inclinado à frente (até ~20°) e parado", "selo": "consenso", "fonte": "guia"},
+  {"id": "triceps-frances-corda-livre-da-cabeca", "pede": "a corda e o cabo passam sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "triceps-frances-corda-na-mao", "pede": "cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 0, "titulo": "Cotovelos sobem e saem do tronco", "vista": "lateral", "oQueMuda": "em cima, o braço sobe à frente e o cotovelo sai do lado do tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "tronco", "instante": 1, "titulo": "Debruçar o tronco", "vista": "lateral", "oQueMuda": "o tronco debruça sobre a corda enquanto as mãos descem", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "guia"},
+  {"vista": "posterior", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia"}
+ ]
+}

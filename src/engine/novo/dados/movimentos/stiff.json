@@ -1,0 +1,57 @@
+{
+ "id": "stiff",
+ "nome": "Stiff com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/stiff.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/stiff.md e no texto do app (src/conteudo/exercicios/stiff.json): consenso de treinadores",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho.cima": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé: joelhos levemente dobrados (a ficha não dá número)"},
+  "joelho.baixo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo: o ângulo do joelho fica quase igual ao de cima (a ficha: 'esse ângulo fica quase igual a série toda')"},
+  "tronco.cima": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em pé: quadril estendido, sem jogar o tronco para trás"},
+  "maos.embaixo": {"v": 0.5, "un": "fração da canela", "selo": "consenso", "fonte": "guia", "o": "embaixo, os halteres chegam perto do meio da canela (do tornozelo ao joelho: 0 = tornozelo, 1 = joelho); a ficha diz que isso vale para muita gente e depende da flexibilidade. A inclinação do tronco embaixo sai desta altura"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "pescoço na linha do tronco ('coluna longa do quadril à cabeça')"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "cabeça na linha do pescoço"},
+  "maos.meiaDistancia": {"v": 17, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "halteres na frente das coxas, lado a lado: cada mão fica a meio comprimento do halter (16,5 cm) mais meio centímetro do meio do corpo, para os dois halteres não baterem"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "braços quase estendidos, sem travar o cotovelo"},
+  "cotovelo.paraFora": {"v": 1, "un": "proporção", "selo": "desenho", "fonte": "desenho", "o": "os cotovelos apontam para trás e para fora (quanto para fora em relação a para trás), com as palmas para as pernas"},
+  "carga.folga": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "'halteres rentes às pernas': a folga entre a cabeça do halter e a pele da coxa ou da canela"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb); entram no equilíbrio"},
+  "erro.arred.lombar": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arredonda (flexão além da curva de repouso, embaixo)"},
+  "erro.arred.toracica": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima também curvam um pouco"},
+  "erro.arred.bacia": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia inclina menos que no certo (quem dobra é a lombar)"},
+  "erro.agachar.joelho": {"v": 62, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os joelhos dobram e o quadril desce"},
+  "erro.agachar.tronco": {"v": 42, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco inclina pouco (vira um agachamento)"},
+  "erro.longe.folga": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: os halteres descem longe das pernas (folga embaixo)"}
+ },
+ "fases": [
+  {"nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire e firme o abdômen", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "lombar-neutra", "pede": "a lombar não arredonda (coluna neutra)", "selo": "consenso", "fonte": "guia"},
+  {"id": "dobra-no-quadril", "pede": "quem dobra é o quadril: o quadril vai para trás e os joelhos ficam levemente dobrados, quase no mesmo ângulo", "selo": "consenso", "fonte": "guia"},
+  {"id": "em-pe-sem-jogar-o-tronco-para-tras", "pede": "em pé, o quadril fica estendido, sem jogar o tronco para trás", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-rente-as-pernas", "pede": "os halteres descem rentes às coxas e às canelas, sem atravessar as pernas", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-ate-o-meio-da-canela", "pede": "embaixo, os halteres chegam perto do meio da canela", "selo": "consenso", "fonte": "guia"},
+  {"id": "peso-no-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica sobre o meio do pé", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "arred", "instante": 1, "titulo": "Coluna arredondada", "vista": "lateral", "oQueMuda": "a bacia para de inclinar e a lombar arredonda para descer mais", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "agachar", "instante": 1, "titulo": "Agachar em vez de levar o quadril para trás", "vista": "lateral", "oQueMuda": "os joelhos dobram e o quadril desce, com o tronco pouco inclinado", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"},
+  {"id": "longe", "instante": 1, "titulo": "Halteres longe das pernas", "vista": "lateral", "oQueMuda": "os halteres descem à frente, longe das pernas", "destaca": ["bracos"], "linha": ["ombro", "pegada"], "foco": "pegada"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "quadril para trás", "ponto": "pelve", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "halteres rentes às pernas", "ponto": "pegada", "selo": "consenso", "fonte": "guia"},
+  {"vista": "quinaTras", "texto": "pés na largura do quadril", "ponto": "ponta", "selo": "consenso", "fonte": "guia"}
+ ]
+}

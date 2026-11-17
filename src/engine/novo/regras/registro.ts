@@ -1,0 +1,30 @@
+// O registro das regras medidas pela conferência que ficam fora de ../conferir.ts: uma linha por arquivo de regras
+// (uma família de exercícios por arquivo), e nada mais. Cada arquivo exporta um objeto `id da regra → função que
+// mede`. O arquivo junta sozinho as linhas de quem trabalha em paralelo (ver .gitattributes).
+export {};
+export { apoioNoChao } from './apoio-no-chao';
+export { regrasDosBulgaros } from './bulgaros';
+export { REGRAS_FLEXAO_JOELHO } from './flexao-joelho';
+export { regrasDasFlexoes } from './flexoes';
+export { regrasDosStiffs } from './stiffs';
+export { regrasDaSuspensao } from './suspensao';
+export { REGRAS_PONTES } from './pontes';
+export { REGRAS_TRICEPS_FRANCES } from './triceps-frances';
+export { regrasDosOmbros } from './ombros';
+export { regrasDasRoscas } from './roscas';
+export { regrasDasPanturrilhas } from './panturrilhas';
+export { REGRAS_TRICEPS_CORDA } from './triceps-corda';
+export { REGRAS_TRICEPS_FRANCES_UNILATERAL } from './triceps-frances-unilateral';
+export { REGRAS_ABDOMINAIS } from './abdominais';
+export { regrasDasRemadas } from './remadas';
+export { regrasDosElasticos } from './elasticos';
+export { REGRAS_POLIA_PUXAR } from './polia-puxar';
+export { REGRAS_POLIA_BRACOS } from './polia-bracos';
+export { regrasDoSupinoInclinado } from './supino-inclinado';
+export { REGRAS_PONTE_BOLA } from './ponte-bola';
+export { REGRAS_NORDICO } from './nordico';
+export { REGRAS_REMADA_APOIADA } from './remada-apoiada';
+export { regrasDoPendurado } from './pendurado';
+export { REGRAS_RODA_ABDOMINAL } from './roda-abdominal';
+export { regrasDoQuadril } from './quadril-abrir-e-fechar';
+export { regrasDaExtensaoComCaneleira } from './extensao-joelho-caneleira';

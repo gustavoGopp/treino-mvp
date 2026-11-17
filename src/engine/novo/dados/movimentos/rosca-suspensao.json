@@ -1,0 +1,53 @@
+{
+ "id": "rosca-suspensao",
+ "nome": "Rosca na suspensão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-suspensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-suspensao.md): de frente para a âncora, palmas para cima, braços estendidos à frente; corpo reto e inclinado para trás, calcanhares no chão (a mesma posição da remada na suspensão); dobra os cotovelos e traz as mãos para perto da testa, cotovelos altos e parados; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/rosca-suspensao.json): ~1 s subindo, ~2 s descendo; cotovelos apontando para a âncora; as dicas e os erros",
+  "remada": "Remada na suspensão do motor novo (lote 4, src/engine/novo/dados/movimentos/remada-suspensao.json): a mesma posição de partida (pés, ângulo do corpo, comprimento da fita), como a ficha pede",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/rosca-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): o ângulo de partida, a pausa e os erros",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "remada", "o": "pés na largura do quadril (como na remada)"},
+  "pes.alemDaAncora": {"v": -20, "un": "cm", "selo": "desenho", "fonte": "remada", "o": "o fundo do calcanhar fica 20 cm antes da vertical da âncora (como na remada; hoje: 30 cm além, com a âncora a 205 cm)"},
+  "pe.pontaSobe": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "calcanhares no chão: a ponta do pé sobe 25° e fica parada"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "corpo reto: pernas estendidas, sem travar"},
+  "corpo.inicio": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no início, o corpo fica 55° da vertical (hoje: 55°); daí sai o comprimento da fita"},
+  "maos.polegarParaCima": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "palmas para cima: o polegar aponta para fora e um pouco para cima (0,4 da direção para cima para 1 da direção para fora, no tronco), para o antebraço não passar da supinação comum"},
+  "pescoco.flexao": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do corpo, o queixo um pouco recolhido"},
+  "cotovelo.fim": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no fim, o cotovelo dobra 115°: as mãos chegam perto da testa (a ficha não dá número; a regra mede a distância da mão à cabeça)"},
+  "erro.quadril.dobra": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: o quadril cai e dobra 34° no fim (como na remada)"},
+  "erro.cotovelo.atras": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: os cotovelos descem até a posição final da remada (braço 30° atrás do tronco)"},
+  "erro.cotovelo.fora": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: na posição da remada, o braço rente ao corpo (14°)"},
+  "erro.curta.fracao": {"v": 0.5, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: a volta para na metade do caminho (hoje: na pose do meio)"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Mãos perto da testa", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos altos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pegador.R", "pegador.L"],
+ "regras": [
+  {"id": "corpo-em-linha", "pede": "corpo reto, do calcanhar à cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhares-no-chao", "pede": "calcanhares no chão, parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maos-nos-pegadores", "pede": "as mãos seguram os pegadores o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-para-cima", "pede": "palmas para cima", "selo": "consenso", "fonte": "ficha"},
+  {"id": "corpo-sobe-com-a-fita", "pede": "a fita não estica: o corpo sobe enquanto as mãos vêm à testa", "selo": "consenso", "fonte": "hoje"},
+  {"id": "cotovelos-altos-e-parados", "pede": "os cotovelos ficam altos e parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maos-perto-da-testa", "pede": "no fim, as mãos chegam perto da testa", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "quadril", "instante": 1, "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "o corpo dobra no quadril: o quadril desce e o tronco fica mais em pé", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelos descem", "vista": "lateral", "oQueMuda": "os cotovelos descem e as mãos vão ao peito: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender os braços", "vista": "lateral", "oQueMuda": "a volta para na metade: os braços não estendem", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "corpo reto como uma tábua", "ponto": "pelve", "selo": "consenso", "fonte": "app", "guia": ["calcanhar", "cabeca"]},
+  {"vista": "lateral", "texto": "cotovelos altos e parados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "palmas para cima", "ponto": "pegada", "selo": "consenso", "fonte": "ficha"}
+ ]
+}

@@ -1,0 +1,358 @@
+{
+ "id": "triceps-elastico-acima",
+ "nome": "Tríceps acima da cabeça com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-elastico-acima.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-elastico-acima.md) e texto do app (src/conteudo/exercicios/triceps-elastico-acima.json): consenso de treinadores; a posição dos braços é a do triceps-frances e do triceps-frances-halter aprovados",
+  "frances": "Ficha de movimento do tríceps francês aprovado (src/engine/novo/dados/movimentos/triceps-frances.json): os mesmos ângulos do braço e do cotovelo",
+  "hoje": "A animação de hoje (src/engine/exercicios/triceps-elastico-acima.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json (elástico longo em laço, 41 pol)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cada pé a 9 cm do meio, de frente (a ficha só pede um pé à frente do outro)"
+  },
+  "pe.frente.z": {
+   "v": 22,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "a bola do pé da frente (o direito), à frente do meio do corpo: o passo de hoje"
+  },
+  "pe.tras.z": {
+   "v": -12,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "a bola do pé de trás (o esquerdo), atrás do meio do corpo (hoje: 26 cm; mais curto para o pé de trás ficar inteiro no chão, pisando no elástico, com o joelho de trás destravado)"
+  },
+  "pe.tras.calcanhar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "o pé de trás fica inteiro no chão: ele pisa no meio do elástico, no meio da sola"
+  },
+  "pelve.z": {
+   "v": -5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o meio da pelve fica um pouco atrás do meio dos dois pés (o peso um pouco mais na perna de trás, que pisa no elástico)"
+  },
+  "joelho.frente": {
+   "v": 20,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "joelhos destravados: o da frente dobra um pouco (a ficha não dá número; a altura da pelve sai daqui)"
+  },
+  "tronco.inclinacao": {
+   "v": 3,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "tronco quase vertical, abdômen firme (a ficha não pede inclinação; hoje o tronco fica quase em pé)"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha do tronco"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cabeça na linha do pescoço"
+  },
+  "braco.elevacao": {
+   "v": 172.5,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "frances",
+   "o": "braços acima da cabeça, ao lado das orelhas (o francês aprovado usa 168° com o tronco inclinado 27°; aqui, com o tronco em pé, 172,5° (a elevação média do ombro é 170°): o braço fica quase vertical e as mãos ficam sobre a cabeça em cima)"
+  },
+  "braco.paraDentro": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "frances",
+   "o": "o braço vai um pouco para o meio: cotovelos perto da cabeça, sem abrir (o do francês aprovado)"
+  },
+  "cotovelo.alongado": {
+   "v": 135,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "frances",
+   "o": "alongado: mãos atrás da cabeça, cotovelos bem dobrados (o do francês aprovado)"
+  },
+  "cotovelo.estendido": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "frances",
+   "o": "fim: cotovelos estendidos, sem travar"
+  },
+  "maos.meiaDistancia": {
+   "v": 7,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "ficha",
+   "o": "as duas mãos juntas atrás da cabeça, segurando a ponta de cima do laço"
+  },
+  "elastico.folga": {
+   "v": 0.6,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "a faixa passa rente ao corpo: metade da espessura (0,45 cm) e a camiseta"
+  },
+  "erro.abre.fora": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: os cotovelos abrem para os lados (no alongado)"
+  },
+  "erro.abre.volta": {
+   "v": 1,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: os cotovelos abrem na volta e fecham estendendo (as mãos continuam juntas na faixa)"
+  },
+  "erro.cotovelo.elevacao": {
+   "v": 135,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: no alongado o braço desce à frente (vira um pullover)"
+  },
+  "erro.cotovelo.cotovelo": {
+   "v": 100,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: com o braço mais baixo, o cotovelo dobra menos no alongado (as mãos passam acima da cabeça)"
+  },
+  "erro.curta.cotovelo": {
+   "v": 90,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "erro: para com o cotovelo a 90°"
+  },
+  "erro.arco.lombar": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a lombar arqueia enquanto as mãos sobem"
+  },
+  "erro.arco.toracica": {
+   "v": 4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: as costas de cima também estendem"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "mãos atrás da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Extensão · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "o elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.4,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2–3 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "regras": [
+  {
+   "id": "triceps-frances-braco-parado",
+   "pede": "os cotovelos ficam no mesmo lugar do início ao fim: só o antebraço se mexe",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-cotovelos-perto-da-cabeca",
+   "pede": "braços ao lado das orelhas, cotovelos perto da cabeça, sem abrir para os lados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-alonga-atras-da-cabeca",
+   "pede": "embaixo, mãos atrás da cabeça, cotovelos bem dobrados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-estende-em-cima",
+   "pede": "em cima, cotovelos estendidos",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-costas-retas",
+   "pede": "tronco quase vertical e parado, abdômen firme, sem arquear",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-pisado-no-meio-da-sola",
+   "pede": "o pé de trás pisa no meio do elástico, no meio da sola, e fica inteiro no chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "a faixa sobe pelas costas rente ao corpo, sem entrar nele",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "as duas mãos seguram juntas a ponta de cima do laço, atrás da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "abre",
+   "instante": 0,
+   "titulo": "Abrir os cotovelos",
+   "vista": "frontal",
+   "oQueMuda": "os cotovelos se afastam da cabeça, para os lados",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "cotovelo",
+   "instante": 0,
+   "titulo": "Cotovelos sobem e descem",
+   "vista": "lateral",
+   "oQueMuda": "no alongado o braço desce à frente e o ombro entra no movimento",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "arco",
+   "instante": 1,
+   "titulo": "Arquear as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e as costas de cima arqueiam enquanto as mãos sobem",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "curta",
+   "instante": 0,
+   "titulo": "Não alongar atrás da cabeça",
+   "vista": "lateral",
+   "oQueMuda": "a volta para com o cotovelo a 90°, sem levar as mãos para trás da cabeça",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "pegada"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "cotovelos parados",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "lateral",
+   "texto": "pé de trás no elástico",
+   "ponto": "calcanhar:L",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "frontal",
+   "texto": "cotovelos perto da cabeça",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}

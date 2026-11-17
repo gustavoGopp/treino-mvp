@@ -1,0 +1,27 @@
+diff --git a/src/features/treino/Resumo.tsx b/src/features/treino/Resumo.tsx
+index c75c61a..8085bf0 100644
+--- a/src/features/treino/Resumo.tsx
++++ b/src/features/treino/Resumo.tsx
+@@ -167,9 +167,6 @@ export function Resumo() {
+           </ul>
+         </section>
+         <SemanaLeve />
+-        <Link className="btn" to="/semana">
+-          Ver a sua semana
+-        </Link>
+         <Link className="btn sec" to="/programa">
+           Voltar ao início
+         </Link>
+@@ -199,6 +196,12 @@ export function Resumo() {
+             Registrei algo errado: apagar este treino
+           </button>
+         )}
++        {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}
++        <div className="acao-fixa">
++          <Link className="btn" to="/semana">
++            Ver a sua semana
++          </Link>
++        </div>
+       </main>
+     </div>
+   );

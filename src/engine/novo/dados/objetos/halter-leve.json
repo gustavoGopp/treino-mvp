@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "ritfit-hex": "RitFit. Hex Dumbbells Pairs and Sets, Technical Specification (tabela por peso). https://www.ritfitsports.com/pages/hex-dumbbells-pairs-and-sets-technical-specification (lido em 12/11/2026)",
+  "titan-hex-10": "Titan Fitness, 10 lb Rubber Hex Dumbbells (par); https://titan.fitness/products/10-lb-rubber-hex-dumbbells (lido em 15/11/2026, página lida por resumo automático): \"Handle Length: 5.125-in.\", \"Overall Length: 11-in.\", \"Overall Width: 4.5-in.\", \"Handle Diameter: 28 mm\" (outro fabricante que o do resto do halter leve)"
+ },
+ "objetos": {
+  "halterLeve": {
+   "nome": "Halter sextavado emborrachado de 10 lb (4,5 kg)",
+   "medidas": {
+    "comp": { "v": 26.7, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "comprimento total (Total Length), 10 lb: 10,5 pol = 26,67 cm" },
+    "cabecaLargura": { "v": 10.2, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "largura da cabeça (Head Width), 10 lb: 4 pol = 10,16 cm" },
+    "cabecaAltura": { "v": 9.1, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "altura da cabeça (Head Height), 10 lb: 3,6 pol = 9,14 cm" },
+    "caboDiam": { "v": 2.8, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "diâmetro do cabo (Handle Diameter), 5 e 10 lb: 1,1 pol = 2,79 cm; o Titan de 10 lb dá 28 mm" },
+    "caboComp": { "v": 13.0, "un": "cm", "tipo": "medida", "fonte": "titan-hex-10", "onde": "comprimento livre do cabo do halter sextavado de 10 lb: 5,125 pol = 13,0 cm (a RitFit não publica essa coluna)" },
+    "massa": { "v": 4.5, "un": "kg", "tipo": "medida", "fonte": "ritfit-hex", "onde": "10 lb = 4,54 kg" }
+   }
+  }
+ }
+}

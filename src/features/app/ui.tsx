@@ -5,6 +5,7 @@ import { carregarRegras } from '../../domain/regras/carregar';
 import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
 import { useApp } from './estado';
 import { Folha } from './Folha';
+import { Icone, type NomeIcone } from './icones';
 import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
@@ -37,10 +38,13 @@ export function Selo({ id }: { id: string }) {
   const selo = SELOS[id];
   if (!selo) return null;
   const texto = TEXTO_SELO[selo];
+  // Frases sobre como o app funciona (privacidade, onde os dados ficam, locais, registro): não são regra de treino, e a
+  // palavra do nível ("consenso") solta ali não diz de quê. O selo mostra "fonte"; o nível continua na folha.
+  const doApp = /^(privacidade|dados|local|registro)\./.test(id);
   return (
     <>
-      <button type="button" className={`selo selo-${selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        {CURTO_SELO[selo]}
+      <button type="button" className={`selo selo-${selo.replace(' ', '-')}`} aria-label={doApp ? 'ver de onde vem' : `${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        {doApp ? 'fonte' : CURTO_SELO[selo]}
       </button>
       {aberto && (
         <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
@@ -55,18 +59,20 @@ export function Selo({ id }: { id: string }) {
  * "por quê?" (retorno do Gustavo, 06/11: menos texto na tela). A explicação e as regras saem da tela e ficam a um toque:
  * a folha mostra o texto de apoio da tela (se houver) e, para cada regra, o texto da regra, o selo e as fontes, como a
  * folha do selo. O texto da regra não muda; só muda de lugar.
+ * `rotulo` (estudo dos textos, 13/11/2026): o toque diz o que há dentro ("o que sai daqui", "por que perguntamos");
+ * "por quê?" fica para quando é mesmo um porquê.
  */
-export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
+export function PorQue({ regras, titulo = 'Por quê', rotulo = 'por quê?', children }: { regras: string[]; titulo?: string; rotulo?: string; children?: ReactNode }) {
   const [aberto, setAberto] = useState(false);
   return (
     <>
       <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        por quê?
+        {rotulo}
       </button>
       {aberto && (
         <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
           {children && <div className="porque-texto">{children}</div>}
-          <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />
+          {regras.some((id) => SELOS[id]) && <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />}
         </Folha>
       )}
     </>
@@ -165,17 +171,16 @@ function SeloFolha({ regra }: { regra: Regra }) {
  * "‹ Pai" ocupa o lugar da marca, e a barra de baixo continua com o pai aceso.
  */
 export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para: string; rotulo: string } }) {
+  // Frontend novo (12/11/2026): a faixa com o nome do app saiu das telas. Sem "voltar" e sem atalho, não há topo.
+  if (!voltar && !direita) return null;
   return (
     <header className="top">
       <div className="brand">
-        {voltar ? (
+        {voltar && (
           <Link className="topo-volta" to={voltar.para}>
-            ‹ {voltar.rotulo}
+            <Icone nome="chevron-left" />
+            {voltar.rotulo}
           </Link>
-        ) : (
-          <b>
-            <Link to="/">treino-mvp</Link>
-          </b>
         )}
         {direita}
       </div>
@@ -188,19 +193,17 @@ export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para
  * Fica nas telas de início; no treino em andamento e no cadastro, não (ali a tela é uma tarefa só).
  */
 export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' }) {
-  const item = (id: typeof atual, para: string, rotulo: string, d: string) => (
+  const item = (id: typeof atual, para: string, rotulo: string, icone: NomeIcone) => (
     <Link to={para} aria-current={atual === id ? 'page' : undefined}>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d={d} />
-      </svg>
+      <Icone nome={icone} />
       {rotulo}
     </Link>
   );
   return (
     <nav className="nav-inferior" aria-label="Seções">
-      {item('treino', '/programa', 'Treino', 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11')}
-      {item('semana', '/semana', 'Semana', 'M4 5h16v15H4zM4 10h16M9 3v4M15 3v4')}
-      {item('dados', '/dados', 'Meus dados', 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0')}
+      {item('treino', '/programa', 'Treino', 'dumbbell')}
+      {item('semana', '/semana', 'Semana', 'calendar-days')}
+      {item('dados', '/dados', 'Meus dados', 'user')}
     </nav>
   );
 }
@@ -209,11 +212,14 @@ export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' })
  * Uma pergunta por vez (design v2, item B; GOV.UK "one thing per page"): a próxima pergunta só aparece depois da
  * resposta à anterior, e a tela rola até ela. Envolve a pergunta que acabou de aparecer.
  */
-export function Revelar({ children }: { children: ReactNode }) {
+export function Revelar({ children, semRolar }: { children: ReactNode; semRolar?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    // `semRolar`: a tela já abre com todas as perguntas (edição a partir de Meus dados) e começa do topo
+    if (semRolar) return;
     const reduz = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     ref.current?.scrollIntoView?.({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div ref={ref} className="revelar">
@@ -223,13 +229,20 @@ export function Revelar({ children }: { children: ReactNode }) {
 }
 
 /** Título que recebe o foco quando a tela abre (leitores de tela anunciam a troca de tela). */
-export function Titulo({ children }: { children: ReactNode }) {
+export function Titulo({ children, soLeitor }: { children: ReactNode; soLeitor?: boolean }) {
   const ref = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     ref.current?.focus();
   }, []);
+  // o nome da tela vai para o título do documento (leitor de tela, histórico, multitarefa)
+  useEffect(() => {
+    const nome = ref.current?.textContent?.trim();
+    if (nome) document.title = `${nome} · treino-mvp`;
+  });
+  // `soLeitor`: o nome da tela fica para o leitor de tela, e o título à vista é o conteúdo dela (o treino de hoje, o
+  // número da semana), que vem logo em seguida, num h2. Frontend novo: título específico, não o nome do tipo da tela.
   return (
-    <h1 ref={ref} tabIndex={-1} className="titulo">
+    <h1 ref={ref} tabIndex={-1} className={soLeitor ? 'titulo sr' : 'titulo'}>
       {children}
     </h1>
   );
@@ -239,7 +252,20 @@ export function Titulo({ children }: { children: ReactNode }) {
  * Moldura de um passo do onboarding: barra de progresso "Passo X de N" (padrão do GOV.UK) e guarda de rota.
  * Se um passo anterior está pendente, manda a pessoa para ele.
  */
-export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; children: ReactNode }) {
+export function Passo({
+  id,
+  titulo,
+  children,
+  deDados,
+  aoVoltar,
+}: {
+  id: PassoId;
+  titulo: string;
+  children: ReactNode;
+  deDados?: boolean;
+  /** uma subtela do passo (as perguntas completas da triagem): o "Voltar" volta à tela anterior do próprio passo */
+  aoVoltar?: () => void;
+}) {
   const { estado, carregado } = useApp();
   if (!carregado) return null;
   const indice = PASSOS.findIndex((p) => p.id === id);
@@ -248,15 +274,35 @@ export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; c
   const anterior = PASSOS[indice - 1];
   // lote 3 do redesign: "‹ Voltar" no alto e "Passo N de 4", sem contar a boas-vindas (que não é uma pergunta)
   const total = PASSOS.length - 1;
+  // Aberto por "Meus dados" (com o programa já feito), o passo é uma tela de edição: sem "Passo N de 4" e com a volta
+  // para Meus dados, não para o passo anterior do cadastro.
+  if (deDados && estado.programa && !pendente)
+    return (
+      <div className="wrap app">
+        <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
+        <main className="conteudo">
+          <Titulo>{titulo}</Titulo>
+          {children}
+        </main>
+      </div>
+    );
   return (
     <div className="wrap app">
       <Topo direita={estado.programa && !pendente ? <Link to="/programa">Meu programa</Link> : undefined} />
       <div className="progresso">
         <div className="progresso-linha">
-          {anterior && (
-            <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
-              ‹ Voltar
-            </Link>
+          {aoVoltar ? (
+            <button type="button" className="volta-passo" onClick={aoVoltar}>
+              <Icone nome="chevron-left" />
+              Voltar
+            </button>
+          ) : (
+            anterior && (
+              <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
+                <Icone nome="chevron-left" />
+                Voltar
+              </Link>
+            )
           )}
           <span>
             Passo {indice} de {total}

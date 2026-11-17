@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direção B2, Placar</title>
+<link rel="stylesheet" href="../comum/boneco.css">
+<link rel="stylesheet" href="../comum/base.css">
+<style>
+/* Direção B2, "Placar", aprofundada (12/11/2026). A interface é preta e branca; a única cor é a do Boneco e a do
+   "Senti algo". Três gestos se repetem em todas as telas: o rótulo pequeno em maiúsculas, a linha fina de tabela e a
+   inversão (texto vira fundo) para o que está escolhido, para a ação principal e para o fim do descanso. */
+@font-face{font-family:"Geist";font-weight:100 900;font-display:swap;src:url("../comum/fontes/geist-latin.woff2") format("woff2")}
+:root{
+  --fonte:"Geist",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --fundo:#F6F6F4; --sup:#FFFFFF; --sup2:#E9E9E6; --linha:#D8D8D4; --texto:#0E0E10; --texto2:#55565A;
+  --inv-fundo:#0E0E10; --inv-sup2:#2A2A2E; --inv-linha:#3A3A3F; --inv-texto:#F6F6F4; --inv-texto2:#B4B5B9;
+  --acao:#0E0E10; --sobre-acao:#FFFFFF; --foco:#0E0E10;
+  --alerta:#A8243A; --alerta-suave:#FBE4E6; --feito:#0F6B3E; --inativo:#8F9094; --veu:rgba(14,14,16,.5);
+  --r8:8px; --r16:16px;
+  --t-relogio:8rem; --t-numero:4.5rem; --t-titulo:2.5rem; --t-secao:1.25rem; --t-corpo:1.0625rem; --t-apoio:.9375rem; --t-rotulo:.8125rem;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --fundo:#0B0B0C; --sup:#161618; --sup2:#232326; --linha:#2E2E32; --texto:#F4F4F2; --texto2:#A6A7AB;
+  --inv-fundo:#F4F4F2; --inv-sup2:#DDDDD9; --inv-linha:#C9C9C5; --inv-texto:#0B0B0C; --inv-texto2:#4B4C50;
+  --acao:#F4F4F2; --sobre-acao:#0B0B0C; --foco:#F4F4F2;
+  --alerta:#F0888F; --alerta-suave:#3A1A1E; --feito:#65AE80; --inativo:#6E6F74; --veu:rgba(0,0,0,.64); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --fundo:#0B0B0C; --sup:#161618; --sup2:#232326; --linha:#2E2E32; --texto:#F4F4F2; --texto2:#A6A7AB;
+  --inv-fundo:#F4F4F2; --inv-sup2:#DDDDD9; --inv-linha:#C9C9C5; --inv-texto:#0B0B0C; --inv-texto2:#4B4C50;
+  --acao:#F4F4F2; --sobre-acao:#0B0B0C; --foco:#F4F4F2;
+  --alerta:#F0888F; --alerta-suave:#3A1A1E; --feito:#65AE80; --inativo:#6E6F74; --veu:rgba(0,0,0,.64); color-scheme:dark}
+body{font-size:var(--t-corpo)}
+.rotulo{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto2)}
+.apoio{font-size:var(--t-apoio);color:var(--texto2)}
+.gutter{padding-left:max(var(--e16),env(safe-area-inset-left,0px));padding-right:max(var(--e16),env(safe-area-inset-right,0px))}
+a{color:inherit}
+
+/* botões: a ação principal é o bloco invertido, de 64; o resto é superfície discreta */
+.btn{min-height:var(--h56);padding:0 var(--e16);border-radius:var(--r8);font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:var(--e8);transition:transform .1s ease-out;text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:var(--acao);color:var(--sobre-acao);min-height:var(--h64);width:100%;font-size:1.1875rem}
+.btn.pri:disabled{background:var(--sup2);color:var(--inativo);transform:none}
+.btn.pri .sub{font-weight:400;font-size:var(--t-apoio);opacity:.8}
+.btn.quieto{background:var(--sup2)}
+.btn.largo{width:100%}
+.link{min-height:var(--h48);padding:0 var(--e8);margin:0 calc(-1 * var(--e8));text-decoration:underline;text-underline-offset:4px;font-weight:600;font-size:var(--t-apoio);display:inline-flex;align-items:center}
+.icone-btn{width:var(--h48);height:var(--h48);border-radius:var(--r8);display:grid;place-items:center;flex:none}
+.icone-btn:active{background:var(--sup2)}
+
+/* a linha de tabela: o que organiza as listas */
+.tabela > *{border-top:1px solid var(--linha)}
+.tabela > :last-child{border-bottom:1px solid var(--linha)}
+
+.miolo{flex:1;display:flex;flex-direction:column;gap:var(--e32);padding-top:var(--e24);padding-bottom:var(--e24)}
+.bloco{display:flex;flex-direction:column;gap:var(--e16)}
+.bloco-junto{display:flex;flex-direction:column;gap:var(--e8)}
+h1.titulo{font-size:var(--t-titulo);font-weight:700;line-height:1;letter-spacing:-.03em}
+h2.secao{font-size:var(--t-secao);font-weight:600;letter-spacing:-.01em}
+.numeros{display:flex;gap:var(--e32);flex-wrap:wrap}
+.numeros div{display:flex;flex-direction:column;gap:var(--e4)}
+.numeros b{font-size:2rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.base{position:sticky;bottom:0;background:var(--fundo);padding-top:var(--e16);display:flex;flex-direction:column;gap:var(--e8);padding-bottom:env(safe-area-inset-bottom,0px)}
+.barra{display:flex}
+.barra button{flex:1;min-height:var(--h64);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--e4);font-size:var(--t-rotulo);font-weight:600;color:var(--texto2);position:relative}
+.barra button[aria-current]{color:var(--texto)}
+.barra button[aria-current]::before{content:"";position:absolute;top:0;left:var(--e24);right:var(--e24);height:2px;background:var(--texto)}
+
+/* ---------- início ---------- */
+.dias{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e8)}
+.dias button{min-height:var(--h64);border-radius:var(--r8);background:var(--sup2);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--e4);padding:var(--e8) var(--e16);text-align:left}
+.dias button b{font-size:var(--t-secao);font-weight:700;line-height:1}
+.dias button span{font-size:var(--t-rotulo);color:var(--texto2);font-weight:600}
+.dias button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
+.dias button[aria-pressed="true"] span{color:inherit;opacity:.8}
+.lista-ex li{display:grid;grid-template-columns:var(--e16) 4rem 1fr;align-items:center;gap:var(--e16);min-height:var(--h64);padding:var(--e8) 0}
+.lista-ex .n{color:var(--texto2);font-size:var(--t-apoio)}
+.lista-ex .mini{aspect-ratio:4/3;border-radius:var(--r8)}
+.lista-ex .txt{display:flex;flex-direction:column;gap:var(--e4);min-width:0}
+.lista-ex b{font-weight:500;line-height:1.25;text-wrap:balance}
+.linha-toque{display:flex;align-items:center;justify-content:space-between;gap:var(--e16);min-height:var(--h56);width:100%;text-align:left;padding:var(--e8) 0}
+.linha-toque > span:first-child{display:flex;flex-direction:column;gap:var(--e4);min-width:0}
+.linha-toque b{font-weight:500}
+.linha-toque [data-icone]{color:var(--texto2);--icone:20px}
+
+/* ---------- treino ---------- */
+.tela-treino{background:var(--fundo);color:var(--texto)}
+.invertida{--fundo:var(--inv-fundo);--sup2:var(--inv-sup2);--linha:var(--inv-linha);--texto:var(--inv-texto);--texto2:var(--inv-texto2);--acao:var(--inv-texto);--sobre-acao:var(--inv-fundo);--foco:var(--inv-texto)}
+.topo{display:flex;align-items:center;gap:var(--e8);min-height:var(--h64);padding-top:var(--e8);padding-bottom:var(--e8);position:sticky;top:var(--proto);z-index:12;background:var(--fundo)}
+.topo .volta{margin-left:calc(-1 * var(--e16))}
+.topo .pos{flex:1;font-weight:600}
+.senti{white-space:nowrap;flex:none;min-height:var(--h48);padding:0 var(--e16);border-radius:var(--r8);background:var(--alerta-suave);color:var(--alerta);font-weight:600;display:inline-flex;align-items:center;gap:var(--e8)}
+.senti [data-icone]{--icone:20px}
+.prog{display:flex;gap:var(--e4)}
+.prog li{flex:1;height:var(--e4);background:var(--sup2)}
+.prog li[data-feito],.prog li[data-atual]{background:var(--texto)}
+.prog li[data-atual]{opacity:.5}
+.so-serie,.so-relogio{flex:1;display:flex;flex-direction:column;min-height:0}
+body[data-vista="relogio"] .so-serie,body[data-vista="serie"] .so-relogio{display:none}
+/* o palco ocupa o que sobra da tela: encolhe em celular baixo, cresce até 16:9 */
+.palco-btn{position:relative;display:block;width:100%;flex:1 1 9rem;min-height:9rem;max-height:calc(min(100vw,430px) * .5625);margin-top:var(--e8)}
+.palco-btn .palco{position:absolute;inset:0}
+.palco-btn .fase{position:absolute;top:var(--e8);left:max(var(--e16),env(safe-area-inset-left,0px));font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto2);text-align:left}
+.palco-btn .toca{position:absolute;top:var(--e8);right:max(var(--e16),env(safe-area-inset-right,0px));color:var(--texto2);--icone:20px}
+.registro{position:sticky;bottom:0;z-index:5;background:var(--fundo);margin-top:auto;display:flex;flex-direction:column}
+.registro .fixa{position:static}
+.modos{display:grid;grid-template-columns:repeat(4,1fr)}
+.modos button{min-height:var(--h48);font-size:var(--t-apoio);font-weight:600;color:var(--texto2);position:relative}
+.modos button[aria-pressed="true"]{color:var(--texto)}
+.modos button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--e8);right:var(--e8);bottom:var(--e4);height:2px;background:var(--texto)}
+.legenda{font-size:var(--t-apoio);color:var(--texto2);min-height:2.8em;padding-top:var(--e8)}
+.legenda b{color:var(--texto);font-weight:600}
+.ex{display:flex;align-items:flex-start;gap:var(--e8);padding-top:var(--e16)}
+.ex h1{flex:1;min-width:0;font-size:var(--t-secao);font-weight:600;line-height:1.2;letter-spacing:-.01em;padding-top:var(--e8)}
+.placar{padding-top:var(--e24);display:flex;flex-direction:column;gap:var(--e8)}
+.placar-cab{display:flex;align-items:center;justify-content:space-between;gap:var(--e16)}
+.pips{display:flex;gap:var(--e4)}
+.pips li{width:var(--e16);height:var(--e8);background:var(--sup2)}
+.pips li[data-feita]{background:var(--texto)}
+.pips li[data-atual]{outline:2px solid var(--texto);outline-offset:-2px}
+.colunas{display:grid;grid-template-columns:1fr 1fr;gap:var(--e16)}
+.colunas > div{display:flex;flex-direction:column;gap:var(--e8)}
+.colunas output{font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;display:block}
+.colunas output small{font-size:var(--t-secao);font-weight:500;letter-spacing:0;color:var(--texto2);margin-left:var(--e4)}
+.mm{display:grid;grid-template-columns:1fr 1fr;gap:var(--e8)}
+.mm button{min-height:var(--h56);border-radius:var(--r8);background:var(--sup2);display:grid;place-items:center;transition:transform .1s ease-out}
+.mm button:active{transform:scale(.96)}
+.mm button:disabled{color:var(--inativo)}
+.rir{padding-top:var(--e24);display:flex;flex-direction:column;gap:var(--e8)}
+.rir-cab{display:flex;align-items:center;justify-content:space-between;gap:var(--e8);flex-wrap:wrap;min-height:var(--e24)}
+.rir-cab .link{min-height:var(--e24);position:relative}
+.rir-cab .link::after{content:"";position:absolute;inset:calc(-1 * var(--e16)) calc(-1 * var(--e8))}
+.rir-cab .apoio b{color:var(--texto);font-weight:600}
+.rir-linha{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--e8)}
+.rir-linha button{min-height:var(--h48);border-radius:var(--r8);background:var(--sup2);font-weight:600;position:relative}
+.rir-linha button[data-na-meta]::after{content:"";position:absolute;left:var(--e16);right:var(--e16);bottom:var(--e8);height:2px;background:currentColor;opacity:.5}
+.rir-linha button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
+.fixa{position:sticky;bottom:0;background:var(--fundo);padding-top:var(--e24);padding-bottom:calc(var(--e16) + env(safe-area-inset-bottom,0px));margin-top:auto;display:flex;flex-direction:column;gap:var(--e8);z-index:5}
+.faixa-descanso{display:none;align-items:center;justify-content:space-between;gap:var(--e16);min-height:var(--h48);width:100%;background:var(--sup2);border-radius:var(--r8);padding:0 var(--e16);margin-top:var(--e8);font-weight:600}
+body[data-descansando][data-vista="serie"] .faixa-descanso{display:flex}
+/* o descanso toma a tela; quando o tempo acaba, a tela inteira inverte */
+.relogio-area{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--e16);min-height:12rem}
+.relogio{font-size:var(--t-relogio);font-weight:700;line-height:.9;letter-spacing:-.05em}
+.hora{font-size:var(--t-secao);font-weight:700;letter-spacing:-.01em}
+.trilho{height:var(--e4);background:var(--sup2);overflow:hidden}
+.trilho i{display:block;height:100%;width:calc(var(--p,0) * 100%);background:var(--texto);transition:width 1s linear}
+.aseguir{display:flex;align-items:center;gap:var(--e16);padding:var(--e16) 0}
+.aseguir .mini{width:5rem;aspect-ratio:4/3;border-radius:var(--r8);flex:none}
+.aseguir .txt{flex:1;display:flex;flex-direction:column;gap:var(--e4);min-width:0}
+.aseguir b{font-size:var(--t-secao);font-weight:700;letter-spacing:-.01em}
+.salva{display:flex;align-items:center;justify-content:space-between;gap:var(--e8);font-size:var(--t-apoio);color:var(--texto2);min-height:var(--h48)}
+.salva span{display:inline-flex;align-items:center;gap:var(--e8)}
+.salva [data-icone]{--icone:20px}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e8)}
+
+/* ---------- fim e semana ---------- */
+.proxima li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--e16);min-height:var(--h64);padding:var(--e8) 0}
+.proxima .txt{display:flex;flex-direction:column;gap:var(--e4);min-width:0}
+.proxima b{font-weight:500;line-height:1.25}
+.proxima .acao{font-weight:600;color:var(--texto)}
+fieldset.campo{border:0;margin:0;padding:0;min-width:0}
+fieldset.campo legend{padding:0 0 var(--e8)}
+.centro{align-self:center}
+.base.so-botao{padding-bottom:calc(var(--e16) + env(safe-area-inset-bottom,0px))}
+.notas-semana{padding-top:var(--e8)}
+.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e8)}
+.seg3 button{min-height:var(--h48);border-radius:var(--r8);background:var(--sup2);font-weight:600}
+.seg3 button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
+.grande{display:flex;align-items:baseline;gap:var(--e16)}
+.grande b{font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em}
+.grande span{font-size:var(--t-secao);font-weight:500;color:var(--texto2)}
+.musculos li{display:grid;grid-template-columns:8.5rem 1fr auto;align-items:center;gap:var(--e16);min-height:var(--h48);padding:var(--e8) 0}
+.musculos .nome{font-weight:500;line-height:1.25}
+.musculos .num{font-size:var(--t-apoio);color:var(--texto2);white-space:nowrap;min-width:4.5rem;text-align:right}
+.m-barra{position:relative;height:var(--e8);background:var(--sup2)}
+.m-barra i{position:absolute;left:0;top:0;bottom:0;background:var(--texto)}
+.m-barra u{position:absolute;top:calc(-1 * var(--e4));bottom:calc(-1 * var(--e4));width:2px;background:var(--texto2)}
+.m-mantendo .m-barra i{opacity:.4}
+.m-crescendo .m-barra i{opacity:.7}
+
+/* ---------- folhas ---------- */
+.veu{position:fixed;inset:0;z-index:10;background:var(--veu);display:flex;align-items:flex-end;justify-content:center}
+.folha{width:100%;max-width:430px;max-height:calc(100dvh - var(--proto) - var(--h64) - var(--e16));overflow-y:auto;overscroll-behavior:contain;background:var(--fundo);border-radius:var(--r16) var(--r16) 0 0;padding:var(--e24) max(var(--e24),env(safe-area-inset-right,0px)) calc(var(--e24) + env(safe-area-inset-bottom,0px)) max(var(--e24),env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:var(--e24);animation:sobe .2s ease-out}
+@keyframes sobe{from{transform:translateY(var(--e32));opacity:0}}
+.folha-cab{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--e16)}
+.folha-cab h2{font-size:var(--t-secao);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding-top:var(--e8)}
+.folha-cab .icone-btn{margin:calc(-1 * var(--e8)) calc(-1 * var(--e16)) 0 0}
+.folha .regra{font-size:var(--t-secao);font-weight:600;line-height:1.3;letter-spacing:-.01em}
+.folha ol.fontes{display:flex;flex-direction:column;gap:var(--e16);counter-reset:f}
+.folha ol.fontes li{display:grid;grid-template-columns:var(--e24) 1fr;font-size:var(--t-apoio);counter-increment:f}
+.folha ol.fontes li::before{content:counter(f);color:var(--texto2)}
+.folha ol.fontes small{display:block;font-size:var(--t-rotulo);color:var(--texto2);padding-top:var(--e4)}
+.folha ul.pontos{display:flex;flex-direction:column;gap:var(--e8)}
+.folha ul.pontos li{display:grid;grid-template-columns:var(--e16) 1fr;font-size:var(--t-apoio)}
+.folha ul.pontos li::before{content:"";width:var(--e4);height:var(--e4);background:var(--texto2);margin-top:.6em}
+.notas{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--e8)}
+.notas button{min-height:var(--h48);border-radius:var(--r8);background:var(--sup2);font-weight:600}
+
+/* celular baixo: os números e os botões encolhem um degrau, para o palco não sumir */
+@media (max-height:800px){
+  :root{--t-numero:3.5rem}
+  .mm button{min-height:var(--h48)}
+  .palco-btn{flex-basis:7.5rem;min-height:7.5rem}
+  .legenda{min-height:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .placar,.rir,.fixa{padding-top:var(--e16)}
+  .ex{padding-top:var(--e8)}
+  :root{--t-relogio:7rem}
+  .relogio-area{min-height:9rem}
+  .aseguir{padding:var(--e8) 0}
+}
+/* celular muito baixo: os modos e a legenda saem do treino (ficam no guia completo); o Boneco e o registro cabem */
+@media (max-height:700px){.guia{display:none}}
+@media (max-width:359px){.so-largo{display:none}.topo{gap:0}:root{--t-relogio:6.5rem;--t-numero:3.5rem;--t-titulo:2rem}.topo .pos{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.topo{justify-content:space-between}.topo .volta{margin-right:auto}.musculos li{grid-template-columns:6.5rem 1fr auto;gap:var(--e8)}.numeros{gap:var(--e24)}}
+</style>
+</head>
+<body data-tela="inicio" data-vista="serie">
+<nav class="proto" aria-label="Protótipo"><b>B2 · Placar</b><a href="../index.html">Direções</a><button type="button" data-acao="ir" data-v="inicio">Início</button><button type="button" data-acao="ir" data-v="treino">Treino</button><button type="button" data-acao="ir" data-v="fim">Fim</button><button type="button" data-acao="ir" data-v="semana">Semana</button><button type="button" data-acao="tema" aria-label="Trocar o tema"><i data-icone="sun-moon"></i></button></nav>
+<div class="celular">
+
+<!-- ===== INÍCIO ===== -->
+<section class="tela tela-inicio" aria-label="Início">
+  <main class="miolo gutter">
+    <div class="bloco-junto">
+      <p class="rotulo">Semana <span data-t="semana"></span> · <span data-t="feitosNaSemana"></span> de <span data-t="diasPorSemana"></span> treinos</p>
+      <div class="dias" role="group" aria-label="Dias do programa" data-lista="dias"><template><button type="button"><b data-i="letra"></b><span data-i="estado"></span></button></template></div>
+    </div>
+    <div class="bloco">
+      <h1 class="titulo" data-t="diaNome"></h1>
+      <div class="numeros">
+        <div><b data-t="nExercicios"></b><span class="rotulo">exercícios</span></div>
+        <div><b>~<span data-t="minutos"></span></b><span class="rotulo">minutos</span></div>
+      </div>
+    </div>
+    <ol class="tabela lista-ex" data-lista="exercicios" aria-label="Exercícios de hoje"><template><li><span class="n" data-i="n"></span><span class="palco mini" data-mini-i></span><span class="txt"><b data-i="nome"></b><span class="apoio" data-i="prescricao"></span></span></li></template></ol>
+    <div class="tabela"><button type="button" class="linha-toque"><span><b>Sobre o programa</b><span class="apoio" data-t="divisao"></span></span><i data-icone="chevron-right"></i></button></div>
+  </main>
+  <footer class="base gutter">
+    <button type="button" class="btn pri" data-acao="ir" data-v="treino">Começar o treino</button>
+    <nav class="barra" aria-label="Seções"><button type="button" aria-current="page"><i data-icone="dumbbell"></i>Treino</button><button type="button" data-acao="ir" data-v="semana"><i data-icone="calendar-days"></i>Semana</button><button type="button"><i data-icone="user"></i>Meus dados</button></nav>
+  </footer>
+</section>
+
+<!-- ===== TREINO ===== -->
+<section class="tela tela-treino" aria-label="Treino">
+  <header class="topo gutter">
+    <button type="button" class="icone-btn volta" data-acao="ir" data-v="inicio" aria-label="Voltar ao início"><i data-icone="chevron-left"></i></button>
+    <p class="pos"><span data-t="posicao"></span></p>
+    <button type="button" class="icone-btn" data-acao="folha" data-v="como" aria-label="Como fazer: montagem e erros"><i data-icone="book-open"></i></button>
+    <button type="button" class="icone-btn" data-acao="folha" data-v="mais" aria-label="Mais opções"><i data-icone="ellipsis"></i></button>
+    <button type="button" class="senti" data-acao="folha" data-v="sentir"><i data-icone="triangle-alert"></i>Senti algo</button>
+  </header>
+  <ol class="prog gutter" data-lista="progresso" aria-hidden="true"><template><li></li></template></ol>
+
+  <!-- a série -->
+  <div class="so-serie">
+    <div class="gutter"><button type="button" class="faixa-descanso" data-acao="ver-relogio"><span>Descanso</span><span data-t="relogio"></span></button></div>
+    <button type="button" class="palco-btn" data-acao="pausar" aria-label="O Boneco fazendo o exercício. Toque para pausar ou tocar.">
+      <span class="palco" data-palco></span>
+      <span class="fase" data-fase-do-movimento></span>
+      <i class="toca" data-icone="pause" data-pausa-icone></i>
+    </button>
+    <div class="guia">
+      <div class="modos gutter" role="group" aria-label="O que o guia mostra"><button type="button" data-acao="modo" data-v="tec">Técnica</button><button type="button" data-acao="modo" data-v="err">Erros</button><button type="button" data-acao="modo" data-v="mus">Músculos</button><button type="button" data-acao="modo" data-v="traj">Trajetória</button></div>
+      <p class="legenda gutter" data-legenda></p>
+    </div>
+    <div class="registro">
+      <div class="ex gutter">
+        <h1 data-t="exNome"></h1>
+      </div>
+      <section class="placar gutter" aria-label="Registrar a série">
+        <div class="placar-cab"><p class="rotulo">Série <span data-t="serie"></span> de <span data-t="series"></span><span class="so-largo"> · <span data-t="faixaReps"></span></span></p><ol class="pips" data-lista="series" aria-hidden="true"><template><li></li></template></ol></div>
+        <div class="colunas">
+          <div><span class="rotulo">Carga</span><output><span data-t="carga"></span><small>kg</small></output><div class="mm"><button type="button" data-acao="carga-menos" aria-label="Menos carga"><i data-icone="minus"></i></button><button type="button" data-acao="carga-mais" aria-label="Mais carga"><i data-icone="plus"></i></button></div></div>
+          <div><span class="rotulo">Repetições</span><output data-t="reps"></output><div class="mm"><button type="button" data-acao="reps-menos" aria-label="Menos uma repetição"><i data-icone="minus"></i></button><button type="button" data-acao="reps-mais" aria-label="Mais uma repetição"><i data-icone="plus"></i></button></div></div>
+        </div>
+      </section>
+      <div class="rir gutter">
+        <div class="rir-cab"><span class="apoio"><b>Quantas ainda conseguiria?</b><span class="so-largo"> meta <span data-t="metaRir"></span></span></span><button type="button" class="link" data-acao="folha" data-v="porque">por quê?</button></div>
+        <div class="rir-linha" role="group" aria-label="Quantas ainda conseguiria? (RIR)"><button type="button" data-acao="rir" data-v="0" data-meta-rir>0</button><button type="button" data-acao="rir" data-v="1" data-meta-rir>1</button><button type="button" data-acao="rir" data-v="2" data-meta-rir>2</button><button type="button" data-acao="rir" data-v="3" data-meta-rir>3</button><button type="button" data-acao="rir" data-v="4" data-meta-rir aria-label="4 ou mais">4+</button></div>
+      </div>
+      <div class="fixa gutter"><button type="button" class="btn pri" data-acao="feita"><span data-t="rotuloFeita"></span> <span class="sub" data-t="subFeita"></span></button></div>
+    </div>
+  </div>
+
+  <!-- o descanso -->
+  <div class="so-relogio gutter" data-progresso>
+    <div class="relogio-area">
+      <p class="rotulo" data-t="rotuloRelogio"></p>
+      <p class="relogio" role="timer" data-t="relogio"></p>
+      <div class="trilho" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="tabela">
+      <div class="aseguir">
+        <span class="palco mini" data-mini="bulgaro"></span>
+        <div class="txt"><span class="rotulo">A seguir · série <span data-t="serie"></span> de <span data-t="series"></span></span><b><span data-t="carga"></span> kg × <span data-t="reps"></span></b><span class="apoio" data-t="exNome"></span></div>
+        <button type="button" class="link" data-acao="ver-serie">Mudar</button>
+      </div>
+      <p class="salva"><span><i data-icone="check"></i><span data-t="serieSalva"></span></span><button type="button" class="link" data-acao="desfazer">Desfazer</button></p>
+    </div>
+    <div class="fixa">
+      <div class="dois"><button type="button" class="btn quieto" data-acao="menos15">−15 s</button><button type="button" class="btn quieto" data-acao="mais15">+15 s</button></div>
+      <button type="button" class="btn pri" data-acao="feita">Série <span data-t="serie"></span> feita</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FIM DO TREINO ===== -->
+<section class="tela tela-fim" aria-label="Fim do treino">
+  <main class="miolo gutter">
+    <div class="bloco">
+      <div class="bloco-junto"><p class="rotulo" data-t="fimRotulo"></p><h1 class="titulo" data-t="diaNome"></h1></div>
+      <div class="numeros" data-lista="fim-numeros"><template><div><b data-i="valor"></b><span class="rotulo" data-i="rotulo"></span></div></template></div>
+    </div>
+    <section class="bloco-junto" aria-labelledby="mudou"><h2 class="rotulo" id="mudou" data-t="mudouTitulo"></h2><p data-t="mudouTexto"></p></section>
+    <fieldset class="bloco-junto campo"><legend class="rotulo" data-t="hojeFoiPergunta"></legend><div class="seg3" data-lista="hoje-foi"><template><button type="button" data-acao="hoje-foi" aria-pressed="false" data-i="texto"></button></template></div></fieldset>
+    <section class="bloco-junto" aria-labelledby="prox">
+      <h2 class="rotulo" id="prox">Para a próxima vez</h2>
+      <ul class="tabela proxima" data-lista="proxima"><template><li><span class="txt"><b data-i="nome"></b><span class="apoio"><span class="acao" data-i="acao"></span><span data-i="resto"></span></span></span><button type="button" class="link" data-acao="folha" data-v="porque-fim">por quê?</button></li></template></ul>
+    </section>
+    <div class="bloco-junto"><button type="button" class="btn quieto largo" data-acao="ir" data-v="inicio">Voltar ao início</button><button type="button" class="link centro">Registrei algo errado: apagar este treino</button></div>
+  </main>
+  <footer class="base so-botao gutter"><button type="button" class="btn pri" data-acao="ir" data-v="semana">Ver a sua semana</button></footer>
+</section>
+
+<!-- ===== SEMANA ===== -->
+<section class="tela tela-semana" aria-label="Semana">
+  <main class="miolo gutter">
+    <div class="bloco">
+      <p class="rotulo" data-t="semanaPeriodo"></p>
+      <h1 class="grande"><b data-t="semanaFeitos"></b><span data-t="semanaResto"></span></h1>
+      <ol class="pips" data-lista="semana-pips" aria-hidden="true"><template><li></li></template></ol>
+      <p data-t="semanaMensagem"></p>
+    </div>
+    <section class="bloco-junto" aria-labelledby="mus">
+      <h2 class="rotulo" id="mus">Séries por músculo</h2>
+      <ul class="tabela musculos" data-lista="musculos"><template><li><span class="nome" data-i="nome"></span><span class="m-barra"><i></i><u></u></span><span class="num" data-i="numero"></span></li></template></ul>
+      <div data-lista="semana-notas" class="bloco-junto notas-semana"><template><p class="apoio" data-i="texto"></p></template></div>
+    </section>
+  </main>
+  <footer class="base gutter"><nav class="barra" aria-label="Seções"><button type="button" data-acao="ir" data-v="inicio"><i data-icone="dumbbell"></i>Treino</button><button type="button" aria-current="page"><i data-icone="calendar-days"></i>Semana</button><button type="button"><i data-icone="user"></i>Meus dados</button></nav></footer>
+</section>
+
+</div>
+<div class="veu" id="veu" hidden><div class="folha" id="folha" role="dialog" aria-modal="true" aria-labelledby="folha-t"></div></div>
+<script src="../comum/dados.js"></script>
+<script src="../comum/boneco.js"></script>
+<script src="../comum/boneco-modos.js"></script>
+<script src="../comum/icones.js"></script>
+<script src="../comum/colhido.js"></script>
+<script src="b2.js"></script>
+</body>
+</html>

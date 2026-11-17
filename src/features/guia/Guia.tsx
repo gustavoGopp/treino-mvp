@@ -1,18 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
-import { VIEWS } from '../../engine/desenho';
-import type { Estilo } from '../../engine/estilo';
-import { SO_AJUDA } from '../../engine/estilo/musculos';
+import { NOME_DA_VISTA } from '../../engine/novo/vistas';
+import type { Estilo } from '../app/estiloBoneco';
 import { largarCiclo, pedirAoBoneco, pedirCiclo, type Catalogo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 import { useTelaAcesa } from '../treino/Temporizador';
-import { Selo } from '../app/ui';
+import { Icone } from '../app/icones';
+import { PorQue, Selo } from '../app/ui';
+import { useDescanso } from '../treino/Temporizador';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
 // sem o temporizador de descanso (que entra no M5). O motor não sabe de React: o palco só recebe o SVG.
@@ -98,6 +99,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   const ctx = lerContexto(params);
   const programa = app.estado.programa?.programa;
   const sessao = app.estado.sessaoAtual;
+  // o descanso em curso segue contando (e avisando no fim) com o guia aberto pelo treino
+  const descanso = useDescanso(ctx?.de === 'treino' ? sessao?.id : undefined);
   const hoje = ctx?.de === 'treino' && sessao && sessao.diaId === ctx.diaId ? hojeDoTreino(app.estado, sessao, fusoDoAparelho()) : hojeDoEstado(app.estado, agoraIso(), fusoDoAparelho());
   const minha = ctx && programa && hoje ? prescricaoNoGuia(programa, ctx, hoje) : null;
   const meus =
@@ -227,14 +230,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           fase.current.replaceChildren();
           const b = document.createElement('b');
           const sp = document.createElement('span');
-          if (s.modo === 'err') {
-            b.style.color = 'var(--err)';
-            b.textContent = `❌ ${nomeErro}`;
-            sp.textContent = q.fase.label;
-          } else {
-            b.textContent = q.fase.label;
-            sp.textContent = q.fase.tempo || '';
-          }
+          b.textContent = q.fase.label;
+          sp.textContent = q.fase.tempo || '';
           fase.current.append(b, sp);
         }
         if (resp.current) {
@@ -261,7 +258,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
     return () => mq.removeEventListener?.('change', mudou);
   }, []);
 
-  const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([vista, ...ex.views])] : ex.views), [modo, vista, ex]);
+  const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([...ex.views, vista])] : ex.views), [modo, vista, ex]);
   const irPara = (i: number) => {
     const n = (i + dia.ex.length) % dia.ex.length;
     navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!}`);
@@ -278,12 +275,12 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   };
   const trocarModo = (m: Modo) => {
     setModo(m);
-    if (m === 'mus' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMiniatura);
+    if (m === 'mus' && !vistaManual.current) setVista(ex.vistaMiniatura);
     else if (m === 'err') {
       setErro(0);
       setVista(ex.errors[0]!.view);
       t.current = inicioDoErro(0);
-    } else if (m === 'tec' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMovimento);
+    } else if (m === 'tec' && !vistaManual.current) setVista(ex.vistaMovimento);
     else if (!ex.views.includes(vista)) setVista(ex.views[0]!);
   };
 
@@ -292,17 +289,21 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
       {/* Redesign, lote 2: o palco no topo. Aberto pelo treino, o cabeçalho é o do treino: voltar e "Senti algo" (que
           volta ao treino com a folha aberta, para a segurança ter uma lógica só). No catálogo, os dias e os exercícios. */}
       <header className="top">
+        {minha && ctx!.de === 'treino' && descanso.ativo && (
+          <Link className="faixa-descanso" to="/treino">
+            <span>{descanso.resta <= 0 ? 'Hora da próxima série' : 'Descanso'}</span>
+            <span className="num">{descanso.resta <= 0 ? `+${tempo(Math.floor(-descanso.resta))}` : tempo(Math.ceil(descanso.resta))}</span>
+          </Link>
+        )}
         {minha ? (
           <div className="brand cab-treino">
-            <Link className="volta-inicio" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
-              ‹ Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
+            <Link className="topo-volta" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+              <Icone nome="chevron-left" />
+              Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
             </Link>
             {ctx!.de === 'treino' && (
               <button type="button" className="alerta-topo" onClick={() => navigate('/treino?sentir=1')}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 4l9 16H3z" />
-                  <path d="M12 10v4M12 17h.01" />
-                </svg>
+                <Icone nome="triangle-alert" />
                 Senti algo
               </button>
             )}
@@ -336,7 +337,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
       <main className="conteudo-guia">
         <section className="card" aria-label="Animação">
           <div className="stage" data-testid="palco">
-            <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animação do exercício" />
+            <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`O Boneco fazendo ${txt.name.toLowerCase()}`} />
             <div className="hud">
               <div className="phase" ref={fase}>
                 <b>—</b>
@@ -346,11 +347,10 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                 EXPIRA
               </div>
             </div>
-            <div className="errbanner" />
           </div>
-          <div className="timeline" ref={linha}>
+          <div className="timeline" ref={linha} aria-hidden="true">
             {ex.seq.map((g: Animacao, i: number) => (
-              <div key={i} className={`tseg ${g.kind}`} style={{ flexGrow: g.dur }}>
+              <div key={i} className={`tseg ${g.kind}`} style={{ '--peso': g.dur } as CSSProperties}>
                 {g.kind !== 'hold' && g.dur >= 0.8 ? g.label.split(' · ')[0].toLowerCase() : ''}
               </div>
             ))}
@@ -358,7 +358,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div className="controls">
             <button className="ctl" aria-label={tocando ? 'Pausar' : 'Reproduzir'} onClick={() => setTocando(!tocando)}>
-              {tocando ? '⏸' : '▶'}
+              <Icone nome={tocando ? 'pause' : 'play'} />
             </button>
             <button
               className="ctl"
@@ -368,15 +368,15 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                 setTocando(false);
               }}
             >
-              ⏮
+              <Icone nome="skip-back" />
             </button>
             <button className="ctl" aria-pressed={lento} onClick={() => setLento(!lento)}>
-              <span aria-hidden="true">🐢</span> Lento
+              <Icone nome="turtle" /> Lento
             </button>
             <div className="seg" role="group" aria-label="Visão">
               {vistas.map((v) => (
                 <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
-                  {VIEWS[v as keyof typeof VIEWS].name}
+                  {NOME_DA_VISTA[v] ?? v}
                 </button>
               ))}
             </div>
@@ -390,7 +390,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div className="modeinfo">
             <InfoModo
-              soAjuda={!!SO_AJUDA[ex.id]?.length}
+              soAjuda={ex.soAjuda}
               estilo={estilo}
               modo={modo}
               erro={erro}
@@ -407,7 +407,19 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
         {txt.note && <NotaDoGuia nota={txt.note} />}
 
         <section className="exhead">
-          <div className="n">{pos + 1}</div>
+          <div className="exhead-topo">
+            <p className="rotulo">
+              Exercício {pos + 1} de {dia.ex.length}
+            </p>
+            <div className="nav">
+              <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
+                <Icone nome="chevron-left" />
+              </button>
+              <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
+                <Icone nome="chevron-right" />
+              </button>
+            </div>
+          </div>
           <div>
             <h1>{txt.name}</h1>
             {minha ? (
@@ -419,31 +431,34 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                   ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
                 ].map((t, i) => (
                   <span key={t}>
-                    {i > 0 && ' · '}
-                    <span className="nw">{t}</span>
+                    {i > 0 && ' '}
+                    <span className="nw">
+                      {i > 0 && '· '}
+                      {t}
+                    </span>
                   </span>
                 ))}
               </div>
             ) : (
               <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
             )}
+            {/* a evidência da prescrição a um toque, com o que é o RIR */}
+            {minha && (
+              <div className="rx">
+                <PorQue regras={['rir.leitura', ...(minha.fase?.rir ? [minha.fase.regraId] : [])]} titulo="A prescrição de hoje">
+                  <p>RIR é “repetições na reserva”: quantas repetições ainda sobravam quando você parou. RIR 2 quer dizer que dava para fazer mais 2.</p>
+                </PorQue>
+              </div>
+            )}
             <div className="tg">
               <b>Alvo:</b> {txt.target}
             </div>
           </div>
-          <div className="nav">
-            <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
-              ‹
-            </button>
-            <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
-              ›
-            </button>
-          </div>
         </section>
 
         <section className="quick">
-          <div className="box">
-            <h2>3 cues</h2>
+          <div className="bloco-guia">
+            <h2 className="rotulo">As 3 dicas</h2>
             <ol className="cues">
               {txt.cues.map((c) => (
                 <li key={c}>{c}</li>
@@ -466,9 +481,14 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </p>
           <p className="note">
             As animações usam um modelo simplificado com medidas aproximadas e não substituem uma avaliação presencial. A sensação
-            muscular sozinha não prova que a execução está certa: confira também setup, trajetória e amplitude.
+            muscular sozinha não prova que a execução está certa: confira também a montagem, a trajetória e a amplitude.
           </p>
         </div>
+        {minha && (
+          <Link className="btn sec" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+            Voltar para {ctx!.de === 'treino' ? 'o treino' : 'o programa'}
+          </Link>
+        )}
       </footer>
     </div>
   );
@@ -489,27 +509,20 @@ function InfoModo({
   txt: (typeof CONTEUDO)[string];
   onErro: (i: number) => void;
 }) {
-  const classico = estilo === 'atual';
+  // as amostras da legenda seguem as cores do desenho escolhido (cinza ou cor de pele): src/styles.css, `.legend.pele`
+  const legenda = estilo === 'pele' ? 'legend pele' : 'legend';
   if (modo === 'tec')
     return (
       <>
-        <div className="legend">
+        <div className={legenda}>
           <span>
-            <i className="sw" style={{ background: 'var(--guide)' }} />
+            <i className="sw c-guide" />
             linhas de referência
           </span>
-          {classico && (
-            <span>
-              <i className="sw" style={{ background: 'var(--spine)' }} />
-              coluna
-            </span>
-          )}
-          {estilo !== 'b' && (
-            <span>
-              <i className="sw" style={{ background: 'var(--joint)' }} />
-              articulações
-            </span>
-          )}
+          <span>
+            <i className="sw c-joint" />
+            articulações
+          </span>
         </div>
       </>
     );
@@ -519,50 +532,37 @@ function InfoModo({
         <div className="errchips">
           {txt.errors.map((x, i) => (
             <button key={x.id} className="errchip" aria-pressed={i === erro} onClick={() => onErro(i)}>
-              ❌ {x.title}
+              {x.title}
             </button>
           ))}
         </div>
         <div>{txt.errors[erro]!.desc}</div>
-        {estilo === 'a' ? (
-          // R4 (05/11/2026): no Boneco, o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado
-          <div className="legend">
-            <span>
-              <i className="sw" style={{ background: 'var(--ea-pele)', border: '1.5px solid var(--fig)' }} />
-              execução correta
-            </span>
-            <span>
-              <i className="sw" style={{ background: 'var(--err)' }} />
-              a parte que erra (tracejado)
-            </span>
-          </div>
-        ) : (
-          <div className="legend">
-            <span>
-              <i className="sw" style={{ background: 'var(--err)' }} />
-              erro
-            </span>
-            <span>
-              <i className="sw" style={{ background: 'var(--ghost)' }} />
-              execução correta
-            </span>
-          </div>
-        )}
+        {/* R4 (05/11/2026): o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado */}
+        <div className={legenda}>
+          <span>
+            <i className="sw c-pele contorno" />
+            execução correta
+          </span>
+          <span>
+            <i className="sw c-err" />
+            a parte que erra (tracejado)
+          </span>
+        </div>
       </>
     );
   if (modo === 'mus')
     return (
       <>
-        <div className="legend">
+        <div className={legenda}>
           <span>
-            <i className="sw" style={{ background: classico ? 'var(--mus-p)' : 'var(--m-p)' }} />
+            <i className="sw c-m-p" />
             alvo principal
           </span>
           <span>
-            <i className="sw" style={{ background: classico ? 'var(--mus-s)' : 'var(--m-s)' }} />
-            {classico ? 'secundários' : 'também trabalha (conta meia série)'}
+            <i className="sw c-m-s" />
+            também trabalha (conta meia série)
           </span>
-          {soAjuda && !classico && (
+          {soAjuda && (
             <span>
               <i className="sw listras" />
               só ajuda a firmar
@@ -579,19 +579,19 @@ function InfoModo({
     <>
       <div className="legend">
         <span>
-          <i className="sw" style={{ background: 'var(--path)' }} />
+          <i className="sw c-path" />
           trajetória da carga/mão (a seta mostra a fase concêntrica)
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--path)', opacity: 0.55 }} />
+          <i className="sw c-path meio" />
           pontilhado: cotovelo ou ombro
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--muted)' }} />
+          <i className="sw c-muted" />
           contorno cinza: {txt.extLabels[0]}
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--ghost)' }} />
+          <i className="sw c-ghost" />
           contorno verde: {txt.extLabels[1]}
         </span>
       </div>
@@ -603,8 +603,8 @@ function InfoModo({
 function Checklist({ itens, id }: { itens: string[]; id: string }) {
   const [marcados, setMarcados] = useState(() => itens.map(() => false));
   return (
-    <div className="box">
-      <h2>Checklist de 5 s</h2>
+    <div className="bloco-guia">
+      <h2 className="rotulo">Confira em 5 segundos</h2>
       <div className="check">
         {itens.map((c, i) => (
           <label key={c} htmlFor={`ck-${id}-${i}`}>
@@ -618,7 +618,7 @@ function Checklist({ itens, id }: { itens: string[]; id: string }) {
           </label>
         ))}
         <button className="reset" onClick={() => setMarcados(itens.map(() => false))}>
-          Limpar checklist
+          Desmarcar tudo
         </button>
       </div>
     </div>
@@ -635,9 +635,9 @@ const Lista = ({ itens }: { itens: string[] }) => (
 
 function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <section className="secao-guia">
       <details className="box" open>
-        <summary>Setup</summary>
+        <summary>Montagem</summary>
         <div className="dbody">
           <h3>Equipamento</h3>
           <Lista itens={txt.setupEq} />
@@ -684,7 +684,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
           <ul>
             {txt.errors.map((e) => (
               <li key={e.id}>
-                <b>❌ {e.title}.</b> {e.desc}
+                <b>{e.title}.</b> {e.desc}
               </li>
             ))}
           </ul>

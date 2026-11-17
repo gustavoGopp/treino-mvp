@@ -1,0 +1,51 @@
+{
+ "id": "panturrilha-b",
+ "nome": "Panturrilha em pé no step",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-bilateral-step.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/panturrilha-bilateral-step.md e no texto do app (src/conteudo/exercicios/panturrilha-b.json): consenso de treinadores. As pontas dos dois pés (a bola do pé) na borda do step, calcanhares para fora; pés na largura do quadril, apontando para a frente; joelhos quase estendidos e parados; um halter numa mão e a outra mão na estação",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-b.ts): o calcanhar de 6,4 cm abaixo a 13,9 cm acima do step de 15 cm e os erros",
+  "bulgaro": "Ficha de movimento do búlgaro aprovado (src/engine/novo/dados/movimentos/bulgaro.json): a mão livre na coluna da estação ao lado do corpo (47 cm do meio) e o braço do halter afastado 7 graus",
+  "objetos": "src/engine/novo/dados/objetos.json (halter de 25 lb) e dados/objetos/step.json (Reebok Step, 15 cm)",
+  "equilibrio": "Na ponta dos pés, o apoio é só a bola dos pés: o centro de massa (corpo + halter) tem de ficar sobre ela, para a frente, e entre os dois pés, de lado (mecânica); a mão só equilibra",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "joelhos quase estendidos e parados (a ficha não dá número: 4 graus)"},
+  "bola.daBeirada": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola dos pés apoia 2 cm para dentro da borda do step; os calcanhares ficam no ar"},
+  "calcanhar.embaixo": {"v": 6.4, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "alongado: o calcanhar 6,4 cm abaixo da borda do step (como na animação de hoje); a ficha pede 'o mais baixo que der'"},
+  "calcanhar.topo": {"v": 13.9, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "topo: o calcanhar 13,9 cm acima do step (como na animação de hoje); a ficha pede 'o mais alto possível'"},
+  "apoio.maoAoLado": {"v": 47, "un": "cm", "selo": "desenho", "fonte": "bulgaro", "o": "a mão esquerda na coluna da estação, 47 cm à esquerda do meio do corpo (como no búlgaro)"},
+  "apoio.maoAltura": {"v": 105, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão na coluna a 118 cm do chão (no búlgaro, 100 cm com os pés no chão; aqui o corpo está 15 cm mais alto, no step)"},
+  "apoio.maoAFrenteDaBola": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão na coluna 5 cm à frente da bola do pé (mais à frente, de lado ela aparecia na frente do tronco, segurando o nada: a coluna é cenário e não é desenhada de perfil)"},
+  "bracos.paraFora": {"v": 7, "un": "graus", "selo": "desenho", "fonte": "bulgaro", "o": "o braço do halter pende ao lado do corpo, 7 graus afastado para o halter não bater na coxa"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb); entra no equilíbrio"},
+  "step.x": {"v": -22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o meio do step fica 22 cm à direita do meio do corpo, para a base da coluna caber à esquerda"},
+  "erro.curta.calcanhar": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo o calcanhar para 1,5 cm acima da borda do step, sem passar dela (como na animação de hoje)"},
+  "erro.joelho.flexao": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo os joelhos dobram 25 graus e esticam na subida, dando impulso (na animação de hoje o quadril cai 7 cm)"}
+ },
+ "fases": [
+  {"nome": "Alongado · pausa", "tipo": "pausa", "dur": 2, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "2 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.8, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "joelhos-estendidos-na-panturrilha", "pede": "os joelhos ficam quase estendidos e parados", "selo": "consenso", "fonte": "guia"},
+  {"id": "calcanhar-abaixo-da-beirada", "pede": "alongado: os calcanhares abaixo da borda do step", "selo": "consenso", "fonte": "guia"},
+  {"id": "calcanhar-sobe-o-maximo", "pede": "topo: o mais alto possível na ponta dos pés (13,9 cm acima do step)", "selo": "consenso", "fonte": "guia"},
+  {"id": "peso-sobre-a-bola-do-pe", "pede": "o centro de massa fica sobre a bola dos pés: o corpo sobe reto, sem balançar para a frente", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "maos-paradas-no-apoio", "pede": "a mão na estação só equilibra: fica parada", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "curta", "instante": 0, "titulo": "Não descer os calcanhares", "vista": "lateral", "oQueMuda": "embaixo os calcanhares param acima da borda do step", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
+  {"id": "joelho", "instante": 0, "titulo": "Dobrar e esticar os joelhos", "vista": "lateral", "oQueMuda": "embaixo os joelhos dobram 25 graus e esticam na subida", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "pausa embaixo", "ponto": "calcanhar:R", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "joelhos parados", "ponto": "joelho:R", "selo": "consenso", "fonte": "guia"}
+ ]
+}

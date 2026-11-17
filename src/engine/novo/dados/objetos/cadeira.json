@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "ikea-stefan": "IKEA, cadeira STEFAN (madeira maciça, quatro pés, sem rodinhas, não dobrável), campo Product size; https://www.ikea.com/us/en/p/stefan-chair-brown-black-00211088/ (lido em 15/11/2026; medidas em polegadas, convertidas a 2,54 cm)"
+ },
+ "objetos": {
+  "cadeira": {
+   "nome": "Cadeira firme de quatro pés, com encosto",
+   "medidas": {
+    "assentoAltura": {"v": 45.1, "un": "cm", "tipo": "medida", "fonte": "ikea-stefan", "onde": "Seat height: 17 3/4 pol (do chão ao tampo do assento)"},
+    "assentoLarg": {"v": 41.9, "un": "cm", "tipo": "medida", "fonte": "ikea-stefan", "onde": "Seat width: 16 1/2 pol"},
+    "assentoProf": {"v": 37.1, "un": "cm", "tipo": "medida", "fonte": "ikea-stefan", "onde": "Seat depth: 14 5/8 pol (da borda da frente do assento ao encosto)"},
+    "altura": {"v": 89.9, "un": "cm", "tipo": "medida", "fonte": "ikea-stefan", "onde": "Height: 35 3/8 pol (do chão ao alto do encosto)"},
+    "prof": {"v": 48.9, "un": "cm", "tipo": "medida", "fonte": "ikea-stefan", "onde": "Depth: 19 1/4 pol (da borda da frente ao fundo do encosto, por fora)"},
+    "assentoEsp": {"v": 3, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "espessura do tampo do assento: a ficha não traz"},
+    "peLado": {"v": 3.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "lado da seção quadrada de cada pé da cadeira: a ficha não traz"}
+   }
+  }
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "id": "rosca-kettlebell",
+ "nome": "Rosca com kettlebell",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-kettlebell.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-kettlebell.md): uma mão na alça, palma para a frente, a bola pendurada embaixo da mão; cotovelo junto ao corpo, parado; sobe até a mão chegar perto do ombro, sem balançar o tronco; desce até estender o braço; ~1 s subindo, ~2 s descendo; consenso de treinadores (B.2.6, B.3.2; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-kettlebell.json): em pé, joelhos destravados, a outra mão solta ao lado do corpo, um braço por série, as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/rosca-kettlebell.ts): parte da rosca alternada aprovada (mesmo corpo e mesmo braço), as fases e os erros",
+  "alternada": "Rosca alternada do motor novo (lote 5, src/engine/novo/dados/movimentos/rosca-alternada.json): o mesmo corpo e os mesmos erros",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "app", "o": "pés na largura do quadril, apontando para a frente"},
+  "joelho": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em pé, joelhos destravados (o texto do app não dá número)"},
+  "braco.paraFora": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço junto ao corpo, aberto 6° (como os braços pendurados do desenho aprovado do Boneco); a bola (20,8 cm), pendurada embaixo da mão, fica 3 cm fora da coxa; a ficha diz 'cotovelo junto ao corpo' e não dá número"},
+  "braco.aFrente": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o braço na vertical, parado junto ao corpo (o cotovelo não vai à frente)"},
+  "cotovelo.baixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço estendido, sem travar o cotovelo"},
+  "cotovelo.cima": {"v": 130, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, a mão perto do ombro (a ficha não dá número; a regra mede a distância da mão ao ombro)"},
+  "maos.supinacao": {"v": 85, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "palma para a frente: o polegar gira 85° da posição neutra para fora (a supinação média é 87,5°, cdc); com a alça quase na horizontal, a bola pende embaixo da mão"},
+  "kettlebell.folga": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quando o antebraço sobe, a bola encosta nele: a folga entre a bola e a pele do antebraço"},
+  "livre.cotovelo": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "app", "o": "a outra mão solta ao lado do corpo, o cotovelo quase estendido"},
+  "erro.balanco.tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o peito vai para trás enquanto o kettlebell sobe (o impulso), como na alternada"},
+  "erro.balanco.lombar": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: parte do balanço é a lombar arqueando"},
+  "erro.cotovelo.braco": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco)"},
+  "erro.cotovelo.cotovelo": {"v": 110, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: com o cotovelo à frente, o antebraço dobra menos"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço estendido", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "mão perto do ombro", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "cotovelo-parado-na-rosca", "pede": "o cotovelo fica junto ao corpo, parado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "sobe sem balançar o tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "desce até estender o braço", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-perto-do-ombro-no-topo", "pede": "sobe até a mão chegar perto do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "uma mão na alça, palma para a frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-fora-do-corpo-na-rosca", "pede": "a bola fica pendurada embaixo da mão e não atravessa a coxa nem o antebraço", "selo": "consenso", "fonte": "ficha"},
+  {"id": "bola-pendurada-na-rosca", "pede": "a bola fica pendurada embaixo da mão (na vertical) até encostar no antebraço", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o peito vai para trás e o quadril à frente para dar impulso ao kettlebell", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelo vai para a frente", "vista": "lateral", "oQueMuda": "o braço sobe à frente do tronco e o ombro assume o movimento", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender o braço", "vista": "lateral", "oQueMuda": "embaixo, o cotovelo fica dobrado: o braço não estende", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo parado", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "desce até estender", "ponto": "pegada", "selo": "consenso", "fonte": "app"}
+ ]
+}

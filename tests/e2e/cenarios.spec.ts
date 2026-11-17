@@ -132,7 +132,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     for (let i = 0; i < 3; i++) await proximoExercicio(page);
     await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
     await criterios(page); // exercício sem animação, cartão fechado
-    await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
+    await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
     await criterios(page); // cartão aberto
   },
   // lote 2

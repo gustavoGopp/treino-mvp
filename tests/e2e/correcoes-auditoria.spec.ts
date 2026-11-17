@@ -156,9 +156,9 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
   await expect(page.locator('.miniatura svg').first()).toBeVisible();
   await expect.poll(() => page.locator('.miniatura svg [id]').count()).toBeGreaterThan(1);
   expect(await idsRepetidos(page)).toEqual([]);
-  // cada desenho pinta as listras com o padrão dele
-  const listrado = page.locator('.miniatura svg .ea-mh, .miniatura svg .eb-mh').first();
-  if (await listrado.count()) expect(await listrado.evaluate((el) => getComputedStyle(el).fill)).toMatch(/url\(.*#mh-listras-/);
+  // cada desenho pinta as listras do músculo que só ajuda (`b-ma`) com o padrão dele (`b-listras`)
+  const listrado = page.locator('.miniatura svg .b-ma').first();
+  if (await listrado.count()) expect(await listrado.evaluate((el) => getComputedStyle(el).fill)).toMatch(/url\(.*#b-listras-/);
 
   // o 1º exercício com 1 série em drop set: a série e as duas quedas têm um controle de carga cada
   await page.evaluate(async () => {
@@ -202,7 +202,9 @@ test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a 
   await page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ }).first().click();
   const deBaixo = page.getByRole('dialog').first();
   await expect(deBaixo).toBeVisible();
-  const selo = deBaixo.getByRole('button', { name: /ver de onde vem$/ }).first();
+  // o selo de uma regra do "Por que este exercício" (frontend novo: as alternativas e o "Prefiro" vêm antes na folha)
+  await deBaixo.locator('summary', { hasText: /^Por que este exercício/ }).click();
+  const selo = deBaixo.locator('ul.lista').getByRole('button', { name: /ver de onde vem$/ }).first();
   await selo.click();
   const deCima = page.getByRole('dialog', { name: 'De onde vem isto' });
   await expect(deCima).toBeVisible();

@@ -1798,3 +1798,183 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 **Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação. As doze pessoas, com a semana de antes ao lado da de agora, estão em `docs/revisoes/treino-para-todos/exemplos-finais/`.
 
 **Rascunho de post.** "Passei cinco dias fazendo o app montar um treino melhor para qualquer pessoa, não só para mim. A regra da casa: melhorar um perfil piorando outro não é melhoria. Medi 680 mil programas de pessoas inventadas antes e depois de cada mudança, e pedi a treinadores simulados que dessem nota sem saber qual versão estavam lendo. O que mais rendeu não foi nada esperto: o app deixava minutos sobrando no treino, e agora usa. O que eu não consegui resolver também está escrito: quem treina em casa sem equipamento continua sem exercício para as costas, e o iniciante ainda recebe exercícios em dupla para caber no tempo. No último dia, os revisores acharam um erro que estava lá desde o começo: agachamento com a barra nas costas para quem marcou dor forte no ombro. Corrigido no mesmo dia, com teste."
+
+## Frontend novo: o app refeito na direção "Placar" (12 e 13/11/2026)
+
+**Por quê.** O redesign de 05 a 08/11 arrumou a estrutura das telas, mas o app ainda não tinha acabamento de aplicativo profissional: 528 espaços, alturas e cantos fora de uma escala, emojis no lugar de ícones, caixa dentro de caixa, três cores disputando com o Boneco. O Gustavo pediu o frontend refeito por completo, em duas etapas: primeiro pesquisa e direção, depois a reconstrução.
+
+**Etapa 1: pesquisa e direção (12/11).**
+- 277 referências em 15 temas (`docs/revisoes/frontend-novo/referencias.md`), o diagnóstico do app de então, com capturas (`diagnostico.md`), e 3 direções em protótipo navegável com o Boneco real (`prototipos/`): "Giz", "Placar" e "Ficha".
+- O Gustavo escolheu a **B, "Placar"**, pediu para aprofundá-la e aprovou a versão de 8 telas (B2) como referência (`proposta.md`, seção 10).
+
+**Etapa 2: a reconstrução (12 e 13/11).**
+- **O sistema antes das telas.** Uma escala só de espaço (4, 8, 16, 24, 32, 48, 64, sem o 12), alturas de 48, 56 e 64 em `rem`, cantos de 8 e 16, 8 tamanhos de letra. O comando novo `npm run conferir:tokens` falha se aparecer um valor fora da escala no CSS ou um estilo embutido nas telas; a única exceção é o desenho do Boneco. De 528 valores fora da escala para 0.
+- **Preto e branco.** A interface não tem cor de destaque: o que está escolhido e a ação principal ficam invertidos (preto no claro, branco no escuro). A única cor é o vermelho da segurança ("Senti algo", o aviso de dor, a triagem que pausa o programa, "Apagar todos os dados"). As cores do Boneco não disputam com nada.
+- **Letra e ícones servidos pelo app.** A letra passou da Atkinson (34 kB) para a Geist (29 kB, licença OFL); 34 ícones da família Lucide (licença ISC) no lugar dos emojis e das setas de texto. Nenhum pedido a outro servidor.
+- **O treino.** O Boneco animado entrou na tela da série, com os 4 modos (Técnica, Erros, Músculos, Trajetória). Carga e repetições são os maiores elementos; o botão "Série feita" fica preso embaixo. O descanso toma a tela, com o relógio de até 128 px, e a tela inteira inverte quando o tempo acaba. A tela do treino cabe em 844 px sem rolar nos 6 exercícios da persona Ana (antes, de 844 a 1.176 px).
+- **As outras telas.** O início abre com o treino de hoje e os números dele; o fim do treino abre com o placar (séries, minutos, exercícios); os avisos de "Sobre o programa" viraram lista; o guia perdeu os emojis e ganhou o "por quê?" na prescrição; cadastro, locais, Meus dados, termos e tela de erro entraram no mesmo padrão.
+- **O ícone do app** acompanha: o mesmo halter inclinado, agora em fundo preto.
+
+**Revisão independente.** Um revisor no modelo mais capaz recebeu só o código, as capturas e as regras, sem a minha conclusão, e achou 32 defeitos no treino e no guia. O mais grave: em celular pequeno, o bloco do registro cobria o Boneco pela metade. A tela passou a ter altura fixa: o guia ocupa o que sobra e, se o espaço aperta, larga a legenda, depois as abas e, por fim, o palco inteiro (nunca um Boneco cortado). Outros achados corrigidos: um toque duplo em "Série feita" podia gravar a série seguinte; a seta do cabeçalho parecia "exercício anterior" e saía do treino (virou um X); o botão desligado não dizia o que faltava; "Senti algo" não dizia quais opções encerram o treino e quais encerram só o exercício; ir ao guia no descanso sumia com o relógio. 22 corrigidos, 5 em parte, 5 no backlog (`revisao-bloco-2.md`, `qa.md`).
+
+**Dois defeitos que os testes acharam.** Com "movimento reduzido" ligado, o toque num botão de valor escapava do campo. E a falha ao baixar um único arquivo de texto derrubava a tela do treino: o treino agora baixa só o texto do exercício da vez e avisa se falhar.
+
+**O que não mudou.** O motor do Boneco, o domínio, o estado guardado, as regras de treino, os textos técnicos, os selos e as fontes: `git diff origin/main -- src/engine src/domain` vazio. Nenhum teste foi apagado ou pulado.
+
+![O treino, antes e depois](revisoes/frontend-novo/capturas/antes-depois/3-treino.png)
+
+![O início, antes e depois](revisoes/frontend-novo/capturas/antes-depois/2-inicio.png)
+
+As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em `docs/revisoes/frontend-novo/capturas/antes-depois/`.
+
+**Medidas, antes e depois.**
+
+| Medida | Antes | Depois |
+|---|---|---|
+| Valores fora da escala (`conferir:tokens`) | 528 | 0 |
+| JavaScript da 1ª tela (limite 175 kB) | 154,4 kB | 156,4 kB |
+| JavaScript de quem volta ao programa (limite 220 kB) | 202,8 kB | 204,9 kB |
+| CSS comprimido | 12,2 kB | 13,8 kB |
+| Letra | 34,0 kB | 29,4 kB |
+| Pedidos a outros servidores | 0 | 0 |
+| Altura da tela do treino em 390 × 844 (6 exercícios da Ana) | 844 a 1.020 px; descanso 1.176 | 844 px em todos |
+| Lighthouse, desempenho: início · programa · guia · semana · Meus dados (varia alguns pontos por rodada) | 98 · 96 · 83 · 99 · 95 | 98 · 98 · 85 · 100 · 94 |
+| Lighthouse, acessibilidade (as mesmas telas) | 100 · 100 · 100 · 100 · 96 | 97 · 97 · 100 · 100 · 96 (uma linha da lista meio coberta pela barra presa; ver `qa.md`) |
+
+**Resultado:** `npm run check` com 896 testes, 157 e2e (155 de celular e 2 do motor) e `npm run conferir:tokens` sem exceção além do Boneco.
+
+**2ª rodada de revisão (13/11).** A pedido do Gustavo, mais dois revisores independentes olharam o resto do app (início, fim, semana e evolução; cadastro, Meus dados, locais, termos e erro). 85 achados, nenhum que bloqueie e nenhuma função perdida: 37 corrigidos, 18 em parte e 30 no backlog. O que mudou de mais visível: a prescrição ("3 × 8–12") voltou a ter destaque no início; "Fechar" fica preso no alto das folhas; a boas-vindas tem o "Começar" preso embaixo em qualquer celular; "Rotina e divisão" aberta por Meus dados virou uma tela de edição, sem a moldura do cadastro; "Apagar tudo" é o único bloco vermelho de Meus dados; no fim de um treino encerrado por segurança, o SAMU é um botão de ligar; a semana não repete "ainda não treinou" em 10 linhas.
+
+**Uma decisão tomada (13/11).** O revisor notou que a opção escolhida e a ação principal tinham a mesma cara: numa tela do cadastro com 4 respostas marcadas, "Continuar" era só mais um bloco preto. O Gustavo viu as duas versões lado a lado (`revisoes/frontend-novo/capturas/decisao-escolhido/`) e escolheu o meio-termo: no cadastro e no equipamento, o escolhido virou contorno; no treino, nas abas do início e no guia, continua um bloco, para ser lido de longe.
+
+**Fica para decidir** (`backlog.md`, "Do frontend novo"): 3 decisões que os revisores deixaram para o Gustavo (`qa.md`, seção 6.2), os pontos que sobraram dos 3 pareceres e os 12 pedidos ao domínio (`pedidos-ao-dominio.md`).
+
+**Rascunho de post para o LinkedIn**
+
+> Refiz a interface inteira do meu app de treino. A parte que mais me ensinou não foi desenhar.
+>
+> Foi pedir a um revisor que olhasse o resultado sem ouvir a minha opinião antes. Ele recebeu o código, as capturas de tela e as regras. Achou 32 defeitos em duas telas que eu considerava prontas.
+>
+> O pior: em celular pequeno, o bloco de registrar a série cobria o boneco animado pela metade. Eu tinha conferido em três tamanhos de tela e não vi, porque nos meus três cabia.
+>
+> Outros dois eu só entendi quando li: um toque duplo em "Série feita" gravava a série seguinte sem ninguém pedir, porque o botão novo aparecia no lugar exato do antigo. E a seta de "voltar" ficava colada no "1 de 6", parecia "exercício anterior" e tirava a pessoa do treino.
+>
+> Três coisas que levo:
+> 1. Quem fez a tela não é quem deve aprová-la.
+> 2. Regra de espaçamento só vale com conferência automática. Eram 528 valores fora da escala; hoje um comando falha se aparecer o primeiro.
+> 3. Tirar cor dá mais trabalho que pôr. A interface ficou preta e branca; a única cor é o vermelho do botão "Senti algo".
+
+## Menos texto corrido: uma linha na tela, o resto a um toque (13/11/2026)
+
+**Por quê.** Com o frontend novo no ar, o Gustavo olhou o app inteiro e achou texto corrido demais: muita explicação na tela, da abertura ao fim. Pediu um estudo com referências de aplicativos antes de mexer.
+
+**O estudo.** Medi o texto de 41 telas com a persona Ana. O treino já era enxuto (de 15 a 73 palavras por tela); o peso estava fora dele: "Sobre o programa" com 829 palavras, os termos com 793, o início com 256 antes do 1º treino, Meus dados com 216. Ao todo, 55 blocos de texto corrido com 25 palavras ou mais e 63 selos de evidência à vista. Duas pesquisas (86 fontes abertas; guias de redação e 20 aplicativos) apontaram na mesma direção: as pessoas leem uma parte pequena do texto de uma tela, o essencial vem primeiro, o detalhe fica a um toque com um rótulo que diz o que há dentro, e o que é de segurança não se esconde. O estudo está em `revisoes/frontend-novo/textos/estudo-dos-textos.md`, com os limites escritos (os estudos de leitura são de computador; nenhum app de treino pesquisado mostra nível de evidência).
+
+**O que mudou.** Em 11 telas, uma linha diz o essencial e um toque abre o resto, com o nível de evidência e a fonte dentro. Nenhuma frase de regra, selo ou fonte foi reescrita: o que saiu da tela foi inteiro para o que abre.
+- Boas-vindas: "O app orienta, não diagnostica. Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.", com o aviso inteiro em "o que o app não faz".
+- Saúde: uma linha antes das 9 condições e "por que perguntamos".
+- Rotina: "Escolha até 2." e "por quê?" no lugar de 3 linhas com 2 selos.
+- Início: "Como ler o seu treino" fechado. Folha do exercício: "Por que este exercício (5 motivos)" abre no lugar.
+- "Sobre o programa": o resumo, a fase e o que pede ajuste à vista; limites, avisos, fases, porquês e a tabela, cada um a um toque.
+- Fim do treino, semana, Meus dados e Meus locais: a frase explicativa virou um toque ("o que conta", "Como ler este quadro", "o que sai daqui", "e nos outros?").
+
+![Início, folha do exercício, Sobre o programa, fim e semana: antes e depois](revisoes/frontend-novo/textos/exemplo-2-inicio-fim-semana.png)
+
+| Medida (41 telas) | Antes | Depois |
+|---|---|---|
+| Palavras à vista, somadas | 6.311 | 5.019 |
+| Blocos de texto corrido com 25 palavras ou mais | 55 | 30 |
+| Selos à vista | 63 | 16 |
+| "Sobre o programa" | 829 | 104 |
+| Início, antes do 1º treino | 256 | 105 |
+| Folha do exercício | 196 | 93 |
+
+**Três decisões anteriores mudaram, com o sim do Gustavo:** o aviso da abertura deixou de aparecer inteiro; "Como ler o seu treino" não abre mais sozinho até o 1º treino; e 47 selos saíram da linha e ficaram a um toque.
+
+**O que continua longo:** os termos, a folha da foto, o guia e as frases que vêm das regras (avisos e porquês), que só mudaram de lugar. Encurtá-las pede reescrevê-las, numa sessão própria.
+
+**Resultado:** `npm run check` com 896 testes e 157 e2e passando.
+
+**Rascunho de post para o LinkedIn**
+
+> Contei as palavras do meu app. Tinha tela com 829.
+>
+> Eu achava que explicar tudo era respeito por quem usa: cada regra de treino com o motivo, o nível de evidência e a fonte, ali na tela. O resultado era uma parede de texto que ninguém ia ler.
+>
+> A pesquisa confirmou o incômodo: as pessoas leem uma parte pequena do que está numa tela. Explicar tudo à vista é quase o mesmo que não explicar.
+>
+> A regra que adotei: uma linha diz o essencial, e um toque abre o resto. O toque tem nome ("o que sai daqui", "por que perguntamos"), não "saiba mais".
+>
+> A tela de 829 palavras ficou com 104. Nada foi apagado: cada motivo e cada fonte continuam a um toque.
+>
+> Duas coisas eu não escondi: o que a pessoa precisa para decidir, e o aviso de segurança. Esse ficou mais curto e com a ação dentro: "Sentiu dor ou tontura? Pare e procure avaliação."
+
+**Mais uma decisão dos revisores, tomada em 13/11.** No fim do treino, a ação principal passou a ser "Voltar ao início", presa embaixo; "Ver a sua semana" virou o botão secundário. O revisor tinha notado que o botão principal levava a uma tela que repetia o "1 de 3" que a pessoa acabara de ler. O Gustavo escolheu entre três opções lado a lado (`revisoes/frontend-novo/capturas/decisoes/2-fim-do-treino.png`).
+
+## Animação nova: as 90 animações do guia refeitas num motor com corpo de verdade (13 a 16/11/2026)
+
+**Por quê.** O guia de hoje desenha o Boneco em duas dimensões, com as juntas postas à mão em cada vista. Funcionou para chegar a 90 animações, mas o desenho não tinha volume, a mão e o pé eram formas soltas, cada vista era um desenho à parte e o equipamento era um esquema. O Gustavo escolheu um desenho novo do Boneco em 13/11 (cinza, com os grupos musculares) e pediu as animações refeitas nele, sem perder nenhuma correção já feita.
+
+**O que mudou.** As 90 animações existem agora num motor novo (`src/engine/novo/`), ao lado do de hoje:
+- **Um corpo só, em três dimensões**, com as medidas de uma pessoa real (homem, 175,8 cm, tabela ANSUR II). A pose é calculada uma vez e desenhada de qualquer lado: de lado, de frente, de trás, de cima e de três quartos.
+- **Cada movimento sai de uma ficha** com números, selo de evidência e fonte (`dados/movimentos/`), e não de poses desenhadas a olho. O ritual de cada animação: reler as correções já feitas, preencher a ficha, fazer as poses, passar na conferência automática, escrever "o que a fonte pede × o que o boneco faz (medido) × confere?" e pôr a folha ao lado da de hoje.
+- **Uma conferência automática** mede cada animação quadro a quadro: os ossos não esticam, nenhuma junta passa da amplitude das tabelas (CDC, AAOS), o pé não sai do chão, o corpo não atravessa o banco, o centro de massa fica sobre os pés, o cabo fica reto, o elástico não estica além do que o fabricante diz, o ciclo fecha sem tranco, e o músculo realçado é o do conteúdo. As 90 passam sem nenhuma falha (241 avisos, todos listados).
+- **O equipamento é desenhado com medidas de fabricante**: 29 objetos na tabela (banco, halter, kettlebell, polia, barra fixa, fita de suspensão, bola, elásticos, mini band e outros) e 21 peças de cena novas.
+- **No app**, as 90 são desenhadas pelo motor novo, nos dois palcos e na miniatura, e o motor de antes saiu (16/11). A troca é no Worker do Boneco; das telas, só mudaram a folha "Estilo do Boneco" de Meus dados e a legenda do guia.
+- **Dois desenhos do mesmo corpo**: o cinza, que é o padrão, e o cor de pele, que a pessoa escolhe em Meus dados. O Boneco de antes e a Silhueta saíram; quem tinha um deles guardado passa ao cinza.
+
+![O guia de hoje e o motor novo, no mesmo ponto do movimento](revisoes/animacao-nova/antes-e-depois.png)
+
+**Como foi aprovado.** O Gustavo fechou o corpo em 15/11 e aprovou as sete primeiras animações uma a uma, na folha. Depois pediu para delegar: "a gente pode delegar vários subagentes para fazer todos de uma vez e depois você só me manda [as que] você achar que tem mais chance de eu não gostar". As famílias foram feitas em paralelo, até quatro por vez; eu conferi cada uma quadro a quadro e levei a ele as de maior risco. No meio, ele avisou que a qualidade tinha caído ("o fato de eu ter delegado fazer todos juntos não quer dizer que a gente pode diminuir a qualidade"), e dali em diante defeito visível passou a ser consertado antes de a animação contar como pronta; várias voltaram para correção.
+
+| Estado das 90 | Quantas |
+|---|---|
+| Aprovadas pelo Gustavo na folha | 7 |
+| Aprovadas pelo Gustavo vendo os quadros grandes | 16 |
+| Aprovadas por delegação (conferidas por mim, não vistas por ele) | 66 |
+| Ajustada duas vezes a pedido dele e aprovada sem ele ver de novo (abdução com mini band) | 1 |
+
+Em 16/11 ele fechou: "Não quero olhar mais nenhuma, pode ligar a opção, tirar o motor de hoje, e fazer o resto necessário".
+
+**As medidas.**
+
+| Medida | Hoje | Motor novo |
+|---|---|---|
+| Animações que passam na conferência automática sem falha | (não havia) | 90 de 90 |
+| Tempo para desenhar um quadro, celular lento simulado (mediana das 90, modo Técnica) | 5,1 ms | 14,9 ms na primeira volta; 3,9 ms depois |
+| Tempo até o primeiro desenho ao abrir um exercício, no computador (mediana; pior caso) | (imediato) | 63 ms; 445 ms |
+| Peso do motor, compactado | 48 kB, com as 90 | cerca de 70 kB, mais de 3 a 8 kB de cada exercício aberto (o exercício e o que vem calculado para ele) |
+| O que a tela do programa baixa na 1ª visita | 209 kB | 275 kB |
+| O que o app instalado guarda | (não medido antes) | 668 arquivos, 3,8 MB (4,1 MB enquanto os dois motores conviveram) |
+| Testes | 896 e 157 e2e | 904 e 161 e2e |
+
+O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num aparelho de verdade. O motor novo pesa mais que o de antes: a tela do programa, que desenha as miniaturas, passou a baixar 66 kB a mais na primeira visita, e o limite do teste de peso subiu de 220 para 285 kB.
+
+**Um defeito que só os testes do app mostraram.** Com as animações ligadas, dois testes do guia falharam: o título não aparecia em 5 segundos. O motor novo, ao abrir um exercício, calculava o ciclo inteiro para enquadrar e pôr os rótulos e, em 19 animações, refazia uma conta de tentativa e erro com centenas ou milhares de poses (onde a bacia assenta no banco inclinado, por exemplo). O primeiro desenho levava 0,3 s na mediana e até 7 s no pior caso, no computador. Como esses números são sempre os mesmos, passaram a vir calculados de antemão (`scripts/animacao-nova/preparo.mjs`), e um teste confere que o guardado é igual ao calculado. A linha de base nova (6.457 quadros das 89 animações aprovadas) não mudou em nada com isso. No caminho apareceu que o arco do ângulo do banco inclinado saía tracejado no app: usava um estilo embutido, que a política de segurança barra.
+
+**O que não ficou bom** (o resto está no backlog, "Da animação nova"):
+- O erro "Quicar embaixo", da panturrilha no degrau, não foi desenhado: é erro de ritmo, e o motor novo ainda não muda o tempo das fases por erro.
+- Seis animações têm a primeira volta pesada (de 12 a 27 ms por pose no computador).
+- 67 animações o Gustavo não viu depois de prontas. Não houve revisor independente animação por animação.
+- 6 medidas do corpo e 42 dos objetos seguem provisórias, sem fonte lida.
+- O cor de pele entrou com as escolhas da proposta (um tom de pele só, o secundário num tom claro do vermelho), sem ele olhar uma a uma.
+- O código do motor de antes continua no repositório, fora do app, porque a auditoria de anatomia e os cartões de equipamento ainda o usam.
+
+**Decisões que mudaram no caminho, com o sim do Gustavo:** o trapézio passou a subir até a base do crânio; a puxada abre de três quartos, de trás; a extensão de tríceps no chão ficou com os braços acima da cabeça, como a ficha pede; a panturrilha no chão sobe com as duas pernas e desce com uma; a rosca alternada e a rosca inclinada usam um halter de 10 lb, para ele caber junto do corpo.
+
+**Resultado:** `npm run check` com 904 testes, `npm run test:e2e` com 161, `npm run conferir:animacao` sem falha nas 90. `src/domain/`, `src/storage/`, `api/` e as personas não mudaram. Nada foi para a `main`.
+
+**Rascunho de post para o LinkedIn**
+
+> Refiz as 90 animações do meu app de treino. A parte difícil foi provar que estavam certas.
+>
+> O guia antigo era um boneco em duas dimensões, com cada pose desenhada à mão. Bonito o bastante, mas eu não tinha como saber se o joelho dobrava além do que um joelho dobra.
+>
+> O novo tem um corpo só, em três dimensões, com medidas de gente de verdade. E cada animação passa por uma conferência automática antes de entrar: osso não estica, junta não passa da amplitude das tabelas, pé não sai do chão, o elástico não estica mais do que o fabricante diz.
+>
+> Três coisas que aprendi:
+>
+> 1. Delegar em lote derruba a qualidade se ninguém olhar quadro a quadro. Quem usa o app percebeu antes de mim.
+> 2. "Passou em todos os testes do motor" não é "funciona no app". Com tudo ligado, um exercício levava 7 segundos para aparecer. Os números que causavam a espera nunca mudam; hoje vêm calculados de antemão.
+> 3. O que eu não consegui fazer está escrito: um erro de ritmo sem desenho, medidas ainda sem fonte, e 66 animações que o dono do produto não viu uma a uma.
+

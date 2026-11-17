@@ -57,5 +57,8 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   const registro = page.getByRole('region', { name: /^Série \d/ });
   await registro.getByRole('radio', { name: '2', exact: true }).check();
   await registro.getByRole('button', { name: /^Série feita/ }).click();
+  // frontend novo: depois da série vem o descanso em tela cheia, que já diz qual é a próxima; "Pular" volta ao registro
+  await expect(page.getByRole('region', { name: 'Descanso' })).toContainText(/A seguir · série 2 de/);
+  await page.getByRole('button', { name: 'Pular' }).click();
   await expect(page.getByRole('region', { name: /^Série 2/ })).toBeVisible();
 });

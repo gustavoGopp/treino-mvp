@@ -1,0 +1,64 @@
+{
+ "id": "stiff-unilateral",
+ "nome": "Stiff unilateral com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/stiff-unilateral.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/stiff-unilateral.md) e texto do app (src/conteudo/exercicios/stiff-unilateral.json): consenso de treinadores (nsca2021, não verificado); a mesma lógica do stiff aprovado",
+  "stiff": "A ficha de movimento do stiff com halteres (src/engine/novo/dados/movimentos/stiff.json)",
+  "equilibrio": "Numa perna só, a projeção do centro de massa (corpo + halter) cai sobre o pé de apoio (mecânica); o desenho usa o meio do pé, para a frente e de lado",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "stiff", "o": "onde o pé de apoio (o direito) fica no chão, a partir do meio; a bacia vai para cima dele"},
+  "joelho.cima": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé numa perna: o joelho de apoio levemente dobrado (a ficha não dá número)"},
+  "joelho.baixo": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo: o joelho de apoio fica quase no mesmo ângulo ('levemente dobrado e fixo')"},
+  "tronco.cima": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: em pé numa perna"},
+  "tronco.baixo": {"v": 78, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: 'tronco quase paralelo ao chão' (inclinação do peito; 90 = horizontal)"},
+  "livre.coxa.cima": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé: a coxa da perna livre pende quase na vertical, um pouco à frente (negativo = à frente), com o pé logo atrás do pé de apoio"},
+  "livre.joelho.cima": {"v": 62, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé: o joelho da perna livre dobra o bastante para o pé sair do chão"},
+  "livre.joelho.baixo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo: a perna livre quase estendida, na linha do tronco"},
+  "livre.tornozelo": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé da perna livre, um pouco esticado (dedos para baixo, embaixo)"},
+  "cervical": {"v": -6, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'olhar à frente e para baixo': o pescoço quase na linha do tronco, um pouco estendido"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cabeça na linha do pescoço"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "braços quase estendidos, sem travar o cotovelo"},
+  "cotovelo.paraFora": {"v": 1, "un": "proporção", "selo": "desenho", "fonte": "stiff", "o": "os cotovelos apontam para trás e para fora, com a palma para a perna"},
+  "carga.folga": {"v": 0.6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "'halter perto da perna': a folga entre a cabeça do halter e a pele da perna de apoio"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb), na mão direita, do lado da perna de apoio; entra no equilíbrio"},
+  "erro.abre.giro": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia gira em torno do tronco para o lado da perna livre (o quadril esquerdo sobe)"},
+  "erro.arred.lombar": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a lombar arredonda (flexão além da curva de repouso, embaixo)"},
+  "erro.arred.toracica": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: as costas de cima também curvam um pouco"},
+  "erro.arred.bacia": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a bacia inclina menos que no certo (quem dobra é a lombar)"},
+  "erro.agachar.joelho": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o joelho de apoio dobra muito"},
+  "erro.agachar.tronco": {"v": 42, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco inclina pouco (vira um agachamento numa perna)"},
+  "erro.agachar.livre.joelho": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a perna livre fica para trás com o joelho dobrado, como num agachamento numa perna"}
+ },
+ "fases": [
+  {"nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "apoio numa perna", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.4, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R"],
+ "regras": [
+  {"id": "lombar-neutra", "pede": "a coluna fica reta (a lombar não arredonda)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "dobra-no-quadril", "pede": "o quadril vai para trás, com o joelho de apoio levemente dobrado e fixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "em-pe-sem-jogar-o-tronco-para-tras", "pede": "em pé numa perna, o quadril estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-paralelo-ao-chao", "pede": "fim: tronco quase paralelo ao chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "perna-livre-em-linha", "pede": "fim: a perna livre na mesma linha do tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-nivelado", "pede": "quadril nivelado o tempo todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-rente-as-pernas", "pede": "halter perto da perna, sem atravessá-la", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-sobre-o-pe-de-apoio", "pede": "o centro de massa (corpo + halter) cai sobre o pé de apoio", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "abre", "instante": 1, "titulo": "Abrir o quadril", "vista": "quinaTras", "oQueMuda": "a bacia gira para o lado da perna livre: o quadril esquerdo sobe", "destaca": ["corpo"], "linha": ["quadril:R", "quadril:L"], "foco": "quadril:L"},
+  {"id": "arred", "instante": 1, "titulo": "Arredondar as costas", "vista": "lateral", "oQueMuda": "a bacia para de inclinar e a lombar arredonda", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "agachar", "instante": 1, "titulo": "Agachar", "vista": "lateral", "oQueMuda": "o joelho de apoio dobra muito e o quadril desce", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "halter perto da perna", "ponto": "pegada:R", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "lateral", "texto": "perna e tronco numa linha", "ponto": "tornozelo:L", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "quinaTras", "texto": "quadril nivelado", "ponto": "quadril:R", "selo": "consenso", "fonte": "ficha"}
+ ]
+}

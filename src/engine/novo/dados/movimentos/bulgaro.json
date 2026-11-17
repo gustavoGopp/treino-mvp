@@ -1,0 +1,60 @@
+{
+ "id": "bulgaro",
+ "nome": "Agachamento búlgaro com apoio",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/bulgaro.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md: consenso de treinadores",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro.ts): as distâncias dos pés ao quadril, a posição da mão de apoio e os erros, que a ficha não dá em número",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio)"},
+  "peDaFrente.aFrenteDoQuadril": {"v": 42.5, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "pé da frente longe do banco: quanto o tornozelo da frente fica à frente do quadril (na animação aprovada de hoje: 42,5 cm)"},
+  "peDeTras.tornozeloAtrasDoQuadril": {"v": 43.5, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "quanto o tornozelo do pé de trás, apoiado no banco, fica atrás do quadril (na animação aprovada de hoje: 43,5 cm)"},
+  "peDeTras.tornozeloDaBorda": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "quanto o tornozelo de trás fica para dentro da borda do banco: o peito do pé inteiro apoia no estofado (3 cm na animação de hoje)"},
+  "joelho.cima": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: joelho da frente quase estendido; a ficha manda parar antes de travar"},
+  "joelhoDeTras.aoChao": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão)"},
+  "tronco": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco levemente inclinado à frente (a ficha não dá número; na animação de hoje, 14 a 16 graus)"},
+  "apoio.maoAoLado": {"v": 47, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "mão de apoio na coluna da estação: distância da mão ao meio do corpo (47 cm na animação de hoje)"},
+  "apoio.maoAltura": {"v": 100, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "mão de apoio: altura da mão na coluna (100 cm na animação de hoje)"},
+  "apoio.maoAFrenteDoQuadril": {"v": 12.5, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "mão de apoio: quanto fica à frente do quadril (12,5 cm na animação de hoje)"},
+  "bracos.paraFora": {"v": 7, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "braço do halter pendendo ao lado do corpo: quanto abre para o halter não bater na coxa"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb); entra no equilíbrio"},
+  "erro.valgo.joelho": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto o joelho da frente cai para dentro"},
+  "erro.perto.maisPerto": {"v": 19, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: quanto o pé da frente fica mais perto do banco (19 cm na animação de hoje)"},
+  "erro.perto.calcanhar": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: quanto o calcanhar da frente sobe embaixo (34 graus a mais na animação de hoje)"},
+  "erro.raso.fracao": {"v": 0.47, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: desce só 47% do caminho (como na animação de hoje)"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "firme o abdômen", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.3, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R"],
+ "regras": [
+  {"id": "joelho-da-frente-quase-estendido-em-cima", "pede": "em cima, o joelho da frente fica quase estendido", "selo": "consenso", "fonte": "guia"},
+  {"id": "desce-reto", "pede": "a descida é reta: o quadril desce sem ir para a frente nem para trás", "selo": "consenso", "fonte": "guia"},
+  {"id": "joelho-de-tras-perto-do-chao", "pede": "embaixo, o joelho de trás fica a poucos centímetros do chão", "selo": "consenso", "fonte": "guia"},
+  {"id": "coxa-da-frente-perto-da-horizontal", "pede": "embaixo, a coxa da frente fica perto da horizontal ou um pouco abaixo", "selo": "consenso", "fonte": "guia"},
+  {"id": "tronco-levemente-a-frente", "pede": "o tronco fica levemente inclinado à frente", "selo": "consenso", "fonte": "guia"},
+  {"id": "pe-da-frente-inteiro-no-chao", "pede": "o pé da frente fica inteiro no chão, com o calcanhar apoiado", "selo": "consenso", "fonte": "guia"},
+  {"id": "peito-do-pe-no-banco", "pede": "o peito do pé de trás fica apoiado no banco, com o cadarço para baixo", "selo": "consenso", "fonte": "guia"},
+  {"id": "peso-na-perna-da-frente", "pede": "o peso fica na perna da frente", "selo": "consenso", "fonte": "guia"},
+  {"id": "mao-de-apoio-parada", "pede": "a mão livre segura a coluna da estação só para equilibrar: fica parada", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "valgo", "instante": 1, "titulo": "Joelho da frente para dentro", "vista": "frontal", "oQueMuda": "o joelho da frente sai da linha do pé, para dentro", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "perto", "instante": 1, "titulo": "Pé da frente perto do banco", "vista": "lateral", "oQueMuda": "o pé da frente fica 19 cm mais perto do banco e o calcanhar sobe na descida", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
+  {"id": "raso", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só 47% do caminho", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "desce reto", "ponto": "pelve", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "peso no pé da frente", "ponto": "tornozelo:R", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "joelho sobre o pé", "ponto": "joelho:R", "selo": "consenso", "fonte": "guia", "prumo": {"de": "ponta:R", "alt": 62}},
+  {"vista": "frontal", "texto": "mão só equilibra", "ponto": "pegada:L", "selo": "consenso", "fonte": "guia"}
+ ]
+}

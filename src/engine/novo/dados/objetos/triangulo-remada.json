@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "rogue-triangulo": "Rogue Fitness, Rogue Grip Triangle (Standard Grip), página do produto; https://www.roguefitness.com/rogue-grip-triangle-standard-grip (lido em 15/11/2026): \"Length: 7\" (handle)\", \"Diameter: 1.31\"\", \"6\" Between Handles\" (\"spaced 6\" on Center\"), \"0.25\" thick Steel Plates\", \"1\" Schedule 40 Knurled Handles\"",
+  "prx-triangulo": "PRx Performance, Triangle Row Cable Attachment, página do produto; https://prxperformance.com/collections/all/products/prx-triangle-row-cable-attachment (lido em 15/11/2026): \"Overall Dimensions: 5\"x7.25\"x6.25\"\", \"Handle Length: 5.25\"\" (não diz qual das três medidas é a profundidade)"
+ },
+ "objetos": {
+  "trianguloRemada": {
+   "nome": "Triângulo de remada (pegada fechada e neutra, para a polia)",
+   "medidas": {
+    "pegadaComp": {"v": 17.8, "un": "cm", "tipo": "medida", "fonte": "rogue-triangulo", "onde": "comprimento de cada pegada: 7 pol"},
+    "pegadaDiam": {"v": 3.33, "un": "cm", "tipo": "medida", "fonte": "rogue-triangulo", "onde": "diâmetro da pegada: 1,31 pol"},
+    "entrePegadas": {"v": 15.2, "un": "cm", "tipo": "medida", "fonte": "rogue-triangulo", "onde": "distância entre os centros das duas pegadas: 6 pol"},
+    "placaEsp": {"v": 0.64, "un": "cm", "tipo": "medida", "fonte": "rogue-triangulo", "onde": "espessura das duas chapas em triângulo: 0,25 pol"},
+    "prof": {"v": 15.9, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "da linha das pegadas ao furo do mosquetão (a ponta do triângulo): a PRx dá 5 × 7,25 × 6,25 pol sem dizer qual é a profundidade; usada a de 6,25 pol"},
+    "pinoDiam": {"v": 1.6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro do pino da ponta, onde o mosquetão prende: nenhuma ficha lida informa"}
+   }
+  }
+ }
+}

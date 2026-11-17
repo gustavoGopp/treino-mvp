@@ -1,0 +1,66 @@
+{
+ "id": "desenvolvimento-unilateral-kettlebell",
+ "nome": "Desenvolvimento unilateral em pé com kettlebell",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/desenvolvimento-unilateral-kettlebell.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/desenvolvimento-unilateral-kettlebell.md): em pé, pés na largura do quadril; kettlebell apoiado no antebraço, na altura do ombro, cotovelo junto ao corpo, punho reto, a bola do lado de fora do antebraço; empurra até o braço estender acima da cabeça, sem jogar o peso e sem arquear a lombar; tronco parado, a outra mão na cintura; ~1 s subindo, ~2 s descendo: consenso de treinadores (B.2.6; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/desenvolvimento-unilateral-kettlebell.json): tempos das fases ('~1–1,5 s' subindo, '~2–3 s' descendo), as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/desenvolvimento-unilateral-kettlebell.ts): os erros",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos destravados (a ficha não dá número)"},
+  "bacia": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "tronco parado, em pé"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "maoLivre.acima": {"v": 8, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a outra mão na cintura (acima do centro da bacia, como nos afundos)"},
+  "braco.baixo.elevacao": {"v": -60, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, kettlebell na altura do ombro com o cotovelo junto ao corpo: o úmero fica 60° abaixo da horizontal (com o antebraço na vertical, a mão chega à altura do ombro)"},
+  "braco.baixo.frente": {"v": 92, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo, o cotovelo à frente das costelas, junto ao corpo (92° à frente do plano do corpo, visto de cima)"},
+  "braco.topo.elevacao": {"v": 82, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no topo, o braço estendido acima da cabeça: o úmero a 8° da vertical (com o antebraço na vertical, o cotovelo dobra 8°, sem travar)"},
+  "braco.topo.frente": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço sobe quase no plano da frente do corpo, com o cotovelo à frente (pegada neutra: palma para dentro), e termina sobre o ombro, um pouco à frente. Num plano mais para o lado, a frente do ombro some atrás do braço no topo"},
+  "mao.giro.baixo": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a palma para dentro (pegada neutra na alça): o dorso da mão e do antebraço fica para fora, onde a bola apoia"},
+  "mao.giro.topo": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no topo, a mão girou 30° (a palma vai um pouco para a frente)"},
+  "kettlebell.bolaParaFora": {"v": 0.3, "un": "fração", "selo": "consenso", "fonte": "ficha", "o": "a bola do lado de fora do antebraço: ela fica do lado do dorso da mão, puxada um pouco para fora"},
+  "kettlebell.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola apoiada no antebraço: a folga entre a bola e a pele (o ângulo da bola sai dela)"},
+  "erro.arco.lombar": {"v": -20, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar arqueia 20° no topo (hoje: −28 com o pescoço)"},
+  "erro.arco.toracica": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas de cima estendem 8°"},
+  "erro.arco.bacia": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia inclina 6° à frente (a lombar arqueia sobre ela)"},
+  "erro.jogar.joelho": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo os joelhos dobram 30° para dar o impulso e estendem na subida"},
+  "erro.jogar.bacia": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo o tronco inclina 6° à frente"},
+  "erro.punho": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo o kettlebell puxa a mão para trás e o punho dobra 35°"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "na altura do ombro", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "kettlebell-na-altura-do-ombro", "pede": "embaixo, kettlebell na altura do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "kettlebell-no-antebraco", "pede": "o kettlebell apoiado no antebraço", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-junto-ao-corpo", "pede": "embaixo, cotovelo junto ao corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "punho-reto", "pede": "punho reto, alinhado com o antebraço", "selo": "consenso", "fonte": "ficha"},
+  {"id": "antebraco-na-vertical", "pede": "empurra para cima (o antebraço na vertical)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-acima-da-cabeca", "pede": "em cima, o braço estendido acima da cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-longe-da-cabeca", "pede": "o kettlebell passa sem bater na cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "sem arquear a lombar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado, sem jogar o peso", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mao-de-apoio-parada", "pede": "a outra mão na cintura", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + kettlebell) fica perto do meio do pé, com o quadril parado", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "arco", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia e o peito vai para trás para subir o peso", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "jogar", "instante": 0, "titulo": "Jogar o peso com as pernas", "vista": "lateral", "oQueMuda": "os joelhos dobram embaixo e estendem para dar o impulso", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"},
+  {"id": "punho", "instante": 0, "titulo": "Punho dobrado para trás", "vista": "lateral", "oQueMuda": "embaixo, o kettlebell puxa a mão para trás e o punho dobra", "destaca": ["bracos"], "linha": ["cotovelo", "punho", "pegada"], "foco": "punho"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "punho reto", "ponto": "punho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "desce devagar", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

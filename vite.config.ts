@@ -29,6 +29,9 @@ const cabecalhosDaVercel = (): Record<string, string> => {
 
 export default defineConfig(({ mode }) => ({
   preview: { headers: cabecalhosDaVercel() },
+  // O Worker do Boneco carrega cada exercício do motor novo só quando ele é pedido (um arquivo por exercício): para
+  // isso o pacote do Worker precisa ser um módulo, que aceita ser dividido em partes.
+  worker: { format: 'es' },
   define: {
     __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),
@@ -38,7 +41,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/OFL.txt'],
+      includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/OFL.txt', 'licencas/lucide-ISC.txt'],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         // lote 5: os 49 desenhos do equipamento (cerca de 860 kB) ficam fora da instalação; são guardados quando aparecem
@@ -52,8 +55,8 @@ export default defineConfig(({ mode }) => ({
         lang: 'pt-BR',
         start_url: '/',
         display: 'standalone',
-        background_color: '#F5F3EF',
-        theme_color: '#F5F3EF',
+        background_color: '#F6F6F4',
+        theme_color: '#F6F6F4',
         // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/icones-app.mjs); "any" e
         // "maskable" em arquivos separados, como o Chrome pede
         icons: [

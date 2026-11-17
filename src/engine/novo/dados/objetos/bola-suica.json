@@ -1,0 +1,15 @@
+{
+ "fontes": {
+  "gymnic-grayline": "Gymnic (Ledragomma), bolas de exercício: página pública do revendedor Gray Line Medical (https://www.graylinemedical.com/products/gymnic-balls), guia de tamanhos lido em 15/11/2026: \"55cm (21\"): users 4'8\" - 5'3\"\", \"65cm (25\"): users 5'3\" - 6'0\"\", \"75cm (29\"): users 6'0\" - 6'7\"\"",
+  "desenho-bola": "Escolha de desenho da animação da flexão de joelho na bola (lote 2 do motor novo), sem medida de fabricante"
+ },
+ "objetos": {
+  "bolaSuica": {
+   "nome": "Bola suíça (bola de exercício) de 65 cm",
+   "medidas": {
+    "diam": { "v": 65, "un": "cm", "tipo": "medida", "fonte": "gymnic-grayline", "onde": "diâmetro nominal da bola de 65 cm, a indicada para quem tem de 1,60 a 1,83 m (o Boneco tem 1,76 m)" },
+    "amassa": { "v": 1.5, "un": "cm", "tipo": "provisoria", "fonte": "desenho-bola", "onde": "quanto a bola cheia e firme achata em cima do chão com o peso das pernas: o centro desce isso, e a parte de baixo fica reta. A ficha não dá número; a medida real depende da pressão", "nota": "a conferir: medir uma bola de 65 cm cheia com as pernas de um adulto em cima" }
+   }
+  }
+ }
+}

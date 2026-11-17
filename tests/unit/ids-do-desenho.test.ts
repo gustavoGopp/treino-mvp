@@ -23,6 +23,6 @@ describe('ids do desenho', () => {
   it('sem id, ou sem sufixo, o desenho fica como veio; o estilo aponta as listras para o padrão do desenho', () => {
     expect(comIdsUnicos('<path d="M0 0"/>', ':r1:')).toBe('<path d="M0 0"/>');
     expect(comIdsUnicos(html, '')).toBe(html);
-    expect(estiloDasListras(':r1:')).toEqual({ '--mh-listras': 'url(#mh-listras-r1)' });
+    expect(estiloDasListras(':r1:')).toEqual({ '--mh-listras': 'url(#mh-listras-r1)', '--b-listras': 'url(#b-listras-r1)' });
   });
 });

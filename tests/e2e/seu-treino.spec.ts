@@ -28,8 +28,10 @@ test('a folha do exercício sem animação traz a montagem segura aberta, o porq
   await page.getByRole('tabpanel').getByRole('button', { name: /Barra fixa só na descida/ }).click();
   const folha = page.getByRole('dialog', { name: /Barra fixa só na descida/ });
   await expect(folha.getByText('Montagem segura')).toBeVisible();
-  await expect(folha.getByRole('heading', { name: 'Por que este exercício' })).toBeVisible();
-  await expect(folha.locator('.selo').first()).toBeVisible();
+  // estudo dos textos (13/11/2026): os motivos ficam a um toque, com a contagem no rótulo
+  const porque = folha.locator('details', { hasText: /^Por que este exercício \(\d+ motivos?\)/ });
+  await porque.locator('summary').click();
+  await expect(porque.locator('.selo').first()).toBeVisible();
   await expect(folha.getByText(/^Se o equipamento estiver ocupado/)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();

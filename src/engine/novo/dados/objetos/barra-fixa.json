@@ -1,0 +1,22 @@
+{
+ "fontes": {
+  "prosource-torre": "ProsourceFit, Power Tower; https://www.prosourcefit.com/products/power-tower (lido em 15/11/2026 por resumo automático da página): \"39\\\"L x 41\\\"W x 90 1/2\\\"H\", \"Adjustable height for pull-up bar and dip station up to 90-in.\", \"7 levels in increments of 2 ¾-inch\"",
+  "rogue-crown": "Rogue, Monster Crown Pull-up Bar; https://www.roguefitness.com/rogue-monster-crown-pull-up-bar (lido em 15/11/2026 por resumo automático da página): \"Bar Grips: 1.25” diameter standard grip\"; \"the rest of the bars are the standard 1.25\\\" diameter\"",
+  "titan-torre": "Titan Fitness, Heavy-Duty Power Tower; https://www.titan.fitness/strength/specialty-machines/upper-body/heavy-duty-power-tower/400613.html (lido em 15/11/2026 por resumo automático da página): \"Frame Material: 2-in. x 2.75-in. Steel\", \"Dip Station Height: 54-in.\", \"Dip Bar Spread: 24-in.\""
+ },
+ "objetos": {
+  "barraFixa": {
+   "nome": "Estação de barra fixa (torre): dois montantes, base no chão e a barra reta no alto, à frente dos montantes",
+   "medidas": {
+    "altura": { "v": 228.6, "un": "cm", "tipo": "medida", "fonte": "prosource-torre", "onde": "altura do chão ao centro da barra, na regulagem mais alta: 90 pol (a mais baixa fica 6 × 2 ¾ pol abaixo, 186,7 cm). Na mais alta, o corpo pendurado com os joelhos um pouco dobrados não toca o chão" },
+    "diam": { "v": 3.2, "un": "cm", "tipo": "medida", "fonte": "rogue-crown", "onde": "diâmetro da barra: 1,25 pol, o padrão das barras de puxar (o modelo da ProsourceFit não traz)" },
+    "larg": { "v": 104.1, "un": "cm", "tipo": "medida", "fonte": "prosource-torre", "onde": "largura total da torre: 41 pol (a barra vai de um montante ao outro)" },
+    "prof": { "v": 99.1, "un": "cm", "tipo": "medida", "fonte": "prosource-torre", "onde": "fundo da base no chão: 39 pol" },
+    "tuboLarg": { "v": 5.1, "un": "cm", "tipo": "medida", "fonte": "titan-torre", "onde": "tubo da estrutura: 2 pol (do modelo da Titan; o da ProsourceFit não traz)" },
+    "tuboProf": { "v": 7, "un": "cm", "tipo": "medida", "fonte": "titan-torre", "onde": "tubo da estrutura: 2,75 pol (do modelo da Titan)" },
+    "balanco": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto a barra fica à frente dos montantes (os braços que a sustentam): o corpo pendurado não encosta na estrutura" },
+    "pegaComp": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento de cada trecho emborrachado da barra, desenhado debaixo de cada mão" }
+   }
+  }
+ }
+}

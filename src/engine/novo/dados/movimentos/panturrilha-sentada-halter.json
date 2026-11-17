@@ -1,0 +1,52 @@
+{
+ "id": "panturrilha-sentada-halter",
+ "nome": "Panturrilha sentada com halter no joelho",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-sentada-halter.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-sentada-halter.md) e texto do app (src/conteudo/exercicios/panturrilha-sentada-halter.json): sentado, joelhos a ~90°, pés na largura do quadril, ponta dos pés num apoio baixo (uma anilha, um livro grosso, um degrau); o halter deitado sobre a coxa, perto do joelho, sobre uma toalha dobrada, segurado com as duas mãos; tronco reto e parado; consenso (nsca2021, não verificado)",
+  "kassiano2023b": "Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a parte alongada rendeu mais (um estudo): a ponta dos pés num apoio para o calcanhar descer, pausa de ~1 s embaixo",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-sentada-halter.ts): o tornozelo sobe 12 cm do alongado ao topo, o halter perto do joelho, a ordem das fases (começa pela descida) e os erros",
+  "objetos": "src/engine/novo/dados/objetos.json (banco reto, halter de 25 lb), dados/objetos/step.json (o step como degrau baixo) e dados/objetos/toalha.json (a toalha de mão dobrada em quatro: 2 cm)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente"},
+  "joelho": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos a ~90° com o calcanhar na altura do apoio; a distância do apoio ao banco sai deste ângulo"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 1 cm no estofado do banco"},
+  "banco.frenteDoQuadril": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a ponta do banco fica 10 cm à frente do centro do quadril: sentado na ponta, a coxa sai do banco"},
+  "bola.daBeirada": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé apoia 2 cm para dentro da beirada do degrau baixo (o step, na altura de 15 cm); o calcanhar fica no ar"},
+  "calcanhar.embaixo": {"v": 8.5, "un": "cm", "selo": "um estudo", "fonte": "kassiano2023b", "o": "embaixo, o calcanhar desce 8,5 cm abaixo da beirada do apoio ('até o alongamento máximo'; a ficha não dá número): com o joelho dobrado e a canela inclinada para trás, é o que leva a dorsiflexão perto da média do CDC (14,8°); com 5 cm ela ficava em 2°"},
+  "calcanhar.topo": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "em cima, o calcanhar 10 cm acima do apoio (com 11 cm a flexão plantar passava da média do CDC, 56,7°) (na animação de hoje, o tornozelo sobe 12 cm do alongado ao topo)"},
+  "halter.doJoelho": {"v": 8, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "o halter deitado atravessado sobre a coxa direita, perto do joelho: o cabo a 8 cm do centro do joelho, ao longo da coxa (na animação de hoje, 6 cm)"},
+  "maoL.paraDentro": {"v": 0.6, "un": "proporção", "selo": "desenho", "fonte": "desenho", "o": "a mão esquerda vem do outro lado do corpo: os dedos apontam para o joelho e um pouco para dentro (para o lado direito), quanto para o lado em relação a para a frente"},
+  "toalha.esp": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "a toalha de mão dobrada em quatro entre o halter e a coxa (4 camadas de 0,5 cm)"},
+  "erro.curta.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o calcanhar só faz 40% do caminho, embaixo e em cima (como hoje)"},
+  "erro.tronco.lombar": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: na subida a lombar estende 10 graus e o tronco vai para trás (hoje, 14 graus)"},
+  "erro.tronco.toracica": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas de cima vão 12 graus para trás (hoje, 16 graus)"},
+  "erro.halter.doJoelho": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: o halter escorrega para o meio da coxa, 22 cm do joelho (na animação de hoje, 14 cm mais para trás)"}
+ },
+ "fases": [
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 1, "de": 0, "ate": 0, "respira": "FIRME", "tempo": "~1 s", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "joelhos-a-90-sentado", "pede": "sentado, os joelhos a ~90°", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhar-abaixo-da-beirada", "pede": "embaixo, o calcanhar desce até o alongamento máximo, abaixo do apoio", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"id": "calcanhar-sobe-o-maximo", "pede": "em cima, o calcanhar o mais alto possível (10 cm acima do apoio)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "o tronco fica reto e parado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "halter-sobre-a-coxa-perto-do-joelho", "pede": "o halter deitado sobre a coxa, perto do joelho", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "curta", "instante": 0, "titulo": "Amplitude curta", "vista": "lateral", "oQueMuda": "o calcanhar sobe pouco e desce pouco", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
+  {"id": "tronco", "instante": 1, "titulo": "Levantar o tronco", "vista": "lateral", "oQueMuda": "na subida o tronco vai para trás e sobe com o halter", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "halter", "instante": 1, "titulo": "Halter escorregando", "vista": "lateral", "oQueMuda": "o halter escorrega para o meio da coxa, e as mãos vão com ele", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "ponta dos pés no apoio", "ponto": "ponta:R", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "ficha"}
+ ]
+}

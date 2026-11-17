@@ -129,7 +129,8 @@ test('apagar o último treino, com confirmação, volta a rotação ao dia dele'
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
   await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
   await page.getByRole('button', { name: 'Registrei algo errado: apagar este treino' }).click();
-  await expect(page.getByRole('alert')).toContainText(`o próximo treino volta a ser ${dia}`);
+  // frontend novo (revisão de 13/11/2026): a confirmação é um grupo com nome (não um alerta de segurança)
+  await expect(page.getByRole('group', { name: 'Apagar este treino?' })).toContainText(`o próximo treino volta a ser ${dia}`);
   await page.getByRole('button', { name: 'Apagar', exact: true }).click();
   await expect(page).toHaveURL(/\/programa$/);
   await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();

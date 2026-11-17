@@ -3,11 +3,18 @@ import { expect, test } from '@playwright/test';
 test('a página inicial abre em português, com o aviso, e é instalável', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Treine onde estiver, com o que tiver' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'O que o app não faz' })).toBeVisible();
-  // lote 3 do redesign: o aviso fica inteiro, palavra por palavra, antes do botão "Começar"
-  await expect(page.locator('.nota-aviso p')).toHaveText(
-    'O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso',
+  // estudo dos textos (13/11/2026, decisão do Gustavo): na abertura, o aviso é uma frase com a ação, antes do "Começar";
+  // o texto inteiro, palavra por palavra, com o selo e a fonte, fica a um toque
+  await expect(page.getByRole('heading', { name: 'O app orienta, não diagnostica' })).toBeVisible();
+  await expect(page.locator('.nota-aviso p')).toContainText('Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.');
+  await page.getByRole('button', { name: 'o que o app não faz' }).click();
+  const naoFaz = page.getByRole('dialog', { name: 'O que o app não faz' });
+  await expect(naoFaz).toContainText(
+    'O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.',
   );
+  await expect(naoFaz).toContainText(/consenso de especialistas/i);
+  await page.keyboard.press('Escape');
+  await expect(naoFaz).toBeHidden();
   await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeInViewport({ ratio: 1 });
   // a privacidade completa a um toque
   await page.getByRole('button', { name: /Seus dados ficam só neste celular/ }).click();

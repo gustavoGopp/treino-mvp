@@ -1,0 +1,253 @@
+{
+ "id": "flexao-fechada",
+ "nome": "Flexão de braço com as mãos juntas",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-fechada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/flexao-fechada.md): consenso de treinadores (nsca2021, não verificado); a base do desenho é a flexao aprovada",
+  "flexao": "A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica manda usar as mesmas poses do tronco e das pernas",
+  "hoje": "Animação de hoje (src/engine/exercicios/flexao-fechada.ts, aprovada): distâncias que a ficha não dá em número",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "em cima: braços estendidos (sem travar)"
+  },
+  "peito.aoChao": {
+   "v": 5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "embaixo: peito a poucos centímetros do chão"
+  },
+  "maos.alemDoOmbro": {
+   "v": -4,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "hoje",
+   "o": "mãos na largura dos ombros, um pouco menos: o centro da mão fica 4 cm para dentro do centro do ombro (14,4 cm do meio do corpo, como na animação de hoje, a 14 cm); a borda de fora da mão fica por dentro da linha de fora dos ombros. A ficha não dá a distância"
+  },
+  "maos.abaixoDoOmbro": {
+   "v": 14,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "mãos abaixo da parte de baixo do peito: 14 cm do ombro em direção aos pés, com o corpo embaixo, 3,5 cm além da linha dos mamilos (o centro do ombro fica 10,5 cm acima dela: altura.peito da tabela do corpo). Com 16 cm a mão ficaria mais embaixo do peito, mas em cima o punho passaria do máximo de extensão (96,8°, máximo 95°). Na flexão são 13 cm (a linha do meio do peito)"
+  },
+  "cotovelos.doTronco": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "hoje",
+   "o": "cotovelos para trás, rentes ao corpo (o número é a direção para onde o cotovelo aponta; a conferência mede o ângulo do braço com o tronco, visto de cima)"
+  },
+  "pes.meiaDistancia": {
+   "v": 8.7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "pés na largura do quadril"
+  },
+  "tornozelo.dorsiflexao": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "apoio na ponta dos pés: o tornozelo fica perto do neutro"
+  },
+  "joelho": {
+   "v": 4,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "pernas estendidas (corpo em prancha)"
+  },
+  "escapula.retracaoEmbaixo": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as escápulas se aproximam na descida; a ficha não dá número"
+  },
+  "erro.quadril.queda": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o quadril cai (extensão da lombar somada)"
+  },
+  "erro.cot.doTronco": {
+   "v": 130,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: cotovelos abertos para os lados (a direção para onde o cotovelo aponta; medido de cima, o braço faz 72,5° com o tronco, como no erro da flexão)"
+  },
+  "erro.curta.fracao": {
+   "v": 0.5,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: desce só até a metade"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Em cima",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "prancha",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.0,
+   "de": 0,
+   "ate": 1,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Embaixo",
+   "tipo": "pausa",
+   "dur": 0.35,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "peito perto das mãos",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "flexao"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L",
+  "mao.R",
+  "mao.L"
+ ],
+ "regras": [
+  {
+   "id": "corpo-em-linha",
+   "pede": "corpo em linha reta da cabeça aos calcanhares",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "id": "peito-perto-do-chao",
+   "pede": "embaixo, o peito chega perto das mãos (a poucos centímetros do chão)",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "id": "maos-por-dentro-dos-ombros",
+   "pede": "de cima, as mãos ficam por dentro da linha dos ombros",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cotovelos-rentes",
+   "pede": "cotovelos para trás, rentes ao corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "cot",
+   "instante": 1,
+   "titulo": "Cotovelos abertos para os lados",
+   "vista": "cima",
+   "oQueMuda": "os cotovelos vão para os lados",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Quadril cai",
+   "vista": "lateral",
+   "oQueMuda": "a lombar arqueia e o quadril sai da linha",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "tornozelo"
+   ],
+   "foco": "quadril"
+  },
+  {
+   "id": "curta",
+   "instante": 1,
+   "titulo": "Descer pouco",
+   "vista": "lateral",
+   "oQueMuda": "desce só até a metade",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "corpo em linha",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "guia": [
+    "tornozelo",
+    "cabeca"
+   ]
+  },
+  {
+   "vista": "cima",
+   "texto": "cotovelos rentes",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "cima",
+   "texto": "mãos na largura dos ombros",
+   "ponto": "punho",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}

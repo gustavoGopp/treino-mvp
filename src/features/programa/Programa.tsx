@@ -15,6 +15,7 @@ import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '.
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
+import { Icone } from '../app/icones';
 import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { ComoLer } from './ComoLer';
 import { Folha } from '../app/Folha';
@@ -66,15 +67,15 @@ export function Programa() {
         <main className="conteudo">
         <AvisoSalvar />
           <Titulo>Programa pausado</Titulo>
-          <div className="warnbox">
+          <div className="warnbox seguranca">
             {semExercicio && !triagem.bloqueado ? (
-              <>
+              <p>
                 {semExercicio.texto} <Selo id={semExercicio.regraId} />
-              </>
+              </p>
             ) : (
-              <>
+              <p>
                 {triagem.mensagem} <Selo id={triagem.regraId} />
-              </>
+              </p>
             )}
           </div>
           <Link className="btn" to="/comecar/triagem">
@@ -239,7 +240,35 @@ export function Programa() {
       <Topo />
       <main className="conteudo treino">
         <AvisoSalvar />
-        <Titulo>Seu treino</Titulo>
+        <Titulo soLeitor>Seu treino</Titulo>
+
+        <div className="abas" role="tablist" aria-label="Dias de treino">
+          {diasDaSemana.map((d, i) => (
+            <button
+              key={d.id}
+              type="button"
+              role="tab"
+              id={`aba-${d.id}`}
+              aria-selected={d === diaDoPrograma}
+              aria-controls={d === diaDoPrograma ? `painel-${d.id}` : undefined}
+              tabIndex={d === diaDoPrograma ? 0 : -1}
+              onClick={() => setDiaSel(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
+                  setDiaSel(n);
+                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
+                }
+              }}
+            >
+              <b>
+                {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
+                {d.nome.slice(prefixoAbas.length)}
+              </b>
+              <small aria-hidden="true">~{d.minutosEstimados} min</small>
+            </button>
+          ))}
+        </div>
 
         <section className="cartao-hoje" aria-labelledby="hoje-t">
           {mostrarVolta ? (
@@ -259,11 +288,18 @@ export function Programa() {
             />
           ) : (
             <>
-              <p className="rotulo">Hoje</p>
+              <p className="rotulo">Semana {semana}</p>
               <h2 id="hoje-t">{dia.nome}</h2>
-              <p className="apoio num">
-                {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
-              </p>
+              <div className="numeros num">
+                <div>
+                  <b>{dia.exercicios.length}</b>
+                  <span className="rotulo">exercícios</span>
+                </div>
+                <div>
+                  <b>~{dia.minutosEstimados}</b>
+                  <span className="rotulo">minutos</span>
+                </div>
+              </div>
             </>
           )}
           {!estado.sessaoAtual && locais.length > 1 && (
@@ -304,13 +340,13 @@ export function Programa() {
 
         {primeiro && (
           <div className="aviso-linha">
-            <p>{primeiro.linha}</p>
+            <p id="aviso-linha-t">{primeiro.linha}</p>
             {primeiro.acao ? (
               <button type="button" className="btn sec pequeno" onClick={primeiro.acao.fazer}>
                 {primeiro.acao.rotulo}
               </button>
             ) : (
-              <button type="button" className="btn sec pequeno" aria-haspopup="dialog" onClick={() => setVerAvisos(true)}>
+              <button type="button" className="btn sec pequeno" aria-haspopup="dialog" aria-describedby="aviso-linha-t" onClick={() => setVerAvisos(true)}>
                 Ver
               </button>
             )}
@@ -336,32 +372,6 @@ export function Programa() {
           {aviso}
         </p>
         {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
-        <AvisoInstalar />
-
-        <div className="abas" role="tablist" aria-label="Dias de treino">
-          {diasDaSemana.map((d, i) => (
-            <button
-              key={d.id}
-              type="button"
-              role="tab"
-              id={`aba-${d.id}`}
-              aria-selected={d === diaDoPrograma}
-              aria-controls={`painel-${d.id}`}
-              tabIndex={d === diaDoPrograma ? 0 : -1}
-              onClick={() => setDiaSel(i)}
-              onKeyDown={(e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
-                  setDiaSel(n);
-                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
-                }
-              }}
-            >
-              {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
-              {d.nome.slice(prefixoAbas.length)}
-            </button>
-          ))}
-        </div>
 
         <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
           <ol className="cartoes-ex">
@@ -379,8 +389,11 @@ export function Programa() {
           </ol>
         </section>
 
-        {/* R5c (B2; treino.leitura): o vocabulário do treino, aberto até o 1º treino; e o lembrete de cópia (dados.copia) */}
-        <ComoLer aberto={!estado.historico.some((h) => h.fim)} iniciante={perfil!.nivel === 'iniciante'} />
+        {/* o convite para instalar (iPhone) vem depois dos exercícios: na 1ª tela, o treino de hoje */}
+        <AvisoInstalar />
+
+        {/* R5c (B2; treino.leitura): o vocabulário do treino, a um toque; e o lembrete de cópia (dados.copia) */}
+        <ComoLer iniciante={perfil!.nivel === 'iniciante'} />
         {!estado.sessaoAtual && <LembreteCopia estado={estado} />}
 
         <Sobre
@@ -407,8 +420,11 @@ export function Programa() {
             </Link>
           ) : (
             <button type="button" className="btn" onClick={iniciar}>
-              Começar o treino {dia.nome}
-              {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
+              {/* um bloco só de texto: o botão é uma linha flexível, e pedaços soltos virariam colunas */}
+              <span>
+                Começar o treino <span className="so-largo">{dia.nome}</span>
+                {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
+              </span>
             </button>
           )}
         </div>
@@ -508,9 +524,10 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
       <ul className="opcoes-ajuste">
         {opcoes.map((o) => (
           <li key={o.id + o.titulo}>
-            <button type="button" className="opcao-ajuste" onClick={() => escolher(o)}>
+            <button type="button" className="opcao-ajuste com-seta" onClick={() => escolher(o)}>
               <b>{o.titulo}</b>
               <span>{o.texto}</span>
+              <Icone nome="chevron-right" />
             </button>
           </li>
         ))}
@@ -540,6 +557,8 @@ function LinhaExercicio({
   aoPreferir: (funcao: string, id: string) => void;
 }) {
   const [aberta, setAberta] = useState(false);
+  // a resposta do "Prefiro" aparece dentro da folha (a mensagem da página fica atrás do véu)
+  const [preferiu, setPreferiu] = useState(false);
   const ex = POR_ID[x.exId];
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const prescricao = (
@@ -557,7 +576,7 @@ function LinhaExercicio({
           <span className="series">{prescricao}</span>
         </span>
         <span className="seta" aria-hidden="true">
-          ›
+          <Icone nome="chevron-right" />
         </span>
       </button>
       {aberta && (
@@ -567,9 +586,9 @@ function LinhaExercicio({
             <div>
               <p className="series">{prescricao}</p>
               <p className="sub-rx">
-                RIR {faixa(x.rir)} · descanso {tempo(x.descansoSeg)}
-                {par && ' · bi-set'}
-                {x.dropSet && ' · última série em drop set'}
+                <span className="nw">RIR {faixa(x.rir)}</span> <span className="nw">· descanso {tempo(x.descansoSeg)}</span>
+                {par && <span className="nw"> · bi-set</span>}
+                {x.dropSet && <span className="nw"> · última série em drop set</span>}
               </p>
             </div>
           </div>
@@ -587,21 +606,36 @@ function LinhaExercicio({
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-          <h3 className="rotulo">Por que este exercício</h3>
-          <ul className="lista">
-            {x.porque.map((q) => (
-              <li key={q.regraId}>
-                {q.texto} <Selo id={q.regraId} />
-              </li>
-            ))}
-          </ul>
+          {/* o que se faz na folha (trocar, preferir, ver a evolução) vem antes do que se lê (o porquê) */}
           {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
-          <Preferencias funcao={x.funcao} atual={x.exId} alternativas={x.alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
+          <Preferencias
+            funcao={x.funcao}
+            atual={x.exId}
+            alternativas={x.alternativas}
+            preferidos={preferidos}
+            aoPreferir={(f, id) => {
+              aoPreferir(f, id);
+              setPreferiu(true);
+            }}
+          />
+          <p role="status" className="status">
+            {preferiu ? 'Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.' : ''}
+          </p>
           {comHistorico && (
-            <Link className="btn ter" to={`/evolucao/${x.exId}`}>
+            <Link className="btn ter" to={`/evolucao/${x.exId}?de=programa`}>
               Ver a evolução deste exercício
             </Link>
           )}
+          <details className="box dobra">
+            <summary>Por que este exercício ({x.porque.length === 1 ? '1 motivo' : `${x.porque.length} motivos`})</summary>
+            <ul className="lista">
+              {x.porque.map((q) => (
+                <li key={q.regraId}>
+                  {q.texto} <Selo id={q.regraId} />
+                </li>
+              ))}
+            </ul>
+          </details>
         </Folha>
       )}
     </li>
@@ -631,7 +665,7 @@ function Sobre({
       <button type="button" className="linha-sobre" aria-haspopup="dialog" onClick={() => setAberta(true)}>
         Sobre o programa
         <span className="seta" aria-hidden="true">
-          ›
+          <Icone nome="chevron-right" />
         </span>
       </button>
       {aberta && (
@@ -650,15 +684,21 @@ function Sobre({
             <b>{programa.divisao}.</b>
           </p>
           {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
-          {programa.avisos.length > 0 && <h3>Avisos</h3>}
-          {programa.avisos.map((a, i) => (
-            <div key={i} className="warnbox">
-              {a.texto} <Selo id={a.regraId} />
-            </div>
-          ))}
+          {programa.avisos.length > 0 && (
+            <details className="box dobra">
+              <summary>Avisos ({programa.avisos.length})</summary>
+              <div className="avisos-lista">
+                {programa.avisos.map((a, i) => (
+                  <div key={i} className="warnbox">
+                    {a.texto} <Selo id={a.regraId} />
+                  </div>
+                ))}
+              </div>
+            </details>
+          )}
           {programa.fases.length > 0 && (
-            <>
-              <h3>Fases</h3>
+            <details className="box dobra">
+              <summary>Fases ({programa.fases.length})</summary>
               <ul className="lista">
                 {programa.fases.map((f) => (
                   <li key={f.semanas}>
@@ -666,17 +706,20 @@ function Sobre({
                   </li>
                 ))}
               </ul>
-            </>
+            </details>
           )}
-          <h3>Por que este programa</h3>
-          <ul className="lista">
-            {programa.porque.map((q) => (
-              <li key={q.regraId}>
-                {q.texto} <Selo id={q.regraId} />
-              </li>
-            ))}
-          </ul>
-          <h3>Séries por músculo na semana</h3>
+          <details className="box dobra">
+            <summary>Por que este programa ({programa.porque.length})</summary>
+            <ul className="lista">
+              {programa.porque.map((q) => (
+                <li key={q.regraId}>
+                  {q.texto} <Selo id={q.regraId} />
+                </li>
+              ))}
+            </ul>
+          </details>
+          <details className="box dobra">
+            <summary>Séries por músculo na semana</summary>
           <p className="ajuda">
             Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
           </p>
@@ -701,6 +744,7 @@ function Sobre({
               ))}
             </tbody>
           </table>
+          </details>
           {reabrirAjustes && (
             <button
               type="button"
@@ -721,30 +765,36 @@ function Sobre({
 
 /** Alternativas da mesma função: as 3 melhores à mostra e o resto em "ver mais" (decisão de 01/11/2026). */
 function Alternativas({ ids, diaId, vaga }: { ids: string[]; diaId: string; vaga: string }) {
-  const nome = (id: string) => {
-    const alt = POR_ID[id];
-    if (!alt) return null;
-    return alt.animacaoId ? (
-      <Link to={linkDoGuia(alt.animacaoId, { de: 'programa', diaId, exId: alt.id, vaga })}>{alt.nome.toLowerCase()}</Link>
-    ) : (
-      alt.nome.toLowerCase()
-    );
-  };
-  const lista = (xs: string[]) =>
-    xs.map((id, i) => (
-      <span key={id}>
-        {i > 0 && (i === xs.length - 1 ? ' ou ' : ', ')}
-        {nome(id)}
-      </span>
-    ));
+  // cada alternativa numa linha de toque inteira (48 px), com a seta quando leva ao guia dela
+  const lista = (xs: string[]) => (
+    <ul className="lista-alternativas">
+      {xs.map((id) => {
+        const alt = POR_ID[id];
+        if (!alt) return null;
+        return (
+          <li key={id}>
+            {alt.animacaoId ? (
+              <Link to={linkDoGuia(alt.animacaoId, { de: 'programa', diaId, exId: alt.id, vaga })}>
+                {alt.nome}
+                <Icone nome="chevron-right" />
+              </Link>
+            ) : (
+              <span>{alt.nome}</span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
   const [mostra, resto] = [ids.slice(0, ALTERNATIVAS_A_MOSTRA), ids.slice(ALTERNATIVAS_A_MOSTRA)];
   return (
     <div className="alternativas">
-      <p>Se o equipamento estiver ocupado: {lista(mostra)}.</p>
+      <p className="rotulo">Se o equipamento estiver ocupado</p>
+      {lista(mostra)}
       {resto.length > 0 && (
         <details className="ver-mais">
           <summary>Ver mais {resto.length === 1 ? '1 opção' : `${resto.length} opções`}</summary>
-          <p>{lista(resto)}.</p>
+          {lista(resto)}
         </details>
       )}
     </div>

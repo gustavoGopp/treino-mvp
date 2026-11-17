@@ -32,10 +32,10 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Academia');
 
   // 3. Onde vou treinar hoje: um toque; a prévia mostra cada troca com o motivo.
-  // lote 5 do redesign: Locais tem a barra de baixo, com Meus dados aceso, e "‹ Meus dados" no alto
+  // lote 5 do redesign: Locais tem a barra de baixo, com Meus dados aceso, e o voltar "Meus dados" no alto
   const nav = page.getByRole('navigation', { name: 'Seções' });
   await expect(nav.getByRole('link', { name: 'Meus dados' })).toHaveAttribute('aria-current', 'page');
-  await expect(page.getByRole('link', { name: '‹ Meus dados' })).toBeVisible();
+  await expect(page.locator('header.top').getByRole('link', { name: 'Meus dados', exact: true })).toBeVisible();
   await nav.getByRole('link', { name: 'Treino' }).click();
   const onde = page.getByRole('group', { name: 'Onde vou treinar hoje?' });
   await expect(onde.getByRole('button', { name: 'Meu local' })).toHaveAttribute('aria-pressed', 'true');

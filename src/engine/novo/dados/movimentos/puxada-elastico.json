@@ -1,0 +1,274 @@
+{
+ "id": "puxada-elastico",
+ "nome": "Puxada com elástico ancorado no alto",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/puxada-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/puxada-elastico.md): consenso de treinadores; o corpo ajoelhado e o caminho do braço são os da puxada-unilateral aprovada",
+  "app": "Texto do app (src/conteudo/exercicios/puxada-elastico.json)",
+  "unilateral": "Ficha de movimento da puxada unilateral ajoelhado (src/engine/novo/dados/movimentos/puxada-unilateral.json): o corpo ajoelhado, o braço e os erros",
+  "hoje": "A animação de hoje (src/engine/exercicios/puxada-elastico.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol) e src/engine/novo/dados/objetos/porta.json (porta e âncora de porta)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco": {
+   "v": -6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "tronco reto ou levemente inclinado para trás"
+  },
+  "joelhos.meiaDistancia": {
+   "v": 8.7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "joelhos na largura do quadril"
+  },
+  "cotovelo.alongado": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "início: braços estendidos para cima e um pouco à frente (o da puxada unilateral)"
+  },
+  "ombro.sobe": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "alongado: deixe os ombros subirem (elevação da clavícula além do ritmo normal)"
+  },
+  "ombro.desce": {
+   "v": -6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "fim: ombros para baixo"
+  },
+  "braco.fim.atras": {
+   "v": 6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "fim: cotovelos ao lado das costelas, um pouco atrás do tronco"
+  },
+  "braco.fim.fora": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "unilateral",
+   "o": "fim: o braço um pouco afastado do tronco, para o cotovelo passar ao lado das costelas"
+  },
+  "ancora.noTopo": {
+   "v": 1,
+   "un": "sim",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "o meio do elástico preso no topo de uma porta fechada, com a âncora de porta do lado de lá"
+  },
+  "elastico.esticaNoInicio": {
+   "v": 1.12,
+   "un": "vezes",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "com os braços estendidos, o elástico já um pouco esticado: a distância até a porta sai daqui (\"a cerca de um passo\")"
+  },
+  "elastico.noQuadro": {
+   "v": 38,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "quanto do tubo, a partir de cada mão, fica no enquadramento; dali até a porta, ele é cenário (sai pela borda do quadro)"
+  },
+  "colchonete.z": {
+   "v": -20,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o meio do colchonete, sob os joelhos e as canelas"
+  },
+  "erro.tronco": {
+   "v": -30,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "unilateral",
+   "o": "erro: jogar o tronco para trás"
+  },
+  "erro.encolher": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "unilateral",
+   "o": "erro: os ombros continuam encolhidos no fim"
+  },
+  "erro.curta": {
+   "v": 0.45,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "unilateral",
+   "o": "erro: volta só até a metade"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "ombros sobem",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.0,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Fim",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "o elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "joelho.R",
+  "joelho.L",
+  "pe.R",
+  "pe.L"
+ ],
+ "regras": [
+  {
+   "id": "ombro-desce",
+   "pede": "primeiro os ombros descem: no fim, mais baixos que no alongado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "tronco-quase-parado",
+   "pede": "tronco parado, sem jogar para trás",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-puxada-cotovelos-nas-costelas",
+   "pede": "fim: cotovelos ao lado das costelas, mãos perto dos ombros",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-antebraco-na-linha-do-elastico",
+   "pede": "o antebraço segue a linha do elástico, que puxa a mão para a âncora",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o tubo vai das mãos à âncora sem entrar no corpo",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "uma ponta em cada mão",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "tronco",
+   "instante": 1,
+   "titulo": "Jogar o tronco para trás",
+   "vista": "lateral",
+   "oQueMuda": "o tronco inclina 30° para trás no fim",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "encolher",
+   "instante": 1,
+   "titulo": "Ombros encolhidos",
+   "vista": "posterior",
+   "oQueMuda": "os ombros continuam encolhidos no fim",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "acromioclavicular:R",
+    "acromioclavicular:L"
+   ],
+   "foco": "acromioclavicular:R"
+  },
+  {
+   "id": "curta",
+   "instante": 0,
+   "titulo": "Não alongar em cima",
+   "vista": "lateral",
+   "oQueMuda": "volta só até a metade",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "tronco parado",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "posterior",
+   "texto": "ombros descem primeiro",
+   "ponto": "acromioclavicular",
+   "selo": "consenso",
+   "fonte": "app",
+   "seta": {
+    "de": "acromioclavicular",
+    "desce": 10
+   }
+  }
+ ]
+}

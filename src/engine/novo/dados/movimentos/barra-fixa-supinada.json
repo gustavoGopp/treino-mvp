@@ -1,0 +1,458 @@
+{
+ "id": "barra-fixa-supinada",
+ "nome": "Barra fixa com pegada supinada",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/barra-fixa-supinada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/barra-fixa-supinada.md): consenso de treinadores: palmas viradas para você, mãos mais ou menos na largura dos ombros; na subida, os cotovelos descem à frente do corpo, rentes às costelas; pendurado com os braços estendidos, primeiro as escápulas descem; topo com o queixo acima da barra, peito perto dela, tronco um pouco inclinado para trás; pernas juntas, joelhos levemente dobrados, sem balanço (a mesma sequência da barra-fixa aprovada)",
+  "pesquisa": "docs/pesquisa/08-tecnica-guia.md, conclusão 2, e a ficha da supinada: a pegada muda pouco o dorsal (moderada, EMG: youdas2010, dickie2017); a supinada fica mais fechada que a pronada, mais ou menos na largura dos ombros (consenso)",
+  "app": "Texto do app (src/conteudo/exercicios/barra-fixa-supinada.json): \"mais ou menos na largura dos ombros, palmas viradas para você\", as fases e os tempos (~1–1,5 s subindo, ~2–3 s descendo), as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/barra-fixa-supinada.ts) e a barra fixa pronada do motor novo (lote 4): as distâncias e os ângulos que a ficha não dá em número",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pegada.largura": {
+   "v": 1.0,
+   "un": "vezes a largura dos ombros",
+   "selo": "consenso",
+   "fonte": "pesquisa",
+   "o": "de centro a centro das mãos, 1 vez a largura entre os acrômios: \"mais ou menos na largura dos ombros\" (hoje: 42 cm, cerca de 1,1×)"
+  },
+  "barra.z": {
+   "v": 0,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "onde fica a barra na cena (só posiciona a cena)"
+  },
+  "cotovelo.embaixo": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "embaixo, os braços estendidos sem travar: o cotovelo dobra 8°"
+  },
+  "escapula.pendurado": {
+   "v": 4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "pendurado, os ombros sobem um pouco com os braços no alto, sem despencar: a clavícula sobe 4° além do ritmo do ombro (hoje: +6)"
+  },
+  "escapula.encaixada": {
+   "v": -6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "as escápulas descem antes de o braço dobrar: a clavícula desce 6° abaixo do ritmo do ombro (hoje: −1)"
+  },
+  "escapula.topo": {
+   "v": -8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, os ombros continuam baixos, longe das orelhas (hoje: −3)"
+  },
+  "escapula.prot.topo": {
+   "v": -6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, as escápulas vão um pouco para trás (o peito vai à barra; hoje: −4)"
+  },
+  "escapulas.fim": {
+   "v": 0.3,
+   "un": "fração da subida",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "as escápulas descem no primeiro trecho da subida (até 30% dela), antes de o braço dobrar"
+  },
+  "puxada.inicio": {
+   "v": 0.24,
+   "un": "fração da subida",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os braços começam a puxar quando a descida das escápulas está quase no fim (24% da subida): os dois trechos se emendam sem parar"
+  },
+  "inclina.fim": {
+   "v": 0.65,
+   "un": "fração da subida",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tronco termina de ir para trás (e a cabeça de recuar) a 65% da subida, antes de o rosto chegar à altura da barra: a cabeça passa atrás dela"
+  },
+  "queixo.acima": {
+   "v": 3,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "no topo, o queixo passa 3 cm do alto da barra"
+  },
+  "bacia.topo": {
+   "v": -6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, o corpo inclina um pouco para trás: a bacia gira 6° para trás"
+  },
+  "toracica.topo": {
+   "v": -10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, o peito abre e vai à barra: a torácica estende 10° (hoje: −14)"
+  },
+  "lombar.topo": {
+   "v": -4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, a lombar estende 4° (hoje: −10)"
+  },
+  "pescoco.topo": {
+   "v": -8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "no topo, o pescoço estende um pouco e a cabeça vai para trás para passar da barra, olhando em frente"
+  },
+  "quadril": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "pés um pouco à frente do corpo: o quadril dobra 12° (hoje: 10°)"
+  },
+  "joelho": {
+   "v": 24,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "joelhos levemente dobrados: 24° (hoje: 24°)"
+  },
+  "quadril.topo": {
+   "v": 26,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, o quadril dobra 26°: os pés vão um pouco mais à frente e equilibram o tronco, que vai para trás (hoje: 16°)"
+  },
+  "joelho.topo": {
+   "v": 32,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, o joelho dobra 32° (hoje: 34°)"
+  },
+  "pe.plantar": {
+   "v": 30,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os pés soltos, a ponta um pouco esticada (30° além do ângulo reto com a canela)"
+  },
+  "pernas.juntas": {
+   "v": 3,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "pernas juntas: cada coxa vem 3° para o meio"
+  },
+  "polo.pendurado.fora": {
+   "v": -0.1,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "pendurado, o cotovelo aponta para a frente e um pouco para dentro: com a palma virada para você, a supinação do antebraço fica em ~90° (com o cotovelo para fora, como hoje, 0,35, passava de 109°, além da média da tabela)"
+  },
+  "polo.pendurado.cima": {
+   "v": -0.3,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "pendurado, o cotovelo aponta um pouco para baixo (hoje: −0,3)"
+  },
+  "polo.pendurado.frente": {
+   "v": 1.0,
+   "un": "fração",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "pegada supinada: o cotovelo aponta para a frente (hoje: 1)"
+  },
+  "polo.topo.fora": {
+   "v": -0.1,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "no topo, o cotovelo não abre: fica rente às costelas (hoje: 0,2; com 0,2, a supinação passava de 100°)"
+  },
+  "polo.topo.cima": {
+   "v": -1.0,
+   "un": "fração",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "no topo, os cotovelos descem (hoje: −1)"
+  },
+  "polo.topo.frente": {
+   "v": 0.9,
+   "un": "fração",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "no topo, os cotovelos ficam à frente do corpo, rentes às costelas (hoje: 0,9)"
+  },
+  "erro.meia.cotovelo": {
+   "v": 75,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: embaixo, o cotovelo fica dobrado 75° (meia repetição)"
+  },
+  "erro.encolher.elev": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: os ombros sobem até as orelhas (a clavícula sobe 12° além do ritmo do ombro; hoje: +7)"
+  },
+  "erro.encolher.pescoco": {
+   "v": -24,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o pescoço estica para passar o queixo (hoje: −30)"
+  },
+  "erro.encolher.cabeca": {
+   "v": -10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o queixo vai para cima"
+  },
+  "erro.encolher.queixo": {
+   "v": 0,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o queixo só chega ao alto da barra, com o corpo mais baixo"
+  },
+  "erro.balanco.quadril": {
+   "v": 70,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o chute leva o quadril a 70° no meio da subida"
+  },
+  "erro.balanco.joelho": {
+   "v": 85,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no chute, o joelho dobra 85°"
+  },
+  "erro.balanco.lombar": {
+   "v": -14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no começo, a lombar arqueia 14° para tomar impulso"
+  },
+  "erro.balanco.z": {
+   "v": 10,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o balanço tira o corpo do prumo: o centro de massa vai 10 cm à frente da barra no meio da subida"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Pendurado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "braços estendidos",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Escápulas descem e sobe · concêntrica",
+   "tipo": "conc",
+   "dur": 1.5,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1–1,5 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Topo",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.6,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2–3 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pegada.R",
+  "pegada.L"
+ ],
+ "regras": [
+  {
+   "id": "pendurado-maos-na-barra",
+   "pede": "as mãos fecham em volta da barra e não saem do lugar",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "pendurado-nao-atravessa-a-barra",
+   "pede": "o corpo (a cabeça, o peito) passa pela barra sem atravessá-la",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "pendurado-sem-balanco",
+   "pede": "corpo parado, sem balanço: o centro de massa fica na vertical da barra",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-pegada-supinada",
+   "pede": "palmas viradas para você, mãos mais ou menos na largura dos ombros",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-bracos-estendidos-embaixo",
+   "pede": "comece pendurado, com os braços estendidos",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-escapulas-descem-primeiro",
+   "pede": "primeiro as escápulas descem, depois os braços dobram",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-queixo-acima-da-barra",
+   "pede": "no topo, o queixo acima da barra e o peito perto dela",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-ombros-longe-das-orelhas",
+   "pede": "os ombros ficam longe das orelhas no topo (sem despencar embaixo)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "barra-fixa-cotovelos-a-frente",
+   "pede": "na subida, os cotovelos descem à frente do corpo, rentes às costelas",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "balanco",
+   "instante": 0.5,
+   "titulo": "Balanço (kipping)",
+   "vista": "lateral",
+   "oQueMuda": "as pernas chutam, a lombar arqueia e o corpo sai do prumo da barra para ganhar impulso",
+   "destaca": [
+    "pernas",
+    "corpo"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "joelho",
+    "tornozelo"
+   ],
+   "foco": "tornozelo"
+  },
+  {
+   "id": "meia",
+   "instante": 0,
+   "titulo": "Meia repetição embaixo",
+   "vista": "lateral",
+   "oQueMuda": "embaixo, o cotovelo fica dobrado: o braço não estende",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "encolher",
+   "instante": 1,
+   "titulo": "Ombros encolhidos no topo",
+   "vista": "posterior",
+   "oQueMuda": "os ombros sobem até as orelhas e o pescoço estica para o queixo passar",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "acromioclavicular:R",
+    "acromioclavicular:L"
+   ],
+   "foco": "acromioclavicular:R"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "posterior",
+   "texto": "ombros longe das orelhas",
+   "ponto": "acromioclavicular",
+   "selo": "consenso",
+   "fonte": "app",
+   "seta": {
+    "de": "acromioclavicular",
+    "desce": 6
+   }
+  },
+  {
+   "vista": "posterior",
+   "texto": "cotovelos rentes às costelas",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "palmas viradas para você",
+   "ponto": "pegada",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "peito na barra",
+   "ponto": "esternoclavicular",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

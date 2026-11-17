@@ -1,0 +1,25 @@
+{
+ "fontes": {
+  "trx-comeco": "TRX, How to Get Started With Your TRX Suspension Trainer; https://www.trxtraining.com/train/how-to-get-started-with-your-trx-suspension-trainer (lido em 15/11/2026): \"the bottom of the Suspension Anchor hangs at about six feet from the ground [...] This is the ideal height to perform all TRX exercises\"",
+  "trx-seis": "TRX, Six Procedures (material de treinamento do fabricante, PDF público hospedado pela Truman State University); https://recreation.truman.edu/files/2020/02/TRX-Six-Procedures-PDF.pdf (lido em 15/11/2026), procedimento 3, Heels in: \"Adjust the Suspension Trainer so the bottom of each foot cradle is at mid calf length or about eight to 12 inches off the ground\"",
+  "trx-pro4": "TRX, TRX PRO4 System; https://www.trxtraining.com/pages/trx-pro4-system (lido em 15/11/2026): \"TRX Suspension Anchor [...] Measuring at 38\\\" x 2\\\" x 0.5\\\"\" e \"Accommodating anchor heights of 7-9ft\""
+ },
+ "objetos": {
+  "suspensao": {
+   "nome": "Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé",
+   "medidas": {
+    "ancoraAltura": {"v": 182.9, "un": "cm", "tipo": "medida", "fonte": "trx-comeco", "onde": "onde a fita se prende (a ponta de baixo da fita de ancoragem, com o mosquetão): cerca de 6 pés do chão, a altura que o fabricante chama de ideal para todos os exercícios"},
+    "alcaAlturaMin": {"v": 20.3, "un": "cm", "tipo": "medida", "fonte": "trx-seis", "onde": "o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 8 pol do chão (o menor da faixa)"},
+    "alcaAlturaMax": {"v": 30.5, "un": "cm", "tipo": "medida", "fonte": "trx-seis", "onde": "o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 12 pol do chão (o maior da faixa)"},
+    "ancoraLarg": {"v": 5.1, "un": "cm", "tipo": "medida", "fonte": "trx-pro4", "onde": "largura da fita de ancoragem (Suspension Anchor): 2 pol"},
+    "ancoraComp": {"v": 96.5, "un": "cm", "tipo": "medida", "fonte": "trx-pro4", "onde": "comprimento da fita de ancoragem (Suspension Anchor): 38 pol; enrolada no ponto firme, só a ponta de baixo aparece"},
+    "fitaLarg": {"v": 3.8, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura de cada fita: a página do fabricante não traz (1,5 pol, a largura comum de fita de náilon)"},
+    "mosquetaoComp": {"v": 10, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento do mosquetão que liga a fita à âncora: a página do fabricante não traz"},
+    "pegadorComp": {"v": 14, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento do pegador de mão (espuma): a página do fabricante só diz \"padded handles\""},
+    "pegadorDiam": {"v": 3.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro do pegador de mão: a página do fabricante não traz"},
+    "bercoLarg": {"v": 9, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura do berço do pé (a alça onde entra o peito do pé): a página do fabricante não traz"},
+    "bercoAlt": {"v": 6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto o berço do pé desce abaixo do pegador, onde o peito do pé apoia: a página do fabricante não traz"}
+   }
+  }
+ }
+}

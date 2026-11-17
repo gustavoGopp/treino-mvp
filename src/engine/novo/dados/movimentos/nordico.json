@@ -1,0 +1,50 @@
+{
+ "id": "nordico",
+ "nome": "Flexão nórdica (nórdico)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/nordico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/nordico.md): calcanhares presos sob o assento de um sofá, tíbias no chão, joelhos numa almofada; ajoelhado, corpo reto (joelho, quadril e cabeça em linha), mãos na frente do peito; o corpo inteiro gira para a frente em torno dos joelhos, sem dobrar o quadril, devagar (4 s na animação, 3 a 5 s no texto); quando passa do ponto que se controla, as mãos tocam o chão e os cotovelos dobram, como numa flexão; volta empurrando o chão; consenso (P3, P6, tabela 5.3)",
+  "app": "Texto do app (src/conteudo/exercicios/nordico.json): a montagem, as dicas e os erros",
+  "hoje": "Animação de hoje (src/engine/exercicios/nordico.ts, aprovada): as fases, os tempos e os erros",
+  "objetos": "Tabela de objetos: o sofá (src/engine/novo/dados/objetos/sofa.json) e o colchonete (src/engine/novo/dados/objetos.json)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "almofada.amassa": { "v": 0.8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto o joelho e a canela afundam no colchonete dobrado ao meio (3 cm; a ficha: almofada ou colchonete dobrado sob os joelhos)" },
+  "calcanhar.sobOSofa": { "v": 7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o calcanhar fica 7 cm para dentro da borda da frente do sofá, debaixo da estrutura" },
+  "calcanhar.aperta": { "v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o alto do calcanhar aperta 0,5 cm contra a parte de baixo do sofá (preso)" },
+  "maos.peito": { "v": 22, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "mãos na frente do peito, prontas para apoiar: o punho 22 cm à frente da base do pescoço (a ficha não dá número)" },
+  "maos.aparam": { "v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "as mãos saem da frente do peito para o chão a partir de 30% do giro até o toque" },
+  "maos.alcance": { "v": 0.93, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "no toque, a mão fica a 93% do comprimento do braço mais o antebraço, a partir do ombro (cotovelo quase estendido)" },
+  "maos.aFrente": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no toque, o braço aponta 18° à frente da vertical" },
+  "embaixo.giro": { "v": 0.25, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "depois do toque, o corpo ainda gira um quarto do giro até o toque (~15°), com as mãos no chão e os cotovelos dobrando, como numa flexão (hoje: 14° de 58°)" },
+  "pescoco": { "v": -4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "a cabeça na linha do corpo, olhando um pouco à frente" },
+  "erro.quadril.coxa": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: a coxa gira só 45% do giro do corpo e fica mais em pé" },
+  "erro.quadril.tronco": { "v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o tronco cai 30° à frente da coxa (o quadril dobra)" },
+  "erro.desaba.ate": { "v": 0.3, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o corpo chega às mãos com 30% do tempo da descida (perde o controle no começo)" }
+ },
+ "fases": [
+  { "nome": "Ajoelhado", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto", "selo": "consenso", "fonte": "hoje" },
+  { "nome": "Descida lenta · excêntrica", "tipo": "exc", "dur": 4, "de": 0, "ate": 0.8, "respira": "INSPIRA", "tempo": "3–5 s no total", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Mãos amortecem", "tipo": "exc", "dur": 0.6, "de": 0.8, "ate": 1, "respira": "FIRME", "tempo": "como numa flexão", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Volta · empurra o chão", "tipo": "conc", "dur": 0.5, "de": 1, "ate": 0.8, "respira": "EXPIRA", "tempo": "as mãos ajudam", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Volta · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0.8, "ate": 0, "respira": "EXPIRA", "tempo": "volta a ajoelhar", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["joelho.R", "joelho.L", "pe.R", "pe.L"],
+ "regras": [
+  { "id": "nordico-corpo-reto", "pede": "o corpo inteiro gira em torno dos joelhos, sem dobrar o quadril: joelho, quadril e cabeça em linha", "selo": "consenso", "fonte": "ficha" },
+  { "id": "nordico-desce-devagar", "pede": "descida lenta: 3 a 5 s até as mãos", "selo": "consenso", "fonte": "ficha" },
+  { "id": "nordico-calcanhares-presos", "pede": "calcanhares presos sob o sofá", "selo": "consenso", "fonte": "ficha" },
+  { "id": "nordico-joelhos-na-almofada", "pede": "joelhos na almofada, tíbias no chão", "selo": "consenso", "fonte": "ficha" },
+  { "id": "nordico-maos-tocam-o-chao", "pede": "no fim da descida, as mãos tocam o chão", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "quadril", "instante": 0.8, "titulo": "Dobrar o quadril", "vista": "lateral", "oQueMuda": "a coxa fica mais em pé e o tronco cai para a frente", "destaca": ["corpo"], "linha": ["joelho", "quadril", "cabeca"], "foco": "quadril" },
+  { "id": "desaba", "instante": 0.3, "titulo": "Desabar no começo", "vista": "lateral", "oQueMuda": "o corpo cai nas mãos logo no começo da descida", "destaca": ["corpo"], "linha": ["joelho", "quadril", "cabeca"], "foco": "cabeca" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "corpo reto", "ponto": "cabeca", "selo": "consenso", "fonte": "app", "guia": ["joelho", "cabeca"] },
+  { "vista": "lateral", "texto": "calcanhares presos", "ponto": "calcanhar", "selo": "consenso", "fonte": "ficha" }
+ ]
+}

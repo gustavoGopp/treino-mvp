@@ -1,0 +1,50 @@
+{
+ "id": "panturrilha-chao",
+ "nome": "Panturrilha em pé no chão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-chao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-chao.md) e texto do app (src/conteudo/exercicios/panturrilha-chao.json): em pé, pés na largura do quadril, mãos na parede só para equilibrar, joelhos estendidos sem travar; consenso (nsca2021, não verificado)",
+  "nakamura2025": "Nakamura M et al. Eur J Appl Physiol 2025;125(9):2625–2635, PMID 40229595 (resumo lido no PubMed): subir com as duas pernas e descer em 3 s com uma só, com o peso do corpo, aumentou a espessura do músculo (um estudo; regra selecao.panturrilha-alongada e seção 'Uma perna de cada vez' da ficha da técnica)",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-chao.ts): o quanto o calcanhar sobe (de 7 a 19 cm do tornozelo ao chão, 12 cm), a parede a 44 cm à frente do tornozelo, as mãos a 128 cm do chão e 20 cm do meio do corpo, e os erros",
+  "equilibrio": "Na ponta dos pés, o apoio é só a bola do pé: o centro de massa (corpo + carga) tem de ficar sobre ela para o corpo subir reto, sem balançar para a frente (mecânica)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos estendidos, sem travar (a ficha não dá número: 4 graus de folga)"},
+  "calcanhar.topo": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "em cima, o calcanhar sobe o máximo: 12 cm acima do chão (o que a animação aprovada de hoje sobe); a ficha não dá número"},
+  "parede.aFrenteDaBola": {"v": 40, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "a face da parede fica 31 cm à frente da bola do pé (44 cm à frente do tornozelo, como hoje)"},
+  "maos.altura": {"v": 145, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "o centro das palmas na parede, a 128 cm do chão (como hoje)"},
+  "maos.meiaDistancia": {"v": 20, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "cada palma a 20 cm do meio do corpo (como hoje)"},
+  "livre.sobe": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "no topo, a bola do pé que sai do chão sobe 6 cm acima do pé de apoio ('tire um pé do chão'; a ficha não dá número)"},
+  "livre.atras": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o pé que sai do chão vai 12 cm para trás, com o joelho dobrado, para não encostar no outro"},
+  "erro.curta.fracao": {"v": 0.5, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o calcanhar sobe só a metade (como hoje)"},
+  "erro.joelho.flexao": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo os joelhos dobram 30 graus e esticam na subida, dando impulso (na animação de hoje o quadril cai 8,6 cm)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "os dois calcanhares no chão", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s, com as duas pernas", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo · segura", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segure 1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo · tira um pé", "tipo": "conc", "dur": 0.6, "de": 1, "ate": 2, "respira": "FIRME", "tempo": "tire um pé do chão", "selo": "um estudo", "fonte": "nakamura2025"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 3, "de": 2, "ate": 3, "respira": "INSPIRA", "tempo": "~3 s, numa perna só", "selo": "um estudo", "fonte": "nakamura2025"},
+  {"nome": "Embaixo · volta o pé", "tipo": "conc", "dur": 0.6, "de": 3, "ate": 4, "respira": "INSPIRA", "tempo": "volte o outro pé", "selo": "um estudo", "fonte": "nakamura2025"}
+ ],
+ "contatos": ["pe.R"],
+ "regras": [
+  {"id": "joelhos-estendidos-na-panturrilha", "pede": "os joelhos ficam estendidos, sem travar, e parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhar-sobe-o-maximo", "pede": "em cima, o calcanhar sobe o máximo (12 cm acima do apoio)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-sobre-a-bola-do-pe", "pede": "o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "maos-paradas-no-apoio", "pede": "as mãos na parede só equilibram: ficam paradas", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "curta", "instante": 1, "titulo": "Subida curta", "vista": "lateral", "oQueMuda": "o calcanhar sobe só a metade", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
+  {"id": "joelho", "instante": 0, "titulo": "Dobrar os joelhos", "vista": "lateral", "oQueMuda": "embaixo os joelhos dobram e esticam na subida, dando impulso", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "sobe com as duas", "ponto": "calcanhar:R", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "quinaTras", "texto": "joelhos estendidos", "ponto": "joelho:R", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "quinaTras", "texto": "desce com uma, em 3 s", "ponto": "calcanhar:R", "selo": "um estudo", "fonte": "nakamura2025"},
+  {"vista": "lateral", "texto": "mãos só equilibram", "ponto": "pegada:R", "selo": "consenso", "fonte": "ficha"}
+ ]
+}

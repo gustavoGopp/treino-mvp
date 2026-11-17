@@ -1,0 +1,61 @@
+{
+ "id": "abdominal-bola",
+ "nome": "Abdominal na bola suíça (crunch)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-bola.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-bola.md): consenso de treinadores (B.2.6; nsca2021, não verificado); a técnica do abdômen é a do abdominal no chão aprovado",
+  "app": "Texto do app (src/conteudo/exercicios/abdominal-bola.json), que sai da ficha",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-bola.ts): as distâncias que a ficha não dá em número",
+  "chao": "Ficha de movimento do abdominal no chão do motor novo (dados/movimentos/abdominal-chao.json): a mesma técnica do tronco, do pescoço e das mãos",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pelve.frente": {"v": -80, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "a bacia inclina 80° para trás: o glúteo fica na frente da bola, as coxas descem um pouco até os joelhos e o tronco fica quase deitado sobre a bola (\"bola sob a parte de baixo das costas\")"},
+  "lombar.base": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a lombar na curva de repouso, apoiada no alto da bola"},
+  "bola.lombar": {"v": 15, "un": "cm", "selo": "desenho", "fonte": "ficha", "o": "o meio da lombar (L3) fica 15 cm à frente do centro da bola (para o lado dos pés): a bola sob a parte de baixo das costas, e as costas encostam nela da lombar às escápulas"},
+  "bola.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "app", "o": "a bola cheia amassa 1 cm sob as costas (a pele entra 1 cm na esfera desenhada); a ficha não dá número"},
+  "toracica.base": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "embaixo, a parte de cima das costas estende 10° além da curva de repouso, acompanhando a curva da bola (\"o tronco começa um pouco estendido sobre ela\")"},
+  "toracica.topo": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "chao", "o": "no topo, a parte de cima das costas enrola 45° a partir da posição de baixo"},
+  "lombar.topo": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "no topo, a lombar dobra mais 5° (\"aproximando as costelas do quadril\"); ela continua na bola"},
+  "cervical.base": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o pescoço 5° dobrado a partir do pescoço reto de quem está em pé: a cabeça não cai para trás"},
+  "cervical.topo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "chao", "o": "no topo, o pescoço acompanha o tronco: 8° a partir do pescoço reto, como no abdominal no chão"},
+  "cabeca.topo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "chao", "o": "no topo, a cabeça dobra 5° sobre o pescoço (o queixo levemente recolhido)"},
+  "canela.aFrente": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés no chão, joelhos dobrados (a ficha não dá o ângulo): o pé fica com o tornozelo sob o joelho (a canela em pé), o que serve aos dois corpos"},
+  "maos.x": {"v": -1, "un": "cm", "selo": "desenho", "fonte": "chao", "o": "mãos cruzadas no peito: as mesmas medidas do abdominal no chão"},
+  "maos.y": {"v": -25, "un": "cm", "selo": "desenho", "fonte": "chao", "o": "mãos cruzadas no peito: o punho 25 cm abaixo da base do pescoço"},
+  "maos.abaixo": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "chao", "o": "o punho esquerdo 3 cm abaixo do direito"},
+  "maos.acima": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "chao", "o": "o antebraço esquerdo por cima do direito"},
+  "maos.poloFora": {"v": 1.5, "un": "fração", "selo": "desenho", "fonte": "chao", "o": "para onde o cotovelo aponta: para fora"},
+  "maos.poloPes": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "chao", "o": "para onde o cotovelo aponta: para os pés"},
+  "maos.poloTras": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "chao", "o": "para onde o cotovelo aponta: para as costas"},
+  "erro.pescoco.toracica": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: as escápulas mal saem da bola (a torácica enrola 30% do certo)"},
+  "erro.pescoco.cervical": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o pescoço dobra 30° a partir do pescoço reto (junto com erro.pescoco.cabeca)"},
+  "erro.pescoco.cabeca": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a cabeça dobra mais 20° sobre o pescoço: o queixo vai ao peito"},
+  "erro.rola.anda": {"v": 14, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: as pernas empurram e a bola rola 14 cm para o lado da cabeça"},
+  "erro.rola.tronco": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o tronco sobe 20° em bloco, sem enrolar (a bacia gira com ele)"},
+  "erro.senta.quadril": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o quadril dobra 15° e o tronco sobe até quase sentar"}
+ },
+ "fases": [
+  {"nome": "Em cima da bola", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "costas na curva", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo · contrai", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "abdominal-bola-lombar-na-bola", "pede": "a bola sob a parte de baixo das costas, parada; o corpo apoia sem atravessá-la", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-bola-escapulas-saem-da-bola", "pede": "embaixo, as costas acompanham a curva da bola; no topo, as escápulas fora da bola, sem sentar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-bola-cabeca-nao-cai", "pede": "o pescoço acompanha o tronco: a cabeça não cai para trás embaixo nem o queixo vai ao peito em cima", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maos-no-peito", "pede": "mãos cruzadas no peito, sem puxar a cabeça", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "pescoco", "instante": 1, "titulo": "Puxar o pescoço", "vista": "lateral", "oQueMuda": "o queixo vai ao peito e as escápulas mal saem da bola", "destaca": ["corpo"], "linha": ["lombar", "c7", "cabeca"], "foco": "cabeca"},
+  {"id": "rola", "instante": 1, "titulo": "Rolar a bola", "vista": "lateral", "oQueMuda": "as pernas empurram, a bola rola para o lado da cabeça e o tronco sobe em bloco, sem enrolar", "destaca": ["corpo", "pernas"], "linha": ["joelho", "pelve", "c7"], "foco": "c7"},
+  {"id": "senta", "instante": 1, "titulo": "Subir até sentar", "vista": "lateral", "oQueMuda": "o quadril dobra e o tronco sobe até quase sentar; a lombar sai da bola", "destaca": ["corpo"], "linha": ["joelho", "pelve", "lombar", "c7"], "foco": "c7"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "enrola o tronco", "ponto": "cabeca", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "pescoço solto", "ponto": "cabeca", "selo": "consenso", "fonte": "app"}
+ ]
+}

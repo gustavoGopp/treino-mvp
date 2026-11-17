@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "nbr9077": "ABNT NBR 9077:2001, Saídas de emergência em edifícios, na cópia pública do Ministério Público do RJ; https://www.mprj.mp.br/documents/20184/74453/nbr_9077_saidas_de_emergencia_em_edificios_2001.pdf (lido em 15/11/2026). 4.7.3.1: \"a) ter altura h [...] compreendida entre 16,0 cm e 18,0 cm [...]; b) ter largura b [...] dimensionada pela fórmula de Blondel: 63 cm ≤ (2h + b) ≤ 64 cm\". 4.8.2.1: \"Os corrimãos devem estar situados entre 80 cm e 92 cm acima do nível do piso, sendo, em escadas, esta medida tomada verticalmente\" (da linha que une as quinas dos degraus, 4.8.1.2). 4.8.2.3: \"No caso de secção circular, seu diâmetro varia entre 38 mm e 65 mm\""
+ },
+ "objetos": {
+  "escada": {
+   "nome": "Escada reta com corrimão (os primeiros degraus)",
+   "medidas": {
+    "degrauAltura": { "v": 17, "un": "cm", "tipo": "medida", "fonte": "nbr9077", "onde": "altura h do degrau: o meio da faixa de 16 a 18 cm" },
+    "degrauPiso": { "v": 29.5, "un": "cm", "tipo": "derivada", "fonte": "nbr9077", "onde": "largura b do degrau pela fórmula de Blondel, no meio da faixa: 2 × 17 + b = 63,5 cm" },
+    "larg": { "v": 90, "un": "cm", "tipo": "desenho", "fonte": "nbr9077", "onde": "largura da escada: a norma pede no mínimo 80 cm (uma unidade de passagem); o valor exato é escolha de desenho" },
+    "corrimaoAltura": { "v": 86, "un": "cm", "tipo": "medida", "fonte": "nbr9077", "onde": "o corrimão acima da linha das quinas dos degraus: o meio da faixa de 80 a 92 cm" },
+    "corrimaoDiam": { "v": 4.5, "un": "cm", "tipo": "medida", "fonte": "nbr9077", "onde": "diâmetro do corrimão: dentro da faixa de 38 a 65 mm" },
+    "degraus": { "v": 3, "un": "un", "tipo": "desenho", "fonte": "nbr9077", "onde": "quantos degraus o quadro mostra (só os primeiros: o resto da escada sai do quadro)" },
+    "montanteLado": { "v": 3, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "seção dos montantes que sustentam o corrimão: a norma não dá" }
+   }
+  }
+ }
+}

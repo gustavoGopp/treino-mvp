@@ -1,0 +1,254 @@
+{
+ "id": "flexao-bola",
+ "nome": "Flexão de joelho na bola suíça",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-bola.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/flexao-bola.md e no texto do app: consenso de treinadores",
+  "hoje": "Animação de hoje (src/engine/exercicios/flexao-bola.ts, port do guia original, aprovada): distâncias que a ficha não dá em número",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.inicio": {
+   "v": 6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "guia",
+   "o": "começo: pernas estendidas (sem travar o joelho; o número é de desenho)"
+  },
+  "joelho.fim": {
+   "v": 90,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "guia",
+   "o": "fim: joelhos a ~90°, pés apoiados em cima da bola"
+  },
+  "bracos.abertura": {
+   "v": 30,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "guia",
+   "o": "braços no chão, abertos ~30° do corpo, palmas para baixo"
+  },
+  "bracos.alcance": {
+   "v": 0.97,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a mão fica a 97% do comprimento do braço mais o antebraço, a partir do ombro: o cotovelo quase estendido, sem travar"
+  },
+  "erro.volta.folga": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: na volta, o quadril desce até ficar a 1 cm do chão (encosta)"
+  },
+  "erro.curta.fracao": {
+   "v": 0.45,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: puxa só até 45% do caminho (o joelho para longe de 90°)"
+  },
+  "pe.afundaNaBola": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé afunda 1 cm na bola onde apoia (a bola cheia cede um pouco sob o calcanhar e a sola)"
+  },
+  "ombro.z": {
+   "v": -40,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)"
+  },
+  "erro.quadril.sobe": {
+   "v": 0.15,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a bacia sobe só 15% do que sobe no certo; o quadril dobra para o pé chegar à bola"
+  },
+  "bola.alemDoCalcanhar": {
+   "v": 7,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "com as pernas estendidas, o calcanhar apoia 7 cm atrás do alto da bola (do lado do corpo), e a panturrilha passa por cima dela; no fim, o pé deita no alto da bola"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Pernas estendidas",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "quadril alto",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.0,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "nome": "Joelhos a ~90°",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "segura",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "guia"
+  }
+ ],
+ "contatos": [
+  "mao.R",
+  "mao.L"
+ ],
+ "regras": [
+  {
+   "id": "bola-linha-no-inicio",
+   "pede": "começo: ombros, quadril e calcanhares em linha",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "em-linha-no-fim",
+   "pede": "fim: ombros, quadril e joelhos em linha",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-joelhos-a-90",
+   "pede": "fim: joelhos a ~90°",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-quadril-sobe",
+   "pede": "a puxada sobe ainda mais o quadril",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-quadril-alto",
+   "pede": "o quadril não encosta no chão",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-costas-e-cabeca-no-chao",
+   "pede": "deitado de costas: as costas e a cabeça ficam apoiadas no chão, e os ombros não escorregam",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-pes-na-bola",
+   "pede": "calcanhares em cima da bola no começo; pés apoiados em cima dela no fim",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
+   "id": "bola-pernas-fora-da-bola",
+   "pede": "coxas e canelas não atravessam a bola",
+   "selo": "consenso",
+   "fonte": "guia"
+  }
+ ],
+ "erros": [
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Quadril cai ao puxar",
+   "vista": "lateral",
+   "oQueMuda": "o quadril dobra e desce quando os joelhos dobram",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "joelho"
+   ],
+   "foco": "quadril"
+  },
+  {
+   "id": "volta",
+   "instante": 0,
+   "titulo": "Quadril encosta no chão na volta",
+   "vista": "lateral",
+   "oQueMuda": "o quadril desce até o chão entre as repetições",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "calcanhar"
+   ],
+   "foco": "quadril"
+  },
+  {
+   "id": "curta",
+   "instante": 1,
+   "titulo": "Puxar pouco",
+   "vista": "lateral",
+   "oQueMuda": "para com os joelhos longe de 90°",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "quadril",
+    "joelho",
+    "tornozelo"
+   ],
+   "foco": "joelho"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "quadril alto",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "guia",
+   "guia": [
+    "ombro",
+    "joelho"
+   ]
+  },
+  {
+   "vista": "lateral",
+   "texto": "calcanhar no glúteo",
+   "ponto": "calcanhar",
+   "selo": "consenso",
+   "fonte": "guia"
+  }
+ ]
+}

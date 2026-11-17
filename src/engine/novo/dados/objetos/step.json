@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "lifespan-reebok-step": "Lifespan Fitness, Reebok Step (White & Black), seção de especificações; https://www.lifespanfitness.com.au/products/reebok-step-white-black (lido em 15/11/2026): \"Occupancy Size: 102 (L) x 38.5 (W) x 25 (H) (cm)\" e as três alturas reguláveis, 15, 20 e 25 cm",
+  "cartao-step": "Cartão de equipamento do step no app (scripts/desenhos-equipamento/realista/itens.mjs, `step`): dois apoios claros embaixo, a plataforma escura e o tapete de borracha na cor de ação por cima. As proporções das partes vêm daí; o total segue a ficha do fabricante"
+ },
+ "objetos": {
+  "step": {
+   "nome": "Step de academia (plataforma com dois apoios), na altura mais baixa",
+   "medidas": {
+    "comp": { "v": 102, "un": "cm", "tipo": "medida", "fonte": "lifespan-reebok-step", "onde": "comprimento (L): 102 cm; fica atravessado, de um lado ao outro da pessoa" },
+    "prof": { "v": 38.5, "un": "cm", "tipo": "medida", "fonte": "lifespan-reebok-step", "onde": "largura (W): 38,5 cm; é a profundidade de quem sobe nele" },
+    "altura": { "v": 15, "un": "cm", "tipo": "medida", "fonte": "lifespan-reebok-step", "onde": "a mais baixa das três alturas (15, 20 e 25 cm)" },
+    "tapeteEsp": { "v": 1.5, "un": "cm", "tipo": "desenho", "fonte": "cartao-step", "onde": "o tapete de borracha por cima da plataforma" },
+    "plataformaEsp": { "v": 5.5, "un": "cm", "tipo": "desenho", "fonte": "cartao-step", "onde": "a plataforma escura, sob o tapete" },
+    "apoioLarg": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "cartao-step", "onde": "cada um dos dois apoios claros embaixo da plataforma, perto das pontas" }
+   }
+  }
+ }
+}

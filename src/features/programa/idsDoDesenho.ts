@@ -22,5 +22,8 @@ export function comIdsUnicos(html: string, sufixo: string): string {
  * O estilo do `<svg>` que aponta o preenchimento das listras para o padrão deste desenho: a regra do CSS
  * (`.ea-mh{fill:var(--mh-listras, url(#mh-listras))}`) não tem como saber o id de cada um.
  */
-export const estiloDasListras = (sufixo: string): CSSProperties =>
-  ({ '--mh-listras': `url(#${ID_DAS_LISTRAS}-${sufixo.replace(/[^a-zA-Z0-9_-]/g, '')})` }) as CSSProperties;
+export const estiloDasListras = (sufixo: string): CSSProperties => {
+  const s = sufixo.replace(/[^a-zA-Z0-9_-]/g, '');
+  // `--b-listras`: o mesmo, para o padrão das listras do motor novo (`b-listras`)
+  return { '--mh-listras': `url(#${ID_DAS_LISTRAS}-${s})`, '--b-listras': `url(#b-listras-${s})` } as CSSProperties;
+};

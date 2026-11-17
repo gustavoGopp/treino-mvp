@@ -1,0 +1,70 @@
+{
+ "id": "remada-unilateral-polia",
+ "nome": "Remada unilateral na polia baixa, em pé, com estribo",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-unilateral-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral-polia.md): polia embaixo, estribo no mosquetão; passos para trás até a placa sair do lugar com o braço estendido; base escalonada com o pé do lado que puxa atrás; tronco inclinado à frente, costas retas, mão livre na coxa da frente; cotovelo para trás, em direção ao quadril, sem girar o tronco; consenso de treinadores (B.2.6; nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-unilateral-polia.json): começo com o braço estendido em direção à polia e o ombro alongado à frente; fim com a mão ao lado do quadril e o cotovelo passando a linha das costas; o tronco no mesmo lugar; ~1 s puxando, 1 s parado, ~2 s voltando; as dicas e os erros",
+  "hoje": "Animação de hoje (src/engine/exercicios/remada-unilateral-polia.ts), feita a partir da remada unilateral sem banco: o mesmo corpo parado, a polia baixa (20 cm) à frente e um pouco para o lado do braço que puxa, as escápulas (proR +6 no começo, −6 no fim) e o giro do erro (−18)",
+  "semBanco": "A ficha de movimento da remada unilateral sem banco (src/engine/novo/dados/movimentos/remada-unilateral-sem-banco.json): o mesmo corpo parado (pés, tronco, mão livre na coxa) e o mesmo fim do braço que puxa",
+  "objetos": "src/engine/novo/dados/objetos.json: a coluna de polia (polia no ponto mais baixo) e o estribo",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": { "v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "tronco inclinado à frente: o peito a 50° da vertical, parado a série toda (a ficha não dá número; na remada sem banco, 55°: aqui o cabo puxa a mão para a frente e, com o tronco mais deitado, ela não chegava ao lado do quadril, e a cabeça ficava em cima da coluna)" },
+  "cervical": { "v": -10, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente" },
+  "cabeca": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "cabeça na linha do pescoço" },
+  "pes.paraFora": { "v": 2, "un": "cm", "selo": "desenho", "fonte": "semBanco", "o": "de frente, cada pé 2 cm para fora da linha do quadril" },
+  "joelho.frente": { "v": 40, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o joelho da frente dobrado 40° (na remada sem banco, 30°: com o tronco a 50°, a mão livre só alcança a coxa com o quadril mais baixo); o pé vai para a frente até o joelho ficar nesse ângulo" },
+  "joelho.tras": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "a perna de trás quase estendida, sem travar" },
+  "pe.tras.calcanhar": { "v": 15, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "o pé de trás com o calcanhar um pouco levantado (15°), a bola do pé no chão" },
+  "pes.passo": { "v": 66, "un": "cm", "selo": "desenho", "fonte": "semBanco", "o": "base escalonada: 66 cm de um tornozelo ao outro, de frente para trás; daí sai a altura do quadril" },
+  "apoio.cotovelo": { "v": 12, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia" },
+  "polia.aFrente": { "v": 42, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "a roldana fica 42 cm à frente do ombro direito (hoje: ~50 cm): 'passos para trás até a placa sair do lugar com o braço estendido'. Mais longe, o cabo puxa a mão para a frente e ela não chega ao lado do quadril no fim" },
+  "polia.paraFora": { "v": 2, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "de frente, a roldana 2 cm para fora do ombro direito (hoje: a coluna um pouco para o lado do braço que puxa)" },
+  "cotovelo.inicio": { "v": 6, "un": "graus", "selo": "consenso", "fonte": "app", "o": "começo: braço estendido em direção à polia (o cotovelo dobra só 6°, sem travar)" },
+  "braco.fim.alemDasCostas": { "v": 22, "un": "graus", "selo": "consenso", "fonte": "app", "o": "fim: 'cotovelo passando a linha das costas': o braço fica 22° além da linha das costas (na remada sem banco, 26°; aqui o cabo puxa o antebraço para a frente e, com 26°, a mão terminava longe do quadril)" },
+  "braco.fim.fora": { "v": 14, "un": "graus", "selo": "consenso", "fonte": "semBanco", "o": "fim: cotovelo perto do corpo: o braço se afasta só 14° do lado do tronco, o bastante para a mão passar ao lado do quadril" },
+  "escapula.prot.inicio": { "v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "começo: 'ombro alongado à frente': a clavícula 8° à frente (hoje: +6)" },
+  "escapula.retr.fim": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "fim: a escápula se junta à coluna (−10, como na remada sem banco)" },
+  "escapula.elev.inicio": { "v": 1, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "começo: a escápula como na remada sem banco (+1)" },
+  "escapula.elev.fim": { "v": -1, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "fim: ombro baixo, longe da orelha (−1)" },
+  "erro.girar.giro": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (hoje: 18°)" },
+  "erro.girar.lombar": { "v": 0.35, "un": "fração", "selo": "desenho", "fonte": "semBanco", "o": "erro: quanto do giro fica na lombar (o resto na torácica)" },
+  "erro.arredondar.lombar": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "erro: a lombar curva 22° além da curva de repouso" },
+  "erro.arredondar.toracica": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "erro: a parte de cima das costas curva 22°" },
+  "erro.arredondar.cervical": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "semBanco", "o": "erro: o pescoço estende para o olhar não ir ao peito" },
+  "erro.curta.fracao": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: a volta para perto da metade do caminho" }
+ },
+ "fases": [
+  { "nome": "Alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "app" },
+  { "nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app" }
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  { "id": "lombar-neutra", "pede": "costas retas (a lombar não arredonda)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "tronco-parado-na-remada", "pede": "o tronco fica no mesmo lugar, sem girar: quem mexe é o braço", "selo": "consenso", "fonte": "ficha" },
+  { "id": "tronco-bem-inclinado", "pede": "tronco inclinado à frente", "selo": "consenso", "fonte": "ficha" },
+  { "id": "pe-da-carga-atras", "pede": "base escalonada: o pé do lado que puxa fica atrás", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mao-de-apoio-na-coxa", "pede": "mão livre firme na coxa da frente", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mao-de-apoio-parada", "pede": "a mão livre fica parada na coxa", "selo": "consenso", "fonte": "ficha" },
+  { "id": "braco-estendido-no-comeco", "pede": "começo: braço estendido em direção à polia", "selo": "consenso", "fonte": "app" },
+  { "id": "polia-puxar-cabo-na-direcao-da-polia", "pede": "o cabo é reto da polia à mão: o antebraço segue a linha dele", "selo": "desenho", "fonte": "desenho" },
+  { "id": "cotovelo-passa-as-costas", "pede": "fim: cotovelo passando a linha das costas", "selo": "consenso", "fonte": "app" },
+  { "id": "cotovelo-rente-na-remada", "pede": "cotovelo para trás, em direção ao quadril, perto do corpo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carga-perto-do-quadril-no-fim", "pede": "fim: mão ao lado do quadril", "selo": "consenso", "fonte": "app" },
+  { "id": "escapulas-se-juntam", "pede": "no fim a escápula se junta à coluna", "selo": "consenso", "fonte": "hoje" },
+  { "id": "polia-puxar-puxador-e-cabo-livres", "pede": "o cabo e o estribo não atravessam o corpo nem as pernas", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "gira", "instante": 1, "titulo": "Girar o tronco", "vista": "quinaTras", "oQueMuda": "o peito abre para o lado do braço que puxa: o ombro direito sobe", "destaca": ["corpo"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R" },
+  { "id": "arred", "instante": 1, "titulo": "Arredondar as costas", "vista": "lateral", "oQueMuda": "a lombar e a parte de cima das costas curvam", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar" },
+  { "id": "curta", "instante": 0, "titulo": "Não estender o braço", "vista": "lateral", "oQueMuda": "a volta para no meio: o braço não estende em direção à polia", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  { "vista": "lateral", "texto": "tronco parado", "ponto": "pelve", "selo": "consenso", "fonte": "app", "guia": ["pelve", "c7"] }
+ ]
+}

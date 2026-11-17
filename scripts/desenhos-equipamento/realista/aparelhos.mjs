@@ -1,6 +1,6 @@
 // As 8 amostras na ilustração realista. Cada aparelho é uma função que monta a cena (medidas em cm) e devolve
 // o conteúdo SVG para o viewBox 0 0 160 120. Para os 49 itens: uma função por item, com as mesmas peças.
-import { MAT, V, camera, cena, f1, retArred } from './base.mjs';
+import { MAT, V, camera, cena, f1, retArred } from '../../../src/engine/novo/realista/base.mjs';
 import { pessoa, ALTURA_TORNOZELO as AT } from './pessoa.mjs';
 
 const { add, sub, mul, norm } = V;

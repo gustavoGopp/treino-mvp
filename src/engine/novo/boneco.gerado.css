@@ -1,0 +1,19 @@
+/* Gerado por scripts/animacao-nova/css-do-boneco.mjs a partir de cssDoBoneco (src/engine/novo/boneco.ts). Não edite à mão. */
+.boneco .b-c,.boneco .b-c-e{fill:var(--b-cont);stroke:var(--b-cont);stroke-width:2.5px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.boneco.mini .b-c,.boneco.mini .b-c-e{stroke-width:2px}
+.boneco .b-p{fill:var(--b-pele)}.boneco .b-p.lg{fill:var(--b-longe)}
+.boneco .b-p.m-short{fill:var(--b-short)}.boneco .b-p.m-calcado{fill:var(--b-calcado)}.boneco .b-p.m-cabelo{fill:var(--b-cabelo)}.boneco .b-p.m-veu{fill:var(--b-veu)}.boneco .b-c.m-veu{fill:var(--b-cont-veu);stroke:var(--b-cont-veu)}
+.boneco .b-mv{fill:var(--b-veu);stroke:var(--b-veu);fill-opacity:.38;stroke-opacity:.38;stroke-width:1px;vector-effect:non-scaling-stroke}
+.boneco .b-c.m-short{fill:var(--b-cont-short);stroke:var(--b-cont-short)}.boneco .b-c.m-calcado{fill:var(--b-cont-calcado);stroke:var(--b-cont-calcado)}.boneco .b-c.m-cabelo{fill:var(--b-cont-cabelo);stroke:var(--b-cont-cabelo)}
+.boneco .b-l{fill:none;stroke:var(--b-linha);stroke-width:0.8px;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.boneco .b-mp,.boneco .b-ms,.boneco .b-ma{stroke-width:1px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.boneco .b-mp{fill:var(--b-musP);stroke:var(--b-musPb)}.boneco .b-ms{fill:var(--b-musS);stroke:var(--b-musSb)}
+.boneco .b-ma{fill:var(--b-listras,url(#b-listras));stroke:var(--b-musSb);stroke-dasharray:3 2}.boneco .b-lis{fill:var(--b-musA)}
+.boneco .b-md{fill:none;stroke:var(--b-musPb);stroke-width:0.8px;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.boneco .b-c-e{fill:var(--b-erro);stroke:var(--b-erro)}.boneco .b-p-e{fill:var(--b-peleErro)}
+.boneco .b-c-f{fill:none;stroke:var(--b-fantasma);stroke-width:1px;vector-effect:non-scaling-stroke;stroke-dasharray:3 3}.boneco .b-p-f{fill:var(--b-fundo);fill-opacity:.82}
+.boneco .b-l-e,.boneco .b-l-f{display:none}
+.boneco.cinza{--b-fundo:#f7f9fa;--b-pele:#d5dde3;--b-longe:#e6ebef;--b-cont:#1d2a36;--b-linha:#9fabb5;--b-musP:#d62e26;--b-musPb:#1d2a36;--b-musS:#ec961c;--b-musA:#ec961c;--b-musSb:#1d2a36;--b-short:#d5dde3;--b-calcado:#d5dde3;--b-cabelo:#d5dde3;--b-cont-short:#1d2a36;--b-cont-calcado:#1d2a36;--b-cont-cabelo:#1d2a36;--b-veu:#a0aab3;--b-cont-veu:#1d2a36;--b-erro:#d1342b;--b-peleErro:#f1c9c5;--b-fantasma:#8796a1;background:#f7f9fa}
+.boneco.cinza.escuro{--b-fundo:#10171b;--b-pele:#5e6e7a;--b-longe:#3f4d58;--b-cont:#e7eef2;--b-linha:#43515b;--b-musP:#f45248;--b-musPb:#10171b;--b-musS:#f5aa3c;--b-musA:#f5aa3c;--b-musSb:#10171b;--b-short:#5e6e7a;--b-calcado:#5e6e7a;--b-cabelo:#5e6e7a;--b-cont-short:#e7eef2;--b-cont-calcado:#e7eef2;--b-cont-cabelo:#e7eef2;--b-veu:#4e5c67;--b-cont-veu:#e7eef2;--b-erro:#f2564c;--b-peleErro:#6b3a37;--b-fantasma:#6f7d88;background:#10171b}
+.boneco.pele{--b-fundo:#f7f9fa;--b-pele:#d9a47c;--b-longe:#c28e68;--b-cont:#876d5a;--b-linha:#c08b64;--b-musP:#cb5747;--b-musPb:#a43d2d;--b-musS:#eaa594;--b-musA:#d98a76;--b-musSb:#a43d2d;--b-short:#2c3d50;--b-calcado:#27343f;--b-cabelo:#2b2420;--b-cont-short:#233140;--b-cont-calcado:#202c36;--b-cont-cabelo:#222224;--b-veu:#a28d7f;--b-cont-veu:#675f5b;--b-erro:#d1342b;--b-peleErro:#f1c9c5;--b-fantasma:#8796a1;background:#f7f9fa}
+.boneco.pele.escuro{--b-fundo:#10171b;--b-pele:#cf9a72;--b-longe:#b3825c;--b-cont:#816754;--b-linha:#a67750;--b-musP:#cb5747;--b-musPb:#a43d2d;--b-musS:#eaa594;--b-musA:#d98a76;--b-musSb:#a43d2d;--b-short:#a9b8c6;--b-calcado:#e7eef2;--b-cabelo:#8b6f5a;--b-cont-short:#6b7884;--b-cont-calcado:#8f979e;--b-cont-cabelo:#5a4e46;--b-veu:#867263;--b-cont-veu:#57504b;--b-erro:#f2564c;--b-peleErro:#6b3a37;--b-fantasma:#6f7d88;background:#10171b}

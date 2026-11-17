@@ -49,15 +49,10 @@ export function TelaDeErro({ erro }: { erro: Error }) {
 
   return (
     <div className="wrap app">
-      <header className="top">
-        <div className="brand">
-          <b>treino-mvp</b>
-        </div>
-      </header>
       <main className="conteudo">
         <Titulo>Algo deu errado nesta tela</Titulo>
         <p className="lede">Seus dados continuam guardados neste aparelho. Antes de tentar de novo, guarde uma cópia.</p>
-        <section className="box pilha" aria-labelledby="erro-copia">
+        <section className="bloco-linha pilha" aria-labelledby="erro-copia">
           <h2 id="erro-copia">Guardar uma cópia</h2>
           <p>O arquivo tem tudo o que está neste aparelho e pode ser importado depois, em “Meus dados”.</p>
           <button type="button" className="btn" onClick={() => void exportar()}>
@@ -72,14 +67,14 @@ export function TelaDeErro({ erro }: { erro: Error }) {
             </div>
           )}
         </section>
-        <section className="box pilha" aria-labelledby="erro-tentar">
+        <section className="bloco-linha pilha" aria-labelledby="erro-tentar">
           <h2 id="erro-tentar">Tentar de novo</h2>
           <p>Recarrega o app. Se o erro voltar, avise o problema.</p>
           <button type="button" className="btn sec" onClick={() => window.location.reload()}>
             Tentar de novo
           </button>
         </section>
-        <section className="box pilha" aria-labelledby="erro-avisar">
+        <section className="bloco-linha pilha" aria-labelledby="erro-avisar">
           <h2 id="erro-avisar">Avisar o problema</h2>
           <AvisarProblema erro={erro} />
         </section>

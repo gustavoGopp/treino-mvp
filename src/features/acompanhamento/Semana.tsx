@@ -7,6 +7,7 @@ import { textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
 import { TEXTO_ESTADO, type ResumoDaSemana } from '../../domain/acompanhamento/semana';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
+import { Icone } from '../app/icones';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { aceitarMenosDias, manterDias, semanaDoEstado } from './acoes';
 import { SemanaLeve } from './SemanaLeve';
@@ -38,7 +39,7 @@ export function FaixaSemana({ r }: { r: ResumoDaSemana }) {
         {r.feitos} de {r.planejados}
       </span>
       <span className="seta" aria-hidden="true">
-        ›
+        <Icone nome="chevron-right" />
       </span>
     </Link>
   );
@@ -71,21 +72,24 @@ export function Semana() {
           <p className="fase">{r.mensagem}</p>
         </section>
 
-        <section aria-labelledby="semanas" className="pilha">
-          <h2 id="semanas" className="secao">
-            {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
-          </h2>
-          <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
-            {r.semanas.map((t, i) => (
-              <i key={i} className={t ? 'on' : ''} />
-            ))}
-          </span>
-          <p className="ajuda">
-            {r.semanas.length === 1
-              ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
-              : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
-          </p>
-        </section>
+        {/* sem semana nenhuma contada ainda (programa novo, sem treino), a faixa das semanas não aparece */}
+        {r.semanas.length > 1 && (
+          <section aria-labelledby="semanas" className="pilha">
+            <h2 id="semanas" className="secao">
+              {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
+            </h2>
+            <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
+              {r.semanas.map((t, i) => (
+                <i key={i} className={t ? 'on' : ''} />
+              ))}
+            </span>
+            <p className="ajuda">
+              {r.semanas.length === 1
+                ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
+                : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
+            </p>
+          </section>
+        )}
 
         {subiu.length > 0 && (
           <section aria-labelledby="subiu" className="pilha">
@@ -129,18 +133,23 @@ export function Semana() {
                 <span className="m-num">
                   {num(m.feitas)} de {num(m.meta)}
                 </span>
-                <span className="m-estado">
-                  {TEXTO_ESTADO[m.estado]}
-                  {m.planejado !== undefined && ` · o seu programa planeja ${num(m.planejado)} de ${num(m.meta)}: ${m.motivo}`}
-                </span>
+                {(m.feitas > 0 || m.planejado !== undefined) && (
+                  <span className="m-estado">
+                    {m.feitas > 0 ? TEXTO_ESTADO[m.estado] : ''}
+                    {m.planejado !== undefined && `${m.feitas > 0 ? ' · ' : ''}o seu programa planeja ${num(m.planejado)} de ${num(m.meta)}: ${m.motivo}`}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
+          <details className="box dobra">
+            <summary>Como ler este quadro</summary>
           <p className="ajuda">
             Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
             {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
           </p>
-          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
+          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
+          </details>
         </section>
 
         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
@@ -174,7 +183,10 @@ export function Semana() {
             <ul className="lista-evolucao">
               {exercicios.map((id) => (
                 <li key={id}>
-                  <Link to={`/evolucao/${id}`}>{POR_ID[id]?.nome ?? id}</Link>
+                  <Link to={`/evolucao/${id}`}>
+                    {POR_ID[id]?.nome ?? id}
+                    <Icone nome="chevron-right" />
+                  </Link>
                 </li>
               ))}
             </ul>

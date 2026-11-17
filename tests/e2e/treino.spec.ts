@@ -66,11 +66,14 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
   // 6 kg × 11 com 2 de reserva: perto do alvo (13 até a falha, a 2 do alvo de 15), vira a série de trabalho (sem a marca
   // de acerto).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText(/6 kg × 11 · RIR 2\s*Desfazer/);
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('6 kg × 11 · RIR 2');
+  // frontend novo: o "Desfazer a última série" saiu do meio da tela e mora no "⋯" (Mais opções)
+  await expect((await maisOpcoes(page)).getByRole('button', { name: 'Desfazer a última série' })).toBeVisible();
+  await page.keyboard.press('Escape');
 
   for (;;) {
     await fazerExercicio(page);
-    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
+    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo exercício' });
     if (!(await proximo.isVisible())) break;
     await proximo.click();
   }
@@ -194,7 +197,7 @@ test('R1: aberto pelo treino, o guia do goblet mostra a prescrição da semana d
   // O checklist pede a carga para o RIR desta semana, e as abas são as do dia dela.
   await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Torso A' })).toHaveCount(0);
-  await page.getByRole('link', { name: '‹ Voltar ao treino' }).click();
+  await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });
 
@@ -215,7 +218,7 @@ test('R1: no exercício de um lado só (o afundo), o treino e o guia dizem "cada
   await expect(page.locator('body')).not.toContainText('RIR 1–2');
   await expect(page.locator('body')).not.toContainText('por perna');
   await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
-  await page.getByRole('link', { name: '‹ Voltar ao treino' }).click();
+  await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });
 
@@ -294,7 +297,7 @@ test('exercício sem animação: a montagem segura vem sempre aberta, com o selo
   await expect(montagem).toBeVisible();
   await expect(montagem.getByRole('listitem').first()).toBeVisible();
   await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
-  await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
+  await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
   const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
   await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();

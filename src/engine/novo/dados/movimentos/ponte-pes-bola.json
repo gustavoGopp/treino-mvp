@@ -1,0 +1,55 @@
+{
+ "id": "ponte-pes-bola",
+ "nome": "Ponte de glúteo com os pés na bola",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/ponte-pes-bola.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/ponte-pes-bola.md): deitado de costas, braços abertos no chão; calcanhares em cima da bola, pernas quase estendidas, joelhos um pouco dobrados; empurra a bola para baixo até ombros, quadril e joelhos ficarem em linha, pausa de ~1 s; sem arquear a lombar; bola parada; ~1 s subindo, ~1 s parado, ~2 s descendo; consenso (catálogo B.2.6; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/ponte-pes-bola.json): 'embaixo: quadril quase no chão, sem descansar', 'os ombros e a cabeça ficam no chão', as dicas e os erros",
+  "hoje": "Animação de hoje (src/engine/exercicios/ponte-pes-bola.ts, aprovada): distâncias que a ficha não dá em número",
+  "flexaoBola": "Ficha de movimento da flexão de joelho na bola (dados/movimentos/flexao-bola.json): os braços no chão e o quanto a bola cede sob o pé, já conferidos no lote 2",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.baixo": { "v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, as pernas quase estendidas (joelho dobrado 10°); a ficha não dá número. Com o calcanhar parado na bola, o joelho dobra mais quando o quadril sobe (a conta dá o quanto)" },
+  "quadril.folgaEmbaixo": { "v": 2.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "embaixo, o quadril quase no chão, sem descansar: a pele do glúteo a 2,5 cm do chão" },
+  "pe.angulo": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "embaixo, o pé 10° além do ângulo reto com a canela (a ponta um pouco para longe); depois o pé fica assentado na bola, na mesma direção" },
+  "bola.alemDoCalcanhar": { "v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o calcanhar apoia 14 cm antes do alto da bola (do lado do corpo): embaixo, com a perna mais em pé, a panturrilha passa por cima da bola e não por dentro dela" },
+  "pe.acompanha": { "v": 0.5, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "quando a canela gira (o quadril sobe), o pé gira metade disso, rolando o calcanhar na bola; o tornozelo dobra a outra metade" },
+  "pe.afundaNaBola": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "flexaoBola", "o": "o calcanhar afunda 1 cm na bola onde apoia (a bola cheia cede um pouco)" },
+  "bracos.abertura": { "v": 30, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "braços abertos no chão, palmas para baixo (o mesmo ~30° da flexão de joelho na bola)" },
+  "bracos.alcance": { "v": 0.97, "un": "fração", "selo": "desenho", "fonte": "flexaoBola", "o": "a mão fica a 97% do comprimento do braço mais o antebraço, a partir do ombro: o cotovelo quase estendido" },
+  "ombro.z": { "v": -40, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)" },
+  "erro.lombar.lombar": { "v": -12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no topo, a lombar arqueia 12° além da curva de repouso; a bacia fica como no certo, e o quadril sobe com a barriga para cima" },
+  "erro.bola.anda": { "v": 16, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: a bola rola 16 cm para longe e os pés vão com ela" },
+  "erro.bola.joelho": { "v": 3, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: com a bola fugindo, a perna estica (joelho a 3°) e o quadril cai o que for preciso para o pé seguir na bola" },
+  "erro.raso.fracao": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril sobe só 45% do caminho (não alinha com o tronco e as coxas)" }
+ },
+ "fases": [
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "calcanhares na bola", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Topo · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["mao.R", "mao.L"],
+ "regras": [
+  { "id": "em-linha-no-fim", "pede": "em cima: ombros, quadril e joelhos em linha", "selo": "consenso", "fonte": "ficha" },
+  { "id": "ponte-quadril-quase-no-chao", "pede": "embaixo: quadril quase no chão, sem descansar", "selo": "consenso", "fonte": "app" },
+  { "id": "ponte-bola-joelhos-pouco-dobrados", "pede": "pernas quase estendidas, joelhos um pouco dobrados", "selo": "consenso", "fonte": "ficha" },
+  { "id": "ponte-bola-bola-parada", "pede": "a bola não rola", "selo": "consenso", "fonte": "ficha" },
+  { "id": "ponte-bola-calcanhar-no-alto-da-bola", "pede": "calcanhares em cima da bola, empurrando-a para baixo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "bola-pes-na-bola", "pede": "o pé apoia na bola sem atravessá-la", "selo": "consenso", "fonte": "ficha" },
+  { "id": "bola-pernas-fora-da-bola", "pede": "coxas e canelas não atravessam a bola", "selo": "consenso", "fonte": "ficha" },
+  { "id": "bola-costas-e-cabeca-no-chao", "pede": "os ombros e a cabeça ficam no chão", "selo": "consenso", "fonte": "app" },
+  { "id": "lombar-neutra", "pede": "sem arquear a lombar", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "no topo, a lombar arqueia e a barriga vai para cima", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve"], "foco": "lombar" },
+  { "id": "bola", "instante": 1, "titulo": "Bola foge", "vista": "lateral", "oQueMuda": "a bola rola para longe, as pernas esticam e o quadril cai", "destaca": ["pernas"], "linha": ["quadril", "joelho", "calcanhar"], "foco": "calcanhar" },
+  { "id": "raso", "instante": 1, "titulo": "Subir pouco", "vista": "lateral", "oQueMuda": "o quadril para antes de alinhar com o tronco e as coxas", "destaca": ["corpo"], "linha": ["ombro", "quadril", "joelho"], "foco": "quadril" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "ombros, quadril e joelhos em linha", "ponto": "pelve", "selo": "consenso", "fonte": "ficha", "guia": ["ombro", "joelho"] },
+  { "vista": "lateral", "texto": "calcanhar empurra a bola", "ponto": "calcanhar", "selo": "consenso", "fonte": "app" }
+ ]
+}

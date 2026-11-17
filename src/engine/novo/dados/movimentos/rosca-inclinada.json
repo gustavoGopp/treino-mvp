@@ -1,0 +1,62 @@
+{
+ "id": "rosca-inclinada",
+ "nome": "Rosca inclinada com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-inclinada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-inclinada.md): sente com as costas e a cabeça apoiadas, pés firmes no chão; braços pendurados na vertical, atrás da linha do tronco; palmas para a frente, ombros encostados no banco; dobre só o cotovelo, o braço continua na vertical; ~1 s subindo, ~2–3 s descendo; consenso de treinadores (guia original; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-inclinada.json): 'encosto a 45–60°; quanto mais deitado, mais o bíceps alonga', as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/rosca-inclinada.ts): as fases, a amplitude do cotovelo e os erros",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan) e src/engine/novo/dados/objetos.json (banco regulável)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "encosto": {"v": 60, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o encosto a 60° do chão, a ponta mais em pé da faixa do app (45–60°): a 45° o tronco fica mais deitado e o halter atravessa o quadril e a coxa no meio da subida (medido)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "costas, nádega e nuca apoiadas: quanto o estofado amassa sob o corpo"},
+  "toracica": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "costas apoiadas no encosto: a torácica na curva de repouso"},
+  "cervical.min": {"v": -15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a nuca apoia no encosto com o pescoço dobrado para trás no máximo 15° além da curva de repouso (para o pescoço não 'quebrar' para a cabeça encostar)"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "a cabeça na linha do pescoço, apoiada"},
+  "pes.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés firmes no chão, um pouco mais afastados que o quadril, dos dois lados do banco (a ficha não dá número)"},
+  "pes.aFrente": {"v": 57, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé 57 cm à frente do quadril, com a canela um pouco inclinada para a frente (a ficha não dá número; com o pé mais perto, o rótulo do cotovelo ia para o lado de dentro e o fio cruzava o corpo)"},
+  "braco.paraFora": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os braços pendem na vertical (vistos de lado), abertos 25° para o lado: com a palma para a frente e o braço menos aberto, a cabeça de dentro do halter de 10 lb entra no quadril, na cintura ou no peito no meio e no topo da subida (medido: 20° dá −1,4 cm; 25° dá −0,2 cm); a ficha não dá número"},
+  "cotovelo.baixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço quase estendido, sem relaxar o ombro para a frente"},
+  "cotovelo.cima": {"v": 132, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, até onde o cotovelo vai sem sair da vertical: o halter perto do ombro (a ficha não dá número; hoje: 135°; a regra mede a distância da pegada ao ombro)"},
+  "maos.supinacao": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "palmas para a frente: o polegar gira 85° da posição neutra para fora (a supinação média é 87,5°, cdc)"},
+  "maos.encostaNaCabeca": {"v": 2.2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão segura o cabo encostada na cabeça de dentro (do lado do dedo mínimo): o halter corre esse tanto para o lado do polegar (o cabo de 13 cm tem 4,4 cm a mais que a largura da mão, 8,6 cm)"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado: o sextavado de 10 lb (dados/objetos/halter-leve.json); entram no equilíbrio"},
+  "erro.cotovelo.braco": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o braço sai da vertical e vai 45° à frente (hoje: 52°)"},
+  "erro.cotovelo.cotovelo": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: com o braço à frente, o cotovelo dobra menos"},
+  "erro.ombro.tronco": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o tronco sai do encosto e vai 18° para a frente, girando em volta do quadril"},
+  "erro.ombro.braco": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o braço também vai à frente (hoje: 28°)"},
+  "erro.ombro.protracao": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o ombro vai para a frente (a escápula sai do encosto)"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°)"}
+ },
+ "fases": [
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço estendido", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "braço na vertical", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "braco-na-vertical-na-inclinada", "pede": "dobre só o cotovelo; o braço continua na vertical, atrás da linha do tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "costas-e-cabeca-no-encosto-na-inclinada", "pede": "costas, ombros e cabeça apoiados no encosto, e a nádega no assento", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "os ombros não saem do encosto", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o braço quase estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "halter-perto-do-ombro-na-inclinada", "pede": "em cima, o halter perto do ombro, sem levar o cotovelo à frente (o braço continua na vertical)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palmas para a frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
+  {"id": "halter-fora-do-banco", "pede": "o halter não atravessa o banco nem o chão", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelos vão para a frente", "vista": "lateral", "oQueMuda": "o braço sai da vertical e vai à frente; a frente do ombro passa a ajudar", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "ombro", "instante": 1, "titulo": "Ombros saem do encosto", "vista": "lateral", "oQueMuda": "o tronco e os ombros vão para a frente para ajudar a subir", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender embaixo", "vista": "lateral", "oQueMuda": "a volta para na metade: o braço não estende embaixo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "braço na vertical", "ponto": "cotovelo", "selo": "consenso", "fonte": "app", "prumo": {"de": "cotovelo", "alt": 34}},
+  {"vista": "lateral", "texto": "ombros no encosto", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "estica embaixo", "ponto": "cotovelo:L", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -1,0 +1,95 @@
+// Puxada unilateral ajoelhado na polia alta, no motor novo. O braço direito gira do alto até o lado das costelas;
+// o antebraço aponta sempre para a polia, de modo que o cabo sai reto da roldana até o estribo. A pilha de pesos
+// sobe o curso do cabo dividido pela relação da máquina (tabela de objetos).
+import ficha from '../dados/movimentos/puxada-unilateral.json';
+import { resolverMembros, resolverTronco } from '../esqueleto';
+import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
+import { daFicha, fichaSchema } from '../movimento';
+import type { Exercicio, Quadro } from '../movimento';
+import { cabo, centroDaRoldana, chao, colchonete, estribo, saidaDoCabo, torre } from '../pecas';
+import type { Torre, Peca } from '../pecas';
+import type { Corpo } from '../tabelas';
+import { obj } from '../tabelas';
+import { add, dist, dirRef, mix, mul, norm, sub } from '../vec';
+import type { V3 } from '../vec';
+
+const F = fichaSchema.parse(ficha);
+const f = daFicha(F);
+const rad = Math.PI / 180;
+const REPOUSO = new WeakMap<Corpo, number>();
+
+function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; saida: V3; t: Torre; prims: ReturnType<typeof estribo>['prims']; estribo: { pegada: V3; eixo: V3 } } {
+  const m = (id: string) => corpo.m(id);
+  const esp = obj('colchonete', 'esp');
+  const hq = f('joelhos.meiaDistancia');
+  // ajoelhado: o joelho no colchonete, a coxa na vertical, a canela para trás, o peito do pé no colchonete
+  const yJoelho = esp + corpo.secoes.perna![0]!.b;
+  const inclina = erro === 'tronco' ? mix(f('tronco'), f('erro.tronco'), u) : f('tronco');
+  const pelve: V3 = [0, yJoelho + m('coxa.comp') * Math.cos(2 * rad), -m('coxa.comp') * Math.sin(2 * rad)];
+  const tr = resolverTronco(corpo, { pelve, frente: inclina, cervical: -6 - (1 - u) * 6, cabeca: -4 });
+  const perna = (k: Lado): PosePerna => {
+    void k;
+    return { coxa: [0, -Math.cos(2 * rad), Math.sin(2 * rad)], canela: norm([0, -0.035, -1]), peDir: norm([0, -0.2, -1]), polo: [0, 0, 1] };
+  };
+  const torreDaPolia: Torre = { base: [-m('ombro.meiaDistancia') - 3, 0, f('torre.distancia')], frente: [0, 0, -1], alturaDaPolia: obj('torre', 'poliaMax') };
+  const roldana = centroDaRoldana(torreDaPolia);
+  // braço que puxa: do alto (apontando para a polia) até o lado das costelas, um pouco atrás
+  const fundo = erro === 'curta' ? 1 - (1 - u) * f('erro.curta') : u;
+  const T = tr.torax;
+  const pernas = { R: perna('R'), L: perna('L') };
+  // o outro braço: a mão apoiada na coxa
+  const apoio: PoseBraco = { pegada: add(pelve, [hq + 3, -m('coxa.comp') * 0.3, corpo.secoes.coxa![2]!.f + 2]), polo: [0.15, 0, -1], mao: { polegar: [-1, 0, 0.3], forma: 'relaxada' } };
+  const elevErro = erro === 'encolher' ? f('erro.encolher') : f('ombro.desce');
+  const elev = mix(f('ombro.sobe'), elevErro, u);
+  const fim = dirRef(T, norm([-Math.sin(f('braco.fim.fora') * rad), -1, -Math.sin(f('braco.fim.atras') * rad)]));
+  const flexIni = f('cotovelo.alongado') * rad;
+  const polegar = norm(add(mul(dirRef(T, [1, 0, 0]), 1 - fundo), mul(dirRef(T, [0.2, 0.6, -0.8]), fundo)));
+  const com = (umero: V3, antebraco: V3) => resolverMembros(tr, { R: { umero, antebraco, polo: dirRef(T, [-0.5, -0.2, -1]), mao: { polegar, forma: 'pegada', diam: obj('estribo', 'pegadaDiam') }, elev }, L: apoio }, pernas);
+  // O antebraço fica sempre na linha do cabo: a mão é puxada pelo cabo, que é reto da polia até ela. Por isso só o
+  // braço (ombro → cotovelo) é dirigido: ele gira, no plano do braço, da direção da polia até a posição final ao lado
+  // das costelas; o antebraço aponta do cotovelo para a polia, e a flexão do cotovelo é consequência.
+  // No início o cotovelo tem a flexão da ficha (cotovelo.alongado): no triângulo ombro–cotovelo–polia, isso dá o
+  // pequeno ângulo de partida entre o braço e a linha ombro–polia.
+  // O ombro sobe e desce com o braço (ritmo da escápula); por isso a conta é repetida com o ombro e o cotovelo de verdade.
+  let umero = fim,
+    antebraco = fim,
+    e = com(umero, antebraco);
+  for (let i = 0; i < 4; i++) {
+    const ombro = e.lado.R.ombro;
+    const paraPolia = norm(sub(roldana, ombro));
+    const ang = Math.acos(Math.max(-1, Math.min(1, paraPolia[0] * fim[0] + paraPolia[1] * fim[1] + paraPolia[2] * fim[2])));
+    const partida = flexIni - Math.asin(Math.min(1, (m('braco.comp') * Math.sin(flexIni)) / dist(roldana, ombro)));
+    const alfa = mix(partida, ang, fundo);
+    umero = norm(add(mul(paraPolia, Math.sin(ang - alfa) / Math.sin(ang)), mul(fim, Math.sin(alfa) / Math.sin(ang))));
+    e = com(umero, antebraco);
+    antebraco = norm(sub(roldana, e.lado.R.cotovelo));
+    e = com(umero, antebraco);
+  }
+  const L = e.lado.R;
+  const { prims, elo } = estribo(L.pegada, L.mao.x, sub(roldana, L.pegada));
+  return { e, elo, saida: saidaDoCabo(torreDaPolia, elo), t: torreDaPolia, prims, estribo: { pegada: L.pegada, eixo: L.mao.x } };
+}
+
+function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
+  const r = montar(corpo, u, erro);
+  // a pilha parte do repouso no ponto mais alto da mão (cabo mais curto) e sobe conforme o cabo é puxado
+  let rep = REPOUSO.get(corpo);
+  if (rep === undefined) {
+    const r0 = montar(corpo, 0);
+    rep = dist(r0.elo, r0.saida);
+    REPOUSO.set(corpo, rep);
+  }
+  const comp = dist(r.elo, r.saida);
+  const subida = Math.max(0, comp - rep) / obj('torre', 'relacao') + 2;
+  const prims = [chao(-110, 80, -110, 110), ...colchonete(0, -22), ...torre(r.t, subida), ...r.prims, cabo(r.elo, r.saida)];
+  const pecas: Peca[] = [{ t: 'colchonete', x0: 0, z0: -22 }, { t: 'torre', torre: r.t, subida }, { t: 'estribo', ...r.estribo, elo: r.elo }, { t: 'cabo', a: r.elo, b: r.saida }];
+  return { esq: r.e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas: { mao: r.e.lado.R.pegada, pilha: [0, subida, 0] }, vies: { maoR: 1 } };
+}
+
+export const puxadaUnilateral: Exercicio = {
+  ficha: F,
+  vistas: ['quinaTras', 'lateral'],
+  quadro,
+  papeis: { 'dorsal:R': 'p', 'biceps:R': 's', 'deltPost:R': 's', 'trapMedInf:R': 's' },
+  trajetorias: { mão: (q) => q.marcas.mao!, cotovelo: (q) => q.esq.lado.R.cotovelo },
+};

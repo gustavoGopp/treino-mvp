@@ -1,0 +1,591 @@
+{
+ "fontes": {
+  "GRAY1918": "Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio público; lido em docs/revisoes/animacao-nova/pesquisa/03-musculos-e-ossos.md, Parte 1",
+  "RAITERI2016": "Raiteri BJ, Cresswell AG, Lichtwark GA. PeerJ 2016;4:e2260 (CC BY 4.0): tibial anterior, 12 voluntários; a espessura aumenta 2,5 mm e a largura quase não muda, com o volume constante"
+ },
+ "regraDeForma": {
+  "texto": "O músculo mantém o volume: ao encurtar, engrossa. No desenho, a forma fica presa à superfície da parte do corpo e encurta com ela; o engrossamento ainda não é desenhado.",
+  "fonte": "RAITERI2016",
+  "estado": "a forma não engrossa ao encurtar: pendente"
+ },
+ "ossoDeCadaParte": {
+  "tronco": "coluna, costelas, esterno, clavícula e escápula",
+  "pelve": "bacia e sacro",
+  "braco": "úmero",
+  "ante": "rádio e ulna",
+  "mao": "carpo, metacarpo e dedos",
+  "coxa": "fêmur",
+  "canela": "tíbia e fíbula",
+  "pe": "ossos do pé"
+ },
+ "grupos": {
+  "peitoral": {
+   "nome": "Peitoral maior",
+   "musculos": [
+    "peitoral maior, parte clavicular",
+    "peitoral maior, parte esternocostal"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "metade esternal da clavícula; face anterior do esterno até a cartilagem da 6ª ou 7ª costela; cartilagens das costelas verdadeiras"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "crista do tubérculo maior do úmero"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [
+    "abdomen"
+   ],
+   "forma": "leque",
+   "fonte": "GRAY1918",
+   "pagina": "p. 436–437",
+   "conteudo": [
+    "peito"
+   ],
+   "naoSepara": [
+    "parte clavicular (o peitoral de cima)",
+    "parte esternocostal"
+   ]
+  },
+  "deltoide": {
+   "nome": "Deltoide",
+   "musculos": [
+    "deltoide anterior",
+    "deltoide lateral",
+    "deltoide posterior"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "terço lateral da clavícula, acrômio e espinha da escápula"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [
+    "peitoral",
+    "biceps",
+    "triceps"
+   ],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_anterior",
+    "ombro_lateral",
+    "ombro_posterior"
+   ]
+  },
+  "trapezio": {
+   "nome": "Trapézio",
+   "musculos": [
+    "trapézio superior",
+    "trapézio médio",
+    "trapézio inferior"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "protuberância occipital, ligamento nucal, processos espinhosos de C7 e de todas as torácicas (a ponta de baixo corresponde à 12ª torácica)"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "terço lateral da clavícula, acrômio e espinha da escápula"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "escapula"
+   ],
+   "camada": "superficial",
+   "cobre": [
+    "dorsal"
+   ],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432 e 434",
+   "conteudo": [
+    "costas"
+   ],
+   "naoSepara": [
+    "romboides (ficam por baixo dele)"
+   ]
+  },
+  "dorsal": {
+   "nome": "Grande dorsal",
+   "musculos": [
+    "grande dorsal",
+    "redondo maior"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "processos espinhosos das 6 torácicas inferiores, fáscia toracolombar, crista ilíaca e 3 ou 4 costelas inferiores"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "fundo do sulco intertubercular do úmero"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432–434",
+   "conteudo": [
+    "costas"
+   ],
+   "naoSepara": [
+    "redondo maior"
+   ]
+  },
+  "biceps": {
+   "nome": "Bíceps braquial",
+   "musculos": [
+    "bíceps braquial",
+    "braquial"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "processo coracoide e tubérculo supraglenoidal da escápula"
+   },
+   "insercao": {
+    "osso": "ante",
+    "onde": "tuberosidade do rádio"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro",
+    "cotovelo"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "fuso",
+   "fonte": "GRAY1918",
+   "pagina": "p. 443–444",
+   "conteudo": [
+    "biceps"
+   ]
+  },
+  "triceps": {
+   "nome": "Tríceps braquial",
+   "musculos": [
+    "tríceps, cabeça longa",
+    "tríceps, cabeça lateral",
+    "tríceps, cabeça medial"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "tubérculo infraglenoidal da escápula (cabeça longa) e face posterior do úmero (cabeças lateral e medial)"
+   },
+   "insercao": {
+    "osso": "ante",
+    "onde": "olécrano da ulna"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro",
+    "cotovelo"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "três cabeças num tendão comum",
+   "fonte": "GRAY1918",
+   "pagina": "p. 444–445",
+   "conteudo": [
+    "triceps"
+   ]
+  },
+  "antebraco": {
+   "nome": "Músculos do antebraço",
+   "musculos": [
+    "flexores do antebraço (grupo superficial)",
+    "extensores do antebraço",
+    "braquiorradial"
+   ],
+   "origem": {
+    "osso": "braco",
+    "onde": "epicôndilos medial e lateral do úmero e crista supracondilar lateral"
+   },
+   "insercao": {
+    "osso": "mao",
+    "onde": "ossos do carpo, do metacarpo e dedos (inserções distais só parcialmente lidas)"
+   },
+   "ventre": "ante",
+   "cruza": [
+    "cotovelo",
+    "punho"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "fusos com tendões longos",
+   "fonte": "GRAY1918",
+   "pagina": "p. 445–453",
+   "conteudo": []
+  },
+  "abdomen": {
+   "nome": "Reto abdominal",
+   "musculos": [
+    "reto abdominal"
+   ],
+   "origem": {
+    "osso": "pelve",
+    "onde": "crista do púbis e sínfise púbica"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "cartilagens das costelas 5, 6 e 7 e processo xifoide"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "lombar"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "faixa longa e plana, com 3 intersecções",
+   "fonte": "GRAY1918",
+   "pagina": "p. 415–418",
+   "conteudo": [
+    "abdomen"
+   ]
+  },
+  "obliquos": {
+   "nome": "Oblíquo externo",
+   "musculos": [
+    "oblíquo externo do abdome"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "superfícies externas das 8 costelas inferiores"
+   },
+   "insercao": {
+    "osso": "pelve",
+    "onde": "crista ilíaca, linha alba e ligamento inguinal"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "lombar"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "plano, quadrilátero",
+   "fonte": "GRAY1918",
+   "pagina": "p. 409–410",
+   "conteudo": [
+    "abdomen"
+   ]
+  },
+  "gluteo": {
+   "nome": "Glúteo máximo",
+   "musculos": [
+    "glúteo máximo",
+    "glúteo médio"
+   ],
+   "origem": {
+    "osso": "pelve",
+    "onde": "linha glútea posterior do ílio, sacro e cóccix"
+   },
+   "insercao": {
+    "osso": "coxa",
+    "onde": "trato iliotibial e tuberosidade glútea do fêmur"
+   },
+   "ventre": "pelve",
+   "cruza": [
+    "quadril"
+   ],
+   "camada": "superficial",
+   "cobre": [
+    "posteriores"
+   ],
+   "forma": "massa quadrilátera larga",
+   "fonte": "GRAY1918",
+   "pagina": "p. 474–475",
+   "conteudo": [
+    "gluteos"
+   ],
+   "naoSepara": [
+    "glúteo médio"
+   ]
+  },
+  "quadriceps": {
+   "nome": "Quadríceps",
+   "musculos": [
+    "reto femoral",
+    "vasto lateral",
+    "vasto medial",
+    "vasto intermédio"
+   ],
+   "origem": {
+    "osso": "pelve",
+    "onde": "espinha ilíaca ântero-inferior (reto femoral) e corpo do fêmur (vastos)"
+   },
+   "insercao": {
+    "osso": "canela",
+    "onde": "patela e, pelo ligamento patelar, tuberosidade da tíbia"
+   },
+   "ventre": "coxa",
+   "cruza": [
+    "quadril",
+    "joelho"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "quatro porções num tendão comum",
+   "fonte": "GRAY1918",
+   "pagina": "p. 470–471",
+   "conteudo": [
+    "quadriceps"
+   ]
+  },
+  "posteriores": {
+   "nome": "Posteriores da coxa",
+   "musculos": [
+    "bíceps femoral",
+    "semitendíneo",
+    "semimembranáceo"
+   ],
+   "origem": {
+    "osso": "pelve",
+    "onde": "tuberosidade isquiática (e linha áspera, na cabeça curta do bíceps)"
+   },
+   "insercao": {
+    "osso": "canela",
+    "onde": "cabeça da fíbula e face medial da tíbia"
+   },
+   "ventre": "coxa",
+   "cruza": [
+    "quadril",
+    "joelho"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "fusos",
+   "fonte": "GRAY1918",
+   "pagina": "p. 478–479",
+   "conteudo": [
+    "posteriores"
+   ]
+  },
+  "adutores": {
+   "nome": "Adutores",
+   "musculos": [
+    "adutor longo",
+    "adutor magno"
+   ],
+   "origem": {
+    "osso": "pelve",
+    "onde": "púbis e ísquio"
+   },
+   "insercao": {
+    "osso": "coxa",
+    "onde": "linha áspera e tubérculo adutor do fêmur"
+   },
+   "ventre": "coxa",
+   "cruza": [
+    "quadril"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 472–473",
+   "conteudo": [
+    "adutores"
+   ]
+  },
+  "panturrilha": {
+   "nome": "Panturrilha",
+   "musculos": [
+    "gastrocnêmio",
+    "sóleo"
+   ],
+   "origem": {
+    "osso": "coxa",
+    "onde": "côndilos do fêmur (gastrocnêmio); fíbula e tíbia (sóleo)"
+   },
+   "insercao": {
+    "osso": "pe",
+    "onde": "calcâneo, pelo tendão calcâneo"
+   },
+   "ventre": "canela",
+   "cruza": [
+    "joelho",
+    "tornozelo"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "duas cabeças",
+   "fonte": "GRAY1918",
+   "pagina": "p. 482–483",
+   "conteudo": [
+    "panturrilha"
+   ]
+  },
+  "tibial": {
+   "nome": "Tibial anterior",
+   "musculos": [
+    "tibial anterior"
+   ],
+   "origem": {
+    "osso": "canela",
+    "onde": "côndilo lateral e face lateral da tíbia"
+   },
+   "insercao": {
+    "osso": "pe",
+    "onde": "primeiro cuneiforme e base do primeiro metatarso"
+   },
+   "ventre": "canela",
+   "cruza": [
+    "tornozelo"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "grosso em cima, tendão embaixo",
+   "fonte": "GRAY1918",
+   "pagina": "p. 480",
+   "conteudo": []
+  },
+  "deltAnt": {
+   "nome": "Deltoide, parte da frente",
+   "musculos": [
+    "deltoide anterior (clavicular)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "borda anterior e face superior do terço lateral da clavícula"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_anterior"
+   ]
+  },
+  "deltLat": {
+   "nome": "Deltoide, parte do lado",
+   "musculos": [
+    "deltoide lateral (acromial)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "margem lateral e face superior do acrômio"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_lateral"
+   ]
+  },
+  "deltPost": {
+   "nome": "Deltoide, parte de trás",
+   "musculos": [
+    "deltoide posterior (espinal)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "borda posterior da espinha da escápula"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_posterior"
+   ]
+  },
+  "trapSup": {
+   "nome": "Trapézio, parte de cima",
+   "musculos": [
+    "trapézio superior"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "protuberância occipital, linha nucal e ligamento nucal"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "borda posterior do terço lateral da clavícula"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "escapula"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432 e 434",
+   "conteudo": [
+    "costas"
+   ]
+  },
+  "trapMedInf": {
+   "nome": "Trapézio, partes do meio e de baixo",
+   "musculos": [
+    "trapézio médio",
+    "trapézio inferior",
+    "romboides (ficam por baixo dele)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "processos espinhosos de C7 e das torácicas, até a 12ª"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "acrômio e espinha da escápula"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "escapula"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432 e 434",
+   "conteudo": [
+    "costas"
+   ]
+  }
+ }
+}

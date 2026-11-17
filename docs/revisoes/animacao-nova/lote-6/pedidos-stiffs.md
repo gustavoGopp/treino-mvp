@@ -1,0 +1,7 @@
+# Pedidos ao conteúdo e à ficha da técnica: stiffs (lote 6)
+
+Coisas que parecem pedir ajuste no texto do app ou nas fichas da técnica. Não mexi em nada disso; fica para quem decide.
+
+1. **`stiff-elastico`: "segure curto" × tamanho do tubo.** O texto do app pede "Segure curto: lá embaixo, o elástico ainda deve estar um pouco esticado". Com o tubo da tabela de objetos (121,9 cm em repouso, sem os pegadores) e o corpo do homem da tabela, o caminho das mãos (no meio da canela) aos pés mede uns 70 cm: o tubo só fica esticado embaixo com uma volta em cada mão. A ficha da técnica (`docs/pesquisa/animacoes/stiff-elastico.md`, "Como a carga sobe") cita "uma volta na mão" como o passo seguinte da escada, não como a montagem. Talvez o texto deva dizer como segurar curto (a volta na mão) já na montagem.
+2. **`stiff-unilateral`: a cor do glúteo.** A ficha da técnica (`docs/pesquisa/animacoes/stiff-unilateral.md`, "Músculos") ainda diz "Primário: posteriores da coxa e glúteo da perna de apoio", mas a revisão de anatomia de 02/11 decidiu o glúteo em laranja (secundário) nos três (afundo, búlgaro e stiff unilateral), como a biblioteca conta (`correcoes-ja-feitas.md`). A animação segue a correção; a ficha pode ser atualizada.
+3. **Eretores da coluna.** A animação de hoje desenhava os eretores (e a ficha do `stiff-unilateral` os lista como secundário); o desenho do Boneco novo não tem esse grupo (`src/engine/novo/dados/musculos.json`) e a biblioteca não o conta. Ficaram fora nos quatro stiffs.

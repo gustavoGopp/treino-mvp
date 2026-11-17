@@ -5,7 +5,7 @@
 //      (opcional: node .../todos.mjs <pasta-das-folhas> para gravar as folhas em outro lugar)
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { enquadrado, quantizar } from './realista/base.mjs';
+import { enquadrado, quantizar } from '../../src/engine/novo/realista/base.mjs';
 import { TODOS } from './realista/itens.mjs';
 
 // categorias e nomes curtos da tela do cadastro (src/features/onboarding/inventarioForm.ts: CATEGORIAS, NOME_CURTO)

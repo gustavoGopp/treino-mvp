@@ -1,0 +1,53 @@
+{
+ "id": "abdominal-chao",
+ "nome": "Abdominal no chão (crunch)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-chao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-chao.md): consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/abdominal-chao.json), que sai da ficha",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-chao.ts): as distâncias que a ficha não dá em número",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "lombar.base": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "app", "o": "deitado, a lombar firme (\"lombar apoiada no chão\", \"abdômen firme\" no app): a curva da lombar achata 15° além da de repouso, e a bacia inclina até o glúteo e as costas encostarem juntos no chão"},
+  "toracica.topo": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "no topo, a parte de cima da coluna enrola 55° (a torácica) até as escápulas saírem do chão; a ficha pede a escápula fora do chão e não dá ângulo"},
+  "lombar.topo": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "no topo, a lombar enrola só mais 5°: a parte de baixo dela e a bacia continuam apoiadas"},
+  "cervical.topo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no topo, o pescoço acompanha o tronco: 8° de flexão a partir do pescoço reto de quem está em pé (o olhar vai para os joelhos, sem o queixo ir ao peito)"},
+  "cabeca.topo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no topo, a cabeça dobra 5° sobre o pescoço (o queixo levemente recolhido, sem encostar no peito)"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "joelhos dobrados, pés no chão (a ficha e o app não dão o ângulo): o pé fica onde o joelho dobra 90° (o pé a 48 cm da bacia na animação de hoje)"},
+  "ombro.z": {"v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena, deitado (só posiciona a cena)"},
+  "maos.x": {"v": -1, "un": "cm", "selo": "desenho", "fonte": "app", "o": "mãos cruzadas no peito: o punho direito fica 8 cm para o lado esquerdo do meio do peito (a mão espalmada no peito do outro lado)"},
+  "maos.y": {"v": -25, "un": "cm", "selo": "desenho", "fonte": "app", "o": "o punho direito fica 12 cm abaixo da base do pescoço, ao longo do tórax"},
+  "maos.abaixo": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o punho esquerdo fica 3 cm abaixo do direito"},
+  "maos.acima": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o antebraço esquerdo passa por cima do direito: o punho esquerdo fica 6 cm mais à frente do peito (a espessura do antebraço)"},
+  "maos.poloFora": {"v": 1.5, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "para onde o cotovelo aponta, no referencial do tórax: o peso da direção para fora (junto com maos.poloPes)"},
+  "maos.poloPes": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "para onde o cotovelo aponta: o peso da direção para os pés (os cotovelos junto do corpo)"},
+  "maos.poloTras": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "para onde o cotovelo aponta: o peso da direção para as costas (deitado, os cotovelos descem ao lado do corpo)"},
+  "erro.pescoco.toracica": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: as escápulas mal saem do chão (a torácica enrola 30% do certo)"},
+  "erro.pescoco.cervical": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o pescoço dobra 30° a partir do pescoço reto (junto com erro.pescoco.cabeca)"},
+  "erro.pescoco.cabeca": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a cabeça dobra mais 20° sobre o pescoço: o queixo vai ao peito"},
+  "erro.lombar.quadril": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o quadril dobra 30° (a bacia gira em volta do quadril e a lombar sai do chão: vira um abdominal completo)"}
+ },
+ "fases": [
+  {"nome": "Deitado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "lombar no chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo · contrai", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "abdominal-escapulas-saem-do-chao", "pede": "enrola a parte de cima da coluna até tirar as escápulas do chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-lombar-apoiada", "pede": "a lombar e a bacia continuam apoiadas no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-pescoco-acompanha", "pede": "o pescoço acompanha o tronco, sem o queixo ir ao peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maos-no-peito", "pede": "mãos cruzadas no peito, sem puxar a cabeça", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "pescoco", "instante": 1, "titulo": "Puxar o pescoço", "vista": "lateral", "oQueMuda": "o queixo vai ao peito e as escápulas mal saem do chão", "destaca": ["corpo"], "linha": ["lombar", "c7", "cabeca"], "foco": "cabeca"},
+  {"id": "lombar", "instante": 1, "titulo": "Subir a lombar", "vista": "lateral", "oQueMuda": "o quadril dobra e a lombar sai do chão: vira um abdominal completo", "destaca": ["corpo"], "linha": ["joelho", "pelve", "lombar", "c7"], "foco": "lombar"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "pescoço solto", "ponto": "cabeca", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "lombar no chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"}
+ ]
+}
