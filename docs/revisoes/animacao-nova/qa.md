@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 103 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 107 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 1957 células dos cuidados 1 a 19: M 788, M! 93, O 740, C 309, – 22, ✗ 5.
+Contagem das 2033 células dos cuidados 1 a 19: M 817, M! 99, O 768, C 321, – 22, ✗ 6.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -53,6 +53,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abducao-deitado-mini-band` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-deitado-mini-band.png) |
 | `abducao-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/abducao-elastico.png) |
 | `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-mini-band.png) |
+| `abertura-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-elastico.png) |
 | `abertura-t-deitado` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-t-deitado.png) |
 | `aducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-caneleira.png) |
 | `aducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/aducao-deitado.png) |
@@ -67,7 +68,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `bulgaro` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro.png) |
 | `bulgaro-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-peso-corpo.png) |
 | `bulgaro-suspensao` | 1 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-suspensao.png) |
-| `caminhada-lateral-mini-band` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/caminhada-lateral-mini-band.png) |
+| `caminhada-lateral-mini-band` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/caminhada-lateral-mini-band.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
 | `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
@@ -83,6 +84,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `elevacao-joelhos-paralelas` | 7 | M | M | M! | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-joelhos-paralelas.png) |
 | `elevacao-lateral` | 3 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral.png) |
 | `elevacao-lateral-elastico` | 3 | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-elastico.png) |
+| `elevacao-lateral-unilateral-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-unilateral-elastico.png) |
 | `extensao-joelho-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-caneleira.png) |
 | `extensao-joelho-elastico` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-elastico.png) |
 | `extensao-joelho-mini-band` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-mini-band.png) |
@@ -128,6 +130,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `rosca-inclinada` | 5 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-inclinada.png) |
 | `rosca-kettlebell` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-kettlebell.png) |
 | `rosca-martelo` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo.png) |
+| `rosca-martelo-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo-elastico.png) |
 | `rosca-polia` | 5 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia.png) |
 | `rosca-scott-banco-inclinado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/rosca-scott-banco-inclinado.png) |
 | `rosca-suspensao` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-suspensao.png) |
@@ -140,6 +143,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
 | `triceps-corda` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-corda.png) |
 | `triceps-elastico-acima` | 5 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-acima.png) |
+| `triceps-elastico-alto` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-alto.png) |
 | `triceps-frances` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-frances.png) |
 | `triceps-frances-halter` | 5 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-frances-halter.png) |
 | `triceps-frances-kettlebell` | 5 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-frances-kettlebell.png) |
@@ -153,7 +157,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 Dois avisos aparecem em quase todas e não entram na lista abaixo:
 
 - **Cuidado 1, linhas provisórias** (0 animações): linhas da ficha do movimento que são escolha de desenho, sem número na ficha da técnica. Estão listadas, animação por animação, em `prototipos/conferencia.md`.
-- **Cuidado 8, diferenças de músculo aceitas** (25 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
+- **Cuidado 8, diferenças de músculo aceitas** (27 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
 
 Os demais:
 
@@ -166,6 +170,8 @@ Os demais:
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1 a 2 vezes (48,2 a 93,7 cm); em cima, 1 vezes
 - `abducao-mini-band`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 2,1 vezes (79,8 a 130,9 cm); em cima, 1,3 vezes
+- `abertura-elastico`
+  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1 a 1,9 vezes (215,5 a 386,3 cm); em cima, 1 vezes
 - `abertura-t-deitado`
   - cuidado 2: flexão plantar do tornozelo → 60°
 - `afundo`
@@ -195,8 +201,8 @@ Os demais:
 - `bulgaro-peso-corpo`
   - cuidado 2: extensão do quadril → 25°
 - `caminhada-lateral-mini-band`
-  - cuidado 2: dorsiflexão do tornozelo → 15,9°
-  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,6 vezes (78,5 a 95,1 cm); em cima, 1,3 vezes
+  - cuidado 2: dorsiflexão do tornozelo → 26°
+  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,9 vezes (79,2 a 113,7 cm); em cima, 1,3 vezes
 - `coice-elastico`
   - cuidado 14: o erro "Chutar com embalo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: flexão plantar do tornozelo → 80,7°
@@ -218,6 +224,8 @@ Os demais:
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 16,2% da velocidade de pico (quadril, Subida · concêntrica); pico de 247,9 cm/s
 - `elevacao-lateral-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 2,5 vezes (160,2 a 306,4 cm); em cima, 1,3 vezes
+- `elevacao-lateral-unilateral-elastico`
+  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,1 a 1,7 vezes (128,3 a 204,8 cm); em cima, 1,1 vezes
 - `extensao-joelho-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,2 a 1,4 vezes (140,2 a 174 cm); em cima, 1,2 vezes
 - `extensao-joelho-mini-band`
@@ -298,11 +306,16 @@ Os demais:
   - cuidado 2: flexão plantar do tornozelo → 80,7°
 - `rosca-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,4 a 2,3 vezes (168,4 a 277,1 cm); em cima, 1,4 vezes
+- `rosca-martelo-elastico`
+  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,4 a 2,3 vezes (166,7 a 277 cm); em cima, 1,4 vezes
 - `rosca-polia`
   - cuidado 2: supinação do antebraço → 90,8°
 - `triceps-elastico-acima`
   - cuidado 2: dorsiflexão do tornozelo → 16,6°
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,6 a 2,1 vezes (327,8 a 438,4 cm); em cima, 1,6 vezes
+- `triceps-elastico-alto`
+  - cuidado 14: o erro "Não testar o ponto alto" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,5 a 2,3 vezes (178,9 a 286,1 cm); em cima, 1,5 vezes
 - `triceps-frances-halter`
   - cuidado 2: pronação do antebraço (a partir do polegar para cima) → 104,6°
 
@@ -317,6 +330,7 @@ Os demais:
 - `abducao-deitado-mini-band`: (sem linha no andamento)
 - `abducao-elastico`: (sem linha no andamento)
 - `abducao-mini-band`: aprovada por delegação em 16/11/2026 ("O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma"): a faixa refeita em 15/11 e, de frente, a mão escondida atrás da coxa que abre
+- `abertura-elastico`: (sem linha no andamento)
 - `abertura-t-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente)
@@ -347,6 +361,7 @@ Os demais:
 - `elevacao-joelhos-paralelas`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (braços retos; as paralelas ficaram a 132 cm, pela medida do fabricante; as de hoje têm 105)
 - `elevacao-lateral`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem)
 - `elevacao-lateral-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
+- `elevacao-lateral-unilateral-elastico`: (sem linha no andamento)
 - `extensao-joelho-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `extensao-joelho-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado na ponta do banco; o joelho dobra 69° embaixo, porque mais que isso o pé encosta no chão)
 - `extensao-joelho-mini-band`: (sem linha no andamento)
@@ -392,6 +407,7 @@ Os demais:
 - `rosca-inclinada`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): com o halter de 10 lb; de frente os braços abrem 25°, para o halter não entrar no quadril
 - `rosca-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `rosca-martelo`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb)
+- `rosca-martelo-elastico`: (sem linha no andamento)
 - `rosca-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a barra reta, que é peça nova; a coluna é cortada em cima pelo quadro)
 - `rosca-scott-banco-inclinado`: (sem linha no andamento)
 - `rosca-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
@@ -404,6 +420,7 @@ Os demais:
 - `supino-reto`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `triceps-corda`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `triceps-elastico-acima`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a faixa em laço de 41 pol, que é objeto novo)
+- `triceps-elastico-alto`: (sem linha no andamento)
 - `triceps-frances`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (na polia, com a corda, que é peça nova)
 - `triceps-frances-halter`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `triceps-frances-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
