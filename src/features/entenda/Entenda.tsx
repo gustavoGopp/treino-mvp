@@ -6,10 +6,10 @@ import { mensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { numeroBr } from '../../domain/numero';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { carregarRegras } from '../../domain/regras/carregar';
-import type { Regra } from '../../domain/regras';
+import { RIR, VOLUME, type Regra } from '../../domain/regras';
 import { sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { inventarioPrincipal, perfilDe, primeiroPassoPendente } from '../../storage/esquema';
-import { semanaDoEstado } from '../acompanhamento/acoes';
+import { semanaDoEstado, semanaLeveDoEstado } from '../acompanhamento/acoes';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Explicacoes, NavInferior, Selo, SeloFolha, Titulo, Topo } from '../app/ui';
 import { ComoEsta } from '../programa/ComoEsta';
@@ -118,6 +118,8 @@ export function Entenda() {
   const hoje = programa ? hojeDoEstado(estado, agora, fuso) : null;
   const semana = programa ? semanaDoEstado(estado, agora, fuso) : null;
   const volta = hoje ? mensagemDeVolta(hoje) : null;
+  const leve = programa ? semanaLeveDoEstado(estado, agora, fuso) : null;
+  const abaixo = (semana?.musculos ?? []).filter((m) => m.planejado !== undefined);
   const fase = hoje?.fase ?? programa?.fases[0];
   // a carga sugerida é a de um treino que começasse agora, no local do programa (como a tela do treino a mostra)
   const opcoes = programa ? opcoesDaCarga(estado, { id: agora, inicio: agora, ...(hoje?.semanaLeve ? { semanaLeve: true } : {}) }, fuso) : {};
@@ -258,9 +260,6 @@ export function Entenda() {
             <Bloco titulo="A sua semana e as pausas">
               {semana && (
                 <p>
-                  <b>
-                    {semana.feitos} de {semana.planejados} treinos.
-                  </b>{' '}
                   {semana.mensagem} <Selo id={semana.regraId} />
                 </p>
               )}
@@ -269,9 +268,46 @@ export function Entenda() {
                   <b>{volta.titulo}</b> {volta.texto} <Selo id={volta.regraId} />
                 </p>
               )}
+              {semana?.revisao && (
+                <p>
+                  <b>Um programa com menos dias?</b> {semana.revisao.texto} Ele cabe melhor e rende o mesmo por treino. O programa só muda se você
+                  escolher. <Selo id={semana.revisao.regraId} />
+                </p>
+              )}
+              {leve?.mostrar && (
+                <p>
+                  <b>Semana leve sugerida.</b> Motivo: {leve.motivos.join('; ')}. {leve.texto} <Selo id={leve.regraId} />
+                </p>
+              )}
+              {abaixo.length > 0 && (
+                <>
+                  <h3>Músculos que o programa planeja abaixo da meta</h3>
+                  <ul className="lista">
+                    {abaixo.map((m) => (
+                      <li key={m.musculo}>
+                        {m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}: {numeroBr(m.planejado!)} de {numeroBr(m.meta)} ({m.motivo}).
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <h3>Como ler o quadro da semana</h3>
               <ul className="lista">
-                <Frase regra="deload.semana-leve">A semana leve é sugerida quando o treino pesa demais ou para de progredir; é opcional e serve para descansar, não para crescer.</Frase>
-                <Frase regra="rir.serie-efetiva">No quadro da semana, conta a série com até 4 repetições de reserva e amplitude completa.</Frase>
+                <Frase regra="rir.serie-efetiva">
+                  Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma
+                  indireta vale meia. {semana?.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'}
+                </Frase>
+                <Frase regra="acompanhamento.semana">
+                  A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) ·
+                  claro: mantendo · vazio: ainda sem treino na semana. A semana conta os treinos de qualquer local.
+                </Frase>
+                <Frase regra="deload.semana-leve">
+                  A semana leve é sugerida quando o treino pesa demais ou para de progredir; é opcional e serve para descansar, não para crescer.
+                </Frase>
+                <Frase regra="acompanhamento.evolucao">
+                  Na evolução de um exercício, cada linha é a melhor série daquele treino. Nas máquinas, cada local tem a sua lista: a placa de uma
+                  torre não pesa o mesmo que a de outra.
+                </Frase>
               </ul>
             </Bloco>
           )}

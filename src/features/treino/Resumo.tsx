@@ -8,7 +8,7 @@ import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
-import { Pontos } from '../acompanhamento/Semana';
+import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { Titulo } from '../app/ui';
 
@@ -57,7 +57,6 @@ export function Resumo() {
   // "O que mudou hoje" (lote 4; agente 1, 4.1): a semana já com o treino de hoje, os recordes do dia e as cargas que sobem.
   const semana = semanaDoEstado(estado, agoraIso(), fuso);
   const marcas = marcasDaSessao(estado.historico, s.id, (x) => localDaSessao(estado, x));
-  const sobem = itens.filter((i) => i.sug.acao === 'subir').length;
 
   return (
     <div className="wrap app">
@@ -94,19 +93,10 @@ export function Resumo() {
             <span className="rotulo">{itens.length === 1 ? 'exercício' : 'exercícios'}</span>
           </div>
         </div>
-        {(semana || marcas.length > 0 || sobem > 0) && (
+        {(semana || marcas.length > 0) && (
           <section className="mudou" aria-labelledby="mudou">
-            <h2 id="mudou">O que mudou hoje</h2>
-            {semana && (
-              <>
-                <p className="mudou-semana">
-                  <b>A sua semana</b> <Pontos r={semana} />{' '}
-                  <b className="num">
-                    {semana.feitos} de {semana.planejados}
-                  </b>
-                </p>
-              </>
-            )}
+            <h2 id="mudou" className="sr">O que mudou hoje</h2>
+            {semana && <FaixaSemana r={semana} />}
             {marcas.length > 0 && (
               <ul className="marcas-hoje" aria-label="Recordes de hoje">
                 {marcas.map((m) => (
@@ -124,11 +114,10 @@ export function Resumo() {
                 ))}
               </ul>
             )}
-            {sobem > 0 && <p>{sobem === 1 ? '1 exercício com carga para subir na próxima vez.' : `${sobem} exercícios com carga para subir na próxima vez.`}</p>}
           </section>
         )}
         <fieldset className="campo hoje-foi">
-          <legend>Hoje foi: (opcional)</legend>
+          <legend>Hoje foi</legend>
           <div className="opcoes linha">
             {HOJE_FOI.map(([v, t]) => (
               <button key={v} type="button" className="btn sec pequeno" aria-pressed={s.hojeFoi === v} onClick={() => atualizar((e) => marcarHojeFoi(e, s.id, v))}>
@@ -139,7 +128,7 @@ export function Resumo() {
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
           <h2 id="proxima" className="rotulo">
-            Para a próxima vez
+            Próxima vez
           </h2>
           <ul className="lista-proxima">
             {/* a chave leva a posição: o mesmo exercício pode aparecer duas vezes no treino (feito e, depois, como alternativa de outra vaga) */}
@@ -155,9 +144,6 @@ export function Resumo() {
           </ul>
         </section>
         <SemanaLeve />
-        <Link className="btn sec" to="/semana">
-          Ver a sua semana
-        </Link>
         {apagar ? (
           <div className="warnbox" role="group" aria-label="Apagar este treino?">
             <p>
@@ -181,7 +167,7 @@ export function Resumo() {
           </div>
         ) : (
           <button type="button" className="link-sec" onClick={() => setApagar(true)}>
-            Registrei algo errado: apagar este treino
+            Apagar este treino
           </button>
         )}
         {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}

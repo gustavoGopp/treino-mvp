@@ -142,10 +142,10 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await faixa.click();
 
   await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
-  await expect(page.getByText('02/11 a 08/11, em qualquer local')).toBeVisible();
+  await expect(page.getByText('02/11 a 08/11', { exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: /2 de 3 treinos/ })).toBeVisible();
-  // lote 4 do redesign: a frase saiu da faixa do início e fica aqui
-  await expect(page.getByText('2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.')).toBeVisible();
+  // sessão de textos (16/11/2026): a frase da semana saiu da tela e fica em "Entenda o treino"
+  await expect(page.getByText(/Se der, o Corpo todo C/)).toHaveCount(0);
   const musculos = page.getByRole('list', { name: 'Séries efetivas por músculo nesta semana' });
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
@@ -155,9 +155,15 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
   await expect(page.getByRole('heading', { name: 'Últimas 3 semanas' })).toBeVisible();
-  await expect(page.getByText('2 das últimas 3 semanas com treino.')).toBeVisible();
+  // a contagem em palavras fica no nome acessível dos quadradinhos
+  await expect(page.getByRole('img', { name: '2 de 3 semanas com treino' })).toBeVisible();
   await print(page, 'semana');
   await semToquePequeno(page);
+  // o que saiu da tela está em "Entenda o treino": a frase da semana e como ler o quadro
+  const pausas = await entenda(page, 'A sua semana e as pausas');
+  await expect(pausas).toContainText('Se der, o Corpo todo C cabe até domingo.');
+  await expect(pausas).toContainText('A barra é o que foi feito; o traço tracejado é a meta.');
+  await expect(pausas).toContainText('conta os treinos de qualquer local');
 });
 
 test('vê a evolução de um exercício: a melhor série de cada treino, com "recorde" e "subiu a carga"', async ({ page }) => {
@@ -167,6 +173,7 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
     { dia: 0, quando: '2026-10-19T13:00:00.000Z', series: { 'supino-reto': [[9, 8], [9, 8]] } },
   ]);
   await page.getByRole('link', { name: /A sua semana/ }).click();
+  await page.locator('summary', { hasText: /^Evolução \(\d+\)$/ }).click();
   await page.getByRole('link', { name: 'Supino reto com halteres' }).click();
   await expect(page.getByRole('heading', { name: 'Supino reto com halteres' })).toBeVisible();
   const pontos = page.locator('.pontos-evolucao li');
@@ -184,7 +191,7 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
   await semToquePequeno(page);
 });
 
-test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subiu nesta semana", e leva à evolução', async ({ page }) => {
+test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "Subiu nesta semana", e leva à evolução', async ({ page }) => {
   // Semana de 02/11: supino 8 kg × 10 na segunda e 8 kg × 12 na terça (recorde).
   await comHistorico(page, [
     { dia: 0, quando: '2026-11-02T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
@@ -199,7 +206,7 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subi
   await semToquePequeno(page);
 
   await page.goto('/semana');
-  const subiu = page.getByRole('region', { name: 'O que subiu nesta semana' });
+  const subiu = page.getByRole('region', { name: 'Subiu nesta semana' });
   await expect(subiu).toContainText('Supino reto com halteres');
   await expect(subiu).toContainText('recorde');
   await semToquePequeno(page);
@@ -215,7 +222,7 @@ test('R5a: na fase de aprendizado da iniciante, o mesmo sinal não traz a semana
     { dia: 1, quando: '2026-11-03T13:00:00.000Z', hojeFoi: 'pesado' },
   ]);
   await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo C' })).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Semana leve?' })).toHaveCount(0);
   await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
 });
 
@@ -236,18 +243,22 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
   await semToquePequeno(page);
-  const hojeFoi = page.getByRole('group', { name: 'Hoje foi: (opcional)' });
+  const hojeFoi = page.getByRole('group', { name: 'Hoje foi' });
   for (const b of ['leve', 'normal', 'pesado demais']) await expect(hojeFoi.getByRole('button', { name: b, exact: true })).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Semana leve?' })).toHaveCount(0);
   await hojeFoi.getByRole('button', { name: 'pesado demais' }).click();
   await expect(hojeFoi.getByRole('button', { name: 'pesado demais' })).toHaveAttribute('aria-pressed', 'true');
 
-  const leve = page.getByRole('region', { name: 'Semana leve? (opcional)' });
-  await expect(leve).toContainText('Motivo: "pesado demais" em 2 dos últimos 3 treinos.');
-  await expect(leve).toContainText('Para descansar, não para crescer.');
+  const leve = page.getByRole('region', { name: 'Semana leve?' });
+  await expect(leve).toContainText('Metade das séries por 7 dias, mesma carga.');
+  // o motivo e a explicação ficam em "Entenda o treino"
+  const pausas = await entenda(page, 'A sua semana e as pausas');
+  await expect(pausas).toContainText('Motivo: "pesado demais" em 2 dos últimos 3 treinos.');
+  await expect(pausas).toContainText('Para descansar, não para crescer.');
+  await page.goto('/treino/fim');
   await print(page, 'semana-leve');
   await semToquePequeno(page);
-  await leve.getByRole('button', { name: 'Fazer a semana leve' }).click();
+  await leve.getByRole('button', { name: 'Fazer', exact: true }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toBeVisible();
 
   // No Seu treino, a semana leve já vale: metade das séries e RIR 3–4.

@@ -81,7 +81,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(page.locator('.subtitulo')).toContainText('Corpo todo A');
   // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje
   await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
-  await expect(page.getByRole('heading', { name: 'Para a próxima vez' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Próxima vez' })).toBeVisible();
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
   // sessão de textos (16/11/2026): o motivo da sugestão, com o selo, saiu do fim do treino e está em "Entenda o treino"
   await expect(page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' })).toHaveCount(0);

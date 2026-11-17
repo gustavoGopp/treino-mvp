@@ -183,7 +183,7 @@ export function Programa() {
     });
   if (!volta && !estado.sessaoAtual) {
     if (leve?.ativa) fila.push({ id: 'leve-ativa', linha: <b>Semana leve{leve.ate ? ` até ${dataCurta(leve.ate)}` : ''}</b>, bloco: <SemanaLeve partes={['ativa']} /> });
-    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve? (opcional)</b>, bloco: <SemanaLeve partes={['oferta']} /> });
+    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve?</b>, bloco: <SemanaLeve partes={['oferta']} /> });
     if (tempoProposto)
       fila.push({
         id: 'tempo',

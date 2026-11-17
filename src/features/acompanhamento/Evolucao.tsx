@@ -29,10 +29,7 @@ export function Evolucao() {
       <Topo voltar={dePrograma ? { para: '/programa', rotulo: 'Treino' } : { para: '/semana', rotulo: 'Semana' }} />
       <main className="conteudo evolucao">
         <Titulo>{ex.nome}</Titulo>
-        <p className="ajuda">
-          Sua evolução: a melhor série de cada treino.
-        </p>
-        {!linhas.length && <p>Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele.</p>}
+        {!linhas.length && <p>Ainda sem treino registrado deste exercício.</p>}
         {linhas.map((l) => (
           <section key={l.localId ?? 'todos'} className="pilha" aria-label={l.localId ? `Em ${localPorId(estado, l.localId)?.nome ?? 'outro local'}` : ex.nome}>
             {cargaDaMaquina(exId) && variosLocais && <h2 className="secao">Em {localPorId(estado, l.localId)?.nome ?? 'outro local'}</h2>}
@@ -55,7 +52,6 @@ export function Evolucao() {
             </ol>
           </section>
         ))}
-        {cargaDaMaquina(exId) && variosLocais && <p className="ajuda">Nas máquinas, cada local tem a sua lista: a placa de uma torre não pesa o mesmo que a de outra.</p>}
       </main>
       <NavInferior atual={dePrograma ? 'treino' : 'semana'} />
     </div>

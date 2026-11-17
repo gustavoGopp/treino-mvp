@@ -1,5 +1,4 @@
 import { Link, Navigate } from 'react-router-dom';
-import { RIR, VOLUME } from '../../domain/regras';
 import { diaEMes as dataCurta, numeroBr } from '../../domain/numero';
 import { POR_ID } from '../../domain/biblioteca';
 import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
@@ -60,7 +59,7 @@ export function Semana() {
         <div className="cabeca-treino">
           <Titulo>A sua semana</Titulo>
           <p className="ajuda">
-            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}, em qualquer local
+            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}
           </p>
         </div>
 
@@ -69,7 +68,6 @@ export function Semana() {
             {r.feitos} <small>de {r.planejados} treinos</small>
           </h2>
           <Pontos r={r} />
-          <p className="fase">{r.mensagem}</p>
         </section>
 
         {/* sem semana nenhuma contada ainda (programa novo, sem treino), a faixa das semanas não aparece */}
@@ -83,18 +81,13 @@ export function Semana() {
                 <i key={i} className={t ? 'on' : ''} />
               ))}
             </span>
-            <p className="ajuda">
-              {r.semanas.length === 1
-                ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
-                : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
-            </p>
           </section>
         )}
 
         {subiu.length > 0 && (
           <section aria-labelledby="subiu" className="pilha">
             <h2 id="subiu" className="secao">
-              O que subiu nesta semana
+              Subiu nesta semana
             </h2>
             <ul className="lista-subiu">
               {subiu.map((m) => (
@@ -133,33 +126,17 @@ export function Semana() {
                 <span className="m-num">
                   {num(m.feitas)} de {num(m.meta)}
                 </span>
-                {(m.feitas > 0 || m.planejado !== undefined) && (
-                  <span className="m-estado">
-                    {m.feitas > 0 ? TEXTO_ESTADO[m.estado] : ''}
-                    {m.planejado !== undefined && `${m.feitas > 0 ? ' · ' : ''}o seu programa planeja ${num(m.planejado)} de ${num(m.meta)}: ${m.motivo}`}
-                  </span>
-                )}
+                {m.feitas > 0 && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
               </li>
             ))}
           </ul>
-          <details className="box dobra">
-            <summary>Como ler este quadro</summary>
-          <p className="ajuda">
-            Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
-            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'}
-          </p>
-          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
-          </details>
         </section>
 
         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
         {r.revisao && !estado.sessaoAtual && (
           <section className="box volta" aria-labelledby="revisao">
-            <h2 id="revisao">Um programa que cabe melhor?</h2>
-            <p>
-              {r.revisao.texto}
-            </p>
-            <p className="ajuda">O programa só muda se você escolher.</p>
+            <h2 id="revisao">Um programa com menos dias?</h2>
+            <p>{r.revisao.texto}</p>
             <div className="opcoes linha">
               {r.revisao.opcoes.map((n) => (
                 <button key={n} type="button" className="btn sec pequeno" onClick={() => atualizar((s) => aceitarMenosDias(s, n as 2 | 3 | 4 | 5, agoraIso()))}>
@@ -176,10 +153,8 @@ export function Semana() {
         <SemanaLeve />
 
         {exercicios.length > 0 && (
-          <section aria-labelledby="evolucao" className="pilha">
-            <h2 id="evolucao" className="secao">
-              Sua evolução
-            </h2>
+          <details className="box dobra">
+            <summary>Evolução ({exercicios.length})</summary>
             <ul className="lista-evolucao">
               {exercicios.map((id) => (
                 <li key={id}>
@@ -190,7 +165,7 @@ export function Semana() {
                 </li>
               ))}
             </ul>
-          </section>
+          </details>
         )}
 
       </main>

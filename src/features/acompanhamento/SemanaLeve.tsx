@@ -25,9 +25,7 @@ export function SemanaLeve({ partes = ['dor', 'ativa', 'oferta'] }: { partes?: P
       {s.ativa && (
         <section className="box volta" aria-labelledby="leve-ativa">
           <h2 id="leve-ativa">Semana leve{s.ate ? ` até ${dataCurta(s.ate)}` : ''}</h2>
-          <p>
-            Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.
-          </p>
+          <p>Metade das séries, RIR 3–4, mesma carga.</p>
           <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => encerrarSemanaLeve(e, agoraIso()))}>
             Voltar ao normal
           </button>
@@ -35,16 +33,11 @@ export function SemanaLeve({ partes = ['dor', 'ativa', 'oferta'] }: { partes?: P
       )}
       {s.mostrar && (
         <section className="box volta" aria-labelledby="leve">
-          <h2 id="leve">Semana leve? (opcional)</h2>
-          <p>
-            <b>Motivo:</b> {s.motivos.join('; ')}.
-          </p>
-          <p>
-            {s.texto}
-          </p>
+          <h2 id="leve">Semana leve?</h2>
+          <p>Metade das séries por 7 dias, mesma carga.</p>
           <div className="opcoes linha">
             <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => aceitarSemanaLeve(e, agoraIso()))}>
-              Fazer a semana leve
+              Fazer
             </button>
             <button type="button" className="btn sec pequeno" onClick={() => atualizar((e) => recusarSemanaLeve(e, agoraIso()))}>
               Agora não

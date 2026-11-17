@@ -153,6 +153,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await page.goto('/semana');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await criterios(page); // semana
+    await page.locator('summary', { hasText: /^Evolução \(\d+\)$/ }).click();
     await page.locator('.lista-evolucao a').first().click();
     await expect(page).toHaveURL(/\/evolucao\//);
     await criterios(page); // evolução

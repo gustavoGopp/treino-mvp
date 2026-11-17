@@ -111,7 +111,7 @@ describe('os casos W1 a W7 do T6', () => {
     const antes = JSON.stringify(e);
     const r = semana(e, 28);
     expect(r.revisao).toMatchObject({ opcoes: [2, 3], regraId: 'acompanhamento.mensagens' });
-    expect(r.revisao!.texto).toBe('Nas últimas 4 semanas você treinou cerca de 2 vezes por semana. Quer um programa de 2 ou 3 dias? Ele cabe melhor e rende o mesmo por treino.');
+    expect(r.revisao!.texto).toBe('Nas últimas 4 semanas você treinou cerca de 2 vezes por semana.');
     expect(JSON.stringify(e)).toBe(antes);
     // "Manter" esconde a oferta por 4 semanas.
     expect(semana(e, 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeUndefined();

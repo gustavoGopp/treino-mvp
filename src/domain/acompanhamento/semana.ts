@@ -217,7 +217,7 @@ function revisaoDaMeta(
   return {
     media,
     opcoes,
-    texto: `${quando} Quer um programa de ${juntar(opcoes.map(String)).replace(' e ', ' ou ')} dias? Ele cabe melhor e rende o mesmo por treino.`,
+    texto: quando,
     regraId: r('acompanhamento.mensagens'),
   };
 }
