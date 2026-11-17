@@ -92,13 +92,14 @@ import p86 from './supino-inclinado.json';
 import p87 from './supino-reto.json';
 import p88 from './triceps-corda.json';
 import p89 from './triceps-elastico-acima.json';
-import p90 from './triceps-frances.json';
-import p91 from './triceps-frances-halter.json';
-import p92 from './triceps-frances-kettlebell.json';
-import p93 from './triceps-frances-polia-unilateral.json';
-import p94 from './triceps-suspensao.json';
-import p95 from './triceps-testa-halteres.json';
-import p96 from './yt-suspensao.json';
+import p90 from './triceps-elastico-alto.json';
+import p91 from './triceps-frances.json';
+import p92 from './triceps-frances-halter.json';
+import p93 from './triceps-frances-kettlebell.json';
+import p94 from './triceps-frances-polia-unilateral.json';
+import p95 from './triceps-suspensao.json';
+import p96 from './triceps-testa-halteres.json';
+import p97 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -191,12 +192,13 @@ const TODOS: Record<string, Preparo> = {
   'supino-reto': p87,
   'triceps-corda': p88,
   'triceps-elastico-acima': p89,
-  'triceps-frances': p90,
-  'triceps-frances-halter': p91,
-  'triceps-frances-kettlebell': p92,
-  'triceps-frances-polia-unilateral': p93,
-  'triceps-suspensao': p94,
-  'triceps-testa-halteres': p95,
-  'yt-suspensao': p96,
+  'triceps-elastico-alto': p90,
+  'triceps-frances': p91,
+  'triceps-frances-halter': p92,
+  'triceps-frances-kettlebell': p93,
+  'triceps-frances-polia-unilateral': p94,
+  'triceps-suspensao': p95,
+  'triceps-testa-halteres': p96,
+  'yt-suspensao': p97,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);

@@ -99,3 +99,4 @@ export { roscaScottBancoInclinado } from './rosca-scott-banco-inclinado';
 export { crucifixoHalteres } from './crucifixo-halteres';
 export { crucifixoInclinadoHalteres } from './crucifixo-inclinado-halteres';
 export { roscaMarteloElastico } from './rosca-martelo-elastico';
+export { tricepsElasticoAlto } from './triceps-elastico-alto';
