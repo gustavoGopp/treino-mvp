@@ -39,7 +39,7 @@ test('dado ilegível não é apagado pelo primeiro salvar: fica guardado à part
   await expect(page.getByRole('alert')).toContainText('Meus dados');
   // antes de qualquer toque, o dado antigo segue na chave principal e já pode ser exportado
   await page.goto('/dados');
-  const exportar = page.getByRole('button', { name: 'Exportar os dados que não foram lidos' });
+  const exportar = page.getByRole('button', { name: 'Exportar esses dados' });
   await expect(exportar).toBeVisible();
   const [antes] = await Promise.all([page.waitForEvent('download'), exportar.click()]);
   expect(Buffer.concat(await (await antes.createReadStream()).toArray()).toString('utf8')).toContain('dado-antigo');
@@ -53,6 +53,6 @@ test('dado ilegível não é apagado pelo primeiro salvar: fica guardado à part
 
   // e continua exportável em Meus dados
   await page.goto('/dados');
-  const [depois] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar os dados que não foram lidos' }).click()]);
+  const [depois] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar esses dados' }).click()]);
   expect(Buffer.concat(await (await depois.createReadStream()).toArray()).toString('utf8')).toContain('dado-antigo');
 });

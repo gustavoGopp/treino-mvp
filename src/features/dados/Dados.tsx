@@ -157,7 +157,7 @@ export function Dados() {
           <div className="warnbox pilha" role="note">
             <p>Os dados que o app não conseguiu ler continuam guardados neste aparelho. Exporte-os para não perdê-los.</p>
             <button type="button" className="btn sec" onClick={() => void exportarNaoLido()}>
-              Exportar os dados que não foram lidos
+              Exportar esses dados
             </button>
           </div>
         )}

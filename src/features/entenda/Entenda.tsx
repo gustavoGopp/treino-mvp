@@ -348,6 +348,25 @@ export function Entenda() {
               </Frase>
               <Frase regra="registro.treino-feito">Um treino sem nenhuma série não conta, e o próximo continua sendo o mesmo dia.</Frase>
             </ul>
+            <h3>Os seus dados</h3>
+            <ul className="lista">
+              <Frase regra="dados.instalar-iphone">
+                No iPhone, o Safari apaga os dados de um site depois de 7 dias sem abri-lo. Instalado na tela de início, o app não entra nessa
+                contagem. Se já tem treinos, exporte uma cópia antes: o app instalado pode começar vazio, e aí é só importar.
+              </Frase>
+              <Frase regra="dados.copia">
+                Os dados ficam só neste aparelho, e o navegador pode apagá-los. A cópia exportada tem tudo o que está aqui e pode ser importada
+                depois, em “Meus dados”.
+              </Frase>
+              <Frase regra="dados.persistente">
+                O app pede ao navegador para não apagar os dados por falta de espaço; o navegador decide e pode negar. Instalar o app ajuda;
+                exportar uma cópia protege.
+              </Frase>
+              <li>
+                Quando o aparelho recusa gravar (sem espaço ou em aba anônima), o que você registrar pode se perder ao fechar o app; por isso o
+                aviso oferece exportar na hora.
+              </li>
+            </ul>
           </Bloco>
 
           <Bloco titulo="Segurança">
