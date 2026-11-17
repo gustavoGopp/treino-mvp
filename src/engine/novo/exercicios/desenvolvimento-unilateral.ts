@@ -11,7 +11,7 @@ const D = criarDesenvolvimento(ficha, 'halter');
 
 export const desenvolvimentoUnilateral: Exercicio = {
   ficha: D.ficha,
-  vistas: ['lateral', 'frontal'],
+  vistas: ['frontal', 'lateral'], // abre de frente: de lado o halter passa na frente do rosto; a de lado fica para a lombar e os músculos
   quadro: D.quadro,
   // a frente do ombro direito (principal); a lateral do ombro e o tríceps (secundários), como a biblioteca e a ficha
   // da técnica

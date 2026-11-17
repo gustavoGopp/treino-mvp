@@ -122,4 +122,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A2 | `abertura-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o laço longo dobrado; abre de cima; de trás as pontas penduradas parecem dois ganchos) |
 | A3 | `crucifixo-invertido-curvado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o tronco da remada curvada e o arco do crucifixo inverso; abre de três quartos por trás) |
 | A3 | `elevacao-lateral-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a mão livre na parede só equilibra; o tronco inclina 15° na coluna, com a bacia nivelada) |
+| A3 | `desenvolvimento-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente: de lado o halter passa na frente do rosto; o cotovelo vai 70° à frente no topo, como no desenvolvimento com kettlebell) |
+| A3 | `desenvolvimento-em-pe-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente, pelo mesmo motivo) |
+| A3 | `triceps-frances-unilateral-halter` | **em correção**: a mão que segura o cotovelo cruza por cima da cabeça e tapa o rosto de lado; vai para a cintura, como o cartão permite |
 
