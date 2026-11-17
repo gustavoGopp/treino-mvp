@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { APROVADOS } from '../../src/engine/novo/aprovados';
+import { BIBLIOTECA } from '../../src/domain/biblioteca';
+import { APROVADOS, ESPERAM_A_LIGACAO } from '../../src/engine/novo/aprovados';
 import { EXERCICIOS } from '../../src/engine/novo/app';
 import { cssDoBoneco } from '../../src/engine/novo/boneco';
 import { enquadramentoCalculado, fichaDoMotorNovo, miniaturaDoMotorNovo, previaDoMotorNovo, quadroDoMotorNovo, vistasDoGuia } from '../../src/engine/novo/ponte';
@@ -75,11 +76,18 @@ describe('motor novo: a ponte com as telas', () => {
   });
 
   // Desde 16/11/2026 o motor novo é o único do app: toda animação tem de estar aprovada, e o catálogo do guia (os dias
-  // do programa de referência e a ordem da lista) tem de falar das mesmas animações.
+  // do programa de referência e a ordem da lista) tem de falar das mesmas animações. A exceção (17/11/2026) são as
+  // animações novas dos exercícios que ainda são cartão de texto: aprovadas, mas fora do catálogo até a ligação com a
+  // biblioteca (ESPERAM_A_LIGACAO), que muda o treino gerado e espera o ok do Gustavo.
   it('todas as animações estão aprovadas e no catálogo do guia, sem sobra de um lado nem do outro', () => {
     const ids = Object.keys(EXERCICIOS).sort();
     expect(Object.keys(APROVADOS).sort()).toEqual(ids);
-    expect([...CATALOGO.todos].sort()).toEqual(ids);
+    expect(new Set(ESPERAM_A_LIGACAO).size).toBe(ESPERAM_A_LIGACAO.length);
+    for (const id of ESPERAM_A_LIGACAO) {
+      expect(ids, id).toContain(id);
+      expect(BIBLIOTECA.some((e) => e.animacaoId === id), `${id} já está ligado na biblioteca`).toBe(false);
+    }
+    expect([...CATALOGO.todos].sort()).toEqual(ids.filter((id) => !ESPERAM_A_LIGACAO.includes(id)));
     expect(new Set(CATALOGO.todos).size).toBe(CATALOGO.todos.length);
     for (const d of CATALOGO.dias) for (const id of d.ids) expect(ids, `${d.nome}: ${id}`).toContain(id);
   });

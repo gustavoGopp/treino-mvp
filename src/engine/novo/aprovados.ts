@@ -96,3 +96,11 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   flexao: { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
   'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };
+
+/**
+ * As animações novas dos exercícios que ainda são cartão de texto (frente das animações restantes, 17/11/2026), já
+ * conferidas e aprovadas, que esperam a ligação com a biblioteca (o `animacaoId` em src/domain/biblioteca/exercicios.json)
+ * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
+ * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
+ */
+export const ESPERAM_A_LIGACAO: string[] = [];
