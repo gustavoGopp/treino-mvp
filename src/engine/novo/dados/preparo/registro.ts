@@ -104,28 +104,29 @@ import p98 from './rosca-kettlebell.json';
 import p99 from './rosca-martelo.json';
 import p100 from './rosca-martelo-elastico.json';
 import p101 from './rosca-polia.json';
-import p102 from './rosca-scott-banco-inclinado.json';
-import p103 from './rosca-suspensao.json';
-import p104 from './stiff.json';
-import p105 from './stiff-elastico.json';
-import p106 from './stiff-kettlebell.json';
-import p107 from './stiff-unilateral.json';
-import p108 from './stiff-unilateral-kettlebell.json';
-import p109 from './supino-chao-halteres.json';
-import p110 from './supino-inclinado.json';
-import p111 from './supino-reto.json';
-import p112 from './triceps-barra-reta.json';
-import p113 from './triceps-corda.json';
-import p114 from './triceps-elastico-acima.json';
-import p115 from './triceps-elastico-alto.json';
-import p116 from './triceps-frances.json';
-import p117 from './triceps-frances-halter.json';
-import p118 from './triceps-frances-kettlebell.json';
-import p119 from './triceps-frances-polia-unilateral.json';
-import p120 from './triceps-frances-unilateral-halter.json';
-import p121 from './triceps-suspensao.json';
-import p122 from './triceps-testa-halteres.json';
-import p123 from './yt-suspensao.json';
+import p102 from './rosca-polia-costas.json';
+import p103 from './rosca-scott-banco-inclinado.json';
+import p104 from './rosca-suspensao.json';
+import p105 from './stiff.json';
+import p106 from './stiff-elastico.json';
+import p107 from './stiff-kettlebell.json';
+import p108 from './stiff-unilateral.json';
+import p109 from './stiff-unilateral-kettlebell.json';
+import p110 from './supino-chao-halteres.json';
+import p111 from './supino-inclinado.json';
+import p112 from './supino-reto.json';
+import p113 from './triceps-barra-reta.json';
+import p114 from './triceps-corda.json';
+import p115 from './triceps-elastico-acima.json';
+import p116 from './triceps-elastico-alto.json';
+import p117 from './triceps-frances.json';
+import p118 from './triceps-frances-halter.json';
+import p119 from './triceps-frances-kettlebell.json';
+import p120 from './triceps-frances-polia-unilateral.json';
+import p121 from './triceps-frances-unilateral-halter.json';
+import p122 from './triceps-suspensao.json';
+import p123 from './triceps-testa-halteres.json';
+import p124 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -230,27 +231,28 @@ const TODOS: Record<string, Preparo> = {
   'rosca-martelo': p99,
   'rosca-martelo-elastico': p100,
   'rosca-polia': p101,
-  'rosca-scott-banco-inclinado': p102,
-  'rosca-suspensao': p103,
-  'stiff': p104,
-  'stiff-elastico': p105,
-  'stiff-kettlebell': p106,
-  'stiff-unilateral': p107,
-  'stiff-unilateral-kettlebell': p108,
-  'supino-chao-halteres': p109,
-  'supino-inclinado': p110,
-  'supino-reto': p111,
-  'triceps-barra-reta': p112,
-  'triceps-corda': p113,
-  'triceps-elastico-acima': p114,
-  'triceps-elastico-alto': p115,
-  'triceps-frances': p116,
-  'triceps-frances-halter': p117,
-  'triceps-frances-kettlebell': p118,
-  'triceps-frances-polia-unilateral': p119,
-  'triceps-frances-unilateral-halter': p120,
-  'triceps-suspensao': p121,
-  'triceps-testa-halteres': p122,
-  'yt-suspensao': p123,
+  'rosca-polia-costas': p102,
+  'rosca-scott-banco-inclinado': p103,
+  'rosca-suspensao': p104,
+  'stiff': p105,
+  'stiff-elastico': p106,
+  'stiff-kettlebell': p107,
+  'stiff-unilateral': p108,
+  'stiff-unilateral-kettlebell': p109,
+  'supino-chao-halteres': p110,
+  'supino-inclinado': p111,
+  'supino-reto': p112,
+  'triceps-barra-reta': p113,
+  'triceps-corda': p114,
+  'triceps-elastico-acima': p115,
+  'triceps-elastico-alto': p116,
+  'triceps-frances': p117,
+  'triceps-frances-halter': p118,
+  'triceps-frances-kettlebell': p119,
+  'triceps-frances-polia-unilateral': p120,
+  'triceps-frances-unilateral-halter': p121,
+  'triceps-suspensao': p122,
+  'triceps-testa-halteres': p123,
+  'yt-suspensao': p124,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);
