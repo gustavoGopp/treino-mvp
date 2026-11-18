@@ -198,7 +198,7 @@ export const puxadaBarraReta: Exercicio = {
   ficha: F,
   // como a puxada unilateral aprovada: de três quartos por trás (os dois braços puxando, as costas e a coluna) e de lado
   // (a barra à frente do rosto até o peito, o tronco reto)
-  vistas: ['quinaTras', 'lateral'],
+  vistas: ['lateral', 'quinaTras'], // de lado o corpo fica maior e a barra desce até o peito; de três quartos por trás o corpo fica pequeno ao lado da torre
   quadro,
   // costas (principal: o grande dorsal e o trapézio do meio e de baixo, como nas remadas); bíceps e deltoide posterior,
   // secundários: o que a biblioteca conta

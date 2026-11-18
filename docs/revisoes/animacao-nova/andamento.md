@@ -138,4 +138,8 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A5 | `supino-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos pela cabeça: de lado o cabo atravessa o banco no desenho; no começo os braços dobrados se embolam sobre o peito nessa vista; "Soltar a volta" sem desenho) |
 | A5 | `supino-inclinado-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (encosto a 30°, abre de três quartos pela frente; "Soltar a volta" sem desenho) |
 | A5 | `crucifixo-polia-baixo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente, porque de cima a subida não aparece; a segunda vista passou a ser a de lado, porque de cima o corpo se via pelo alto da cabeça) |
+| A5 | `triceps-barra-reta` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o tríceps na corda aprovado, com a barra reta) |
+| A5 | `puxada-barra-reta` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de lado; a barra reta da tabela, de 20 pol, é curta para a puxada: as mãos ficam na ponta dela) |
+| A5 | `rosca-polia-costas` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação ("Carga demais" desenhado como o ombro que vai à frente, como o cartão descreve; é discreto) |
+| A5 | `pull-through` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (os pés a 42 cm, um pouco mais abertos que o cartão pede, para a corda passar entre as pernas) |
 

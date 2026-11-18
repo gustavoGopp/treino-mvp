@@ -129,6 +129,10 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'supino-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'supino-inclinado-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'crucifixo-polia-baixo': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'triceps-barra-reta': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'puxada-barra-reta': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'rosca-polia-costas': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'pull-through': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };
 
@@ -138,7 +142,7 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo'];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'pull-through'];
 
 /**
  * As animações novas feitas que ainda não estão aprovadas, com o motivo: as de maior risco, que quem integra separou para
