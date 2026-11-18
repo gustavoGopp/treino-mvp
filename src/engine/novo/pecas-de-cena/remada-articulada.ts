@@ -15,7 +15,8 @@
 // só, o apoio do peito na frente dele, a coluna inclinada que sobe da frente da base até o eixo no alto, os braços que
 // pendem do eixo com os pegadores na ponta. O que muda, e por quê: o cartão é de anilhas (um pino de cada lado); as
 // fichas lidas são de pilha e o texto do app conta a carga pela "placa da torre", então aqui a carga é a pilha, numa
-// torre ao lado e atrás do assento (como no supino na máquina: de lado, ela fica atrás das costas e não tapa o braço).
+// torre à esquerda de quem senta, depois da coluna da frente (de lado, atrás das costas fica só o vão, onde cabem os
+// rótulos).
 // No cartão, o apoio do peito fica num poste que sobe da base; aqui ele corre num tubo que sai da coluna, com o botão de
 // regular (a lista de peças da Life Fitness: "KNOB, ADJ"), e o poste não passa entre os joelhos.
 //
@@ -26,7 +27,7 @@ import { sinal } from '../esqueleto';
 import type { Lado } from '../esqueleto';
 import type { PecaPropria } from '../pecas';
 import { obj } from '../tabelas';
-import { add, cross, mul, norm, sub } from '../vec';
+import { add, cross, girar, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 import { REMADA_ARTICULADA, bracoNoAngulo, bracoX, faceDoApoioDoPeito, subidaDaPilhaDeEmpurrar } from './maquina-de-empurrar';
 import type { MaquinaDeEmpurrar, OpcoesDaMaquinaDeEmpurrar } from './maquina-de-empurrar';
@@ -68,37 +69,52 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
   const meiaLarg = g('assentoLarg') / 2,
     cA = g('assentoComp');
   const A = faceDoApoioDoPeito(mod, m.apoio ?? (g('apoioMin') + g('apoioMax')) / 2);
+  const zP = -cA / 2;
   const xB = bracoX(mod);
   const yE = g('eixoAltura'),
     zE = g('eixoAFrente');
   const col = colunaDaRemada();
   const bracos = { R: bracoNoAngulo(mod, 'R', m.braco), L: bracoNoAngulo(mod, 'L', m.braco) };
-  // a torre da pilha, à esquerda de quem senta, atrás do assento
-  const xT0 = xB + 16,
-    xT1 = xT0 + 34;
-  const zTorre = -50;
+  // a torre da pilha, à esquerda de quem senta (`lt`: o lado da torre, em x; o came fica no braço do mesmo lado), na
+  // frente, depois da coluna: de lado, atrás do assento fica só o vão, e os nomes dos rótulos cabem ali sem cair em cima
+  // dela. À direita, ela ficava embaixo dos rótulos de três quartos por trás e de trás
+  const lt = 1;
+  const xT0 = lt * (xB + 16),
+    xT1 = xT0 + lt * 34;
+  const zTorre = col.pe[2] + 24;
   const zT0 = zTorre - 16,
     zT1 = zTorre + 16;
   const H = g('alturaTorre');
-  const zTras = zT0 - 6,
-    zFrente = col.pe[2] + 6;
+  const zTras = zP - cA / 2 - 8,
+    zFrente = zT1 + 6;
 
   const caixa = (o: V3, x: V3, y: V3, z: V3, meias: V3, cls: string): Prim => ({ t: 'caixa', ref: { o, x, y, z }, meias, cls, vies: 0.5 });
   const rC = Math.min(esp * 0.45, 4);
   const estofado = (o: V3, x: V3, y: V3, z: V3, meias: V3): Prim[] => [caixa(o, x, y, z, [meias[0], meias[1], meias[2] - rC], 'estofado'), caixa(o, x, y, z, [meias[0], meias[1] - rC, meias[2]], 'estofado')];
-  const zP = -cA / 2;
   const meioApoio = add(A.base, mul(A.sobe, A.comp / 2));
   const prims: Prim[] = [
     ...estofado([0, m.assento - esp / 2, zP], X, Y, Z, [meiaLarg, esp / 2, cA / 2]),
     ...estofado(add(meioApoio, mul(A.tras, -esp / 2)), X, A.tras, A.sobe, [A.larg / 2, esp / 2, A.comp / 2]),
   ];
+  // o tubo de cada braço é dobrado: do eixo, desce `bracoDobra` graus à frente da linha até a ponta, por
+  // `bracoDobraEm` cm, e daí vai até a ponta (o arco do pegador não muda). Reto, de lado, ele passaria rente ao rosto no
+  // fim da puxada
+  const dobra = (k: Lado): V3 => {
+    const b = bracos[k];
+    return add(b.eixo, mul(girar(norm(sub(b.ponta, b.eixo)), b.dirEixo, -g('bracoDobra')), g('bracoDobraEm')));
+  };
   for (const k of ['R', 'L'] as Lado[]) {
     const b = bracos[k];
-    const d = sub(b.ponta, b.eixo);
-    const z = norm(d),
-      x = norm(cross(Y, z)),
-      y = cross(z, x);
-    prims.push(caixa(add(b.eixo, mul(d, 0.5)), x, y, z, [3, 3, Math.hypot(...d) / 2], 'aco'));
+    for (const [a0, a1] of [
+      [b.eixo, dobra(k)],
+      [dobra(k), b.ponta],
+    ] as [V3, V3][]) {
+      const d = sub(a1, a0);
+      const z = norm(d),
+        x = norm(cross(Y, z)),
+        y = cross(z, x);
+      prims.push(caixa(add(a0, mul(d, 0.5)), x, y, z, [3, 3, Math.hypot(...d) / 2], 'aco'));
+    }
   }
 
   type C_ = Parameters<PecaPropria['desenhar']>[0];
@@ -112,10 +128,12 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
     nome: mod.nome,
     fixa: [mod.objeto, m.assento, A.base[2]],
     desenhar(C, M, o) {
-      // a base no chão: a espinha ao longo de z (entre os pés de quem senta), as travessas da torre e a do pé da coluna
-      T(C, M, [0, tubo / 2, zT0], [0, tubo / 2, col.pe[2]]);
-      for (const z of [zT0 + 4, zT1 - 4]) T(C, M, [-meiaLarg + 4, tubo / 2, z], [xT1, tubo / 2, z]);
-      T(C, M, [-(xB + 6), tubo / 2, col.pe[2]], [xB + 6, tubo / 2, col.pe[2]]);
+      // a base no chão: a espinha ao longo de z (entre os pés de quem senta), a travessa de trás do assento, a do pé da
+      // coluna e as da torre
+      T(C, M, [0, tubo / 2, zTras + 4], [0, tubo / 2, zT1]);
+      T(C, M, [-meiaLarg + 4, tubo / 2, zTras + 4], [meiaLarg - 4, tubo / 2, zTras + 4]);
+      T(C, M, [-lt * (xB + 6), tubo / 2, col.pe[2]], [xT1, tubo / 2, col.pe[2]]);
+      for (const z of [zT0 + 4, zT1 - 4]) T(C, M, [0, tubo / 2, z], [xT1, tubo / 2, z]);
       // o pé do assento: a luva parada e o tubo que sobe e desce dentro dela, com o pino de regular
       T(C, M, [0, tubo, zP], [0, g('assentoMin') - esp - 6, zP], tubo + 2);
       T(C, M, [0, g('assentoMin') - esp - 12, zP], [0, m.assento - esp - 1, zP], tubo - 1.5);
@@ -128,7 +146,7 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
       // esquerda (a coluna, que sobe do pé até o alto, é a peça `coluna`)
       T(C, M, add(col.topo, [0, 0, tubo / 2]), add(col.viga, [0, 0, -tubo / 2]), tubo);
       T(C, M, col.viga, [0, yE, zE], tubo);
-      T(C, M, [-(xB - 6), yE, zE], [xB + 13, yE, zE], tubo);
+      T(C, M, [-lt * (xB - 6), yE, zE], [lt * (xB + 13), yE, zE], tubo);
       // o apoio do peito: o estofado, a chapa de trás, o tubo que corre na luva da coluna e o botão de regular
       C.estofado(add(meioApoio, mul(A.tras, -esp)), A.sobe, A.tras, X, A.comp, esp, A.larg);
       const atrasDoApoio = add(meioApoio, mul(A.tras, -esp - 1.5));
@@ -148,7 +166,7 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
       for (const z of [zT0, zT1]) T(C, M, [xT0, H, z], [xT1, H, z], 4.5);
       for (const x of [xT0, xT1]) T(C, M, [x, H, zT0], [x, H, zT1], 4.5);
       for (const dz of [-6, 6]) C.cilindro([(xT0 + xT1) / 2, tubo, zTorre + dz], [(xT0 + xT1) / 2, H - 6, zTorre + dz], 0.8, M.cromo, { lados: 8 });
-      if (o.comSombra) C.sombra((xT1 - xB) / 2, (zTras + zFrente) / 2, (xT1 + xB) / 2 + 6, (zFrente - zTras) / 2, 0.18);
+      if (o.comSombra) C.sombra((xT1 - lt * xB) / 2, (zTras + zFrente) / 2, Math.abs(xT1 + lt * xB) / 2 + 6, (zFrente - zTras) / 2, 0.18);
     },
   };
 
@@ -172,7 +190,10 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
     // o mancal no eixo, o tubo do braço, o toco para dentro e o pegador de pé na ponta dele, com a borracha
     C.cilindro(add(b.eixo, mul(b.dirEixo, -s * 4)), add(b.eixo, mul(b.dirEixo, s * 4)), 5.5, M.metalClaro, { lados: 20, ...dz });
     C.cilindro(add(b.eixo, mul(b.dirEixo, s * 4)), add(b.eixo, mul(b.dirEixo, s * 6)), 2.5, M.cromo, { lados: 12, ...dz });
-    C.tubo(b.eixo, add(b.ponta, mul(b.dirBorracha, -3)), 6, 6, M.metal, { up: b.dirEixo, ...dz });
+    const K = dobra(k);
+    C.tubo(b.eixo, K, 6, 6, M.metal, { up: b.dirEixo, ...dz });
+    C.cilindro(add(K, mul(b.dirEixo, -3)), add(K, mul(b.dirEixo, 3)), 3, M.metal, { lados: 14, ...dz });
+    C.tubo(K, add(b.ponta, mul(b.dirBorracha, -3)), 6, 6, M.metal, { up: b.dirEixo, ...dz });
     C.cilindro(add(b.ponta, mul(b.dirPegador, -2)), b.centro, 2, M.cromo, { lados: 12, ...dz });
     const meia = g('pegadorComp') / 2;
     const r = g('pegadorDiam') / 2;
@@ -188,7 +209,7 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
     kP = Math.min(n, Math.max(1, m.placas ?? 5)),
     hp = g('pilhaAltura') / n;
   const rCame = g('cameDiam') / 2;
-  const xCame = xB + 9;
+  const xCame = lt * (xB + 9);
   const pilha: PecaPropria = {
     t: 'propria',
     nome: `pilha da ${mod.nome}`,
@@ -200,8 +221,8 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
       C.pilha([xP, yDo, zPl], X, [0, 0, -1], g('pilhaLarg'), hp * kP, g('pilhaProf'), kP);
       const xc = (xT0 + xT1) / 2;
       C.cilindro([xc, yDo + hp * kP, zTorre], [xc, yDo + hp * kP + 10, zTorre], 1.2, M.cromo, { lados: 8 });
-      // o came no eixo do braço da esquerda; o cabo sai por cima dele, vai até a roldana do alto da torre e desce até o
-      // pino das placas
+      // o came no eixo do braço da esquerda (o lado da torre); o cabo sai por cima dele, vai até a roldana do alto da torre
+      // e desce até o pino das placas
       const cE: V3 = [xCame, yE, zE];
       C.cilindro(add(cE, [-2.5, 0, 0]), add(cE, [2.5, 0, 0]), rCame, M.metalClaro, { lados: 24 });
       C.cilindro(add(cE, [-4, 0, 0]), add(cE, [4, 0, 0]), 2.5, M.cromo, { lados: 12 });
@@ -210,7 +231,7 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
       C.linha([xc, H + 6 - 4.5, zTorre], [xc, yDo + hp * kP + 10, zTorre], '#202327', 0.7);
       C.cilindro(add(roldana, [0, 0, -1.5]), add(roldana, [0, 0, 1.5]), 4.5, M.metalClaro, { lados: 16 });
       T(C, M, [xT0, H, zTorre], [xT0, H + 6, zTorre], 4);
-      T(C, M, [xT0, H + 6, zTorre], [xc - 3, H + 6, zTorre], 3);
+      T(C, M, [xT0, H + 6, zTorre], [xc - lt * 3, H + 6, zTorre], 3);
     },
   };
   return {
@@ -223,6 +244,6 @@ export function remadaArticulada(m: MaquinaDeEmpurrar, op: OpcoesDaMaquinaDeEmpu
     eixos: { R: bracos.R.eixo, L: bracos.L.eixo },
     subida,
     apoio: A,
-    extremos: { zTras, zFrente, xDireita: -xB - 6, xEsquerda: xT1 + 2 },
+    extremos: { zTras, zFrente, xDireita: Math.min(-xB - 6, xT1 - 2), xEsquerda: Math.max(xB + 6, xT1 + 2) },
   };
 }
