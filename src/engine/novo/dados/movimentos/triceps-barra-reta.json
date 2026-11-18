@@ -1,0 +1,64 @@
+{
+ "id": "triceps-barra-reta",
+ "nome": "Tríceps na polia com barra reta",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-barra-reta.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-barra-reta.md): polia no alto, com a barra reta; em pé de frente para a torre, tronco um pouco inclinado; cotovelos junto ao corpo, mãos na barra na largura dos ombros; estende os cotovelos até os braços ficarem retos, com os cotovelos parados; volta (~2 s) até os antebraços passarem um pouco da horizontal; consenso de treinadores (nsca2021, não verificado). A técnica segue, por analogia, o tríceps na corda",
+  "app": "Cartão do app (src/conteudo/exercicios/triceps-barra-reta.json, só leitura): as dicas ('cotovelos colados', 'estende até o fim', 'volta devagar') e os erros",
+  "corda": "A ficha de movimento do tríceps na corda aprovado (src/engine/novo/dados/movimentos/triceps-corda.json): os pés, os joelhos destravados, a inclinação do tronco, o pescoço, o braço ao lado das costelas, a inclinação do cabo em cima e os erros do tronco; selo desenho onde lá era desenho",
+  "correcao": "Correção de 04/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md, rosca na polia): a barra reta tem largura fixa; as mãos ficam a 36–38 cm (a largura dos ombros) o ciclo todo",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia) e src/engine/novo/dados/objetos/polia-braco-barra-reta.json (a barra reta de 20 pol, a mesma da rosca na polia)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "corda", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio (como no tríceps na corda)"},
+  "pe.z": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "corda", "o": "a bola dos pés à frente do meio da pelve (como no tríceps na corda)"},
+  "pelve.z": {"v": -3, "un": "cm", "selo": "desenho", "fonte": "corda", "o": "a pelve um pouco atrás, para o peso ficar sobre o meio dos pés com o tronco inclinado (como no tríceps na corda)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "corda", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco.inclinacao": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'tronco um pouco inclinado': o peito 15° à frente da vertical, como no tríceps na corda"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "o pescoço estende um pouco a partir da linha do tronco inclinado: o olhar à frente"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "a cabeça acompanha o pescoço: o olhar à frente, não para o chão"},
+  "braco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "corda", "o": "cotovelos junto ao corpo: o braço 15° à frente da linha do tronco inclinado, ou seja, na vertical (como no tríceps na corda)"},
+  "braco.paraDentro": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço desce reto do ombro, sem ir para o meio nem para fora: o cotovelo fica junto das costelas e, com o antebraço no plano do braço, as mãos ficam na largura dos ombros (a distância entre os dois ombros) o ciclo todo"},
+  "cotovelo.alto": {"v": 105, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: 'volta até os antebraços passarem um pouco da horizontal': com o braço na vertical, o cotovelo dobra 105° e o antebraço fica 15° acima da horizontal"},
+  "cotovelo.baixo.minimo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: 'até os braços ficarem retos' (sem travar: 4°, como no tríceps na corda), ou o que a barra precisa para passar à folga abaixo na frente das coxas"},
+  "barra.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a barra passa 1,5 cm à frente da pele das coxas (como na rosca na polia)"},
+  "maos.pronacao": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pegada por cima numa barra reta: as palmas para baixo, o polegar para dentro, ao longo da barra (90° a partir da pegada neutra)"},
+  "cabo.inclinacao": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "em cima, o cabo sai da roldana um pouco à frente da barra: de frente para a coluna, a cerca de meio passo (como no tríceps na corda)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado em cima: a pilha já sai 2 cm do repouso"},
+  "erro.cotovelos.polo": {"v": 0.35, "un": "proporção", "selo": "desenho", "fonte": "desenho", "o": "erro: o cotovelo aponta para fora (quanto para fora em relação a para trás): os braços abrem e saem do tronco, com a barra no mesmo caminho"},
+  "erro.tronco.inclinacao": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: o tronco debruça sobre a barra enquanto as mãos descem (como no tríceps na corda)"},
+  "erro.tronco.toracica": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: as costas arredondam um pouco ao debruçar"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, o cotovelo dobra só 55° (o antebraço para bem abaixo da horizontal)"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cotovelos colados", "selo": "consenso", "fonte": "corda"},
+  {"nome": "Descer a barra · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "corda"},
+  {"nome": "Embaixo · braços retos", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "contrai", "selo": "consenso", "fonte": "corda"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "triceps-corda-cotovelo-parado", "pede": "estende os cotovelos com os cotovelos parados: só o antebraço se mexe", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-cotovelos-colados", "pede": "cotovelos junto ao corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-barra-antebraco-acima-da-horizontal", "pede": "em cima, os antebraços passam um pouco da horizontal", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-estende-embaixo", "pede": "embaixo, os braços retos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-tronco-parado", "pede": "tronco um pouco inclinado e parado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-barra-na-largura-dos-ombros", "pede": "mãos na barra na largura dos ombros, numa barra de largura fixa (as mãos a 36–38 cm o ciclo todo)", "selo": "consenso", "fonte": "correcao"},
+  {"id": "palmas-para-baixo", "pede": "pegada por cima: o polegar para dentro, ao longo da barra", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-barra-fora-do-corpo", "pede": "a barra passa à frente do tronco e das coxas, sem atravessar", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à barra, sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "cotovelos", "instante": 0, "titulo": "Abrir os cotovelos", "vista": "posterior", "oQueMuda": "os cotovelos saem para fora, longe do tronco, e a barra desce no mesmo caminho: vira um empurrar com o peito", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "tronco", "instante": 1, "titulo": "Usar o tronco", "vista": "lateral", "oQueMuda": "o tronco debruça sobre a barra enquanto as mãos descem", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "curta", "instante": 0, "titulo": "Volta curta", "vista": "lateral", "oQueMuda": "em cima, o cotovelo dobra só 55°: o antebraço para bem abaixo da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "estende até o fim", "ponto": "punho", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

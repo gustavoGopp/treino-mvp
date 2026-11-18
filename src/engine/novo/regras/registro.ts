@@ -51,3 +51,4 @@ export { REGRAS_SENTADO_NA_PONTA } from './sentado-na-ponta';
 export { REGRAS_ROSCA_CONCENTRADA } from './rosca-concentrada';
 export { REGRAS_POLIA_BANCO } from './polia-banco';
 export { REGRAS_CRUCIFIXO_POLIA_BAIXO } from './crucifixo-polia-baixo';
+export { REGRAS_UMA_TORRE } from './uma-torre';

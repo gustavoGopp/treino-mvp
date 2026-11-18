@@ -127,3 +127,7 @@ export { roscaConcentrada } from './rosca-concentrada';
 export { supinoPolia } from './supino-polia';
 export { supinoInclinadoPolia } from './supino-inclinado-polia';
 export { crucifixoPoliaBaixo } from './crucifixo-polia-baixo';
+export { tricepsBarraReta } from './triceps-barra-reta';
+export { puxadaBarraReta } from './puxada-barra-reta';
+export { roscaPoliaCostas } from './rosca-polia-costas';
+export { pullThrough } from './pull-through';

@@ -40,6 +40,11 @@ export interface PedidoEmPe {
   toracica?: number;
   cervical?: number;
   cabeca?: number;
+  /**
+   * Giro da coluna para a esquerda (graus; metade na lombar, metade na torácica), com a bacia parada: o erro "girar o
+   * tronco" da rosca de costas para a torre (acréscimo de 18/11/2026; sem ele, nada muda).
+   */
+  giro?: number;
   /** Os braços, dado o tronco e o esqueleto da passada anterior (o ombro de verdade, que anda com o braço). */
   bracos(t: Tronco, ant: Esq): Record<Lado, PoseBraco>;
 }
@@ -61,7 +66,7 @@ const PENDURADO: PoseBraco = { umero: [0, -1, 0], antebraco: [0, -1, 0], polo: [
 
 /** O corpo com a pelve parada em `pelve`: o tronco, as pernas presas pelos pés e os braços (três passadas). */
 export function montarEmPe(corpo: Corpo, p: PedidoEmPe, pelve: PelveParada): Esq {
-  const t = resolverTronco(corpo, { pelve: [0, pelve.y, pelve.z], frente: pelvePara(corpo, p), lombar: p.lombar ?? 0, toracica: p.toracica ?? 0, cervical: p.cervical ?? 0, cabeca: p.cabeca ?? 0 });
+  const t = resolverTronco(corpo, { pelve: [0, pelve.y, pelve.z], frente: pelvePara(corpo, p), lombar: p.lombar ?? 0, toracica: p.toracica ?? 0, cervical: p.cervical ?? 0, cabeca: p.cabeca ?? 0, ...(p.giro ? { lombarGiro: p.giro / 2, toracicaGiro: p.giro / 2 } : {}) });
   const perna = (k: Lado): PosePerna => ({ pe: { bola: p.pes[k].bola, dir: [sinal(k) * 0.1, 0, 1], calc: p.pes[k].calc ?? 0 }, polo: [sinal(k) * 0.1, 0, 1] });
   const pernas = { R: perna('R'), L: perna('L') };
   let e = resolverMembros(t, { R: PENDURADO, L: PENDURADO }, pernas);

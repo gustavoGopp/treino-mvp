@@ -1,0 +1,66 @@
+{
+ "id": "puxada-barra-reta",
+ "nome": "Puxada ajoelhado na polia alta com barra reta",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/puxada-barra-reta.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/puxada-barra-reta.md): polia no alto, com a barra reta; ajoelhado de frente para a torre, a uma distância em que os braços ficam estendidos para cima; pegada um pouco mais aberta que os ombros, tronco reto; puxa a barra até a parte de cima do peito, levando os cotovelos para baixo e para trás; volta (~2 s) até os braços estenderem, deixando as costas alongarem; consenso de treinadores (nsca2021, não verificado). A técnica segue, por analogia, a puxada unilateral ajoelhado",
+  "app": "Cartão do app (src/conteudo/exercicios/puxada-barra-reta.json, só leitura): as dicas ('cotovelos para baixo', 'peito aberto', 'estende tudo na volta') e os erros",
+  "puxada": "A ficha de movimento da puxada unilateral ajoelhado aprovada (src/engine/novo/dados/movimentos/puxada-unilateral.json): a coluna a meio passo dos joelhos (70 cm), os joelhos na largura do quadril, a coxa quase vertical, o ombro que sobe no alongado e desce no fim, o tempo de cada fase e o erro do tronco; selo desenho onde lá era desenho",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, colchonete) e src/engine/novo/dados/objetos/polia-braco-barra-reta.json (a barra reta de 20 pol, o mesmo acessório 'barra reta para polia' da rosca e do tríceps)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "torre.distancia": {"v": 70, "un": "cm", "selo": "consenso", "fonte": "puxada", "o": "ajoelhado de frente para a torre, a cerca de meio passo, dos joelhos à base (como na puxada unilateral): assim, com a polia no alto, os braços ficam estendidos para cima e para a frente"},
+  "joelhos.meiaDistancia": {"v": 8.7, "un": "cm", "selo": "consenso", "fonte": "puxada", "o": "joelhos na largura do quadril"},
+  "coxa.inclinacao": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "puxada", "o": "a coxa quase vertical, o quadril 2° atrás dos joelhos (como na puxada unilateral)"},
+  "tronco": {"v": -6, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'tronco reto': o peito 6° atrás da vertical, só o bastante para a barra passar à frente do rosto (a puxada unilateral aprovada usa 8°)"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "puxada", "o": "o pescoço estende um pouco: o olhar à frente e para cima, para a barra"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "puxada", "o": "a cabeça acompanha o pescoço (como na puxada unilateral)"},
+  "maos.distancia": {"v": 42, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'pegada um pouco mais aberta que os ombros': os centros das mãos a 42 cm (os centros dos ombros ficam a 36,8 cm; a largura entre os acrômios é 40,8 cm). É o mais aberto que a barra de 20 pol deixa: a beirada de fora de cada mão fica a 0,1 cm da ponta da barra"},
+  "cotovelo.alongado": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: braços estendidos para cima, na direção da polia (o cotovelo dobra 8°, sem travar)"},
+  "ombro.sobe": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "puxada", "o": "alongado: 'deixando as costas alongarem': o ombro sobe (a clavícula 10° além do ritmo normal)"},
+  "ombro.desce": {"v": -6, "un": "graus", "selo": "consenso", "fonte": "puxada", "o": "fim: o ombro para baixo (a clavícula 6° abaixo do ritmo normal)"},
+  "barra.abaixoDoOmbro": {"v": 6, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "fim: 'a barra até a parte de cima do peito': o centro da barra 6 cm abaixo do centro dos ombros (com o ombro já para baixo), ao longo do tronco"},
+  "barra.folga": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "fim: a barra chega a 1 cm da pele do peito, sem bater"},
+  "cotovelo.polo": {"v": 0.6, "un": "proporção", "selo": "consenso", "fonte": "ficha", "o": "'cotovelos para baixo e para trás': o cotovelo aponta para baixo, para trás e um pouco para fora (quanto para fora em relação a para baixo)"},
+  "cotovelo.poloAtras": {"v": 1.8, "un": "proporção", "selo": "consenso", "fonte": "ficha", "o": "'cotovelos para baixo e para trás': quanto o cotovelo aponta para trás em relação a para baixo"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado no alto: a pilha já sai 2 cm do repouso"},
+  "erro.tronco": {"v": -32, "un": "graus", "selo": "desenho", "fonte": "puxada", "o": "erro: o peito vai a 32° atrás da vertical no fim (a puxada unilateral usa 30°)"},
+  "erro.nuca.cervical": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço dobra 22° e a cabeça vai à frente, para a barra passar atrás dela"},
+  "erro.nuca.cabeca": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o queixo vai ao peito (10°)"},
+  "erro.nuca.acima": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o centro da barra fica 9 cm acima do centro dos ombros, atrás do pescoço"},
+  "erro.nuca.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: a barra passa a 2 cm da pele da nuca e do alto da cabeça"},
+  "erro.curta": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "puxada", "o": "erro: a volta só vai até a metade do caminho (45%), sem estender os braços (como na puxada unilateral)"}
+ },
+ "fases": [
+  {"nome": "Alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "costas alongadas", "selo": "consenso", "fonte": "puxada"},
+  {"nome": "Puxar · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "puxada"},
+  {"nome": "Barra no peito", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segura", "selo": "consenso", "fonte": "puxada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["joelho.R", "joelho.L", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "polia-puxar-ajoelhado-no-colchonete", "pede": "ajoelhado no colchonete, joelhos na largura do quadril", "selo": "consenso", "fonte": "puxada"},
+  {"id": "braco-estendido-no-comeco", "pede": "início: braços estendidos para cima", "selo": "consenso", "fonte": "ficha"},
+  {"id": "puxada-barra-pegada-mais-aberta", "pede": "pegada um pouco mais aberta que os ombros, numa barra de largura fixa", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-para-baixo", "pede": "pegada por cima: o polegar para dentro, ao longo da barra", "selo": "consenso", "fonte": "ficha"},
+  {"id": "puxada-barra-no-alto-do-peito", "pede": "puxa a barra até a parte de cima do peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "puxada-barra-cotovelos-para-baixo-e-para-tras", "pede": "no fim, os cotovelos para baixo e para trás", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ombro-desce", "pede": "no fim, o ombro está mais baixo que no início (as costas alongam em cima)", "selo": "consenso", "fonte": "puxada"},
+  {"id": "tronco-quase-parado", "pede": "tronco reto e parado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-barra-fora-do-corpo", "pede": "a barra passa à frente do rosto e chega ao peito sem atravessar o corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à barra, sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "tronco", "instante": 1, "titulo": "Deitar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco deita para trás enquanto a barra desce: o peso do corpo puxa no lugar das costas", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "nuca", "instante": 1, "titulo": "Puxar pela nuca", "vista": "quinaTras", "oQueMuda": "a cabeça vai à frente e a barra desce atrás dela, até a nuca, com os cotovelos para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"},
+  {"id": "curta", "instante": 0, "titulo": "Volta curta", "vista": "lateral", "oQueMuda": "a volta para na metade do caminho: os braços não estendem e as costas não alongam", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "estende tudo na volta", "ponto": "punho", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "cotovelos para baixo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "cotovelos para baixo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app", "seta": {"de": "cotovelo", "desce": 12}}
+ ]
+}
