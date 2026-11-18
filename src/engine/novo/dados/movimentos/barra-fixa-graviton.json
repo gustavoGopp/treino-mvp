@@ -1,0 +1,73 @@
+{
+ "id": "barra-fixa-graviton",
+ "nome": "Barra fixa assistida no graviton",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/barra-fixa-graviton.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/barra-fixa-graviton.md): consenso de treinadores (nsca2021, não verificado): joelhos (ou pés) na plataforma de apoio, pegada pronada a ~1 a 1,5 vez a largura dos ombros; o movimento é igual ao da barra fixa: sobe até o queixo passar da barra e desce até os braços estenderem; o contrapeso ajuda; erros: encurtar a descida, balançar",
+  "app": "Cartão do app (src/conteudo/exercicios/barra-fixa-graviton.json): \"Joelhos (ou pés) na plataforma\", \"Pegada pronada a ~1 a 1,5 vez a largura dos ombros\", as fases, as dicas (\"Estica os braços embaixo\", \"Corpo parado\", \"Queixo acima da barra\") e os erros",
+  "barra": "Barra fixa, aprovada no motor novo (./barra-fixa.json): o movimento dos braços, das escápulas e do tronco, com os mesmos números (a ficha da técnica do graviton manda fazer \"igual à barra fixa\")",
+  "maquina": "A peça do graviton (../objetos/graviton.json): a altura das alças, o eixo e o comprimento da alavanca dos joelhos",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pegada.largura": {"v": 1.5, "un": "vezes a largura dos ombros", "selo": "consenso", "fonte": "ficha", "o": "de centro a centro das mãos, 1,5 vez a largura entre os acrômios (o máximo da faixa da ficha, o mesmo da barra fixa aprovada)"},
+  "cotovelo.embaixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "barra", "o": "embaixo, os braços estendidos sem travar: o cotovelo dobra 8° (o mesmo da barra fixa aprovada)"},
+  "escapula.pendurado": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "embaixo, os ombros sobem um pouco com os braços no alto, sem despencar (o mesmo da barra fixa aprovada)"},
+  "escapula.encaixada": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "as escápulas descem antes de o braço dobrar (o mesmo da barra fixa aprovada)"},
+  "escapula.topo": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, os ombros continuam baixos, longe das orelhas (o mesmo da barra fixa aprovada)"},
+  "escapula.prot.topo": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, as escápulas vão um pouco para trás (o mesmo da barra fixa aprovada)"},
+  "escapulas.fim": {"v": 0.3, "un": "fração da subida", "selo": "consenso", "fonte": "barra", "o": "as escápulas descem no primeiro trecho da subida (até 30% dela), antes de o braço dobrar"},
+  "puxada.inicio": {"v": 0.24, "un": "fração da subida", "selo": "desenho", "fonte": "barra", "o": "os braços começam a puxar a 24% da subida (o mesmo da barra fixa aprovada)"},
+  "inclina.fim": {"v": 0.65, "un": "fração da subida", "selo": "desenho", "fonte": "barra", "o": "o tronco termina de ir para trás a 65% da subida, antes de o rosto chegar à altura das alças (o mesmo da barra fixa aprovada)"},
+  "queixo.acima": {"v": 3, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "no topo, o queixo passa 3 cm do alto das alças"},
+  "bacia.topo": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, o corpo inclina um pouco para trás: a bacia gira 6° para trás (o mesmo da barra fixa aprovada)"},
+  "toracica.topo": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, o peito abre e vai às alças: a torácica estende 10°"},
+  "lombar.topo": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, a lombar estende 4°"},
+  "pescoco.topo": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no topo, o pescoço estende um pouco e a cabeça vai para trás, olhando em frente"},
+  "polo.pendurado.fora": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta para o lado (pegada pronada aberta)"},
+  "polo.pendurado.cima": {"v": -0.25, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta um pouco para baixo"},
+  "polo.pendurado.frente": {"v": 0.2, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta um pouco para a frente"},
+  "polo.topo.fora": {"v": 0.15, "un": "fração", "selo": "consenso", "fonte": "barra", "o": "no topo, o cotovelo desce para o lado das costelas: aponta para baixo e para fora"},
+  "polo.topo.cima": {"v": -1, "un": "fração", "selo": "consenso", "fonte": "barra", "o": "no topo, o cotovelo aponta para baixo"},
+  "polo.topo.frente": {"v": -0.15, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "no topo, o cotovelo vai um pouco para trás"},
+  "quadril": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "ajoelhado, as coxas quase na vertical, debaixo do corpo: o quadril dobra 3° (a ficha só diz \"joelhos na plataforma\")"},
+  "quadril.topo": {"v": -3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no topo, o quadril estende 3°: a bacia gira 6° para trás com o tronco e a coxa fica no mesmo ângulo do chão (o joelho continua debaixo do quadril)"},
+  "canela.desce": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a canela deita ao longo da almofada, 2° abaixo dela do joelho para o tornozelo: a frente da canela, logo abaixo da patela, apoia no topo da almofada (como o joelho no chão em quatro apoios)"},
+  "pe.plantar": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés soltos atrás da almofada, a ponta esticada"},
+  "pernas.juntas": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "pernas juntas: cada coxa vem 3° para o meio (o mesmo da barra fixa aprovada)"},
+  "erro.curta.cotovelo": {"v": 75, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: embaixo, o cotovelo fica dobrado 75° (o mesmo da meia repetição da barra fixa aprovada)"},
+  "erro.balanco.quadril": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o balanço dobra o quadril até 50° no meio da subida (a bacia vai para trás em volta dos joelhos, que ficam na almofada) e volta"},
+  "erro.balanco.bacia": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no meio do balanço, o tronco tomba 12° à frente"},
+  "erro.balanco.lombar": {"v": -14, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: no começo, a lombar arqueia 14° para tomar impulso (o mesmo da barra fixa aprovada)"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Escápulas descem e sobe · concêntrica", "tipo": "conc", "dur": 1.5, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "barra"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "queixo acima da barra", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.6, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "barra"}
+ ],
+ "contatos": ["pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta das alças e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo (a cabeça, o peito) passa pelas alças sem atravessá-las", "selo": "consenso", "fonte": "ficha"},
+  {"id": "graviton-joelhos-na-almofada", "pede": "os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar", "selo": "consenso", "fonte": "app"},
+  {"id": "graviton-pilha-sobe-quando-a-almofada-desce", "pede": "o contrapeso: a pilha sobe quando a almofada desce, no arco do came", "selo": "consenso", "fonte": "maquina"},
+  {"id": "graviton-corpo-parado", "pede": "corpo parado: a bacia sobe e desce sem ir e voltar para a frente e para trás", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-fixa-pegada-pronada", "pede": "palmas para a frente, mãos a 1 a 1,5 vez a largura dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-fixa-bracos-estendidos-embaixo", "pede": "embaixo, os braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-fixa-escapulas-descem-primeiro", "pede": "primeiro as escápulas descem, depois os braços dobram (como na barra fixa)", "selo": "consenso", "fonte": "barra"},
+  {"id": "graviton-queixo-acima-da-alca", "pede": "no topo, o queixo acima das alças e o peito perto delas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-fixa-ombros-longe-das-orelhas", "pede": "os ombros ficam longe das orelhas no topo (sem despencar embaixo)", "selo": "consenso", "fonte": "barra"},
+  {"id": "barra-fixa-cotovelos-ao-lado-das-costelas", "pede": "no topo, os cotovelos descem para os lados das costelas", "selo": "consenso", "fonte": "barra"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 0, "titulo": "Encurtar a descida", "vista": "lateral", "oQueMuda": "embaixo, o cotovelo fica dobrado: os braços não estendem", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "e2", "instante": 0.5, "titulo": "Balançar", "vista": "lateral", "oQueMuda": "a lombar arqueia e o quadril dobra para dar impulso: a bacia vai para trás e volta, em volta dos joelhos", "destaca": ["corpo", "pernas"], "linha": ["ombro", "quadril", "joelho"], "foco": "quadril"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "queixo acima da barra", "ponto": "cabeca", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "corpo parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "estica os braços embaixo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -43,3 +43,4 @@ export { default as desenvolvimentoMaquina } from './desenvolvimento-maquina.jso
 export { default as estacaoPuxada } from './estacao-puxada.json';
 export { default as estacaoRemada } from './estacao-remada.json';
 export { default as voador } from './voador.json';
+export { default as graviton } from './graviton.json';
