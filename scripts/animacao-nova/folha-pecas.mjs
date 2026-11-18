@@ -19,7 +19,9 @@
 // No graviton, a almofada dos joelhos em cima e embaixo (a alavanca girando no eixo), com a pilha subindo quando ela desce.
 // Na remada articulada, os braços no começo e no fim (de lado), o arco dos pegadores que se abre (de cima), o apoio do
 // peito nas duas pontas da regulagem, e o supino na máquina ao lado (a mesma máquina, com o encosto atrás).
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na panturrilha em pé e na sentada, a máquina no ponto mais baixo e no mais alto do exercício (a regulagem do corpo da
+// tabela, sem o corpo), com as placas ou as anilhas subindo, e o cartão da outra ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada|panturrilha-em-pe|panturrilha-sentada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -45,6 +47,8 @@ export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export * from './src/engine/novo/pecas-de-cena/graviton.ts';
 export { remadaArticulada, colunaDaRemada } from './src/engine/novo/pecas-de-cena/remada-articulada.ts';
+export * from './src/engine/novo/pecas-de-cena/panturrilha-em-pe.ts';
+export * from './src/engine/novo/pecas-de-cena/panturrilha-sentada.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -674,5 +678,65 @@ if (!so || so === 'remada-articulada') {
 <h2>A regulagem do apoio do peito (de lado)</h2>
 <div class="l">${cel(`o apoio mais perto do assento (${v(o('apoioMin'))} cm)`, img(desenho(pecas(R(reg.inicio, { apoio: o('apoioMin') })), lado), 440))}${cel(`o apoio mais longe (${v(o('apoioMax'))} cm)`, img(desenho(pecas(R(reg.inicio, { apoio: o('apoioMax') })), lado), 440))}</div>
 <h2>As medidas</h2>${tabela('remada-articulada', ['remadaArticulada'])}`,
+  );
+}
+
+// as duas máquinas de panturrilha: a máquina regulada para o corpo da tabela, no ponto mais baixo (u = 0) e no mais alto
+// (u = 1) do exercício, sem o corpo
+const daAnimacao = (id, u) => m.EXERCICIOS[id].quadro(m.CORPOS.homem, u).pecas.map((p) => ({ ...p, cenario: undefined }));
+
+if (!so || so === 'panturrilha-em-pe') {
+  const o = (id) => m.obj('panturrilhaEmPe', id);
+  const id = 'panturrilha-em-pe-maquina';
+  const q0 = m.EXERCICIOS[id].quadro(m.CORPOS.homem, 0),
+    q1 = m.EXERCICIOS[id].quadro(m.CORPOS.homem, 1);
+  const p0 = daAnimacao(id, 0),
+    p1 = daAnimacao(id, 1);
+  // o cartão de hoje olha a máquina de três quartos, com a torre à esquerda e o degrau à direita (yaw 46 no eixo do
+  // cartão); a peça corre ao longo de z: yaw −44 dá o mesmo ângulo
+  const cam = { yaw: -44, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDaPanturrilhaEmPe();
+  const sobe = q1.marcas.almofada[1] - q0.marcas.almofada[1];
+  await foto(
+    'panturrilha-em-pe',
+    `<h1>Panturrilha em pé na máquina: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue a ficha da Hammer Strength HS-SC (148 × 114 × 183 cm; o catálogo dá 148 × 115 × 182). <b>A segunda ficha é a da Atlantis M118</b> (128 × 81,9 × 186,4 cm, pilha de 181 kg), cuja página diz que os pegadores ficam "no mecanismo dos ombros e na frente de quem treina" e que as almofadas dos ombros são inclinadas; a HS-SC diz que as almofadas têm nove alturas e que a chapa dos pés deixa o tornozelo fazer a amplitude toda. <b>Nas fotos das duas fichas, o braço das almofadas gira num eixo</b> no alto da estrutura; no cartão de hoje, elas correm num carro na vertical. A peça nova segue as fotos. <b>O que faz a máquina funcionar não está em nenhuma ficha</b> e é de desenho ou sai do corpo da tabela (em amarelo na tabela): a altura do degrau (${v(o('plataformaAlt'), 0)} cm, como no cartão), o eixo à frente do rosto, a ${v(o('eixoAltura'), 0)} cm do chão e ${v(o('eixoAFrente'), 0)} cm à frente da borda do degrau (na altura do meio das almofadas quando os ombros estão no meio do curso: assim elas sobem quase na vertical), o braço de ${v(o('bracoComp'), 0)} cm até as almofadas. Do cartão: as almofadas azuis, os pegadores na frente delas, a torre à frente de quem treina, os dois montantes e o degrau com a chapa ranhurada.</p>
+<p><b>A máquina funciona:</b> uma travessa na frente do pescoço liga as duas almofadas (a cabeça passa entre elas) e leva os pegadores nas pontas; quem treina sobe na ponta dos pés e as almofadas sobem com os ombros (${v(sobe)} cm, com o braço girando ${v(q1.marcas.braco[0] - q0.marcas.braco[0])}°); o came (${v(o('cameDiam'), 0)} cm, como o da cadeira flexora) gira com o braço e enrola o cabo, e as placas sobem o arco dele: de ${v(q0.marcas.pilha[0])} cm embaixo a ${v(q1.marcas.pilha[0])} cm em cima (pouco, porque o came fica no eixo, como na cadeira flexora aprovada). O batente de baixo do braço (a posição inicial) fica logo abaixo do ponto mais baixo da série. Medida desenhada: ${v(E.zFrente - E.zTras, 0)} cm de comprimento, ${v(2 * E.xLado, 0)} cm de largura (a base) e ${v(o('alturaTorre'), 0)} cm de altura (a ficha: 148 × 114 × 183).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('panturrilha_em_pe_maquina'), 96, 'cartao'))}${cel('nova (as almofadas no ponto mais alto)', img(desenho(p1, cam), 96, 'cartao'))}${cel('hoje: o hack (para ver se ainda se confundem)', img(hoje('hack'), 96, 'cartao'))}${cel('hoje: a panturrilha sentada', img(hoje('panturrilha_sentada_maquina'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('panturrilha_em_pe_maquina'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (as almofadas no ponto mais alto)', img(desenho(p1, cam), 640))}</div>
+<h2>Funcionando (de lado, pelo lado direito de quem treina): as almofadas embaixo e em cima</h2>
+<div class="l">${cel(`embaixo (o calcanhar 6 cm abaixo do degrau): as placas ${v(q0.marcas.pilha[0])} cm acima do repouso`, img(desenho(p0, lado), 520))}${cel(`em cima (o calcanhar 13,9 cm acima): as almofadas subiram ${v(sobe)} cm e as placas, ${v(q1.marcas.pilha[0] - q0.marcas.pilha[0])} cm`, img(desenho(p1, lado), 520))}</div>
+<h2>As medidas</h2>${tabela('panturrilha-em-pe', ['panturrilhaEmPe'])}`,
+  );
+}
+
+if (!so || so === 'panturrilha-sentada') {
+  const o = (id) => m.obj('panturrilhaSentada', id);
+  const id = 'panturrilha-sentada';
+  const q0 = m.EXERCICIOS[id].quadro(m.CORPOS.homem, 0),
+    q1 = m.EXERCICIOS[id].quadro(m.CORPOS.homem, 1);
+  const p0 = daAnimacao(id, 0),
+    p1 = daAnimacao(id, 1);
+  // o cartão de hoje olha de três quartos, com o assento à esquerda e o pino das anilhas na frente (yaw 32 no eixo do
+  // cartão); a peça corre ao longo de z: yaw 122 dá o mesmo ângulo
+  const cam = { yaw: 122, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDaPanturrilhaSentada();
+  const sobe = q1.marcas.anilhas[1] - q0.marcas.anilhas[1];
+  await foto(
+    'panturrilha-sentada',
+    `<h1>Panturrilha sentada na máquina: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue a ficha da Life Fitness SPLCALF (155 × 74 × 107 cm); a Hammer Strength PL-CALF tem 124 × 84 × 112 (a página; o catálogo dá 137 de altura) e a Atlantis M219, 158,1 × 119,5 × 98,4. O cartão de hoje (cerca de 110 × 60 × 70 cm) é 13% a 45% menor. As três fichas dizem que a almofada das coxas regula na altura ("pull-pin thigh pad", SPLCALF; "thigh pad adjusts", M219) e apoia em cima dos joelhos (PL-CALF); a M219, que o pino das anilhas é de manga olímpica. <b>Onde fica o eixo da alavanca não está em nenhuma ficha</b>: no cartão de hoje ele fica numa coluna à frente dos pés; na foto da M219, debaixo da frente do assento. A peça nova o põe na linha do centro do quadril de quem senta (a ${v(o('eixoAltura'))} cm do chão), do lado de fora da coxa esquerda: assim a alavanca gira junto com a coxa e a almofada não escorrega nela (o mesmo princípio da cadeira flexora aprovada, com o eixo no joelho). A altura do assento (${v(o('assentoAltura'), 0)} cm) e onde ele fica saem do corpo da tabela com o joelho a 90°; o apoio dos pés (${v(o('apoioAlt'), 0)} cm), a almofada e o assento azuis e o pegador na frente da almofada vêm do cartão. Em amarelo na tabela, o que é de desenho.</p>
+<p><b>A máquina funciona:</b> quem treina sobe o calcanhar, o joelho sobe e empurra a almofada; a alavanca gira no eixo e as anilhas da ponta sobem ${v(sobe)} cm (de ${v(q0.marcas.alavanca[0])}° a ${v(q1.marcas.alavanca[0])}°). Com a trava, a alavanca descansa no batente (o pé de borracha debaixo dela), que fica ${v(o('batenteFolga'), 0)}° abaixo do ponto mais baixo da série. Medida desenhada: ${v(E.zFrente - E.zTras, 0)} cm de comprimento (a ficha: 155).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('panturrilha_sentada_maquina'), 96, 'cartao'))}${cel('nova (com uma anilha de 20 kg)', img(desenho(p0, cam), 96, 'cartao'))}${cel('hoje: a mesa flexora (para ver se ainda se confundem)', img(hoje('mesa_flexora'), 96, 'cartao'))}${cel('hoje: a panturrilha em pé', img(hoje('panturrilha_em_pe_maquina'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('panturrilha_sentada_maquina'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (o ponto mais baixo)', img(desenho(p0, cam), 640))}</div>
+<h2>Funcionando (de lado, pelo lado direito de quem senta): a alavanca embaixo e em cima</h2>
+<div class="l">${cel('embaixo (o calcanhar 8,5 cm abaixo do apoio)', img(desenho(p0, lado), 520))}${cel(`em cima (o calcanhar 10 cm acima): as anilhas subiram ${v(sobe)} cm`, img(desenho(p1, lado), 520))}</div>
+<h2>As medidas</h2>${tabela('panturrilha-sentada', ['panturrilhaSentada'])}<p style="margin-top:8px">A anilha é a da barra longa (folha-barra.png).</p>`,
   );
 }

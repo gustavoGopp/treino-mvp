@@ -1,0 +1,51 @@
+{
+ "id": "panturrilha-sentada",
+ "nome": "Panturrilha sentada na máquina",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-sentada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-sentada.md) e cartão do app (src/conteudo/exercicios/panturrilha-sentada.json): sentado, joelhos a ~90° sob a almofada, a ponta dos pés na borda da plataforma; desce o calcanhar até o alongamento máximo, pausa ~1 s e sobe ao máximo; tronco parado; consenso de treinadores (nsca2021, não verificado); solta a trava antes e trava ao terminar (seguranca-t5)",
+  "kassiano2023b": "Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a parte alongada rendeu mais (um estudo): o calcanhar desce até o alongamento máximo, com pausa",
+  "aprovado": "Animação aprovada do motor novo: a panturrilha sentada com halter (dados/movimentos/panturrilha-sentada-halter.json: o calcanhar de 8,5 cm abaixo a 10 cm acima do apoio com o joelho a 90°, pés na largura do quadril, o ritmo, os erros da amplitude curta e do tronco que vai para trás)",
+  "objetos": "src/engine/novo/dados/objetos/panturrilha-sentada.json (a máquina: Life Fitness SPLCALF, Hammer Strength PL-CALF e Atlantis M219) e dados/objetos/barra-longa.json (as anilhas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "pés na largura do quadril, apontando para a frente, como na panturrilha sentada com halter aprovada (a ficha não diz a largura)" },
+  "joelho": { "v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos a ~90° com o calcanhar na altura do apoio: o corpo senta no assento à distância que dá esse ângulo" },
+  "assento.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o glúteo e a coxa afundam 1 cm no estofado do assento (como no banco da panturrilha com halter)" },
+  "bola.daBeirada": { "v": 2, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "'a ponta dos pés na borda da plataforma': a bola do pé apoia 2 cm para dentro da borda de trás do apoio; o calcanhar fica no ar" },
+  "calcanhar.embaixo": { "v": 8.5, "un": "cm", "selo": "um estudo", "fonte": "kassiano2023b", "o": "embaixo, o calcanhar 'até o alongamento máximo': 8,5 cm abaixo da borda do apoio, como na panturrilha sentada com halter aprovada (com o joelho dobrado o tornozelo alonga mais que em pé)" },
+  "calcanhar.topo": { "v": 10, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "em cima, 'o calcanhar o mais alto possível': 10 cm acima do apoio, como na panturrilha sentada com halter aprovada" },
+  "almofada.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto a almofada afunda nas coxas" },
+  "maos.aoLado": { "v": 13, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos no pegador, 13 cm para cada lado do meio (mais ou menos sobre os joelhos)" },
+  "anilhas": { "v": 20, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 20 kg no pino" },
+  "erro.curta.fracao": { "v": 0.4, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "erro: o calcanhar só faz 40% do caminho, embaixo e em cima, como na panturrilha sentada com halter aprovada" },
+  "erro.quadril.lombar": { "v": -10, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro 'o tronco levanta para ajudar': na subida a lombar estende 10° e o tronco vai para trás, como no erro do tronco da panturrilha sentada com halter aprovada" },
+  "erro.quadril.toracica": { "v": -12, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: as costas de cima vão 12° para trás (como na aprovada)" }
+ },
+ "fases": [
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Embaixo · alongado", "tipo": "pausa", "dur": 1, "de": 0, "ate": 0, "respira": "FIRME", "tempo": "~1 s", "selo": "um estudo", "fonte": "kassiano2023b" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  { "id": "joelhos-a-90-sentado", "pede": "sentado, os joelhos a ~90°", "selo": "consenso", "fonte": "ficha" },
+  { "id": "calcanhar-abaixo-da-beirada", "pede": "embaixo, o calcanhar desce até o alongamento máximo, abaixo do apoio", "selo": "um estudo", "fonte": "kassiano2023b" },
+  { "id": "calcanhar-sobe-o-maximo", "pede": "em cima, o calcanhar o mais alto possível (10 cm acima do apoio)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "tronco-quase-parado", "pede": "o tronco parado", "selo": "consenso", "fonte": "ficha" },
+  { "id": "almofada-nas-coxas-perto-do-joelho", "pede": "a almofada em cima das coxas, perto dos joelhos, sem escorregar", "selo": "consenso", "fonte": "ficha" },
+  { "id": "maos-nos-pegadores-da-maquina", "pede": "as mãos no pegador da almofada, que anda com ela", "selo": "desenho", "fonte": "desenho" },
+  { "id": "anilhas-sobem-com-a-alavanca", "pede": "a trava solta: as anilhas sobem com a alavanca, que não toca o batente", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "curta", "instante": 0, "titulo": "Amplitude curta", "vista": "lateral", "oQueMuda": "o calcanhar sobe pouco e desce pouco (40% do caminho)", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "tornozelo:R" },
+  { "id": "quadril", "instante": 1, "titulo": "Impulso com o quadril", "vista": "lateral", "oQueMuda": "na subida o tronco vai para trás e sobe, para ajudar", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "ponta dos pés na borda", "ponto": "ponta:R", "selo": "consenso", "fonte": "ficha" },
+  { "vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "ficha" }
+ ]
+}

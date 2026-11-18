@@ -1,0 +1,43 @@
+{
+ "fontes": {
+  "hs-sc": "Hammer Strength, Select Standing Calf HS-SC, página pública do distribuidor oficial da Life Fitness na Austrália (https://www.lifefitness.com.au/commercial/standing-calf-hs-sc, lida em 18/11/2026): \"Dimensions (L x W x H) 58\" x 45\" x 72\" (148 cm x 114 cm x 183 cm)\", \"Weight Stack 390 lbs (195 kg)\", \"Nine pad height positions accommodate all users, and contoured non-slip foot plates allow users' ankles to move in a full range-of-motion\", \"4-1/2\" (11 cm) and 6\" (15 cm) diameter [...] pulleys\". O catálogo 2024 da Hammer Strength (p. 59) dá 58 x 45 x 71,5 pol (148 x 115 x 182 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "atlantis-m118": "Atlantis, Precision Series Standing calf raise M118, página pública (https://atlantisstrength.com/gym-equipment/m118, lida em 18/11/2026): \"Width 81.9 cm\", \"Height 186.4 cm\", \"Length 128 cm\", \"Weight stack 181 kg\", \"Features handgrips on shoulder mechanism and in front of user\", \"Angled shoulder pads replicate natural lines of the body\". A foto do produto na mesma página mostra o braço das almofadas girando num eixo no alto da estrutura, e não um carro que corre na vertical",
+  "cartao-em-pe": "Cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `panturrilha_em_pe_maquina`; public/equipamento/panturrilha_em_pe_maquina.svg): a torre das placas à frente de quem treina, dois montantes entre a pessoa e a torre, as almofadas azuis dos ombros (36 x 12 x 20 cm), os pegadores na frente delas e o degrau de 16 cm com a chapa ranhurada (36 x 56 cm)",
+  "corpo-em-pe": "Derivada do corpo da tabela (dados/corpo-homem.json) na panturrilha em pé aprovada (o núcleo exercicios/elevar-o-calcanhar.ts): a medida que nenhuma ficha lida dá sai de onde o corpo precisa que ela esteja, com o motivo em cada linha",
+  "flexora-em-pe": "A cadeira flexora aprovada (dados/objetos/cadeira-flexora.json): o came no eixo e a pilha de placas, com as mesmas medidas de desenho",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "panturrilhaEmPe": {
+   "nome": "Panturrilha em pé na máquina (o degrau para a ponta dos pés, as almofadas dos ombros num braço que gira num eixo à frente de quem treina, os pegadores na frente do pescoço e a torre das placas)",
+   "medidas": {
+    "comp": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "hs-sc", "onde": "comprimento total da Hammer Strength HS-SC (a Atlantis M118 tem 128)" },
+    "larg": { "v": 114, "un": "cm", "tipo": "medida", "fonte": "hs-sc", "onde": "largura total da HS-SC (115 no catálogo; a Atlantis M118 tem 81,9): o degrau e a base são mais largos que a torre" },
+    "alturaTorre": { "v": 183, "un": "cm", "tipo": "medida", "fonte": "hs-sc", "onde": "altura total da HS-SC, o alto da torre (a Atlantis M118 tem 186,4)" },
+    "plataformaAlt": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "altura do topo do degrau, como no cartão de hoje; as fichas não dão (com menos de uns 12 cm o calcanhar não desceria abaixo da borda sem bater no chão da base)" },
+    "plataformaProf": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "fundo do degrau, da borda de trás (onde a ponta do pé apoia) à da frente, como no cartão" },
+    "plataformaLarg": { "v": 56, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "largura do degrau, como no cartão" },
+    "ombreiraComp": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "comprimento de cada almofada dos ombros, da frente para trás (o cartão tem 36)" },
+    "ombreiraLarg": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "largura de cada almofada (o cartão tem 20; mais larga, a de dentro encostava no pescoço)" },
+    "ombreiraEsp": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "espessura das almofadas (o cartão tem 12)" },
+    "ombreirasEntre": { "v": 34, "un": "cm", "tipo": "derivada", "fonte": "corpo-em-pe", "onde": "de centro a centro das duas almofadas: cada uma sobre o alto do trapézio do corpo da tabela, de 10 a 24 cm do meio, fora do pescoço (o cartão tem 30)" },
+    "bracoComp": { "v": 72, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "do eixo ao centro das almofadas, na horizontal: as fichas não dão; com o eixo à frente do rosto, longe o bastante para o braço passar na frente da cabeça" },
+    "eixoAFrente": { "v": 70, "un": "cm", "tipo": "derivada", "fonte": "corpo-em-pe", "onde": "o eixo do braço fica 70 cm à frente da borda de trás do degrau: o centro das almofadas cai sobre o alto dos ombros, que fica 2 cm atrás da borda" },
+    "eixoAltura": { "v": 169, "un": "cm", "tipo": "derivada", "fonte": "corpo-em-pe", "onde": "altura do eixo: a do meio das almofadas quando os ombros estão no meio do curso (o calcanhar 4 cm acima do degrau). Assim as almofadas sobem e descem quase na vertical, junto com os ombros (o braço gira 5° para cada lado); as fichas não dão" },
+    "travessaAFrente": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a travessa que liga as duas almofadas fica 28 cm à frente do centro delas, na frente do pescoço (a cabeça passa entre as almofadas)" },
+    "travessaAbaixo": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a travessa fica 16 cm abaixo da linha do braço (o meio das almofadas): as barras que a ligam às almofadas descem da quina de baixo delas e passam abaixo do queixo, e os pegadores ficam na altura do peito" },
+    "pegaComp": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "atlantis-m118", "onde": "os pegadores, nas pontas da travessa, na frente de quem treina (\"handgrips on shoulder mechanism and in front of user\"); o comprimento é de desenho" },
+    "pegaDiam": { "v": 3.4, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro da borracha dos pegadores" },
+    "montantesEntre": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "os dois montantes que seguram o eixo, entre a pessoa e a torre, como no cartão" },
+    "torreLarg": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "largura da torre das placas (o cartão tem 30)" },
+    "torreProf": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "cartao-em-pe", "onde": "fundo da torre, como no cartão" },
+    "cameDiam": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "flexora-em-pe", "onde": "diâmetro do came no eixo, que enrola o cabo, como na cadeira flexora aprovada" },
+    "pilhaPlacas": { "v": 18, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas (a HS-SC tem 195 kg de pilha; a M118, 181 kg, sem dizer em quantas placas)" },
+    "pilhaAltura": { "v": 90, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "flexora-em-pe", "onde": "largura das placas, como na cadeira flexora" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "flexora-em-pe", "onde": "fundo das placas, como na cadeira flexora" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "flexora-em-pe", "onde": "tubo da estrutura, como o da cadeira flexora" }
+   }
+  }
+ }
+}
