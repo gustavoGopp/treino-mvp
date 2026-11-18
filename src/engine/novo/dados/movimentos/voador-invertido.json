@@ -1,0 +1,62 @@
+{
+ "id": "voador-invertido",
+ "nome": "Voador invertido",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/voador-invertido.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/voador-invertido.md): sentado de frente para o encosto, peito apoiado; pegadores na altura dos ombros; abre os braços para trás, com os cotovelos levemente dobrados, até a linha do corpo; volta controlando; sem encolher os ombros nem juntar demais as escápulas no fim; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/voador-invertido.json): 'Início: braços à frente.', 'Fim: braços na linha do corpo.', as dicas 'Ombros baixos.', 'Peito no encosto.', 'Abre até a linha do corpo.' e os erros 'Encolher os ombros', 'Embalar o tronco' e 'Abrir pouco'",
+  "lf-fly": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 28 (Pectoral Fly / Rear Deltoid SS-FLY), lido em 18/11/2026: \"Rear Deltoid: Adjust the seat height, if necessary, so arms are parallel to floor, while holding the inside handles. Adjust the start position, bringing the arms into the furthest back position [...] Sit facing pad and grip the horizontal handles firmly keeping elbows slightly bent\"; \"rotate the handles out and about the shoulder as far as can be controlled\"",
+  "maquina": "src/engine/novo/dados/objetos/voador.json: o eixo de cada braço sobre o centro do ombro, o pegador horizontal a 63 cm do eixo e 12 cm acima do vertical, o encosto recuado na guia para o peito encostar, o came de 10 cm de raio",
+  "crucifixo-inverso": "O crucifixo inverso com halteres aprovado (src/engine/novo/dados/movimentos/crucifixo-inverso.json): o ritmo (abrir em ~1,5 s, segurar, voltar em ~2,5 s) e as escápulas (um pouco juntas, sem encolher)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado. Esta é a primeira animação do voador invertido: o que a ficha não dá em número sai do crucifixo inverso aprovado ou do corpo sentado na máquina"
+ },
+ "param": {
+  "bacia": { "v": 12, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "a bacia inclina 12° para a frente: o peito vai ao encosto, que deita 10° para longe de quem senta virado para ele" },
+  "lombar": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a lombar na curva de repouso" },
+  "cervical": { "v": -10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço volta 10° para o olhar ficar à frente, por cima do encosto, com o tronco inclinado" },
+  "cabeca": { "v": -2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço" },
+  "escapula.prot": { "v": -5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "as escápulas um pouco juntas, sem juntar demais no fim: a clavícula 5° para trás, parada (a ficha não dá número)" },
+  "escapula.elev": { "v": -2, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "ombros baixos, sem encolher: a clavícula 2° para baixo" },
+  "cotovelo.paraBaixo": { "v": -0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para onde o braço abre e um pouco para cima, com as palmas para baixo (como no crucifixo inverso aprovado)" },
+  "assento.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 1 cm no assento, como no voador" },
+  "pes.meiaDistancia": { "v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "os pés firmes no chão, dos dois lados da espinha da base, um pouco mais juntos que no voador" },
+  "pes.frente": { "v": 48, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé 48 cm à frente da bacia, embaixo do encosto, antes da coluna: o joelho perto de 90°" },
+  "psi.inicio": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: os braços à frente ('Início: braços à frente.'), cada um 12° aberto a partir da frente, as mãos dos dois lados da coluna" },
+  "psi.fim": { "v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: os braços na linha do corpo (a linha dos ombros)" },
+  "psi.meio": { "v": 51, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "o meio do arco, em que o centro do ombro fica exatamente sob o eixo" },
+  "inicio": { "v": 170, "un": "graus", "selo": "consenso", "fonte": "lf-fly", "o": "a posição inicial da máquina (graus do braço da máquina a partir da frente do voador): os braços no ponto mais para trás (\"bringing the arms into the furthest back position\"), um pouco antes do começo, para as placas não descansarem" },
+  "erro.encolher.elev": { "v": 12, "un": "graus", "selo": "desenho", "fonte": "crucifixo-inverso", "o": "erro: os ombros sobem perto das orelhas (a clavícula 12° acima; no crucifixo inverso aprovado, 16°: aqui a mão presa no pegador estica o cotovelo antes)" },
+  "erro.embalar.bacia": { "v": -14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: para abrir, o tronco vai para trás: a bacia gira 14° para trás e o peito sai do encosto" },
+  "erro.embalar.lombar": { "v": -4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 4° junto" },
+  "erro.embalar.cervical": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço dobra 10° para o olhar seguir à frente" },
+  "erro.pouco.psi": { "v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os braços param a 50°, 40° antes da linha do corpo" }
+ },
+ "fases": [
+  { "nome": "Braços à frente", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "desenho", "fonte": "desenho" },
+  { "nome": "Abrir · concêntrica", "tipo": "conc", "dur": 1.5, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "desenho", "fonte": "crucifixo-inverso" },
+  { "nome": "Na linha do corpo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segura", "selo": "desenho", "fonte": "crucifixo-inverso" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "desenho", "fonte": "crucifixo-inverso" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "voador-eixo-no-ombro", "pede": "o braço da máquina gira em volta do ombro (\"about the shoulder\"): o eixo sobre o centro do ombro", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-maos-nos-pegadores", "pede": "as mãos presas nos pegadores horizontais o ciclo todo", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-invertido-cotovelos-levemente-dobrados", "pede": "abre com os cotovelos levemente dobrados", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-invertido-bracos-paralelos-ao-chao", "pede": "os pegadores na altura dos ombros: os braços paralelos ao chão (a altura do assento)", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-invertido-peito-no-encosto", "pede": "sentado de frente para o encosto, o peito apoiado, o tronco parado", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-invertido-abre-ate-a-linha-do-corpo", "pede": "começa com os braços à frente e abre até a linha do corpo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "crucifixo-inverso-escapulas-sem-encolher-nem-juntar", "pede": "sem encolher os ombros nem juntar demais as escápulas no fim", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-placas-sem-descansar", "pede": "as placas sobem com o arco do came e não descansam na volta", "selo": "consenso", "fonte": "lf-fly" }
+ ],
+ "erros": [
+  { "id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "abrindo, os ombros sobem perto das orelhas", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
+  { "id": "embalar", "instante": 1, "titulo": "Embalar o tronco", "vista": "lateral", "oQueMuda": "para abrir, o tronco vai para trás e o peito sai do encosto", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7" },
+  { "id": "pouco", "instante": 1, "titulo": "Abrir pouco", "vista": "cima", "oQueMuda": "os braços param a 50°, longe da linha do corpo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "posterior", "texto": "ombros baixos", "ponto": "ombro:L", "selo": "consenso", "fonte": "app", "acima": true },
+  { "vista": "posterior", "texto": "abre até a linha do corpo", "ponto": "pegada:L", "selo": "consenso", "fonte": "app" },
+  { "vista": "lateral", "texto": "peito no encosto", "ponto": "c7", "selo": "consenso", "fonte": "app", "acima": true }
+ ]
+}

@@ -151,3 +151,4 @@ export { aducaoMaquina } from './aducao-maquina';
 export { mesaFlexora } from './mesa-flexora';
 export { coiceMaquina } from './coice-maquina';
 export { voador } from './voador';
+export { voadorInvertido } from './voador-invertido';
