@@ -1,0 +1,57 @@
+{
+ "id": "cadeira-extensora",
+ "nome": "Cadeira extensora",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/cadeira-extensora.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/cadeira-extensora.md): encosto ajustado para o joelho ficar alinhado com o eixo da máquina; o rolo apoia na frente da canela, logo acima do pé; estende os joelhos até quase esticar, pausa de ~1 s em cima; descida controlada até os joelhos dobrarem bem, sem bater as placas; quadril encostado no banco e mãos nas alças, o tronco não ajuda; consenso (nsca2021, não verificado). Encosto reclinado: o reto femoral cresceu mais com o quadril a 40° que a 90° (um estudo, larsen2025c)",
+  "app": "Texto do app (src/conteudo/exercicios/cadeira-extensora.json): embaixo, joelhos bem dobrados; em cima, joelhos quase esticados; 'se o encosto reclina, recline-o um pouco'; dicas 'Joelho no eixo.', 'Sem tranco.', 'Desce devagar.'; erros 'Dar tranco' (o peso sobe no embalo), 'Tirar o quadril do banco' (o tronco ajuda a subir), 'Joelho fora do eixo' (o encosto está mal ajustado), 'Descer rápido' (as placas batem)",
+  "aprovada": "Animações aprovadas do motor novo sentadas e encostadas (extensao-joelho-mini-band.json e extensao-joelho-caneleira.json): a lombar menos curva sentado, o pescoço que compensa a inclinação do peito, o glúteo que afunda 1 cm no assento, os erros de ritmo (o chute e a queda, com o expoente 4), o quadril que sobe do assento",
+  "objetos": "src/engine/novo/dados/objetos/cadeira-extensora.json (a cadeira extensora: assento reto a 56 cm, encosto a 20°, eixo 9 cm acima e 5 cm à frente da borda do assento, rolo de 11 cm, came de 22 cm, alças ao lado do quadril)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o glúteo e a coxa afundam 1 cm no assento, como nas extensões sentadas aprovadas"},
+  "lombar.sentado": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "sentado e encostado, a bacia enrola um pouco e a lombar fica 10° menos curva que em pé (a extensão com mini band aprovada)"},
+  "pescoco.compensa": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "aprovada", "o": "com o peito deitado para trás, o pescoço dobra 70% dessa inclinação para a frente: o olhar fica quase na horizontal (a extensão com mini band aprovada)"},
+  "tronco.aFrente": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o tronco encostado no encosto reclinado (a ficha e o app: quadril encostado; 'recline-o um pouco'): as costas paralelas a ele, sem folga em cima"},
+  "maos.naAlca": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as mãos nas alças ao lado do quadril (a ficha): o centro da mão 4 cm à frente do começo da borracha"},
+  "maos.prot": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os ombros no lugar: as alças ficam ao alcance"},
+  "rolo.aoLongo": {"v": 36, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o rolo na frente da canela, logo acima do pé (a ficha): o centro dele a 36 cm do joelho, ao longo da canela de 43 cm; a borda de baixo do rolo fica ~1,5 cm acima do tornozelo"},
+  "rolo.amassa": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o rolo afunda 0,5 cm na pele, na frente da canela"},
+  "pe.flexaoPlantar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé relaxado, 10° além do ângulo reto com a canela"},
+  "joelho.embaixo": {"v": 95, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, os joelhos bem dobrados (a posição em que a coxa alonga): 95°, com o pé fora do chão"},
+  "joelho.emCima": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os joelhos quase esticados: 10° de flexão"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.ritmo.expoente": {"v": 4, "un": "expoente", "selo": "desenho", "fonte": "aprovada", "o": "erros de ritmo: no tranco, no meio da subida a perna já está quase em cima (1 − (1 − u)⁴); na descida rápida, no meio dela a perna já caiu quase até embaixo (u⁴), e as placas batem (o da extensão com caneleira aprovada)"},
+  "erro.quadril.sobe": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "erro: o quadril sobe 6 cm do banco no alto da subida, a coxa girando em volta do joelho (a extensão com mini band aprovada sobe 6 cm); o tronco deita só o que precisa para as costas continuarem no encosto, empurrando-o (medido, não escolhido)"},
+  "erro.eixo.recua": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o encosto regulado 6 cm para trás; o joelho fica 6 cm atrás do eixo e o rolo escorrega ao longo da canela (o cartão: 'o encosto está mal ajustado')"}
+ },
+ "fases": [
+  {"nome": "Embaixo · joelhos dobrados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pé fora do chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Topo · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlada", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "joelho.R", "joelho.L", "mao.R", "mao.L"],
+ "regras": [
+  {"id": "cadeira-joelho-no-eixo", "pede": "o encosto ajustado para o joelho ficar alinhado com o eixo da máquina", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-rolo-acompanha-a-canela", "pede": "o rolo apoia na frente da canela, logo acima do pé, e acompanha a perna, sem escorregar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com a alavanca e apoiam embaixo, sem bater", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-sentado-e-encostado", "pede": "quadril encostado no banco: o glúteo no assento e as costas no encosto, parados (o tronco não ajuda)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-maos-nas-alcas", "pede": "as mãos nas alças", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-extensora-amplitude", "pede": "embaixo, os joelhos bem dobrados, com o pé fora do chão; em cima, quase esticados", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "tranco", "instante": 0.5, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no meio da subida, a perna já está quase em cima, jogada pelo embalo", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"},
+  {"id": "quadril", "instante": 1, "titulo": "Tirar o quadril do banco", "vista": "lateral", "oQueMuda": "o quadril sobe do assento e o tronco deita para trás, para ajudar a subir", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho:R"], "foco": "pelve"},
+  {"id": "eixo", "instante": 1, "titulo": "Joelho fora do eixo", "vista": "lateral", "oQueMuda": "o encosto recuado: o joelho fica atrás do eixo e o rolo escorrega pela canela", "destaca": ["pernas", "corpo"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "cai", "instante": 0.5, "titulo": "Descer rápido", "vista": "lateral", "oQueMuda": "no meio da descida, a perna já caiu quase até embaixo e as placas batem", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "joelho no eixo", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "desce devagar", "ponto": "tornozelo:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "joelho no eixo", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "sem tranco", "ponto": "tornozelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}
