@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 167 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 171 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 3173 células dos cuidados 1 a 19: M 1280, M! 130, O 1221, C 501, – 22, ✗ 19.
+Contagem das 3249 células dos cuidados 1 a 19: M 1311, M! 132, O 1251, C 513, – 22, ✗ 20.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -48,6 +48,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abdominal-chao` | 7 | M | M | M | O | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-chao.png) |
 | `abdominal-declinado` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-declinado.png) |
 | `abdominal-invertido` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-invertido.png) |
+| `abdominal-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abdominal-maquina.png) |
 | `abdominal-polia` | 7 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-polia.png) |
 | `abducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-caneleira.png) |
 | `abducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | G (quadros) | [quadros](quadros/abducao-deitado.png) |
@@ -55,6 +56,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abducao-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/abducao-elastico.png) |
 | `abducao-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-maquina.png) |
 | `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-mini-band.png) |
+| `abducao-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/abducao-polia.png) |
 | `abertura-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-elastico.png) |
 | `abertura-t-deitado` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-t-deitado.png) |
 | `aducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-caneleira.png) |
@@ -83,6 +85,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `coice-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-caneleira.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
 | `coice-maquina` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/coice-maquina.png) |
+| `coice-polia` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/coice-polia.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
 | `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
 | `crucifixo-inclinado-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-inclinado-halteres.png) |
@@ -160,6 +163,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `remada-curvada-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-curvada-elastico.png) |
 | `remada-curvada-halteres` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-curvada-halteres.png) |
 | `remada-elastico` | 4 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-elastico.png) |
+| `remada-invertida` | ? | M | M | M! | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-invertida.png) |
 | `remada-suspensao` | 4 | M | M | M! | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-suspensao.png) |
 | `remada-unilateral` | 4 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral.png) |
 | `remada-unilateral-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-elastico.png) |
@@ -230,6 +234,8 @@ Os demais:
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1 a 2 vezes (48,2 a 93,7 cm); em cima, 1 vezes
 - `abducao-mini-band`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 2,1 vezes (79,8 a 130,9 cm); em cima, 1,3 vezes
+- `abducao-polia`
+  - cuidado 14: o erro "Embalar a perna" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `abertura-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1 a 1,9 vezes (215,5 a 386,3 cm); em cima, 1 vezes
 - `abertura-t-deitado`
@@ -289,6 +295,8 @@ Os demais:
 - `coice-maquina`
   - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: flexão plantar do tornozelo → 80,7°
+- `coice-polia`
+  - cuidado 2: dorsiflexão do tornozelo → 20°
 - `crucifixo-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (198,1 a 263,6 cm); em cima, 1,3 vezes
 - `crucifixo-inverso`
@@ -395,6 +403,8 @@ Os demais:
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (155 a 212,1 cm); em cima, 1,3 vezes
 - `remada-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 2,2 vezes (153,9 a 265,4 cm); em cima, 1,3 vezes
+- `remada-invertida`
+  - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 17,1% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 90,4 cm/s
 - `remada-suspensao`
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 17,3% da velocidade de pico (mão direita, Puxada · concêntrica); pico de 212,5 cm/s
 - `remada-unilateral`
@@ -447,6 +457,7 @@ Os demais:
 - `abdominal-chao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `abdominal-declinado`: (sem linha no andamento)
 - `abdominal-invertido`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
+- `abdominal-maquina`: (sem linha no andamento)
 - `abdominal-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `abducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose da abdução deitado, com a caneleira, que é peça nova; sem colchonete)
 - `abducao-deitado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): o primeiro corpo deitado de lado do motor novo, visto de costas
@@ -454,6 +465,7 @@ Os demais:
 - `abducao-elastico`: (sem linha no andamento)
 - `abducao-maquina`: (sem linha no andamento)
 - `abducao-mini-band`: aprovada por delegação em 16/11/2026 ("O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma"): a faixa refeita em 15/11 e, de frente, a mão escondida atrás da coxa que abre
+- `abducao-polia`: (sem linha no andamento)
 - `abertura-elastico`: (sem linha no andamento)
 - `abertura-t-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
@@ -482,6 +494,7 @@ Os demais:
 - `coice-caneleira`: (sem linha no andamento)
 - `coice-elastico`: (sem linha no andamento)
 - `coice-maquina`: (sem linha no andamento)
+- `coice-polia`: (sem linha no andamento)
 - `crucifixo-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo de 60 pol preso numa porta atrás, na altura do peito)
 - `crucifixo-halteres`: (sem linha no andamento)
 - `crucifixo-inclinado-halteres`: (sem linha no andamento)
@@ -559,6 +572,7 @@ Os demais:
 - `remada-curvada-elastico`: (sem linha no andamento)
 - `remada-curvada-halteres`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `remada-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado no chão; duas voltas do tubo em cada mão, para ele não ficar frouxo)
+- `remada-invertida`: (sem linha no andamento)
 - `remada-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o ponto de prender a fita fica a 183 cm, a altura do fabricante; hoje 205)
 - `remada-unilateral`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `remada-unilateral-elastico`: (sem linha no andamento)
