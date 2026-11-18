@@ -1,7 +1,7 @@
 {
  "fontes": {
   "deltech-df308": "Deltech Fitness, Preacher Curl Bench DF308; https://deltechfitness.com/products/preacher-curl-bench-df308 (lido em 18/11/2026): \"The arm pad is set at a 45-degree angle\", \"adjusts in height from 33\\\" to 43\\\" in 1\\\" increments\", \"The seat pad adjusts in height from 18-1/2\\\" to 24-1/2\\\"\", \"Arm pad size- 24\\\" W x 12\\\" H x 2\\\" thick\", \"Seat pad: 9\\\" W x 12\\\" L x 2\\\" Thick\", \"Unit size: 29 1/2\\\" W x 40\\\" D x 36-40 1/2\\\" H\"",
-  "lf-hs26-bc": "Life Fitness e Hammer Strength, catálogo 2026, p. 216: Arm Curl Bench LBR-BC, 47 x 33 x 46 pol (119 x 84 x 117 cm); Hammer Strength, catálogo 2024, p. 63: Seated Arm Curl FW-AC, 39 x 36 x 43 pol (100 x 92 x 110 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "lf-hs26-lbr-bc": "Life Fitness e Hammer Strength, catálogo 2026, p. 216: Arm Curl Bench LBR-BC, 47 x 33 x 46 pol (119 x 84 x 117 cm); Hammer Strength, catálogo 2024, p. 63: Seated Arm Curl FW-AC, 39 x 36 x 43 pol (100 x 92 x 110 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
   "precor-dbr0202": "Precor, Discovery Preacher Curl Bench DBR0202, folha de venda; https://static.precor.com/sell-sheet/all/DBR/DBR0202-Preacher-Curl-Bench-ENG.pdf (lida em 18/11/2026): \"Dimensions (L x W x H): 107 x 94 x 91 cm\", \"The oversized arm pad cushions both the chest area and arm area\", \"The tapered seat ... features an intuitive, ratcheting seat adjustment\"",
   "desenho-scott": "Escolha de desenho, sem medida de fabricante: o que a ficha não dá, com o motivo; parte do cartão de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, bancoScott)"
  },
