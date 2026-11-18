@@ -7,7 +7,9 @@
 // Na cadeira extensora, a alavanca no começo e no fim, e a flexora ao lado (para ver que não se confundem).
 // Na cadeira abdutora e adutora, os braços abrindo e fechando (de frente e de cima), com a almofada por fora (abdução) e
 // por dentro (adução) dos joelhos e a pilha subindo.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No supino e no desenvolvimento na máquina, os braços no começo e no fim (de lado), o arco dos pegadores, e a outra
+// máquina ao lado (para ver que não se confundem).
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|supino-maquina|desenvolvimento-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -23,6 +25,7 @@ export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-extensora.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-abdutora.ts';
+export * from './src/engine/novo/pecas-de-cena/maquina-de-empurrar.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -309,5 +312,69 @@ if (!so || so === 'cadeira-abdutora-adutora') {
 <div class="l">${cel('começo: os braços abertos (42°, a posição inicial); as placas embaixo', img(desenho([d0.fixa, d0.movel], frente), 440))}${cel(`fim: os braços fechados (11°), as almofadas quase se tocando; as placas ${v(d1.subida)} cm acima`, img(desenho([d1.fixa, d1.movel], frente), 440))}</div>
 <div class="l" style="margin-top:12px">${cel('começo, de cima', img(desenho([d0.fixa, d0.movel], cima, false), 440))}${cel('fim, de cima', img(desenho([d1.fixa, d1.movel], cima, false), 440))}</div>
 <h2>As medidas</h2>${tabela('cadeira-abdutora', ['cadeiraAbdutora'])}`,
+  );
+}
+
+// as duas máquinas de empurrar sentado (o mesmo desenho, ./maquina-de-empurrar.ts, com um modelo para cada)
+const EMPURRAR = {
+  'supino-maquina': {
+    mod: m.SUPINO_NA_MAQUINA,
+    outra: m.DESENVOLVIMENTO_NA_MAQUINA,
+    cartao: 'supino_maquina',
+    outroCartao: 'desenvolvimento_maquina',
+    arquivo: 'supino-maquina',
+    objeto: 'supinoMaquina',
+    // a regulagem que a animação calcula para o corpo do app (o assento, o ângulo inicial e o final dos braços)
+    reg: { assento: 46, inicio: 7, fim: 35.5 },
+    outraReg: { assento: 47, inicio: 82, fim: 132.7 },
+    cam: { yaw: 140, pitch: 12, s: 0.6 },
+    titulo: 'Supino na máquina',
+    fichas: 'Life Fitness (SS-CP, 144 × 144 × 148 cm, a altura da pilha), da Hammer Strength (HS-CP, 105 × 145 × 163), da Movement (Next, 124 × 138 × 146), da Technogym (MK70, 141 × 143 × 167) e da Precor (RSL0414, 185 × 127 × 185)',
+    eixo: 'O eixo dos braços fica <b>acima da cabeça</b> de quem senta, um pouco à frente do peito, e cada braço pende dele. O eixo do cartão de hoje fica atrás e acima do encosto: dali o pegador não anda os ~50 cm do empurrão (o braço do cartão tem 88 cm e já começa 68 cm à frente do eixo), então ele foi para o alto, à frente. Empurrando, o pegador anda num arco: para a frente, subindo um pouco (da linha do meio do peito à altura dos ombros).',
+  },
+  'desenvolvimento-maquina': {
+    mod: m.DESENVOLVIMENTO_NA_MAQUINA,
+    outra: m.SUPINO_NA_MAQUINA,
+    cartao: 'desenvolvimento_maquina',
+    outroCartao: 'supino_maquina',
+    arquivo: 'desenvolvimento-maquina',
+    objeto: 'desenvolvimentoMaquina',
+    reg: { assento: 47, inicio: 82, fim: 132.7 },
+    outraReg: { assento: 46, inicio: 7, fim: 35.5 },
+    cam: { yaw: 120, pitch: 12, s: 0.6 },
+    titulo: 'Desenvolvimento na máquina',
+    fichas: 'Life Fitness (SS-SP, 164 × 145 × 185 cm), da Hammer Strength (HS-SP, 153 × 143 × 163), da Movement (Next, 155 × 144 × 146) e da Precor (RSL0515, 155 × 150 × 152)',
+    eixo: 'O eixo dos braços fica <b>atrás do encosto, alto</b> (a Precor: "overhead pivot"), na meia altura do caminho dos pegadores, e cada braço vai dele para a frente, passando ao lado da cabeça. No cartão de hoje o eixo também fica atrás, mas na altura dos ombros; subindo-o para a meia altura, o pegador sobe quase na vertical (um pouco à frente no meio, de volta para cima dos ombros no fim).',
+  },
+};
+for (const [nome, E] of Object.entries(EMPURRAR)) {
+  if (so && so !== nome) continue;
+  const maq = (mod, reg, braco) => m.maquinaDeEmpurrar({ ...reg, braco, placas: 5 }, mod);
+  const pecas = (r) => [r.fixa, r.bracos.R, r.bracos.L, r.pilha];
+  const c0 = maq(E.mod, E.reg, E.reg.inicio),
+    c1 = maq(E.mod, E.reg, E.reg.fim);
+  const outra = maq(E.outra, E.outraReg, E.outraReg.inicio);
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const deFrente = { yaw: 180, pitch: 4, s: 0.6 };
+  const o = (id) => m.obj(E.objeto, id);
+  // o arco do pegador direito, do começo ao fim, e quanto ele anda
+  const a = m.bracoNoAngulo(E.mod, 'R', E.reg.inicio).centro,
+    b = m.bracoNoAngulo(E.mod, 'R', E.reg.fim).centro;
+  const ext = c0.extremos;
+  const v = (x) => f1v(x);
+  await foto(
+    E.arquivo,
+    `<h1>${E.titulo}: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total vem das fichas da ${E.fichas}. Todas as fichas lidas são de <b>pilha de placas</b>, e o texto do app conta a carga pela "placa da torre"; o cartão de hoje é de anilhas (os pinos com uma anilha de cada lado). Aqui a carga é a pilha, numa torre ao lado do assento (é como a largura das fichas, ~145 cm, fecha). A Precor dá a espessura dos estofados (6,5 cm), a altura da torre (148 cm), os braços independentes e o caminho que converge. As medidas que fazem a máquina funcionar (onde fica o eixo, o comprimento do braço, as alturas do assento e do encosto) não aparecem em nenhuma ficha lida: são de desenho, em amarelo na tabela, com o motivo.</p>
+<p>${E.eixo}</p>
+<p><b>A máquina funciona:</b> cada braço gira no seu eixo (o braço tem ${v(o('bracoComp'))} cm), e o pegador, preso na ponta, anda num arco em volta dele: do começo ao fim, o centro do pegador direito anda ${v(b[2] - a[2])} cm para a frente e ${v(b[1] - a[1])} cm para cima. O eixo de cada braço é inclinado ${v(o('converge'))}° para dentro, e os pegadores se aproximam: de ${v(2 * Math.abs(a[0]))} cm entre as mãos para ${v(2 * Math.abs(b[0]))} cm. O came gira com o braço da esquerda e enrola o cabo, e as placas do pino sobem ${v(c1.subida)} cm (o arco do came, de ${v(E.reg.inicio)}° a ${v(E.reg.fim)}°). O assento sobe e desce (de ${v(o('assentoMin'))} a ${v(o('assentoMax'))} cm; no exemplo, ${v(E.reg.assento)} cm, a altura que a animação calcula para o corpo do app). Medida desenhada: ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento e ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje(E.cartao), 96, 'cartao'))}${cel('nova', img(desenho(pecas(c0), E.cam), 96, 'cartao'))}${cel('hoje: a outra máquina de empurrar', img(hoje(E.outroCartao), 96, 'cartao'))}${cel('nova: a outra máquina (para ver se ainda se confundem)', img(desenho(pecas(outra), EMPURRAR[nome === 'supino-maquina' ? 'desenvolvimento-maquina' : 'supino-maquina'].cam), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje(E.cartao), 440, 'cartao'))}${cel('nova, de três quartos, no começo do movimento', img(desenho(pecas(c0), E.cam), 640))}</div>
+<h2>Funcionando: os braços no começo e no fim (de lado, pelo lado direito de quem senta)</h2>
+<div class="l">${cel(`começo: os braços a ${v(E.reg.inicio)}° (0° = pendurado, 90° = para a frente); as placas embaixo`, img(desenho(pecas(c0), lado), 640))}${cel(`fim: os braços a ${v(E.reg.fim)}°; as placas do pino ${v(c1.subida)} cm acima`, img(desenho(pecas(c1), lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(pecas(c1), E.cam), 640))}${cel('de frente, no fim: os pegadores mais perto um do outro', img(desenho(pecas(c1), deFrente), 640))}</div>
+<h2>As medidas</h2>${tabela(E.arquivo, [E.objeto])}`,
   );
 }
