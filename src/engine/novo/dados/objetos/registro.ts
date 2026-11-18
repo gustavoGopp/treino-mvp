@@ -28,3 +28,4 @@ export { default as cadeiraFlexora } from './cadeira-flexora.json';
 export { default as elasticoLongoPisado } from './elastico-longo-pisado.json';
 export { default as caixaDeSalto } from './caixa-de-salto.json';
 export { default as barraW } from './barra-w.json';
+export { default as barraHexagonal } from './barra-hexagonal.json';
