@@ -69,3 +69,4 @@ export { REGRAS_ESTACOES } from './estacoes';
 export { REGRAS_VOADOR } from './voador';
 export { REGRAS_GRAVITON } from './graviton';
 export { REGRAS_REMADA_ARTICULADA } from './remada-articulada';
+export { REGRAS_AVULSOS_C3 } from './avulsos-c3';
