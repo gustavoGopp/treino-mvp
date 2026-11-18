@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "rogue-games-box": "Rogue, Flat Pack Games Box; https://www.roguefitness.com/ca/rogue-flat-pack-games-box (lido em 18/11/2026 por resumo automático da página): \"Dimensions: 30” x 24” x 20” (can be turned on any side)\"; \"CNC Machined A/C grade plywood\". A espessura da madeira e as alças vêm só de um comentário de cliente na mesma página (\"3/4” thick Radiata Pine ACX\"; \"The built-in handles make it easy to move around\"), e não da ficha do fabricante",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "caixaDeSalto": {
+   "nome": "Caixa de salto de madeira (caixa pliométrica 3 em 1), de pé no lado mais alto: o apoio firme para subir à barra fixa",
+   "medidas": {
+    "altura": { "v": 76.2, "un": "cm", "tipo": "medida", "fonte": "rogue-games-box", "onde": "a maior das três alturas: 30 pol (a caixa vira de lado para dar 20, 24 ou 30 pol). Com a barra fixa na regulagem mais alta da torre, é a altura em que, de pé na caixa, o queixo passa da barra" },
+    "larg": { "v": 61, "un": "cm", "tipo": "medida", "fonte": "rogue-games-box", "onde": "24 pol: de um lado ao outro da pessoa (ao longo da barra)" },
+    "prof": { "v": 50.8, "un": "cm", "tipo": "medida", "fonte": "rogue-games-box", "onde": "20 pol: de trás para a frente, para onde a pessoa olha" },
+    "esp": { "v": 1.9, "un": "cm", "tipo": "provisoria", "fonte": "rogue-games-box", "onde": "espessura do compensado: 3/4 pol, só de um comentário de cliente (a ficha do fabricante não traz); usada só no desenho das bordas" },
+    "alcaLarg": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do recorte de alça em cada lado (a página só diz que as alças existem)" },
+    "alcaAlt": { "v": 4, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do recorte de alça" }
+   }
+  }
+ }
+}

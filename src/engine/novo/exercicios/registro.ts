@@ -126,3 +126,4 @@ export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
 export { roscaConcentrada } from './rosca-concentrada';
 export { mergulho } from './mergulho';
 export { facePullSuspensao } from './face-pull-suspensao';
+export { barraFixaNegativa } from './barra-fixa-negativa';
