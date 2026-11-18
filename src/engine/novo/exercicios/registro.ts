@@ -146,3 +146,5 @@ export { agachamentoSmith } from './agachamento-smith';
 export { supinoSmith } from './supino-smith';
 export { cadeiraFlexora } from './cadeira-flexora';
 export { cadeiraExtensora } from './cadeira-extensora';
+export { abducaoMaquina } from './abducao-maquina';
+export { aducaoMaquina } from './aducao-maquina';

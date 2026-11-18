@@ -60,3 +60,4 @@ export { REGRAS_BARRAS_ESPECIAIS } from './barras-especiais';
 export { REGRAS_BARRA_LONGA } from './barra-longa';
 export { regrasDoSmith } from './smith';
 export { regrasDasCadeiras } from './cadeiras';
+export { REGRAS_CADEIRA_ABDUTORA } from './cadeira-abdutora';
