@@ -61,3 +61,5 @@ export { REGRAS_BARRA_LONGA } from './barra-longa';
 export { regrasDoSmith } from './smith';
 export { regrasDasCadeiras } from './cadeiras';
 export { REGRAS_CADEIRA_ABDUTORA } from './cadeira-abdutora';
+export { REGRAS_MESA_FLEXORA } from './mesa-flexora';
+export { REGRAS_COICE_MAQUINA } from './coice-maquina';

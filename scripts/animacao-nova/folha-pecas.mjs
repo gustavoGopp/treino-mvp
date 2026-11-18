@@ -7,7 +7,9 @@
 // Na cadeira extensora, a alavanca no começo e no fim, e a flexora ao lado (para ver que não se confundem).
 // Na cadeira abdutora e adutora, os braços abrindo e fechando (de frente e de cima), com a almofada por fora (abdução) e
 // por dentro (adução) dos joelhos e a pilha subindo.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
+// Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -23,6 +25,8 @@ export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-extensora.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-abdutora.ts';
+export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
+export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -309,5 +313,62 @@ if (!so || so === 'cadeira-abdutora-adutora') {
 <div class="l">${cel('começo: os braços abertos (42°, a posição inicial); as placas embaixo', img(desenho([d0.fixa, d0.movel], frente), 440))}${cel(`fim: os braços fechados (11°), as almofadas quase se tocando; as placas ${v(d1.subida)} cm acima`, img(desenho([d1.fixa, d1.movel], frente), 440))}</div>
 <div class="l" style="margin-top:12px">${cel('começo, de cima', img(desenho([d0.fixa, d0.movel], cima, false), 440))}${cel('fim, de cima', img(desenho([d1.fixa, d1.movel], cima, false), 440))}</div>
 <h2>As medidas</h2>${tabela('cadeira-abdutora', ['cadeiraAbdutora'])}`,
+  );
+}
+
+if (!so || so === 'mesa-flexora') {
+  const regulagem = { inicio: -8, rolo: 44, placas: 5 };
+  const M = (alavanca) => m.mesaFlexora({ ...regulagem, alavanca });
+  // de três quartos, pela frente e pelo lado direito de quem deita (como o cartão de hoje)
+  const cam = { yaw: -60, pitch: 14, s: 0.6 };
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const c0 = M(-8),
+    c1 = M(112);
+  const ext = c0.extremos;
+  const o = (id) => m.obj('mesaFlexora', id);
+  const altura = (p) => p.ponta[1] + p.comp * p.ao[1];
+  await foto(
+    'mesa-flexora',
+    `<h1>Mesa flexora: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total vem das fichas da Life Fitness (SS-LC, 159 × 106 × 148 cm), da Hammer Strength (HS-LC, 166 × 100 × 140), da Movement (Next Leg Curl, 155,3 × 108,1 × 145,8) e da Precor (RSL0606, 155 × 122 × 147, torre de 148 cm). <b>O cartão de hoje tem 160 × 50 × ~90 cm: é 33% a 40% mais baixo que as fichas</b>, porque não tem a torre das placas (a carga é um pino de anilha na alavanca); a altura das fichas é a da torre. Aqui a torre fica ao lado do estofado, como na cadeira flexora aprovada, que é como a largura das fichas fecha; ela fica na ponta da frente, ao lado do estofado do peito: de lado, fica atrás da cabeça e dos braços, e não atrás do quadril e das pernas, que o guia precisa mostrar. A Precor dá a espessura dos estofados (6,5 cm) e diz que o estofado do quadril e o do peito têm ângulos diferentes para alinhar o joelho com o eixo ("the angled hip and chest pads [...] ensure proper alignment of the exerciser's knee with the pivot point"); a Life Fitness diz o mesmo ("a diverging hip and chest pad angle, which minimises lower back stress"). Nenhuma ficha dá os ângulos: a dobra no quadril é de desenho, mais marcada que a do cartão de hoje (o das coxas sobe ${v(o('coxaInclina'), 0)}° até o quadril e o do peito desce ${v(o('peitoInclina'), 0)}° até a cabeça), para o quadril ficar no alto da dobra e o peito deitar no estofado. As medidas de dentro da máquina (a altura do eixo, onde ele fica em relação ao estofado, a alavanca) também são de desenho, em amarelo na tabela. O came, a alavanca, o rolo e a pilha são os da cadeira flexora, com as mesmas medidas.</p>
+<p><b>A máquina funciona:</b> a alavanca gira no eixo, ao lado do joelho (a ${v(o('eixoAltura'), 0)} cm do chão, ${v(o('eixoAtras'), 0)} cm atrás da ponta do estofado das coxas); o came gira junto e enrola o cabo, que desce até uma polia no chão e corre ao longo da base até o pé da torre; as placas do pino sobem ${c1.subida.toFixed(1).replace('.', ',')} cm do começo ao fim do movimento (de −8° a 112°); o rolo corre na alavanca até ficar atrás dos tornozelos. A dobra fica a ${v(altura(m.geometriaDaMesaFlexora().coxa))} cm do chão. Medida desenhada: ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento e ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('mesa_flexora'), 96, 'cartao'))}${cel('nova', img(desenho([c0.fixa, c0.movel], cam), 96, 'cartao'))}${cel('hoje: a panturrilha sentada (para ver se ainda se confundem)', img(hoje('panturrilha_sentada_maquina'), 96, 'cartao'))}${cel('hoje: a cadeira flexora', img(hoje('cadeira_flexora'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('mesa_flexora'), 440, 'cartao'))}${cel('nova, do mesmo lado, no começo do movimento', img(desenho([c0.fixa, c0.movel], cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado esquerdo de quem deita, o da alavanca)</h2>
+<div class="l">${cel('começo: a alavanca para os pés (−8°); as placas embaixo', img(desenho([c0.fixa, c0.movel], lado), 640))}${cel(`fim: a alavanca para cima (112°); as placas do pino ${c1.subida.toFixed(1).replace('.', ',')} cm acima`, img(desenho([c1.fixa, c1.movel], lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho([c1.fixa, c1.movel], cam), 640))}</div>
+<h2>As medidas</h2>${tabela('mesa-flexora', ['mesaFlexora'])}`,
+  );
+}
+
+if (!so || so === 'gluteo-maquina') {
+  // a regulagem do corpo da tabela, no começo e no fim do coice (a máquina sem o corpo)
+  const ex = m.EXERCICIOS['coice-maquina'];
+  const q0 = ex.quadro(m.CORPOS.homem, 0),
+    q1 = ex.quadro(m.CORPOS.homem, 1);
+  const semCorte = (pecas) => pecas.map((p) => ({ ...p, noQuadro: undefined }));
+  const p0 = semCorte(q0.pecas),
+    p1 = semCorte(q1.pecas);
+  // de três quartos, com a alavanca à direita do desenho (como o cartão de hoje)
+  const cam = { yaw: -120, pitch: 14, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const o = (id) => m.obj('gluteoMaquina', id);
+  const sobe = q1.marcas.pilha[1];
+  const gira = q1.marcas.alavanca[0] - q1.marcas.alavanca[1];
+  await foto(
+    'gluteo-maquina',
+    `<h1>Glúteo na máquina (de quatro apoios): o cartão de hoje × a peça nova</h1>
+<p><b>Qual máquina.</b> A ficha da técnica e o cartão do app (coice na máquina) pedem a máquina de quatro apoios: "tronco apoiado (peito ou antebraços na almofada), um pé na plataforma ou na alavanca; o outro joelho apoiado". <b>As três fichas que o plano listava são de máquinas em pé</b>, outro tipo: a Life Fitness SS-GL (186 × 98 × 148 cm), a Hammer Strength HS-HG (166 × 100 × 183, a de quadril em várias direções, com o rolo atrás da coxa) e a Movement Next Glute (102 × 90 × 146, em pé numa plataforma, com apoio dos cotovelos). O cartão de hoje também é de máquina em pé (o apoio do peito a 1 m do chão e a alavanca do pé atrás). As fichas de quatro apoios lidas são a <b>Precor Glutebuilder Pendulum Kickback GSL0617</b> (127 × 132 × 145 cm, torre de 148 cm; "kneeling exercise position with a double knee pad, chest pad and hand grips"; "isolating movement at the hip joint") e a <b>Atlantis C-122</b> (168,8 × 111,4 × 159,9 cm; "kneeling position"; "rubber footplates"; "angled handles and forearm pads"). O tamanho total vem da Precor; o resto não aparece em nenhuma ficha e é de desenho, em amarelo na tabela.</p>
+<p><b>A máquina funciona:</b> a alavanca gira num eixo na linha do quadril de quem ajoelha (a ${v(o('eixoAltura'), 0)} cm do chão; a almofada dos joelhos regula na altura para o quadril cair nele, e aqui fica a ${v(q0.marcas.joelheira[1])} cm); a plataforma do pé, na ponta da alavanca, a ${v(q0.marcas.alavanca[2])} cm do eixo, gira junto, encostada na sola; o came gira com ela e enrola o cabo, e as placas do pino sobem ${v(sobe)} cm quando a alavanca gira ${v(gira, 0)}° (do começo ao fim do coice). Os apoios dos antebraços (a ${v(o('antebracoAltura'), 0)} cm do chão) correm para a frente e para trás, com os pegadores em pé na ponta. Na cena, a alavanca, o came e o pé do eixo ficam do lado de fora da perna direita, do lado de quem olha de lado: são pintados atrás do corpo (o mesmo corte de ilustração do smith), para não cobrir o glúteo e a coxa.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('gluteo_maquina'), 96, 'cartao'))}${cel('nova', img(desenho(p0, cam), 96, 'cartao'))}${cel('hoje: a rosca na máquina (para ver se ainda se confundem)', img(hoje('rosca_maquina'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje (máquina em pé)', img(hoje('gluteo_maquina'), 440, 'cartao'))}${cel('nova (de quatro apoios), do mesmo lado, no começo do coice', img(desenho(p0, cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem ajoelha)</h2>
+<div class="l">${cel('começo: a plataforma atrás, as placas embaixo', img(desenho(p0, lado), 640))}${cel(`fim: a plataforma no alto; as placas do pino ${v(sobe)} cm acima`, img(desenho(p1, lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(p1, cam), 640))}</div>
+<h2>As medidas</h2>${tabela('gluteo-maquina', ['gluteoMaquina'])}`,
   );
 }
