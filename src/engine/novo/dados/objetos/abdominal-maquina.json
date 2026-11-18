@@ -1,0 +1,41 @@
+{
+ "fontes": {
+  "lf-ab": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 8, Abdominal (SS-AB); https://kb.cybexintl.com/Owners_Manuals/Strength/Life_Fitness_Insignia_Series_Owners_Manual_9481201_Rev_BE.pdf (lido em 18/11/2026): \"Size (L x W x H): in. = 52.4 x 46.3 x 58.1, cm = 133 x 117 x 148\", \"Live Area (L x W x H): cm = 194 x 147 x 210\", \"Base Weight Stack (P): 76 kg\", \"Adjust the seat height so that lower back pad is resting on your lower back [...] Grip handles\", \"With a controlled motion upper torso crunch [...] Avoid using your arms to power through the motion, they should provide a guide for the motion\". Os desenhos da página (Start, Finish) mostram o assento, o apoio da lombar, as duas almofadas sobre o peito presas a um braço que gira para a frente em volta de um eixo atrás da lombar, os pegadores ao lado da cabeça, os rolos dos pés e a torre da pilha ao lado",
+  "hs-abc": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Ab Crunch HS-ABC, 62 x 35 x 56 pol (158 x 89 x 143 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "mv-next-ab": "Movement, apresentação Next Selectorized 2025, p. 7: abdominal, 141,2 x 113,7 x 146 cm (pesquisa/04-objetos.md, seção 13.1)",
+  "tg-mk83": "Technogym, catálogo Home Wellness, p. 84: Total Abdominal MK83, 1389 x 1029 x 1403 mm (pesquisa/04-objetos.md, seção 13.1)",
+  "precor-rsl0619": "Precor, Resolute Seated Leg Curl RSL0619; https://www.precor.com/en-GB/products/RSL0619 (lido em 17/11/2026): \"63 x 48 x 58 in / 160 x 122 x 147 cm\", \"Weight stack tower height: 148 cm\", \"Weight stack: 160 lb / 73 kg\", o assento largo \"with a slight 15 degree tilt, properly aligns the exerciser's knee with the pivot point\", \"Upholstery total thickness is 2.5 inches (65 mm)\", \"The adjustable back pad, start position, thigh stabilizing pad and weight stack pin are all within easy reach\"",
+  "corpo-abdominal": "Do corpo da tabela (src/engine/novo/dados/corpo-homem.json), na animação (src/engine/novo/exercicios/abdominal-maquina.ts): sentado com os pés no chão e os joelhos no ângulo da ficha de movimento, o tronco reto no começo e enrolado no fim",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "abdominalMaquina": {
+   "nome": "Abdominal na máquina (assento, apoio da lombar, braço que gira com as almofadas do peito e os pegadores, rolos dos pés, pilha de placas)",
+   "medidas": {
+    "comp": { "v": 133, "un": "cm", "tipo": "medida", "fonte": "lf-ab", "onde": "comprimento total da Life Fitness SS-AB (a Hammer Strength tem 158; a Movement, 141; a Technogym, 139)" },
+    "larg": { "v": 117, "un": "cm", "tipo": "medida", "fonte": "lf-ab", "onde": "largura total, com a pilha ao lado do assento (Hammer Strength 89; Movement 114; Technogym 103)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "lf-ab", "onde": "altura total (58,1 pol): a da torre da pilha, como em toda a linha Insignia" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0619", "onde": "espessura dos estofados: 2,5 pol (65 mm) na Precor; a Life Fitness não dá" },
+    "assentoComp": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento; as fichas não dão" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do assento; um pouco mais largo que o quadril da tabela" },
+    "assentoAltura": { "v": 40.3, "un": "cm", "tipo": "derivada", "fonte": "corpo-abdominal", "onde": "altura do topo do assento no corpo da tabela: a regulagem em que o apoio da lombar fica na lombar (a Life Fitness: 'adjust the seat height so that lower back pad is resting on your lower back'), com os pés no chão; a animação calcula e confere" },
+    "lombarLarg": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do apoio da lombar" },
+    "lombarAlt": { "v": 20, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do apoio da lombar (o desenho da Life Fitness: um estofado curto, só na lombar)" },
+    "almofadaComp": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento de cada almofada do peito: cabe no peito do corpo da tabela (mais comprida, a ponta de cima ficava no ar, sobre a clavícula; conferido pela regra das almofadas)" },
+    "almofadaLarg": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura de cada almofada do peito" },
+    "almofadasEntre": { "v": 15, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "do centro de uma almofada ao da outra: uma sobre cada lado do peito, sem passar da curva dele para os lados" },
+    "bracoFora": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o braço da máquina sobe pelos lados do corpo, a 7 cm da largura dos ombros" },
+    "pegadorComp": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da empunhadura de borracha de cada pegador" },
+    "pegadorDiam": { "v": 3.2, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro dos pegadores (o do estribo de polia)" },
+    "roloDiam": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro dos rolos que prendem os pés" },
+    "roloComp": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento de cada rolo dos pés" },
+    "cameDiam": { "v": 20, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro do came no eixo, que enrola o cabo da pilha" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas; a Life Fitness tem 76 kg de pilha, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "tubo da estrutura, como o das outras máquinas" }
+   }
+  }
+ }
+}
