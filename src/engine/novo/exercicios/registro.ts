@@ -162,6 +162,7 @@ export { voadorInvertido } from './voador-invertido';
 export { barraFixaGraviton } from './barra-fixa-graviton';
 export { mergulhoGraviton } from './mergulho-graviton';
 export { remadaArticulada } from './remada-articulada';
+export { remadaInvertida } from './remada-invertida';
 export { abducaoPolia } from './abducao-polia';
 export { coicePolia } from './coice-polia';
 export { abdominalNaMaquina } from './abdominal-maquina';
