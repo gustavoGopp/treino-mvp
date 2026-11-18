@@ -68,3 +68,4 @@ export { REGRAS_MAQUINAS_DE_EMPURRAR } from './maquinas-de-empurrar';
 export { REGRAS_ESTACOES } from './estacoes';
 export { REGRAS_VOADOR } from './voador';
 export { REGRAS_GRAVITON } from './graviton';
+export { REGRAS_BANCO_SCOTT } from './banco-scott';
