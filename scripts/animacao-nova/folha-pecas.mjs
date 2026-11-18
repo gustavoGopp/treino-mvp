@@ -4,7 +4,8 @@
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No leg press, o carro em duas posições na guia, com a trava fechada e aberta, e o cartão do hack ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|leg-press] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -18,6 +19,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
+export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -233,3 +235,29 @@ if (!so || so === 'smith') {
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
   );
 }
+
+if (!so || so === 'leg-press') {
+  const o = (id) => m.obj('legPress', id);
+  // o cartão de hoje põe a máquina ao longo de x e olha de yaw −30; a peça corre ao longo de z: yaw 120 dá o mesmo
+  // enquadramento (o encosto à esquerda, as guias subindo para a direita), visto pelo outro lado da máquina
+  const cam = { yaw: 120, pitch: 6, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const L = (carro, trava) => m.legPress({ carro, trava, batente: 52, anilhas: ['anilha20'] }).pecas;
+  const E = m.extremosDoLegPress();
+  const larg = 2 * (o('guiasEntre') / 2 + o('tuboLarg') / 2 + o('pinoAnilhaComp'));
+  const sobe = (s0, s1) => v((s1 - s0) * Math.sin((o('trilhoInclina') * Math.PI) / 180));
+  await foto(
+    'leg-press',
+    `<h1>Leg press 45°: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue a ficha da Hammer Strength PL-LP (176 × 130 × 145 cm); a Magnum MG-PL70 (229 × 171 × 158) e a Gym Gear Elite (238 × 219 × 137) são mais compridas, com o assento mais para trás. <b>O ângulo das guias, 45°, vem do nome dos três aparelhos</b> e da página da Hammer Strength HSLLP ("Featuring a 45-degree angle"). Da Gym Gear vêm a guia redonda de 40 mm (o rolamento linear), o tubo de 100 × 50 mm, os pegadores de 38 mm e os 4 pinos de guardar anilhas; da Magnum, a massa do carro (75,7 kg), o batente de baixo que regula ("adjustable bottom stop") e a trava ("racking mechanism"). <b>O que faz a máquina funcionar não está em nenhuma ficha lida</b> e saiu do corpo da tabela, com o motivo na tabela: o encosto a 40° do chão (as fichas só dizem que ele regula: é a posição em que o corpo desce até o joelho passar de 90° sem o quadril dobrar além da média da tabela), a altura do assento, a linha em que a chapa corre e onde a trava apoia. Do cartão de hoje: o assento a 10°, a chapa 10° mais em pé que a perpendicular à guia, 72 cm de chapa, os estofados de 50 cm, a alavanca da trava dos dois lados do carro.</p>
+<p><b>A máquina funciona:</b> o carro (a chapa, as anilhas e as alavancas) só anda nas duas guias; a alavanca da trava, presa no carro, fecha sobre o suporte da estrutura (o carro não desce abaixo dele) ou gira ${v(o('travaAbre'), 0)}° para cima e solta o carro; os batentes de baixo ficam parados na guia, na altura escolhida. Medida desenhada: ${v(E.zFrente - E.zTras, 0)} cm de comprimento, ${v(E.yTopo, 0)} cm de altura e ${v(larg, 0)} cm de uma ponta de pino à outra (a ficha: 176 × 145 × 130).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('leg_press'), 96, 'cartao'))}${cel('nova (o carro em cima, trava fechada)', img(desenho(L(83, 'fechada'), cam), 96, 'cartao'))}${cel('hoje: o hack (para ver se ainda se confundem)', img(hoje('hack'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('leg_press'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (uma anilha de 20 kg de cada lado)', img(desenho(L(83, 'fechada'), cam), 640))}</div>
+<h2>Funcionando (de lado): o carro só anda na guia</h2>
+<div class="l">${cel('em cima, a trava fechada: o gancho apoiado no suporte', img(desenho(L(83, 'fechada'), lado), 440))}${cel('a trava aberta (girada para cima): o carro solto', img(desenho(L(83, 'aberta'), lado), 440))}${cel(`embaixo, perto dos batentes (o carro desceu ${sobe(57, 83)} cm de altura)`, img(desenho(L(57, 'aberta'), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('leg-press', ['legPress'])}<p style="margin-top:8px">As anilhas são as da barra longa (folha-barra.png).</p>`,
+  );
+}
+
