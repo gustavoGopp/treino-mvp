@@ -12,9 +12,10 @@
 // da Life Fitness (e como pede o movimento: o tronco enrola em volta da coluna, e não do alto da cabeça); e o cartão
 // não tem o apoio da lombar, que o manual tem.
 //
-// A máquina funciona: o braço (as duas hastes que sobem pelos lados do corpo, o arco por cima dos ombros, as almofadas
-// e os pegadores) gira inteiro no eixo; o came gira com ele e enrola o cabo, e as placas escolhidas sobem o arco do came
-// (raio × ângulo girado desde a posição inicial).
+// A máquina funciona: o braço (as duas hastes que sobem pelos lados do corpo e vêm à frente do peito, as almofadas e
+// os pegadores, que saem da ponta de baixo das almofadas) gira inteiro no eixo; o came gira com ele e enrola o cabo, e
+// as placas escolhidas sobem o arco do came (raio × ângulo girado desde a posição inicial). Os pegadores e as hastes
+// ficam abaixo dos ombros: nada da máquina passa na altura do rosto (de lado, nada fica na frente dele).
 //
 // Eixos: quem senta olha para +z; o assento fica centrado em x = 0, com a borda da frente em z = 0. O lado esquerdo de
 // quem senta é +x (o direito, que a vista de lado mostra, é −x): o came e a torre ficam à esquerda.
@@ -47,8 +48,8 @@ export interface AbdominalMaquina {
   eixo: V3;
   /** Meia distância entre as duas hastes do braço (cm). */
   xBraco: number;
-  /** A altura (cm) e o z do arco que passa por cima dos ombros, na posição inicial. */
-  arco: { y: number; z: number };
+  /** O z da parte das hastes que vem à frente do peito, na posição inicial: à frente dos braços de quem treina. */
+  zHaste: number;
   almofadas: Record<Lado, AlmofadaDoPeito>;
   /** O centro de cada pegador e a direção dele (de baixo para cima), na posição inicial. */
   pegadores: Record<Lado, { centro: V3; eixo: V3 }>;
@@ -88,8 +89,8 @@ export function bracoDoAbdominal(m: AbdominalMaquina) {
 }
 
 /**
- * A máquina: os volumes para a conferência (o assento, o apoio da lombar, as almofadas, os pegadores, o arco por cima
- * dos ombros e os rolos: onde o corpo encosta e o que ele não pode atravessar), a estrutura parada e o braço que gira.
+ * A máquina: os volumes para a conferência (o assento, o apoio da lombar, as almofadas, os pegadores, as hastes
+ * e os rolos: onde o corpo encosta e o que ele não pode atravessar), a estrutura parada e o braço que gira.
  */
 export function abdominalMaquina(m: AbdominalMaquina) {
   const esp = g('estofadoEsp'),
@@ -98,12 +99,17 @@ export function abdominalMaquina(m: AbdominalMaquina) {
   const B = bracoDoAbdominal(m);
   const caixa = (o: V3, x: V3, y: V3, z: V3, meias: V3, cls: string): Prim => ({ t: 'caixa', ref: { o, x, y, z }, meias, cls, vies: 0.5 });
   const xb = m.xBraco;
-  // o caminho de cada haste: do eixo sobe pelo lado do corpo, faz a curva por cima do ombro e desce até a almofada
+  // o caminho de cada haste: do eixo sobe pelo lado do corpo, por fora do braço de quem treina, até a altura das
+  // almofadas, vem para a frente por fora do braço, passa à frente dele e volta até a borda de fora da almofada (nada
+  // passa na altura do rosto)
   const caminho = (k: Lado): V3[] => {
     const s = k === 'R' ? -1 : 1;
     const a = m.almofadas[k];
-    const topo = add(a.centro, add(mul(a.ao, g('almofadaComp') / 2 - 3), mul(a.normal, esp / 2)));
-    const pts: V3[] = [[s * xb, m.eixo[1], m.eixo[2]], [s * xb, m.arco.y - 8, m.arco.z], [s * (xb - 6), m.arco.y, m.arco.z + 4], [topo[0], m.arco.y, topo[2] + 2], topo];
+    const fora = norm(cross(a.ao, a.normal));
+    const borda = add(add(a.centro, mul(a.normal, esp / 2)), mul(fora, (Math.sign(fora[0]) === s ? 1 : -1) * (g('almofadaLarg') / 2)));
+    // a parte da frente passa à frente do braço de quem treina (`zHaste`) e volta até a borda da almofada
+    const zH = Math.max(borda[2], m.zHaste);
+    const pts: V3[] = [[s * xb, m.eixo[1], m.eixo[2]], [s * xb, borda[1], m.eixo[2]], [s * xb, borda[1], zH], [borda[0], borda[1], zH], borda];
     return pts.map(B.P);
   };
   const pegBase = (k: Lado): V3 => B.P(add(m.pegadores[k].centro, mul(m.pegadores[k].eixo, -g('pegadorComp') / 2 - 3)));
@@ -204,18 +210,18 @@ export function abdominalMaquina(m: AbdominalMaquina) {
       const cx = (x: number): V3 => [x, m.eixo[1], m.eixo[2]];
       C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24 });
       C.cilindro(cx(-xb - 7), cx(xC + 5), 2.4, M.cromo, { lados: 12 });
-      // as duas hastes do braço, com o arco por cima dos ombros, até as almofadas (a do lado de perto, se for cenário,
+      // as duas hastes do braço, pelos lados do corpo e à frente do peito, até as almofadas (a do lado de perto, se for cenário,
       // vai à parte)
       for (const k of ['R', 'L'] as Lado[]) {
-        const c = caminho(k);
         if (k !== m.pertoAtras) haste(C, M, k);
         // a almofada do peito: a face de trás encosta no peito
         const a = B.almofadas[k];
         C.estofado(a.centro, a.ao, a.normal, norm(cross(a.ao, a.normal)), g('almofadaComp'), esp, g('almofadaLarg'));
-        // o pegador: a haste que sai do arco e a empunhadura de borracha
+        // o pegador: a haste que sai da ponta de baixo da almofada, pela frente dela, e a empunhadura de borracha
         const p = B.pegadores[k];
         const base = pegBase(k);
-        C.tubo(c[3]!, base, 3.5, 3.5, M.metal);
+        const pe = add(a.centro, add(mul(a.ao, -g('almofadaComp') / 2 + 2), mul(a.normal, esp)));
+        C.tubo(pe, base, 3.5, 3.5, M.metal);
         C.cilindro(add(p.centro, mul(p.eixo, -g('pegadorComp') / 2 - 3)), add(p.centro, mul(p.eixo, -g('pegadorComp') / 2)), 1.6, M.metal, { lados: 10 });
         C.cilindro(add(p.centro, mul(p.eixo, -g('pegadorComp') / 2)), add(p.centro, mul(p.eixo, g('pegadorComp') / 2)), g('pegadorDiam') / 2, M.borracha, { lados: 12, dz: 6 });
       }
@@ -234,5 +240,5 @@ export function abdominalMaquina(m: AbdominalMaquina) {
         },
       }
     : undefined;
-  return { prims, fixa, movel, perto, subida, braco: B, extremos: { zTras: m.zTras, zFrente, xDireita: -xb - 8, xEsquerda: xT1 + 2 } };
+  return { prims, fixa, movel, perto, subida, braco: B, hastes: { R: caminho('R'), L: caminho('L') }, extremos: { zTras: m.zTras, zFrente, xDireita: -xb - 8, xEsquerda: xT1 + 2 } };
 }

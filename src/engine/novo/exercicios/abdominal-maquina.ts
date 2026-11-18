@@ -2,8 +2,8 @@
 // números vêm da ficha (../dados/movimentos/abdominal-maquina.json); a máquina, de ../pecas-de-cena/abdominal-maquina.ts.
 //
 // Sentado, a bacia parada no assento, os pés no chão presos pelos rolos, a lombar no apoio; as almofadas do braço da
-// máquina sobre o peito e as mãos nos pegadores, ao lado da cabeça. Como no abdominal na polia aprovado
-// (./abdominal-polia.ts), quem enrola é a coluna (a lombar e a parte de cima das costas dobram, o pescoço acompanha), com
+// máquina sobre o peito e as mãos nos pegadores, à frente do peito, logo abaixo das almofadas. Como no abdominal na
+// polia aprovado (./abdominal-polia.ts), quem enrola é a coluna (a lombar e a parte de cima das costas dobram, o pescoço acompanha), com
 // a bacia parada: as costelas vão em direção à pelve, e o quadril quase não dobra. O braço da máquina gira junto,
 // empurrado pelo peito, e as mãos vão com ele (os braços só seguram).
 //
@@ -29,7 +29,7 @@ import { abdominalMaquina, bracoDoAbdominal } from '../pecas-de-cena/abdominal-m
 import type { AbdominalMaquina, AlmofadaDoPeito } from '../pecas-de-cena/abdominal-maquina';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, anguloEm, cross, dirRef, dot, mix, mul, noRef, norm, paraRef, sub } from '../vec';
+import { add, anguloEm, cross, dirRef, dot, mix, noRef, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 import { frenteParaOPeito } from './polia-puxar';
 
@@ -49,7 +49,7 @@ interface Calib {
   lombar: V3;
   eixo: V3;
   xBraco: number;
-  arco: [number, number];
+  zHaste: number;
   /** O ponto de cada almofada e de cada pegador no referencial do tórax, no começo. */
   almofada: V3;
   pegador: V3;
@@ -134,18 +134,42 @@ function calibrar(corpo: Corpo): Calib {
     const xA = obj('abdominalMaquina', 'almofadasEntre') / 2;
     const yA = -f('almofada.abaixoDoC7');
     const almofada = add(peleDaFrente(e0, -xA, yA), [0, 0, f('almofada.folga')]);
-    // os pegadores: à frente dos ombros, logo acima das almofadas (no referencial do tórax), apontando para a frente
+    // os pegadores: saem da ponta de baixo das almofadas, à frente do peito (no referencial do tórax), apontando para a
+    // frente
     const pegador: V3 = [-f('maos.meiaDistancia'), f('maos.acimaDoC7'), f('maos.aFrente')];
-    // o braço sobe pelos lados, por fora dos ombros, e passa por cima deles
+    // o braço sobe pelos lados, por fora dos ombros, e vem à frente do peito passando à frente dos braços de quem
+    // treina (com as mãos nos pegadores): o ponto mais à frente da pele dos braços na altura das almofadas, mais o raio
+    // da haste e a folga
     const xBraco = m('largura.bideltoide') / 2 + obj('abdominalMaquina', 'bracoFora');
-    const arco: [number, number] = [e0.lado.R.acromioclavicular[1] + f('arco.acimaDoOmbro'), e0.lado.R.ombro[2] - 4];
+    const yAlmofada = noRef(e0.torax, [0, -f('almofada.abaixoDoC7'), 0])[1];
+    const mPeg = maquina(corpo, { y, z: zP, frente, bolaZ, assento: 0, lombar: [0, 0, 0], eixo: [0, 0, 0], xBraco, zHaste: 0, almofada: [0, 0, 0], pegador, rolos: [0, 0, 0] }, 0);
+    const tBr = tronco(corpo, { y, z: zP, frente }, 0);
+    const eBr = resolverMembros(tBr, bracosNos(tBr, bracoDoAbdominal(mPeg).pegadores), pernas(bolaZ));
+    let zBraco = -1e9,
+      xFora = 0;
+    for (const { p, parte } of pontosDoBoneco(eBr)) {
+      if ((parte === 'braco' || parte === 'ante') && Math.abs(p[1] - yAlmofada) < 8) zBraco = Math.max(zBraco, p[2]);
+      if ((parte === 'braco' || parte === 'ante' || parte === 'mao' || parte === 'polegar') && p[1] < yAlmofada + 8) xFora = Math.max(xFora, Math.abs(p[0]));
+    }
+    const zHaste = zBraco + 2.5 + f('haste.folga');
+    // e as hastes sobem por fora dos cotovelos de quem treina (que se abrem um pouco), com a mesma folga
+    const xHaste = Math.max(xBraco, xFora + 2.5 + f('haste.folga'));
     // os rolos dos pés: sobre o peito do pé, `rolos.aFrente` cm à frente do tornozelo
     const zr = e0.lado.R.tornozelo[2] + f('rolos.aFrente');
     let topo = -1e9;
     for (const { p, parte } of pontosDoBoneco(e0)) if (parte === 'pe' && Math.abs(p[2] - zr) < 1.5) topo = Math.max(topo, p[1]);
     const rolos: V3 = [0, topo + obj('abdominalMaquina', 'roloDiam') / 2 + f('rolos.folga'), zr];
-    return { y, z: zP, frente, bolaZ, assento, lombar, eixo, xBraco, arco, almofada, pegador, rolos };
+    return { y, z: zP, frente, bolaZ, assento, lombar, eixo, xBraco: xHaste, zHaste, almofada, pegador, rolos };
   });
+}
+
+/** Os braços: cada mão fechada no seu pegador (a pegada neutra), o cotovelo para baixo, para fora e um pouco à frente. */
+function bracosNos(t: Tronco, pegadores: Record<Lado, { centro: V3; eixo: V3 }>): Record<Lado, PoseBraco> {
+  const braco = (k: Lado): PoseBraco => {
+    const s = sinal(k);
+    return { pegada: pegadores[k].centro, polo: norm(dirRef(t.torax, [s * 0.45, -1, 0.7])), mao: { polegar: pegadores[k].eixo, forma: 'pegada', diam: obj('abdominalMaquina', 'pegadorDiam') } };
+  };
+  return { R: braco('R'), L: braco('L') };
 }
 
 /** A máquina com o braço girado `alavanca` graus (as almofadas e os pegadores definidos pelo tórax do começo). */
@@ -159,7 +183,7 @@ function maquina(corpo: Corpo, c: Calib, alavanca: number): AbdominalMaquina {
     almofadas[k] = { centro: noRef(T, esp(c.almofada)), normal: T.z, ao: T.y };
     pegadores[k] = { centro: noRef(T, esp(c.pegador)), eixo: norm(dirRef(T, [0, f('maos.pegadorSobe'), 1])) };
   }
-  return { assento: c.assento, lombar: { centro: c.lombar, normal: [0, 0, 1] }, eixo: c.eixo, xBraco: c.xBraco, arco: { y: c.arco[0], z: c.arco[1] }, almofadas, pegadores, alavanca, rolos: c.rolos, zTras: c.eixo[2] - f('maquina.atrasDoEixo'), pertoAtras: 'R' };
+  return { assento: c.assento, lombar: { centro: c.lombar, normal: [0, 0, 1] }, eixo: c.eixo, xBraco: c.xBraco, zHaste: c.zHaste, almofadas, pegadores, alavanca, rolos: c.rolos, zTras: c.eixo[2] - f('maquina.atrasDoEixo'), pertoAtras: 'R' };
 }
 
 /** O quanto a pele do peito avança além da face da almofada direita (cm; negativo = longe), só sobre ela. */
@@ -243,11 +267,7 @@ function montar(corpo: Corpo, u: number, erro?: string) {
       : anguloDaCurva(corpo, c, 'certo', (x) => tronco(corpo, c, x), u);
   const M = maquina(corpo, c, alavanca);
   const B = bracoDoAbdominal(M);
-  const braco = (k: Lado): PoseBraco => {
-    const s = sinal(k);
-    return { pegada: B.pegadores[k].centro, polo: norm(dirRef(t.torax, [s * 0.45, -1, 0.7])), mao: { polegar: mul(B.pegadores[k].eixo, -1), forma: 'pegada', diam: obj('abdominalMaquina', 'pegadorDiam') } };
-  };
-  const e = resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas(c.bolaZ));
+  const e = resolverMembros(t, bracosNos(t, B.pegadores), pernas(c.bolaZ));
   return { e, M, c };
 }
 
@@ -268,6 +288,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     marcas[`almofadaNormal.${k}`] = B.almofadas[k].normal;
     marcas[`almofadaAo.${k}`] = B.almofadas[k].ao;
     marcas[`pegador.${k}`] = B.pegadores[k].centro;
+    marcas[`pegadorEixo.${k}`] = B.pegadores[k].eixo;
+    A.hastes[k].forEach((p, i) => (marcas[`haste.${k}.${i}`] = p));
   }
   return {
     esq: e,
