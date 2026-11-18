@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 142 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 144 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2698 células dos cuidados 1 a 19: M 1090, M! 122, O 1024, C 426, – 22, ✗ 14.
+Contagem das 2736 células dos cuidados 1 a 19: M 1106, M! 122, O 1040, C 432, – 22, ✗ 14.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -73,6 +73,8 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `bulgaro` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro.png) |
 | `bulgaro-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-peso-corpo.png) |
 | `bulgaro-suspensao` | 1 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-suspensao.png) |
+| `cadeira-extensora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/cadeira-extensora.png) |
+| `cadeira-flexora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/cadeira-flexora.png) |
 | `caminhada-lateral-mini-band` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/caminhada-lateral-mini-band.png) |
 | `coice-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-caneleira.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
@@ -430,6 +432,8 @@ Os demais:
 - `bulgaro`: aprovada na folha
 - `bulgaro-peso-corpo`: aprovada por delegação (risco baixo)
 - `bulgaro-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o berço com uma tira de cada lado do pé, o pé girando no berço)
+- `cadeira-extensora`: (sem linha no andamento)
+- `cadeira-flexora`: (sem linha no andamento)
 - `caminhada-lateral-mini-band`: (sem linha no andamento)
 - `coice-caneleira`: (sem linha no andamento)
 - `coice-elastico`: (sem linha no andamento)

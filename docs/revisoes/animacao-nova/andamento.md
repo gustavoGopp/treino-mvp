@@ -155,4 +155,5 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | B1 | `hip-thrust` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas**; o banco atravessado é pintado atrás do corpo |
 | B2 | `agachamento-smith` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (smith: peça nova, guia a 7° pela ficha da Life Fitness SSM; o lado de perto da máquina é pintado atrás do corpo; "Esquecer a trava" sem desenho) |
 | B2 | `supino-smith` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (de lado, a guia passa por trás do corpo e o rótulo fica sobre ela; de cima se lê limpo; "Quicar a barra" sem desenho) |
-
+| C1 | `cadeira-flexora` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (na peça aprovada pelo Gustavo; o tronco 6° à frente do encosto para as mãos chegarem às alças, de desenho; os quatro erros desenhados) |
+| C1 | `cadeira-extensora` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (peça nova pela mesma função da flexora, com o modelo da extensora (LF SS-LE, Precor RSL0605); assento a 56 cm e alças de desenho; os quatro erros desenhados) |
