@@ -212,6 +212,24 @@ export function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>
   }
   const T = duracao(ex.ficha.fases);
   c = [1e9, 1e9, -1e9, -1e9];
+  // o exercício pode pedir, numa vista, só alguns pontos no quadro (Exercicio.enquadra): o resto é cortado pela borda
+  const so = ex.enquadra?.[o.vista];
+  if (so) {
+    const cam = VISTAS[o.vista];
+    const ponha = (q: Quadro) => {
+      for (const p of so(q)) {
+        const t = naTela(cam, p);
+        c![0] = Math.min(c![0], t[0]);
+        c![1] = Math.min(c![1], t[1]);
+        c![2] = Math.max(c![2], t[0]);
+        c![3] = Math.max(c![3], t[1]);
+      }
+    };
+    for (let i = 0; i < 12; i++) ponha(quadroDe(ex, o.corpo, instante(ex.ficha.fases, (i / 12) * T).u));
+    for (const e of ex.ficha.erros) if (e.vista === o.vista) for (let i = 0; i < 6; i++) ponha(quadroDe(ex, o.corpo, instante(ex.ficha.fases, (i / 6) * T).u, e.id));
+    m.set(chave, c);
+    return c;
+  }
   const junta = (itens: Item[]) => {
     const k = caixaDosItens(itens.filter((it) => it.camada >= 1));
     c![0] = Math.min(c![0], k[0]);

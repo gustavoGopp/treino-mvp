@@ -30,7 +30,7 @@ Conferência automática (`node scripts/animacao-nova/conferir.mjs panturrilha-l
 - **Dorsiflexão 18,8°** (média da tabela 14,8°): é o alongamento da panturrilha no step aprovada, de propósito.
 - **Provisórios:** a lombar, o pescoço, a cabeça, o quanto afunda, a largura e a direção dos pés, os dois ângulos do tornozelo (da animação aprovada, não da ficha), a anilha e o corte do quadro.
 
-O resto: proporções exatas, ritmo suave (5,5% da velocidade de pico), simetria e fecho do ciclo em 0 cm. As duas vistas servem ao modo Músculos (de lado 108 cm², de três quartos 83 cm²).
+O resto: proporções exatas, ritmo suave (5,5% da velocidade de pico), simetria e fecho do ciclo em 0 cm.
 
 ## Os erros
 
@@ -40,11 +40,17 @@ O resto: proporções exatas, ritmo suave (5,5% da velocidade de pico), simetria
 | Dobrar os joelhos | embaixo os joelhos dobram 22° (no certo, 6°) e esticam na subida, empurrando o carro com as coxas; o carro desce 1,6 cm a mais e continua acima da trava | lateral, embaixo |
 | Quicar embaixo | **sem desenho**: é erro de ritmo ("bater e voltar sem a pausa"); a pose do quique é a mesma do movimento certo. Fica para o ritmo próprio por erro (plano, seção 5) ou para a lista `SEM_DESENHO` do teste da ponte | — |
 
+## Correções da revisão de 18/11/2026 (quem integra)
+
+1. **O movimento do tornozelo não se lia** (o corpo inteiro no quadro, o pé pequeno no canto). Agora o quadro de lado mostra só a perna, do pé ao joelho e 40% da coxa, com a borda de baixo da chapa e 16 cm dela acima dos dedos (`quadro.coxa`, `quadro.chapa`); o tronco e o alto da máquina são cortados pela borda (seção 7 do guia). O pé ficou umas três vezes maior: embaixo se vê o calcanhar abaixo da ponta, em cima a ponta do pé na borda da chapa. Para isso o motor ganhou um campo opcional no exercício, `enquadra` (`movimento.ts`, lido em `caixaDoCiclo`, `cena.ts`): numa vista, o quadro mostra só os pontos pedidos. Sem ele, nada muda nas outras animações (o `preparo.mjs` só regravou o arquivo deste exercício).
+2. **A vista de três quartos escondia os pés atrás da chapa: saiu, e a animação fica com uma vista só.** Testei as outras com o mesmo corte: de frente e de cima, a chapa cobre os pés; de trás, o encosto cobre o corpo; de três quartos por trás, o carro e as anilhas ficam por cima das canelas e o pé se perde no canto. Nenhuma mostra o tornozelo melhor que de lado.
+3. **No modo Trajetória ficou só o calcanhar** ("chapa" andava quase junto com ele, uma linha sobre a outra).
+
 ## O que não ficou bom
 
-- **O calcanhar quase não passa do plano da chapa** (0,8 cm embaixo): o alongamento está no ângulo do tornozelo, igual ao da panturrilha aprovada, mas quem olha espera ver o calcanhar "descer além da chapa". Para mostrar mais, o tornozelo teria de dobrar 25° a 37° com o joelho esticado, além da média da tabela.
-- **De três quartos, a chapa cobre os pés:** a segunda vista serve aos músculos (a panturrilha aparece), não ao tornozelo, que só se vê de lado.
-- **Um rótulo só na vista de lado** ("joelhos estendidos"): "alonga embaixo" apontaria para o calcanhar, que fica junto da chapa e das anilhas; o texto caía em cima delas.
-- O carro anda pouco (10 cm na guia), como no aparelho; o movimento é pequeno no quadro.
+- **O calcanhar quase não passa do plano da chapa** (0,8 cm embaixo): o alongamento está no ângulo do tornozelo, igual ao da panturrilha aprovada. Para mostrar mais, o tornozelo teria de dobrar 25° a 37° com o joelho esticado, além da média da tabela.
+- **Atrás do pé fica a anilha** (escura) e a alavanca da trava: o pé claro se destaca dela, mas a cena é carregada. Tirar a anilha da vista seria mudar a peça.
+- **Uma vista só** (o guia pede duas): ver o item 2 acima. A miniatura mostra só a perna e o pé na chapa.
+- **Um rótulo só** ("joelhos estendidos"); o nome do erro "Dobrar os joelhos" encosta na coxa, no canto do quadro.
 
-**Risco de o Gustavo não gostar: médio.** A pose está certa e medida, mas o movimento é pequeno e o "calcanhar abaixo da ponta" se lê menos que no step.
+**Risco de o Gustavo não gostar: médio.** O tornozelo agora se lê; a anilha atrás do pé e a vista única são os pontos a olhar.

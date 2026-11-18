@@ -108,6 +108,12 @@ export interface Exercicio {
   papeis: Record<string, 'p' | 's' | 'a'>;
   /** Trajetórias do modo Trajetória: nome do ponto → função que o lê no quadro. */
   trajetorias: Record<string, (q: Quadro) => V3>;
+  /**
+   * Opcional (acréscimo de 18/11, a panturrilha no leg press): numa vista, o enquadramento mostra só estes pontos (cm,
+   * lidos de cada quadro do ciclo e dos erros da vista), e não o corpo inteiro e o equipamento; o resto é cortado pela
+   * borda do quadro. Para o que mexe ser pequeno perto de uma máquina grande (o pé, no leg press).
+   */
+  enquadra?: Partial<Record<string, (q: Quadro) => V3[]>>;
 }
 
 /* ============================== centro de massa ============================== */

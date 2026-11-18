@@ -15,10 +15,11 @@ import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { chao } from '../pecas';
 import type { IdAnilha } from '../pecas-de-cena/barra-longa';
-import { geometriaDoLegPress, legPress as maquina, naChapa, noQuadroDoLegPress, posicaoDaTrava } from '../pecas-de-cena/leg-press';
+import { geometriaDoLegPress, legPress as maquina, naChapa, posicaoDaTrava } from '../pecas-de-cena/leg-press';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, mix, mul } from '../vec';
+import { add, mix, mul, sub } from '../vec';
+import type { V3 } from '../vec';
 import { carroParaOJoelho, dirDoPe, maosNosPegadores, peNaChapa, troncoNoLegPress } from './leg-press-base';
 import type { OpcoesDoAssento, PeNaChapa } from './leg-press-base';
 
@@ -67,7 +68,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     batente: obj('legPress', 'trilhoInicio') + obj('legPress', 'carroComp') / 2 + 4,
     anilhas: ANILHAS,
     atras: -1,
-    noQuadro: noQuadroDoLegPress(montar(corpo, G0.topo, f('joelho')).s, f('quadro.abaixo'), f('quadro.chapa'), obj('legPress', 'trilhoFim')),
+    // o quadro é o das pernas e dos pés (pernasEPes, abaixo): a máquina não entra no enquadramento
   });
   return {
     esq: r.e,
@@ -93,11 +94,32 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     vies: { maoR: 1, maoL: 1 },
   };
 }
+/**
+ * O que o quadro mostra: o que mexe é o pé, pequeno perto da máquina. Do joelho à ponta do pé, com a borda de baixo da
+ * chapa e um pedaço dela acima dos dedos; o tronco e o alto da máquina ficam cortados pela borda do quadro.
+ */
+function pernasEPes(q: Quadro): V3[] {
+  const s = q.marcas.sobeChapa!,
+    b = q.marcas.bordaDaChapa!;
+  const pts: V3[] = [];
+  for (const k of ['R', 'L'] as Lado[]) {
+    const L = q.esq.lado[k];
+    // um pouco acima do joelho (a coxa aparece até a metade), o tornozelo, o calcanhar e a ponta do pé
+    pts.push(add(L.joelho, mul(sub(L.quadril, L.joelho), f('quadro.coxa'))), L.calcanhar, L.ponta, L.tornozelo);
+  }
+  pts.push(b, add(b, mul(s, f('quadro.chapa'))), add(b, mul(q.marcas.normalChapa!, -6)));
+  return pts;
+}
+
 export const panturrilhaLegPress: Exercicio = {
   ficha: F,
-  vistas: ['lateral', 'quina'],
+  // uma vista só: de frente e de três quartos a chapa esconde os pés; de trás, o encosto esconde o corpo; de cima, a chapa
+  // cobre os pés; de três quartos por trás, o carro e as anilhas ficam por cima das pernas. O tornozelo só se lê de lado.
+  vistas: ['lateral'],
   quadro,
   // a panturrilha, sem secundário: é o que a biblioteca conta
   papeis: { panturrilha: 'p' },
-  trajetorias: { calcanhar: (q) => q.esq.lado.R.calcanhar, chapa: (q) => q.marcas.chapa! },
+  // só o calcanhar: a chapa anda quase junto com ele, e as duas linhas ficavam uma sobre a outra
+  trajetorias: { calcanhar: (q) => q.esq.lado.R.calcanhar },
+  enquadra: { lateral: pernasEPes },
 };
