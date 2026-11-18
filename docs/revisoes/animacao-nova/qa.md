@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 122 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 132 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2318 células dos cuidados 1 a 19: M 930, M! 112, O 879, C 366, – 22, ✗ 9.
+Contagem das 2508 células dos cuidados 1 a 19: M 1010, M! 118, O 951, C 396, – 22, ✗ 11.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -66,6 +66,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `agachamento-halteres` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/agachamento-halteres.png) |
 | `agachamento-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-agachamento-peso-corpo.png) |
 | `barra-fixa` | 4 | M | M | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/barra-fixa.png) |
+| `barra-fixa-negativa` | ? | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/barra-fixa-negativa.png) |
 | `barra-fixa-supinada` | 4 | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/barra-fixa-supinada.png) |
 | `bulgaro` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro.png) |
 | `bulgaro-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-peso-corpo.png) |
@@ -82,6 +83,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `crucifixo-invertido-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-polia.png) |
 | `crucifixo-invertido-sentado` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-sentado.png) |
 | `crucifixo-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia.png) |
+| `crucifixo-polia-baixo` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia-baixo.png) |
 | `desenvolvimento` | 3 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento.png) |
 | `desenvolvimento-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-elastico.png) |
 | `desenvolvimento-em-pe-halteres` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-em-pe-halteres.png) |
@@ -102,6 +104,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `extensao-triceps-peso-corpo` | 2 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/extensao-triceps-peso-corpo.png) |
 | `face-pull` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/face-pull.png) |
 | `face-pull-elastico` | 4 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/face-pull-elastico.png) |
+| `face-pull-suspensao` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/face-pull-suspensao.png) |
 | `flexao` | 0 | M | M! | M! | O | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | G (quadros) | [quadros](quadros/flexao.png) |
 | `flexao-bola` | 2 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/flexao-bola.png) |
 | `flexao-elastico` | 2 | M | M! | M! | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/flexao-elastico.png) |
@@ -112,6 +115,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `flexao-pes-elevados` | 2 | M | M! | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/flexao-pes-elevados.png) |
 | `goblet` | 0 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/goblet.png) |
 | `goblet-kettlebell` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/goblet-kettlebell.png) |
+| `mergulho` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/mergulho.png) |
 | `nordico` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/nordico.png) |
 | `panturrilha` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha.png) |
 | `panturrilha-b` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-b.png) |
@@ -123,6 +127,8 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `ponte-gluteo-halter` | 6 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/ponte-gluteo-halter.png) |
 | `ponte-kettlebell` | 6 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/ponte-kettlebell.png) |
 | `ponte-pes-bola` | 6 | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/ponte-pes-bola.png) |
+| `pull-through` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/pull-through.png) |
+| `puxada-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-barra-reta.png) |
 | `puxada-elastico` | 4 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-elastico.png) |
 | `puxada-unilateral` | 0 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/puxada-unilateral.png) |
 | `remada-apoiada` | 4 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-apoiada.png) |
@@ -145,6 +151,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `rosca-martelo` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo.png) |
 | `rosca-martelo-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo-elastico.png) |
 | `rosca-polia` | 5 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia.png) |
+| `rosca-polia-costas` | ? | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia-costas.png) |
 | `rosca-scott-banco-inclinado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-scott-banco-inclinado.png) |
 | `rosca-suspensao` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-suspensao.png) |
 | `stiff` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff.png) |
@@ -154,7 +161,10 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `stiff-unilateral-kettlebell` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-unilateral-kettlebell.png) |
 | `supino-chao-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/supino-chao-halteres.png) |
 | `supino-inclinado` | 3 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-inclinado.png) |
+| `supino-inclinado-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-inclinado-polia.png) |
+| `supino-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-polia.png) |
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
+| `triceps-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-barra-reta.png) |
 | `triceps-corda` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-corda.png) |
 | `triceps-elastico-acima` | 5 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-acima.png) |
 | `triceps-elastico-alto` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-alto.png) |
@@ -172,7 +182,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 Dois avisos aparecem em quase todas e não entram na lista abaixo:
 
 - **Cuidado 1, linhas provisórias** (0 animações): linhas da ficha do movimento que são escolha de desenho, sem número na ficha da técnica. Estão listadas, animação por animação, em `prototipos/conferencia.md`.
-- **Cuidado 8, diferenças de músculo aceitas** (32 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
+- **Cuidado 8, diferenças de músculo aceitas** (34 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
 
 Os demais:
 
@@ -214,6 +224,8 @@ Os demais:
   - cuidado 2: dorsiflexão do tornozelo → 25,4°
 - `barra-fixa`
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 15,5% da velocidade de pico (cotovelo direito, Escápulas descem e sobe · concêntrica); pico de 159,2 cm/s
+- `barra-fixa-negativa`
+  - cuidado 2: flexão do joelho (máxima no ciclo) → 148,9°
 - `barra-fixa-supinada`
   - cuidado 2: elevação do braço → 171,2°
   - cuidado 2: supinação do antebraço → 93,8°
@@ -313,6 +325,8 @@ Os demais:
   - cuidado 2: extensão do punho → 71°
 - `ponte-pes-bola`
   - cuidado 2: dorsiflexão do tornozelo → 27,2°
+- `puxada-barra-reta`
+  - cuidado 2: flexão plantar do tornozelo → 80,7°
 - `puxada-elastico`
   - cuidado 2: flexão plantar do tornozelo → 80,7°
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,1 a 2,1 vezes (136,5 a 253,5 cm); em cima, 1,1 vezes
@@ -346,6 +360,14 @@ Os demais:
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,4 a 2,3 vezes (166,7 a 277 cm); em cima, 1,4 vezes
 - `rosca-polia`
   - cuidado 2: supinação do antebraço → 90,8°
+- `rosca-polia-costas`
+  - cuidado 2: supinação do antebraço → 91,1°
+- `supino-inclinado-polia`
+  - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+- `supino-polia`
+  - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+- `triceps-barra-reta`
+  - cuidado 2: pronação do antebraço (a partir do polegar para cima) → 90°
 - `triceps-elastico-acima`
   - cuidado 2: dorsiflexão do tornozelo → 16,6°
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,6 a 2,1 vezes (327,8 a 438,4 cm); em cima, 1,6 vezes
@@ -379,6 +401,7 @@ Os demais:
 - `agachamento-halteres`: (sem linha no andamento)
 - `agachamento-peso-corpo`: aprovada na folha
 - `barra-fixa`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pegada ficou em 1,5 vez a largura dos ombros, como a pesquisa diz; a de hoje usa 1,8. A estação de barra é peça nova, a 229 cm)
+- `barra-fixa-negativa`: (sem linha no andamento)
 - `barra-fixa-supinada`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `bulgaro`: aprovada na folha
 - `bulgaro-peso-corpo`: aprovada por delegação (risco baixo)
@@ -395,6 +418,7 @@ Os demais:
 - `crucifixo-invertido-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de trás)
 - `crucifixo-invertido-sentado`: (sem linha no andamento)
 - `crucifixo-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (duas colunas; a vista padrão passou a ser a de frente)
+- `crucifixo-polia-baixo`: (sem linha no andamento)
 - `desenvolvimento`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável agora é um desenho só, o mesmo da rosca inclinada)
 - `desenvolvimento-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (em pé; com um tubo de 60 pol, que é objeto novo: o de 48 pol passaria do máximo do fabricante)
 - `desenvolvimento-em-pe-halteres`: (sem linha no andamento)
@@ -415,6 +439,7 @@ Os demais:
 - `extensao-triceps-peso-corpo`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): pose diferente da de hoje: braços acima da cabeça, como a ficha pede
 - `face-pull`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de lado; o ombro de trás aparece o bastante com o cotovelo 5,6 cm atrás da linha do ombro)
 - `face-pull-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose dos braços do face pull na polia; os antebraços não chegam à vertical)
+- `face-pull-suspensao`: (sem linha no andamento)
 - `flexao`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `flexao-bola`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): é a flexão de joelho na bola; o pescoço dobra 53° no fim
 - `flexao-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (vistas: de lado e de cima)
@@ -425,6 +450,7 @@ Os demais:
 - `flexao-pes-elevados`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): o peito para a 8,5 cm do chão
 - `goblet`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `goblet-kettlebell`: (sem linha no andamento)
+- `mergulho`: (sem linha no andamento)
 - `nordico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (os calcanhares presos debaixo de um sofá, que é peça nova; o quadro mostra só o trecho do sofá onde os pés prendem)
 - `panturrilha`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `panturrilha-b`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
@@ -436,6 +462,8 @@ Os demais:
 - `ponte-gluteo-halter`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): a vista de cima se lê mal; no topo o cotovelo sobe a 24 cm do chão
 - `ponte-kettlebell`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): de lado o kettlebell deitado é uma forma preta grande; no topo os cotovelos ficam a 31 cm do chão
 - `ponte-pes-bola`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o joelho dobra uns 39° no topo, como na animação de hoje)
+- `pull-through`: (sem linha no andamento)
+- `puxada-barra-reta`: (sem linha no andamento)
 - `puxada-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo preso no alto de uma porta)
 - `puxada-unilateral`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `remada-apoiada`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o banco passa entre as pernas, com os pés dos lados dele; no corpo da mulher duas regras ainda falham)
@@ -458,6 +486,7 @@ Os demais:
 - `rosca-martelo`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb)
 - `rosca-martelo-elastico`: (sem linha no andamento)
 - `rosca-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a barra reta, que é peça nova; a coluna é cortada em cima pelo quadro)
+- `rosca-polia-costas`: (sem linha no andamento)
 - `rosca-scott-banco-inclinado`: (sem linha no andamento)
 - `rosca-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `stiff`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (desce até o meio da canela, como a ficha pede; hoje para no joelho)
@@ -467,7 +496,10 @@ Os demais:
 - `stiff-unilateral-kettlebell`: (sem linha no andamento)
 - `supino-chao-halteres`: (sem linha no andamento)
 - `supino-inclinado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): encosto a 30°, com o ângulo marcado no banco e no rótulo
+- `supino-inclinado-polia`: (sem linha no andamento)
+- `supino-polia`: (sem linha no andamento)
 - `supino-reto`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
+- `triceps-barra-reta`: (sem linha no andamento)
 - `triceps-corda`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `triceps-elastico-acima`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a faixa em laço de 41 pol, que é objeto novo)
 - `triceps-elastico-alto`: (sem linha no andamento)

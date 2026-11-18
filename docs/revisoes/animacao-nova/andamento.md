@@ -142,4 +142,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A5 | `puxada-barra-reta` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de lado; a barra reta da tabela, de 20 pol, é curta para a puxada: as mãos ficam na ponta dela) |
 | A5 | `rosca-polia-costas` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação ("Carga demais" desenhado como o ombro que vai à frente, como o cartão descreve; é discreto) |
 | A5 | `pull-through` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (os pés a 42 cm, um pouco mais abertos que o cartão pede, para a corda passar entre as pernas) |
+| A6 | `mergulho` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (as paralelas aprovadas; "Descer demais" vai só a 7° acima da horizontal, o que o braço alcança) |
+| A6 | `face-pull-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos por trás, porque de lado o pegador fica sobre a orelha) |
+| A6 | `barra-fixa-negativa` | **para o Gustavo ver**: a descida em 4 s e a volta ao alto subindo pela caixa (peça nova, medida da Rogue); a volta é desenhada a partir da frase do cartão; é o exercício do iniciante no lugar da barra fixa |
 
