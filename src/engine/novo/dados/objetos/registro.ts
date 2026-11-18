@@ -39,3 +39,4 @@ export { default as gluteoMaquina } from './gluteo-maquina.json';
 export { default as legPress } from './leg-press.json';
 export { default as hack } from './hack.json';
 export { default as estacaoPuxada } from './estacao-puxada.json';
+export { default as estacaoRemada } from './estacao-remada.json';

@@ -1,0 +1,38 @@
+{
+ "fontes": {
+  "tg-mk80": "Technogym, catálogo Home Wellness, Technical Specifications, p. 83: Low Row MK80, 1420 x 1185 x 1375 mm (Length x Width x Height) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "nautilus-impact-lr": "Nautilus (Core Health & Fitness), ficha Impact Low Row 9NA-S3306 (2026); https://www.corehandf.com/cdn/shop/files/Product_Low_Row_Impact_Nautilus_Product_Sheets.pdf (lida em 18/11/2026): \"Width 29 in (72 cm)\", \"Length 90 in (228.6 cm)\", \"Height 86 in (218 cm)\", \"Pulley ratio 1:1\", \"Total stack weight 260 lbs (130 kgs)\", \"5 lb incremental weight system\"",
+  "bos-lplr": "Bells of Steel, Lat Pulldown Low Row Machine, página do produto; https://bellsofsteel.us/products/lat-pulldown-low-row-machine (lida em 18/11/2026): \"Angled low-row footplate\", \"True 1:1 ratio offers direct, predictable resistance\" (sem medidas da plataforma)",
+  "estacoes-torre-polia": "src/engine/novo/dados/objetos.json, coluna de polia (`torre`): a roldana de 110 mm (Body-Solid) e a espessura provisória das placas da pilha (2,5 cm)",
+  "estacoes-corpo": "A tabela do corpo (src/engine/novo/dados/corpo-homem.json): a medida que a máquina tem de servir a quem senta nela",
+  "estacoes-desenho": "Escolha de desenho, sem medida de fabricante: o motivo vai em cada linha"
+ },
+ "objetos": {
+  "estacaoRemada": {
+   "nome": "Estação de remada baixa (o banco comprido, a plataforma dos pés, a polia baixa entre os pés e a torre com a pilha)",
+   "medidas": {
+    "comp": { "v": 142, "un": "cm", "tipo": "medida", "fonte": "tg-mk80", "onde": "comprimento total da Technogym Low Row MK80 (a Nautilus Impact tem 228,6, com o banco mais comprido)" },
+    "larg": { "v": 118.5, "un": "cm", "tipo": "medida", "fonte": "tg-mk80", "onde": "largura total da Technogym MK80 (a Nautilus Impact tem 72)" },
+    "altura": { "v": 137.5, "un": "cm", "tipo": "medida", "fonte": "tg-mk80", "onde": "altura total da Technogym MK80: a torre da pilha (a Nautilus Impact tem 218)" },
+    "relacao": { "v": 1, "un": "razão", "tipo": "medida", "fonte": "nautilus-impact-lr", "onde": "relação do cabo 1:1 (\"Pulley ratio 1:1\"; a Bells of Steel também): a pilha sobe o mesmo que o cabo anda" },
+    "pilhaPlacas": { "v": 13, "un": "placas", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "número de placas desenhadas: a Nautilus dá a pilha de 260 lb, sem dizer em quantas placas; 13 cabem na torre de 137,5 cm com o curso do cabo" },
+    "placaEsp": { "v": 2.5, "un": "cm", "tipo": "provisoria", "fonte": "estacoes-torre-polia", "onde": "espessura de cada placa: a da coluna de polia, provisória (nenhuma ficha lida informa)" },
+    "pilhaLarg": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura das placas, a mesma da estação de puxada (nenhuma ficha lida informa)" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "fundo das placas, como na cadeira flexora" },
+    "roldanaDiam": { "v": 11, "un": "cm", "tipo": "derivada", "fonte": "estacoes-torre-polia", "onde": "diâmetro das roldanas: a da coluna de polia (110 mm)" },
+    "torreLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura da torre da pilha, a mesma da estação de puxada" },
+    "torreProf": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "fundo da torre da pilha" },
+    "tubo": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "tubo da estrutura, como no cartão de hoje" },
+    "assentoAltura": { "v": 42, "un": "cm", "tipo": "desenho", "fonte": "estacoes-corpo", "onde": "do chão ao topo do banco: as fichas não dão; o cartão de hoje tem 47 (com a perna estendida à frente, o banco baixo deixa o quadril perto da altura dos pés)" },
+    "assentoComp": { "v": 60, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "comprimento do estofado do banco (o cartão de hoje tem 54)" },
+    "assentoLarg": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura do banco, como no cartão de hoje" },
+    "estofadoEsp": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "espessura do estofado (o cartão de hoje tem 9)" },
+    "plataformaInclina": { "v": 22, "un": "graus", "tipo": "desenho", "fonte": "bos-lplr", "onde": "a plataforma dos pés é inclinada (\"angled footplate\"), o topo para longe de quem senta: nenhuma ficha dá o ângulo; o do cartão de hoje (22° da vertical)" },
+    "plataformaAltura": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "altura de cada chapa dos pés, como no cartão de hoje (26)" },
+    "plataformaLarg": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura de cada chapa dos pés (o cartão de hoje tem 12); entre as duas passa o cabo" },
+    "plataformaMeio": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "estacoes-corpo", "onde": "altura do centro das chapas: as fichas não dão; a sola do pé do corpo da tabela inteira na chapa" },
+    "poliaAFrente": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "da face das chapas ao centro da polia baixa, à frente delas, entre os pés" }
+   }
+  }
+ }
+}
