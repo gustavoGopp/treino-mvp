@@ -56,3 +56,4 @@ export { REGRAS_MERGULHO } from './mergulho';
 export { REGRAS_FACE_PULL_SUSPENSAO } from './face-pull-suspensao';
 export { REGRAS_BARRA_FIXA_NEGATIVA } from './barra-fixa-negativa';
 export { REGRAS_BARRA_NO_SUPORTE } from './barra-no-suporte';
+export { REGRAS_BARRAS_ESPECIAIS } from './barras-especiais';

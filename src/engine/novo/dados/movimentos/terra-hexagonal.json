@@ -1,0 +1,56 @@
+{
+ "id": "terra-hexagonal",
+ "nome": "Levantamento terra com barra hexagonal",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/terra-hexagonal.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/terra-hexagonal.md): em pé dentro da barra, pés na largura do quadril, pegadores neutros (palmas para dentro), quadril mais baixo que no terra comum; coluna neutra; empurra o chão e estende joelhos e quadril juntos; descida controlada até as anilhas tocarem o chão de leve; anilhas iguais dos dois lados, com travas; consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "app": "Texto do app (src/conteudo/exercicios/terra-hexagonal.json): 'Embaixo: anilhas no chão, coluna neutra'; 'Em cima: em pé, quadril e joelhos estendidos'; as dicas ('Coluna neutra', 'Empurra o chão', 'Peito e quadril sobem juntos') e os três erros",
+  "estudos": "Swinton 2011 (19 levantadores; um estudo): com a barra hexagonal, o momento no joelho foi maior e os da lombar e do quadril menores que no terra com barra reta; Stahl 2024 (16 pessoas treinadas; um estudo): comparado ao agachamento, o terra hexagonal teve menos flexão de joelho e mais inclinação do tronco (resumos lidos no PubMed em 01/11/2026, na ficha da técnica). Os resumos não dão os ângulos em número",
+  "aprovado": "Animações aprovadas parecidas no motor novo: os agachamentos (exercicios/agachar.ts: o quadril sai da flexão do joelho e do centro de massa sobre o meio do pé) e o agachamento com halteres ao lado do corpo (braços estendidos pendendo, cotovelo a 4°). Este exercício nunca teve animação",
+  "equilibrio": "Em pé, parado ou se movendo devagar, a projeção do centro de massa (corpo + barra) cai sobre o meio do pé (mecânica)",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/barra-hexagonal.json (barra hexagonal, Rogue TB-1) e barra-longa.json (as anilhas e a presilha)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril (a bola de cada pé a 9 cm do meio, como nas roscas em pé aprovadas)"},
+  "pes.paraFora": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "as pontas dos pés quase para a frente (a ficha não dá número; nos agachamentos aprovados, com os pés mais abertos, são 15°)"},
+  "joelho.baixo": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "estudos", "o": "embaixo, o joelho dobra 85°: menos que no agachamento aprovado (126°), como Stahl 2024 mediu, e o bastante para o quadril ficar baixo, perto da altura do joelho, como a ficha pede ('quadril mais baixo que no terra comum'); os resumos lidos não dão o número. A inclinação do tronco embaixo não é escolhida: é a que leva as mãos aos cabos com a barra no chão"},
+  "joelho.cima": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima, em pé, joelhos estendidos (sem travar)"},
+  "tronco.cima": {"v": 2, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima, em pé, o peito quase na vertical"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "braços estendidos, sem travar o cotovelo (como no agachamento com halteres aprovado): os braços só seguram a barra"},
+  "anilhas": {"v": 20, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 20 kg de cada lado (45 cm de diâmetro): com a barra de 27,2 kg, 67,2 kg, que entram no equilíbrio"},
+  "erro.arred.lombar": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: na saída do chão, a lombar dobra 28° além da curva de repouso (o peito cai o que for preciso para as mãos continuarem nos cabos com a barra no chão) e volta a neutra até o fim da subida"},
+  "erro.quadril.joelho": {"v": 0.55, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: quando o movimento está em 55%, os joelhos já estenderam quase tudo (o quadril sobe primeiro) e o peito ainda não começou a subir; depois os dois terminam juntos"},
+  "erro.quadril.joelhoNoMeio": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o joelho dobrado só 30° nesse instante (no certo, 47°), com o peito ainda a 57° (no certo, 30°); com o joelho estendido de todo, a canela teria de inclinar 19° para trás para o peso ficar sobre o pé"},
+  "erro.soltar.queda": {"v": 4, "un": "expoente", "selo": "desenho", "fonte": "desenho", "o": "erro: na descida, a barra cai na frente das mãos: a altura dela acima do chão é a das mãos vezes u⁴ (em cima, junto das mãos; a meio caminho, perto do chão), com as mãos abertas"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "anilhas no chão, coluna neutra", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.4, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "desenho", "fonte": "aprovado"},
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "em pé", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "controlada, ~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "hexagonal-anilhas-no-chao-embaixo", "pede": "embaixo: anilhas no chão", "selo": "consenso", "fonte": "app"},
+  {"id": "hexagonal-maos-nos-cabos", "pede": "pegadores neutros (palmas para dentro): cada mão fecha no meio do cabo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-rigida-nas-duas-maos", "pede": "a barra é uma só: as duas mãos ficam sempre à mesma distância uma da outra (63,5 cm, a dos cabos)", "selo": "consenso", "fonte": "objetos"},
+  {"id": "hexagonal-corpo-dentro-da-barra", "pede": "em pé dentro da barra: a moldura e os cabos não encostam no corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "coluna neutra", "selo": "consenso", "fonte": "ficha"},
+  {"id": "hexagonal-joelho-e-quadril-juntos", "pede": "estende joelhos e quadril juntos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-no-meio-do-pe", "pede": "empurra o chão com o pé inteiro: o peso no meio do pé", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "hexagonal-bracos-estendidos", "pede": "braços estendidos: só seguram a barra", "selo": "consenso", "fonte": "aprovado"},
+  {"id": "hexagonal-em-pe-em-cima", "pede": "em cima: em pé, quadril e joelhos estendidos", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "arred", "instante": 0, "titulo": "Arredondar a lombar", "vista": "lateral", "oQueMuda": "na saída do chão, a lombar curva e o peito cai para as mãos alcançarem os cabos", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7"], "foco": "lombar"},
+  {"id": "quadril", "instante": 0.5, "titulo": "Quadril sobe antes", "vista": "lateral", "oQueMuda": "os joelhos estendem primeiro e o quadril sobe sozinho, com o peito ainda baixo: o tronco fica deitado e a lombar leva a carga", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
+  {"id": "soltar", "instante": 0.55, "titulo": "Soltar a barra", "vista": "quina", "oQueMuda": "na descida, as mãos abrem e a barra cai no chão na frente delas, em vez de descer junto com o corpo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "coluna neutra", "ponto": "lombar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "peito e quadril sobem juntos", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "peito e quadril sobem juntos", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+ ]
+}

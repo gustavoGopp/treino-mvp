@@ -2,7 +2,8 @@
 // nova do motor, no tamanho do cartão (96 px, como na tela de marcar o equipamento) e ampliada, e as medidas com a fonte.
 // Na cadeira flexora, também a máquina funcionando: a alavanca no começo e no fim, com a pilha subindo.
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -12,6 +13,9 @@ export * from './src/engine/novo/pecas-de-cena/suporte.ts';
 export { EXERCICIOS } from './src/engine/novo/app.ts';
 export { CORPOS } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-flexora.ts';
+export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
+export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
+export { obj } from './src/engine/novo/tabelas.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -148,5 +152,55 @@ if (!so || so === 'suporte') {
 <h2>A regulagem de cada exercício (medida nas animações)</h2>
 <table><tr><th>exercício</th><th>berço do gancho (do chão)</th><th>topo do pino (do chão)</th><th>de onde sai</th></tr>${REG}</table>
 <h2>As medidas</h2>${tabela('suporte', ['suporte'])}`,
+  );
+}
+
+const v = (n, c = 1) => n.toFixed(c).replace('.', ',');
+
+if (!so || so === 'barra-w') {
+  // como no cartão de hoje: a barra no chão, apoiada nas anilhas, vista de três quartos; a curva no plano do chão
+  const anilhas = ['anilha10', 'anilha5'];
+  const peca = (an, centro = [0, m.raioDaAnilhaMaior(an), 0]) => m.barraW({ centro, eixo: [0, 0, 1], frente: [1, 0, 0], anilhas: an }).peca;
+  const cam = { yaw: 62, pitch: 30, s: 0.6 };
+  const novo = desenho([peca(anilhas)], cam);
+  const so5 = desenho([peca(['anilha5'])], cam);
+  const deCima = desenho([peca(['anilha5'])], { yaw: 90, pitch: 89, s: 0.6 }, false);
+  const deFrente = desenho([peca(anilhas)], { yaw: 90, pitch: 4, s: 0.6 });
+  const P = m.pegadaNaBarraW();
+  const o = (id) => m.obj('barraW', id);
+  await foto(
+    'barra-w',
+    `<h1>Barra W com anilhas: o cartão de hoje × a peça nova</h1>
+<p>A peça nova sai do mesmo gerador do cartão, com as medidas da ficha da Eleiko (Curl Bar 50 mm, 12 kg): ${v(o('comp'))} cm de ponta a ponta, mangas de 5 cm com 23 cm carregáveis e rebordo de 2 cm; entre as mangas sobram ${v(o('entreMangas'))} cm (a Rogue Curl Bar dá 80 cm). A pegada tem 2,85 cm (Rogue). O cartão de hoje tinha 120 cm. <b>A curva não tem fonte:</b> nenhuma página pública de fabricante lida dá os ângulos (a Eleiko só diz "angled shape"); a forma em W continua a do cartão de hoje (a parte de fora a ${v(o('anguloFora'), 0)}° da linha da barra, a de dentro a ${v(o('anguloDentro'), 0)}°), em amarelo na tabela. As mãos seguram no meio das partes inclinadas de fora, a ${v(2 * P.s)} cm uma da outra. As anilhas do exemplo: 10 e 5 kg de cada lado (42 kg com a barra); na rosca, só a de 5 kg (22 kg).</p>
+<h2>No tamanho do cartão (96 px, a tela de marcar o equipamento)</h2>
+<div class="l">${cel('hoje', img(hoje('barra_w'), 96, 'cartao'))}${cel('nova (10 + 5 kg)', img(novo, 96, 'cartao'))}${cel('nova (só 5 kg, a da rosca)', img(so5, 96, 'cartao'))}${cel('hoje: a barra longa (para ver se ainda se confundem)', img(hoje('barra_longa'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('barra_w'), 440, 'cartao'))}${cel('nova, do mesmo ângulo', img(novo, 440))}</div>
+<div class="l" style="margin-top:12px">${cel('nova, de cima: a curva em W (a da rosca, só com a anilha de 5 kg)', img(deCima, 640))}${cel('nova, de frente para a barra', img(deFrente, 640))}</div>
+<h2>As medidas</h2>${tabela('barra-w', ['barraW'])}<p style="margin-top:8px">As anilhas e a presilha são as da barra longa (folha-barra.png).</p>`,
+  );
+}
+
+if (!so || so === 'barra-hexagonal') {
+  // como no cartão de hoje: a barra no chão, apoiada nas anilhas, vista de três quartos e um pouco de cima
+  const anilhas = ['anilha20'];
+  const peca = (an) => m.barraHexagonal({ centro: [0, m.raioDaAnilhaMaiorNaHexagonal(an), 0], eixo: [0, 0, 1], cabos: [1, 0, 0], anilhas: an }).peca;
+  const cam = { yaw: 52, pitch: 34, s: 0.6 };
+  const novo = desenho([peca(anilhas)], cam);
+  const duas = desenho([peca(['anilha20', 'anilha10'])], cam);
+  const deCima = desenho([peca(anilhas)], { yaw: 90, pitch: 89, s: 0.6 }, false);
+  const deFrente = desenho([peca(anilhas)], { yaw: 90, pitch: 4, s: 0.6 });
+  const c = m.cantosDoHexagono();
+  const o = (id) => m.obj('barraHexagonal', id);
+  await foto(
+    'barra-hexagonal',
+    `<h1>Barra hexagonal com anilhas: o cartão de hoje × a peça nova</h1>
+<p>A peça nova sai do mesmo gerador do cartão, com as medidas da página da Rogue (TB-1 Trap Bar 2.0): ${v(o('comp'))} cm de ponta a ponta, ${v(o('larg'))} cm de largura, tubo quadrado de 3,81 cm, cabos de 3,4 cm a ${v(o('caboEntre'))} cm de centro a centro, mangas de 4,85 cm com 40,6 cm carregáveis, 27,2 kg. <b>O cartão de hoje tinha o hexágono 34% mais estreito e os cabos a 24 cm um do outro, deitados ao longo das mangas;</b> aqui os cabos atravessam o hexágono da frente para trás (a pessoa fica no meio, de pegada neutra). A Rogue é toda preta ("black powder coat"): a moldura, os cabos e as mangas saem no metal grafite. O comprimento de cada lado e o ângulo das pontas não constam da página: o hexágono tem ${v(o('hexComp'), 0)} cm de ponta a ponta (o que sobra tirando as mangas), pontas de ${v(o('anguloDaPonta'), 0)}° (hexágono regular) e lados da frente e de trás com ${v(2 * c[1][0])} cm, em amarelo na tabela.</p>
+<h2>No tamanho do cartão (96 px, a tela de marcar o equipamento)</h2>
+<div class="l">${cel('hoje', img(hoje('barra_hexagonal'), 96, 'cartao'))}${cel('nova (20 kg de cada lado)', img(novo, 96, 'cartao'))}${cel('nova (20 + 10 kg)', img(duas, 96, 'cartao'))}${cel('hoje: a barra longa', img(hoje('barra_longa'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('barra_hexagonal'), 440, 'cartao'))}${cel('nova, do mesmo ângulo', img(novo, 440))}</div>
+<div class="l" style="margin-top:12px">${cel('nova, de cima: os cabos atravessam o hexágono, a 63,5 cm um do outro', img(deCima, 640))}${cel('nova, de frente para a barra (a pessoa entra por aqui)', img(deFrente, 640))}</div>
+<h2>As medidas</h2>${tabela('barra-hexagonal', ['barraHexagonal'])}<p style="margin-top:8px">As anilhas e a presilha são as da barra longa (folha-barra.png).</p>`,
   );
 }
