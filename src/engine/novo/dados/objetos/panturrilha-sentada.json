@@ -1,0 +1,45 @@
+{
+ "fontes": {
+  "lf-splcalf": "Life Fitness, Plate Loaded Calf Raise SPLCALF, página pública do distribuidor oficial na Austrália (https://www.lifefitness.com.au/commercial/plate-loaded-calf-raise-splcalf, lida em 18/11/2026): \"Dimensions (L x W x H) 61\" x 29\" x 42\" (155cm x 74cm x 107cm)\", \"The intuitive pull-pin thigh pad adjusts to accommodate various users, and the design emphasises the soleus muscle\", \"Plate Capacity 4-45 lbs (3-25 kg) plates per weight rod\" (o catálogo 2026, p. 216, dá o mesmo: docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.2)",
+  "hs-plcalf": "Hammer Strength, Plate Loaded Seated Calf Raise PL-CALF, página pública (https://www.lifefitness.com.au/commercial/seated-calf-raise-plcalf, lida em 18/11/2026): \"Dimensions (L x W x H) 49\" x 33\" x 44\" (124 cm x 84 cm x 112 cm)\" (o catálogo 2024, p. 61, dá 54 pol de altura: pesquisa/04-objetos.md, seção 13.2), \"dense thigh holds rest securely on top of the knees\", \"range-of-motion release mechanism [...] in front of the user\"",
+  "atlantis-m219": "Atlantis, Power Series Seated calf M219, página pública (https://atlantisstrength.com/gym-equipment/m219, lida em 18/11/2026): \"Width 119.5 cm\", \"Height 98.4 cm\", \"Length 158.1 cm\", \"Thigh pad adjusts to desired height\", \"Rubber footplate provides supportive grip\", \"Standard weight storage horns\". A foto do produto na mesma página mostra o eixo da alavanca debaixo da frente do assento, a almofada das coxas no meio da alavanca e o pino das anilhas na ponta da frente, depois do apoio dos pés",
+  "cartao-sentada": "Cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `panturrilha_sentada_maquina`; public/equipamento/panturrilha_sentada_maquina.svg): o assento azul num pé (36 x 9 x 34 cm), o apoio dos pés de 20 cm de altura (18 x 36 cm), a alavanca com a almofada azul das coxas (28 x 8 x 40 cm), o pegador na frente da almofada e o pino das anilhas",
+  "corpo-sentada": "Derivada do corpo da tabela (dados/corpo-homem.json) com a técnica da ficha (sentado, os joelhos a ~90°, a ponta dos pés na borda do apoio): a medida que nenhuma ficha lida dá sai de onde o corpo precisa que ela esteja, com o motivo em cada linha",
+  "barra-longa-sentada": "src/engine/novo/dados/objetos/barra-longa.json (IWF e IPF): a manga de 5 cm da barra olímpica, que recebe as anilhas olímpicas",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "panturrilhaSentada": {
+   "nome": "Panturrilha sentada na máquina (o assento, o apoio dos pés, a alavanca que gira num eixo ao lado do quadril, com a almofada sobre as coxas perto dos joelhos e o pino das anilhas na ponta da frente)",
+   "medidas": {
+    "comp": { "v": 155, "un": "cm", "tipo": "medida", "fonte": "lf-splcalf", "onde": "comprimento total da Life Fitness SPLCALF (a Hammer Strength PL-CALF tem 124; a Atlantis M219, 158,1)" },
+    "larg": { "v": 74, "un": "cm", "tipo": "medida", "fonte": "lf-splcalf", "onde": "largura total da SPLCALF, com o pino das anilhas (a PL-CALF tem 84; a M219, 119,5, com pinos dos dois lados)" },
+    "altura": { "v": 107, "un": "cm", "tipo": "medida", "fonte": "lf-splcalf", "onde": "altura total da SPLCALF (a PL-CALF tem 112; a M219, 98,4)" },
+    "apoioAlt": { "v": 20, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "altura do topo do apoio dos pés, como no cartão de hoje; as fichas não dão" },
+    "apoioProf": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "fundo do apoio dos pés, da borda de trás (onde a ponta do pé apoia) à da frente, como no cartão" },
+    "apoioLarg": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "largura do apoio dos pés, como no cartão" },
+    "assentoAltura": { "v": 58, "un": "cm", "tipo": "derivada", "fonte": "corpo-sentada", "onde": "altura do topo do assento: com a ponta do pé no apoio e o calcanhar na altura dele, a coxa fica quase na horizontal e o joelho a 90° (as fichas não dão)" },
+    "assentoFrente": { "v": -40, "un": "cm", "tipo": "derivada", "fonte": "corpo-sentada", "onde": "a borda da frente do assento fica 40 cm atrás da borda do apoio dos pés: o assento acaba 14,7 cm à frente do centro do quadril, e a coxa sai dele" },
+    "assentoComp": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "comprimento do assento, como no cartão" },
+    "assentoLarg": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "largura do assento, como no cartão" },
+    "estofadoEsp": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "espessura do estofado do assento, como no cartão" },
+    "eixoAltura": { "v": 66.7, "un": "cm", "tipo": "derivada", "fonte": "corpo-sentada", "onde": "altura do eixo da alavanca: a do centro do quadril de quem senta. Com o eixo na linha do quadril, a alavanca gira junto com a coxa e a almofada não escorrega nela (a foto da Atlantis M219 põe o eixo debaixo da frente do assento; a medida não aparece em nenhuma ficha)" },
+    "eixoZ": { "v": -54.7, "un": "cm", "tipo": "derivada", "fonte": "corpo-sentada", "onde": "o eixo fica 54,7 cm atrás da borda do apoio dos pés, na linha do centro do quadril de quem senta" },
+    "eixoAoLado": { "v": 27, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a alavanca corre ao lado da coxa esquerda, 27 cm do meio (do lado de fora da coxa), para não esconder a perna direita de quem olha de lado" },
+    "almofadaDoEixo": { "v": 32, "un": "cm", "tipo": "derivada", "fonte": "corpo-sentada", "onde": "do eixo ao meio da almofada das coxas, ao longo da alavanca: a almofada fica 9 cm atrás do centro do joelho ('o estofado em cima das coxas, perto dos joelhos'; a coxa da tabela tem 41,3 cm)" },
+    "almofadaComp": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da almofada ao longo da coxa (o cartão tem 28: mais comprida, ela passava do joelho)" },
+    "almofadaLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "largura da almofada, sobre as duas coxas, como no cartão" },
+    "almofadaEsp": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "espessura da almofada, como no cartão" },
+    "pinoDoEixo": { "v": 80, "un": "cm", "tipo": "desenho", "fonte": "atlantis-m219", "onde": "o pino das anilhas fica na ponta da frente da alavanca, 80 cm do eixo, depois dos pés (como na foto da M219); a distância é de desenho" },
+    "pinoComp": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do pino das anilhas, para fora" },
+    "pinoDiam": { "v": 5, "un": "cm", "tipo": "derivada", "fonte": "barra-longa-sentada", "onde": "o pino recebe as anilhas olímpicas: o diâmetro da manga da barra" },
+    "pegadorAcima": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "o pegador atravessa a frente da almofada, 5 cm acima do topo dela, como no cartão" },
+    "pegadorLarg": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "largura do pegador, de ponta a ponta" },
+    "pegadorDiam": { "v": 3.4, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro da borracha do pegador" },
+    "batenteDoEixo": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o pé do batente fica debaixo da alavanca, 50 cm do eixo (do lado de fora da perna esquerda, logo atrás da canela): de lado, fica escondido atrás da perna e não cruza os rótulos dos pés" },
+    "batenteFolga": { "v": 2, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "o batente de baixo da alavanca (onde ela descansa com a trava) fica 2° abaixo do ponto mais baixo dela na série" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "cartao-sentada", "onde": "tubo da estrutura, como o do cartão" }
+   }
+  }
+ }
+}
