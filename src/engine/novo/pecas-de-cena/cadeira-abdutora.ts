@@ -242,8 +242,15 @@ export function cadeiraAbdutora(m: CadeiraAbdutora) {
       // o cabo: sai da borda do came, vai à polia do pé da torre e sobe por dentro dela até as placas
       const saida = noBraco(1, m.braco, [0, yC + 1.5, -rC]);
       const polia: V3 = [(xT0 + xT1) / 2, 10 - 4.5, zT1 + 2];
-      C.linha(saida, [polia[0], saida[1], polia[2]], '#202327', 0.7);
-      C.linha([polia[0], saida[1], polia[2]], polia, '#202327', 0.7);
+      // (de cima, o cabo corre no chão até a torre, que o quadro corta: ficava um risco solto saindo do encosto até a
+      // borda; ele só é desenhado nas outras vistas)
+      const o0 = C.P([0, 0, 0]),
+        o1 = C.P([0, 100, 0]);
+      const deCima = Math.hypot(o1[0] - o0[0], o1[1] - o0[1]) < 0.2 * Math.abs(o1[2] - o0[2]);
+      if (!deCima) {
+        C.linha(saida, [polia[0], saida[1], polia[2]], '#202327', 0.7);
+        C.linha([polia[0], saida[1], polia[2]], polia, '#202327', 0.7);
+      }
       // as placas: as que ficam embaixo e as do pino, que sobem; a haste que as atravessa
       const xP = (xT0 + xT1) / 2 - g('pilhaLarg') / 2,
         zP = zTorre + g('pilhaProf') / 2;

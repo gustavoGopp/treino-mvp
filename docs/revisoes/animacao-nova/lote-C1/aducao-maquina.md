@@ -50,7 +50,7 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 
 ## Mudanças em arquivo comum
 
-Nenhuma (só a linha no registro dos exercícios).
+Um acréscimo em `boneco.ts`: a opção `vies.cabeca`, desligada por padrão (ver a correção no fim deste arquivo). Fora isso, só a linha no registro dos exercícios.
 
 ## O que não ficou bom
 
@@ -59,3 +59,16 @@ Nenhuma (só a linha no registro dos exercícios).
 - **De frente, as coxas viram uma mancha clara** (o colo, com a coxa apontando para quem olha), como na abdução.
 - **De frente, os suportes das almofadas passam na frente dos joelhos** (elas vêm do montante à frente do pé e giram para dentro): no fim, cobrem um pouco a parte de dentro dos joelhos.
 - **Os ângulos de 34° (começo) e 55° (abrir demais) são escolhas**: a ficha só diz "alongamento confortável".
+
+## Correção de 18/11 (a vista de cima)
+
+Na revisão, a cabeça não aparecia na vista de cima, e uma linha preta solta subia do encosto até a borda do quadro. **As causas:**
+
+- **A cabeça.** O Boneco desenha o corpo com um contorno só, por fora. De cima, sentado, a cabeça fica dentro da silhueta dos ombros: ela era pintada, mas sem contorno e da mesma cor do tronco, e sumia. Além disso, o corpo inteiro era pintado na altura média dele (~90 cm), e o alto do encosto (118 cm) ia por cima. Nas vistas de cima aprovadas de quem está em pé ou sentado (a elevação lateral, por exemplo), a cabeça também não aparece; nas de quem está deitado, aparece.
+- **A linha preta** era o cabo, que corre no chão do came até a polia do pé da torre, e a torre é cortada pelo quadro.
+
+**O que mudou:**
+
+- O Boneco ganhou uma opção nova, desligada por padrão: `vies.cabeca` > 0 pinta a cabeça (e o cabelo) de novo por cima do corpo, com o contorno próprio, como já se fazia com o polegar por cima da mão. A mudança em `boneco.ts` só acrescenta esse trecho e não muda nada nas animações aprovadas: nenhuma usa a chave `cabeca` no `vies`.
+- O quadro da máquina usa a opção só na vista de cima e sobe o corpo e os braços na ordem de pintura (`viesNaVista.cima`), para ficarem por cima do encosto.
+- O cabo não é desenhado quando a vista é de cima (nem na folha da peça); nas outras vistas continua.

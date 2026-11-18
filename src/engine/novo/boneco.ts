@@ -822,6 +822,13 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   const bacia = musculos('bacia');
   s += (o.estilo === 'pele' && !veu ? '' : bacia.linhas) + bacia.ativos;
   for (const x of frente) s += musculos(x.g.id).ativos;
+  // `vies.cabeca` > 0 (acréscimo de 18/11, desligado por padrão): a cabeça é pintada de novo por cima do resto do
+  // corpo, com o contorno próprio, como o polegar por cima da mão. Vista de cima, sentado, a cabeça fica dentro da
+  // silhueta dos ombros, e o contorno do corpo (um só, por fora) não a desenhava: no lugar dela ficava o alto do tronco
+  if (vies('cabeca') > 0) {
+    const cab = corpo.cs.filter((v) => v.nome === 'cabeca' || v.nome === 'cabeloAtras' || v.nome === 'calota');
+    s += cab.map((v) => `<path class="b-c${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + cab.map((v) => `<path class="b-p${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
+  }
   const cxCorpo = [corpo, ...pernas].reduce<[number, number, number, number]>((a, x) => [Math.min(a[0], x.cx[0]), Math.min(a[1], x.cx[1]), Math.max(a[2], x.cx[2]), Math.max(a[3], x.cx[3])], [1e9, 1e9, -1e9, -1e9]);
   itens.push({ d: corpo.d + vies('corpo'), camada: 1, s, cx: cxCorpo });
   // 3) os braços de perto, cada um com o seu contorno, na frente ou atrás do corpo conforme a profundidade
