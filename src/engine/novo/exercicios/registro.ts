@@ -136,3 +136,4 @@ export { facePullSuspensao } from './face-pull-suspensao';
 export { barraFixaNegativa } from './barra-fixa-negativa';
 export { agachamentoBarra } from './agachamento-barra';
 export { supinoBarra } from './supino-barra';
+export { desenvolvimentoBarra } from './desenvolvimento-barra';
