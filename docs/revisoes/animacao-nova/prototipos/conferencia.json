@@ -41642,7 +41642,7 @@
    {
     "grupo": "Objetos",
     "oQue": "o corpo atravessa uma peça (banco, coluna)",
-    "medido": "até 1,6 cm para dentro (estofado)",
+    "medido": "até 2,2 cm para dentro (estofado)",
     "limite": "tolerância 2,5 cm (o corpo amassa o estofado)",
     "nivel": "ok"
    },
@@ -41670,21 +41670,21 @@
    {
     "grupo": "Ficha",
     "oQue": "a parte de trás dos braços apoiada na almofada do começo ao fim: o tríceps encosta sem atravessar, e só o antebraço gira (consenso)",
-    "medido": "nos dois braços, o ponto mais fundo do tríceps na almofada fica de 0,4 a 0,4 cm (positivo = amassa); o cotovelo anda 0 cm enquanto dobra de 14° a 125°",
+    "medido": "em cada trecho, quanto o ponto mais fundo da pele amassa a face (cm, positivo = amassa) e a menor folga da pele até a borda lateral do lado dela (cm, positivo = dentro), braço direito: axila 1 e 7,1; meio 0,2 e 8; cotovelo -0,4 e 8,2; braço esquerdo: axila 1 e 7,1; meio 0,2 e 8; cotovelo -0,4 e 8,2; a pele do cotovelo fica 4,2 cm antes da borda de baixo; quina: o braço direito pintado 26,1 e o esquerdo 4,9 à frente da almofada; frontal: o braço direito pintado 9,7 e o esquerdo 9,7 à frente da almofada (negativo = a almofada cobre o braço); o cotovelo anda 0 cm enquanto dobra de 14° a 125°",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "axilas encostadas na borda de cima da almofada; o peito encosta nela sem atravessar (consenso)",
-    "medido": "nos 6 cm de cima da almofada, a pele do braço fica a 0,4 cm da face (positivo = amassa); o centro do ombro fica 8 cm além da borda; o peito amassa 1,6 cm da almofada",
+    "medido": "nos 6 cm de cima da almofada, a pele do braço fica a 1 cm da face (positivo = amassa); o centro do ombro fica 8 cm além da borda; o peito amassa 2,2 cm da almofada",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "sentado no assento, o tronco reto, com os pés no chão; o assento e a almofada dentro da regulagem do banco (consenso)",
-    "medido": "o glúteo fica de -1 a -1 cm do tampo do assento (negativo = amassa); a linha da bacia à base do pescoço fica 1,2° da vertical; o assento a 50 cm (o banco vai de 47 a 62) e a almofada a 100,5 cm (de 84 a 109); o meio da bacia fica 4,2 cm à frente do meio do assento",
+    "medido": "o glúteo fica de -1 a -1 cm do tampo do assento (negativo = amassa); a linha da bacia à base do pescoço fica 1,2° da vertical; o assento a 50 cm (o banco vai de 47 a 62) e a almofada a 100,9 cm (de 84 a 109); o meio da bacia fica 3,8 cm à frente do meio do assento",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -41740,7 +41740,7 @@
    {
     "grupo": "Ficha",
     "oQue": "a barra não atravessa a almofada nem os ganchos do suporte (consenso)",
-    "medido": "a menor folga da barra e das anilhas até a almofada é 12,6 cm; a barra passa 13,3 cm acima do alto dos ganchos do suporte",
+    "medido": "a menor folga da barra e das anilhas até a almofada é 12,4 cm; a barra passa 13,3 cm acima do alto dos ganchos do suporte",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
