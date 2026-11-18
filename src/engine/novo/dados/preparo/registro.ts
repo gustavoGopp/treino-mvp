@@ -86,6 +86,7 @@ import p80 from './hack.json';
 import p81 from './hip-thrust.json';
 import p82 from './leg-press.json';
 import p83 from './mergulho.json';
+import p84 from './mergulho-graviton.json';
 import p85 from './mesa-flexora.json';
 import p86 from './nordico.json';
 import p87 from './panturrilha.json';
@@ -240,6 +241,7 @@ const TODOS: Record<string, Preparo> = {
   'hip-thrust': p81,
   'leg-press': p82,
   'mergulho': p83,
+  'mergulho-graviton': p84,
   'mesa-flexora': p85,
   'nordico': p86,
   'panturrilha': p87,

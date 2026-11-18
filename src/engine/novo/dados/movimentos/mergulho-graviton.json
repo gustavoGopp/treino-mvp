@@ -1,0 +1,62 @@
+{
+ "id": "mergulho-graviton",
+ "nome": "Mergulho assistido no graviton",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/mergulho-graviton.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/mergulho-graviton.md): consenso de treinadores (nsca2021, não verificado): joelhos na plataforma, mãos nas barras paralelas do aparelho, braços estendidos; tronco levemente inclinado à frente; desce até o braço ficar quase paralelo ao chão, sem dor no ombro; empurra até estender os cotovelos sem travar; erros: descer demais (ombro à frente), ombros encolhidos perto das orelhas",
+  "app": "Cartão do app (src/conteudo/exercicios/mergulho-graviton.json): as fases, as dicas (\"Ombros longe das orelhas\", \"Tronco um pouco à frente\", \"Sem dor no ombro\") e os erros",
+  "mergulho": "Mergulho nas paralelas, aprovado no motor novo (./mergulho.json): o movimento dos braços, da escápula e do tronco, com os mesmos números (a ficha da técnica do graviton diz que a técnica é a mesma, com ajuda do contrapeso)",
+  "barra": "Barra fixa, aprovada no motor novo (./barra-fixa.json): os ombros que sobem até as orelhas no erro de encolher",
+  "maquina": "A peça do graviton (../objetos/graviton.json): a altura das alças de paralela, o eixo e o comprimento da alavanca dos joelhos",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "mergulho", "o": "em cima, os cotovelos estendidos sem travar: o cotovelo dobra 8° (o mesmo do mergulho aprovado)"},
+  "braco.embaixo": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "mergulho", "o": "embaixo, o braço fica quase paralelo ao chão: do ombro ao cotovelo, ele desce 12° abaixo da horizontal (o mesmo do mergulho aprovado)"},
+  "tronco.cima": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "em cima, o corpo quase na vertical: a bacia gira 6° à frente (o mesmo do mergulho aprovado)"},
+  "tronco.embaixo": {"v": 22, "un": "graus", "selo": "consenso", "fonte": "mergulho", "o": "na descida, o tronco inclina um pouco à frente: a bacia gira 22° à frente embaixo (o mesmo do mergulho aprovado)"},
+  "escapula.ativa": {"v": -10, "un": "graus", "selo": "consenso", "fonte": "mergulho", "o": "ombros longe das orelhas, empurrando as alças para baixo: a clavícula fica 10° abaixo do ritmo do ombro o ciclo inteiro (o mesmo do mergulho aprovado)"},
+  "polo.fora": {"v": 0.15, "un": "fração", "selo": "desenho", "fonte": "mergulho", "o": "o cotovelo aponta para trás e um pouco para fora"},
+  "polo.cima": {"v": 0, "un": "fração", "selo": "desenho", "fonte": "mergulho", "o": "o cotovelo aponta para trás, na horizontal"},
+  "polo.frente": {"v": -1, "un": "fração", "selo": "desenho", "fonte": "mergulho", "o": "o cotovelo aponta para trás"},
+  "pescoco": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "pescoço na linha do tronco, o queixo um pouco recolhido, olhando à frente e para baixo"},
+  "quadril.cima": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, ajoelhado com as coxas quase na vertical: o quadril dobra 8° (a ficha só diz \"joelhos na plataforma\")"},
+  "quadril.embaixo": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo, o quadril dobra 24°: o tronco inclina à frente e a coxa fica no mesmo ângulo do chão (o joelho continua debaixo do quadril, na almofada)"},
+  "canela.desce": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a canela deita ao longo da almofada, 2° abaixo dela do joelho para o tornozelo: a frente da canela, logo abaixo da patela, apoia no topo da almofada"},
+  "pe.plantar": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés soltos atrás da almofada, a ponta esticada"},
+  "pernas.juntas": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "pernas juntas: cada coxa vem 3° para o meio"},
+  "erro.fundo.braco": {"v": -7, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "erro: desce demais: o ombro passa abaixo do cotovelo, e o braço sobe 7° acima da horizontal (o mesmo do mergulho aprovado)"},
+  "erro.fundo.elev": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "erro: no fundo, o ombro sobe em direção à orelha"},
+  "erro.fundo.prot": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no fundo, o ombro vai à frente (a clavícula vai 14° à frente)"},
+  "erro.fundo.pescoco": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "mergulho", "o": "erro: a cabeça cai para a frente com os ombros"},
+  "erro.encolhe.elev": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: os ombros sobem perto das orelhas (a clavícula sobe 12° além do ritmo do ombro, como no erro de encolher da barra fixa aprovada)"},
+  "erro.encolhe.pescoco": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a cabeça afunda entre os ombros e vai um pouco à frente"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s, controlada", "selo": "consenso", "fonte": "mergulho"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.25, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "braço quase paralelo ao chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s, sem travar", "selo": "consenso", "fonte": "mergulho"}
+ ],
+ "contatos": ["pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta das alças e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo fica entre as alças, sem atravessá-las", "selo": "consenso", "fonte": "ficha"},
+  {"id": "graviton-joelhos-na-almofada", "pede": "os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar", "selo": "consenso", "fonte": "app"},
+  {"id": "graviton-pilha-sobe-quando-a-almofada-desce", "pede": "o contrapeso: a pilha sobe quando a almofada desce, no arco do came", "selo": "consenso", "fonte": "maquina"},
+  {"id": "graviton-corpo-parado", "pede": "o corpo desce e sobe sem ir e voltar para a frente e para trás", "selo": "consenso", "fonte": "mergulho"},
+  {"id": "mergulho-bracos-estendidos-em-cima", "pede": "em cima, cotovelos estendidos, sem travar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-braco-quase-paralelo-embaixo", "pede": "desce até o braço ficar quase paralelo ao chão, sem passar dele", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-tronco-um-pouco-a-frente", "pede": "tronco levemente inclinado à frente na descida", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-ombros-longe-das-orelhas", "pede": "ombros longe das orelhas o ciclo inteiro", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 1, "titulo": "Descer demais", "vista": "lateral", "oQueMuda": "o braço passa da horizontal e, no fundo, o ombro vai à frente e sobe", "destaca": ["bracos"], "linha": ["acromioclavicular", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "e2", "instante": 1, "titulo": "Ombros encolhidos", "vista": "quinaTras", "oQueMuda": "os ombros sobem perto das orelhas e a cabeça afunda entre eles", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:L"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "tronco um pouco à frente", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular", "selo": "consenso", "fonte": "app", "seta": {"de": "acromioclavicular", "desce": 6}}
+ ]
+}

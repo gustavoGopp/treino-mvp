@@ -154,3 +154,4 @@ export { legPress } from './leg-press';
 export { panturrilhaLegPress } from './panturrilha-leg-press';
 export { hack } from './hack';
 export { barraFixaGraviton } from './barra-fixa-graviton';
+export { mergulhoGraviton } from './mergulho-graviton';
