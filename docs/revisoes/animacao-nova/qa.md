@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 160 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 162 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 3040 células dos cuidados 1 a 19: M 1229, M! 126, O 1166, C 480, – 22, ✗ 17.
+Contagem das 3078 células dos cuidados 1 a 19: M 1243, M! 128, O 1181, C 486, – 22, ✗ 18.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -136,7 +136,9 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `panturrilha-b` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-b.png) |
 | `panturrilha-chao` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/panturrilha-chao.png) |
 | `panturrilha-degrau` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/panturrilha-degrau.png) |
+| `panturrilha-em-pe-maquina` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/panturrilha-em-pe-maquina.png) |
 | `panturrilha-leg-press` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/panturrilha-leg-press.png) |
+| `panturrilha-sentada` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-sentada.png) |
 | `panturrilha-sentada-halter` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-sentada-halter.png) |
 | `pike` | 2 | M | M! | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/pike.png) |
 | `ponte-gluteo` | 6 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/ponte-gluteo.png) |
@@ -360,9 +362,14 @@ Os demais:
 - `panturrilha-degrau`
   - cuidado 14: o erro "Quicar embaixo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: dorsiflexão do tornozelo → 29,3°
+- `panturrilha-em-pe-maquina`
+  - cuidado 14: o erro "Quicar" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: dorsiflexão do tornozelo → 30,2°
 - `panturrilha-leg-press`
   - cuidado 14: o erro "Quicar embaixo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: dorsiflexão do tornozelo → 18,8°
+- `panturrilha-sentada`
+  - cuidado 2: dorsiflexão do tornozelo → 24,1°
 - `panturrilha-sentada-halter`
   - cuidado 2: pronação do antebraço (a partir do polegar para cima) → 93,6°
 - `pike`
@@ -521,7 +528,9 @@ Os demais:
 - `panturrilha-b`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `panturrilha-chao`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): sobe com as duas pernas e desce com uma, como a ficha de 12/11 pede; a de hoje desce com as duas
 - `panturrilha-degrau`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o erro "quicar embaixo" não foi desenhado: é erro de ritmo, e o motor novo ainda não muda o tempo das fases por erro)
+- `panturrilha-em-pe-maquina`: (sem linha no andamento)
 - `panturrilha-leg-press`: (sem linha no andamento)
+- `panturrilha-sentada`: (sem linha no andamento)
 - `panturrilha-sentada-halter`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a primeira pose sentada do motor novo)
 - `pike`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos; a descida é mais curta que a de hoje porque a cabeça chega ao chão)
 - `ponte-gluteo`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
