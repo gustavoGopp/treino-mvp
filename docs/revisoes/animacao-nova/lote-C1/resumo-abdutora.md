@@ -39,7 +39,7 @@ Os dois erros de ritmo ("Soltar a volta" e "Bater as placas") foram desenhados p
 
 ## Mudanças em arquivos comuns
 
-Nenhuma no núcleo, nas peças comuns nem nos exercícios aprovados. Só o que é novo, mais uma linha em cada registro:
+Nas peças comuns e nos exercícios aprovados, nenhuma. No núcleo, só um acréscimo em `boneco.ts`: a opção `vies.cabeca`, desligada por padrão (ver a correção no fim deste arquivo). O resto é novo, mais uma linha em cada registro:
 
 - Peça e objeto novos: `pecas-de-cena/cadeira-abdutora.ts`, `dados/objetos/cadeira-abdutora.json` (linha em `dados/objetos/registro.ts`).
 - Núcleo novo: `exercicios/quadril-na-maquina.ts` (sentado na máquina, a calibração da bacia e da coxa gravada pelo `preparo.mjs`).
@@ -60,3 +60,16 @@ Nenhuma no núcleo, nas peças comuns nem nos exercícios aprovados. Só o que �
 - O corpo ocupa dois terços (adução) a três quartos (abdução) da altura do quadro de frente: a torre e os braços abertos entram no quadro. A torre fica porque é nela que se veem as placas subindo e batendo.
 - Os ângulos (36° e 8° na abdução; 34°, 11° e 55° na adução) são escolhas dentro do que a ficha diz em palavras; o de 11° sai das almofadas quase se tocando.
 - Só um rótulo de técnica de frente em cada; o segundo ficava em cima da torre ou com o fio atravessando o corpo.
+
+## Correção de 18/11 (a vista de cima)
+
+Na revisão, a cabeça não aparecia na vista de cima, e uma linha preta solta subia do encosto até a borda do quadro. **As causas:**
+
+- **A cabeça.** O Boneco desenha o corpo com um contorno só, por fora. De cima, sentado, a cabeça fica dentro da silhueta dos ombros: ela era pintada, mas sem contorno e da mesma cor do tronco, e sumia. Além disso, o corpo inteiro era pintado na altura média dele (~90 cm), e o alto do encosto (118 cm) ia por cima. Nas vistas de cima aprovadas de quem está em pé ou sentado (a elevação lateral, por exemplo), a cabeça também não aparece; nas de quem está deitado, aparece.
+- **A linha preta** era o cabo, que corre no chão do came até a polia do pé da torre, e a torre é cortada pelo quadro.
+
+**O que mudou:**
+
+- O Boneco ganhou uma opção nova, desligada por padrão: `vies.cabeca` > 0 pinta a cabeça (e o cabelo) de novo por cima do corpo, com o contorno próprio, como já se fazia com o polegar por cima da mão. A mudança em `boneco.ts` só acrescenta esse trecho e não muda nada nas animações aprovadas: nenhuma usa a chave `cabeca` no `vies`.
+- O quadro da máquina usa a opção só na vista de cima e sobe o corpo e os braços na ordem de pintura (`viesNaVista.cima`), para ficarem por cima do encosto.
+- O cabo não é desenhado quando a vista é de cima (nem na folha da peça); nas outras vistas continua.

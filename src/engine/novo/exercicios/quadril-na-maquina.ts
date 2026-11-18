@@ -137,6 +137,10 @@ export function quadroNaMaquina(corpo: Corpo, o: OpcoesNaMaquina, modo: ModoDaAb
     // delas. O corpo vai para a frente deles (para perto da profundidade dos joelhos), e as almofadas, os montantes e
     // os apoios dos pés, que ficam na frente das pernas, continuam por cima. Os braços ficam entre os dois: na frente
     // dos pegadores e atrás das coxas, que escondem as mãos quando as pernas abrem (como na abdução com mini band)
-    viesNaVista: { frontal: { corpo: 40, bracoR: 20, bracoL: 20 } },
+    // De cima, a mesma camada fica na altura média do corpo sentado (~90 cm): o alto do encosto (118 cm), pintado
+    // depois, ficava por cima da cabeça (que está acima dele, a ~139 cm). O corpo e os braços sobem juntos, e os braços
+    // continuam embaixo do corpo, como antes. E a cabeça, que de cima fica dentro da silhueta dos ombros, ganha o
+    // contorno próprio por cima do corpo (`cabeca`, opção do Boneco)
+    viesNaVista: { frontal: { corpo: 40, bracoR: 20, bracoL: 20 }, cima: { corpo: 60, bracoR: 60, bracoL: 60, cabeca: 1 } },
   };
 }
