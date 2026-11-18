@@ -33,3 +33,4 @@ export { default as barraHexagonal } from './barra-hexagonal.json';
 export { default as almofadaDaBarra } from './almofada-da-barra.json';
 export { default as smith } from './smith.json';
 export { default as legPress } from './leg-press.json';
+export { default as hack } from './hack.json';

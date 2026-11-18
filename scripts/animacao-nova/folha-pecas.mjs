@@ -4,8 +4,8 @@
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
-// No leg press, o carro em duas posições na guia, com a trava fechada e aberta, e o cartão do hack ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|leg-press] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|leg-press|hack] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -20,6 +20,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
+export * from './src/engine/novo/pecas-de-cena/hack.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -261,3 +262,26 @@ if (!so || so === 'leg-press') {
   );
 }
 
+if (!so || so === 'hack') {
+  const o = (id) => m.obj('hack', id);
+  // o cartão de hoje põe a máquina ao longo de x e olha de yaw 9, pela frente do encosto; a peça corre ao longo de z:
+  // yaw −99 mostra a frente do encosto, do mesmo ângulo (espelhado)
+  const cam = { yaw: -99, pitch: 9, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const H = (carro, trava) => m.hack({ carro, trava, anilhas: ['anilha20'] }, 108).pecas;
+  const E = m.extremosDoHack();
+  const larg = 2 * (o('guiasEntre') / 2 + o('tubo') / 2 + o('pinoAnilhaComp'));
+  await foto(
+    'hack',
+    `<h1>Hack: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue a ficha da Hammer Strength PL-HSQ (216 × 155 × 153 cm; é a única ficha de hack lida). <b>O ângulo do carro, 45°, vem da página da Hammer Strength PL-HSQ2</b> ("with a 45-degree pressing angle"; a página americana da Life Fitness diz o mesmo); o cartão de hoje tinha 47°. A mesma página dá a massa do carro (57 kg), a trava de duas posições ("flip-in, flip-out racking handles", "two different racking positions"), os 4 pinos de guardar anilhas e que a chapa dos pés regula 8° ("the equivalent of both a 3° and 10° heel wedge"), <b>sem dizer o ângulo da chapa</b>: ela fica com a ponta 15° acima do calcanhar, como no cartão de hoje (com o corpo deitado a 45°, a chapa reta deixaria o tornozelo esticado demais em cima). Onde a chapa fica em relação ao encosto e onde ficam as almofadas dos ombros saíram do corpo da tabela, com o motivo na tabela.</p>
+<p><b>A máquina funciona:</b> o carro (o encosto, as almofadas dos ombros, os pegadores, as anilhas e as alavancas) só anda nas duas guias, a 45°; a chapa dos pés fica parada; a alavanca da trava fecha sobre um dos dois suportes da estrutura ou gira ${v(o('travaAbre'), 0)}° para fora e solta o carro. Medida desenhada: ${v(E.zFrente - E.zTras, 0)} cm de comprimento, ${v(E.yTopo, 0)} cm de altura e ${v(larg, 0)} cm de uma ponta de pino à outra (a ficha: 216 × 153 × 155).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('hack'), 96, 'cartao'))}${cel('nova (o carro em cima, trava fechada)', img(desenho(H(108, 'fechada'), cam), 96, 'cartao'))}${cel('hoje: o leg press (para ver se ainda se confundem)', img(hoje('leg_press'), 96, 'cartao'))}${cel('hoje: o smith', img(hoje('smith'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('hack'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (uma anilha de 20 kg de cada lado)', img(desenho(H(108, 'fechada'), cam), 640))}</div>
+<h2>Funcionando (de lado): o carro só anda na guia; a chapa fica parada</h2>
+<div class="l">${cel('em cima, a trava fechada no suporte de cima', img(desenho(H(108, 'fechada'), lado), 440))}${cel('a trava aberta: o carro solto', img(desenho(H(108, 'aberta'), lado), 440))}${cel('embaixo (o carro desceu 40 cm na guia)', img(desenho(H(68, 'aberta'), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('hack', ['hack'])}<p style="margin-top:8px">As anilhas são as da barra longa (folha-barra.png).</p>`,
+  );
+}
