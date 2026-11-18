@@ -1,0 +1,67 @@
+{
+  "id": "rosca-barra-w",
+  "name": "Rosca com barra W",
+  "short": "Rosca com barra W",
+  "target": "Bíceps",
+  "feel": "Frente do braço (bíceps).",
+  "feelNote": "Se a barra só sobe jogando o corpo para trás, ou se os cotovelos vão à frente no topo, o bíceps trabalha menos: tronco reto e cotovelos parados ao lado do corpo.",
+  "setupEq": [
+    "Barra W com anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, tronco reto.",
+    "Pegada nas partes inclinadas da barra, palmas para cima, cotovelos ao lado do corpo."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Dobra os cotovelos até a barra chegar perto dos ombros, com os cotovelos parados."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até os braços quase estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços quase estendidos.",
+    "Fim: barra perto dos ombros."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Cotovelos parados.",
+    "Tronco reto.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Travas nas anilhas, anilhas iguais dos dois lados",
+    "Pés na largura do quadril, tronco reto",
+    "Pegada nas partes inclinadas, palmas para cima",
+    "Cotovelos ao lado do corpo"
+  ],
+  "vary": "O que não muda: os cotovelos parados ao lado do corpo, o tronco reto e a descida até os braços quase estenderem.",
+  "note": "<b>Montagem segura:</b> travas nas anilhas.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o corpo para trás faz a carga subir sem o bíceps."
+    },
+    {
+      "id": "e2",
+      "title": "Cotovelos para a frente",
+      "desc": "Levar os cotovelos à frente no topo descansa o bíceps."
+    },
+    {
+      "id": "e3",
+      "title": "Descida curta",
+      "desc": "Não estender os braços deixa de fora a parte alongada."
+    }
+  ],
+  "carga": "Registre os kg (barra W com anilhas). Para progredir, o menor par de anilhas."
+}

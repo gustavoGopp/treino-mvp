@@ -1,5 +1,6 @@
-// Confere o texto do guia animado dos exercícios da fase A (docs/revisoes/animacoes-restantes/textos/<id>.json),
-// preparado antes da ligação (plano.md, seção 6). Para cada arquivo:
+// Confere o texto do guia animado dos exercícios dos lotes já escritos (docs/revisoes/animacoes-restantes/textos/<id>.json),
+// preparado antes da ligação (plano.md, seção 6). Lê a pasta inteira; cada arquivo tem de ser de um lote de LOTES
+// (lotes.json), e cada exercício desses lotes tem de ter o seu arquivo. Para cada arquivo:
 // 1. valida com o formato do texto do guia (conteudoExercicioSchema) mais o campo `carga` do cartão;
 // 2. confere que os campos do cartão (src/conteudo/exercicios/<id>.json) estão iguais, inclusive `carga`, e que a
 //    montagem do cartão virou a nota "Montagem segura" (e só ela);
@@ -12,14 +13,14 @@ import { z } from 'zod';
 import { cartaoTextoSchema, conteudoExercicioSchema } from '../../src/conteudo/schema';
 
 const PASTA = 'docs/revisoes/animacoes-restantes/textos';
-const FASE_A = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6'];
+const LOTES = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2'];
 const CAMPOS_DO_CARTAO = ['id', 'name', 'short', 'target', 'setupEq', 'setupBody', 'exec', 'range', 'cues', 'errors', 'carga'] as const;
 
 const textoDoGuia = conteudoExercicioSchema.extend({ carga: z.string().min(1) }).strict();
 
 type Lote = { id: string; ids: string[] };
 const lotes = (JSON.parse(readFileSync('docs/revisoes/animacoes-restantes/lotes.json', 'utf8')) as { lotes: Lote[] }).lotes;
-const esperados = lotes.filter((l) => FASE_A.includes(l.id)).flatMap((l) => l.ids);
+const esperados = lotes.filter((l) => LOTES.includes(l.id)).flatMap((l) => l.ids);
 
 // a lista SEM_DESENHO vem do próprio teste, para não haver duas listas
 const teste = readFileSync('tests/unit/motor-novo-ponte.test.ts', 'utf8');
@@ -34,7 +35,7 @@ const problemas: string[] = [];
 const arquivos = readdirSync(PASTA).filter((a) => a.endsWith('.json'));
 const ids = arquivos.map((a) => a.replace(/\.json$/, ''));
 for (const id of esperados) if (!ids.includes(id)) problemas.push(`${id}: falta o arquivo do texto do guia`);
-for (const id of ids) if (!esperados.includes(id)) problemas.push(`${id}: não é da fase A`);
+for (const id of ids) if (!esperados.includes(id)) problemas.push(`${id}: não é dos lotes ${LOTES.join(', ')}`);
 
 for (const id of ids.filter((i) => esperados.includes(i))) {
   const bruto = lerJson(`${PASTA}/${id}.json`);
@@ -69,4 +70,4 @@ if (problemas.length) {
   console.error(`${problemas.length} problema(s):\n${problemas.map((p) => `- ${p}`).join('\n')}`);
   process.exit(1);
 }
-console.log(`ok: ${ids.length} textos do guia conferidos (de ${esperados.length} da fase A): formato, campos do cartão e erros da animação.`);
+console.log(`ok: ${ids.length} textos do guia conferidos (de ${esperados.length} dos lotes ${LOTES.join(', ')}): formato, campos do cartão e erros da animação.`);

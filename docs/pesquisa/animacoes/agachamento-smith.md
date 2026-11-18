@@ -37,3 +37,17 @@ Primários: quadríceps e glúteos. Na biblioteca: `quadriceps`; secundário `gl
 - `kubo2019`: Kubo K, Ikebukuro T, Yata H et al. Effects of squat training with different depths on lower limb muscle volumes. Eur J Appl Physiol 2019;119(9):1933-1942. PMID 31230110. Resumo lido no PubMed em 01/11/2026.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase B, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/agachamento-smith.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (quadríceps e glúteos) e a biblioteca (que soma os adutores); a nota, do erro "Pés embaixo da barra" (o tronco tomba e o joelho sobrecarrega) e da linha Pés | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Montagem, Pés e Tronco da tabela de técnica | consenso | `seguranca-t5`; `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Profundidade ("até a horizontal ou abaixo, sem dor") e as linhas Montagem, Pés e Tronco | um estudo (por analogia com o livre) e consenso | `kubo2019`; `seguranca-t5`; `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão, num texto só (as travas logo abaixo do ponto mais baixo; girar a barra para soltar e travar) | consenso | `seguranca-t5` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/agachamento-smith.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a seção Músculos diz que a biblioteca tem só os glúteos como secundário; ela já soma os adutores, e o `feel` seguiu a biblioteca (anotado em `pedidos.md`). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor. O erro "Esquecer a trava" não tem desenho (está em `SEM_DESENHO`): o texto o mantém, e a nota e a conferência repetem as travas. A ficha não diz o que varia de pessoa para pessoa além da profundidade.
