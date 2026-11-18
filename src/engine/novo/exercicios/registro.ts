@@ -145,3 +145,4 @@ export { hipThrust } from './hip-thrust';
 export { agachamentoSmith } from './agachamento-smith';
 export { supinoSmith } from './supino-smith';
 export { legPress } from './leg-press';
+export { panturrilhaLegPress } from './panturrilha-leg-press';
