@@ -163,3 +163,4 @@ export { barraFixaGraviton } from './barra-fixa-graviton';
 export { mergulhoGraviton } from './mergulho-graviton';
 export { roscaScott } from './rosca-scott';
 export { hiperextensao } from './hiperextensao';
+export { abdominalDeclinado } from './abdominal-declinado';

@@ -70,3 +70,4 @@ export { REGRAS_VOADOR } from './voador';
 export { REGRAS_GRAVITON } from './graviton';
 export { REGRAS_BANCO_SCOTT } from './banco-scott';
 export { REGRAS_BANCO_ROMANO } from './banco-romano';
+export { REGRAS_BANCO_DECLINADO } from './banco-declinado';
