@@ -30,3 +30,16 @@ Placa da torre (número).
 - `saeterbakken2013`: Saeterbakken AH, Fimland MS. Effects of body position and loading modality on muscle activity and strength in shoulder presses. J Strength Cond Res 2013;27(7):1824-1831. PMID 23096062. Resumo lido no PubMed em 01/11/2026.
 - `haugen2023`: Haugen ME, Vårvik FT, Larsen S et al. Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance – a systematic review and meta-analysis. BMC Sports Sci Med Rehabil 2023;15(1):103. PMID 37582807. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/desenvolvimento-maquina.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro anterior; ombro lateral e tríceps; igual à biblioteca); a nota, do erro "Arquear a lombar" e da linha Costas | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Ajuste e Costas da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Movimento (até o queixo ou os ombros) e a linha Costas | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/desenvolvimento-maquina.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura do banco foi para a conferência. A ficha não diz onde fica o eixo da máquina (a animação o pôs atrás do encosto, de desenho) e não diz nada que varie de pessoa para pessoa além da descida. O desenho do equipamento de hoje é de anilhas, e a animação é de pilha. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

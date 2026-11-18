@@ -32,3 +32,16 @@ Placa da torre (número).
 - `difonza2026`: Di Fonza D, Di Claudio G, Colantuono G et al. Electromyographic Analysis of Latissimus Dorsi Activation During Common Resistance Training Exercises: A Narrative Review. J Funct Morphol Kinesiol 2026;11(3):315. PMID 42647355. Resumo lido no PubMed em 01/11/2026.
 - `padovan2026`: Padovan R, Cè E, Longo S et al. High-Density Surface Electromyography Excitation of Prime Movers Across Scapular Positions in the Seated Row. J Funct Morphol Kinesiol 2025;11(1):6. PMID 41562724. Resumo lido no PubMed em 01/11/2026. Provavelmente é o estudo citado como `padovan2026` em `../08-tecnica-guia.md`, com PMID não verificado; a conferir na entrada para `fontes.md`.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/remada-baixa-estacao.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior; igual à biblioteca); a nota, dos erros "Arredondar a lombar" e "Balançar o tronco" e da linha Movimento | consenso | `nsca2021` (não verificado); `tecnica.remada-baixa.polia` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Posição e Pegada da tabela de técnica e o erro "Cotovelos abertos" | consenso; a pegada fechada, um estudo (EMG, revisão narrativa) | `nsca2021` (não verificado); `difonza2026` |
+| Variações (`vary`) | linha Polia (a da estação já é baixa e alinhada com o assento) e "Por que assim" (na estação, o assento e a polia já estão no lugar), mais a linha Movimento | consenso | `tecnica.remada-baixa.polia`; `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/remada-baixa-estacao.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz onde a pessoa senta no banco nem a altura da polia (a animação pôs a plataforma onde o joelho dobra 25° e a polia a 64 cm, de desenho). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

@@ -1,0 +1,69 @@
+{
+  "id": "abducao-maquina",
+  "name": "Abdução na cadeira abdutora",
+  "short": "Abdução na máquina",
+  "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima dos glúteos.",
+  "feelNote": "Se o tronco for para a frente e para trás, ele está embalando o peso: tronco parado, costas no encosto.",
+  "setupEq": [
+    "Almofadas do lado de fora dos joelhos."
+  ],
+  "setupBody": [
+    "Sentado, costas no encosto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abrir",
+      "Abre as pernas até o fim confortável."
+    ],
+    [
+      "hold",
+      "Pausa",
+      "Segura ~1 s."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando, sem deixar as placas baterem."
+    ]
+  ],
+  "range": [
+    "Início: pernas fechadas, placas sem encostar.",
+    "Fim: pernas abertas até o fim confortável."
+  ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Tronco parado.",
+    "Pausa aberto.",
+    "Placas sem bater."
+  ],
+  "check": [
+    "Almofadas do lado de fora dos joelhos",
+    "Sentado, costas no encosto",
+    "Tronco parado"
+  ],
+  "vary": "A abertura vai até o fim confortável. O que não muda: o tronco parado, a pausa de ~1 s aberto e a volta controlando, sem deixar as placas baterem.",
+  "extLabels": [
+    "pernas fechadas",
+    "pernas abertas"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Embalar o tronco",
+      "desc": "O corpo vai para a frente e para trás."
+    },
+    {
+      "id": "e2",
+      "title": "Abrir pouco",
+      "desc": "A amplitude curta."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a volta",
+      "desc": "As placas batem."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

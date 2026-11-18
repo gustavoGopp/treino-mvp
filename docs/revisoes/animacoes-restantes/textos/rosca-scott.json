@@ -1,0 +1,64 @@
+{
+  "id": "rosca-scott",
+  "name": "Rosca Scott",
+  "short": "Rosca Scott",
+  "target": "Bíceps",
+  "feel": "Frente do braço: o bíceps, com o braquial e o braquiorradial.",
+  "feelNote": "Embaixo, o cotovelo fica quase estendido com o peso: desça controlando, sem soltar o peso no fim. O braço fica colado na almofada do começo ao fim.",
+  "setupEq": [
+    "Banco na altura em que o tronco fica reto; barra W ou halter."
+  ],
+  "setupBody": [
+    "Parte de trás do braço inteira apoiada na almofada, axilas encostadas na borda."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando (~2–3 s) até o cotovelo quase estender, sem soltar o peso no fim."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe sem tirar o braço da almofada até o antebraço ficar quase vertical."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelo quase estendido, sem travar.",
+    "Em cima: antebraço quase vertical."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Braço colado na almofada.",
+    "Desce devagar.",
+    "Sem soltar embaixo."
+  ],
+  "check": [
+    "Banco na altura em que o tronco fica reto",
+    "Parte de trás do braço inteira na almofada",
+    "Axilas encostadas na borda"
+  ],
+  "vary": "Dá para fazer com barra W ou com halter. O que não muda: o braço inteiro na almofada, a descida em ~2–3 s até o cotovelo quase estender, sem soltar o peso, e a subida até o antebraço ficar quase vertical.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o braço da almofada",
+      "desc": "O braço sai do apoio para subir."
+    },
+    {
+      "id": "e2",
+      "title": "Soltar o peso embaixo",
+      "desc": "O cotovelo trava de uma vez."
+    },
+    {
+      "id": "e3",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta."
+    }
+  ],
+  "carga": "Registre os kg (barra W com anilhas, ou o halter). Para progredir, o menor par de anilhas ou o próximo halter."
+}

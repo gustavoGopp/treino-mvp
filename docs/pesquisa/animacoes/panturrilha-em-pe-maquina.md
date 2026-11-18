@@ -32,3 +32,16 @@ Placa da torre (número) ou kg de anilhas por passos, conforme o modelo da máqu
 - `kinoshita2023`: Kinoshita M, Maeo S, Kobayashi Y et al. Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training. Front Physiol 2023;14:1272106. PMID 38156065. Resumo lido no PubMed em 01/11/2026.
 - `kassiano2023b`: Kassiano W, Costa B, Kunevaliki G et al. Greater Gastrocnemius Muscle Hypertrophy After Partial Range of Motion Training Performed at Long Muscle Lengths. J Strength Cond Res 2023;37(9):1746-1753. PMID 37015016. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/panturrilha-em-pe-maquina.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (panturrilha: gastrocnêmio e sóleo); a nota, da linha Joelhos (estendidos para o gastrocnêmio trabalhar alongado) e do erro "Dobrar os joelhos" | um estudo (os joelhos estendidos); consenso | `kinoshita2023`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Embaixo (pausa de ~1 s no alongamento), Em cima e Joelhos e o erro "Quicar" | um estudo (embaixo e os joelhos); consenso | `kassiano2023b`; `kinoshita2023`; `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/panturrilha-em-pe-maquina.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura das almofadas dos ombros não aparece como regulagem: a conferência só diz "ombros sob as almofadas". A ficha não diz como regular a altura das almofadas nem nada que varie de pessoa para pessoa (o `vary` só traz o que não muda). O erro "Quicar" não tem desenho (está em `SEM_DESENHO`): o texto o mantém, e o `vary` repete a pausa embaixo. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

@@ -28,3 +28,16 @@ Primário: costas. Secundários: bíceps e ombro posterior. Na biblioteca: `cost
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/barra-fixa-graviton.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior; igual à biblioteca); a nota, da linha Movimento ("igual à barra fixa") e do erro "Balançar" | consenso | `nsca2021` (não verificado); a `barra-fixa` aprovada |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Contrapeso e Posição da tabela de técnica | consenso | `nsca2021` (não verificado); `tecnica.barra-fixa.pegada` |
+| Variações (`vary`) | linha Posição (os joelhos ou os pés na plataforma), linha Contrapeso e linha Movimento | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/barra-fixa-graviton.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não acha estudo com a barra assistida em máquina e diz isso. Não diz onde fica o eixo da almofada nem a altura das alças (na animação, de desenho; o queixo passa do alto das alças, porque o graviton desenhado tem duas alças e não uma barra inteira). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

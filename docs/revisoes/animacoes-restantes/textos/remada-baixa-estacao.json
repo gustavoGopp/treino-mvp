@@ -1,0 +1,66 @@
+{
+  "id": "remada-baixa-estacao",
+  "name": "Remada baixa na estação",
+  "short": "Remada na estação",
+  "target": "Costas",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, ela está curvando na volta: deixe só as escápulas irem à frente, com a lombar firme. Se o tronco for para trás para puxar, é o corpo que está ajudando.",
+  "setupEq": [
+    "Triângulo (pegada fechada) no cabo; a polia da estação já é baixa e alinhada com o assento."
+  ],
+  "setupBody": [
+    "Sentado, pés na plataforma, joelhos levemente dobrados.",
+    "Tronco quase vertical."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa até as mãos chegarem ao abdômen, cotovelos rentes ao corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Na volta, deixa as escápulas irem à frente sem dobrar a lombar."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, escápulas à frente.",
+    "Fim: mãos no abdômen, cotovelos rentes."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Tronco parado.",
+    "Cotovelos rentes.",
+    "Lombar firme na volta."
+  ],
+  "check": [
+    "Triângulo (pegada fechada) no cabo",
+    "Pés na plataforma, joelhos levemente dobrados",
+    "Tronco quase vertical",
+    "Cotovelos rentes ao corpo"
+  ],
+  "vary": "Na estação, a polia já é baixa e alinhada com o assento: não há o que ajustar nela. O que não muda: o tronco parado, quase vertical, as mãos até o abdômen com os cotovelos rentes e a lombar firme na volta.",
+  "extLabels": [
+    "braços estendidos",
+    "mãos no abdômen"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Balançar o tronco",
+      "desc": "O corpo vai para trás para puxar."
+    },
+    {
+      "id": "e2",
+      "title": "Arredondar a lombar",
+      "desc": "A lombar curva na volta."
+    },
+    {
+      "id": "e3",
+      "title": "Cotovelos abertos",
+      "desc": "Os cotovelos se afastam do corpo."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

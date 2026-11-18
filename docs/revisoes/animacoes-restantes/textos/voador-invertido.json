@@ -1,0 +1,65 @@
+{
+  "id": "voador-invertido",
+  "name": "Voador invertido",
+  "short": "Voador invertido",
+  "target": "Ombro (posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se os ombros subirem perto das orelhas, abaixe-os, sem juntar demais as escápulas no fim. Se o tronco for para trás, é o corpo que está ajudando: peito no encosto.",
+  "setupEq": [
+    "Pegadores na altura dos ombros."
+  ],
+  "setupBody": [
+    "Sentado de frente para o encosto, peito apoiado."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abrir",
+      "Abre os braços para trás, com os cotovelos levemente dobrados, até a linha do corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando."
+    ]
+  ],
+  "range": [
+    "Início: braços à frente.",
+    "Fim: braços na linha do corpo."
+  ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Ombros baixos.",
+    "Peito no encosto.",
+    "Abre até a linha do corpo."
+  ],
+  "check": [
+    "Pegadores na altura dos ombros",
+    "Sentado de frente para o encosto, peito apoiado",
+    "Cotovelos levemente dobrados",
+    "Ombros baixos"
+  ],
+  "vary": "O que não muda: o peito no encosto, os ombros baixos e a abertura até a linha do corpo, com os cotovelos levemente dobrados, e a volta controlando.",
+  "extLabels": [
+    "braços à frente",
+    "na linha do corpo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem perto das orelhas."
+    },
+    {
+      "id": "e2",
+      "title": "Embalar o tronco",
+      "desc": "O corpo vai para trás para ajudar."
+    },
+    {
+      "id": "e3",
+      "title": "Abrir pouco",
+      "desc": "Os braços não chegam à linha do corpo."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

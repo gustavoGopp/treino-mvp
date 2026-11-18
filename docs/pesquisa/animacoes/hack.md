@@ -37,3 +37,17 @@ Anilhas no trenó, registradas como **kg de anilhas por lado**. O peso do trenó
 - `kubo2019`: Kubo K, Ikebukuro T, Yata H et al. Effects of squat training with different depths on lower limb muscle volumes. Eur J Appl Physiol 2019;119(9):1933-1942. PMID 31230110. Resumo lido no PubMed em 01/11/2026.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/hack.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (quadríceps e glúteos; adutores) e a biblioteca; a nota, do erro "Lombar descola" e da linha Profundidade | consenso | `nsca2021` (não verificado); `kubo2019` (a profundidade, por analogia) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Trava, Posição e Joelhos da tabela de técnica | consenso | `nsca2021` (não verificado); `seguranca-t5` |
+| Variações (`vary`) | linha Posição (os pés na largura do quadril ou dos ombros), linhas Profundidade e Joelhos e o erro "Travar os joelhos" | consenso | `nsca2021` (não verificado); `kubo2019` (por analogia) |
+| Nota (`note`) | a montagem do cartão (a linha Trava) | consenso | `nsca2021` (não verificado); `seguranca-t5` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/hack.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a linha "Na biblioteca" diz só os glúteos como secundário; a biblioteca já soma os adutores, como a própria seção Músculos ("Secundário: adutores"), e o `feel` seguiu a biblioteca. A ficha não diz o ângulo da chapa dos pés (na animação, 15°, do desenho do equipamento, sem fonte). A linha Cadência (~2–3 s descendo; moderada) não está no cartão, e o texto do guia não a acrescentou. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.
