@@ -140,6 +140,9 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'terra-hexagonal': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'agachamento-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'supino-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'mesa-flexora': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'leg-press': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'hack': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-maquina': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'aducao-maquina': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'cadeira-flexora': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
@@ -153,15 +156,15 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'pull-through', 'mergulho', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'abducao-maquina', 'aducao-maquina', 'cadeira-flexora', 'cadeira-extensora'];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'pull-through', 'mergulho', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'mesa-flexora', 'leg-press', 'hack', 'abducao-maquina', 'aducao-maquina', 'cadeira-flexora', 'cadeira-extensora'];
 
 /**
  * As animações novas feitas que ainda não estão aprovadas, com o motivo: as de maior risco, que quem integra separou para
  * o Gustavo ver (como ele pediu em 15/11/2026), e as que voltaram para correção. Ficam fora do app e do catálogo.
  */
 export const EM_REVISAO: Record<string, string> = {
-  'mesa-flexora': 'volta para quem fez: de três quartos por trás o corpo fica pintado embaixo do estofado',
-  'coice-maquina': 'espera o Gustavo escolher a máquina (de quatro apoios, como a ficha da técnica, ou em pé, como o cartão de equipamento e as fichas da LF, HS e Movement); e o pé pisa no ar no erro "Girar o quadril"',
+  'panturrilha-leg-press': 'volta para quem fez: o movimento do tornozelo não se lê de lado e a chapa esconde os pés de três quartos',
+  'coice-maquina': 'espera o Gustavo escolher a máquina: de quatro apoios, como a ficha da técnica, ou em pé, como o cartão de equipamento e as fichas da LF, HS e Movement',
   'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
   'remada-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
   'hip-thrust': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',

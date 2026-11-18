@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 148 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 151 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2812 células dos cuidados 1 a 19: M 1135, M! 123, O 1072, C 444, – 22, ✗ 16.
+Contagem das 2869 células dos cuidados 1 a 19: M 1156, M! 125, O 1096, C 453, – 22, ✗ 17.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -123,14 +123,17 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `flexao-pes-elevados` | 2 | M | M! | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/flexao-pes-elevados.png) |
 | `goblet` | 0 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/goblet.png) |
 | `goblet-kettlebell` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/goblet-kettlebell.png) |
+| `hack` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/hack.png) |
 | `hip-thrust` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/hip-thrust.png) |
+| `leg-press` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/leg-press.png) |
 | `mergulho` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/mergulho.png) |
-| `mesa-flexora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/mesa-flexora.png) |
+| `mesa-flexora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/mesa-flexora.png) |
 | `nordico` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/nordico.png) |
 | `panturrilha` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha.png) |
 | `panturrilha-b` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-b.png) |
 | `panturrilha-chao` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/panturrilha-chao.png) |
 | `panturrilha-degrau` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/panturrilha-degrau.png) |
+| `panturrilha-leg-press` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/panturrilha-leg-press.png) |
 | `panturrilha-sentada-halter` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-sentada-halter.png) |
 | `pike` | 2 | M | M! | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/pike.png) |
 | `ponte-gluteo` | 6 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/ponte-gluteo.png) |
@@ -334,6 +337,8 @@ Os demais:
   - cuidado 2: dorsiflexão do tornozelo → 21,5°
 - `goblet-kettlebell`
   - cuidado 2: dorsiflexão do tornozelo → 27,4°
+- `leg-press`
+  - cuidado 2: dorsiflexão do tornozelo → 34,6°
 - `mesa-flexora`
   - cuidado 14: o erro "Volta solta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `nordico`
@@ -346,6 +351,9 @@ Os demais:
 - `panturrilha-degrau`
   - cuidado 14: o erro "Quicar embaixo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: dorsiflexão do tornozelo → 29,3°
+- `panturrilha-leg-press`
+  - cuidado 14: o erro "Quicar embaixo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: dorsiflexão do tornozelo → 18,8°
 - `panturrilha-sentada-halter`
   - cuidado 2: pronação do antebraço (a partir do polegar para cima) → 93,6°
 - `pike`
@@ -491,7 +499,9 @@ Os demais:
 - `flexao-pes-elevados`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): o peito para a 8,5 cm do chão
 - `goblet`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `goblet-kettlebell`: (sem linha no andamento)
+- `hack`: (sem linha no andamento)
 - `hip-thrust`: (sem linha no andamento)
+- `leg-press`: (sem linha no andamento)
 - `mergulho`: (sem linha no andamento)
 - `mesa-flexora`: (sem linha no andamento)
 - `nordico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (os calcanhares presos debaixo de um sofá, que é peça nova; o quadro mostra só o trecho do sofá onde os pés prendem)
@@ -499,6 +509,7 @@ Os demais:
 - `panturrilha-b`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `panturrilha-chao`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): sobe com as duas pernas e desce com uma, como a ficha de 12/11 pede; a de hoje desce com as duas
 - `panturrilha-degrau`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o erro "quicar embaixo" não foi desenhado: é erro de ritmo, e o motor novo ainda não muda o tempo das fases por erro)
+- `panturrilha-leg-press`: (sem linha no andamento)
 - `panturrilha-sentada-halter`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a primeira pose sentada do motor novo)
 - `pike`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos; a descida é mais curta que a de hoje porque a cabeça chega ao chão)
 - `ponte-gluteo`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
