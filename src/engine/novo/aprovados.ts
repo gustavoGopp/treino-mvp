@@ -158,6 +158,8 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
  * o Gustavo ver (como ele pediu em 15/11/2026), e as que voltaram para correção. Ficam fora do app e do catálogo.
  */
 export const EM_REVISAO: Record<string, string> = {
+  'abducao-maquina': 'volta para quem fez: a cabeça some na vista de cima e um cabo solto atravessa o fundo',
+  'aducao-maquina': 'volta para quem fez: a cabeça some na vista de cima e um cabo solto atravessa o fundo',
   'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
   'remada-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
   'hip-thrust': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
