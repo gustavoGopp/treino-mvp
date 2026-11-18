@@ -1,0 +1,66 @@
+{
+ "id": "abducao-polia",
+ "nome": "Abdução na polia com tornozeleira",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abducao-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abducao-polia.md): em pé, de lado para a torre, tornozeleira na perna mais longe da polia, mão na torre para equilíbrio, polia no ponto mais baixo (consenso, nsca2021, não verificado); leva a perna para o lado, cruzando a outra na volta, com o joelho estendido e o pé para a frente (um estudo: é o exercício do ensaio, attarieh2026); tronco reto, sem inclinar para o lado oposto (consenso)",
+  "app": "Cartão do app (src/conteudo/exercicios/abducao-polia.json): o começo (perna cruzada à frente da outra) e o fim (perna aberta para o lado, pé para a frente), as dicas e os erros",
+  "aprovada": "A abdução em pé com elástico aprovada (src/engine/novo/dados/movimentos/abducao-elastico.json): o pé de apoio, o joelho de apoio, a mão na cintura, o tronco reto, o pé de fora em ângulo reto e os números dos erros de inclinar o tronco e de girar o pé",
+  "aaos": "Amplitude do quadril da AAOS (src/engine/novo/dados/amplitudes.json, quadril.abducao: média 40°, máximo 60°)",
+  "equilibrio": "Em pé numa perna, parado, a projeção do centro de massa cai sobre o pé de apoio (mecânica); a mão na torre só equilibra",
+  "objetos": "src/engine/novo/dados/objetos.json (a coluna de polia aprovada: a roldana mais baixa a 17,8 cm, a relação 2:1, o trilho do carrinho) e src/engine/novo/dados/objetos/tornozeleira.json (a tornozeleira)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pe.apoio.paraFora": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o pé de apoio embaixo do quadril dele, 1 cm para fora (como na abdução com elástico)"},
+  "joelho.apoio": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o joelho de apoio quase estendido, sem travar; daí sai a altura do quadril"},
+  "pe.livre.acimaDoChao": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cruzada, a perna de fora fica com o pé 1 cm acima do chão, sem apoiar (o peso fica todo no pé de apoio); daí sai o pouco que o joelho de fora dobra"},
+  "pe.livre.flexaoPlantar": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o pé de fora com os dedos para a frente e a sola na horizontal: em ângulo reto com a canela, mais o quanto a coxa vai à frente (o pé estica esse tanto) (como na abdução com elástico, em que a coxa não vai à frente)"},
+  "abducao.inicio": {"v": -8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: a perna de fora cruzada à frente da outra, a coxa 8° para dentro da linha do quadril (a ficha não dá número)"},
+  "flexao.inicio": {"v": 17, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cruzada, a coxa vai 17° à frente, para o pé passar na frente do pé de apoio sem tocar a outra perna"},
+  "abducao.topo": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "aaos", "o": "a perna de fora abre até 30° a partir da linha do quadril, sem o tronco inclinar nem a bacia subir (a ficha não dá número; abaixo da média de 40° da AAOS; a abdução com elástico aprovada vai a 25°, aqui a volta cruzada aumenta o caminho)"},
+  "flexao.topo": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "aberta, a perna fica no plano do corpo (3° à frente), o pé para a frente"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "tronco reto, o pescoço na linha dele"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cabeça na linha do pescoço, o olhar à frente"},
+  "maos.naCintura.acima": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "a mão de fora na cintura (como na abdução com elástico)"},
+  "torre.mao.altura": {"v": 112, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão de dentro fecha no trilho da torre a 112 cm do chão, um pouco abaixo do peito"},
+  "torre.mao.aFrente": {"v": 18, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão na torre 18 cm à frente do ombro: a roldana embaixo dela fica à frente do pé de apoio, e o cabo passa na frente dele"},
+  "torre.cotovelo": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo de dentro dobrado 25°: é daí que sai a distância da torre (a mão só equilibra)"},
+  "torre.trilhoDiam": {"v": 5.5, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "a mão fecha no trilho do carrinho, o tubo de 5,5 cm na frente da coluna (como a peça desenha)"},
+  "pilha.folga": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o cabo já sai tenso: a pilha está 0,5 cm acima das placas de baixo no começo"},
+  "quadro.torreAte": {"v": 150, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a coluna até 150 cm (acima da mão); o resto dos 239 cm fica cortado pela borda, como nas polias baixas aprovadas"},
+  "erro.inclina.tronco": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: o tronco cai 15° para o lado da torre (como na abdução com elástico)"},
+  "erro.inclina.bacia": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a bacia sobe 6° do lado da perna que abre (como na abdução com elástico)"},
+  "erro.gira.giro": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a perna gira 35° para fora e os dedos apontam para o lado (como na abdução com elástico)"}
+ },
+ "fases": [
+  {"nome": "Perna cruzada", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "tronco reto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Abertura · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Aberto · segura", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlando", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.L"],
+ "regras": [
+  {"id": "abducao-em-pe-tronco-reto", "pede": "tronco reto: a bacia não sobe nem gira e o tronco não inclina para o lado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abducao-em-pe-perna-sobe-pouco", "pede": "a perna de fora vai para o lado, estendida, e volta cruzando a outra; sobe pouco (sem passar de ~45°)", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-tornozelo-cruza-a-frente", "pede": "na volta, a perna de fora cruza à frente da outra", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-dedos-para-a-frente", "pede": "dedos para a frente", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "quadril-pernas-sem-se-atravessar", "pede": "as duas pernas não se atravessam", "selo": "desenho", "fonte": "desenho"},
+  {"id": "abducao-em-pe-peso-no-pe-de-apoio", "pede": "o peso fica sobre o pé de apoio (a mão só equilibra)", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "polia-tornozelo-mao-na-torre", "pede": "a mão de dentro segura a torre, parada", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-tornozelo-tornozeleira-no-tornozelo", "pede": "a tornozeleira presa logo acima do tornozelo da perna de fora", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-tornozelo-polia-embaixo", "pede": "a polia no ponto mais baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à tornozeleira sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o que o cabo anda dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "inclina", "instante": 1, "titulo": "Inclinar o tronco", "vista": "frontal", "oQueMuda": "o tronco cai para o lado da torre e a bacia sobe do lado da perna que abre: a perna sobe mais, sem o glúteo", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "cabeca"},
+  {"id": "gira", "instante": 1, "titulo": "Girar o pé para fora", "vista": "frontal", "oQueMuda": "a perna gira para fora e os dedos apontam para o lado", "destaca": ["pernas"], "linha": ["calcanhar:R", "ponta:R"], "foco": "ponta:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "tronco reto", "ponto": "cabeca", "selo": "consenso", "fonte": "app", "guia": ["pelve", "c7"]},
+  {"vista": "frontal", "texto": "pé para a frente", "ponto": "ponta:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "a mão só equilibra", "ponto": "pegada:L", "selo": "consenso", "fonte": "aprovada"}
+ ]
+}

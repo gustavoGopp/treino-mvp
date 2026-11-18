@@ -169,3 +169,7 @@ export { hiperextensao } from './hiperextensao';
 export { abdominalDeclinado } from './abdominal-declinado';
 export { roscaMaquina } from './rosca-maquina';
 export { tricepsMaquina } from './triceps-maquina';
+export { remadaInvertida } from './remada-invertida';
+export { abducaoPolia } from './abducao-polia';
+export { coicePolia } from './coice-polia';
+export { abdominalNaMaquina } from './abdominal-maquina';

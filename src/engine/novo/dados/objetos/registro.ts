@@ -52,3 +52,5 @@ export { default as bancoRomano } from './banco-romano.json';
 export { default as bancoDeclinado } from './banco-declinado.json';
 export { default as roscaMaquina } from './rosca-maquina.json';
 export { default as tricepsMaquina } from './triceps-maquina.json';
+export { default as tornozeleira } from './tornozeleira.json';
+export { default as abdominalMaquina } from './abdominal-maquina.json';

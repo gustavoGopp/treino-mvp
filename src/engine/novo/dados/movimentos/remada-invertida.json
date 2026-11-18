@@ -1,0 +1,72 @@
+{
+ "id": "remada-invertida",
+ "nome": "Remada invertida",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-invertida.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-invertida.md): barra firme na altura da cintura (no rack, no smith ou uma barra baixa de praça); embaixo da barra, pegada um pouco mais aberta que os ombros; corpo reto dos calcanhares à cabeça, calcanhares no chão; puxa o peito até a barra com os cotovelos indo para trás; desce em ~2 s até os braços estenderem; no smith, a barra travada nos ganchos; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-invertida.json): o começo (braços estendidos, corpo reto) e o fim (peito encostando na barra), ~2 s de descida, as dicas e os erros",
+  "aprovada": "A remada na suspensão aprovada (src/engine/novo/exercicios/remada-suspensao.ts, ../dados/movimentos/remada-suspensao.json): a técnica é a mesma, por analogia (a ficha da técnica diz que segue a remada na suspensão); daí o corpo em prancha sobre os calcanhares, a ponta do pé para cima e as escápulas que vão à frente embaixo e se juntam em cima",
+  "objetos": "src/engine/novo/dados/objetos/smith.json: o smith aprovado (lote B2), a régua dos pinos a cada 16 cm a partir de 30 cm; a barra de 2,8 cm",
+  "corpo": "src/engine/novo/dados/corpo-homem.json: a altura da cintura (106,5 cm), a do peito (129,4 cm) e a da sétima cervical (151,5 cm), em pé; a largura dos ombros (40,8 cm)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "barra.pino": {"v": 94, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "a barra fica travada nos ganchos no pino de 94 cm (30 + 4 × 16): com o centro dela a 96,6 cm, entre a altura do quadril (90,6 cm) e a da cintura (106,5 cm) da tabela do corpo. O pino de cima (110 cm) deixaria o corpo a só 45° da vertical em cima, mais em pé que deitado, e a remada se confundia com a da suspensão"},
+  "barra.sobreOPino": {"v": 2.6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "com o gancho deitado no pino, o centro da barra fica 2,6 cm acima do centro do pino (o raio do pino, 1 cm, mais a meia altura do gancho, 1,6 cm, como a peça desenha)"},
+  "pegada.largura": {"v": 1.25, "un": "× ombros", "selo": "consenso", "fonte": "ficha", "o": "pegada um pouco mais aberta que os ombros: os centros das mãos a 1,25 vez a largura dos ombros (51 cm)"},
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "pés na largura do quadril, como na remada na suspensão"},
+  "pe.pontaSobe": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "calcanhares no chão: a ponta do pé sobe 55° do chão e fica parada; o corpo gira no tornozelo. Com o corpo de 45° a 65° da vertical, é o que deixa o tornozelo perto do ângulo de quem está em pé (de 10° dobrado para cima a 10° esticado)"},
+  "joelho": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "corpo reto: pernas estendidas, sem travar"},
+  "pescoco.flexao": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "pescoço na linha do corpo, o queixo um pouco recolhido"},
+  "barra.noPeito": {"v": 24, "un": "cm", "selo": "consenso", "fonte": "corpo", "o": "puxa o peito até a barra: em cima, a barra encosta no peito 24 cm abaixo da sétima cervical, ao longo do tronco, logo abaixo da linha dos mamilos (151,5 − 129,4 = 22 cm, em pé): a mão desce o bastante para o cotovelo passar das costas"},
+  "barra.folgaEmCima": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "fim: o peito encosta na barra (a pele fica a 0,5 cm dela)"},
+  "cotovelo.embaixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "desce até os braços estenderem, sem travar: o cotovelo dobra 8° embaixo"},
+  "cotovelo.polo.fora": {"v": 0.35, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "os cotovelos vão para trás (para o chão) e um pouco para fora, como numa remada com a pegada pronada aberta: o cotovelo aponta 0,35 para fora para cada 1 para trás, no tronco"},
+  "escapula.prot.inicio": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "braços estendidos: as escápulas vão à frente com o braço (como na remada na suspensão)"},
+  "escapula.retr.fim": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "no fim, as escápulas se juntam (como na remada na suspensão)"},
+  "escapula.elev.fim": {"v": -1, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "ombros baixos no fim"},
+  "trava.abaixo": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a trava de segurança fica 6 cm abaixo da barra travada (a barra não anda: está presa no gancho)"},
+  "quadro.ate": {"v": 120, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra o smith até 120 cm (acima da barra, a 96,6 cm); o resto da máquina, que tem 237 cm, fica cortado pela borda, para o corpo ocupar o quadro (como no supino no smith)"},
+  "quadro.fundo": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "da frente para o fundo, o quadro só precisa mostrar 30 cm da máquina para cada lado da barra (a guia, o carro e o gancho); o fundo e a frente dela (125 cm) podem ser cortados"},
+  "erro.quadril.dobra": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: o quadril cai e o corpo dobra 30° no quadril no fim (na remada na suspensão, 34°)"},
+  "erro.quadril.fracao": {"v": 0.55, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: com o quadril caído, o peito para no meio do caminho (0,55 da subida certa): 'encurta o movimento'"},
+  "erro.queixo.fracao": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: o peito para a 0,6 da subida certa, longe da barra"},
+  "erro.queixo.cervical": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o pescoço dobra 34° para a frente, levando a cabeça em direção à barra"},
+  "erro.queixo.cabeca": {"v": -30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a cabeça estende 30° sobre o pescoço, o queixo para cima, na direção da barra"},
+  "erro.solta.cotovelo": {"v": 2.5, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: no fim da descida solta, o corpo cai até o cotovelo travar (2,5°: o esqueleto não estende o cotovelo além de 2°)"},
+  "erro.solta.elev": {"v": 9, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o ombro leva o tranco e sobe para a orelha (+9° na escápula), como na barra só na descida aprovada"},
+  "erro.solta.prot": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: as escápulas se soltam e vão à frente (+14°)"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Peito na barra", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "encosta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "corpo-em-linha", "pede": "corpo reto, dos calcanhares à cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhares-no-chao", "pede": "calcanhares no chão, parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham na barra e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-fixa-pegada-pronada", "pede": "pegada pronada, um pouco mais aberta que os ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-invertida-maos-e-calcanhares-dos-dois-lados", "pede": "as duas mãos na barra (entre os carros) e os dois calcanhares no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-invertida-barra-travada", "pede": "no smith, a barra travada nos ganchos, na altura da cintura: não anda", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-invertida-bracos-estendidos-embaixo", "pede": "embaixo, os braços estendidos (sem travar)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-invertida-peito-na-barra", "pede": "em cima, o peito encosta na barra, na altura do peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-invertida-corpo-sobe-inteiro", "pede": "o corpo sobe inteiro, girando nos calcanhares", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-passa-as-costas", "pede": "os cotovelos vão para trás, além da linha das costas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "escapulas-se-juntam", "pede": "as escápulas se juntam no fim", "selo": "consenso", "fonte": "aprovada"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "nenhuma parte do corpo atravessa a barra", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "quadril", "instante": 1, "titulo": "Quadril caído", "vista": "lateral", "oQueMuda": "o quadril cai e o corpo dobra nele: o peito para longe da barra", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril"},
+  {"id": "queixo", "instante": 1, "titulo": "Puxar com o queixo", "vista": "lateral", "oQueMuda": "o peito para longe da barra e o pescoço estica, levando o queixo até ela", "destaca": ["corpo"], "linha": ["c7", "cabeca"], "foco": "cabeca"},
+  {"id": "solta", "instante": 0, "titulo": "Descida solta", "vista": "quinaTras", "oQueMuda": "a descida vira uma queda: embaixo, o corpo cai até o cotovelo travar e o ombro leva o tranco (a escápula sobe e vai à frente)", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "corpo reto", "ponto": "pelve", "selo": "consenso", "fonte": "app", "guia": ["calcanhar", "cabeca"]},
+  {"vista": "lateral", "texto": "peito na barra", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "escápulas se juntam no fim", "ponto": "c7", "selo": "consenso", "fonte": "aprovada"}
+ ]
+}

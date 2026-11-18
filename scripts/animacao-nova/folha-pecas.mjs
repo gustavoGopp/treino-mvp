@@ -26,7 +26,9 @@
 // No banco declinado, o encosto nos três ângulos de declínio da ficha, com os rolos das pernas, e o banco regulável ao lado.
 // Nas máquinas de rosca e de tríceps, a alavanca no começo e no fim (de lado), com a pilha subindo, e a outra máquina ao
 // lado (para ver que não se confundem).
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada|panturrilha-em-pe|panturrilha-sentada|banco-scott|banco-romano|banco-declinado|rosca-maquina|triceps-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na máquina de abdominal, o braço no começo e no fim (de lado), com a pilha subindo; na tornozeleira, a faixa fechada
+// na canela (sem o corpo), com a argola virada para a roldana.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada|panturrilha-em-pe|panturrilha-sentada|banco-scott|banco-romano|banco-declinado|rosca-maquina|triceps-maquina|abdominal-maquina|tornozeleira] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -903,5 +905,55 @@ for (const [id, outro] of [
 <div class="l">${cel(`começo (${v(R.inicio, 0)}°): as placas embaixo`, img(desenho(c0.pecas, lado), 520))}${cel(`fim (${v(R.fim, 0)}°): as placas do pino ${v(c1.subida)} cm acima`, img(desenho(c1.pecas, lado), 520))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(c1.pecas, cam), 640))}</div>
 <h2>As medidas</h2>${tabela(B.objeto, [B.chave])}`,
+  );
+}
+
+if (!so || so === 'abdominal-maquina') {
+  // a regulagem do corpo da tabela, no começo e no fim do abdominal (a máquina sem o corpo)
+  const ex = m.EXERCICIOS['abdominal-maquina'];
+  const q0 = ex.quadro(m.CORPOS.homem, 0),
+    q1 = ex.quadro(m.CORPOS.homem, 1);
+  const p0 = q0.pecas,
+    p1 = q1.pecas;
+  // de três quartos, pela frente e pelo lado direito de quem senta (como o cartão de hoje)
+  const cam = { yaw: 250, pitch: 12, s: 0.6 };
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const sobe = q1.marcas.pilha[1];
+  const gira = q1.marcas.alavanca[0];
+  const e = q0.marcas.eixo;
+  await foto(
+    'abdominal-maquina',
+    `<h1>Abdominal na máquina: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total vem das fichas da Life Fitness (SS-AB, 133 × 117 × 148 cm), da Hammer Strength (HS-ABC, 158 × 89 × 143), da Movement (141 × 114 × 146) e da Technogym (MK83, 139 × 103 × 140); a espessura dos estofados, da Precor. <b>Como a máquina funciona vem do manual público da Life Fitness</b> (Insignia, p. 8): o assento regula na altura em que o apoio da lombar fica na lombar; as mãos seguram os pegadores e "só guiam"; as almofadas ficam sobre o peito, presas a um braço que gira para a frente num eixo atrás e ao lado da lombar. <b>O que muda do cartão de hoje:</b> no cartão, o braço gira num eixo alto, atrás da cabeça (a 146 cm), e não há apoio da lombar; aqui o eixo fica baixo, ao lado da lombar, e há o apoio, como no manual.</p>
+<p><b>O que sai do corpo (as fichas não dão):</b> a altura do assento (${v(q0.marcas.assento[1])} cm: a coxa na horizontal, os pés no chão, o joelho a 90°); o apoio da lombar encostado nas costas, a ${v(q0.marcas.lombar[1])} cm do chão; <b>o eixo do braço no polo da rotação do tórax</b> do começo ao fim do movimento (a ${v(e[1])} cm do chão, ${v(Math.abs(e[2]))} cm atrás da borda do assento): com ele ali, as almofadas ficam no mesmo lugar do peito no começo e no fim; as almofadas sobre o peito, abaixo das clavículas (de 16 cm: medido que cabem no peito dos dois lados); os pegadores à frente dos ombros; os rolos sobre o peito do pé.</p>
+<p><b>A máquina funciona:</b> o braço (as duas hastes pelos lados do corpo, o arco por cima dos ombros, as almofadas e os pegadores) gira inteiro no eixo; o came gira com ele e enrola o cabo, e as placas do pino sobem ${v(sobe)} cm quando o braço gira ${v(gira, 0)}° (do tronco reto ao tronco enrolado). Na cena, a haste e o montante do lado direito de quem senta (o de perto, de lado) são pintados atrás do corpo (o corte de ilustração do smith).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('abdominal_maquina'), 96, 'cartao'))}${cel('nova', img(desenho(p0, cam), 96, 'cartao'))}${cel('hoje: a cadeira extensora (para ver se ainda se confundem)', img(hoje('cadeira_extensora'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje (o eixo alto, atrás da cabeça)', img(hoje('abdominal_maquina'), 440, 'cartao'))}${cel('nova, de três quartos, no começo (o tronco reto)', img(desenho(p0, cam), 640))}</div>
+<h2>Funcionando: o braço no começo e no fim (de lado, pelo lado direito de quem senta)</h2>
+<div class="l">${cel('começo: as almofadas sobre o peito reto, as placas embaixo', img(desenho(p0, lado), 640))}${cel(`fim: o braço girou ${v(gira, 0)}° no eixo; as placas do pino ${v(sobe)} cm acima`, img(desenho(p1, lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(p1, cam), 640))}</div>
+<h2>As medidas</h2>${tabela('abdominal-maquina', ['abdominalMaquina'])}`,
+  );
+}
+
+if (!so || so === 'tornozeleira') {
+  // a tornozeleira fechada na perna do corpo da tabela (sem o corpo), com a argola virada para a roldana, no coice
+  const ex = m.EXERCICIOS['coice-polia'];
+  const q = ex.quadro(m.CORPOS.homem, 0.5);
+  const tz = q.pecas.filter((p) => p.nome === 'tornozeleira');
+  const o = (id) => m.obj('tornozeleira', id);
+  const cam = { yaw: 40, pitch: 12, s: 0.6 };
+  await foto(
+    'tornozeleira',
+    `<h1>Tornozeleira de polia: o cartão de hoje × a peça nova</h1>
+<p>A pesquisa de objetos não tinha nenhuma medida dela. Lidas em páginas públicas de fabricante (18/11/2026): a <b>Gymreapers Ankle Straps</b> (faixa de 10 × 4 pol = ${v(o('comp'))} × ${v(o('larg'))} cm, neoprene de 7 mm, argolas em D de aço, velcro) e a <b>Power Systems Nylon Ankle/Wrist Strap 50760</b> (2 × 16 pol, nylon com neoprene, argola em D, velcro; mais estreita e mais comprida, para servir também no punho). Fechada no tornozelo da tabela (21,9 cm de volta), a faixa de 25,4 cm sobra ${v(o('sobreposicao'))} cm, a ponta de velcro. <b>Nenhuma ficha dá a medida da argola nem do mosquetão:</b> ficam provisórias (em vermelho na tabela).</p>
+<p><b>Na cena:</b> a faixa fecha em volta da canela, ${v(o('acimaDoTornozelo'), 0)} cm acima do centro do tornozelo (logo acima dos maléolos, como a caneleira aprovada); a argola fica do lado da faixa virado para a roldana e aponta para ela (o cabo a puxa); o cabo começa na ponta do mosquetão. O pegador do elástico no tornozelo, que já existia, não serve: é uma pegada rígida, e a tornozeleira é uma faixa que envolve a perna.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('acessorio_polia_tornozeleira'), 96, 'cartao'))}${cel('nova (fechada na canela, sem o corpo)', img(desenho(tz, cam, false), 96, 'cartao'))}${cel('hoje: o estribo (para ver se ainda se confundem)', img(hoje('acessorio_polia_estribo'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('acessorio_polia_tornozeleira'), 440, 'cartao'))}${cel('nova, de três quartos', img(desenho(tz, cam, false), 440))}${cel('nova, de lado (a argola virada para a roldana, à frente)', img(desenho(tz, { yaw: 90, pitch: 4, s: 0.6 }, false), 440))}</div>
+<h2>As medidas</h2>${tabela('tornozeleira', ['tornozeleira'])}`,
   );
 }
