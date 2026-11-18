@@ -8,6 +8,8 @@ De 17/11/2026. Parte A do prompt `docs/prompts/sessao-animacoes-restantes.md`. O
 |---|---|
 | O modo de aprovação das 90 continua: quem integra confere tudo quadro a quadro e leva a ele só as de maior risco | "pode continuar assim" (17/11/2026) |
 | As animações entram no app (o `animacaoId` na biblioteca e o texto do guia) uma vez por fase, depois de A, de B e de C | "liga por fase" (17/11/2026) |
+| A rosca Scott no banco inclinado e a barra fixa só na descida, como estão | "pode aprovar a rosca scott assim" (17/11/2026); "pode aprovar a barra negativa assim" (18/11/2026) |
+| A fase A não entra no app antes de uma sessão do gerador definir, com fonte, a ordem entre os exercícios equivalentes (hoje, com todos animados, o desempate vira a ordem alfabética do nome interno); enquanto isso, seguem as fases B e C e o texto do guia dos 42 | "pode seguir com a sua recomendação" (18/11/2026); prompt em `docs/prompts/sessao-desempate-do-gerador.md` |
 
 ## 1. Em uma frase, e a recomendação
 
