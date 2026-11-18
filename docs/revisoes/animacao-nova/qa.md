@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 140 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 142 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2660 células dos cuidados 1 a 19: M 1076, M! 121, O 1009, C 420, – 22, ✗ 12.
+Contagem das 2698 células dos cuidados 1 a 19: M 1090, M! 122, O 1024, C 426, – 22, ✗ 14.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -66,6 +66,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `agachamento-elastico` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [folha](prototipos/folha-agachamento-elastico.png) |
 | `agachamento-halteres` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/agachamento-halteres.png) |
 | `agachamento-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-agachamento-peso-corpo.png) |
+| `agachamento-smith` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/agachamento-smith.png) |
 | `barra-fixa` | 4 | M | M | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/barra-fixa.png) |
 | `barra-fixa-negativa` | ? | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/barra-fixa-negativa.png) |
 | `barra-fixa-supinada` | 4 | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/barra-fixa-supinada.png) |
@@ -170,6 +171,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `supino-inclinado-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-inclinado-polia.png) |
 | `supino-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-polia.png) |
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
+| `supino-smith` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-smith.png) |
 | `terra-hexagonal` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/terra-hexagonal.png) |
 | `terra-romeno-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/terra-romeno-barra.png) |
 | `triceps-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-barra-reta.png) |
@@ -233,6 +235,9 @@ Os demais:
 - `agachamento-peso-corpo`
   - cuidado 2: flexão do quadril → 137,3°
   - cuidado 2: dorsiflexão do tornozelo → 25,4°
+- `agachamento-smith`
+  - cuidado 14: o erro "Esquecer a trava" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: dorsiflexão do tornozelo → 29,4°
 - `barra-fixa`
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 15,5% da velocidade de pico (cotovelo direito, Escápulas descem e sobe · concêntrica); pico de 159,2 cm/s
 - `barra-fixa-negativa`
@@ -379,6 +384,8 @@ Os demais:
   - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `supino-polia`
   - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+- `supino-smith`
+  - cuidado 14: o erro "Quicar a barra" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `terra-hexagonal`
   - cuidado 2: flexão do quadril → 135,2°
 - `triceps-barra-reta`
@@ -416,6 +423,7 @@ Os demais:
 - `agachamento-elastico`: aprovada na folha
 - `agachamento-halteres`: (sem linha no andamento)
 - `agachamento-peso-corpo`: aprovada na folha
+- `agachamento-smith`: (sem linha no andamento)
 - `barra-fixa`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pegada ficou em 1,5 vez a largura dos ombros, como a pesquisa diz; a de hoje usa 1,8. A estação de barra é peça nova, a 229 cm)
 - `barra-fixa-negativa`: (sem linha no andamento)
 - `barra-fixa-supinada`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
@@ -520,6 +528,7 @@ Os demais:
 - `supino-inclinado-polia`: (sem linha no andamento)
 - `supino-polia`: (sem linha no andamento)
 - `supino-reto`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
+- `supino-smith`: (sem linha no andamento)
 - `terra-hexagonal`: (sem linha no andamento)
 - `terra-romeno-barra`: (sem linha no andamento)
 - `triceps-barra-reta`: (sem linha no andamento)

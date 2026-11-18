@@ -153,4 +153,6 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | B1 | `terra-romeno-barra` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas** (5 kg, 24 cm; com as de 45 cm a anilha tapa as mãos e as pernas de lado) |
 | B1 | `remada-barra` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas** |
 | B1 | `hip-thrust` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas**; o banco atravessado é pintado atrás do corpo |
+| B2 | `agachamento-smith` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (smith: peça nova, guia a 7° pela ficha da Life Fitness SSM; o lado de perto da máquina é pintado atrás do corpo; "Esquecer a trava" sem desenho) |
+| B2 | `supino-smith` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (de lado, a guia passa por trás do corpo e o rótulo fica sobre ela; de cima se lê limpo; "Quicar a barra" sem desenho) |
 
