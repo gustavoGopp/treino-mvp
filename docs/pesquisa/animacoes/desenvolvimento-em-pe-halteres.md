@@ -30,3 +30,16 @@ Halter: o próximo peso da lista (`progressao.incremento.halteres`); sem um mais
 ## Fontes
 - `saeterbakken2013` (`docs/pesquisa/fontes.md`).
 - `haugen2023` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/desenvolvimento-em-pe-halteres.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (frente do ombro; lateral do ombro e tríceps) e a biblioteca; a nota, da seção Segurança (lombar) e do erro "Arquear a lombar" | consenso | revisão de anatomia, achado 4; `saeterbakken2013` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a linha Posição da tabela de técnica | consenso | `saeterbakken2013` |
+| Variações (`vary`) | a posição do cartão (palmas para a frente ou uma para a outra) e a linha Movimento | consenso | `saeterbakken2013` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/desenvolvimento-em-pe-halteres.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha de pegada do cartão.

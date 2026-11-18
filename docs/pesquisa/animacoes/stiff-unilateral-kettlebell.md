@@ -30,3 +30,16 @@ Kettlebell: o próximo da lista; descida de 3 s.
 ## Fontes
 - `kassiano2025` (`docs/pesquisa/fontes.md`).
 - `collings2023` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/stiff-unilateral-kettlebell.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (posteriores; glúteos) e a biblioteca; a nota, dos erros "Arredondar as costas" e "Dobrar o joelho de apoio" | consenso | `collings2023` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a tabela de técnica | consenso | `17`, G3; `collings2023` |
+| Variações (`vary`) | a seção Segurança (a mão livre numa parede) e a amplitude do cartão | consenso | `17`, G3 |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/stiff-unilateral-kettlebell.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa além do apoio e da profundidade.

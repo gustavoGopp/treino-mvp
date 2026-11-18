@@ -1,0 +1,66 @@
+{
+  "id": "desenvolvimento-unilateral",
+  "name": "Desenvolvimento unilateral com halter, em pé",
+  "short": "Desenvolvimento unilateral",
+  "target": "Frente do ombro; ajudam a lateral do ombro e o tríceps",
+  "feel": "Frente do ombro. A lateral do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está inclinando para trás: abdômen e glúteos firmes.",
+  "setupEq": [
+    "Um halter."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, abdômen e glúteos firmes.",
+    "Halter na altura do ombro, cotovelo um pouco à frente do corpo; a outra mão na cintura ou num apoio."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Empurra o halter para cima até quase estender o cotovelo, sem inclinar o tronco para o lado."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até o halter voltar à altura do ombro."
+    ]
+  ],
+  "range": [
+    "Início: halter na altura do ombro.",
+    "Fim: braço quase estendido, halter sobre o ombro."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Tronco reto.",
+    "Sobe na linha do ombro.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Abdômen e glúteos firmes",
+    "Cotovelo um pouco à frente do corpo",
+    "Tronco reto"
+  ],
+  "vary": "A mão livre pode ficar na cintura ou num apoio. O que não muda: o tronco reto, sem inclinar para o lado, e a descida até o halter voltar à altura do ombro.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Inclinar para o lado",
+      "desc": "Dobrar o tronco para o lado oposto para subir a carga."
+    },
+    {
+      "id": "e2",
+      "title": "Arquear a lombar",
+      "desc": "Inclinar para trás sobrecarrega a lombar."
+    },
+    {
+      "id": "e3",
+      "title": "Descida curta",
+      "desc": "Parar acima do ombro deixa de fora metade do movimento."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+}

@@ -1,0 +1,77 @@
+{
+  "id": "crucifixo-invertido-curvado",
+  "name": "Crucifixo invertido curvado com halteres",
+  "short": "Crucifixo invertido curvado",
+  "target": "Ombro (posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se sentir a lombar, as costas estão arredondando ou o tronco está subindo: costas retas e tronco parado. Se sentir o alto dos ombros (trapézio), os ombros estão subindo.",
+  "setupEq": [
+    "Um par de halteres leves."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos levemente dobrados.",
+    "Dobre o quadril até o tronco ficar bem inclinado, costas retas.",
+    "Halteres pendurados, palmas uma para a outra."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Abre os braços para os lados, cotovelos fixos, até perto da linha dos ombros."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa curta, tronco parado."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até os braços pendurarem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços pendurados.",
+    "Em cima: braços perto da linha dos ombros."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Costas retas.",
+    "Tronco parado.",
+    "Abre para os lados."
+  ],
+  "check": [
+    "Halteres leves",
+    "Joelhos levemente dobrados",
+    "Tronco bem inclinado, costas retas",
+    "Palmas uma para a outra"
+  ],
+  "vary": "O tronco fica bem inclinado, perto de 45° ou mais. O que não muda: as costas retas, o tronco parado e os cotovelos fixos.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar as costas",
+      "desc": "A lombar perde a posição."
+    },
+    {
+      "id": "e2",
+      "title": "Subir o tronco",
+      "desc": "Embalo a cada repetição."
+    },
+    {
+      "id": "e3",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio assume."
+    },
+    {
+      "id": "e4",
+      "title": "Dobrar os cotovelos",
+      "desc": "Vira uma remada."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres; comece leve."
+}

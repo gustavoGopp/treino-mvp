@@ -28,3 +28,16 @@ Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem a
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/desenvolvimento-unilateral.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (na biblioteca: ombro anterior; ombro lateral e tríceps); a nota, do erro "Arquear a lombar" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Posição ("a outra mão na cintura ou num apoio") e as linhas Subida e Descida | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/desenvolvimento-unilateral.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a seção Músculos só repete os ids da biblioteca, sem selo próprio; a ficha não diz o que varia de pessoa para pessoa além de onde fica a mão livre.

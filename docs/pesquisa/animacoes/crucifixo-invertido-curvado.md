@@ -31,3 +31,16 @@ Halter: o próximo peso da lista.
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
 - `schoenfeld2013`: Schoenfeld B et al. Effect of hand position on EMG activity of the posterior shoulder musculature during a horizontal abduction exercise. J Strength Cond Res 2013;27(10):2644-9. PMID 23302754 (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/crucifixo-invertido-curvado.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro posterior, sem secundário) e a biblioteca; a nota, de Por que assim ("a lombar segura o tronco inclinado") e dos erros 1, 2 e 3 | um estudo | `schoenfeld2013` (EMG); `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica e "halteres leves" do cartão | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Posição ("perto de 45° ou mais") e Tronco da tabela | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/crucifixo-invertido-curvado.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa além do quanto inclinar.

@@ -1,0 +1,66 @@
+{
+  "id": "goblet-kettlebell",
+  "name": "Agachamento goblet com kettlebell",
+  "short": "Goblet com kettlebell",
+  "target": "Quadríceps",
+  "feel": "Frente da coxa. Os glúteos e a parte de dentro da coxa (adutores) ajudam.",
+  "feelNote": "Desça só até onde não há dor. Se o calcanhar sair do chão, o peso foi para a ponta dos pés.",
+  "setupEq": [
+    "Kettlebell junto ao peito, mãos nas laterais da alça, base para baixo."
+  ],
+  "setupBody": [
+    "Pés um pouco mais abertos que o quadril.",
+    "Tronco ereto."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce entre os joelhos o mais fundo possível sem dor, com os cotovelos apontando para baixo."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe com o tronco ereto e os calcanhares no chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: o mais fundo possível sem dor, cotovelos entre os joelhos.",
+    "Em cima: em pé, sem travar os joelhos."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Peito alto.",
+    "Desce fundo.",
+    "Calcanhar no chão."
+  ],
+  "check": [
+    "Kettlebell junto ao peito",
+    "Mãos nas laterais da alça, base para baixo",
+    "Pés um pouco mais abertos que o quadril",
+    "Calcanhares no chão"
+  ],
+  "vary": "A profundidade: o mais fundo possível sem dor. O que não muda: o tronco ereto, os cotovelos entre os joelhos no fundo e os calcanhares no chão.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tronco tomba",
+      "desc": "O tronco cai para a frente."
+    },
+    {
+      "id": "e2",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta tira o trabalho da coxa."
+    },
+    {
+      "id": "e3",
+      "title": "Calcanhar sai do chão",
+      "desc": "O peso vai para a ponta dos pés."
+    }
+  ],
+  "carga": "Registre o peso do kettlebell, da sua lista. Os saltos costumam ser grandes: antes de subir, faça 1–2 repetições acima do topo em todas as séries."
+}
