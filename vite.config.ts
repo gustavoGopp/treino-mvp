@@ -1,5 +1,5 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { execSync } from 'node:child_process';
@@ -27,17 +27,43 @@ const cabecalhosDaVercel = (): Record<string, string> => {
   return Object.fromEntries(v.headers.filter((h) => h.source === '/(.*)').flatMap((h) => h.headers.map((c) => [c.key, c.value])));
 };
 
+// O pacote do app leva só o número de cada medida dos objetos do motor novo (src/engine/novo/dados/objetos.json e
+// dados/objetos/*.json): os textos de fonte, de onde a medida saiu e o nome do objeto ficam nos arquivos, para a
+// conferência, as folhas e os testes (que rodam sem este passo), mas não vão para o celular, onde só `obj()` lê a
+// tabela e só o valor importa. Cada máquina nova trazia de 2 a 3 kB comprimidos de texto ao pacote de quem volta
+// (orçamento de 285 kB, tests/e2e/orcamento.spec.ts). As chaves continuam (a tabela confere que cada fonte existe).
+const OBJETOS_DO_MOTOR = /src\/engine\/novo\/dados\/(objetos\.json|objetos\/[^/]+\.json)$/;
+const enxugarObjetos = (): Plugin => ({
+  name: 'enxugar-objetos-do-motor',
+  apply: 'build',
+  enforce: 'pre',
+  transform(code, id) {
+    if (!OBJETOS_DO_MOTOR.test(id.split('?')[0]!)) return null;
+    const t = JSON.parse(code) as { fontes: Record<string, string>; objetos: Record<string, { nome: string; medidas: Record<string, Record<string, unknown>> }> };
+    for (const k of Object.keys(t.fontes)) t.fontes[k] = '-';
+    for (const ob of Object.values(t.objetos)) {
+      ob.nome = '-';
+      for (const m of Object.values(ob.medidas)) {
+        m.onde = '-';
+        delete m.nota;
+      }
+    }
+    return { code: JSON.stringify(t), map: null };
+  },
+});
+
 export default defineConfig(({ mode }) => ({
   preview: { headers: cabecalhosDaVercel() },
   // O Worker do Boneco carrega cada exercício do motor novo só quando ele é pedido (um arquivo por exercício): para
   // isso o pacote do Worker precisa ser um módulo, que aceita ser dividido em partes.
-  worker: { format: 'es' },
+  worker: { format: 'es', plugins: () => [enxugarObjetos()] },
   define: {
     __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),
     __DATA_BUILD__: JSON.stringify(new Date().toISOString()),
   },
   plugins: [
+    enxugarObjetos(),
     react(),
     VitePWA({
       registerType: 'autoUpdate',
