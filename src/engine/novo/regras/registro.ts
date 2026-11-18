@@ -55,3 +55,4 @@ export { REGRAS_UMA_TORRE } from './uma-torre';
 export { REGRAS_MERGULHO } from './mergulho';
 export { REGRAS_FACE_PULL_SUSPENSAO } from './face-pull-suspensao';
 export { REGRAS_BARRA_FIXA_NEGATIVA } from './barra-fixa-negativa';
+export { REGRAS_BARRA_LONGA } from './barra-longa';
