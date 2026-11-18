@@ -142,3 +142,5 @@ export { terraHexagonal } from './terra-hexagonal';
 export { terraRomenoBarra } from './terra-romeno-barra';
 export { remadaBarra } from './remada-barra';
 export { hipThrust } from './hip-thrust';
+export { agachamentoSmith } from './agachamento-smith';
+export { supinoSmith } from './supino-smith';

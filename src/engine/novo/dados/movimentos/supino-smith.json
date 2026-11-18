@@ -1,0 +1,54 @@
+{
+ "id": "supino-smith",
+ "nome": "Supino reto no smith",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-smith.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/supino-smith.md) e cartão do app (src/conteudo/exercicios/supino-smith.json): consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "tecnica08": "docs/pesquisa/08-tecnica-guia.md, conclusão 4 (tecnica.supino-halteres.cotovelos): cotovelos a ~30–60° do tronco; consenso com apoio biomecânico",
+  "aprovado": "Supino reto com halteres aprovado no motor novo (dados/movimentos/supino-reto.json): o corpo deitado no banco (a bacia, a coluna, a cabeça apoiada a 3 cm da ponta do banco, os pés no chão), as escápulas e o ritmo. Este exercício nunca teve animação",
+  "corpo": "Tabela do corpo (src/engine/novo/dados/corpo-homem.json): largura biacromial de 40,8 cm (ANSUR II)",
+  "objetos": "src/engine/novo/dados/objetos/smith.json (Life Fitness SSM: a barra de 9 kg, a guia a 7°), src/engine/novo/dados/objetos/barra-longa.json (as anilhas) e o banco reto da tabela (src/engine/novo/dados/objetos.json)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "barra.alemDaLinhaDoPeito": { "v": 2, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a barra desce na linha do meio do peito: a dos mamilos (altura.peito da tabela do corpo, ANSUR II, 22,1 cm abaixo de C7 em pé, medida ao longo do tronco a partir de C7–T1), e 2 cm além dela, para os pés. A ficha não dá número; na linha exata, o antebraço ficava a 20° da vertical embaixo, e cada centímetro para os pés o endireita um pouco" },
+  "barra.amassa": { "v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a barra 'encosta de leve no peito': afunda 0,5 cm na pele" },
+  "pegada.meia": { "v": 30.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "do meio da barra ao centro de cada mão: a pegada um pouco mais aberta que os ombros, 1,5 vez a largura biacromial (61 cm contra 40,8; o cartão: 'até ~1,5 vez'), a mais aberta que o cartão deixa, para o antebraço ficar o mais em pé possível embaixo" },
+  "cotovelos.doTronco": { "v": 45, "un": "graus", "selo": "consenso", "fonte": "tecnica08", "o": "cotovelos a ~30–60° do tronco ('seta', não 'T'): o cotovelo aponta para 45° do tronco, no meio da faixa; a conferência mede o ângulo que sai" },
+  "cotovelo.cima": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: cotovelos quase estendidos, sem travar (o cartão: 'Empurra sem travar os cotovelos no topo'); a altura da barra em cima sai daí" },
+  "escapula.retracao": { "v": 9, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "escápulas juntas (o cartão: 'Escápulas juntas e para baixo'), como no supino com halteres aprovado" },
+  "escapula.depressao": { "v": 4, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "escápulas para baixo, como no supino com halteres aprovado" },
+  "pes.meiaDistancia": { "v": 22, "un": "cm", "selo": "consenso", "fonte": "aprovado", "o": "pés no chão, um pouco mais abertos que o quadril, como no supino com halteres aprovado" },
+  "cabeca.folgaNoBanco": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "do topo da cabeça à ponta do banco: a cabeça apoiada no banco, como no supino com halteres aprovado (pedido do Gustavo de 15/11/2026)" },
+  "anilhas": { "v": 10, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 10 kg de cada lado (com a barra de 9 kg, 29 kg); o cartão manda registrar os kg de anilha de cada lado" },
+  "trava.abaixo": { "v": 1.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as travas 'logo acima do peito': o carro para na trava com a barra 1,5 cm abaixo de onde ela encosta no peito, ou seja, antes de afundar nele; no movimento certo a barra não chega nelas" },
+  "erro.banco.desloca": { "v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o banco (e quem deita nele) fica 14 cm mais para a cabeça; a barra, que só anda na guia, desce na barriga, abaixo do peito (o cartão: 'A barra desce no pescoço ou na barriga')" },
+  "erro.T.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: cotovelos a ~90° do tronco (o cartão: 'Cotovelos a 90° do tronco')" },
+  "quadro.ate": { "v": 135, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra o smith até 135 cm (acima da barra em cima, a 112 cm, e das anilhas); o resto da máquina, que tem 237 cm, fica cortado pela borda, para o corpo ocupar o quadro" }
+ },
+ "fases": [
+  { "nome": "Topo", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Embaixo · sem quicar", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "encosta de leve", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "aprovado" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "barra-so-anda-na-guia", "pede": "a barra só anda na guia do smith: o centro dela fica na linha da guia, a 7° da vertical", "selo": "consenso", "fonte": "objetos" },
+  { "id": "barra-no-meio-do-peito", "pede": "o banco centrado sob a barra: ela desce na linha do meio do peito e encosta de leve nele", "selo": "consenso", "fonte": "ficha" },
+  { "id": "cotovelos-30-60", "pede": "cotovelos a 30–60° do tronco", "selo": "consenso", "fonte": "tecnica08" },
+  { "id": "antebracos-quase-verticais-embaixo", "pede": "embaixo, antebraços quase verticais", "selo": "consenso", "fonte": "ficha" },
+  { "id": "pegada-ate-1-5-ombro", "pede": "pegada um pouco mais aberta que os ombros (até ~1,5 vez)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "cotovelos-sem-travar-em-cima", "pede": "em cima, cotovelos quase estendidos, sem travar", "selo": "consenso", "fonte": "ficha" },
+  { "id": "travas-logo-abaixo-do-fundo", "pede": "as travas de segurança logo acima do peito (a barra não chega nelas no movimento certo)", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "banco", "instante": 1, "titulo": "Banco fora do lugar", "vista": "lateral", "oQueMuda": "o banco fica mais para a cabeça: a barra, presa na guia, desce na barriga e não no meio do peito", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho" },
+  { "id": "T", "instante": 1, "titulo": "Cotovelos em T", "vista": "cima", "oQueMuda": "o braço fica a ~90° do tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "barra no meio do peito", "ponto": "pegada", "selo": "consenso", "fonte": "ficha" },
+  { "vista": "cima", "texto": "cotovelos em seta, não em T", "ponto": "cotovelo", "selo": "consenso", "fonte": "tecnica08", "acima": true }
+ ]
+}

@@ -3,7 +3,8 @@
 // Na cadeira flexora, também a máquina funcionando: a alavanca no começo e no fim, com a pilha subindo.
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -16,6 +17,7 @@ export * from './src/engine/novo/pecas-de-cena/cadeira-flexora.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
+export * from './src/engine/novo/pecas-de-cena/smith.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -202,5 +204,32 @@ if (!so || so === 'barra-hexagonal') {
 <div class="l">${cel('hoje', img(hoje('barra_hexagonal'), 440, 'cartao'))}${cel('nova, do mesmo ângulo', img(novo, 440))}</div>
 <div class="l" style="margin-top:12px">${cel('nova, de cima: os cabos atravessam o hexágono, a 63,5 cm um do outro', img(deCima, 640))}${cel('nova, de frente para a barra (a pessoa entra por aqui)', img(deFrente, 640))}</div>
 <h2>As medidas</h2>${tabela('barra-hexagonal', ['barraHexagonal'])}<p style="margin-top:8px">As anilhas e a presilha são as da barra longa (folha-barra.png).</p>`,
+  );
+}
+
+if (!so || so === 'smith') {
+  // como no cartão de hoje: de três quartos, a barra presa no gancho, à altura do peito, com uma anilha de 20 kg de cada lado
+  const S = (o) => m.smith({ base: [0, 0, 0], sobePara: 1, barra: 128, trava: 60, gancho: 0, anilhas: ['anilha20'], ...o });
+  // o cartão de hoje põe a barra ao longo de z e olha de yaw 30; a peça tem a barra ao longo de x: yaw 120 é o mesmo ângulo
+  const cam = { yaw: 120, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const cima = S({}).centro,
+    baixo = S({ barra: 62 }).centro;
+  const anda = Math.hypot(cima[1] - baixo[1], cima[2] - baixo[2]);
+  const pesoDe = (an) => m.massaDoSmith(an).toFixed(0);
+  await foto(
+    'smith',
+    `<h1>Smith: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total vem da ficha da Life Fitness SSM (221 × 125 × 237 cm; a Hammer Strength HSSMV, vertical, tem 229 × 127 × 234). A mesma ficha dá a inclinação da guia, <b>7°</b> ("7-degree bar angle follows the natural free weight path of movement for pressing or squatting"), o passo dos ganchos (16 cm), o peso da barra (9 kg, com contrapeso) e os 8 pinos de anilha. A ficha não diz para que lado a guia inclina em relação a quem treina: aqui o alto da guia vai para a cabeça no supino, e no agachamento a barra desce um pouco para trás. As medidas de dentro da máquina (onde fica a guia, o carro, a régua dos pinos, a trava) não aparecem em nenhuma ficha lida: são de desenho, em amarelo na tabela.</p>
+<p><b>O que separa o smith do suporte de agachamento</b> (o cuidado 12): as duas guias cromadas com a barra presa nelas pelos carros dos rolamentos (no suporte, a barra está solta, apoiada em ganchos em J nas colunas com furos), a régua de pinos onde o gancho da barra prende ao girar a barra, as travas que correm na guia e a guia inclinada. O cartão de hoje tinha as guias e os ganchos, mas a barra parecia apoiada, como no suporte.</p>
+<p><b>A máquina funciona:</b> a barra só anda na guia: de 128 cm para 62 cm de altura ela anda ${anda.toFixed(1).replace('.', ',')} cm na guia e ${(cima[2] - baixo[2]).toFixed(1).replace('.', ',')} cm para o lado (7°); os carros descem com ela; o gancho gira com a barra e prende num pino da régua; a trava fica parada na guia e o carro para nela. Com uma anilha de 20 kg de cada lado, a barra põe ${pesoDe(['anilha20'])} kg nas mãos.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje: o smith', img(hoje('smith'), 96, 'cartao'))}${cel('nova', img(desenho(S({}).pecas, cam), 96, 'cartao'))}${cel('hoje: o suporte de agachamento (para ver se ainda se confundem)', img(hoje('rack_de_agachamento'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('smith'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, com a barra presa no gancho', img(desenho(S({}).pecas, cam), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('hoje: o suporte de agachamento', img(hoje('rack_de_agachamento'), 440, 'cartao'))}</div>
+<h2>Funcionando (de lado): a barra só anda na guia</h2>
+<div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
+<h2>As medidas</h2>${tabela('smith', ['smith'])}`,
   );
 }

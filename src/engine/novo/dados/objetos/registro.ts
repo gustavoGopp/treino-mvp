@@ -31,3 +31,4 @@ export { default as suporte } from './suporte.json';
 export { default as barraW } from './barra-w.json';
 export { default as barraHexagonal } from './barra-hexagonal.json';
 export { default as almofadaDaBarra } from './almofada-da-barra.json';
+export { default as smith } from './smith.json';
