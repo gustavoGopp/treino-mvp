@@ -12,11 +12,13 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | abducao-deitado | 276 | 34 | 0 | 1 |
 | abducao-deitado-mini-band | 276 | 36 | 0 | 2 |
 | abducao-elastico | 258 | 37 | 0 | 3 |
+| abducao-maquina | 282 | 33 | 0 | 2 |
 | abducao-mini-band | 270 | 33 | 0 | 3 |
 | abertura-elastico | 240 | 41 | 0 | 3 |
 | abertura-t-deitado | 270 | 31 | 0 | 3 |
 | aducao-caneleira | 270 | 35 | 0 | 2 |
 | aducao-deitado | 270 | 34 | 0 | 2 |
+| aducao-maquina | 252 | 33 | 0 | 2 |
 | afundo | 270 | 36 | 0 | 5 |
 | afundo-kettlebell | 270 | 34 | 0 | 4 |
 | afundo-peso-corpo | 270 | 33 | 0 | 4 |
@@ -38,6 +40,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | caminhada-lateral-mini-band | 564 | 33 | 0 | 4 |
 | coice-caneleira | 240 | 34 | 0 | 3 |
 | coice-elastico | 240 | 35 | 0 | 4 |
+| coice-maquina | 234 | 35 | 0 | 2 |
 | crucifixo-elastico | 288 | 38 | 0 | 3 |
 | crucifixo-halteres | 303 | 37 | 0 | 2 |
 | crucifixo-inclinado-halteres | 303 | 38 | 0 | 2 |
@@ -82,6 +85,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | goblet-kettlebell | 279 | 36 | 0 | 3 |
 | hip-thrust | 282 | 36 | 0 | 2 |
 | mergulho | 249 | 34 | 0 | 2 |
+| mesa-flexora | 264 | 36 | 0 | 2 |
 | nordico | 420 | 35 | 0 | 4 |
 | panturrilha | 348 | 33 | 0 | 2 |
 | panturrilha-b | 348 | 34 | 0 | 3 |
@@ -500,6 +504,48 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 217 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
+## Abdução na cadeira abdutora (`abducao-maquina`)
+
+282 quadros conferidos. 0 falha(s), 2 aviso(s).
+
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 56 a 56; quadril 69 a 69; ombro 36 a 36; dorsiflexao 1 a 1; punho 0 a 0; pronacao -28 a -28; clavicula 12 a 12.
+
+| grupo | o que foi medido | resultado | limite | |
+|---|---|---|---|---|
+| Proporções | comprimento do osso: braço | desvio máximo 0 cm | tabela: 30,5 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: antebraço | desvio máximo 0 cm | tabela: 26,8 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: coxa | desvio máximo 0 cm | tabela: 41,3 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
+| Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
+| Amplitudes | flexão do joelho (máxima no ciclo) | 90° | média 140°, máximo observado 164° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 56,1° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 69,5° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
+| Amplitudes | abertura do quadril para o lado | 36° | média 40°, máximo observado 60° (aaos) | ok |
+| Amplitudes | elevação do braço | 35,8° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 0,5° | média 14,8°, máximo observado 48° (cdc) | ok |
+| Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 27,9° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
+| Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Chão | ponto mais baixo do corpo | 9,5 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 9,5 cm (Embalar o tronco) | não pode passar de −1,5 cm | ok |
+| Objetos | o corpo atravessa uma peça (banco, coluna) | até 1 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 4,3% da velocidade de pico (joelho direito, Abrir · concêntrica); pico de 31,5 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
+| Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | sentado com as costas no encosto, o tronco parado, as mãos nos pegadores (consenso) | o glúteo e a coxa ficam de -1 a -1 cm do tampo do assento; as costas, de 0 a 0 cm do encosto, e o glúteo, de 1,3 a 1,3 cm; a base do pescoço anda 0 cm no ciclo; as mãos ficam a no máximo 0 cm do meio dos pegadores | como a ficha pede | ok |
+| Ficha | o braço da máquina gira em volta do mesmo eixo que a coxa (o centro do quadril) (desenho) | o centro do quadril fica a no máximo 0 cm (na horizontal) do eixo do braço do mesmo lado | como a ficha pede | ok |
+| Ficha | os pés nos apoios, com os joelhos a 90° (consenso) | o joelho fica de 90° a 90°; a sola fica a no máximo 0 cm do topo do apoio e a bola do pé anda 0 cm em cima dele; o meio do pé fica dentro do apoio | como a ficha pede | ok |
+| Ficha | as almofadas do lado de fora dos joelhos, sem escorregar (consenso) | as almofadas ficam por fora dos joelhos, de 0 a 0,1 cm da pele (negativo = o estofado amassa); o joelho anda 0 cm em relação à almofada | como a ficha pede | ok |
+| Ficha | as placas sem encostar no começo de cada repetição, subindo com o arco do came (consenso) | as placas do pino ficam de 3,9 a 17,6 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
+| Ficha | abre as pernas até o fim confortável (consenso) | cada coxa abre de 8° a 36°; os joelhos vão de 28,2 a 65,2 cm um do outro; a perna não muda de inclinação (0°) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, cervical, cabeca, assento.amassa, inicio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+
 ## Abdução de quadril sentado, com mini-band (`abducao-mini-band`)
 
 270 quadros conferidos. 0 falha(s), 3 aviso(s).
@@ -718,6 +764,48 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, peDeCima.abaixo, peDeCima.giro, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: adutores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+
+## Adução na cadeira adutora (`aducao-maquina`)
+
+252 quadros conferidos. 0 falha(s), 2 aviso(s).
+
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 56 a 56; quadril 69 a 69; ombro 36 a 36; dorsiflexao 1 a 1; punho 0 a 0; pronacao -28 a -28; clavicula 12 a 12.
+
+| grupo | o que foi medido | resultado | limite | |
+|---|---|---|---|---|
+| Proporções | comprimento do osso: braço | desvio máximo 0 cm | tabela: 30,5 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: antebraço | desvio máximo 0 cm | tabela: 26,8 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: coxa | desvio máximo 0 cm | tabela: 41,3 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
+| Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
+| Amplitudes | flexão do joelho (máxima no ciclo) | 90° | média 140°, máximo observado 164° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 56,1° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 69,5° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
+| Amplitudes | abertura do quadril para o lado | 34° | média 40°, máximo observado 60° (aaos) | ok |
+| Amplitudes | elevação do braço | 35,8° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 0,5° | média 14,8°, máximo observado 48° (cdc) | ok |
+| Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 27,9° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
+| Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Chão | ponto mais baixo do corpo | 9,5 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 9,5 cm (Abrir demais) | não pode passar de −1,5 cm | ok |
+| Objetos | o corpo atravessa uma peça (banco, coluna) | até 1 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 4,3% da velocidade de pico (joelho direito, Fechar · concêntrica); pico de 25,9 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
+| Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | sentado com as costas no encosto, o tronco parado, as mãos nos pegadores (consenso) | o glúteo e a coxa ficam de -1 a -1 cm do tampo do assento; as costas, de 0 a 0 cm do encosto, e o glúteo, de 1,3 a 1,3 cm; a base do pescoço anda 0 cm no ciclo; as mãos ficam a no máximo 0 cm do meio dos pegadores | como a ficha pede | ok |
+| Ficha | o braço da máquina gira em volta do mesmo eixo que a coxa (o centro do quadril) (desenho) | o centro do quadril fica a no máximo 0 cm (na horizontal) do eixo do braço do mesmo lado | como a ficha pede | ok |
+| Ficha | os pés nos apoios, com os joelhos a 90° (consenso) | o joelho fica de 90° a 90°; a sola fica a no máximo 0 cm do topo do apoio e a bola do pé anda 0 cm em cima dele; o meio do pé fica dentro do apoio | como a ficha pede | ok |
+| Ficha | as almofadas do lado de dentro dos joelhos, sem escorregar (consenso) | as almofadas ficam por dentro dos joelhos, de -0,2 a -0,1 cm da pele (negativo = o estofado amassa); o joelho anda 0 cm em relação à almofada | como a ficha pede | ok |
+| Ficha | as placas sem encostar no começo de cada repetição, subindo com o arco do came (consenso) | as placas do pino ficam de 3,9 a 15,1 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
+| Ficha | das pernas abertas até um alongamento confortável, fecha até as almofadas quase se tocarem (consenso) | cada coxa vai de 34° aberta a 11°; no fim, as almofadas ficam a 1,2 cm uma da outra (nos cantos de trás) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, cervical, cabeca, assento.amassa, inicio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: adutores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 138 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Afundo estático com halteres (`afundo`)
 
@@ -1649,6 +1737,50 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo, cervical, pe.flexaoPlantar, elastico.folga, elastico.paraDentro, colchonete.recua | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 205 cm² (padrão); de lado: 155 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
+
+## Coice na máquina de glúteo (`coice-maquina`)
+
+234 quadros conferidos. 0 falha(s), 2 aviso(s).
+
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 87 a 87; quadril -1 a 89; ombro 87 a 87; dorsiflexao -0 a 0; punho -0 a -0; pronacao -0 a -0; clavicula 14 a 14.
+
+| grupo | o que foi medido | resultado | limite | |
+|---|---|---|---|---|
+| Proporções | comprimento do osso: braço | desvio máximo 0 cm | tabela: 30,5 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: antebraço | desvio máximo 0 cm | tabela: 26,8 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: coxa | desvio máximo 0 cm | tabela: 41,3 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
+| Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
+| Amplitudes | flexão do joelho (máxima no ciclo) | 90° | média 140°, máximo observado 164° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 87,1° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 88,9° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | extensão do quadril | 1,2° | média 18,5°, máximo observado 42° (cdc) | ok |
+| Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
+| Amplitudes | elevação do braço | 87° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 0° | média 14,8°, máximo observado 48° (cdc) | ok |
+| Amplitudes | flexão plantar do tornozelo | 80,7° | média 56,7°, máximo observado 90° (cdc) | AVISO |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 0,2° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
+| Contatos | preso no lugar: mao.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: mao.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: joelho.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Chão | ponto mais baixo do corpo | 5,5 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 5,5 cm (Arquear a lombar) | não pode passar de −1,5 cm | ok |
+| Objetos | o corpo atravessa uma peça (banco, coluna) | até 0,4 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (joelho direito, Empurrar · concêntrica); pico de 121,7 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | tronco apoiado nos antebraços, o outro joelho na almofada, as mãos nos pegadores, o quadril no eixo da máquina (consenso) | o joelho de apoio fica de -0,4 a -0,4 cm do topo da almofada; os antebraços, de -0,2 a -0,2 cm do topo dos apoios (negativo = afunda no estofado), com o cotovelo a 1,5 cm da vertical do ombro; as mãos andam 0 cm (nos pegadores); o centro do quadril direito fica a no máximo 0 cm da linha do eixo; a linha dos ombros ao quadril sobe 11,9° à frente | como a ficha pede | ok |
+| Ficha | estende o quadril até a coxa alinhar com o tronco, sem arquear a lombar, com o joelho dobrado (consenso) | no alto, a coxa faz 0° com a linha do tronco (o joelho 0 cm em relação a ela); a bacia gira no máximo 0° no ciclo (a lombar não arqueia); o joelho fica dobrado de 90° a 90° | como a ficha pede | ok |
+| Ficha | o quadril de frente para o chão, sem girar (consenso) | a linha dos quadris fica a no máximo 0° da horizontal; a bacia anda 0 cm; a coxa abre no máximo 0° para o lado | como a ficha pede | ok |
+| Ficha | a sola do pé na plataforma da alavanca, que gira com a perna sem descolar nem atravessar o pé (consenso) | a pele da sola fica de -0,3 a -0,3 cm da face da plataforma (negativo = afunda na borracha); a plataforma fica de 66 a 66 cm do eixo (a alavanca não estica) | como a ficha pede | ok |
+| Ficha | a alavanca gira com a coxa e as placas sobem o arco do came (raio × ângulo) (consenso) | a alavanca gira com a coxa (diferença máxima de 0°); as placas sobem até 17,3 cm, a no máximo 0 cm do arco do came (raio de 11 cm × ângulo) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, umero.aFrente, antebraco.paraDentro, apoio.amassa, pe.flexaoPlantar, plataforma.amassa, quadro.ate, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 115 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Crucifixo com elástico (`crucifixo-elastico`)
 
@@ -3688,6 +3820,51 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.cima, polo.fora, polo.cima, polo.frente, pescoco, quadril, joelho, pe.plantar, pernas.juntas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito, triceps; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 464 cm² (padrão); de lado: 142 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+
+## Mesa flexora (deitado) (`mesa-flexora`)
+
+264 quadros conferidos. 0 falha(s), 2 aviso(s).
+
+Ângulos no ciclo (lado direito, graus): joelho 12 a 125; cotovelo 94 a 94; quadril 13 a 13; ombro 71 a 71; dorsiflexao -30 a -30; punho 0 a 0; pronacao -31 a -31; clavicula 13 a 13.
+
+| grupo | o que foi medido | resultado | limite | |
+|---|---|---|---|---|
+| Proporções | comprimento do osso: braço | desvio máximo 0 cm | tabela: 30,5 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: antebraço | desvio máximo 0 cm | tabela: 26,8 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: coxa | desvio máximo 0 cm | tabela: 41,3 cm; tolerância 0,1 cm | ok |
+| Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
+| Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
+| Amplitudes | flexão do joelho (máxima no ciclo) | 125° | média 140°, máximo observado 164° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 94° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 13,3° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
+| Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
+| Amplitudes | elevação do braço | 71,2° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | -30° | média 14,8°, máximo observado 48° (cdc) | ok |
+| Amplitudes | flexão plantar do tornozelo | 30° | média 56,7°, máximo observado 90° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 30,8° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
+| Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: joelho.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: joelho.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: mao.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Contatos | preso no lugar: mao.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
+| Chão | ponto mais baixo do corpo | 35,1 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 35 cm (Levantar o quadril) | não pode passar de −1,5 cm | ok |
+| Objetos | o corpo atravessa uma peça (banco, coluna) | até 1 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 0% da velocidade de pico (sem movimento); pico de 0 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
+| Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | deitado de bruços, o quadril e o peito no estofado, sem levantar o quadril; as mãos nos pegadores (consenso) | a coxa e a frente da bacia ficam de -1 a -1 cm do topo do estofado das coxas; a barriga e o peito, de -1 a -1 cm do topo do estofado do peito (negativo = o corpo afunda no estofado); a bacia anda 0 cm; o quadril fica dobrado de 13,3° a 13,3° (a dobra do estofado); o centro de cada mão fica a no máximo 0 cm do meio do pegador | como a ficha pede | ok |
+| Ficha | o joelho alinhado com o eixo da máquina, o ciclo todo (consenso) | o centro de cada joelho fica a no máximo 0 cm da linha do eixo, no ciclo todo | como a ficha pede | ok |
+| Ficha | o rolo logo acima do calcanhar, atrás da perna, acompanhando a canela sem atravessá-la nem descolar dela (consenso) | o rolo fica de -0,3 a -0,3 cm da pele (negativo = o rolo afunda na perna) e encosta de 1,1 a 1,1 cm acima do centro do tornozelo, atrás da perna | como a ficha pede | ok |
+| Ficha | começa com as pernas quase estendidas e dobra até o rolo chegar perto do glúteo (consenso) | o joelho vai de 12° (começo) a 125° (fim); no fim, o rolo fica a 9,4 cm do glúteo | como a ficha pede | ok |
+| Ficha | a alavanca gira com a canela e as placas sobem o arco do came (raio × ângulo) (consenso) | a alavanca gira com a canela (diferença máxima de 0°); as placas sobem até 21,7 cm, a no máximo 0 cm do arco do came (raio de 11 cm × ângulo) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, cervical, estofado.amassa, quadro.ate, rolo.amassa, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 596 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Flexão nórdica (nórdico) (`nordico`)
 

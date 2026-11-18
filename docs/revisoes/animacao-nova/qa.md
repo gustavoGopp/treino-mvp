@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 144 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 148 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2736 células dos cuidados 1 a 19: M 1106, M! 122, O 1040, C 432, – 22, ✗ 14.
+Contagem das 2812 células dos cuidados 1 a 19: M 1135, M! 123, O 1072, C 444, – 22, ✗ 16.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -52,11 +52,13 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | G (quadros) | [quadros](quadros/abducao-deitado.png) |
 | `abducao-deitado-mini-band` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-deitado-mini-band.png) |
 | `abducao-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/abducao-elastico.png) |
+| `abducao-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-maquina.png) |
 | `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-mini-band.png) |
 | `abertura-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-elastico.png) |
 | `abertura-t-deitado` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-t-deitado.png) |
 | `aducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-caneleira.png) |
 | `aducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/aducao-deitado.png) |
+| `aducao-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-maquina.png) |
 | `afundo` | 1 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [folha](prototipos/folha-afundo.png) |
 | `afundo-kettlebell` | 1 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [folha](prototipos/folha-afundo-kettlebell.png) |
 | `afundo-peso-corpo` | 1 | M | M! | M | M | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-afundo-peso-corpo.png) |
@@ -78,6 +80,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `caminhada-lateral-mini-band` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/caminhada-lateral-mini-band.png) |
 | `coice-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-caneleira.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
+| `coice-maquina` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/coice-maquina.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
 | `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
 | `crucifixo-inclinado-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-inclinado-halteres.png) |
@@ -122,6 +125,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `goblet-kettlebell` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/goblet-kettlebell.png) |
 | `hip-thrust` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/hip-thrust.png) |
 | `mergulho` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/mergulho.png) |
+| `mesa-flexora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/mesa-flexora.png) |
 | `nordico` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/nordico.png) |
 | `panturrilha` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha.png) |
 | `panturrilha-b` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha-b.png) |
@@ -263,6 +267,9 @@ Os demais:
   - cuidado 2: flexão plantar do tornozelo → 80,7°
   - cuidado 2: extensão do punho → 92,7°
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,6 vezes (262,3 a 341,9 cm); em cima, 1,3 vezes
+- `coice-maquina`
+  - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: flexão plantar do tornozelo → 80,7°
 - `crucifixo-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (198,1 a 263,6 cm); em cima, 1,3 vezes
 - `crucifixo-inverso`
@@ -327,6 +334,8 @@ Os demais:
   - cuidado 2: dorsiflexão do tornozelo → 21,5°
 - `goblet-kettlebell`
   - cuidado 2: dorsiflexão do tornozelo → 27,4°
+- `mesa-flexora`
+  - cuidado 14: o erro "Volta solta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `nordico`
   - cuidado 2: flexão plantar do tornozelo → 73,8°
   - cuidado 2: pronação do antebraço (a partir do polegar para cima) → 94,4°
@@ -411,11 +420,13 @@ Os demais:
 - `abducao-deitado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): o primeiro corpo deitado de lado do motor novo, visto de costas
 - `abducao-deitado-mini-band`: (sem linha no andamento)
 - `abducao-elastico`: (sem linha no andamento)
+- `abducao-maquina`: (sem linha no andamento)
 - `abducao-mini-band`: aprovada por delegação em 16/11/2026 ("O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma"): a faixa refeita em 15/11 e, de frente, a mão escondida atrás da coxa que abre
 - `abertura-elastico`: (sem linha no andamento)
 - `abertura-t-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente)
+- `aducao-maquina`: (sem linha no andamento)
 - `afundo`: aprovada na folha
 - `afundo-kettlebell`: aprovada na folha
 - `afundo-peso-corpo`: aprovada na folha
@@ -437,6 +448,7 @@ Os demais:
 - `caminhada-lateral-mini-band`: (sem linha no andamento)
 - `coice-caneleira`: (sem linha no andamento)
 - `coice-elastico`: (sem linha no andamento)
+- `coice-maquina`: (sem linha no andamento)
 - `crucifixo-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo de 60 pol preso numa porta atrás, na altura do peito)
 - `crucifixo-halteres`: (sem linha no andamento)
 - `crucifixo-inclinado-halteres`: (sem linha no andamento)
@@ -481,6 +493,7 @@ Os demais:
 - `goblet-kettlebell`: (sem linha no andamento)
 - `hip-thrust`: (sem linha no andamento)
 - `mergulho`: (sem linha no andamento)
+- `mesa-flexora`: (sem linha no andamento)
 - `nordico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (os calcanhares presos debaixo de um sofá, que é peça nova; o quadro mostra só o trecho do sofá onde os pés prendem)
 - `panturrilha`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `panturrilha-b`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
