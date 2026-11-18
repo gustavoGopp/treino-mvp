@@ -134,3 +134,4 @@ export { pullThrough } from './pull-through';
 export { mergulho } from './mergulho';
 export { facePullSuspensao } from './face-pull-suspensao';
 export { barraFixaNegativa } from './barra-fixa-negativa';
+export { agachamentoSmith } from './agachamento-smith';
