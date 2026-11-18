@@ -32,3 +32,17 @@ Elástico: pelas intensidades que a pessoa tem (`progressao.escada-elastico`).
 - `isiklar2026` (`docs/pesquisa/fontes.md`).
 - `fenwick2009` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/remada-curvada-elastico.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior) e a biblioteca; a nota, da seção Segurança (lombar) e dos erros 1 e 2 | consenso | `17`, G2 |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a tabela de técnica | consenso | Will Harlow (vídeo, `17`, G2); `ng2022` (pés inteiros) |
+| Variações (`vary`) | a tabela de técnica e as dicas do cartão | consenso | Will Harlow (vídeo, `17`, G2) |
+| Nota (`note`) | a montagem do cartão, num texto só | um estudo | `ng2022` (lesões de olho com elástico que escapou) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/remada-curvada-elastico.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda.

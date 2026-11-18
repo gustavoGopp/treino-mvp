@@ -31,3 +31,17 @@ Elástico: pelas intensidades que a pessoa tem.
 - `bazvalle2019` (`docs/pesquisa/fontes.md`).
 - `kassiano2022` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-martelo-elastico.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps; "o braquial e o antebraço trabalham, mas não são músculos do app") e o alvo do cartão; a nota, do erro "Cotovelos para a frente" | consenso | `11`, B.2.4 |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a tabela de técnica | consenso | `11`, B.2.4; `ng2022` (pés inteiros) |
+| Variações (`vary`) | a tabela de técnica (pegada neutra, cotovelos colados) | consenso | `11`, B.2.4 |
+| Nota (`note`) | a montagem do cartão, num texto só | um estudo | `ng2022` (lesões de olho com elástico que escapou) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-martelo-elastico.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda.

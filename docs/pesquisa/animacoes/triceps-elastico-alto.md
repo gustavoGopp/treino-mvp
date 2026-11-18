@@ -31,3 +31,17 @@ Elástico: pelas intensidades que a pessoa tem.
 - `andersen2010` (`docs/pesquisa/fontes.md`).
 - `lopes2019` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/triceps-elastico-alto.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (tríceps, sem secundário) e a biblioteca; a nota, do erro "Cotovelos soltos" do cartão | consenso | `17`, G3 |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | montagem do cartão e a linha Posição da tabela de técnica | consenso | `17`, G3; `seguranca.montagem` |
+| Variações (`vary`) | o equipamento do cartão e a seção Segurança (porta com toalha recusada) | consenso | `seguranca.montagem`; `ng2022` |
+| Nota (`note`) | a montagem do cartão, num texto só; sai "pise com o pé inteiro sobre ele", que não vale aqui (o elástico fica preso no alto; ver `pedidos.md`) | um estudo | `ng2022`; `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/triceps-elastico-alto.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa além do ponto de ancoragem. A montagem do cartão traz "pise com o pé inteiro sobre ele", que não serve a um elástico preso no alto: ficou fora da nota e foi para `pedidos.md`.

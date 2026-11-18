@@ -1,0 +1,73 @@
+{
+  "id": "remada-unilateral-elastico",
+  "name": "Remada unilateral com elástico sob o pé da frente",
+  "short": "Remada unilateral elástico",
+  "target": "Costas; ajudam o bíceps e o ombro de trás",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, apoie a mão livre na coxa e mantenha as costas retas. O tronco não gira para ajudar.",
+  "setupEq": [
+    "Um elástico longo, sem ponto de ancoragem."
+  ],
+  "setupBody": [
+    "Um pé à frente, pisando com o pé inteiro no meio do elástico; o outro atrás.",
+    "Tronco inclinado à frente, costas retas, a mão livre apoiada na coxa da frente.",
+    "A ponta do elástico na mão do lado de trás, braço estendido."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxada",
+      "Leve o cotovelo para trás, perto do corpo, até a mão chegar perto do quadril."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Pausa curta, tronco sem girar."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até o braço estender. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido.",
+    "Fim: cotovelo atrás do tronco."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Costas retas.",
+    "Cotovelo para trás.",
+    "Tronco sem girar."
+  ],
+  "check": [
+    "Pé da frente inteiro no elástico",
+    "Mão livre na coxa da frente",
+    "Costas retas",
+    "Tronco de frente, parado"
+  ],
+  "vary": "O que não muda: as costas retas, a mão livre na coxa e o tronco sem girar; quem puxa é o cotovelo, perto do corpo.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado e pise com o pé inteiro sobre ele: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "braço estendido",
+    "cotovelo atrás"
+  ],
+  "errors": [
+    {
+      "id": "gira",
+      "title": "Girar o tronco",
+      "desc": "O tronco abre para ajudar. Fique de frente, parado."
+    },
+    {
+      "id": "costas",
+      "title": "Arredondar as costas",
+      "desc": "A lombar perde a posição. Mão livre na coxa e costas retas."
+    },
+    {
+      "id": "pe",
+      "title": "Pisar só com a ponta do pé",
+      "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
+    }
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}
