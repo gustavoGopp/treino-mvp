@@ -40,6 +40,12 @@ const MASSA = massaDaBarraW(ANILHAS);
 const SUPINACAO = 90 - obj('barraW', 'anguloFora');
 /** A face da almofada (a direção que desce por ela e a normal) não depende de onde o banco fica. */
 const FACE = faceDaAlmofada({ topo: [0, 0, 0], assento: 0 });
+/**
+ * Quanto o braço de longe vem para a frente na pintura, de três quartos (cm de profundidade): o bastante para passar o
+ * tronco (5 cm à frente de onde o Boneco pinta o braço de longe) e a almofada (o centro dela, 7,1 cm à frente), com
+ * folga de 4,9 cm, sem chegar ao braço de perto (pelo menos 33 cm à frente). A regra banco-scott-bracos-na-almofada mede.
+ */
+const VIES_DO_BRACO_DE_LONGE = 12;
 
 /**
  * Um braço deitado na almofada: para baixo, ao longo dela, com o ombro `inclina` graus mais alto que o cotovelo em
@@ -106,11 +112,16 @@ function pernas(pelve: V3, bolaZ: number): Record<Lado, PosePerna> {
 function montar(corpo: Corpo, pelve: V3, bolaZ: number, cotovelo: number, abre: number, sobe = 0): Esq {
   return resolverMembros(resolverTronco(corpo, poseDoTronco(pelve)), { R: bracoNaAlmofada('R', cotovelo, abre, sobe), L: bracoNaAlmofada('L', cotovelo, abre, sobe) }, pernas(pelve, bolaZ));
 }
-/** A borda de cima da almofada para um corpo montado: o ombro além dela e o tríceps amassando a face. */
+/**
+ * A borda de cima da almofada para um corpo montado: o ombro além dela e o tríceps amassando a face. O ponto que amassa
+ * é o mais fundo do braço sobre a almofada (da borda de cima à de baixo); até 18/11 a conta usava o braço inteiro, e o
+ * ponto mais fundo era o alto do braço, além da borda de cima: sobre a almofada, o tríceps amassava só 0,4 cm.
+ */
 function topoPara(e: Esq): V3 {
   const S = e.lado.R.ombro;
   const a = dot(S, FACE.d) + f('ombro.alemDaPonta');
-  const b = Math.min(...peleDoBraco(e, 'R').map((p) => dot(p, FACE.n))) + f('apoio.amassa');
+  const sobre = peleDoBraco(e, 'R').filter((p) => dot(p, FACE.d) >= a && dot(p, FACE.d) <= a + FACE.comp);
+  const b = Math.min(...sobre.map((p) => dot(p, FACE.n))) + f('apoio.amassa');
   return add(mul(FACE.d, a), mul(FACE.n, b));
 }
 
@@ -170,18 +181,6 @@ export function naAlmofada(b: BancoScott, p: V3): number {
     fundo = -dot(r, F2.n);
   return Math.min(ao, F2.comp - ao, fundo, F2.esp - fundo, F2.larg / 2 - Math.abs(p[0] - F2.topo[0]));
 }
-/** O ponto da pele de um braço que mais entra pela face da almofada (cm; positivo = amassa), só sobre a face. */
-export function fundoDoBraco(e: Esq, b: BancoScott, k: Lado): number {
-  const F2 = faceDaAlmofada(b);
-  let m = -1e9;
-  for (const p of peleDoBraco(e, k)) {
-    const r = sub(p, F2.topo);
-    const ao = dot(r, F2.d);
-    if (ao < 0 || ao > F2.comp) continue;
-    m = Math.max(m, -dot(r, F2.n));
-  }
-  return m;
-}
 /** A menor folga (cm) entre a barra (a linha em W com o raio da pegada, as mangas e as anilhas) e a almofada. */
 export function folgaDaBarraNaAlmofada(prims: Prim[], b: BancoScott): number {
   let m = 1e9;
@@ -219,6 +218,11 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     cargas: [{ massa: MASSA, pos: W.centro }],
     marcas,
     vies: { maoR: 1, maoL: 1 },
+    // De três quartos, o braço de longe (o esquerdo) é pintado atrás do corpo (o Boneco o põe 5 cm atrás do tronco),
+    // e a almofada, que fica na frente do tronco, era pintada por cima dele: o braço parecia passar por fora da borda
+    // de longe da almofada, em vez de deitado em cima dela. Ele está deitado na face, na frente do tronco e da almofada:
+    // vai para a frente dos dois na pintura (a regra banco-scott-bracos-na-almofada confere, nas vistas que veem a face)
+    viesNaVista: { quina: { bracoL: VIES_DO_BRACO_DE_LONGE } },
   };
 }
 
