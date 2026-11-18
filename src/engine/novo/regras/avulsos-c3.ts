@@ -153,6 +153,44 @@ export const REGRAS_AVULSOS_C3: Record<string, Regra> = {
     const [, pior] = faixa(d);
     return { medido: `o centro da pegada fica a no máximo ${f1(pior)} cm do pegador, ${fecha ? 'com a mão fechada nele' : 'SEM a mão fechada'}; em relação ao tórax, a mão anda ${f1(anda)} cm e o cotovelo vai de ${f1(c0)}° a ${f1(c1)}°`, ok: pior <= 0.5 && fecha && anda <= 8 && c1 - c0 <= 15 };
   },
+  'abdominal-maquina-pegadores-livres-do-corpo': (q) => {
+    // dos dois lados: a haste do braço da máquina (do eixo à almofada), a haste que sai da ponta de baixo da almofada e
+    // a empunhadura não encostam no corpo (fora a mão que segura e o punho dela) e ficam longe do rosto (a cabeça)
+    const esp = obj('abdominalMaquina', 'estofadoEsp'),
+      C = obj('abdominalMaquina', 'almofadaComp'),
+      P = obj('abdominalMaquina', 'pegadorComp');
+    const seg = (p: V3, a: V3, b: V3) => {
+      const ab = sub(b, a);
+      const t = Math.max(0, Math.min(1, dot(sub(p, a), ab) / (dot(ab, ab) || 1)));
+      return dist(p, [a[0] + ab[0] * t, a[1] + ab[1] * t, a[2] + ab[2] * t]);
+    };
+    let corpo = 1e9,
+      rosto = 1e9,
+      onde = '';
+    for (const x of q.filter((_, i) => i % 3 === 0 || i === q.length - 1))
+      for (const k of ['R', 'L'] as const) {
+        const c = x.marcas[`almofada.${k}`]!,
+          n = x.marcas[`almofadaNormal.${k}`]!,
+          ao = x.marcas[`almofadaAo.${k}`]!,
+          pc = x.marcas[`pegador.${k}`]!,
+          pe = x.marcas[`pegadorEixo.${k}`]!;
+        const raiz: V3 = [c[0] + ao[0] * (-C / 2 + 2) + n[0] * esp, c[1] + ao[1] * (-C / 2 + 2) + n[1] * esp, c[2] + ao[2] * (-C / 2 + 2) + n[2] * esp];
+        const base: V3 = [pc[0] - pe[0] * (P / 2 + 3), pc[1] - pe[1] * (P / 2 + 3), pc[2] - pe[2] * (P / 2 + 3)];
+        const ponta: V3 = [pc[0] + pe[0] * (P / 2), pc[1] + pe[1] * (P / 2), pc[2] + pe[2] * (P / 2)];
+        const haste = [0, 1, 2, 3, 4].map((i) => x.marcas[`haste.${k}.${i}`]!);
+        for (const { p, parte } of pontosDoBoneco(x.esq)) {
+          // da pele à superfície de cada tubo (a haste do braço tem 5 cm; a do pegador, 3,5; a empunhadura, o diâmetro dela)
+          const d = Math.min(seg(p, raiz, base) - 1.75, seg(p, base, ponta) - obj('abdominalMaquina', 'pegadorDiam') / 2, ...[0, 1, 2, 3].map((i) => seg(p, haste[i]!, haste[i + 1]!) - 2.5));
+          if (parte === 'cabeca') rosto = Math.min(rosto, d);
+          const daMao = (['R', 'L'] as const).some((j) => ((parte === 'mao' || parte === 'polegar') && dist(p, x.esq.lado[j].pegada) < 14) || (parte === 'ante' && dist(p, x.esq.lado[j].punho) < 8));
+          if (!daMao && d < corpo) {
+            corpo = d;
+            onde = `${parte}, ${k === 'R' ? 'direito' : 'esquerdo'}`;
+          }
+        }
+      }
+    return { medido: `nos dois lados, as hastes do braço da máquina e dos pegadores e a empunhadura ficam a no mínimo ${f1(corpo)} cm da pele (${onde}; fora a mão que segura) e a ${f1(rosto)} cm da cabeça`, ok: corpo >= 0.5 && rosto >= 10 };
+  },
   'abdominal-maquina-pes-presos': (q) => {
     // os dois pés: o peito de cada um sob o rolo do seu lado (dentro do comprimento dele), encostado
     const x = primeiro(q);
@@ -210,11 +248,9 @@ export const REGRAS_AVULSOS_C3: Record<string, Regra> = {
     return { medido: `de lado, a coxa vai de ${f1(frente(a))}° à frente da vertical a ${f1(-frente(b))}° atrás dela, ${f1(Math.abs(passa))}° ${passa >= 0 ? 'além' : 'antes'} da linha do corpo (que desce dos ombros ao quadril)`, ok: frente(a) >= 10 && passa >= 0 && passa <= 12 };
   },
   'coice-polia-joelho-quase-estendido': (q) => {
-    // nas pontas do caminho, quase estendido; no meio, quando o pé passa embaixo do quadril, ele pode dobrar um pouco
-    // para o pé não raspar o chão (como no passo), sem virar uma flexora
+    // o joelho que trabalha quase estendido em todos os quadros (o limite vem da ficha de movimento: `joelho.maximo`)
     const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.joelho));
-    const pontas = Math.max(primeiro(q).esq.lado.R.ang.joelho, ultimo(q).esq.lado.R.ang.joelho);
-    return { medido: `o joelho da perna que trabalha dobra ${f1(pontas)}° no máximo nas pontas do caminho e de ${f1(a)}° a ${f1(b)}° no caminho todo`, ok: pontas <= 15 && b <= 35 };
+    return { medido: `o joelho da perna que trabalha dobra de ${f1(a)}° a ${f1(b)}° no caminho todo`, ok: b <= 15 };
   },
   'coice-polia-tronco-parado-a-frente': (q) => {
     const peito = (e: Esq) => (Math.atan2(e.torax.y[2], e.torax.y[1]) * 180) / Math.PI;
@@ -223,11 +259,14 @@ export const REGRAS_AVULSOS_C3: Record<string, Regra> = {
     return { medido: `o peito fica de ${f1(a)}° a ${f1(b)}° à frente da vertical; a lombar dobra no mínimo ${f1(lombar)}° além da curva de repouso (negativo = arqueia)`, ok: a >= 5 && b <= 25 && b - a <= 1.5 && lombar >= -1 };
   },
   'coice-polia-bacia-nao-gira': (q) => {
+    // a bacia não gira nem rola no ciclo (o pouco que ela sobe do lado que trabalha fica parado), o tórax fica reto e a
+    // coxa não abre para o lado
     const graus = (x: number) => (Math.asin(Math.max(-1, Math.min(1, x))) * 180) / Math.PI;
-    const rola = Math.max(...q.map((x) => Math.abs(graus(x.esq.pelve.x[1]))));
+    const [r0, r1] = faixa(q.map((x) => graus(x.esq.pelve.x[1])));
     const gira = Math.max(...q.map((x) => Math.abs(graus(x.esq.pelve.z[0]))));
+    const torax = Math.max(...q.map((x) => Math.abs(graus(x.esq.torax.y[0]))));
     const abre = Math.max(...q.map((x) => Math.abs(angulosDoLado(x.esq, 'R').abducaoDoQuadril)));
-    return { medido: `a linha dos quadris fica a no máximo ${f1(rola)}° da horizontal e a bacia gira ${f1(gira)}°; a coxa abre no máximo ${f1(abre)}° para o lado`, ok: rola <= 2 && gira <= 2 && abre <= 6 };
+    return { medido: `a linha dos quadris fica de ${f1(Math.abs(r0))}° a ${f1(Math.abs(r1))}° da horizontal (o lado que trabalha mais alto) e a bacia gira ${f1(gira)}°; o tórax inclina ${f1(torax)}° para o lado; a coxa abre no máximo ${f1(abre)}° para o lado`, ok: Math.max(Math.abs(r0), Math.abs(r1)) <= 5 && r1 - r0 <= 0.5 && gira <= 2 && torax <= 2 && abre <= 6 };
   },
   'coice-polia-maos-na-torre': (q) => {
     const d = q.flatMap((x) => (['R', 'L'] as const).map((k) => Math.hypot(x.esq.lado[k].pegada[0] - x.marcas[`montante.${k}`]![0], x.esq.lado[k].pegada[2] - x.marcas[`montante.${k}`]![2])));
