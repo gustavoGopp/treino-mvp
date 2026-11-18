@@ -27,3 +27,4 @@ export { default as barraLonga } from './barra-longa.json';
 export { default as cadeiraFlexora } from './cadeira-flexora.json';
 export { default as elasticoLongoPisado } from './elastico-longo-pisado.json';
 export { default as caixaDeSalto } from './caixa-de-salto.json';
+export { default as barraW } from './barra-w.json';

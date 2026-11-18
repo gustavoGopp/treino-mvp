@@ -1,0 +1,28 @@
+{
+ "fontes": {
+  "eleiko-curl": "Eleiko. Curl Bar 50 mm, 12 kg, ficha de produto 3061174; https://cdn.shopify.com/s/files/1/0262/8157/4456/files/3061174_product-sheet-eleiko-curl-bar-50-mm-12-kg.pdf (lida em 12/11/2026, docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.3, e de novo em 18/11/2026): 'Length 1316 mm', 'Weight 12 kg', 'Sleeve Diameter 50 mm', 'Loadable Sleeve Length 230 mm', 'Flange Width 20 mm'; a curva só aparece como 'angled shape', sem ângulo nem distâncias",
+  "rogue-curl": "Rogue Fitness. Rogue Curl Bar; https://www.roguefitness.com/rogue-curl-bar (lida em 18/11/2026): 'Bar Length 54.50\"', 'Shaft: 28.5MM diameter', 'Loadable Sleeve Length: 10.50\"', 'Distance between sleeves 31.50\"', mangas de 1,96 pol, 30 lb; o ângulo da curva também não consta",
+  "cartao-barra-w": "O cartão de equipamento de hoje (public/equipamento/barra_w.svg, feito por scripts/desenhos-equipamento/realista/itens.mjs, barra_w): a forma da curva em W (a parte de fora inclinada 23° e a de dentro 34°, de volta para o outro lado), que a peça nova mantém",
+  "desenho-barra-w": "Escolha de desenho da curva da barra W: nenhuma página pública de fabricante lida em 18/11/2026 dá os ângulos nem onde as dobras ficam (Eleiko: 'angled shape'; Rogue Curl Bar, Titan, Force USA e PRx: só comprimento, diâmetro e peso; a única medida em graus achada, 30°, é de uma barra W de encaixe no rack, de outro formato, e só em resumo de busca)"
+ },
+ "objetos": {
+  "barraW": {
+   "nome": "Barra W (curvada, de 12 kg), com as mangas que giram",
+   "medidas": {
+    "comp": { "v": 131.6, "un": "cm", "tipo": "medida", "fonte": "eleiko-curl", "onde": "'Length 1316 mm'" },
+    "massa": { "v": 12, "un": "kg", "tipo": "medida", "fonte": "eleiko-curl", "onde": "'Weight 12 kg'" },
+    "mangaDiam": { "v": 5, "un": "cm", "tipo": "medida", "fonte": "eleiko-curl", "onde": "'Sleeve Diameter 50 mm'" },
+    "mangaComp": { "v": 23, "un": "cm", "tipo": "medida", "fonte": "eleiko-curl", "onde": "'Loadable Sleeve Length 230 mm'" },
+    "rebordoEsp": { "v": 2, "un": "cm", "tipo": "medida", "fonte": "eleiko-curl", "onde": "'Flange Width 20 mm' (o rebordo entre a pegada e a manga)" },
+    "rebordoDiam": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-w", "onde": "o diâmetro do rebordo não consta da ficha; 7 cm, um pouco menor que o da barra longa (7,6 cm, IWF)" },
+    "entreMangas": { "v": 81.6, "un": "cm", "tipo": "derivada", "fonte": "eleiko-curl", "onde": "o comprimento menos as duas mangas e os dois rebordos: 131,6 − 2 × (23 + 2) = 81,6 cm (a Rogue Curl Bar dá 'Distance between sleeves 31.50\"', 80 cm)" },
+    "pegadaDiam": { "v": 2.85, "un": "cm", "tipo": "medida", "fonte": "rogue-curl", "onde": "'Shaft: 28.5MM diameter' (a ficha da Eleiko não dá o diâmetro da pegada; o resumo de busca de 12/11/2026 dava 28 mm)" },
+    "curvaFora": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-w", "onde": "do meio da barra até a dobra de fora, onde a parte reta junto da manga vira a parte inclinada de fora: assim o meio dessa parte, onde as mãos seguram na rosca, fica a 18,5 cm do meio: as mãos a 37 cm uma da outra, na largura dos ombros (a mesma das mãos na barra reta da rosca na polia aprovada, 36 a 38 cm, correção de 04/11/2026)" },
+    "curvaMeio": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-w", "onde": "do meio da barra até a dobra do meio, entre a parte inclinada de fora e a de dentro (cada parte inclinada de fora com 11 cm ao longo da barra: cabe a mão, de 8,6 cm de largura)" },
+    "curvaDentro": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-w", "onde": "do meio da barra até a dobra de dentro: o trecho reto do meio tem 12 cm" },
+    "anguloFora": { "v": 23, "un": "graus", "tipo": "desenho", "fonte": "cartao-barra-w", "onde": "a parte inclinada de fora com a linha da barra: a do cartão de hoje (3,4 cm em 8 cm); sem fonte de fabricante" },
+    "anguloDentro": { "v": 34, "un": "graus", "tipo": "desenho", "fonte": "cartao-barra-w", "onde": "a parte inclinada de dentro, de volta para o outro lado: a do cartão de hoje (5,4 cm em 8 cm); sem fonte de fabricante" }
+   }
+  }
+ }
+}
