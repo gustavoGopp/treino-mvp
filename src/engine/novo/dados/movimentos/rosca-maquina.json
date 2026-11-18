@@ -1,0 +1,64 @@
+{
+ "id": "rosca-maquina",
+ "nome": "Rosca na máquina (tipo Scott)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-maquina.md): assento na altura em que o cotovelo fica alinhado com o eixo da máquina, braços apoiados; sobe até o fim e desce controlando até o cotovelo quase estender; erros 'tirar o braço do apoio' e 'descer pouco' (consenso; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-maquina.json): 'Braços apoiados na almofada'; 'Embaixo: cotovelo quase estendido', 'Em cima: fim do movimento'; as dicas 'Cotovelo no eixo.', 'Braço no apoio.', 'Desce até quase esticar.'; os erros 'Tirar o braço do apoio' ('O braço sai da almofada') e 'Descer pouco' ('A amplitude curta')",
+  "manual": "Manual da Hammer Strength Select (Biceps Curl HS-BC, p. 24; https://kb.cybexintl.com/Owners_Manuals/Strength/Hammer_Select_9510901.pdf, lido em 18/11/2026): 'Adjust the seat height so the back of arms rest fully on arm pad, aligning the elbows with the machine pivot', 'Rotate the handle forward and grip firmly', 'Position the body with the chest up and shoulder back, leaning forward slightly if necessary to increase stability', 'curl the handles up until arms are fully flexed, then return the handles to the start position without letting the resistance rest on the stack'",
+  "scott": "A rosca Scott no banco inclinado aprovada (src/engine/novo/dados/movimentos/rosca-scott-banco-inclinado.json): o braço deitado no estofado, que amassa 1 cm; o cotovelo embaixo (14°) e em cima (125°), a palma para cima (85°), o erro 'tirar o braço' (30° no ombro) e 'descer pouco' (55°)",
+  "cadeiras": "As máquinas sentadas aprovadas (src/engine/novo/dados/movimentos/supino-maquina.json e cadeira-extensora.json): o glúteo que afunda 1 cm no estofado, os pés chapados no chão com o joelho em ângulo reto, cinco placas no pino",
+  "objetos": "src/engine/novo/dados/objetos/rosca-maquina.json (a máquina de rosca: o apoio a 45°, o eixo 4 cm acima da face e 2 cm além da borda de baixo, a barra com as borrachas a 19 cm do meio)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "o glúteo afunda 1 cm no assento, como nas máquinas sentadas aprovadas"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "scott", "o": "o braço apoiado ('the back of arms rest fully on arm pad'): o estofado amassa 1 cm sob o tríceps, como na rosca Scott aprovada"},
+  "tronco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "manual", "o": "o tronco um pouco à frente ('leaning forward slightly'), sobre o apoio: a bacia inclina 15° (a ficha não dá número)"},
+  "lombar.sentado": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "sentado, a lombar fica 3° menos curva que em pé, sem arredondar ('chest up')"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço um pouco estendido, o olhar à frente, por cima da barra"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço"},
+  "pes.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés no chão, na largura do quadril: o centro da bola do pé a 16 cm do meio"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "cadeiras", "o": "os pés chapados no chão com o joelho em ângulo reto, como no supino na máquina aprovado"},
+  "escapula.prot": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "manual", "o": "os ombros no lugar ('shoulder back'): a escápula sem ir à frente além do ritmo do braço"},
+  "escapula.elev": {"v": -3, "un": "graus", "selo": "consenso", "fonte": "manual", "o": "e um pouco para baixo, sem encolher"},
+  "maos.supinacao": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "scott", "o": "palma para cima na barra: o polegar gira 85° da posição neutra para fora, como nas roscas aprovadas"},
+  "cotovelo.baixo": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, 'até o cotovelo quase estender': dobrado 12° (a ficha não dá número; a Scott aprovada para em 14°, a rosca inclinada em 8°); a posição inicial da alavanca sai daí"},
+  "cotovelo.cima": {"v": 120, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, 'sobe até o fim': o cotovelo dobra 120°; com o braço a 45°, o antebraço fica a 15° da vertical, sem passar dela (o peso continua no bíceps)"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "cadeiras", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.tira.braco": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "scott", "o": "erro: na subida, o braço sai da almofada: gira 10° no ombro, para fora da face (como o 'tirar o braço' da Scott aprovada); a mão continua na barra, que segue no arco dela"},
+  "erro.tira.tronco": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: e o tronco vai 16° para trás, puxando os cotovelos para fora do apoio e do eixo (o ombro e as costas ajudam); com a mão presa na barra e o tronco parado, o cotovelo não sai do apoio, porque a barra só anda no arco dela (medido)"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "scott", "o": "erro: embaixo, a descida para com o cotovelo dobrado 55°, como o 'descer pouco' da Scott aprovada"}
+ },
+ "fases": [
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cotovelo quase estendido", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "scott"},
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.3, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "fim do movimento", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 a 3 s, controlando", "selo": "consenso", "fonte": "scott"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "maquina-de-braco-cotovelo-no-eixo", "pede": "assento na altura em que o cotovelo fica alinhado com o eixo da máquina, do começo ao fim", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-de-braco-braco-no-apoio", "pede": "braços apoiados na almofada: o tríceps encosta no estofado sem atravessá-lo, e o peito no alto dele", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-sentado", "pede": "sentado: o glúteo no assento, parado", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-maos-nos-pegadores", "pede": "as mãos presas no pegador o movimento todo", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-pegador-no-arco", "pede": "o pegador anda num arco em volta do eixo, e a mão com ele", "selo": "desenho", "fonte": "objetos"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com a alavanca e apoiam embaixo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o cotovelo quase estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-scott-sem-travar-embaixo", "pede": "sem travar o cotovelo embaixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-maquina-sobe-ate-o-fim", "pede": "em cima, 'sobe até o fim': o cotovelo bem dobrado, o antebraço perto da vertical sem passar dela", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palma para cima (a mão supinada)", "selo": "consenso", "fonte": "manual"},
+  {"id": "tronco-quase-parado", "pede": "o corpo fica parado: só os antebraços se mexem", "selo": "consenso", "fonte": "app"},
+  {"id": "lombar-neutra", "pede": "costas sem arredondar ('chest up')", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-barra-livre-do-corpo", "pede": "a barra e a alavanca não encostam no rosto nem no peito", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "tira", "instante": 1, "titulo": "Tirar o braço do apoio", "vista": "lateral", "oQueMuda": "na subida, o braço sai da almofada: o cotovelo descola do estofado e sai do eixo, e o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a descida para no meio: o cotovelo não chega a quase estender", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo no eixo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "desce até quase esticar", "ponto": "punho", "selo": "consenso", "fonte": "app"}
+ ]
+}
