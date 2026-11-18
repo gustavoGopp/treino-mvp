@@ -145,3 +145,4 @@ export { hipThrust } from './hip-thrust';
 export { agachamentoSmith } from './agachamento-smith';
 export { supinoSmith } from './supino-smith';
 export { mesaFlexora } from './mesa-flexora';
+export { coiceMaquina } from './coice-maquina';

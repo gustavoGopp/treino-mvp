@@ -34,6 +34,7 @@ import p28 from './bulgaro-suspensao.json';
 import p29 from './caminhada-lateral-mini-band.json';
 import p30 from './coice-caneleira.json';
 import p31 from './coice-elastico.json';
+import p32 from './coice-maquina.json';
 import p33 from './crucifixo-elastico.json';
 import p34 from './crucifixo-halteres.json';
 import p35 from './crucifixo-inclinado-halteres.json';
@@ -179,6 +180,7 @@ const TODOS: Record<string, Preparo> = {
   'caminhada-lateral-mini-band': p29,
   'coice-caneleira': p30,
   'coice-elastico': p31,
+  'coice-maquina': p32,
   'crucifixo-elastico': p33,
   'crucifixo-halteres': p34,
   'crucifixo-inclinado-halteres': p35,

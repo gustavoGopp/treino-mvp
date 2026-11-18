@@ -60,3 +60,4 @@ export { REGRAS_BARRAS_ESPECIAIS } from './barras-especiais';
 export { REGRAS_BARRA_LONGA } from './barra-longa';
 export { regrasDoSmith } from './smith';
 export { REGRAS_MESA_FLEXORA } from './mesa-flexora';
+export { REGRAS_COICE_MAQUINA } from './coice-maquina';

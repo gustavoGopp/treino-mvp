@@ -94,7 +94,9 @@ export function gluteoMaquina(m: GluteoMaquina) {
   // a almofada dos joelhos: o joelho de apoio em z = 0, a canela deitada para trás
   const zJ0 = 8,
     zJ1 = zJ0 - g('joelheiraComp');
-  const jMeio: V3 = [0, m.joelheira, (zJ0 + zJ1) / 2];
+  // a almofada fica só sob o joelho de apoio (o esquerdo, +x): o joelho direito passa ao lado dela
+  const xJ = g('joelheiraLarg') / 2 + 1;
+  const jMeio: V3 = [xJ, m.joelheira, (zJ0 + zJ1) / 2];
   // os apoios dos antebraços, um de cada lado, e os pegadores em pé na ponta da frente
   const aComp = g('antebracoComp'),
     aY = g('antebracoAltura');
@@ -131,8 +133,8 @@ export function gluteoMaquina(m: GluteoMaquina) {
       for (const z of [zTras + 4, 0, zFrente - 4]) T([xDireita + 4, tubo / 2, z], [xT1, tubo / 2, z]);
       // a coluna do meio, que leva a almofada dos joelhos (numa luva que corre nela) e, na frente, os apoios
       const yJ = m.joelheira - esp;
-      T([0, tubo, zJ1 + 8], [0, yJ - 4, zJ1 + 8]);
-      C.tubo([0, yJ - 12, zJ1 + 8], [0, yJ - 2, zJ1 + 8], 9, 9, M.metalClaro);
+      T([xJ, tubo, zJ1 + 8], [xJ, yJ - 4, zJ1 + 8]);
+      C.tubo([xJ, yJ - 12, zJ1 + 8], [xJ, yJ - 2, zJ1 + 8], 9, 9, M.metalClaro);
       C.estofado(add(jMeio, [0, -esp, 0]), Z, Y, X, g('joelheiraComp'), esp, g('joelheiraLarg'));
       const zA = m.apoio + aComp / 2;
       T([0, tubo, zA], [0, aY - esp - 4, zA]);

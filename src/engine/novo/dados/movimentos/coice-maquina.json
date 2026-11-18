@@ -1,0 +1,52 @@
+{
+ "id": "coice-maquina",
+ "nome": "Coice na máquina de glúteo",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/coice-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/coice-maquina.md): tronco apoiado (peito ou antebraços na almofada), um pé na plataforma ou na alavanca, o outro joelho apoiado; empurra para trás estendendo o quadril até a coxa alinhar com o tronco; volta até o quadril dobrar ~90°; a lombar não arqueia no fim, o movimento é do quadril (consenso, nsca2021, não verificado); erros: arquear a lombar para subir mais a perna, girar o quadril para o lado, soltar a volta sem controle",
+  "app": "Texto do app (src/conteudo/exercicios/coice-maquina.json): o mesmo da ficha; 'O movimento é do quadril'; 'Lombar parada'; 'Volta controlando'; erros 'Arquear a lombar' (a lombar arqueia para subir mais a perna), 'Girar o quadril' (o quadril gira para o lado), 'Soltar a volta' (a volta sem controle)",
+  "aprovada": "Animação do coice em quatro apoios com caneleira, aprovada por delegação (exercicios/coice-caneleira.ts e dados/movimentos/coice-caneleira.json, que segue o coice com elástico): o mesmo corpo em quatro apoios (o núcleo exercicios/quatro-apoios.ts), o mesmo caminho da coxa, o mesmo ritmo e os mesmos erros desenhados",
+  "objetos": "src/engine/novo/dados/objetos/gluteo-maquina.json: a máquina de glúteo de quatro apoios (Precor GSL0617 e Atlantis C-122; o que funciona dentro da máquina é de desenho)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "lombar": { "v": 6, "un": "graus", "selo": "consenso", "fonte": "aprovada", "o": "costas retas, lombar parada (o cartão): a lombar 6° menos curva que em pé (a do coice com caneleira; a ficha não dá número)" },
+  "cervical": { "v": -4, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "a cabeça na linha das costas, o olhar um pouco à frente dos pegadores: o pescoço estende 4° (o do coice com caneleira)" },
+  "umero.aFrente": { "v": 0.05, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "antebraços na almofada (a ficha): o braço quase na vertical, com o cotovelo sob o ombro (5 cm à frente a cada metro)" },
+  "antebraco.paraDentro": { "v": 0.08, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o antebraço deitado no apoio, para a frente, um pouco para dentro (8 cm a cada metro), com a mão no pegador" },
+  "apoio.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto o antebraço afunda no apoio: a inclinação das costas sai daí (o cotovelo encosta no apoio)" },
+  "coxa.inicio": { "v": -12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no começo, o quadril dobrado ~90° (a ficha: 'volta até o quadril dobrar ~90°'): a coxa 12° à frente da vertical, o joelho sob o peito, ao lado da almofada; com as costas subindo 12° para a frente, a coxa faz 90° com a linha do tronco (no coice com caneleira, com o joelho sobre o colchonete, a coxa começa 12° atrás da vertical)" },
+  "joelho": { "v": 90, "un": "graus", "selo": "consenso", "fonte": "aprovada", "o": "o joelho dobrado a 90° o tempo todo, com a sola na plataforma: o movimento é do quadril (o do coice com caneleira)" },
+  "pe.flexaoPlantar": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o pé em ângulo reto com a canela, a sola inteira na plataforma (o do coice com caneleira)" },
+  "plataforma.amassa": { "v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto a sola afunda na borracha da plataforma" },
+  "quadro.ate": { "v": 126, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a máquina do chão até 126 cm (o pé no alto do movimento); o alto da torre (148 cm) é cortado pela borda, como o da torre da polia" },
+  "placas": { "v": 5, "un": "placas", "selo": "desenho", "fonte": "objetos", "o": "quantas placas estão no pino (a ficha não dá a carga)" },
+  "erro.lombar.acima": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a perna sobe acima do tronco (o cartão: 'para subir mais a perna'): a coxa passa 20° da linha do tronco (o do coice com caneleira)" },
+  "erro.lombar.bacia": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a lombar arqueia (o cartão): a bacia vira 14° para a frente e a lombar arqueia o mesmo tanto, com o peito parado (o do coice com caneleira)" },
+  "erro.gira.rola": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o quadril gira para o lado (o cartão): a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio (o do coice com caneleira)" },
+  "erro.gira.abre": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: com a bacia rolada, a coxa sobe abrindo 22° para fora (o do coice com caneleira)" }
+ },
+ "fases": [
+  { "nome": "Quadril dobrado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "lombar parada", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Empurrar · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovada" },
+  { "nome": "Coxa na linha do tronco", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlando", "selo": "consenso", "fonte": "aprovada" }
+ ],
+ "contatos": ["mao.R", "mao.L", "joelho.L", "pe.L", "pelve"],
+ "regras": [
+  { "id": "coice-maquina-apoios", "pede": "tronco apoiado nos antebraços, o outro joelho na almofada, as mãos nos pegadores, o quadril no eixo da máquina", "selo": "consenso", "fonte": "ficha" },
+  { "id": "coice-coxa-na-linha-do-tronco", "pede": "estende o quadril até a coxa alinhar com o tronco, sem arquear a lombar, com o joelho dobrado", "selo": "consenso", "fonte": "ficha" },
+  { "id": "coice-quadril-nao-gira", "pede": "o quadril de frente para o chão, sem girar", "selo": "consenso", "fonte": "app" },
+  { "id": "coice-maquina-sola-na-plataforma", "pede": "a sola do pé na plataforma da alavanca, que gira com a perna sem descolar nem atravessar o pé", "selo": "consenso", "fonte": "ficha" },
+  { "id": "coice-maquina-pilha-sobe-com-a-alavanca", "pede": "a alavanca gira com a coxa e as placas sobem o arco do came (raio × ângulo)", "selo": "consenso", "fonte": "objetos" }
+ ],
+ "erros": [
+  { "id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a perna sobe acima do tronco e a lombar arqueia", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho:R"], "foco": "pelve" },
+  { "id": "gira", "instante": 1, "titulo": "Girar o quadril", "vista": "posterior", "oQueMuda": "a bacia rola para o lado da perna que trabalha e a coxa abre para fora", "destaca": ["corpo", "pernas"], "linha": ["quadril:L", "quadril:R"], "foco": "quadril:R" }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  { "vista": "lateral", "texto": "o movimento é do quadril", "ponto": "joelho:R", "selo": "consenso", "fonte": "app" },
+  { "vista": "lateral", "texto": "lombar parada", "ponto": "pelve", "selo": "consenso", "fonte": "app" }
+ ]
+}
