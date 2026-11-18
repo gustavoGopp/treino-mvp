@@ -136,6 +136,8 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'mergulho': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'face-pull-suspensao': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'barra-fixa-negativa': { em: '2026-11-18', oQueEleDisse: 'pode aprovar a barra negativa assim', como: 'nos quadros' },
+  'rosca-barra-w': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'terra-hexagonal': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };
 
