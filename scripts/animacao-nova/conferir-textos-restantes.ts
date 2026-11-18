@@ -16,7 +16,10 @@ const PASTA = 'docs/revisoes/animacoes-restantes/textos';
 const LOTES = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2', 'C1', 'C2'];
 // Lotes que entram só em parte: os ids que já têm animação e texto do guia. Os outros ids do lote ficam de fora
 // (nem se pede o arquivo deles, nem se aceita).
-const PARCIAIS: Record<string, string[]> = {};
+const PARCIAIS: Record<string, string[]> = {
+  // C3: abdominal-maquina, coice-polia, abducao-polia e remada-invertida ainda estão sendo animados
+  C3: ['rosca-maquina', 'panturrilha-sentada', 'panturrilha-em-pe-maquina', 'rosca-scott', 'triceps-maquina', 'abdominal-declinado', 'hiperextensao'],
+};
 const CAMPOS_DO_CARTAO = ['id', 'name', 'short', 'target', 'setupEq', 'setupBody', 'exec', 'range', 'cues', 'errors', 'carga'] as const;
 
 const textoDoGuia = conteudoExercicioSchema.extend({ carga: z.string().min(1) }).strict();

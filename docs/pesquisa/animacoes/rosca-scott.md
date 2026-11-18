@@ -33,3 +33,16 @@ Barra W ou halter: kg pelo inventário (menor par de anilhas na barra W; próxim
 - `nunes2020`: Nunes JP, Jacinto JL, Ribeiro AS et al. Placing Greater Torque at Shorter or Longer Muscle Lengths? Effects of Cable vs. Barbell Preacher Curl Training on Muscular Strength and Hypertrophy in Young Adults. Int J Environ Res Public Health 2020;17(16):5859. PMID 32823490. Resumo lido no PubMed em 01/11/2026.
 - `attarieh2025`: Attarieh P, Nunes JP, Khani S et al. Comparison Between Shoulder Flexed and Extended Positions in Elbow Flexion Resistance Training on Regional Hypertrophy and Maximum Strength: Preacher versus Bayesian Cable Curls. Eur J Sport Sci 2025;25(4):e12279. PMID 40082069. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-scott.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps, com o braquial e o braquiorradial); a nota, do "Cuidado" de "Por que assim" (embaixo, o cotovelo fica quase estendido sob carga) e das linhas Descida e Posição | um estudo (o braquial e o braquiorradial); opinião (o cuidado embaixo); consenso | `kobayashi2026` (o braquial e o braquiorradial); `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | o equipamento do cabeçalho (barra W ou halter) e as linhas Descida e Subida | consenso | `nsca2021` (não verificado); `cadencia.repeticao` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-scott.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura do banco foi para a conferência. A ficha não dá o ângulo da almofada (a animação usou 45°, da ficha comercial de um banco Scott) e pede o banco "na altura em que o tronco fica reto" sem dizer se a pessoa senta ou fica em pé (a animação senta). O "Cuidado" está marcado como opinião na ficha. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

@@ -31,3 +31,16 @@ Peso do corpo, depois kg da anilha ou do halter segurado no peito.
 ## Fontes
 - `lawrence2019`: Lawrence MA, Chin A, Swanson BT. Biomechanical Comparison of the Reverse Hyperextension Machine and the Hyperextension Exercise. J Strength Cond Res 2019;33(8):2053-2056. PMID 30946266. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/hiperextensao.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (glúteos e posteriores; a lombar como secundário fora dos 12) e o alvo do cartão; a nota, dos erros "Arquear a lombar no topo" e "Arredondar as costas" e da linha Topo | consenso | `nsca2021` (não verificado); `lawrence2019` (a flexão no quadril, com a coluna neutra) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Ajuste, Carga (as mãos no peito) e Movimento (a coluna neutra) da tabela de técnica e os pés presos do cartão | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Movimento e Topo e o erro "Embalar" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/hiperextensao.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura da almofada e os pés presos foram para a conferência. A ficha não dá a altura da almofada em número (a animação a regulou 5,4 cm abaixo do mínimo de um banco comercial, para caber no corpo da tabela) nem o ângulo do banco além do "45°" do título. A biblioteca não tem a lombar como secundário (ela não está entre os 12 músculos); o `feel` a cita como o alvo do cartão faz ("a lombar segura a coluna"). O erro "Embalar" não tem desenho (está em `SEM_DESENHO`): o texto o mantém. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

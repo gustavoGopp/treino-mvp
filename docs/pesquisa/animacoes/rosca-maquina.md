@@ -30,3 +30,16 @@ Placa da torre (número).
 - `attarieh2025`: Attarieh P, Nunes JP, Khani S et al. Comparison Between Shoulder Flexed and Extended Positions in Elbow Flexion Resistance Training on Regional Hypertrophy and Maximum Strength: Preacher versus Bayesian Cable Curls. Eur J Sport Sci 2025;25(4):e12279. PMID 40082069. Resumo lido no PubMed em 01/11/2026.
 - `haugen2023`: Haugen ME, Vårvik FT, Larsen S et al. Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance – a systematic review and meta-analysis. BMC Sports Sci Med Rehabil 2023;15(1):103. PMID 37582807. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-maquina.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps; igual à biblioteca); a nota, da linha Ajuste (o cotovelo no eixo, os braços apoiados) e do erro "Tirar o braço do apoio" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Ajuste da tabela de técnica e a dica "Cotovelo no eixo" do cartão | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Ajuste e Movimento e o erro "Descer pouco" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-maquina.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura do assento foi para a conferência. A ficha tem só duas linhas de técnica: não diz a pegada, a altura do "fim" da subida nem nada que varie de pessoa para pessoa (o `vary` só traz o que não muda; a animação parou a subida em 120° de cotovelo e partiu o apoio em dois, de desenho). Com tão pouco na ficha, a conferência tem 3 itens que se repetem um pouco (o assento existe para pôr o cotovelo no eixo). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

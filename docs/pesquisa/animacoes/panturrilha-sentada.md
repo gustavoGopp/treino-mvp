@@ -33,3 +33,17 @@ Em geral **anilhas** na alavanca: kg de anilhas por lado, por passos. Em algumas
 
 ## Leitura do texto completo (05/11/2026)
 O sóleo cresceu **igual** em pé e sentado (+2,1% × +2,9%, p = 0,41; `kinoshita2023`, 14 não treinados, 12 semanas). A ideia de que a sentada "cobre o sóleo" não tem apoio nesse ensaio: a sentada é variação, não complemento necessário. O cartão passou a dizer isso.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/panturrilha-sentada.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (panturrilha, sóleo) e a leitura do texto completo (05/11): com o joelho dobrado, o gastrocnêmio quase não cresceu, e o sóleo cresceu igual em pé e sentado; a nota, também do erro "Impulso com o quadril" | um estudo (o gastrocnêmio e o sóleo); consenso (a nota do tronco) | `kinoshita2023`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Posição, Movimento ("solta a trava") e Trava da tabela de técnica e a dica "Tronco parado" | consenso | `nsca2021` (não verificado); `seguranca-t5` |
+| Variações (`vary`) | a leitura do texto completo ("a sentada é variação, não complemento necessário") e o alvo do cartão ("cresce menos que em pé"), mais a linha Movimento | um estudo; consenso | `kinoshita2023`; `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão (as linhas Movimento e Trava) | consenso | `seguranca-t5` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/panturrilha-sentada.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** "Por que assim" ainda diz que o sóleo "foi o músculo mais treinado" e que a sentada é complemento; a leitura de 05/11, logo abaixo, corrige (o sóleo cresceu igual em pé e sentado), e o texto seguiu a correção. A ficha não diz onde fica o eixo da máquina (a animação o pôs na linha do quadril, de desenho) nem como regular a almofada dos joelhos. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.
