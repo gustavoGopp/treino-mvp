@@ -120,7 +120,9 @@ O cartão tem menos campos que o texto do guia animado. Para cada exercício fal
 - **onde sentir**: dos músculos da ficha da técnica e da biblioteca (principal e secundários), com a fonte da ficha;
 - **conferência e variações**: da montagem e da técnica da ficha (o que o cartão já diz, organizado);
 - **rótulos do contorno**: as posições de começo e fim da amplitude (`range`);
-- **respiração**: as 81 fichas não falam de respiração. As 90 animadas trazem um texto de respiração sem fonte própria na ficha. **É uma lacuna de evidência**: proponho uma pesquisa curta (páginas públicas de entidade, como NSCA e ACSM) para uma regra geral de respiração com fonte, aplicada às 81 e conferida nas 90, ou deixar o campo opcional até ter fonte. Nada será inventado.
+- **respiração**: as 81 fichas não falam de respiração. A base do projeto já tem a fonte: MacDougall 1985 (`macdougall1985`, citado em `pesquisa-v2/06`): a pressão sobe mais perto da falha e com a respiração presa. O texto segue o das 90 animadas ("inspire na descida, solte o ar na subida, sem prender a série inteira"), com o selo consenso e essa fonte. Nada além disso.
+- **a montagem segura** do cartão (`montagem`, em 35 dos 81) vai para a nota do guia (`note`), que aparece à vista em todos os modos, como nas 90.
+- **o texto "como registrar e subir a carga"** (`carga`, em todos os cartões) não tem lugar no texto do guia animado. É uma decisão da ligação: ou o guia ganha esse campo (uma mudança pequena na tela do guia), ou a informação sai (a progressão já vem do programa). Recomendo manter, com o campo novo.
 
 Antes de escrever, sigo as regras de texto aprovadas na sessão de textos (`docs/revisoes/textos/proposta.md`, a versão mínima do guia).
 
