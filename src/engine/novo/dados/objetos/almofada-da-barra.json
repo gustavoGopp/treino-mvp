@@ -1,0 +1,17 @@
+{
+ "fontes": {
+  "rogue-abmat-pad": "Rogue Fitness. AbMat Barbell Pad, Gear Specs: 'Length 17.5\"', 'Width 3.5\"', 'Pad Thickness: 1.25”', 'Antibacterial, closed cell foam'; https://www.rogueaustralia.com.au/abmat-barbell-pad (lido em 18/11/2026)",
+  "derivada": "Conta a partir das medidas lidas"
+ },
+ "objetos": {
+  "almofadaDaBarra": {
+   "nome": "Almofada de espuma da barra (o hip thrust)",
+   "medidas": {
+    "comp": { "v": 44.45, "un": "cm", "tipo": "medida", "fonte": "rogue-abmat-pad", "onde": "Length 17.5 pol = 44,45 cm" },
+    "diam": { "v": 8.89, "un": "cm", "tipo": "medida", "fonte": "rogue-abmat-pad", "onde": "Width 3.5 pol = 8,89 cm (a largura de fora do tubo de espuma)" },
+    "parede": { "v": 3.175, "un": "cm", "tipo": "medida", "fonte": "rogue-abmat-pad", "onde": "Pad Thickness 1.25 pol = 3,175 cm" },
+    "furo": { "v": 2.54, "un": "cm", "tipo": "derivada", "fonte": "derivada", "onde": "8,89 − 2 × 3,175 = 2,54 cm; a espuma abre um pouco em volta da pegada de 2,8 cm" }
+   }
+  }
+ }
+}

@@ -136,3 +136,4 @@ export { facePullSuspensao } from './face-pull-suspensao';
 export { barraFixaNegativa } from './barra-fixa-negativa';
 export { terraRomenoBarra } from './terra-romeno-barra';
 export { remadaBarra } from './remada-barra';
+export { hipThrust } from './hip-thrust';

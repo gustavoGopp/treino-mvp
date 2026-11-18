@@ -1,0 +1,61 @@
+{
+ "id": "hip-thrust",
+ "nome": "Hip thrust",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/hip-thrust.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/hip-thrust.md): banco travado; almofada na barra, sobre o quadril; borda do banco logo abaixo das escápulas; pés no chão na largura do quadril; no topo, canelas quase verticais; empurra pelos calcanhares até o quadril alinhar com o tronco e as coxas; pausa de ~1 s no topo; sem arquear a lombar, costelas para baixo, queixo levemente recolhido; consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "app": "Cartão do app (src/conteudo/exercicios/hip-thrust.json): 'Embaixo: quadril perto do chão', as fases (subida, topo, descida), as dicas e os quatro erros",
+  "ponte": "A ficha de movimento da ponte de glúteo com halter aprovada (src/engine/novo/dados/movimentos/ponte-gluteo-halter.json): a carga na dobra do quadril, o ritmo e os erros, que a ficha da técnica não dá em número",
+  "objetos": "src/engine/novo/dados/objetos/barra-longa.json (a barra e as anilhas), src/engine/novo/dados/objetos.json (o banco reto) e src/engine/novo/dados/objetos/almofada-da-barra.json (a almofada, ficha da Rogue)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "banco.abaixoDaEscapula": {"v": 3, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a borda do banco 'logo abaixo das escápulas': o ponto das costas que apoia na borda fica 3 cm abaixo da ponta de baixo da escápula, ao longo do tronco, no meio das costas"},
+  "banco.z": {"v": -40, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde fica o banco na cena (só posiciona a cena; o banco não sai do lugar)"},
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés no chão na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"},
+  "quadril.topo": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: o quadril alinha com o tronco e as coxas (ombro, quadril e joelho em linha, 180°)"},
+  "canela.topo": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no topo, 'canelas quase verticais': a canela a 3° da vertical, com o joelho à frente do tornozelo; é o que põe o pé no chão"},
+  "quadril.folgaEmbaixo": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, 'quadril perto do chão' (o cartão não dá número): a pele do glúteo a 12 cm do chão. Com as costas presas na borda do banco de 43,5 cm, descer mais deixa o tronco quase em pé (com 4 cm, a 66° da horizontal), o que já não é a posição do hip thrust"},
+  "barra.dobra": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "ponte", "o": "a barra 'sobre o quadril': as mãos a seguram perto da dobra do quadril, a 6 cm à frente do meio dos quadris, ao longo do corpo (na ponte com halter aprovada, a carga assenta na dobra)"},
+  "barra.segura": {"v": 0.05, "un": "cm por cm²", "selo": "desenho", "fonte": "desenho", "o": "o quanto as mãos seguram a barra perto da dobra quando o corpo fica quase reto no alto (sem isso, ela rolaria para os joelhos)"},
+  "cervical": {"v": 18, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'queixo levemente recolhido': o pescoço dobra 18° para a frente, o olhar vai para os joelhos"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "maos.meiaDistancia": {"v": 28, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos seguram a barra por fora da almofada (44,5 cm), uma de cada lado do quadril, para ela não rolar"},
+  "maos.poloFora": {"v": 1, "un": "proporção", "selo": "desenho", "fonte": "ponte", "o": "para onde o cotovelo aponta: para fora e para baixo, como na ponte com halter aprovada"},
+  "maos.poloCabeca": {"v": 0.6, "un": "proporção", "selo": "desenho", "fonte": "ponte", "o": "o cotovelo aponta também um pouco para o lado da cabeça"},
+  "anilhas": {"v": 5, "un": "kg por lado", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 5 kg (24 cm) de cada lado"},
+  "erro.lombar.lombar": {"v": -22, "un": "graus", "selo": "desenho", "fonte": "ponte", "o": "erro: no topo, a lombar arqueia 22 graus (como na ponte com halter aprovada)"},
+  "erro.lombar.bacia": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "ponte", "o": "erro: a bacia inclina menos o equivalente a 70% do que a lombar arqueia (o quadril não estende tudo)"},
+  "erro.calcanhar.calc": {"v": 40, "un": "graus", "selo": "desenho", "fonte": "ponte", "o": "erro: o calcanhar sobe até o pé ficar 40 graus da horizontal, na ponta do pé"},
+  "erro.raso.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "ponte", "o": "erro: o quadril para em 40% do caminho"},
+  "erro.banco.desliza": {"v": 18, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o banco solto desliza 18 cm para trás com o empurrão (a ficha não dá número); as costas vão junto e os pés ficam no lugar"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "firme o abdômen", "selo": "desenho", "fonte": "ponte"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "ponte"},
+  {"nome": "Topo · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "desce controlando", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "costas"],
+ "regras": [
+  {"id": "borda-do-banco-abaixo-das-escapulas", "pede": "a borda do banco logo abaixo das escápulas, com as costas apoiadas nela", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-alinha-no-topo", "pede": "em cima, o quadril alinha com o tronco e as coxas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "canela-quase-vertical-no-topo", "pede": "no topo, canelas quase verticais", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "sem arquear a lombar no topo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ponte-calcanhares-no-chao", "pede": "empurra pelos calcanhares: o pé inteiro fica no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-na-dobra-do-quadril", "pede": "a barra (com a almofada) fica sobre o quadril e não rola", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-firme-nas-duas-maos", "pede": "as duas mãos seguram a barra, que se move inteira", "selo": "consenso", "fonte": "objetos"},
+  {"id": "anilhas-fora-do-chao", "pede": "embaixo, o quadril perto do chão, sem as anilhas baterem nele", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 1, "titulo": "Arquear a lombar no topo", "vista": "lateral", "oQueMuda": "no topo, a lombar arqueia e a barriga sobe, com o quadril menos estendido", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},
+  {"id": "e2", "instante": 1, "titulo": "Empurrar pela ponta dos pés", "vista": "lateral", "oQueMuda": "o calcanhar sai do chão e o pé fica na ponta", "destaca": ["pernas"], "linha": ["joelho", "tornozelo", "calcanhar"], "foco": "calcanhar"},
+  {"id": "e3", "instante": 1, "titulo": "Subir pouco", "vista": "lateral", "oQueMuda": "o quadril para em 40% do caminho, abaixo da linha do tronco com as coxas", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
+  {"id": "e4", "instante": 1, "titulo": "Banco desliza", "vista": "lateral", "oQueMuda": "o banco solto desliza 18 cm para trás com o empurrão; as costas vão junto, os pés ficam: os joelhos abrem, as canelas deitam e o corpo perde a base", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "quina", "texto": "empurra pelos calcanhares", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "tronco e coxas em linha", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "guia": ["ombro", "quadril", "joelho"]}
+ ]
+}
