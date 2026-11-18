@@ -9,3 +9,12 @@ Ao escrever o texto do guia animado dos 42 exercícios da fase A, o texto do car
 | `abertura-elastico` | `montagem` | "pise com o pé inteiro sobre ele": o elástico fica entre as mãos, sem nada para prender. | o próprio cartão (`setupEq`: "nada para prender"); ficha, seção Segurança | a nota usa a conferência das rachaduras e o fim do erro "Soltar uma ponta" |
 | `afundo-tras` | `range`, 1º item | "Início: em pé, pés juntos", mas a posição (`setupBody`) diz "pés na largura do quadril". | o próprio cartão; ficha, linha Posição da tabela ("pés na largura do quadril"; `nsca2021`, não verificado) | nada: o texto do guia não usa a amplitude além dos rótulos ("em pé", "embaixo") |
 | `goblet-kettlebell` | (biblioteca, não o cartão) | A ficha diz "Secundário: glúteos"; a biblioteca (`src/domain/biblioteca/exercicios.json`) soma os adutores. Não é do cartão, mas o `feel` depende disso. | ficha, seção Músculos; biblioteca, campo `musculos` | o `feel` segue a biblioteca (como o goblet com halter) |
+
+## Fase B (18/11/2026)
+
+Mesmo critério, ao escrever o texto do guia animado dos 10 exercícios da fase B.
+
+| Exercício | Campo do cartão | O que parece errado | Fonte | O que o texto do guia fez |
+|---|---|---|---|---|
+| `supino-barra` | `montagem` | Não pede as travas nas anilhas, e a regra pede para as barras; os outros cinco cartões com barra longa ou W (agachamento, terra romeno, desenvolvimento, rosca W, remada) trazem. | regra `seguranca.montagem` ("barras: travas nas anilhas"; `docs/pesquisa/regras.md`) | a nota seguiu o cartão, sem as travas nas anilhas |
+| `hip-thrust` | (biblioteca, não o cartão) | A ficha diz "Secundário: posteriores"; a biblioteca (`src/domain/biblioteca/exercicios.json`) não tem secundário. O `feel` depende disso. | ficha, seção Músculos; biblioteca, campo `musculos` | o `feel` segue a biblioteca e o alvo do cartão ("Glúteos") |

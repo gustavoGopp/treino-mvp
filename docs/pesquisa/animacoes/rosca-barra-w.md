@@ -29,3 +29,17 @@ Registre os kg (barra W com anilhas). Para progredir, o menor par de anilhas.
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase B, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-barra-w.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps, sem secundário) e a biblioteca; a nota, dos erros "Balançar o tronco" e "Cotovelos para a frente" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Preparo, Posição e Montagem segura da tabela de técnica | consenso | `seguranca.montagem`; `nsca2021` (não verificado) |
+| Variações (`vary`) | só o que não muda: linhas Posição, Subida e Descida | consenso | `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão ("Travas nas anilhas") | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-barra-w.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa (nem a largura da pegada além de "nas partes inclinadas"); o `vary` só tem o que não muda.

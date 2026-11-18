@@ -34,3 +34,17 @@ Kg total (peso da barra + anilhas; o peso da barra hexagonal varia, então o app
 - `krauseneto2020`: Krause Neto W, Soares EG, Vieira TL et al. Gluteus Maximus Activation during Common Strength and Hypertrophy Exercises: A Systematic Review. J Sports Sci Med 2020;19(1):195-203. PMID 32132843. Resumo lido no PubMed em 01/11/2026.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase B, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/terra-hexagonal.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (quadríceps e glúteos; posteriores e adutores) e a biblioteca; a nota, dos erros "Arredondar a lombar" e "Quadril sobe antes" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Montagem e Posição da tabela de técnica | consenso | `seguranca-t5`; `nsca2021` (não verificado) |
+| Variações (`vary`) | só o que não muda: linhas Subida e Descida e o erro "Soltar a barra" | consenso | `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão (anilhas iguais, com travas) | consenso | `seguranca-t5` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/terra-hexagonal.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cabeçalho ainda diz que o exercício não está na biblioteca nem no motor, o que já não vale. A ficha não diz nada que varie de pessoa para pessoa; o `vary` só tem o que não muda.
