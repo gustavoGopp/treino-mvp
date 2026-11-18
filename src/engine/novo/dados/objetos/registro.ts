@@ -50,3 +50,5 @@ export { default as panturrilhaSentada } from './panturrilha-sentada.json';
 export { default as bancoScott } from './banco-scott.json';
 export { default as bancoRomano } from './banco-romano.json';
 export { default as bancoDeclinado } from './banco-declinado.json';
+export { default as roscaMaquina } from './rosca-maquina.json';
+export { default as tricepsMaquina } from './triceps-maquina.json';

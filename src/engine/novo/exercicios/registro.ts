@@ -167,3 +167,5 @@ export { panturrilhaSentada } from './panturrilha-sentada';
 export { roscaScott } from './rosca-scott';
 export { hiperextensao } from './hiperextensao';
 export { abdominalDeclinado } from './abdominal-declinado';
+export { roscaMaquina } from './rosca-maquina';
+export { tricepsMaquina } from './triceps-maquina';

@@ -1,0 +1,242 @@
+{
+ "fontes": {
+  "lf-hs26-tp": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Triceps Press SS-TP, 53,1 x 43,7 x 58,1 pol (135 x 111 x 148 cm), C x L x A (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1); a Movement Next tem 125,6 x 108,4 x 146 cm (MV-NEXT, p. 23) e a Technogym Arm Extension MK45, 1083 x 1439 x 1375 mm (TG-HOME, p. 84). A SS-TP é de empurrar para baixo, com pegadores de mergulho (página pública da Life Fitness Austrália, 'Insignia Series Tricep Press'): entra só pelo tamanho",
+  "hs24-te": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Triceps Extension HS-TE, 45 x 44 x 55 pol (115 x 112 x 140 cm) (pesquisa/04-objetos.md, seção 13.1)",
+  "precor-rsl0208": "Precor, Resolute Triceps Extension RSL0208; https://www.precor.com/en-US/products/RSL0208 (lido em 18/11/2026): \"48 x 43 x 58 in / 122 x 110 x 148 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"160 lb / 73 kg\", \"Total thickness is 2.5 inches (65 mm)\", \"The angled arm pad and handles on the Resolute Triceps Extension support proper alignment of the exerciser's elbows to the pivot point\", \"The gas-assisted ratcheting seat can be adjusted from a seated position so that exercisers can find the proper height relative to the angled arm pad\"",
+  "hs-manual-te": "Hammer Strength Select, manual do proprietário (Cybex/Life Fitness, 9510901), pp. 17 e 60; https://kb.cybexintl.com/Owners_Manuals/Strength/Hammer_Select_9510901.pdf (lido em 18/11/2026), Triceps Extension HS-TE: \"Adjust the seat height so backs of arms rest fully on arm pad, aligning the elbows with the machines pivot\", \"Rotate the handle back and grip firmly\", \"Position the body with the hips in contact with the lower back pad, leaning forward and keeping the back straight\", \"Seat and upper arm pads are angled\", \"Handle pivots to automatically adjust for varying forearm lengths\"; o desenho da p. 17 mostra os dois pegadores em pé numa barra atravessada, o came de um lado e o apoio da lombar atrás do assento",
+  "cartao-triceps": "Cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `triceps_maquina`): o assento e o encosto azuis, a torre com a pilha e, dos lados do quadril, dois pegadores em pé presos em braços que vêm de trás. É a máquina de mergulho sentado; a ficha da técnica (docs/pesquisa/animacoes/triceps-maquina.md) é a do braço apoiado à frente, a da Hammer Strength HS-TE e da Precor RSL0208, e a peça nova segue a ficha. Do cartão ficam as cores, o assento num pé só e a torre",
+  "rosca-maquina": "A máquina de rosca (./rosca-maquina.json): a mesma estrutura, o mesmo apoio dos braços partido, o eixo, o came e a pilha, com as mesmas medidas (a Precor faz as duas no mesmo quadro, 122 x 110 x 148 cm)",
+  "desenho-triceps-maquina": "Escolha de desenho, sem medida de fabricante: os pegadores em pé e o apoio da lombar não têm medida em nenhuma ficha lida; o apoio da lombar sai do corpo da tabela (a bacia encosta nele, como o manual pede)"
+ },
+ "objetos": {
+  "tricepsMaquina": {
+   "nome": "Máquina de tríceps (extensão do cotovelo sentado, o braço apoiado à frente): assento que sobe e desce, apoio dos braços inclinado, apoio da lombar, alavanca que gira num eixo alinhado ao cotovelo, com os pegadores em pé na ponta, e a pilha de placas",
+   "medidas": {
+    "comp": {
+     "v": 122,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "precor-rsl0208",
+     "onde": "comprimento total da Precor RSL0208 (a Hammer Strength HS-TE tem 115 — fonte hs24-te; a Life Fitness SS-TP, 135 — fonte lf-hs26-tp; a Movement Next, 126)"
+    },
+    "larg": {
+     "v": 110,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "precor-rsl0208",
+     "onde": "largura total, com a torre ao lado do assento (Hammer Strength 112; Movement 108)"
+    },
+    "alturaTorre": {
+     "v": 148,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "precor-rsl0208",
+     "onde": "altura da torre da pilha: \"Weight Stack Tower Height: 58 in / 148 cm\""
+    },
+    "estofadoEsp": {
+     "v": 6.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "precor-rsl0208",
+     "onde": "espessura total dos estofados: 2,5 pol (65 mm)"
+    },
+    "apoioInclina": {
+     "v": 40,
+     "un": "graus",
+     "tipo": "desenho",
+     "fonte": "hs-manual-te",
+     "onde": "o apoio dos braços desce 40° da horizontal para a frente, como o da máquina de rosca (o manual diz só \"Seat and upper arm pads are angled\")"
+    },
+    "apoioComp": {
+     "v": 26,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: comprimento de cada metade do apoio, ao longo da inclinação: do cotovelo (2 cm antes dele) até a axila do corpo da tabela"
+    },
+    "apoioLarg": {
+     "v": 56,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: largura do apoio: os dois braços na largura dos ombros, com folga"
+    },
+    "apoioVao": {
+     "v": 28,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "o apoio partido no meio, como o da máquina de rosca: o peito passa pelo vão"
+    },
+    "eixoAltura": {
+     "v": 84,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "hs-manual-te",
+     "onde": "altura do eixo (o centro do came) do chão: o manual pede o cotovelo alinhado ao eixo; a altura sai do corpo da tabela, com o assento perto do meio do curso"
+    },
+    "eixoAFrente": {
+     "v": 14,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "hs-manual-te",
+     "onde": "quanto o eixo fica à frente da borda do assento: o cotovelo do corpo da tabela, com o braço deitado no apoio e a bacia no meio do assento"
+    },
+    "eixoAcimaDaFace": {
+     "v": 4,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: o eixo fica 4 cm acima do plano da face do apoio: o centro do cotovelo, com o braço deitado nele"
+    },
+    "eixoAlemDaBorda": {
+     "v": 2,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: o eixo fica 2 cm além da borda de baixo do apoio: o cotovelo sai inteiro do estofado, e o antebraço desce além dele"
+    },
+    "assentoComp": {
+     "v": 38,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: comprimento do assento: as fichas não dão"
+    },
+    "assentoLarg": {
+     "v": 40,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: largura do assento: as fichas não dão; um pouco mais largo que o quadril do corpo da tabela"
+    },
+    "assentoMin": {
+     "v": 40,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: o assento mais baixo (do chão ao topo do estofado): a Precor diz que ele sobe e desce (\"gas-assisted, ratcheting seat\"), sem dar o curso"
+    },
+    "assentoMax": {
+     "v": 62,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: o assento mais alto"
+    },
+    "cameDiam": {
+     "v": 22,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "diâmetro do came no eixo (a peça redonda que enrola o cabo, do lado esquerdo, como no cartão de hoje), o das cadeiras de joelho"
+    },
+    "alavancaFora": {
+     "v": 10,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: a alavanca corre do lado de fora do came, 10 cm além da borda do apoio"
+    },
+    "barraDiam": {
+     "v": 3,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "diâmetro da barra que junta os pegadores, embaixo deles"
+    },
+    "pegadaMeia": {
+     "v": 19,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "cartao-triceps",
+     "onde": "os pegadores em pé (como os do cartão de hoje, aqui na ponta da alavanca) ficam a 19 cm do meio: as mãos na largura dos cotovelos (no exercício, a de quem treina)"
+    },
+    "pegadorComp": {
+     "v": 13,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "comprimento de cada pegador em pé (a pegada neutra, a palma virada para dentro)"
+    },
+    "pilhaPlacas": {
+     "v": 15,
+     "un": "placas",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: número de placas desenhadas; a Precor tem 73 kg de pilha, sem dizer em quantas placas"
+    },
+    "pilhaAltura": {
+     "v": 75,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: altura da pilha em repouso"
+    },
+    "pilhaLarg": {
+     "v": 26,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: largura das placas"
+    },
+    "pilhaProf": {
+     "v": 12,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: fundo das placas"
+    },
+    "tubo": {
+     "v": 7,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "rosca-maquina",
+     "onde": "como na máquina de rosca: tubo da estrutura, como o do cartão de hoje"
+    },
+    "barraAbaixo": {
+     "v": 3,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "a barra que junta os pegadores passa 3 cm além da ponta de baixo deles (o lado do dedo mínimo)"
+    },
+    "lombarZ": {
+     "v": -30,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "onde fica o meio da face do apoio da lombar, atrás da borda da frente do assento: encosta na bacia do corpo da tabela, inclinado para a frente"
+    },
+    "lombarAcima": {
+     "v": 6,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "a borda de baixo do apoio da lombar, acima do topo do assento"
+    },
+    "lombarComp": {
+     "v": 22,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "altura do apoio da lombar"
+    },
+    "lombarLarg": {
+     "v": 30,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "largura do apoio da lombar"
+    },
+    "lombarInclina": {
+     "v": 15,
+     "un": "graus",
+     "tipo": "desenho",
+     "fonte": "desenho-triceps-maquina",
+     "onde": "o apoio da lombar inclina para a frente em cima, junto com as costas de quem se inclina"
+    }
+   }
+  }
+ }
+}

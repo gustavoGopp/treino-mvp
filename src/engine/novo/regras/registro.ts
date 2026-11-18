@@ -73,3 +73,4 @@ export { REGRAS_PANTURRILHAS_MAQUINAS } from './panturrilhas-maquinas';
 export { REGRAS_BANCO_SCOTT } from './banco-scott';
 export { REGRAS_BANCO_ROMANO } from './banco-romano';
 export { REGRAS_BANCO_DECLINADO } from './banco-declinado';
+export { REGRAS_MAQUINAS_DE_BRACO } from './maquinas-de-braco';
