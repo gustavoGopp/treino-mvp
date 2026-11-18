@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 151 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 153 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2869 células dos cuidados 1 a 19: M 1156, M! 125, O 1096, C 453, – 22, ✗ 17.
+Contagem das 2907 células dos cuidados 1 a 19: M 1172, M! 125, O 1112, C 459, – 22, ✗ 17.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -95,6 +95,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `desenvolvimento-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/desenvolvimento-barra.png) |
 | `desenvolvimento-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-elastico.png) |
 | `desenvolvimento-em-pe-halteres` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-em-pe-halteres.png) |
+| `desenvolvimento-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-maquina.png) |
 | `desenvolvimento-unilateral` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-unilateral.png) |
 | `desenvolvimento-unilateral-kettlebell` | 3 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-unilateral-kettlebell.png) |
 | `elevacao-halteres` | 3 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-halteres.png) |
@@ -178,6 +179,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `supino-chao-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/supino-chao-halteres.png) |
 | `supino-inclinado` | 3 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-inclinado.png) |
 | `supino-inclinado-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-inclinado-polia.png) |
+| `supino-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/supino-maquina.png) |
 | `supino-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-polia.png) |
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
 | `supino-smith` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-smith.png) |
@@ -471,6 +473,7 @@ Os demais:
 - `desenvolvimento-barra`: (sem linha no andamento)
 - `desenvolvimento-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (em pé; com um tubo de 60 pol, que é objeto novo: o de 48 pol passaria do máximo do fabricante)
 - `desenvolvimento-em-pe-halteres`: (sem linha no andamento)
+- `desenvolvimento-maquina`: (sem linha no andamento)
 - `desenvolvimento-unilateral`: (sem linha no andamento)
 - `desenvolvimento-unilateral-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `elevacao-halteres`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb: os halteres ficam na frente das coxas embaixo)
@@ -554,6 +557,7 @@ Os demais:
 - `supino-chao-halteres`: (sem linha no andamento)
 - `supino-inclinado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): encosto a 30°, com o ângulo marcado no banco e no rótulo
 - `supino-inclinado-polia`: (sem linha no andamento)
+- `supino-maquina`: (sem linha no andamento)
 - `supino-polia`: (sem linha no andamento)
 - `supino-reto`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `supino-smith`: (sem linha no andamento)
