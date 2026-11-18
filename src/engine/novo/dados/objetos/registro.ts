@@ -38,3 +38,5 @@ export { default as mesaFlexora } from './mesa-flexora.json';
 export { default as gluteoMaquina } from './gluteo-maquina.json';
 export { default as legPress } from './leg-press.json';
 export { default as hack } from './hack.json';
+export { default as supinoMaquina } from './supino-maquina.json';
+export { default as desenvolvimentoMaquina } from './desenvolvimento-maquina.json';

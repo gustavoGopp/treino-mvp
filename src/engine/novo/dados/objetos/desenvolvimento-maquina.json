@@ -1,0 +1,44 @@
+{
+ "fontes": {
+  "lf-hs26-sp": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Shoulder Press SS-SP, 64,4 x 56,9 x 72,8 pol (164 x 145 x 185 cm), C x L x A (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24-sp": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Shoulder Press HS-SP, 60 x 56 x 64 pol (153 x 143 x 163 cm) (pesquisa/04-objetos.md, seção 13.1). A Movement Next tem 155,1 x 144,1 x 146 cm (MV-NEXT, p. 22)",
+  "precor-rsl0515": "Precor, Resolute Converging Shoulder Press RSL0515; https://www.precor.com/en-US/products/RSL0515 (lido em 18/11/2026): \"61 x 59 x 60 in / 155 x 150 x 152 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"Weight Stack: 200 lb / 91 kg\", \"Total thickness is 2.5 inches (65 mm)\", \"an ergonomic, converging axis and independent pressing arm movement\", \"The open design and overhead pivot make entry and exit fast and easy\", \"The dual-position handles add to exercisers' comfort and workout variety\"",
+  "desenvolvimento-com-halteres": "src/engine/novo/dados/movimentos/desenvolvimento.json (o desenvolvimento sentado com halteres aprovado): o encosto a 78° da horizontal, do texto do app ('Encosto a 75–80°, não a 90°')",
+  "desenho-desenvolvimento-maquina": "Escolha de desenho, sem medida de fabricante: as fichas dão o tamanho total, a pilha e o estofado; onde fica o eixo, o comprimento do braço, a altura do assento e do encosto não aparecem em nenhuma ficha lida"
+ },
+ "objetos": {
+  "desenvolvimentoMaquina": {
+   "nome": "Desenvolvimento na máquina (shoulder press de pilha): assento que sobe e desce, encosto parado, dois braços independentes que saem de um eixo alto atrás do encosto e trazem os pegadores na altura dos ombros, com o caminho que converge, e a pilha de placas ao lado",
+   "medidas": {
+    "comp": { "v": 164, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-sp", "onde": "comprimento total da Life Fitness SS-SP (Hammer Strength 153; Movement 155; Precor 155)" },
+    "larg": { "v": 145, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-sp", "onde": "largura total, com a pilha ao lado do assento (Hammer Strength 143; Movement 144; Precor 150)" },
+    "altura": { "v": 185, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-sp", "onde": "altura total da Life Fitness SS-SP (Hammer Strength 163; Precor 152; Movement 146); a peça desenhada fica na altura da torre (148), e os braços sobem acima dela no fim do movimento" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0515", "onde": "\"Weight Stack Tower Height: 58 in / 148 cm\"" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0515", "onde": "\"Total thickness is 2.5 inches (65 mm)\"" },
+    "converge": { "v": 8, "un": "graus", "tipo": "desenho", "fonte": "precor-rsl0515", "onde": "o eixo de cada braço inclina 8°, e os pegadores se aproximam enquanto sobem (a Precor: \"converging axis\", sem dar o ângulo)" },
+    "assentoComp": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "comprimento do assento: as fichas não dão; cabe o glúteo e a metade da coxa" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "largura do assento: a mesma da cadeira flexora" },
+    "assentoMin": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "o assento mais baixo (do chão ao topo do estofado): as fichas não dão o curso" },
+    "assentoMax": { "v": 58, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "o assento mais alto" },
+    "encostoInclina": { "v": 12, "un": "graus", "tipo": "derivada", "fonte": "desenvolvimento-com-halteres", "onde": "o encosto deita 12° para trás da vertical (78° da horizontal), como no desenvolvimento sentado com halteres aprovado; as fichas não dão o ângulo" },
+    "encostoBaixo": { "v": 60, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "altura da borda de baixo do encosto: ele começa na altura da lombar de quem senta com o assento no meio do curso" },
+    "encostoComp": { "v": 72, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "comprimento do encosto, da lombar até a nuca" },
+    "encostoAtras": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "quanto a face do encosto, na borda de baixo, fica atrás da borda da frente do assento" },
+    "eixoAltura": { "v": 123, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "altura do eixo dos braços: atrás do encosto, na altura da cabeça de quem senta, a meia altura do caminho dos pegadores (de 113 a 171 cm), para eles subirem quase na vertical; a Precor fala em \"overhead pivot\" sem dar a altura" },
+    "eixoAFrente": { "v": -95, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "quanto o eixo fica à frente da borda da frente do assento (negativo: atrás): atrás do encosto, longe o bastante para o caminho dos pegadores quase não curvar" },
+    "bracoComp": { "v": 72, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "do eixo ao fim do braço (onde o pegador começa)" },
+    "bracoMeio": { "v": 90, "un": "graus", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "o ângulo do braço (0 = para baixo, 90 = para a frente, na horizontal) em que o pegador fica na largura da tabela; daí a convergência aproxima ou afasta" },
+    "pegadaMeia": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "do meio da máquina ao centro da borracha de cada pegador, no meio do caminho: um pouco mais aberto que os ombros (o desenvolvimento com barra aprovado: 25)" },
+    "pegadorComp": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "comprimento da borracha do pegador atravessado (a Precor tem pegadores de duas posições; o desenho usa o atravessado, a palma para a frente)" },
+    "pegadorDiam": { "v": 3.4, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "diâmetro da borracha do pegador" },
+    "bracoFora": { "v": 3, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "do fim da borracha ao tubo do braço" },
+    "cameDiam": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "diâmetro do came no eixo do braço da esquerda (a peça redonda que enrola o cabo)" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "número de placas desenhadas; a Precor tem 91 kg de pilha, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "altura da pilha em repouso (a da cadeira flexora)" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-desenvolvimento-maquina", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

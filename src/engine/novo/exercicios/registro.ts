@@ -153,3 +153,5 @@ export { coiceMaquina } from './coice-maquina';
 export { legPress } from './leg-press';
 export { panturrilhaLegPress } from './panturrilha-leg-press';
 export { hack } from './hack';
+export { supinoMaquina } from './supino-maquina';
+export { desenvolvimentoMaquina } from './desenvolvimento-maquina';
