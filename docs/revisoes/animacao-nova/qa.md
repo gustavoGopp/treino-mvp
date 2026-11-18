@@ -64,7 +64,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `afundo-peso-corpo` | 1 | M | M! | M | M | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-afundo-peso-corpo.png) |
 | `afundo-tras` | ? | M | M! | M! | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/afundo-tras.png) |
 | `afundo-tras-peso-corpo` | 1 | M | M! | M! | M | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-afundo-tras-peso-corpo.png) |
-| `agachamento-barra` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/agachamento-barra.png) |
+| `agachamento-barra` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/agachamento-barra.png) |
 | `agachamento-elastico` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [folha](prototipos/folha-agachamento-elastico.png) |
 | `agachamento-halteres` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/agachamento-halteres.png) |
 | `agachamento-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [folha](prototipos/folha-agachamento-peso-corpo.png) |
@@ -93,7 +93,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `crucifixo-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia.png) |
 | `crucifixo-polia-baixo` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia-baixo.png) |
 | `desenvolvimento` | 3 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento.png) |
-| `desenvolvimento-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/desenvolvimento-barra.png) |
+| `desenvolvimento-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/desenvolvimento-barra.png) |
 | `desenvolvimento-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-elastico.png) |
 | `desenvolvimento-em-pe-halteres` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-em-pe-halteres.png) |
 | `desenvolvimento-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-maquina.png) |
@@ -180,7 +180,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `stiff-kettlebell` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-kettlebell.png) |
 | `stiff-unilateral` | 6 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-unilateral.png) |
 | `stiff-unilateral-kettlebell` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/stiff-unilateral-kettlebell.png) |
-| `supino-barra` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/supino-barra.png) |
+| `supino-barra` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-barra.png) |
 | `supino-chao-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/supino-chao-halteres.png) |
 | `supino-inclinado` | 3 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-inclinado.png) |
 | `supino-inclinado-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-inclinado-polia.png) |
