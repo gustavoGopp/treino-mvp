@@ -49,3 +49,4 @@ export { REGRAS_ELEVACAO_LATERAL_DEITADO } from './elevacao-lateral-deitado';
 export { REGRAS_ELEVACAO_LATERAL_CANELEIRA } from './elevacao-lateral-caneleira';
 export { REGRAS_SENTADO_NA_PONTA } from './sentado-na-ponta';
 export { REGRAS_ROSCA_CONCENTRADA } from './rosca-concentrada';
+export { REGRAS_UMA_TORRE } from './uma-torre';
