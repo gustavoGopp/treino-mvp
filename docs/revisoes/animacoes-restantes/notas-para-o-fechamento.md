@@ -14,3 +14,6 @@ O que vai para o devlog, o backlog e os pedidos de conteúdo, anotado durante os
 ## Pedidos de conteúdo
 - `docs/revisoes/animacoes-restantes/textos/pedidos.md` (fase A e fase B): entre eles, "travas logo acima do peito" no supino no smith.
 - `panturrilha-leg-press`: primeira animação com o quadro só na perna (campo novo `enquadra`, opcional) e uma vista só; espera o ok do Gustavo.
+- `hiperextensao`: a almofada do banco romano fica 5,4 cm abaixo do mínimo da ficha da Body-Solid (83,6 contra 89 cm), para a barriga do corpo da tabela não entrar nela.
+- `triceps-maquina`: o cartão de equipamento de hoje (`triceps_maquina.svg`) mostra outra máquina (mergulho sentado); a animação segue a ficha da técnica (braço apoiado à frente). Decidir se o cartão muda.
+- As máquinas de pilha (supino, desenvolvimento, remada articulada) diferem dos cartões de hoje, que mostram anilhas.
