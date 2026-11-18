@@ -17,7 +17,8 @@
 // No voador, a máquina nas duas regulagens (voador e voador invertido: o encosto na guia, o assento e a posição inicial
 // dos braços), os braços abrindo e fechando (de frente e de cima) e a pilha subindo.
 // No graviton, a almofada dos joelhos em cima e embaixo (a alavanca girando no eixo), com a pilha subindo quando ela desce.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No banco Scott, a regulagem (o assento e a almofada nas duas pontas da faixa) e a barra W nos ganchos do suporte.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|banco-scott] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -42,6 +43,7 @@ export * from './src/engine/novo/pecas-de-cena/estacao-puxada.ts';
 export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export * from './src/engine/novo/pecas-de-cena/graviton.ts';
+export * from './src/engine/novo/pecas-de-cena/banco-scott.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -633,5 +635,39 @@ if (!so || so === 'graviton') {
 <h2>Funcionando (de lado, pelo lado direito de quem treina): a almofada em cima e embaixo</h2>
 <div class="l">${cel(`em cima (+${alto}°, o topo da barra): as placas ${v(sobe(alto))} cm acima do repouso`, img(desenho(G(alto), lado), 520))}${cel(`embaixo (${baixo}°, a barra com os braços estendidos): a almofada desceu ${v(m.debaixoDoJoelho(alto)[1] - m.debaixoDoJoelho(baixo)[1])} cm e as placas subiram para ${v(sobe(baixo))} cm`, img(desenho(G(baixo), lado), 520))}</div>
 <h2>As medidas</h2>${tabela('graviton', ['graviton'])}`,
+  );
+}
+
+if (!so || so === 'banco-scott') {
+  const o = (id) => m.obj('bancoScott', id);
+  // a regulagem do corpo da tabela na rosca Scott: a almofada com a borda de cima a 100 cm e o assento a 50 cm
+  const regulagem = { topo: [0, 100.5, 4.8], assento: 50 };
+  const B = (r = {}) => {
+    const b = { ...regulagem, ...r };
+    const pecas = [m.bancoScott(b).peca];
+    if (r.semBarra) return pecas;
+    // a barra W deitada nos ganchos (os trechos retos, entre as mãos e as mangas), com uma anilha de 5 kg de cada lado
+    const h = m.ganchosDoSuporte(b)[0];
+    pecas.push(m.barraW({ centro: [0, h[1] + m.obj('barraW', 'pegadaDiam') / 2, h[2] - 3], eixo: [1, 0, 0], frente: [0, 0, -1], anilhas: ['anilha5'] }).peca);
+    return pecas;
+  };
+  // o cartão de hoje põe o banco ao longo de x e olha de yaw 36; a peça corre ao longo de z: yaw 126 dá o mesmo ângulo
+  // (o assento à esquerda, a almofada à direita)
+  const cam = { yaw: 126, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDoBancoScott(regulagem);
+  const alto = (y) => ({ topo: [0, y, regulagem.topo[2]] });
+  await foto(
+    'banco-scott',
+    `<h1>Banco Scott: o cartão de hoje × a peça nova</h1>
+<p>As medidas que fazem o banco funcionar vêm da página da Deltech DF308: <b>a almofada dos braços a 45°</b>, com ${v(o('almofadaLarg'), 0)} × ${v(o('almofadaComp'))} × ${v(o('almofadaEsp'), 0)} cm (cabem os dois braços), o assento de ${v(o('assentoLarg'), 0)} × ${v(o('assentoComp'))} cm, a almofada regulando a altura de ${v(o('almofadaAlturaMin'), 0)} a ${v(o('almofadaAlturaMax'), 0)} cm e o assento de ${v(o('assentoAlturaMin'), 0)} a ${v(o('assentoAlturaMax'), 0)} cm. O tamanho total fica entre os das fichas lidas (Deltech 102 × 75 × 91–103 cm; Precor DBR0202 107 × 94 × 91; Hammer Strength FW-AC 100 × 92 × 110; Life Fitness LBR-BC 119 × 84 × 117). A ficha da Precor diz que a almofada "amortece o peito e o braço": o peito encosta na borda de cima dela. <b>O que nenhuma ficha lida dá</b> (em amarelo na tabela): a distância do assento à almofada (${v(o('assentoAteAlmofada'), 0)} cm, do corpo da tabela sentado de tronco reto com a axila na borda), onde fica o pé do poste e os ganchos do suporte da barra. Medida desenhada: ${v(E.comp, 0)} cm de fundo e ${v(E.larg, 0)} cm de um gancho ao outro.</p>
+<p><b>O que mudou do cartão de hoje:</b> a almofada tinha 46 × 50 cm, a 38° do chão; o assento era quadrado (34 cm), 26 cm atrás do meio da almofada. Fica o desenho: a base em tubo, o assento no poste com o tubo cromado, os furos e o pino, a almofada sobre um poste que sobe de viés da frente da base (as canelas ficam dos dois lados dele) e os dois ganchos da barra na frente. <b>O banco funciona:</b> o assento sobe e desce no poste dele; a almofada sobe e desce num tubo em pé preso no alto do poste de viés (por isso a altura muda sem a almofada andar para a frente); os ganchos seguram a barra W nos trechos retos, abaixo do caminho dela na rosca.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('banco_scott'), 96, 'cartao'))}${cel('nova (com a barra W nos ganchos)', img(desenho(B(), cam), 96, 'cartao'))}${cel('nova, sem a barra', img(desenho(B({ semBarra: true }), cam), 96, 'cartao'))}${cel('hoje: o banco regulável (para ver se ainda se confundem)', img(hoje('banco_regulavel'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('banco_scott'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, na regulagem da rosca (almofada a 100 cm, assento a 50 cm)', img(desenho(B(), cam), 640))}</div>
+<h2>Funcionando (de lado): a regulagem da almofada e do assento</h2>
+<div class="l">${cel(`a almofada embaixo (${o('almofadaAlturaMin')} cm) e o assento embaixo (${o('assentoAlturaMin')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMin')), assento: o('assentoAlturaMin'), semBarra: true }), lado), 440))}${cel('a regulagem da rosca, com a barra nos ganchos', img(desenho(B(), lado), 440))}${cel(`a almofada em cima (${o('almofadaAlturaMax')} cm) e o assento em cima (${o('assentoAlturaMax')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMax')), assento: o('assentoAlturaMax'), semBarra: true }), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('banco-scott', ['bancoScott'])}<p style="margin-top:8px">A barra W e as anilhas são as da folha-barra-w.png.</p>`,
   );
 }
