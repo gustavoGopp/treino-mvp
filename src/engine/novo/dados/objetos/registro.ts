@@ -47,3 +47,6 @@ export { default as graviton } from './graviton.json';
 export { default as remadaArticulada } from './remada-articulada.json';
 export { default as panturrilhaEmPe } from './panturrilha-em-pe.json';
 export { default as panturrilhaSentada } from './panturrilha-sentada.json';
+export { default as bancoScott } from './banco-scott.json';
+export { default as bancoRomano } from './banco-romano.json';
+export { default as bancoDeclinado } from './banco-declinado.json';

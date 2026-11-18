@@ -21,7 +21,10 @@
 // peito nas duas pontas da regulagem, e o supino na máquina ao lado (a mesma máquina, com o encosto atrás).
 // Na panturrilha em pé e na sentada, a máquina no ponto mais baixo e no mais alto do exercício (a regulagem do corpo da
 // tabela, sem o corpo), com as placas ou as anilhas subindo, e o cartão da outra ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada|panturrilha-em-pe|panturrilha-sentada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No banco Scott, a regulagem (o assento e a almofada nas duas pontas da faixa) e a barra W nos ganchos do suporte.
+// No banco romano, a regulagem das almofadas (as duas pontas da faixa da ficha e a da hiperextensão) e os rolos.
+// No banco declinado, o encosto nos três ângulos de declínio da ficha, com os rolos das pernas, e o banco regulável ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|remada-articulada|panturrilha-em-pe|panturrilha-sentada|banco-scott|banco-romano|banco-declinado] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -49,6 +52,10 @@ export * from './src/engine/novo/pecas-de-cena/graviton.ts';
 export { remadaArticulada, colunaDaRemada } from './src/engine/novo/pecas-de-cena/remada-articulada.ts';
 export * from './src/engine/novo/pecas-de-cena/panturrilha-em-pe.ts';
 export * from './src/engine/novo/pecas-de-cena/panturrilha-sentada.ts';
+export * from './src/engine/novo/pecas-de-cena/banco-scott.ts';
+export * from './src/engine/novo/pecas-de-cena/banco-romano.ts';
+export * from './src/engine/novo/pecas-de-cena/banco-declinado.ts';
+export { bancoRegulavelNaCena } from './src/engine/novo/pecas-de-cena/banco-regulavel.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -738,5 +745,103 @@ if (!so || so === 'panturrilha-sentada') {
 <h2>Funcionando (de lado, pelo lado direito de quem senta): a alavanca embaixo e em cima</h2>
 <div class="l">${cel('embaixo (o calcanhar 8,5 cm abaixo do apoio)', img(desenho(p0, lado), 520))}${cel(`em cima (o calcanhar 10 cm acima): as anilhas subiram ${v(sobe)} cm`, img(desenho(p1, lado), 520))}</div>
 <h2>As medidas</h2>${tabela('panturrilha-sentada', ['panturrilhaSentada'])}<p style="margin-top:8px">A anilha é a da barra longa (folha-barra.png).</p>`,
+  );
+}
+
+if (!so || so === 'banco-scott') {
+  const o = (id) => m.obj('bancoScott', id);
+  // a regulagem do corpo da tabela na rosca Scott: a almofada com a borda de cima a 100 cm e o assento a 50 cm
+  const regulagem = { topo: [0, 100.5, 4.8], assento: 50 };
+  const B = (r = {}) => {
+    const b = { ...regulagem, ...r };
+    const pecas = [m.bancoScott(b).peca];
+    if (r.semBarra) return pecas;
+    // a barra W deitada nos ganchos (os trechos retos, entre as mãos e as mangas), com uma anilha de 5 kg de cada lado
+    const h = m.ganchosDoSuporte(b)[0];
+    pecas.push(m.barraW({ centro: [0, h[1] + m.obj('barraW', 'pegadaDiam') / 2, h[2] - 3], eixo: [1, 0, 0], frente: [0, 0, -1], anilhas: ['anilha5'] }).peca);
+    return pecas;
+  };
+  // o cartão de hoje põe o banco ao longo de x e olha de yaw 36; a peça corre ao longo de z: yaw 126 dá o mesmo ângulo
+  // (o assento à esquerda, a almofada à direita)
+  const cam = { yaw: 126, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDoBancoScott(regulagem);
+  const alto = (y) => ({ topo: [0, y, regulagem.topo[2]] });
+  await foto(
+    'banco-scott',
+    `<h1>Banco Scott: o cartão de hoje × a peça nova</h1>
+<p>As medidas que fazem o banco funcionar vêm da página da Deltech DF308: <b>a almofada dos braços a 45°</b>, com ${v(o('almofadaLarg'), 0)} × ${v(o('almofadaComp'))} × ${v(o('almofadaEsp'), 0)} cm (cabem os dois braços), o assento de ${v(o('assentoLarg'), 0)} × ${v(o('assentoComp'))} cm, a almofada regulando a altura de ${v(o('almofadaAlturaMin'), 0)} a ${v(o('almofadaAlturaMax'), 0)} cm e o assento de ${v(o('assentoAlturaMin'), 0)} a ${v(o('assentoAlturaMax'), 0)} cm. O tamanho total fica entre os das fichas lidas (Deltech 102 × 75 × 91–103 cm; Precor DBR0202 107 × 94 × 91; Hammer Strength FW-AC 100 × 92 × 110; Life Fitness LBR-BC 119 × 84 × 117). A ficha da Precor diz que a almofada "amortece o peito e o braço": o peito encosta na borda de cima dela. <b>O que nenhuma ficha lida dá</b> (em amarelo na tabela): a distância do assento à almofada (${v(o('assentoAteAlmofada'), 0)} cm, do corpo da tabela sentado de tronco reto com a axila na borda), onde fica o pé do poste e os ganchos do suporte da barra. Medida desenhada: ${v(E.comp, 0)} cm de fundo e ${v(E.larg, 0)} cm de um gancho ao outro.</p>
+<p><b>O que mudou do cartão de hoje:</b> a almofada tinha 46 × 50 cm, a 38° do chão; o assento era quadrado (34 cm), 26 cm atrás do meio da almofada. Fica o desenho: a base em tubo, o assento no poste com o tubo cromado, os furos e o pino, a almofada sobre um poste que sobe de viés da frente da base (as canelas ficam dos dois lados dele) e os dois ganchos da barra na frente. <b>O banco funciona:</b> o assento sobe e desce no poste dele; a almofada sobe e desce num tubo em pé preso no alto do poste de viés (por isso a altura muda sem a almofada andar para a frente); os ganchos seguram a barra W nos trechos retos, abaixo do caminho dela na rosca.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('banco_scott'), 96, 'cartao'))}${cel('nova (com a barra W nos ganchos)', img(desenho(B(), cam), 96, 'cartao'))}${cel('nova, sem a barra', img(desenho(B({ semBarra: true }), cam), 96, 'cartao'))}${cel('hoje: o banco regulável (para ver se ainda se confundem)', img(hoje('banco_regulavel'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('banco_scott'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, na regulagem da rosca (almofada a 100 cm, assento a 50 cm)', img(desenho(B(), cam), 640))}</div>
+<h2>Funcionando (de lado): a regulagem da almofada e do assento</h2>
+<div class="l">${cel(`a almofada embaixo (${o('almofadaAlturaMin')} cm) e o assento embaixo (${o('assentoAlturaMin')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMin')), assento: o('assentoAlturaMin'), semBarra: true }), lado), 440))}${cel('a regulagem da rosca, com a barra nos ganchos', img(desenho(B(), lado), 440))}${cel(`a almofada em cima (${o('almofadaAlturaMax')} cm) e o assento em cima (${o('assentoAlturaMax')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMax')), assento: o('assentoAlturaMax'), semBarra: true }), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('banco-scott', ['bancoScott'])}<p style="margin-top:8px">A barra W e as anilhas são as da folha-barra-w.png.</p>`,
+  );
+}
+
+if (!so || so === 'banco-romano') {
+  const o = (id) => m.obj('bancoRomano', id);
+  // a regulagem do corpo da tabela na hiperextensão: o alto das almofadas a 83,6 cm da chapa, os rolos atrás dos tornozelos
+  const regulagem = { placa: [0, o('placaAltura'), 0], almofada: 83.6, rolo: { s: 14.2, k: 33 } };
+  const R = (r = {}) => [m.bancoRomano({ ...regulagem, ...r }).peca];
+  // o cartão de hoje põe a viga subindo para +x e olha de yaw 18; a peça sobe para +z: yaw 108 dá o mesmo ângulo
+  const cam = { yaw: 108, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDoBancoRomano(regulagem);
+  await foto(
+    'banco-romano',
+    `<h1>Banco romano a 45° (hiperextensão): o cartão de hoje × a peça nova</h1>
+<p>As medidas vêm da página da Body-Solid GHYP345: <b>a viga a 45°</b>, ${v(o('comp'), 0)} × ${v(o('larg'), 0)} × ${v(o('altura'), 0)} cm, almofadas de 3 pol (${v(o('almofadaEsp'))} cm) e <b>a regulagem das almofadas: da chapa dos pés ao alto delas, de ${v(o('almofadaMin'), 0)} a ${v(o('almofadaMax'), 0)} cm</b>; a viga de 75 mm é a da Bench Fitness REVOLVE (que regula o ângulo de 35 a 50°). A Life Fitness LBR-BE (127 × 94 × 97) e a Hammer Strength BW-BE (150 × 72 × 110) ficam perto. <b>O que nenhuma ficha lida dá</b> (em amarelo na tabela): o tamanho das almofadas e da chapa, os rolos e onde a viga fica; seguem o cartão de hoje. Medida desenhada: ${v(E.comp, 0)} cm de comprimento, ${v(E.larg, 0)} de largura e ${v(E.alto, 0)} de altura (na regulagem da hiperextensão).</p>
+<p><b>O banco funciona:</b> o apoio das coxas corre na viga e prende num dos furos; a haste dos rolos corre na viga até os rolos encostarem atrás dos tornozelos. <b>A regulagem da hiperextensão fica fora da faixa da Body-Solid:</b> com o corpo da tabela (o centro do quadril a 90,6 cm da sola), a almofada no mínimo da ficha (89 cm) ficaria 1,6 cm abaixo do quadril, e embaixo a barriga entraria 3,6 cm nas almofadas. A animação usa ${v(regulagem.almofada)} cm, 7 cm abaixo do quadril ("abaixo do osso do quadril, para o quadril dobrar livre").</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('banco_romano'), 96, 'cartao'))}${cel('nova', img(desenho(R(), cam), 96, 'cartao'))}${cel('hoje: o banco Scott (para ver se ainda se confundem)', img(hoje('banco_scott'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('banco_romano'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, na regulagem da hiperextensão', img(desenho(R(), cam), 640))}</div>
+<h2>Funcionando (de lado): a regulagem das almofadas</h2>
+<div class="l">${cel(`as almofadas no mínimo da ficha (${o('almofadaMin')} cm da chapa)`, img(desenho(R({ almofada: o('almofadaMin') }), lado), 440))}${cel(`a regulagem da hiperextensão (${v(regulagem.almofada)} cm)`, img(desenho(R(), lado), 440))}${cel(`as almofadas no máximo da ficha (${o('almofadaMax')} cm)`, img(desenho(R({ almofada: o('almofadaMax') }), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('banco-romano', ['bancoRomano'])}`,
+  );
+}
+
+if (!so || so === 'banco-declinado') {
+  const o = (id) => m.obj('bancoDeclinado', id);
+  // a regulagem do corpo da tabela no abdominal: o encosto a −20°, os rolos atrás dos joelhos e na frente dos tornozelos
+  const regulagem = { ponta: [0, o('pontaAltura'), 0], declina: 20, joelho: [0, 94.8, 9.3], tornozelo: [0, 105.5, 38.2] };
+  const D = (r = {}) => [m.bancoDeclinado({ ...regulagem, ...r }).peca];
+  // o encosto gira no pivô (a 45% do comprimento, a partir da ponta de cima, na face de baixo): em outro ângulo, a ponta
+  // anda em volta dele
+  const pivo = (ang) => {
+    const { d, n } = m.faceDoDeclinado({ declina: ang });
+    return [d, n];
+  };
+  const noAngulo = (ang) => {
+    const [d0, n0] = pivo(regulagem.declina),
+      [d1, n1] = pivo(ang);
+    const t = 0.45 * o('encostoComp'),
+      e = o('encostoEsp');
+    const P = regulagem.ponta.map((x, i) => x + d0[i] * t - n0[i] * e);
+    return { declina: ang, ponta: P.map((x, i) => x - d1[i] * t + n1[i] * e) };
+  };
+  // o cartão de hoje do banco regulável olha de yaw 28 com o banco ao longo de x; a peça corre ao longo de z: yaw 118
+  const cam = { yaw: 118, pitch: 14, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDoDeclinado(regulagem);
+  const reg = m.bancoRegulavelNaCena({ x0: 0, z0: 0, encosto: 45 }).peca;
+  await foto(
+    'banco-declinado',
+    `<h1>Banco declinado (abdominal): o banco regulável de hoje × a peça nova</h1>
+<p><b>Não há cartão de hoje do banco declinado:</b> na tela de equipamento, ele é o banco regulável com a marca "declina" (a taxonomia: <code>banco_declinavel</code> = banco regulável que declina). O banco regulável aprovado (o Rogue AB-3) não serve com uma opção nova: ele vai de 0° a 85°, não declina, e não tem onde prender as pernas. A peça nova é o banco declinado da Life Fitness LBR-DB ("Adjustable Decline Bench", feito "for performing core and decline exercises"): ${v(o('comp'), 0)} × ${v(o('larg'), 0)} × ${v(o('altura'), 0)} cm, o encosto em +10°, 0°, −10°, −20° e −30°, o pivô perto do centro e os rolos das pernas na ponta; a largura do encosto (29,2 cm) é a da Hammer Strength FW-DB. <b>O que nenhuma ficha lida dá</b> (em amarelo na tabela): o comprimento do encosto (${v(o('encostoComp'), 0)} cm, para caber do glúteo à cabeça), a altura, os rolos e onde eles ficam (saem do corpo da tabela). O desenho segue o do banco regulável aprovado: o estofado com costura, a estrutura em tubo, os pés de borracha. Medida desenhada: ${v(E.comp, 0)} cm de comprimento (a ficha: 185, com a estrutura de trás mais longa), ${v(E.larg, 0)} de largura e ${v(E.alto, 0)} de altura.</p>
+<p><b>O banco funciona:</b> o encosto gira no pivô, em cima da coluna do meio, e prende na escada de furos; na ponta de cima, o poste das pernas leva os rolos que ficam atrás dos joelhos dobrados e, por duas chapas de lado (por fora das pernas), os rolos que ficam na frente dos tornozelos. As pernas ficam presas entre os dois pares e o corpo não escorrega para baixo.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje: o banco regulável (o cartão do "banco que declina")', img(hoje('banco_regulavel'), 96, 'cartao'))}${cel('nova', img(desenho(D(), cam), 96, 'cartao'))}${cel('o banco regulável aprovado do motor novo', img(desenho([reg], { yaw: 118, pitch: 14, s: 0.6 }), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje: o banco regulável', img(hoje('banco_regulavel'), 440, 'cartao'))}${cel('nova, na regulagem do abdominal (−20°)', img(desenho(D(), cam), 640))}</div>
+<h2>Funcionando (de lado): os três ângulos de declínio</h2>
+<div class="l">${cel('−10°', img(desenho(D(noAngulo(10)), lado), 440))}${cel('−20° (a do abdominal)', img(desenho(D(), lado), 440))}${cel(`−${o('declinaAte')}°`, img(desenho(D(noAngulo(o('declinaAte'))), lado), 440))}</div>
+<p style="margin-top:8px">O encosto gira em volta do pivô; nos três, os rolos ficam onde a pessoa da tabela os pede a −20°.</p>
+<h2>As medidas</h2>${tabela('banco-declinado', ['bancoDeclinado'])}`,
   );
 }

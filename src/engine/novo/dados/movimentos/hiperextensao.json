@@ -1,0 +1,57 @@
+{
+ "id": "hiperextensao",
+ "nome": "Hiperextensão no banco romano a 45°",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/hiperextensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/hiperextensao.md): almofada no alto da coxa, abaixo do osso do quadril, para o quadril dobrar livre; desce dobrando o quadril com a coluna neutra até um alongamento confortável atrás da coxa; sobe até o corpo ficar em linha reta e não passa da linha; mãos no peito; consenso de treinadores (nsca2021, não verificado). Lawrence 2019 (um estudo): a animação mostra a flexão no quadril, com a coluna neutra",
+  "app": "Texto do app (src/conteudo/exercicios/hiperextensao.json): 'Almofada na altura do alto da coxa, abaixo do osso do quadril'; 'Pés presos na trava'; 'Mãos no peito'; 'Embaixo: alongamento confortável atrás da coxa'; 'Em cima: corpo em linha reta, sem arquear a lombar'; as dicas e os erros",
+  "aprovado": "Animações aprovadas parecidas no motor novo: o abdominal no chão (dados/movimentos/abdominal-chao.json: as mãos cruzadas no peito) e o stiff (dados/movimentos/stiff.json: o pescoço na linha do tronco, os erros de coluna arredondada)",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/banco-romano.json (o banco romano a 45°, da Body-Solid GHYP345: a faixa da regulagem das almofadas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "almofada.acimaDoQuadril": {"v": -7, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'almofada na altura do alto da coxa, abaixo do osso do quadril, para o quadril dobrar livre': o alto das almofadas fica 7 cm abaixo da linha do centro do quadril, ao longo da viga (a crista do osso do quadril fica 16 cm acima dela, na tabela do corpo). A ficha não dá número; mais alto, a barriga entra nas almofadas quando o quadril dobra (medido: a 1,5 cm abaixo, 3,6 cm; a 7 cm, 2,3 cm)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto as almofadas amassam sob as coxas (e os rolos atrás dos tornozelos)"},
+  "rolo.acimaDoTornozelo": {"v": 7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "'pés presos na trava': o eixo dos rolos fica 7 cm acima do centro do tornozelo, ao longo da perna, atrás do tendão (a ficha não dá número)"},
+  "quadril.baixo": {"v": 80, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: 'alongamento confortável atrás da coxa': o quadril dobra 80° a partir da linha reta, com a perna estendida (o tronco fica 35° abaixo da horizontal); a ficha não dá número"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "'coluna neutra': o pescoço na linha do tronco, como no stiff aprovado"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "a cabeça na linha do pescoço"},
+  "maos.x": {"v": -1, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "'mãos no peito': cruzadas, como no abdominal no chão aprovado (o punho direito 1 cm para o lado esquerdo do meio do peito)"},
+  "maos.y": {"v": -25, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o punho direito 25 cm abaixo da base do pescoço, ao longo do tórax, como no abdominal aprovado"},
+  "maos.abaixo": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o punho esquerdo 3 cm abaixo do direito, como no abdominal aprovado"},
+  "maos.acima": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o antebraço esquerdo passa por cima do direito, como no abdominal aprovado"},
+  "maos.poloFora": {"v": 1.5, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para fora, como no abdominal aprovado"},
+  "maos.poloPes": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para os pés, como no abdominal aprovado"},
+  "maos.poloTras": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para as costas, como no abdominal aprovado"},
+  "erro.arqueia.quadril": {"v": -15, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'arquear a lombar no topo': o quadril passa 15° da linha reta"},
+  "erro.arqueia.lombar": {"v": -20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a lombar arqueia 20° além da curva de repouso ('o corpo passa da linha reta')"},
+  "erro.arqueia.cervical": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a cabeça vai junto, para trás"},
+  "erro.arred.quadril": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'arredondar as costas': embaixo, o quadril dobra só 45°..."},
+  "erro.arred.lombar": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "...e as costas curvam: a lombar 30° além da curva de repouso ('curva as costas em vez de dobrar o quadril')"},
+  "erro.arred.toracica": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a parte de cima das costas curva mais 25°"}
+ },
+ "fases": [
+  {"nome": "Em cima · em linha", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo em linha reta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s, controlada", "selo": "desenho", "fonte": "desenho"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "alongamento confortável", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s, sem impulso", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "hiperextensao-almofada-abaixo-do-quadril", "pede": "a almofada no alto da coxa, abaixo do osso do quadril, com as coxas apoiadas nela", "selo": "consenso", "fonte": "app"},
+  {"id": "hiperextensao-pes-presos", "pede": "pés presos: as solas na chapa e os rolos atrás dos tornozelos", "selo": "consenso", "fonte": "app"},
+  {"id": "hiperextensao-sobe-ate-a-linha", "pede": "em cima, o corpo em linha reta, sem passar da linha", "selo": "consenso", "fonte": "ficha"},
+  {"id": "hiperextensao-desce-dobrando-o-quadril", "pede": "desce dobrando o quadril, com as pernas paradas, até o alongamento atrás da coxa", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "coluna neutra", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maos-no-peito", "pede": "mãos no peito, presas a ele e longe da cabeça", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "arqueia", "instante": 0, "titulo": "Arquear a lombar no topo", "vista": "lateral", "oQueMuda": "em cima, o corpo passa da linha reta: o quadril e a lombar estendem demais", "destaca": ["corpo"], "linha": ["joelho", "pelve", "lombar", "c7"], "foco": "lombar"},
+  {"id": "arred", "instante": 1, "titulo": "Arredondar as costas", "vista": "lateral", "oQueMuda": "embaixo, as costas curvam em vez de o quadril dobrar", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "dobra o quadril", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "coluna neutra", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+ ]
+}

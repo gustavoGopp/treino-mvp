@@ -164,3 +164,6 @@ export { mergulhoGraviton } from './mergulho-graviton';
 export { remadaArticulada } from './remada-articulada';
 export { panturrilhaEmPeMaquina } from './panturrilha-em-pe-maquina';
 export { panturrilhaSentada } from './panturrilha-sentada';
+export { roscaScott } from './rosca-scott';
+export { hiperextensao } from './hiperextensao';
+export { abdominalDeclinado } from './abdominal-declinado';
