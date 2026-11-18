@@ -1,0 +1,61 @@
+{
+ "id": "cadeira-flexora",
+ "nome": "Flexão de joelho na cadeira flexora (sentado)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/cadeira-flexora.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/cadeira-flexora.md): encosto ajustado para o joelho ficar alinhado com o eixo; o rolo de cima trava a coxa logo acima do joelho; o rolo de baixo fica atrás do tornozelo; dobra os joelhos trazendo os calcanhares para baixo e para trás até onde der, pausa curta; volta controlada até os joelhos quase esticarem, sem bater as placas; consenso (nsca2021, não verificado). Sentado e encostado; inclinar um pouco o tronco à frente alonga mais os posteriores (um estudo, maeo2021)",
+  "app": "Texto do app (src/conteudo/exercicios/cadeira-flexora.json): início com os joelhos quase esticados, fim com os joelhos bem dobrados; dicas 'Coxa travada.', 'Joelho no eixo.', 'Volta devagar.'; erros 'Rolo da coxa solto' (o quadril sobe do banco), 'Dar tranco' (o peso sobe no embalo), 'Joelho fora do eixo' (o encosto está mal ajustado), 'Não estender na volta' (a amplitude fica curta)",
+  "aprovada": "Animações aprovadas do motor novo sentadas e encostadas (extensao-joelho-mini-band.json e extensao-joelho-caneleira.json): a lombar menos curva sentado, o pescoço que compensa a inclinação do peito, o glúteo que afunda 1 cm no assento, o ritmo dos erros de tranco",
+  "objetos": "src/engine/novo/dados/objetos/cadeira-flexora.json (a cadeira flexora aprovada: assento a 15°, encosto a 20°, eixo 9 cm acima e 5 cm à frente da borda do assento, rolo de 11 cm, came de 22 cm)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o glúteo e a coxa afundam 1 cm no assento, como nas extensões sentadas aprovadas"},
+  "lombar.sentado": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "sentado e encostado, a bacia enrola um pouco e a lombar fica 10° menos curva que em pé (a extensão com mini band aprovada)"},
+  "pescoco.compensa": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "aprovada", "o": "com o peito deitado para trás, o pescoço dobra 70% dessa inclinação para a frente: o olhar fica quase na horizontal (a extensão com mini band aprovada)"},
+  "tronco.aFrente": {"v": 6, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "o tronco um pouco à frente do encosto (a ficha: inclinar um pouco o tronco à frente alonga mais os posteriores, maeo2021): 6° menos deitado que o encosto, que a lombar ainda toca; o número é de desenho (com o tronco colado no encosto de 20°, as mãos não chegavam às alças; com 8°, a barriga encostava na trava das coxas)"},
+  "maos.naAlca": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos fecham nas alças ao lado do assento, o centro da mão 3 cm à frente do começo da borracha"},
+  "maos.prot": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os ombros vão à frente (25° da clavícula) para as mãos chegarem às alças, que a peça aprovada põe à frente do quadril"},
+  "rolo.aoLongo": {"v": 38, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o rolo de baixo atrás do tornozelo (a ficha): o centro dele a 38 cm do joelho, ao longo da canela de 43 cm; a borda de baixo do rolo chega à altura do tornozelo"},
+  "rolo.amassa": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o rolo afunda 0,5 cm na pele, atrás da perna"},
+  "trava.amassa": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a trava desce até prender as coxas logo acima do joelho (a ficha): afunda 0,5 cm nelas"},
+  "pe.flexaoPlantar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé relaxado, 10° além do ângulo reto com a canela"},
+  "joelho.inicio": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: os joelhos quase esticados (10° de flexão)"},
+  "joelho.fim": {"v": 115, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: os joelhos bem dobrados, os calcanhares para baixo e para trás até onde der: 115° (com mais, a canela chega ao pé do assento)"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.solto.folga": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: a trava está 6 cm acima das coxas (solta)"},
+  "erro.solto.sobe": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: sem a trava, o quadril sobe 5 cm do banco no fim da flexão (o cartão: 'o quadril sobe do banco'); a coxa gira em volta do joelho"},
+  "erro.ritmo.expoente": {"v": 4, "un": "expoente", "selo": "desenho", "fonte": "aprovada", "o": "erro de tranco: no meio da flexão, a perna já está quase no fim, jogada pelo embalo (1 − (1 − u)⁴, o da extensão com caneleira aprovada)"},
+  "erro.eixo.recua": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o encosto regulado 6 cm para trás; o joelho fica 6 cm atrás do eixo e o rolo escorrega ao longo da canela (o cartão: 'o encosto está mal ajustado')"},
+  "erro.curta.joelho": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: na volta, o joelho para dobrado a 45°, longe de quase esticar (a amplitude fica curta)"}
+ },
+ "fases": [
+  {"nome": "Joelhos quase esticados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "início", "selo": "consenso", "fonte": "app"},
+  {"nome": "Flexão · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Fim · pausa curta", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlada", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "joelho.R", "joelho.L", "mao.R", "mao.L"],
+ "regras": [
+  {"id": "cadeira-joelho-no-eixo", "pede": "o encosto ajustado para o joelho ficar alinhado com o eixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-flexora-trava-nas-coxas", "pede": "o rolo de cima trava a coxa logo acima do joelho", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-rolo-acompanha-a-canela", "pede": "o rolo de baixo fica atrás do tornozelo e acompanha a perna, sem escorregar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com a alavanca e apoiam no começo, sem bater", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-sentado-e-encostado", "pede": "sentado e encostado: o glúteo no assento e as costas no encosto, parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-maos-nas-alcas", "pede": "as mãos fecham nas alças ao lado do assento", "selo": "desenho", "fonte": "desenho"},
+  {"id": "cadeira-flexora-amplitude", "pede": "início com os joelhos quase esticados; fim com os joelhos bem dobrados", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "solto", "instante": 1, "titulo": "Rolo da coxa solto", "vista": "lateral", "oQueMuda": "a trava fica solta acima das coxas e o quadril sobe do banco", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho:R"], "foco": "pelve"},
+  {"id": "tranco", "instante": 0.5, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no meio da flexão, a perna já está quase no fim, jogada pelo embalo", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"},
+  {"id": "eixo", "instante": 1, "titulo": "Joelho fora do eixo", "vista": "lateral", "oQueMuda": "o encosto recuado: o joelho fica atrás do eixo e o rolo escorrega pela canela", "destaca": ["pernas", "corpo"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender na volta", "vista": "lateral", "oQueMuda": "na volta, o joelho para dobrado, longe de quase esticar", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "coxa travada", "ponto": "quadril:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "joelho no eixo", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "joelho no eixo", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "volta devagar", "ponto": "tornozelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}
