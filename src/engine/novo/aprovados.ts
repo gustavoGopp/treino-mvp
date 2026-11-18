@@ -154,6 +154,9 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
  * o Gustavo ver (como ele pediu em 15/11/2026), e as que voltaram para correção. Ficam fora do app e do catálogo.
  */
 export const EM_REVISAO: Record<string, string> = {
+  'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
+  'remada-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
+  'hip-thrust': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
   'agachamento-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',
   'supino-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',
   'desenvolvimento-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',

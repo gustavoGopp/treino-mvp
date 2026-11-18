@@ -150,4 +150,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | B1 | `desenvolvimento-barra` | feita e conferida quadro a quadro por quem integra; **espera o ok do suporte**; abre de frente (de lado o corpo fica pequeno e a anilha cobre o rosto no começo) |
 | B1 | `rosca-barra-w` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (barra W: peça nova no padrão da barra longa, medidas da Eleiko e da Rogue; os ângulos da curva são de desenho, como no cartão; de lado ela parece uma barra reta) |
 | B1 | `terra-hexagonal` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (barra hexagonal: peça nova, medidas da Rogue TB-1; os cabos atravessam o hexágono, ao contrário do cartão de hoje; abre de três quartos) |
+| B1 | `terra-romeno-barra` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas** (5 kg, 24 cm; com as de 45 cm a anilha tapa as mãos e as pernas de lado) |
+| B1 | `remada-barra` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas** |
+| B1 | `hip-thrust` | feita e conferida quadro a quadro por quem integra; **espera o ok das anilhas pequenas**; o banco atravessado é pintado atrás do corpo |
 
