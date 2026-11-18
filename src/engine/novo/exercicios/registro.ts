@@ -125,3 +125,4 @@ export { crucifixoInvertidoSentado } from './crucifixo-invertido-sentado';
 export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
 export { roscaConcentrada } from './rosca-concentrada';
 export { tricepsBarraReta } from './triceps-barra-reta';
+export { puxadaBarraReta } from './puxada-barra-reta';
