@@ -59,3 +59,4 @@ export { REGRAS_BARRA_NO_SUPORTE } from './barra-no-suporte';
 export { REGRAS_BARRAS_ESPECIAIS } from './barras-especiais';
 export { REGRAS_BARRA_LONGA } from './barra-longa';
 export { regrasDoSmith } from './smith';
+export { REGRAS_NO_TRILHO } from './leg-press';
