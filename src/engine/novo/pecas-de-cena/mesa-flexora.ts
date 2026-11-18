@@ -111,11 +111,11 @@ export function mesaFlexora(m: MesaFlexora) {
   const zFrente = zTras + g('comp');
   // a torre da pilha, ao lado do estofado do peito (à esquerda de quem deita), na ponta da frente, com a frente virada
   // para o estofado: de lado, ela fica atrás da cabeça e dos braços, e não atrás do quadril e das pernas
-  const zTorre = zFrente - 16;
+  const zTorre = zFrente - 13;
   const xT0 = g('larg') - meiaLarg - 8 - 34,
     xT1 = xT0 + 34;
-  const zT0 = zTorre - 16,
-    zT1 = zTorre + 16;
+  const zT0 = zTorre - 13,
+    zT1 = zTorre + 13;
   const H = g('alturaTorre');
   const yPolia = 10;
 
