@@ -124,3 +124,4 @@ export { coiceCaneleira } from './coice-caneleira';
 export { crucifixoInvertidoSentado } from './crucifixo-invertido-sentado';
 export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
 export { roscaConcentrada } from './rosca-concentrada';
+export { mergulho } from './mergulho';
