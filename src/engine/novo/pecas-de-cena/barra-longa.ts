@@ -34,8 +34,12 @@ export interface BarraLonga {
 /**
  * A barra com as anilhas: os volumes para a conferência (a pegada, as mangas e cada anilha, para medir se o corpo os
  * atravessa) e a peça desenhada. `semPresilha` tira as presilhas (no cartão de equipamento elas aparecem).
+ * `pontasAtras` (cm, acréscimo de 18/11/2026): empurra para trás na pintura tudo o que fica fora da pegada (rebordos,
+ * mangas, anilhas e presilhas). Nas cenas com a barra atravessada de lado a lado do corpo, a anilha de perto cobriria a
+ * cabeça ou o peito na vista de lado; empurrada para trás do corpo, ela cai no mesmo lugar da tela que a de longe. Sem
+ * ela, nada muda.
  */
-export function barraLonga(p: BarraLonga, o: { semPresilha?: boolean; dica?: V3 } = {}): { prims: Prim[]; peca: PecaPropria } {
+export function barraLonga(p: BarraLonga, o: { semPresilha?: boolean; dica?: V3; pontasAtras?: number } = {}): { prims: Prim[]; peca: PecaPropria } {
   const u = norm(p.eixo);
   const P = (d: number) => add(p.centro, mul(u, d));
   const meia = b('comp') / 2,
@@ -61,7 +65,8 @@ export function barraLonga(p: BarraLonga, o: { semPresilha?: boolean; dica?: V3 
     t: 'propria',
     nome: 'barra longa',
     desenhar(C, M, desenho) {
-      const op = { lados: 14, ...(o.dica ? { up: o.dica } : {}) };
+      const op = { lados: 14, ...(o.dica ? { up: o.dica } : {}) },
+        dz = o.pontasAtras ?? 0;
       // a pegada, um pouco para trás na pintura (as mãos fecham por cima), com as marcas usinadas a 81 cm
       C.cilindro(P(-entre), P(entre), b('pegadaDiam') / 2, M.cromo, { ...op, dz: 6 });
       // a recartilha: um traço escuro em cima da pegada, das marcas usinadas (81 cm) até perto do rebordo, como no cartão
@@ -70,17 +75,17 @@ export function barraLonga(p: BarraLonga, o: { semPresilha?: boolean; dica?: V3 
       for (const s of [-1, 1]) C.linha(add(P(s * (mm - 18)), mul(cima, b('pegadaDiam') / 2 + 0.02)), add(P(s * (mm + 10)), mul(cima, b('pegadaDiam') / 2 + 0.02)), '#7A818A', 0.9);
       for (const s of [-1, 1]) {
         // o rebordo e a manga
-        C.cilindro(P(s * entre), P(s * (entre + esp)), b('rebordoDiam') / 2, M.cromo, op);
-        C.cilindro(P(s * (entre + esp)), P(s * meia), b('mangaDiam') / 2, M.cromo, op);
-        for (const an of posAnilhas(s)) C.anilha(s < 0 ? an.b : an.a, s < 0 ? an.a : an.b, an.raio, M.anilha, o.dica ? { up: o.dica } : {});
+        C.cilindro(P(s * entre), P(s * (entre + esp)), b('rebordoDiam') / 2, M.cromo, { ...op, dz });
+        C.cilindro(P(s * (entre + esp)), P(s * meia), b('mangaDiam') / 2, M.cromo, { ...op, dz });
+        for (const an of posAnilhas(s)) C.anilha(s < 0 ? an.b : an.a, s < 0 ? an.a : an.b, an.raio, M.anilha, { ...(o.dica ? { up: o.dica } : {}), dz });
         if (!o.semPresilha) {
           const d0 = fimDasAnilhas + 0.3,
             larg = obj('presilha', 'larg');
-          C.cilindro(P(s * d0), P(s * (d0 + larg)), b('mangaDiam') / 2 + 0.7, M.metalClaro, { ...op, lados: 12 });
+          C.cilindro(P(s * d0), P(s * (d0 + larg)), b('mangaDiam') / 2 + 0.7, M.metalClaro, { ...op, lados: 12, dz });
           // as duas alças da mola, para fora da barra
           const lado = o.dica ? norm(o.dica) : ([0, 1, 0] as V3);
           const c = P(s * (d0 + larg / 2));
-          C.linha(add(c, mul(lado, b('mangaDiam') / 2 + 0.5)), add(c, mul(lado, obj('presilha', 'diam'))), M.metalClaro[3], 0.9);
+          C.linha(add(c, mul(lado, b('mangaDiam') / 2 + 0.5)), add(c, mul(lado, obj('presilha', 'diam'))), M.metalClaro[3], 0.9, { dz });
         }
       }
       // a sombra no chão, quando a barra está perto dele (apoiada nas anilhas)

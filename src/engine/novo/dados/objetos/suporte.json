@@ -1,0 +1,122 @@
+{
+ "fontes": {
+  "ipf2026-racks": "International Powerlifting Federation. Technical Rulebook, em vigor desde 01/03/2026 (v3), seções 2.5 (rack de agachamento) e 2.6 (banco de supino, suportes e racks de segurança); cópia pública da Irish Powerlifting Federation, https://www.irishpowerliftingfederation.com/wp-content/uploads/2026/03/2026-IPF-Technical-Rulebook-effective-01-March-2026-v3.pdf (lido em 12/11/2026; docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seções 3 e 13.2)",
+  "lf-hs26-osr": "Life Fitness / Hammer Strength. Commercial Catalog 2026, tabela de especificações, p. 216, Olympic Squat Rack LBR-OS: 77,5 × 66 × 75,5 pol (197 × 168 × 192 cm); https://www.lifefitness.com.au/wp-content/uploads/2026/03/LF_HS_CommercialCatalog_2026_low-res.pdf (lido em 12/11/2026; 04-objetos.md, seção 13.2)",
+  "hs24-osr": "Hammer Strength. Catalog 2024, Specifications, p. 63, Olympic Squat Rack OSR: 59 × 69 × 73 pol (150 × 176 × 186 cm); https://cdn.shopify.com/s/files/1/0573/6877/2685/files/ISBU_Hammer-Strength-Catalog-2024-ENGLISH.pdf (lido em 12/11/2026; 04-objetos.md, seção 13.2)",
+  "barra-suporte": "A barra longa da tabela (dados/objetos/barra-longa.json, IWF 2020): 131 cm entre as faces das mangas",
+  "cartao-suporte": "O cartão de hoje (public/equipamento/rack_de_agachamento.svg, de scripts/desenhos-equipamento/realista/itens.mjs): as proporções de desenho dele (tubo de 7 cm, gancho em J com borracha, barras de segurança cromadas)",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "suporte": {
+   "nome": "Suporte de agachamento (rack aberto), com dois montantes furados, ganchos em J reguláveis e pinos de segurança",
+   "medidas": {
+    "altura": {
+     "v": 192,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "lf-hs26-osr",
+     "onde": "altura total do Olympic Squat Rack LBR-OS: 75,5 pol = 192 cm (o Hammer Strength OSR tem 186 cm, hs24)"
+    },
+    "baseComp": {
+     "v": 150,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "hs24-osr",
+     "onde": "comprimento total do Hammer Strength OSR: 59 pol = 150 cm (o LBR-OS tem 197 cm, com a plataforma do ajudante, que este suporte não tem)"
+    },
+    "vaoInterno": {
+     "v": 110,
+     "un": "cm",
+     "tipo": "derivada",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.6: pelo menos 1,10 m entre os apoios da barra (a regra é do banco de supino; a do rack de agachamento, seção 2.5, não dá largura). Cabe na barra: 131 cm entre as mangas (barra-longa.json), então a barra apoia no gancho pela pegada, nunca pela manga"
+    },
+    "tubo": {
+     "v": 7.5,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho",
+     "onde": "a seção quadrada do montante: nenhuma ficha lida dá; o cartão de hoje usa 7 cm"
+    },
+    "passo": {
+     "v": 2.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.5: o rack de agachamento regula a altura em passos de 2,5 cm (os furos dos montantes)"
+    },
+    "furoDiam": {
+     "v": 1.6,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "cartao-suporte",
+     "onde": "o furo de regulagem: o do cartão de hoje (raio 0,9 cm), um pouco menor para caber no passo de 2,5 cm"
+    },
+    "ganchoMin": {
+     "v": 75,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.6: os suportes do banco regulam de 75 a 110 cm do chão ao apoio da barra (o mais baixo que o suporte precisa chegar)"
+    },
+    "ganchoMax": {
+     "v": 170,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.5: o rack de agachamento regula de 1,00 m até pelo menos 1,70 m"
+    },
+    "ganchoProf": {
+     "v": 9,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "cartao-suporte",
+     "onde": "quanto o gancho em J sai do montante, para o lado da pessoa (no cartão, 8 cm): o bastante para a barra assentar no berço"
+    },
+    "ganchoAlt": {
+     "v": 13,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "cartao-suporte",
+     "onde": "a altura da chapa do gancho (no cartão, 12 cm mais a borracha)"
+    },
+    "ganchoBorda": {
+     "v": 4,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho",
+     "onde": "a borda do J, que segura a barra para não rolar para a pessoa"
+    },
+    "pinoComp": {
+     "v": 50,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.6: os racks de segurança têm 50 cm de comprimento (a regra é do banco; o pino deste suporte usa a mesma medida)"
+    },
+    "pinoMin": {
+     "v": 50,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.6: os racks de segurança vão a pelo menos 50 cm do chão (o pino mais baixo)"
+    },
+    "pinoLarg": {
+     "v": 5,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "cartao-suporte",
+     "onde": "a seção do pino de segurança (no cartão, barras de 4,5 cm)"
+    },
+    "bancoAlem": {
+     "v": 22,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026-racks",
+     "onde": "seção 2.6: a cabeça do banco passa 22 cm (± 5 cm) do centro dos montantes; aqui só como referência para conferir onde o banco ficou"
+    }
+   }
+  }
+ }
+}
