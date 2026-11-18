@@ -131,19 +131,28 @@ export function mesaFlexora(m: MesaFlexora) {
       for (const z of [zTras + 4, zFrente - 4]) T([-meiaLarg + 4, tubo / 2, z], [xC + 2, tubo / 2, z]);
       T([xC + 2, tubo / 2, zT0 + 4], [xT1, tubo / 2, zT0 + 4]);
       T([xC + 2, tubo / 2, zT1 - 4], [xT1, tubo / 2, zT1 - 4]);
+      // O corpo deita em cima dos estofados: eles (e a viga e os pés embaixo deles) são pintados na profundidade do
+      // canto deles mais longe de quem olha. Com a profundidade do meio de cada um (o normal do gerador), de três
+      // quartos o estofado das coxas, mais perto de quem olha que o meio do tronco, era pintado por cima do tronco.
+      let fundo = -1e9;
+      for (const p of [G.coxa, G.peito])
+        for (const s of [0, p.comp])
+          for (const x of [-meiaLarg, meiaLarg]) for (const n of [0, -esp - 10]) fundo = Math.max(fundo, C.P(add(add(add(p.ponta, mul(p.ao, s)), [x, 0, 0]), mul(p.normal, n)))[2]);
+      const atras = (centro: V3) => ({ dz: fundo - C.P(centro)[2] + 1 });
+      const Tf = (a: V3, b: V3, w = tubo) => C.tubo(a, b, w, w, M.metal, atras(mul(add(a, b), 0.5)));
       // a viga sob os estofados, que segue a dobra, e os pés dela
       const sob = (p: V3, n: V3) => add(p, mul(n, -esp - 4));
       const a0 = sob(G.coxa.ponta, G.coxa.normal),
         a1 = sob(G.dobra, [0, 1, 0]),
         a2 = sob(G.pontaDoPeito, G.peito.normal);
-      T(a0, a1, 6);
-      T(a1, a2, 6);
-      T([0, tubo, a0[2] + 6], add(a0, [0, 0, 6]));
-      T([0, tubo, a1[2]], a1);
-      T([0, tubo, a2[2] - 4], add(a2, [0, 0, -4]));
+      Tf(a0, a1, 6);
+      Tf(a1, a2, 6);
+      Tf([0, tubo, a0[2] + 6], add(a0, [0, 0, 6]));
+      Tf([0, tubo, a1[2]], a1);
+      Tf([0, tubo, a2[2] - 4], add(a2, [0, 0, -4]));
       for (const z of [a0[2] + 6, a1[2], a2[2] - 4]) T([-meiaLarg + 4, tubo / 2, z], [xC + 2, tubo / 2, z]);
       // os estofados (a face de baixo de cada um fica abaixo do plano onde o corpo deita)
-      for (const p of [G.coxa, G.peito]) C.estofado(add(meioDoTopo(p), mul(p.normal, -esp)), p.ao, p.normal, X, p.comp, esp, g('estofadoLarg'));
+      for (const p of [G.coxa, G.peito]) C.estofado(add(meioDoTopo(p), mul(p.normal, -esp)), p.ao, p.normal, X, p.comp, esp, g('estofadoLarg'), M.estofado, atras(add(meioDoTopo(p), mul(p.normal, -esp / 2))));
       // os pegadores: um braço sai da viga, à frente, e a manopla sobe inclinada
       for (const { centro, dir } of G.pegadores) {
         const pe = add(centro, mul(dir, -g('pegadorComp') / 2 - 3));

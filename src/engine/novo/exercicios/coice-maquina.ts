@@ -9,7 +9,8 @@
 // antebraços deitam nos apoios, com os cotovelos sob os ombros, e as mãos fecham nos pegadores em pé. A inclinação das
 // costas sai daí (o cotovelo encosta no apoio). A perna direita trabalha como no coice com caneleira: com o joelho a
 // 90° e o pé em ângulo reto, a coxa vai de sob o quadril até a linha do tronco, e a sola empurra a plataforma para trás
-// e para cima. O eixo da alavanca fica na linha do quadril (a almofada dos joelhos regula na altura para isso): a
+// e para cima. No erro de girar o quadril, a bacia rola e o joelho abre para fora, com a sola na plataforma (ela só gira
+// no eixo). O eixo da alavanca fica na linha do quadril (a almofada dos joelhos regula na altura para isso): a
 // perna gira inteira em volta dele, e a plataforma gira junto, encostada na sola. A pilha sobe o arco do came.
 import ficha from '../dados/movimentos/coice-maquina.json';
 import { calibragem } from '../calibragens';
@@ -82,7 +83,13 @@ function esqueleto(corpo: Corpo, u: number, erro?: string): Esq {
   const { atras, abre } = coxaEm(corpo, u, erro);
   const d: DesvioDaBacia = { bacia: erro === 'lombar' ? f('erro.lombar.bacia') * u : 0, rola: erro === 'gira' ? f('erro.gira.rola') * u : 0 };
   const t = troncoEmQuatroApoios(corpo, O, { beta: b.beta, pelve: pelveNoEixo() }, d);
-  return resolverMembros(t, bracos(), { R: pernaQueTrabalha(atras, abre), L: pernaDeApoio() });
+  if (erro !== 'gira') return resolverMembros(t, bracos(), { R: pernaQueTrabalha(atras, abre), L: pernaDeApoio() });
+  // no erro de girar: a sola fica na plataforma (presa à alavanca, que só gira no eixo): o tornozelo e o pé ficam onde
+  // estariam no movimento certo; a bacia rola e o joelho abre para fora
+  const certa = pernaQueTrabalha(atras, 0);
+  const R = resolverMembros(troncoEmQuatroApoios(corpo, O, { beta: b.beta, pelve: pelveNoEixo() }), bracos(), { R: certa, L: pernaDeApoio() }).lado.R;
+  const perna: PosePerna = { tornozelo: R.tornozelo, peDir: certa.peDir, polo: norm(girar(certa.polo, [0, 1, 0], abre)) };
+  return resolverMembros(t, bracos(), { R: perna, L: pernaDeApoio() });
 }
 
 /** A sola do pé direito: o meio dela e a direção, perpendicular a ela, que vai da sola para o tornozelo. */
