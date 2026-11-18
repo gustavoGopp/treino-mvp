@@ -24,7 +24,7 @@
   "erro.lombar.acima": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a perna sobe acima do tronco (o cartão: 'para subir mais a perna'): a coxa passa 20° da linha do tronco (o do coice com caneleira)" },
   "erro.lombar.bacia": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a lombar arqueia (o cartão): a bacia vira 14° para a frente e a lombar arqueia o mesmo tanto, com o peito parado (o do coice com caneleira)" },
   "erro.gira.rola": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o quadril gira para o lado (o cartão): a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio (o do coice com caneleira)" },
-  "erro.gira.abre": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: com a bacia rolada, a coxa sobe abrindo 22° para fora (o do coice com caneleira)" }
+  "erro.gira.abre": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: com a bacia rolada, o joelho aponta 22° para fora (o do coice com caneleira); o tornozelo e o pé ficam onde estariam no movimento certo, com a sola na plataforma, que só gira no eixo" }
  },
  "fases": [
   { "nome": "Quadril dobrado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "lombar parada", "selo": "consenso", "fonte": "ficha" },
@@ -42,7 +42,7 @@
  ],
  "erros": [
   { "id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a perna sobe acima do tronco e a lombar arqueia", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho:R"], "foco": "pelve" },
-  { "id": "gira", "instante": 1, "titulo": "Girar o quadril", "vista": "posterior", "oQueMuda": "a bacia rola para o lado da perna que trabalha e a coxa abre para fora", "destaca": ["corpo", "pernas"], "linha": ["quadril:L", "quadril:R"], "foco": "quadril:R" }
+  { "id": "gira", "instante": 1, "titulo": "Girar o quadril", "vista": "posterior", "oQueMuda": "a bacia rola para o lado da perna que trabalha e o joelho abre para fora, com a sola na plataforma", "destaca": ["corpo", "pernas"], "linha": ["quadril:L", "quadril:R"], "foco": "quadril:R" }
  ],
  "simetrico": false,
  "rotulos": [

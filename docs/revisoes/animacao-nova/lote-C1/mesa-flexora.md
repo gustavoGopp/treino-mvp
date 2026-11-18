@@ -31,7 +31,9 @@ A ficha da técnica dá a técnica em palavras (consenso, `nsca2021`, não verif
 
 - **De lado** (padrão do modo Técnica): mostra o joelho no eixo (o came atrás dele), o rolo acompanhando a canela, o quadril no estofado e a pilha subindo atrás da cabeça.
 - **De cima** (padrão do modo Músculos, 596 cm²): os posteriores das duas coxas e o rolo atravessado sobre as pernas.
-- De três quartos por trás (`quinaTras`), a torre e o estofado ocupam o quadro; ficou fora das duas vistas.
+- De três quartos (pela frente, `quina`, nos quadros grandes): mostra o corpo deitado em cima dos dois estofados, as mãos nos pegadores e o rolo sobre as pernas. Ficou fora das duas vistas do app porque a torre ocupa metade do quadro. De três quartos por trás (`quinaTras`), a torre e o came cobrem o quadril: troquei esse quadro pelo de três quartos pela frente.
+
+**Correção de 18/11 (revisão de quem integra):** de três quartos, o corpo saía pintado embaixo do estofado. A causa: o gerador pinta cada peça na profundidade do meio dela, e o meio do estofado das coxas (comprido e deitado sob o corpo) ficava mais perto de quem olha, de três quartos, que o meio do tronco; ele era pintado por cima do tronco e das pernas. Agora os estofados, a viga e os pés embaixo deles são pintados na profundidade do canto deles mais longe de quem olha (um `dz` por peça, calculado na própria peça), e o corpo deitado fica por cima em qualquer vista. De lado e de cima, nada mudou.
 
 ## Erros (os do cartão, com o mesmo título e na mesma ordem)
 
@@ -41,6 +43,10 @@ A ficha da técnica dá a técnica em palavras (consenso, `nsca2021`, não verif
 | Rolo no lugar errado | de lado | o rolo regulado no meio da panturrilha (a 55% da canela, a 26 cm do eixo; o certo fica a 41 cm), e não logo acima do calcanhar. O corpo faz o movimento certo, por isso o desenho não pinta parte do corpo de vermelho (como no erro do elástico no pescoço, aprovado): a linha vai do joelho ao tornozelo e o ponto marca o tornozelo, onde o rolo devia estar |
 
 **Sem desenho:** "Volta solta" ("deixar a placa cair perde a parte alongada") é erro de ritmo: a pose é a mesma do movimento certo, só mais rápida na volta. Não inventei consequência; o guia mostra o movimento certo com o texto do erro, como o "Soltar a volta" do supino entre as torres. Quem integra põe a exceção em `SEM_DESENHO` do teste da ponte.
+
+## O modo Trajetória
+
+Só o caminho do calcanhar. O do rolo andava junto com ele, a 6 cm, e os dois nomes ficavam um sobre o outro (correção de 18/11).
 
 ## O equipamento
 
@@ -55,5 +61,5 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **A dobra do estofado é mais marcada que a do cartão de hoje** (20° no das coxas, contra uns 10° no cartão). Com 10°, a barriga do Boneco ficava no alto da dobra e o peito não deitava no estofado (só deitava com a lombar dobrando 60°, uma corcunda). Nenhuma ficha dá o ângulo.
 - **A parte de cima do peito fica de 2 a 4 cm acima do estofado** (o tórax do Boneco é mais curvo que a barriga); de lado, lê-se como o peito apoiado.
 - **A torre fica atrás da cabeça e dos braços, na vista de lado.** No meio do estofado ela ficava atrás do quadril e os rótulos caíam sobre ela; na ponta da frente, os rótulos ficam livres, mas a cabeça e as mãos se desenham na frente dos montantes.
-- **No modo Trajetória, os nomes "rolo" e "calcanhar" ficam um sobre o outro** (os dois caminhos andam juntos, a 6 cm um do outro).
 - **O erro do rolo não pinta o corpo de vermelho:** o que erra é a regulagem da máquina.
+- **No erro do quadril, o título encosta no montante da torre**, atrás dele.

@@ -208,5 +208,6 @@ export const mesaFlexora: Exercicio = {
   quadro,
   // posteriores da coxa, sem secundário (a biblioteca)
   papeis: { posteriores: 'p' },
-  trajetorias: { calcanhar: (q) => q.esq.lado.R.calcanhar, rolo: (q) => q.marcas.rolo! },
+  // só o calcanhar: o caminho do rolo anda junto com ele, a 6 cm, e os dois nomes ficavam um sobre o outro
+  trajetorias: { calcanhar: (q) => q.esq.lado.R.calcanhar },
 };

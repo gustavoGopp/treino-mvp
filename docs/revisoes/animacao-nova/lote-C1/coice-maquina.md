@@ -43,9 +43,11 @@ A ficha da técnica dá a técnica em palavras e um número (o quadril dobrado ~
 | Erro (texto do app) | Vista | O que o boneco faz (medido) |
 |---|---|---|
 | Arquear a lombar | de lado | a perna sobe 20° acima da linha do tronco e a bacia vira 14° para a frente, com a lombar arqueando o mesmo tanto e o peito parado (os números do coice com caneleira aprovado); no fim, o quadril mede −7° (passa da linha) |
-| Girar o quadril | de trás | a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio, e a coxa abre 21°; a plataforma, que só gira no eixo, fica onde a alavanca a leva (o pé escorrega para o lado dela) |
+| Girar o quadril | de trás | a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio, e o joelho aponta 22° para fora; a sola fica na plataforma (de −0,6 a −0,3 cm da face dela, no máximo 1,1 cm para o lado do meio dela), porque a plataforma, presa à alavanca, só gira no eixo: o tornozelo e o pé ficam onde estariam no movimento certo, e o joelho dobra de 90° a 95° para o quadril subir |
 
 **Sem desenho:** "Soltar a volta" ("a volta sem controle") é erro de ritmo: a pose é a do movimento certo, só mais rápida na volta. Não inventei consequência; o guia mostra o movimento certo com o texto do erro, como o "Soltar a volta" do supino entre as torres. Quem integra põe a exceção em `SEM_DESENHO` do teste da ponte.
+
+**Correção de 18/11 (revisão de quem integra):** no erro de girar o quadril, a perna inteira girava para fora (como no coice com caneleira, sem plataforma) e o pé saía da plataforma, pisando no ar. A plataforma presa à alavanca não anda para o lado: agora o pé fica nela, e o giro aparece na bacia e no joelho, que abre para fora (o que a ficha descreve: "o quadril gira para o lado").
 
 ## O equipamento
 
@@ -61,4 +63,3 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md`.
 - **A alavanca é pintada atrás do corpo.** De lado, ela parece passar por trás da perna, quando está do lado de fora dela; o came, no quadril, fica escondido. É o corte do smith, mas aqui a peça é móvel e se nota mais.
 - **A almofada dos joelhos é uma só, sob o joelho de apoio** (a Precor tem duas, "double knee pad"): com duas, o joelho que trabalha não chegaria sob o peito e o quadril começaria dobrado 65°, e não ~90°.
 - **De lado, a cabeça e as mãos ficam na frente da torre** (a torre fica na frente, do outro lado). Os rótulos ficam livres.
-- **No erro de girar o quadril, a sola sai da plataforma para o lado** (a plataforma só gira no eixo). É o que acontece, mas o pé parece pisar no ar.
