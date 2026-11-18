@@ -4,7 +4,9 @@
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na cadeira abdutora e adutora, os braços abrindo e fechando (de frente e de cima), com a almofada por fora (abdução) e
+// por dentro (adução) dos joelhos e a pilha subindo.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-abdutora-adutora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -18,6 +20,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
+export * from './src/engine/novo/pecas-de-cena/cadeira-abdutora.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -231,5 +234,48 @@ if (!so || so === 'smith') {
 <h2>Funcionando (de lado): a barra só anda na guia</h2>
 <div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
+  );
+}
+
+if (!so || so === 'cadeira-abdutora-adutora') {
+  // a mesma máquina nas duas regulagens: na abdução, as almofadas por fora dos joelhos e a posição inicial com as pernas
+  // fechadas; na adução, por dentro, e a posição inicial com as pernas abertas
+  const ABD = { modo: 'abducao', inicio: 0, placas: 5 },
+    ADU = { modo: 'aducao', inicio: 42, placas: 5 };
+  const pecas = (reg, braco) => {
+    const c = m.cadeiraAbdutora({ ...reg, braco });
+    return [c.fixa, c.movel];
+  };
+  // o cartão de hoje olha a máquina de três quartos pela frente (yaw 28 com quem senta virado para −z); aqui quem senta
+  // olha para +z: yaw 208 é o mesmo ângulo
+  const cam = { yaw: 208, pitch: 12, s: 0.6 };
+  const frente = { yaw: 180, pitch: 6, s: 0.6 };
+  const cima = { yaw: 180, pitch: 89, s: 0.6 };
+  const a0 = m.cadeiraAbdutora({ ...ABD, braco: 0 }),
+    a1 = m.cadeiraAbdutora({ ...ABD, braco: 36 }),
+    d0 = m.cadeiraAbdutora({ ...ADU, braco: 42 }),
+    d1 = m.cadeiraAbdutora({ ...ADU, braco: 11 });
+  const ext = a0.extremos;
+  const o = (id) => m.obj('cadeiraAbdutora', id);
+  // a maior distância entre as almofadas, com os braços a 52° (o erro "abrir demais" da adução), contra a da Precor
+  const aberta = m.cadeiraAbdutora({ ...ADU, braco: 52 });
+  const entre = Math.abs(aberta.almofadas.L.centro[0] - aberta.almofadas.R.centro[0]) + o('estofadoEsp');
+  await foto(
+    'cadeira-abdutora-adutora',
+    `<h1>Cadeira abdutora e adutora: o cartão de hoje × a peça nova</h1>
+<p>Uma máquina só faz as duas, como o cartão (e como a Life Fitness SS-HAA e a Precor RSL0626). O tamanho total vem da Life Fitness SS-HAA (manual público da linha Insignia: ${v(o('comp'), 0)} × ${v(o('larg'), 0)} × 148 cm, a torre ao lado do assento), da Precor (180 × 76 × 147) e das fichas da Hammer Strength (155 × 67 × 140) e da Movement (167 × 81 × 146, a torre à frente de quem senta). A Precor dá a espessura dos estofados (6,5 cm) e diz que o encosto é "um pouco deitado" (sem ângulo); a Life Fitness manda sentar com <b>os pés nos apoios e os joelhos a 90°</b>, com as almofadas por fora dos joelhos (abdução) ou por dentro (adução). <b>Nenhuma ficha dá o eixo das almofadas:</b> ele sai do corpo — cada braço gira num eixo vertical <b>embaixo do centro do quadril</b> de quem senta (o mesmo eixo em que a coxa gira quando abre), e por isso a almofada não escorrega pela coxa e o pé não sai do apoio. Em amarelo na tabela, o que é de desenho; em "derivada", o que sai do corpo da tabela.</p>
+<p><b>A máquina funciona:</b> os dois braços giram juntos (engrenagens nos eixos); a almofada gira no alto do montante e passa para fora ou para dentro do joelho; o came do braço esquerdo enrola o cabo e as placas do pino sobem ${v(a1.subida)} cm na abdução (de 0° a 36°) e ${v(d1.subida)} cm na adução (de 42° a 11°). A torre fica ao lado do encosto e atrás dele, como no cartão, mas à esquerda de quem senta (no cartão, à direita): de lado, a vista que a animação usa para o tronco, ela fica atrás do corpo, e não na frente dele. (Os desenhos desta folha saem do gerador dos cartões, que desenha espelhado em relação à animação: aqui a torre aparece à esquerda; na animação, de frente, ela aparece à direita.) <b>Medida desenhada:</b> ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento e ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura com os braços fechados: o comprimento é o da Life Fitness, mas a largura fica entre a das outras fichas (67 a 81 cm) e a da Life Fitness (161), porque a torre fica junto do encosto, como no cartão (106 cm). Com os braços a 52°, as almofadas ficam a ${v(entre, 0)} cm uma da outra (a Precor abre até 185).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('cadeira_abdutora_adutora'), 96, 'cartao'))}${cel('nova (abdução, pernas fechadas)', img(desenho(pecas(ABD, 0), cam), 96, 'cartao'))}${cel('nova (adução, pernas abertas)', img(desenho(pecas(ADU, 42), cam), 96, 'cartao'))}${cel('hoje: a cadeira flexora (para ver se ainda se confundem)', img(hoje('cadeira_flexora'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('cadeira_abdutora_adutora'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (abdução: as almofadas por fora)', img(desenho(pecas(ABD, 0), cam), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('nova, do mesmo ângulo (adução: as almofadas por dentro, as pernas abertas)', img(desenho(pecas(ADU, 42), cam), 640))}</div>
+<h2>Funcionando: a abdução (almofadas por fora), de frente e de cima</h2>
+<div class="l">${cel('começo: os braços fechados (0°); as placas embaixo', img(desenho([a0.fixa, a0.movel], frente), 440))}${cel(`fim: os braços abertos (36°); as placas do pino ${v(a1.subida)} cm acima`, img(desenho([a1.fixa, a1.movel], frente), 440))}</div>
+<div class="l" style="margin-top:12px">${cel('começo, de cima', img(desenho([a0.fixa, a0.movel], cima, false), 440))}${cel('fim, de cima: os braços giram em volta dos eixos embaixo do quadril', img(desenho([a1.fixa, a1.movel], cima, false), 440))}</div>
+<h2>Funcionando: a adução (almofadas por dentro), de frente e de cima</h2>
+<div class="l">${cel('começo: os braços abertos (42°, a posição inicial); as placas embaixo', img(desenho([d0.fixa, d0.movel], frente), 440))}${cel(`fim: os braços fechados (11°), as almofadas quase se tocando; as placas ${v(d1.subida)} cm acima`, img(desenho([d1.fixa, d1.movel], frente), 440))}</div>
+<div class="l" style="margin-top:12px">${cel('começo, de cima', img(desenho([d0.fixa, d0.movel], cima, false), 440))}${cel('fim, de cima', img(desenho([d1.fixa, d1.movel], cima, false), 440))}</div>
+<h2>As medidas</h2>${tabela('cadeira-abdutora', ['cadeiraAbdutora'])}`,
   );
 }
