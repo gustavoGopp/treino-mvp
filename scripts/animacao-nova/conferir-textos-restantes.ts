@@ -13,7 +13,7 @@ import { z } from 'zod';
 import { cartaoTextoSchema, conteudoExercicioSchema } from '../../src/conteudo/schema';
 
 const PASTA = 'docs/revisoes/animacoes-restantes/textos';
-const LOTES = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1'];
+const LOTES = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'B1', 'B2'];
 const CAMPOS_DO_CARTAO = ['id', 'name', 'short', 'target', 'setupEq', 'setupBody', 'exec', 'range', 'cues', 'errors', 'carga'] as const;
 
 const textoDoGuia = conteudoExercicioSchema.extend({ carga: z.string().min(1) }).strict();

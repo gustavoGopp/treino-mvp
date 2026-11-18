@@ -35,3 +35,17 @@ Kg de anilhas por lado, com passos do menor par. A calibração não usa a fórm
 - `hernandezbelmonte2023`: Hernández-Belmonte A, Martínez-Cava A, Buendía-Romero Á et al. Free-Weight and Machine-Based Training Are Equally Effective on Strength and Hypertrophy: Challenging a Traditional Myth. Med Sci Sports Exerc 2023;55(12):2316-2327. PMID 37535335. Resumo lido no PubMed em 01/11/2026.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase B, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/supino-smith.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; ombro anterior e tríceps) e a biblioteca; a nota, do erro "Banco fora do lugar" e da linha Montagem | consenso | `seguranca-t5`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Montagem, Pegada e Cotovelos da tabela de técnica | consenso | `seguranca-t5`; `nsca2021` (não verificado); `tecnica.supino-halteres.cotovelos` |
+| Variações (`vary`) | linhas Pegada (até ~1,5 vez a largura dos ombros) e Amplitude ("até encostar de leve no peito ou até um alongamento confortável") | consenso | `nsca2021` (não verificado); `tecnica.supino-halteres.cotovelos` |
+| Nota (`note`) | a montagem do cartão (o banco centrado e as travas logo acima do peito) | consenso | `seguranca-t5` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/supino-smith.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a altura das travas ("logo acima do peito") parece não combinar com a amplitude (a barra encosta de leve no peito) nem com a regra `seguranca.montagem` (no smith, travas logo abaixo do ponto mais baixo); a nota seguiu o cartão (anotado em `pedidos.md`). A ficha não diz o que os cotovelos em T fazem sentir (o cartão também não), e a nota de onde sentir ficou com o banco fora do lugar. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor. A ficha não diz o que varia de pessoa para pessoa além da pegada e da profundidade.
