@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 159 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 160 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 3021 células dos cuidados 1 a 19: M 1221, M! 126, O 1158, C 477, – 22, ✗ 17.
+Contagem das 3040 células dos cuidados 1 a 19: M 1229, M! 126, O 1166, C 480, – 22, ✗ 17.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -149,6 +149,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `puxada-frente` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-frente.png) |
 | `puxada-unilateral` | 0 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/puxada-unilateral.png) |
 | `remada-apoiada` | 4 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-apoiada.png) |
+| `remada-articulada` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-articulada.png) |
 | `remada-baixa` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa.png) |
 | `remada-baixa-estacao` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa-estacao.png) |
 | `remada-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-barra.png) |
@@ -533,6 +534,7 @@ Os demais:
 - `puxada-frente`: (sem linha no andamento)
 - `puxada-unilateral`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes
 - `remada-apoiada`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o banco passa entre as pernas, com os pés dos lados dele; no corpo da mulher duas regras ainda falham)
+- `remada-articulada`: (sem linha no andamento)
 - `remada-baixa`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado no banco, com o triângulo; vistas de três quartos e de trás; no corpo da mulher duas regras ainda falham)
 - `remada-baixa-estacao`: (sem linha no andamento)
 - `remada-barra`: (sem linha no andamento)
