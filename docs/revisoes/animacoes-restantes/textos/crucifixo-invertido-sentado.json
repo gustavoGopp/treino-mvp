@@ -1,0 +1,72 @@
+{
+  "id": "crucifixo-invertido-sentado",
+  "name": "Crucifixo invertido sentado, com o peito nas coxas, com halteres",
+  "short": "Crucifixo invertido sentado",
+  "target": "Ombro de trás (deltoide posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se sentir o alto dos ombros (trapézio), os ombros estão subindo: deixe-os baixos, sem juntar as escápulas. Cotovelos que dobram e puxam viram uma remada.",
+  "setupEq": [
+    "Um par de halteres leves e uma cadeira firme ou um banco."
+  ],
+  "setupBody": [
+    "Sentado na ponta da cadeira, pés juntos no chão.",
+    "Incline o tronco até o peito encostar nas coxas.",
+    "Halteres pendurados atrás das panturrilhas, palmas uma para a outra, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abertura",
+      "~1 s. Abra os braços para os lados e para cima, até a altura dos ombros."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, sem juntar as escápulas."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até os halteres voltarem para baixo."
+    ]
+  ],
+  "range": [
+    "Embaixo: halteres pendurados.",
+    "Em cima: braços na altura dos ombros."
+  ],
+  "breath": "Solte o ar abrindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Peito nas coxas.",
+    "Abra para os lados.",
+    "Ombros longe das orelhas."
+  ],
+  "check": [
+    "Cadeira firme ou banco",
+    "Peito nas coxas",
+    "Palmas uma para a outra",
+    "Cotovelos levemente dobrados"
+  ],
+  "vary": "Serve uma cadeira firme ou um banco. O que não muda: o peito nas coxas e os braços abrindo para os lados, com os cotovelos quase retos.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Levantar o tronco",
+      "desc": "O tronco sobe para dar embalo. O peito fica nas coxas."
+    },
+    {
+      "id": "remada",
+      "title": "Virar remada",
+      "desc": "Os cotovelos dobram e puxam para trás. Abra os braços para os lados, cotovelos quase retos."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio de cima assume. Ombros baixos."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

@@ -30,3 +30,17 @@ Caneleira: a próxima da lista; sem uma mais pesada, mais repetições.
 ## Fontes
 - `selkowitz2013` (`docs/pesquisa/fontes.md`).
 - `attarieh2026` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/coice-caneleira.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (glúteos, sem secundário) e a biblioteca; a nota, do erro "Arquear a lombar no fim" do cartão | um estudo (EMG) | `selkowitz2013`; `attarieh2026` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | equipamento e posição do cartão; a linha Posição da tabela | consenso | `17`, G3 |
+| Variações (`vary`) | a linha Movimento da tabela e Por que assim ("a série vai perto da falha") | consenso; a carga leve é **[opinião]** | `selkowitz2013` |
+| Nota (`note`) | a montagem do cartão | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/coice-caneleira.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda. A seção Segurança da ficha não fala da lombar (o cartão fala, no erro 1).

@@ -30,3 +30,16 @@ Halter: o próximo peso da lista.
 ## Fontes
 - `larsen2025` (`docs/pesquisa/fontes.md`).
 - `pedrosa2026` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/elevacao-lateral-deitado.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro lateral, sem secundário) e a biblioteca; a nota, dos erros "Dobrar demais o cotovelo" e "Rolar o corpo" | um estudo | `larsen2025` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | equipamento e posição do cartão; a linha Posição da tabela | consenso | `17`, G4 |
+| Variações (`vary`) | o equipamento do cartão (chão ou banco) e a linha Movimento | consenso | `17`, G4 |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/elevacao-lateral-deitado.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha entre chão e banco do cartão.
