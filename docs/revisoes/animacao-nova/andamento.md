@@ -135,4 +135,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A4 | `crucifixo-invertido-sentado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o peito nas coxas, medido; com o peito ali o braço começa aberto 23°, porque o halter chega ao chão; a cadeira é pintada atrás do corpo, como todo cenário) |
 | A4 | `crucifixo-invertido-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a mesma base, com a caneleira no antebraço; começa aberto 32°; "Parar longe da falha" sem desenho) |
 | A4 | `rosca-concentrada` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o braço apoiado por dentro da coxa, medido; abre de frente) |
+| A5 | `supino-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos pela cabeça: de lado o cabo atravessa o banco no desenho; no começo os braços dobrados se embolam sobre o peito nessa vista; "Soltar a volta" sem desenho) |
+| A5 | `supino-inclinado-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (encosto a 30°, abre de três quartos pela frente; "Soltar a volta" sem desenho) |
+| A5 | `crucifixo-polia-baixo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente, porque de cima a subida não aparece; a segunda vista passou a ser a de lado, porque de cima o corpo se via pelo alto da cabeça) |
 

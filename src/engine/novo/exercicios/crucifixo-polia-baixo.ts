@@ -116,7 +116,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const crucifixoPoliaBaixo: Exercicio = {
   ficha: F,
-  vistas: ['frontal', 'cima'],
+  vistas: ['frontal', 'lateral'], // de cima o corpo se via pelo alto da cabeça; de lado se vê o passo à frente e os cabos
   quadro,
   // peitoral (principal; o desenho não separa a parte de cima, a clavicular) e a frente do ombro (secundário): a biblioteca
   papeis: { peitoral: 'p', deltAnt: 's' },
