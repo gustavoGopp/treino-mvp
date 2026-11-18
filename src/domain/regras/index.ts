@@ -81,6 +81,8 @@ export const TEMPO = {
   sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
   protegidoCurto: 30, // tempo.musculo-protegido: até 30 min, o protegido fica com 2 séries e troca por um isolador do dia
   extensaoPelaFaltaCurto: 45, // selecao.gluteo (R5a): até 45 min, a extensão de quadril que entra pela falta só sobe enquanto o dia couber
+  // tempo.exercicios-do-iniciante (18/11/2026): o iniciante de 3 dias de até 60 min fica com até 6 exercícios por treino
+  exerciciosDoIniciante: { maximo: 6, dias: 3, ateMinutos: 60 },
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */

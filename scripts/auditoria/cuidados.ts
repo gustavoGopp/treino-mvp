@@ -334,7 +334,9 @@ export function medirCuidados(p: Programa, pf: Perfil, inventario: Inventario, c
   for (const m of MUSCULOS_COM_META) if ((v[m] ?? 0) < LIMITES.pisoUtil && !citados.has(m)) marca('c17a', `${m} com ${fmt(v[m] ?? 0)} séries, sem aviso`);
 
   // c20: o porquê bate com o programa
-  const cabem = p.porque.find((q) => q.regraId === 'tempo.exercicios-por-sessao')?.texto.match(/cerca de (\d+) exerc/);
+  // Com o limite do iniciante (tempo.exercicios-do-iniciante, 18/11/2026), o texto diz "no máximo N": é esse o número que vale.
+  const textoDoCabem = p.porque.find((q) => q.regraId === 'tempo.exercicios-por-sessao' || q.regraId === 'tempo.exercicios-do-iniciante')?.texto;
+  const cabem = textoDoCabem?.match(/no máximo (\d+)\)/) ?? textoDoCabem?.match(/cerca de (\d+) exerc/);
   if (cabem && p.dias.some((d) => d.exercicios.length > Number(cabem[1]))) marca('c20a', `o texto diz ${cabem[1]} e há dia com ${Math.max(...p.dias.map((d) => d.exercicios.length))}`);
   if (p.porque.some((q) => /todos os músculos ficam com ~6/.test(q.texto))) {
     const fora = comExercicio.filter((m) => m !== 'abdomen' && ((v[m] ?? 0) >= 9 || (v[m] ?? 0) < 4));

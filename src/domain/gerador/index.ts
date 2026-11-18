@@ -454,6 +454,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   };
 }
 
+/**
+ * tempo.exercicios-do-iniciante (18/11/2026): o iniciante de 3 dias de até 60 min fica com até 6 exercícios por treino,
+ * quando no tempo caberiam mais. Só vale se não custar outra coisa (a comparação fica em `gerarNaDivisao`).
+ */
+const temLimiteDoIniciante = (perfil: Perfil) => {
+  const { maximo, dias, ateMinutos } = TEMPO.exerciciosDoIniciante;
+  return perfil.nivel === 'iniciante' && perfil.diasSemana === dias && perfil.minutosSessao <= ateMinutos && exerciciosPorSessao(perfil.minutosSessao) > maximo;
+};
+
 function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false): Resultado {
   const triagem = avaliarTriagem(perfil.triagem);
   if (triagem.bloqueado) return { status: 'bloqueado', triagem };
@@ -480,16 +489,22 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRe
     return passa(antes) ? comFoco : antes;
   };
   const com = escolher(false);
-  // selecao.pratica-do-iniciante (16/11/2026): a prática antes da variedade só vale se não custar um dia acima de 110% do
-  // tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que a montagem sem ela não teria.
+  // selecao.pratica-do-iniciante (16/11/2026) e tempo.exercicios-do-iniciante (18/11/2026): a prática antes da variedade
+  // e o limite de exercícios só valem se não custarem um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar
+  // acima de 1,5 que a montagem sem eles não teria; e o limite, também um músculo sem nenhuma série ou mais músculos
+  // com menos de 4 séries.
   if (perfil.nivel === 'iniciante') {
     const fracosDe = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
     const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
     const empurra = (p: Programa) => seriesDe(p, PADROES_PUXAR) > 0 && seriesDe(p, PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * seriesDe(p, PADROES_PUXAR);
-    // Sem nenhum desses três no programa com a regra, não há o que comparar: a 2ª montagem só é feita quando há.
-    if (acima(com) || fracosDe(com) || empurra(com)) {
+    const limite = temLimiteDoIniciante(perfil);
+    const zerados = (p: Programa) => MUSCULOS_COM_META.filter((m) => !(p.volumeSemanal[m] ?? 0)).length;
+    const soltos = (p: Programa) => MUSCULOS_COM_META.filter((m) => (p.volumeSemanal[m] ?? 0) < VOLUME.minimoEficazPiso).length;
+    // Sem nenhum desses custos no programa com as regras, não há o que comparar: a 2ª montagem só é feita quando há.
+    if (acima(com) || fracosDe(com) || empurra(com) || (limite && (zerados(com) || soltos(com)))) {
       const sem = escolher(true);
-      if (acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurra(com) && !empurra(sem))) return fechar(sem, triagem);
+      const custaVolume = limite && (zerados(com) > zerados(sem) || soltos(com) > soltos(sem));
+      if (acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurra(com) && !empurra(sem)) || custaVolume) return fechar(sem, triagem);
     }
   }
   return fechar(com, triagem);
@@ -543,7 +558,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const comparar = ctx.comparar(usos, funcaoPossivel);
 
   // 4. Preenchimento das vagas por função
-  const N = exerciciosPorSessao(perfil.minutosSessao);
+  // tempo.exercicios-do-iniciante: com o limite (que a 2ª montagem, `semPratica`, desliga), N é 6, e o 2º exercício do
+  // foco pode ser o 7º.
+  const limiteDoIniciante = !semPratica && temLimiteDoIniciante(perfil);
+  const N = limiteDoIniciante ? TEMPO.exerciciosDoIniciante.maximo : exerciciosPorSessao(perfil.minutosSessao);
   const ativaPeloFoco = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
   // selecao.gluteo (R5a): numa semana sem vaga de extensão de quadril valendo (o Corpo todo A/B sem foco em glúteo), a
   // vaga do foco passa a valer quando dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só
@@ -732,6 +750,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     if (!soCore && !d.perdidas) continue;
     const v = volumePorMusculo(dias.flatMap((x) => x.itens.map((i) => ({ ex: i.ex, series: i.series }))));
     const deficit = (m: Musculo) => ((metas[m] ?? 0) - (v[m] ?? 0)) / (metas[m] ?? 1);
+    const focoAbaixo = (m: Musculo) => prioritarios.has(m) && (v[m] ?? 0) < (metas[m] ?? 0);
     // Os músculos que o modelo do dia treina (um dia de superior continua de superior).
     const musculosDoDia = new Set(d.dia.vagas.map((x) => FUNCAO[x.funcao]!.musculo));
     const cands = possiveis
@@ -740,7 +759,15 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
         return f && (soCore || musculosDoDia.has(f.musculo)) ? [{ e, f }] : [];
       })
-      .sort((a, b) => deficit(b.f.musculo) - deficit(a.f.musculo) || comparar(a.e, b.e));
+      .sort(
+        (a, b) =>
+          // tempo.exercicios-do-iniciante: com o limite, o lugar que a dor esvaziou vai primeiro para um músculo do foco
+          // abaixo da meta (sem o limite, havia lugar para os dois; com dor forte no cotovelo, o crucifixo que leva o peito
+          // à meta perdia o lugar para a panturrilha).
+          (limiteDoIniciante ? Number(focoAbaixo(b.f.musculo)) - Number(focoAbaixo(a.f.musculo)) : 0) ||
+          deficit(b.f.musculo) - deficit(a.f.musculo) ||
+          comparar(a.e, b.e),
+      );
     const vagas = Math.max(soCore ? 1 : 0, Math.min(d.perdidas, N - d.itens.length));
     const musculosUsados = new Set<Musculo>(d.itens.map((i) => i.funcao.musculo));
     // Sem passar do teto semanal de nenhum músculo, contando as séries indiretas (volume.semanal.teto-padrao).
@@ -897,7 +924,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           const mesmaRegiao = regiaoDe(m) === 'core' || [...musculosDoModelo].some((x) => regiaoDe(x) === regiaoDe(m));
           return { d, di, mesmoMusculo: musculosDoModelo.has(m), mesmaRegiao };
         })
-        .filter((x) => x.mesmaRegiao && x.d.itens.length < N && volumeNoDia(x.di, m) + VOLUME.seriesPorExercicio.min <= VOLUME.sessaoTeto)
+        .filter((x) => x.mesmaRegiao && x.d.itens.length < N + (limiteDoIniciante ? 1 : 0) && volumeNoDia(x.di, m) + VOLUME.seriesPorExercicio.min <= VOLUME.sessaoTeto)
         .flatMap((x) => {
           const funcoesDoDia = new Set(x.d.itens.filter((i) => i.funcao.musculo === m).map((i) => i.funcao.id));
           return funcoes.map((f) => ({ ...x, f, repete: funcoesDoDia.has(f.id) }));
@@ -1324,8 +1351,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     },
     { regraId: r('frequencia.musculo'), texto: frequenciaTexto(divisao) },
     {
-      regraId: r('tempo.exercicios-por-sessao'),
-      texto: `Com ${perfil.minutosSessao} min por treino, cabem cerca de ${N} exercícios.`,
+      // tempo.exercicios-do-iniciante: com o limite, o texto diz o limite, e não só o que cabe no tempo.
+      regraId: r(limiteDoIniciante ? 'tempo.exercicios-do-iniciante' : 'tempo.exercicios-por-sessao'),
+      texto: limiteDoIniciante
+        ? `Com ${perfil.minutosSessao} min por treino caberiam cerca de ${exerciciosPorSessao(perfil.minutosSessao)} exercícios, mas quem está começando fica com cerca de ${N} (no máximo ${N + 1}), para aprender bem cada um.`
+        : `Com ${perfil.minutosSessao} min por treino, cabem cerca de ${N} exercícios.`,
     },
     {
       regraId: r('selecao.funcao-da-vaga'),

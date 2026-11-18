@@ -1403,8 +1403,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     },
     { regraId: r('frequencia.musculo'), texto: frequenciaTexto(divisao) },
     {
-      regraId: r('tempo.exercicios-por-sessao'),
-      // EXPERIMENTO (ini-6-texto): com o limite de 6 exercícios do iniciante, o texto diz o limite, e não só o que cabe no tempo.
+      // tempo.exercicios-do-iniciante (ini-6-texto, adotada em 18/11/2026): com o limite, o texto diz o limite, e não só o que cabe.
+      regraId: r(prot('ini-6-texto') && limiteDoIniciante ? 'tempo.exercicios-do-iniciante' : 'tempo.exercicios-por-sessao'),
       texto:
         prot('ini-6-texto') && limiteDoIniciante
           ? `Com ${perfil.minutosSessao} min por treino caberiam cerca de ${exerciciosPorSessao(perfil.minutosSessao)} exercícios, mas quem está começando fica com cerca de ${N} (no máximo ${N + 1}), para aprender bem cada um.`

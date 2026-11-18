@@ -45,9 +45,14 @@ describe('tempo.sobra-series, 2º passo: o tempo que sobra vira série em todos 
     vi.stubEnv('PROT', 'app,-usa-tempo');
     vi.resetModules();
     antes = ((await import('../../scripts/auditoria/prototipo/gerador')) as unknown as { gerarPrograma: typeof gerarPrograma }).gerarPrograma;
+    // tempo.exercicios-do-iniciante (18/11/2026): o limite de 6 exercícios do iniciante de 3 dias de até 60 min só vale se
+    // não custar outra coisa, e o custo é medido no programa já com as séries a mais. Sem esta regra (o "antes"), o limite
+    // às vezes custa e cai; com ela, fica: os exercícios mudam pelo limite, e não por esta regra. Esses casos (2 de 240:
+    // o Diego com 60 min, sem foco e com foco em peito) ficam de fora da comparação.
+    const comLimite = (p: Programa) => p.porque.some((q) => q.regraId === 'tempo.exercicios-do-iniciante');
     pares = CASOS.flatMap((c) => {
       const [a, d] = [programa(antes, c), programa(gerarPrograma, c)];
-      return a && d ? [{ c, a, d }] : [];
+      return a && d && comLimite(a) === comLimite(d) ? [{ c, a, d }] : [];
     });
   });
 

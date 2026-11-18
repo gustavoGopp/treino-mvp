@@ -531,6 +531,10 @@
     "titulo": "Quantos exercícios cabem no treino",
     "frase": "Contando cerca de 3 séries cada, cabem 4 exercícios em 30 min, 6 em 45, 8 em 60, 10 em 75 e 12 em 90; entre esses pontos, proporcional. Se não cabem todos, a ordem é: 1) os exercícios básicos do dia; 2) o único exercício direto de um músculo com meta; 3) os complementos dos músculos em foco; 4) os outros. Nenhum entra se, já no mínimo de séries, passar do limite semanal de algum músculo."
   },
+  "tempo.exercicios-do-iniciante": {
+    "titulo": "Menos exercícios para quem está começando",
+    "frase": "Quem está começando e treina 3 dias de até 60 minutos fica com até 6 exercícios por treino, mesmo quando cabem 8: é melhor aprender bem cada um. Um exercício do seu foco, o abdômen ou a panturrilha podem ser o 7º. O limite só vale se não deixar um dia longo demais, um dia fraco, empurrar muito mais que puxar ou um músculo com menos de 4 séries."
+  },
   "tempo.corte": {
     "titulo": "Quando o treino não cabe no tempo",
     "frase": "Ordem do corte: 1) só o aquecimento do próprio exercício; 2) exercício de dois lados no lugar do de um lado só, havendo equivalente; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores. A troca pelo exercício de dois lados não tira nenhuma série da semana."
