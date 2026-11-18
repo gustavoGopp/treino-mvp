@@ -10,7 +10,8 @@
 // Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
 // Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
 // No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No graviton, a almofada dos joelhos em cima e embaixo (a alavanca girando no eixo), com a pilha subindo quando ela desce.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|graviton] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -30,6 +31,7 @@ export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
 export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export * from './src/engine/novo/pecas-de-cena/hack.ts';
+export * from './src/engine/novo/pecas-de-cena/graviton.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -422,5 +424,34 @@ if (!so || so === 'hack') {
 <h2>Funcionando (de lado): o carro só anda na guia; a chapa fica parada</h2>
 <div class="l">${cel('em cima, a trava fechada no suporte de cima', img(desenho(H(108, 'fechada'), lado), 440))}${cel('a trava aberta: o carro solto', img(desenho(H(108, 'aberta'), lado), 440))}${cel('embaixo (o carro desceu 40 cm na guia)', img(desenho(H(68, 'aberta'), lado), 440))}</div>
 <h2>As medidas</h2>${tabela('hack', ['hack'])}<p style="margin-top:8px">As anilhas são as da barra longa (folha-barra.png).</p>`,
+  );
+}
+
+if (!so || so === 'graviton') {
+  const o = (id) => m.obj('graviton', id);
+  const G = (alavanca) => {
+    const r = m.graviton({ alavanca });
+    return [r.pecas.estrutura, r.pecas.barra, r.pecas.paralela, r.pecas.alavanca];
+  };
+  // a almofada no alto da barra (26°) e no ponto mais baixo (−29°): o caminho do corpo da tabela
+  const [alto, baixo] = [26, -29];
+  const sobe = (a) => m.subidaDaPilhaDoGraviton(a);
+  // o cartão de hoje olha a máquina de três quartos, pela frente da pilha e pelo lado; a peça corre ao longo de z
+  const cam = { yaw: -64, pitch: 10, s: 0.6 };
+  const deTras = { yaw: 26, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  await foto(
+    'graviton',
+    `<h1>Graviton (barra e paralela assistidas): o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue a ficha da Life Fitness SS-ADC (163 × 149 × 222 cm); a Hammer Strength HS-ADC (117 × 115 × 221), a Matrix VS-S601 (142,8 × 152,8 × 219,7) e a Atlantis D131 (144 × 141,8 × 233,4) têm a mesma altura e são mais curtas. Da Atlantis vem o diâmetro das alças (3,9 cm, "bars configured in a progressive V shape"); da Life Fitness, a pilha de 85 kg; das quatro, que os joelhos apoiam numa almofada que dobra para o treino sem ajuda e que há degraus para subir. <b>Nenhuma ficha lida diz como a almofada anda</b> (a Atlantis fala de "a linear bearing mechanism", sem dizer de quê): ela fica numa alavanca que gira num eixo preso às colunas, como no cartão de hoje. <b>O que faz a máquina funcionar não está em nenhuma ficha</b> e saiu do corpo da tabela, com o motivo na tabela (em amarelo): a altura das alças de barra (${v(o('alcaAltura'), 0)} cm) e de paralela (${v(o('paralelaAltura'), 0)} cm), a altura do eixo (${v(o('eixoAltura'), 0)} cm) e o raio da alavanca até o joelho (${v(o('alavancaAteJoelho'), 0)} cm). O eixo do cartão de hoje fica a 46 cm, no pé das colunas; a peça nova o sobe a ${v(o('eixoAltura'), 0)} cm, no meio do caminho dos joelhos na barra, porque com o eixo embaixo o joelho não alcançaria o alto da barra.</p>
+<p><b>A máquina funciona:</b> quem treina ajoelha na almofada e a empurra para baixo; a alavanca gira no eixo, o came (${v(o('cameDiam'), 0)} cm) gira com ela e enrola o cabo, que corre até a roldana do pé da torre, sobe por dentro dela e puxa as placas para cima: a pilha sobe quando a almofada desce (o contrapeso), e é ela que empurra os joelhos para cima. O topo da almofada fica ${v(o('almofadaAbaixoDoEixo'), 0)} cm abaixo da linha do eixo: com a frente da canela nela, o centro do joelho cai nessa linha e a almofada gira em volta do eixo sem escorregar debaixo do joelho. No caminho da barra, a almofada vai de ${baixo}° a +${alto}° (inclina com a alavanca) e as placas sobem ${v(sobe(baixo) - sobe(alto))} cm. Sem ninguém, a alavanca para no batente de cima (${v(o('alavancaTopo'), 0)}°).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('graviton'), 96, 'cartao'))}${cel('nova', img(desenho(G(alto), cam), 96, 'cartao'))}${cel('hoje: a estação de barra fixa (para ver se ainda se confundem)', img(hoje('barra_fixa'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('graviton'), 440, 'cartao'))}${cel('nova, do mesmo lado (a almofada em cima)', img(desenho(G(alto), cam), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('nova, de três quartos pelo lado de quem treina (a almofada em cima)', img(desenho(G(alto), deTras), 640))}</div>
+<h2>Funcionando (de lado, pelo lado direito de quem treina): a almofada em cima e embaixo</h2>
+<div class="l">${cel(`em cima (+${alto}°, o topo da barra): as placas ${v(sobe(alto))} cm acima do repouso`, img(desenho(G(alto), lado), 520))}${cel(`embaixo (${baixo}°, a barra com os braços estendidos): a almofada desceu ${v(m.debaixoDoJoelho(alto)[1] - m.debaixoDoJoelho(baixo)[1])} cm e as placas subiram para ${v(sobe(baixo))} cm`, img(desenho(G(baixo), lado), 520))}</div>
+<h2>As medidas</h2>${tabela('graviton', ['graviton'])}`,
   );
 }
