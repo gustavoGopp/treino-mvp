@@ -144,5 +144,5 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A5 | `pull-through` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (os pés a 42 cm, um pouco mais abertos que o cartão pede, para a corda passar entre as pernas) |
 | A6 | `mergulho` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (as paralelas aprovadas; "Descer demais" vai só a 7° acima da horizontal, o que o braço alcança) |
 | A6 | `face-pull-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos por trás, porque de lado o pegador fica sobre a orelha) |
-| A6 | `barra-fixa-negativa` | **para o Gustavo ver**: a descida em 4 s e a volta ao alto subindo pela caixa (peça nova, medida da Rogue); a volta é desenhada a partir da frase do cartão; é o exercício do iniciante no lugar da barra fixa |
+| A6 | `barra-fixa-negativa` | aprovada pelo Gustavo em 18/11/2026, vendo os quadros ("pode aprovar a barra negativa assim"); espera a ligação.  a descida em 4 s e a volta ao alto subindo pela caixa (peça nova, medida da Rogue); a volta é desenhada a partir da frase do cartão; é o exercício do iniciante no lugar da barra fixa |
 
