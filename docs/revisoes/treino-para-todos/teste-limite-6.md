@@ -91,3 +91,52 @@ PROT=app,ini-6-3x60 npx vite-node scripts/auditoria/novos-defeitos.ts -- --antes
 ```bash
 npx vite-node scripts/auditoria/comparar-retratos.ts -- docs/revisoes/treino-para-todos/medidas/final/retrato.json docs/revisoes/treino-para-todos/medidas/limite-6/retrato.json --grupos
 ```
+
+## 7. Os consertos (18/11/2026, início da sessão seguinte)
+
+Feitos no protótipo, um por vez, medidos primeiro nos 9.075 programas de iniciante de 3 dias de 60 min (o único grupo que o limite muda; `novos-defeitos.ts --perfil iniciante/3/60 --passo 1`) e depois na população inteira. **Nada mudou no app.**
+
+### Conserto 1: o foco abaixo da meta (chave `ini-6-foco`): entrou no protótipo
+
+- **O mecanismo.** Os 33 programas eram todos de quem quer peito **e** marcou dor forte no cotovelo. Com a dor, saem os supinos, as flexões e quase tudo de puxar; o peito fica só com o crucifixo, um por dia. Sem o limite, o crucifixo do 3º dia entrava no lugar que a dor esvaziou. Com o limite, esse lugar ia para a panturrilha, e o 2º exercício do foco não podia entrar porque a trava "empurrar no máximo 1,5 vez o puxar" o barrava (sobrava pouco para puxar).
+- **O conserto.** Com o limite, o lugar que a dor esvaziou vai primeiro para um músculo do foco que está abaixo da meta. Não acrescenta exercício: só muda qual entra.
+- **A medida no recorte.** O foco abaixo da meta deixa de aparecer em qualquer programa (antes, +33) e some em 3. Os outros efeitos ficam iguais aos do limite sozinho.
+- **Medido e recusado antes dele:** deixar o exercício do foco ser o 7º também no lugar que a dor esvaziou. Consertava os 33, mas criava 14 casos novos (dor forte no ombro, foco em braços) e 513 programas com dois exercícios da mesma função no dia.
+
+### Conserto 2: o tempo que sobra: não tem conserto por séries
+
+- **O que acontece.** Com 6 exercícios por dia, a panturrilha, o ombro de trás e o ombro lateral ficam com **um exercício só na semana**. Um exercício tem no máximo 4 séries, e a faixa do iniciante começa em 6. Por isso esses músculos ficam abaixo da faixa com tempo sobrando no dia (cerca de 47 dos 60 minutos).
+- **Medido e recusado:**
+  - Os isoladores do iniciante também subirem até 3 séries: muda 12 programas de 9.075. Não compensa uma regra.
+  - Até 4 séries por exercício: melhora 69 programas, mas cria um defeito da régua (um músculo com 1 a 3 séries).
+  - O abdômen num dia só, para dar o lugar à panturrilha e ao ombro: melhora 4 programas e aumenta as duplas do iniciante (+73).
+- **Conclusão.** O custo vem de ter menos exercícios, que é o próprio limite. Ele fica, e é a decisão que o limite pede (abaixo).
+
+### Conserto 3: o texto "cabem cerca de N exercícios" (chave `ini-6-texto`): entrou no protótipo
+
+- Com o limite, o texto passa a dizer: "Com 60 min por treino caberiam cerca de 8 exercícios, mas quem está começando fica com cerca de 6 (no máximo 7), para aprender bem cada um." Conferido: nenhum programa com o limite tem dia com mais de 7.
+- **A medida no recorte.** O texto que contradiz o programa vai de +1.746 programas para nenhum.
+
+### A medida na população inteira (680.625 programas; o app de hoje → o protótipo com o limite e os consertos 1 e 3)
+
+| | hoje | com o limite e os consertos |
+|---|---:|---:|
+| Régua oficial: pares "grupo × defeito" piores que hoje | | **nenhum** (12 melhores) |
+| Foco abaixo da meta, com tempo e exercício (programas) | 10.213 | 10.210 |
+| Os outros 8 defeitos da régua | iguais | iguais |
+| Os 20 cuidados: programas sem nenhum defeito (ponderada) | 57,5% | 55,9% |
+| Músculo abaixo da faixa do nível com tempo sobrando (ponderada) | 18,9% | 20,5% |
+| Músculo sem exercício direto, havendo exercício possível (ponderada) | 24,3% | 27,7% |
+| Dia típico abaixo de 85% do tempo (ponderada) | 36,9% | 38,5% |
+| Iniciante com dupla ou drop set (ponderada) | 15,5% | 14,5% |
+| Bi-set entre dois exercícios grandes (ponderada) | 26,8% | 26,2% |
+| Iniciante com mais de 12 exercícios diferentes na semana (ponderada) | 36,7% | 36,4% |
+| O texto "cabem cerca de N" contradiz o programa | igual | igual |
+
+**A revisão cega continua valendo.** As 16 páginas saem idênticas com os consertos (nenhuma das 8 pessoas tem dor no cotovelo, e o texto não aparece nas páginas): 7 de 8 melhoram, nenhuma piora na soma.
+
+Arquivos: [`medidas/limite-6-consertos/retrato.md`](medidas/limite-6-consertos/retrato.md).
+
+### O que falta decidir
+
+Pelo critério da sessão (nenhum defeito da régua pior em nenhum grupo), o limite agora passa. O que sobra é um custo nos 20 cuidados, que são a régua mais fina da sessão: em cerca de 1 de cada 7 iniciantes de 3 × 60, a panturrilha, o ombro de trás ou o ombro lateral ficam com 4 séries por semana, em vez de 6, e um deles fica sem exercício próprio. É o preço de 6 exercícios por treino, e os revisores preferem pagar: a crítica que mais se repete nas revisões da sessão é "8 exercícios de 2 séries, com cara de lista de compras".

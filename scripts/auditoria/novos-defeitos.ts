@@ -2,7 +2,7 @@
 // aparece no "depois" sem existir no "antes", e em quais some. Serve para achar o mecanismo de cada piora antes de uma
 // regra entrar ("nenhum defeito pior em nenhum grupo"). Uso:
 //   npx vite-node scripts/auditoria/novos-defeitos.ts -- --antes <gerador.ts> --depois <gerador.ts> [--passo 23] [--desde 0]
-//     [--exemplos 3] [--so A2,C1] [--cuidados] [--notas] [--indice 11658] [--dor joelho]
+//     [--exemplos 3] [--so A2,C1] [--cuidados] [--notas] [--indice 11658] [--dor joelho] [--perfil iniciante/3/60]
 // `--passo N` mede um caso a cada N (amostra fixa: sem sorteio). Sem `--cuidados`, só os 9 defeitos da régua oficial;
 // com `--notas`, também as notas da régua e dos cuidados.
 import { resolve } from 'node:path';
@@ -24,6 +24,10 @@ const COM_NOTAS = args.includes('--notas');
 const INDICE = arg('--indice') !== undefined ? Number(arg('--indice')) : undefined;
 /** Só as situações de dor cujo nome contém este texto (ex.: `--dor joelho`); o passo conta dentro do recorte. */
 const DOR = arg('--dor');
+/** Só os perfis de um nível, um número de dias e um tempo (ex.: `--perfil iniciante/3/60`; `*` vale qualquer um); o passo conta dentro do recorte. */
+const PERFIL = arg('--perfil')?.split('/');
+const noPerfil = (c: { pf: { nivel: string; diasSemana: number; minutosSessao: number } }) =>
+  !PERFIL || [c.pf.nivel, String(c.pf.diasSemana), String(c.pf.minutosSessao)].every((v, i) => !PERFIL[i] || PERFIL[i] === '*' || PERFIL[i] === v);
 let noRecorte = 0;
 
 const resumo = (p: Programa) =>
@@ -36,7 +40,8 @@ let medidos = 0;
 let diferentes = 0;
 for (const caso of populacao()) {
   if (DOR && !caso.dor.includes(DOR)) continue;
-  if (INDICE !== undefined ? caso.indice !== INDICE : (DOR ? noRecorte++ : caso.indice) % PASSO !== DESDE % PASSO) continue;
+  if (!noPerfil(caso)) continue;
+  if (INDICE !== undefined ? caso.indice !== INDICE : (DOR || PERFIL ? noRecorte++ : caso.indice) % PASSO !== DESDE % PASSO) continue;
   const [ra, rb] = [antes.gerarPrograma(caso.pf, caso.cen.inventario), depois.gerarPrograma(caso.pf, caso.cen.inventario)];
   medidos++;
   if (ra.status !== 'ok' || rb.status !== 'ok') {

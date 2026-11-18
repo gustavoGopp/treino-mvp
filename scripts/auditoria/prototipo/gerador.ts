@@ -793,6 +793,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     if (!soCore && !d.perdidas) continue;
     const v = volumePorMusculo(dias.flatMap((x) => x.itens.map((i) => ({ ex: i.ex, series: i.series }))));
     const deficit = (m: Musculo) => ((metas[m] ?? 0) - (v[m] ?? 0)) / (metas[m] ?? 1);
+    const focoAbaixo = (m: Musculo) => prioritarios.has(m) && (v[m] ?? 0) < (metas[m] ?? 0);
     // Os músculos que o modelo do dia treina (um dia de superior continua de superior).
     const musculosDoDia = new Set(d.dia.vagas.map((x) => FUNCAO[x.funcao]!.musculo));
     const cands = possiveis
@@ -801,7 +802,15 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
         return f && (soCore || musculosDoDia.has(f.musculo)) ? [{ e, f }] : [];
       })
-      .sort((a, b) => deficit(b.f.musculo) - deficit(a.f.musculo) || comparar(a.e, b.e));
+      .sort(
+        (a, b) =>
+          // EXPERIMENTO (ini-6-foco): com o limite de 6 exercícios do iniciante, o lugar que a dor esvaziou vai primeiro
+          // para um músculo do foco abaixo da meta (sem o limite, havia lugar para os dois). Com dor forte no cotovelo,
+          // o crucifixo que leva o peito à meta perdia o lugar para a panturrilha (teste de 17/11/2026).
+          (prot('ini-6-foco') && limiteDoIniciante ? Number(focoAbaixo(b.f.musculo)) - Number(focoAbaixo(a.f.musculo)) : 0) ||
+          deficit(b.f.musculo) - deficit(a.f.musculo) ||
+          comparar(a.e, b.e),
+      );
     const vagas = Math.max(soCore ? 1 : 0, Math.min(d.perdidas, N - d.itens.length));
     const musculosUsados = new Set<Musculo>(d.itens.map((i) => i.funcao.musculo));
     // Sem passar do teto semanal de nenhum músculo, contando as séries indiretas (volume.semanal.teto-padrao).
@@ -1395,7 +1404,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     { regraId: r('frequencia.musculo'), texto: frequenciaTexto(divisao) },
     {
       regraId: r('tempo.exercicios-por-sessao'),
-      texto: `Com ${perfil.minutosSessao} min por treino, cabem cerca de ${N} exercícios.`,
+      // EXPERIMENTO (ini-6-texto): com o limite de 6 exercícios do iniciante, o texto diz o limite, e não só o que cabe no tempo.
+      texto:
+        prot('ini-6-texto') && limiteDoIniciante
+          ? `Com ${perfil.minutosSessao} min por treino caberiam cerca de ${exerciciosPorSessao(perfil.minutosSessao)} exercícios, mas quem está começando fica com cerca de ${N} (no máximo ${N + 1}), para aprender bem cada um.`
+          : `Com ${perfil.minutosSessao} min por treino, cabem cerca de ${N} exercícios.`,
     },
     {
       regraId: r('selecao.funcao-da-vaga'),
