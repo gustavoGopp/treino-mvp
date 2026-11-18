@@ -1,0 +1,71 @@
+{
+ "id": "crucifixo-polia-baixo",
+ "nome": "Crucifixo na polia de baixo para cima",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-polia-baixo.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-polia-baixo.md), por analogia ao crucifixo na polia; fonte citada lá: NSCA, Exercise Technique Manual for Resistance Training, 4ª ed., 2021 (não verificado): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-polia-baixo.json): 'As duas polias embaixo, um estribo em cada'; 'Em pé no meio das torres, um pé à frente, tronco reto'; 'Braços ao lado do corpo, um pouco atrás, cotovelos levemente dobrados'; 'Leva as mãos para a frente e para cima, até se encontrarem na altura do peito ou do queixo'; 'Volta abrindo os braços até sentir o peito alongar' (~2 s); dicas 'Cotovelo no mesmo ângulo', 'Sobe em arco'",
+  "crucifixo": "O crucifixo na polia aprovado (src/engine/novo/exercicios/crucifixo-polia.ts e dados/movimentos/crucifixo-polia.json): a mesma máquina de duas torres, o corpo em pé com um pé à frente, o cotovelo fixo e a mão no estribo. Este exercício não tinha animação: o que a ficha não dá em número sai dele",
+  "poliaBaixa": "O tríceps francês unilateral na polia aprovado (dados/movimentos/triceps-frances-polia-unilateral.json): a polia embaixo, com o carro a 22 cm do chão (montagem conferida em 04/11)",
+  "invertido": "O crucifixo invertido na polia aprovado (dados/movimentos/crucifixo-invertido-polia.json): o erro de encolher os ombros",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, estribo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "crucifixo", "o": "cada pé a 9 cm do meio, de frente (como no crucifixo na polia aprovado)"},
+  "pe.frente.z": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "app", "o": "um pé à frente: a bola do pé da frente (o direito) 22 cm à frente do meio do corpo (a ficha não dá número; o do crucifixo na polia aprovado)"},
+  "pe.tras.z": {"v": -26, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a bola do pé de trás (o esquerdo) 26 cm atrás do meio do corpo (a ficha não dá número; o do crucifixo na polia aprovado)"},
+  "pe.tras.calcanhar": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "o calcanhar de trás sobe um pouco: o pé de trás apoia mais na ponta (como no crucifixo na polia aprovado)"},
+  "peso.partilha": {"v": 0.5, "un": "fração", "selo": "desenho", "fonte": "equilibrio", "o": "o centro de massa fica no meio do caminho entre a bola do pé de trás e o meio do pé da frente (o peso dividido entre os dois pés)"},
+  "joelho": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "joelhos destravados: o da frente dobra 12° (a altura da pelve sai daqui; o do crucifixo na polia aprovado)"},
+  "tronco": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "tronco reto: o eixo do tórax a 4° da vertical (o necessário para o pé de trás atrás; a ficha não dá número)"},
+  "toracica": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "peito alto: as costas de cima estendem 4° além da curva de repouso (como no crucifixo na polia aprovado)"},
+  "cervical": {"v": -2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço neutro, o olhar à frente"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço"},
+  "cotovelo": {"v": 20, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos levemente dobrados, o mesmo ângulo a série toda (a ficha não dá número; o do crucifixo na polia aprovado)"},
+  "arco.inicio.psi": {"v": 100, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: braços ao lado do corpo, um pouco atrás (a linha do ombro à mão a 100° da frente, no tórax)"},
+  "arco.inicio.el": {"v": -62, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: braços abertos e baixos (a linha do ombro à mão 62° abaixo do plano do tórax: as mãos ao lado do quadril, afastadas dele)"},
+  "arco.fim.maos": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "app", "o": "fim: as mãos se encontram (os centros das pegadas a 9 cm, uma largura de mão, como no crucifixo na polia aprovado)"},
+  "arco.fim.el": {"v": 2, "un": "graus", "selo": "consenso", "fonte": "app", "o": "fim: as mãos na altura do peito ou do queixo (a linha do ombro à mão 2° acima do plano do tórax; a conferência mede a altura)"},
+  "escapula.prot": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "peito alto, ombros para trás: a clavícula 4° mais para trás que o ritmo normal, a série toda"},
+  "mao.supinacao.inicio": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "início: a palma do estribo virada para a frente (70° de supinação a partir da pegada neutra)"},
+  "mao.supinacao.fim": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: as palmas viradas para cima e uma para a outra (55° de supinação a partir da neutra)"},
+  "polia.meiaDistancia": {"v": 96, "un": "cm", "selo": "desenho", "fonte": "crucifixo", "o": "em pé no meio das torres: cada roldana a 96 cm do meio do corpo, para o lado (a mesma máquina do crucifixo na polia aprovado)"},
+  "polia.altura": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "poliaBaixa", "o": "'as duas polias embaixo': o centro da roldana a 22 cm do chão (a polia baixa dos exercícios aprovados)"},
+  "polia.atras": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as roldanas 30 cm atrás do meio da pelve: a pessoa um pouco à frente da linha das torres, e os cabos vêm de baixo e um pouco de trás (a ficha não dá número)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "crucifixo", "o": "o cabo já tenso com os braços abertos e baixos: a pilha sai 2 cm do repouso (como no crucifixo na polia aprovado)"},
+  "erro.cotovelo.dobra": {"v": 95, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "erro: embaixo, o cotovelo dobra 95° (a mão vem para a frente do quadril, como numa rosca) e estica ao subir, como num empurrar (o número do erro 'transformar em supino' do crucifixo na polia aprovado)"},
+  "erro.cotovelo.psi": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, com o cotovelo dobrado, a mão fica à frente da linha do corpo (a linha do ombro à mão a 60° da frente)"},
+  "erro.tronco.inicio": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o tronco inclina 18° à frente para pegar embalo"},
+  "erro.tronco.fim": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, o tronco joga 12° para trás da vertical para subir a carga"},
+  "erro.tronco.lombar": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, a lombar arqueia 12° além da curva de repouso"},
+  "erro.encolher.elev": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "invertido", "o": "erro: os ombros sobem junto com as mãos (a clavícula sobe 22° além do ritmo normal no fim; o número do erro 'encolher' do crucifixo invertido na polia aprovado)"}
+ },
+ "fases": [
+  {"nome": "Embaixo · peito alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Mãos juntas", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "polia-braco-cotovelo-fixo", "pede": "cotovelos levemente dobrados, no mesmo ângulo a série toda", "selo": "consenso", "fonte": "app"},
+  {"id": "crucifixo-baixo-polias-embaixo", "pede": "as duas polias embaixo", "selo": "consenso", "fonte": "app"},
+  {"id": "crucifixo-baixo-maos-ao-lado-e-atras", "pede": "início: braços ao lado do corpo, um pouco atrás, abertos e baixos", "selo": "consenso", "fonte": "app"},
+  {"id": "crucifixo-baixo-maos-se-encontram-no-alto", "pede": "fim: as mãos se encontram à frente, na altura do peito ou do queixo", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
+  {"id": "tronco-quase-parado", "pede": "tronco reto e parado: quem sobe são os braços", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 0, "titulo": "Dobrar e esticar os cotovelos", "vista": "lateral", "oQueMuda": "embaixo, os cotovelos dobram e as mãos vêm para a frente do quadril; ao subir, os cotovelos esticam, como num empurrar", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "tronco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco inclina à frente embaixo e joga para trás, com a lombar arqueada, para subir a carga", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "frontal", "oQueMuda": "os ombros sobem para as orelhas junto com as mãos", "destaca": ["bracos"], "linha": ["c7", "acromioclavicular", "cotovelo"], "foco": "acromioclavicular"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "sobe em arco", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "cotovelo no mesmo ângulo", "ponto": "cotovelo:L", "selo": "consenso", "fonte": "app"}
+ ]
+}

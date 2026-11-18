@@ -126,3 +126,4 @@ export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
 export { roscaConcentrada } from './rosca-concentrada';
 export { supinoPolia } from './supino-polia';
 export { supinoInclinadoPolia } from './supino-inclinado-polia';
+export { crucifixoPoliaBaixo } from './crucifixo-polia-baixo';
