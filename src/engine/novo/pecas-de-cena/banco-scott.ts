@@ -38,6 +38,14 @@ export function faceDaAlmofada(b: BancoScott): { topo: V3; d: V3; n: V3; comp: n
   const a = g('almofadaAngulo') * rad;
   return { topo: b.topo, d: [0, -Math.sin(a), Math.cos(a)], n: [0, Math.cos(a), Math.sin(a)], comp: g('almofadaComp'), larg: g('almofadaLarg'), esp: g('almofadaEsp') };
 }
+/**
+ * O centro da almofada (o meio da caixa dela). É também o ponto pelo qual o gerador ordena a pintura da almofada: a
+ * regra banco-scott-bracos-na-almofada compara com ele a profundidade dos braços, que têm de ser pintados por cima.
+ */
+export function centroDaAlmofada(b: BancoScott): V3 {
+  const F = faceDaAlmofada(b);
+  return add(add(F.topo, mul(F.d, F.comp / 2)), mul(F.n, -F.esp / 2));
+}
 /** A altura da almofada na regulagem (a borda de cima, cm do chão). */
 export const alturaDaAlmofada = (b: BancoScott) => b.topo[1];
 /** O meio do tampo do assento. */
@@ -123,7 +131,7 @@ export function bancoScott(b: BancoScott): { prims: Prim[]; peca: PecaPropria } 
       if (furosB.length) C.furos(furosB, X, Y, 0.8, entre);
       C.cilindro([x0, P.luva[1] + 2, P.luva[2] - 3.8], [x0, P.luva[1] + 2, P.luva[2] - 8], 1.2, M.borracha, { lados: 10, ...entre });
       // a almofada dos braços
-      C.estofado(add(add(F.topo, mul(F.d, F.comp / 2)), mul(F.n, -F.esp)), F.d, F.n, X, F.comp, F.esp, F.larg, M.estofado);
+      C.estofado(add(centroDaAlmofada(b), mul(F.n, -F.esp / 2)), F.d, F.n, X, F.comp, F.esp, F.larg, M.estofado);
       // os ganchos do suporte da barra: em pé na travessa da frente, com a ponta virada para cima (em J)
       for (const h of ganchosDoSuporte(b)) {
         C.tubo([h[0], tubo, h[2]], h, 4, 4, M.metal);
