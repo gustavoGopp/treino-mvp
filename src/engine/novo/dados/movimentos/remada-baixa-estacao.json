@@ -1,0 +1,73 @@
+{
+ "id": "remada-baixa-estacao",
+ "nome": "Remada baixa na estação",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-baixa-estacao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-baixa-estacao.md): sentado, pés na plataforma, joelhos levemente dobrados; triângulo na mão; tronco quase vertical (consenso, nsca2021, não verificado); a polia da estação já é baixa e alinhada com o assento, o cabo quase horizontal (consenso, tecnica.remada-baixa.polia); puxa até as mãos chegarem ao abdômen, cotovelos rentes ao corpo; na volta alonga as escápulas sem dobrar a lombar (consenso); pegada fechada (triângulo), com o ombro pouco aberto (um estudo, difonza2026)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-baixa-estacao.json): 'Início: braços estendidos, escápulas à frente.', 'Fim: mãos no abdômen, cotovelos rentes.'; dicas 'Tronco parado.', 'Cotovelos rentes.', 'Lombar firme na volta.'; erros 'Balançar o tronco' (o corpo vai para trás para puxar), 'Arredondar a lombar' (a lombar curva na volta), 'Cotovelos abertos' (os cotovelos se afastam do corpo)",
+  "aprovada": "A remada baixa com o triângulo aprovada (src/engine/novo/dados/movimentos/remada-baixa.json): as mãos acima do quadril, o caminho reto das mãos na linha do cabo, os cotovelos que passam rentes, as escápulas (à frente no alongado, juntas no fim), o ombro baixo, os erros de balançar o tronco e de arredondar a coluna; e as animações sentadas aprovadas (o glúteo que afunda 1 cm no assento)",
+  "objetos": "src/engine/novo/dados/objetos/estacao-remada.json (a estação de remada baixa) e src/engine/novo/dados/objetos/triangulo-remada.json (o triângulo aprovado)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o glúteo e a coxa afundam 1 cm no banco, como nas animações sentadas aprovadas"},
+  "assento.quadril": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "sentado na metade da frente do banco: o centro do quadril 16 cm à frente do meio dele (14 cm atrás da ponta)"},
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "um pé em cada chapa da plataforma: o meio do pé a 11 cm do meio, na largura do quadril; o cabo passa entre os dois"},
+  "pes.bolaAo": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé 5 cm acima do centro da chapa, ao longo dela: a sola inteira na chapa"},
+  "pes.paraFora": {"v": 0.1, "un": "proporção", "selo": "desenho", "fonte": "desenho", "o": "as pontas dos pés um pouco para fora (0,1 para o lado para 1 ao longo da chapa)"},
+  "joelho": {"v": 25, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'joelhos levemente dobrados': o joelho dobra 25°; a plataforma fica onde o pé apoia com esse ângulo"},
+  "tronco": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'tronco quase vertical' e 'tronco parado' (a ficha e o cartão): o peito 3° à frente da vertical, o ciclo todo"},
+  "cervical": {"v": -2, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "pescoço na linha do tronco, o olhar à frente (a remada aprovada)"},
+  "cabeca": {"v": -2, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "cabeça na linha do pescoço (a remada aprovada)"},
+  "maos.acimaDoQuadril": {"v": 19, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o centro das mãos (e o cabo) a 19 cm acima do centro do quadril: o triângulo no abdômen no fim, como na remada aprovada"},
+  "maos.folgaNoFim": {"v": 1, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "fim: 'mãos no abdômen': as mãos a 1 cm da pele da barriga"},
+  "cotovelo.inicio": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: braços estendidos (o cotovelo dobra só 8°, sem travar)"},
+  "cotovelo.paraFora": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "aprovada", "o": "fim: o cotovelo aponta para trás e um pouco para fora (0,6 para fora para 1 para trás), o antebraço ao lado da cintura (a remada aprovada)"},
+  "cotovelo.paraFora.inicio": {"v": 0.2, "un": "fração", "selo": "desenho", "fonte": "aprovada", "o": "início: o cotovelo aponta para baixo e um pouco para fora, com o polegar para cima (a remada aprovada)"},
+  "escapula.prot.inicio": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: escápulas à frente (a clavícula 8° à frente, como na remada aprovada)"},
+  "escapula.retr.fim": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: as escápulas voltam para trás e se juntam (a clavícula 15° para trás, como na remada aprovada)"},
+  "escapula.elev.inicio": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "início: o ombro no lugar"},
+  "escapula.elev.fim": {"v": -2, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "fim: ombro baixo, longe da orelha"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "com os braços estendidos, as placas do pino ficam 2 cm acima das outras (o cabo esticado)"},
+  "erro.balanco.inicio": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: no início o tronco vai 22° à frente (com as pernas quase estendidas, menos que os 30° da remada aprovada)"},
+  "erro.balanco.fim": {"v": -16, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: 'o corpo vai para trás para puxar': no fim o tronco vai 16° para trás da vertical (a remada aprovada)"},
+  "erro.arred.lombar": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: 'a lombar curva na volta': no início a lombar curva 14° além da curva de repouso (a remada aprovada)"},
+  "erro.arred.toracica": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: no início a parte de cima das costas curva 24° (a remada aprovada)"},
+  "erro.arred.cervical": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: o pescoço estende para o olhar não ir ao chão (a remada aprovada)"},
+  "erro.abertos.paraFora": {"v": 2.4, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: 'os cotovelos se afastam do corpo': no fim o cotovelo aponta mais para fora que para trás (2,4 para fora para 1 para trás)"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "escápulas à frente", "selo": "consenso", "fonte": "app"},
+  {"nome": "Puxar · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Mãos no abdômen", "tipo": "pausa", "dur": 0.8, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segura", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, lombar firme", "selo": "desenho", "fonte": "aprovada"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "estacao-remada-sentado-pes-na-plataforma", "pede": "sentado, pés na plataforma, joelhos levemente dobrados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "estacao-remada-tronco-quase-vertical", "pede": "tronco quase vertical e parado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"id": "lombar-neutra", "pede": "na volta, as escápulas vão à frente sem dobrar a lombar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-no-comeco", "pede": "início: braços estendidos", "selo": "consenso", "fonte": "app"},
+  {"id": "estacao-remada-maos-no-abdomen", "pede": "puxa até as mãos chegarem ao abdômen", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-rente-na-remada", "pede": "cotovelos rentes ao corpo, o ombro pouco aberto", "selo": "consenso", "fonte": "ficha"},
+  {"id": "escapulas-se-juntam", "pede": "início com as escápulas à frente; no fim elas voltam", "selo": "consenso", "fonte": "app"},
+  {"id": "palmas-uma-para-a-outra", "pede": "pegada fechada no triângulo (palmas uma para a outra)", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "polia-puxar-cabo-quase-horizontal", "pede": "a polia baixa alinhada com o assento: o cabo quase horizontal", "selo": "consenso", "fonte": "ficha"},
+  {"id": "estacao-remada-triangulo-livre", "pede": "o triângulo e o cabo não atravessam o corpo nem a máquina", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-puxar-antebraco-fora-do-tronco", "pede": "o antebraço passa ao lado da cintura sem entrar nela", "selo": "desenho", "fonte": "aprovada"},
+  {"id": "estacao-cabo-da-roldana-a-pegada", "pede": "o cabo sai reto da polia baixa até a ponta do triângulo, que fica nas mãos o tempo todo; a pilha sobe o que o cabo anda (1:1)", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco vai 22° à frente no início e 16° para trás no fim: o corpo vai para trás para puxar", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},
+  {"id": "arred", "instante": 0, "titulo": "Arredondar a lombar", "vista": "lateral", "oQueMuda": "na volta a lombar e a parte de cima das costas curvam para as mãos irem mais longe", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "abertos", "instante": 1, "titulo": "Cotovelos abertos", "vista": "posterior", "oQueMuda": "no fim os cotovelos se afastam do corpo, para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app", "prumo": {"de": "pelve", "alt": 62}},
+  {"vista": "lateral", "texto": "lombar firme na volta", "ponto": "lombar", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "cotovelos rentes", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -85,6 +85,8 @@ export interface Quadro {
   /**
    * Cabos, fitas e elásticos, com o comprimento neste quadro. `objeto`: de que linha da tabela de objetos o elástico
    * tira o comprimento em repouso (`comp`) e o máximo do fabricante (`esticaAte`); por omissão, `elastico` (o tubo).
+   * Num cabo (acréscimo de 18/11/2026): de que linha a conferência tira a relação da máquina (`relacao`); por omissão, a
+   * da coluna de polia (`torre`).
    */
   fios: { id: string; comp: number; estica: boolean; objeto?: string }[];
   /** Cargas presas ao corpo (kg e posição), para o equilíbrio. */

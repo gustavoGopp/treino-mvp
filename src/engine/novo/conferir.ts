@@ -353,7 +353,9 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
       const noComeco = comp[0]!.comp / repouso;
       add('Cabos', 'elástico: quanto estica no ciclo (1 = comprimento em repouso)', `de ${f1(a / repouso)} a ${f1(b / repouso)} vezes (${f1(a)} a ${f1(b)} cm); em cima, ${f1(noComeco)} vezes`, `nunca frouxo (1 ou mais), mais esticado em cima e nunca além de ${f1(maximo)} vezes (o máximo do fabricante)`, b / repouso > maximo ? 'falha' : a / repouso >= 0.98 && Math.abs(noComeco - b / repouso) < 0.02 ? 'ok' : 'aviso');
     } else {
-      const rel = OBJETOS.objetos.torre!.medidas.relacao!.v;
+      // a relação da máquina: a da coluna de polia, ou a do objeto que o quadro declarar no cabo (uma estação com a
+      // relação dela; acréscimo de 18/11/2026)
+      const rel = (comp[0]!.objeto ? OBJETOS.objetos[comp[0]!.objeto]?.medidas.relacao?.v : undefined) ?? OBJETOS.objetos.torre!.medidas.relacao!.v;
       const pilha = quadros.map((q) => q.marcas.pilha?.[1] ?? 0);
       const esperado = (b - a) / rel,
         medido = Math.max(...pilha) - Math.min(...pilha);

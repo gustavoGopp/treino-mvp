@@ -12,7 +12,9 @@
 // No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
 // No supino e no desenvolvimento na máquina, os braços no começo e no fim (de lado), o arco dos pegadores, e a outra
 // máquina ao lado (para ver que não se confundem).
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Nas estações de puxada e de remada baixa, a estação com o acessório nas mãos (de quem não aparece) no começo e no fim
+// do exercício, com as placas subindo o que o cabo anda, e o cartão da outra estação ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -33,6 +35,8 @@ export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export * from './src/engine/novo/pecas-de-cena/hack.ts';
 export * from './src/engine/novo/pecas-de-cena/maquina-de-empurrar.ts';
+export * from './src/engine/novo/pecas-de-cena/estacao-puxada.ts';
+export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -243,7 +247,7 @@ if (!so || so === 'smith') {
 <h2>Ampliada</h2>
 <div class="l">${cel('hoje', img(hoje('smith'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, com a barra presa no gancho', img(desenho(S({}).pecas, cam), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('hoje: o suporte de agachamento', img(hoje('rack_de_agachamento'), 440, 'cartao'))}</div>
-<h2>Funcionando (de lado): a barra só anda na guia</h2>
+<h2>Funcionando (de lado, como o app mostra): a barra só anda na guia</h2>
 <div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
   );
@@ -489,5 +493,63 @@ for (const [nome, E] of Object.entries(EMPURRAR)) {
 <div class="l">${cel(`começo: os braços a ${v(E.reg.inicio)}° (0° = pendurado, 90° = para a frente); as placas embaixo`, img(desenho(pecas(c0), lado), 640))}${cel(`fim: os braços a ${v(E.reg.fim)}°; as placas do pino ${v(c1.subida)} cm acima`, img(desenho(pecas(c1), lado), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(pecas(c1), E.cam), 640))}${cel('de frente, no fim: os pegadores mais perto um do outro', img(desenho(pecas(c1), deFrente), 640))}</div>
 <h2>As medidas</h2>${tabela(E.arquivo, [E.objeto])}`,
+  );
+}
+
+/** As peças de um quadro de um exercício, sem o corpo: o cabo (uma peça simples) vira uma linha. */
+function pecasDoQuadro(id, u) {
+  const q = m.EXERCICIOS[id].quadro(m.CORPOS.homem, u);
+  return { q, pecas: q.pecas.map((p) => (p.t === 'cabo' ? { desenhar: (C) => C.linha(p.a, p.b, '#1d2024', 0.8) } : { ...p, cenario: undefined })) };
+}
+
+if (!so || so === 'estacao-puxada') {
+  const o = (id) => m.obj('estacaoPuxada', id);
+  const b = (id) => m.obj('barraPuxada', id);
+  // o cartão de hoje põe a estação ao longo de x (quem senta olha para −x) e olha de yaw 34; a peça corre ao longo de
+  // z (quem senta olha para +z): yaw −124 mostra o mesmo lado, do mesmo ângulo
+  const cam = { yaw: -124, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const a = pecasDoQuadro('puxada-frente', 0),
+    z = pecasDoQuadro('puxada-frente', 1);
+  const E = m.estacaoPuxada({ rolo: a.q.marcas.rolo[0], subida: 0, placas: 6 }).extremos;
+  const sobe = z.q.marcas.pilha[1] - a.q.marcas.pilha[1];
+  await foto(
+    'estacao-puxada',
+    `<h1>Estação de puxada: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue as fichas da Life Fitness SS-PD (145 × 142 × 194 cm), da Hammer Strength HS-PD (138 × 84 × 227), da Movement (152,8 × 137,5 × 194,8) e da Spirit CSS-LATP (147 × 121 × 231). <b>A relação do cabo, 1:1, e a pilha de 17 placas vêm da ficha da Spirit</b> ("Pulley Ratio 1", "10 lb Top Plate / 8 x 10 lb Plates / 8 x 20 lb Plates"). A altura desenhada (${v(o('altura'), 0)} cm) fica entre a Life Fitness e a Hammer Strength: com 194, o centro da roldana de cima ficaria na altura do mosquetão da barra com os braços estendidos de quem senta, sem lugar para o cabo. As medidas que fazem a máquina servir a quem senta (a altura do assento, onde ficam os rolos das coxas e a roldana de cima) não aparecem em nenhuma ficha lida: são de desenho, do corpo da tabela, em amarelo na tabela.</p>
+<p><b>A barra longa de puxada é peça nova</b>, separada da barra reta curta da polia (20 pol, que ficava curta para a puxada): 48 pol (${v(b('comp'))} cm), 28 mm, com o trecho reto de 30 pol (${v(b('retaComp'))} cm) e as pontas caídas com borracha (Titan 48 in. Stainless Steel Lat Bar; Gym Gear 48"). O ângulo das pontas não consta em nenhuma ficha: ${v(b('pontaQueda'), 0)}°, de desenho.</p>
+<p><b>A máquina funciona:</b> o cabo sai do mosquetão da barra, sobe até a roldana de cima, corre por baixo do braço até a roldana do alto da torre e desce até a haste do pino; as placas do pino sobem ${v(sobe)} cm do começo ao fim da puxada, o mesmo que o cabo anda (1:1). Os rolos das coxas correm na coluna deles até encostar nas coxas. Medida desenhada: ${v(E.zFundo - E.zTras, 0)} cm de comprimento, ${v(o('altura'), 0)} cm de altura e ${v(b('comp'), 0)} cm de largura com a barra.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_puxada'), 96, 'cartao'))}${cel('nova (a barra no alto, nas mãos de quem senta)', img(desenho(a.pecas, cam), 96, 'cartao'))}${cel('hoje: a remada baixa (para ver se ainda se confundem)', img(hoje('estacao_remada'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_puxada'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, no começo da puxada', img(desenho(a.pecas, cam), 640))}</div>
+<h2>Funcionando (de lado, como o app mostra): a barra no alto e no peito, as placas subindo</h2>
+<div class="l">${cel('em cima: os braços estendidos; as placas do pino 2 cm acima das outras', img(desenho(a.pecas, lado), 440))}${cel(`embaixo: a barra no alto do peito; as placas do pino ${v(sobe)} cm mais acima`, img(desenho(z.pecas, lado), 440))}</div>
+<h2>As medidas</h2>${tabela('estacao-puxada', ['estacaoPuxada', 'barraPuxada'])}`,
+  );
+}
+
+if (!so || so === 'estacao-remada') {
+  const o = (id) => m.obj('estacaoRemada', id);
+  // o cartão de hoje põe a estação ao longo de x (quem senta olha para +x) e olha de yaw −30; a peça corre ao longo de z
+  const cam = { yaw: 60, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const a = pecasDoQuadro('remada-baixa-estacao', 0),
+    z = pecasDoQuadro('remada-baixa-estacao', 1);
+  const sobe = z.q.marcas.pilha[1] - a.q.marcas.pilha[1];
+  const P = a.q.marcas['cabo.roldana'];
+  const E = m.estacaoRemada({ zPlataforma: a.q.marcas.chapa[2], xPlataforma: 11, yPolia: P[1], subida: 0, placas: 5 }).extremos;
+  await foto(
+    'estacao-remada',
+    `<h1>Estação de remada baixa: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue as fichas da Technogym Low Row MK80 (142 × 118,5 × 137,5 cm) e da Nautilus Impact Low Row (228,6 × 72 × 218). <b>A relação do cabo, 1:1, vem da ficha da Nautilus</b> ("Pulley ratio 1:1"; a Bells of Steel diz o mesmo); a plataforma inclinada, da Bells of Steel ("Angled low-row footplate"), sem o ângulo: ${v(o('plataformaInclina'), 0)}°, como no cartão de hoje. A altura da torre é a da Technogym. As medidas que fazem a máquina servir a quem senta (a altura do banco, onde fica a plataforma, a altura da polia baixa) não aparecem em nenhuma ficha lida: são de desenho, do corpo da tabela, em amarelo na tabela. O triângulo é o acessório aprovado (Rogue, 15,2 cm entre as pegadas).</p>
+<p><b>A máquina funciona:</b> o cabo sai da ponta do triângulo, passa entre as chapas dos pés, dá a volta por cima da polia baixa (o alto dela na altura das mãos de quem senta: o cabo horizontal), desce por dentro da coluna, corre no chão até o pé da torre, sobe até a roldana do alto e desce até a haste do pino; as placas do pino sobem ${v(sobe)} cm do começo ao fim da remada, o mesmo que o cabo anda (1:1). Para quem senta, a plataforma fica a ${v(a.q.marcas.chapa[2], 0)} cm do meio do banco (o joelho dobra 25°) e a polia baixa a ${v(P[1], 0)} cm do chão. Medida desenhada: ${v(E.zFundo - E.zTras, 0)} cm de comprimento (entre a Technogym e a Nautilus) e ${v(o('altura'))} cm de altura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_remada'), 96, 'cartao'))}${cel('nova (o triângulo nas mãos de quem senta, os braços estendidos)', img(desenho(a.pecas, cam), 96, 'cartao'))}${cel('hoje: o puxador alto (para ver se ainda se confundem)', img(hoje('estacao_puxada'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_remada'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, no começo da remada', img(desenho(a.pecas, cam), 640))}</div>
+<h2>Funcionando (de lado, como o app mostra): o triângulo longe e no abdômen, as placas subindo</h2>
+<div class="l">${cel('começo: os braços estendidos; as placas do pino 2 cm acima das outras', img(desenho(a.pecas, lado), 440))}${cel(`fim: o triângulo no abdômen; as placas do pino ${v(sobe)} cm mais acima`, img(desenho(z.pecas, lado), 440))}</div>
+<h2>As medidas</h2>${tabela('estacao-remada', ['estacaoRemada'])}<p style="margin-top:8px">O triângulo é o da tabela aprovada (triangulo-remada.json).</p>`,
   );
 }

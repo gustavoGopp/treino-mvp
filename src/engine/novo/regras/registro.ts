@@ -65,3 +65,4 @@ export { REGRAS_MESA_FLEXORA } from './mesa-flexora';
 export { REGRAS_COICE_MAQUINA } from './coice-maquina';
 export { REGRAS_NO_TRILHO } from './leg-press';
 export { REGRAS_MAQUINAS_DE_EMPURRAR } from './maquinas-de-empurrar';
+export { REGRAS_ESTACOES } from './estacoes';

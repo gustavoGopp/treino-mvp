@@ -155,3 +155,5 @@ export { panturrilhaLegPress } from './panturrilha-leg-press';
 export { hack } from './hack';
 export { supinoMaquina } from './supino-maquina';
 export { desenvolvimentoMaquina } from './desenvolvimento-maquina';
+export { puxadaFrente } from './puxada-frente';
+export { remadaBaixaEstacao } from './remada-baixa-estacao';
