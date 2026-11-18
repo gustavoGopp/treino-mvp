@@ -1,0 +1,50 @@
+{
+ "fontes": {
+  "hs24-lp": "Hammer Strength, catálogo 2024, tabela Plate-Loaded, p. 61: Leg Press PL-LP, 69 x 51 x 57 pol (176 x 130 x 145 cm), C x L x A (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.2)",
+  "magnum-lp": "Magnum, 45-degree Leg Press MG-PL70, ficha técnica; https://cdn.shopify.com/s/files/1/0549/5000/2877/files/Magnum_45_degree_leg_press.pdf (lida em 18/11/2026): \"OVERALL DIMENSIONS 229 x 171 x 158 cm\", \"STARTING RESISTANCE 75.7 kg\", \"An adjustable bottom stop provides long or short ranges of motion\", \"Adjustable angle back pad enhances comfort, optimizes hip angles\", \"Easy-to-use and see racking mechanism\", \"Assistance handle on platform\", \"Linear bearings\", \"4 integrated weight-storage horns\" (o mesmo texto fala também em \"Six integrated weight horns\": a ficha se contradiz)",
+  "gg-lp": "Gym Gear, Elite Series 45 Degree Leg Press, ficha técnica; https://gymgear.com/cdn/shop/files/Elite_Series_45_Degree_Leg_Press.pdf (lida em 18/11/2026): \"L 238.4 x W 219.1 x H 136.6 cm\", \"100x50x3 mm steel tubing\", \"premium 40mm linear bearings\", \"adjustable back pad with three fixed positions\", \"large anti-slip stainless steel footplate\", \"robust safety stop mechanism\", \"4 Weight Storage Horns\", \"38mm ribbed rubber handles\"",
+  "hs-hsllp": "Hammer Strength, Plate Loaded Linear Leg Press HSLLP; https://www.lifefitness.com.au/commercial/linear-leg-press-hsllp (lida em 18/11/2026): \"Featuring a 45-degree angle\", \"Its 45-degree linear design keeps movement smooth and stable\", \"A simple flip adjustment widens the hip angle\", \"a simple, flip-in / flip-out racking mechanism and two rack-out positions\", \"the extra-large, non-slip platform\", \"Standard Weight Horns: 4\"",
+  "cartao-leg-press": "Cartão de equipamento de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, legPress; public/equipamento/leg_press.svg): o assento sobe 10° para a frente, a chapa dos pés fica 10° mais em pé que a perpendicular ao trilho, 72 cm de largura, os estofados de 50 cm de largura, a alavanca da trava dos dois lados do carro, um pino de anilha de cada lado",
+  "barra-longa-leg-press": "src/engine/novo/dados/objetos/barra-longa.json (IWF e IPF): a manga de 5 cm da barra olímpica, que recebe as anilhas olímpicas",
+  "corpo-leg-press": "Derivada do corpo da tabela (src/engine/novo/dados/corpo-homem.json) e da ficha da técnica do leg press (docs/pesquisa/animacoes/leg-press.md): a medida que nenhuma ficha lida dá sai de onde o corpo precisa que ela esteja, com o motivo em cada linha",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "legPress": {
+   "nome": "Leg press 45° (de anilhas): o assento e o encosto inclinados, o carro com a chapa dos pés que corre em duas guias a 45°, os pinos de anilha no carro, as alavancas da trava dos dois lados do carro, os batentes de baixo nas guias, os pegadores ao lado do assento e os pinos de guardar anilhas",
+   "medidas": {
+    "comp": { "v": 176, "un": "cm", "tipo": "medida", "fonte": "hs24-lp", "onde": "comprimento total da Hammer Strength PL-LP (a Magnum MG-PL70 tem 229 e a Gym Gear Elite, 238: o assento delas fica mais para trás, com uma guia mais longa); é a ficha que fecha com o corpo da tabela no assento" },
+    "larg": { "v": 130, "un": "cm", "tipo": "medida", "fonte": "hs24-lp", "onde": "largura total, de uma anilha à outra (Magnum 171; Gym Gear 219)" },
+    "altura": { "v": 145, "un": "cm", "tipo": "medida", "fonte": "hs24-lp", "onde": "altura total, no alto das guias (Magnum 158; Gym Gear 137)" },
+    "trilhoInclina": { "v": 45, "un": "graus", "tipo": "medida", "fonte": "hs-hsllp", "onde": "as guias sobem 45° do chão: está no nome dos três aparelhos (\"45 degree\") e a página da Hammer Strength HSLLP diz \"Featuring a 45-degree angle\"" },
+    "guiaDiam": { "v": 4, "un": "cm", "tipo": "medida", "fonte": "gg-lp", "onde": "\"premium 40mm linear bearings\": a guia redonda em que o rolamento linear corre tem 40 mm" },
+    "tuboLarg": { "v": 10, "un": "cm", "tipo": "medida", "fonte": "gg-lp", "onde": "\"100x50x3 mm steel tubing\": o tubo da estrutura tem 10 × 5 cm" },
+    "tuboAlt": { "v": 5, "un": "cm", "tipo": "medida", "fonte": "gg-lp", "onde": "o lado menor do tubo de 100 × 50 mm" },
+    "pegadorDiam": { "v": 3.8, "un": "cm", "tipo": "medida", "fonte": "gg-lp", "onde": "\"38mm ribbed rubber handles\": os pegadores ao lado do assento" },
+    "pinosDeGuardar": { "v": 4, "un": "pinos", "tipo": "medida", "fonte": "gg-lp", "onde": "\"4 Weight Storage Horns\" (a Magnum diz 4 num trecho e 6 noutro; a Hammer Strength HSLLP, 4)" },
+    "massaDoCarro": { "v": 75.7, "un": "kg", "tipo": "medida", "fonte": "magnum-lp", "onde": "\"STARTING RESISTANCE 75.7 kg\": o carro vazio (a Hammer Strength HSLLP dá 53 kg por braço); o cartão manda registrar só as anilhas" },
+    "assentoInclina": { "v": 10, "un": "graus", "tipo": "desenho", "fonte": "cartao-leg-press", "onde": "o assento sobe 10° para a frente, como no cartão de hoje; as fichas não dão" },
+    "encostoInclina": { "v": 40, "un": "graus", "tipo": "derivada", "fonte": "corpo-leg-press", "onde": "o encosto deita 40° do chão (50° da vertical). As fichas só dizem que ele regula (\"adjustable angle back pad [...] optimizes hip angles\", Magnum; três posições, Gym Gear): 40° é a posição em que o corpo da tabela desce até o joelho passar de 90° com o quadril apoiado e dobrado até a média da tabela de amplitudes (132°); mais em pé, o quadril passaria da média e teria de descolar" },
+    "assentoAltura": { "v": 36, "un": "cm", "tipo": "derivada", "fonte": "corpo-leg-press", "onde": "altura do chão ao vinco entre o assento e o encosto: as fichas não dão; é a que põe o alto das guias, com o carro em cima, nos 145 cm da Hammer Strength PL-LP" },
+    "assentoComp": { "v": 42, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento, do vinco até a borda da frente" },
+    "encostoComp": { "v": 76, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do encosto, do vinco até atrás da cabeça de quem senta (a cabeça apoia nele)" },
+    "estofadoLarg": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "cartao-leg-press", "onde": "largura do assento e do encosto, como no cartão de hoje" },
+    "estofadoEsp": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "espessura dos estofados (a do banco da Gym Gear é 70 mm)" },
+    "caminhoAcimaDoCanto": { "v": 18, "un": "cm", "tipo": "derivada", "fonte": "corpo-leg-press", "onde": "o centro da chapa dos pés corre numa linha a 45° que passa 18 cm acima do vinco do assento: é a que deixa o meio do pé do corpo da tabela na linha do quadril (a canela e a coxa dobram juntas, sem o pé escorregar na chapa); as fichas não dão" },
+    "trilhoAbaixo": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "as guias correm 22 cm abaixo da face da chapa (o carro fica entre elas e a chapa)" },
+    "guiasEntre": { "v": 56, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "de centro a centro das duas guias, debaixo do carro" },
+    "trilhoInicio": { "v": 20, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a guia começa 20 cm adiante do vinco, medido ao longo dela (a ponta de baixo, onde fica o batente do fim do curso)" },
+    "trilhoFim": { "v": 130, "un": "cm", "tipo": "derivada", "fonte": "corpo-leg-press", "onde": "a guia termina 130 cm adiante do vinco, medido ao longo dela: o alto da estrutura fica na altura total da ficha" },
+    "plataformaInclina": { "v": 10, "un": "graus", "tipo": "desenho", "fonte": "cartao-leg-press", "onde": "a chapa dos pés fica 10° mais em pé que a perpendicular à guia, como no cartão de hoje" },
+    "plataformaLarg": { "v": 72, "un": "cm", "tipo": "desenho", "fonte": "cartao-leg-press", "onde": "largura da chapa dos pés, como no cartão de hoje (\"extra large\", \"oversized footplate\" nas fichas, sem número)" },
+    "plataformaAlt": { "v": 64, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da chapa dos pés (de baixo para cima, ao longo da chapa)" },
+    "carroComp": { "v": 58, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do carro ao longo da guia, com um rolamento linear em cada ponta" },
+    "pinoAnilhaComp": { "v": 32, "un": "cm", "tipo": "derivada", "fonte": "hs24-lp", "onde": "comprimento de cada pino de carregar anilha, de cada lado do carro: o que fecha a largura total da ficha (130 cm) de uma ponta de pino à outra" },
+    "pinoAnilhaDiam": { "v": 5, "un": "cm", "tipo": "derivada", "fonte": "barra-longa-leg-press", "onde": "o pino recebe as anilhas olímpicas: o diâmetro da manga da barra olímpica" },
+    "travaComp": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da alavanca da trava, do eixo no carro ao gancho (\"racking mechanism\", Magnum; \"flip-in / flip-out\", Hammer Strength)" },
+    "travaAbre": { "v": 65, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "quanto a alavanca gira para soltar o carro (\"flip-out\"): o gancho sai da linha dos suportes" },
+    "travaNaGuia": { "v": 83, "un": "cm", "tipo": "derivada", "fonte": "corpo-leg-press", "onde": "onde o gancho da trava fechada apoia, medido ao longo da guia a partir do ponto acima do vinco: logo abaixo do ponto mais baixo do carro na panturrilha no leg press com o corpo da tabela (os joelhos quase estendidos e a panturrilha alongada: 87 cm; com os joelhos dobrando, no erro, 85,4 cm). As fichas só dizem que há a trava (\"racking mechanism\", Magnum; \"two rack-out positions\", Hammer Strength), sem a posição" }
+   }
+  }
+ }
+}

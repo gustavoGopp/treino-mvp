@@ -66,8 +66,12 @@ export interface PoseBraco {
   prot?: number;
 }
 export interface PosePerna {
-  /** Pé apoiado: o ponto do chão sob a bola do pé, a direção dos dedos e quanto o calcanhar sobe (graus). */
-  pe?: { bola: V3; dir: V3; calc?: number };
+  /**
+   * Pé apoiado: o ponto do chão sob a bola do pé, a direção dos dedos e quanto o calcanhar sobe (graus). `normal`
+   * (acréscimo de 18/11, o leg press e o hack): o apoio é uma chapa inclinada, e não o chão; a normal dela, para o lado
+   * do pé (por omissão, o chão: [0, 1, 0]).
+   */
+  pe?: { bola: V3; dir: V3; calc?: number; normal?: V3 };
   /** Pé livre: o tornozelo e a direção dos dedos. */
   tornozelo?: V3;
   peDir?: V3;
@@ -391,8 +395,9 @@ function resolverPerna(t: Tronco, k: Lado, p: PosePerna) {
   let pe: Ref, dedos: Ref, bola: V3;
   if (p.pe) {
     // pé apoiado: os dedos ficam no chão; o resto do pé gira na bola do pé quando o calcanhar sobe
-    const z = norm(perp(p.pe.dir, [0, 1, 0]));
-    dedos = { o: p.pe.bola, x: cross([0, 1, 0], z), y: [0, 1, 0], z };
+    const n = p.pe.normal ? norm(p.pe.normal) : ([0, 1, 0] as V3);
+    const z = norm(perp(p.pe.dir, n));
+    dedos = { o: p.pe.bola, x: cross(n, z), y: n, z };
     bola = p.pe.bola;
     pe = girarRef(dedos, dedos.x, p.pe.calc ?? 0);
     tornozelo = noRef(pe, [0, hMaleolo, -(dBola - dTorn)]);
