@@ -42,3 +42,4 @@ export { default as supinoMaquina } from './supino-maquina.json';
 export { default as desenvolvimentoMaquina } from './desenvolvimento-maquina.json';
 export { default as estacaoPuxada } from './estacao-puxada.json';
 export { default as estacaoRemada } from './estacao-remada.json';
+export { default as voador } from './voador.json';

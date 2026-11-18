@@ -1,0 +1,58 @@
+{
+ "fontes": {
+  "lf-fly": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 28, Pectoral Fly / Rear Deltoid (SS-FLY), a máquina que faz os dois; https://kb.cybexintl.com/Owners_Manuals/Strength/Life_Fitness_Insignia_Series_Owners_Manual_9481201_Rev_BE.pdf (lido em 18/11/2026): \"Size (L x W x H): [...] cm = 203 x 197 x 203\"; \"Pectoral Fly: Adjust the seat height so elbows are slightly below shoulders, when holding the vertical handles. Adjust the start position using the overhead range of motion adjustments for each arm [...] grip the vertical handles keeping the elbows slightly bent\"; \"Rear Deltoid: Adjust the seat height, if necessary, so arms are parallel to floor, while holding the inside handles. Adjust the start position, bringing the arms into the furthest back position [...] Sit facing pad and grip the horizontal handles firmly keeping elbows slightly bent\"; \"rotate the handles out and about the shoulder\". Os desenhos de cima da mesma página põem os eixos dos dois braços sobre os ombros, nos dois exercícios",
+  "precor-rsl0505": "Precor, Resolute Rear Delt / Pec Fly RSL0505; https://www.precor.com/en-US/products/RSL0505 (lida em 18/11/2026): \"56 x 38 x 84 in / 142 x 97 x 213 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"Total thickness is 2.5 inches (65 mm)\" (os estofados), \"dual independent-movement arms that can each be set to 13 starting positions over a 120-degree range\"; num revendedor da mesma linha: \"a foot support bar and a slightly inclined back pad\"",
+  "mv-next": "Movement (Brasil), apresentação Next Selectorized 2025, p. 17, Pec Fly / Rear Delt: 158,3 x 135,2 x 199,1 cm; \"Pinos seletores de posição dos braços\" (a posição inicial de cada braço); a torre ao lado do assento e os eixos dos braços numa viga no alto (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24": "Hammer Strength, catálogo 2024, p. 59, HS-FLY: 125 x 143 x 181 cm (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hoist-us8162807": "Hoist Fitness, patente US 8.162.807 B1 (2012), \"Exercise machine with multi-function user engagement device\", col. 16 e 17; https://patentimages.storage.googleapis.com/d0/7f/1f/a8a67c0a7025c6/US8162807.pdf (lida em 18/11/2026): \"the pad 244 on the user support is selectively usable as a back pad or chest pad, depending on whether the user wishes to perform pec fly or rear deltoid exercises\"; \"the pad 244 is adjusted so that the post 276 projects forward from upright 240 to space the pad away from upright 240. In this position, pad 244 acts as a chest pad\". É uma máquina de cabos, outra mecânica: daqui só sai que o encosto muda de lugar quando vira apoio do peito",
+  "corpo-voador": "Medida derivada do corpo da tabela (src/engine/novo/dados/corpo-homem.json) sentado na máquina: as fichas não dão onde ficam os eixos, os pegadores e o encosto; a máquina só funciona se o eixo de cada braço passar pelo centro do ombro (\"rotate the handles out and about the shoulder\", Life Fitness)",
+  "cartao-voador": "O cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `voador`): a coluna atrás do encosto, os eixos no alto, os braços que saem dos eixos e descem até os pegadores, a torre atrás do assento",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "voador": {
+   "nome": "Voador (peck deck) e voador invertido (a mesma máquina faz os dois): assento que sobe e desce, encosto estreito que também serve de apoio do peito, dois braços que giram cada um num eixo vertical no alto, sobre o ombro, com o pegador vertical (voador) e o pegador horizontal (invertido) na ponta, e a torre com a pilha de placas",
+   "medidas": {
+    "alturaTotal": { "v": 199, "un": "cm", "tipo": "medida", "fonte": "mv-next", "onde": "altura total da Movement Next (199,1 cm), até o alto da viga dos eixos; a Life Fitness SS-FLY tem 203, a Precor RSL0505 213, a Hammer Strength HS-FLY 181" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0505", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight Stack Tower Height\")" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0505", "onde": "espessura total dos estofados: 2,5 pol (65 mm)" },
+    "faixaDoInicio": { "v": 120, "un": "graus", "tipo": "medida", "fonte": "precor-rsl0505", "onde": "a posição inicial de cada braço se regula numa faixa de 120° (13 posições); a peça confere que as duas regulagens desenhadas cabem nela" },
+    "eixoMeiaDistancia": { "v": 17.8, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "cada eixo fica sobre o centro de um ombro, a 17,8 cm do meio: o ombro do corpo da tabela com as escápulas um pouco juntas (17,7 cm no voador e 17,9 cm no invertido, que junta menos as escápulas)" },
+    "eixoAltura": { "v": 180, "un": "cm", "tipo": "desenho", "fonte": "cartao-voador", "onde": "altura do cubo de cada eixo, embaixo da viga, de onde o braço sai: acima da cabeça de quem senta, como no cartão e nas fichas (os eixos no alto)" },
+    "bracoAltura": { "v": 176, "un": "cm", "tipo": "desenho", "fonte": "cartao-voador", "onde": "altura do braço que sai do eixo para o lado, antes de descer até o pegador" },
+    "raio": { "v": 62.25, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "do eixo ao braço que desce até os pegadores, na horizontal: com o pegador vertical 10 cm ao lado dele, a mão fica a 63 cm do eixo, o alcance do braço do corpo da tabela com o cotovelo levemente dobrado (20°) e a mão um pouco abaixo do ombro" },
+    "tubo": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "tubo dos braços que giram" },
+    "estrutura": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "tubo da coluna, da viga e da base" },
+    "pegadorAltura": { "v": 101, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do centro do pegador vertical (voador): com ela, o assento do voador fica a cerca de 46 cm do chão" },
+    "pegadorAoLado": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "mv-next", "onde": "o pegador vertical fica 10 cm ao lado do braço que desce do eixo, preso a ele por duas travessas (na Movement, os pegadores saem do lado dos braços): fechado, o braço da máquina passa ao lado da cabeça, e não na frente do rosto" },
+    "pegadorComp": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da borracha do pegador vertical" },
+    "pegadorDiam": { "v": 3.6, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro da borracha dos pegadores" },
+    "alcaAltura": { "v": 113, "un": "cm", "tipo": "desenho", "fonte": "lf-fly", "onde": "altura do pegador horizontal (invertido), 12 cm acima do vertical: a Life Fitness tem os dois no mesmo braço (\"vertical handles\" e \"horizontal handles\"), sem dar a altura" },
+    "alcaComp": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do pegador horizontal, que sai do braço para o lado (para trás, no voador)" },
+    "alcaFora": { "v": 0.45, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "o eixo do pegador horizontal passa 0,45 cm por fora do eixo do braço: com ele, o cotovelo fica levemente dobrado (cerca de 20°) com os braços paralelos ao chão" },
+    "alcaPega": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "do braço ao centro da mão no pegador horizontal" },
+    "encostoInclina": { "v": 10, "un": "graus", "tipo": "desenho", "fonte": "precor-rsl0505", "onde": "o encosto deita 10° para trás da vertical: a Precor diz \"slightly inclined back pad\", sem o ângulo" },
+    "encostoComp": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do encosto: do meio das costas até acima dos ombros de quem senta no voador; no invertido, a borda de cima fica abaixo do queixo e, embaixo dele, passam as coxas" },
+    "encostoLarg": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do encosto (\"long, narrow pad\", revendedor da Precor): estreito, para os braços passarem dos lados dele no invertido" },
+    "encostoBaixo": { "v": 89, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "altura da borda de baixo do encosto: no invertido, acima das coxas, com o peito (e não a barriga) encostando nele" },
+    "encostoAtrasVoador": { "v": 1.2, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "no voador, a face do encosto fica esta distância atrás do eixo, na horizontal, na borda de baixo: as costas encostam nela com o centro do ombro sob o eixo" },
+    "encostoAtrasInvertido": { "v": 15.4, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "no invertido, o encosto recua na guia (o mesmo estofado vira apoio do peito, como na patente da Hoist): o peito encosta nele com o centro do ombro sob o eixo" },
+    "assentoVoador": { "v": 46, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "altura do assento no voador: o cotovelo um pouco abaixo do ombro com a mão no pegador vertical (\"elbows slightly below shoulders\", Life Fitness)" },
+    "assentoInvertido": { "v": 53, "un": "cm", "tipo": "derivada", "fonte": "corpo-voador", "onde": "altura do assento no invertido: os braços paralelos ao chão com a mão no pegador horizontal (\"arms are parallel to floor\", Life Fitness)" },
+    "assentoComp": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento" },
+    "assentoLarg": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do assento" },
+    "assentoTras": { "v": 1, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a borda de trás do assento fica 1 cm à frente dos eixos" },
+    "colunaAtras": { "v": 52, "un": "cm", "tipo": "desenho", "fonte": "cartao-voador", "onde": "a coluna que segura o encosto e a viga dos eixos fica 52 cm atrás dos eixos, como no cartão (atrás do encosto)" },
+    "cameRaio": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "raio do came no alto de cada eixo, que enrola o cabo: as placas sobem o arco dele (a média dos dois braços)" },
+    "torreLarg": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "cartao-voador", "onde": "largura da torre, como a da cadeira abdutora" },
+    "torreProf": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "cartao-voador", "onde": "fundo da torre" },
+    "torreAoLado": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a torre fica atrás da coluna e à esquerda de quem senta no voador, com a face de dentro a 26 cm do meio: de frente, aparece ao lado do corpo, atrás do braço aberto" },
+    "torreAtras": { "v": 74, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a face da frente da torre fica 74 cm atrás dos eixos, atrás da coluna: fora do caminho dos braços e dos pegadores, que giram a até 68 cm dos eixos" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas, como na cadeira abdutora" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "fundo das placas" }
+   }
+  }
+ }
+}

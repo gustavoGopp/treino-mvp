@@ -157,3 +157,5 @@ export { supinoMaquina } from './supino-maquina';
 export { desenvolvimentoMaquina } from './desenvolvimento-maquina';
 export { puxadaFrente } from './puxada-frente';
 export { remadaBaixaEstacao } from './remada-baixa-estacao';
+export { voador } from './voador';
+export { voadorInvertido } from './voador-invertido';

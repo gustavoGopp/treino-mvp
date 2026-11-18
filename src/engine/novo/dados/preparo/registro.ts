@@ -156,7 +156,9 @@ import p150 from './triceps-frances-polia-unilateral.json';
 import p151 from './triceps-frances-unilateral-halter.json';
 import p152 from './triceps-suspensao.json';
 import p153 from './triceps-testa-halteres.json';
-import p154 from './yt-suspensao.json';
+import p154 from './voador.json';
+import p155 from './voador-invertido.json';
+import p156 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -313,6 +315,8 @@ const TODOS: Record<string, Preparo> = {
   'triceps-frances-unilateral-halter': p151,
   'triceps-suspensao': p152,
   'triceps-testa-halteres': p153,
-  'yt-suspensao': p154,
+  'voador': p154,
+  'voador-invertido': p155,
+  'yt-suspensao': p156,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);

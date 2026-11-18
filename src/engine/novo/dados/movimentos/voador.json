@@ -1,0 +1,62 @@
+{
+ "id": "voador",
+ "nome": "Voador (peck deck)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/voador.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/voador.md): banco na altura em que os pegadores ficam na linha do meio do peito; costas no encosto, escápulas juntas; cotovelos levemente dobrados e fixos; abre até sentir o peito alongar, sem levar os braços para trás da linha do ombro; fecha à frente do peito; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/voador.json): 'Aberto: peito alongado, braços na linha do ombro.', 'Fechado: mãos à frente do peito.', as dicas 'Cotovelos fixos.', 'Costas no encosto.', 'Abre até alongar.' e os erros 'Abrir demais', 'Tirar as costas' e 'Dobrar e esticar os cotovelos'",
+  "lf-fly": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 28 (Pectoral Fly / Rear Deltoid SS-FLY), lido em 18/11/2026: \"Adjust the seat height so elbows are slightly below shoulders, when holding the vertical handles [...] Sit with chest-up and shoulders back and grip the vertical handles keeping the elbows slightly bent\"; \"rotate the handles out and about the shoulder as far as can be controlled [...] Return the handles to the start position, without letting the resistance rest on the stack\"",
+  "maquina": "src/engine/novo/dados/objetos/voador.json: o eixo de cada braço sobre o centro do ombro, o pegador vertical a 63 cm do eixo, o encosto deitado 10°, o came de 10 cm de raio (as placas sobem 0,17 cm por grau)",
+  "crucifixo": "O crucifixo com halteres aprovado (src/engine/novo/dados/movimentos/crucifixo-halteres.json): o mesmo arco, o mesmo ritmo (abrir em ~2,5 s, pausa curta aberto, fechar em ~1,5 s) e a folga de 3 cm entre as mãos em cima",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado. Esta é a primeira animação do voador: o que a ficha não dá em número sai do crucifixo com halteres aprovado ou do corpo sentado na máquina"
+ },
+ "param": {
+  "bacia": { "v": -12, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "a bacia deita 12° para trás: as costas encostam no encosto, deitado 10°" },
+  "lombar": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a lombar na curva de repouso" },
+  "cervical": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço dobra 10° para a frente, para o olhar voltar para a frente com o tronco deitado" },
+  "cabeca": { "v": 2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço" },
+  "escapula.prot": { "v": -7, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "escápulas juntas: a clavícula 7° para trás (a ficha não dá número; um pouco menos que os 9° do supino reto aprovado)" },
+  "escapula.elev": { "v": -3, "un": "graus", "selo": "consenso", "fonte": "lf-fly", "o": "os ombros para baixo e para trás (\"chest-up and shoulders back\"): a clavícula 3° para baixo" },
+  "cotovelo.paraBaixo": { "v": 0.5, "un": "fração", "selo": "consenso", "fonte": "lf-fly", "o": "o cotovelo aponta para fora do arco e um pouco para baixo: fica um pouco abaixo do ombro (\"elbows slightly below shoulders\")" },
+  "assento.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 1 cm no assento, como na cadeira abdutora" },
+  "pes.meiaDistancia": { "v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "os pés firmes no chão, na largura do quadril" },
+  "pes.frente": { "v": 52, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé 52 cm à frente da bacia: a canela quase na vertical, o joelho perto de 90°" },
+  "psi.fechado": { "v": -12, "un": "graus", "selo": "consenso", "fonte": "crucifixo", "o": "fechado: as mãos à frente do peito, quase se tocando; cada braço passa 12° da frente para dentro (a conferência mede a folga entre as mãos)" },
+  "psi.aberto": { "v": 85, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "aberto: o peito alongado, sem levar os braços para trás da linha do ombro; o braço da máquina para 5° antes dela" },
+  "psi.meio": { "v": 36, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "o meio do arco, em que o centro do ombro fica exatamente sob o eixo (o ritmo da escápula move o ombro alguns milímetros ao longo do arco)" },
+  "inicio": { "v": 104, "un": "graus", "selo": "consenso", "fonte": "lf-fly", "o": "a posição inicial da máquina (a regulagem do alto de cada braço, em graus do braço da máquina a partir da frente): as placas descansam com o braço da máquina a 104°, 10° além do aberto, e a volta não as deixa descansar (\"without letting the resistance rest on the stack\")" },
+  "erro.abrir.psi": { "v": 112, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os braços passam 22° da linha do ombro (a posição inicial regulada longe demais)" },
+  "erro.abrir.inicio": { "v": 125, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a posição inicial regulada longe demais (o braço da máquina a 125°), para os braços passarem da linha do ombro" },
+  "erro.costas.bacia": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: aberto, as costas saem do encosto: a bacia gira 10° para a frente" },
+  "erro.costas.toracica": { "v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima dobram 6° para a frente" },
+  "erro.costas.cervical": { "v": -10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço volta 10° para o olhar seguir à frente" },
+  "erro.supino.prot": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: fechando, os ombros vão para a frente (a clavícula 20° à frente): as mãos não saem dos pegadores, então o cotovelo dobra, como no fim de um supino" }
+ },
+ "fases": [
+  { "nome": "Fechado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "desenho", "fonte": "desenho" },
+  { "nome": "Abrir · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "desenho", "fonte": "crucifixo" },
+  { "nome": "Aberto · peito alongado", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "desenho", "fonte": "crucifixo" },
+  { "nome": "Fechar · concêntrica", "tipo": "conc", "dur": 1.5, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "desenho", "fonte": "crucifixo" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "voador-eixo-no-ombro", "pede": "o braço da máquina gira em volta do ombro (\"about the shoulder\"): o eixo sobre o centro do ombro", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-maos-nos-pegadores", "pede": "as mãos presas nos pegadores o ciclo todo", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-cotovelo-fixo", "pede": "cotovelos levemente dobrados e fixos", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-cotovelo-abaixo-do-ombro", "pede": "o cotovelo um pouco abaixo do ombro (a altura do assento)", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-costas-no-encosto", "pede": "sentado, as costas no encosto, o tronco parado", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-abre-ate-a-linha-do-ombro", "pede": "abre até alongar, sem levar os braços para trás da linha do ombro", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-fecha-a-frente-do-peito", "pede": "fecha à frente do peito, as mãos quase se tocando", "selo": "consenso", "fonte": "app" },
+  { "id": "voador-placas-sem-descansar", "pede": "as placas sobem com o arco do came e não descansam na volta", "selo": "consenso", "fonte": "lf-fly" }
+ ],
+ "erros": [
+  { "id": "abrir", "instante": 1, "titulo": "Abrir demais", "vista": "cima", "oQueMuda": "aberto, os braços passam da linha do ombro (22° atrás dela)", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "costas", "instante": 1, "titulo": "Tirar as costas", "vista": "quinaTras", "oQueMuda": "aberto, as costas saem do encosto e o peito vai para a frente", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7" },
+  { "id": "supino", "instante": 0, "titulo": "Dobrar e esticar os cotovelos", "vista": "cima", "oQueMuda": "fechando, os ombros vão para a frente e o cotovelo dobra, como no fim de um supino; abrindo, estica de novo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo:R" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "frontal", "texto": "cotovelos fixos", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app" },
+  { "vista": "frontal", "texto": "abre até alongar", "ponto": "pegada:R", "selo": "consenso", "fonte": "app" }
+ ]
+}
