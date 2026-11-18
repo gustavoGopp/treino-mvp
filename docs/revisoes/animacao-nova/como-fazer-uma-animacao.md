@@ -135,3 +135,11 @@ A frente das animações restantes (`docs/revisoes/animacoes-restantes/plano.md`
 - **A vista que o app abre é a que se lê de relance, não a de maior área medida.** No tríceps testa, de lado o halter parecia estar no rosto (estava 6 cm ao lado): o app abre de três quartos. Nos crucifixos, o app abre de cima, como os crucifixos aprovados (decisão do Gustavo de 05/11/2026), porque de três quartos o braço de perto aponta para quem olha.
 - **Reaproveitar uma animação aprovada:** só por exportação aditiva (`export` numa função que já existe), sem mudar o que ela desenha; o preparo dela não pode mudar. Diga na resposta.
 - **Conflito no `dados/preparo/registro.ts`** ao juntar ramos: é arquivo gerado; quem integra o regrava com `preparo.mjs`.
+
+## 10. Os dois lados do corpo e as bordas do apoio (aviso do Gustavo em 18/11/2026)
+
+O Gustavo achou, na rosca Scott no banco Scott (fase C), o braço de longe fora da almofada na vista de três quartos. A conferência medida e a conferência quadro a quadro não pegaram o erro. Ele pediu: "tome cuidado com as proporções e detalhes; esse tipo de erro é muito importante de evitar". Desde então:
+
+- **Toda regra de contato mede os dois lados do corpo.** Mede o braço e a perna de perto e os de longe, e não só a distância a um plano: confere também que o ponto fica **dentro das bordas** do apoio (a almofada, o rolo, o assento, a plataforma, o pegador). Um braço no plano da almofada, mas além da borda lateral, é um braço fora do apoio.
+- **Proporção da peça com o corpo:** antes de animar, meça se o apoio cabe no corpo da tabela. A almofada tem de caber os dois braços, o assento a coxa, a plataforma os dois pés, e o pegador tem de estar ao alcance. Leia na ficha qual medida é a largura e qual é o comprimento; não as troque.
+- **Quem confere os quadros olha cada vista declarada, nos dois lados do corpo**, procurando o membro de longe. É ele que a vista de três quartos e a de frente mostram e a de lado esconde.
