@@ -1,0 +1,53 @@
+{
+ "id": "supino-barra",
+ "nome": "Supino reto com barra",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-barra.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/supino-barra.md) e cartão do app (src/conteudo/exercicios/supino-barra.json): deitado, olhos embaixo da barra, pés firmes no chão; escápulas juntas e para baixo, apoiadas no banco; pegada um pouco mais aberta que os ombros, punhos retos; ~2 s descendo até tocar de leve o meio do peito, cotovelos a ~30–60° do tronco; empurra até quase estender os cotovelos, sem travar; consenso de treinadores (nsca2021, não verificado)",
+  "montagem": "Montagem segura da ficha e do cartão (seguranca.montagem; consenso): banco plano dentro do rack; a barra numa altura que se alcança com os cotovelos quase estendidos; travas de segurança logo abaixo da altura do peito; anilhas iguais dos dois lados",
+  "tecnica08": "docs/pesquisa/08-tecnica-guia.md, conclusão 4 (tecnica.supino-halteres.cotovelos): consenso com apoio biomecânico; a ficha diz que o supino com barra segue, por analogia, o supino com halteres",
+  "aprovado": "Ficha de movimento do supino reto com halteres aprovado (src/engine/novo/dados/movimentos/supino-reto.json): o corpo no banco, a cabeça apoiada perto da ponta, as escápulas, os pés e o erro dos cotovelos abertos. Este exercício nunca teve animação",
+  "corpo": "Tabela do corpo (src/engine/novo/dados/corpo-homem.json, ANSUR II): largura biacromial de 40,8 cm; altura do peito (no mamilo) de 129,4 cm e altura cervical de 151,5 cm, em pé (a linha do meio do peito fica 22,1 cm abaixo da base do pescoço, ao longo do tronco)",
+  "objetos": "src/engine/novo/dados/objetos.json (o banco reto), objetos/barra-longa.json (barra de 20 kg e anilhas da IWF) e objetos/suporte.json (o suporte, com a regulagem da IPF)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cabeca.folgaNoBanco": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "do topo da cabeça à ponta do banco: a do supino reto aprovado (pedido do Gustavo em 15/11/2026)"},
+  "pes.meiaDistancia": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "aprovado", "o": "pés firmes no chão, um pouco mais abertos que o quadril (os do supino reto aprovado)"},
+  "escapula.retracao": {"v": 9, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "escápulas juntas (as do supino reto aprovado; a ficha não dá número)"},
+  "escapula.depressao": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "escápulas para baixo (as do supino reto aprovado)"},
+  "pegada.meia": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "corpo", "o": "pegada um pouco mais aberta que os ombros: o centro de cada mão a 30 cm do meio da barra (os ombros ficam a 20,4 cm); a ficha não dá número"},
+  "cotovelos.doTronco": {"v": 50, "un": "graus", "selo": "consenso", "fonte": "tecnica08", "o": "cotovelos a ~30–60° do tronco (o mesmo do supino reto aprovado): o braço vai para esse lado, a mão fica na barra"},
+  "cotovelo.cima": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os cotovelos quase estendidos, sem travar: dobrados 10° (o do supino reto aprovado); a altura da barra sai disso"},
+  "peito.abaixoDaC7": {"v": 22.1, "un": "cm", "selo": "consenso", "fonte": "corpo", "o": "o meio do peito, onde a barra toca: a linha do mamilo, 22,1 cm abaixo da base do pescoço ao longo do tronco (129,4 contra 151,5 cm, em pé); a barra encosta na pele (a folga sai da superfície do Boneco)"},
+  "carga.anilhas": {"v": 10, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 10 kg de cada lado: 40 kg com a barra"},
+  "ganchos.abaixo": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "montagem", "o": "a barra nos ganchos fica um pouco abaixo da barra em cima (com os cotovelos quase estendidos): pelo menos 4 cm, no primeiro furo, para tirá-la do gancho estendendo os braços"},
+  "pinos.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "montagem", "o": "travas 'logo abaixo da altura do peito': o topo do pino fica pelo menos 2 cm abaixo da barra encostada no peito, no primeiro furo"},
+  "erro.cot.doTronco": {"v": 88, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: cotovelos abertos a ~90° (o do supino reto aprovado)"},
+  "erro.quadril.sobe": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril sai 12 cm do banco (as costas de cima e os pés ficam onde estão), como no supino no chão com halteres"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Toca o peito · sem quicar", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "toca de leve", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "aprovado"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "cotovelos-30-60", "pede": "cotovelos a ~30–60° do tronco", "selo": "consenso", "fonte": "tecnica08"},
+  {"id": "barra-toca-o-meio-do-peito", "pede": "a barra desce até tocar de leve o meio do peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-sobre-os-ombros-no-topo", "pede": "em cima, braços quase estendidos, sem travar, e a barra sobre os ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "olhos-embaixo-dos-ganchos", "pede": "deitado com os olhos embaixo da barra nos ganchos, numa altura que se alcança com os cotovelos quase estendidos", "selo": "consenso", "fonte": "montagem"},
+  {"id": "travas-logo-abaixo-do-peito", "pede": "travas de segurança logo abaixo da altura do peito, debaixo da barra", "selo": "consenso", "fonte": "montagem"}
+ ],
+ "erros": [
+  {"id": "e2", "instante": 1, "titulo": "Cotovelos abertos a 90°", "vista": "cima", "oQueMuda": "o braço fica a ~90° do tronco, em cruz", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "e3", "instante": 1, "titulo": "Tirar o quadril do banco", "vista": "lateral", "oQueMuda": "o quadril sai do banco e as costas arqueiam; as costas de cima e os pés ficam onde estão", "destaca": ["corpo"], "linha": ["ombro", "pelve", "joelho"], "foco": "pelve"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "pés firmes no chão", "ponto": "ponta", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "lateral", "texto": "escápulas no banco", "ponto": "ombro", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "cima", "texto": "cotovelos ~30–60° do tronco", "ponto": "cotovelo", "selo": "consenso", "fonte": "tecnica08"}
+ ]
+}

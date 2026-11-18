@@ -1,12 +1,16 @@
 // A folha das peças novas da frente das animações restantes (Parte B): o cartão de equipamento de hoje ao lado da peça
 // nova do motor, no tamanho do cartão (96 px, como na tela de marcar o equipamento) e ampliada, e as medidas com a fonte.
 // Na cadeira flexora, também a máquina funcionando: a alavanca no começo e no fim, com a pilha subindo.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
 
 const ENTRADA = `export * from './src/engine/novo/pecas-de-cena/barra-longa.ts';
+export * from './src/engine/novo/pecas-de-cena/suporte.ts';
+export { EXERCICIOS } from './src/engine/novo/app.ts';
+export { CORPOS } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-flexora.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
@@ -28,6 +32,7 @@ function desenho(pecas, cam, comSombra = true) {
 const img = (svg, px, cls = '') => `<img class="${cls}" style="width:${px}px;height:${(px * 3) / 4}px" alt="" src="data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}">`;
 const hoje = (cartao) => readFileSync(`public/equipamento/${cartao}.svg`, 'utf8');
 const cel = (t, conteudo) => `<figure>${conteudo}<figcaption>${t}</figcaption></figure>`;
+const f1v = (x) => (Math.round(x * 10) / 10).toString().replace('.', ',');
 
 function tabela(arquivo, ids) {
   const j = JSON.parse(readFileSync(`src/engine/novo/dados/objetos/${arquivo}.json`, 'utf8'));
@@ -104,5 +109,44 @@ if (!so || so === 'cadeira-flexora') {
 <div class="l">${cel('começo: a alavanca à frente (95°); as placas embaixo', img(desenho([c0.fixa, c0.movel], lado), 640))}${cel(`fim: a alavanca para trás (−25°); as placas do pino ${c1.subida.toFixed(1).replace('.', ',')} cm acima`, img(desenho([c1.fixa, c1.movel], lado), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho([c1.fixa, c1.movel], cam), 640))}</div>
 <h2>As medidas</h2>${tabela('cadeira-flexora', ['cadeiraFlexora'])}`,
+  );
+}
+
+if (!so || so === 'suporte') {
+  // como no cartão de hoje: os ganchos e os pinos virados para +x, vistos de três quartos, com a barra nos ganchos
+  const regulado = (gancho, pino, comBarra = true) => {
+    const S = { base: [0, 0, 0], paraAPessoa: [1, 0, 0], gancho, pino };
+    const r = m.suporte(S);
+    const pecas = [r.estrutura, r.ganchos];
+    if (comBarra) pecas.push(m.barraLonga({ centro: m.barraNosGanchos(S), eixo: m.eixoDoSuporte(S), anilhas: ['anilha20'] }).peca);
+    return pecas;
+  };
+  const cam = { yaw: 28, pitch: 10, s: 0.6 };
+  const deLado = { yaw: 0, pitch: 2, s: 0.6 };
+  // a regulagem de cada exercício (o berço do gancho e o topo do pino), lida do primeiro quadro de cada animação
+  const REG = [
+    ['agachamento-barra', 'Agachamento com barra', 'ganchos na altura do meio do peito (a altura do peito da tabela do corpo); pinos logo abaixo do ponto mais baixo da barra'],
+    ['supino-barra', 'Supino reto com barra', 'ganchos onde a barra fica com os cotovelos quase estendidos; pinos logo abaixo da altura do peito'],
+    ['desenvolvimento-barra', 'Desenvolvimento em pé com barra', 'ganchos na altura do peito; os pinos no furo mais baixo (o cartão não pede pinos)'],
+  ]
+    .filter(([id]) => m.EXERCICIOS?.[id])
+    .map(([id, nome, porque]) => {
+      const q = m.EXERCICIOS[id].quadro(m.CORPOS.homem, 0);
+      return `<tr><td>${nome}</td><td>${f1v(q.marcas.gancho[1])} cm</td><td>${f1v(q.marcas.pino[1])} cm</td><td>${porque}</td></tr>`;
+    })
+    .join('');
+  await foto(
+    'suporte',
+    `<h1>Suporte de agachamento (rack): o cartão de hoje × a peça nova</h1>
+<p>O cartão de hoje é uma gaiola de quatro colunas com 2,24 m de altura e 1,2 m de lado (medidas de desenho, sem fonte). As fichas de fabricante lidas são de suportes abertos: o Olympic Squat Rack da Life Fitness (LBR-OS, 192 cm de altura) e o da Hammer Strength (OSR, 186 cm de altura e 150 cm de comprimento). A peça nova segue as fichas: dois montantes furados presos a um quadro no chão (sem a travessa de cima da gaiola: de cima, no supino, ela cobriria a cabeça), com os ganchos em J e os pinos de segurança virados para a pessoa. A regulagem é a da IPF: ganchos de 75 a 170 cm (o banco e o agachamento), em passos de 2,5 cm; pinos de 50 cm de comprimento, a partir de 50 cm do chão. O vão entre os montantes (110 cm) é o mínimo da IPF para o banco e cabe na barra (131 cm entre as mangas). Do cartão vêm o gancho com a borracha no berço, os furos e os pinos cromados. Em amarelo na tabela, o que é de desenho.</p>
+<p><b>Na cena,</b> a estrutura (montantes, quadro do chão e pinos) é pintada atrás do corpo, como cenário: de lado, o montante e o pino de perto cruzariam o corpo; os ganchos ficam na ordem certa de profundidade e dentro do quadro, perto da barra.</p>
+<h2>No tamanho do cartão (96 px, a tela de marcar o equipamento)</h2>
+<div class="l">${cel('hoje', img(hoje('rack_de_agachamento'), 96, 'cartao'))}${cel('nova (ganchos a 130 cm, pinos a 95 cm, barra de 60 kg)', img(desenho(regulado(130, 95), cam), 96, 'cartao'))}${cel('hoje: o smith (para ver se ainda se confundem)', img(hoje('smith'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('rack_de_agachamento'), 440, 'cartao'))}${cel('nova, do mesmo ângulo (ganchos a 130 cm, pinos a 95 cm)', img(desenho(regulado(130, 95), cam), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('nova, de lado e sem a barra: os ganchos e os pinos saem para o lado da pessoa (a direita do desenho)', img(desenho(regulado(130, 95, false), deLado), 640))}</div>
+<h2>A regulagem de cada exercício (medida nas animações)</h2>
+<table><tr><th>exercício</th><th>berço do gancho (do chão)</th><th>topo do pino (do chão)</th><th>de onde sai</th></tr>${REG}</table>
+<h2>As medidas</h2>${tabela('suporte', ['suporte'])}`,
   );
 }
