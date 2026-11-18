@@ -148,3 +148,4 @@ export { cadeiraFlexora } from './cadeira-flexora';
 export { cadeiraExtensora } from './cadeira-extensora';
 export { abducaoMaquina } from './abducao-maquina';
 export { aducaoMaquina } from './aducao-maquina';
+export { supinoMaquina } from './supino-maquina';
