@@ -1,0 +1,63 @@
+{
+ "id": "abdominal-maquina",
+ "nome": "Abdominal na máquina",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-maquina.md): sentado, peito ou ombros nas almofadas, pés presos; enrola o tronco (aproxima as costelas da pelve), o quadril dobra pouco; volta controlada até o tronco ficar reto (consenso, nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/abdominal-maquina.json): o começo (tronco reto) e o fim (tronco enrolado, costelas perto da pelve), 'braços só seguram', as dicas e os erros",
+  "manual": "Life Fitness, manual Insignia, SS-AB (src/engine/novo/dados/objetos/abdominal-maquina.json, fonte lf-ab): o assento regula para o apoio da lombar ficar na lombar; as mãos nos pegadores; os braços só guiam o movimento ('avoid using your arms to power through the motion')",
+  "aprovada": "O abdominal na polia aprovado (src/engine/novo/dados/movimentos/abdominal-polia.json): a lombar e a torácica que enrolam, o pescoço que acompanha, o ritmo e os erros de puxar com os braços e de dobrar o quadril",
+  "objetos": "src/engine/novo/dados/objetos/abdominal-maquina.json: a máquina",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "quadril.aBorda": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "sentado no fundo do assento: o centro do quadril 22 cm atrás da borda da frente"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés no chão, sob os rolos, com o joelho dobrado 90° e a coxa na horizontal: é o que dá a altura do assento"},
+  "pes.meiaDistancia": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés na largura do quadril"},
+  "assento.amassa": {"v": 0.8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 0,8 cm no estofado do assento"},
+  "tronco.inicio": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: tronco reto, o peito na vertical, com a coluna neutra"},
+  "lombar.fim": {"v": 26, "un": "graus", "selo": "consenso", "fonte": "aprovada", "o": "fim: a lombar dobra 26° além da curva de repouso (como no abdominal na polia aprovado)"},
+  "toracica.fim": {"v": 40, "un": "graus", "selo": "consenso", "fonte": "aprovada", "o": "fim: a parte de cima das costas dobra 40° (como no abdominal na polia aprovado)"},
+  "cervical.inicio": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: o pescoço na linha do tronco, o olhar à frente"},
+  "cervical.fim": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "aprovada", "o": "fim: o pescoço acompanha a coluna (dobra 14°), sem o queixo no peito"},
+  "lombar.apoio.altura": {"v": 0.45, "un": "fração", "selo": "consenso", "fonte": "manual", "o": "o apoio da lombar 'na lombar': o centro dele a 0,45 do caminho da bacia à T12, na altura"},
+  "lombar.apoio.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a lombar encosta no apoio: a face dele a 0,3 cm da pele das costas no começo"},
+  "almofada.abaixoDoC7": {"v": 18, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "peito nas almofadas: o centro de cada uma 18 cm abaixo da sétima cervical, ao longo do tronco (sobre o peito, abaixo das clavículas: mais alta, a ponta de cima ficava no ar)"},
+  "almofada.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a face da almofada a 0,3 cm da pele do peito, no ponto do peito que mais avança sobre ela"},
+  "maos.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos nos pegadores, à frente dos ombros: o centro de cada uma a 16 cm do meio do corpo"},
+  "maos.acimaDoC7": {"v": -3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o centro da mão 3 cm abaixo da sétima cervical, ao longo do tronco: na altura dos ombros, logo acima das almofadas (o manual da Life Fitness só diz 'grip handles'; com as mãos ao lado da cabeça, como no desenho dele, de lado o pegador passava na frente do rosto)"},
+  "maos.aFrente": {"v": 24, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o centro da mão 24 cm à frente da sétima cervical, à frente do ombro"},
+  "maos.pegadorSobe": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "os pegadores apontam para a frente, subindo um pouco (0,3 para cima para 1 para a frente, no tronco): com o antebraço em pé, a pegada fica neutra (as palmas para dentro)"},
+  "arco.acimaDoOmbro": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o arco do braço da máquina passa 11 cm acima da ponta do ombro, por cima do trapézio"},
+  "rolos.aFrente": {"v": 8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés presos: os rolos ficam sobre o peito do pé, 8 cm à frente do tornozelo"},
+  "rolos.folga": {"v": 0.2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o rolo encosta no peito do pé (0,2 cm)"},
+  "maquina.atrasDoEixo": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a base da máquina vai até 30 cm atrás do eixo (a torre da pilha fica ali)"},
+  "erro.bracos.coluna": {"v": 0.35, "un": "fração", "selo": "desenho", "fonte": "aprovada", "o": "erro: a coluna enrola só 35% do certo; quem leva o braço da máquina são os braços, e o peito sai das almofadas"},
+  "erro.quadril.bacia": {"v": 38, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a bacia gira 38° à frente com a coluna reta: o quadril dobra e o tronco desce inteiro, e a lombar sai do apoio"}
+ },
+ "fases": [
+  {"nome": "Tronco reto", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Enrolar · concêntrica", "tipo": "conc", "dur": 1.5, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Segura contraído", "tipo": "pausa", "dur": 0.8, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlando", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "abdominal-maquina-sentado", "pede": "sentado: o glúteo no assento e a lombar no apoio", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maquina-quadril-parado", "pede": "o quadril dobra pouco: a bacia não anda nem gira", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-puxar-coluna-enrola", "pede": "enrola o tronco: as costelas vão em direção à pelve", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maquina-almofadas-no-peito", "pede": "o peito nas almofadas o movimento todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-maquina-braco-gira-no-eixo", "pede": "o braço da máquina gira no eixo junto com o tronco, e a pilha sobe o arco do came", "selo": "consenso", "fonte": "manual"},
+  {"id": "abdominal-maquina-maos-nos-pegadores", "pede": "as mãos seguram os pegadores, e os braços só seguram", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-maquina-pes-presos", "pede": "os pés presos sob os rolos", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "bracos", "instante": 1, "titulo": "Puxar com os braços", "vista": "lateral", "oQueMuda": "os braços puxam o braço da máquina para baixo e o peito sai das almofadas; a coluna quase não enrola", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "quadril", "instante": 1, "titulo": "Só dobrar o quadril", "vista": "lateral", "oQueMuda": "a coluna fica reta e o tronco desce inteiro, dobrando no quadril; a lombar sai do apoio", "destaca": ["corpo"], "linha": ["joelho", "pelve", "c7"], "foco": "pelve"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "enrola o tronco", "ponto": "lombar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "braços só seguram", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}
