@@ -253,7 +253,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const desenvolvimentoBarra: Exercicio = {
   ficha: F,
-  vistas: ['lateral', 'frontal'],
+  vistas: ['frontal', 'lateral'], // abre de frente: de lado o corpo fica pequeno e a anilha cobre o rosto no começo; a de lado mostra a barra rente ao rosto
   quadro,
   // a biblioteca: frente do ombro (principal); lateral do ombro e tríceps (secundários)
   papeis: { deltAnt: 'p', deltLat: 's', triceps: 's' },

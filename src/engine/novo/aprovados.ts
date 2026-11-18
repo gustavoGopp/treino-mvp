@@ -152,4 +152,7 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
  * o Gustavo ver (como ele pediu em 15/11/2026), e as que voltaram para correção. Ficam fora do app e do catálogo.
  */
 export const EM_REVISAO: Record<string, string> = {
+  'agachamento-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',
+  'supino-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',
+  'desenvolvimento-barra': 'espera o ok do Gustavo no suporte de agachamento (aberto, como as fichas de fabricante; o cartão de hoje é uma gaiola)',
 };
