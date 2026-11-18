@@ -28,3 +28,16 @@ Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de a
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/mesa-flexora.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (na biblioteca: posteriores, sem secundário); a nota, do erro "Levantar o quadril" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Preparo e Posição da tabela | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Preparo, Dobrar e Volta e o erro "Volta solta" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/mesa-flexora.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a regulagem (o rolo logo acima do calcanhar e o joelho no eixo) foi para a conferência. A ficha não dá o ângulo da dobra do estofado (na animação, 20° no das coxas, de desenho) e não diz o que varia de pessoa para pessoa: o `vary` só traz o que não muda. A seção Músculos só repete os ids da biblioteca. O erro "Volta solta" não tem desenho (está em `SEM_DESENHO`): o texto o mantém.

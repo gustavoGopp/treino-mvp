@@ -31,3 +31,17 @@ Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máqui
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/panturrilha-leg-press.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (na biblioteca: panturrilha, sem secundário); a nota, do erro "Dobrar os joelhos" e das linhas Posição e Subida | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Preparo, Posição e Montagem segura da tabela | consenso | `nsca2021` (não verificado); `seguranca.montagem` |
+| Variações (`vary`) | linhas Descida, Embaixo e Subida e o erro "Quicar embaixo"; a pausa embaixo segue a regra da panturrilha alongada | consenso; um estudo (a regra) | `nsca2021` (não verificado); `selecao.panturrilha-alongada` |
+| Nota (`note`) | a montagem do cartão, num texto só (a trava fechada a série inteira; pés secos e tênis que não escorrega) | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/panturrilha-leg-press.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha (escrita em 12/11 para tirar o "Sem guia ainda") não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda. A seção Músculos só repete os ids da biblioteca, sem selo próprio. O erro "Quicar embaixo" não tem desenho (está em `SEM_DESENHO`): o texto o mantém, e o `vary` repete a pausa embaixo.

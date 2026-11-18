@@ -36,3 +36,16 @@ Placa da torre: +1 placa (`progressao.incremento.polia`).
 
 ## Encosto reclinado (lido em 05/11/2026)
 Com o quadril a 40° (encosto reclinado) em vez de 90° (sentado reto), o reto femoral cresceu mais em 22 homens não treinados, 10 semanas, evidência bayesiana "extrema"; o vasto lateral cresceu igual (`larsen2025c`, PMID 39699974; **um estudo**, não treinados). Entra no cartão como "se o encosto reclina, recline-o um pouco". A mesma lógica vale, em tese, para a extensão sentada com caneleira ou elástico (encostar as costas e abrir o quadril), mas ninguém testou fora da máquina (**consenso**).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/cadeira-extensora.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (quadríceps, sobretudo o reto femoral) e "Por que assim" (a parte do quadríceps que cruza o quadril); a nota, dos erros "Tirar o quadril do banco" e "Descer rápido" e da linha Corpo | um estudo (o reto femoral); consenso (a nota) | `kinoshita2026`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Ajuste e Corpo da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | o equipamento do cabeçalho, a seção "Encosto reclinado" (se o encosto reclina, recline-o um pouco) e as linhas Subida e Descida | um estudo (o encosto); consenso | `larsen2025c` (PMID 39699974, citado na seção "Encosto reclinado"); `selecao.alongado`; `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/cadeira-extensora.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a regulagem (o encosto que põe o joelho no eixo e o rolo logo acima do pé) foi para a conferência. A chave `larsen2025c` está só na seção "Encosto reclinado", e não na lista de Fontes. A ficha não dá números para a regulagem (a conferência da animação regulou o encosto e o rolo pelo corpo, e o assento a 56 cm é de desenho). O `vary` repete o "recline um pouco" do cartão, sem o resultado do estudo (fica no cartão, na posição).

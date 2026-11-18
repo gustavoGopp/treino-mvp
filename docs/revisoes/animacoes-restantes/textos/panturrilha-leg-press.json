@@ -1,0 +1,74 @@
+{
+  "id": "panturrilha-leg-press",
+  "name": "Panturrilha no leg press",
+  "short": "Panturrilha no leg press",
+  "target": "Panturrilha",
+  "feel": "Panturrilha.",
+  "feelNote": "Se sentir a coxa, os joelhos estão dobrando para empurrar a plataforma: joelhos estendidos, sem travar, e empurre só com a ponta dos pés.",
+  "setupEq": [
+    "Leg press com a trava de segurança fechada durante toda a série.",
+    "Anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Costas e quadril apoiados, joelhos estendidos, sem travar.",
+    "Só a ponta dos pés na borda de baixo da plataforma, calcanhares para fora."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Deixa os calcanhares descerem até a panturrilha alongar bem."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Segura 1 s alongado."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra com a ponta dos pés o máximo que conseguir."
+    ]
+  ],
+  "range": [
+    "Início: calcanhares abaixo da ponta dos pés, panturrilha alongada.",
+    "Fim: na ponta dos pés."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Alonga embaixo.",
+    "Joelhos estendidos.",
+    "Sobe o máximo."
+  ],
+  "check": [
+    "Trava de segurança fechada",
+    "Anilhas iguais dos dois lados",
+    "Costas e quadril apoiados, joelhos estendidos sem travar",
+    "Só a ponta dos pés na borda de baixo da plataforma",
+    "Pés secos e tênis que não escorrega"
+  ],
+  "vary": "O que não muda: os joelhos estendidos, a descida em ~2 s até a panturrilha alongar bem, a pausa de 1 s embaixo, sem quicar, e a subida o máximo que conseguir na ponta dos pés.",
+  "note": "<b>Montagem segura:</b> mantenha a trava de segurança fechada durante toda a série: com só a ponta dos pés na plataforma, o pé pode escapar. Pés secos e tênis que não escorrega.",
+  "extLabels": [
+    "alongado",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Movimento curto",
+      "desc": "Subir e descer só um pouco, com carga alta."
+    },
+    {
+      "id": "e2",
+      "title": "Dobrar os joelhos",
+      "desc": "Usar as coxas para empurrar a plataforma."
+    },
+    {
+      "id": "e3",
+      "title": "Quicar embaixo",
+      "desc": "Bater e voltar sem a pausa tira o trabalho da parte alongada."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+}
