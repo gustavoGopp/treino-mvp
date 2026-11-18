@@ -17,7 +17,9 @@
 // No voador, a máquina nas duas regulagens (voador e voador invertido: o encosto na guia, o assento e a posição inicial
 // dos braços), os braços abrindo e fechando (de frente e de cima) e a pilha subindo.
 // No graviton, a almofada dos joelhos em cima e embaixo (a alavanca girando no eixo), com a pilha subindo quando ela desce.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Nas máquinas de rosca e de tríceps, a alavanca no começo e no fim (de lado), com a pilha subindo, e a outra máquina ao
+// lado (para ver que não se confundem).
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|rosca-maquina|triceps-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -42,6 +44,7 @@ export * from './src/engine/novo/pecas-de-cena/estacao-puxada.ts';
 export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export * from './src/engine/novo/pecas-de-cena/graviton.ts';
+export * from './src/engine/novo/pecas-de-cena/rosca-maquina.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -633,5 +636,61 @@ if (!so || so === 'graviton') {
 <h2>Funcionando (de lado, pelo lado direito de quem treina): a almofada em cima e embaixo</h2>
 <div class="l">${cel(`em cima (+${alto}°, o topo da barra): as placas ${v(sobe(alto))} cm acima do repouso`, img(desenho(G(alto), lado), 520))}${cel(`embaixo (${baixo}°, a barra com os braços estendidos): a almofada desceu ${v(m.debaixoDoJoelho(alto)[1] - m.debaixoDoJoelho(baixo)[1])} cm e as placas subiram para ${v(sobe(baixo))} cm`, img(desenho(G(baixo), lado), 520))}</div>
 <h2>As medidas</h2>${tabela('graviton', ['graviton'])}`,
+  );
+}
+
+// as máquinas de braço: a regulagem do corpo da tabela (o assento, o pegador na alavanca, o começo e o fim), lida dos
+// quadros das animações, se elas existem; senão, a de desenho
+const BRACO = {
+  'rosca-maquina': { mod: () => m.ROSCA_NA_MAQUINA, cartao: 'rosca_maquina', objeto: 'rosca-maquina', chave: 'roscaMaquina', reg: { assento: 47, pegador: 33.7, inicio: 60, fim: 168 } },
+  'triceps-maquina': { mod: () => m.TRICEPS_NA_MAQUINA, cartao: 'triceps_maquina', objeto: 'triceps-maquina', chave: 'tricepsMaquina', reg: { assento: 47, pegador: 33.7, inicio: 148, fim: 56 } },
+};
+function regulagemDeBraco(id) {
+  const ex = m.EXERCICIOS?.[id];
+  if (!ex) return BRACO[id].reg;
+  const q0 = ex.quadro(m.CORPOS.homem, 0),
+    q1 = ex.quadro(m.CORPOS.homem, 1);
+  return { assento: q0.marcas.regulagem[0], pegador: q0.marcas.regulagem[1], inicio: q0.marcas.alavanca[0], fim: q1.marcas.alavanca[0], pegadaMeia: Math.abs(q0.marcas.pegadorR[0]) };
+}
+function pecasDeBraco(id, alavanca) {
+  const R = regulagemDeBraco(id);
+  const r = m.maquinaDeBraco({ alavanca, inicio: R.inicio, pegador: R.pegador, assento: R.assento, pegadaMeia: R.pegadaMeia }, BRACO[id].mod());
+  return { pecas: [r.fixa, r.pilha, r.movel], subida: r.subida, ext: r.extremos };
+}
+for (const [id, outro] of [
+  ['rosca-maquina', 'triceps-maquina'],
+  ['triceps-maquina', 'rosca-maquina'],
+]) {
+  if ((so && so !== id) || !BRACO[id].mod()) continue;
+  const B = BRACO[id];
+  // a outra máquina ao lado, quando a peça dela já existe
+  const comOutra = !!BRACO[outro].mod();
+  const R = regulagemDeBraco(id);
+  const o = (k) => m.obj(B.chave, k);
+  // o cartão de hoje olha a máquina de três quartos, pela frente e pelo lado do came; a peça nova, do mesmo jeito
+  const cam = { yaw: 215, pitch: 12, s: 0.6 };
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const c0 = pecasDeBraco(id, R.inicio),
+    c1 = pecasDeBraco(id, R.fim);
+  const ext = c0.ext;
+  const rosca = id === 'rosca-maquina';
+  const titulo = rosca ? 'Máquina de rosca' : 'Máquina de tríceps';
+  const texto = rosca
+    ? `<p>O tamanho total vem da ficha da Precor RSL0204 (122 × 110 × 148 cm), com a Life Fitness SS-BC (122 × 160 × 148) e a Hammer Strength HS-BC (115 × 105 × 140) ao lado; a Precor dá também a pilha (73 kg) e a espessura dos estofados (6,5 cm). O ajuste vem do manual da Hammer Strength: "adjust the seat height so the back of arms rest fully on arm pad, aligning the elbows with the machine pivot". As medidas que fazem a máquina funcionar (a altura do eixo, o ângulo e o tamanho do apoio dos braços, o curso do assento) não aparecem em nenhuma ficha lida: saíram do corpo da tabela (o cotovelo no eixo, o braço deitado no apoio), em amarelo na tabela.</p>
+<p><b>O que muda do cartão de hoje:</b> a torre fica ao lado e atrás do assento, e não atrás dele (a largura das fichas só fecha assim, como nas cadeiras); e o apoio dos braços é partido no meio, uma metade para cada braço, com um vão de ${v(o('apoioVao'), 0)} cm. Com o apoio inteiro, o peito do corpo da tabela entrava nele: o braço deitado no apoio começa no ombro, e o peito fica ${'~'}12 cm à frente do centro do ombro (medido). A Precor diz que o apoio "gives optimal support without restricting proper breathing"; o desenho dela não foi copiado.</p>`
+    : `<p>A ficha da técnica do app é a do <b>braço apoiado à frente</b> (a extensão do cotovelo sentado, como a Hammer Strength HS-TE e a Precor RSL0208). <b>O cartão de hoje é outra máquina</b>: a de mergulho sentado, com os pegadores em pé ao lado do quadril (como a Life Fitness SS-TP, "Triceps Press"). A peça nova segue a ficha da técnica; do cartão ficam as cores, o assento num pé só e a torre. Quem integra decide se o cartão muda (anotado no resumo).</p>
+<p>A peça é a da máquina de rosca, com outro modelo (como a extensora sai da flexora): o tamanho da Precor RSL0208 (122 × 110 × 148 cm, o mesmo quadro da rosca), os dois pegadores em pé numa barra atravessada (a pegada neutra; o desenho do manual da HS-TE mostra assim), o apoio da lombar atrás do assento, que sobe e desce com ele ("hips in contact with the lower back pad", o manual da Hammer Strength), e a pilha que sobe quando a alavanca desce. O apoio dos braços é o da rosca, partido no meio.</p>`;
+  await foto(
+    id,
+    `<h1>${titulo}: o cartão de hoje × a peça nova</h1>${texto}
+<p><b>A máquina funciona:</b> a alavanca gira no eixo, que fica na linha dos cotovelos de quem senta (marcado pelo came, do lado esquerdo); o pegador anda num arco de ${v(R.pegador)} cm em volta dele, e a mão com ele. O came (${v(o('cameDiam'), 0)} cm) gira com a alavanca e enrola o cabo, que desce até a polia do pé da coluna, vai até a da torre e sobe por dentro dela: as placas sobem ${v(c1.subida)} cm do começo ao fim (de ${v(R.inicio, 0)}° a ${v(R.fim, 0)}°, ${rosca ? 'subindo' : 'descendo'}). O assento sobe e desce (a regulagem do corpo da tabela: ${v(R.assento)} cm do chão). Medida desenhada: ${v(ext.zFrente - ext.zTras, 0)} cm de comprimento e ${v(ext.xEsquerda - ext.xDireita, 0)} cm de largura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje(B.cartao), 96, 'cartao'))}${cel('nova', img(desenho(c0.pecas, cam), 96, 'cartao'))}${comOutra ? cel(`nova: a ${outro === 'rosca-maquina' ? 'máquina de rosca' : 'máquina de tríceps'} (para ver se se confundem)`, img(desenho(pecasDeBraco(outro, regulagemDeBraco(outro).inicio).pecas, cam), 96, 'cartao')) : ''}${cel(`hoje: o cartão da ${outro === 'rosca-maquina' ? 'rosca' : 'tríceps'}`, img(hoje(BRACO[outro].cartao), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje(B.cartao), 440, 'cartao'))}${cel('nova, de três quartos, no começo do movimento', img(desenho(c0.pecas, cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem senta)</h2>
+<div class="l">${cel(`começo (${v(R.inicio, 0)}°): as placas embaixo`, img(desenho(c0.pecas, lado), 520))}${cel(`fim (${v(R.fim, 0)}°): as placas do pino ${v(c1.subida)} cm acima`, img(desenho(c1.pecas, lado), 520))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(c1.pecas, cam), 640))}</div>
+<h2>As medidas</h2>${tabela(B.objeto, [B.chave])}`,
   );
 }
