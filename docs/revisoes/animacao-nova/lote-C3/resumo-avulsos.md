@@ -9,9 +9,9 @@ De 18/11/2026. As últimas animações da fase C deste grupo: o abdominal na má
 Folha: `docs/revisoes/animacoes-restantes/pecas/folha-abdominal-maquina.png` (`node scripts/animacao-nova/folha-pecas.mjs abdominal-maquina`).
 
 - **Medidas com fonte:** 133 × 117 × 148 cm (Life Fitness SS-AB, manual público Insignia, p. 8; a mesma da pesquisa, LF-HS26); Hammer Strength HS-ABC 158 × 89 × 143, Movement 141 × 114 × 146, Technogym MK83 139 × 103 × 140 (pesquisa, seção 13.1); estofados de 6,5 cm (Precor). **Como funciona, do manual da Life Fitness:** o assento regula para o apoio da lombar ficar na lombar; as mãos nos pegadores só guiam; as almofadas sobre o peito, num braço que gira num eixo atrás e ao lado da lombar.
-- **Derivadas do corpo:** o assento a 40,3 cm (a coxa na horizontal, os pés no chão, o joelho a 90°); o apoio da lombar encostado nas costas; **o eixo no polo da rotação do tórax** do começo ao fim do abdominal (26,1 cm acima do centro do quadril, 3,6 cm atrás dele); as almofadas sobre o peito; os pegadores à frente dos ombros; os rolos sobre o peito do pé.
+- **Derivadas do corpo:** o assento a 40,3 cm (a coxa na horizontal, os pés no chão, o joelho a 90°); o apoio da lombar encostado nas costas; **o eixo no polo da rotação do tórax** do começo ao fim do abdominal (26,1 cm acima do centro do quadril, 3,6 cm atrás dele); as almofadas sobre o peito; os pegadores à frente do peito, logo abaixo das almofadas; as hastes por fora dos cotovelos de quem treina (45,8 cm do meio) e à frente do peito; os rolos sobre o peito do pé.
 - **De desenho:** o assento, o apoio da lombar, as almofadas (16 × 9 cm, 15 cm entre os centros), os pegadores, os rolos, o came (20 cm), a pilha, os tubos.
-- **Funciona:** o braço inteiro gira no eixo, o came enrola o cabo e as placas sobem o arco do came (7,2 cm em 42°).
+- **Funciona:** o braço inteiro (as hastes, as almofadas e os pegadores) gira no eixo, o came enrola o cabo e as placas sobem o arco do came (7,2 cm em 42°).
 - **Diferente do cartão de hoje:** o cartão gira o braço num eixo alto, atrás da cabeça, e não tem o apoio da lombar.
 
 ### A tornozeleira (`pecas-de-cena/tornozeleira.ts`, `dados/objetos/tornozeleira.json`)
@@ -28,13 +28,13 @@ Folha: `docs/revisoes/animacoes-restantes/pecas/folha-tornozeleira.png`.
 
 | | Abdominal na máquina | Coice na polia | Abdução na polia | Remada invertida |
 |---|---|---|---|---|
-| Conferência automática | 0 falha, 1 aviso (linhas de desenho) | 0 falha, 2 avisos (dorsiflexão de 20°; linhas de desenho) | 0 falha, 2 avisos (linhas de desenho; o glúteo não aparece de frente) | 0 falha, 2 avisos (ritmo 17,1%; linhas de desenho) |
+| Conferência automática | 0 falha, 1 aviso (linhas de desenho) | 0 falha, 1 aviso (linhas de desenho) | 0 falha, 2 avisos (linhas de desenho; o glúteo não aparece de frente) | 0 falha, 2 avisos (ritmo 17,1%; linhas de desenho) |
 | Vistas | de lado e de três quartos | de lado e de três quartos, por trás | de frente e de trás | de lado e de três quartos, por trás |
 | Erros desenhados | puxar com os braços; só dobrar o quadril | arquear a lombar; dobrar o joelho; embalar | inclinar o tronco; girar o pé para fora | quadril caído; puxar com o queixo; descida solta |
 | Erros sem desenho | nenhum | nenhum | **embalar a perna** (ritmo; como o "Balançar a perna" da abdução com elástico, que já está em `SEM_DESENHO`) | nenhum |
 | Conferência escrita | `abdominal-maquina.md` | `coice-polia.md` | `abducao-polia.md` | `remada-invertida.md` |
 | Quadros grandes | `../quadros/abdominal-maquina.png` | `../quadros/coice-polia.png` | `../quadros/abducao-polia.png` | `../quadros/remada-invertida.png` |
-| Risco de o Gustavo não gostar | médio | médio a alto | médio | médio |
+| Risco de o Gustavo não gostar | médio | médio | médio | médio |
 
 ## Os dois lados (aviso de 18/11)
 
@@ -50,9 +50,15 @@ Nenhuma no núcleo, nas peças comuns ou nas animações aprovadas (o preparo de
 - O `dados/preparo/registro.ts` é o gerado pelo `preparo.mjs`; ele gravou só os quatro arquivos novos (com as calibrações) e as linhas do registro.
 - Pedidos ao conteúdo: `pedidos-avulsos.md` (os posteriores no coice; o cartão de equipamento do abdominal).
 
+## A revisão de 18/11 (o abdominal e o coice voltaram)
+
+O integrador aprovou a abdução na polia e a remada invertida, e devolveu os outros dois:
+- **Abdominal na máquina:** de lado, o pegador ficava na frente dos olhos. As mãos foram para a frente do peito, logo abaixo das almofadas (o manual só diz "grip handles"), e as hastes do braço da máquina sobem pelos lados, por fora dos cotovelos, e vêm à frente do peito: nada passa na altura do rosto, e a almofada de perto aparece no peito. Regra nova, nos dois lados: as hastes e os pegadores livres do corpo (0,9 cm) e da cabeça (11,1 cm).
+- **Coice na polia:** o joelho que trabalha dobrava 34° no meio do chute. Agora fica em 8° o ciclo todo (a regra mede até 15° em todos os quadros): a bacia sobe 3,9° do lado que trabalha, em volta do quadril de apoio, parada, e a coluna devolve a inclinação (o tórax fica reto). O tronco mais inclinado e a perna começando mais à frente não mudam a altura do quadril, e o joelho de apoio mais dobrado a abaixa.
+
 ## O que não ficou bom (o principal; o resto em cada conferência)
 
-- **Coice:** o joelho dobra até 34° quando o pé passa embaixo do quadril (a perna estendida e na vertical é ~1 cm mais comprida que a distância do quadril ao chão); nas pontas, 13°. É o primeiro coice em pé do motor.
-- **Abdominal:** de lado, as almofadas quase não aparecem (o braço da pessoa fica na frente, e a haste de perto vai para trás do corpo); a peça difere do cartão de hoje.
+- **Coice:** a bacia fica 3,9° mais alta do lado que trabalha (de trás, se percebe pouco).
+- **Abdominal:** de frente, as hastes do braço da máquina passam na frente dos braços e a máquina fica larga; a peça difere do cartão de hoje.
 - **Remada:** a descida solta se lê pelo braço travado e pelo ombro, não por um corpo mais baixo.
 - **Tornozeleira:** argola e mosquetão provisórios; a 320 px a argola some.

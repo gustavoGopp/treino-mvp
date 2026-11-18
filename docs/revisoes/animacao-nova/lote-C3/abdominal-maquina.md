@@ -21,7 +21,8 @@ O tamanho vem das fichas (Life Fitness SS-AB 133 × 117 × 148 cm; Hammer Streng
 | Enrola o tronco: as costelas vão à pelve | consenso | a lombar dobra 26° e a torácica 40° (os números do abdominal na polia aprovado); o tórax gira 49,3°; a base do pescoço chega 6,9 cm mais perto do quadril | sim |
 | O quadril dobra pouco | consenso | a bacia não anda nem gira (0 cm, 0°) | sim |
 | Volta controlada até o tronco ficar reto | consenso | 2 s; no começo, o peito na vertical, a coluna neutra | sim |
-| Braços só seguram | consenso | **as duas mãos** ficam nos pegadores (0 cm), fechadas; em relação ao tórax, andam 5,4 cm e o cotovelo vai de 138,2° a 143,4° | sim |
+| Braços só seguram | consenso | **as duas mãos** ficam nos pegadores (0 cm), fechadas, à frente do peito, logo abaixo das almofadas; em relação ao tórax, andam 4,4 cm e o cotovelo vai de 116,3° a 122,7° | sim |
+| (Nada da máquina no rosto ou no corpo) | desenho | nos dois lados, as hastes do braço da máquina, as dos pegadores e as empunhaduras ficam a no mínimo 0,9 cm da pele (fora a mão que segura) e a 11,1 cm da cabeça | sim |
 | (A máquina funciona) | consenso | o braço gira de 0,5° a 42° no eixo; a pilha sobe 7,2 cm (o arco do came de 20 cm) | sim |
 
 **Conferência automática: 0 falha, 1 aviso** (as linhas que são escolha de desenho).
@@ -30,22 +31,30 @@ O tamanho vem das fichas (Life Fitness SS-AB 133 × 117 × 148 cm; Hammer Streng
 
 Todas as regras de contato medem os dois lados: as duas almofadas (no peito e dentro das bordas: a primeira versão, de 22 cm e mais alta, tinha a ponta de cima no ar, a 7 a 9 cm da pele, sobre a clavícula; ficou com 16 cm, 18 cm abaixo da sétima cervical e 15 cm entre os centros), as duas mãos nos pegadores, os dois pés sob os rolos e os dois lados do glúteo no assento. Nos quadros, de três quartos, o braço, a mão e a almofada do lado de longe aparecem no lugar.
 
+## A revisão de 18/11: o pegador na frente do rosto
+
+Na primeira versão, de lado (a vista que o app abre), o pegador e a haste que descia do arco por cima dos ombros ficavam na frente dos olhos em f0 e f0,5. Agora:
+- **as mãos ficam à frente do peito, logo abaixo das almofadas** (o centro de cada uma 27 cm abaixo da sétima cervical, 32 cm à frente dela, a 13 cm do meio do corpo), nos pegadores que saem da ponta de baixo das almofadas, apontando para a frente e para cima (45°). O manual da Life Fitness só diz "grip handles"; o desenho dele põe as mãos ao lado da cabeça, e era isso que cruzava o rosto. No fim do abdominal os pegadores ficam quase na horizontal, a 0,9 cm das coxas no ponto mais perto;
+- **o braço da máquina não passa mais por cima dos ombros:** as duas hastes sobem pelos lados do corpo, por fora dos cotovelos de quem treina (a 45,8 cm do meio, 2 cm por fora da pele deles), vêm à frente do peito na altura das almofadas e entram até a borda de fora delas. Nada da máquina fica na altura do rosto;
+- **de lado, a almofada do lado de perto aparece no peito**, inteira, e a mão segura logo abaixo dela.
+
+Uma regra nova mede isso nos dois lados (`abdominal-maquina-pegadores-livres-do-corpo`: as hastes e os pegadores a pelo menos 0,5 cm da pele, fora a mão que segura, e a pelo menos 10 cm da cabeça).
+
 ## As vistas
 
-**De lado** (padrão): a coluna enrolando, o assento, o apoio da lombar, a pilha subindo atrás. A haste e o montante do braço do lado de perto são pintados atrás do corpo (cobriam o ombro e as costas, o corte de ilustração do smith). **De três quartos** (segunda e a do modo Músculos): o braço da máquina inteiro, as almofadas no peito, os rolos dos pés.
+**De lado** (padrão): a coluna enrolando, a almofada no peito, as mãos logo abaixo dela, o assento, o apoio da lombar, a pilha subindo atrás. A haste e o montante do braço do lado de perto são pintados atrás do corpo (o corte de ilustração do smith). **De três quartos** (segunda e a do modo Músculos): o braço da máquina inteiro, as duas almofadas no peito, as duas mãos, os rolos dos pés.
 
 ## Erros (os dois do cartão, com o mesmo título e na mesma ordem)
 
 | Erro | Vista | O que o boneco faz (medido) |
 |---|---|---|
-| Puxar com os braços | de lado | o braço da máquina vai o caminho todo (42,1°), mas a coluna enrola só 35% (o peito a 17,3° da vertical): os braços puxam (o cotovelo abre de 143° para 120°) e o peito sai das almofadas |
-| Só dobrar o quadril | de lado | a coluna fica reta e a bacia gira 38°: o tronco desce inteiro (o peito a 38°), a lombar sai do apoio e o braço da máquina vai a 63° |
+| Puxar com os braços | de lado | o braço da máquina vai o caminho todo (42°), mas a coluna enrola só 35%: os braços puxam (o cotovelo abre) e o peito sai das almofadas |
+| Só dobrar o quadril | de lado | a coluna fica reta e a bacia gira 38°: o tronco desce inteiro, a lombar sai do apoio e o braço da máquina vai mais longe |
 
 ## O que não ficou bom
 
-- **De lado, as almofadas quase não aparecem:** o braço da pessoa fica na frente delas, e a haste do lado de perto vai para trás do corpo. A máquina se lê melhor de três quartos.
-- **As mãos ficam à frente dos ombros, e não ao lado da cabeça** como no desenho do manual: ao lado da cabeça, de lado, o pegador passava na frente do rosto. O cotovelo fica bem dobrado (~140°).
-- **A peça é diferente do cartão de hoje** (o eixo baixo, ao lado da lombar, no lugar do eixo alto atrás da cabeça, e o apoio da lombar): segue o manual da Life Fitness, mas o cartão do app não foi mexido.
-- O eixo está dentro da largura do corpo, na altura da lombar (é o polo da rotação do tórax); o braço da máquina passa por fora, a 31 cm do meio.
+- **De frente, as hastes passam na frente dos braços**, na altura das almofadas, e a máquina fica larga (as hastes a 45,8 cm do meio): é o preço de tirá-las de cima dos ombros.
+- **A peça é diferente do cartão de hoje** (o eixo baixo, ao lado da lombar, o apoio da lombar, as hastes pelos lados): segue o manual da Life Fitness, mas o cartão do app não foi mexido.
+- De lado, a almofada de perto é pintada por cima do braço (de perfil, o braço fica entre ela e quem olha): é o que deixa a almofada aparecer no peito.
 
-**Risco de o Gustavo não gostar: médio** (máquina nova, diferente do cartão; as almofadas aparecem pouco de lado).
+**Risco de o Gustavo não gostar: médio** (máquina nova, diferente do cartão).

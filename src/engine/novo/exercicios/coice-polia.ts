@@ -8,8 +8,9 @@
 // esquerda), o joelho de apoio quase estendido, a pelve parada no ponto em que o centro de massa cai sobre o meio do pé
 // de apoio (calibrado no começo e no fim, e misturado no caminho). A inclinação do tronco vem da bacia, que gira à
 // frente sobre o quadril de apoio, com a coluna neutra. As mãos fecham nos dois montantes da frente da torre; a torre
-// fica à distância em que os cotovelos ficam um pouco dobrados. O joelho da perna livre dobra o mínimo para o pé não
-// raspar o chão quando passa embaixo do quadril.
+// fica à distância em que os cotovelos ficam um pouco dobrados. A perna que trabalha fica quase estendida o ciclo todo
+// (o joelho a 8°): para o pé passar embaixo do quadril sem raspar o chão, a bacia sobe 4° do lado dela, em volta do
+// quadril de apoio, e a coluna devolve a inclinação (o tórax fica reto); o pé fica com a sola perto da horizontal.
 //
 // O cabo sai da roldana baixa, na frente, e vai reto até a argola da tornozeleira, que fica do lado da faixa virado para
 // ela; a pilha sobe o que o cabo anda dividido pela relação da máquina (./polia-no-tornozelo.ts).
@@ -51,7 +52,7 @@ interface Base {
   sx1: number;
   sz1: number;
   joelhoLivre: number;
-  /** O centro de cada pegada, nos montantes da frente da torre. `joelhoLivre`: quanto o joelho dobra com a coxa na vertical. */
+  /** O centro de cada pegada, nos montantes da frente da torre. `joelhoLivre`: quanto o joelho que trabalha dobra. */
   maos: Record<Lado, V3>;
   repouso: number;
 }
@@ -61,7 +62,22 @@ const pernaDeApoio = (corpo: Corpo): PosePerna => ({
   polo: norm([0.08, 0, 1]),
 });
 
-const tronco = (corpo: Corpo, p: Pedido): Tronco => resolverTronco(corpo, { pelve: [p.sx, p.y, p.sz], frente: p.frente, lombar: p.lombar, cervical: f('cervical'), cabeca: f('cabeca') });
+/**
+ * O tronco: a bacia inclinada à frente (`frente`) e subindo `bacia.sobe` graus do lado que trabalha, em volta do quadril
+ * de apoio (que fica no lugar); a coluna devolve a inclinação de lado (metade na lombar, metade na torácica), e o tórax
+ * fica reto.
+ */
+function tronco(corpo: Corpo, p: Pedido): Tronco {
+  const sobe = f('bacia.sobe');
+  const pose = { pelve: [p.sx, p.y, p.sz] as V3, frente: p.frente, lombar: p.lombar, cervical: f('cervical'), cabeca: f('cabeca') };
+  if (!sobe) return resolverTronco(corpo, pose);
+  const t0 = resolverTronco(corpo, pose);
+  const hq = corpo.m('quadril.meiaDistancia');
+  const quadrilL = add(t0.pelve.o, mul(t0.pelve.x, hq));
+  const lado = { ...pose, lado: sobe, lombarLado: -sobe / 2, toracicaLado: -sobe / 2 };
+  const x = resolverTronco(corpo, { ...lado, pelve: [0, 0, 0] }).pelve.x;
+  return resolverTronco(corpo, { ...lado, pelve: sub(quadrilL, mul(x, hq)) });
+}
 
 /** Cada mão fechada num montante da torre (tubos em pé), o polegar para cima, o cotovelo para baixo e para fora. */
 const MAO_NO_MONTANTE = (k: Lado, pegada: V3): PoseBraco => ({ pegada, polo: norm([sinal(k) * 0.5, -1, -0.3]), mao: { polegar: [0, 1, 0], forma: 'pegada', diam: f('torre.montanteDiam') } });
@@ -152,7 +168,7 @@ function calibrar(corpo: Corpo): Base {
       b.maos = { R: [xm - meia, f('torre.mao.altura'), z], L: [xm + meia, f('torre.mao.altura'), z] };
       [b.sx0, b.sz0, b.y0] = sobre(0, b.sx0, b.sz0, b.y0);
       [b.sx1, b.sz1, b.y1] = sobre(1, b.sx1, b.sz1, b.y1);
-      b.joelhoLivre = baixo(f('joelho.livre')) >= f('pe.livre.acimaDoChao') ? f('joelho.livre') : resolver1((j) => baixo(j) - f('pe.livre.acimaDoChao'), f('joelho.livre'), 35, 24);
+      b.joelhoLivre = baixo(f('joelho.livre')) >= f('pe.livre.acimaDoChao') ? f('joelho.livre') : resolver1((j) => baixo(j) - f('pe.livre.acimaDoChao'), f('joelho.livre'), f('joelho.maximo'), 24);
     }
     const t = torreDas(b.maos);
     let rep = 1e9;
@@ -163,15 +179,11 @@ function calibrar(corpo: Corpo): Base {
 }
 
 /**
- * O joelho da perna que trabalha: quase estendido nas pontas (`joelho.livre`) e dobrado `meio` graus quando a coxa passa
- * embaixo do quadril (a coxa perto da vertical), para o pé não raspar o chão, como no passo; no caminho, um sino (o
- * quadrado do cosseno do ângulo da coxa), sem tranco.
+ * O joelho da perna que trabalha: quase estendido e parado o ciclo todo (`meio`: o que a calibração achou, entre
+ * `joelho.livre` e `joelho.maximo`, para o pé passar sem raspar o chão embaixo do quadril).
  */
-function joelhoNoCaminho(u: number, meio: number): number {
-  const coxa = mix(f('coxa.inicio'), f('coxa.fim'), u) - f('tronco.inclina') - f('joelho.sinoCentro');
-  const largura = f('joelho.sino');
-  const s = Math.abs(coxa) >= largura ? 0 : Math.cos(((coxa / largura) * Math.PI) / 2) ** 2;
-  return mix(f('joelho.livre'), meio, s);
+function joelhoNoCaminho(_u: number, meio: number): number {
+  return meio;
 }
 
 function pedido(b: Omit<Base, 'repouso'>, u: number, erro?: string): Pedido {
