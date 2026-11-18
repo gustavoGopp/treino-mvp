@@ -13,3 +13,4 @@ O que vai para o devlog, o backlog e os pedidos de conteúdo, anotado durante os
 
 ## Pedidos de conteúdo
 - `docs/revisoes/animacoes-restantes/textos/pedidos.md` (fase A e fase B): entre eles, "travas logo acima do peito" no supino no smith.
+- `panturrilha-leg-press`: primeira animação com o quadro só na perna (campo novo `enquadra`, opcional) e uma vista só; espera o ok do Gustavo.
