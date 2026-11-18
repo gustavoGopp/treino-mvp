@@ -158,6 +158,8 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
  * o Gustavo ver (como ele pediu em 15/11/2026), e as que voltaram para correção. Ficam fora do app e do catálogo.
  */
 export const EM_REVISAO: Record<string, string> = {
+  'mesa-flexora': 'volta para quem fez: de três quartos por trás o corpo fica pintado embaixo do estofado',
+  'coice-maquina': 'espera o Gustavo escolher a máquina (de quatro apoios, como a ficha da técnica, ou em pé, como o cartão de equipamento e as fichas da LF, HS e Movement); e o pé pisa no ar no erro "Girar o quadril"',
   'abducao-maquina': 'volta para quem fez: a cabeça some na vista de cima e um cabo solto atravessa o fundo',
   'aducao-maquina': 'volta para quem fez: a cabeça some na vista de cima e um cabo solto atravessa o fundo',
   'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
