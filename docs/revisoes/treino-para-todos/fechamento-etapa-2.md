@@ -196,6 +196,8 @@ Com a aprovação final do Gustavo ("aprovo tudo"), foram feitos os últimos aju
 4. As duas correções para os 27 pares "grupo × defeito" que ficaram acima da `main` de antes.
 5. As perguntas que pedem fonte: a rosca Scott e o ombro; o hip thrust e a lombar; barra ou halteres para o objetivo de força.
 
+**Atualização de 18/11/2026:** o item 1 está feito. Com dois dos três consertos e a decisão do Gustavo de aceitar o custo que sobra, o limite de 6 exercícios do iniciante de 3 dias de até 60 min entrou no app e na `main` ([`teste-limite-6.md`](teste-limite-6.md), seções 7 e 8). Os itens 2 a 5 continuam para a próxima sessão.
+
 **O que depende das outras sessões:** a animação ([`pedidos-a-animacao.md`](pedidos-a-animacao.md): a puxada pela frente e o hip thrust primeiro) e o design ([`pedidos-ao-design.md`](pedidos-ao-design.md): a barra de tempo do guia em tela estreita, item 9).
 
 ## 10. Como conferir

@@ -170,5 +170,5 @@ Pelo critério da sessão (nenhum defeito da régua pior em nenhum grupo), o lim
 - A medida da população pelo app (680.625 programas): as mesmas contas que a do protótipo com os consertos, em todos os grupos ([`medidas/limite-6-app/retrato.md`](medidas/limite-6-app/retrato.md)). Em relação ao app de antes: nenhum par "grupo × defeito" da régua pior, 12 melhores.
 - Auditoria em duas rodadas: limpa. 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua. Na grade da régua, com dor, o foco abaixo da meta vai de 697 para 695 programas.
 
-**A ida para a `main`:** com o ok do Gustavo em 18/11/2026 ("pode levar para a main quando a auditoria terminar").
+**A ida para a `main`:** com o ok do Gustavo em 18/11/2026 ("pode levar para a main quando a auditoria terminar"). Feita no mesmo dia, sem forçar (`169d97f`); a verificação do GitHub (lint, tipos, cobertura e testes de tela) passou.
 

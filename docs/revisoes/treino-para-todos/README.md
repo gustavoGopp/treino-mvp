@@ -8,7 +8,7 @@
 | Ver doze pessoas, antes e depois | [`exemplos-finais/`](exemplos-finais/README.md) |
 | Ver cada pacote, com as decisões | [`pacote-1.md`](pacote-1.md), [`pacote-0.md`](pacote-0.md), [`pacote-3.md`](pacote-3.md), [`pacote-2.md`](pacote-2.md), [`pacote-4.md`](pacote-4.md), [`pacote-5.md`](pacote-5.md) |
 | Ver as frases das regras que mudaram (aprovadas em 17/11) | [`frases-das-regras.md`](frases-das-regras.md) |
-| Ver o teste do limite de 6 exercícios do iniciante (não entrou; proposta para a próxima sessão) | [`teste-limite-6.md`](teste-limite-6.md) |
+| Ver o limite de 6 exercícios do iniciante (testado em 17/11; no app e na `main` desde 18/11) | [`teste-limite-6.md`](teste-limite-6.md) |
 | Ver todos os números, por grupo | [`qa.md`](qa.md) e [`medidas/final/retrato.md`](medidas/final/retrato.md) |
 | Ver o que depende das outras sessões | [`pedidos-ao-design.md`](pedidos-ao-design.md), [`pedidos-a-animacao.md`](pedidos-a-animacao.md) |
 
