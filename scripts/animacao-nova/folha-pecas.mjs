@@ -10,7 +10,9 @@
 // Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
 // Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
 // No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na estação de puxada, a estação com a barra nas mãos (de quem não aparece) no começo e no fim do exercício, com as
+// placas subindo o que o cabo anda, e o cartão da remada baixa ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|estacao-puxada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -30,6 +32,7 @@ export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
 export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export * from './src/engine/novo/pecas-de-cena/hack.ts';
+export * from './src/engine/novo/pecas-de-cena/estacao-puxada.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -240,7 +243,7 @@ if (!so || so === 'smith') {
 <h2>Ampliada</h2>
 <div class="l">${cel('hoje', img(hoje('smith'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, com a barra presa no gancho', img(desenho(S({}).pecas, cam), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('hoje: o suporte de agachamento', img(hoje('rack_de_agachamento'), 440, 'cartao'))}</div>
-<h2>Funcionando (de lado): a barra só anda na guia</h2>
+<h2>Funcionando (de lado, como o app mostra): a barra só anda na guia</h2>
 <div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
   );
@@ -424,3 +427,37 @@ if (!so || so === 'hack') {
 <h2>As medidas</h2>${tabela('hack', ['hack'])}<p style="margin-top:8px">As anilhas são as da barra longa (folha-barra.png).</p>`,
   );
 }
+
+/** As peças de um quadro de um exercício, sem o corpo: o cabo (uma peça simples) vira uma linha. */
+function pecasDoQuadro(id, u) {
+  const q = m.EXERCICIOS[id].quadro(m.CORPOS.homem, u);
+  return { q, pecas: q.pecas.map((p) => (p.t === 'cabo' ? { desenhar: (C) => C.linha(p.a, p.b, '#1d2024', 0.8) } : { ...p, cenario: undefined })) };
+}
+
+if (!so || so === 'estacao-puxada') {
+  const o = (id) => m.obj('estacaoPuxada', id);
+  const b = (id) => m.obj('barraPuxada', id);
+  // o cartão de hoje põe a estação ao longo de x (quem senta olha para −x) e olha de yaw 34; a peça corre ao longo de
+  // z (quem senta olha para +z): yaw −124 mostra o mesmo lado, do mesmo ângulo
+  const cam = { yaw: -124, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const a = pecasDoQuadro('puxada-frente', 0),
+    z = pecasDoQuadro('puxada-frente', 1);
+  const E = m.estacaoPuxada({ rolo: a.q.marcas.rolo[0], subida: 0, placas: 6 }).extremos;
+  const sobe = z.q.marcas.pilha[1] - a.q.marcas.pilha[1];
+  await foto(
+    'estacao-puxada',
+    `<h1>Estação de puxada: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue as fichas da Life Fitness SS-PD (145 × 142 × 194 cm), da Hammer Strength HS-PD (138 × 84 × 227), da Movement (152,8 × 137,5 × 194,8) e da Spirit CSS-LATP (147 × 121 × 231). <b>A relação do cabo, 1:1, e a pilha de 17 placas vêm da ficha da Spirit</b> ("Pulley Ratio 1", "10 lb Top Plate / 8 x 10 lb Plates / 8 x 20 lb Plates"). A altura desenhada (${v(o('altura'), 0)} cm) fica entre a Life Fitness e a Hammer Strength: com 194, o centro da roldana de cima ficaria na altura do mosquetão da barra com os braços estendidos de quem senta, sem lugar para o cabo. As medidas que fazem a máquina servir a quem senta (a altura do assento, onde ficam os rolos das coxas e a roldana de cima) não aparecem em nenhuma ficha lida: são de desenho, do corpo da tabela, em amarelo na tabela.</p>
+<p><b>A barra longa de puxada é peça nova</b>, separada da barra reta curta da polia (20 pol, que ficava curta para a puxada): 48 pol (${v(b('comp'))} cm), 28 mm, com o trecho reto de 30 pol (${v(b('retaComp'))} cm) e as pontas caídas com borracha (Titan 48 in. Stainless Steel Lat Bar; Gym Gear 48"). O ângulo das pontas não consta em nenhuma ficha: ${v(b('pontaQueda'), 0)}°, de desenho.</p>
+<p><b>A máquina funciona:</b> o cabo sai do mosquetão da barra, sobe até a roldana de cima, corre por baixo do braço até a roldana do alto da torre e desce até a haste do pino; as placas do pino sobem ${v(sobe)} cm do começo ao fim da puxada, o mesmo que o cabo anda (1:1). Os rolos das coxas correm na coluna deles até encostar nas coxas. Medida desenhada: ${v(E.zFundo - E.zTras, 0)} cm de comprimento, ${v(o('altura'), 0)} cm de altura e ${v(b('comp'), 0)} cm de largura com a barra.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_puxada'), 96, 'cartao'))}${cel('nova (a barra no alto, nas mãos de quem senta)', img(desenho(a.pecas, cam), 96, 'cartao'))}${cel('hoje: a remada baixa (para ver se ainda se confundem)', img(hoje('estacao_remada'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_puxada'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, no começo da puxada', img(desenho(a.pecas, cam), 640))}</div>
+<h2>Funcionando (de lado, como o app mostra): a barra no alto e no peito, as placas subindo</h2>
+<div class="l">${cel('em cima: os braços estendidos; as placas do pino 2 cm acima das outras', img(desenho(a.pecas, lado), 440))}${cel(`embaixo: a barra no alto do peito; as placas do pino ${v(sobe)} cm mais acima`, img(desenho(z.pecas, lado), 440))}</div>
+<h2>As medidas</h2>${tabela('estacao-puxada', ['estacaoPuxada', 'barraPuxada'])}`,
+  );
+}
+
