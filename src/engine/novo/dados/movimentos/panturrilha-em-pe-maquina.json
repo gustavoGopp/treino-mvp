@@ -1,0 +1,54 @@
+{
+ "id": "panturrilha-em-pe-maquina",
+ "nome": "Panturrilha em pé na máquina",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-em-pe-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-em-pe-maquina.md) e cartão do app (src/conteudo/exercicios/panturrilha-em-pe-maquina.json): ombros sob as almofadas, a ponta dos pés na borda da plataforma, joelhos estendidos sem travar, o calcanhar desce bem abaixo da plataforma, pausa de ~1 s no alongamento e sobe o máximo possível; consenso de treinadores (nsca2021, não verificado)",
+  "kassiano2023b": "Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): treinar na parte alongada cresceu mais o gastrocnêmio (um estudo): o calcanhar bem abaixo da plataforma, com pausa",
+  "kinoshita2023": "Kinoshita M et al. Front Physiol 2023;14:1272106, PMID 38156065 (resumo lido no PubMed): em pé, com os joelhos estendidos, o gastrocnêmio cresceu muito mais que sentado (um estudo)",
+  "aprovado": "Animação aprovada do motor novo: a panturrilha no degrau da escada (dados/movimentos/panturrilha-degrau.json: o calcanhar 6 cm abaixo e 13,9 cm acima da beirada, pés na largura do quadril, joelhos a 4°, o ritmo) e a panturrilha no step (dados/movimentos/panturrilha-b.json: o erro do joelho que dobra 25°)",
+  "objetos": "src/engine/novo/dados/objetos/panturrilha-em-pe.json (a máquina: Hammer Strength HS-SC e Atlantis M118)",
+  "equilibrio": "Na ponta dos pés, o apoio é só a bola do pé: o centro de massa (corpo + a carga que as almofadas põem nos ombros) tem de ficar sobre ela para o corpo subir reto (mecânica)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "pés na largura do quadril, apontando para a frente, como na panturrilha no degrau aprovada (a ficha não diz a largura)" },
+  "joelho": { "v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'joelhos estendidos sem travar': 4° de folga (a ficha não dá número; o mesmo da panturrilha no degrau aprovada), parados na série" },
+  "bola.daBeirada": { "v": 2, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "'a ponta dos pés na borda da plataforma': a bola do pé apoia 2 cm para dentro da borda de trás do degrau; o calcanhar fica no ar" },
+  "calcanhar.embaixo": { "v": 6, "un": "cm", "selo": "um estudo", "fonte": "kassiano2023b", "o": "embaixo, o calcanhar 'bem abaixo da plataforma, até o alongamento máximo': 6 cm abaixo da borda, como na panturrilha no degrau aprovada (limitado pela dorsiflexão: ver a conferência escrita)" },
+  "calcanhar.topo": { "v": 13.9, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "em cima, 'o máximo possível': o calcanhar 13,9 cm acima do degrau, como na panturrilha no degrau aprovada (a ficha não dá número)" },
+  "almofada.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto as almofadas afundam no alto dos ombros" },
+  "carga": { "v": 40, "un": "kg", "selo": "desenho", "fonte": "desenho", "o": "a carga que as almofadas põem nos ombros (só para o equilíbrio: o corpo sobe com o centro de massa sobre a bola do pé); o cartão registra a placa da torre" },
+  "placas": { "v": 8, "un": "placas", "selo": "desenho", "fonte": "objetos", "o": "quantas placas da pilha estão no pino" },
+  "inicio.folga": { "v": 1, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a posição inicial do braço (o batente de baixo, que regula) fica 1° abaixo do ponto mais baixo do braço na série: as placas não descansam embaixo nem no alongamento" },
+  "erro.curta.embaixo": { "v": 0, "un": "cm", "selo": "desenho", "fonte": "ficha", "o": "erro 'sem passar da linha da plataforma': embaixo o calcanhar para na altura do degrau" },
+  "erro.curta.topo": { "v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima o calcanhar sobe só 6 cm acima do degrau (no certo, 13,9)" },
+  "erro.joelho.flexao": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro 'os joelhos dobram para dar impulso': embaixo os joelhos dobram 25° e esticam na subida, como na panturrilha no step aprovada" }
+ },
+ "fases": [
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "2 a 3 s", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Embaixo · pausa", "tipo": "pausa", "dur": 1.2, "de": 0, "ate": 0, "respira": "FIRME", "tempo": "~1 s, sem quicar", "selo": "um estudo", "fonte": "kassiano2023b" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Topo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "o máximo possível", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  { "id": "joelhos-estendidos-na-panturrilha", "pede": "os joelhos estendidos, sem travar, e parados", "selo": "um estudo", "fonte": "kinoshita2023" },
+  { "id": "calcanhar-abaixo-da-beirada", "pede": "embaixo, o calcanhar bem abaixo da plataforma", "selo": "um estudo", "fonte": "kassiano2023b" },
+  { "id": "calcanhar-sobe-o-maximo", "pede": "em cima, o calcanhar o mais alto possível (13,9 cm acima do degrau)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "peso-sobre-a-bola-do-pe", "pede": "o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente", "selo": "consenso", "fonte": "equilibrio" },
+  { "id": "ombros-sob-as-almofadas", "pede": "os ombros sob as almofadas: elas encostam no alto dos ombros e sobem e descem com eles", "selo": "consenso", "fonte": "ficha" },
+  { "id": "maos-nos-pegadores-da-maquina", "pede": "as mãos nos pegadores da máquina, que andam com as almofadas", "selo": "consenso", "fonte": "objetos" },
+  { "id": "placas-sobem-com-as-almofadas", "pede": "as placas sobem quando as almofadas sobem, o arco do came, e não descansam embaixo", "selo": "consenso", "fonte": "objetos" }
+ ],
+ "erros": [
+  { "id": "curta", "instante": 0, "titulo": "Subida e descida curtas", "vista": "lateral", "oQueMuda": "embaixo o calcanhar para na linha da plataforma e em cima sobe só 6 cm (no certo, de 6 cm abaixo a 13,9 cm acima)", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "tornozelo:R" },
+  { "id": "joelho", "instante": 0, "titulo": "Dobrar os joelhos", "vista": "lateral", "oQueMuda": "embaixo os joelhos dobram 25° e esticam na subida, dando impulso", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "pausa embaixo", "ponto": "calcanhar:R", "selo": "um estudo", "fonte": "kassiano2023b" },
+  { "vista": "lateral", "texto": "joelhos esticados", "ponto": "joelho:R", "selo": "um estudo", "fonte": "kinoshita2023" },
+  { "vista": "quinaTras", "texto": "calcanhar embaixo", "ponto": "calcanhar:R", "selo": "um estudo", "fonte": "kassiano2023b" }
+ ]
+}

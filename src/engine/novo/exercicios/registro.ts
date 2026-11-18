@@ -161,3 +161,4 @@ export { voador } from './voador';
 export { voadorInvertido } from './voador-invertido';
 export { barraFixaGraviton } from './barra-fixa-graviton';
 export { mergulhoGraviton } from './mergulho-graviton';
+export { panturrilhaEmPeMaquina } from './panturrilha-em-pe-maquina';
