@@ -1,0 +1,59 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "lateral",
+  "quadros": {
+   "lateral": [
+    -177.3338514052837,
+    -189.80684694703905,
+    267.0065736869662,
+    200.25493026522466
+   ],
+   "frontal": [
+    -114.77964920269021,
+    -189.78811263845023,
+    266.980219613722,
+    200.2351647102915
+   ]
+  },
+  "mini": [
+   -171.52936067295838,
+   -184.58280528794623,
+   255.39759222231555,
+   191.54819416673666
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -111,
+    -174.1347219697606,
+    23.338870876398776,
+    0
+   ],
+   "ansur2-homem-imc-normal|frontal|cinza|0|": [
+    -46.07907879165843,
+    -174.1175345306883,
+    83.5,
+    0
+   ],
+   "ansur2-homem-imc-normal|lateral|cinza|1|": [
+    -111,
+    -174.1347219697606,
+    23.338870876398776,
+    0
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|desenvolvimento-maquina:cotovelo:arco": 132.16299566533417,
+  "ansur2-homem-imc-normal|desenvolvimento-maquina:regulagem:0": {
+   "h": 46.89013176566127,
+   "inicio": 81.68342715408653,
+   "fim": 132.34071586560458
+  },
+  "ansur2-homem-imc-normal|desenvolvimento-maquina:sentado": {
+   "y": 56.1608363064006,
+   "z": -27.193515509273,
+   "deita": 19.705601930618286,
+   "h": 47
+  }
+ }
+}
