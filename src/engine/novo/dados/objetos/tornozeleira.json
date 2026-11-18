@@ -1,0 +1,25 @@
+{
+ "fontes": {
+  "gymreapers": "Gymreapers, Ankle Straps (par); https://www.gymreapers.com/products/ankle-straps (lida em 18/11/2026): \"Length: 10 inches\", \"Width: 4 inches\", \"Breathable 7mm Neoprene padding\", \"Stainless steel black D-rings\", \"Durable Velcro hold\"",
+  "power-systems": "Power Systems, Nylon Ankle/Wrist Strap, item 50760; https://powersystems.com/products/nylon-anklewrist-strap (lida em 18/11/2026): \"2\\\"W x 16\\\"L\", \"Heavy nylon strap with thick neoprene pad\", \"Quick and easy D-ring attachment for quick attachment to any cable machine\", \"Velcro closure\"; não dá a medida da argola",
+  "corpo-tornozelo": "src/engine/novo/dados/corpo-homem.json: a circunferência do tornozelo (21,9 cm)",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "tornozeleira": {
+   "nome": "Tornozeleira de polia (faixa acolchoada com velcro e argola em D, presa ao cabo pelo mosquetão)",
+   "medidas": {
+    "comp": { "v": 25.4, "un": "cm", "tipo": "medida", "fonte": "gymreapers", "onde": "comprimento da faixa aberta (10 pol); a Power Systems tem 16 pol (40,6 cm), para servir também no punho" },
+    "larg": { "v": 10.2, "un": "cm", "tipo": "medida", "fonte": "gymreapers", "onde": "largura da faixa (4 pol): o quanto ela cobre da canela; a Power Systems, mais estreita, tem 2 pol (5,1 cm)" },
+    "esp": { "v": 0.7, "un": "cm", "tipo": "medida", "fonte": "gymreapers", "onde": "espessura do acolchoado de neoprene (7 mm)" },
+    "sobreposicao": { "v": 3.5, "un": "cm", "tipo": "derivada", "fonte": "corpo-tornozelo", "onde": "fechada no tornozelo da tabela (21,9 cm de volta), a faixa de 25,4 cm sobra 3,5 cm: a ponta de velcro que fecha por cima" },
+    "acimaDoTornozelo": { "v": 2, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a borda de baixo da faixa fica 2 cm acima do centro do tornozelo, logo acima dos maléolos (como a caneleira aprovada)" },
+    "argolaLarg": { "v": 5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura da argola em D (o lado reto, preso à faixa); nenhuma ficha lida dá a medida da argola" },
+    "argolaAlt": { "v": 3.6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "do lado reto da argola ao alto do arco; sem medida lida" },
+    "argolaFio": { "v": 0.6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "espessura do aço da argola; sem medida lida" },
+    "mosquetaoComp": { "v": 8, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento do mosquetão que prende a argola ao cabo (o do cartão de hoje tem ~10 cm de desenho); sem medida lida" },
+    "velcroLarg": { "v": 4, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura da tira de velcro na cor de ação (como no cartão de hoje e na caneleira aprovada)" }
+   }
+  }
+ }
+}
