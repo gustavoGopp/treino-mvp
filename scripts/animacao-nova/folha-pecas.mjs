@@ -12,7 +12,9 @@
 // No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
 // No supino e no desenvolvimento na máquina, os braços no começo e no fim (de lado), o arco dos pegadores, e a outra
 // máquina ao lado (para ver que não se confundem).
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na remada articulada, os braços no começo e no fim (de lado), o arco dos pegadores que se abre (de cima), o apoio do
+// peito nas duas pontas da regulagem, e o supino na máquina ao lado (a mesma máquina, com o encosto atrás).
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|remada-articulada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -33,6 +35,7 @@ export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export * from './src/engine/novo/pecas-de-cena/hack.ts';
 export * from './src/engine/novo/pecas-de-cena/maquina-de-empurrar.ts';
+export { remadaArticulada, colunaDaRemada } from './src/engine/novo/pecas-de-cena/remada-articulada.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -489,5 +492,43 @@ for (const [nome, E] of Object.entries(EMPURRAR)) {
 <div class="l">${cel(`começo: os braços a ${v(E.reg.inicio)}° (0° = pendurado, 90° = para a frente); as placas embaixo`, img(desenho(pecas(c0), lado), 640))}${cel(`fim: os braços a ${v(E.reg.fim)}°; as placas do pino ${v(c1.subida)} cm acima`, img(desenho(pecas(c1), lado), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(pecas(c1), E.cam), 640))}${cel('de frente, no fim: os pegadores mais perto um do outro', img(desenho(pecas(c1), deFrente), 640))}</div>
 <h2>As medidas</h2>${tabela(E.arquivo, [E.objeto])}`,
+  );
+}
+
+if (!so || so === 'remada-articulada') {
+  const mod = m.REMADA_ARTICULADA;
+  // a regulagem que a animação calcula para o corpo do app (o assento, o apoio do peito, o ângulo inicial e o final)
+  const reg = { assento: 48.6, apoio: 8.7, inicio: -18.5, fim: 20.7 };
+  const R = (braco, extra = {}) => m.remadaArticulada({ ...reg, braco, placas: 5, ...extra });
+  const pecas = (r) => [r.fixa, r.coluna, r.bracos.R, r.bracos.L, r.pilha];
+  const c0 = R(reg.inicio),
+    c1 = R(reg.fim);
+  const sup = m.maquinaDeEmpurrar({ assento: 46, inicio: 7, braco: 7, placas: 5 }, m.SUPINO_NA_MAQUINA);
+  const cam = { yaw: 300, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const deCima = { yaw: 180, pitch: 80, s: 0.6 };
+  const o = (id) => m.obj('remadaArticulada', id);
+  const a = m.bracoNoAngulo(mod, 'R', reg.inicio).centro,
+    b = m.bracoNoAngulo(mod, 'R', reg.fim).centro;
+  const ext = c0.extremos;
+  const v = (x) => f1v(x);
+  const altura = m.colunaDaRemada().topo[1] + o('tubo') / 2;
+  await foto(
+    'remada-articulada',
+    `<h1>Remada articulada: o cartão de hoje × a peça nova</h1>
+<p>A peça nova é o modelo novo da máquina de empurrar sentado aprovada (o supino e o desenvolvimento na máquina): o mesmo assento que sobe e desce, os mesmos dois braços independentes que giram cada um no seu eixo, o mesmo came e a mesma torre com a pilha. O que muda: <b>o apoio do peito na frente</b>, no lugar do encosto atrás, e <b>os braços que se puxam</b> (pendem do eixo e giram para trás, na direção de quem senta).</p>
+<p>O tamanho total vem das fichas da Life Fitness (SS-RW, 124 × 140 × 148 cm, a altura da pilha), da Hammer Strength (HS-RW, 133 × 87 × 181, a de eixo no alto: "overhead pivot"), da Movement (Next, 120 × 129 × 146), da Technogym (MK80, 142 × 119 × 138) e da Precor (RSL0310, 160 × 140 × 147). A lista de peças pública da Life Fitness SS-RW dá o <b>apoio do peito</b> (10 × 7⅝ pol, 25,4 × 19,4 cm), o <b>assento</b> (15 × 9 pol, 38,1 × 22,9 cm), o <b>pegador</b> (Ø 1,25 pol, 3,2 cm) e o botão que regula o apoio. A Precor dá a espessura dos estofados (6,5 cm), a altura da torre (148 cm), o apoio do peito que se regula e os braços que "se abrem enquanto vêm para trás". Todas as fichas lidas são de <b>pilha de placas</b>, e o texto do app conta a carga pela "placa da torre"; o cartão de hoje é de anilhas (um pino de cada lado), então aqui a carga é a pilha, numa torre ao lado e atrás do assento. As medidas que fazem a máquina funcionar (onde fica o eixo, o comprimento do braço, as alturas do assento e do apoio) não aparecem em nenhuma ficha lida: são de desenho, em amarelo na tabela, com o motivo.</p>
+<p>Do cartão vêm o assento baixo num pé só, o apoio do peito na frente dele, o eixo no alto e à frente, os braços que pendem do eixo com os pegadores de pé na ponta. O que muda, e por quê: no cartão, a coluna sobe inclinada da frente da base até o eixo; aqui ela sobe reta, na frente dos pegadores, e uma viga volta dela até o eixo, porque de lado a coluna inclinada passaria atrás das mãos no começo da puxada. O apoio do peito corre num tubo que sai da coluna (com o botão de regular), e não num poste que sobe da base entre os joelhos.</p>
+<p><b>A máquina funciona:</b> cada braço gira no seu eixo (o braço tem ${v(o('bracoComp'))} cm), e o pegador, preso na ponta dele por um toco, anda num arco em volta do eixo: do começo ao fim, o centro do pegador direito anda ${v(a[2] - b[2])} cm para trás e ${v(b[1] - a[1])} cm para cima (o eixo fica no alto, a ${v(o('eixoAltura'))} cm, na vertical do meio do caminho: as mãos andam quase na horizontal, na linha do peito). O eixo de cada braço é inclinado ${v(o('converge'))}°, e os pegadores se afastam enquanto vêm para trás: de ${v(2 * Math.abs(a[0]))} cm entre as mãos para ${v(2 * Math.abs(b[0]))} cm. O pegador de pé inclina ${v(o('pegadorInclina'))}° para dentro, para o punho ficar alinhado na pegada neutra. O came gira com o braço da esquerda e enrola o cabo, e as placas do pino sobem ${v(c1.subida)} cm (o arco do came, de ${v(reg.inicio)}° a ${v(reg.fim)}°). O assento sobe e desce (de ${v(o('assentoMin'))} a ${v(o('assentoMax'))} cm; no exemplo, ${v(reg.assento)} cm) e o apoio do peito corre para a frente e para trás (a face, embaixo, de ${v(o('apoioMin'))} a ${v(o('apoioMax'))} cm à frente da borda do assento; no exemplo, ${v(reg.apoio)} cm): é a regulagem que a animação calcula para o corpo do app. Medida desenhada: ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento, ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura e ${altura.toFixed(0)} cm de altura (a Precor: 160 × 140; a Hammer Strength: 181 de altura).</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('remada_articulada'), 96, 'cartao'))}${cel('nova', img(desenho(pecas(c0), cam), 96, 'cartao'))}${cel('hoje: o supino na máquina', img(hoje('supino_maquina'), 96, 'cartao'))}${cel('nova: o supino na máquina (a mesma máquina, com o encosto; para ver se ainda se confundem)', img(desenho([sup.fixa, sup.bracos.R, sup.bracos.L, sup.pilha], { yaw: 140, pitch: 12, s: 0.6 }), 96, 'cartao'))}${cel('hoje: a remada baixa na estação (outra máquina)', img(hoje('estacao_remada'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('remada_articulada'), 440, 'cartao'))}${cel('nova, de três quartos, no começo do movimento', img(desenho(pecas(c0), cam), 640))}</div>
+<h2>Funcionando: os braços no começo e no fim (de lado, pelo lado direito de quem senta)</h2>
+<div class="l">${cel(`começo: os braços a ${v(reg.inicio)}° (0° = pendurado, 90° = para trás); as placas embaixo`, img(desenho(pecas(c0), lado), 640))}${cel(`fim: os braços a ${v(reg.fim)}°; as placas do pino ${v(c1.subida)} cm acima`, img(desenho(pecas(c1), lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(pecas(c1), cam), 640))}${cel('de cima, com os braços no começo e no fim desenhados juntos: os pegadores se afastam enquanto vêm para trás', img(desenho([c0.fixa, c0.coluna, c0.bracos.R, c0.bracos.L, c1.bracos.R, c1.bracos.L], deCima, false), 640))}</div>
+<h2>A regulagem do apoio do peito (de lado)</h2>
+<div class="l">${cel(`o apoio mais perto do assento (${v(o('apoioMin'))} cm)`, img(desenho(pecas(R(reg.inicio, { apoio: o('apoioMin') })), lado), 440))}${cel(`o apoio mais longe (${v(o('apoioMax'))} cm)`, img(desenho(pecas(R(reg.inicio, { apoio: o('apoioMax') })), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('remada-articulada', ['remadaArticulada'])}`,
   );
 }

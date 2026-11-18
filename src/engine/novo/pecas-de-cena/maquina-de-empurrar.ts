@@ -36,11 +36,29 @@ import type { V3 } from '../vec';
 export interface ModeloDeEmpurrar {
   objeto: string;
   nome: string;
-  /** O eixo fica acima da cabeça (supino, o braço pende) ou atrás do encosto (desenvolvimento, o braço vai à frente). */
-  eixo: 'acima' | 'atras';
+  /**
+   * O eixo fica acima da cabeça (supino, o braço pende) ou atrás do encosto (desenvolvimento, o braço vai à frente).
+   * 'frente' (acréscimo de 18/11/2026, a remada articulada): no alto, à frente de quem senta, numa coluna inclinada
+   * que sobe da frente da base; o braço pende dele para trás, na direção de quem puxa.
+   */
+  eixo: 'acima' | 'atras' | 'frente';
+  /**
+   * Opcional (a remada articulada): o braço gira para trás, na direção de quem senta (0 = pendurado, 90 = para trás, na
+   * horizontal), e o ângulo cresce enquanto a pessoa puxa. Sem o campo, ele gira para a frente, como no supino.
+   */
+  puxa?: boolean;
+  /**
+   * Opcional (a remada articulada): o pegador de pé, na linha do braço, preso por um toco que sai da ponta do braço
+   * para dentro (a pegada neutra, as palmas uma para a outra). Sem o campo, o pegador é atravessado.
+   */
+  pegador?: 'atravessado' | 'vertical';
+  /** Opcional (a remada articulada): no lugar do encosto atrás, o apoio do peito na frente, que corre para a frente e para trás. */
+  apoio?: 'encosto' | 'peito';
 }
 export const SUPINO_NA_MAQUINA: ModeloDeEmpurrar = { objeto: 'supinoMaquina', nome: 'supino na máquina', eixo: 'acima' };
 export const DESENVOLVIMENTO_NA_MAQUINA: ModeloDeEmpurrar = { objeto: 'desenvolvimentoMaquina', nome: 'desenvolvimento na máquina', eixo: 'atras' };
+/** A remada articulada (acréscimo de 18/11/2026): a mesma máquina, com o apoio do peito na frente e os braços que se puxam. */
+export const REMADA_ARTICULADA: ModeloDeEmpurrar = { objeto: 'remadaArticulada', nome: 'remada articulada', eixo: 'frente', puxa: true, pegador: 'vertical', apoio: 'peito' };
 
 const rad = Math.PI / 180;
 const X: V3 = [1, 0, 0],
@@ -58,6 +76,8 @@ export interface MaquinaDeEmpurrar {
   assento: number;
   /** Quantas placas estão no pino. */
   placas?: number;
+  /** Só com o apoio do peito (a remada): onde fica a face do apoio, na borda de baixo (z, cm): a outra regulagem. */
+  apoio?: number;
 }
 
 /** A face do encosto (onde as costas encostam): o ponto da borda de baixo, a direção para cima e a normal (para a frente). */
@@ -70,14 +90,28 @@ export function faceDoEncostoDaMaquina(mod: ModeloDeEmpurrar) {
   return { base, sobe, frente, comp: g('encostoComp') };
 }
 
+/**
+ * A face do apoio do peito (a remada articulada), com a borda de baixo em `z`: o ponto do meio da borda de baixo, a
+ * direção para cima (o alto vai à frente, `apoioInclina` graus) e a normal (para trás, para quem senta).
+ */
+export function faceDoApoioDoPeito(mod: ModeloDeEmpurrar, z: number) {
+  const g = medidas(mod);
+  const inc = g('apoioInclina') * rad;
+  const sobe: V3 = [0, Math.cos(inc), Math.sin(inc)];
+  const tras: V3 = [0, Math.sin(inc), -Math.cos(inc)];
+  const base: V3 = [0, g('apoioBaixo'), z];
+  return { base, sobe, tras, comp: g('apoioComp'), larg: g('apoioLarg') };
+}
+
 /** O eixo do braço de um lado: o ponto (no plano do braço) e a direção, inclinada para o pegador convergir. */
 export function eixoDoBraco(mod: ModeloDeEmpurrar, k: Lado): { ponto: V3; dir: V3 } {
   const g = medidas(mod);
   const s = sinal(k);
   const meio = g('bracoMeio') * rad;
-  // o braço gira em volta de −x (o ângulo cresce do pendurado para a frente); no ângulo do meio ele aponta para `r`
-  const b: V3 = [-1, 0, 0];
-  const r: V3 = [0, -Math.cos(meio), Math.sin(meio)];
+  // o braço gira em volta de −x (o ângulo cresce do pendurado para a frente); no ângulo do meio ele aponta para `r`.
+  // Na remada (`puxa`), em volta de +x: o ângulo cresce do pendurado para trás
+  const b: V3 = mod.puxa ? [1, 0, 0] : [-1, 0, 0];
+  const r: V3 = [0, -Math.cos(meio), (mod.puxa ? -1 : 1) * Math.sin(meio)];
   // a direção em que o pegador anda no meio; inclinar o eixo para ela leva o pegador para dentro (−s em x) ao girar
   const anda = norm(cross(b, r));
   const dir = norm(add(b, mul(anda, -s * Math.tan(g('converge') * rad))));
@@ -87,6 +121,8 @@ export function eixoDoBraco(mod: ModeloDeEmpurrar, k: Lado): { ponto: V3; dir: V
 /** Onde fica o plano do braço (a distância do meio da máquina, em x). */
 export const bracoX = (mod: ModeloDeEmpurrar) => {
   const g = medidas(mod);
+  // o pegador de pé fica na ponta do toco que sai do braço para dentro
+  if (mod.pegador === 'vertical') return g('pegadaMeia') + g('bracoFora');
   return g('pegadaMeia') + g('pegadorComp') / 2 + g('bracoFora');
 };
 
@@ -99,11 +135,19 @@ export function bracoNoAngulo(mod: ModeloDeEmpurrar, k: Lado, graus: number) {
   const s = sinal(k);
   const E = eixoDoBraco(mod, k);
   const meio = g('bracoMeio');
-  const r0: V3 = mul([0, -Math.cos(meio * rad), Math.sin(meio * rad)], g('bracoComp'));
+  const r0: V3 = mul([0, -Math.cos(meio * rad), (mod.puxa ? -1 : 1) * Math.sin(meio * rad)], g('bracoComp'));
   const ponta = add(E.ponto, girar(r0, E.dir, graus - meio));
   const dirPegador = norm(girar([-s, 0, 0], E.dir, graus - meio));
+  if (mod.pegador === 'vertical') {
+    // o pegador de pé: na ponta do toco, ao longo do braço (`dirBorracha`, de baixo para cima), com o alto inclinado
+    // `pegadorInclina` graus para dentro (para o punho ficar alinhado)
+    const centro = add(ponta, mul(dirPegador, g('bracoFora')));
+    const k = g('pegadorInclina') * rad;
+    const dirBorracha = norm(add(mul(norm(sub(E.ponto, ponta)), Math.cos(k)), mul(dirPegador, Math.sin(k))));
+    return { eixo: E.ponto, dirEixo: E.dir, ponta, centro, dirPegador, dirBorracha };
+  }
   const centro = add(ponta, mul(dirPegador, g('bracoFora') + g('pegadorComp') / 2));
-  return { eixo: E.ponto, dirEixo: E.dir, ponta, centro, dirPegador };
+  return { eixo: E.ponto, dirEixo: E.dir, ponta, centro, dirPegador, dirBorracha: dirPegador };
 }
 
 /** Quanto as placas sobem (cm) com os braços no ângulo dado: o arco do came desde a posição inicial. */

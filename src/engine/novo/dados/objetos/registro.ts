@@ -40,3 +40,4 @@ export { default as legPress } from './leg-press.json';
 export { default as hack } from './hack.json';
 export { default as supinoMaquina } from './supino-maquina.json';
 export { default as desenvolvimentoMaquina } from './desenvolvimento-maquina.json';
+export { default as remadaArticulada } from './remada-articulada.json';
