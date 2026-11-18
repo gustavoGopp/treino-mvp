@@ -135,3 +135,4 @@ export { mergulho } from './mergulho';
 export { facePullSuspensao } from './face-pull-suspensao';
 export { barraFixaNegativa } from './barra-fixa-negativa';
 export { agachamentoBarra } from './agachamento-barra';
+export { supinoBarra } from './supino-barra';
