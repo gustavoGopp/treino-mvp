@@ -5,7 +5,8 @@
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
 // Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|mesa-flexora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|mesa-flexora|gluteo-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -20,6 +21,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
 export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
+export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -256,9 +258,39 @@ if (!so || so === 'mesa-flexora') {
 <div class="l">${cel('hoje', img(hoje('mesa_flexora'), 96, 'cartao'))}${cel('nova', img(desenho([c0.fixa, c0.movel], cam), 96, 'cartao'))}${cel('hoje: a panturrilha sentada (para ver se ainda se confundem)', img(hoje('panturrilha_sentada_maquina'), 96, 'cartao'))}${cel('hoje: a cadeira flexora', img(hoje('cadeira_flexora'), 96, 'cartao'))}</div>
 <h2>Ampliada</h2>
 <div class="l">${cel('hoje', img(hoje('mesa_flexora'), 440, 'cartao'))}${cel('nova, do mesmo lado, no começo do movimento', img(desenho([c0.fixa, c0.movel], cam), 640))}</div>
-<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem deita)</h2>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado esquerdo de quem deita, o da alavanca)</h2>
 <div class="l">${cel('começo: a alavanca para os pés (−8°); as placas embaixo', img(desenho([c0.fixa, c0.movel], lado), 640))}${cel(`fim: a alavanca para cima (112°); as placas do pino ${c1.subida.toFixed(1).replace('.', ',')} cm acima`, img(desenho([c1.fixa, c1.movel], lado), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho([c1.fixa, c1.movel], cam), 640))}</div>
 <h2>As medidas</h2>${tabela('mesa-flexora', ['mesaFlexora'])}`,
+  );
+}
+
+if (!so || so === 'gluteo-maquina') {
+  // a regulagem do corpo da tabela, no começo e no fim do coice (a máquina sem o corpo)
+  const ex = m.EXERCICIOS['coice-maquina'];
+  const q0 = ex.quadro(m.CORPOS.homem, 0),
+    q1 = ex.quadro(m.CORPOS.homem, 1);
+  const semCorte = (pecas) => pecas.map((p) => ({ ...p, noQuadro: undefined }));
+  const p0 = semCorte(q0.pecas),
+    p1 = semCorte(q1.pecas);
+  // de três quartos, com a alavanca à direita do desenho (como o cartão de hoje)
+  const cam = { yaw: -120, pitch: 14, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const o = (id) => m.obj('gluteoMaquina', id);
+  const sobe = q1.marcas.pilha[1];
+  const gira = q1.marcas.alavanca[0] - q1.marcas.alavanca[1];
+  await foto(
+    'gluteo-maquina',
+    `<h1>Glúteo na máquina (de quatro apoios): o cartão de hoje × a peça nova</h1>
+<p><b>Qual máquina.</b> A ficha da técnica e o cartão do app (coice na máquina) pedem a máquina de quatro apoios: "tronco apoiado (peito ou antebraços na almofada), um pé na plataforma ou na alavanca; o outro joelho apoiado". <b>As três fichas que o plano listava são de máquinas em pé</b>, outro tipo: a Life Fitness SS-GL (186 × 98 × 148 cm), a Hammer Strength HS-HG (166 × 100 × 183, a de quadril em várias direções, com o rolo atrás da coxa) e a Movement Next Glute (102 × 90 × 146, em pé numa plataforma, com apoio dos cotovelos). O cartão de hoje também é de máquina em pé (o apoio do peito a 1 m do chão e a alavanca do pé atrás). As fichas de quatro apoios lidas são a <b>Precor Glutebuilder Pendulum Kickback GSL0617</b> (127 × 132 × 145 cm, torre de 148 cm; "kneeling exercise position with a double knee pad, chest pad and hand grips"; "isolating movement at the hip joint") e a <b>Atlantis C-122</b> (168,8 × 111,4 × 159,9 cm; "kneeling position"; "rubber footplates"; "angled handles and forearm pads"). O tamanho total vem da Precor; o resto não aparece em nenhuma ficha e é de desenho, em amarelo na tabela.</p>
+<p><b>A máquina funciona:</b> a alavanca gira num eixo na linha do quadril de quem ajoelha (a ${v(o('eixoAltura'), 0)} cm do chão; a almofada dos joelhos regula na altura para o quadril cair nele, e aqui fica a ${v(q0.marcas.joelheira[1])} cm); a plataforma do pé, na ponta da alavanca, a ${v(q0.marcas.alavanca[2])} cm do eixo, gira junto, encostada na sola; o came gira com ela e enrola o cabo, e as placas do pino sobem ${v(sobe)} cm quando a alavanca gira ${v(gira, 0)}° (do começo ao fim do coice). Os apoios dos antebraços (a ${v(o('antebracoAltura'), 0)} cm do chão) correm para a frente e para trás, com os pegadores em pé na ponta. Na cena, a alavanca, o came e o pé do eixo ficam do lado de fora da perna direita, do lado de quem olha de lado: são pintados atrás do corpo (o mesmo corte de ilustração do smith), para não cobrir o glúteo e a coxa.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('gluteo_maquina'), 96, 'cartao'))}${cel('nova', img(desenho(p0, cam), 96, 'cartao'))}${cel('hoje: a rosca na máquina (para ver se ainda se confundem)', img(hoje('rosca_maquina'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje (máquina em pé)', img(hoje('gluteo_maquina'), 440, 'cartao'))}${cel('nova (de quatro apoios), do mesmo lado, no começo do coice', img(desenho(p0, cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem ajoelha)</h2>
+<div class="l">${cel('começo: a plataforma atrás, as placas embaixo', img(desenho(p0, lado), 640))}${cel(`fim: a plataforma no alto; as placas do pino ${v(sobe)} cm acima`, img(desenho(p1, lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(p1, cam), 640))}</div>
+<h2>As medidas</h2>${tabela('gluteo-maquina', ['gluteoMaquina'])}`,
   );
 }
