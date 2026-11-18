@@ -45,6 +45,7 @@ export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export * from './src/engine/novo/pecas-de-cena/graviton.ts';
 export * from './src/engine/novo/pecas-de-cena/rosca-maquina.ts';
+export * from './src/engine/novo/pecas-de-cena/triceps-maquina.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
