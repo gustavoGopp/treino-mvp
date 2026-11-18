@@ -36,3 +36,4 @@ export { default as cadeiraExtensora } from './cadeira-extensora.json';
 export { default as cadeiraAbdutora } from './cadeira-abdutora.json';
 export { default as mesaFlexora } from './mesa-flexora.json';
 export { default as gluteoMaquina } from './gluteo-maquina.json';
+export { default as voador } from './voador.json';

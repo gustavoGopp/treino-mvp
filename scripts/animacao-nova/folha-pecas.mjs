@@ -9,7 +9,9 @@
 // por dentro (adução) dos joelhos e a pilha subindo.
 // Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
 // Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No voador, a máquina nas duas regulagens (voador e voador invertido: o encosto na guia, o assento e a posição inicial
+// dos braços), os braços abrindo e fechando (de frente e de cima) e a pilha subindo.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|voador] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -27,6 +29,7 @@ export * from './src/engine/novo/pecas-de-cena/cadeira-extensora.ts';
 export * from './src/engine/novo/pecas-de-cena/cadeira-abdutora.ts';
 export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
 export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
+export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -370,5 +373,53 @@ if (!so || so === 'gluteo-maquina') {
 <div class="l">${cel('começo: a plataforma atrás, as placas embaixo', img(desenho(p0, lado), 640))}${cel(`fim: a plataforma no alto; as placas do pino ${v(sobe)} cm acima`, img(desenho(p1, lado), 640))}</div>
 <div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho(p1, cam), 640))}</div>
 <h2>As medidas</h2>${tabela('gluteo-maquina', ['gluteoMaquina'])}`,
+  );
+}
+
+if (!so || so === 'voador') {
+  // as duas regulagens da mesma máquina, com os braços na posição inicial de cada exercício (as fichas de movimento)
+  const VO = { modo: 'voador', inicio: 104, placas: 5 },
+    IN = { modo: 'invertido', inicio: 170, placas: 5 };
+  const doVoador = (reg, psi) => {
+    const a = m.alfaDaMao(reg.modo, psi);
+    return m.voador({ ...reg, alfa: { R: a, L: a } });
+  };
+  const pecas = (v) => [v.fixa, v.movel];
+  // o cartão de hoje olha a máquina de três quartos pela frente de quem senta, com a torre atrás do assento
+  const cam = { yaw: -28, pitch: 10, s: 0.6 };
+  const frente = { yaw: 0, pitch: 4, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  // na cena do invertido, a máquina é girada meia volta (quem senta sempre olha para +z): estas câmeras giram junto,
+  // para a máquina aparecer na mesma posição nas duas regulagens
+  const ladoInv = { yaw: -90, pitch: 2, s: 0.6 };
+  // de cima, inclinado (a pino, a peça corta a viga e os braços, como na animação)
+  const cima = { yaw: 0, pitch: 62, s: 0.6 };
+  const cimaInv = { yaw: 180, pitch: 62, s: 0.6 };
+  const o = (id) => m.obj('voador', id);
+  const v0 = doVoador(VO, -12),
+    v1 = doVoador(VO, 85),
+    i0 = doVoador(IN, 12),
+    i1 = doVoador(IN, 90);
+  // a faixa das posições iniciais (Precor: 120°) e o curso do encosto na guia
+  const curso = o('encostoAtrasInvertido') - o('encostoAtrasVoador');
+  const maoAoEixo = Math.hypot(o('raio'), o('pegadorAoLado'));
+  await foto(
+    'voador',
+    `<h1>Voador (peck deck): o cartão de hoje × a peça nova</h1>
+<p>Uma máquina só faz o voador e o voador invertido, como a Life Fitness SS-FLY (manual público da linha Insignia, p. 28: ${v(203, 0)} × 197 × 203 cm), a Precor RSL0505 (142 × 97 × 213, torre de 148 cm, estofados de 6,5 cm, a posição inicial de cada braço regulável em 120°), a Movement Next Pec Fly / Rear Delt (158,3 × 135,2 × 199,1) e a Hammer Strength HS-FLY (125 × 143 × 181). A altura total é a da Movement (199 cm); a torre e os estofados, os da Precor. A Life Fitness diz como regular: no voador, <b>o assento na altura em que o cotovelo fica um pouco abaixo do ombro</b>, as mãos nos pegadores verticais; no invertido, sentado virado para o encosto, <b>os braços paralelos ao chão</b>, as mãos nos pegadores horizontais; nos dois, os braços giram "out and about the shoulder" (em volta do ombro), e os desenhos de cima do manual põem os eixos sobre os ombros. <b>Nenhuma ficha dá onde ficam os eixos, os pegadores e o encosto:</b> eles saem do corpo da tabela sentado na máquina, com o tipo "derivada"; em amarelo na tabela, o que é de desenho.</p>
+<p><b>A máquina funciona:</b> cada braço gira num eixo vertical no alto, sobre o centro do ombro (a ${v(o('eixoMeiaDistancia'))} cm do meio); o braço sai do eixo para o lado e desce até os pegadores. Como o eixo passa pelo ombro, a mão anda num arco em volta dele (a ${v(maoAoEixo)} cm do eixo, no pegador vertical) e o cotovelo não dobra nem estica. O pegador vertical fica ${v(o('pegadorAoLado'), 0)} cm ao lado do braço da máquina (como os da Movement), para o braço passar ao lado da cabeça, e não na frente do rosto, quando as mãos fecham; o horizontal sai do braço para o outro lado. O came no alto de cada eixo enrola o cabo, que corre pela viga até a torre; as placas do pino sobem o arco do came (raio de ${v(o('cameRaio'), 0)} cm, a média dos dois braços): ${v(v0.subida)} cm com as mãos fechadas no voador e ${v(i1.subida)} cm com os braços na linha do corpo no invertido. <b>O encosto anda na guia:</b> o mesmo estofado é encosto das costas no voador e apoio do peito no invertido, e recua ${v(curso)} cm para o peito encostar com o ombro ainda sob o eixo (o encosto que muda de lugar quando vira apoio do peito está na patente US 8.162.807 da Hoist; as fichas comerciais lidas não falam disso). O assento sobe de ${v(o('assentoVoador'))} cm (voador) para ${v(o('assentoInvertido'))} cm (invertido). As posições iniciais desenhadas (104° e 170° do braço da máquina, a partir da frente de quem senta no voador) ficam a 66° uma da outra, dentro da faixa de 120° da Precor.</p>
+<p><b>O que não fecha com as fichas:</b> desenhada, a máquina tem ${v(o('torreAtras') + o('torreProf') + o('assentoTras') + o('assentoComp'), 0)} cm de comprimento (Precor 142, Movement 158, Life Fitness 203) e, com os braços abertos no voador, cerca de ${v(2 * (o('eixoMeiaDistancia') + maoAoEixo), 0)} cm de largura de uma ponta à outra (Life Fitness 197). A torre fica atrás da coluna e à esquerda de quem senta no voador, como no cartão de hoje (atrás do assento), um pouco para o lado: de frente, ela aparece ao lado do corpo, fora do caminho dos pegadores. Na animação, de cima, a viga, os eixos e os braços acima dos pegadores são cortados (cobririam a cabeça e os braços de quem senta), como a travessa do smith.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('voador'), 96, 'cartao'))}${cel('nova (regulada para o voador, mãos fechadas)', img(desenho(pecas(v0), cam), 96, 'cartao'))}${cel('nova (regulada para o invertido)', img(desenho(pecas(i0), cam), 96, 'cartao'))}${cel('hoje: a polia dupla (para ver se ainda se confundem)', img(hoje('estacao_polia_dupla'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('voador'), 440, 'cartao'))}${cel('nova, de três quartos pela frente (regulada para o voador, mãos fechadas)', img(desenho(pecas(v0), cam), 640))}</div>
+<h2>As duas regulagens, de lado (o lado direito de quem senta no voador)</h2>
+<div class="l">${cel(`voador: o encosto na frente da guia (a borda de baixo ${v(o('encostoAtrasVoador'))} cm atrás do eixo), o assento a ${v(o('assentoVoador'))} cm, os braços na posição inicial do voador (104°: abertos, um pouco para trás)`, img(desenho(pecas(m.voador({ ...VO, alfa: { R: 104, L: 104 } })), lado), 640))}${cel(`invertido: o encosto recuado ${v(curso)} cm na guia, o assento a ${v(o('assentoInvertido'))} cm, os braços na posição inicial do invertido (170°: para trás, dos dois lados da coluna)`, img(desenho(pecas(m.voador({ ...IN, alfa: { R: 170, L: 170 } })), ladoInv), 640))}</div>
+<h2>Funcionando: o voador, de frente e de cima</h2>
+<div class="l">${cel(`aberto: os braços 5° antes da linha dos ombros; as placas do pino ${v(v1.subida)} cm acima das de baixo`, img(desenho(pecas(v1), frente), 440))}${cel(`fechado: as mãos à frente do peito; as placas ${v(v0.subida)} cm acima`, img(desenho(pecas(v0), frente), 440))}</div>
+<div class="l" style="margin-top:12px">${cel('aberto, de cima e de frente (sem o corte da vista de cima da animação): os pegadores em arco em volta dos eixos', img(desenho(pecas(v1), cima, false), 440))}${cel('fechado, de cima', img(desenho(pecas(v0), cima, false), 440))}</div>
+<h2>Funcionando: o invertido, de cima e de frente (a máquina na mesma posição das de cima do voador)</h2>
+<div class="l">${cel(`começo: os braços à frente de quem senta virado para o encosto (para a coluna); as placas ${v(i0.subida)} cm acima das de baixo`, img(desenho(pecas(i0), cimaInv, false), 440))}${cel(`fim: os braços na linha do corpo; as placas ${v(i1.subida)} cm acima`, img(desenho(pecas(i1), cimaInv, false), 440))}</div>
+<h2>As medidas</h2>${tabela('voador', ['voador'])}`,
   );
 }
