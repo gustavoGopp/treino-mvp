@@ -18,7 +18,8 @@
 // dos braços), os braços abrindo e fechando (de frente e de cima) e a pilha subindo.
 // No graviton, a almofada dos joelhos em cima e embaixo (a alavanca girando no eixo), com a pilha subindo quando ela desce.
 // No banco Scott, a regulagem (o assento e a almofada nas duas pontas da faixa) e a barra W nos ganchos do suporte.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|banco-scott] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// No banco romano, a regulagem das almofadas (as duas pontas da faixa da ficha e a da hiperextensão) e os rolos.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|supino-maquina|desenvolvimento-maquina|estacao-puxada|estacao-remada|voador|graviton|banco-scott|banco-romano] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -44,6 +45,7 @@ export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export * from './src/engine/novo/pecas-de-cena/voador.ts';
 export * from './src/engine/novo/pecas-de-cena/graviton.ts';
 export * from './src/engine/novo/pecas-de-cena/banco-scott.ts';
+export * from './src/engine/novo/pecas-de-cena/banco-romano.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -669,5 +671,29 @@ if (!so || so === 'banco-scott') {
 <h2>Funcionando (de lado): a regulagem da almofada e do assento</h2>
 <div class="l">${cel(`a almofada embaixo (${o('almofadaAlturaMin')} cm) e o assento embaixo (${o('assentoAlturaMin')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMin')), assento: o('assentoAlturaMin'), semBarra: true }), lado), 440))}${cel('a regulagem da rosca, com a barra nos ganchos', img(desenho(B(), lado), 440))}${cel(`a almofada em cima (${o('almofadaAlturaMax')} cm) e o assento em cima (${o('assentoAlturaMax')} cm)`, img(desenho(B({ ...alto(o('almofadaAlturaMax')), assento: o('assentoAlturaMax'), semBarra: true }), lado), 440))}</div>
 <h2>As medidas</h2>${tabela('banco-scott', ['bancoScott'])}<p style="margin-top:8px">A barra W e as anilhas são as da folha-barra-w.png.</p>`,
+  );
+}
+
+if (!so || so === 'banco-romano') {
+  const o = (id) => m.obj('bancoRomano', id);
+  // a regulagem do corpo da tabela na hiperextensão: o alto das almofadas a 83,6 cm da chapa, os rolos atrás dos tornozelos
+  const regulagem = { placa: [0, o('placaAltura'), 0], almofada: 83.6, rolo: { s: 14.2, k: 33 } };
+  const R = (r = {}) => [m.bancoRomano({ ...regulagem, ...r }).peca];
+  // o cartão de hoje põe a viga subindo para +x e olha de yaw 18; a peça sobe para +z: yaw 108 dá o mesmo ângulo
+  const cam = { yaw: 108, pitch: 10, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const E = m.extremosDoBancoRomano(regulagem);
+  await foto(
+    'banco-romano',
+    `<h1>Banco romano a 45° (hiperextensão): o cartão de hoje × a peça nova</h1>
+<p>As medidas vêm da página da Body-Solid GHYP345: <b>a viga a 45°</b>, ${v(o('comp'), 0)} × ${v(o('larg'), 0)} × ${v(o('altura'), 0)} cm, almofadas de 3 pol (${v(o('almofadaEsp'))} cm) e <b>a regulagem das almofadas: da chapa dos pés ao alto delas, de ${v(o('almofadaMin'), 0)} a ${v(o('almofadaMax'), 0)} cm</b>; a viga de 75 mm é a da Bench Fitness REVOLVE (que regula o ângulo de 35 a 50°). A Life Fitness LBR-BE (127 × 94 × 97) e a Hammer Strength BW-BE (150 × 72 × 110) ficam perto. <b>O que nenhuma ficha lida dá</b> (em amarelo na tabela): o tamanho das almofadas e da chapa, os rolos e onde a viga fica; seguem o cartão de hoje. Medida desenhada: ${v(E.comp, 0)} cm de comprimento, ${v(E.larg, 0)} de largura e ${v(E.alto, 0)} de altura (na regulagem da hiperextensão).</p>
+<p><b>O banco funciona:</b> o apoio das coxas corre na viga e prende num dos furos; a haste dos rolos corre na viga até os rolos encostarem atrás dos tornozelos. <b>A regulagem da hiperextensão fica fora da faixa da Body-Solid:</b> com o corpo da tabela (o centro do quadril a 90,6 cm da sola), a almofada no mínimo da ficha (89 cm) ficaria 1,6 cm abaixo do quadril, e embaixo a barriga entraria 3,6 cm nas almofadas. A animação usa ${v(regulagem.almofada)} cm, 7 cm abaixo do quadril ("abaixo do osso do quadril, para o quadril dobrar livre").</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('banco_romano'), 96, 'cartao'))}${cel('nova', img(desenho(R(), cam), 96, 'cartao'))}${cel('hoje: o banco Scott (para ver se ainda se confundem)', img(hoje('banco_scott'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('banco_romano'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, na regulagem da hiperextensão', img(desenho(R(), cam), 640))}</div>
+<h2>Funcionando (de lado): a regulagem das almofadas</h2>
+<div class="l">${cel(`as almofadas no mínimo da ficha (${o('almofadaMin')} cm da chapa)`, img(desenho(R({ almofada: o('almofadaMin') }), lado), 440))}${cel(`a regulagem da hiperextensão (${v(regulagem.almofada)} cm)`, img(desenho(R(), lado), 440))}${cel(`as almofadas no máximo da ficha (${o('almofadaMax')} cm)`, img(desenho(R({ almofada: o('almofadaMax') }), lado), 440))}</div>
+<h2>As medidas</h2>${tabela('banco-romano', ['bancoRomano'])}`,
   );
 }

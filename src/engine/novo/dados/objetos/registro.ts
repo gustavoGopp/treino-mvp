@@ -45,3 +45,4 @@ export { default as estacaoRemada } from './estacao-remada.json';
 export { default as voador } from './voador.json';
 export { default as graviton } from './graviton.json';
 export { default as bancoScott } from './banco-scott.json';
+export { default as bancoRomano } from './banco-romano.json';

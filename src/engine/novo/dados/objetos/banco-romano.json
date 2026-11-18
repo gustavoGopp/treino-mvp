@@ -1,0 +1,33 @@
+{
+ "fontes": {
+  "bodysolid-ghyp345": "Body-Solid, 45° Back Hyperextension GHYP345B; https://bodysolid.com/home/GHYP345B/Body-Solid_45__Back_Hyperextension/Features (lido em 18/11/2026): \"45° angle\", \"51\\\" L × 29\\\" W × 36\\\" H (1303 x 729 x 914 mm)\", \"Extra-thick 3\\\" DuraFirm support pads\", \"Pop-pin adjustable thigh pads for various size users\", \"Min distance from foot plate to the top of the thigh pad is 35”\", \"Max distance from the foot plate to the top of the thigh pad is 44”\"",
+  "revolve-45": "Bench Fitness, REVOLVE 45 Degree Back Extension, folha de especificações; https://cdn.shopify.com/s/files/1/2716/9828/files/REVOLVE_45_Degree_Back_Extension_-_Spec_sheet.pdf (lida em 18/11/2026): \"35 to 50 degree adjustment\", \"844-1119mm height adjustment\", \"Adjustable Heel Lock\", \"Material: 75x75 Steel Tube Frame\", 1247 × 666 × 976 mm",
+  "lf-hs26-be": "Life Fitness e Hammer Strength, catálogo 2026, p. 216: Back Extension LBR-BE, 50 x 37 x 38 pol (127 x 94 x 97 cm); Hammer Strength, catálogo 2024, p. 63: Back Extension BW-BE, 59 x 28 x 43 pol (150 x 72 x 110 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "desenho-romano": "Escolha de desenho, sem medida de fabricante: o que a ficha não dá, com o motivo; parte do cartão de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, bancoRomano)"
+ },
+ "objetos": {
+  "bancoRomano": {
+   "nome": "Banco romano a 45° (hiperextensão): a viga a 45°, a chapa dos pés com a trava dos tornozelos e o apoio duplo das coxas, que regula ao longo da viga",
+   "medidas": {
+    "comp": { "v": 130, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "comprimento total (51 pol); a Bench Fitness REVOLVE tem 125, a Life Fitness LBR-BE 127, a Hammer Strength BW-BE 150" },
+    "larg": { "v": 73, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "largura total (29 pol); a REVOLVE tem 67, a Life Fitness 94, a Hammer Strength 72" },
+    "altura": { "v": 91, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "altura total (36 pol); a REVOLVE regula de 84 a 112, a Life Fitness tem 97, a Hammer Strength 110" },
+    "angulo": { "v": 45, "un": "graus", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "a viga (e o corpo) a 45° do chão; a REVOLVE regula de 35 a 50°" },
+    "almofadaEsp": { "v": 7.6, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "espessura das almofadas das coxas (3 pol)" },
+    "almofadaMin": { "v": 89, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "da chapa dos pés à borda de cima das almofadas, a menor regulagem (35 pol)" },
+    "almofadaMax": { "v": 112, "un": "cm", "tipo": "medida", "fonte": "bodysolid-ghyp345", "onde": "da chapa dos pés à borda de cima das almofadas, a maior regulagem (44 pol)" },
+    "almofadaComp": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "comprimento de cada almofada ao longo da viga: as fichas não dão; o alto das coxas (o cartão de hoje tinha 36)" },
+    "almofadaLarg": { "v": 19.5, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "largura de cada almofada (uma por coxa), como no cartão de hoje" },
+    "almofadaVao": { "v": 3, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "o vão entre as duas almofadas, como no cartão de hoje" },
+    "almofadaAcimaDaViga": { "v": 15, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "da linha do meio da viga à face das almofadas: o suporte que regula, a chapa e o estofado, como no cartão de hoje" },
+    "placaLarg": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "largura da chapa dos pés (cabem os dois pés), como no cartão de hoje" },
+    "placaComp": { "v": 38, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "a chapa dos pés no sentido da sola, da viga para cima, como no cartão de hoje" },
+    "roloDiam": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "diâmetro dos rolos da trava dos tornozelos, como no cartão de hoje (a REVOLVE só diz que a trava regula)" },
+    "roloComp": { "v": 21, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "comprimento de cada rolo (um de cada lado da haste), como no cartão de hoje" },
+    "viga": { "v": 7.5, "un": "cm", "tipo": "medida", "fonte": "revolve-45", "onde": "a viga em tubo de aço de 75 × 75 mm" },
+    "placaAltura": { "v": 20, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "altura da linha do meio da viga na face da chapa dos pés: a viga começa na travessa de trás da base, como no cartão de hoje; na regulagem da hiperextensão, o alto das almofadas fica a 90 cm do chão (a Body-Solid tem 91 de altura total)" },
+    "tubo": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "desenho-romano", "onde": "tubo da base, como no cartão de hoje" }
+   }
+  }
+ }
+}
