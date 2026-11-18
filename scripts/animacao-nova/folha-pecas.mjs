@@ -4,7 +4,8 @@
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|mesa-flexora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -18,6 +19,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
+export * from './src/engine/novo/pecas-de-cena/mesa-flexora.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -231,5 +233,32 @@ if (!so || so === 'smith') {
 <h2>Funcionando (de lado): a barra só anda na guia</h2>
 <div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
+  );
+}
+
+if (!so || so === 'mesa-flexora') {
+  const regulagem = { inicio: -8, rolo: 44, placas: 5 };
+  const M = (alavanca) => m.mesaFlexora({ ...regulagem, alavanca });
+  // de três quartos, pela frente e pelo lado direito de quem deita (como o cartão de hoje)
+  const cam = { yaw: -60, pitch: 14, s: 0.6 };
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const c0 = M(-8),
+    c1 = M(112);
+  const ext = c0.extremos;
+  const o = (id) => m.obj('mesaFlexora', id);
+  const altura = (p) => p.ponta[1] + p.comp * p.ao[1];
+  await foto(
+    'mesa-flexora',
+    `<h1>Mesa flexora: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total vem das fichas da Life Fitness (SS-LC, 159 × 106 × 148 cm), da Hammer Strength (HS-LC, 166 × 100 × 140), da Movement (Next Leg Curl, 155,3 × 108,1 × 145,8) e da Precor (RSL0606, 155 × 122 × 147, torre de 148 cm). <b>O cartão de hoje tem 160 × 50 × ~90 cm: é 33% a 40% mais baixo que as fichas</b>, porque não tem a torre das placas (a carga é um pino de anilha na alavanca); a altura das fichas é a da torre. Aqui a torre fica ao lado do estofado, como na cadeira flexora aprovada, que é como a largura das fichas fecha; ela fica na ponta da frente, ao lado do estofado do peito: de lado, fica atrás da cabeça e dos braços, e não atrás do quadril e das pernas, que o guia precisa mostrar. A Precor dá a espessura dos estofados (6,5 cm) e diz que o estofado do quadril e o do peito têm ângulos diferentes para alinhar o joelho com o eixo ("the angled hip and chest pads [...] ensure proper alignment of the exerciser's knee with the pivot point"); a Life Fitness diz o mesmo ("a diverging hip and chest pad angle, which minimises lower back stress"). Nenhuma ficha dá os ângulos: a dobra no quadril é de desenho, mais marcada que a do cartão de hoje (o das coxas sobe ${v(o('coxaInclina'), 0)}° até o quadril e o do peito desce ${v(o('peitoInclina'), 0)}° até a cabeça), para o quadril ficar no alto da dobra e o peito deitar no estofado. As medidas de dentro da máquina (a altura do eixo, onde ele fica em relação ao estofado, a alavanca) também são de desenho, em amarelo na tabela. O came, a alavanca, o rolo e a pilha são os da cadeira flexora, com as mesmas medidas.</p>
+<p><b>A máquina funciona:</b> a alavanca gira no eixo, ao lado do joelho (a ${v(o('eixoAltura'), 0)} cm do chão, ${v(o('eixoAtras'), 0)} cm atrás da ponta do estofado das coxas); o came gira junto e enrola o cabo, que desce até uma polia no chão e corre ao longo da base até o pé da torre; as placas do pino sobem ${c1.subida.toFixed(1).replace('.', ',')} cm do começo ao fim do movimento (de −8° a 112°); o rolo corre na alavanca até ficar atrás dos tornozelos. A dobra fica a ${v(altura(m.geometriaDaMesaFlexora().coxa))} cm do chão. Medida desenhada: ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento e ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('mesa_flexora'), 96, 'cartao'))}${cel('nova', img(desenho([c0.fixa, c0.movel], cam), 96, 'cartao'))}${cel('hoje: a panturrilha sentada (para ver se ainda se confundem)', img(hoje('panturrilha_sentada_maquina'), 96, 'cartao'))}${cel('hoje: a cadeira flexora', img(hoje('cadeira_flexora'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('mesa_flexora'), 440, 'cartao'))}${cel('nova, do mesmo lado, no começo do movimento', img(desenho([c0.fixa, c0.movel], cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem deita)</h2>
+<div class="l">${cel('começo: a alavanca para os pés (−8°); as placas embaixo', img(desenho([c0.fixa, c0.movel], lado), 640))}${cel(`fim: a alavanca para cima (112°); as placas do pino ${c1.subida.toFixed(1).replace('.', ',')} cm acima`, img(desenho([c1.fixa, c1.movel], lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho([c1.fixa, c1.movel], cam), 640))}</div>
+<h2>As medidas</h2>${tabela('mesa-flexora', ['mesaFlexora'])}`,
   );
 }

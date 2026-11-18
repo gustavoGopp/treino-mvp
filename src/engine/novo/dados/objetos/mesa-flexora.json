@@ -1,0 +1,42 @@
+{
+ "fontes": {
+  "lf-hs26-lc": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Leg Curl SS-LC, 62,4 x 41,7 x 58,1 pol (159 x 106 x 148 cm), C x L x A; a altura é a da pilha (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1). Página da Life Fitness Austrália, https://www.lifefitness.com.au/commercial/leg-curl-sslc-lc (lida em 18/11/2026): \"features a diverging hip and chest pad angle, which minimises lower back stress and helps maintain proper alignment\"; \"Weight Stack: 200 lbs (100 kg)\"",
+  "hs24-lc": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Leg Curl HS-LC, 65 x 39 x 55 pol (166 x 100 x 140 cm) (pesquisa/04-objetos.md, seção 13.1)",
+  "mv-next-lc": "Movement (Brasil), apresentação Next Selectorized 2025, p. 15: Leg Curl, 155,3 x 108,1 x 145,8 cm (C x L x A), carga máxima 86,6 kg; \"Manoplas de apoio que oferecem maior firmeza e estabilidade durante o exercício\"; https://www.movement.com.br/wp-content/uploads/2025/03/Apresentacao-Next-Selectorized-compactado_1.pdf (lida em 18/11/2026)",
+  "precor-rsl0606": "Precor, Resolute Prone Leg Curl RSL0606; https://www.precor.com/en-GB/products/RSL0606 (lida em 18/11/2026): \"61 x 48 x 58 in / 155 x 122 x 147 cm\", \"Weight stack tower height: 148 cm\", \"Weight stack: 200 lb / 91 kg\", \"The angled hip and chest pads on the Resolute Prone Leg Curl ensure proper alignment of the exerciser's knee with the pivot point\", \"The ankle roller pad adjusts for varying leg lengths\", \"Upholstery total thickness is 2.5 inches (65 mm)\"",
+  "mesa-como-a-cadeira": "A cadeira flexora aprovada (dados/objetos/cadeira-flexora.json): o came, a alavanca, o rolo e a pilha são os mesmos, com as mesmas medidas de desenho",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "mesaFlexora": {
+   "nome": "Mesa flexora (flexão de joelho deitado): o estofado com a dobra no quadril (a parte das coxas e a do peito), os pegadores à frente, a alavanca com o rolo atrás dos tornozelos, girando num eixo ao lado do joelho, e a pilha de placas",
+   "medidas": {
+    "comp": { "v": 159, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-lc", "onde": "comprimento total da Life Fitness SS-LC (a Hammer Strength tem 166; a Movement, 155,3; a Precor, 155)" },
+    "larg": { "v": 106, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-lc", "onde": "largura total, com a pilha ao lado do estofado (Hammer Strength 100; Movement 108,1; Precor 122)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0606", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight stack tower height\"); a Life Fitness dá 58,1 pol (148 cm) de altura total" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0606", "onde": "espessura total dos estofados: 2,5 pol (65 mm)" },
+    "eixoAltura": { "v": 64, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do eixo (o centro do joelho de quem deita): as fichas não dão; com as pernas quase estendidas, a ponta do pé fica fora do chão" },
+    "eixoAcima": { "v": 6.5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto o eixo fica acima do plano do estofado das coxas, na ponta dele: o centro do joelho acima da pele da frente da coxa (a Precor diz que o estofado inclinado alinha o joelho com o eixo, sem dar a medida)" },
+    "eixoAtras": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto o eixo fica atrás da ponta do estofado das coxas: a rótula sai inteira do estofado" },
+    "coxaInclina": { "v": 20, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "o estofado das coxas sobe 20° do joelho para o quadril (a Life Fitness e a Precor dizem que o estofado do quadril e o do peito têm ângulos diferentes, sem dar os ângulos; o cartão de hoje tem cerca de 10°): com 10°, o corpo da tabela não deitava o peito no estofado do peito, porque a barriga ficava no alto da dobra; com 20°, o quadril fica no alto da dobra" },
+    "peitoInclina": { "v": 10, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "o estofado do peito desce 10° do quadril para a cabeça: com o das coxas, faz a dobra no quadril (o cartão de hoje tem de 7° a 10°)" },
+    "coxaEstofadoComp": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do estofado das coxas, da ponta perto do joelho até a dobra, sob a frente da bacia (o quadril fica no alto da dobra)" },
+    "peitoEstofadoComp": { "v": 48, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do estofado do peito, da dobra até o alto do peito: os ombros e a cabeça ficam fora dele" },
+    "estofadoLarg": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura dos estofados: um pouco mais largo que o quadril do corpo da tabela" },
+    "pegadorFrente": { "v": 4, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "os pegadores ficam 4 cm à frente da ponta do estofado do peito" },
+    "pegadorAbaixo": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o meio do pegador fica 22 cm abaixo da ponta do estofado do peito, ao lado dele (a Movement tem \"manoplas de apoio\"; a ficha não dá onde)" },
+    "pegadorFora": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o meio de cada pegador fica 24 cm para o lado do meio do estofado: as mãos um pouco por fora dos ombros" },
+    "pegadorComp": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da manopla de borracha" },
+    "cameDiam": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "diâmetro do came no eixo (a peça redonda que enrola o cabo), o da cadeira flexora" },
+    "alavancaMax": { "v": 52, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "o rolo corre na alavanca até 52 cm do eixo (a Precor diz que o rolo se ajusta ao comprimento da perna), o da cadeira flexora" },
+    "roloDiam": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "diâmetro do rolo dos tornozelos, o da cadeira flexora" },
+    "roloComp": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "o rolo passa por cima das duas pernas, o da cadeira flexora" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "número de placas desenhadas (a Life Fitness tem 100 kg de pilha e a Precor 91 kg, sem dizer em quantas placas), o da cadeira flexora" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "altura da pilha em repouso, a da cadeira flexora" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "largura das placas, a da cadeira flexora" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "fundo das placas, o da cadeira flexora" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "mesa-como-a-cadeira", "onde": "tubo da estrutura, o da cadeira flexora e do cartão de hoje" }
+   }
+  }
+ }
+}
