@@ -4,7 +4,8 @@
 // No suporte, também a regulagem de cada exercício (a altura dos ganchos e dos pinos), com a barra nos ganchos.
 // Na barra W e na barra hexagonal, também a peça vista de cima e de frente, com as medidas que a definem.
 // No smith, a barra em duas alturas na guia, o gancho preso e solto, a trava, e o cartão do suporte de agachamento ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Na cadeira extensora, a alavanca no começo e no fim, e a flexora ao lado (para ver que não se confundem).
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -18,6 +19,7 @@ export * from './src/engine/novo/pecas-de-cena/barra-w.ts';
 export * from './src/engine/novo/pecas-de-cena/barra-hexagonal.ts';
 export { obj } from './src/engine/novo/tabelas.ts';
 export * from './src/engine/novo/pecas-de-cena/smith.ts';
+export * from './src/engine/novo/pecas-de-cena/cadeira-extensora.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -231,5 +233,35 @@ if (!so || so === 'smith') {
 <h2>Funcionando (de lado): a barra só anda na guia</h2>
 <div class="l">${cel('em cima, presa: o gancho deitado sobre um pino da régua', img(desenho(S({}).pecas, lado), 440))}${cel('solta: a barra girada, o gancho em pé (como no treino)', img(desenho(S({ gancho: 90 }).pecas, lado), 440))}${cel('embaixo, parada na trava (a 62 cm)', img(desenho(S({ gancho: 90, barra: 62, trava: 62 }).pecas, lado), 440))}</div>
 <h2>As medidas</h2>${tabela('smith', ['smith'])}`,
+  );
+}
+
+if (!so || so === 'cadeira-extensora') {
+  // a regulagem do exemplo: o rolo a 38 cm do eixo, a alavanca de 0° (para baixo) a 80° (quase na horizontal)
+  const regulagem = { inicio: 0, rolo: 38, encosto: 8, placas: 5 };
+  const ini = regulagem.inicio,
+    fim = 80;
+  const c0 = m.cadeiraExtensora({ ...regulagem, alavanca: ini }),
+    c1 = m.cadeiraExtensora({ ...regulagem, alavanca: fim });
+  const fl = m.cadeiraFlexora({ inicio: 95, rolo: 40, encosto: 8, trava: 70, placas: 5, alavanca: 95 });
+  // de três quartos, pela frente e pelo lado direito de quem senta (como na folha da flexora)
+  const cam = { yaw: 250, pitch: 12, s: 0.6 };
+  const lado = { yaw: -90, pitch: 2, s: 0.6 };
+  const ext = c0.extremos;
+  const o = (id) => m.obj('cadeiraExtensora', id);
+  await foto(
+    'cadeira-extensora',
+    `<h1>Cadeira extensora: o cartão de hoje × a peça nova (a irmã da cadeira flexora)</h1>
+<p>O tamanho total vem das fichas da Life Fitness (SS-LE, 167 × 106 × 148 cm), da Hammer Strength (HS-LE, 120 × 105 × 163), da Movement (Next, 137 × 110 × 146) e da Precor (RSL0605, 155 × 127 × 148). O cartão de hoje é 37% a 54% mais estreito que elas, porque a torre das placas fica atrás do assento; aqui, como na flexora aprovada, a torre fica ao lado, que é como a largura das fichas fecha. A Precor dá também a espessura dos estofados (6,5 cm) e a altura da torre (148 cm). As medidas de dentro da máquina (altura do assento, onde fica o eixo, a alavanca) não aparecem em nenhuma ficha lida: são de desenho, em amarelo na tabela.</p>
+<p><b>O mesmo desenho da flexora, com a função trocada:</b> o assento, o encosto que regula, o came no eixo ao lado do joelho, a alavanca e a torre saem da mesma peça (a flexora não muda). Na extensora não há a trava das coxas (o cartão de hoje não tem; o quadril fica no banco pelas mãos nas alças), o assento é reto (como no cartão) e mais alto (${String(o('assentoAltura'))} cm, contra 50 na flexora: com o joelho bem dobrado, o pé fica fora do chão), e o rolo fica <b>embaixo, na frente da canela</b>: a alavanca começa apontando para baixo e sobe para a frente.</p>
+<p><b>A máquina funciona:</b> a alavanca gira no eixo; o came gira junto e enrola o cabo, e as placas do pino sobem ${c1.subida.toFixed(1).replace('.', ',')} cm do começo ao fim (de ${ini}° a ${fim}°); o encosto anda para a frente e para trás; o rolo corre na alavanca. Medida desenhada: ${(ext.zFrente - ext.zTras).toFixed(0)} cm de comprimento e ${(ext.xEsquerda - ext.xDireita).toFixed(0)} cm de largura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('cadeira_extensora'), 96, 'cartao'))}${cel('nova', img(desenho([c0.fixa, c0.movel], cam), 96, 'cartao'))}${cel('hoje: a cadeira flexora', img(hoje('cadeira_flexora'), 96, 'cartao'))}${cel('nova: a cadeira flexora aprovada (para ver se ainda se confundem)', img(desenho([fl.fixa, fl.movel], cam), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('cadeira_extensora'), 440, 'cartao'))}${cel('nova, do mesmo ângulo da flexora, no começo do movimento', img(desenho([c0.fixa, c0.movel], cam), 640))}</div>
+<h2>Funcionando: a alavanca no começo e no fim (de lado, pelo lado direito de quem senta)</h2>
+<div class="l">${cel(`começo: a alavanca para baixo (${ini}°); as placas embaixo`, img(desenho([c0.fixa, c0.movel], lado), 640))}${cel(`fim: a alavanca à frente (${fim}°); as placas do pino ${c1.subida.toFixed(1).replace('.', ',')} cm acima`, img(desenho([c1.fixa, c1.movel], lado), 640))}</div>
+<div class="l" style="margin-top:12px">${cel('fim, de três quartos', img(desenho([c1.fixa, c1.movel], cam), 640))}${cel('a cadeira flexora aprovada, de lado, no começo (a trava das coxas e o rolo à frente)', img(desenho([fl.fixa, fl.movel], lado), 640))}</div>
+<h2>As medidas</h2>${tabela('cadeira-extensora', ['cadeiraExtensora'])}`,
   );
 }
