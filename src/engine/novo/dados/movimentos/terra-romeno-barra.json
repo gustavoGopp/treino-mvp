@@ -1,0 +1,60 @@
+{
+ "id": "terra-romeno-barra",
+ "nome": "Levantamento terra romeno com barra",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/terra-romeno-barra.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/terra-romeno-barra.md): em pé, pés na largura do quadril, joelhos um pouco dobrados; barra rente às coxas, pegada na largura dos ombros, coluna reta; ~2–3 s empurrando o quadril para trás e descendo a barra rente às pernas, sem arredondar a lombar; sobe levando o quadril para a frente; consenso de treinadores (nsca2021, não verificado). A ficha diz que a técnica segue, por analogia, o stiff com halteres",
+  "app": "Cartão do app (src/conteudo/exercicios/terra-romeno-barra.json): 'Fim: barra abaixo dos joelhos ou no meio da canela, coluna reta', as dicas e os três erros",
+  "stiff": "A ficha de movimento do stiff com halteres aprovado (src/engine/novo/dados/movimentos/stiff.json): as distâncias e os ângulos que a ficha da técnica não dá em número",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + barra) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé",
+  "objetos": "src/engine/novo/dados/objetos/barra-longa.json: a barra olímpica de 20 kg e as anilhas (IWF 2020, IPF 2026)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho.cima": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "em pé: joelhos 'um pouco dobrados' (a ficha não dá número; o stiff aprovado usa 8°)"},
+  "joelho.baixo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "embaixo: o joelho dobra pouco mais que em cima (quem dobra é o quadril), como no stiff aprovado"},
+  "tronco.cima": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em pé: quadril estendido, sem jogar o tronco para trás"},
+  "maos.embaixo": {"v": 0.5, "un": "fração da canela", "selo": "consenso", "fonte": "app", "o": "embaixo, a barra chega ao meio da canela (do tornozelo ao joelho: 0 = tornozelo, 1 = joelho); o cartão: 'barra abaixo dos joelhos ou no meio da canela'. A inclinação do tronco embaixo sai desta altura"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pescoço na linha do tronco ('coluna reta')"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cabeça na linha do pescoço"},
+  "maos.meiaDistancia": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pegada na largura dos ombros: o centro de cada mão a 22 cm do meio (os centros dos ombros ficam a 18,4 cm), com as mãos por fora das coxas"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "braços quase estendidos, sem travar o cotovelo (o stiff aprovado)"},
+  "cotovelo.paraFora": {"v": 1, "un": "proporção", "selo": "desenho", "fonte": "stiff", "o": "os cotovelos apontam para trás e para fora, com as palmas para as pernas (pegada pronada, o polegar por dentro)"},
+  "barra.folga": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'barra rente às pernas': a folga entre a pegada da barra e a pele da coxa ou da canela"},
+  "anilhas": {"v": 5, "un": "kg por lado", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 5 kg (24 cm) de cada lado: a barra com as anilhas tem 30 kg, que entram no equilíbrio"},
+  "erro.arred.lombar": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a lombar arredonda (flexão além da curva de repouso, embaixo), como no stiff aprovado"},
+  "erro.arred.toracica": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: as costas de cima também curvam um pouco"},
+  "erro.arred.bacia": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a bacia inclina menos que no certo (quem dobra é a lombar) e a barra desce além de onde a coluna fica reta"},
+  "erro.agachar.joelho": {"v": 62, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: os joelhos dobram e o quadril desce"},
+  "erro.agachar.tronco": {"v": 42, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: o tronco inclina pouco (vira um agachamento)"},
+  "erro.longe.folga": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "stiff", "o": "erro: a barra desce à frente, longe das pernas (folga embaixo); ela chega à mesma altura do certo (o meio da canela), com o tronco menos inclinado"}
+ },
+ "fases": [
+  {"nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire e firme o abdômen", "selo": "desenho", "fonte": "stiff"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "desenho", "fonte": "stiff"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "desenho", "fonte": "stiff"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "lombar-neutra", "pede": "a coluna fica reta (a lombar não arredonda)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "dobra-no-quadril", "pede": "empurra o quadril para trás: o quadril dobra e vai para trás, com os joelhos um pouco dobrados, quase no mesmo ângulo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "em-pe-sem-jogar-o-tronco-para-tras", "pede": "sobe até ficar em pé, sem jogar o tronco para trás", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-rente-as-pernas", "pede": "a barra desce rente às coxas e às canelas, sem atravessar as pernas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-ate-o-meio-da-canela", "pede": "embaixo, a barra chega ao meio da canela", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-firme-nas-duas-maos", "pede": "as duas mãos seguram a barra, que se move inteira (as mãos não deslizam nela e ela fica na horizontal)", "selo": "consenso", "fonte": "objetos"},
+  {"id": "pegada-na-largura-dos-ombros", "pede": "pegada na largura dos ombros, com as mãos por fora das coxas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-no-meio-do-pe", "pede": "o centro de massa (corpo + barra) fica sobre o meio do pé", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 1, "titulo": "Arredondar a lombar", "vista": "lateral", "oQueMuda": "a bacia para de inclinar e a lombar arredonda para a barra descer mais", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "e2", "instante": 1, "titulo": "Virar um agachamento", "vista": "lateral", "oQueMuda": "os joelhos dobram e o quadril desce, com o tronco pouco inclinado", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"},
+  {"id": "e3", "instante": 1, "titulo": "Barra longe das pernas", "vista": "lateral", "oQueMuda": "a barra desce à frente, longe das pernas, e o quadril vai mais para trás para equilibrar", "destaca": ["bracos"], "linha": ["ombro", "pegada"], "foco": "pegada"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "quadril para trás", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "barra rente às pernas", "ponto": "pegada", "selo": "consenso", "fonte": "app"}
+ ]
+}

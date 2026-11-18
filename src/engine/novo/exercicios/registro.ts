@@ -139,3 +139,6 @@ export { supinoBarra } from './supino-barra';
 export { desenvolvimentoBarra } from './desenvolvimento-barra';
 export { roscaBarraW } from './rosca-barra-w';
 export { terraHexagonal } from './terra-hexagonal';
+export { terraRomenoBarra } from './terra-romeno-barra';
+export { remadaBarra } from './remada-barra';
+export { hipThrust } from './hip-thrust';
