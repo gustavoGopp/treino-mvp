@@ -29,3 +29,16 @@ Halter: o próximo peso da lista.
 
 ## Fontes
 - `chaves2020` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/crucifixo-inclinado-halteres.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; frente do ombro), o alvo do cartão (a parte de cima) e a biblioteca; a nota, da seção Segurança e do erro "Soltar as escápulas" | consenso | `tecnica.supino-inclinado.angulo`; `chaves2020` (a parte de cima, no supino inclinado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica e a posição do cartão | consenso | `tecnica.supino-inclinado.angulo` |
+| Variações (`vary`) | seção Segurança ("não descer além do alongamento confortável") e a linha Movimento | consenso | `17`, G3 |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/crucifixo-inclinado-halteres.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa além da profundidade confortável.

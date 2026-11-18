@@ -32,3 +32,17 @@ Halter: o próximo peso da lista.
 - `kikuchi2017`: Kikuchi N, Nakazato K. Low-load bench press and push-up induce similar muscle hypertrophy and strength gain. J Exerc Sci Fit 2017;15(1):37-42. PMID 29541130.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/supino-chao-halteres.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; frente do ombro e tríceps) e a biblioteca; a nota, do erro 2 ("Cotovelos em T": mais carga no ombro) | consenso | revisão de anatomia (02/11/2026); `tecnica.supino-halteres.cotovelos` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Posição e Descida da tabela de técnica; o erro 4 | consenso | `nsca2021` (não verificado); `tecnica.supino-halteres.cotovelos` |
+| Variações (`vary`) | o equipamento do cartão ("um colchonete, se tiver") e as linhas Descida e Subida | consenso | `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão, num texto só | consenso | `seguranca-t5`; `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/supino-chao-halteres.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` só tem o colchonete opcional e o que não muda.

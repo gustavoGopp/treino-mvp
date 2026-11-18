@@ -30,3 +30,16 @@ Halter: o próximo peso da lista.
 
 ## Fontes
 - `brandao2020` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/triceps-testa-halteres.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (tríceps, sem secundário) e a biblioteca; a nota, do erro "Mexer os ombros" do cartão | um estudo | `brandao2020` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica e a seção Segurança (halteres leves, pegada neutra) | consenso | Laércio Refundini (vídeo, `17`, G2) |
+| Variações (`vary`) | o equipamento do cartão (chão ou banco) e a seção Segurança (parar a 1–2 repetições da falha) | consenso | **[opinião]** de `17` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/triceps-testa-halteres.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha entre chão e banco do cartão.
