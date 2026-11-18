@@ -1,0 +1,49 @@
+{
+ "id": "aducao-maquina",
+ "nome": "Adução na cadeira adutora",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/aducao-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/aducao-maquina.md): sentado com as costas no encosto; almofadas do lado de dentro dos joelhos, pernas abertas até um alongamento confortável; fecha as pernas até as almofadas quase se tocarem e volta controlando, sem forçar a abertura; consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/aducao-maquina.json): 'Início: pernas abertas até um alongamento confortável.', 'Fim: almofadas quase se tocando.', 'Volta controlando, sem forçar a abertura.', dicas 'Abre só até o confortável.', 'Volta controlando.', 'Placas sem bater.'; os erros 'Abrir demais' (forçar a virilha no alongamento) e 'Bater as placas' (a volta sem controle)",
+  "lf-haa": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 22 e 24 (Hip Abduction / Adduction SS-HAA e Hip Adduction SS-HAD), lido em 18/11/2026: \"Sit down with feet on foot pegs so knees are bent 90 degrees. Position knee pads inside of the knees. Adjust start position with range of motion adjustment\"; \"Hold the handles and slowly move the pads in, pushing with knees. Hold the inward extreme position briefly. Slowly return to the start position\"",
+  "aaos": "Amplitude do quadril da AAOS (src/engine/novo/dados/amplitudes.json, quadril.abducao: média 40°, máximo 60°)",
+  "maquina": "src/engine/novo/dados/objetos/cadeira-abdutora.json: o assento a 50 cm, o encosto deitado 15°, o eixo de cada braço embaixo do centro do quadril, as almofadas de 6,5 cm, o came de 28 cm de raio (as placas sobem 0,49 cm por grau)",
+  "abducao": "A abdução na mesma máquina (src/engine/novo/dados/movimentos/abducao-maquina.json): a mesma posição sentada e o mesmo tempo de cada fase",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "bacia": {"v": -20, "un": "graus", "selo": "desenho", "fonte": "abducao", "o": "a bacia deita 20° para trás: as costas inteiras encostam no encosto deitado 15° (a parte de cima das costas e o glúteo tocam nele)"},
+  "cervical": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "abducao", "o": "o pescoço dobra 12° para a frente, para o olhar voltar para a frente com o tronco deitado"},
+  "cabeca": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "abducao", "o": "a cabeça dobra 6° sobre o pescoço, pelo mesmo motivo"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "abducao", "o": "o glúteo e a coxa afundam 1 cm no assento"},
+  "joelho": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "lf-haa", "o": "os pés nos apoios com os joelhos a 90° (\"knees are bent 90 degrees\")"},
+  "inicio": {"v": 42, "un": "graus", "selo": "desenho", "fonte": "app", "o": "a posição inicial da máquina (a regulagem \"start position\"): as placas descansam com os braços abertos 42°"},
+  "abertura.inicio": {"v": 34, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no começo de cada repetição, as pernas abertas até um alongamento confortável, com as placas sem encostar: cada coxa a 34° (a ficha não dá número; abaixo da média de 40° da AAOS, medida em pé), 8° antes da posição inicial (as placas ficam 3,9 cm acima das outras)"},
+  "abertura.fim": {"v": 11, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fechado: as pernas fecham até as almofadas quase se tocarem; com as almofadas de 6,5 cm entre os joelhos, cada coxa fica a 11° (os cantos de trás das almofadas a pouco mais de 1 cm um do outro)"},
+  "erro.demais.abertura": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a máquina regulada aberta demais, o começo força a virilha: cada coxa a 55° (passa da média de 40° da AAOS e fica abaixo do máximo, 60°)"},
+  "erro.demais.folga": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no começo aberto demais, a máquina fica regulada 8° além, como no certo (as placas sem encostar)"}
+ },
+ "fases": [
+  {"nome": "Pernas abertas", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "alongamento confortável", "selo": "consenso", "fonte": "app"},
+  {"nome": "Fechar · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "abducao"},
+  {"nome": "Fechado · segura", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "breve", "selo": "consenso", "fonte": "lf-haa"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "desenho", "fonte": "abducao"}
+ ],
+ "contatos": ["pelve"],
+ "regras": [
+  {"id": "abdutora-sentado-encostado", "pede": "sentado com as costas no encosto, o tronco parado, as mãos nos pegadores", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdutora-eixo-no-quadril", "pede": "o braço da máquina gira em volta do mesmo eixo que a coxa (o centro do quadril)", "selo": "desenho", "fonte": "maquina"},
+  {"id": "abdutora-pes-nos-apoios", "pede": "os pés nos apoios, com os joelhos a 90°", "selo": "consenso", "fonte": "lf-haa"},
+  {"id": "abdutora-almofada-no-joelho", "pede": "as almofadas do lado de dentro dos joelhos, sem escorregar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdutora-placas-sem-bater", "pede": "as placas sem encostar no começo de cada repetição, subindo com o arco do came", "selo": "consenso", "fonte": "app"},
+  {"id": "adutora-pernas-fecham", "pede": "das pernas abertas até um alongamento confortável, fecha até as almofadas quase se tocarem", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "demais", "instante": 0, "titulo": "Abrir demais", "vista": "cima", "oQueMuda": "o começo aberto demais força a virilha: cada coxa a 55°, em vez de 34°", "destaca": ["pernas"], "linha": ["joelho:R", "joelho:L"], "foco": "joelho:R"},
+  {"id": "bater", "instante": 0, "titulo": "Bater as placas", "vista": "frontal", "oQueMuda": "a volta sem controle: as pernas abrem até o fim da máquina e as placas batem nas de baixo", "destaca": ["pernas"], "linha": ["joelho:R", "joelho:L"], "foco": "joelho:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "frontal", "texto": "volta controlando", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"}
+ ]
+}
