@@ -1,0 +1,54 @@
+{
+ "id": "abducao-maquina",
+ "nome": "Abdução na cadeira abdutora",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abducao-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abducao-maquina.md): sentado com as costas no encosto; almofadas do lado de fora dos joelhos; abre as pernas até o fim confortável, pausa ~1 s e volta controlando, sem deixar as placas baterem; o tronco parado, sem embalar; consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/abducao-maquina.json): 'Início: pernas fechadas, placas sem encostar.', 'Fim: pernas abertas até o fim confortável.', 'Segura ~1 s.', dicas 'Tronco parado.', 'Pausa aberto.', 'Placas sem bater.'; os erros 'Embalar o tronco', 'Abrir pouco' e 'Soltar a volta'",
+  "lf-haa": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 22 e 23 (Hip Abduction / Adduction SS-HAA e Hip Abduction SS-HAB), lido em 18/11/2026: \"Sit down with feet on foot pegs so knees are bent 90 degrees. Position knee pads outside of the knees. Adjust start position with range of motion adjustment\"; \"Hold the handles and slowly move the pads out, pushing with knees. Hold the outward extreme position briefly. Slowly return to the start position\"",
+  "aaos": "Amplitude do quadril da AAOS (src/engine/novo/dados/amplitudes.json, quadril.abducao: média 40°, máximo 60°)",
+  "maquina": "src/engine/novo/dados/objetos/cadeira-abdutora.json: o assento a 50 cm, o encosto deitado 15°, o eixo de cada braço embaixo do centro do quadril, o came de 28 cm de raio (as placas sobem 0,49 cm por grau)",
+  "mini-band": "A abdução sentado com mini band aprovada (src/engine/novo/dados/movimentos/abducao-mini-band.json): a fase de abrir em ~1 s, a pausa de 1 s e a volta em ~2 s",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "bacia": {"v": -20, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "a bacia deita 20° para trás: as costas inteiras encostam no encosto deitado 15° (com a curva da lombar de repouso, a parte de cima das costas e o glúteo tocam nele)"},
+  "cervical": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço dobra 12° para a frente, para o olhar voltar para a frente com o tronco deitado"},
+  "cabeca": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça dobra 6° sobre o pescoço, pelo mesmo motivo"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 1 cm no assento, como na cadeira da abdução com mini band"},
+  "joelho": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "lf-haa", "o": "os pés nos apoios com os joelhos a 90° (\"knees are bent 90 degrees\")"},
+  "inicio": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "app", "o": "a posição inicial da máquina (a regulagem \"start position\"): as placas descansam com os braços fechados, as coxas paralelas"},
+  "abertura.inicio": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no começo de cada repetição, as pernas quase fechadas e as placas sem encostar ('Início: pernas fechadas, placas sem encostar'): a 8° da posição inicial, as placas do pino ficam 3,9 cm acima das outras"},
+  "abertura.fim": {"v": 36, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "aberto: as pernas abrem até o fim confortável; cada coxa abre 36° (a ficha não dá número; abaixo da média de 40° da AAOS, medida em pé)"},
+  "erro.tronco.bacia": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: para ajudar a abrir, o corpo embala para a frente, a bacia sai do encosto (16°)"},
+  "erro.tronco.lombar": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar dobra 8° para a frente"},
+  "erro.tronco.toracica": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima dobram 10° para a frente"},
+  "erro.tronco.cervical": {"v": -24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço volta 24° para trás, para o olhar seguir à frente com o tronco dobrado"},
+  "erro.pouco.fim": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a amplitude curta, as coxas abrem só 16°"}
+ },
+ "fases": [
+  {"nome": "Pernas fechadas", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "placas sem encostar", "selo": "consenso", "fonte": "app"},
+  {"nome": "Abrir · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "mini-band"},
+  {"nome": "Aberto · pausa", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "desenho", "fonte": "mini-band"}
+ ],
+ "contatos": ["pelve"],
+ "regras": [
+  {"id": "abdutora-sentado-encostado", "pede": "sentado com as costas no encosto, o tronco parado, as mãos nos pegadores", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdutora-eixo-no-quadril", "pede": "o braço da máquina gira em volta do mesmo eixo que a coxa (o centro do quadril)", "selo": "desenho", "fonte": "maquina"},
+  {"id": "abdutora-pes-nos-apoios", "pede": "os pés nos apoios, com os joelhos a 90°", "selo": "consenso", "fonte": "lf-haa"},
+  {"id": "abdutora-almofada-no-joelho", "pede": "as almofadas do lado de fora dos joelhos, sem escorregar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdutora-placas-sem-bater", "pede": "as placas sem encostar no começo de cada repetição, subindo com o arco do came", "selo": "consenso", "fonte": "app"},
+  {"id": "abdutora-pernas-abrem", "pede": "abre as pernas até o fim confortável", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "tronco", "instante": 1, "titulo": "Embalar o tronco", "vista": "lateral", "oQueMuda": "para abrir, o corpo sai do encosto e vai para a frente", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "pouco", "instante": 1, "titulo": "Abrir pouco", "vista": "frontal", "oQueMuda": "as pernas abrem só 16°, menos da metade do certo", "destaca": ["pernas"], "linha": ["joelho:R", "joelho:L"], "foco": "joelho:R"},
+  {"id": "solta", "instante": 0, "titulo": "Soltar a volta", "vista": "frontal", "oQueMuda": "a volta cai de uma vez: as pernas fecham até o fim da máquina e as placas batem nas de baixo", "destaca": ["pernas"], "linha": ["joelho:R", "joelho:L"], "foco": "joelho:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "frontal", "texto": "pausa aberto", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app", "acima": true}
+ ]
+}
