@@ -163,5 +163,12 @@ Pelo critério da sessão (nenhum defeito da régua pior em nenhum grupo), o lim
 - `tests/repo/privacidade.test.ts`: o teste que procura e-mail pessoal nos arquivos versionados passou dos 5 segundos quando roda junto com os outros (leva cerca de 1 segundo sozinho). Ganhou o limite de 30 segundos; o que ele confere não mudou.
 - Nenhum registro de persona mudou: nenhuma das personas dos testes é iniciante de 3 dias de 60 min.
 
-**As verificações:** MEDIDAS-APP
+**As verificações:**
+
+- `npm run check`: limpo (68 arquivos, 1.040 testes).
+- `npm run test:e2e`: limpo (180 testes).
+- A medida da população pelo app (680.625 programas): as mesmas contas que a do protótipo com os consertos, em todos os grupos ([`medidas/limite-6-app/retrato.md`](medidas/limite-6-app/retrato.md)). Em relação ao app de antes: nenhum par "grupo × defeito" da régua pior, 12 melhores.
+- Auditoria em duas rodadas: limpa. 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua. Na grade da régua, com dor, o foco abaixo da meta vai de 697 para 695 programas.
+
+**A ida para a `main`:** com o ok do Gustavo em 18/11/2026 ("pode levar para a main quando a auditoria terminar").
 

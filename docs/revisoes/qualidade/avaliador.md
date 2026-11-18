@@ -8,8 +8,8 @@
 
 | veredito | programas | % |
 | --- | ---: | ---: |
-| bom | 2.670 | 45,6% |
-| limite | 2.711 | 46,3% |
+| bom | 2.680 | 45,8% |
+| limite | 2.701 | 46,2% |
 | ajustar | 469 | 8% |
 | bloqueado | 0 | 0% |
 | **está bom ou só limite** | **5.381** | **92%** |
@@ -19,18 +19,18 @@
 
 | cenário | bom | limite | ajustar | bloqueado |
 | --- | ---: | ---: | ---: | ---: |
-| academia | 549 | 383 | 43 | 0 |
-| condominio | 553 | 330 | 92 | 0 |
-| casa | 520 | 380 | 75 | 0 |
-| elasticos | 492 | 394 | 89 | 0 |
-| halteres-banco | 556 | 326 | 93 | 0 |
-| sem-nada | 0 | 898 | 77 | 0 |
+| academia | 551 | 381 | 43 | 0 |
+| condominio | 555 | 328 | 92 | 0 |
+| casa | 522 | 378 | 75 | 0 |
+| elasticos | 494 | 391 | 90 | 0 |
+| halteres-banco | 558 | 324 | 93 | 0 |
+| sem-nada | 0 | 899 | 76 | 0 |
 
 ## Achados (programas com o achado)
 
 | gravidade e tipo | programas | % |
 | --- | ---: | ---: |
-| limite abaixo-da-meta | 1.987 | 34% |
+| limite abaixo-da-meta | 1.978 | 33,8% |
 | limite abaixo-do-piso | 1.367 | 23,4% |
 | limite funcoes | 1.344 | 23% |
 | limite sem-exercicio | 975 | 16,7% |

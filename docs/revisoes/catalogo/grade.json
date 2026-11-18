@@ -5917,8 +5917,8 @@
   "programas": 5940,
   "porFuncao": {
    "abdomen": {
-    "aparece2": 4596,
-    "repeteComOpcao": 1122,
+    "aparece2": 4566,
+    "repeteComOpcao": 1111,
     "repeteSemOpcao": 63
    },
    "abducao": {
@@ -5927,19 +5927,19 @@
     "repeteSemOpcao": 0
    },
    "afundo": {
-    "aparece2": 3223,
-    "repeteComOpcao": 1056,
-    "repeteSemOpcao": 69
+    "aparece2": 3204,
+    "repeteComOpcao": 1036,
+    "repeteSemOpcao": 68
    },
    "agachar": {
-    "aparece2": 762,
+    "aparece2": 761,
     "repeteComOpcao": 58,
-    "repeteSemOpcao": 576
+    "repeteSemOpcao": 575
    },
    "biceps": {
-    "aparece2": 1386,
-    "repeteComOpcao": 340,
-    "repeteSemOpcao": 366
+    "aparece2": 1365,
+    "repeteComOpcao": 323,
+    "repeteSemOpcao": 362
    },
    "crucifixo": {
     "aparece2": 345,
@@ -5982,9 +5982,9 @@
     "repeteSemOpcao": 702
    },
    "flexao-joelho": {
-    "aparece2": 4212,
-    "repeteComOpcao": 52,
-    "repeteSemOpcao": 1785
+    "aparece2": 4193,
+    "repeteComOpcao": 51,
+    "repeteSemOpcao": 1768
    },
    "ombro-posterior": {
     "aparece2": 3663,
