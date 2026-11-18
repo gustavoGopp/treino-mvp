@@ -1,0 +1,59 @@
+{
+  "id": "desenvolvimento-maquina",
+  "name": "Desenvolvimento na máquina",
+  "short": "Desenvolvimento na máquina",
+  "target": "Ombro (frente)",
+  "feel": "Frente do ombro. A lateral do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir a lombar, ela está saindo do encosto para empurrar: costas apoiadas no encosto, sem arquear.",
+  "setupEq": [
+    "Banco na altura em que os pegadores ficam na linha dos ombros."
+  ],
+  "setupBody": [
+    "Costas apoiadas no encosto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Empurrar",
+      "Empurra para cima até quase estender os cotovelos."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Desce até os pegadores chegarem na altura do queixo ou dos ombros."
+    ]
+  ],
+  "range": [
+    "Embaixo: pegadores na altura do queixo ou dos ombros.",
+    "Em cima: cotovelos quase estendidos."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Costas no encosto.",
+    "Desce até o queixo.",
+    "Sem arquear a lombar."
+  ],
+  "check": [
+    "Banco na altura dos pegadores na linha dos ombros",
+    "Costas apoiadas no encosto",
+    "Lombar sem arquear"
+  ],
+  "vary": "A descida vai até os pegadores chegarem na altura do queixo ou dos ombros. O que não muda: as costas no encosto, sem arquear a lombar, e a subida até quase estender os cotovelos.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar",
+      "desc": "A lombar sai do encosto para empurrar."
+    },
+    {
+      "id": "e2",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

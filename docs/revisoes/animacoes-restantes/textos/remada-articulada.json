@@ -1,0 +1,64 @@
+{
+  "id": "remada-articulada",
+  "name": "Remada articulada",
+  "short": "Remada articulada",
+  "target": "Costas",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Com o peito na almofada, a lombar não precisa segurar o tronco. Se o peito sair da almofada, é o corpo que está ajudando a puxar: peito apoiado durante toda a série.",
+  "setupEq": [
+    "Assento na altura em que os pegadores ficam na linha do peito com os braços estendidos."
+  ],
+  "setupBody": [
+    "Peito apoiado na almofada durante toda a série."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa levando os cotovelos para trás, rentes ao corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta até alongar as escápulas para a frente."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, escápulas à frente.",
+    "Fim: cotovelos para trás, rentes ao corpo."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Peito na almofada.",
+    "Ombros baixos.",
+    "Estica os braços na volta."
+  ],
+  "check": [
+    "Assento na altura dos pegadores na linha do peito, com os braços estendidos",
+    "Peito apoiado na almofada",
+    "Ombros baixos"
+  ],
+  "vary": "O que não muda: o peito na almofada durante toda a série, os ombros baixos, os cotovelos para trás, rentes ao corpo, e a volta até as escápulas irem para a frente, com os braços estendidos.",
+  "extLabels": [
+    "escápulas à frente",
+    "cotovelos para trás"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o peito da almofada",
+      "desc": "O corpo ajuda a puxar."
+    },
+    {
+      "id": "e2",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem."
+    },
+    {
+      "id": "e3",
+      "title": "Não estender os braços",
+      "desc": "A volta para no meio."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na de anilhas, kg por lado."
+}

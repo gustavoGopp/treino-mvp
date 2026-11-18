@@ -31,3 +31,16 @@ Placa da torre (número).
 - `pinto2025`: Pinto MD, Ughini C, Nunes JP, Cadore EL, Pinto RS. Pectoralis Clavicular and Sternocostal Thicknesses Increase Similarly in Response to One and Three Sets of Pec Deck Resistance Training in Untrained Young Men. J Strength Cond Res 2025;39(5):523-530. PMID 40266636. Resumo lido no PubMed em 01/11/2026.
 - `rabello2024`: Rabello R, Bertozzi F, Hauschild de Freitas IL et al. Activation of the three deltoid muscle portions during common strengthening exercises: A systematic review. J Bodyw Mov Ther 2024;40:1309-1325. PMID 39593452. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/voador.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; ombro anterior; igual à biblioteca); a nota, dos erros "Abrir demais" e "Dobrar e esticar os cotovelos" e da linha Movimento | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Ajuste e Posição da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Ajuste (os pegadores ou as almofadas dos antebraços) e as linhas Posição e Movimento | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/voador.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura do banco foi para a conferência. A ficha não dá ângulos para "até alongar" e "à frente do peito" (os da animação, 84,8° aberto e −12° fechado, são de desenho). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

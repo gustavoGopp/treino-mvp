@@ -31,3 +31,16 @@ Placa da torre (número) ou kg de anilhas por lado, por passos (muitas são de a
 - `fenwick2009`: Fenwick CM, Brown SH, McGill SM. Comparison of different rowing exercises: trunk muscle activation and lumbar spine motion, load, and stiffness. J Strength Cond Res 2009;23(2):350-358. PMID 19197209. Resumo lido no PubMed em 01/11/2026 (lote 1).
 - `padovan2026`: Padovan R, Cè E, Longo S et al. High-Density Surface Electromyography Excitation of Prime Movers Across Scapular Positions in the Seated Row. J Funct Morphol Kinesiol 2025;11(1):6. PMID 41562724. Resumo lido no PubMed em 01/11/2026. Provavelmente é o estudo citado como `padovan2026` em `../08-tecnica-guia.md`, com PMID não verificado; a conferir na entrada para `fontes.md`.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/remada-articulada.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior; igual à biblioteca); a nota, de "Por que assim" (com o peito apoiado, a lombar não precisa segurar o tronco) e do erro "Tirar o peito da almofada" | consenso (a lombar é inferência da ficha a partir de um estudo) | `fenwick2009`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Ajuste e Posição da tabela de técnica e o erro "Encolher os ombros" | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Posição e Movimento e os erros "Encolher os ombros" e "Não estender os braços" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/remada-articulada.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** o cartão não tem montagem, então a altura do assento foi para a conferência. A ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda. A ficha não fala da altura do apoio do peito (a animação regulou o apoio pelo corpo). O desenho do equipamento de hoje é de anilhas, e a animação é de pilha. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.
