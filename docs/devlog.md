@@ -1813,6 +1813,18 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** Sem post: é trabalho de bastidor.
 
+## O limite de 6 exercícios do iniciante (18/11/2026)
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`; ainda não na `main`).** Quem está começando e treina 3 dias de até 60 minutos passa a ter até 6 exercícios por treino, e não os 8 que cabem em 60 minutos. Um exercício do foco, o abdômen ou a panturrilha podem ser o 7º. O limite só vale se não custar outra coisa (um dia longo demais, um dia fraco, empurrar muito mais que puxar, um músculo sem série ou com menos de 4). Com o limite, o lugar que a dor esvaziou vai primeiro para o músculo do foco que está abaixo da meta, e o porquê do programa diz o limite. Regra nova em `docs/pesquisa/regras.md` (`tempo.exercicios-do-iniciante`), com selo de consenso de treinadores.
+
+**Como chegou aqui.** O teste de 17/11 mostrou que os revisores preferem o limite, mas um defeito da régua piorava. Hoje, três consertos no protótipo: o primeiro (o foco em peito com dor forte no cotovelo) e o terceiro (o texto) resolveram; o segundo (os músculos pequenos com tempo sobrando) não tem saída por séries, e três versões foram medidas e recusadas. Com os consertos, nenhum defeito da régua piora em nenhum grupo. O Gustavo decidiu aceitar o custo que sobra.
+
+**Medido em 680.625 programas fictícios.** Nenhum par "grupo × defeito" pior que antes; 12 melhores. Os 20 cuidados, sem nenhum defeito: de 57,5% para 55,9% (conta com os pesos). O custo está nos músculos pequenos: em cerca de 1 de cada 7 iniciantes de 3 × 60, a panturrilha, o ombro de trás ou o ombro lateral ficam com um exercício só na semana, e com 4 séries. Na revisão cega de 8 iniciantes de 3 × 60, 7 receberam notas maiores e nenhum menor.
+
+**Imagem.** Sem imagem: nada mudou nas telas.
+
+**Rascunho de post.** "Ontem a minha régua barrou uma mudança que os treinadores simulados preferiam. Hoje fui atrás do porquê. O defeito estava num caso só: quem queria peito e tinha dor forte no cotovelo perdia o último crucifixo da semana. Consertei esse caso, e a régua passou. Sobrou um custo que não dá para consertar sem desfazer a ideia: com 6 exercícios por treino, a panturrilha e o ombro às vezes ficam com um exercício só. Escrevi o custo na regra e decidi pagar. Menos exercícios, mais bem aprendidos, é o que quem começa precisa."
+
 ## Sessão "treino para todos": encerramento (17/11/2026)
 
 **O que mudou.** A etapa 2 está na `main`. Depois da junção, a verificação automática do GitHub falhou duas vezes, e as duas foram consertadas com o ok do Gustavo: um teste antigo do gerador estourava os 5 segundos com a medida de cobertura ligada (com dor forte, cada programa passou a levar cerca de 4 milésimos de segundo; antes eram 3), e no guia do goblet com zoom de 200% a palavra "subida" não cabia na barra de tempo (uma linha de estilo para telas de até 279 px). No fim, a verificação ficou verde.

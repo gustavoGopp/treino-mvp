@@ -1,6 +1,6 @@
 # O teste próprio do limite de 6 exercícios do iniciante (17/11/2026)
 
-> Sessão "treino para todos". Em 16/11, no pacote 4, o Gustavo decidiu que o limite de 6 exercícios por treino para o iniciante teria um teste só dele, na forma estreita: quem treina **3 dias de até 60 minutos**. Este é o teste. **Nada mudou no app:** o limite só existe no protótipo (`scripts/auditoria/prototipo/`, chave `ini-6-3x60`). Todas as pessoas são fictícias.
+> Sessão "treino para todos". Em 16/11, no pacote 4, o Gustavo decidiu que o limite de 6 exercícios por treino para o iniciante teria um teste só dele, na forma estreita: quem treina **3 dias de até 60 minutos**. Este é o teste. **Em 18/11/2026, com os consertos e a decisão do Gustavo, o limite entrou no app, no ramo da sessão** (seção 8). As seções 1 a 6 são o teste de 17/11, como foi escrito. Todas as pessoas são fictícias.
 
 ## Em resumo
 
@@ -140,3 +140,28 @@ Arquivos: [`medidas/limite-6-consertos/retrato.md`](medidas/limite-6-consertos/r
 ### O que falta decidir
 
 Pelo critério da sessão (nenhum defeito da régua pior em nenhum grupo), o limite agora passa. O que sobra é um custo nos 20 cuidados, que são a régua mais fina da sessão: em cerca de 1 de cada 7 iniciantes de 3 × 60, a panturrilha, o ombro de trás ou o ombro lateral ficam com 4 séries por semana, em vez de 6, e um deles fica sem exercício próprio. É o preço de 6 exercícios por treino, e os revisores preferem pagar: a crítica que mais se repete nas revisões da sessão é "8 exercícios de 2 séries, com cara de lista de compras".
+
+## 8. No app (18/11/2026)
+
+**A decisão.** O Gustavo decidiu levar o limite para o app, aceitando o custo da seção 7 ("Sim, levar para o app").
+
+**O que entrou.**
+
+| Peça | Onde |
+|---|---|
+| A regra, com selo (consenso) e fonte (`kassiano2022`, `consenso-projeto`) | `tempo.exercicios-do-iniciante` em `docs/pesquisa/regras.md` |
+| A frase em linguagem simples ("Menos exercícios para quem está começando") | `src/conteudo/frases-das-regras.json` |
+| Os números (6 exercícios; 3 dias; até 60 min) | `TEMPO.exerciciosDoIniciante` em `src/domain/regras/index.ts` |
+| O código: o limite, o 7º do foco, o lugar da dor para o foco, o texto e a trava de custo | `src/domain/gerador/index.ts` |
+| 6 testes | `tests/unit/limite-do-iniciante.test.ts` |
+
+**Conferido.** O protótipo com as três chaves adotadas (`ini-6-3x60`, `ini-6-foco`, `ini-6-texto`) dá o mesmo programa que o app em todos os 9.075 programas de iniciante de 3 × 60 e na amostra de 23.470 da população (nenhuma diferença).
+
+**Testes que mudaram (para o Gustavo ver):**
+
+- `tests/unit/tempo-que-sobra.test.ts` (pacote 1): compara o app com o protótipo sem a regra do tempo que sobra. Sem ela, o limite às vezes "custa" (sobram músculos com menos de 4 séries) e cai; com ela, fica. Em 2 de 240 casos (o Diego com 60 min, sem foco e com foco em peito) os exercícios mudavam pelo limite, e não pela regra testada. Esses 2 casos ficam de fora da comparação, com o motivo escrito no teste.
+- `tests/repo/privacidade.test.ts`: o teste que procura e-mail pessoal nos arquivos versionados passou dos 5 segundos quando roda junto com os outros (leva cerca de 1 segundo sozinho). Ganhou o limite de 30 segundos; o que ele confere não mudou.
+- Nenhum registro de persona mudou: nenhuma das personas dos testes é iniciante de 3 dias de 60 min.
+
+**As verificações:** MEDIDAS-APP
+
