@@ -10,9 +10,9 @@
 // Na mesa flexora, a alavanca no começo e no fim, com a pilha subindo, e o cartão da panturrilha sentada ao lado.
 // Na máquina de glúteo, a alavanca no começo e no fim do coice (a regulagem do corpo da tabela), com a pilha subindo.
 // No leg press e no hack, o carro em duas posições na guia, com a trava fechada e aberta, e o outro cartão ao lado.
-// Na estação de puxada, a estação com a barra nas mãos (de quem não aparece) no começo e no fim do exercício, com as
-// placas subindo o que o cabo anda, e o cartão da remada baixa ao lado.
-// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|estacao-puxada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
+// Nas estações de puxada e de remada baixa, a estação com o acessório nas mãos (de quem não aparece) no começo e no fim
+// do exercício, com as placas subindo o que o cabo anda, e o cartão da outra estação ao lado.
+// Uso: node scripts/animacao-nova/folha-pecas.mjs [barra|cadeira-flexora|suporte|barra-w|barra-hexagonal|smith|cadeira-extensora|cadeira-abdutora-adutora|mesa-flexora|gluteo-maquina|leg-press|hack|estacao-puxada|estacao-remada] → docs/revisoes/animacoes-restantes/pecas/folha-<peça>.png
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
@@ -33,6 +33,7 @@ export * from './src/engine/novo/pecas-de-cena/gluteo-maquina.ts';
 export * from './src/engine/novo/pecas-de-cena/leg-press.ts';
 export * from './src/engine/novo/pecas-de-cena/hack.ts';
 export * from './src/engine/novo/pecas-de-cena/estacao-puxada.ts';
+export * from './src/engine/novo/pecas-de-cena/estacao-remada.ts';
 export { cena, camera, enquadrado, MAT } from './src/engine/novo/realista/base.mjs';`;
 const { modulo: m } = await motorNovo(ENTRADA);
 const SAIDA = 'docs/revisoes/animacoes-restantes/pecas';
@@ -461,3 +462,27 @@ if (!so || so === 'estacao-puxada') {
   );
 }
 
+if (!so || so === 'estacao-remada') {
+  const o = (id) => m.obj('estacaoRemada', id);
+  // o cartão de hoje põe a estação ao longo de x (quem senta olha para +x) e olha de yaw −30; a peça corre ao longo de z
+  const cam = { yaw: 60, pitch: 12, s: 0.6 };
+  const lado = { yaw: 90, pitch: 2, s: 0.6 };
+  const a = pecasDoQuadro('remada-baixa-estacao', 0),
+    z = pecasDoQuadro('remada-baixa-estacao', 1);
+  const sobe = z.q.marcas.pilha[1] - a.q.marcas.pilha[1];
+  const P = a.q.marcas['cabo.roldana'];
+  const E = m.estacaoRemada({ zPlataforma: a.q.marcas.chapa[2], xPlataforma: 11, yPolia: P[1], subida: 0, placas: 5 }).extremos;
+  await foto(
+    'estacao-remada',
+    `<h1>Estação de remada baixa: o cartão de hoje × a peça nova</h1>
+<p>O tamanho total segue as fichas da Technogym Low Row MK80 (142 × 118,5 × 137,5 cm) e da Nautilus Impact Low Row (228,6 × 72 × 218). <b>A relação do cabo, 1:1, vem da ficha da Nautilus</b> ("Pulley ratio 1:1"; a Bells of Steel diz o mesmo); a plataforma inclinada, da Bells of Steel ("Angled low-row footplate"), sem o ângulo: ${v(o('plataformaInclina'), 0)}°, como no cartão de hoje. A altura da torre é a da Technogym. As medidas que fazem a máquina servir a quem senta (a altura do banco, onde fica a plataforma, a altura da polia baixa) não aparecem em nenhuma ficha lida: são de desenho, do corpo da tabela, em amarelo na tabela. O triângulo é o acessório aprovado (Rogue, 15,2 cm entre as pegadas).</p>
+<p><b>A máquina funciona:</b> o cabo sai da ponta do triângulo, passa entre as chapas dos pés, dá a volta por cima da polia baixa (o alto dela na altura das mãos de quem senta: o cabo horizontal), desce por dentro da coluna, corre no chão até o pé da torre, sobe até a roldana do alto e desce até a haste do pino; as placas do pino sobem ${v(sobe)} cm do começo ao fim da remada, o mesmo que o cabo anda (1:1). Para quem senta, a plataforma fica a ${v(a.q.marcas.chapa[2], 0)} cm do meio do banco (o joelho dobra 25°) e a polia baixa a ${v(P[1], 0)} cm do chão. Medida desenhada: ${v(E.zFundo - E.zTras, 0)} cm de comprimento (entre a Technogym e a Nautilus) e ${v(o('altura'))} cm de altura.</p>
+<h2>No tamanho do cartão (96 px)</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_remada'), 96, 'cartao'))}${cel('nova (o triângulo nas mãos de quem senta, os braços estendidos)', img(desenho(a.pecas, cam), 96, 'cartao'))}${cel('hoje: o puxador alto (para ver se ainda se confundem)', img(hoje('estacao_puxada'), 96, 'cartao'))}</div>
+<h2>Ampliada</h2>
+<div class="l">${cel('hoje', img(hoje('estacao_remada'), 440, 'cartao'))}${cel('nova, do mesmo ângulo, no começo da remada', img(desenho(a.pecas, cam), 640))}</div>
+<h2>Funcionando (de lado, como o app mostra): o triângulo longe e no abdômen, as placas subindo</h2>
+<div class="l">${cel('começo: os braços estendidos; as placas do pino 2 cm acima das outras', img(desenho(a.pecas, lado), 440))}${cel(`fim: o triângulo no abdômen; as placas do pino ${v(sobe)} cm mais acima`, img(desenho(z.pecas, lado), 440))}</div>
+<h2>As medidas</h2>${tabela('estacao-remada', ['estacaoRemada'])}<p style="margin-top:8px">O triângulo é o da tabela aprovada (triangulo-remada.json).</p>`,
+  );
+}

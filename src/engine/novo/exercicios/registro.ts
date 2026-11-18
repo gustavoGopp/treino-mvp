@@ -154,3 +154,4 @@ export { legPress } from './leg-press';
 export { panturrilhaLegPress } from './panturrilha-leg-press';
 export { hack } from './hack';
 export { puxadaFrente } from './puxada-frente';
+export { remadaBaixaEstacao } from './remada-baixa-estacao';
