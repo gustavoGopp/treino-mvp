@@ -112,19 +112,20 @@ import p106 from './stiff-unilateral.json';
 import p107 from './stiff-unilateral-kettlebell.json';
 import p108 from './supino-chao-halteres.json';
 import p109 from './supino-inclinado.json';
-import p110 from './supino-polia.json';
-import p111 from './supino-reto.json';
-import p112 from './triceps-corda.json';
-import p113 from './triceps-elastico-acima.json';
-import p114 from './triceps-elastico-alto.json';
-import p115 from './triceps-frances.json';
-import p116 from './triceps-frances-halter.json';
-import p117 from './triceps-frances-kettlebell.json';
-import p118 from './triceps-frances-polia-unilateral.json';
-import p119 from './triceps-frances-unilateral-halter.json';
-import p120 from './triceps-suspensao.json';
-import p121 from './triceps-testa-halteres.json';
-import p122 from './yt-suspensao.json';
+import p110 from './supino-inclinado-polia.json';
+import p111 from './supino-polia.json';
+import p112 from './supino-reto.json';
+import p113 from './triceps-corda.json';
+import p114 from './triceps-elastico-acima.json';
+import p115 from './triceps-elastico-alto.json';
+import p116 from './triceps-frances.json';
+import p117 from './triceps-frances-halter.json';
+import p118 from './triceps-frances-kettlebell.json';
+import p119 from './triceps-frances-polia-unilateral.json';
+import p120 from './triceps-frances-unilateral-halter.json';
+import p121 from './triceps-suspensao.json';
+import p122 from './triceps-testa-halteres.json';
+import p123 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -237,18 +238,19 @@ const TODOS: Record<string, Preparo> = {
   'stiff-unilateral-kettlebell': p107,
   'supino-chao-halteres': p108,
   'supino-inclinado': p109,
-  'supino-polia': p110,
-  'supino-reto': p111,
-  'triceps-corda': p112,
-  'triceps-elastico-acima': p113,
-  'triceps-elastico-alto': p114,
-  'triceps-frances': p115,
-  'triceps-frances-halter': p116,
-  'triceps-frances-kettlebell': p117,
-  'triceps-frances-polia-unilateral': p118,
-  'triceps-frances-unilateral-halter': p119,
-  'triceps-suspensao': p120,
-  'triceps-testa-halteres': p121,
-  'yt-suspensao': p122,
+  'supino-inclinado-polia': p110,
+  'supino-polia': p111,
+  'supino-reto': p112,
+  'triceps-corda': p113,
+  'triceps-elastico-acima': p114,
+  'triceps-elastico-alto': p115,
+  'triceps-frances': p116,
+  'triceps-frances-halter': p117,
+  'triceps-frances-kettlebell': p118,
+  'triceps-frances-polia-unilateral': p119,
+  'triceps-frances-unilateral-halter': p120,
+  'triceps-suspensao': p121,
+  'triceps-testa-halteres': p122,
+  'yt-suspensao': p123,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);
