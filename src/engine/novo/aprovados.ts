@@ -185,7 +185,7 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
 export const EM_REVISAO: Record<string, string> = {
   'abdominal-maquina': 'volta para quem fez: de lado, no começo, o pegador fica na frente dos olhos e cobre o rosto',
   'coice-polia': 'volta para quem fez: o rótulo diz "joelho quase estendido" e o joelho dobra 34° no meio do chute',
-  'rosca-scott': 'volta para quem fez: de três quartos, o braço de longe fica fora da almofada (apontado pelo Gustavo em 18/11)',
+  'rosca-scott': 'espera o ok do Gustavo na correção do braço de longe na almofada (de três quartos, a pintura escondia o braço atrás da almofada)',
   'panturrilha-leg-press': 'espera o ok do Gustavo: é a primeira com o quadro só na perna (o corpo cortado) e uma vista só, para o tornozelo se ler',
   'coice-maquina': 'espera o Gustavo escolher a máquina: de quatro apoios, como a ficha da técnica, ou em pé, como o cartão de equipamento e as fichas da LF, HS e Movement',
   'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
