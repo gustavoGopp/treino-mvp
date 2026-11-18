@@ -131,3 +131,6 @@ export { tricepsBarraReta } from './triceps-barra-reta';
 export { puxadaBarraReta } from './puxada-barra-reta';
 export { roscaPoliaCostas } from './rosca-polia-costas';
 export { pullThrough } from './pull-through';
+export { mergulho } from './mergulho';
+export { facePullSuspensao } from './face-pull-suspensao';
+export { barraFixaNegativa } from './barra-fixa-negativa';

@@ -1,0 +1,81 @@
+{
+ "id": "barra-fixa-negativa",
+ "nome": "Barra fixa só na descida (negativa)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/barra-fixa-negativa.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/barra-fixa-negativa.md): subir pelo banco, nunca pular (um estudo, quedas: shabbir2026); descida de 3 a 5 s, até os braços estenderem (consenso, 17, G4); pegada pronada, um pouco mais aberta que os ombros (consenso, tecnica.barra-fixa.pegada)",
+  "app": "Cartão do app (src/conteudo/exercicios/barra-fixa-negativa.json): começa em cima, com o queixo acima da barra, cotovelos dobrados e o peito perto da barra; tira os pés do apoio; desce em 3 a 5 s até os braços estenderem; põe os pés no apoio e sobe de novo pelo apoio, não pela barra; as dicas e os erros",
+  "barra": "Barra fixa pronada, aprovada no motor novo (./barra-fixa.json): a pegada, a altura da barra, o topo (o queixo acima da barra, o tronco um pouco para trás, as escápulas) e a ordem em que o braço e a escápula se movem, aqui ao contrário (a descida é a subida da barra fixa de trás para a frente)",
+  "objetos": "src/engine/novo/dados/objetos/caixa-de-salto.json e barra-fixa.json: a altura da barra e a da caixa (páginas dos fabricantes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "barra.altura": {"v": 221.6, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "o centro da barra numa regulagem abaixo da mais alta da torre (a torre sobe em 7 degraus de 2 ¾ pol; a mais alta, 228,6 cm, é a da barra fixa). Na mais alta, de pé na caixa de 76 cm com os pés à frente, a perna não alcança a caixa com o queixo acima da barra; um degrau abaixo, ela alcança com o joelho um pouco dobrado"},
+  "pegada.largura": {"v": 1.5, "un": "vezes a largura dos ombros", "selo": "consenso", "fonte": "barra", "o": "de centro a centro das mãos, 1,5 vez a largura entre os acrômios: \"um pouco mais aberta que os ombros\" (o mesmo da barra fixa)"},
+  "cotovelo.embaixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no fim da descida, os braços estendidos sem travar: o cotovelo dobra 8° (o mesmo da barra fixa)"},
+  "queixo.acima": {"v": 3, "un": "cm", "selo": "consenso", "fonte": "app", "o": "em cima, o queixo passa 3 cm do alto da barra (o mesmo da barra fixa)"},
+  "escapula.embaixo": {"v": -5, "un": "graus", "selo": "consenso", "fonte": "app", "o": "\"ombros longe das orelhas\" até o fim da descida: embaixo, a clavícula fica 2° abaixo do ritmo do ombro (na barra fixa, pendurado e solto, +4)"},
+  "escapula.encaixada": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "no trecho de baixo da descida, as escápulas sobem por último: a clavícula 6° abaixo do ritmo (o mesmo da barra fixa)"},
+  "escapula.topo": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, os ombros baixos, longe das orelhas (o mesmo da barra fixa)"},
+  "escapula.prot.topo": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, as escápulas vão um pouco para trás, com o peito perto da barra (o mesmo da barra fixa)"},
+  "escapulas.fim": {"v": 0.3, "un": "fração da altura", "selo": "desenho", "fonte": "barra", "o": "as escápulas só sobem no último trecho da descida (os 30% de baixo), depois de os braços estenderem quase todo o caminho: a subida da barra fixa de trás para a frente"},
+  "puxada.inicio": {"v": 0.24, "un": "fração da altura", "selo": "desenho", "fonte": "barra", "o": "os braços terminam de estender a 24% da altura do caminho, emendando na subida das escápulas (o mesmo da barra fixa)"},
+  "inclina.fim": {"v": 0.65, "un": "fração da altura", "selo": "desenho", "fonte": "barra", "o": "o tronco fica para trás (e a cabeça recuada) até o rosto passar da barra, e endireita entre 65% e 24% da altura (o mesmo da barra fixa)"},
+  "bacia.topo": {"v": -9, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, o corpo inclina um pouco para trás: a bacia gira 6° para trás (o mesmo da barra fixa)"},
+  "toracica.topo": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, o peito abre, perto da barra: a torácica estende 10° (o mesmo da barra fixa)"},
+  "lombar.topo": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, a lombar estende 4° (o mesmo da barra fixa)"},
+  "pescoco.topo": {"v": -14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, o pescoço estende e a cabeça fica atrás da barra, olhando em frente e um pouco para cima (na barra fixa, -8°: aqui as pernas ficam para trás, o corpo fica uns 5 cm mais à frente no prumo, e com -8° a cabeça encostava na barra na descida)"},
+  "quadril": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pendurado, fora da caixa: o quadril dobra 30° (as coxas um pouco à frente)"},
+  "joelho": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pendurado, fora da caixa: os joelhos dobrados 100° e os pés para trás, longe da caixa, que fica à frente (\"tire os pés do apoio\"); as pernas não se mexem na descida. De trás, com menos dobra, os pés pareciam pisar na caixa"},
+  "pe.plantar": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "os pés soltos, a ponta um pouco esticada (o mesmo da barra fixa)"},
+  "pernas.juntas": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "pernas juntas: cada coxa vem 3° para o meio (o mesmo da barra fixa)"},
+  "polo.pendurado.fora": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta para o lado (pegada pronada aberta; o mesmo da barra fixa)"},
+  "polo.pendurado.cima": {"v": -0.25, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta um pouco para baixo"},
+  "polo.pendurado.frente": {"v": 0.2, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "embaixo, o cotovelo aponta um pouco para a frente"},
+  "polo.topo.fora": {"v": 0.15, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "em cima, o cotovelo fica ao lado das costelas: aponta para baixo e um pouco para fora (o mesmo da barra fixa)"},
+  "polo.topo.cima": {"v": -1, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "em cima, o cotovelo aponta para baixo"},
+  "polo.topo.frente": {"v": -0.15, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "em cima, o cotovelo vai um pouco para trás"},
+  "caixa.tras": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a caixa fica à frente da pessoa, com a face de trás 30 cm à frente da barra: na descida, os joelhos e os pés passam atrás dela, sem encostar"},
+  "pes.naCaixa": {"v": 50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "na caixa, a bola do pé fica 50 cm à frente da barra: o calcanhar fica todo no tampo, à frente da beirada de trás"},
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "na caixa, os pés na largura do quadril"},
+  "volta.pes.fim": {"v": 0.45, "un": "fração da volta", "selo": "desenho", "fonte": "desenho", "o": "na volta, os pés chegam à caixa nos primeiros 45% dela, com os braços ainda estendidos"},
+  "volta.sobe.fim": {"v": 0.82, "un": "fração da volta", "selo": "desenho", "fonte": "desenho", "o": "as pernas empurram o corpo de volta ao alto até 82% da volta, com as mãos na barra (o braço não puxa: ele dobra porque o corpo sobe); no resto, os pés saem da caixa e voltam para trás"},
+  "volta.pes.arco": {"v": 35, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "na volta, o pé vai à caixa por uma curva que passa perto de um ponto 30 cm acima do tampo: o joelho sobe antes e o pé passa por cima da beirada"},
+  "volta.calcanhar": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no fim da subida pela caixa, o calcanhar sobe 15° (a pessoa fica na ponta dos pés para o queixo passar da barra, sem a perna travar esticada)"},
+  "volta.pes.recua": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "esse ponto fica 5 cm atrás da face de trás da caixa (o pé só vai à frente depois de subir)"},
+  "erro.solta.elev": {"v": 13, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a queda termina com um tranco no ombro: a escápula sobe até a orelha (a clavícula 13° além do ritmo; a ficha diz \"o ombro leva um tranco\")"},
+  "erro.solta.pescoco": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no tranco, a cabeça afunda entre os ombros"},
+  "erro.solta.cotovelo": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o cotovelo chega travado (0°), sem freio"},
+  "erro.curta.cotovelo": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a descida para antes dos braços estenderem: o cotovelo fica dobrado 80° embaixo"},
+  "erro.pula.altura": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o pulo: os pés saem da caixa e chegam ao alto no ar, 16 cm acima do tampo"}
+ },
+ "fases": [
+  {"nome": "Em cima · tira os pés do apoio", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "queixo acima da barra", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 4, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "3 a 5 s, controlando", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · sobe pelo apoio", "tipo": "conc", "dur": 3.6, "de": 1, "ate": 2, "respira": "FIRME", "tempo": "pés no apoio, sobe pelas pernas", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta da barra e não saem do lugar", "selo": "consenso", "fonte": "barra"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo (a cabeça, o peito) passa pela barra sem atravessá-la", "selo": "consenso", "fonte": "barra"},
+  {"id": "pendurado-sem-balanco", "pede": "corpo parado na descida: o centro de massa fica na vertical da barra", "selo": "consenso", "fonte": "barra"},
+  {"id": "barra-fixa-pegada-pronada", "pede": "palmas para a frente, mãos um pouco mais abertas que os ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-negativa-comeca-em-cima", "pede": "começa em cima: queixo acima da barra, cotovelos dobrados, peito perto da barra", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-negativa-desce-devagar", "pede": "desce em 3 a 5 s", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-negativa-ate-os-bracos-estenderem", "pede": "desce até os braços estenderem", "selo": "consenso", "fonte": "ficha"},
+  {"id": "barra-negativa-ombros-longe-das-orelhas", "pede": "ombros longe das orelhas na descida inteira", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-negativa-pes-fora-da-caixa", "pede": "na descida, os pés fora do apoio, sem encostar nele", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "solta", "instante": 1, "titulo": "Soltar o corpo", "vista": "posterior", "oQueMuda": "a descida vira uma queda: no fim, o ombro leva o tranco (a escápula sobe até a orelha, a cabeça afunda) e o cotovelo chega travado", "destaca": ["bracos", "corpo"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "pula", "instante": 0, "titulo": "Pular para chegar ao alto", "vista": "quina", "oQueMuda": "em vez de subir pela caixa, pula: chega ao alto com os pés no ar, acima da caixa", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "tornozelo"},
+  {"id": "curta", "instante": 1, "titulo": "Parar no meio", "vista": "posterior", "oQueMuda": "a descida para antes dos braços estenderem: o cotovelo fica dobrado embaixo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "quina", "texto": "desça devagar", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "suba pelo apoio", "ponto": "tornozelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular", "selo": "consenso", "fonte": "app", "seta": {"de": "acromioclavicular", "desce": 6}}
+ ]
+}

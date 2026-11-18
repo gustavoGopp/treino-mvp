@@ -52,3 +52,6 @@ export { REGRAS_ROSCA_CONCENTRADA } from './rosca-concentrada';
 export { REGRAS_POLIA_BANCO } from './polia-banco';
 export { REGRAS_CRUCIFIXO_POLIA_BAIXO } from './crucifixo-polia-baixo';
 export { REGRAS_UMA_TORRE } from './uma-torre';
+export { REGRAS_MERGULHO } from './mergulho';
+export { REGRAS_FACE_PULL_SUSPENSAO } from './face-pull-suspensao';
+export { REGRAS_BARRA_FIXA_NEGATIVA } from './barra-fixa-negativa';

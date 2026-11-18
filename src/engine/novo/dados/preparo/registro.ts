@@ -24,113 +24,116 @@ import p18 from './agachamento-elastico.json';
 import p19 from './agachamento-halteres.json';
 import p20 from './agachamento-peso-corpo.json';
 import p21 from './barra-fixa.json';
-import p22 from './barra-fixa-supinada.json';
-import p23 from './bulgaro.json';
-import p24 from './bulgaro-peso-corpo.json';
-import p25 from './bulgaro-suspensao.json';
-import p26 from './caminhada-lateral-mini-band.json';
-import p27 from './coice-caneleira.json';
-import p28 from './coice-elastico.json';
-import p29 from './crucifixo-elastico.json';
-import p30 from './crucifixo-halteres.json';
-import p31 from './crucifixo-inclinado-halteres.json';
-import p32 from './crucifixo-inverso.json';
-import p33 from './crucifixo-invertido-caneleira.json';
-import p34 from './crucifixo-invertido-curvado.json';
-import p35 from './crucifixo-invertido-polia.json';
-import p36 from './crucifixo-invertido-sentado.json';
-import p37 from './crucifixo-polia.json';
-import p38 from './crucifixo-polia-baixo.json';
-import p39 from './desenvolvimento.json';
-import p40 from './desenvolvimento-elastico.json';
-import p41 from './desenvolvimento-em-pe-halteres.json';
-import p42 from './desenvolvimento-unilateral.json';
-import p43 from './desenvolvimento-unilateral-kettlebell.json';
-import p44 from './elevacao-halteres.json';
-import p45 from './elevacao-joelhos.json';
-import p46 from './elevacao-joelhos-paralelas.json';
-import p47 from './elevacao-lateral.json';
-import p48 from './elevacao-lateral-caneleira.json';
-import p49 from './elevacao-lateral-deitado.json';
-import p50 from './elevacao-lateral-elastico.json';
-import p51 from './elevacao-lateral-unilateral.json';
-import p52 from './elevacao-lateral-unilateral-elastico.json';
-import p53 from './extensao-joelho-caneleira.json';
-import p54 from './extensao-joelho-elastico.json';
-import p55 from './extensao-joelho-mini-band.json';
-import p56 from './extensao-triceps-peso-corpo.json';
-import p57 from './face-pull.json';
-import p58 from './face-pull-elastico.json';
-import p59 from './flexao.json';
-import p60 from './flexao-bola.json';
-import p61 from './flexao-elastico.json';
-import p62 from './flexao-fechada.json';
-import p63 from './flexao-joelho-deslizante.json';
-import p64 from './flexao-joelho-elastico.json';
-import p65 from './flexao-joelho-suspensao.json';
-import p66 from './flexao-pes-elevados.json';
-import p67 from './goblet.json';
-import p68 from './goblet-kettlebell.json';
-import p69 from './nordico.json';
-import p70 from './panturrilha.json';
-import p71 from './panturrilha-b.json';
-import p72 from './panturrilha-chao.json';
-import p73 from './panturrilha-degrau.json';
-import p74 from './panturrilha-sentada-halter.json';
-import p75 from './pike.json';
-import p76 from './ponte-gluteo.json';
-import p77 from './ponte-gluteo-halter.json';
-import p78 from './ponte-kettlebell.json';
-import p79 from './ponte-pes-bola.json';
-import p80 from './pull-through.json';
-import p81 from './puxada-barra-reta.json';
-import p82 from './puxada-elastico.json';
-import p83 from './puxada-unilateral.json';
-import p84 from './remada-apoiada.json';
-import p85 from './remada-baixa.json';
-import p86 from './remada-curvada-elastico.json';
-import p87 from './remada-curvada-halteres.json';
-import p88 from './remada-elastico.json';
-import p89 from './remada-suspensao.json';
-import p90 from './remada-unilateral.json';
-import p91 from './remada-unilateral-elastico.json';
-import p92 from './remada-unilateral-kettlebell.json';
-import p93 from './remada-unilateral-polia.json';
-import p94 from './remada-unilateral-sem-banco.json';
-import p95 from './roda-abdominal.json';
-import p96 from './rosca-alternada.json';
-import p97 from './rosca-concentrada.json';
-import p98 from './rosca-elastico.json';
-import p99 from './rosca-inclinada.json';
-import p100 from './rosca-kettlebell.json';
-import p101 from './rosca-martelo.json';
-import p102 from './rosca-martelo-elastico.json';
-import p103 from './rosca-polia.json';
-import p104 from './rosca-polia-costas.json';
-import p105 from './rosca-scott-banco-inclinado.json';
-import p106 from './rosca-suspensao.json';
-import p107 from './stiff.json';
-import p108 from './stiff-elastico.json';
-import p109 from './stiff-kettlebell.json';
-import p110 from './stiff-unilateral.json';
-import p111 from './stiff-unilateral-kettlebell.json';
-import p112 from './supino-chao-halteres.json';
-import p113 from './supino-inclinado.json';
-import p114 from './supino-inclinado-polia.json';
-import p115 from './supino-polia.json';
-import p116 from './supino-reto.json';
-import p117 from './triceps-barra-reta.json';
-import p118 from './triceps-corda.json';
-import p119 from './triceps-elastico-acima.json';
-import p120 from './triceps-elastico-alto.json';
-import p121 from './triceps-frances.json';
-import p122 from './triceps-frances-halter.json';
-import p123 from './triceps-frances-kettlebell.json';
-import p124 from './triceps-frances-polia-unilateral.json';
-import p125 from './triceps-frances-unilateral-halter.json';
-import p126 from './triceps-suspensao.json';
-import p127 from './triceps-testa-halteres.json';
-import p128 from './yt-suspensao.json';
+import p22 from './barra-fixa-negativa.json';
+import p23 from './barra-fixa-supinada.json';
+import p24 from './bulgaro.json';
+import p25 from './bulgaro-peso-corpo.json';
+import p26 from './bulgaro-suspensao.json';
+import p27 from './caminhada-lateral-mini-band.json';
+import p28 from './coice-caneleira.json';
+import p29 from './coice-elastico.json';
+import p30 from './crucifixo-elastico.json';
+import p31 from './crucifixo-halteres.json';
+import p32 from './crucifixo-inclinado-halteres.json';
+import p33 from './crucifixo-inverso.json';
+import p34 from './crucifixo-invertido-caneleira.json';
+import p35 from './crucifixo-invertido-curvado.json';
+import p36 from './crucifixo-invertido-polia.json';
+import p37 from './crucifixo-invertido-sentado.json';
+import p38 from './crucifixo-polia.json';
+import p39 from './crucifixo-polia-baixo.json';
+import p40 from './desenvolvimento.json';
+import p41 from './desenvolvimento-elastico.json';
+import p42 from './desenvolvimento-em-pe-halteres.json';
+import p43 from './desenvolvimento-unilateral.json';
+import p44 from './desenvolvimento-unilateral-kettlebell.json';
+import p45 from './elevacao-halteres.json';
+import p46 from './elevacao-joelhos.json';
+import p47 from './elevacao-joelhos-paralelas.json';
+import p48 from './elevacao-lateral.json';
+import p49 from './elevacao-lateral-caneleira.json';
+import p50 from './elevacao-lateral-deitado.json';
+import p51 from './elevacao-lateral-elastico.json';
+import p52 from './elevacao-lateral-unilateral.json';
+import p53 from './elevacao-lateral-unilateral-elastico.json';
+import p54 from './extensao-joelho-caneleira.json';
+import p55 from './extensao-joelho-elastico.json';
+import p56 from './extensao-joelho-mini-band.json';
+import p57 from './extensao-triceps-peso-corpo.json';
+import p58 from './face-pull.json';
+import p59 from './face-pull-elastico.json';
+import p60 from './face-pull-suspensao.json';
+import p61 from './flexao.json';
+import p62 from './flexao-bola.json';
+import p63 from './flexao-elastico.json';
+import p64 from './flexao-fechada.json';
+import p65 from './flexao-joelho-deslizante.json';
+import p66 from './flexao-joelho-elastico.json';
+import p67 from './flexao-joelho-suspensao.json';
+import p68 from './flexao-pes-elevados.json';
+import p69 from './goblet.json';
+import p70 from './goblet-kettlebell.json';
+import p71 from './mergulho.json';
+import p72 from './nordico.json';
+import p73 from './panturrilha.json';
+import p74 from './panturrilha-b.json';
+import p75 from './panturrilha-chao.json';
+import p76 from './panturrilha-degrau.json';
+import p77 from './panturrilha-sentada-halter.json';
+import p78 from './pike.json';
+import p79 from './ponte-gluteo.json';
+import p80 from './ponte-gluteo-halter.json';
+import p81 from './ponte-kettlebell.json';
+import p82 from './ponte-pes-bola.json';
+import p83 from './pull-through.json';
+import p84 from './puxada-barra-reta.json';
+import p85 from './puxada-elastico.json';
+import p86 from './puxada-unilateral.json';
+import p87 from './remada-apoiada.json';
+import p88 from './remada-baixa.json';
+import p89 from './remada-curvada-elastico.json';
+import p90 from './remada-curvada-halteres.json';
+import p91 from './remada-elastico.json';
+import p92 from './remada-suspensao.json';
+import p93 from './remada-unilateral.json';
+import p94 from './remada-unilateral-elastico.json';
+import p95 from './remada-unilateral-kettlebell.json';
+import p96 from './remada-unilateral-polia.json';
+import p97 from './remada-unilateral-sem-banco.json';
+import p98 from './roda-abdominal.json';
+import p99 from './rosca-alternada.json';
+import p100 from './rosca-concentrada.json';
+import p101 from './rosca-elastico.json';
+import p102 from './rosca-inclinada.json';
+import p103 from './rosca-kettlebell.json';
+import p104 from './rosca-martelo.json';
+import p105 from './rosca-martelo-elastico.json';
+import p106 from './rosca-polia.json';
+import p107 from './rosca-polia-costas.json';
+import p108 from './rosca-scott-banco-inclinado.json';
+import p109 from './rosca-suspensao.json';
+import p110 from './stiff.json';
+import p111 from './stiff-elastico.json';
+import p112 from './stiff-kettlebell.json';
+import p113 from './stiff-unilateral.json';
+import p114 from './stiff-unilateral-kettlebell.json';
+import p115 from './supino-chao-halteres.json';
+import p116 from './supino-inclinado.json';
+import p117 from './supino-inclinado-polia.json';
+import p118 from './supino-polia.json';
+import p119 from './supino-reto.json';
+import p120 from './triceps-barra-reta.json';
+import p121 from './triceps-corda.json';
+import p122 from './triceps-elastico-acima.json';
+import p123 from './triceps-elastico-alto.json';
+import p124 from './triceps-frances.json';
+import p125 from './triceps-frances-halter.json';
+import p126 from './triceps-frances-kettlebell.json';
+import p127 from './triceps-frances-polia-unilateral.json';
+import p128 from './triceps-frances-unilateral-halter.json';
+import p129 from './triceps-suspensao.json';
+import p130 from './triceps-testa-halteres.json';
+import p131 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -155,112 +158,115 @@ const TODOS: Record<string, Preparo> = {
   'agachamento-halteres': p19,
   'agachamento-peso-corpo': p20,
   'barra-fixa': p21,
-  'barra-fixa-supinada': p22,
-  'bulgaro': p23,
-  'bulgaro-peso-corpo': p24,
-  'bulgaro-suspensao': p25,
-  'caminhada-lateral-mini-band': p26,
-  'coice-caneleira': p27,
-  'coice-elastico': p28,
-  'crucifixo-elastico': p29,
-  'crucifixo-halteres': p30,
-  'crucifixo-inclinado-halteres': p31,
-  'crucifixo-inverso': p32,
-  'crucifixo-invertido-caneleira': p33,
-  'crucifixo-invertido-curvado': p34,
-  'crucifixo-invertido-polia': p35,
-  'crucifixo-invertido-sentado': p36,
-  'crucifixo-polia': p37,
-  'crucifixo-polia-baixo': p38,
-  'desenvolvimento': p39,
-  'desenvolvimento-elastico': p40,
-  'desenvolvimento-em-pe-halteres': p41,
-  'desenvolvimento-unilateral': p42,
-  'desenvolvimento-unilateral-kettlebell': p43,
-  'elevacao-halteres': p44,
-  'elevacao-joelhos': p45,
-  'elevacao-joelhos-paralelas': p46,
-  'elevacao-lateral': p47,
-  'elevacao-lateral-caneleira': p48,
-  'elevacao-lateral-deitado': p49,
-  'elevacao-lateral-elastico': p50,
-  'elevacao-lateral-unilateral': p51,
-  'elevacao-lateral-unilateral-elastico': p52,
-  'extensao-joelho-caneleira': p53,
-  'extensao-joelho-elastico': p54,
-  'extensao-joelho-mini-band': p55,
-  'extensao-triceps-peso-corpo': p56,
-  'face-pull': p57,
-  'face-pull-elastico': p58,
-  'flexao': p59,
-  'flexao-bola': p60,
-  'flexao-elastico': p61,
-  'flexao-fechada': p62,
-  'flexao-joelho-deslizante': p63,
-  'flexao-joelho-elastico': p64,
-  'flexao-joelho-suspensao': p65,
-  'flexao-pes-elevados': p66,
-  'goblet': p67,
-  'goblet-kettlebell': p68,
-  'nordico': p69,
-  'panturrilha': p70,
-  'panturrilha-b': p71,
-  'panturrilha-chao': p72,
-  'panturrilha-degrau': p73,
-  'panturrilha-sentada-halter': p74,
-  'pike': p75,
-  'ponte-gluteo': p76,
-  'ponte-gluteo-halter': p77,
-  'ponte-kettlebell': p78,
-  'ponte-pes-bola': p79,
-  'pull-through': p80,
-  'puxada-barra-reta': p81,
-  'puxada-elastico': p82,
-  'puxada-unilateral': p83,
-  'remada-apoiada': p84,
-  'remada-baixa': p85,
-  'remada-curvada-elastico': p86,
-  'remada-curvada-halteres': p87,
-  'remada-elastico': p88,
-  'remada-suspensao': p89,
-  'remada-unilateral': p90,
-  'remada-unilateral-elastico': p91,
-  'remada-unilateral-kettlebell': p92,
-  'remada-unilateral-polia': p93,
-  'remada-unilateral-sem-banco': p94,
-  'roda-abdominal': p95,
-  'rosca-alternada': p96,
-  'rosca-concentrada': p97,
-  'rosca-elastico': p98,
-  'rosca-inclinada': p99,
-  'rosca-kettlebell': p100,
-  'rosca-martelo': p101,
-  'rosca-martelo-elastico': p102,
-  'rosca-polia': p103,
-  'rosca-polia-costas': p104,
-  'rosca-scott-banco-inclinado': p105,
-  'rosca-suspensao': p106,
-  'stiff': p107,
-  'stiff-elastico': p108,
-  'stiff-kettlebell': p109,
-  'stiff-unilateral': p110,
-  'stiff-unilateral-kettlebell': p111,
-  'supino-chao-halteres': p112,
-  'supino-inclinado': p113,
-  'supino-inclinado-polia': p114,
-  'supino-polia': p115,
-  'supino-reto': p116,
-  'triceps-barra-reta': p117,
-  'triceps-corda': p118,
-  'triceps-elastico-acima': p119,
-  'triceps-elastico-alto': p120,
-  'triceps-frances': p121,
-  'triceps-frances-halter': p122,
-  'triceps-frances-kettlebell': p123,
-  'triceps-frances-polia-unilateral': p124,
-  'triceps-frances-unilateral-halter': p125,
-  'triceps-suspensao': p126,
-  'triceps-testa-halteres': p127,
-  'yt-suspensao': p128,
+  'barra-fixa-negativa': p22,
+  'barra-fixa-supinada': p23,
+  'bulgaro': p24,
+  'bulgaro-peso-corpo': p25,
+  'bulgaro-suspensao': p26,
+  'caminhada-lateral-mini-band': p27,
+  'coice-caneleira': p28,
+  'coice-elastico': p29,
+  'crucifixo-elastico': p30,
+  'crucifixo-halteres': p31,
+  'crucifixo-inclinado-halteres': p32,
+  'crucifixo-inverso': p33,
+  'crucifixo-invertido-caneleira': p34,
+  'crucifixo-invertido-curvado': p35,
+  'crucifixo-invertido-polia': p36,
+  'crucifixo-invertido-sentado': p37,
+  'crucifixo-polia': p38,
+  'crucifixo-polia-baixo': p39,
+  'desenvolvimento': p40,
+  'desenvolvimento-elastico': p41,
+  'desenvolvimento-em-pe-halteres': p42,
+  'desenvolvimento-unilateral': p43,
+  'desenvolvimento-unilateral-kettlebell': p44,
+  'elevacao-halteres': p45,
+  'elevacao-joelhos': p46,
+  'elevacao-joelhos-paralelas': p47,
+  'elevacao-lateral': p48,
+  'elevacao-lateral-caneleira': p49,
+  'elevacao-lateral-deitado': p50,
+  'elevacao-lateral-elastico': p51,
+  'elevacao-lateral-unilateral': p52,
+  'elevacao-lateral-unilateral-elastico': p53,
+  'extensao-joelho-caneleira': p54,
+  'extensao-joelho-elastico': p55,
+  'extensao-joelho-mini-band': p56,
+  'extensao-triceps-peso-corpo': p57,
+  'face-pull': p58,
+  'face-pull-elastico': p59,
+  'face-pull-suspensao': p60,
+  'flexao': p61,
+  'flexao-bola': p62,
+  'flexao-elastico': p63,
+  'flexao-fechada': p64,
+  'flexao-joelho-deslizante': p65,
+  'flexao-joelho-elastico': p66,
+  'flexao-joelho-suspensao': p67,
+  'flexao-pes-elevados': p68,
+  'goblet': p69,
+  'goblet-kettlebell': p70,
+  'mergulho': p71,
+  'nordico': p72,
+  'panturrilha': p73,
+  'panturrilha-b': p74,
+  'panturrilha-chao': p75,
+  'panturrilha-degrau': p76,
+  'panturrilha-sentada-halter': p77,
+  'pike': p78,
+  'ponte-gluteo': p79,
+  'ponte-gluteo-halter': p80,
+  'ponte-kettlebell': p81,
+  'ponte-pes-bola': p82,
+  'pull-through': p83,
+  'puxada-barra-reta': p84,
+  'puxada-elastico': p85,
+  'puxada-unilateral': p86,
+  'remada-apoiada': p87,
+  'remada-baixa': p88,
+  'remada-curvada-elastico': p89,
+  'remada-curvada-halteres': p90,
+  'remada-elastico': p91,
+  'remada-suspensao': p92,
+  'remada-unilateral': p93,
+  'remada-unilateral-elastico': p94,
+  'remada-unilateral-kettlebell': p95,
+  'remada-unilateral-polia': p96,
+  'remada-unilateral-sem-banco': p97,
+  'roda-abdominal': p98,
+  'rosca-alternada': p99,
+  'rosca-concentrada': p100,
+  'rosca-elastico': p101,
+  'rosca-inclinada': p102,
+  'rosca-kettlebell': p103,
+  'rosca-martelo': p104,
+  'rosca-martelo-elastico': p105,
+  'rosca-polia': p106,
+  'rosca-polia-costas': p107,
+  'rosca-scott-banco-inclinado': p108,
+  'rosca-suspensao': p109,
+  'stiff': p110,
+  'stiff-elastico': p111,
+  'stiff-kettlebell': p112,
+  'stiff-unilateral': p113,
+  'stiff-unilateral-kettlebell': p114,
+  'supino-chao-halteres': p115,
+  'supino-inclinado': p116,
+  'supino-inclinado-polia': p117,
+  'supino-polia': p118,
+  'supino-reto': p119,
+  'triceps-barra-reta': p120,
+  'triceps-corda': p121,
+  'triceps-elastico-acima': p122,
+  'triceps-elastico-alto': p123,
+  'triceps-frances': p124,
+  'triceps-frances-halter': p125,
+  'triceps-frances-kettlebell': p126,
+  'triceps-frances-polia-unilateral': p127,
+  'triceps-frances-unilateral-halter': p128,
+  'triceps-suspensao': p129,
+  'triceps-testa-halteres': p130,
+  'yt-suspensao': p131,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);

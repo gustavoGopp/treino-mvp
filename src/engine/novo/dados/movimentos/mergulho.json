@@ -1,0 +1,63 @@
+{
+ "id": "mergulho",
+ "nome": "Mergulho nas paralelas",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/mergulho.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/mergulho.md): consenso de treinadores (nsca2021, não verificado): braços estendidos nas paralelas, ombros longe das orelhas; tronco levemente inclinado à frente; desce até o braço ficar quase paralelo ao chão, sem dor no ombro; empurra até estender os cotovelos sem travar; erros: descer demais com o ombro rolando para a frente, balançar as pernas, amplitude curta",
+  "app": "Cartão do app (src/conteudo/exercicios/mergulho.json): as fases, as dicas (\"Ombros longe das orelhas\", \"Tronco um pouco à frente\", \"Pernas paradas\") e os erros",
+  "paralelas": "Elevação de joelhos nas paralelas, aprovada no motor novo (./elevacao-joelhos-paralelas.json): o corpo sustentado nas mesmas paralelas, a escápula baixa, para onde o cotovelo aponta e os pés soltos",
+  "barra": "Barra fixa, aprovada no motor novo (./barra-fixa.json): o erro de balançar as pernas (o chute e o corpo fora do prumo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os cotovelos estendidos sem travar: o cotovelo dobra 8° (o mesmo da barra fixa embaixo)"},
+  "braco.embaixo": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço fica quase paralelo ao chão: do ombro ao cotovelo, ele desce 12° abaixo da horizontal (o cotovelo um pouco abaixo do ombro; a ficha não dá número). O cotovelo dobra o que precisar para isso"},
+  "tronco.cima": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, o corpo quase na vertical: a bacia gira 6° à frente"},
+  "tronco.embaixo": {"v": 22, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "na descida, o tronco inclina um pouco à frente: a bacia gira 22° à frente embaixo (a ficha diz \"levemente\", sem número)"},
+  "escapula.ativa": {"v": -10, "un": "graus", "selo": "consenso", "fonte": "paralelas", "o": "ombros longe das orelhas, empurrando as barras para baixo: a clavícula fica 10° abaixo do ritmo do ombro o ciclo inteiro (o mesmo da elevação de joelhos nas paralelas)"},
+  "polo.fora": {"v": 0.15, "un": "fração", "selo": "desenho", "fonte": "paralelas", "o": "o cotovelo aponta para trás e um pouco para fora (o mesmo da elevação de joelhos nas paralelas)"},
+  "polo.cima": {"v": 0, "un": "fração", "selo": "desenho", "fonte": "paralelas", "o": "o cotovelo aponta para trás, na horizontal"},
+  "polo.frente": {"v": -1, "un": "fração", "selo": "desenho", "fonte": "paralelas", "o": "o cotovelo aponta para trás"},
+  "pescoco": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco, o queixo um pouco recolhido, olhando à frente e para baixo"},
+  "quadril": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "as coxas quase na linha do tronco: o quadril dobra 8°"},
+  "joelho": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os joelhos dobrados e os pés para trás, a postura mais comum nas paralelas (a ficha não diz); parados o ciclo inteiro (\"pernas paradas\")"},
+  "pe.plantar": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "paralelas", "o": "os pés soltos, a ponta um pouco esticada (o mesmo da elevação de joelhos nas paralelas)"},
+  "pernas.juntas": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "paralelas", "o": "pernas juntas: cada coxa vem 3° para o meio"},
+  "erro.fundo.braco": {"v": -7, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: desce demais: o ombro passa abaixo do cotovelo, e o braço sobe 7° acima da horizontal (o cotovelo dobra 117°, contra 105° no certo; com o cotovelo além de uns 130°, o braço do Boneco já não alcança as barras com o corpo no prumo)"},
+  "erro.fundo.elev": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fundo, o ombro sobe em direção à orelha (a clavícula 6° acima do ritmo do ombro)"},
+  "erro.fundo.prot": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no fundo, o ombro rola para a frente (a clavícula vai 14° à frente)"},
+  "erro.fundo.pescoco": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a cabeça cai para a frente com os ombros"},
+  "erro.curta.braco": {"v": 48, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: desce pouco: embaixo, o braço fica 48° abaixo da horizontal (longe do paralelo)"},
+  "erro.balanco.quadril": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: as pernas chutam para a frente para dar impulso: o quadril dobra até 55° no meio da subida"},
+  "erro.balanco.joelho": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: no chute, o joelho estica até 25°"},
+  "erro.balanco.z": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "barra", "o": "erro: o balanço tira o corpo do prumo: o centro de massa vai 9 cm à frente das mãos no meio da subida"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s, controlada", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.25, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "braço quase paralelo ao chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s, sem travar", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta das barras e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo fica entre as barras, sem atravessá-las", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-sem-balanco", "pede": "corpo parado, sem balanço: o centro de massa fica na vertical das mãos", "selo": "consenso", "fonte": "app"},
+  {"id": "mergulho-bracos-estendidos-em-cima", "pede": "em cima, cotovelos estendidos, sem travar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-braco-quase-paralelo-embaixo", "pede": "desce até o braço ficar quase paralelo ao chão, sem passar dele", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-tronco-um-pouco-a-frente", "pede": "tronco levemente inclinado à frente na descida", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-ombros-longe-das-orelhas", "pede": "ombros longe das orelhas o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mergulho-pernas-paradas", "pede": "pernas paradas", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 1, "titulo": "Descer demais", "vista": "lateral", "oQueMuda": "o braço passa da horizontal e, no fundo, o ombro rola para a frente e sobe", "destaca": ["bracos"], "linha": ["acromioclavicular", "cotovelo", "punho"], "foco": "acromioclavicular"},
+  {"id": "e2", "instante": 0.5, "titulo": "Balançar", "vista": "lateral", "oQueMuda": "as pernas chutam para a frente para dar impulso e o corpo sai do prumo das mãos", "destaca": ["pernas", "corpo"], "linha": ["ombro", "quadril", "joelho", "tornozelo"], "foco": "tornozelo"},
+  {"id": "e3", "instante": 1, "titulo": "Amplitude curta", "vista": "lateral", "oQueMuda": "a descida para no meio: o braço fica longe da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "tronco um pouco à frente", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "pernas paradas", "ponto": "tornozelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular", "selo": "consenso", "fonte": "app", "seta": {"de": "acromioclavicular", "desce": 6}}
+ ]
+}
