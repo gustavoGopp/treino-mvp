@@ -6,7 +6,7 @@
   "ficha": "Ficha da técnica (docs/pesquisa/animacoes/coice-elastico.md): quatro apoios, laço na sola do pé, pontas sob as mãos (consenso, 17, G3); estender o quadril até a coxa ficar na linha do tronco, sem arquear a lombar (consenso, selkowitz2013); a lombar arqueia no fim se a perna subir demais; punhos e joelhos no chão (colchonete)",
   "app": "Texto do app (src/conteudo/exercicios/coice-elastico.json): um elástico e um colchonete; em quatro apoios, mãos sob os ombros, joelhos sob o quadril; o laço do elástico na sola de um pé, as pontas presas sob as mãos; costas retas, abdômen firme; coice ~1 s, empurrando o pé para trás e para cima até a coxa ficar na linha do tronco; pausa curta no alto; volta ~2 s até o joelho voltar para baixo do quadril; erros 'Arquear a lombar no fim' (a perna sobe acima do tronco e a lombar dobra), 'Girar o quadril' (o quadril abre para o lado), 'Chutar com embalo'",
   "aprovada": "Animações aprovadas parecidas: a flexão (exercicios/flexionar.ts: as mãos espalmadas, os dedos para a frente, a cabeça na linha das costas), a roda abdominal (exercicios/roda-abdominal.ts: o joelho no colchonete, a canela deitada para trás, o peito do pé no colchonete) e o tríceps acima da cabeça com elástico (exercicios/triceps-elastico-acima.ts: o elástico longo em laço quando o tubo não alcança)",
-  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json (o elástico longo em laço de 41 pol: a volta de 208 cm em repouso, estica até 2,5 vezes) e dados/objetos.json (o colchonete: 100 × 50 × 1,5 cm, medidas provisórias)",
+  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json (o elástico longo em laço de 41 pol: a volta de 208 cm em repouso, estica até 2,5 vezes) e dados/objetos/colchonete-comprido.json (o colchonete comprido, desde 19/11: 182,9 × 59,9 × 1 cm, medidas do fabricante; o da tabela, dados/objetos.json, tem 100 × 50 × 1,5 cm provisórios e era curto para o corpo de quatro apoios)",
   "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
  },
  "param": {
@@ -52,6 +52,13 @@
    "fonte": "ficha",
    "o": "o joelho dobrado a 90° o tempo todo (a ficha: com o joelho dobrado; o cartão: empurre o pé para trás e para cima)"
   },
+  "pe.flexaoPlantar.inicio": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "no começo, o tornozelo solto: o pé vai 15° além do ângulo reto com a canela, e volta ao ângulo reto no alto (acréscimo de 19/11). Com o pé em ângulo reto já no começo, a ponta dele entrava 0,8 cm no chão (e, com o colchonete comprido embaixo dela, 2,3 cm no colchonete); com 15°, ela fica 0,6 cm acima do tampo"
+  },
   "pe.flexaoPlantar": {
    "v": 0,
    "un": "graus",
@@ -74,11 +81,18 @@
    "o": "o trecho da mão esquerda cruza por baixo do corpo, entre as coxas, e contorna a coxa de apoio pelo lado de dentro: a direção em que ele se afasta do corpo é para baixo e 0,7 disso para dentro (sem isso, ele atravessava a coxa de apoio)"
   },
   "colchonete.recua": {
-   "v": -11,
+   "v": -25,
    "un": "cm",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o meio do colchonete 11 cm atrás do meio entre as mãos e os joelhos: as mãos (com a ponta dos dedos, que com 13 cm passava 0,7 cm da ponta da frente) e os joelhos cabem nele; ele tem 100 cm (medida provisória da tabela), e as pontas dos pés passam da ponta de trás"
+   "o": "o meio do colchonete 25 cm atrás do meio entre as mãos e os joelhos, sob o meio do corpo: o colchonete comprido (182,9 cm, medido; desde 19/11) cabe o corpo de quatro apoios inteiro, das pontas dos dedos das mãos às pontas dos pés de apoio, com ~28 cm de sobra em cada ponta (com o de 100 cm da tabela, a −11 cm, o pé de apoio ficava além da ponta de trás)"
+  },
+  "colchonete.noQuadro": {
+   "v": 140,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "do colchonete comprido, só os 140 cm do meio contam para o enquadramento (desde 19/11): das pontas dos dedos às pontas dos pés de apoio são ~126 cm, e sobram 7 cm de cada lado; as pontas que passam disso podem ser cortadas pela borda do quadro. Com o colchonete inteiro, de três quartos o corpo ficava 10% menor no quadro"
   },
   "erro.lombar.acima": {
    "v": 20,
@@ -165,7 +179,7 @@
  "regras": [
   {
    "id": "coice-elastico-colchonete-embaixo",
-   "pede": "as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista",
+   "pede": "as mãos, os joelhos, as canelas e os pés que apoiam ficam em cima do colchonete, dentro das bordas, e o pé de apoio no tampo; nenhum pé afunda; nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista; e o elástico é pintado atrás das partes do corpo que ficam na frente dele (as canelas de perto e de longe), e na frente das que ele cobre",
    "selo": "desenho",
    "fonte": "desenho"
   },

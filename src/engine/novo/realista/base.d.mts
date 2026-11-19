@@ -26,6 +26,11 @@ export interface CenaRealista {
   defs: string[];
   /** Um ponto do mundo na tela: [x, y, profundidade]. */
   P(p: V3): V3;
+  /**
+   * Gira uma direção (ou um ponto, sem contar para a caixa da peça na tela) para a câmera: [x, y para cima,
+   * profundidade (maior = mais longe)]. Já existia em base.mjs; declarada aqui em 19/11.
+   */
+  rot(v: V3): V3;
   /** Um nome único para um gradiente ou filtro desta cena. */
   uid(prefixo: string): string;
   /** Uma peça desenhada à mão (SVG pronto), na profundidade dada. */

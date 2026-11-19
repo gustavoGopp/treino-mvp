@@ -79,3 +79,33 @@ Mãos 1,3 cm para dentro da borda (antes, −0,7); joelhos 14,2 e 13,7. A regra 
 Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
 
 **O que ainda não ficou bom.** O pé de apoio continua além da ponta de trás do colchonete (o pequeno da auditoria), agora 2 cm a mais: o colchonete de 100 cm (provisório) não cabe o corpo inteiro de quatro apoios.
+
+## Correção de 19/11 (colchonete)
+
+O ponto que a correção da auditoria deixou: o colchonete de 100 cm (medida provisória da tabela) não cabia o corpo de quatro apoios, e o pé de apoio ficava além da ponta de trás, 1,7 cm acima do chão. A mesma correção do coice com elástico (`../lote-A2/coice-elastico.md`, mesma seção).
+
+**O que mudou.**
+- O colchonete medido: Gaiam Essentials Fitness Mat (10 mm), espuma NBR, "72" x 23.6" x 10mm thick", na página pública do fabricante (https://www.gaiam.com/products/gaiam-essentials-fitness-mat-10mm, lida em 19/11/2026). Em `src/engine/novo/dados/objetos/colchonete-comprido.json`: **182,9 × 59,9 × 1 cm**, tipo `medida`.
+- A peça comum `colchonete` ganhou a opção `comprido` (desligada por padrão; as outras animações aprovadas que usam o colchonete não mudam). Este exercício a liga. O corpo apoia no tampo de 1 cm (antes, 1,5) e fica 0,5 cm mais baixo.
+- `colchonete.recua` passou de −11 para −25 cm: o colchonete fica sob o meio do corpo, com 28,6 cm de sobra à frente da ponta dos dedos e atrás da ponta do pé de apoio, e 7,2 cm dos lados.
+- O colchonete inteiro deixava o corpo 23% menor no quadro de três quartos. A peça ganhou também a opção `noQuadro` (desligada por padrão; `equipamento.ts`): só o trecho do meio, com o comprimento dado, conta para o enquadramento. Linha nova `colchonete.noQuadro` (140 cm, desenho). Contra o quadro de antes (com o colchonete de 100 cm), a largura da cena de lado foi de 217,6 para 205,9 cm (o corpo 5% maior), e a de três quartos, de 155,8 para 166,9 cm (o corpo 7% menor).
+- Linha nova `pe.flexaoPlantar.inicio` (15°, desenho): no começo, o pé da caneleira vai 15° além do ângulo reto com a canela e volta a ele no alto. Com o ângulo reto já no começo, a ponta do pé entrava 0,8 cm no chão e entraria 2,3 cm no colchonete comprido; agora fica 0,6 cm acima do tampo.
+- A regra `coice-caneleira-colchonete-embaixo` mede também, nos dois lados, a folga até a borda do resto da canela e do pé que encostam no tampo e a altura do ponto mais baixo de cada pé sobre o que está embaixo dele (o pé de apoio no tampo, de −1 a 1 cm; o outro sem afundar mais de 1 cm). Falha no estado antigo e passa no novo.
+
+**Antes → depois** (pior quadro do ciclo e dos erros):
+
+| medida | antes | depois |
+|---|---|---|
+| colchonete | 100 × 50 × 1,5 cm (provisório) | 182,9 × 59,9 × 1 cm (medido) |
+| pé esquerdo (de apoio): folga até a borda | −9,2 cm (além da ponta de trás) | 19,7 cm |
+| pé esquerdo: ponto mais baixo sobre o que está embaixo | 1,7 a 1,8 cm (no ar, sobre o chão) | 0,2 a 0,3 cm (no tampo) |
+| canela esquerda: folga até a borda | −7,9 cm | 19,7 cm |
+| pé direito (o da caneleira), no começo | 25 cm além da ponta, 0,8 cm dentro do chão | 19,5 cm dentro, 0,6 cm acima do tampo |
+| mãos / joelho direito / joelho esquerdo | 1,3 / 14,2 / 13,7 cm | 7,8 / 19,2 / 18,7 cm |
+| colchonete por baixo de tudo (o pior grupo, cm de pintura) | 8,4 (braço esquerdo, de lado) | 13,3 |
+
+A caneleira segue presa a 7,4 cm do centro do tornozelo, e o ponto mais baixo dela a 6,6 cm do tampo. **Conferência automática: 0 falha e os mesmos 3 avisos** (no 3º, as linhas novas `pe.flexaoPlantar.inicio` e `colchonete.noQuadro` entram na lista das escolhas de desenho). `node scripts/animacao-nova/preparo.mjs conferir`: só os dois coices mudaram.
+
+**Olhei** cada vista e cada erro, nos dois lados (de lado, três quartos, por trás no erro de girar, e as de cor de pele): o colchonete cabe o corpo inteiro e o pé de apoio fica no tampo.
+
+**O que ainda não ficou bom.** O colchonete comprido passa do corpo (vai de 92 cm atrás a 91 cm à frente do meio do corpo): de três quartos, o corpo ficou 7% menor no quadro que antes, e as duas pontas do colchonete são cortadas pela borda do quadro. Por trás, no começo do erro de girar (fora do quadro grande), a caneleira aparece de ponta, como um disco por cima da perna: é a canela apontando para quem olha.

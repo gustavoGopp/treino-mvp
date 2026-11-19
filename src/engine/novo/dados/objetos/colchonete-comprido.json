@@ -1,0 +1,33 @@
+{
+ "fontes": {
+  "gaiam-essentials-10mm": "Gaiam, Gaiam Essentials Fitness Mat & Sling (10mm), colchonete de exercício de espuma NBR; página pública do fabricante https://www.gaiam.com/products/gaiam-essentials-fitness-mat-10mm (lida em 19/11/2026, sem login: \"Measurements: 72\" x 23.6\" x 10mm thick.\", \"Made from NBR Foam.\"). A outra versão do mesmo colchonete na loja do fabricante (https://www.gaiam.com/products/fitness-mat-10mm) dá \"24” x 72” x 10mm\""
+ },
+ "objetos": {
+  "colchoneteComprido": {
+   "nome": "Colchonete de exercício (espuma NBR de 10 mm), o comprido",
+   "medidas": {
+    "comp": {
+     "v": 182.9,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "gaiam-essentials-10mm",
+     "onde": "o comprimento: 72 pol"
+    },
+    "larg": {
+     "v": 59.9,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "gaiam-essentials-10mm",
+     "onde": "a largura: 23,6 pol (a outra versão da loja dá 24 pol, 61 cm)"
+    },
+    "esp": {
+     "v": 1,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "gaiam-essentials-10mm",
+     "onde": "a espessura: 10 mm"
+    }
+   }
+  }
+ }
+}

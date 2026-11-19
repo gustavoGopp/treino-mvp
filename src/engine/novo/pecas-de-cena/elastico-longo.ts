@@ -13,8 +13,10 @@ import type { V3 } from '../vec';
 /** A largura da faixa (cm) esticada `estica` vezes. */
 export const larguraDaFaixa = (estica: number) => obj('elasticoLongo', 'larg') / Math.sqrt(Math.max(1, estica));
 
+/** O tamanho máximo (cm) de cada pedaço da faixa pintado na sua profundidade. */
+export const PASSO = 4;
 /** Corta a polilinha em pedaços de até `passo` cm (para a pintura por profundidade). */
-function pedacos(pts: V3[], passo: number): V3[][] {
+export function pedacos(pts: V3[], passo: number): V3[][] {
   const out: V3[][] = [];
   for (let i = 1; i < pts.length; i++) {
     const a = pts[i - 1]!,
@@ -29,10 +31,19 @@ function pedacos(pts: V3[], passo: number): V3[][] {
 }
 
 /**
+ * A profundidade de pintura de um pedaço da faixa (acréscimo de 19/11, desligado por padrão): recebe o pedaço, a
+ * profundidade em que ele seria pintado (a do meio dele; maior = mais perto de quem olha) e a função que gira um ponto
+ * para a câmera (o terceiro número é menos a profundidade), e devolve a profundidade em que ele é pintado.
+ */
+export type ProfundidadeDaFaixa = (pedaco: V3[], d: number, rot: (v: V3) => V3) => number;
+
+/**
  * A faixa ao longo de `pts`, esticada `estica` vezes (1 = em repouso). `nome` distingue as faixas de um mesmo quadro;
  * `cenario` manda a faixa para trás do corpo e para fora do enquadramento (o trecho que vai até uma âncora longe).
+ * `profundidade` (acréscimo de 19/11, desligado por padrão): muda a profundidade de pintura de cada pedaço (no coice
+ * com elástico, o trecho que passa entre as pernas vai para trás da perna de perto, que o esconde).
  */
-export function faixaElastica(pts: V3[], estica: number, nome = 'faixa', cenario = false): { prims: Prim[]; peca: PecaPropria } {
+export function faixaElastica(pts: V3[], estica: number, nome = 'faixa', cenario = false, profundidade?: ProfundidadeDaFaixa): { prims: Prim[]; peca: PecaPropria } {
   const larg = larguraDaFaixa(estica);
   return {
     prims: [{ t: 'fio', pts, larg: obj('elasticoLongo', 'esp'), cls: 'fita' }],
@@ -42,12 +53,13 @@ export function faixaElastica(pts: V3[], estica: number, nome = 'faixa', cenario
       cenario,
       desenhar(C, M) {
         const f1 = (n: number) => (Math.round(n * 100) / 100).toString();
-        for (const p of pedacos(pts, 4)) {
+        for (const p of pedacos(pts, PASSO)) {
           // a borda (traço), a face e o filete do meio num item só, com as pontas retas: os pedaços se emendam sem
           // marca, e cada um é pintado na sua profundidade
           const Q = p.map((x) => C.P(x));
           const d = `M${Q.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L')}`;
-          const z = Q.reduce((s, q) => s + q[2], 0) / Q.length;
+          const z0 = Q.reduce((s, q) => s + q[2], 0) / Q.length;
+          const z = profundidade ? -profundidade(p, -z0, (v) => C.rot(v)) : z0;
           const linha = (cor: string, w: number) => `<path d="${d}" stroke="${cor}" stroke-width="${f1(w)}" stroke-linecap="butt" fill="none"/>`;
           C.bruto(z, linha(M.estofado[3]!, larg + 0.45) + linha(M.estofado[1]!, larg) + linha(mix(M.estofado[1]!, '#ffffff', 0.35), larg * 0.22));
         }
