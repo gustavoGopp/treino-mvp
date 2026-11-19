@@ -54,7 +54,8 @@
   {"id": "polia-braco-antebracos-nao-se-atravessam", "pede": "com os braços cruzados, um antebraço passa por cima do outro, sem se atravessarem", "selo": "desenho", "fonte": "desenho"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
-  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: sem embalo", "selo": "consenso", "fonte": "ficha"}
+  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: sem embalo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "no fim, os ombros sobem em direção às orelhas (o trapézio de cima assume)", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},

@@ -73,7 +73,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const topo = erro === 'embalo' ? f('erro.embalo.topo') : f('bracos.topo');
   const e = pose(corpo, mix(c.ini, topo, u), c.pernas, { elev: erro === 'encolher' ? f('erro.encolher.elev') * u : 0, cabeca: erro === 'cabeca' ? -f('erro.cabeca.graus') * u : 0 });
   const t = toalha(0, c.zTesta);
-  return { esq: e, prims: [chao(-90, 90, -110, 70), ...t.prims], pecas: [t.peca], fios: [], cargas: [], marcas: { toalha: [0, alturaDaToalha(), c.zTesta] } };
+  // de frente, deitado de bruços, quem olha vê o corpo pela cabeça: ela fica dentro da silhueta dos ombros e o contorno
+  // único do Boneco não a desenhava (auditoria das aprovadas antigas, 19/11). Ela ganha o contorno próprio por cima do
+  // corpo (`cabeca`, opção do Boneco)
+  return { esq: e, prims: [chao(-90, 90, -110, 70), ...t.prims], pecas: [t.peca], fios: [], cargas: [], marcas: { toalha: [0, alturaDaToalha(), c.zTesta] }, viesNaVista: { frontal: { cabeca: 1 } } };
 }
 
 export const aberturaTDeitado: Exercicio = {

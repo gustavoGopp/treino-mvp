@@ -130,7 +130,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const col = colunasECabos(c.cabos, [corda.bucha], c.repouso, f('pilha.folga'), false);
   const pecas: Peca[] = [...col.pecas!.filter((p) => p.t === 'torre'), pc.peca, ...col.pecas!.filter((p) => p.t !== 'torre')];
   const marcas: Record<string, V3> = { ...col.marcas, bucha: corda.bucha, saiR: corda.ramos[0]!.sai, saiL: corda.ramos[1]!.sai, saida: col.marcas['cabo.saida']! };
-  return { esq: e, prims: [chao(-70, 70, -60, c.roldana[2] + 50), ...pc.prims, ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
+  // de cima, a cabeça fica dentro da silhueta dos ombros e o contorno único do Boneco não a desenhava (sobrava só o
+  // calombo do rosto; auditoria das aprovadas antigas, 19/11): ela ganha o contorno próprio por cima do corpo (`cabeca`,
+  // opção do Boneco)
+  return { esq: e, prims: [chao(-70, 70, -60, c.roldana[2] + 50), ...pc.prims, ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 }, viesNaVista: { cima: { cabeca: 1 } } };
 }
 
 export const facePull: Exercicio = {

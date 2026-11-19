@@ -49,3 +49,17 @@ Só o deltoide posterior, principal (a ficha: o trapézio médio e o inferior tr
 - O erro "Encolher os ombros" é pequeno no quadro (a ponta do ombro anda 4,7 cm): a linha vermelha entre os ombros fica pouco à frente da tracejada. Subir mais a clavícula deixaria o ombro numa pose que não existe; a animação que toca mostra melhor.
 - O erro "Levantar a cabeça" se lê melhor de lado, mas de lado o braço de perto aponta para a câmera e tapa o tronco; o erro fica na vista de três quartos de trás, onde a cabeça aparece inclinada para cima, sem a toalha embaixo da testa.
 - O colchonete não é desenhado: o do motor novo tem 100 cm (provisório) e, com ele, as canelas ficariam 1,5 cm no ar depois da borda.
+
+
+## Correção de 19/11 (cabeça de frente; auditoria das aprovadas antigas)
+
+O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado nas auditorias das fases A e B: de frente (deitado de bruços, quem olha de frente vê o corpo pela cabeça), a cabeça fica dentro da silhueta dos ombros, e o contorno único do Boneco (um só, por fora) não a desenhava; sobrava o calombo do rosto. A vista de frente é uma das duas do exercício (`vistas`).
+
+**A mudança.** O quadro liga, só na vista de frente (`viesNaVista: { frontal: { cabeca: 1 } }`), a opção `cabeca` do Boneco (acréscimo de 18/11, desligada por padrão; a mesma das elevações corrigidas e do quadril na máquina): a cabeça é pintada de novo por cima do corpo, com o contorno próprio. A pose, o movimento, as peças, os rótulos e as outras vistas não mudam; o núcleo comum, quando há, também não (o exercício embrulha o quadro dele). A ficha liga a regra comum `cabeca-aparece-em-cada-vista` (`src/engine/novo/regras/vistas-do-guia.ts`).
+
+| vista de frente | antes (`72d00fc`) | depois |
+|---|---|---|
+| quadros em que a cabeça sumiria / com contorno próprio | 8 / **0** | 8 / 8 |
+| eixo do tórax e quem olha (mínimo); contorno da cabeça dentro da silhueta (máximo); a cabeça à frente do tronco (máximo) | 0,7°; 100%; 13,3 cm | iguais (a pose não mudou) |
+
+No estado de antes, com a regra na ficha, a conferência dá 1 falha (esta regra). No estado novo: 0 falhas e os mesmos avisos de antes. O antes e depois está em `correcao-das-antigas/abertura-t-deitado.png`; os quadros grandes foram regravados (`quadros/abertura-t-deitado.png`).

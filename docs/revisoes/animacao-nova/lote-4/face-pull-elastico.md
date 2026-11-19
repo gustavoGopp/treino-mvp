@@ -74,3 +74,17 @@ A primeira vista é a **de lado**: mostra o corpo grande, os cotovelos altos, o 
   - O limite é o desenho do ombro de trás, que não posso mudar. Fiquei com a pose do face pull aprovado, um pouco mais aberta.
 - **De lado, no fim, o braço de perto cobre parte do rosto, e o tubo passa na frente dele no desenho** (quadro `lateral:tec:f1`). No espaço, o tubo fica a 10 cm da pele. É o mesmo do face pull aprovado.
 - **De trás (só no erro "encolher"), a porta aparece como fundo,** com o vão da dobradiça no meio, atrás das pernas.
+
+
+## Correção de 19/11 (cabeça de cima; auditoria das aprovadas antigas)
+
+O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado nas auditorias das fases A e B: de cima, a cabeça fica dentro da silhueta dos ombros, e o contorno único do Boneco (um só, por fora) não a desenhava; sobrava o calombo do rosto. A vista de cima é uma das duas do exercício (`vistas`).
+
+**A mudança.** O quadro liga, só na vista de cima (`viesNaVista: { cima: { cabeca: 1 } }`), a opção `cabeca` do Boneco (acréscimo de 18/11, desligada por padrão; a mesma das elevações corrigidas e do quadril na máquina): a cabeça é pintada de novo por cima do corpo, com o contorno próprio. A pose, o movimento, as peças, os rótulos e as outras vistas não mudam; o núcleo comum, quando há, também não (o exercício embrulha o quadro dele). A ficha liga a regra comum `cabeca-aparece-em-cada-vista` (`src/engine/novo/regras/vistas-do-guia.ts`).
+
+| vista de cima | antes (`72d00fc`) | depois |
+|---|---|---|
+| quadros em que a cabeça sumiria / com contorno próprio | 5 / **0** | 5 / 5 |
+| eixo do tórax e quem olha (mínimo); contorno da cabeça dentro da silhueta (máximo); a cabeça à frente do tronco (máximo) | 3,0°; 100%; 13,3 cm | iguais (a pose não mudou) |
+
+No estado de antes, com a regra na ficha, a conferência dá 1 falha (esta regra). No estado novo: 0 falhas e os mesmos avisos de antes. O antes e depois está em `correcao-das-antigas/face-pull-elastico.png`; os quadros grandes foram regravados (`quadros/face-pull-elastico.png`).
