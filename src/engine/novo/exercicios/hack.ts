@@ -19,6 +19,7 @@ import type { Esq, Lado, PoseBraco, PosePerna, PoseTronco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { chao } from '../pecas';
+import { peleDensa } from '../pele-densa';
 import type { IdAnilha } from '../pecas-de-cena/barra-longa';
 import { geometriaDoHack, hack as maquina, naFaceDoEncosto, noQuadroDoHack, pegadorDoHack, posicoesDaTrava } from '../pecas-de-cena/hack';
 import type { Corpo } from '../tabelas';
@@ -55,11 +56,13 @@ function noCarro(corpo: Corpo): { frente: number; afastada: number; ombro: numbe
     };
     const frente = resolver1((fr) => medir(fr).cima - medir(fr).baixo, -75, -15);
     const c = medir(frente);
-    // o alto dos ombros, sob cada almofada (fora do pescoço), ao longo da guia
+    // o alto dos ombros, sob cada almofada (fora do pescoço), ao longo da guia. Na pele densa (../pele-densa.ts; correção
+    // de 19/11/2026, a auditoria da fase C): entre os 12 pontos de cada anel e entre o anel de C7 e o de baixo dele, a
+    // pele desenhada sobe mais, e a almofada entrava 2,8 cm no alto dos ombros, e não o 1 cm de `amassa`
     const meia = obj('hack', 'ombreirasEntre') / 2,
       l = obj('hack', 'ombreiraLarg') / 2;
-    const P = pontosDoBoneco(comMembros(resolverTronco(corpo, pose([0, 0, 0], frente))));
-    const ombro = Math.max(...P.filter(({ p, parte }) => ['tronco', 'pescoco'].includes(parte) && Math.abs(Math.abs(p[0]) - meia) < l).map(({ p }) => dot(p, G.sobe)));
+    const P = peleDensa(comMembros(resolverTronco(corpo, pose([0, 0, 0], frente))), ['tronco', 'pescoco']);
+    const ombro = P.filter(({ p }) => Math.abs(Math.abs(p[0]) - meia) < l).reduce((m, { p }) => Math.max(m, dot(p, G.sobe)), -1e9);
     return { frente, afastada: -Math.min(c.cima, c.baixo) - f('amassa'), ombro: ombro - f('amassa') };
   });
 }

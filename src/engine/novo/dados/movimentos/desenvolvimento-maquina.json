@@ -25,6 +25,7 @@
   "erro.arco.lombar": {"v": -22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a lombar arqueia 22° em cima, como no desenvolvimento sentado aprovado"},
   "erro.arco.toracica": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: as costas de cima também estendem 8°"},
   "erro.arco.bacia": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a bacia inclina 14° à frente no assento e a lombar sai do encosto; o peito vai para trás (o cartão: 'a lombar sai do encosto para empurrar')"},
+  "erro.arco.ombroNoEncosto": {"v": 2.1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro (a auditoria de 18/11/2026): com o peito indo para trás em volta da bacia parada, o alto das costas e a parte de trás dos ombros entravam no encosto (a pele dos braços até 3,2 cm, medida na pele densa); o corpo vem para a frente até o tronco entrar só o que o estofado amassa e a pele dos braços no máximo 2,1 cm, o que ela entra em cima na técnica: a lombar e a bacia é que saem do encosto"},
   "erro.curta.fracao": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: a descida para a 45% do caminho, com as mãos acima da cabeça (o cartão: 'a amplitude curta')"}
  },
  "fases": [
@@ -42,7 +43,8 @@
   {"id": "maquina-pegadores-convergem", "pede": "os pegadores se aproximam enquanto sobem (o caminho que converge)", "selo": "desenho", "fonte": "objetos"},
   {"id": "maquina-quase-estende-os-cotovelos", "pede": "empurra para cima até quase estender os cotovelos", "selo": "consenso", "fonte": "ficha"},
   {"id": "desenvolvimento-maquina-em-cima-sobre-os-ombros", "pede": "em cima, as mãos sobre os ombros", "selo": "consenso", "fonte": "aprovada"},
-  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"}
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "desenvolvimento-maquina-pele-nos-estofados", "pede": "medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, no assento ou nas peças mais que 2,5 cm (o que o estofado amassa)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "arco", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia, as costas de baixo saem do encosto e o peito vai para trás", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},

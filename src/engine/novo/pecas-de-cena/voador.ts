@@ -39,6 +39,12 @@ export interface Voador {
   inicio: number;
   /** Quantas placas estão no pino. */
   placas?: number;
+  /**
+   * Acréscimo de 19/11/2026 (a auditoria da fase C), desligado por padrão: de cima, quanto o encosto (com o tubo e a
+   * barra que o prendem por trás) vai para trás na ordem de pintura (cm; o desenho não muda). O encosto entra na ordem
+   * pelo centro dele, mais alto que o centro do corpo, e era pintado por cima do alto das costas, que passa acima dele.
+   */
+  encostoAtrasDeCima?: number;
 }
 
 /** Leva um ponto (ou uma direção) do referencial da máquina para o mundo da cena. */
@@ -160,7 +166,7 @@ export function voador(m: Voador) {
       [aLarg / 2, 0, zA1],
     ].map((p) => W(p as V3)),
     desenhar(C, M, o) {
-      const T = (p: V3, q: V3, w = est, mat = M.metal) => C.tubo(W(p), W(q), w, w, mat);
+      const T = (p: V3, q: V3, w = est, mat = M.metal, op: { dz?: number } = {}) => C.tubo(W(p), W(q), w, w, mat, op);
       // a base no chão: a espinha do assento à coluna e à torre, as travessas da frente, da coluna e da torre
       const yb = est / 2;
       T([0, yb, zA1 - 2], [0, yb, zC]);
@@ -183,9 +189,10 @@ export function voador(m: Voador) {
       const yG = meioEnc[1];
       T([0, yG, zC + est / 2], [0, yG, zC + est / 2 + 12], est + 2, M.metalClaro);
       C.cilindro(W([0, yG + est / 2 + 1, zC + est / 2 + 6]), W([0, yG + est / 2 + 4, zC + est / 2 + 6]), 1.4, M.cromo, { lados: 8 });
-      T([0, yG, zC + est / 2 + 2], [0, yG, meioEnc[2] - 1.5], 5);
-      T([-E.larg / 2 + 4, yG, meioEnc[2] - 1.5], [E.larg / 2 - 4, yG, meioEnc[2] - 1.5], 4);
-      C.estofado(W(meioEnc), W(E.sobe), W(E.frente), W(X), E.comp, esp, E.larg);
+      const atras = cima && m.encostoAtrasDeCima ? { dz: m.encostoAtrasDeCima } : {};
+      T([0, yG, zC + est / 2 + 2], [0, yG, meioEnc[2] - 1.5], 5, M.metal, atras);
+      T([-E.larg / 2 + 4, yG, meioEnc[2] - 1.5], [E.larg / 2 - 4, yG, meioEnc[2] - 1.5], 4, M.metal, atras);
+      C.estofado(W(meioEnc), W(E.sobe), W(E.frente), W(X), E.comp, esp, E.larg, undefined, atras);
       // o assento: a coluna de baixo, a que sobe dentro dela (a regulagem) e o estofado
       T([0, est, zPost], [0, 30, zPost], 7);
       T([0, 30, zPost], [0, hA - esp - 2, zPost], 5.5, M.cromo);

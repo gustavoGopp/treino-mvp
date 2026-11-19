@@ -58,3 +58,19 @@ Na cena, o lado de perto da máquina (as guias, o pino com as anilhas, a alavanc
 - **Ângulos de desenho que nenhuma ficha confirma:** o encosto a 40° (derivado do corpo), a chapa 10° mais em pé (do cartão). Mudam a dorsiflexão do fundo e a flexão do quadril.
 
 **Risco de o Gustavo não gostar: médio.** A vista de lado lê bem e a máquina funciona; a vista de cima e a dorsiflexão alta embaixo são os pontos fracos.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**O achado da auditoria: de cima, o encosto é pintado sobre a raiz dos braços. Confirma-se.** No desenho real, de cima, em todos os quadros, 5 anéis de cada braço (junto do ombro) ficam na frente do encosto e por cima dele na tela, e o pintor os põe por baixo dele: os braços saíam de trás das bordas do encosto. A causa: de cima, cada braço entra na ordem pela profundidade média dele (52,8), abaixo da do centro do encosto (58,4).
+
+**O que mudou (a ordem de pintura do exercício).** `exercicios/leg-press.ts`: `viesNaVista: { cima: { bracoR: 6, bracoL: 6 } }`. De cima, os braços passam a ser pintados depois do encosto e continuam antes do corpo (72,2). De lado, nada muda.
+
+| de cima | antes | depois |
+|---|---|---|
+| anéis de cada braço por baixo do encosto | 5 de 5 | 0 de 5 |
+
+**Conferência nova:** `leg-press-corpo-por-cima-dos-estofados` (`regras/leg-press.ts`, com a medida em `regras/pintura-sobre-o-estofado.ts`): nas duas vistas e na de cada erro, na técnica e nos quatro erros, os anéis dos braços, antebraços, coxas, canelas, do tronco, da bacia e da cabeça, dos dois lados, contra o encosto e contra o assento. Depois: passa (0 em tudo).
+
+**Conferência automática:** 0 falha, 3 avisos (os de antes). O preparo não muda. Quadros refeitos.
+
+**O que ainda não ficou bom:** nada que eu tenha visto nos quadros de cima e de lado, nos dois lados.

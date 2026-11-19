@@ -72,3 +72,28 @@ Nenhum.
 - **O came de 26 cm** no eixo da esquerda é grande no quadro de lado (é o que faz as placas subirem 6,5 cm num giro de 28,5°; nenhuma ficha dá o came nem a relação do cabo).
 
 **Risco de o Gustavo não gostar: médio.** A pose e a máquina fecham pela medida, os erros se leem, e a máquina funciona; o risco está na peça (o eixo acima da cabeça não é o do cartão de hoje, e o cartão é de anilhas) e no alongamento curto embaixo.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**Como medi.** No desenho que o app pinta (o mesmo `ex.quadro`, o mesmo Boneco e o mesmo desenho da máquina), em cada vista declarada e na de cada erro, na técnica e em cada erro, nos dois lados. A entrada na pele densa (`src/engine/novo/pele-densa.ts`): 36 pontos por anel e 3 anéis no meio de dois vizinhos, e não os 12 pontos por anel da conferência automática; a medida é a da conferência (a menor distância do ponto às faces da caixa), com a mesma tolerância de 2,5 cm.
+
+**O achado da auditoria: o braço entra 2,7 cm no encosto, no fim. Não se confirma na técnica.** O 2,7 é o quanto a pele da raiz do braço fica atrás da face do encosto (medi 2,7), a 2,4 cm da borda do lado. Medida como a conferência mede, na pele densa, a entrada é 2,35 cm no fim e 1,8 no começo: dentro da tolerância. Na técnica não mexi.
+
+**Achado novo, no erro "Banco na altura errada":** com o assento 10 cm mais baixo, em cima os braços sobem mais em relação aos ombros, e a pele da raiz do braço entrava **2,6 cm** no encosto (u = 1).
+
+**O que mudou.** No núcleo das máquinas de empurrar (`exercicios/maquina-de-empurrar.ts`), duas opções novas do desvio, desligadas por padrão: `afasta` (o corpo vem para a frente, na normal do encosto, com os pés no lugar) e `encostoAte` (em cada quadro, se o tronco entra no encosto mais que o `amassa` ou a pele dos braços mais que o valor dado, medidos na pele densa, o corpo vem para a frente o que passa). Sem elas, nada muda (o desenvolvimento e a remada articulada também usam o núcleo). No supino, o erro do banco usa `encostoAte` = 2,35 cm (o que a raiz do braço entra em cima na técnica; linha nova da ficha, `erro.banco.ombroNoEncosto`).
+
+| erro do banco | antes | depois |
+|---|---|---|
+| braço no encosto (pele densa), u = 1 | 2,6 cm | 2,33 cm |
+| quanto o corpo veio para a frente, u = 1 | 0 | 0,28 cm (u < 0,85: 0) |
+| costas de cima no encosto, u = 1 | −0,27 cm | 0,03 cm (encostadas) |
+| cotovelo em cima | 12° | 16,7° |
+
+**O outro achado da auditoria: o assento pintado sobre a coxa e a bacia, no erro do banco. Não se confirma no desenho real.** A estrutura do supino (o assento e o encosto) é cenário: o app a pinta numa camada abaixo do corpo (e do corpo tracejado do erro), em qualquer profundidade. A medida de pintura (`regras/pintura-sobre-o-estofado.ts`) acha 0 anel por baixo do assento (nenhum anel na frente dele e por cima dele na tela), e o quadro grande mostra o glúteo por cima da borda do assento. Não mexi.
+
+**Conferência nova:** `supino-maquina-pele-nos-estofados` (`regras/maquinas-de-empurrar.ts`, com a medida em `regras/entrada-densa.ts`). Depois: passa (braços 2,4 cm; coxas 1,4; bacia 1,3; cintura 1,2; tronco 1).
+
+**Conferência automática:** 0 falha, 2 avisos (os de antes). O preparo não muda (o ajuste é do quadro, não das calibrações). O quadro grande do erro do banco é o de u = 0, que não muda; os quadros não foram refeitos.
+
+**O que ainda não ficou bom:** de lado, a raiz do braço (o anel do ombro do Boneco) passa um pouco por trás da linha das costas e por cima do encosto, na técnica também (2,35 cm de entrada). É da forma do braço junto do ombro, que este lote não muda.

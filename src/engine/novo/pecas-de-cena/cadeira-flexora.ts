@@ -143,7 +143,7 @@ function nomeDoRecorte(t: string): string {
  * O recorte do rolo (`OpcoesDaPeca.naFrenteDoRolo`): a máscara que deixa de fora do último item desenhado (o rolo) as
  * partes do corpo que ficam na frente dele nesta vista. `a` e `b`: as pontas do eixo do rolo desenhado; `r`: o raio.
  */
-function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, r: number, partes: Anel[][]): void {
+export function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, r: number, partes: Anel[][], soOMaisPerto = false): void {
   // a projeção da cena é linear: lida em quatro pontos do próprio rolo (para não mexer na caixa da peça)
   const P0 = C.P(a),
     PX = C.P(add(a, [1, 0, 0])),
@@ -169,8 +169,22 @@ function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, 
   };
   const N = 24;
   // o anel fica na frente do rolo se nenhum ponto da metade dele virada para quem olha tem o rolo no caminho
-  const naFrente = (an: Anel) => {
+  // `soOMaisPerto` (acréscimo de 19/11/2026, a mesa flexora; desligado por padrão): só o ponto do anel mais perto de quem
+  // olha precisa ter o caminho livre, como mede a conferência da pintura (um anel que encosta no rolo pela lateral, com
+  // o alto na frente dele, também sai do rolo)
+  const maisPerto = (an: Anel) => {
+    let m = 0,
+      d = -1e9;
     for (let i = 0; i < N; i++) {
+      const v = dot(sub(ponto(an, (i * 2 * Math.PI) / N), an.c), para);
+      if (v > d) [m, d] = [i, v];
+    }
+    return m;
+  };
+  const naFrente = (an: Anel) => {
+    const so = soOMaisPerto ? maisPerto(an) : -1;
+    for (let i = 0; i < N; i++) {
+      if (so >= 0 && i !== so) continue;
       const p = ponto(an, (i * 2 * Math.PI) / N);
       if (dot(sub(p, an.c), para) < 0) continue;
       // um pouco para dentro, e o raio até quem olha

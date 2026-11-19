@@ -8,6 +8,9 @@ import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { angulo, dist, dot, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
+import { desenvolvimentoMaquina } from '../exercicios/desenvolvimento-maquina';
+import { supinoMaquina } from '../exercicios/supino-maquina';
+import { dentroDaTolerancia, entradaDensa, textoDaEntrada } from './entrada-densa';
 
 /** A distância (cm) de um ponto à linha do eixo. */
 const aoEixo = (p: V3, o: V3, d: V3) => {
@@ -58,6 +61,16 @@ export const REGRAS_MAQUINAS_DE_EMPURRAR: Record<string, Regra> = {
     const a = angulo(noPlano, mul(x.torax.y, -1));
     const atras = -dot(u, x.torax.z);
     return { medido: `embaixo, o braço faz ${f1(a)}° com o tronco, visto de frente para o peito (o cotovelo ${f1(Math.asin(Math.min(1, Math.abs(atras))) / (Math.PI / 180))}° ${atras >= 0 ? 'atrás' : 'à frente'} do plano do peito)`, ok: a >= 30 && a <= 60 };
+  },
+  'supino-maquina-pele-nos-estofados': (q, corpo) => {
+    // (acréscimo de 19/11, a auditoria da fase C) a pele densa contra o encosto, o assento e as outras peças, na técnica
+    // e nos erros, nos dois lados: a conferência automática mede só 12 pontos por anel
+    const r = entradaDensa(supinoMaquina, q, corpo);
+    return { medido: `na pele densa, o quanto cada parte entra em cada peça (o pior quadro): ${textoDaEntrada(r)}`, ok: dentroDaTolerancia(r) };
+  },
+  'desenvolvimento-maquina-pele-nos-estofados': (q, corpo) => {
+    const r = entradaDensa(desenvolvimentoMaquina, q, corpo);
+    return { medido: `na pele densa, o quanto cada parte entra em cada peça (o pior quadro): ${textoDaEntrada(r)}`, ok: dentroDaTolerancia(r) };
   },
   'desenvolvimento-maquina-em-cima-sobre-os-ombros': (q) => {
     const L = q[q.length - 1]!.esq.lado.R;

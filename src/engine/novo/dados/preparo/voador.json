@@ -55,7 +55,7 @@
   }
  },
  "calibragens": {
-  "ansur2-homem-imc-normal|no-voador:{\"modo\":\"voador\",\"bacia\":-12,\"lombar\":0,\"cervical\":10,\"cabeca\":2,\"prot\":-7,\"elev\":-3,\"cotoveloBaixo\":0.5,\"amassa\":1,\"psiMeio\":36,\"pes\":{\"meia\":16,\"frente\":52}}": {
+  "ansur2-homem-imc-normal|no-voador:{\"modo\":\"voador\",\"bacia\":-12,\"lombar\":0,\"cervical\":10,\"cabeca\":2,\"prot\":-7,\"elev\":-3,\"cotoveloBaixo\":0.5,\"amassa\":1,\"psiMeio\":36,\"pes\":{\"meia\":16,\"frente\":52},\"encostoAtrasDeCima\":12}": {
    "y": 54.963,
    "z": 13.423
   }

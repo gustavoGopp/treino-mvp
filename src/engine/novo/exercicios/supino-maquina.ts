@@ -40,7 +40,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   // quase estende com o corpo mais baixo)
   const R = regular(corpo, O, F.id, erro === 'banco' ? f('erro.banco.desce') : 0);
   let fim = R.fim;
-  let dv: DesvioDeEmpurrar = {};
+  // com o assento baixo, em cima os braços sobem mais em relação aos ombros e a parte de trás do ombro entrava no encosto
+  // além do que entra na técnica (a auditoria de 18/11/2026): o corpo vem para a frente o que passa
+  let dv: DesvioDeEmpurrar = erro === 'banco' ? { encostoAte: f('erro.banco.ombroNoEncosto') } : {};
   if (erro === 'costas') dv = { aFrente: f('erro.costas.inclina') * u, prot: f('erro.costas.prot') * u };
   if (erro === 'trava') {
     fim = anguloComCotovelo(corpo, O, F.id, R, f('erro.trava.cotovelo'), { prot: f('erro.trava.prot') }, 'trava');

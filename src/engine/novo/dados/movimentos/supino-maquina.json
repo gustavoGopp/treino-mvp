@@ -25,6 +25,7 @@
   "cotovelo.emCima": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os cotovelos quase estendidos, sem travar: dobrados 12° (o do supino no smith aprovado); o ângulo final dos braços da máquina sai daí"},
   "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
   "erro.banco.desce": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o assento 10 cm mais baixo que o certo, com os braços da máquina na mesma posição inicial: o pegador fica na altura dos ombros, acima da linha do peito (o cartão: 'o pegador fica fora da linha do peito')"},
+  "erro.banco.ombroNoEncosto": {"v": 2.35, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro (a auditoria de 18/11/2026): com o assento baixo, em cima os braços sobem mais em relação aos ombros, e a pele da parte de trás do ombro entrava no encosto 2,6 cm (medida na pele densa); o corpo vem para a frente o que passa de 2,35 cm, o que ela entra em cima na técnica"},
   "erro.costas.inclina": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: no fim do empurrão, o tronco vai 18° à frente e as costas saem do encosto (o cartão: 'as costas saem do encosto')"},
   "erro.costas.prot": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: e os ombros vão à frente 10°, as escápulas saindo do encosto"},
   "erro.trava.cotovelo": {"v": 2.5, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: em cima, o cotovelo estica até o fim (2,5°: o mais esticado que o braço do Boneco chega sem sair do pegador), e os braços da máquina vão além do ângulo certo (o cartão: 'esticar com força no fim')"},
@@ -45,7 +46,8 @@
   {"id": "maquina-pegadores-convergem", "pede": "os pegadores se aproximam enquanto vão à frente (o caminho que converge)", "selo": "desenho", "fonte": "objetos"},
   {"id": "supino-maquina-cotovelos-30-60", "pede": "cotovelos a ~30–60° do tronco", "selo": "consenso", "fonte": "ficha"},
   {"id": "maquina-quase-estende-os-cotovelos", "pede": "empurra até quase estender os cotovelos, sem travar", "selo": "consenso", "fonte": "ficha"},
-  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"}
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "supino-maquina-pele-nos-estofados", "pede": "medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, no assento ou nas peças mais que 2,5 cm (o que o estofado amassa)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "banco", "instante": 0, "titulo": "Banco na altura errada", "vista": "lateral", "oQueMuda": "o assento baixo demais: o pegador fica na altura dos ombros, acima da linha do peito", "destaca": ["bracos"], "linha": ["ombro:R", "cotovelo:R", "pegada:R"], "foco": "pegada:R"},

@@ -57,3 +57,27 @@ Na cena, o lado de perto (a guia, o pino com as anilhas, a alavanca) vai para tr
 - O cotovelo dobra 145° para a mão chegar ao pegador ao lado do ombro (perto da média da tabela, 148°).
 
 **Risco de o Gustavo não gostar: médio.** O hack se reconhece e funciona; a chapa sem fonte e a almofada do ombro de perfil são os pontos a olhar.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**Como medi.** No desenho que o app pinta (o mesmo `ex.quadro`, o mesmo Boneco e o mesmo desenho da máquina), em cada vista declarada e na de cada erro, na técnica e em cada erro, nos dois lados. A entrada na pele densa (`src/engine/novo/pele-densa.ts`): 36 pontos por anel e 3 anéis no meio de dois vizinhos, e não os 12 pontos por anel da conferência automática; a medida é a da conferência (a menor distância do ponto às faces da caixa), com a mesma tolerância de 2,5 cm.
+
+**O achado da auditoria: o braço entra 3,1 cm no encosto, junto da axila. Não se confirma como entrada.** O 3,1 é o quanto a pele do braço fica atrás da face da frente do encosto (medi 3,2), mas nesse ponto ela está a 0,4 cm da borda do lado dele: o braço passa raspando a quina do encosto. Medida como a conferência mede (a menor distância até sair da caixa), na pele densa, o braço entra 1,6 cm, dentro da tolerância. Não mexi no braço para isso (no polo do cotovelo, o melhor que achei foi 2,5 cm atrás da face, com os cotovelos ainda mais abertos).
+
+**O que a medida densa achou no lugar: as almofadas dos ombros.** Com os 12 pontos por anel, a calibração punha o alto dos ombros 1 cm dentro da almofada (o `amassa` da ficha); na pele desenhada, entre os pontos e entre o anel de C7 e o de baixo dele, a pele sobe mais, e a almofada entrava **4,0 cm** no alto dos ombros, ao longo da guia (2,8 cm na medida da conferência, a menor distância até sair da caixa; com 12 pontos, ela media 2,1).
+
+**O que mudou (a regulagem medida para o corpo).** `exercicios/hack.ts`, `noCarro`: o alto dos ombros sob as almofadas é medido na pele densa. O corpo fica 3,0 cm mais baixo no carro, ao longo da guia; o carro, na mesma conta do joelho, um pouco mais alto. A regra `costas-e-ombros-no-encosto-do-hack` (`regras/leg-press.ts`) também mede na pele densa.
+
+| | antes | depois |
+|---|---|---|
+| alto dos ombros dentro das almofadas, ao longo da guia (pele densa) | 4,0 cm | 1,0 cm (o `amassa`) |
+| entrada do tronco nas almofadas (pele densa) | 2,8 cm | 0,9 cm |
+| braço no encosto (entrada, pele densa) | 1,6 cm | 2,1 cm |
+| braço atrás da face do encosto, na borda | 3,2 cm | 3,1 cm |
+| "o corpo atravessa uma peça" (conferência, 12 pontos) | 2,1 cm | 1,1 cm |
+
+**Conferência nova:** `hack-pele-nos-estofados`: a pele densa contra o encosto, as almofadas, a chapa e as outras caixas, na técnica (um quadro a cada três) e nos quatro erros (u de 0 a 1, de 1/8 em 1/8). Antes: falha (tronco 2,8 cm na almofada). Depois: passa (braços 2,1 cm; bacia 1 cm).
+
+**Conferência automática:** 0 falha, 2 avisos (os de antes). Preparo do `hack` regravado (as calibrações do corpo no carro mudam).
+
+**O que ainda não ficou bom:** o braço continua passando pela quina do encosto (3,1 cm atrás da face, a 0,4 cm da borda do lado). Não aparece de lado nem de frente, mas é o que a auditoria viu. Os 1 a 2 anéis pintados por baixo do encosto ou da ombreira nos erros de lado (outro achado pequeno da auditoria) não são deste lote.

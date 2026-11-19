@@ -67,3 +67,25 @@ Nenhum. (O desenvolvimento sentado aprovado mostra o trapézio de cima como "só
 - **O came de 32 cm** é grande (é o que faz as placas subirem 14 cm num giro de 51°).
 
 **Risco de o Gustavo não gostar: médio.** A pose fecha pela medida e se parece com o desenvolvimento aprovado; o risco está na peça nova (o cartão é de anilhas e tem o eixo mais baixo) e no quadro de lado, em que o braço da máquina e a mão se juntam perto do rosto.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**Como medi.** No desenho que o app pinta (o mesmo `ex.quadro`, o mesmo Boneco e o mesmo desenho da máquina), em cada vista declarada e na de cada erro, na técnica e em cada erro, nos dois lados. A entrada na pele densa (`src/engine/novo/pele-densa.ts`): 36 pontos por anel e 3 anéis no meio de dois vizinhos, e não os 12 pontos por anel da conferência automática; a medida é a da conferência (a menor distância do ponto às faces da caixa), com a mesma tolerância de 2,5 cm.
+
+**O achado da auditoria: o braço entra 2,6 cm no encosto no fim e 3,2 no erro "Arquear a lombar".** No fim da técnica, não se confirma como entrada: o 2,6 é o quanto a pele fica atrás da face do encosto (medi 2,7), a 2,5 cm da borda do lado; a entrada, na pele densa, é 2,1 cm. **No erro, confirma-se:** 3,19 cm de entrada (u = 0,95), e o tronco também entrava 1,7 cm (o `amassa` é 1). A causa: no arco, o peito vai para trás em volta da bacia parada e leva o alto das costas e a parte de trás dos ombros para dentro do encosto.
+
+**O que mudou.** O erro usa a opção nova do núcleo `encostoAte` (`exercicios/maquina-de-empurrar.ts`, ver o supino na máquina), com 2,1 cm (o que a raiz do braço entra em cima na técnica; linha nova da ficha, `erro.arco.ombroNoEncosto`): o corpo vem para a frente o que o tronco e os ombros entrariam a mais, e é a lombar e a bacia que saem do encosto, como o cartão diz.
+
+| erro "Arquear a lombar" | antes | depois |
+|---|---|---|
+| braço no encosto (pele densa) | 3,19 cm (u = 0,95) | 2,16 cm |
+| tronco no encosto | 1,72 cm (u = 1) | 1,0 cm ou menos |
+| quanto o corpo veio para a frente, em cima | 0 | 1,9 cm |
+| costas de cima, em cima | entravam 1,7 cm | 0,2 cm fora do encosto |
+| cotovelo em cima | 12° | 17,8° |
+
+**Conferência nova:** `desenvolvimento-maquina-pele-nos-estofados`. Depois: passa (braços 2,1 cm; coxas 1,9; bacia 1,2; cintura 1,2; tronco 1).
+
+**Conferência automática:** 0 falha, 2 avisos (os de antes). O preparo não muda. Quadros refeitos (só o erro do arco muda).
+
+**O que ainda não ficou bom:** em cima, no erro, o alto das costas fica 0,2 cm fora do encosto (para os ombros não entrarem mais que na técnica) e o cotovelo para em 17,8°, e não em 12°: o ângulo final dos braços da máquina no erro foi calculado sem o corpo vir para a frente. Os dois não aparecem no quadro.

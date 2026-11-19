@@ -79,6 +79,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     cargas: [],
     marcas: { chapa, normalChapa: G.normalChapa, guia: G.guia, carro: [0, r.s, 0], batente: [0, batente, 0], assento: G.vinco, normalAssento: G.normalAssento, encosto: G.vinco, normalEncosto: G.normalEncosto },
     vies: { maoR: 1, maoL: 1 },
+    // de cima, cada braço entra na ordem de pintura pela profundidade média dele, abaixo do centro do encosto, e o
+    // encosto cobria a raiz dos braços, que fica acima dele (a auditoria de 18/11/2026): os braços vão 6 cm para cima
+    // na ordem, depois do encosto e ainda antes do corpo
+    viesNaVista: { cima: { bracoR: 6, bracoL: 6 } },
   };
 }
 

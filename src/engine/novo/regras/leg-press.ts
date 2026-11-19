@@ -5,14 +5,26 @@
 // alvos da panturrilha (`tornozeloEmbaixo`: y = a dorsiflexão pedida embaixo; `tornozeloEmCima`: y = a flexão plantar
 // pedida em cima).
 import { pontosDoBoneco } from '../boneco';
+import { peleDensa } from '../pele-densa';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Esq, Lado } from '../esqueleto';
 import type { Quadro } from '../movimento';
 import { angulo, cross, dist, dot, norm, sub } from '../vec';
 import type { V3 } from '../vec';
+import { hack } from '../exercicios/hack';
+import { legPress } from '../exercicios/leg-press';
+import { dentroDaTolerancia, entradaDensa, textoDaEntrada } from './entrada-densa';
+import { estofadoEmCaixa, nadaPorBaixo, pinturaNasVistas, textoDaPintura } from './pintura-sobre-o-estofado';
+import type { ParteMedida } from './pintura-sobre-o-estofado';
 
 const LADOS: Lado[] = ['R', 'L'];
+/** As partes do corpo, dos dois lados, que a regra de pintura mede. */
+const PARTES_DO_CORPO: ParteMedida[] = [
+  ...LADOS.flatMap((k) => ['braco', 'ante'].map((volume) => ({ grupo: `braco${k}`, volume }))),
+  ...LADOS.flatMap((k) => ['coxa', 'canela'].map((volume) => ({ grupo: `perna${k}`, volume }))),
+  ...['tronco', 'pelve', 'cabeca'].map((volume) => ({ grupo: 'corpo', volume })),
+];
 /** A distância (cm) de um ponto ao plano da face da chapa: positiva do lado de quem treina. */
 const naChapa = (q: Quadro, p: V3) => dot(sub(p, q.marcas.chapa!), q.marcas.normalChapa!);
 /** O quanto o glúteo fica acima do assento e as costas na frente do encosto (cm; negativo = afunda). */
@@ -117,13 +129,15 @@ export const REGRAS_NO_TRILHO: Record<string, Regra> = {
     return { medido: `no ponto mais baixo, o carro fica ${f1(m)} cm acima dos suportes da trava fechada`, ok: m > 0 && m <= 10 };
   },
   'costas-e-ombros-no-encosto-do-hack': (q) => {
-    // as costas (escápulas e bacia) na face do encosto; o alto dos ombros sob a face de baixo das almofadas
+    // as costas (escápulas e bacia) na face do encosto; o alto dos ombros sob a face de baixo das almofadas. Na pele
+    // densa (../pele-densa.ts; correção de 19/11/2026, a auditoria da fase C): com os 12 pontos de cada anel, o alto
+    // dos ombros saía 1,9 cm mais baixo que o desenhado, e a almofada entrava 2,8 cm nele
     let costas = -1e9,
       fundo = 1e9,
       ombro = -1e9,
       ombroMin = 1e9;
     for (const x of q) {
-      const P = pontosDoBoneco(x.esq);
+      const P = peleDensa(x.esq, ['tronco', 'pelve', 'cintura', 'pescoco']);
       const meia = 16;
       for (const partes of [['tronco'], ['pelve', 'cintura']]) {
         const d = Math.min(...P.filter((p) => partes.includes(p.parte) && Math.abs(p.p[0]) < meia).map((p) => dot(sub(p.p, x.marcas.encosto!), x.marcas.normalEncosto!)));
@@ -152,6 +166,25 @@ export const REGRAS_NO_TRILHO: Record<string, Regra> = {
   'maos-nos-pegadores-do-hack': (q) => {
     const d = Math.max(...q.flatMap((x) => [dist(x.esq.lado.R.pegada, x.marcas.pegadorR!), dist(x.esq.lado.L.pegada, x.marcas.pegadorL!)]));
     return { medido: `a mão fica a até ${f1(d)} cm do meio do pegador`, ok: d <= 0.1 };
+  },
+  'hack-pele-nos-estofados': (q, corpo) => {
+    // (acréscimo de 19/11, a auditoria da fase C) a pele densa contra o encosto, as almofadas dos ombros e a chapa, na
+    // técnica e nos erros, nos dois lados: a conferência automática mede só 12 pontos por anel
+    const r = entradaDensa(hack, q, corpo);
+    return { medido: `na pele densa, o quanto cada parte entra em cada peça (o pior quadro): ${textoDaEntrada(r)}`, ok: dentroDaTolerancia(r) };
+  },
+  'leg-press-corpo-por-cima-dos-estofados': (q, corpo) => {
+    // (acréscimo de 19/11, a auditoria da fase C) de cima, o encosto era pintado por cima da raiz dos braços, que fica
+    // acima dele: em cada vista do exercício e na de cada erro, os anéis do corpo, dos dois lados, que ficam na frente
+    // do encosto (e do assento) e por cima dele na tela não podem ficar por baixo dele na pintura
+    const doLegPress = (normal: 'normalEncosto' | 'normalAssento') => (x: Quadro) => {
+      const c = x.prims.find((p) => p.t === 'caixa' && p.cls === 'estofado' && dot(p.ref.y, x.marcas[normal]!) > 0.99);
+      if (!c || c.t !== 'caixa') throw new Error(`leg press: o estofado de ${normal} não foi achado`);
+      return estofadoEmCaixa(c);
+    };
+    const enc = pinturaNasVistas(legPress, q, corpo, doLegPress('normalEncosto'), PARTES_DO_CORPO);
+    const ass = pinturaNasVistas(legPress, q, corpo, doLegPress('normalAssento'), PARTES_DO_CORPO);
+    return { medido: `anéis pintados por baixo, de quantos ficam na frente e por cima na tela (o pior quadro); do encosto: ${textoDaPintura(enc)}; do assento: ${textoDaPintura(ass)}`, ok: nadaPorBaixo(enc) && nadaPorBaixo(ass) };
   },
   'carro-acima-do-batente-do-leg-press': (q) => {
     const m = Math.min(...q.map((x) => x.marcas.carro![1] - x.marcas.batente![1]));
