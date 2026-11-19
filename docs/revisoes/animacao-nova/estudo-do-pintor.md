@@ -1,6 +1,6 @@
 # Estudo do pintor: ordem por pares (19/11/2026)
 
-**Atualização da etapa 2 (19/11): o pintor está ligado em 5 animações**, à espera do ok do Gustavo ([Etapa 2 (19/11)](#etapa-2-1911), no fim). **Estudo de viabilidade.** Atualização de 19/11, depois da decisão do Gustavo ("pode seguir com o pintor novo em etapas"): a etapa 1 (baixar o custo e medir no celular) está em [Etapa 1 (19/11)](#etapa-1-1911), no fim; o protótipo virou o pintor pronto para ligar, com o mesmo resultado, e continua desligado em todas as animações. O resto do texto é o estudo como foi feito, com o protótipo (os números de tempo e de pacote dele são os de antes da etapa 1).
+**Atualização da etapa 2 (19/11): o pintor está ligado em 17 animações**: as 5 do lote 1, aprovadas pelo Gustavo, e as 12 do lote 2, à espera do ok dele ([Etapa 2 (19/11)](#etapa-2-1911) e [O lote 2](#o-lote-2-1911), no fim). **Estudo de viabilidade.** Atualização de 19/11, depois da decisão do Gustavo ("pode seguir com o pintor novo em etapas"): a etapa 1 (baixar o custo e medir no celular) está em [Etapa 1 (19/11)](#etapa-1-1911), no fim; o protótipo virou o pintor pronto para ligar, com o mesmo resultado, e continua desligado em todas as animações. O resto do texto é o estudo como foi feito, com o protótipo (os números de tempo e de pacote dele são os de antes da etapa 1).
 
 O protótipo (`src/engine/novo/pintor-por-pares.ts`) está desligado e o app não o importa (conferido pelo grafo do pacote de `app.ts` e `ponte.ts`); a conferência da pintura (`conferir-pintura.ts`) ganhou um parâmetro opcional para medir com ele, e sem esse parâmetro dá o mesmo resultado de antes, achado por achado. `node scripts/animacao-nova/preparo.mjs conferir` passa e `npm run check` passa. As medidas saem de `node scripts/animacao-nova/estudo-do-pintor.mjs` (os passos estão no topo do script).
 
@@ -457,22 +457,117 @@ Pela área pintada do jeito errado hoje (a conferência de hoje, com a folga cor
 
 | lote | animações | área |
 |---|---|---|
-| 2 (12) | `nordico`, `flexao-pes-elevados`, `rosca-inclinada`, `aducao-maquina`, `flexao-joelho-deslizante`, `voador-invertido`, `flexao-joelho-elastico`, `abdominal-polia`, `mesa-flexora`, `hack`, `rosca-scott`, `coice-maquina` | 8.557 → 241 cm² |
+| 2 (12, ligado: [abaixo](#o-lote-2-1911)) | `nordico`, `flexao-pes-elevados`, `rosca-inclinada`, `aducao-maquina`, `flexao-joelho-deslizante`, `voador-invertido`, `flexao-joelho-elastico`, `abdominal-polia`, `mesa-flexora`, `hack`, `rosca-scott`, `coice-maquina` | 8.557 → 241 cm² |
 | 3 (12) | `roda-abdominal`, `rosca-maquina`, `triceps-maquina`, `cadeira-extensora`, `agachamento-elastico`, `barra-fixa-graviton`, `flexao-bola`, `triceps-frances-kettlebell`, `extensao-joelho-caneleira`, `triceps-frances-halter`, `supino-polia`, `rosca-martelo-elastico` | 2.971 → 32 cm² |
 | 4 (13) | `terra-romeno-barra`, `rosca-elastico`, `abducao-maquina`, `abducao-elastico`, `barra-fixa-negativa`, `crucifixo-inverso`, `abducao-polia`, `remada-apoiada`, `coice-elastico`, `panturrilha-sentada`, `caminhada-lateral-mini-band`, `desenvolvimento-barra`, `supino-chao-halteres` | 1.537 → 85 cm² |
 | 5 (13) | `panturrilha-sentada-halter`, `elevacao-lateral-caneleira`, `elevacao-lateral-unilateral-elastico`, `stiff-unilateral`, `terra-hexagonal`, `coice-polia`, `crucifixo-invertido-caneleira`, `rosca-scott-banco-inclinado`, `extensao-joelho-elastico`, `crucifixo-polia-baixo`, `bulgaro-suspensao`, `ponte-pes-bola`, `abducao-deitado-mini-band` | 806 → 116 cm² |
 | 6 (15) | `extensao-triceps-peso-corpo`, `crucifixo-polia`, `triceps-elastico-alto`, `remada-curvada-halteres`, `desenvolvimento-elastico`, `rosca-suspensao`, `rosca-polia`, `extensao-joelho-mini-band`, `triceps-frances-polia-unilateral`, `face-pull-elastico`, `face-pull-suspensao`, `yt-suspensao`, `rosca-barra-w`, `triceps-barra-reta`, `abducao-mini-band` | 312 → 8 cm² |
 
-- **Esperam o conserto do pintor (achado novo por pares), 20:** `voador` (1.864 cm² hoje; 2 novos), `hiperextensao` (1.149; 1), `crucifixo-inclinado-halteres` (776; 3), `supino-inclinado-polia` (686; 1), `hip-thrust` (616; 18), `abducao-caneleira` (357; 2), `flexao-elastico` (343; 2), `ponte-kettlebell` (249; 4), `remada-curvada-elastico` (212; 5), `abdominal-maquina` (205; 1), `remada-unilateral-elastico` (203; 16), `panturrilha-em-pe-maquina` (197; 2, e a área sobe para 217), `coice-caneleira` (171; 4), `elevacao-halteres` (116; 1), `stiff-elastico` (102; 10), `elevacao-lateral` (84; 7), `aducao-caneleira` (77; 1), `puxada-frente` (48; 10), `rosca-polia-costas` (48; 1), `crucifixo-elastico` (22; 8). Em 9 delas o novo tem 1,5 cm² ou menos; vale olhar se o conserto do ciclo e do recorte (o do `voador`) resolve a maioria antes de mexer uma a uma.
+- **Esperam o conserto do pintor (achado novo por pares), 20:** `voador` (1.864 cm² hoje; 2 novos), `hiperextensao` (1.149; 1), `crucifixo-inclinado-halteres` (776; 3), `supino-inclinado-polia` (686; 1), `hip-thrust` (616; 18), `abducao-caneleira` (357; 2), `flexao-elastico` (343; 2), `ponte-kettlebell` (249; 4), `remada-curvada-elastico` (212; 5), `abdominal-maquina` (205; 1), `remada-unilateral-elastico` (203; 16), `panturrilha-em-pe-maquina` (197; 2, e a área sobe para 217), `coice-caneleira` (171; 4), `elevacao-halteres` (116; 1), `stiff-elastico` (102; 10), `elevacao-lateral` (84; 7), `aducao-caneleira` (77; 1), `puxada-frente` (48; 10), `rosca-polia-costas` (48; 1), `crucifixo-elastico` (22; 8). Em 9 delas o novo tem 1,5 cm² ou menos; vale olhar se o conserto do ciclo e do recorte (o do `voador`) resolve a maioria antes de mexer uma a uma. (Medido no lote 2: não resolve; ver [O ajuste do pintor](#o-ajuste-do-pintor-lote-2-medido-e-desligado).)
 - **Não ganham nada (não ligar):** `abertura-elastico`, `desenvolvimento`, `pull-through` e `rosca-concentrada` (a mesma área por pares).
 - **As 77 sem achado hoje** ficam desligadas; ligar só mudaria desenho aprovado (e daria achado novo no `supino-inclinado`, 40 cm², e no `afundo-kettlebell`, 7 cm²).
 - **O celular de entrada:** o lote 2 tem 3 das máquinas em que a primeira volta engasga com a CPU 6× mais lenta (`aducao-maquina`, `voador-invertido`, `mesa-flexora`; ver "O tempo no celular"); o lote 3 tem o `supino-polia`, e o 4, a `abducao-maquina`. Se o Gustavo achar que o engasgo pesa, essas esperam a ordem de antemão.
+
+### O lote 1: aprovado
+
+O Gustavo aprovou as 5 em 19/11 pela folha-resumo ("pode aprovar as 5 e seguir com o lote 2"); a linha de base do motor foi regravada com elas.
+
+### O ajuste do pintor (lote 2): medido e desligado
+
+O estudo atribuía o achado novo do `voador` a duas coisas: a ordem de peça com peça pela caixa na tela (uma corrente de peças que não se cruzam de verdade) e o recorte do remendo pelo casco do trecho. Medi as duas, e mais duas variantes, com o pintor ligado nas 171, na conferência de sempre (`AJUSTE=... node scripts/animacao-nova/estudo-do-pintor.mjs conferencia`).
+
+**O que o `voador` tem de verdade.** A corrente de peças do ciclo (o braço de metal, duas peças do assento e o estofado) se cruza de verdade na tela: os contornos de peças vizinhas têm 63, 9 e 24 cm² em comum. Ordenar peça com peça pelo contorno não desfaz o ciclo, e o ciclo é real (o corpo fica entre peças que se cruzam). O que sobra é outra coisa: o ciclo larga a regra "o corpo na frente do estofado", e o remendo do corpo pinta de novo os trechos em que ele está na frente; mas, na beira do assento, o ponto do estofado escondido atrás da bacia encosta na coxa de longe (que afunda no assento), e o pintor não conta essas células (o contato não decide nada). O remendo deixa de fora o trecho da bacia, e a conferência, numa grade mais fina (0,5 cm), acha ali uma lasca de 1,25 e 3 cm² em que a bacia está 12 a 16 cm na frente do estofado.
+
+**O que ficou no pintor, desligado** (`PADRAO`, em `pintor-por-pares.ts`; sem as duas opções, o desenho é o de antes, caractere por caractere, nas 171):
+
+- `pecaComPeca: 'contorno'`: peça com peça fica na ordem de hoje só onde os contornos se cruzam (em pedaços convexos: o casco do sólido e da placa, a esfera, cada trecho do fio com a largura dele; 1 cm de folga para o traço; pelos eixos separadores). As que só se cruzam pela caixa podem trocar de lugar sem mudar o desenho.
+- `contatoNoRemendo`: quando o ciclo larga a regra decidida "o corpo na frente da peça", o remendo do corpo cobre também os trechos em que ele está na frente encostado nela, como a ordem decidida pintaria.
+- 3 testes novos em `tests/unit/pintor-por-pares.test.ts` (agora 10 casos): o ciclo (larga a regra mais leve, e o remendo do corpo deixa de fora os trechos em que ele só encosta), o mesmo ciclo com `contatoNoRemendo` (o remendo passa a cobri-los) e a corrente pela caixa que `pecaComPeca: 'contorno'` desfaz.
+
+| com o pintor ligado nas 171 | achados por pares | área por pares | das 94 com achado hoje, só com achados que somem | das 20 que esperavam o conserto |
+|---|---|---|---|---|
+| o pintor de hoje (o ligado) | 377 | 1.219 cm² | 74 | 0 |
+| `pecaComPeca: 'contorno'` | 376 | 1.218 cm² | 75 | 1 (`hiperextensao`, 1,3 → 0 cm²) |
+| `contatoNoRemendo` | 375 | 1.215 cm² | 75 | 1 (`voador`, 4,3 → 0 cm²) |
+| os dois | 374 | 1.214 cm² | 76 | 2 (`voador` e `hiperextensao`) |
+
+Nenhuma animação piora com os dois (achado por achado, nenhuma ganha achado nem área). **Mas o desenho de três das 5 aprovadas muda, e por isso o ajuste não foi ligado.** Na amostra (24 quadros do ciclo em cada vista e 12 de cada erro em cada vista dele; o SVG e os pixels a 480 × 360):
+
+| animação do lote 1 | `pecaComPeca: 'contorno'` | `contatoNoRemendo` |
+|---|---|---|
+| `remada-unilateral` | 12 de 120 quadros, até 0,71% da figura (três quartos de trás, erro "Girar o tronco") | igual |
+| `abdominal-declinado` | o SVG muda em 64 de 120 (a ordem de peças que não se cruzam), os pixels não | 60 de 120 quadros, até 0,08% da figura |
+| `triceps-testa-halteres` | 2 de 144 quadros, até 0,05% da figura | o SVG muda em 7 de 144, os pixels não |
+| `puxada-barra-reta`, `puxada-unilateral` | igual | igual |
+
+No `voador`, o ajuste muda 12 de 132 quadros (até 0,62% da figura: a bacia por cima da beira do estofado); na `hiperextensao`, 49 de 96 (até 0,53%). Para ligar: o Gustavo olha a mudança nas três do lote 1 (uma folha delas, o pintor de hoje × com o ajuste), quem integra regrava a linha de base, e o `voador` e a `hiperextensao` entram.
+
+**O que não deu certo** (medido, e tirado do código):
+
+- **O recorte pela grade de 1 cm** (as células do par em que o de baixo está na frente, com 1,5 cm de folga, menos as do outro lado), sempre: o `voador` piora (4,3 → 24,8 cm², 6 achados novos). Só onde o casco erra pelo menos 1 cm² de células do par: nenhuma das 20 passa, e o `voador-invertido` e a `mesa-flexora` (deste lote) ganham achados novos (7 e 2). A grade do pintor (1 cm) é mais grossa que a da conferência (0,5 cm), e o casco do trecho, mais largo, cobre o que a grade do pintor não vê.
+- **A ordem pela caixa como preferência** (fixa, menos num ciclo que largaria uma regra decidida): nenhuma das 20 passa, e o `abdominal-declinado` muda em 9 de 59 quadros.
+- **A grade de 0,5 cm no pintor** (4 vezes a conta): nenhuma das 20 passa.
+- **As outras 18 que esperam** não são de ordem nem de recorte: são linhas de contato e bordas, quase todas de 1 a 3 cm² por achado (o elástico no pé, a caneleira em volta da canela, a almofada do `hip-thrust` na mão, o braço da `panturrilha-em-pe-maquina` no pescoço). Ficam como estavam, à espera de correção no exercício ou na forma 3D da peça, uma a uma.
+
+### O lote 2 (19/11)
+
+As 12 seguintes na ordem da tabela acima, **todas ligadas**: em todas, por pares, os achados de hoje só somem (achado por achado: a mesma parte, a mesma peça, a mesma vista, o mesmo quadro) e nenhum aparece. O `voador` continua de fora (só passa com o ajuste, acima). Esperam o ok do Gustavo pelas folhas-resumo, [página 1](pintor-por-pares/lote-2-resumo-a.png) e [página 2](pintor-por-pares/lote-2-resumo-b.png) (12 linhas não cabem bem numa página); a linha de base do motor **não foi regravada**, e o teste do motor acusa as 12, como devia.
+
+| animação | grupo | hoje | por pares | quadros da folha que mudam | o que mais muda (fração da figura) | SVG que muda (amostra) |
+|---|---|---|---|---|---|---|
+| [`nordico`](pintor-por-pares/nordico.png) | aprovada antes de 17/11 | 1.783 cm², 39 achados | 0 | 5 de 8 | 1,4% | 20 de 53 |
+| [`flexao-pes-elevados`](pintor-por-pares/flexao-pes-elevados.png) | aprovada antes de 17/11 | 1.088 cm², 32 achados | 0 | 5 de 9 | 4,0% | 13 de 59 |
+| [`rosca-inclinada`](pintor-por-pares/rosca-inclinada.png) | aprovada antes de 17/11 | 906 cm², 60 achados | 0 | 6 de 9 | 2,3% | 21 de 59 |
+| [`aducao-maquina`](pintor-por-pares/aducao-maquina.png) | aprovada desde 17/11 | 841 cm², 28 achados | 0 | 6 de 8 | 1,4% | 30 de 53 |
+| [`flexao-joelho-deslizante`](pintor-por-pares/flexao-joelho-deslizante.png) | aprovada antes de 17/11 | 599 cm², 38 achados | 0 | 6 de 9 | 4,3% | 20 de 59 |
+| [`voador-invertido`](pintor-por-pares/voador-invertido.png) | aprovada desde 17/11 | 560 cm², 17 achados | 0 | 6 de 9 | 2,3% | 36 de 59 |
+| [`flexao-joelho-elastico`](pintor-por-pares/flexao-joelho-elastico.png) | aprovada antes de 17/11 | 557 cm², 38 achados | 4 cm², 3 achados | 8 de 9 | 2,0% | 48 de 59 |
+| [`abdominal-polia`](pintor-por-pares/abdominal-polia.png) | aprovada antes de 17/11 | 517 cm², 48 achados | 22 cm², 10 achados | 5 de 8 | 0,7% | 21 de 53 |
+| [`mesa-flexora`](pintor-por-pares/mesa-flexora.png) | aprovada desde 17/11 | 442 cm², 12 achados | 84 cm², 2 achados | 3 de 8 | 2,4% | 5 de 53 |
+| [`hack`](pintor-por-pares/hack.png) | aprovada desde 17/11 | 437 cm², 90 achados | 0 | 10 de 10 | 1,8% | 65 de 65 |
+| [`rosca-scott`](pintor-por-pares/rosca-scott.png) | aprovada desde 17/11 | 430 cm², 67 achados | 130 cm², 12 achados | 9 de 9 | 1,3% | 59 de 59 |
+| [`coice-maquina`](pintor-por-pares/coice-maquina.png) | em revisão (fora do app) | 399 cm², 23 achados | 2 cm², 1 achado | 5 de 8 | 1,3% | 20 de 53 |
+| **as 12** | | **8.557 cm², 492 achados** | **241 cm², 28 achados** | | | |
+
+"Quadros da folha que mudam": os da folha de cada uma (u = 0, 0,5 e 1 em cada vista, e o quadro de cada erro que mais muda), desenhados a 480 × 360. "SVG que muda": na amostra das 171 (12 tempos na técnica, 6 nos músculos e 2 na trajetória em cada vista, 6 de cada erro e a miniatura, pela ponte, como o app pede), os quadros que deixam de ser iguais aos de antes do lote 2.
+
+- `node scripts/animacao-nova/conferir.mjs <id>`, em cada uma: sem falha em 9; **a falha de pintura de antes continua, menor, em 3**: `mesa-flexora` (o rolo por cima dos pés, de cima, no erro "Rolo no lugar errado", o resto que o estudo já mostrava), `rosca-scott` (o peito na linha em que afunda na almofada, de três quartos) e `coice-maquina` (o pé e a plataforma, 1,5 cm²). Avisos de pintura pequenos em `flexao-joelho-elastico` (o pegador sobre os pés, de cima, 1,3 cm²) e `abdominal-polia` (a corda sobre a cabeça, de três quartos, até 2,8 cm²), restos dos achados de hoje; os outros avisos são de amplitude, provisórios e músculos, os de antes.
+- **As outras 159 não mudam de desenho:** o SVG das 171 na amostra (9.997 quadros), antes e depois do lote 2, é igual, caractere por caractere, nas 159 fora do lote (as 5 do lote 1 e o `voador` incluídos); muda só nas 12.
+- `coice-maquina` está em revisão (fora do app até o Gustavo escolher a máquina): o pintor ligado vale quando ela entrar.
+
+### O celular de entrada (lote 2)
+
+O lote traz três das máquinas em que a primeira volta engasgava com a CPU 6× mais lenta. Medi de novo, do jeito da etapa 1 (o laço do Worker na linha principal de uma página nova, a CPU limitada pelo CDP, modo Técnica, cinza, a primeira vista, com o preparo), os dois pintores pela mesma chamada (`svgDaCena` com `pintor`); a mediana de três voltas, cada uma numa página nova:
+
+| animação (ciclo) | 4×, hoje: 1º quadro, volta, atrasados | 4×, por pares | 6×, hoje | 6×, por pares |
+|---|---|---|---|---|
+| `aducao-maquina` (4,2 s) | 121 ms, 2,0 s, nenhum | 216 ms, 3,1 s, nenhum | 183 ms, 2,7 s, nenhum | 429 ms, 4,5 s, 39 de 126 (até 265 ms) |
+| `voador-invertido` (5,0 s) | 125 ms, 2,3 s, nenhum | 281 ms, 3,3 s, nenhum | 274 ms, 3,1 s, nenhum | 350 ms, 4,6 s, 24 de 150 (até 255 ms) |
+| `mesa-flexora` (4,4 s) | 158 ms, 2,8 s, nenhum | 243 ms, 3,7 s, nenhum | 247 ms, 3,9 s, 16 de 132 (até 20 ms) | 303 ms, 4,9 s, 94 de 132 (até 430 ms) |
+
+**No celular médio (4×), nada engasga. No de entrada (6×), a primeira volta das três engasga**, como na etapa 1: a animação para por até meio segundo em alguns trechos, só na primeira volta (nas três voltas medidas de cada uma, de 14 a 94 quadros atrasados). Da segunda volta em diante, os quadros já estão prontos.
+
+**O plano B (a ordem calculada de antemão, só nessas três): avaliado, não feito.** Medi o tamanho do que viria pronto no preparo: para cada combinação que o guia pede (cada vista do guia na técnica, cada erro nas vistas dele, cinza e cor de pele) e cada ponto diferente do movimento na volta de 30 quadros por segundo, a ordem (só quando muda) e os remendos (de quem, depois de quem, os polígonos do recorte a 0,1 cm):
+
+| animação | combinações | pontos do movimento | tamanho | comprimido | o preparo de hoje, comprimido |
+|---|---|---|---|---|---|
+| `aducao-maquina` | 12 | 876 | 86 kB | 3,1 kB | 0,5 kB |
+| `voador-invertido` | 20 | 1.840 | 1.183 kB | 31,1 kB | 0,6 kB |
+| `mesa-flexora` | 12 | 1.056 | 176 kB | 16,1 kB | 0,6 kB |
+
+Com ela, a primeira volta custaria o que custa hoje (a ordem lida, e não calculada): no 6×, sem atraso na `aducao-maquina` e no `voador-invertido`, e com os 16 quadros de até 20 ms que a `mesa-flexora` já tem. O custo: 1,4 MB a mais no repositório (os polígonos dos remendos são quase tudo; guardando os trechos do recorte, e não os polígonos, deve cair umas 3 a 5 vezes, não medi), até 31 kB comprimidos a mais ao abrir o exercício, o preparo refeito e conferido a cada mudança no exercício, no Boneco ou numa peça, e 1 a 2 dias de trabalho; o motor continua precisando do pintor para o que não vem pronto (o quadro pausado num instante qualquer, o corpo da mulher). Não liguei: a decisão é do Gustavo, se o engasgo da primeira volta no celular de entrada pesar.
+
+### O pacote (lote 2)
+
+O orçamento de quem volta (`tests/e2e/orcamento.spec.ts`, rodado agora): **288,1 kB em 41 arquivos, de 290** (no lote 1, 287,6 kB): faltam 1,9 kB, e o limite não mudou. Do acréscimo de 0,5 kB, quase tudo é o ajuste desligado, que viaja com o pintor (de 8,1 para 8,6 kB comprimidos); a lista ganhou 12 nomes. A boas-vindas não muda (154,4 kB). O lote 3 não deve somar quase nada (só a lista); o ajuste ligado, também não.
 
 ### O que falta
 
 | o quê | quanto |
 |---|---|
-| O ok do Gustavo no lote 1 (a folha-resumo) e a linha de base do motor regravada por quem integra | revisão dele |
-| O conserto do ciclo e do recorte (o `voador` e as 20 que esperam) | 1 a 2 dias |
-| Os lotes 2 a 6: a folha e a folha-resumo de cada um, a conferência de cada animação e a revisão do Gustavo | meio dia por lote, mais a revisão |
+| O ok do Gustavo no lote 2 (as duas folhas-resumo) e a linha de base do motor regravada por quem integra | revisão dele |
+| O ajuste do pintor: a folha das três do lote 1 que mudam, o pintor de hoje × com o ajuste, e o ok do Gustavo para ligá-lo (com ele, o `voador` e a `hiperextensao` entram) | meio dia, mais a revisão |
+| As outras 18 que esperam: correção no exercício ou na forma 3D da peça, uma a uma | 1 a 2 dias |
+| Os lotes 3 a 6: a folha e a folha-resumo de cada um, a conferência de cada animação e a revisão do Gustavo | meio dia por lote, mais a revisão |
+| O plano B no celular de entrada, se o Gustavo quiser (as três deste lote, o `supino-polia` do lote 3 e a `abducao-maquina` do lote 4) | 1 a 2 dias |
 | Tirar as correções que sobram (os 3 `vies` da mão, acima), uma a uma, com a conferência | uma hora |
