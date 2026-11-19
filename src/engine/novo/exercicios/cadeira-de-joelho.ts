@@ -10,7 +10,7 @@
 //  - quanto o tronco deita para trás: até as costas ficarem paralelas ao encosto (a folga de cima igual à de baixo);
 //  - as regulagens da máquina para esse corpo, como quem treina faz antes da série: o encosto anda até encostar nas
 //    costas; o rolo corre na alavanca até a altura pedida da canela; a trava das coxas (na flexora) desce até elas.
-import { pontosDoBoneco } from "../boneco";
+import { formaDoBoneco, pontosDoBoneco } from "../boneco";
 import { calibragem } from "../calibragens";
 import { resolverMembros, resolverTronco, sinal } from "../esqueleto";
 import type { Esq, Lado, PoseBraco, PosePerna, Tronco } from "../esqueleto";
@@ -22,7 +22,7 @@ import {
   direcaoDaAlavanca,
   geometriaDaCadeiraFlexora,
 } from "../pecas-de-cena/cadeira-flexora";
-import type { ModeloDaCadeira } from "../pecas-de-cena/cadeira-flexora";
+import type { ModeloDaCadeira, OpcoesDaPeca } from "../pecas-de-cena/cadeira-flexora";
 import type { Corpo } from "../tabelas";
 import { obj } from "../tabelas";
 import { add, dot, mul, norm, sub } from "../vec";
@@ -101,12 +101,13 @@ export function alca(o: OpcoesDaCadeira, k: Lado): V3 {
   ];
 }
 /** As mãos fechadas nas alças, o polegar para a frente, os cotovelos para fora e para trás. */
-export function maosNasAlcas(o: OpcoesDaCadeira): Record<Lado, PoseBraco> {
+export function maosNasAlcas(o: OpcoesDaCadeira, elev = 0): Record<Lado, PoseBraco> {
   const b = (k: Lado): PoseBraco => ({
     pegada: alca(o, k),
     polo: [sinal(k) * 0.5, 0, -1],
     mao: { polegar: [0, 0, 1], forma: "pegada", diam: 4 },
     prot: o.prot,
+    ...(elev ? { elev } : {}),
   });
   return { R: b("R"), L: b("L") };
 }
@@ -295,6 +296,8 @@ export interface Desvio {
   deita?: number;
   /** Quanto o corpo inteiro (e o encosto) está para trás no assento, ao longo dele (cm): o joelho sai do eixo. */
   recua?: number;
+  /** Quanto os ombros descem (graus da clavícula, positivo = desce), para as mãos continuarem nas alças. */
+  ombrosDescem?: number;
 }
 
 /** O corpo na cadeira, com as canelas a `joelho` graus, e a alavanca onde o rolo encosta na canela. */
@@ -328,7 +331,7 @@ export function naCadeira(
       quadril[2],
       S.deita + (dv.deita ?? 0),
     ),
-    maosNasAlcas(o),
+    maosNasAlcas(o, -(dv.ombrosDescem ?? 0)),
     pernasNaCadeira(o, coxa, joelho),
   );
   // a alavanca: o rolo, a `S.rolo` cm do eixo, encosta na canela (a `off` cm do eixo da canela, do lado do rolo)
@@ -356,6 +359,22 @@ export function naCadeira(
       certo + 30,
       30,
     );
+    // escorregando, o rolo chega ao tornozelo e ao pé, que saem da linha da canela: ele para na pele (afundando o
+    // mesmo que na canela), em vez de entrar no pé (correção da auditoria de 18/11/2026: na extensora, 3,6 cm)
+    const r = obj(o.modelo.objeto, "roloDiam") / 2,
+      meio = obj(o.modelo.objeto, "roloComp") / 2;
+    const pele = pontosDoBoneco(e).filter(
+      ({ p, parte }) => (parte === "canela" || parte === "pe") && Math.abs(p[0]) <= meio,
+    );
+    const folga = (a: number) => {
+      const c = add(G.eixo, mul(direcaoDaAlavanca(a), S.rolo));
+      let min = 1e9;
+      for (const { p } of pele) min = Math.min(min, Math.hypot(p[1] - c[1], p[2] - c[2]) - r);
+      return min + o.roloAmassa;
+    };
+    // (e, onde a perna afina, ele não fica solto: encosta na pele, como no resto do ciclo)
+    const f0 = folga(alavanca);
+    if (Math.abs(f0) > 0.05) alavanca = resolver1(folga, alavanca, alavanca + (f0 < 0 ? lado : -lado) * 20, 24);
   }
   // o encosto: no erro do joelho fora do eixo, ele está regulado para trás, junto com as costas
   const encosto = recua
@@ -366,37 +385,74 @@ export function naCadeira(
   return { e, alavanca, encosto, joelhoNoEixo: joelhoC };
 }
 
+/** Quanto falta para as mãos chegarem às alças (cm), no pior dos dois lados. */
+const faltaDasMaos = (e: Esq) => Math.max(e.lado.R.falta.braco, e.lado.L.falta.braco);
+
+/** O erro com as mãos nas alças: quanto a bacia sobe, quanto o tronco deita a mais e quanto os ombros descem. */
+export interface ErroComAsMaos {
+  sobe: number;
+  deita: number;
+  ombrosDescem: number;
+}
+
 /**
- * Quanto o tronco tem de deitar a mais (graus) para as costas continuarem no encosto quando a bacia sobe `sobe` cm (com
- * as canelas a `joelho` graus): subindo, as costas se afastam do encosto inclinado, e o tronco deita até encostar de
- * novo. Uma vez por corpo (../calibragens.ts).
+ * As mãos ficam nas alças também nos erros (correção da auditoria de 18/11/2026: no quadril que sobe e no joelho fora
+ * do eixo, as mãos subiam ou recuavam até 4,8 cm da alça, porque o braço já quase esticado não alcançava). Quem segura
+ * as alças e tira o quadril do banco empurra as alças para baixo: os ombros descem (`ombrosDescem`, graus da
+ * clavícula), até `desceMax`. Se nem assim as mãos alcançam, a bacia sobe só o que os braços deixam (menos que `sobe`).
+ * `encosta`: o tronco deita o que precisa para as costas continuarem no encosto (o erro do quadril da extensora); sem
+ * ele, deita `deita` graus. Para o erro inteiro (u = 1); uma vez por corpo (../calibragens.ts).
  */
-export function deitaEncostado(
+export function erroComAsMaosNasAlcas(
   corpo: Corpo,
   o: OpcoesDaCadeira,
   S: Sentado,
   chave: string,
   joelho: number,
-  sobe: number,
-): number {
-  return calibragem(corpo, `${chave}:deita-encostado`, () =>
-    resolver1(
-      (d) => {
-        const r = naCadeira(corpo, o, S, joelho, { sobe, deita: d });
-        const f = folgasDasCostas(r.e, o, r.encosto);
-        return Math.min(f.baixo, f.cima);
-      },
-      0,
-      20,
-      24,
-    ),
-  );
+  dv: Desvio & { encosta?: boolean },
+  desceMax: number,
+): ErroComAsMaos {
+  return calibragem(corpo, `${chave}:maos-nas-alcas`, () => {
+    const pedido = dv.sobe ?? 0;
+    const deitaPara = (sobe: number) =>
+      dv.encosta
+        ? resolver1(
+            (d) => {
+              const r = naCadeira(corpo, o, S, joelho, { ...dv, sobe, deita: d });
+              const f = folgasDasCostas(r.e, o, r.encosto);
+              return Math.min(f.baixo, f.cima);
+            },
+            0,
+            20,
+            24,
+          )
+        : (dv.deita ?? 0);
+    const falta = (sobe: number, deita: number, desce: number) =>
+      faltaDasMaos(naCadeira(corpo, o, S, joelho, { ...dv, sobe, deita, ombrosDescem: desce }).e) - 0.005;
+    let sobe = pedido,
+      deita = deitaPara(sobe);
+    if (falta(sobe, deita, 0) <= 0) return { sobe, deita, ombrosDescem: 0 };
+    if (falta(sobe, deita, desceMax) <= 0) return { sobe, deita, ombrosDescem: resolver1((d) => falta(sobe, deita, d), 0, desceMax, 24) };
+    sobe = resolver1((s) => falta(s, deitaPara(s), desceMax), 0, pedido, 20);
+    deita = deitaPara(sobe);
+    return { sobe, deita, ombrosDescem: desceMax };
+  });
+}
+
+/**
+ * A ordem de pintura da parte da máquina que se mexe (correção da auditoria de 18/11/2026). `dz`: quanto ela vai para
+ * trás (cm; ../pecas-de-cena/cadeira-flexora.ts, `OpcoesDaPeca.dz`); `pesNaFrente`: o rolo não cobre os pés onde eles
+ * ficam na frente dele (`OpcoesDaPeca.naFrenteDoRolo`).
+ */
+export interface Pintura {
+  dz?: OpcoesDaPeca["dz"];
+  pesNaFrente?: boolean;
 }
 
 /**
  * O quadro: o corpo, a máquina regulada para ele (o encosto, o rolo, a trava, a posição inicial `inicio` da alavanca,
  * de onde as placas começam a subir) e as marcas que as regras leem (../regras/cadeiras.ts). A estrutura da máquina é
- * pintada atrás do corpo (cenário); a alavanca, o rolo e as placas, na ordem de profundidade.
+ * pintada atrás do corpo (cenário); a alavanca, o rolo e as placas, na ordem de profundidade, com o ajuste de `pintura`.
  */
 export function quadroNaCadeira(
   corpo: Corpo,
@@ -407,10 +463,12 @@ export function quadroNaCadeira(
   placas: number,
   dv: Desvio = {},
   travaFolga = 0,
+  pintura: Pintura = {},
 ): Quadro {
   const r = naCadeira(corpo, o, S, joelho, dv);
   const trava = S.trava + travaFolga;
-  // a trava (na flexora) é pintada por cima das coxas; os estofados, na conferência, com os cantos redondos do desenho
+  // a trava (na flexora) é pintada por cima das coxas; os estofados, na conferência, com os cantos redondos do desenho;
+  // a parte que se mexe, na ordem de pintura que o exercício pede (`pintura`)
   const M = cadeiraFlexora(
     {
       alavanca: r.alavanca,
@@ -421,7 +479,16 @@ export function quadroNaCadeira(
       placas,
     },
     o.modelo,
-    { travaAParte: true, cantosRedondos: true },
+    {
+      travaAParte: true,
+      cantosRedondos: true,
+      dz: pintura.dz,
+      naFrenteDoRolo: pintura.pesNaFrente
+        ? formaDoBoneco(r.e)
+            .grupos.filter((g) => g.id.startsWith("perna"))
+            .flatMap((g) => g.volumes.filter((v) => v.nome === "pe").map((v) => v.vol.aneis))
+        : undefined,
+    },
   );
   const G = geometriaDaCadeiraFlexora(o.modelo);
   const g = m_(o);
@@ -442,6 +509,8 @@ export function quadroNaCadeira(
       eixo: M.eixo,
       rolo: M.centroRolo,
       roloMeio: [g("roloComp") / 2, g("roloDiam") / 2, 0],
+      roloPontaR: M.pontasDoRolo[0],
+      roloPontaL: M.pontasDoRolo[1],
       alavanca: [r.alavanca, inicio, g("cameDiam") / 2],
       pilha: [M.subida, 0, 0],
       alcaR: alca(o, "R"),

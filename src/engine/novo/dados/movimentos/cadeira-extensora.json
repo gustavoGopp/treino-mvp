@@ -23,8 +23,10 @@
   "joelho.emCima": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os joelhos quase esticados: 10° de flexão"},
   "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
   "erro.ritmo.expoente": {"v": 4, "un": "expoente", "selo": "desenho", "fonte": "aprovada", "o": "erros de ritmo: no tranco, no meio da subida a perna já está quase em cima (1 − (1 − u)⁴); na descida rápida, no meio dela a perna já caiu quase até embaixo (u⁴), e as placas batem (o da extensão com caneleira aprovada)"},
-  "erro.quadril.sobe": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "erro: o quadril sobe 6 cm do banco no alto da subida, a coxa girando em volta do joelho (a extensão com mini band aprovada sobe 6 cm); o tronco deita só o que precisa para as costas continuarem no encosto, empurrando-o (medido, não escolhido)"},
-  "erro.eixo.recua": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o encosto regulado 6 cm para trás; o joelho fica 6 cm atrás do eixo e o rolo escorrega ao longo da canela (o cartão: 'o encosto está mal ajustado')"}
+  "erro.quadril.sobe": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "erro: o quadril sobe do banco no alto da subida (até 6 cm; com as mãos nas alças e os ombros descendo até o limite, erro.ombros.desceMax, os braços deixam subir 3,4 cm, medido em 18/11/2026, e é o que sobe), a coxa girando em volta do joelho (a extensão com mini band aprovada sobe 6 cm); o tronco deita só o que precisa para as costas continuarem no encosto, empurrando-o (medido, não escolhido)"},
+  "erro.eixo.recua": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o encosto regulado 6 cm para trás; o joelho fica 6 cm atrás do eixo e o rolo escorrega ao longo da canela até o peito do pé, encostado na pele sem entrar nele (o cartão: 'o encosto está mal ajustado'); as mãos continuam nas alças, com os ombros no limite (erro.ombros.desceMax): falta 0,1 cm"},
+  "erro.ombros.desceMax": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "nos erros, as mãos continuam nas alças (a auditoria de 18/11/2026: elas subiam até 4,8 cm da alça): quem tira o quadril do banco segurando as alças empurra-as para baixo, e os ombros descem até 10° da clavícula (a faixa de depressão do ombro é pequena; número de desenho, sem fonte medida); se nem assim as mãos alcançam, a bacia sobe só o que os braços deixam"},
+  "pintura.movelAtras": {"v": 60, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "ordem de pintura (a auditoria de 18/11/2026): a alavanca, o came e as placas ficam do lado de fora da perna de longe; de lado e de três quartos ficam atrás das pernas, e vão 60 cm para trás na ordem (o corpo entra na ordem pelo centro do tronco, e a alavanca, mais perto de quem olha, saía por cima das pernas); não muda o desenho"}
  },
  "fases": [
   {"nome": "Embaixo · joelhos dobrados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pé fora do chão", "selo": "consenso", "fonte": "app"},
@@ -39,7 +41,8 @@
   {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com a alavanca e apoiam embaixo, sem bater", "selo": "consenso", "fonte": "ficha"},
   {"id": "cadeira-sentado-e-encostado", "pede": "quadril encostado no banco: o glúteo no assento e as costas no encosto, parados (o tronco não ajuda)", "selo": "consenso", "fonte": "ficha"},
   {"id": "cadeira-maos-nas-alcas", "pede": "as mãos nas alças", "selo": "consenso", "fonte": "ficha"},
-  {"id": "cadeira-extensora-amplitude", "pede": "embaixo, os joelhos bem dobrados, com o pé fora do chão; em cima, quase esticados", "selo": "consenso", "fonte": "ficha"}
+  {"id": "cadeira-extensora-amplitude", "pede": "embaixo, os joelhos bem dobrados, com o pé fora do chão; em cima, quase esticados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-extensora-pintura-e-maos", "pede": "nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo na frente das canelas e atrás dos pés que ficam na frente dele, o encosto atrás das costas e as mãos nas alças", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [
   {"id": "tranco", "instante": 0.5, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no meio da subida, a perna já está quase em cima, jogada pelo embalo", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"},

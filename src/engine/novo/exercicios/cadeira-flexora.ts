@@ -12,6 +12,7 @@ import type { Exercicio, Quadro } from "../movimento";
 import { FLEXORA } from "../pecas-de-cena/cadeira-flexora";
 import type { Corpo } from "../tabelas";
 import {
+  erroComAsMaosNasAlcas,
   naCadeira,
   quadroNaCadeira,
   sentarNaCadeira,
@@ -40,6 +41,21 @@ const sentado = (corpo: Corpo) =>
 const inicio = (corpo: Corpo) =>
   naCadeira(corpo, O, sentado(corpo), f("joelho.inicio")).alavanca;
 
+/**
+ * Os erros com as mãos nas alças (a auditoria de 18/11/2026): no quadril que sobe e no joelho fora do eixo, os ombros
+ * descem para as mãos continuarem nelas, e a bacia sobe só o que os braços deixam (./cadeira-de-joelho.ts).
+ */
+const erroSolto = (corpo: Corpo) =>
+  erroComAsMaosNasAlcas(corpo, O, sentado(corpo), `${F.id}:solto`, f("joelho.fim"), { sobe: f("erro.solto.sobe") }, f("erro.ombros.desceMax"));
+const erroEixo = (corpo: Corpo) =>
+  erroComAsMaosNasAlcas(corpo, O, sentado(corpo), `${F.id}:eixo`, f("joelho.fim"), { recua: f("erro.eixo.recua") }, f("erro.ombros.desceMax"));
+/**
+ * A ordem de pintura (a auditoria de 18/11/2026): o rolo fica atrás das canelas, e a alavanca, o came e as placas, do
+ * lado de fora da perna de longe; de lado e de três quartos, tudo o que se mexe fica atrás das pernas, e vai para trás
+ * na ordem de pintura (sem isso, o rolo e a alavanca, mais perto de quem olha que o tronco, saíam por cima das pernas).
+ */
+const PINTURA = { dz: { movel: f("pintura.movelAtras"), rolo: f("pintura.roloAtras") } };
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const S = sentado(corpo);
   const n = f("erro.ritmo.expoente");
@@ -47,12 +63,12 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const v = erro === "tranco" ? 1 - (1 - u) ** n : u;
   const de = erro === "curta" ? f("erro.curta.joelho") : f("joelho.inicio");
   const joelho = mix(de, f("joelho.fim"), v);
-  const dv: Desvio =
-    erro === "solto"
-      ? { sobe: f("erro.solto.sobe") * u }
-      : erro === "eixo"
-        ? { recua: f("erro.eixo.recua") }
-        : {};
+  const solto = erro === "solto" ? erroSolto(corpo) : undefined;
+  const dv: Desvio = solto
+    ? { sobe: solto.sobe * u, ombrosDescem: solto.ombrosDescem * u }
+    : erro === "eixo"
+      ? { recua: f("erro.eixo.recua"), ombrosDescem: erroEixo(corpo).ombrosDescem }
+      : {};
   return quadroNaCadeira(
     corpo,
     O,
@@ -62,6 +78,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     f("placas"),
     dv,
     erro === "solto" ? f("erro.solto.folga") : 0,
+    PINTURA,
   );
 }
 
