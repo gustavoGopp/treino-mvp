@@ -70,3 +70,30 @@ O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado 
 A conferência dá 0 falhas antes e depois (a regra nova não estava ligada antes; ligada no estado de antes, ela falha). O antes e depois está em `correcao-das-antigas/remada-unilateral-kettlebell.png` (de três quartos inteiro e de perto, e de lado de perto); os quadros grandes foram regravados (`quadros/remada-unilateral-kettlebell.png`).
 
 **O que ainda não ficou bom.** A mão pousa perto do joelho (97% do caminho), e não no meio da coxa; de três quartos aparece só um pedaço da palma sobre a coxa, perto do joelho, como na remada com elástico aprovada.
+
+## Correção de 19/11 (halter dentro do corpo)
+
+O aviso do Gustavo foi na remada com halter ("o halter tá ficando errado pensando realisticamente, ele tá puxando pra dentro do próprio corpo"); esta usa a mesma base e o mesmo braço, e tinha os mesmos dois defeitos. A medida e a correção são as de `remada-unilateral-sem-banco.md`, seção do mesmo nome.
+
+**A medida (antes, `1d036a8`).** A bola do kettlebell, medida contra a superfície do corpo (regra `peso-fora-do-corpo`, 120 quadros do ciclo e dos erros), **não entra no corpo** (0 cm): no fim fica a 6,8 cm da coxa direita, e a 1 cm no erro "Girar o tronco". Mas:
+1. a mão terminava **9,9 cm à frente do centro do quadril e 7,2 cm abaixo dele** (a bola embaixo da barriga, na frente da coxa);
+2. de três quartos, a bola fica na frente da perna direita, mas era pintada atrás dela (folga de pintura de **−10,7 cm**): metade da bola sumia atrás da coxa, como se entrasse nela.
+
+**A mudança.** A mesma da remada com halter: `recuoDoAntebraco` no núcleo (`braco.fim.recuo` = 20°; a bola continua pendendo embaixo da alça) e, de três quartos, o corpo, as pernas e o braço de apoio 25 cm para trás na pintura (`pintura.quina.atras`). A mão de apoio na coxa não muda.
+
+| medido (homem; ciclo e erros) | antes | depois |
+|---|---|---|
+| a bola entra no corpo (`peso-fora-do-corpo`) | 0 cm | 0 cm |
+| folga da bola até a pele, no fim | 6,8 cm (coxa direita) | 1,7 cm (coxa direita) |
+| folga no pior erro | 1 cm ("Girar o tronco") | 0,6 cm ("Girar o tronco") |
+| centro da pegada no fim × centro do quadril | 9,9 cm à frente, 7,2 cm abaixo (falha) | 1,6 cm atrás, 5,2 cm abaixo |
+| folga de pintura de três quartos, perna direita | −10,7 cm (falha) | +10,6 cm |
+| cotovelo que puxa, no fim | 83° | 63° |
+| mão de apoio | 97,2%, 2,7 cm fora da pele | igual |
+
+A conferência automática dá **0 falhas e 2 avisos** (os mesmos de antes). O antes e depois está em `correcao-das-antigas/remada-unilateral-kettlebell-halter.png`; os quadros grandes foram regravados (`quadros/remada-unilateral-kettlebell.png`); olhei cada vista, cada quadro e cada erro, nos dois lados do corpo.
+
+**O que ainda não ficou bom.**
+- A bola passa rente à coxa de trás no fim (1,7 cm; 0,6 cm no erro "Girar o tronco"). No corpo da mulher (que o app não usa), no erro "Arredondar as costas", ela entra 0,7 cm na coxa (a tolerância é 0,5): a folga que o núcleo guarda (`folgaDaCarga`) mede pontos da pele, e não a superfície.
+- O cotovelo dobra 63° no fim, e não ~90° (o mesmo da remada com halter).
+- De lado, a trajetória do kettlebell não tem rótulo (já era assim antes).
