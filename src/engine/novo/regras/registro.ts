@@ -77,3 +77,4 @@ export { REGRAS_MAQUINAS_DE_BRACO } from './maquinas-de-braco';
 export { REGRAS_AVULSOS_C3 } from './avulsos-c3';
 export { REGRAS_REMADA_UNILATERAL_ELASTICO } from './remada-unilateral-elastico';
 export { REGRAS_VISTAS_DO_GUIA } from './vistas-do-guia';
+export { REGRAS_PESO_FORA_DO_CORPO } from './peso-fora-do-corpo';

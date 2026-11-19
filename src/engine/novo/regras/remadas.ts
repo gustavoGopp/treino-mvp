@@ -7,10 +7,14 @@ import { pontosDoBoneco } from '../boneco';
 import { f1 } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Prim } from '../desenho';
+import { formaDoKettlebell } from '../equipamento';
 import type { Esq } from '../esqueleto';
 import type { Quadro } from '../movimento';
-import { angulo, dist, dot, norm, paraRef, sub } from '../vec';
+import type { Peca } from '../pecas';
+import { angulo, comb, dist, dot, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
+import { partesDoHalter, regraDePintura } from './ordem-de-pintura';
+import type { ParteDaPeca } from './ordem-de-pintura';
 
 const primeiro = <T>(q: T[]) => q[0]!;
 const ultimo = <T>(q: T[]) => q[q.length - 1]!;
@@ -136,4 +140,45 @@ export const regrasDasRemadas: Record<string, Regra> = {
     const soOmbro = Math.hypot(meioDaMao[2] - L.ombro[2], meioDaMao[0] - L.ombro[0]);
     return { medido: `a mão fica de ${f1(mao - topo)} cm e o joelho ${f1(joelho - topo)} cm do tampo do banco; o meio da mão fica a ${f1(soOmbro)} cm da vertical do ombro`, ok: Math.abs(mao - topo) <= 1.5 && Math.abs(joelho - topo) <= 1.5 && soOmbro <= 8 };
   },
+  'remada-sem-banco-carga-ao-lado-do-quadril': (q) => {
+    // Correção de 19/11/2026 (o halter "puxando pra dentro do próprio corpo"): no fim da puxada, o centro da pegada (o
+    // meio do halter, a alça do kettlebell) fica ao lado do quadril, e não embaixo da barriga. Medido contra o centro do
+    // quadril do lado que puxa: de frente para trás no chão (até 5 cm, metade do raio da bacia de lado) e na altura (até
+    // 10 cm). Até a correção, a mão terminava 9,9 cm à frente do quadril e 7,2 cm abaixo dele: de lado e de três
+    // quartos, a carga ficava na frente da virilha e da coxa.
+    const e = ultimo(q).esq;
+    const R = e.lado.R;
+    const dz = R.pegada[2] - R.quadril[2],
+      dy = R.pegada[1] - R.quadril[1];
+    return { medido: `no fim, o centro da pegada fica ${f1(Math.abs(dz))} cm ${dz >= 0 ? 'à frente' : 'atrás'} do centro do quadril e ${f1(Math.abs(dy))} cm ${dy >= 0 ? 'acima' : 'abaixo'} dele`, ok: Math.abs(dz) <= 5 && Math.abs(dy) <= 10 };
+  },
+  'remada-carga-pintada-no-lugar': (q, corpo, ex) => {
+    // A carga das remadas (as cabeças e o cabo do halter; a bola, as hastes e a barra da alça do kettlebell) contra o
+    // corpo, nos dois lados, em cada vista do guia (correção de 19/11/2026): de três quartos, na remada com kettlebell, a
+    // bola fica na frente da coxa de trás, mas era pintada atrás dela (o item do corpo, pela média do tronco, vinha
+    // depois), e parecia entrar na coxa. As mãos fecham no cabo ou na alça e não contam.
+    if (!ex) return { medido: 'a regra precisa do exercício (a conferência o passa)', ok: false };
+    return regraDePintura({ exercicio: () => ex, nome: 'a carga', fora: ['mao', 'polegar'], peca: pecasDaCarga })(q, corpo, ex);
+  },
 };
+
+/** As cargas de um quadro das remadas, com as partes que a regra de pintura mede (na ordem em que a peça as desenha). */
+export function pecasDaCarga(q: Quadro): { peca: Peca; partes: ParteDaPeca[] }[] {
+  const out: { peca: Peca; partes: ParteDaPeca[] }[] = [];
+  for (const p of q.pecas ?? []) {
+    if (p.t === 'halter') out.push({ peca: p, partes: partesDoHalter(p) });
+    else if (p.t === 'kettlebell') out.push({ peca: p, partes: partesDoKettlebell(p) });
+  }
+  return out;
+}
+/** As partes do kettlebell, na ordem em que o desenho realista as pinta: a bola, as duas hastes e a barra da alça. */
+export function partesDoKettlebell(p: Extract<Peca, { t: 'kettlebell' }>): ParteDaPeca[] {
+  const K = formaDoKettlebell();
+  const u = norm(p.cima),
+    l = norm(p.lado);
+  const P = (h: number, x = 0): V3 => comb([1, p.base], [h, u], [x, l]);
+  const alto = K.altura - K.rAlca,
+    pe = K.centro + Math.sqrt(Math.max(0, K.R * K.R - K.meiaAlca * K.meiaAlca)) - 1;
+  const haste = (s: number, i: number): ParteDaPeca => ({ eixo: [P(pe, s * K.meiaAlca), P(alto, s * K.meiaAlca)], raio: K.rAlca, itens: [i] });
+  return [{ eixo: [P(K.centro)], raio: K.R, itens: [0] }, haste(-1, 1), haste(1, 2), { eixo: [P(alto, -K.meiaAlca - K.rAlca * 0.6), P(alto, K.meiaAlca + K.rAlca * 0.6)], raio: K.rAlca, itens: [3] }];
+}
