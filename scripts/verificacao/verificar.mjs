@@ -2,7 +2,7 @@
 // roda (o CI chama este mesmo comando). Se tudo passa, carimba a árvore de arquivos conferida em .verificacao/, e o
 // portão do envio (portao-envio.mjs) sabe que aquele conteúdo já passou. Ver docs/verificacao/README.md.
 import { spawnSync } from 'node:child_process';
-import { aprovar, arvoreAtual } from './estado.mjs';
+import { aprovar, arvoreAtual, soTextoLivre } from './estado.mjs';
 import { PASSOS } from './regras.mjs';
 
 const noGitHub = !!process.env.CI;
@@ -24,10 +24,12 @@ for (const passo of PASSOS) {
   }
 }
 
+// Carimba o que foi conferido (o retrato do começo). Se, durante a rodada, mudou só texto livre, o carimbo continua
+// valendo para o retrato novo (estado.mjs, aprovadaQueCobre); se mudou código, a rodada não serve para ele.
 const depois = arvoreAtual();
-if (depois !== antes) {
-  console.error('\n✗ verificar: os arquivos mudaram enquanto a verificação rodava. Rode de novo para carimbar.');
+if (!soTextoLivre(antes, depois)) {
+  console.error('\n✗ verificar: o código mudou enquanto a verificação rodava. Rode de novo para carimbar.');
   process.exit(1);
 }
-if (!noGitHub) aprovar(depois, 'verificar');
-console.log(`\n✓ verificar: tudo passou (${tempos.join(' · ')}).${noGitHub ? '' : ` Árvore ${depois.slice(0, 10)} carimbada.`}`);
+if (!noGitHub) aprovar(antes, 'verificar');
+console.log(`\n✓ verificar: tudo passou (${tempos.join(' · ')}).${noGitHub ? '' : ` Retrato ${antes.slice(0, 10)} carimbado.`}`);
