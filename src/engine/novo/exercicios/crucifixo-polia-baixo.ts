@@ -109,7 +109,13 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const e = pose(corpo, c, u, erro);
   const es = (['R', 'L'] as Lado[]).map((k, i) => estriboNaMao(e, k, c.cabos[i]!.torre));
   const col = colunasECabos(c.cabos, es.map((x) => x.elo), c.repouso, f('pilha.folga'), true);
-  const pecas: Peca[] = [...col.pecas!.filter((p) => p.t === 'torre'), ...es.map((x) => x.peca), ...col.pecas!.filter((p) => p.t !== 'torre')];
+  // as colunas são cenário (de frente, pintadas atrás do corpo e cortadas pelo quadro); de lado, a coluna de cenário
+  // não aparecia e os cabos terminavam no ar, perto do chão (auditoria de 18/11, G7). A coluna de longe (a esquerda: de
+  // lado, quem olha está à direita da pessoa) passa a aparecer também de perfil, atrás do corpo, e os dois cabos terminam
+  // na roldana dela (as duas roldanas caem no mesmo lugar da tela). A de perto ficaria na frente do corpo e segue de fora.
+  // De lado, a coluna de longe entra no quadro até `coluna.deLado.noQuadro` (os textos não ficam por cima dela)
+  const torres = col.pecas!.filter((p) => p.t === 'torre').map((p) => (p.torre === c.cabos[1]!.torre ? { ...p, deLado: true, cortadaEmCima: f('coluna.deLado.noQuadro') } : p));
+  const pecas: Peca[] = [...torres, ...es.map((x) => x.peca), ...col.pecas!.filter((p) => p.t !== 'torre')];
   const marcas: Record<string, V3> = { ...col.marcas, 'mao.R': e.lado.R.pegada, 'mao.L': e.lado.L.pegada };
   return { esq: e, prims: [chao(-110, 110, -90, 90), ...es.flatMap((x) => x.prims), ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
 }

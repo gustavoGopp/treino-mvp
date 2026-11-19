@@ -2,12 +2,16 @@
 // Fica à parte de ./conferir.ts para os arquivos de regras de cada família (./regras/) poderem usar sem dar a volta.
 import { sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
-import type { Quadro } from './movimento';
+import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
 import { angulo, dot, mul, norm, sub } from './vec';
 
-/** Uma regra da ficha da técnica: recebe os quadros do começo até o fim da primeira fase com movimento e devolve o que mediu e se confere. */
-export type Regra = (q: Quadro[], corpo: Corpo) => { medido: string; ok: boolean };
+/**
+ * Uma regra da ficha da técnica: recebe os quadros do começo até o fim da primeira fase com movimento e devolve o que mediu e se confere.
+ * `ex` (acréscimo de 19/11/2026): o exercício conferido, para a regra que precisa dos erros ou das vistas dele (a
+ * conferência sempre o passa; as regras que não o usam continuam iguais).
+ */
+export type Regra = (q: Quadro[], corpo: Corpo, ex?: Exercicio) => { medido: string; ok: boolean };
 /** Número com uma casa e vírgula, como nos relatórios. */
 export const f1 = (x: number) => (Math.round(x * 10) / 10).toString().replace('.', ',');
 /** O menor e o maior valor de uma lista. */

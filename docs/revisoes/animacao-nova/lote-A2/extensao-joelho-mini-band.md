@@ -61,3 +61,24 @@ Não há correção registrada para este id. Da extensão com caneleira: a coxa 
 - **No começo, os dois rótulos ("a perna parada segura" e "estique até o fim") apontam para os dois pés, que estão juntos**: os fios quase se sobrepõem no quadro do começo. Separam-se quando a perna sobe.
 - **O erro de levantar o quadril** chega a 2,50 vezes de faixa (o máximo do fabricante, sem passar).
 - **De lado, o encosto não aparece** (o tronco o cobre): é o motivo de a primeira vista ser a de três quartos.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M5) achou que as linhas dos dois rótulos ("a perna parada segura" e "estique até o fim") se cruzam, de três quartos e de lado: cada texto ficava ao lado do ponto do outro, e "a perna parada segura" parecia apontar para o pé que sobe. Os pontos estavam certos (`ponta:L` e `ponta:R`). A animação saiu da aprovação até a correção.
+
+**A causa.** O motor põe os rótulos na ordem da ficha, cada um o mais perto possível da altura média do seu ponto. O primeiro era "estique até o fim", cujo ponto (o pé que sobe) fica, em média, no meio da altura: ele ficava com o lugar do meio. O segundo, "a perna parada segura", tem o ponto embaixo (o pé no chão), mas o lugar de baixo já cruzava o primeiro, e ele ia para cima.
+
+**A mudança.** Só a ordem dos rótulos na ficha, nas duas vistas: "a perna parada segura" vem primeiro e fica com o lugar de baixo, ao lado do pé parado; "estique até o fim" vai para cima, ao lado do pé que sobe. Os textos, os pontos, o selo e a fonte são os mesmos. O enquadramento não mudou (o preparo é o mesmo).
+
+**A regra nova** (comum, `rotulos-sem-linhas-cruzadas`, em `regras/vistas-do-guia.ts`, ligada só nesta ficha): em cada vista do exercício com dois rótulos ou mais, em 24 instantes do ciclo, desenha o quadro como o guia (o enquadramento do guia, o desenho cinza) e confere, segmento a segmento, que as linhas dos rótulos não se cruzam.
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| de três quartos: instantes com as linhas cruzadas | **16 de 24** | 0 de 24 |
+| de lado: instantes com as linhas cruzadas | **8 de 24** | 0 de 24 |
+
+Rodada no estado de antes (a ficha de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes.
+
+**Olhado nos quadros** (`quadros/extensao-joelho-mini-band.png`): de três quartos e de lado, no começo, no meio e no fim, "a perna parada segura" fica embaixo, com a linha até o pé no chão, e "estique até o fim" em cima, com a linha até o pé que sobe.
+
+**O que ainda não ficou bom.** No começo do ciclo, com os dois pés juntos embaixo, as duas linhas chegam quase paralelas a pontos a poucos centímetros um do outro: não se cruzam, mas ficam muito perto.

@@ -51,7 +51,9 @@ function pedidoDoCorpo(u: number, erro?: string): PedidoEmPe {
       fora = dirRef(t.torax, [s, 0, 0]),
       frente = norm(perp(dirRef(t.torax, [0, 0, 1]), um)),
       c = cotovelo * rad,
-      be = f('antebraco.paraFora') * rad;
+      // no erro do cotovelo, o braço gira para fora e a mão abre para o lado: o cabo passa por fora do braço (até 19/11
+      // ele atravessava o braço)
+      be = (f('antebraco.paraFora') + (erro === 'cotovelo' ? f('erro.cotovelo.maoFora') * x : 0)) * rad;
     const antebraco = norm(add(mul(add(mul(um, Math.cos(c)), mul(frente, Math.sin(c))), Math.cos(be)), mul(fora, Math.sin(be))));
     return { ...b, antebraco, mao: { ...b.mao, polegar: polegarDaPegada(um, antebraco, b.polo, s, f('maos.supinacao')) } };
   };

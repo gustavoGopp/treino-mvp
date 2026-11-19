@@ -64,3 +64,22 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md`.
 ## Risco de o Gustavo não gostar
 
 **Médio.** A técnica confere em tudo e a vista de cima se lê bem, mas há duas escolhas que ele não viu em nenhuma aprovada: o laço dobrado com as pontas penduradas (para o elástico fechar a conta) e o erro "soltar uma ponta" com a faixa no ar.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (G4) achou que, de cima, a cabeça some dentro da silhueta dos ombros: o Boneco pinta o corpo com um contorno só, por fora, e de cima a cabeça fica sobre os ombros, mais perto de quem olha; sem linha nenhuma entre os dois, sobrava só o calombo do rosto. A animação saiu da aprovação até a correção.
+
+**A mudança.** O quadro liga, só na vista de cima, a opção `cabeca` do Boneco (acréscimo de 18/11, o mesmo do quadril na máquina da fase C): a cabeça é pintada de novo por cima do corpo, com o contorno próprio. Nada mais muda: a pose, o equipamento, as outras vistas e os erros ficam como estavam. Vale também para o erro "Dobrar os cotovelos", que o guia mostra de cima.
+
+**A regra nova** (comum, `cabeca-aparece-em-cada-vista`, em `src/engine/novo/regras/vistas-do-guia.ts`, ligada só nesta ficha e nas das outras três da mesma correção): em cada vista que o guia mostra (as do exercício e as dos erros), no ciclo (5 instantes) e em cada erro na vista dele (começo, meio, fim e o instante do erro), mede o ângulo entre o eixo do tórax e a direção de quem olha, a fração do contorno da cabeça na tela que cai dentro da silhueta do tronco (pescoço, tronco, cintura e bacia) e quanto a cabeça fica mais perto de quem olha que o tronco. A cabeça "sumiria" quando o eixo fica a até 30° de quem olha, mais de 35% do contorno dela cai dentro da silhueta e ela está na frente; aí o quadro tem de ligar o contorno próprio dela (`cabeca` em `vies` ou `viesNaVista` daquela vista). De frente, de lado e de três quartos, em pé, só o queixo ou a nuca encostam na silhueta (17% a 22% do contorno, a 76° a 90°): a regra não pede nada ali. A cabeça é do meio do corpo: não tem lado.
+
+| vista de cima (a primeira vista, e a do erro "Dobrar os cotovelos") | antes (`1828c0e`) | depois |
+|---|---|---|
+| quadros de cima em que a cabeça sumiria (ciclo e erro) / com contorno próprio | 8 / **0** | 8 / 8 |
+| eixo do tórax e quem olha; contorno da cabeça dentro da silhueta; a cabeça à frente do tronco | 0°; 100%; 12,8 cm | iguais (a pose não mudou) |
+
+Rodada no estado de antes (o exercício de `1828c0e`, com a regra nova na ficha), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes.
+
+**Olhado nos quadros** (`quadros/abertura-elastico.png`): de cima, nos três instantes, no modo Músculos, no tema escuro e no cor de pele, a cabeça aparece inteira, redonda, por cima dos ombros, e o rosto deixa de ser um calombo solto. De frente nada muda.
+
+**O que ainda não ficou bom.** De cima, o principal (a lateral do ombro) continua quase escondido (é o aviso de antes: a vista de cima serve para o arco do braço, não para o músculo). A mesma cabeça sumida existe em animações antigas aprovadas que esta correção não toca (ver a resposta da sessão).

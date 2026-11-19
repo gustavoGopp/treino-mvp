@@ -204,6 +204,12 @@
    "pede": "a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima",
    "selo": "consenso",
    "fonte": "app"
+  },
+  {
+   "id": "rotulos-sem-linhas-cruzadas",
+   "pede": "em cada vista, a linha de cada rótulo vai ao ponto dele sem cruzar a do outro",
+   "selo": "desenho",
+   "fonte": "desenho"
   }
  ],
  "erros": [
@@ -244,20 +250,13 @@
  "rotulos": [
   {
    "vista": "lateral",
-   "texto": "estique até o fim",
-   "ponto": "ponta:R",
+   "texto": "a perna parada segura",
+   "ponto": "ponta:L",
    "selo": "consenso",
    "fonte": "app"
   },
   {
    "vista": "lateral",
-   "texto": "a perna parada segura",
-   "ponto": "ponta:L",
-   "selo": "consenso",
-   "fonte": "app"
-  },
-  {
-   "vista": "quina",
    "texto": "estique até o fim",
    "ponto": "ponta:R",
    "selo": "consenso",
@@ -267,6 +266,13 @@
    "vista": "quina",
    "texto": "a perna parada segura",
    "ponto": "ponta:L",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "estique até o fim",
+   "ponto": "ponta:R",
    "selo": "consenso",
    "fonte": "app"
   }

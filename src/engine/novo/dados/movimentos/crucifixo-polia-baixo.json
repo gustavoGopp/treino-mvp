@@ -34,6 +34,7 @@
   "polia.meiaDistancia": {"v": 96, "un": "cm", "selo": "desenho", "fonte": "crucifixo", "o": "em pé no meio das torres: cada roldana a 96 cm do meio do corpo, para o lado (a mesma máquina do crucifixo na polia aprovado)"},
   "polia.altura": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "poliaBaixa", "o": "'as duas polias embaixo': o centro da roldana a 22 cm do chão (a polia baixa dos exercícios aprovados)"},
   "polia.atras": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as roldanas 30 cm atrás do meio da pelve: a pessoa um pouco à frente da linha das torres, e os cabos vêm de baixo e um pouco de trás (a ficha não dá número)"},
+  "coluna.deLado.noQuadro": {"v": 100, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "de lado, o quadro mostra a coluna de longe (atrás do corpo, com a roldana onde os cabos terminam) até 1 m de altura; o resto a borda corta, como nas outras polias baixas (correção de 19/11/2026)"},
   "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "crucifixo", "o": "o cabo já tenso com os braços abertos e baixos: a pilha sai 2 cm do repouso (como no crucifixo na polia aprovado)"},
   "erro.cotovelo.dobra": {"v": 95, "un": "graus", "selo": "desenho", "fonte": "crucifixo", "o": "erro: embaixo, o cotovelo dobra 95° (a mão vem para a frente do quadril, como numa rosca) e estica ao subir, como num empurrar (o número do erro 'transformar em supino' do crucifixo na polia aprovado)"},
   "erro.cotovelo.psi": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, com o cotovelo dobrado, a mão fica à frente da linha do corpo (a linha do ombro à mão a 60° da frente)"},
@@ -56,7 +57,8 @@
   {"id": "crucifixo-baixo-maos-se-encontram-no-alto", "pede": "fim: as mãos se encontram à frente, na altura do peito ou do queixo", "selo": "consenso", "fonte": "app"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
-  {"id": "tronco-quase-parado", "pede": "tronco reto e parado: quem sobe são os braços", "selo": "consenso", "fonte": "app"}
+  {"id": "tronco-quase-parado", "pede": "tronco reto e parado: quem sobe são os braços", "selo": "consenso", "fonte": "app"},
+  {"id": "crucifixo-baixo-cabos-terminam-na-roldana", "pede": "em cada vista do guia, cada cabo termina na roldana de uma coluna que aparece (de lado, a coluna de longe, atrás do corpo)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cotovelo", "instante": 0, "titulo": "Dobrar e esticar os cotovelos", "vista": "lateral", "oQueMuda": "embaixo, os cotovelos dobram e as mãos vêm para a frente do quadril; ao subir, os cotovelos esticam, como num empurrar", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

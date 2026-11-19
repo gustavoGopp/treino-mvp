@@ -49,7 +49,8 @@
   {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, as mãos e as caneleiras ao lado das coxas, sem atravessá-las", "selo": "consenso", "fonte": "app"},
   {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "app"},
   {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + caneleiras) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
-  {"id": "elevacao-caneleira-presa-no-antebraco", "pede": "a caneleira presa no antebraço, logo acima do punho, sem escorregar; a mão relaxada (não segura a caneleira)", "selo": "consenso", "fonte": "app"}
+  {"id": "elevacao-caneleira-presa-no-antebraco", "pede": "a caneleira presa no antebraço, logo acima do punho, sem escorregar; a mão relaxada (não segura a caneleira)", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: os ombros vão em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},

@@ -55,3 +55,27 @@ Do crucifixo na polia: o cotovelo "levemente dobrado e fixo" (20° o ciclo todo)
 - **A pilha sobe 48 cm** no ciclo (o cabo anda 96 cm: das mãos ao lado do quadril até o peito, com as polias embaixo). É a conta certa da relação 2:1, mas é muito mais que nos outros exercícios na polia; numa coluna de 2,39 m ela cabe.
 - **No erro de encolher os ombros,** de frente, a diferença (5 cm) se lê, mas a mancha vermelha é pequena (só o ombro e o braço de perto ficam em vermelho).
 - **De frente, no fim**, os braços vêm para a frente e ficam encurtados pela perspectiva (as mãos se encontram na frente do peito), como no crucifixo na polia aprovado.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (G7) achou que, de lado, os cabos terminam no ar: a saída de cada cabo fica a 24 a 26 cm do chão e a 85 cm da borda do quadro, sem coluna nenhuma. As duas colunas eram cenário, e `equipamento.ts` não desenha coluna de cenário de perfil. A animação saiu da aprovação até a correção.
+
+**A mudança.**
+
+1. **Peça comum, acréscimo:** a coluna (`{ t: 'torre' }` em `pecas.ts`) ganhou o campo opcional `deLado` (desligado por padrão). A coluna de cenário com `deLado`, vista de perfil, é desenhada como equipamento: na ordem certa de pintura (ela fica atrás do corpo) e, com `cortadaEmCima`, no enquadramento até essa altura, para os textos não ficarem por cima dela. Nas outras vistas continua cenário. `equipamento.ts` passou a perguntar a `torreNaVista` (exportada) se a coluna aparece; para quem não usa o campo, a resposta é a mesma de antes.
+2. **No exercício:** a coluna de longe (a esquerda; de lado, quem olha está à direita da pessoa) leva `deLado` e `cortadaEmCima` = `coluna.deLado.noQuadro` (100 cm, linha nova da ficha, selo desenho). De lado, as duas roldanas caem no mesmo ponto da tela: os dois cabos terminam na roldana dela, atrás do corpo. A coluna de perto continua de fora de perfil (ficaria na frente do corpo e o esconderia).
+3. De frente nada muda (o quadro e o enquadramento de frente são os mesmos; o preparo só mudou na vista de lado: o quadro anda 7 cm para a esquerda, do mesmo tamanho).
+
+**A regra nova** (`crucifixo-baixo-cabos-terminam-na-roldana`, em `regras/crucifixo-polia-baixo.ts`): em cada vista do guia (frente e lado, as do exercício e as dos erros), no ciclo (5 instantes) e em cada erro na vista dele (começo, meio e fim), conta as colunas que aparecem naquela vista e mede, na tela, a distância da saída de cada um dos dois cabos (o direito e o esquerdo) ao centro da roldana mais perto, que tem de ficar até o raio dela (o cabo sai na borda) com meio centímetro de folga.
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| de lado: colunas que aparecem | **0** (os cabos terminam no ar, a até 25,6 cm do chão) | 1 (a de longe) |
+| de lado: saída de cada cabo ao centro da roldana, na tela | sem roldana | até 3,6 cm (raio 5,5) |
+| de frente: colunas; saída ao centro da roldana | 2; 5,5 cm | 2; 5,5 cm |
+
+Rodada no estado de antes (o exercício de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes (a lista dos provisórios ganhou `coluna.deLado.noQuadro`).
+
+**Olhado nos quadros** (`quadros/crucifixo-polia-baixo.png`): de lado, no começo, no meio e no fim, nos erros "Dobrar e esticar os cotovelos" e "Balançar o tronco", no tema escuro e no cor de pele, a coluna fica atrás da pessoa, com a pilha, e os cabos descem da mão à roldana embaixo dela. O cabo de perto passa na frente da perna de perto (está mais perto de quem olha); o de longe some atrás do corpo. De frente, igual a antes.
+
+**O que ainda não ficou bom.** Com a coluna no quadro, o nome do erro "Dobrar e esticar os cotovelos" passou para o lado direito do corpo (do lado esquerdo não cabe mais entre a coluna e a borda), e a linha dele atravessa o peito até o cotovelo, que fica atrás do tronco. A coluna de perto não aparece de lado: é um recorte de desenho (ela estaria entre quem olha e a pessoa), dito aqui para não parecer que há uma coluna só.

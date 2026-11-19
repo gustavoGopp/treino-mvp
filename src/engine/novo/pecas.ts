@@ -137,6 +137,14 @@ export type Peca =
        * exercícios na polia baixa: sem isso, a coluna de 2,39 m deixava o corpo pequeno no quadro.
        */
       cortadaEmCima?: number;
+      /**
+       * `deLado` (acréscimo de 19/11/2026, desligado por padrão): a coluna de cenário que fica do lado de longe é
+       * desenhada também de perfil, como equipamento (na ordem certa, atrás do corpo, e no enquadramento até
+       * `cortadaEmCima`), e o cabo termina na roldana dela. Sem isso, de perfil o cabo terminava no ar (o crucifixo na
+       * polia baixa). Nas outras vistas ela segue como cenário. A coluna do lado de perto continua de fora de perfil
+       * (ficaria na frente do corpo); ela cai no mesmo lugar da tela que a de longe.
+       */
+      deLado?: boolean;
     }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }

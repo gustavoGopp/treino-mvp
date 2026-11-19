@@ -53,7 +53,8 @@
   {"id": "braco-na-linha-do-ombro", "pede": "braço para o lado até a altura do ombro", "selo": "consenso", "fonte": "ficha"},
   {"id": "cotovelo-acima-da-mao", "pede": "cotovelo levemente dobrado; o cotovelo lidera", "selo": "consenso", "fonte": "ficha"},
   {"id": "ombro-sem-encolher", "pede": "ombro baixo, longe da orelha", "selo": "consenso", "fonte": "app"},
-  {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, o halter ao lado da coxa, sem atravessá-la", "selo": "consenso", "fonte": "app"}
+  {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, o halter ao lado da coxa, sem atravessá-la", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "encolher", "instante": 1, "titulo": "Encolher o ombro", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: o ombro vai em direção à orelha e o trapézio de cima assume", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},

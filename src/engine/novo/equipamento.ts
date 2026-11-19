@@ -222,6 +222,11 @@ function desenhar(chave: string | null, cam: Camera, id: string, monta: (C: Cena
 }
 
 /** O equipamento de um quadro, no desenho dos cartões do app. `id` distingue os filtros de sombra de cada <svg>. */
+/** Se a coluna aparece nesta vista: a de cenário não aparece de perfil, salvo com `deLado` (acréscimo de 19/11/2026). */
+export function torreNaVista(p: Extract<Peca, { t: 'torre' }>, cam: Camera): boolean {
+  const dePerfil = Math.abs(cam.para[0]) > 0.95;
+  return !(p.cenario && dePerfil && !p.deLado);
+}
 export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: string): { itens: Item[]; defs: string } {
   const M = MATERIAIS[tema];
   // a sombra no chão só aparece nas vistas inclinadas: de perfil o chão é uma linha, e de cima, a pino, a sombra
@@ -260,13 +265,15 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
     }
     else if (p.t === 'colchonete') junta(desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p)));
     else if (p.t === 'torre') {
-      const dePerfil = Math.abs(cam.para[0]) > 0.95;
-      if (p.cenario && dePerfil) return;
+      if (!torreNaVista(p, cam)) return;
       const a = desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)),
         b = desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida));
-      // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento
-      const fundo = (r: { itens: Item[]; defs: string }) => (p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
-      if (p.cortadaEmCima === undefined || p.cenario) {
+      // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento.
+      // A de cenário com `deLado`, de perfil, é desenhada como equipamento (na ordem certa e, com `cortadaEmCima`, no
+      // enquadramento até essa altura): os textos não ficam por cima dela (acréscimo de 19/11/2026)
+      const cenario = p.cenario && !(p.deLado && Math.abs(cam.para[0]) > 0.95);
+      const fundo = (r: { itens: Item[]; defs: string }) => (cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
+      if (p.cortadaEmCima === undefined || cenario) {
         junta(fundo(a));
         junta(fundo(b));
       } else {

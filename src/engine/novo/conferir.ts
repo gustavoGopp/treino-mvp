@@ -415,7 +415,7 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
       add('Ficha', r.pede, 'sem medição automática', r.selo, 'aviso');
       continue;
     }
-    const x = regra(meio, corpo);
+    const x = regra(meio, corpo, ex);
     add('Ficha', `${r.pede} (${r.selo})`, x.medido, 'como a ficha pede', x.ok ? 'ok' : 'falha');
   }
 

@@ -22,7 +22,7 @@ import { comprimento } from './elastico-faixa';
 import { bordasDaSolaEm, trechoAteOPe } from './elastico-pisado';
 import { criarRemada } from './remada';
 import type { BaseDaRemada } from './remada';
-import { baseSemBanco, peleDaCoxa } from './remada-sem-banco';
+import { baseSemBanco, peleDaCoxaNaSuperficie } from './remada-sem-banco';
 
 const f = daFicha(fichaSchema.parse(ficha));
 /** O meio da sola, do calcanhar à ponta do pé (como na curvada com elástico e na rosca com elástico aprovada). */
@@ -31,7 +31,7 @@ const MEIO_DA_SOLA = 0.4;
 /**
  * O erro do pé: a mesma base, com o calcanhar da frente levantado. O quadril fica onde estava (a perna de trás, quase
  * estendida, não deixa o corpo subir), o joelho da frente dobra mais, e a mão de apoio vai junto com a coxa: fica no
- * mesmo ponto dela, assentada na pele como em ./remada-sem-banco.ts.
+ * mesmo ponto dela, assentada na pele (medida na superfície, como na base).
  */
 function naPonta(b: BaseDaRemada, corpo: Corpo): BaseDaRemada {
   const m = (id: string) => corpo.m(id);
@@ -39,14 +39,16 @@ function naPonta(b: BaseDaRemada, corpo: Corpo): BaseDaRemada {
   const t = resolverTronco(corpo, b.tronco);
   const antes = resolverMembros(t, { R: solto, L: b.apoio! }, b.pernas);
   const L0 = antes.lado.L;
-  // em que ponto da coxa (0 = quadril, 1 = joelho) o meio da mão apoia
+  // em que ponto da coxa (0 = quadril, 1 = joelho) o meio da palma apoia: o ponto da pele que a base usou (o punho fica
+  // `mao.palma` × 0,45 antes dele, ao longo da coxa). Até 19/11 a conta usava o centro da pegada, alguns centímetros
+  // adiante, e a mão escorregava para o joelho no erro
   const eixo0 = sub(L0.joelho, L0.quadril);
-  const naCoxa = dot(sub(L0.pegada, L0.quadril), eixo0) / dot(eixo0, eixo0);
+  const naCoxa = dot(sub(add(L0.punho, mul(norm(eixo0), m('mao.palma') * 0.45)), L0.quadril), eixo0) / dot(eixo0, eixo0);
   const pernas = { R: b.pernas.R, L: { ...b.pernas.L, pe: { ...b.pernas.L.pe!, calc: f('erro.pe.calcanhar') } } };
   let e = resolverMembros(t, { R: solto, L: b.apoio! }, pernas);
   let apoio = b.apoio!;
   for (let i = 0; i < 3; i++) {
-    const P = peleDaCoxa(e, naCoxa);
+    const P = peleDaCoxaNaSuperficie(e, naCoxa);
     const dedos = norm(sub(e.lado.L.joelho, e.lado.L.quadril));
     const punho = sub(add(P.p, mul(P.n, m('raio.punho') * 0.85)), mul(dedos, m('mao.palma') * 0.45));
     apoio = { ...b.apoio!, punho, mao: { ...b.apoio!.mao, dedos } };
@@ -56,8 +58,12 @@ function naPonta(b: BaseDaRemada, corpo: Corpo): BaseDaRemada {
 }
 
 const ERROS = { gira: 'girar', costas: 'arredondar' } as const;
-const R = criarRemada(ficha, { bracos: 'R', carga: 'elastico', base: (c) => baseSemBanco(c, f), erros: ERROS });
-const NA_PONTA = criarRemada(ficha, { bracos: 'R', carga: 'elastico', base: (c) => naPonta(baseSemBanco(c, f), c), erros: ERROS });
+// a mão de apoio pousa na pele da coxa medida na superfície (`peleDaCoxaNaSuperficie`): com a medida da base comum, o
+// ponto em que ela pousa caía entre dois anéis da coxa e ficava no eixo dela, e a mão e o antebraço entravam na coxa
+// (auditoria de 18/11, M4)
+const BASE = (c: Corpo) => baseSemBanco(c, f, { pele: peleDaCoxaNaSuperficie });
+const R = criarRemada(ficha, { bracos: 'R', carga: 'elastico', base: BASE, erros: ERROS });
+const NA_PONTA = criarRemada(ficha, { bracos: 'R', carga: 'elastico', base: (c) => naPonta(BASE(c), c), erros: ERROS });
 
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const q = erro === 'pe' ? NA_PONTA.quadro(corpo, u) : R.quadro(corpo, u, erro);
