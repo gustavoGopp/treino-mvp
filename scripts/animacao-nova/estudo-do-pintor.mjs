@@ -38,10 +38,10 @@ async function motor(estudo) {
   writeFileSync(arq, outputFiles[0].text);
   const m = await import(pathToFileURL(resolve(arq)).href);
   m.PP.PADRAO.contato = CONTATO;
-  if (!estudo) return m;
-  // as cenas deste motor pintam por pares
+  // as cenas deste motor pintam por pares (estudo) ou com o pintor de hoje, também nas animações em que o pintor por
+  // pares já está ligado (src/engine/novo/pintor-ligado.ts, desde a etapa 2)
   const svgDaCena = m.svgDaCena;
-  return { ...m, svgDaCena: (ex, t, o, vb, tema) => svgDaCena(ex, t, { ...o, pintor: 'pares' }, vb, tema) };
+  return { ...m, svgDaCena: (ex, t, o, vb, tema) => svgDaCena(ex, t, { ...o, pintor: estudo ? 'pares' : 'hoje' }, vb, tema) };
 }
 const grupoDe = (m, id) => (m.EM_REVISAO[id] ? 'revisao' : m.APROVADOS[id] ? (m.APROVADOS[id].em < '2026-11-17' ? 'antiga' : 'sessao') : 'outra');
 /** O instante t do ciclo em que o quadro u aparece no app (como em conferencia-de-pintura.mjs). */
