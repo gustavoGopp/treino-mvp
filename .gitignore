@@ -39,3 +39,6 @@ docs/revisoes/textos/depois/capturas/
 # Da medição nova, só os resumos são versionados a cada fluxo; o resto é refeito pelo roteiro (e entra no fechamento)
 docs/revisoes/textos/depois/*.json
 docs/revisoes/textos/depois/*.csv
+
+# Estado da verificação neste aparelho (scripts/verificacao/): o que já passou e o registro do portão
+.verificacao/

@@ -22,11 +22,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run test:cobertura
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+      # O mesmo comando que se roda antes de enviar (lint, tipos, unitários com cobertura e telas, nessa ordem): o que
+      # passa lá passa aqui. Antes, cada passo era listado aqui e o `npm run check` local não ligava a cobertura, e um
+      # teste estourou o limite de tempo só aqui (17/11/2026). tests/repo/verificacao.test.ts confere que fica assim.
+      - run: npm run verificar
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
