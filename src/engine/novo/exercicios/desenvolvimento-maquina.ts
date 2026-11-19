@@ -46,7 +46,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     // arqueado
     const cheio: DesvioDeEmpurrar = { lombar: f('erro.arco.lombar'), toracica: f('erro.arco.toracica'), frente: f('erro.arco.bacia') };
     ate = anguloComCotovelo(corpo, O, F.id, R, f('cotovelo.emCima'), cheio, 'arco');
-    dv = { lombar: cheio.lombar! * u, toracica: cheio.toracica! * u, frente: cheio.frente! * u };
+    // o alto das costas e a parte de trás dos ombros ficam no encosto: o corpo vem para a frente o que eles entrariam a
+    // mais (a auditoria de 18/11/2026: os braços entravam 3,2 cm nele)
+    dv = { lombar: cheio.lombar! * u, toracica: cheio.toracica! * u, frente: cheio.frente! * u, encostoAte: f('erro.arco.ombroNoEncosto') };
   }
   if (erro === 'curta') de = mix(R.inicio, R.fim, f('erro.curta.fracao'));
   return quadroNaMaquina(corpo, O, F.id, R, mix(de, ate, u), f('placas'), dv);

@@ -51,3 +51,17 @@ Nenhum erro do cartão ficou sem desenho.
 - **O eixo na linha do quadril é escolha minha** (as fichas não dão o eixo; a foto da Atlantis M219 o põe debaixo da frente do assento, e o cartão de hoje, numa coluna à frente dos pés).
 
 **Risco de o Gustavo não gostar: baixo a médio.** O pé se lê bem e o movimento é o da aprovada; a máquina tem um desenho novo (o eixo ao lado do quadril) diferente do cartão de hoje.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**O achado da auditoria: na pele desenhada, a almofada fica 0,5 cm acima das coxas e o glúteo 0,5 cm acima do assento, e o relatório diz que os dois afundam 1 cm. Não se confirma no desenho real.** As caixas da conferência (`pecas-de-cena/panturrilha-sentada.ts`, `prims`) são 1,5 cm mais finas que os estofados desenhados, de propósito (`meias` com `esp / 2 − 1,5`): a face de cima da caixa do assento fica 1,5 cm abaixo do assento desenhado, e a de baixo da caixa da almofada, 1,5 cm acima da almofada desenhada. A auditoria mediu contra as caixas.
+
+| medido | contra a caixa | contra o estofado desenhado |
+|---|---|---|
+| glúteo no assento (pele densa e 12 pontos) | 0,5 cm acima | 1,0 cm dentro |
+| coxas na almofada, 12 pontos | 0,5 cm abaixo | 1,0 cm dentro |
+| coxas na almofada, pele densa | 0,05 cm abaixo | 1,45 cm dentro |
+
+Os dois afundam 1 cm no estofado que o app desenha, como o relatório do lote diz. Não mexi.
+
+**O que ainda não ficou bom:** a almofada das coxas pintada sobre a borda da coxa de longe, de três quartos (outro achado pequeno da auditoria), não é deste lote.

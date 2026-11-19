@@ -43,7 +43,8 @@
   { "id": "pes-presos-na-chapa", "pede": "os pés ficam firmes na chapa, no mesmo lugar dela, e o carro só anda na guia", "selo": "consenso", "fonte": "ficha" },
   { "id": "joelhos-na-linha-dos-pes-no-trilho", "pede": "os joelhos seguem a direção dos pés (não fecham para dentro)", "selo": "consenso", "fonte": "ficha" },
   { "id": "maos-paradas-nos-pegadores-do-trilho", "pede": "as mãos nos pegadores, paradas", "selo": "consenso", "fonte": "ficha" },
-  { "id": "carro-acima-do-batente-do-leg-press", "pede": "o carro não chega nos batentes de baixo no movimento certo, e a trava fica solta", "selo": "consenso", "fonte": "ficha" }
+  { "id": "carro-acima-do-batente-do-leg-press", "pede": "o carro não chega nos batentes de baixo no movimento certo, e a trava fica solta", "selo": "consenso", "fonte": "ficha" },
+  { "id": "leg-press-corpo-por-cima-dos-estofados", "pede": "em cada vista e em cada erro, nos dois lados: o encosto e o assento não são pintados por cima de uma parte do corpo que fica na frente deles (de cima, a raiz dos braços)", "selo": "desenho", "fonte": "desenho" }
  ],
  "erros": [
   { "id": "pouco", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a descida para no meio: o joelho dobra só 55° (no certo, 100°)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },

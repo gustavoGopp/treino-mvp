@@ -41,7 +41,8 @@
   { "id": "costas-e-ombros-no-encosto-do-hack", "pede": "costas e ombros apoiados no encosto, ombros sob as almofadas, a lombar colada (sem arredondar)", "selo": "consenso", "fonte": "ficha" },
   { "id": "carro-do-hack-so-anda-na-guia", "pede": "o carro (o encosto, as almofadas e os pegadores) só anda na guia, a 45°, e a trava fica solta", "selo": "consenso", "fonte": "objetos" },
   { "id": "joelhos-na-linha-dos-pes-no-trilho", "pede": "os joelhos na direção dos pés, sem fechar para dentro", "selo": "consenso", "fonte": "ficha" },
-  { "id": "maos-nos-pegadores-do-hack", "pede": "as mãos nos pegadores do carro", "selo": "consenso", "fonte": "ficha" }
+  { "id": "maos-nos-pegadores-do-hack", "pede": "as mãos nos pegadores do carro", "selo": "consenso", "fonte": "ficha" },
+  { "id": "hack-pele-nos-estofados", "pede": "medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, nas almofadas dos ombros ou na chapa mais que 2,5 cm (o que o estofado amassa)", "selo": "desenho", "fonte": "desenho" }
  ],
  "erros": [
   { "id": "pouco", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a descida para no meio: o joelho dobra só 60° (no certo, 105°)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },

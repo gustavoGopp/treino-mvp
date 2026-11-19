@@ -20,11 +20,12 @@ import type { Esq, Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
 import { resolver1 } from '../movimento';
 import type { Quadro } from '../movimento';
 import { chao } from '../pecas';
+import { maiorEntrada, peleDensa } from '../pele-densa';
 import { bracoNoAngulo, faceDoEncostoDaMaquina, maquinaDeEmpurrar } from '../pecas-de-cena/maquina-de-empurrar';
 import type { ModeloDeEmpurrar } from '../pecas-de-cena/maquina-de-empurrar';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, dirRef, dot, norm, sub } from '../vec';
+import { add, dirRef, dot, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 
 const rad = Math.PI / 180;
@@ -188,19 +189,30 @@ export interface DesvioDeEmpurrar {
   aFrente?: number;
   prot?: number;
   elev?: number;
+  /**
+   * Acréscimos de 19/11/2026 (a auditoria da fase C), desligados por padrão. `afasta`: o corpo inteiro vem `afasta` cm
+   * para a frente, na normal do encosto (os pés ficam onde estavam). `encostoAte`: as costas e os ombros não entram no
+   * encosto além do que ele amassa; em cada quadro, medido na pele densa (../pele-densa.ts) contra as caixas do encosto,
+   * se o tronco entra mais que `amassa` ou a pele dos braços (a parte de trás do ombro) mais que `encostoAte` cm, o corpo
+   * vem para a frente o que passa (`quadroNaMaquina`). Nos erros em que o peito vai para trás em volta da bacia parada,
+   * o alto das costas e os ombros entravam no encosto; com isso, ficam nele e é a lombar e a bacia que saem.
+   */
+  afasta?: number;
+  encostoAte?: number;
 }
 
 /** O corpo sentado com o assento em `h`, os braços da máquina em `braco` e as mãos neles. */
 export function corpoNaMaquina(corpo: Corpo, o: OpcoesDeEmpurrar, chave: string, h: number, braco: number, dv: DesvioDeEmpurrar = {}): Esq {
   const S = sentar(corpo, o, chave);
-  const pelve = baciaNaAltura(o, S, h);
+  const base = baciaNaAltura(o, S, h);
+  const pelve = dv.afasta ? add(base, mul(faceDoEncostoDaMaquina(o.modelo).frente, dv.afasta)) : base;
   const t = troncoNaMaquina(corpo, o, pelve, S.deita - (dv.aFrente ?? 0), dv);
   // onde ficam os pés para essa altura do assento (uma conta pequena; guardada só na memória, por corpo e altura)
   let pes = PES.get(corpo);
   if (!pes) PES.set(corpo, (pes = new Map()));
   const k = `${chave}|${h}`;
   let bola = pes.get(k);
-  if (bola === undefined) pes.set(k, (bola = bolaDosPes(o, troncoNaMaquina(corpo, o, pelve, S.deita))));
+  if (bola === undefined) pes.set(k, (bola = bolaDosPes(o, troncoNaMaquina(corpo, o, base, S.deita))));
   return resolverMembros(t, maosNosPegadores(o, t, braco, dv), pesNoChao(o, bola));
 }
 
@@ -296,8 +308,21 @@ export function anguloComCotovelo(corpo: Corpo, o: OpcoesDeEmpurrar, chave: stri
  * marcas que as regras leem (../regras/maquinas-de-empurrar.ts e ../regras/cadeiras.ts).
  */
 export function quadroNaMaquina(corpo: Corpo, o: OpcoesDeEmpurrar, chave: string, R: Regulagem, braco: number, placas: number, dv: DesvioDeEmpurrar = {}, extra: (e: Esq) => Record<string, V3> = () => ({})): Quadro {
-  const e = corpoNaMaquina(corpo, o, chave, R.h, braco, dv);
   const M = maquinaDeEmpurrar({ braco, inicio: R.inicio, assento: R.h, placas }, o.modelo, { bracoDePertoAtras: true });
+  let e = corpoNaMaquina(corpo, o, chave, R.h, braco, dv);
+  if (dv.encostoAte !== undefined) {
+    // as costas e os ombros no encosto (`DesvioDeEmpurrar.encostoAte`): as caixas do encosto são as de normal para a
+    // frente dele; o corpo vem para a frente o que passa, e o braço se resolve de novo até o pegador
+    const frente = faceDoEncostoDaMaquina(o.modelo).frente;
+    const caixas = M.prims.flatMap((p) => (p.t === 'caixa' && p.cls === 'estofado' && dot(p.ref.y, frente) > 0.99 ? [p] : []));
+    let afasta = dv.afasta ?? 0;
+    for (let i = 0; i < 4; i++) {
+      const passa = Math.max(maiorEntrada(peleDensa(e, ['tronco', 'cintura']), caixas).d - o.amassa, maiorEntrada(peleDensa(e, ['braco']), caixas).d - dv.encostoAte);
+      if (passa <= 0.02) break;
+      afasta += passa;
+      e = corpoNaMaquina(corpo, o, chave, R.h, braco, { ...dv, afasta });
+    }
+  }
   const f = folgasNoEncosto(e, o);
   const bR = bracoNoAngulo(o.modelo, 'R', braco);
   return {
