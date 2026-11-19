@@ -47,7 +47,8 @@
   {"id": "mergulho-braco-quase-paralelo-embaixo", "pede": "desce até o braço ficar quase paralelo ao chão, sem passar dele", "selo": "consenso", "fonte": "ficha"},
   {"id": "mergulho-tronco-um-pouco-a-frente", "pede": "tronco levemente inclinado à frente na descida", "selo": "consenso", "fonte": "ficha"},
   {"id": "mergulho-ombros-longe-das-orelhas", "pede": "ombros longe das orelhas o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
-  {"id": "mergulho-pernas-paradas", "pede": "pernas paradas", "selo": "consenso", "fonte": "app"}
+  {"id": "mergulho-pernas-paradas", "pede": "pernas paradas", "selo": "consenso", "fonte": "app"},
+  {"id": "mergulho-paralelas-pintadas-no-lugar", "pede": "o corpo fica entre as paralelas: em todas as vistas, a parte do corpo (dos dois lados) que fica entre a estrutura delas e quem olha a esconde, e a que fica atrás dela (de lado, as pernas atrás do montante de perto) é escondida por ela", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "e1", "instante": 1, "titulo": "Descer demais", "vista": "lateral", "oQueMuda": "o braço passa da horizontal e, no fundo, o ombro rola para a frente e sobe", "destaca": ["bracos"], "linha": ["acromioclavicular", "cotovelo", "punho"], "foco": "acromioclavicular"},

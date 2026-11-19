@@ -32,7 +32,40 @@ export function eixosDasParalelas(zMaos: number): Record<'R' | 'L', [V3, V3]> {
   return { R: [[-m, H, zM], [-m, H, zFim]], L: [[m, H, zM], [m, H, zFim]] };
 }
 
-export function paralelas(zMaos: number): { prims: Prim[]; peca: PecaPropria; estrutura: PecaPropria } {
+/**
+ * `estruturaNoLugar` (acréscimo de 19/11, desligado por padrão): a estrutura (os montantes até o chão e a base) é pintada
+ * na profundidade de cada parte, junto com o corpo, e não atrás dele; continua fora do enquadramento. Sem isso, de lado,
+ * as pernas, que ficam entre as paralelas, apareciam na frente do montante da paralela de perto (o mergulho, na
+ * auditoria das fases A e B).
+ */
+/**
+ * As partes da estrutura (fora as barras), na ordem em que `estrutura` as desenha, para as regras de pintura: os dois
+ * trilhos e as duas travessas da base, os quatro pés de borracha e, de cada lado (o direito, x < 0, e o esquerdo), o
+ * montante, o tubo que desce aberto até a base, o braço da frente e o tubo que desce dele. Cada uma: o eixo e o raio.
+ */
+export function partesDaEstrutura(zMaos: number): { eixo: V3[]; raio: number }[] {
+  const H = g('altura'),
+    r = g('diam') / 2,
+    m = g('vao') / 2,
+    tl = g('tuboLarg'),
+    tp = g('tuboProf'),
+    larg = g('larg') / 2,
+    comp = g('comp') / 2;
+  const { zM, zBase } = medidas(zMaos);
+  const out: { eixo: V3[]; raio: number }[] = [];
+  for (const s of [-1, 1]) out.push({ eixo: [[s * larg, 2, zBase - comp], [s * larg, 2, zBase + comp]], raio: 2 });
+  for (const z of [zBase - comp, zBase + comp]) out.push({ eixo: [[-larg, 2, z], [larg, 2, z]], raio: 2 });
+  for (const sx of [-1, 1]) for (const z of [zBase - comp + 3, zBase + comp - 3]) out.push({ eixo: [[sx * (larg - 2), 0.6, z]], raio: 3 });
+  for (const s of [-1, 1]) {
+    const x = s * m;
+    out.push({ eixo: [[x, H - r - 12, zM], [x, 30, zM]], raio: Math.min(tl, tp) / 2 });
+    out.push({ eixo: [[x, 30, zM], [s * larg, 3, zM]], raio: Math.min(tl, tp * 0.8) / 2 });
+    out.push({ eixo: [[x, 30, zM], [x, 30, zBase + comp]], raio: 2 });
+    out.push({ eixo: [[x, 30, zBase + comp], [s * larg, 3, zBase + comp]], raio: 2 });
+  }
+  return out;
+}
+export function paralelas(zMaos: number, o: { estruturaNoLugar?: boolean } = {}): { prims: Prim[]; peca: PecaPropria; estrutura: PecaPropria } {
   const H = g('altura'),
     r = g('diam') / 2,
     m = g('vao') / 2,
@@ -67,7 +100,7 @@ export function paralelas(zMaos: number): { prims: Prim[]; peca: PecaPropria; es
   const estrutura: PecaPropria = {
     t: 'propria',
     nome: 'estrutura das paralelas',
-    cenario: true,
+    ...(o.estruturaNoLugar ? { noQuadro: [] } : { cenario: true }),
     fixa: [zMaos],
     desenhar(C, M, o) {
       const larg = g('larg') / 2,

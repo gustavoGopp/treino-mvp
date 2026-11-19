@@ -6,9 +6,11 @@ import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { LADOS, poseEmPe, resolver } from '../esqueleto';
 import type { Esq } from '../esqueleto';
-import { bracoAbaixoDaHorizontal } from '../exercicios/mergulho';
+import { bracoAbaixoDaHorizontal, mergulho } from '../exercicios/mergulho';
+import { partesDaEstrutura } from '../pecas-de-cena/paralelas';
 import type { Corpo } from '../tabelas';
 import { angulo, mul, paraRef, sub } from '../vec';
+import { regraDePintura } from './ordem-de-pintura';
 
 const primeiro = <T>(q: T[]) => q[0]!;
 const ultimo = <T>(q: T[]) => q[q.length - 1]!;
@@ -29,6 +31,17 @@ function ombroAOrelhaEmPe(corpo: Corpo): number {
 const pernas = (e: Esq) => ({ quadril: angulo(sub(e.lado.R.joelho, e.lado.R.quadril), mul(e.pelve.y, -1)), joelho: e.lado.R.ang.joelho });
 
 export const REGRAS_MERGULHO: Record<string, Regra> = {
+  // A estrutura das paralelas (os montantes até o chão e a base, parte por parte) contra o corpo, nos dois lados, em
+  // cada vista do guia (acréscimo de 19/11, auditoria das fases A e B): de lado, as pernas, que ficam entre as
+  // paralelas, apareciam na frente do montante da paralela de perto, 19 cm mais perto de quem olha.
+  'mergulho-paralelas-pintadas-no-lugar': regraDePintura({
+    exercicio: () => mergulho,
+    nome: 'a estrutura das paralelas',
+    peca: (q) => {
+      const p = q.pecas?.find((x) => x.t === 'propria' && x.nome === 'estrutura das paralelas');
+      return p ? [{ peca: p, partes: partesDaEstrutura(0).map((pa, i) => ({ ...pa, itens: [i] })) }] : [];
+    },
+  }),
   'mergulho-bracos-estendidos-em-cima': (q) => {
     const c = primeiro(q).esq.lado.R.ang.cotovelo;
     return { medido: `em cima, o cotovelo dobra ${f1(c)}°`, ok: c >= 3 && c <= 15 };
