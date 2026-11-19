@@ -6,7 +6,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 |---|---|---|---|---|
 | abdominal-bola | 270 | 32 | 0 | 1 |
 | abdominal-chao | 270 | 33 | 0 | 2 |
-| abdominal-declinado | 270 | 33 | 0 | 1 |
+| abdominal-declinado | 270 | 34 | 0 | 1 |
 | abdominal-invertido | 270 | 31 | 0 | 1 |
 | abdominal-maquina | 282 | 37 | 0 | 1 |
 | abdominal-polia | 294 | 39 | 0 | 2 |
@@ -33,7 +33,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | agachamento-peso-corpo | 279 | 33 | 0 | 4 |
 | agachamento-smith | 279 | 36 | 0 | 3 |
 | barra-fixa | 306 | 36 | 0 | 4 |
-| barra-fixa-graviton | 306 | 38 | 0 | 2 |
+| barra-fixa-graviton | 306 | 39 | 0 | 2 |
 | barra-fixa-negativa | 516 | 36 | 0 | 4 |
 | barra-fixa-supinada | 306 | 36 | 0 | 5 |
 | bulgaro | 270 | 37 | 0 | 3 |
@@ -94,7 +94,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | hiperextensao | 246 | 34 | 0 | 1 |
 | leg-press | 276 | 34 | 0 | 3 |
 | mergulho | 249 | 34 | 0 | 2 |
-| mergulho-graviton | 249 | 35 | 0 | 1 |
+| mergulho-graviton | 249 | 36 | 0 | 1 |
 | mesa-flexora | 264 | 36 | 0 | 2 |
 | nordico | 420 | 35 | 0 | 4 |
 | panturrilha | 348 | 33 | 0 | 2 |
@@ -116,7 +116,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | puxada-frente | 240 | 41 | 0 | 2 |
 | puxada-unilateral | 240 | 34 | 0 | 4 |
 | remada-apoiada | 279 | 42 | 0 | 2 |
-| remada-articulada | 279 | 43 | 0 | 2 |
+| remada-articulada | 279 | 44 | 0 | 2 |
 | remada-baixa | 279 | 42 | 0 | 2 |
 | remada-baixa-estacao | 267 | 43 | 0 | 2 |
 | remada-barra | 255 | 39 | 0 | 2 |
@@ -173,7 +173,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | triceps-suspensao | 243 | 38 | 0 | 1 |
 | triceps-testa-halteres | 276 | 34 | 0 | 1 |
 | voador | 297 | 37 | 0 | 1 |
-| voador-invertido | 300 | 37 | 0 | 1 |
+| voador-invertido | 300 | 38 | 0 | 1 |
 | yt-suspensao | 279 | 38 | 0 | 2 |
 
 "ok" = dentro do limite; "AVISO" = possível, mas fora da média ou ainda provisório (precisa do ok do Gustavo); "FALHA" = não pode ir para o app.
@@ -297,6 +297,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | enrola a coluna até as costas saírem do banco; embaixo, as costas encostam (consenso) | embaixo, as costas na altura das escápulas ficam a 0 cm da face do encosto; em cima, a 7,7 cm (o ponto mais perto da lombar, a 0,1 cm) | como a ficha pede | ok |
 | Ficha | a bacia continua apoiada no banco: quem sobe é a coluna, enrolando (consenso) | a pele do glúteo fica de 0 a 0 cm da face do encosto (negativo = amassa); o centro do quadril anda 0 cm | como a ficha pede | ok |
 | Ficha | os pés presos nos rolos: os rolos atrás dos joelhos e na frente dos tornozelos, encostados nas pernas (consenso) | a pele das pernas fica de -1 a -1 cm dos quatro rolos (negativo = amassa) | como a ficha pede | ok |
+| Ficha | o corpo deitado no encosto aparece por cima dele onde está na frente dele, nos dois lados e em todas as vistas; nos rolos, a cabeça, o tronco e os braços (desenho) | anéis pintados por baixo de cada estofado do banco, de quantos ficam na frente dele e por cima dele na tela (o pior quadro, nas vistas de lado e de três quartos e nos três erros): o encosto (o corpo todo): nenhum anel na frente dele e por cima dele na tela; o rolo direito dos joelhos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo esquerdo dos joelhos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo direito dos tornozelos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo esquerdo dos tornozelos (sem as pernas): nenhum anel na frente dele e por cima dele na tela | como a ficha pede | ok |
 | Ficha | sem puxar o pescoço: ele acompanha o tronco (consenso) | a cabeça dobra sobre o alto do tórax de -28,8° a 13° além do que dobra em pé (positivo = o queixo para o peito) | como a ficha pede | ok |
 | Ficha | mãos cruzadas no peito, sem puxar a cabeça (consenso) | os punhos andam 0 cm em relação ao tórax; a mão mais perto da cabeça fica a 9,8 cm dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | declina, lombar.base, ombro.z, ponta.alemDoQuadril, coxa.angulo, joelho, apoio.amassa, toracica.topo, maos.x, maos.y, maos.abaixo, maos.acima, maos.poloFora, maos.poloPes, maos.poloTras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
@@ -1482,6 +1483,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos fecham em volta das alças e não saem do lugar (consenso) | o centro da pegada fica a no máximo 0 cm do eixo da barra, com a mão fechada no diâmetro dela; a pegada anda 0 cm no ciclo | como a ficha pede | ok |
 | Ficha | o corpo (a cabeça, o peito) passa pelas alças sem atravessá-las (consenso) | fora as mãos, a pele fica a no mínimo 2,2 cm da superfície da barra (ante) | como a ficha pede | ok |
 | Ficha | os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar (consenso) | a frente das canelas fica de -0,4 a -0,4 cm do topo da almofada (negativo: amassa o estofado), nas duas pernas e em todos os quadros; o joelho anda 0 cm ao longo da almofada | como a ficha pede | ok |
+| Ficha | as duas pernas, deitadas na almofada, aparecem por cima dela em todas as vistas (a de longe também) (desenho) | anéis das pernas pintados por baixo da almofada, de quantos ficam na frente dela e por cima dela na tela (o pior quadro), de lado: coxa direita 0 de 0, canela direita 0 de 0, pé direito 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, pé esquerdo 0 de 0; três quartos, de trás: coxa direita 0 de 4, canela direita 0 de 9, pé direito 0 de 14, coxa esquerda 0 de 4, canela esquerda 0 de 9, pé esquerdo 0 de 11 | como a ficha pede | ok |
 | Ficha | o contrapeso: a pilha sobe quando a almofada desce, no arco do came (consenso) | com a almofada no ponto mais baixo (49,4 cm do chão), as placas ficam 16,4 cm acima do repouso; no mais alto (103,8 cm), 2 cm. A alavanca fica no mínimo 7,6° abaixo do batente de cima; a subida difere do arco do came em até 0 cm | como a ficha pede | ok |
 | Ficha | corpo parado: a bacia sobe e desce sem ir e voltar para a frente e para trás (consenso) | a bacia anda 54,5 cm na vertical e 7,2 cm para a frente e para trás | como a ficha pede | ok |
 | Ficha | palmas para a frente, mãos a 1 a 1,5 vez a largura dos ombros (consenso) | o polegar aponta para dentro (palmas para a frente) com no mínimo 91% do comprimento; as mãos ficam a 1,5 vez a largura dos ombros (61,2 cm de centro a centro); o antebraço fica de 101,3° a 125,2° (0° = supinado, 180° = pronado) | como a ficha pede | ok |
@@ -4283,6 +4285,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos fecham em volta das alças e não saem do lugar (consenso) | o centro da pegada fica a no máximo 0 cm do eixo da barra, com a mão fechada no diâmetro dela; a pegada anda 0 cm no ciclo | como a ficha pede | ok |
 | Ficha | o corpo fica entre as alças, sem atravessá-las (consenso) | fora as mãos, a pele fica a no mínimo 2,1 cm da superfície da barra (ante) | como a ficha pede | ok |
 | Ficha | os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar (consenso) | a frente das canelas fica de -0,4 a -0,4 cm do topo da almofada (negativo: amassa o estofado), nas duas pernas e em todos os quadros; o joelho anda 0 cm ao longo da almofada | como a ficha pede | ok |
+| Ficha | as duas pernas, deitadas na almofada, aparecem por cima dela em todas as vistas (a de longe também) (desenho) | anéis das pernas pintados por baixo da almofada, de quantos ficam na frente dela e por cima dela na tela (o pior quadro), de lado: coxa direita 0 de 0, canela direita 0 de 0, pé direito 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, pé esquerdo 0 de 0; três quartos, de trás: coxa direita 0 de 4, canela direita 0 de 8, pé direito 0 de 15, coxa esquerda 0 de 4, canela esquerda 0 de 8, pé esquerdo 0 de 7 | como a ficha pede | ok |
 | Ficha | o contrapeso: a pilha sobe quando a almofada desce, no arco do came (consenso) | com a almofada no ponto mais baixo (64 cm do chão), as placas ficam 12,3 cm acima do repouso; no mais alto (89,1 cm), 5,8 cm. A alavanca fica no mínimo 22,3° abaixo do batente de cima; a subida difere do arco do came em até 0 cm | como a ficha pede | ok |
 | Ficha | o corpo desce e sobe sem ir e voltar para a frente e para trás (consenso) | a bacia anda 25,1 cm na vertical e 1,5 cm para a frente e para trás | como a ficha pede | ok |
 | Ficha | em cima, cotovelos estendidos, sem travar (consenso) | em cima, o cotovelo dobra 8° | como a ficha pede | ok |
@@ -5277,6 +5280,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Ficha | assento na altura em que os pegadores ficam na linha do peito com os braços estendidos (consenso) | com os braços estendidos (o cotovelo dobra 6°), o centro da mão fica 0 cm acima da linha do meio do peito (com o assento a 48,6 cm do chão) | como a ficha pede | ok |
+| Ficha | o rótulo "peito na almofada" aponta para o peito, onde ele encosta no apoio (desenho) | "peito na almofada" (lateral, ponto marca:peitoNaAlmofada): nos dois lados e em todos os quadros, o ponto fica a até 0 cm da face do apoio do peito, dentro da altura dela, dentro da largura, e a até 0,7 cm da pele da frente do peito (a do tronco a até 3 cm da face) | como a ficha pede | ok |
 | Ficha | peito apoiado na almofada durante toda a série, sentado no assento (consenso) | o glúteo fica de 1 a 1 cm dentro do assento; o peito, de 1 a 1 cm dentro do apoio (positivo: afunda) | como a ficha pede | ok |
 | Ficha | as mãos presas nos pegadores o movimento todo (consenso) | as mãos ficam a no máximo 0 cm do meio dos pegadores (falta de alcance: 0 cm) | como a ficha pede | ok |
 | Ficha | o pegador anda num arco em volta do eixo do braço da máquina, e a mão com ele (desenho) | a mão direita anda 51 cm para trás, 0,8 cm para cima e 1,8 cm para fora, num arco de raio 76 a 76 cm em volta do eixo do braço (flecha de 4,4 cm) | como a ficha pede | ok |
@@ -7991,6 +7995,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | abre com os cotovelos levemente dobrados (consenso) | o cotovelo fica dobrado de 19,5° a 21,8° do começo ao fim | como a ficha pede | ok |
 | Ficha | os pegadores na altura dos ombros: os braços paralelos ao chão (a altura do assento) (consenso) | a linha do ombro à mão fica de 0° a 0,5° da horizontal (positivo = a mão acima do ombro) | como a ficha pede | ok |
 | Ficha | sentado de frente para o encosto, o peito apoiado, o tronco parado (consenso) | o glúteo e a coxa ficam de -1 a -1 cm do tampo do assento; o peito fica de -0,5 a -0,5 cm da face do encosto (negativo = o estofado amassa); a base do pescoço anda 0 cm no ciclo | como a ficha pede | ok |
+| Ficha | a cabeça, que passa por cima da borda do apoio do peito, aparece por cima dele em todas as vistas (e o resto do corpo, dos dois lados) (desenho) | anéis pintados por baixo do apoio do peito, de quantos ficam na frente dele e por cima dele na tela (o pior quadro), de trás: cabeça 0 de 0, tronco 0 de 8, braço direito 0 de 1, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 1, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0; de cima: cabeça 0 de 13, tronco 0 de 0, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0; de lado: cabeça 0 de 0, tronco 0 de 0, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0 | como a ficha pede | ok |
 | Ficha | começa com os braços à frente e abre até a linha do corpo (consenso) | no começo, os braços ficam 11,9° abertos a partir da frente; no fim, a linha do ombro à mão fica 0,1° fora da linha dos ombros, vista de cima | como a ficha pede | ok |
 | Ficha | sem encolher os ombros nem juntar demais as escápulas no fim (consenso) | no fim, a clavícula fica 5° atrás do ritmo (positivo = para trás; a remada, que junta as escápulas, chega a 10°); ela sobe no máximo -2° além do ritmo | como a ficha pede | ok |
 | Ficha | as placas sobem com o arco do came e não descansam na volta (consenso) | as placas do pino ficam de 1,6 a 15,2 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |

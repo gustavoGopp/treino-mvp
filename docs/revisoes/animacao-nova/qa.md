@@ -46,7 +46,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | `abdominal-bola` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-bola.png) |
 | `abdominal-chao` | 7 | M | M | M | O | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-chao.png) |
-| `abdominal-declinado` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abdominal-declinado.png) |
+| `abdominal-declinado` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-declinado.png) |
 | `abdominal-invertido` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-invertido.png) |
 | `abdominal-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-maquina.png) |
 | `abdominal-polia` | 7 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-polia.png) |
@@ -134,7 +134,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `hiperextensao` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/hiperextensao.png) |
 | `leg-press` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/leg-press.png) |
 | `mergulho` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/mergulho.png) |
-| `mergulho-graviton` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/mergulho-graviton.png) |
+| `mergulho-graviton` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/mergulho-graviton.png) |
 | `mesa-flexora` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/mesa-flexora.png) |
 | `nordico` | 6 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/nordico.png) |
 | `panturrilha` | 6 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/panturrilha.png) |
@@ -156,7 +156,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `puxada-frente` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-frente.png) |
 | `puxada-unilateral` | 0 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/puxada-unilateral.png) |
 | `remada-apoiada` | 4 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-apoiada.png) |
-| `remada-articulada` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-articulada.png) |
+| `remada-articulada` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-articulada.png) |
 | `remada-baixa` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa.png) |
 | `remada-baixa-estacao` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa-estacao.png) |
 | `remada-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-barra.png) |
@@ -213,7 +213,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `triceps-suspensao` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/triceps-suspensao.png) |
 | `triceps-testa-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-testa-halteres.png) |
 | `voador` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/voador.png) |
-| `voador-invertido` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/voador-invertido.png) |
+| `voador-invertido` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/voador-invertido.png) |
 | `yt-suspensao` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/yt-suspensao.png) |
 
 ## Os avisos e o que não foi cumprido

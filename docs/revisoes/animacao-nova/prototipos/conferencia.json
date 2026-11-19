@@ -740,6 +740,13 @@
    },
    {
     "grupo": "Ficha",
+    "oQue": "o corpo deitado no encosto aparece por cima dele onde está na frente dele, nos dois lados e em todas as vistas; nos rolos, a cabeça, o tronco e os braços (desenho)",
+    "medido": "anéis pintados por baixo de cada estofado do banco, de quantos ficam na frente dele e por cima dele na tela (o pior quadro, nas vistas de lado e de três quartos e nos três erros): o encosto (o corpo todo): nenhum anel na frente dele e por cima dele na tela; o rolo direito dos joelhos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo esquerdo dos joelhos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo direito dos tornozelos (sem as pernas): nenhum anel na frente dele e por cima dele na tela; o rolo esquerdo dos tornozelos (sem as pernas): nenhum anel na frente dele e por cima dele na tela",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
     "oQue": "sem puxar o pescoço: ele acompanha o tronco (consenso)",
     "medido": "a cabeça dobra sobre o alto do tórax de -28,8° a 13° além do que dobra em pé (positivo = o queixo para o peito)",
     "limite": "como a ficha pede",
@@ -8463,6 +8470,13 @@
     "grupo": "Ficha",
     "oQue": "os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar (consenso)",
     "medido": "a frente das canelas fica de -0,4 a -0,4 cm do topo da almofada (negativo: amassa o estofado), nas duas pernas e em todos os quadros; o joelho anda 0 cm ao longo da almofada",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "as duas pernas, deitadas na almofada, aparecem por cima dela em todas as vistas (a de longe também) (desenho)",
+    "medido": "anéis das pernas pintados por baixo da almofada, de quantos ficam na frente dela e por cima dela na tela (o pior quadro), de lado: coxa direita 0 de 0, canela direita 0 de 0, pé direito 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, pé esquerdo 0 de 0; três quartos, de trás: coxa direita 0 de 4, canela direita 0 de 9, pé direito 0 de 14, coxa esquerda 0 de 4, canela esquerda 0 de 9, pé esquerdo 0 de 11",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -26794,6 +26808,13 @@
    },
    {
     "grupo": "Ficha",
+    "oQue": "as duas pernas, deitadas na almofada, aparecem por cima dela em todas as vistas (a de longe também) (desenho)",
+    "medido": "anéis das pernas pintados por baixo da almofada, de quantos ficam na frente dela e por cima dela na tela (o pior quadro), de lado: coxa direita 0 de 0, canela direita 0 de 0, pé direito 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, pé esquerdo 0 de 0; três quartos, de trás: coxa direita 0 de 4, canela direita 0 de 8, pé direito 0 de 15, coxa esquerda 0 de 4, canela esquerda 0 de 8, pé esquerdo 0 de 7",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
     "oQue": "o contrapeso: a pilha sobe quando a almofada desce, no arco do came (consenso)",
     "medido": "com a almofada no ponto mais baixo (64 cm do chão), as placas ficam 12,3 cm acima do repouso; no mais alto (89,1 cm), 5,8 cm. A alavanca fica no mínimo 22,3° abaixo do batente de cima; a subida difere do arco do came em até 0 cm",
     "limite": "como a ficha pede",
@@ -33285,6 +33306,13 @@
     "grupo": "Ficha",
     "oQue": "assento na altura em que os pegadores ficam na linha do peito com os braços estendidos (consenso)",
     "medido": "com os braços estendidos (o cotovelo dobra 6°), o centro da mão fica 0 cm acima da linha do meio do peito (com o assento a 48,6 cm do chão)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "o rótulo \"peito na almofada\" aponta para o peito, onde ele encosta no apoio (desenho)",
+    "medido": "\"peito na almofada\" (lateral, ponto marca:peitoNaAlmofada): nos dois lados e em todos os quadros, o ponto fica a até 0 cm da face do apoio do peito, dentro da altura dela, dentro da largura, e a até 0,7 cm da pele da frente do peito (a do tronco a até 3 cm da face)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -51086,6 +51114,13 @@
     "grupo": "Ficha",
     "oQue": "sentado de frente para o encosto, o peito apoiado, o tronco parado (consenso)",
     "medido": "o glúteo e a coxa ficam de -1 a -1 cm do tampo do assento; o peito fica de -0,5 a -0,5 cm da face do encosto (negativo = o estofado amassa); a base do pescoço anda 0 cm no ciclo",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "a cabeça, que passa por cima da borda do apoio do peito, aparece por cima dele em todas as vistas (e o resto do corpo, dos dois lados) (desenho)",
+    "medido": "anéis pintados por baixo do apoio do peito, de quantos ficam na frente dele e por cima dele na tela (o pior quadro), de trás: cabeça 0 de 0, tronco 0 de 8, braço direito 0 de 1, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 1, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0; de cima: cabeça 0 de 13, tronco 0 de 0, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0; de lado: cabeça 0 de 0, tronco 0 de 0, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
