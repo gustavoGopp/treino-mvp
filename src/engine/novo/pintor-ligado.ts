@@ -13,4 +13,20 @@ export const PINTOR_POR_PARES_LIGADO: ReadonlySet<string> = new Set<string>([
   'puxada-barra-reta',
   'puxada-unilateral',
   'abdominal-declinado',
+  // lote 2 (19/11/2026): as 12 seguintes na ordem do estudo, todas só com achados que somem (folhas em pintor-por-pares/
+  // e lote-2-resumo-a.png e -b.png), ligadas à espera do ok do Gustavo; a linha de base do motor é regravada depois
+  // dele. O `voador` continua de fora: só passa com o ajuste do pintor (`pecaComPeca` e `contatoNoRemendo`, desligados),
+  // que muda o desenho de três do lote 1.
+  'nordico',
+  'flexao-pes-elevados',
+  'rosca-inclinada',
+  'aducao-maquina',
+  'flexao-joelho-deslizante',
+  'voador-invertido',
+  'flexao-joelho-elastico',
+  'abdominal-polia',
+  'mesa-flexora',
+  'hack',
+  'rosca-scott',
+  'coice-maquina',
 ]);
