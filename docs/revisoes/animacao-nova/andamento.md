@@ -195,3 +195,21 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | B1 | `hip-thrust` | aprovada pelo Gustavo em 18/11/2026 ("pode ser pequena", à pergunta da anilha: a de 5 kg, 24 cm) |
 | C3 | `abdominal-maquina` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (peça nova (LF SS-AB, manual Insignia); o eixo do braço no polo da rotação do peito; voltou uma vez: o pegador cobria o rosto de lado (agora as mãos na frente do peito e as hastes por fora dos cotovelos); medidos os dois lados) |
 | C3 | `coice-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o primeiro coice em pé do motor; a tornozeleira aprovada; voltou uma vez: o joelho dobrava 34° com o rótulo dizendo quase estendido (agora 8° o ciclo todo, com a bacia 4° mais alta do lado que trabalha)) |
+| A/B | `coice-elastico` | **desaprovada em 19/11** pela auditoria das fases A e B (de três quartos por trás, o colchonete é pintado por cima dos joelhos, das canelas, dos pés e das mãos); volta para quem fez |
+| A/B | `coice-caneleira` | **desaprovada em 19/11** pela auditoria das fases A e B (de três quartos, o colchonete cobre o joelho e a canela de apoio de longe); volta para quem fez |
+| A/B | `elevacao-lateral-unilateral-elastico` | **desaprovada em 19/11** pela auditoria das fases A e B (de cima, a cabeça some dentro da silhueta dos ombros); volta para quem fez |
+| A/B | `abertura-elastico` | **desaprovada em 19/11** pela auditoria das fases A e B (de cima, a cabeça some por completo); volta para quem fez |
+| A/B | `elevacao-lateral-unilateral` | **desaprovada em 19/11** pela auditoria das fases A e B (de cima, a cabeça some dentro da silhueta dos ombros); volta para quem fez |
+| A/B | `elevacao-lateral-caneleira` | **desaprovada em 19/11** pela auditoria das fases A e B (de cima, a cabeça some dentro da silhueta dos ombros); volta para quem fez |
+| A/B | `crucifixo-polia-baixo` | **desaprovada em 19/11** pela auditoria das fases A e B (de lado, os cabos terminam no ar, sem coluna); volta para quem fez |
+| A/B | `remada-barra` | **desaprovada em 19/11** pela auditoria das fases A e B (de três quartos por trás, no fim, a barra é pintada por cima do quadril e das coxas); volta para quem fez |
+| A/B | `crucifixo-halteres` | **desaprovada em 19/11** pela auditoria das fases A e B (de três quartos, a perna de perto aparece atrás do pé do banco); volta para quem fez |
+| A/B | `mergulho` | **desaprovada em 19/11** pela auditoria das fases A e B (de lado, as pernas aparecem na frente da coluna da paralela de perto); volta para quem fez |
+| A/B | `goblet-kettlebell` | **desaprovada em 19/11** pela auditoria das fases A e B (de lado, no fim, o kettlebell é pintado por cima do joelho de perto); volta para quem fez |
+| A/B | `remada-unilateral-elastico` | **desaprovada em 19/11** pela auditoria das fases A e B (a mão de apoio fica dentro da coxa); volta para quem fez |
+| A/B | `extensao-joelho-mini-band` | **desaprovada em 19/11** pela auditoria das fases A e B (as linhas dos dois rótulos se cruzam); volta para quem fez |
+| A/B | `triceps-barra-reta` | **desaprovada em 19/11** pela auditoria das fases A e B (no erro "Usar o tronco", o cabo entra na cabeça e no tronco); volta para quem fez |
+| A/B | `puxada-barra-reta` | **desaprovada em 19/11** pela auditoria das fases A e B (no erro "Puxar pela nuca", o cabo entra na cabeça e no pescoço); volta para quem fez |
+| A/B | `rosca-polia-costas` | **desaprovada em 19/11** pela auditoria das fases A e B (no erro "Trazer o cotovelo para a frente", o cabo entra no braço); volta para quem fez |
+| A/B | `rosca-concentrada` | **desaprovada em 19/11** pela auditoria das fases A e B (de lado, o halter é pintado por cima da canela de perto); volta para quem fez |
+| A/B | `pull-through` | **desaprovada em 19/11** pela auditoria das fases A e B (de lado, a corda é pintada por cima da coxa de perto); volta para quem fez |
