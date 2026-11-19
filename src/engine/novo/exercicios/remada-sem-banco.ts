@@ -5,7 +5,7 @@
 // A pose parada sai das medidas: a inclinação do peito é a da ficha; cada pé anda para a frente ou para trás até o
 // joelho dele ficar no ângulo da ficha; a altura do quadril é a que dá o passo da ficha (de um tornozelo ao outro); a
 // mão encosta na pele da coxa da frente no ponto em que o cotovelo de apoio fica no ângulo da ficha (`resolver1`).
-import { pontosDoBoneco } from '../boneco';
+import { formaDoBoneco, pontosDoBoneco } from '../boneco';
 import { resolverMembros, resolverTronco } from '../esqueleto';
 import type { Esq, PoseBraco, PosePerna, PoseTronco } from '../esqueleto';
 import { resolver1 } from '../movimento';
@@ -34,7 +34,57 @@ export function peleDaCoxa(e: Esq, t: number): { p: V3; n: V3 } {
   return { p: add(c, mul(n, r)), n };
 }
 
-export function baseSemBanco(corpo: Corpo, f: (id: string) => number): BaseDaRemada {
+/**
+ * O mesmo ponto de `peleDaCoxa`, medido na superfície de verdade (acréscimo de 19/11/2026): o anel da coxa em `t` é
+ * interpolado entre os dois anéis vizinhos do volume da coxa, e o ponto é onde a direção `n` sai da elipse do anel.
+ * `peleDaCoxa` procura pontos da pele a até 2,5 cm do plano em `t` e, entre dois anéis afastados, não acha nenhum: o
+ * ponto ficava no eixo da coxa (com a mão de apoio dentro dela; auditoria de 18/11, M4).
+ */
+export function peleDaCoxaNaSuperficie(e: Esq, t: number): { p: V3; n: V3 } {
+  const L = e.lado.L;
+  const eixo = sub(L.joelho, L.quadril),
+    comp = Math.hypot(...eixo);
+  const u = mul(eixo, 1 / comp);
+  const n = norm(add(L.coxa.z, mul(L.coxa.x, 0.15)));
+  const c = add(L.quadril, mul(eixo, t));
+  const vol = formaDoBoneco(e).grupos.find((g) => g.id === 'pernaL')!.volumes.find((v) => v.nome === 'coxa')!.vol;
+  // o ponto da superfície de um anel na direção n (projetada no plano do anel)
+  const naPele = (a: (typeof vol.aneis)[number]): V3 => {
+    const nx = dot(n, a.x),
+      nz = dot(n, a.z);
+    const h = Math.hypot(nx, nz) || 1;
+    const cx = nx / h,
+      cz = nz / h;
+    const rho = 1 / Math.hypot(cx / a.a, cz / (cz >= 0 ? a.f : a.b));
+    return add(a.c, add(mul(a.x, rho * cx), mul(a.z, rho * cz)));
+  };
+  const ao = (a: (typeof vol.aneis)[number]) => dot(sub(a.c, c), u);
+  const A = vol.aneis;
+  let i = 0;
+  while (i + 2 < A.length && ao(A[i + 1]!) < 0) i++;
+  const a0 = A[i]!,
+    a1 = A[i + 1]!;
+  const d0 = ao(a0),
+    d1 = ao(a1);
+  const w = Math.max(0, Math.min(1, d1 === d0 ? 0 : -d0 / (d1 - d0)));
+  const p0 = naPele(a0),
+    p1 = naPele(a1);
+  const p = add(p0, mul(sub(p1, p0), w));
+  // o ponto fica no plano em t (a pele entre os dois anéis), na direção n a partir do eixo
+  const r = dot(sub(p, c), n);
+  return { p: add(c, mul(n, r)), n };
+}
+
+/**
+ * Opções da base (acréscimo de 19/11/2026; sem elas, nada muda): `pele` é o ponto da coxa em que a mão de apoio pousa
+ * (por padrão, `peleDaCoxa`).
+ */
+export interface OpcoesSemBanco {
+  pele?: (e: Esq, t: number) => { p: V3; n: V3 };
+}
+
+export function baseSemBanco(corpo: Corpo, f: (id: string) => number, opcoes: OpcoesSemBanco = {}): BaseDaRemada {
+  const pele = opcoes.pele ?? peleDaCoxa;
   const m = (id: string) => corpo.m(id);
   const peito = f('tronco.inclinacao');
   const tronco = (y: number): PoseTronco => ({ pelve: [0, y, 0], frente: peito, cervical: f('cervical'), cabeca: f('cabeca') });
@@ -69,7 +119,7 @@ export function baseSemBanco(corpo: Corpo, f: (id: string) => number): BaseDaRem
     // a mão espalmada na coxa da frente: o meio da palma na pele, os dedos para o joelho, o polegar para dentro
     let apoio: PoseBraco = semBraco;
     for (let i = 0; i < 3; i++) {
-      const P = peleDaCoxa(e, naCoxa);
+      const P = pele(e, naCoxa);
       const dedos = norm(sub(e.lado.L.joelho, e.lado.L.quadril));
       const punho = sub(add(P.p, mul(P.n, m('raio.punho') * 0.85)), mul(dedos, m('mao.palma') * 0.45));
       apoio = { punho, polo: norm([1, 0.2, -0.6]), mao: { polegar: [-1, 0, 0], dedos, forma: 'aberta' } };

@@ -70,11 +70,11 @@
    "o": "pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril"
   },
   "apoio.cotovelo": {
-   "v": 12,
+   "v": 40,
    "un": "graus",
    "selo": "desenho",
-   "fonte": "semBanco",
-   "o": "o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia"
+   "fonte": "desenho",
+   "o": "o braço de apoio firme na coxa, com o cotovelo um pouco dobrado; daí sai o ponto da coxa em que a mão apoia. Correção de 19/11/2026: com a mão pousada na pele da coxa (e não dentro dela, como até a auditoria de 18/11), o braço quase estendido da remada sem banco (12°) levava o meio da mão além do joelho"
   },
   "braco.inicio.atras": {
    "v": 3,
@@ -331,6 +331,12 @@
    "pede": "o elástico não atravessa o corpo",
    "selo": "consenso",
    "fonte": "desenho"
+  },
+  {
+   "id": "remada-elastico-mao-de-apoio-sobre-a-coxa",
+   "pede": "a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros)",
+   "selo": "consenso",
+   "fonte": "app"
   }
  ],
  "erros": [

@@ -59,3 +59,32 @@ A mesma da curvada com elástico: `carga: 'elastico'` no `exercicios/remada.ts` 
 - **Tirei o rótulo "cotovelo para trás"**: de lado (no fim) e de três quartos (no começo), o fio dele atravessava as costas. Ficaram "costas retas" (de lado) e "tronco sem girar" (de três quartos); o caminho do cotovelo aparece no modo Trajetória.
 - **Na vista de três quartos, a dobra do tubo** aparece como um pequeno "V" roxo ao lado de fora do pé da frente.
 - **No erro do pé**, o joelho da frente dobra mais em vez de o corpo subir (com a perna de trás quase estendida, o corpo não tem como subir sem tirar o pé de trás do lugar).
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M4) achou a mão de apoio (a esquerda) dentro da coxa da frente: o centro da pegada a 2,3 cm do eixo da coxa (40% do raio) e o antebraço entrando 6,3 cm nela; de três quartos só aparecia um pedaço da mão solto na frente do joelho. A animação saiu da aprovação até a correção.
+
+**A causa.** A base das remadas sem banco (`exercicios/remada-sem-banco.ts`) pousa a mão no ponto da pele da coxa que `peleDaCoxa` acha: os pontos da pele a até 2,5 cm do plano naquele ponto da coxa, e o mais alto deles na direção da frente da coxa. No ponto em que a mão pousa (a 88% do caminho do quadril ao joelho), entre dois anéis da coxa, a função não achava ponto nenhum e devolvia o próprio eixo: a mão era posta 2,4 cm acima do eixo, dentro da coxa. (As remadas sem banco aprovadas, com halter e com kettlebell, usam a mesma base e têm a mesma mão dentro da coxa: não foram tocadas; ver a resposta da sessão.)
+
+**A mudança.**
+
+1. **Núcleo comum, acréscimo:** `remada-sem-banco.ts` ganhou `peleDaCoxaNaSuperficie` (o mesmo ponto, medido na superfície de verdade: o anel da coxa interpolado entre os dois vizinhos e a saída da direção na elipse dele) e uma opção `pele` em `baseSemBanco`, que por padrão continua `peleDaCoxa`. As remadas aprovadas não passam a opção e ficam iguais.
+2. **No exercício:** a base usa `peleDaCoxaNaSuperficie`, e o erro "Pisar só com a ponta do pé" também (lá a mão acompanha a coxa). No erro, o ponto da coxa passou a ser o do meio da palma, e não o centro da pegada (alguns centímetros adiante: a mão escorregava para o joelho).
+3. **Na ficha:** `apoio.cotovelo` foi de 12° para 40° (selo desenho). Com a mão pousada na pele, 6 cm acima de onde ficava, o braço quase estendido levava o meio da mão além do joelho (104% do caminho); com 40°, ela fica a 97%, na coxa, logo acima do joelho. O cotovelo de apoio fica escondido atrás do tronco nas duas vistas.
+
+**A regra nova** (`remada-elastico-mao-de-apoio-sobre-a-coxa`, em `regras/remada-unilateral-elastico.ts`): no ciclo (5 instantes) e em cada erro (começo, meio, fim e o instante dele), mede onde fica o centro da mão de apoio ao longo da coxa (de 40% a 100% do caminho do quadril ao joelho), quanto ele fica fora da pele (na elipse do anel da coxa ali; tem de ser 0 ou mais), a folga dele até a borda lateral da coxa (tem de ficar sobre ela, e não ao lado), quanto a pele da mão e a do antebraço entram na coxa (até 1,5 e 1 cm, o amassado da pele) e se a mão encosta (a até 1,5 cm). É uma remada de um braço só: a mão direita segura o elástico e não apoia, por isso a regra mede um lado só.
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| centro da mão ao longo da coxa (do quadril ao joelho) | 88,2% a 92,4% | 97,2% |
+| centro da mão fora da pele da coxa (negativo = dentro), pior quadro | **−3,8 cm** (no erro "Arredondar as costas") | +2,7 cm |
+| centro da mão até a borda lateral da coxa | 4,7 cm para dentro | 3,7 cm para dentro |
+| a pele da mão entra na coxa | **5,7 cm** | 0 cm |
+| a pele do antebraço entra na coxa | **6,8 cm** (erro "Girar o tronco") | até 1 cm (erro "Pisar só com a ponta do pé"; 0 no ciclo) |
+| o cotovelo de apoio | 12° | 40° |
+
+Rodada no estado de antes (o exercício e a ficha de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes; a regra antiga "mão livre apoiada na coxa da frente" passa (0,5 cm da pele, a 97,2%).
+
+**Olhado nos quadros** (`quadros/remada-unilateral-elastico.png`): de três quartos, a mão esquerda aparece inteira, espalmada sobre a frente da coxa, logo acima do joelho, com o antebraço descendo até ela; de lado ela aparece na frente da coxa de longe. Nos três erros a mão fica no mesmo ponto da coxa.
+
+**O que ainda não ficou bom.** A mão pousa perto do joelho (97% do caminho), e não no meio da coxa: com o tronco a 56° da vertical, o ombro fica quase sobre o joelho, e pôr a mão mais alto pediria o cotovelo bem dobrado (60° para 84%). No erro "Pisar só com a ponta do pé", o antebraço encosta 1 cm na coxa (no limite do amassado da pele). As remadas sem banco aprovadas seguem com a mão dentro da coxa.
