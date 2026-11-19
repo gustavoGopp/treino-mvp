@@ -268,3 +268,15 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | pintor | `puxada-unilateral` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
 | pintor | `remada-unilateral` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
 | pintor | `triceps-testa-halteres` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
+| pintor | `abdominal-polia` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `aducao-maquina` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `coice-maquina` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo); a animação segue em revisão por outro motivo (o tipo de máquina) |
+| pintor | `flexao-joelho-deslizante` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `flexao-joelho-elastico` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `flexao-pes-elevados` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `hack` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `nordico` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `rosca-inclinada` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `rosca-scott` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `voador-invertido` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
+| pintor | `mesa-flexora` | pintor por pares ligado no lote 2; em conferência: de cima, as pernas passam a ser pintadas por cima do rolo (dúvida de 19/11) |
