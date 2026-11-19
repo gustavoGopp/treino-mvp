@@ -81,3 +81,44 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 **Conferência automática:** 0 falha, 2 avisos (os de antes). O preparo não muda. Quadros refeitos.
 
 **O que ainda não ficou bom:** no recorte, o calcanhar aparece sem a linha de contorno escura por cima do rolo (o recorte mostra o pé que está embaixo, como na cadeira extensora). Na vista de três quartos, que o exercício não declara, não conferi.
+
+## Correção de 19/11 (o furo do recorte)
+
+**O que estava errado (medido em [`../pintor-por-pares/mesa-flexora-de-cima-medida.png`](../pintor-por-pares/mesa-flexora-de-cima-medida.png)).** Com o pintor por pares, o rolo é pintado por cima das pernas de cima, no começo e no erro "Rolo no lugar errado", e está certo: o rolo fica 9 a 10 cm acima da pele. O defeito era o recorte da correção anterior (`recortarORolo` com a opção de testar só o ponto do anel mais perto de quem olha): cada anel do pé era decidido por um ponto só, mas o furo era o casco do par de anéis inteiro. De cima, no começo, o casco abria no rolo dois furos em U, e por eles apareciam o pé e a haste, que ficam 8 a 24 cm abaixo do rolo. No fim (u = 1) o recorte é necessário: o calcanhar sobe 3,2 cm acima do topo do rolo. A conferência da pintura não via a máscara do item e deu "sem achado" com os furos.
+
+**O que mudou.**
+
+- **O furo, faceta por faceta** (`pecas-de-cena/cadeira-flexora.ts`, `recortarORolo`, que a mesa usa): cada faceta da malha do pé (entre os anéis i e i + 1, nos pontos k e k + 1 do anel, e as tampas das pontas), virada para quem olha, só é furada quando os quatro cantos, na pele, têm o caminho livre até quem olha (o raio não atravessa o rolo, na conta exata do cilindro). Cada canto sai 0,4 cm para fora da pele (o traço do contorno), só onde esse ponto também é livre: na beira em que o pé passa para trás do rolo, o furo para na pele. Só entram as facetas na caixa do rolo na tela; todas vão num caminho só, no mesmo sentido (sem fresta entre vizinhas). A opção de um ponto só saiu.
+- **A haste também leva a máscara.** No erro "Rolo no lugar errado", de cima, no fim, o pé fica na frente do rolo e o furo é certo, mas a haste que atravessa o rolo era pintada depois do pé e aparecia pelo furo, por cima dele (15 cm² em cada pé). Agora a máscara vale para a haste e o rolo, e a pele atrás da haste, onde ela sai do rolo, não é furada. O pintor por pares continua ligado e a haste continua 2 cm para trás na ordem (`hasteAtras`).
+- **A conferência da pintura vê a máscara** (`conferir-pintura.ts`): a peça guarda os furos no item (`Item.fora`, na tela, como os remendos do pintor); dentro deles a peça não conta como pintada, e a pele que aparece por um furo estando atrás da peça vira achado ("parte do corpo pintada sobre a peça, a peça está na frente"). Na beira do furo (um ponto da grade, 0,5 cm), por onde ele passa da pele de propósito para mostrar o traço, a pele que aparece não conta.
+- **A regra pelos dois lados** (`mesa-flexora-pes-por-cima-do-rolo`, `regras/mesa-flexora.ts`): além dos anéis na frente do rolo que ele não pode cobrir, os anéis atrás dele (a face do rolo a mais de 1 cm da pele) não podem aparecer por cima dele, nem por um furo nem pela ordem, salvo quando outra pele fica entre o rolo e quem olha naquele ponto. A regra mede com o pintor ligado na animação (o por pares, com os remendos) e lê os furos no item.
+
+**Os números** (área dos furos dentro do rolo na tela, numa grade de 0,1 cm; "errado" = o rolo fica na frente de toda a pele ali, contando 0,5 cm de traço; técnica e erros, u = 0, 0,25, 0,5, 0,75, 0,9 e 1):
+
+| de cima | antes | depois |
+|---|---|---|
+| técnica, u = 0: furo errado | 126 cm² | 0 |
+| técnica, u = 1: furo certo / errado | 31,7 / 0 cm² | 31,7 / 0 cm² |
+| erro "Rolo no lugar errado": furo errado | 0 | 0 |
+| erro "Levantar o quadril", u = 0: furo errado | 126 cm² | 0 |
+| todos os quadros medidos, de cima: furo errado / certo | 371 / 227 cm² | 0 / 227 cm² |
+| de três quartos (vista dos quadros grandes): furo errado | 837 cm² | 0 |
+
+| conferência | antes | depois |
+|---|---|---|
+| a regra, de cima: anéis atrás do rolo que aparecem por cima dele | 5 de 5 em cada canela e cada pé (técnica, quadro 1) | 0 de 7 em cada canela, 0 de 5 em cada pé |
+| a regra, de cima: anéis na frente do rolo cobertos por ele | 0 de 9 em cada pé | 0 de 9 em cada pé |
+| a pintura, vendo a máscara | o rolo furado sobre os pés (22,8 cm² cada) e as canelas (4 cm²), a haste sobre os pés pelo furo (15,3 cm² cada) | nada |
+| a pintura, como estava (sem ver a máscara) | o rolo sobre os pés no erro do rolo, 42 cm² cada (os furos certos, que ela não via) | — |
+
+O "antes" da regra e da pintura que vê a máscara foi medido no recorte antigo com os furos guardados no item (o mesmo desenho de antes).
+
+**O desenho.** Só a mesa flexora e a cadeira extensora mudam (abaixo, e em `cadeira-extensora.md`); as outras 169 dão o mesmo SVG, caractere por caractere, em 15.210 quadros (12 tempos na técnica, 3 no cor de pele e escuro, 6 nos músculos e 2 na trajetória em cada vista do guia, 6 de cada erro em cada vista, e a miniatura). Na mesa, o SVG muda nos 71 quadros da amostra (a máscara mudou de forma em todos); os pixels, a 480 × 360, em 61, até 0,26% da figura (de cima, no começo: os furos em U somem).
+
+**Conferência automática:** `node scripts/animacao-nova/conferir.mjs mesa-flexora`: 0 falha (antes, 1: a pintura), 2 avisos (os de antes). Folha do pintor regravada ([`../pintor-por-pares/mesa-flexora.png`](../pintor-por-pares/mesa-flexora.png): hoje 358 cm², 10 achados, por pares 0; a de antes dizia 442 → 84 cm², porque a conferência não via os furos). Quadros grandes regravados (`../quadros/mesa-flexora.png`, agora com o pintor por pares, como o app: `scripts/animacao-nova/olhar.mjs` passou a entregar o pintor ao motor). Olhei de lado e de cima o começo, o meio e o fim, os dois erros nas duas vistas e de três quartos.
+
+**O que ainda não ficou bom:**
+
+- Onde o calcanhar fica pouco acima da beira do rolo (de cima, na volta, perto de u = 0,3 e 0,8), o furo aparece como dentes pequenos na borda de cima do rolo, de alguns milímetros: é o pé que está mesmo na frente dele ali (o rolo baixa na beira), mas no zoom lê-se como um serrilhado no contorno do rolo. No tamanho do app, menos de um pixel.
+- Num zoom grande, a folga de 0,4 cm do furo mostra uma faixa fina do que está atrás do rolo (o fundo ou a coxa) junto do contorno do pé; no tamanho do app, o traço do contorno (2,5 px) a cobre.
+- A regra de contato de 1 cm da conferência da pintura continua apagando o calcanhar que encosta no rolo no fim (u = 1): quem confere esse trecho é a regra da mesa, que não usa essa tolerância para os anéis na frente do rolo.

@@ -71,3 +71,26 @@ A auditoria de 18/11 (`../auditoria-fase-c.md`) tirou esta animação da aprova�
 **Conferência automática:** `node scripts/animacao-nova/conferir.mjs cadeira-extensora`: 0 falhas, 1 aviso (as linhas de desenho da ficha). A folha da peça saiu igual. Quadros grandes regravados (`../quadros/cadeira-extensora.png`, agora com o meio de três quartos); olhei também os quatro erros de três quartos.
 
 **O que ainda não ficou bom:** a bacia do erro "Tirar o quadril do banco" sobe 3,4 cm, e não 6: com as mãos nas alças é o que os braços deixam; o erro se lê pela linha do quadril e pelo corpo vermelho, mas menos que antes. O recorte do rolo segue o contorno do pé por anéis (com 0,4 cm de folga): na borda, uma lasca de alguns milímetros do rolo pode sumir junto do pé. O limite de 10° da clavícula é de desenho, sem fonte medida.
+
+## Correção de 19/11 (o furo do recorte)
+
+O recorte do rolo (`recortarORolo`, `pecas-de-cena/cadeira-flexora.ts`) mudou para consertar a mesa flexora (ver `mesa-flexora.md`, a seção de mesmo nome), e esta animação usa o mesmo recorte. **O desenho muda, pouco, e melhora.** Medi antes e depois.
+
+**O que mudou no recorte.** Antes, cada par de anéis do pé era furado inteiro (o casco dos dois anéis, com 0,4 cm de folga) quando toda a metade dos dois anéis virada para quem olha tinha o caminho livre, testada 0,4 cm para dentro da pele. Agora o furo é feito faceta por faceta da malha do pé (e das tampas das pontas), só onde os cantos, na pele, têm o caminho livre (a conta exata do cilindro), com a folga do traço só onde ela também é livre. E a máscara passou a valer também para a haste que atravessa o rolo.
+
+**Os números** (área dos furos dentro do rolo na tela, numa grade de 0,1 cm; "errado" = o rolo fica na frente de toda a pele ali, contando 0,5 cm de traço; técnica e os quatro erros, u = 0, 0,25, 0,5, 0,75, 0,9 e 1, em quatro vistas):
+
+| vista | furo errado, soma (pior quadro) antes | depois | furo certo, soma antes → depois |
+|---|---|---|---|
+| de lado (do app) | 1,4 cm² (0,4) | 0 | 0 → 0 |
+| três quartos (do app) | 32,4 cm² (10,5, erro "Joelho fora do eixo", u = 0,75) | 0 | 487,0 → 480,8 cm² |
+| de cima (fora do app) | 22,9 cm² (5,2) | 0 | 0 → 0 |
+| três quartos, de trás (fora do app) | 4,3 cm² (3,2) | 0 | 141,5 → 137,8 cm² |
+
+- **O que some:** os furos errados (lascas do rolo, com o traço da borda dele, que sumiam junto do pé onde o pé fica atrás do rolo) e, pelo furo certo, **a haste pintada por cima do pé** de três quartos, no alto da subida (o pé de longe, na ponta esquerda do rolo: 5 cm² na técnica e 1 cm² no erro do eixo; antes, a conferência não via o furo e acusava o rolo inteiro sobre o pé, 38,5 e 11,8 cm²).
+- **O furo certo que encolhe** (6 cm² somados em 30 quadros de três quartos, uns 0,2 cm² por quadro) é a faixa do contato, onde o pé afunda no rolo: a pele dentro do rolo fica tapada, e ali o rolo cobre a borda do pé. A pele que fica mais de 1 cm na frente do rolo e não é furada não mudou nas vistas do app. De três quartos de trás (fora do app), no erro "Descer rápido" (u = 0,75 e 0,9), 2 e 1 cm² de canela na frente do rolo deixam de aparecer: o casco antigo de um par de anéis do pé passava da pele do pé e a mostrava por acaso (a canela não está no recorte).
+- **O desenho:** o SVG muda nos 95 quadros da amostra (a máscara mudou de forma em todos); os pixels, a 480 × 360, em 71, até 0,05% da figura (81 pixels), de três quartos.
+
+**Conferência automática:** `node scripts/animacao-nova/conferir.mjs cadeira-extensora`: 0 falha (antes, 1: a pintura, que não via os furos), 1 aviso (o de antes). A regra `cadeira-extensora-pintura-e-maos` lê os furos no item (antes, nos polígonos da máscara) e dá os mesmos números de antes: pé direito 1 de 20 (a linha de contato); o rolo pintado por baixo das pernas em 1 de 6 e 2 de 52 pontos, na borda. Quadros grandes regravados (`../quadros/cadeira-extensora.png`). Olhei de lado e de três quartos a técnica e os quatro erros.
+
+**O que ainda não ficou bom:** num zoom grande, a folga de 0,4 cm do furo mostra uma faixa fina do fundo junto do contorno do pé, e a borda do furo, que segue as facetas, tem degraus de alguns milímetros; no tamanho do app, menos de um pixel. A canela não entra no recorte (de três quartos de trás, fora do app, ela fica sob o rolo onde está na frente dele).
