@@ -12,6 +12,7 @@
 //      node scripts/animacao-nova/folha-do-pintor.mjs --piores <n>   (as n animações com mais área pintada errada hoje)
 //      --resumo <arquivo.png>: também a folha-resumo de um lote, numa página só (etapa 2, 19/11/2026): de cada animação,
 //      o pior quadro da folha (o de mais área pintada errada hoje; empate, o que mais muda), hoje × por pares.
+//      --titulo <texto>: o título da folha-resumo (lote 2: as duas páginas de um lote).
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -23,6 +24,12 @@ let arqResumo = null;
 if (args.includes('--resumo')) {
   const i = args.indexOf('--resumo');
   arqResumo = args[i + 1];
+  args = [...args.slice(0, i), ...args.slice(i + 2)];
+}
+let titulo = null;
+if (args.includes('--titulo')) {
+  const i = args.indexOf('--titulo');
+  titulo = args[i + 1];
   args = [...args.slice(0, i), ...args.slice(i + 2)];
 }
 const resumo = [];
@@ -199,7 +206,7 @@ body{margin:16px;font:14px system-ui,sans-serif;background:#fff;color:#1d2024;wi
 h1{font-size:20px;margin:0 0 4px}.nota{color:#555;margin:0 0 12px}
 .l{display:flex;gap:10px;align-items:flex-start;border-top:1px solid #d7dde2;padding:8px 0}.t{width:300px;font-size:13px}.t b{font-size:15px}
 figure{margin:0}figcaption{font-size:12px;color:#333}.q{border-radius:6px;overflow:hidden;width:${W}px;height:${H}px}</style>
-<h1>Pintor por pares, ${resumo.length} animações: o pior quadro de cada uma</h1>
+<h1>${titulo ?? `Pintor por pares, ${resumo.length} animações`}: o pior quadro de cada uma</h1>
 <p class="nota">Em cada linha, o quadro da folha (u = 0, 0,5 e 1, em cada vista e no pior quadro de cada erro) com mais área pintada do jeito errado hoje: o de hoje, o por pares e o que muda (em magenta). À esquerda, a conferência da pintura inteira, hoje e por pares, e quanto o desenho muda. Desenho cinza, tema claro. As folhas completas estão ao lado, uma por animação.</p>
 ${resumo
   .map(
