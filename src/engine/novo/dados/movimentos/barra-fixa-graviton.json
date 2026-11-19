@@ -51,6 +51,7 @@
   {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta das alças e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
   {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo (a cabeça, o peito) passa pelas alças sem atravessá-las", "selo": "consenso", "fonte": "ficha"},
   {"id": "graviton-joelhos-na-almofada", "pede": "os joelhos ficam na almofada o tempo todo: a frente da canela apoia nela, sem atravessá-la e sem escorregar", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-fixa-graviton-pernas-por-cima-da-almofada", "pede": "as duas pernas, deitadas na almofada, aparecem por cima dela em todas as vistas (a de longe também)", "selo": "desenho", "fonte": "desenho"},
   {"id": "graviton-pilha-sobe-quando-a-almofada-desce", "pede": "o contrapeso: a pilha sobe quando a almofada desce, no arco do came", "selo": "consenso", "fonte": "maquina"},
   {"id": "graviton-corpo-parado", "pede": "corpo parado: a bacia sobe e desce sem ir e voltar para a frente e para trás", "selo": "consenso", "fonte": "app"},
   {"id": "barra-fixa-pegada-pronada", "pede": "palmas para a frente, mãos a 1 a 1,5 vez a largura dos ombros", "selo": "consenso", "fonte": "ficha"},

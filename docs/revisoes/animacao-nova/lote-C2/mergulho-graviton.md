@@ -56,3 +56,28 @@ Não há correção registrada para este exercício. Do mergulho aprovado vale a
 - **O peito aparece pouco no modo Músculos** (142 cm² de lado, contra 464 cm² de frente no mergulho aprovado). A vista de frente não serve aqui (a alavanca passa na frente das coxas).
 - **A almofada inclina de +12° a −13°** no caminho (a alavanca gira): em cima, os pés ficam um pouco mais altos que os joelhos.
 - **A alça de paralela fica 10 cm abaixo da do cartão de hoje** (118, contra 128 cm), para a almofada ficar perto da horizontal no meio do mergulho; nenhuma ficha dá essa altura.
+
+## Correção de 18/11 (auditoria)
+
+A auditoria da fase C (`../auditoria-fase-c.md`) achou, de três quartos de trás, a canela e o pé de longe (os esquerdos), deitados na almofada, sumindo embaixo da ponta de trás dela.
+
+**Causa.** O Boneco pinta a perna de longe num item separado, 5 cm atrás do corpo; a almofada é pintada como um item só, na profundidade do centro dela, 4 cm atrás (o `dz: 4` da peça, que deixa as canelas de perto por cima). De três quartos de trás, do meio para o fim da descida, o centro da almofada fica à frente da perna de longe na pintura (no fim: almofada 22,0, perna de longe 20,1, corpo 25,1 cm de profundidade), embora a perna esteja deitada em cima dela.
+
+**O que mudou.** Só o exercício (`exercicios/mergulho-graviton.ts`): de três quartos de trás, a perna de longe vem 3 cm para a frente na pintura (`viesNaVista: { quinaTras: { pernaL: 3 } }`, a mesma saída da rosca Scott). Ela fica 2 cm atrás do corpo (a perna de perto e o tronco continuam por cima dela) e, no pior quadro (o fim da descida), 1,1 cm à frente da almofada. A peça do graviton e o núcleo não mudaram; de lado, nada muda.
+
+**Antes e depois** (a medida 1 da auditoria: o pixel do anel é roxo e o raio até quem olha não atravessa estofado; aqui também conferindo que o corpo, pintado sozinho, cobre aquele pixel):
+
+| três quartos de trás | antes | depois |
+|---|---|---|
+| meio da descida | canela esquerda 4 de 13 anéis, pé esquerdo 6 de 20 | 0 |
+| fim da descida (u = 1) | canela esquerda 7 de 13, pé esquerdo 7 de 20 | 0 |
+| erro "Ombros encolhidos" (u = 1) | canela esquerda 8 de 13, pé esquerdo 7 de 20 | 0 |
+| começo da descida; e de lado, todos os quadros | 0 | 0 |
+
+**Conferência nova:** `mergulho-graviton-pernas-por-cima-da-almofada` (`regras/graviton.ts`, com a medida em `regras/pintura-sobre-o-estofado.ts`). Nas duas vistas do exercício e na de cada erro, nos quadros da técnica (um a cada três) e nos dos dois erros (u = 0,25, 0,5, 0,75 e 1), conta os anéis da coxa, da canela e do pé **de cada lado** que ficam na frente da almofada e por cima dela na tela, e quantos deles o pintor põe por baixo dela. Antes: **falha** (três quartos de trás: canela esquerda 8 de 8, pé esquerdo 7 de 7, coxa esquerda 4 de 4 no erro dos ombros encolhidos). Depois: passa (0 em todas as partes; de três quartos de trás, na frente da almofada: coxa 4, canela 8, pé 15 do lado direito e 4, 8 e 7 do esquerdo; de lado, a almofada é vista de perfil e nenhum anel fica por cima dela na tela).
+
+**Dois achados da auditoria que não se confirmam.** De lado, no erro "Descer demais", a almofada sobre os joelhos (4 de 13 anéis de cada canela), e, no erro "Ombros encolhidos", 3 anéis da canela direita: a medida da auditoria pôs a pose do erro sobre o desenho da técnica (refazendo assim, saem os mesmos números: 4 de 13 de cada canela de lado; 4 de 13 da canela direita e 10 de 20 do pé esquerdo de três quartos). No desenho do erro, como o app mostra, os joelhos ficam por cima da almofada (0 de lado; de três quartos de trás, só a perna de longe, a mesma da técnica, já corrigida).
+
+**Conferência automática:** 0 falha, 1 aviso (o mesmo de antes).
+
+**O que ainda não ficou bom:** o ajuste é um número fixo (3 cm) que só vale nesta vista; a folga para a almofada no fim da descida é de 1,1 cm. A regra nova falha se ela acabar.

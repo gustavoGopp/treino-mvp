@@ -11,9 +11,13 @@ import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { LADOS } from '../esqueleto';
-import type { Quadro } from '../movimento';
+import { barraFixaGraviton } from '../exercicios/barra-fixa-graviton';
+import { mergulhoGraviton } from '../exercicios/mergulho-graviton';
+import type { Exercicio, Quadro } from '../movimento';
 import { obj } from '../tabelas';
 import { dot, sub } from '../vec';
+import { estofadoEmCaixa, nadaPorBaixo, pinturaNasVistas, textoDaPintura } from './pintura-sobre-o-estofado';
+import type { EstofadoMedido, ParteMedida } from './pintura-sobre-o-estofado';
 
 const rad = Math.PI / 180;
 const g = (id: string) => obj('graviton', id);
@@ -37,7 +41,29 @@ function canelasNaAlmofada(q: Quadro): Record<'R' | 'L', number> {
   return out;
 }
 
+/** A almofada dos joelhos no quadro (a caixa de estofado da conferência). */
+function almofadaDoQuadro(x: Quadro): EstofadoMedido {
+  const c = x.prims.find((p) => p.t === 'caixa' && p.cls === 'estofado');
+  if (!c || c.t !== 'caixa') throw new Error('graviton: o quadro não tem a almofada');
+  return estofadoEmCaixa(c);
+}
+const PERNAS: ParteMedida[] = (['pernaR', 'pernaL'] as const).flatMap((grupo) => ['coxa', 'canela', 'pe'].map((volume) => ({ grupo, volume })));
+/**
+ * As duas pernas, deitadas na almofada, pintadas por cima dela (acréscimo de 18/11, a auditoria da fase C): em cada vista
+ * do exercício e na de cada erro, os anéis da coxa, da canela e do pé de cada lado que ficam na frente da almofada e por
+ * cima dela na tela não podem ficar por baixo dela na pintura (de três quartos de trás, a canela e o pé de longe sumiam
+ * embaixo da ponta da almofada no mergulho).
+ */
+const pernasPorCimaDaAlmofada =
+  (ex: () => Exercicio): Regra =>
+  (q, corpo) => {
+    const r = pinturaNasVistas(ex(), q, corpo, almofadaDoQuadro, PERNAS);
+    return { medido: `anéis das pernas pintados por baixo da almofada, de quantos ficam na frente dela e por cima dela na tela (o pior quadro), ${textoDaPintura(r)}`, ok: nadaPorBaixo(r) };
+  };
+
 export const REGRAS_GRAVITON: Record<string, Regra> = {
+  'mergulho-graviton-pernas-por-cima-da-almofada': pernasPorCimaDaAlmofada(() => mergulhoGraviton),
+  'barra-fixa-graviton-pernas-por-cima-da-almofada': pernasPorCimaDaAlmofada(() => barraFixaGraviton),
   'graviton-joelhos-na-almofada': (q) => {
     const folgas: number[] = [];
     let anda = 0;
