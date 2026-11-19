@@ -78,7 +78,19 @@ const viesDoQuadro = (q: Quadro, vista: IdVista): Record<string, number> | undef
 /* ============================== pontos do corpo pelo nome ============================== */
 type EsqQ = Quadro['esq'];
 const DO_MEIO: Record<string, (e: EsqQ) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
-/** Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada, quadril, joelho, tornozelo, calcanhar, ponta). */
+/**
+ * Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada,
+ * quadril, joelho, tornozelo, calcanhar, ponta). Acréscimo de 18/11: `marca:<nome>` é um ponto que o quadro dá nas
+ * marcas (ex.: onde o peito encosta no apoio, que o esqueleto sozinho não sabe), para os rótulos de técnica.
+ */
+export function pontoDoRotulo(e: EsqQ, nome: string, k: 'R' | 'L', marcas?: Quadro['marcas']): V3 {
+  if (nome.startsWith('marca:')) {
+    const p = marcas?.[nome.slice(6)];
+    if (!p) throw new Error(`marca desconhecida no quadro: "${nome}"`);
+    return p;
+  }
+  return ponto(e, nome, k);
+}
 function ponto(e: EsqQ, nome: string, k: 'R' | 'L'): V3 {
   // 'ombro:L' = o ponto de um lado certo, qualquer que seja o lado pedido (a linha que liga os dois ombros)
   const [base, lado] = nome.split(':') as [string, 'R' | 'L' | undefined];
@@ -252,9 +264,9 @@ function alvoMedio(ex: Exercicio, o: Omit<OpcoesCena, 'modo'>, nome: string): P2
     y = 0,
     n = 0;
   for (let i = 0; i <= 8; i++) {
-    const e = quadroDe(ex, o.corpo, i / 8, o.erro).esq;
+    const q = quadroDe(ex, o.corpo, i / 8, o.erro);
     for (const k of ladosNaVista(ex, cam)) {
-      const p = naTela(cam, ponto(e, nome, k));
+      const p = naTela(cam, pontoDoRotulo(q.esq, nome, k, q.marcas));
       x += p[0];
       y += p[1];
       n++;
@@ -351,9 +363,9 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
   const lados = ladosNaVista(ex, cam);
   const xy = (p: P2) => `${f1(p[0])}" y1="${f1(p[1])}`;
   /** O ponto do corpo (do lado mais perto do texto) e o fio do texto até ele. */
-  const fio = (r: RotuloPosto, e: EsqQ, nome: string, t: number, classe: string) => {
+  const fio = (r: RotuloPosto, e: EsqQ, nome: string, t: number, classe: string, marcas?: Quadro['marcas']) => {
     const de = saidaDoFio(r, t);
-    const alvos = lados.map((k) => naTela(cam, ponto(e, nome, k)));
+    const alvos = lados.map((k) => naTela(cam, pontoDoRotulo(e, nome, k, marcas)));
     const a = alvos.reduce((m, p) => (Math.hypot(p[0] - de[0], p[1] - de[1]) < Math.hypot(m[0] - de[0], m[1] - de[1]) ? p : m));
     return { a, s: `<line class="${classe}" x1="${xy(de)}" x2="${f1(a[0])}" y2="${f1(a[1])}"/>` };
   };
@@ -365,7 +377,8 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
     const t = tam * TAM_DO_ERRO;
     return fio(r, quadroDe(ex, o.corpo, u, o.erro).esq, def.foco, t, 'n-err-fio').s + textoDoRotulo(r, t, 'n-err-t');
   }
-  const e = quadroDe(ex, o.corpo, u).esq;
+  const qu = quadroDe(ex, o.corpo, u),
+    e = qu.esq;
   ex.ficha.rotulos
     .filter((x) => x.vista === o.vista)
     .forEach((x, i) => {
@@ -388,7 +401,7 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
       if (x.guia) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts(x.guia.map((nome) => naTela(cam, ponto(e, nome, k))))}"/>`;
       const r = postos[i];
       if (!r) return;
-      const f = fio(r, e, x.ponto, tam, 'n-rot-fio');
+      const f = fio(r, e, x.ponto, tam, 'n-rot-fio', qu.marcas);
       s += `${f.s}<circle class="n-rot-p" cx="${f1(f.a[0])}" cy="${f1(f.a[1])}" r="${f1(tam * 0.22)}"/>${textoDoRotulo(r, tam, 'n-rot-t')}`;
     });
   return s;

@@ -26,6 +26,13 @@ import type { Apoio, Forma } from './pendurado';
 const F = fichaSchema.parse(ficha);
 const f = daFicha(F);
 
+/**
+ * Quanto a perna de longe vem para a frente na pintura, de três quartos de trás (cm de profundidade): o Boneco a pinta
+ * 5 cm atrás do corpo; com 3, ela fica 2 cm atrás dele (a perna de perto e o tronco continuam por cima dela) e, no
+ * pior quadro (o fim da descida), 1,1 cm à frente da almofada.
+ */
+const VIES_DA_PERNA_DE_LONGE = 3;
+
 const apoio = (): Apoio => ({ maos: maosNaBarra(obj('graviton', 'paralelaVao'), obj('graviton', 'paralelaAltura'), meioDaPegaDaParalela()), diam: obj('graviton', 'alcaDiam') });
 
 /** A forma do tronco e dos braços no ponto u da descida (0 = em cima, 1 = embaixo): a do mergulho aprovado. */
@@ -96,6 +103,11 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
       pilha: [M.subida, 0, 0],
     },
     vies: { maoR: 1, maoL: 1 },
+    // De três quartos de trás, a perna de longe (a esquerda) é pintada 5 cm atrás do corpo, e a almofada, que fica na
+    // frente dela (o centro da almofada, 4 cm atrás na pintura, chega a 1,9 cm à frente da perna embaixo), era pintada
+    // por cima: a canela e o pé de longe, deitados na almofada, sumiam embaixo da ponta dela. Ela vem para a frente da
+    // almofada na pintura, ainda atrás do corpo (a regra mergulho-graviton-pernas-por-cima-da-almofada confere)
+    viesNaVista: { quinaTras: { pernaL: VIES_DA_PERNA_DE_LONGE } },
   };
 }
 

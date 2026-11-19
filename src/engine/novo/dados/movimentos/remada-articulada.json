@@ -44,6 +44,7 @@
  "contatos": ["pe.R", "pe.L", "pelve"],
  "regras": [
   {"id": "remada-articulada-pegador-na-linha-do-peito", "pede": "assento na altura em que os pegadores ficam na linha do peito com os braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-articulada-rotulo-do-peito-no-apoio", "pede": "o rótulo \"peito na almofada\" aponta para o peito, onde ele encosta no apoio", "selo": "desenho", "fonte": "desenho"},
   {"id": "remada-articulada-sentado-com-o-peito-no-apoio", "pede": "peito apoiado na almofada durante toda a série, sentado no assento", "selo": "consenso", "fonte": "ficha"},
   {"id": "maquina-maos-nos-pegadores", "pede": "as mãos presas nos pegadores o movimento todo", "selo": "consenso", "fonte": "ficha"},
   {"id": "remada-articulada-pegador-no-arco", "pede": "o pegador anda num arco em volta do eixo do braço da máquina, e a mão com ele", "selo": "desenho", "fonte": "objetos"},
@@ -65,7 +66,7 @@
  ],
  "simetrico": true,
  "rotulos": [
-  {"vista": "lateral", "texto": "peito na almofada", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "peito na almofada", "ponto": "marca:peitoNaAlmofada", "selo": "consenso", "fonte": "app"},
   {"vista": "quinaTras", "texto": "ombros baixos", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app"},
   {"vista": "quinaTras", "texto": "estica os braços na volta", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
  ]

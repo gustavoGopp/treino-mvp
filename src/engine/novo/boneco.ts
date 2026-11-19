@@ -825,12 +825,24 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   // `vies.cabeca` > 0 (acréscimo de 18/11, desligado por padrão): a cabeça é pintada de novo por cima do resto do
   // corpo, com o contorno próprio, como o polegar por cima da mão. Vista de cima, sentado, a cabeça fica dentro da
   // silhueta dos ombros, e o contorno do corpo (um só, por fora) não a desenhava: no lugar dela ficava o alto do tronco
-  if (vies('cabeca') > 0) {
+  // `vies.cabecaAParte` (acréscimo de 18/11, desligado por padrão): a mesma cabeça, mas num item só dela, na
+  // profundidade da própria cabeça (mais o valor dado), e não dentro do item do corpo. Vista de cima, no voador
+  // invertido, o apoio do peito fica entre o tronco (abaixo dele) e a cabeça (acima): no item do corpo, a cabeça ia
+  // para baixo do apoio junto com o tronco
+  const cabecaAParte = o.vies?.cabecaAParte;
+  let itemDaCabeca: Item | null = null;
+  if (vies('cabeca') > 0 || cabecaAParte !== undefined) {
     const cab = corpo.cs.filter((v) => v.nome === 'cabeca' || v.nome === 'cabeloAtras' || v.nome === 'calota');
-    s += cab.map((v) => `<path class="b-c${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + cab.map((v) => `<path class="b-p${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
+    const sCab = cab.map((v) => `<path class="b-c${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + cab.map((v) => `<path class="b-p${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
+    if (cabecaAParte === undefined) s += sCab;
+    else {
+      const c = doCorpo('cabeca');
+      itemDaCabeca = { d: c.d + cabecaAParte, camada: 1, s: sCab, cx: c.cx };
+    }
   }
   const cxCorpo = [corpo, ...pernas].reduce<[number, number, number, number]>((a, x) => [Math.min(a[0], x.cx[0]), Math.min(a[1], x.cx[1]), Math.max(a[2], x.cx[2]), Math.max(a[3], x.cx[3])], [1e9, 1e9, -1e9, -1e9]);
   itens.push({ d: corpo.d + vies('corpo'), camada: 1, s, cx: cxCorpo });
+  if (itemDaCabeca) itens.push(itemDaCabeca);
   // 3) os braços de perto, cada um com o seu contorno, na frente ou atrás do corpo conforme a profundidade
   for (const x of G) {
     if (!x.g.id.startsWith('braco') || x.longe) continue;

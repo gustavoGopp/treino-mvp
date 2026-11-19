@@ -86,3 +86,22 @@ Nenhum.
 2. **Os nomes do modo Trajetória ficavam sobre a torre.** A torre foi para a frente, depois da coluna (à esquerda de quem senta, como antes): atrás das costas fica só o vão, e os nomes "mão" e "cotovelo" (e o rótulo "peito na almofada") ficam ali. Tentei a torre à direita de quem senta: os rótulos de três quartos por trás e o de trás caíam em cima dela.
 
 A conferência continua com 0 falha e 2 avisos (os mesmos); o supino e o desenvolvimento na máquina não mudaram (a mudança é só no desenho da peça da remada).
+
+## Correção de 18/11 (auditoria)
+
+A auditoria da fase C (`../auditoria-fase-c.md`) achou, de lado, em todo o ciclo, o rótulo "peito na almofada" apontando para a base da nuca (o C7, nas costas): o ponto ficava 24 cm acima e 16 cm atrás do centro da face do apoio do peito.
+
+**Causa.** O ponto do rótulo na ficha de movimento era `c7`, e nenhum ponto do esqueleto fica na frente do peito, onde ele encosta no apoio (o `esternoclavicular`, o mais perto, fica 3 cm acima da borda de cima do apoio e 10 cm atrás da face).
+
+**O que mudou.**
+- Em `cena.ts`, um acréscimo desligado por padrão: o ponto de um rótulo pode ser `marca:<nome>`, um ponto que o quadro dá nas marcas (`pontoDoRotulo`, exportada para a regra medir o mesmo ponto que o desenho usa). Os nomes de sempre continuam iguais; nenhuma outra ficha usa `marca:`.
+- No exercício (`exercicios/remada-articulada.ts`), as marcas novas `peitoNaAlmofada` (o meio da face do apoio do peito, no meio do corpo: onde o peito encosta), `apoioSobe`, `apoioTras` e `apoioMedidas` (a face do apoio, para a regra).
+- Na ficha de movimento, o rótulo de lado passa a `"ponto": "marca:peitoNaAlmofada"`. O texto não mudou. O desenho do corpo e da máquina não mudou (o preparo é o mesmo).
+
+**Antes e depois:** o ponto do rótulo ficava a 19,8 cm da face do apoio, 7,5 cm acima da borda de cima dele e a 22,1 cm da pele da frente do peito; agora fica na face (0 cm), na metade da altura dela, no meio da largura, e a 0,7 cm da pele do peito, nos dois lados e em todos os quadros.
+
+**Conferência nova:** `remada-articulada-rotulo-do-peito-no-apoio` (`regras/remada-articulada.ts`): para cada rótulo da ficha que fala do peito, em todos os quadros e **pelos dois lados do corpo** (o lado que o rótulo usa depende da vista), mede a distância do ponto à face do apoio (até 1,5 cm), se ele fica dentro da altura e da largura dela e a distância até a pele da frente do peito (até 2 cm). Antes: **falha** (19,8 cm da face, 7,5 cm fora da altura, 22,1 cm do peito). Depois: passa (0 cm, dentro, dentro, 0,7 cm).
+
+**Conferência automática:** 0 falha, 2 avisos (os mesmos de antes).
+
+**O que ainda não ficou bom:** o texto continua do lado de trás do corpo (é onde o espaço livre fica, com a torre na frente), então o fio atravessa as costas e, no fim da puxada, o braço, para chegar ao peito. Antes ele era curto, mas apontava para a nuca.

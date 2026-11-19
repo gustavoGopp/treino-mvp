@@ -14,6 +14,9 @@ import type { ModoDoVoador } from '../pecas-de-cena/voador';
 import { obj } from '../tabelas';
 import { angulo, dist, dot, sub } from '../vec';
 import type { V3 } from '../vec';
+import { voadorInvertido } from '../exercicios/voador-invertido';
+import { estofadoEmCaixa, nadaPorBaixo, pinturaNasVistas, textoDaPintura } from './pintura-sobre-o-estofado';
+import type { EstofadoMedido, ParteMedida } from './pintura-sobre-o-estofado';
 
 const LADOS: Lado[] = ['R', 'L'];
 const primeiro = <T>(q: T[]) => q[0]!;
@@ -71,6 +74,23 @@ function sentado(q: Quadro[], onde: string): { medido: string; ok: boolean } {
     ok: a0 >= -1.5 && a1 <= 0.5 && c0 >= -1.5 && c1 <= 0.5 && anda <= 0.5,
   };
 }
+
+/** O apoio do peito do invertido (o encosto da máquina): a caixa de estofado mais alta do quadro (a outra é o assento). */
+function apoioDoPeito(x: Quadro): EstofadoMedido {
+  const cs = x.prims.flatMap((p) => (p.t === 'caixa' && p.cls === 'estofado' ? [p] : []));
+  const c = cs.reduce((a, b) => (b.ref.o[1] > a.ref.o[1] ? b : a));
+  return estofadoEmCaixa(c);
+}
+const PARTES_SOBRE_O_APOIO: ParteMedida[] = [
+  { grupo: 'corpo', volume: 'cabeca' },
+  { grupo: 'corpo', volume: 'tronco' },
+  ...(['R', 'L'] as const).flatMap((k) => [
+    { grupo: `braco${k}`, volume: 'braco' },
+    { grupo: `braco${k}`, volume: 'ante' },
+    { grupo: `perna${k}`, volume: 'coxa' },
+    { grupo: `perna${k}`, volume: 'canela' },
+  ]),
+];
 
 export const REGRAS_VOADOR: Record<string, Regra> = {
   'voador-eixo-no-ombro': (q) => {
@@ -139,5 +159,12 @@ export const REGRAS_VOADOR: Record<string, Regra> = {
     const r = sub(x.esq.lado.R.pegada, x.esq.lado.R.ombro);
     const daLinha = angulo([r[0], 0, r[2]] as V3, [ombros[0], 0, ombros[2]] as V3);
     return { medido: `no começo, os braços ficam ${f1(a0)}° abertos a partir da frente; no fim, a linha do ombro à mão fica ${f1(daLinha)}° fora da linha dos ombros, vista de cima`, ok: a0 <= 20 && daLinha <= 8 };
+  },
+  'voador-invertido-cabeca-por-cima-do-apoio': (q, corpo) => {
+    // (acréscimo de 18/11, a auditoria da fase C) em cada vista do exercício e na de cada erro, os anéis da cabeça, do
+    // tronco e dos braços e pernas dos dois lados que ficam na frente do apoio do peito e por cima dele na tela não
+    // podem ficar por baixo dele na pintura (de cima, o apoio era pintado por cima da metade de baixo da cabeça)
+    const r = pinturaNasVistas(voadorInvertido, q, corpo, apoioDoPeito, PARTES_SOBRE_O_APOIO);
+    return { medido: `anéis pintados por baixo do apoio do peito, de quantos ficam na frente dele e por cima dele na tela (o pior quadro), ${textoDaPintura(r)}`, ok: nadaPorBaixo(r) };
   },
 };

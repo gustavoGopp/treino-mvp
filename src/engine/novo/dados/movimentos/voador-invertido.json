@@ -44,6 +44,7 @@
   { "id": "voador-invertido-cotovelos-levemente-dobrados", "pede": "abre com os cotovelos levemente dobrados", "selo": "consenso", "fonte": "ficha" },
   { "id": "voador-invertido-bracos-paralelos-ao-chao", "pede": "os pegadores na altura dos ombros: os braços paralelos ao chão (a altura do assento)", "selo": "consenso", "fonte": "lf-fly" },
   { "id": "voador-invertido-peito-no-encosto", "pede": "sentado de frente para o encosto, o peito apoiado, o tronco parado", "selo": "consenso", "fonte": "ficha" },
+  { "id": "voador-invertido-cabeca-por-cima-do-apoio", "pede": "a cabeça, que passa por cima da borda do apoio do peito, aparece por cima dele em todas as vistas (e o resto do corpo, dos dois lados)", "selo": "desenho", "fonte": "desenho" },
   { "id": "voador-invertido-abre-ate-a-linha-do-corpo", "pede": "começa com os braços à frente e abre até a linha do corpo", "selo": "consenso", "fonte": "ficha" },
   { "id": "crucifixo-inverso-escapulas-sem-encolher-nem-juntar", "pede": "sem encolher os ombros nem juntar demais as escápulas no fim", "selo": "consenso", "fonte": "ficha" },
   { "id": "voador-placas-sem-descansar", "pede": "as placas sobem com o arco do came e não descansam na volta", "selo": "consenso", "fonte": "lf-fly" }
