@@ -66,3 +66,28 @@ Nenhuma (as mesmas do voador: arquivos novos, uma linha em cada registro).
 - **De trás, o corpo ocupa pouco mais da metade da altura do quadro**, pela mesma razão do voador (a viga dos eixos a 199 cm).
 - **De cima, o assento aparece grande atrás das costas** (quem senta virado para o encosto fica na ponta da frente do assento) e a base da coluna e a torre ficam embaixo do quadro, cortadas.
 - **No erro de encolher, o cotovelo estica** (é a consequência da mão presa no pegador, mas o erro passa a parecer também "esticar os cotovelos").
+
+## Correção de 18/11 (auditoria)
+
+A auditoria da fase C (`../auditoria-fase-c.md`) achou, de cima, em todos os quadros, o apoio do peito pintado por cima da cabeça: a metade de baixo dela sumia (o queixo fica 3,1 cm acima da borda de cima do apoio e 1,3 cm à frente da face dele).
+
+**Causa.** O Boneco pinta a cabeça dentro do item do corpo, na profundidade média do corpo inteiro; de cima, ela fica em 103,8 cm, e o apoio, pintado como um item só na profundidade do centro dele, em 104,2: o apoio ia por cima do corpo inteiro, cabeça incluída. Subir o corpo todo não serve: as coxas passam **embaixo** do apoio (de cima, as bordas dele cobrem a parte de dentro das coxas) e iam aparecer por cima dele. O apoio tem de ficar entre o tronco e a cabeça.
+
+**O que mudou.**
+- No Boneco (`boneco.ts`), uma opção nova, desligada por padrão: `vies.cabecaAParte`. Com ela, a cabeça (com o contorno próprio, como na opção `cabeca` de 18/11) vai para um item só dela, na profundidade da própria cabeça (mais o valor dado), em vez de ficar dentro do item do corpo. Sem a opção, nada muda: nenhuma outra animação a usa.
+- No exercício (`exercicios/voador-invertido.ts`), de cima, `cabecaAParte: 0`: a cabeça fica em 135,2 cm de profundidade, acima do apoio (104,2) e dos braços (113,0). O núcleo `no-voador.ts`, a peça e o voador não mudaram.
+
+**Antes e depois** (a medida 1 da auditoria, conferindo também que o corpo, pintado sozinho, cobre o pixel):
+
+| de cima | antes | depois |
+|---|---|---|
+| começo, meio e fim; erro "Abrir pouco" | cabeça 5 de 17 anéis por baixo do apoio | 0 |
+| de trás (os dois erros e a técnica) | 0 | 0 |
+
+Sobram, de cima, 1 a 2 anéis de cada canela e pé na quina de baixo do apoio, antes e depois: são pontos na linha do contorno do apoio, e as canelas ficam embaixo dele de verdade (o raio até quem olha passa a 0,5 cm da caixa); não aparecem.
+
+**Conferência nova:** `voador-invertido-cabeca-por-cima-do-apoio` (`regras/voador.ts`, com a medida em `regras/pintura-sobre-o-estofado.ts`). Nas duas vistas do exercício e na de cada erro (de trás, de cima e de lado), nos quadros da técnica e nos dos três erros, conta os anéis da cabeça, do tronco e do braço, do antebraço, da coxa e da canela **dos dois lados** que ficam na frente do apoio do peito e por cima dele na tela, e quantos o pintor põe por baixo dele. Antes: **falha** (de cima, cabeça 13 de 13). Depois: passa (0; de cima, a cabeça tem 13 anéis na frente do apoio; de trás, o tronco 8 e cada braço 1; de lado, nenhum).
+
+**Conferência automática:** 0 falha, 1 aviso (o mesmo de antes).
+
+**O que ainda não ficou bom:** com a cabeça num item próprio, de cima ela também passa por cima de tudo o que fica abaixo dela na pintura (o cabo da pilha, a 124 cm, passava por cima da cabeça e agora passa por baixo, o que está certo, porque a cabeça está mais alta). O rótulo "peito no encosto" (só na vista de lado, que o exercício não declara) continua no C7.

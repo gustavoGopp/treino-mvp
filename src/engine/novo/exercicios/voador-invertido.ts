@@ -38,7 +38,12 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     // o tronco vai para trás e o peito sai do encosto; o arco anda junto com o ombro
     Object.assign(i, { bacia: f('erro.embalar.bacia') * x, lombar: f('erro.embalar.lombar') * x, cervical: f('erro.embalar.cervical') * x, arcoSegueOOmbro: true });
   }
-  return noVoador(corpo, O, i, f('inicio'));
+  const q = noVoador(corpo, O, i, f('inicio'));
+  // De cima, o apoio do peito (o centro dele a 104 cm do chão) fica entre o tronco, pintado mais embaixo, e a cabeça
+  // (a 133 cm), que passa por cima da borda dele: a cabeça vai para um item só dela, na própria profundidade (a opção
+  // `cabecaAParte` do Boneco), e o apoio deixa de ser pintado por cima dela. O núcleo (o mesmo do voador) não muda.
+  // A regra voador-invertido-cabeca-por-cima-do-apoio confere.
+  return { ...q, viesNaVista: { ...q.viesNaVista, cima: { ...q.viesNaVista?.cima, cabecaAParte: 0 } } };
 }
 
 export const voadorInvertido: Exercicio = {
