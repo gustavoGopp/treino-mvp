@@ -138,4 +138,35 @@ O botão "compartilhar" do celular funciona a partir de um site: no iPhone desde
 
 ## O que as pessoas já esperam, e onde o treino-mvp pode ser diferente
 
-*(Esta parte é escrita depois de usar o app. Ver o fim do arquivo.)*
+Escrito depois de usar o app (ver [`diario-de-uso.md`](diario-de-uso.md)).
+
+### O que quem já usou outro aplicativo espera encontrar
+
+| Expectativa | De onde vem | O treino-mvp hoje |
+|---|---|---|
+| O app tem um nome e uma cara | Todos os sete | Não tem nome; chama-se "treino-mvp" |
+| O primeiro treino aparece logo depois de poucas perguntas | Fitbod | 13 toques para "Academia completa" (bom); 21 a 24 para prédio e casa, por causa do inventário |
+| A carga da última vez já vem preenchida | Hevy | **Tem**: a série seguinte se marca com 1 toque |
+| O descanso começa sozinho ao marcar a série | Hevy, Strong | **Tem** |
+| O descanso avisa com o celular bloqueado, ou aparece na tela de bloqueio | Hevy, Strong | **Não tem**, e como site não consegue igualar |
+| Dá para ver o movimento sem sair do treino | Fitbod, Ladder | Só em miniatura; para ver grande, sai do treino |
+| Todo exercício tem demonstração | Fitbod ("mais de 1.000"), Strong | 90 de 171 na `main` |
+| Ao terminar, algo marca a conquista (recorde, sequência, cartão) | Hevy, Strava, Nike | Três números e uma lista de cargas |
+| Algo chama de volta (lembrete, sequência por semana, plano novo) | Strava, Ladder, Whoop | Nada |
+| Os dados não somem ao trocar de celular | Todos (têm conta) | Só com cópia manual |
+
+**Leitura.** No registro durante o treino, o app já está no nível dos melhores. Está atrás em três coisas que os outros têm como óbvias: **avisar, comemorar e chamar de volta**.
+
+### Onde o treino-mvp pode ser diferente de propósito
+
+1. **Sem conta e sem assinatura.** Fitbod cobra depois de 7 dias; Strava e Nike pedem cadastro ao abrir. Aqui a pessoa chega ao treino sem dar e-mail. **Isso é um diferencial de verdade e hoje não está dito com orgulho**: aparece como uma linha discreta ("Seus dados ficam só neste celular. Sem login.") debaixo de um aviso.
+2. **O treino que se explica.** Fitbod vende "algoritmo". O treino-mvp pode vender o contrário: "cada escolha tem um porquê, e você pode ler". O material existe ("Entenda o treino"). Falta estar a um toque de onde a dúvida nasce.
+3. **O equipamento que a pessoa tem.** É a promessa do título. Hoje ela é cumprida pelo gerador e traída pelo cadastro (o inventário de anilhas).
+4. **Um boneco em vez de um vídeo.** Vídeo de academia mostra um atleta num lugar que não é o seu. O boneco mostra só o movimento, com a legenda apontando para a articulação. É um jeito próprio, e funciona sem internet.
+5. **A sequência por semana, não por dia.** Strava e Hevy contam semanas, não dias. Isso combina com o que o app já tem ("1 de 3 treinos") e com a evidência (ver acima: competir por *aparecer*). Não custa conta nem servidor.
+
+### O que não vale copiar
+
+- **Feed, seguidores, comentários.** Exigem conta, servidor e moderação. É outro produto.
+- **Ranking por carga.** Nenhum estudo que achei sustenta isso para musculação, e é o tipo de número que empurra iniciante a pôr peso antes da hora.
+- **Treinador em vídeo.** A personalidade do Ladder e do Nike vem de gente e de produção cara. A personalidade daqui tem de vir de outro lugar: do nome, do tom de voz e do relógio gigante que já existe.
