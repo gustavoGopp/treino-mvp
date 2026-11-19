@@ -26,7 +26,14 @@ function useCartao(exId: string) {
       vivo = false;
     };
   }, [exId, tentativa]);
-  return { c, tentativa, tentarDeNovo: () => setTentativa((n) => n + 1) };
+  // Limpa o erro junto com a nova tentativa, no mesmo toque: antes, por um instante, a tela ainda tinha o erro e já a
+  // tentativa 1, e mostrava "Recarregar o app" antes de a 2ª tentativa terminar (e o teste esperava uma recarga que
+  // não vinha: falhava 1 vez em 5, achado pela verificação de 19/11/2026).
+  const tentarDeNovo = () => {
+    setC(null);
+    setTentativa((n) => n + 1);
+  };
+  return { c, tentativa, tentarDeNovo };
 }
 
 export function CartaoTexto({ exId }: { exId: string }) {
