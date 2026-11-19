@@ -7,10 +7,12 @@ import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Quadro } from '../movimento';
 import { PERNAS, folgaDaBarraNaPele, folgaDaBarraNosPontos, peleDensa } from '../exercicios/com-barra-longa';
+import { remadaBarra } from '../exercicios/remada-barra';
 import { raioDaPegada } from '../pecas-de-cena/barra-longa';
 import { obj } from '../tabelas';
 import { add, angulo, dist, dot, mul, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
+import { regraDePintura } from './ordem-de-pintura';
 
 const primeiro = <T>(q: T[]) => q[0]!;
 const ultimo = <T>(q: T[]) => q[q.length - 1]!;
@@ -20,6 +22,25 @@ const folgaDaBarra = (q: Quadro, partes: ReadonlySet<string>) => folgaDaBarraNaP
 const APOIO_DA_BARRA: ReadonlySet<string> = new Set(['tronco', 'cintura', 'emendaDaCintura', 'pelve', 'coxa']);
 
 export const REGRAS_BARRA_LONGA: Record<string, Regra> = {
+  // A pegada da barra (entre os rebordos) e as linhas da recartilha em cima dela (os três primeiros itens que a peça
+  // desenha) contra o corpo, nos dois lados, em cada vista do guia (acréscimo de 19/11, auditoria das fases A e B): de
+  // três quartos por trás, no fim da puxada, a barra, que fica na frente da barriga, era pintada por cima do quadril e
+  // das coxas. As mãos fecham em volta dela e não contam.
+  'remada-barra-pegada-pintada-no-lugar': regraDePintura({
+    exercicio: () => remadaBarra,
+    nome: 'a barra',
+    fora: ['mao', 'polegar'],
+    peca: (x) => {
+      const p = x.pecas?.find((y) => y.t === 'propria' && y.nome === 'barra longa');
+      const c = x.marcas.barra;
+      if (!p || !c) return [];
+      const entre = obj('barraLonga', 'entreMangas') / 2,
+        mm = obj('barraLonga', 'marcasEntre') / 2,
+        r = raioDaPegada();
+      const P = (d: number): V3 => add(c, [d, 0, 0]);
+      return [{ peca: p, partes: [{ eixo: [P(-entre), P(entre)], raio: r, itens: [0] }, { eixo: [P(-(mm - 18)), P(-(mm + 10))], raio: r, itens: [1] }, { eixo: [P(mm - 18), P(mm + 10)], raio: r, itens: [2] }] }];
+    },
+  }),
   'barra-firme-nas-duas-maos': (q) => {
     // cada mão no ponto da barra que segura; as duas pegadas sempre à mesma distância (as mãos não deslizam) e na mesma
     // altura e profundidade (a barra fica na horizontal, de um lado ao outro)

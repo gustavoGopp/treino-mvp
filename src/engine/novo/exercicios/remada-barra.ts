@@ -219,8 +219,20 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     fios: [],
     cargas: [{ massa: MASSA, pos: c }],
     marcas: { barra: c, pegaR: [-X(), c[1], c[2]], pegaL: [X(), c[1], c[2]] },
+    // De três quartos por trás, a barra fica atrás do corpo (na frente das coxas e da barriga, e quem olha está atrás da
+    // pessoa). A pegada é um item só, pintado pela profundidade do meio dela: no fim da puxada, encostada na barriga,
+    // ela empatava com o tronco (que é pintado pela média das partes dele) e ficava por cima do quadril e das coxas, e
+    // passava 7 cm à frente da perna de longe. O corpo inteiro vem para a frente dela na pintura (os quatro membros
+    // juntos, para nada mudar entre eles); as mangas e as anilhas, fora do corpo, continuam como estão (a regra
+    // remada-barra-pegada-pintada-no-lugar mede, nos dois lados e nas duas vistas).
+    viesNaVista: { quinaTras: { corpo: VIES_NA_QUINA_TRAS, pernaR: VIES_NA_QUINA_TRAS, pernaL: VIES_NA_QUINA_TRAS, bracoR: VIES_NA_QUINA_TRAS, bracoL: VIES_NA_QUINA_TRAS } },
   };
 }
+/**
+ * Quanto o corpo vem para a frente da barra na pintura, de três quartos por trás (cm de profundidade): o bastante para
+ * passar a pegada, que chegava a 7 cm à frente da perna de longe, com 3 cm de folga.
+ */
+const VIES_NA_QUINA_TRAS = 10;
 const mix3 = (a: V3, b: V3, u: number): V3 => [mix(a[0], b[0], u), mix(a[1], b[1], u), mix(a[2], b[2], u)];
 
 export const remadaBarra: Exercicio = {

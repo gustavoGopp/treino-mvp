@@ -52,7 +52,8 @@
   {"id": "escapulas-se-juntam", "pede": "no fim as escápulas se juntam", "selo": "desenho", "fonte": "halteres"},
   {"id": "pegada-um-pouco-mais-aberta-que-os-ombros", "pede": "pegada um pouco mais aberta que os ombros", "selo": "consenso", "fonte": "ficha"},
   {"id": "barra-firme-nas-duas-maos", "pede": "as duas mãos seguram a barra, que se move inteira (as mãos não deslizam nela e ela fica na horizontal)", "selo": "consenso", "fonte": "objetos"},
-  {"id": "barra-livre-das-pernas", "pede": "a barra sobe sem encostar nas coxas nem nos joelhos", "selo": "consenso", "fonte": "desenho"}
+  {"id": "barra-livre-das-pernas", "pede": "a barra sobe sem encostar nas coxas nem nos joelhos", "selo": "consenso", "fonte": "desenho"},
+  {"id": "remada-barra-pegada-pintada-no-lugar", "pede": "a barra fica na frente das coxas e da barriga: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "e1", "instante": 1, "titulo": "Arredondar a lombar", "vista": "lateral", "oQueMuda": "a lombar e a parte de cima das costas curvam", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
