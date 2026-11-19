@@ -10329,9 +10329,16 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo na frente das canelas e atrás dos pés que ficam na frente dele, o encosto atrás das costas e as mãos nas alças (consenso)",
+    "medido": "anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 1/20 (quina, técnica, quadro 36); quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 1/6 (quina, técnica, quadro 84); quina perna esquerda 2/52 (quina, técnica, quadro 84); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0,1 cm do meio da alça, também nos erros (lateral, erro \"Joelho fora do eixo\", u = 0, mão direita)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "assento.amassa, lombar.sentado, pescoco.compensa, maos.prot, rolo.amassa, pe.flexaoPlantar, placas",
+    "medido": "assento.amassa, lombar.sentado, pescoco.compensa, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -10637,9 +10644,16 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo atrás das canelas (pintado por baixo delas), o encosto atrás das costas e as mãos nas alças (consenso)",
+    "medido": "anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 0/20; quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 3/3 (quina, técnica, quadro 0); quina perna esquerda 2/2 (quina, técnica, quadro 42); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0 cm do meio da alça, também nos erros",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "assento.amassa, lombar.sentado, pescoco.compensa, maos.naAlca, maos.prot, rolo.amassa, pe.flexaoPlantar, placas",
+    "medido": "assento.amassa, lombar.sentado, pescoco.compensa, maos.naAlca, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },

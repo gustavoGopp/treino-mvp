@@ -39,8 +39,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | bulgaro | 270 | 37 | 0 | 3 |
 | bulgaro-peso-corpo | 270 | 35 | 0 | 3 |
 | bulgaro-suspensao | 270 | 38 | 0 | 2 |
-| cadeira-extensora | 270 | 37 | 0 | 1 |
-| cadeira-flexora | 246 | 38 | 0 | 1 |
+| cadeira-extensora | 270 | 38 | 0 | 1 |
+| cadeira-flexora | 246 | 39 | 0 | 1 |
 | caminhada-lateral-mini-band | 564 | 33 | 0 | 4 |
 | coice-caneleira | 240 | 34 | 0 | 3 |
 | coice-elastico | 240 | 35 | 0 | 4 |
@@ -1766,7 +1766,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | quadril encostado no banco: o glúteo no assento e as costas no encosto, parados (o tronco não ajuda) (consenso) | o glúteo e a coxa ficam de 1 a 1 cm dentro do assento; as costas, de 0 a 0 cm do encosto (negativo: afundam) | como a ficha pede | ok |
 | Ficha | as mãos nas alças (consenso) | as mãos ficam a no máximo 0 cm do meio das alças (falta de alcance: 0 cm) | como a ficha pede | ok |
 | Ficha | embaixo, os joelhos bem dobrados, com o pé fora do chão; em cima, quase esticados (consenso) | o joelho vai de 95° (bem dobrado) a 10° (quase esticado); embaixo, o pé fica a 11,6 cm do chão | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.prot, rolo.amassa, pe.flexaoPlantar, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo na frente das canelas e atrás dos pés que ficam na frente dele, o encosto atrás das costas e as mãos nas alças (consenso) | anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 1/20 (quina, técnica, quadro 36); quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 1/6 (quina, técnica, quadro 84); quina perna esquerda 2/52 (quina, técnica, quadro 84); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0,1 cm do meio da alça, também nos erros (lateral, erro "Joelho fora do eixo", u = 0, mão direita) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 367 cm² (padrão); de lado: 356 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -1813,7 +1814,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | sentado e encostado: o glúteo no assento e as costas no encosto, parados (consenso) | o glúteo e a coxa ficam de 1 a 1 cm dentro do assento; as costas, de 0 a 0 cm do encosto (negativo: afundam) | como a ficha pede | ok |
 | Ficha | as mãos fecham nas alças ao lado do assento (desenho) | as mãos ficam a no máximo 0 cm do meio das alças (falta de alcance: 0 cm) | como a ficha pede | ok |
 | Ficha | início com os joelhos quase esticados; fim com os joelhos bem dobrados (consenso) | o joelho vai de 10° (quase esticado) a 115° (bem dobrado) | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.naAlca, maos.prot, rolo.amassa, pe.flexaoPlantar, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo atrás das canelas (pintado por baixo delas), o encosto atrás das costas e as mãos nas alças (consenso) | anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 0/20; quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 3/3 (quina, técnica, quadro 0); quina perna esquerda 2/2 (quina, técnica, quadro 42); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0 cm do meio da alça, também nos erros | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.naAlca, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 67 cm² (padrão); quina: 49 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
