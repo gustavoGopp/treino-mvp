@@ -10,13 +10,22 @@
 //
 // Uso: node scripts/animacao-nova/folha-do-pintor.mjs <ids...>
 //      node scripts/animacao-nova/folha-do-pintor.mjs --piores <n>   (as n animações com mais área pintada errada hoje)
+//      --resumo <arquivo.png>: também a folha-resumo de um lote, numa página só (etapa 2, 19/11/2026): de cada animação,
+//      o pior quadro da folha (o de mais área pintada errada hoje; empate, o que mais muda), hoje × por pares.
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
 
-const args = process.argv.slice(2);
+let args = process.argv.slice(2);
+let arqResumo = null;
+if (args.includes('--resumo')) {
+  const i = args.indexOf('--resumo');
+  arqResumo = args[i + 1];
+  args = [...args.slice(0, i), ...args.slice(i + 2)];
+}
+const resumo = [];
 const TMP = 'node_modules/.tmp/folha-do-pintor';
 mkdirSync(TMP, { recursive: true });
 const { outputFiles } = await build({
@@ -174,6 +183,33 @@ ${linhas.map((l) => `<h2>${l.titulo}</h2><div class="l">${l.pares.map((p) => `<d
   await pg.setContent(html);
   const arq = `${pasta}/${id}.png`;
   await pg.screenshot({ path: arq, fullPage: true });
-  console.log(`${arq}: hoje ${cm2(aA)} (${nA} achados) → por pares ${cm2(aD)} (${nD} achados)`);
+  // para a folha-resumo: o pior quadro desta folha, e quanto muda o quadro que mais muda
+  const todos = linhas.flatMap((l) => l.pares.map((p) => ({ ...p, titulo: l.titulo, rot: l.rotulo(p) })));
+  const pior = todos.reduce((a, p) => (somaArea(p.antes) > somaArea(a.antes) + 1e-9 || (Math.abs(somaArea(p.antes) - somaArea(a.antes)) <= 1e-9 && p.f > a.f) ? p : a));
+  resumo.push({ id, aA, aD, nA, nD, pior, maisMuda: Math.max(...todos.map((p) => p.f)), muda: todos.filter((p) => p.f > 0).length, quadros: todos.length });
+  console.log(`${arq}: hoje ${cm2(aA)} (${nA} achados) → por pares ${cm2(aD)} (${nD} achados); muda ${todos.filter((p) => p.f > 0).length} de ${todos.length} quadros da folha, até ${pc(Math.max(...todos.map((p) => p.f)))}`);
+}
+if (arqResumo) {
+  const W = 300,
+    H = 225;
+  const ach = (l) => (l.length ? `${l.length} achado${l.length > 1 ? 's' : ''}, ${somaArea(l).toFixed(1).replace('.', ',')} cm²` : 'sem achado');
+  const svg = (s) => `<div class="q">${s.replace('<svg ', `<svg style="width:${W}px;height:${H}px" `)}</div>`;
+  const html = `<!doctype html><meta charset="utf-8"><style>${css}
+body{margin:16px;font:14px system-ui,sans-serif;background:#fff;color:#1d2024;width:${3 * (W + 8) + 330}px}
+h1{font-size:20px;margin:0 0 4px}.nota{color:#555;margin:0 0 12px}
+.l{display:flex;gap:10px;align-items:flex-start;border-top:1px solid #d7dde2;padding:8px 0}.t{width:300px;font-size:13px}.t b{font-size:15px}
+figure{margin:0}figcaption{font-size:12px;color:#333}.q{border-radius:6px;overflow:hidden;width:${W}px;height:${H}px}</style>
+<h1>Pintor por pares, ${resumo.length} animações: o pior quadro de cada uma</h1>
+<p class="nota">Em cada linha, o quadro da folha (u = 0, 0,5 e 1, em cada vista e no pior quadro de cada erro) com mais área pintada do jeito errado hoje: o de hoje, o por pares e o que muda (em magenta). À esquerda, a conferência da pintura inteira, hoje e por pares, e quanto o desenho muda. Desenho cinza, tema claro. As folhas completas estão ao lado, uma por animação.</p>
+${resumo
+  .map(
+    (r) => `<div class="l"><div class="t"><b>${r.id}</b><br>${r.pior.titulo}, ${r.pior.rot}<br><br>conferência inteira: hoje ${cm2(r.aA)} (${r.nA} achados) → por pares ${cm2(r.aD)} (${r.nD} achados)<br><br>neste quadro: ${pc(r.pior.f)}<br>na folha: muda ${r.muda} de ${r.quadros} quadros, até ${pc(r.maisMuda).replace('muda ', '')}</div>
+<figure>${svg(r.pior.a)}<figcaption><b>hoje</b>: ${ach(r.pior.antes)}</figcaption></figure><figure>${svg(r.pior.b)}<figcaption><b>por pares</b>: ${ach(r.pior.depois)}</figcaption></figure>${r.pior.url ? `<figure><img class="q" src="${r.pior.url}"><figcaption><b>o que muda</b>, em magenta</figcaption></figure>` : ''}</div>`,
+  )
+  .join('')}`;
+  await pg.setViewportSize({ width: 3 * (W + 8) + 362, height: 900 });
+  await pg.setContent(html);
+  await pg.screenshot({ path: arqResumo, fullPage: true });
+  console.log(`folha-resumo: ${arqResumo}`);
 }
 await nav.close();
