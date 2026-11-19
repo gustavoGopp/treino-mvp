@@ -121,7 +121,20 @@ export type Peca =
    * `pontaNoQuadro`: quando só a ponta do banco importa (o pé de trás do búlgaro apoia nela), quantos centímetros
    * dessa ponta (a de +z) o enquadramento precisa mostrar; o resto do banco pode ser cortado pela borda do quadro.
    */
-  | { t: 'bancoReto'; x0: number; z0: number; pontaNoQuadro?: number }
+  | {
+      t: 'bancoReto';
+      x0: number;
+      z0: number;
+      pontaNoQuadro?: number;
+      /**
+       * `atras` (acréscimo de 19/11, desligado por padrão): quanto o estofado e a estrutura (a viga, os pés, as travessas
+       * e as sapatas) vão para trás na pintura, em cm de profundidade. Cada parte é pintada pela profundidade do meio
+       * dela; com o corpo deitado em cima e as pernas passando na frente do pé do banco, a perna de perto (pintada no
+       * item do corpo, pela média do tronco) ficava atrás do pé e da travessa (o crucifixo com halteres, na auditoria das
+       * fases A e B). Quem usa mede a ordem com uma regra de pintura.
+       */
+      atras?: { estofado: number; estrutura: number };
+    }
   /**
    * `cenario`: a coluna só serve de apoio para a mão (não é o equipamento do exercício). Ela é pintada atrás do corpo,
    * não entra no enquadramento (o quadro a corta em cima) e não aparece de perfil, onde ficaria atrás do tronco.

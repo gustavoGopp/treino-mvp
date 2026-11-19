@@ -44,13 +44,16 @@ function bancoReto(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'bancoR
     tubo = g('tubo'),
     baseL = g('baseLarg') / 2;
   const yBaixo = alt - est;
-  C.estofado([p.x0, yBaixo, p.z0], [0, 0, 1], Y, [1, 0, 0], comp, est, g('larg'));
-  C.tubo([p.x0, yBaixo - tubo / 2, p.z0 - comp / 2 + 6], [p.x0, yBaixo - tubo / 2, p.z0 + comp / 2 - 6], tubo, tubo, M.metal);
+  // `atras`: o estofado e a estrutura vão para trás na pintura (no gerador, dz positivo = mais longe)
+  const oE = p.atras ? { dz: p.atras.estofado } : undefined,
+    oS = p.atras ? { dz: p.atras.estrutura } : undefined;
+  C.estofado([p.x0, yBaixo, p.z0], [0, 0, 1], Y, [1, 0, 0], comp, est, g('larg'), undefined, oE);
+  C.tubo([p.x0, yBaixo - tubo / 2, p.z0 - comp / 2 + 6], [p.x0, yBaixo - tubo / 2, p.z0 + comp / 2 - 6], tubo, tubo, M.metal, oS);
   for (const s of [-1, 1]) {
     const z = p.z0 + s * (comp / 2 - 16);
-    C.tubo([p.x0, tubo, z], [p.x0, yBaixo - tubo, z], tubo, tubo, M.metal);
-    C.tubo([p.x0 - baseL, tubo / 2, z], [p.x0 + baseL, tubo / 2, z], tubo, tubo, M.metal);
-    for (const sx of [-1, 1]) C.cilindro([p.x0 + sx * (baseL - 2), 0, z], [p.x0 + sx * (baseL - 2), 1.2, z], 3.2, M.borracha, { lados: 10 });
+    C.tubo([p.x0, tubo, z], [p.x0, yBaixo - tubo, z], tubo, tubo, M.metal, oS);
+    C.tubo([p.x0 - baseL, tubo / 2, z], [p.x0 + baseL, tubo / 2, z], tubo, tubo, M.metal, oS);
+    for (const sx of [-1, 1]) C.cilindro([p.x0 + sx * (baseL - 2), 0, z], [p.x0 + sx * (baseL - 2), 1.2, z], 3.2, M.borracha, { lados: 10, ...oS });
   }
   if (comSombra) C.sombra(p.x0, p.z0, baseL, comp / 2 + 8, 0.18);
 }

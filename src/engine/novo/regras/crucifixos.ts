@@ -5,9 +5,13 @@
 import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
+import { crucifixoHalteres } from '../exercicios/crucifixo-halteres';
 import type { Quadro } from '../movimento';
 import { obj } from '../tabelas';
 import { dist, dot, norm, sub } from '../vec';
+import type { V3 } from '../vec';
+import { regraDePintura } from './ordem-de-pintura';
+import type { ParteDaPeca } from './ordem-de-pintura';
 
 const ultimo = <T>(q: T[]) => q[q.length - 1]!;
 
@@ -17,7 +21,45 @@ function bancoRetoDo(q: Quadro): { x0: number; z0: number } | undefined {
   return p && p.t === 'bancoReto' ? { x0: p.x0, z0: p.z0 } : undefined;
 }
 
+/**
+ * As partes do banco reto, na ordem em que o desenho realista as pinta (bancoReto, em ../equipamento.ts): o estofado, a
+ * viga embaixo dele e, em cada ponta (a de −z e a de +z), o pé (a coluna), a travessa do chão e as duas sapatas.
+ */
+export function partesDoBancoReto(x0: number, z0: number): ParteDaPeca[] {
+  const g = (id: string) => obj('bancoReto', id);
+  const comp = g('comp'),
+    est = g('estofado'),
+    tubo = g('tubo'),
+    baseL = g('baseLarg') / 2,
+    yBaixo = g('altura') - est;
+  const E: [V3, V3, V3] = [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+  ];
+  const caixa = (o: V3, meias: V3, i: number): ParteDaPeca => ({ eixo: [], raio: 0, caixa: { o, e: E, meias }, itens: [i] });
+  const out = [caixa([x0, yBaixo + est / 2, z0], [g('larg') / 2, est / 2, comp / 2], 0), caixa([x0, yBaixo - tubo / 2, z0], [tubo / 2, tubo / 2, comp / 2 - 6], 1)];
+  [-1, 1].forEach((s, k) => {
+    const z = z0 + s * (comp / 2 - 16),
+      i = 2 + 4 * k;
+    out.push(caixa([x0, yBaixo / 2, z], [tubo / 2, yBaixo / 2 - tubo, tubo / 2], i), caixa([x0, tubo / 2, z], [baseL, tubo / 2, tubo / 2], i + 1));
+    [-1, 1].forEach((sx, j) => out.push(caixa([x0 + sx * (baseL - 2), 0.6, z], [3.2, 0.6, 3.2], i + 2 + j)));
+  });
+  return out;
+}
+
 export const REGRAS_CRUCIFIXOS: Record<string, Regra> = {
+  // O banco reto (o estofado, a viga, os pés, as travessas e as sapatas) contra o corpo, nos dois lados, em cada vista do
+  // guia (acréscimo de 19/11, auditoria das fases A e B): de três quartos, a perna de perto, que passa na frente do pé do
+  // banco (27 cm mais perto de quem olha), era pintada atrás dele.
+  'crucifixo-halteres-banco-pintado-no-lugar': regraDePintura({
+    exercicio: () => crucifixoHalteres,
+    nome: 'o banco',
+    peca: (q) => {
+      const p = q.pecas?.find((x) => x.t === 'bancoReto');
+      return p && p.t === 'bancoReto' ? [{ peca: p, partes: partesDoBancoReto(p.x0, p.z0) }] : [];
+    },
+  }),
   'crucifixo-cotovelo-fixo': (q) => {
     const c = q.flatMap((x) => [x.esq.lado.R.ang.cotovelo, x.esq.lado.L.ang.cotovelo]);
     const [a, b] = faixa(c);
