@@ -4,6 +4,8 @@
 // alavanca agora, o do começo e a distância do eixo ao rolo).
 import { desenharBoneco, formaDoBoneco, pontosDoBoneco } from '../boneco';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
+import { TOL_CONTATO } from '../conferir-pintura';
+import type { Anel } from '../corpo3d';
 import type { Regra } from '../conferir-util';
 import { VISTAS, casco, contorno, naTela } from '../desenho';
 import type { IdVista, Item, P2 } from '../desenho';
@@ -11,11 +13,14 @@ import { equipamentoRealista } from '../equipamento';
 import type { Esq } from '../esqueleto';
 import { mesaFlexora } from '../exercicios/mesa-flexora';
 import type { Quadro } from '../movimento';
+import { PINTOR_POR_PARES_LIGADO } from '../pintor-ligado';
+import { ordenarPorPares, remendoDe } from '../pintor-por-pares';
+import type { Remendo } from '../pintor-por-pares';
 import { MAT } from '../realista/base.mjs';
 import { geometriaDaMesaFlexora } from '../pecas-de-cena/mesa-flexora';
 import type { PlanoDoEstofado } from '../pecas-de-cena/mesa-flexora';
 import { obj } from '../tabelas';
-import { add, dist, dot, mul, sub } from '../vec';
+import { add, dist, dot, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 
 const rad = Math.PI / 180;
@@ -47,20 +52,17 @@ function noRolo(q: Quadro): { folga: number; ponto: V3 } {
   return melhor;
 }
 
-/* ============ os pés por cima do rolo, onde ficam na frente dele (correção de 19/11/2026, a auditoria da fase C) ============ */
+/* ============ os pés contra o rolo, pelos dois lados (correções de 19/11/2026: a auditoria da fase C e o furo do recorte) ============ */
 
-/** O ponto está dentro do polígono convexo (na tela)? */
-function dentroDe(t: P2, H: P2[]): boolean {
-  let s0 = 0;
-  for (let i = 0; i < H.length; i++) {
-    const a = H[i]!,
-      b = H[(i + 1) % H.length]!;
-    const c = (b[0] - a[0]) * (t[1] - a[1]) - (b[1] - a[1]) * (t[0] - a[0]);
-    if (Math.abs(c) < 1e-9) continue;
-    if (s0 && Math.sign(c) !== s0) return false;
-    s0 = Math.sign(c);
+/** O ponto está dentro do polígono (na tela; par ou ímpar, serve ao côncavo)? */
+function dentroDe(t: P2, P: P2[]): boolean {
+  let d = false;
+  for (let i = 0, j = P.length - 1; i < P.length; j = i++) {
+    const a = P[i]!,
+      b = P[j]!;
+    if (a[1] > t[1] !== b[1] > t[1] && t[0] < ((b[0] - a[0]) * (t[1] - a[1])) / (b[1] - a[1]) + a[0]) d = !d;
   }
-  return H.length >= 3;
+  return d;
 }
 /** A distância de um ponto à borda de um casco convexo na tela (positiva = dentro). */
 function dentroDoCasco(t: P2, H: P2[]): number {
@@ -79,18 +81,53 @@ function dentroDoCasco(t: P2, H: P2[]): number {
   }
   return menor;
 }
-/** A ordem de pintura de um item (camada, depois profundidade; no empate, o equipamento vem antes do Boneco). */
+/** A ordem de pintura de um item no pintor de hoje (camada, depois profundidade; no empate, o equipamento vem antes do Boneco). */
 const chave = (it: { camada: number; d: number }) => it.camada * 1e6 + it.d;
 const caixaNaTela = (P: P2[]) => [Math.min(...P.map((p) => p[0])), Math.min(...P.map((p) => p[1])), Math.max(...P.map((p) => p[0])), Math.max(...P.map((p) => p[1]))];
+/** Um ponto dentro da pele de uma parte (pela seção oval de cada anel, entre dois anéis vizinhos)? */
+function naParte(p: V3, aneis: Anel[]): boolean {
+  for (let i = 0; i + 1 < aneis.length; i++) {
+    const A = aneis[i]!,
+      B = aneis[i + 1]!;
+    const ab = sub(B.c, A.c),
+      L2 = dot(ab, ab);
+    if (L2 < 1e-6) continue;
+    const t = dot(sub(p, A.c), ab) / L2;
+    if (t < 0 || t > 1) continue;
+    const c = add(A.c, mul(ab, t)),
+      x = norm(add(A.x, mul(sub(B.x, A.x), t))),
+      z = norm(add(A.z, mul(sub(B.z, A.z), t)));
+    const d = sub(p, c),
+      u = dot(d, x),
+      w = dot(d, z);
+    const a = A.a + (B.a - A.a) * t,
+      fb = w >= 0 ? A.f + (B.f - A.f) * t : A.b + (B.b - A.b) * t;
+    if (a > 1e-6 && fb > 1e-6 && (u / a) ** 2 + (w / fb) ** 2 <= 1) return true;
+  }
+  return false;
+}
+
+/** Por parte (canela e pé de cada lado): os anéis na frente do rolo e os que ele cobre; os anéis atrás dele e os que aparecem por cima dele. */
+interface PesNoRolo {
+  naFrente: number;
+  porBaixo: number;
+  atras: number;
+  aparece: number;
+}
 
 /**
- * Num quadro e numa vista, como o app pinta (o mesmo Boneco e o mesmo desenho da máquina, com o recorte do rolo): de
- * cada anel das canelas e dos pés, nos dois lados, o ponto mais perto de quem olha (um pouco para dentro); se o raio
- * até quem olha não atravessa o rolo e o ponto cai dentro do rolo na tela (a mais de 0,5 cm da borda dele, para não
- * contar a linha de contato), o anel está na frente do rolo; se o rolo é pintado depois dele e sem recorte ali, o
- * cobre. Devolve, por parte, quantos anéis ficam na frente e quantos o rolo cobre.
+ * Num quadro e numa vista, como o app pinta: o mesmo Boneco e o mesmo desenho da máquina (com o recorte do rolo, os
+ * furos que ele guarda em `Item.fora`), na ordem do pintor que está ligado na animação (./pintor-ligado.ts: o pintor
+ * por pares, com os remendos, ou o de hoje). De cada anel das canelas e dos pés, nos dois lados, o ponto mais perto de
+ * quem olha (um pouco para dentro), quando cai dentro do rolo na tela (a mais de 0,5 cm da borda dele, para não contar
+ * a linha de contato):
+ * - se o raio até quem olha não atravessa o rolo, o anel está na frente dele, e o rolo não pode ficar por cima dele
+ *   ali (pintado depois e sem furo): `porBaixo`;
+ * - se atravessa, o anel está atrás do rolo, e não pode aparecer por cima dele (por um furo do recorte, ou pintado
+ *   depois): `aparece`. Não conta quando outra parte do corpo fica entre o rolo e quem olha naquele ponto da tela (é
+ *   ela que aparece, e não o anel).
  */
-function pesContraORolo(x: Quadro, vista: IdVista): Record<string, { naFrente: number; porBaixo: number }> {
+function pesContraORolo(x: Quadro, vista: IdVista): Record<string, PesNoRolo> {
   const cam = VISTAS[vista];
   const r = obj('mesaFlexora', 'roloDiam') / 2,
     c = x.marcas.rolo!;
@@ -101,7 +138,7 @@ function pesContraORolo(x: Quadro, vista: IdVista): Record<string, { naFrente: n
   const noRolo = (p: V3) => p[0] >= a[0] && p[0] <= b[0] && Math.hypot(p[1] - c[1], p[2] - c[2]) <= r;
   const circulo = (o: V3) => Array.from({ length: 24 }, (_, i): P2 => naTela(cam, add(o, [0, r * Math.cos((i * Math.PI) / 12), r * Math.sin((i * Math.PI) / 12)])));
   const H = casco([...circulo(a), ...circulo(b)]);
-  // o item do rolo: o de estofado cuja caixa na tela é a do rolo; o recorte dele, se houver
+  // o item do rolo: o de estofado cuja caixa na tela é a do rolo
   const eq = equipamentoRealista(x.pecas ?? [], cam, 'claro', 'conferencia');
   const cx = caixaNaTela(H);
   let rolo: Item | null = null,
@@ -119,39 +156,72 @@ function pesContraORolo(x: Quadro, vista: IdVista): Record<string, { naFrente: n
   }
   if (!rolo || melhor > 0.25 * (cx[2]! - cx[0]! + cx[3]! - cx[1]!)) throw new Error(`mesa flexora: o rolo não foi achado no desenho da vista ${vista}`);
   const doRolo: Item = rolo;
-  const furos: P2[][] = [];
-  const mascara = /mask="url\(#([^)]+)\)"/.exec(doRolo.s)?.[1];
-  if (mascara) {
-    const def = eq.defs.slice(eq.defs.indexOf(`<mask id="${mascara}"`));
-    for (const m of def.slice(0, def.indexOf('</mask>')).matchAll(/<polygon points="([^"]+)"/g)) furos.push(m[1]!.split(' ').map((xy) => xy.split(',').map(Number) as P2));
-  }
+  const furos = doRolo.fora ?? [];
   const boneco = desenharBoneco(x.esq, cam, { estilo: 'cinza', vies: { ...x.vies, ...x.viesNaVista?.[vista] } });
-  const out: Record<string, { naFrente: number; porBaixo: number }> = {};
-  for (const g of formaDoBoneco(x.esq).grupos) {
+  // a ordem de cada pintura de cada item: com o pintor por pares, a posição na lista dele, e o remendo (o item pintado
+  // de novo, só dentro do recorte); com o de hoje, a camada e a profundidade
+  const pinturas = new Map<Item, { k: number; rec?: Remendo }[]>();
+  if (PINTOR_POR_PARES_LIGADO.has(mesaFlexora.ficha.id))
+    ordenarPorPares([...eq.itens, ...boneco]).forEach((it, k) => {
+      const rec = remendoDe(it);
+      const base = rec?.de ?? it;
+      pinturas.set(base, [...(pinturas.get(base) ?? []), { k, ...(rec ? { rec } : {}) }]);
+    });
+  const ordemNo = (it: Item, t: P2) => {
+    const l = pinturas.get(it);
+    if (!l) return chave(it);
+    let k = -Infinity;
+    for (const o of l) if (o.k > k && (!o.rec || (o.rec.dentro.some((P) => dentroDe(t, P)) && !o.rec.fora.some((P) => dentroDe(t, P))))) k = o.k;
+    return k;
+  };
+  // o rolo num ponto da tela: dentro de um furo, ele não é pintado
+  const roloNo = (t: P2) => (furos.some((P) => dentroDe(t, P)) ? -Infinity : ordemNo(doRolo, t));
+  const forma = formaDoBoneco(x.esq);
+  const todas = forma.grupos.flatMap((g) => g.volumes.map((v) => v.vol.aneis));
+  const out: Record<string, PesNoRolo> = {};
+  for (const g of forma.grupos) {
     if (!g.id.startsWith('perna')) continue;
     for (const v of g.volumes) {
       if (v.nome !== 'canela' && v.nome !== 'pe') continue;
       const fill = `d="${contorno(cam, v.vol, null, true).fill}"`;
       const dela = boneco.filter((it) => it.s.includes(fill));
       if (!dela.length) continue;
-      const ordem = Math.max(...dela.map(chave));
-      const n = { naFrente: 0, porBaixo: 0 };
+      const corpoNo = (t: P2) => Math.max(...dela.map((it) => ordemNo(it, t)));
+      const n: PesNoRolo = { naFrente: 0, porBaixo: 0, atras: 0, aparece: 0 };
       for (const an of v.vol.aneis) {
+        // o ponto da pele mais perto de quem olha (p0) e o mesmo ponto um pouco para dentro (p)
         let p: V3 = an.c,
+          p0: V3 = an.c,
           pd = -1e9;
         for (let i = 0; i < 72; i++) {
           const th = (i * Math.PI) / 36,
             sn = Math.sin(th);
-          const y = add(an.c, add(mul(an.x, an.a * 0.85 * Math.cos(th)), mul(an.z, (sn >= 0 ? an.f : an.b) * 0.85 * sn)));
-          if (dot(y, cam.para) > pd) [p, pd] = [y, dot(y, cam.para)];
+          const y0 = add(an.c, add(mul(an.x, an.a * Math.cos(th)), mul(an.z, (sn >= 0 ? an.f : an.b) * sn)));
+          if (dot(y0, cam.para) > pd) [p0, p, pd] = [y0, add(an.c, mul(sub(y0, an.c), 0.85)), dot(y0, cam.para)];
         }
         const t = naTela(cam, p);
         if (dentroDoCasco(t, H) < 0.5) continue;
-        let atras = false;
-        for (let s = 0.3; s < 150 && !atras; s += 0.5) atras = noRolo(add(p, mul(cam.para, s)));
-        if (atras) continue;
-        n.naFrente++;
-        if (ordem < chave(doRolo) && !furos.some((F) => dentroDe(t, F))) n.porBaixo++;
+        // onde o raio até quem olha entra no rolo (se entra)
+        let entra = -1;
+        for (let s = 0.3; s < 150 && entra < 0; s += 0.5) if (noRolo(add(p, mul(cam.para, s)))) entra = s;
+        if (entra < 0) {
+          n.naFrente++;
+          if (roloNo(t) > corpoNo(t)) n.porBaixo++;
+          continue;
+        }
+        // atrás do rolo: a face do rolo virada para quem olha fica a mais de TOL_CONTATO cm da pele (no contato, onde a
+        // pele encosta no rolo pela beira dele, nada conta, como na conferência da pintura); `sai`: onde o raio sai do
+        // rolo, para quem olha
+        let sai = entra;
+        for (let s = entra; s < 150; s += 0.1) if (noRolo(add(p, mul(cam.para, s)))) sai = s;
+        if (sai - dot(sub(p0, p), cam.para) <= TOL_CONTATO) continue;
+        n.atras++;
+        if (corpoNo(t) < roloNo(t)) continue;
+        // a pele entre o rolo e quem olha (ou encostada nele, a até TOL_CONTATO cm da face dele), nesse ponto da tela: é
+        // ela que aparece
+        let pele = false;
+        for (let s = sai - TOL_CONTATO; s < 150 && !pele; s += 0.2) pele = todas.some((aneis) => naParte(add(p, mul(cam.para, s)), aneis));
+        if (!pele) n.aparece++;
       }
       out[`${v.nome}${g.id.slice(-1)}`] = n;
     }
@@ -161,31 +231,37 @@ function pesContraORolo(x: Quadro, vista: IdVista): Record<string, { naFrente: n
 
 export const REGRAS_MESA_FLEXORA: Record<string, Regra> = {
   'mesa-flexora-pes-por-cima-do-rolo': (q, corpo) => {
-    // em cada vista do exercício e na de cada erro, na técnica e nos erros, nas duas pernas: os anéis das canelas e dos
-    // pés que ficam na frente do rolo e por cima dele na tela não podem ficar por baixo dele na pintura (de cima, no
-    // fim da subida, o rolo era pintado por cima dos calcanhares, que ficam acima dele)
+    // em cada vista do exercício e na de cada erro, na técnica e nos erros, nas duas pernas, pelos dois lados: os anéis
+    // das canelas e dos pés que ficam na frente do rolo e por cima dele na tela não podem ficar por baixo dele na
+    // pintura (de cima, no fim da subida, o rolo era pintado por cima dos calcanhares, que ficam acima dele; a auditoria
+    // de 18/11); e os que ficam atrás dele não podem aparecer por cima dele, nem por um furo do recorte (de cima, no
+    // começo, o furo pelo casco do par de anéis mostrava o pé e a haste, 8 a 24 cm abaixo do rolo; a revisão de 19/11)
     const ex = mesaFlexora;
     const quadros: { x: Quadro; onde: string; vistas: IdVista[] }[] = [];
     q.forEach((x, i) => {
       if (i % 3 === 0 || i === q.length - 1) quadros.push({ x, onde: `técnica, quadro ${i + 1} de ${q.length}`, vistas: ex.vistas as IdVista[] });
     });
     for (const e of ex.ficha.erros) for (const u of [0, 0.25, 0.5, 0.75, 1]) quadros.push({ x: ex.quadro(corpo, u, e.id), onde: `erro "${e.titulo}", u = ${f1(u)}`, vistas: [...new Set([...(ex.vistas as IdVista[]), e.vista as IdVista])] });
-    const pior: Record<string, { naFrente: number; porBaixo: number; onde: string }> = {};
+    const pior: Record<string, PesNoRolo & { onde: string; ondeAtras: string }> = {};
     for (const { x, onde, vistas } of quadros)
       for (const vista of vistas)
         for (const [k, n] of Object.entries(pesContraORolo(x, vista))) {
           const kk = `${vista}|${k}`;
-          const a = pior[kk];
-          if (!a || n.porBaixo > a.porBaixo || (n.porBaixo === a.porBaixo && n.naFrente > a.naFrente)) pior[kk] = { ...n, onde };
+          const a = (pior[kk] ??= { naFrente: 0, porBaixo: -1, atras: 0, aparece: -1, onde, ondeAtras: onde });
+          if (n.porBaixo > a.porBaixo || (n.porBaixo === a.porBaixo && n.naFrente > a.naFrente)) Object.assign(a, { naFrente: n.naFrente, porBaixo: n.porBaixo, onde });
+          if (n.aparece > a.aparece || (n.aparece === a.aparece && n.atras > a.atras)) Object.assign(a, { atras: n.atras, aparece: n.aparece, ondeAtras: onde });
         }
     const NOME: Record<string, string> = { canelaR: 'canela direita', canelaL: 'canela esquerda', peR: 'pé direito', peL: 'pé esquerdo' };
     const txt = Object.entries(pior)
       .map(([k, n]) => {
         const [vista, parte] = k.split('|');
-        return `${VISTAS[vista as IdVista].nome.toLowerCase()}, ${NOME[parte!] ?? parte} ${n.porBaixo} de ${n.naFrente}${n.porBaixo ? ` (${n.onde})` : ''}`;
+        return `${VISTAS[vista as IdVista].nome.toLowerCase()}, ${NOME[parte!] ?? parte}: ${n.porBaixo} de ${n.naFrente}${n.porBaixo ? ` (${n.onde})` : ''}; ${n.aparece} de ${n.atras}${n.aparece ? ` (${n.ondeAtras})` : ''}`;
       })
       .join('; ');
-    return { medido: `anéis pintados por baixo do rolo, de quantos ficam na frente dele e por cima dele na tela (o pior quadro): ${txt}`, ok: Object.values(pior).every((n) => n.porBaixo === 0) };
+    return {
+      medido: `anéis pintados por baixo do rolo, de quantos ficam na frente dele e por cima dele na tela; e anéis que aparecem por cima do rolo (por um furo do recorte ou pela ordem), de quantos ficam atrás dele (o pior quadro de cada, com o pintor ligado na animação): ${txt}`,
+      ok: Object.values(pior).every((n) => n.porBaixo === 0 && n.aparece === 0),
+    };
   },
 
   'mesa-flexora-deitado-no-estofado': (q) => {

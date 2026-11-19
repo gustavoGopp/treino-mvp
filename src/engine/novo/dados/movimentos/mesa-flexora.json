@@ -36,7 +36,7 @@
   { "id": "mesa-flexora-rolo-acima-do-calcanhar", "pede": "o rolo logo acima do calcanhar, atrás da perna, acompanhando a canela sem atravessá-la nem descolar dela", "selo": "consenso", "fonte": "ficha" },
   { "id": "mesa-flexora-amplitude", "pede": "começa com as pernas quase estendidas e dobra até o rolo chegar perto do glúteo", "selo": "consenso", "fonte": "ficha" },
   { "id": "mesa-flexora-pilha-sobe-com-a-alavanca", "pede": "a alavanca gira com a canela e as placas sobem o arco do came (raio × ângulo)", "selo": "consenso", "fonte": "objetos" },
-  { "id": "mesa-flexora-pes-por-cima-do-rolo", "pede": "em cada vista e em cada erro, nas duas pernas: o rolo não é pintado por cima dos pés e das canelas onde eles ficam na frente dele (de cima, no fim, os calcanhares)", "selo": "desenho", "fonte": "desenho" }
+  { "id": "mesa-flexora-pes-por-cima-do-rolo", "pede": "em cada vista e em cada erro, nas duas pernas: o rolo não é pintado por cima dos pés e das canelas onde eles ficam na frente dele (de cima, no fim, os calcanhares), e o que fica atrás dele não aparece por cima dele, nem por um furo do recorte (de cima, no começo, os pés)", "selo": "desenho", "fonte": "desenho" }
  ],
  "erros": [
   { "id": "quadril", "instante": 1, "titulo": "Levantar o quadril", "vista": "lateral", "oQueMuda": "o quadril sobe 9 cm do estofado e a lombar arqueia; o joelho fica no eixo e o peito no estofado", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve" },

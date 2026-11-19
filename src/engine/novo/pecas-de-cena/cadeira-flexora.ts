@@ -20,12 +20,11 @@
 // quem senta é +x (o direito, que a vista de lado mostra, é −x): o came, a alavanca e a torre ficam à esquerda, para não
 // esconder o joelho de quem olha de lado.
 import type { Anel } from '../corpo3d';
-import { casco } from '../desenho';
 import type { P2, Prim } from '../desenho';
 import type { PecaPropria } from '../pecas';
 import { cilindro } from '../pecas';
 import { obj } from '../tabelas';
-import { add, dot, mul, sub } from '../vec';
+import { add, cross, dot, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 
 /**
@@ -127,7 +126,8 @@ export interface OpcoesDaPeca {
    * subida, o pé fica em pé na frente do rolo, e a canela, embaixo dele; o pé e a canela vão juntos na ordem de pintura
    * (num item só, o do corpo), e nenhuma ordem dava as duas coisas. O rolo é pintado por cima das pernas, com um recorte
    * (máscara) do tamanho dessas partes, só nos trechos em que elas estão mesmo na frente dele, medido raio a raio na
-   * vista desenhada: de cada ponto da metade do anel virada para quem olha, um raio até quem olha que não atravessa o rolo.
+   * vista desenhada. Desde a correção de 19/11/2026 (o furo do recorte, `recortarORolo`), faceta por faceta da malha de
+   * cada parte, e a máscara vale também para a haste que atravessa o rolo.
    */
   naFrenteDoRolo?: Anel[][];
 }
@@ -139,11 +139,67 @@ function nomeDoRecorte(t: string): string {
   return `cr${(h >>> 0).toString(36)}`;
 }
 
+/** Um cilindro reto: as pontas do eixo e o raio. */
+export interface Cilindro {
+  a: V3;
+  b: V3;
+  r: number;
+}
+/** O raio que sai de `q` na direção `d` (unitária) atravessa o cilindro? A conta exata (o tubo e as duas tampas). */
+function atravessa(q: V3, d: V3, { a, b, r }: Cilindro): boolean {
+  const L = sub(b, a),
+    comp = Math.hypot(...L),
+    u = mul(L, 1 / comp);
+  const w = sub(q, a),
+    wt = dot(w, u),
+    vt = dot(d, u);
+  const wp = sub(w, mul(u, wt)),
+    vp = sub(d, mul(u, vt));
+  let lo = 0,
+    hi = Infinity;
+  if (Math.abs(vt) < 1e-12) {
+    if (wt < 0 || wt > comp) return false;
+  } else {
+    const s1 = -wt / vt,
+      s2 = (comp - wt) / vt;
+    lo = Math.max(lo, Math.min(s1, s2));
+    hi = Math.min(hi, Math.max(s1, s2));
+  }
+  const A = dot(vp, vp),
+    B = 2 * dot(wp, vp),
+    D = dot(wp, wp) - r * r;
+  if (A < 1e-12) {
+    if (D > 0) return false;
+  } else {
+    const disc = B * B - 4 * A * D;
+    if (disc < 0) return false;
+    const sq = Math.sqrt(disc);
+    lo = Math.max(lo, (-B - sq) / (2 * A));
+    hi = Math.min(hi, (-B + sq) / (2 * A));
+  }
+  return lo <= hi;
+}
+
 /**
- * O recorte do rolo (`OpcoesDaPeca.naFrenteDoRolo`): a máscara que deixa de fora do último item desenhado (o rolo) as
- * partes do corpo que ficam na frente dele nesta vista. `a` e `b`: as pontas do eixo do rolo desenhado; `r`: o raio.
+ * O recorte do rolo (`OpcoesDaPeca.naFrenteDoRolo`): a máscara que deixa de fora do rolo as partes do corpo que ficam
+ * na frente dele nesta vista. `a` e `b`: as pontas do eixo do rolo desenhado; `r`: o raio. Com `haste` (a haste que
+ * atravessa o rolo e o liga à luva, desenhada logo antes dele), a máscara vale também para ela: pelo furo, a pele que
+ * está na frente do rolo aparece sem a haste por cima (ela fica dentro do rolo, atrás da pele que aparece); e a pele
+ * que fica atrás da haste, onde ela sai do rolo, não é furada.
+ *
+ * Correção de 19/11/2026 (o furo do recorte): o furo é feito faceta por faceta da malha de cada parte (entre os anéis i
+ * e i + 1, nos pontos k e k + 1 do anel, e as tampas das pontas), só nas facetas viradas para quem olha cujos cantos
+ * (na pele) têm o caminho livre até quem olha: o raio de cada canto não atravessa o rolo (nem a haste), na conta exata
+ * do cilindro. Antes, o furo era o casco do par de anéis inteiro, decidido por um ponto do anel (o mais perto de quem
+ * olha, na mesa flexora) ou pela metade do anel virada para quem olha, um pouco para dentro da pele (na extensora): na
+ * mesa flexora, de cima, no começo, o casco abria no rolo dois furos em U pelos quais apareciam o pé e a haste, que
+ * ficam 8 a 24 cm abaixo dele. Só entram as facetas que caem na caixa do rolo na tela (fora dela a máscara não tira
+ * nada). Todas vão num caminho só, no mesmo sentido (a regra nonzero as une, sem fresta entre vizinhas). Cada canto sai
+ * 0,4 cm para fora da pele, para o traço do contorno entrar no furo, onde esse ponto também tem o caminho livre (na
+ * beira em que a parte passa para trás do rolo, o furo para na pele e não come a borda do rolo). Os furos ficam também
+ * nos itens (`fora`, na tela), para a conferência da pintura e as regras os verem.
  */
-export function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, r: number, partes: Anel[][], soOMaisPerto = false): void {
+export function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, r: number, partes: Anel[][], haste?: Cilindro): void {
   // a projeção da cena é linear: lida em quatro pontos do próprio rolo (para não mexer na caixa da peça)
   const P0 = C.P(a),
     PX = C.P(add(a, [1, 0, 0])),
@@ -153,63 +209,91 @@ export function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, 
   const tx = col(0),
     ty = col(1),
     // para quem olha (o gerador conta a profundidade para longe)
-    para = mul(col(2), -1);
-  const tela = (p: V3): [number, number] => [P0[0]! + dot(sub(p, a), tx), P0[1]! + dot(sub(p, a), ty)];
-  const L = sub(b, a),
-    comp = Math.hypot(...L),
-    u = mul(L, 1 / comp);
-  const noRolo = (p: V3) => {
-    const d = sub(p, a),
-      t = dot(d, u);
-    return t >= 0 && t <= comp && Math.hypot(...sub(d, mul(u, t))) <= r;
-  };
+    para = norm(mul(col(2), -1));
+  const tela = (p: V3): P2 => [P0[0]! + dot(sub(p, a), tx), P0[1]! + dot(sub(p, a), ty)];
+  const u = norm(sub(b, a));
+  // o raio que sai do ponto para quem olha atravessa o rolo (ou a haste)?
+  const rolo: Cilindro = { a, b, r };
+  const tapado = (q: V3): boolean => atravessa(q, para, rolo) || (!!haste && atravessa(q, para, haste));
   const ponto = (an: Anel, th: number, folga = 0): V3 => {
     const sn = Math.sin(th);
     return add(add(an.c, mul(an.x, (an.a + folga) * Math.cos(th))), mul(an.z, ((sn >= 0 ? an.f : an.b) + folga) * sn));
   };
   const N = 24;
-  // o anel fica na frente do rolo se nenhum ponto da metade dele virada para quem olha tem o rolo no caminho
-  // `soOMaisPerto` (acréscimo de 19/11/2026, a mesa flexora; desligado por padrão): só o ponto do anel mais perto de quem
-  // olha precisa ter o caminho livre, como mede a conferência da pintura (um anel que encosta no rolo pela lateral, com
-  // o alto na frente dele, também sai do rolo)
-  const maisPerto = (an: Anel) => {
-    let m = 0,
-      d = -1e9;
-    for (let i = 0; i < N; i++) {
-      const v = dot(sub(ponto(an, (i * 2 * Math.PI) / N), an.c), para);
-      if (v > d) [m, d] = [i, v];
+  const th = (k: number) => (k * 2 * Math.PI) / N;
+  // a caixa do rolo na tela (as duas tampas), com folga
+  const e1 = norm(cross(u, Math.abs(u[0]) < 0.9 ? X : Y)),
+    e2 = cross(u, e1);
+  const cx = [1e9, 1e9, -1e9, -1e9];
+  for (const o of [a, b])
+    for (let k = 0; k < N; k++) {
+      const t = tela(add(o, add(mul(e1, r * Math.cos(th(k))), mul(e2, r * Math.sin(th(k))))));
+      cx[0] = Math.min(cx[0]!, t[0] - 0.5);
+      cx[1] = Math.min(cx[1]!, t[1] - 0.5);
+      cx[2] = Math.max(cx[2]!, t[0] + 0.5);
+      cx[3] = Math.max(cx[3]!, t[1] + 0.5);
     }
-    return m;
+  const f1 = (n: number) => Math.round(n * 10) / 10;
+  const furos: P2[][] = [];
+  // um furo (uma faceta na tela), se cai na caixa do rolo; todos no mesmo sentido
+  const poe = (T: P2[]) => {
+    if (Math.max(...T.map((t) => t[0])) < cx[0]! || Math.min(...T.map((t) => t[0])) > cx[2]! || Math.max(...T.map((t) => t[1])) < cx[1]! || Math.min(...T.map((t) => t[1])) > cx[3]!) return;
+    let area = 0;
+    for (let j = 0; j < T.length; j++) area += T[j]![0] * T[(j + 1) % T.length]![1] - T[(j + 1) % T.length]![0] * T[j]![1];
+    if (Math.abs(area) > 1e-9) furos.push(area > 0 ? T : [...T].reverse());
   };
-  const naFrente = (an: Anel) => {
-    const so = soOMaisPerto ? maisPerto(an) : -1;
-    for (let i = 0; i < N; i++) {
-      if (so >= 0 && i !== so) continue;
-      const p = ponto(an, (i * 2 * Math.PI) / N);
-      if (dot(sub(p, an.c), para) < 0) continue;
-      // um pouco para dentro, e o raio até quem olha
-      const dentro = sub(an.c, p),
-        n = Math.hypot(...dentro) || 1;
-      const q0 = add(p, mul(dentro, 0.4 / n));
-      for (let s = 0; s <= 150; s += 0.5) if (noRolo(add(q0, mul(para, s)))) return false;
-    }
-    return true;
-  };
-  let furos = '';
   for (const aneis of partes) {
-    const frente = aneis.map(naFrente);
+    // o caminho de cada ponto de cada anel (na pele) até quem olha: livre ou tapado pelo rolo (a pele que afunda no rolo,
+    // no contato, fica tapada); e o canto do furo nesse ponto, na tela: 0,4 cm para fora da pele (o traço do contorno)
+    // quando ali o caminho também é livre, e na pele quando não é (na beira em que a parte passa para trás do rolo, o
+    // furo para na pele e não come a borda do rolo, com o traço dela)
+    const livre = aneis.map((an) => Array.from({ length: N }, (_, k) => !tapado(ponto(an, th(k)))));
+    const canto = aneis.map((an) =>
+      Array.from({ length: N }, (_, k): P2 => {
+        const fora = ponto(an, th(k), 0.4);
+        const t = tela(tapado(fora) ? ponto(an, th(k)) : fora);
+        return [f1(t[0]), f1(t[1])];
+      }),
+    );
     for (let i = 0; i + 1 < aneis.length; i++) {
-      if (!frente[i] || !frente[i + 1]) continue;
-      const pts: P2[] = [];
-      for (const an of [aneis[i]!, aneis[i + 1]!]) for (let j = 0; j < N; j++) pts.push(tela(ponto(an, (j * 2 * Math.PI) / N, 0.4)));
-      furos += `<polygon points="${casco(pts).map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join(' ')}" fill="#000"/>`;
+      const A = aneis[i]!,
+        B = aneis[i + 1]!;
+      const meio = mul(add(A.c, B.c), 0.5);
+      for (let k = 0; k < N; k++) {
+        const k1 = (k + 1) % N;
+        if (!livre[i]![k] || !livre[i]![k1] || !livre[i + 1]![k] || !livre[i + 1]![k1]) continue;
+        const Q = [ponto(A, th(k)), ponto(A, th(k1)), ponto(B, th(k1)), ponto(B, th(k))];
+        // a faceta virada para quem olha (a normal pelas diagonais, para fora da parte)
+        let n = cross(sub(Q[2]!, Q[0]!), sub(Q[3]!, Q[1]!));
+        if (dot(n, sub(mul(add(add(Q[0]!, Q[1]!), add(Q[2]!, Q[3]!)), 0.25), meio)) < 0) n = mul(n, -1);
+        if (dot(n, para) <= 0) continue;
+        poe([canto[i]![k]!, canto[i]![k1]!, canto[i + 1]![k1]!, canto[i + 1]![k]!]);
+      }
+    }
+    // as tampas das pontas (a ponta do pé, o calcanhar), em triângulos do centro do anel, quando viradas para quem olha
+    for (const [i, j] of [
+      [0, 1],
+      [aneis.length - 1, aneis.length - 2],
+    ] as [number, number][]) {
+      const an = aneis[i]!,
+        viz = aneis[j];
+      if (!viz || dot(sub(an.c, viz.c), para) <= 0 || tapado(an.c)) continue;
+      const c = tela(an.c);
+      for (let k = 0; k < N; k++) {
+        const k1 = (k + 1) % N;
+        if (livre[i]![k] && livre[i]![k1]) poe([[f1(c[0]), f1(c[1])], canto[i]![k]!, canto[i]![k1]!]);
+      }
     }
   }
-  const item = C.itens[C.itens.length - 1];
-  if (!furos || !item) return;
-  const id = nomeDoRecorte(furos);
-  C.defs.push(`<mask id="${id}" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><rect x="-2000" y="-2000" width="4000" height="4000" fill="#fff"/>${furos}</mask>`);
-  item.svg = `<g mask="url(#${id})">${item.svg}</g>`;
+  const alvo = C.itens.slice(haste ? -2 : -1);
+  if (!furos.length || !alvo.length) return;
+  const caminho = `<path d="${furos.map((T) => `M${T.map((t) => `${t[0]} ${t[1]}`).join('L')}Z`).join('')}" fill="#000"/>`;
+  const id = nomeDoRecorte(caminho);
+  C.defs.push(`<mask id="${id}" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><rect x="-2000" y="-2000" width="4000" height="4000" fill="#fff"/>${caminho}</mask>`);
+  for (const item of alvo) {
+    item.fora = furos;
+    item.svg = `<g mask="url(#${id})">${item.svg}</g>`;
+  }
 }
 
 /**
@@ -351,9 +435,10 @@ export function cadeiraFlexora(m: CadeiraFlexora, mod: ModeloDaCadeira = FLEXORA
       C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0], ...dzM });
       // a luva do rolo, que corre na alavanca, e a haste que leva o rolo para baixo das pernas
       C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0], ...dzM });
-      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10, ...dzR });
+      const haste: Cilindro = { a: lado(centroRolo, xC - 3), b: lado(centroRolo, -g('roloComp') / 2), r: 1.6 };
+      C.cilindro(haste.a, haste.b, haste.r, M.cromo, { lados: 10, ...dzR });
       C.cilindro(pontaR, pontaL, rRolo, M.estofado, { lados: 18, ...dzR });
-      if (op.naFrenteDoRolo?.length) recortarORolo(C, pontaR, pontaL, rRolo, op.naFrenteDoRolo);
+      if (op.naFrenteDoRolo?.length) recortarORolo(C, pontaR, pontaL, rRolo, op.naFrenteDoRolo, haste);
     },
   };
   const trava: PecaPropria | undefined = mod.trava && op.travaAParte ? { t: 'propria', nome: `trava da ${mod.nome}`, fixa: [m.trava], desenhar: (C, M) => desenharTrava(C, M) } : undefined;

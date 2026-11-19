@@ -53,6 +53,12 @@ export interface Item {
    * item pinta; no equipamento realista, o índice da peça no quadro.
    */
   pp?: MarcaDoPintor;
+  /**
+   * Os furos do item (acréscimo de 19/11/2026): os polígonos, na tela, em que o item não é pintado (a máscara que o
+   * recorte do rolo põe nele, ./pecas-de-cena/cadeira-flexora.ts, `recortarORolo`). Só para a conferência da pintura
+   * e as regras (não entra no desenho: a máscara já está no SVG do item).
+   */
+  fora?: P2[][];
 }
 /** Uma parte do Boneco que um item pinta: o nome do volume, o lado e os anéis (em 3D). */
 export interface ParteDoItem {

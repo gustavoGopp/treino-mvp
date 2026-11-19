@@ -261,12 +261,8 @@ function medirOQuadro(x: Quadro, vista: IdVista, onde: string, c: Contagem): voi
   const eq = equipamentoRealista([movel], cam, "claro", "conferencia");
   const rolo = eq.itens.find((i) => roxo(i.s));
   if (!rolo) return;
-  const mascara = /mask="url\(#([^)]+)\)"/.exec(rolo.s)?.[1];
-  const furos: P2[][] = [];
-  if (mascara) {
-    const def = eq.defs.slice(eq.defs.indexOf(`<mask id="${mascara}"`));
-    for (const m of def.slice(0, def.indexOf("</mask>")).matchAll(/<polygon points="([^"]+)"/g)) furos.push(m[1]!.split(" ").map((xy) => xy.split(",").map(Number) as P2));
-  }
+  // os furos do recorte (cada um convexo: uma faceta da malha do pé, na tela), que a peça guarda no item
+  const furos: P2[][] = rolo.fora ?? [];
   const recortado = (t: P2) => furos.some((H) => dentroDe(t, H));
   const u = norm(sub(b, a)),
     comp = dist(a, b);

@@ -228,7 +228,7 @@ function desenhar(chave: string | null, cam: Camera, id: string, monta: (C: Cena
   });
   monta(C);
   // a sombra (profundidade enorme no gerador) vai para a camada do chão; a caixa da peça entra no primeiro item
-  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}), ...(it.g3 ? { g3: it.g3 } : {}) }));
+  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}), ...(it.g3 ? { g3: it.g3 } : {}), ...(it.fora ? { fora: it.fora } : {}) }));
   const out = { itens, defs: C.defs.join('') };
   if (chave) GUARDADO.set(chave, out);
   return out;

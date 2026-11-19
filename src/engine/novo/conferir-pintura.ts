@@ -15,6 +15,10 @@
 //    à frente da outra, medido ao longo do raio; a pele que afunda dentro da peça (o glúteo no assento) é contato, e
 //    não conta; a mão não conta contra a peça que ela segura (a pegada a até RAIO_DA_PEGADA cm da peça). Um achado é
 //    uma parte do corpo com pelo menos AREA_MINIMA cm² pintados do jeito errado contra uma peça, num quadro e numa vista.
+//    Os furos de uma peça (acréscimo de 19/11/2026: a máscara do recorte do rolo, que a peça guarda em `Item.fora`)
+//    contam: dentro deles a peça não é pintada por cima de nada, e a pele que aparece por um furo estando atrás da peça
+//    é achado ('corpo-por-cima'), fora da beira do furo (um ponto da grade), por onde o furo passa da pele de propósito
+//    para mostrar o traço do contorno. Antes, a conferência não via a máscara.
 // 2) Fios dentro do corpo. Cabos, fitas, cordas e elásticos (os fios que a conferência declara, `prims` do tipo `fio`, e
 //    as linhas que o desenho traça, fora as de detalhe que correm sobre a superfície de um sólido da própria peça):
 //    pontos a cada meio centímetro, e quanto cada um entra na pele de cada parte do corpo. Conta o que passa de
@@ -468,10 +472,45 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
       for (let s = 0; s < N; s++) triangulo(c, anel[s]!, anel[(s + 1) % N]!, vi, k);
     }
   });
+  // os furos de uma peça (a máscara que o recorte do rolo põe nela, `Item.fora`; acréscimo de 19/11/2026), na grade:
+  // dentro deles a peça não é pintada (nem no remendo dela, que leva a mesma máscara), mas continua onde está. 1 = no
+  // furo; 2 = na beira dele (a um ponto da grade da borda): ali o furo passa da pele de propósito, para mostrar o traço do
+  // contorno, e o que aparece é o traço, que a grade não vê (a pele que aparece por um furo só conta do lado de dentro)
+  let furo: Uint8Array | null = null;
+  const furosDe = new Map<number, Uint8Array>();
+  const furosNaGrade = (F: P2[][]): Uint8Array => {
+    const m = new Uint8Array(n);
+    for (const P of F) {
+      const xs = P.map((p) => p[0]),
+        ys = P.map((p) => p[1]);
+      const i0 = Math.max(0, Math.floor((Math.min(...xs) - x0) / h)),
+        i1 = Math.min(W - 1, Math.ceil((Math.max(...xs) - x0) / h)),
+        j0 = Math.max(0, Math.floor((Math.min(...ys) - y0) / h)),
+        j1 = Math.min(H - 1, Math.ceil((Math.max(...ys) - y0) / h));
+      for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) if (dentroDoPoligono(x0 + (i + 0.5) * h, y0 + (j + 0.5) * h, P)) m[j * W + i] = 1;
+    }
+    for (let ix = 0; ix < n; ix++) {
+      if (!m[ix]) continue;
+      const i = ix % W,
+        j = Math.floor(ix / W);
+      for (let dj = -1; dj <= 1 && m[ix] === 1; dj++)
+        for (let di = -1; di <= 1; di++) {
+          const a = i + di,
+            b = j + dj;
+          if (a < 0 || b < 0 || a >= W || b >= H || !m[b * W + a]) {
+            m[ix] = 3;
+            break;
+          }
+        }
+    }
+    for (let ix = 0; ix < n; ix++) if (m[ix] === 3) m[ix] = 2;
+    return m;
+  };
   // as peças: o item de maior ordem que cobre o ponto (eK, a entrada dele e qual) e a peça mais perto de quem olha
-  // (eF, a entrada e a saída dela e qual)
+  // (eF, a entrada e a saída dela e qual); num furo, a peça não cobre o ponto, mas pode estar na frente da pele que
+  // aparece por ele (o achado 'corpo-por-cima')
   const marca = (ix: number, idx: number, ks: Ordem[], entra: number) => {
-    const k = ks.length === 1 && !ks[0]!.rec ? ks[0]!.k : kNo(ks, ix);
+    const k = furo?.[ix] ? -Infinity : ks.length === 1 && !ks[0]!.rec ? ks[0]!.k : kNo(ks, ix);
     if (k > eK[ix]!) {
       eK[ix] = k;
       eKz[ix] = entra;
@@ -485,6 +524,8 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
   const caixaNaGrade = (xa: number, ya: number, xb: number, yb: number) => [Math.max(0, Math.floor((xa - x0) / h)), Math.min(W - 1, Math.ceil((xb - x0) / h)), Math.max(0, Math.floor((ya - y0) / h)), Math.min(H - 1, Math.ceil((yb - y0) / h))] as const;
   eq.forEach(({ it, forma: f }, idx) => {
     const k = ordens(it);
+    furo = it.fora?.length ? furosNaGrade(it.fora) : null;
+    if (furo) furosDe.set(idx, furo);
     if (f.t === 'solido') {
       // o sólido convexo: na tela, o contorno dele (o casco dos cantos); a entrada do raio é a face da frente mais perto
       const s = solidoNaTela(it, f, cam);
@@ -590,6 +631,7 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
     } else if (!pecaPorCima && pecaNaFrente) {
       tipo = 'corpo-por-cima';
       idx = eFi[ix]!;
+      if (furosDe.get(idx)?.[ix] === 2) continue;
       vi = vT[ix]!;
       frente = eF[ix]! - zF[ix]!;
     } else continue;

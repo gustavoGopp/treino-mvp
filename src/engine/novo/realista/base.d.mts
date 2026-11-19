@@ -33,7 +33,16 @@ export type Geometria3d =
   | { placa: V3[] };
 export interface CenaRealista {
   /** Peças desenhadas até agora: profundidade (maior = mais longe) e o SVG de cada uma (e a forma 3D, quando há). */
-  itens: { z: number; svg: string; g3?: Geometria3d }[];
+  itens: {
+    z: number;
+    svg: string;
+    g3?: Geometria3d;
+    /**
+     * Os furos de uma máscara posta no item (acréscimo de 19/11/2026, o recorte do rolo, ../pecas-de-cena/cadeira-flexora.ts):
+     * os polígonos, na tela, em que o item não é pintado. Só para a conferência da pintura (não entra no desenho).
+     */
+    fora?: [number, number][][];
+  }[];
   defs: string[];
   /** Um ponto do mundo na tela: [x, y, profundidade]. */
   P(p: V3): V3;

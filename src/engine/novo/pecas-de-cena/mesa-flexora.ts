@@ -25,6 +25,7 @@ import type { PecaPropria } from '../pecas';
 import { cilindro } from '../pecas';
 import { obj } from '../tabelas';
 import { recortarORolo } from './cadeira-flexora';
+import type { Cilindro } from './cadeira-flexora';
 import { add, mul } from '../vec';
 import type { V3 } from '../vec';
 
@@ -52,6 +53,10 @@ export interface MesaFlexora {
    * o Boneco as desenha) que o rolo não cobre onde elas ficam na frente dele, o mesmo recorte do rolo da cadeira
    * extensora (`recortarORolo`, ./cadeira-flexora.ts). De cima, no fim da subida, o calcanhar fica acima do rolo e o
    * passa um pouco, mas o rolo entra na ordem de pintura acima do corpo (os pés vão no item do corpo) e o cobria.
+   * Correção de 19/11/2026 (o furo do recorte): o furo é feito faceta por faceta da malha do pé (antes, o casco do par de
+   * anéis, decidido pelo ponto do anel mais perto de quem olha, abria de cima, no começo, furos em U por onde apareciam
+   * o pé e a haste, que ficam abaixo do rolo), e a máscara vale também para a haste (pelo furo, ela aparecia por cima
+   * do pé no erro "Rolo no lugar errado").
    */
   naFrenteDoRolo?: Anel[][];
   /**
@@ -228,9 +233,10 @@ export function mesaFlexora(m: MesaFlexora) {
       C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0] });
       // a luva do rolo, que corre na alavanca, e a haste que leva o rolo para cima das pernas
       C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0] });
-      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10, ...(m.hasteAtras ? { dz: m.hasteAtras } : {}) });
+      const haste: Cilindro = { a: lado(centroRolo, xC - 3), b: lado(centroRolo, -g('roloComp') / 2), r: 1.6 };
+      C.cilindro(haste.a, haste.b, haste.r, M.cromo, { lados: 10, ...(m.hasteAtras ? { dz: m.hasteAtras } : {}) });
       C.cilindro(add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
-      if (m.naFrenteDoRolo?.length) recortarORolo(C, add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, m.naFrenteDoRolo, true);
+      if (m.naFrenteDoRolo?.length) recortarORolo(C, add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, m.naFrenteDoRolo, haste);
     },
   };
   return { prims, fixa, movel, eixo: G.eixo, centroRolo, subida, coxa: G.coxa, peito: G.peito, pegadores: G.pegadores, extremos: { zTras, zFrente, xDireita: -meiaLarg - 6, xEsquerda: xT1 + 2 } };
