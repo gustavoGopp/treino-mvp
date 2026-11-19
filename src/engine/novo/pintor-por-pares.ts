@@ -2,7 +2,9 @@
 // ./pintor-ligado.ts, depois que o Gustavo aprova a folha de antes e depois de cada uma
 // (scripts/animacao-nova/folha-do-pintor.mjs); fora da lista, o desenho é o de hoje. Etapa 1 (19/11): o mesmo resultado
 // do protótipo do estudo, quadro a quadro, com menos conta. Etapa 2 (19/11): a folga do recorte corrigida e o primeiro
-// lote ligado (ver as duas etapas no relatório). Testes: tests/unit/pintor-por-pares.test.ts.
+// lote ligado (ver as duas etapas no relatório). Lote 2 (19/11): o ajuste do ciclo (`pecaComPeca` e
+// `contatoNoRemendo`), medido e desligado, porque muda o desenho de três animações já aprovadas. Testes:
+// tests/unit/pintor-por-pares.test.ts.
 //
 // O pintor de hoje (`pintar`, em ./desenho.ts) ordena itens inteiros por uma profundidade só: cada sólido da peça pelo
 // meio dele (mais o `dz`), cada grupo do Boneco pela média das partes (mais o `vies`). Uma peça comprida, ou um corpo
@@ -45,8 +47,22 @@ export interface OpcoesDoPintor {
   remendos: boolean;
   /** O contato (o ponto escondido a até `tolerancia` cm do outro, ou dentro dele) não decide nada: muda menos desenho. */
   contato: boolean;
+  /**
+   * Peça com peça (lote 2, 19/11/2026; desligado, à espera do Gustavo): 'caixa' = fixas na ordem de hoje quando as
+   * caixas se cruzam na tela (o de sempre); 'contorno' = só quando os contornos se cruzam de verdade (com a folga do
+   * traço, FOLGA_ENTRE_PECAS): as que só se cruzam pela caixa trocam de lugar sem mudar o desenho.
+   */
+  pecaComPeca: 'caixa' | 'contorno';
+  /**
+   * O remendo de uma regra que um ciclo largou (lote 2; desligado, à espera do Gustavo): quando o corpo está na frente
+   * de uma peça (a regra decidida) e o ciclo o deixa embaixo dela, o remendo do corpo cobre também os trechos em que
+   * ele está na frente encostado na peça (o contato, que não decide a ordem). É o que a ordem decidida pintaria.
+   */
+  contatoNoRemendo: boolean;
 }
-export const PADRAO: OpcoesDoPintor = { passo: 1, tolerancia: 1, areaMinima: 1, remendos: true, contato: true };
+export const PADRAO: OpcoesDoPintor = { passo: 1, tolerancia: 1, areaMinima: 1, remendos: true, contato: true, pecaComPeca: 'caixa', contatoNoRemendo: false };
+/** Folga (cm) para os contornos de duas peças se cruzarem na tela: o traço de cada uma passa um pouco da forma. */
+const FOLGA_ENTRE_PECAS = 1;
 /** Folga do recorte em volta de cada trecho do corpo (cm): o traço do contorno do Boneco cabe dentro dela. */
 export const FOLGA_DO_RECORTE = 1.5;
 /** A mão não decide nada contra a peça que segura (a que passa a até 4 cm da pegada; da mesma peça, até 12 cm). */
@@ -456,6 +472,51 @@ function cascoDaForma(f: Forma, cam: Camera): P2[] {
   for (const p of P) for (let k = 0; k < 8; k++) out.push([p[0] + f.r * Math.cos((k * Math.PI) / 4), p[1] + f.r * Math.sin((k * Math.PI) / 4)]);
   return casco(out);
 }
+/**
+ * O contorno de uma forma na tela, em pedaços convexos: o sólido e a placa, o casco (o sólido é convexo: a forma dele é
+ * a interseção dos planos); a esfera, um polígono de 16 lados; o fio, o casco de cada trecho com a largura do traço.
+ */
+function contornoDaForma(f: Forma, cam: Camera): P2[][] {
+  if (f.t !== 'fio') return [cascoDaForma(f, cam)];
+  const P = f.pts.map((p): P2 => [dot(p, cam.dir), -dot(p, cam.cima)]);
+  const roda = (p: P2) => Array.from({ length: 8 }, (_, k): P2 => [p[0] + f.r * Math.cos((k * Math.PI) / 4), p[1] + f.r * Math.sin((k * Math.PI) / 4)]);
+  const out: P2[][] = [];
+  for (let i = 0; i + 1 < P.length; i++) out.push(casco([...roda(P[i]!), ...roda(P[i + 1]!)]));
+  return out.length || !P.length ? out : [casco(roda(P[0]!))];
+}
+/**
+ * Se dois polígonos convexos ficam a menos de `folga` um do outro, pelos eixos separadores (a normal de cada lado dos
+ * dois). Na dúvida (dois cantos que se olham na diagonal), diz que se cruzam: a ordem de hoje fica.
+ */
+function convexosSeCruzam(A: P2[], B: P2[], folga: number): boolean {
+  for (const P of [A, B])
+    for (let i = 0; i < P.length; i++) {
+      const p = P[i]!,
+        q = P[(i + 1) % P.length]!;
+      const nx = q[1] - p[1],
+        ny = p[0] - q[0],
+        l = Math.hypot(nx, ny);
+      if (l < 1e-9) continue;
+      let a0 = Infinity,
+        a1 = -Infinity,
+        b0 = Infinity,
+        b1 = -Infinity;
+      for (const r of A) {
+        const s = (r[0] * nx + r[1] * ny) / l;
+        a0 = Math.min(a0, s);
+        a1 = Math.max(a1, s);
+      }
+      for (const r of B) {
+        const s = (r[0] * nx + r[1] * ny) / l;
+        b0 = Math.min(b0, s);
+        b1 = Math.max(b1, s);
+      }
+      if (b0 - a1 > folga || a0 - b1 > folga) return false;
+    }
+  return true;
+}
+/** Se os contornos de duas peças (em pedaços convexos) se cruzam; um contorno vazio cruza tudo (a ordem de hoje fica). */
+const contornosSeCruzam = (A: P2[][], B: P2[][], folga: number) => !A.length || !B.length || A.some((a) => B.some((b) => !a.length || !b.length || convexosSeCruzam(a, b, folga)));
 function pecaNaGrade(G: Grade, cam: Camera, f: Forma): PecaNaGrade | null {
   const { x0, y0, h, W, H } = G;
   const cx = caixaDaForma(f, cam);
@@ -660,6 +721,8 @@ interface Par {
   atras: Map<number, number>;
   /** Se os dois cobrem algum ponto em comum. */
   cruzam: boolean;
+  /** Por trecho: células em que o corpo está na frente, mas encostado na peça (só com `contatoNoRemendo`). */
+  encostado?: Map<number, number>;
 }
 export interface Medida {
   /** Quantos pares decididos pela geometria, quantos ciclos desfeitos, quantos remendos. */
@@ -860,7 +923,10 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item
               if (dif > o.tolerancia) {
                 let v = encostou[kk]!;
                 if (!v) encostou[kk] = v = encosta(ig, jg, dir[0] * X + cima[0] * Y + para[0] * zp, dir[1] * X + cima[1] * Y + para[1] * zp, dir[2] * X + cima[2] * Y + para[2] * zp) ? 1 : 2;
-                if (v === 1) continue;
+                if (v === 1) {
+                  if (o.contatoNoRemendo) (par.encostado ??= new Map()).set(t, (par.encostado.get(t) ?? 0) + 1);
+                  continue;
+                }
               } else if (distanciaAForma(x.forma!, dir[0] * X + cima[0] * Y + para[0] * zc, dir[1] * X + cima[1] * Y + para[1] * zc, dir[2] * X + cima[2] * Y + para[2] * zc) <= o.tolerancia) continue;
             }
             if (dif > o.tolerancia) {
@@ -887,6 +953,13 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item
     if (!a.cx || !b.cx) return true;
     return a.cx[0] < b.cx[2] && b.cx[0] < a.cx[2] && a.cx[1] < b.cx[3] && b.cx[1] < a.cx[3];
   };
+  // o contorno de cada peça na tela, em pedaços convexos (só com pecaComPeca 'contorno', e só das que se cruzam pela caixa)
+  const contornos = new Map<number, P2[][]>();
+  const contornoDe = (k: number) => {
+    let c = contornos.get(k);
+    if (!c) contornos.set(k, (c = contornoDaForma(nos[k]!.forma!, cam)));
+    return c;
+  };
   for (let a = 0; a < N; a++)
     for (let b = a + 1; b < N; b++) {
       const A = nos[a]!,
@@ -894,7 +967,8 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item
       // o Boneco entre si, peça com peça (que se cruzam) e o que não tem forma: a ordem de hoje
       const doCorpo = (A.tipo === 'corpo') !== (B.tipo === 'corpo');
       if (!doCorpo || A.tipo === 'solto' || B.tipo === 'solto') {
-        if (A.tipo === 'corpo' || B.tipo === 'corpo' || A.tipo === 'solto' || B.tipo === 'solto' || cruzaNaTela(A, B)) regra(...hojeAntes(a, b), Infinity);
+        if (A.tipo === 'corpo' || B.tipo === 'corpo' || A.tipo === 'solto' || B.tipo === 'solto') regra(...hojeAntes(a, b), Infinity);
+        else if (cruzaNaTela(A, B) && (o.pecaComPeca === 'caixa' || contornosSeCruzam(contornoDe(a), contornoDe(b), FOLGA_ENTRE_PECAS))) regra(...hojeAntes(a, b), Infinity);
       }
     }
   // o corpo e a peça que se cruzam na tela sem ponto em comum na grade (só o traço, ou a mão na peça que segura): a
@@ -983,6 +1057,11 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item
       const ts = [...lista].filter(([t, n]) => n > (outra.get(t) ?? 0) && n * a1 >= o.areaMinima / 4).map(([t]) => t);
       const area = ts.reduce((s, t) => s + lista.get(t)! * a1, 0);
       if (area < o.areaMinima) continue;
+      // o corpo na frente da peça (a regra decidida) e embaixo dela (um ciclo largou a regra): o remendo cobre também
+      // os trechos em que ele está na frente encostado nela, como a ordem decidida pintaria (`contatoNoRemendo`; no
+      // `voador`, a bacia na frente do estofado, na beira do assento em que a coxa afunda)
+      const largada = !corpoPorCima && p.aC >= o.areaMinima && (p.aP < o.areaMinima || p.aC >= p.aP);
+      if (largada && p.encostado) for (const [t] of p.encostado) if (!ts.includes(t) && !outra.get(t)) ts.push(t);
       const de = corpoPorCima ? p.peca : p.corpo,
         cima = corpoPorCima ? p.corpo : p.peca;
       // cada trecho com a folga de FOLGA_DO_RECORTE (etapa 2: o protótipo fazia `.map(cascoT)`, e o map passava a

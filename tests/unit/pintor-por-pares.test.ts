@@ -119,6 +119,64 @@ describe('o pintor por pares', () => {
     expect(pintarPorPares(itens)).toBe('<i cen/><i emp/><i c/><i rot/>');
   });
 
+  // O ciclo (o caso do `voador`, lote 2): a peça A está na frente do corpo, a B atrás dele, e A vem antes de B na ordem
+  // de hoje (peça com peça que se cruzam na tela ficam na ordem de hoje). As três regras (B antes do corpo, o corpo antes
+  // de A, A antes de B) não cabem numa ordem só: o ciclo larga a regra mais leve, e o remendo conserta o que ela pedia.
+  /** O tubo de x = -30 a 30, de 10 em 10 cm (seis trechos); de x = 0 em diante, 3 cm mais para trás. */
+  const tubo = () => corpo([-30, -20, -10, 0, 10, 20, 30].map((x) => anel(x, x >= 0 ? -3 : 0)), 0);
+  /** A peça B, atrás do tubo, com a frente em z = -6: até x = -10, 2 cm atrás do tubo; de x = 0 em diante, o tubo afunda nela. */
+  const pecaB = () => peca(-20, 15, -10, 10, -12, -6, 9, '<i B/>');
+
+  it('um ciclo: larga a regra mais leve, e o remendo pinta o corpo de novo por cima da peça de trás onde ele está na frente', () => {
+    const c = tubo();
+    const A = peca(5, 30, -10, 10, 6, 10, 8, '<i A/>');
+    const B = pecaB();
+    const ordem = ordenarPorPares([c, A, B]);
+    // a regra mais leve é "B antes do corpo" (a área em que o corpo está na frente de B, fora do contato, é menor que a
+    // de A na frente do corpo): o corpo sai antes de A e de B, e B fica por cima dele
+    expect(ULTIMA.ciclos).toBe(1);
+    expect(ULTIMA.remendos).toBe(1);
+    expect(ordem.slice(0, 3)).toEqual([c, A, B]);
+    const r = remendoDe(ordem[3]!)!;
+    expect(r.de).toBe(c);
+    // o recorte cobre os trechos em que o corpo está na frente de B fora do contato (de x = -20 a 0) e deixa de fora os
+    // de x = 0 a 20, em que o corpo afunda em B (o contato não decide nada)
+    const xs = r.dentro.map((Q) => caixa(Q));
+    expect(Math.min(...xs.map((k) => k[0]!))).toBeLessThanOrEqual(-20);
+    expect(Math.max(...xs.map((k) => k[2]!))).toBeLessThanOrEqual(0);
+  });
+
+  it(`com contatoNoRemendo, o remendo da regra que o ciclo largou cobre também onde o corpo encosta na peça (desligado: ${PADRAO.contatoNoRemendo})`, () => {
+    const c = tubo();
+    const A = peca(5, 30, -10, 10, 6, 10, 8, '<i A/>');
+    const B = pecaB();
+    const ordem = ordenarPorPares([c, A, B], { ...PADRAO, contatoNoRemendo: true });
+    expect(ordem.slice(0, 3)).toEqual([c, A, B]);
+    const r = remendoDe(ordem[3]!)!;
+    const xs = r.dentro.map((Q) => caixa(Q));
+    // agora vai até o fim de B (x = 15), pelos trechos de x = 0 a 20, em que o corpo afunda nela
+    expect(Math.max(...xs.map((k) => k[2]!))).toBeGreaterThanOrEqual(20);
+    // a ordem e o resto não mudam; sem o ciclo, nada muda
+    expect(ordenarPorPares([c, B], { ...PADRAO, contatoNoRemendo: true })).toEqual(ordenarPorPares([c, B]));
+  });
+
+  it(`com pecaComPeca 'contorno', duas peças que só se cruzam pela caixa não prendem a ordem, e o ciclo some (padrão: '${PADRAO.pecaComPeca}')`, () => {
+    const c = tubo();
+    const A = peca(5, 30, -10, 10, 6, 10, 8, '<i A/>');
+    // B, um fio na diagonal atrás do tubo: a caixa dele cruza a de A, mas o fio passa a uns 6 cm de A
+    const B: Item = { d: 9, camada: 1, s: '<i B/>', g3: { fio: [[-20, 8, -8] as V3, [40, -60, -8] as V3], w: 2 }, pp: { k: 'peca', peca: 1 } };
+    // pela caixa: o ciclo, e o fio por cima do corpo, com um remendo
+    expect(ordenarPorPares([c, A, B]).slice(0, 3)).toEqual([c, A, B]);
+    expect(ULTIMA.ciclos).toBe(1);
+    // pelo contorno: o fio atrás do corpo, o corpo atrás de A, sem ciclo nem remendo
+    expect(ordenarPorPares([c, A, B], { ...PADRAO, pecaComPeca: 'contorno' })).toEqual([B, c, A]);
+    expect(ULTIMA).toEqual({ pares: 2, ciclos: 0, remendos: 0 });
+    // duas peças que se cruzam de verdade continuam na ordem de hoje
+    const A2 = peca(5, 30, -10, 10, 6, 10, 8, '<i A/>');
+    const B2 = peca(0, 15, -10, 10, -12, -8, 9, '<i B/>');
+    expect(ordenarPorPares([c, A2, B2], { ...PADRAO, pecaComPeca: 'contorno' })).toEqual(ordenarPorPares([c, A2, B2]));
+  });
+
   it('a ordem de hoje fica onde nada obriga: peças que não cruzam o corpo, ou que cruzam e concordam com hoje', () => {
     const c = corpo([anel(-20, 0), anel(0, 0), anel(20, 0)], 0);
     // longe do corpo na tela (em cima e embaixo), com profundidades dos dois lados da dele

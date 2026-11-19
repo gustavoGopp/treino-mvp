@@ -14,6 +14,9 @@
 //   imagens      antes e depois dos casos (docs/revisoes/animacao-nova/estudo-do-pintor/), cada um id:vista:u[:erro]
 //   resumo       as tabelas do relatório, a partir do que os outros passos gravaram
 // SEM_CONTATO=1 mede a variante rejeitada (o contato também decide).
+// AJUSTE=contorno,contato mede o ajuste do lote 2 (desligado no app): peça com peça na ordem de hoje só onde os
+// contornos se cruzam (`pecaComPeca: 'contorno'`) e o remendo da regra que um ciclo largou com o contato
+// (`contatoNoRemendo`); um dos dois, ou os dois.
 // As folhas de antes e depois de cada animação, para ligar uma a uma, são de folha-do-pintor.mjs.
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -25,7 +28,7 @@ import { chromium } from 'playwright';
 const [passo, ...ids] = process.argv.slice(2);
 // SEM_CONTATO=1: a variante em que o contato (o ponto escondido encostado no outro, ou dentro dele) também decide
 const CONTATO = !process.env.SEM_CONTATO;
-const SUF = CONTATO ? '' : '-sem-contato';
+const SUF = (CONTATO ? '' : '-sem-contato') + (process.env.AJUSTE ? `-ajuste-${process.env.AJUSTE.replace(/,/g, '-')}` : '');
 const TMP = 'node_modules/.tmp/estudo-do-pintor';
 mkdirSync(TMP, { recursive: true });
 
@@ -38,6 +41,9 @@ async function motor(estudo) {
   writeFileSync(arq, outputFiles[0].text);
   const m = await import(pathToFileURL(resolve(arq)).href);
   m.PP.PADRAO.contato = CONTATO;
+  const ajuste = (process.env.AJUSTE ?? '').split(',');
+  if (ajuste.includes('contorno')) m.PP.PADRAO.pecaComPeca = 'contorno';
+  if (ajuste.includes('contato')) m.PP.PADRAO.contatoNoRemendo = true;
   // as cenas deste motor pintam por pares (estudo) ou com o pintor de hoje, também nas animações em que o pintor por
   // pares já está ligado (src/engine/novo/pintor-ligado.ts, desde a etapa 2)
   const svgDaCena = m.svgDaCena;
