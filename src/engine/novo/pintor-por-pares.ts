@@ -984,10 +984,9 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item
       if (area < o.areaMinima) continue;
       const de = corpoPorCima ? p.peca : p.corpo,
         cima = corpoPorCima ? p.corpo : p.peca;
-      // ATENÇÃO (achado da etapa 1): o protótipo fazia `.map(cascoT)`, e o map passa a posição na lista como a folga
-      // (0, 1, 2… cm, e não FOLGA_DO_RECORTE). Mantido de propósito nesta etapa, que não pode mudar o resultado do
-      // protótipo; corrigir muda o desenho dos remendos com mais de um trecho, e fica para a etapa 2.
-      const dentro = ts.sort((a, b) => a - b).map((t, i) => cascoT(t, i));
+      // cada trecho com a folga de FOLGA_DO_RECORTE (etapa 2: o protótipo fazia `.map(cascoT)`, e o map passava a
+      // posição na lista como folga, 0, 1, 2… cm)
+      const dentro = ts.sort((a, b) => a - b).map((t) => cascoT(t));
       const cx = caixa(dentro);
       // os trechos do mesmo corpo em que vale a ordem de antes saem do recorte (de cima, a cabeça cobre os pés: o
       // halter, por cima dos pés, não pode ir por cima da cabeça)
