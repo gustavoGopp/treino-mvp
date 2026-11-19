@@ -24,6 +24,17 @@ A boa notícia vem junto: a parte mais difícil de construir (o registro durante
 | App no ar | Responde, mas não confirmei de qual versão ele é |
 | Linha de base | `npm run check`: 1.040 testes passam, em 1 min 26 s |
 
+### Corrigido depois da revisão do Gustavo (19/11)
+
+Ao preparar o plano de melhorias, li mais código e achei quatro pontos em que este relatório estava incompleto. Estão corrigidos no texto e marcados com "(corrigido)". Nenhum muda a ordem do ranking.
+
+1. **A volta.** O app tem, sim, uma mensagem para quem volta ("Faz 22 dias do último treino..."), mas só a partir de **14 dias** sem treino (`src/domain/acompanhamento/volta.ts:23-28`). Meu teste foi com 9 dias, e por isso não a vi.
+2. **A semana.** A partir da 2ª semana de uso aparecem quadradinhos das "últimas semanas" e uma lista "Subiu nesta semana". A frase "6 de 8 semanas com treino" existe só para leitor de tela (`src/features/acompanhamento/Semana.tsx:79`). Eu só usei uma semana.
+3. **Recordes.** O fim do treino mostra recordes e cargas que subiram (`src/features/treino/Resumo.tsx:59`). Não apareceram nos meus dois treinos porque as primeiras séries de cada exercício são de acerto de carga e não contam.
+4. **A contagem de toques do projeto.** O teste automático confere "até 11 toques" e pula a tela de equipamento (`tests/e2e/onboarding.spec.ts:151-169`). Os meus 13, 21 e 24 contam tudo.
+
+As decisões do Gustavo e o plano que saiu delas estão em [`decisoes-e-plano.md`](decisoes-e-plano.md).
+
 ### Os limites, ditos de saída
 
 1. **Nenhuma pessoa de verdade usou o app nesta análise.** As personas são minhas. Onde só gente resolveria a dúvida, eu digo e proponho o teste mais simples.
@@ -92,7 +103,7 @@ A triagem de saúde é outro muro na mesma porta. Ela está à parte (item 7) po
 
 ### Como saber se melhorou
 
-- **Medida automática:** toques até o programa, nos quatro atalhos. Hoje 13, 21, 24. Meta: 15 ou menos em todos, **contando** a tela de equipamento.
+- **Medida automática:** toques até o programa, nos quatro atalhos. Hoje 13, 21, 24. Meta: 15 ou menos em todos, **contando** a tela de equipamento. **(corrigido)** O teste que já existe confere "até 11 toques" e pula essa tela (`tests/e2e/onboarding.spec.ts:151-169`); é ele que precisa passar a contá-la.
 - **Teste com gente:** 5 pessoas que nunca viram o app, cada uma com o seu equipamento. Só observar: quantas chegam ao programa sem ajuda, e em quanto tempo.
 
 **Confiança:** alta nos fatos; média no tamanho do estrago, que só o teste com gente mede.
@@ -182,7 +193,7 @@ O iniciante, diante de um exercício que nunca fez, com o peso na mão. E qualqu
 
 ### O problema, em linguagem simples
 
-O app não tem como chamar a pessoa (não manda aviso nenhum) e, quando ela volta sozinha, não a recebe. O fim do treino entrega três números e uma lista de cargas. A tela da semana é uma planilha.
+O app não tem como chamar a pessoa (não manda aviso nenhum) e, quando ela volta sozinha depois de uma semana, não a recebe. O fim do treino entrega três números e uma lista de cargas. A tela da semana é uma planilha.
 
 ### A prova
 
@@ -194,7 +205,7 @@ O app não tem como chamar a pessoa (não manda aviso nenhum) e, quando ela volt
 
 - **Fato:** fim do treino: "10 séries, 2 minutos, 6 exercícios", "A sua semana 1 de 3", e "Calibrar · próxima: 2 kg".
 - **Fato:** a semana mostra "Ombro (posterior) 0,5 de 3,5 · mantendo". Meia série.
-- **Fato:** simulei a volta 9 dias depois. O app abre no programa, com "0 de 3". Nenhuma palavra sobre a ausência nem sobre o último treino.
+- **Fato (corrigido):** simulei a volta 9 dias depois. O app abre no programa, com "0 de 3", sem nenhuma palavra sobre a ausência nem sobre o último treino. Existe uma mensagem de volta, mas ela só aparece com 14 dias ou mais (`src/domain/acompanhamento/volta.ts:23`). Quem falta uma semana, que é o caso mais comum, não é recebido.
 - **Fato:** não há notificação em parte alguma do código, nem botão de compartilhar.
 - **Fato:** o projeto não mede se as pessoas voltam. A medição com testadores está como "Não feito" (`docs/backlog.md:146`).
 - **Ordem de grandeza (fonte vista só pelo resumo):** em apps de saúde e exercício, algo entre 3% e 8% das pessoas ainda usam o app no 30º dia. Ver [`mercado.md`](mercado.md).
@@ -211,8 +222,8 @@ Todos os que passaram pela porta, no dia seguinte e na semana seguinte.
 
 - A decisão juntou duas coisas diferentes: **manipular** (culpa, sequência que zera) e **avisar** (hoje é dia de treino). Recusar a primeira não obriga a recusar a segunda.
 - A pesquisa do próprio projeto diz que, em aplicativos, "mensagens de texto e personalização foram componentes significativamente mais eficazes" (`docs/pesquisa-v2/24-objetivos-e-adesao.md:66`). Isso não foi implementado.
-- "O retorno sobre o próprio progresso, que o app já faz": na prática, depois de um treino, a evolução de um exercício é uma linha de texto, e a semana é uma tabela de séries por músculo.
-- O que o app tem de bom para mostrar ("1 de 3 treinos", "6 das últimas 8 semanas") está certo e sem culpa. Só está enterrado.
+- "O retorno sobre o próprio progresso, que o app já faz" **(corrigido)**: nas duas primeiras semanas, que é quando a pessoa decide se fica, ele quase não aparece. A evolução de um exercício é uma linha de texto, a semana é uma tabela de séries por músculo, e os recordes só começam a contar depois das séries de acerto de carga. Os quadradinhos das últimas semanas só surgem na 2ª semana.
+- O que o app tem de bom para mostrar ("1 de 3 treinos", as semanas com treino) está certo e sem culpa. Só está enterrado: a frase "6 de 8 semanas com treino" existe apenas para leitor de tela (`src/features/acompanhamento/Semana.tsx:79`).
 
 ### Por que é mais grave que o 4º
 
@@ -391,6 +402,8 @@ Sobre ter chegado "sozinho": ver a ressalva no começo. Para cada nota digo se t
 # Perguntas para o Gustavo
 
 Só as decisões que são suas e que mudam a ordem ou as propostas.
+
+**Respondidas em 19/11.** As respostas e o plano que saiu delas estão em [`decisoes-e-plano.md`](decisoes-e-plano.md).
 
 1. **Para quem é o app agora?** O plano ainda diz "o público principal, por agora, é o Gustavo". Se continuar assim, os itens 1 e 3 perdem peso e o 2 e o 4 sobem. Este ranking supõe desconhecidos.
 2. **O app pode chutar o equipamento e corrigir depois?** É o que destrava o item 1. Contraria uma decisão registrada e um teste.

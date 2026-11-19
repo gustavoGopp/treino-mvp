@@ -153,7 +153,8 @@ Separar "encerra o treino de hoje" de "encerra este exercício" é claro e séri
 
   ![Nove dias depois](capturas/volta-9-dias-p1.png)
 
-- **Opinião:** o app não tem como chamá-lo de volta (não manda aviso) e, quando ele volta sozinho, não o recebe.
+- **Corrigido em 19/11, depois de ler mais código:** existe uma mensagem de volta ("Faz 22 dias do último treino..."), mas só a partir de 14 dias sem treino (`src/domain/acompanhamento/volta.ts:23`). Com 9 dias, não aparece. A partir da 2ª semana, a tela "Semana" ganha quadradinhos das últimas semanas; eu só usei uma.
+- **Opinião:** o app não tem como chamá-lo de volta (não manda aviso) e, quando ele volta sozinho depois de uma semana, não o recebe.
 
 ---
 
