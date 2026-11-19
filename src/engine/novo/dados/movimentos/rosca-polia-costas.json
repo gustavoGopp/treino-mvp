@@ -27,6 +27,7 @@
   "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado embaixo: a pilha já sai 2 cm do repouso"},
   "outro.braco": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a mão livre pende solta ao lado do corpo, o braço 4° aberto para o lado"},
   "erro.cotovelo.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "erro: no fim, o braço vai 30° à frente da linha do tronco (sai 52° da posição atrás do corpo), como o erro do cotovelo da rosca na polia"},
+  "erro.cotovelo.maoFora": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: com o cotovelo à frente, o braço gira para fora e a mão abre para o lado do antebraço, e o cabo, que sai da mão para trás e para baixo, passa por fora do braço (correção de 19/11/2026: com a mão no plano do braço, o cabo atravessava o braço)"},
   "erro.giro": {"v": 26, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o tronco gira 26° (metade na lombar, metade na torácica), o ombro do braço que trabalha vai à frente; a bacia e os pés ficam parados"},
   "erro.carga.prot": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'carga demais': 'o ombro vai para a frente': a clavícula 30° mais à frente que o ritmo normal, a série toda"},
   "erro.carga.elev": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'carga demais': o ombro também sobe um pouco (8°)"},
@@ -47,7 +48,8 @@
   {"id": "rosca-costas-polia-embaixo-atras", "pede": "polia embaixo, de costas para a torre, um passo à frente", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana ao estribo, saindo de trás do corpo, sem encostar nele", "selo": "desenho", "fonte": "desenho"},
   {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
-  {"id": "tronco-quase-parado", "pede": "tronco parado", "selo": "consenso", "fonte": "app"}
+  {"id": "tronco-quase-parado", "pede": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cotovelo", "instante": 1, "titulo": "Trazer o cotovelo para a frente", "vista": "lateral", "oQueMuda": "o braço sai de trás do corpo e vai à frente enquanto a mão sobe: perde a posição alongada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},

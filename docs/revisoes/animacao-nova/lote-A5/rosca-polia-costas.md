@@ -55,3 +55,26 @@ Não há correção registrada para este exercício. Das roscas: o antebraço "s
 - **De lado, o fio do rótulo "cotovelo atrás do corpo"** atravessa o tronco: o cotovelo está atrás, e o lado de trás do quadro é da coluna, então o texto vai para a frente do corpo.
 - **De lado, no fim, o cabo passa por cima do tronco na imagem** (ele está do lado de fora do corpo, a 4,3 cm do antebraço, mas o braço que trabalha é o de perto de quem olha).
 - **Pés lado a lado:** o cartão não pede um pé à frente do outro; muita gente faz este exercício com um pé à frente para se equilibrar contra o cabo. A força do cabo não entra no equilíbrio (como em todas as animações na polia).
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M8) achou que, no erro "Trazer o cotovelo para a frente", de lado, o cabo atravessa o braço direito (4,5 cm). A animação saiu da aprovação até a correção.
+
+**A causa.** No fim do erro, o cotovelo vai à frente e a mão sobe até perto do ombro, no plano do braço; o cabo sai da mão para trás e para baixo, até a roldana atrás da pessoa, e passava por dentro do braço.
+
+**A mudança** (só no erro, dentro do que a ficha diz: "o braço sai de trás do corpo e vai à frente enquanto a mão sobe"): linha nova da ficha, `erro.cotovelo.maoFora` (25°, selo desenho). Com o cotovelo à frente, o braço gira para fora e a mão abre para o lado do antebraço (25° a mais que o ângulo de carregamento, crescendo com o erro); o cabo passa por fora do braço. O ciclo certo e os outros dois erros não mudaram.
+
+**A regra nova** (comum, `cabos-fora-do-corpo-nos-erros`, em `regras/vistas-do-guia.ts`, ligada só nas fichas do tríceps com barra reta, da puxada com barra reta e da rosca de costas): em cada erro, em 6 instantes (0, 1/4, 1/2, 3/4, 1 e o instante do erro), cada cabo e cada fita do engate (os fios do quadro, fora os riscos da pilha), de meio em meio centímetro, contra o corpo inteiro (os dois lados): quanto entram em cada parte, medido na elipse do anel do Boneco interpolado ali. Não podem entrar mais de 0,5 cm. Ficam de fora as mãos que seguram e, delas, o antebraço a até 8 cm do punho, como na regra do cabo no ciclo (`polia-braco-cabos-livres-do-corpo`, que só olha o ciclo certo).
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| "Trazer o cotovelo para a frente": quanto o cabo entra no corpo (pior instante) | **5,0 cm (braço direito)** | a alça do estribo encosta 0,3 cm no antebraço direito |
+| "Girar o tronco" e "Carga demais" | a alça passa a 2,1 e 2,5 cm do antebraço | igual |
+
+(A auditoria mediu 4,5 cm em u = 1; a regra mede seis instantes e acha 5,0 cm em u = 1. A diferença é a amostragem do cabo.)
+
+Rodada no estado de antes (o exercício e a ficha de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes.
+
+**Olhado nos quadros** (`quadros/rosca-polia-costas.png`): de lado, no erro, o cabo passa por fora do braço vermelho (por isso aparece por cima dele, do lado de quem olha) e desce até a roldana; de três quartos, a mão um pouco aberta para fora se lê como um braço que gira para ajudar a subir.
+
+**O que ainda não ficou bom.** A alça do estribo encosta 0,3 cm no antebraço no fim do erro (dentro do amassado da pele, como acontece com a alça de verdade). O giro da mão para fora (25°) é escolha de desenho, sem número na ficha da técnica.
