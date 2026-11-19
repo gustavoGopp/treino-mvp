@@ -32,7 +32,8 @@
   {"id": "abertura-t-testa-na-toalha", "pede": "de bruços, testa na toalha, sem levantar a cabeça", "selo": "um estudo", "fonte": "ficha"},
   {"id": "abertura-t-bracos-em-t", "pede": "braços em T, cotovelos estendidos", "selo": "um estudo", "fonte": "ficha"},
   {"id": "abertura-t-amplitude", "pede": "embaixo, as mãos quase tocam o chão; em cima, os braços na altura do corpo ou um pouco acima", "selo": "consenso", "fonte": "app"},
-  {"id": "abertura-t-ombros-baixos", "pede": "sem encolher os ombros", "selo": "consenso", "fonte": "ficha"}
+  {"id": "abertura-t-ombros-baixos", "pede": "sem encolher os ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de frente, deitado de bruços, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cabeca", "instante": 1, "titulo": "Levantar a cabeça", "vista": "quinaTras", "oQueMuda": "o pescoço dobra para trás e a testa sai da toalha", "destaca": ["corpo"], "linha": ["c7", "cabeca"], "foco": "cabeca"},

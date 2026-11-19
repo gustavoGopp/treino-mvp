@@ -47,7 +47,8 @@
   {"id": "ombro-sem-encolher", "pede": "o ombro não sobe junto com o braço (ombro longe da orelha)", "selo": "consenso", "fonte": "guia"},
   {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, os halteres perto das coxas, sem atravessá-las", "selo": "consenso", "fonte": "guia"},
   {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "guia"},
-  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"}
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa mais inclinado e é jogado para trás para dar o impulso, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},

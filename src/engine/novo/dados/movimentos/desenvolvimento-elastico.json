@@ -241,6 +241,12 @@
    "pede": "os dois braços sobem juntos",
    "selo": "consenso",
    "fonte": "app"
+  },
+  {
+   "id": "cabeca-aparece-em-cada-vista",
+   "pede": "em cada vista do guia (a de cima, do erro dos cotovelos, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros",
+   "selo": "desenho",
+   "fonte": "desenho"
   }
  ],
  "erros": [

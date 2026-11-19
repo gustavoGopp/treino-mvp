@@ -57,3 +57,17 @@ A primeira é a **de cima** (correção de 05/11: o face pull abre de cima, onde
 - **Os antebraços não ficam "apontando para cima" na vertical**: com a corda de 29 cm (Rogue) cada ramo tem 21 cm livres, e as mãos não podem ficar a mais de ~14 cm do meio sem a bucha encostar no rosto. Com as mãos ao lado das orelhas e os cotovelos altos, o antebraço sobe inclinado para dentro (cotovelo a 132°). Tentei mãos mais afastadas (16 cm) e mais atrás (4 cm à frente do trágio): a corda entrava no rosto (−0,3 cm).
 - **De lado, no fim, o braço de perto cobre parte do rosto** (quadro `lateral:tec:f1`): é a vista de lado com as mãos na cabeça. A de cima mostra a mesma pose sem cobrir.
 - **No erro "encolher", a cabeça quase não vai à frente** (1,6 cm): o que se lê é o ombro subindo, de trás. Levar a cabeça mais à frente com as mãos na corda fazia o rosto entrar na corda.
+
+
+## Correção de 19/11 (cabeça de cima; auditoria das aprovadas antigas)
+
+O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado nas auditorias das fases A e B: de cima, a cabeça fica dentro da silhueta dos ombros, e o contorno único do Boneco (um só, por fora) não a desenhava; sobrava o calombo do rosto. A vista de cima é uma das duas do exercício (`vistas`).
+
+**A mudança.** O quadro liga, só na vista de cima (`viesNaVista: { cima: { cabeca: 1 } }`), a opção `cabeca` do Boneco (acréscimo de 18/11, desligada por padrão; a mesma das elevações corrigidas e do quadril na máquina): a cabeça é pintada de novo por cima do corpo, com o contorno próprio. A pose, o movimento, as peças, os rótulos e as outras vistas não mudam; o núcleo comum, quando há, também não (o exercício embrulha o quadro dele). A ficha liga a regra comum `cabeca-aparece-em-cada-vista` (`src/engine/novo/regras/vistas-do-guia.ts`).
+
+| vista de cima | antes (`72d00fc`) | depois |
+|---|---|---|
+| quadros em que a cabeça sumiria / com contorno próprio | 5 / **0** | 5 / 5 |
+| eixo do tórax e quem olha (mínimo); contorno da cabeça dentro da silhueta (máximo); a cabeça à frente do tronco (máximo) | 3,0°; 100%; 13,3 cm | iguais (a pose não mudou) |
+
+No estado de antes, com a regra na ficha, a conferência dá 1 falha (esta regra). No estado novo: 0 falhas e os mesmos avisos de antes. O antes e depois está em `correcao-das-antigas/face-pull.png`; os quadros grandes foram regravados (`quadros/face-pull.png`).

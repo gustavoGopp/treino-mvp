@@ -28,6 +28,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   q.fios = [{ id: 'elastico', comp: t.comp, estica: true }];
   q.marcas = { ...q.marcas, solaRfora: t.R.sola.fora, solaRdentro: t.R.sola.dentro, solaLfora: t.L.sola.fora, solaLdentro: t.L.sola.dentro, pegadorR: e.lado.R.pegada, pegadorL: e.lado.L.pegada };
   q.vies = { maoR: 1, maoL: 1 };
+  // de cima, a cabeça fica dentro da silhueta dos ombros e o contorno único do Boneco não a desenhava (sobrava só o
+  // calombo do rosto; auditoria das aprovadas antigas, 19/11): ela ganha o contorno próprio por cima do corpo (`cabeca`,
+  // opção do Boneco)
+  q.viesNaVista = { ...q.viesNaVista, cima: { ...q.viesNaVista?.cima, cabeca: 1 } };
   return q;
 }
 

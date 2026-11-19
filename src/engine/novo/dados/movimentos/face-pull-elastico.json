@@ -58,7 +58,8 @@
   {"id": "elastico-nas-maos", "pede": "cada mão fecha num pegador", "selo": "consenso", "fonte": "objetos"},
   {"id": "elastico-livre-do-corpo", "pede": "o elástico não atravessa o rosto nem os braços", "selo": "consenso", "fonte": "ficha"},
   {"id": "elastico-bracos-juntos", "pede": "os dois braços puxam juntos", "selo": "consenso", "fonte": "ficha"},
-  {"id": "tronco-quase-parado", "pede": "peito parado", "selo": "consenso", "fonte": "app"}
+  {"id": "tronco-quase-parado", "pede": "peito parado", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "baixo", "instante": 1, "titulo": "Cotovelos baixos", "vista": "lateral", "oQueMuda": "os cotovelos descem junto do tronco e as mãos vêm para a altura do queixo: vira remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

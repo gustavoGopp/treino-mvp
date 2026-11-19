@@ -56,7 +56,8 @@
   {"id": "triceps-frances-corda-na-mao", "pede": "cada mão fecha num ramo da corda, perto da ponta, e o ramo fica esticado até a bucha", "selo": "consenso", "fonte": "objetos"},
   {"id": "triceps-frances-corda-livre-da-cabeca", "pede": "a corda e o cabo passam sem encostar no rosto nem no corpo", "selo": "consenso", "fonte": "guia"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à bucha, sem encostar no corpo", "selo": "consenso", "fonte": "guia"},
-  {"id": "tronco-quase-parado", "pede": "peito parado", "selo": "consenso", "fonte": "app"}
+  {"id": "tronco-quase-parado", "pede": "peito parado", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "baixo", "instante": 1, "titulo": "Cotovelos baixos", "vista": "lateral", "oQueMuda": "os cotovelos descem junto do tronco e as mãos vêm para a altura do queixo: vira remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

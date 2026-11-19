@@ -41,7 +41,8 @@
   {"id": "cotovelos-um-pouco-a-frente", "pede": "cotovelos um pouco à frente do corpo (de ~20° a ~45°)", "selo": "consenso", "fonte": "app"},
   {"id": "antebraco-na-vertical", "pede": "antebraços na vertical", "selo": "consenso", "fonte": "guia"},
   {"id": "bracos-quase-estendidos-sobre-os-ombros", "pede": "em cima, braços quase estendidos sobre os ombros", "selo": "consenso", "fonte": "guia"},
-  {"id": "carga-longe-da-cabeca", "pede": "os halteres sobem sem bater na cabeça e sem bater um no outro", "selo": "consenso", "fonte": "guia"}
+  {"id": "carga-longe-da-cabeca", "pede": "os halteres sobem sem bater na cabeça e sem bater um no outro", "selo": "consenso", "fonte": "guia"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima, do erro dos cotovelos, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "arco", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia, as costas de baixo saem do encosto e o peito vai para trás", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
