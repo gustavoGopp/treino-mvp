@@ -11184,6 +11184,13 @@
    },
    {
     "grupo": "Ficha",
+    "oQue": "as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho)",
+    "medido": "quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quina: o tronco 75,8, a perna direita 75,8, a perna esquerda 23,5, o braço direito 83,3, o braço esquerdo 57,5; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
     "oQue": "em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete (consenso)",
     "medido": "o centro da palma fica a no máximo 2 cm da vertical do ombro, com o cotovelo dobrado 5°; o joelho de apoio a 0 cm da vertical do quadril, a -0,4 cm do tampo do colchonete; a linha dos ombros ao quadril sobe 15,8° à frente",
     "limite": "como a ficha pede",
@@ -11467,6 +11474,13 @@
     "oQue": "o último quadro emenda no primeiro",
     "medido": "distância máxima 0 cm",
     "limite": "até 0,5 cm",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho)",
+    "medido": "quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quinaTras: o tronco 43,7, a perna direita 43,7, a perna esquerda 38,7, o braço direito 38,2, o braço esquerdo 20,1; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7",
+    "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
@@ -12698,6 +12712,13 @@
     "grupo": "Ficha",
     "oQue": "o halter não bate no corpo nem no banco (consenso)",
     "medido": "a carga fica a no mínimo 0,4 cm da pele e 39 cm das peças da cena",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "deitado no banco reto, os pés no chão além da ponta dele: em todas as vistas, a parte do corpo (dos dois lados) que fica entre o banco e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com o banco na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde o banco, \"atrás\" = o banco esconde a parte): cima: o tronco na frente 19,7, a perna direita na frente 19,7, a perna esquerda na frente 19,7, o braço direito na frente 58,9, o braço esquerdo na frente 58,9; quina: o tronco na frente 2,5, a perna direita na frente 2,5, o braço direito na frente 20,9, o braço esquerdo atrás 2,5; frontal: a perna direita na frente 8,5, a perna esquerda na frente 8,5",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -25204,6 +25225,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "o kettlebell fica junto ao peito, entre os joelhos embaixo: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com o kettlebell na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde o kettlebell, \"atrás\" = o kettlebell esconde a parte): lateral: a perna direita na frente 3,8, a perna esquerda atrás 4,7, o braço esquerdo atrás 10,4; frontal: o tronco atrás 18,9, o braço direito atrás 4,7, o braço esquerdo atrás 4,7",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "tronco.baixo, maos.abaixoDeC7, kettlebell.folgaNoPeito, cotovelos.paraFora",
@@ -26614,6 +26642,13 @@
     "grupo": "Ficha",
     "oQue": "pernas paradas (consenso)",
     "medido": "o quadril fica de 8,5° a 8,5° e o joelho de 69,9° a 69,9° (em relação à bacia); o pé fica a no mínimo 64,9 cm do chão",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "o corpo fica entre as paralelas: em todas as vistas, a parte do corpo (dos dois lados) que fica entre a estrutura delas e quem olha a esconde, e a que fica atrás dela (de lado, as pernas atrás do montante de perto) é escondida por ela (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com a estrutura das paralelas na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde a estrutura das paralelas, \"atrás\" = a estrutura das paralelas esconde a parte): lateral: a perna direita na frente 25,4, a perna direita atrás 25,4, a perna esquerda na frente 20,1, a perna esquerda atrás 30,7; frontal: nada se cruza com a peça na tela",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -31532,6 +31567,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "a corda passa entre as pernas até o cabo atrás: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com a corda na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde a corda, \"atrás\" = a corda esconde a parte): lateral: a perna direita na frente 3,9, a perna esquerda atrás 5,9; quinaTras: o tronco na frente 38,3, a perna direita na frente 4,2, a perna esquerda atrás 18,3",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "joelho.baixo, tronco.baixo, braco.cima, maos.folga, pilha.folga",
@@ -34461,6 +34503,13 @@
     "grupo": "Ficha",
     "oQue": "a barra sobe sem encostar nas coxas nem nos joelhos (consenso)",
     "medido": "a barra fica a no mínimo 3,6 cm da pele das coxas e dos joelhos",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "a barra fica na frente das coxas e da barriga: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com a barra na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde a barra, \"atrás\" = a barra esconde a parte): lateral: nada se cruza com a peça na tela; quinaTras: o tronco na frente 9,9, a perna direita na frente 9,9, a perna esquerda na frente 3",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -38976,6 +39025,13 @@
     "grupo": "Ficha",
     "oQue": "o halter não atravessa a cadeira nem o chão (consenso)",
     "medido": "a menor folga entre as cabeças do halter e o banco ou o chão é 7,1 cm (chão)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho)",
+    "medido": "a folga de pintura de cada parte do corpo que se cruza com o halter na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde o halter, \"atrás\" = o halter esconde a parte): frontal: o tronco atrás 16,9, a perna direita atrás 28,7, a perna esquerda atrás 16,2, o braço direito atrás 4,1, o braço esquerdo atrás 24,6; lateral: a perna direita na frente 3,6, a perna esquerda atrás 13,5, o braço direito na frente 32,6",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },

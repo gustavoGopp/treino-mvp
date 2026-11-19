@@ -42,12 +42,12 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | cadeira-extensora | 270 | 38 | 0 | 1 |
 | cadeira-flexora | 246 | 39 | 0 | 1 |
 | caminhada-lateral-mini-band | 564 | 33 | 0 | 4 |
-| coice-caneleira | 240 | 34 | 0 | 3 |
-| coice-elastico | 240 | 35 | 0 | 4 |
+| coice-caneleira | 240 | 35 | 0 | 3 |
+| coice-elastico | 240 | 36 | 0 | 4 |
 | coice-maquina | 234 | 35 | 0 | 2 |
 | coice-polia | 255 | 38 | 0 | 1 |
 | crucifixo-elastico | 288 | 38 | 0 | 3 |
-| crucifixo-halteres | 303 | 37 | 0 | 2 |
+| crucifixo-halteres | 303 | 38 | 0 | 2 |
 | crucifixo-inclinado-halteres | 303 | 38 | 0 | 2 |
 | crucifixo-inverso | 264 | 43 | 0 | 1 |
 | crucifixo-invertido-caneleira | 240 | 39 | 0 | 2 |
@@ -88,12 +88,12 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | flexao-joelho-suspensao | 288 | 33 | 0 | 2 |
 | flexao-pes-elevados | 255 | 36 | 0 | 7 |
 | goblet | 279 | 34 | 0 | 3 |
-| goblet-kettlebell | 279 | 36 | 0 | 3 |
+| goblet-kettlebell | 279 | 37 | 0 | 3 |
 | hack | 276 | 34 | 0 | 2 |
 | hip-thrust | 282 | 36 | 0 | 2 |
 | hiperextensao | 246 | 34 | 0 | 1 |
 | leg-press | 276 | 34 | 0 | 3 |
-| mergulho | 249 | 34 | 0 | 2 |
+| mergulho | 249 | 35 | 0 | 2 |
 | mergulho-graviton | 249 | 36 | 0 | 1 |
 | mesa-flexora | 264 | 36 | 0 | 2 |
 | nordico | 420 | 35 | 0 | 4 |
@@ -110,7 +110,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | ponte-gluteo-halter | 282 | 37 | 0 | 2 |
 | ponte-kettlebell | 282 | 37 | 0 | 1 |
 | ponte-pes-bola | 276 | 38 | 0 | 3 |
-| pull-through | 246 | 40 | 0 | 2 |
+| pull-through | 246 | 41 | 0 | 2 |
 | puxada-barra-reta | 240 | 43 | 0 | 3 |
 | puxada-elastico | 240 | 37 | 0 | 4 |
 | puxada-frente | 240 | 41 | 0 | 2 |
@@ -119,7 +119,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | remada-articulada | 279 | 44 | 0 | 2 |
 | remada-baixa | 279 | 42 | 0 | 2 |
 | remada-baixa-estacao | 267 | 43 | 0 | 2 |
-| remada-barra | 255 | 39 | 0 | 2 |
+| remada-barra | 255 | 40 | 0 | 2 |
 | remada-curvada-elastico | 255 | 42 | 0 | 3 |
 | remada-curvada-halteres | 255 | 40 | 0 | 2 |
 | remada-elastico | 279 | 36 | 0 | 3 |
@@ -133,7 +133,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | roda-abdominal | 300 | 38 | 0 | 2 |
 | rosca-alternada | 474 | 37 | 0 | 3 |
 | rosca-barra-w | 246 | 38 | 0 | 2 |
-| rosca-concentrada | 240 | 40 | 0 | 3 |
+| rosca-concentrada | 240 | 41 | 0 | 3 |
 | rosca-elastico | 252 | 40 | 0 | 4 |
 | rosca-inclinada | 270 | 39 | 0 | 3 |
 | rosca-kettlebell | 252 | 37 | 0 | 2 |
@@ -1897,6 +1897,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (joelho direito, Coice · concêntrica); pico de 83,9 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quina: o tronco 75,8, a perna direita 75,8, a perna esquerda 23,5, o braço direito 83,3, o braço esquerdo 57,5; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7 | como a ficha pede | ok |
 | Ficha | em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete (consenso) | o centro da palma fica a no máximo 2 cm da vertical do ombro, com o cotovelo dobrado 5°; o joelho de apoio a 0 cm da vertical do quadril, a -0,4 cm do tampo do colchonete; a linha dos ombros ao quadril sobe 15,8° à frente | como a ficha pede | ok |
 | Ficha | estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado (consenso) | no alto, a coxa faz 0° com a linha do tronco (o joelho 0 cm em relação a ela); a bacia gira no máximo 0° no ciclo (a lombar não arqueia); o joelho fica dobrado de 90° a 90° | como a ficha pede | ok |
 | Ficha | o quadril de frente para o chão, sem girar (consenso) | a linha dos quadris fica a no máximo 0° da horizontal; a bacia anda 0 cm; a coxa abre no máximo 0° para o lado | como a ficha pede | ok |
@@ -1941,6 +1942,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Cabos | elástico: quanto estica no ciclo (1 = comprimento em repouso) | de 1,3 a 1,6 vezes (262,3 a 341,9 cm); em cima, 1,3 vezes | nunca frouxo (1 ou mais), mais esticado em cima e nunca além de 2,5 vezes (o máximo do fabricante) | AVISO |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (joelho direito, Coice · concêntrica); pico de 83,9 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
+| Ficha | as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quinaTras: o tronco 43,7, a perna direita 43,7, a perna esquerda 38,7, o braço direito 38,2, o braço esquerdo 20,1; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7 | como a ficha pede | ok |
 | Ficha | em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete (consenso) | o centro da palma fica a no máximo 2 cm da vertical do ombro, com o cotovelo dobrado 5°; o joelho de apoio a 0 cm da vertical do quadril, a -0,4 cm do tampo do colchonete; a linha dos ombros ao quadril sobe 15,8° à frente | como a ficha pede | ok |
 | Ficha | estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado (consenso) | no alto, a coxa faz 0° com a linha do tronco (o joelho 0 cm em relação a ela); a bacia gira no máximo 0° no ciclo (a lombar não arqueia); o joelho fica dobrado de 90° a 90° | como a ficha pede | ok |
 | Ficha | o quadril de frente para o chão, sem girar (consenso) | a linha dos quadris fica a no máximo 0° da horizontal; a bacia anda 0 cm; a coxa abre no máximo 0° para o lado | como a ficha pede | ok |
@@ -2129,6 +2131,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, sem encostar um halter no outro (consenso) | os dois halteres ficam a no mínimo 3 cm um do outro | como a ficha pede | ok |
 | Ficha | cabeça, costas e glúteo apoiados no banco a série toda (consenso) | o ponto mais fundo de cada parte no estofado (positivo = amassa): costas de 1 a 1 cm, cabeça de 1 a 1 cm, glúteo de 1 a 1 cm | como a ficha pede | ok |
 | Ficha | o halter não bate no corpo nem no banco (consenso) | a carga fica a no mínimo 0,4 cm da pele e 39 cm das peças da cena | como a ficha pede | ok |
+| Ficha | deitado no banco reto, os pés no chão além da ponta dele: em todas as vistas, a parte do corpo (dos dois lados) que fica entre o banco e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o banco na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o banco, "atrás" = o banco esconde a parte): cima: o tronco na frente 19,7, a perna direita na frente 19,7, a perna esquerda na frente 19,7, o braço direito na frente 58,9, o braço esquerdo na frente 58,9; quina: o tronco na frente 2,5, a perna direita na frente 2,5, o braço direito na frente 20,9, o braço esquerdo atrás 2,5; frontal: a perna direita na frente 8,5, a perna esquerda na frente 8,5 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | deitado.pelve.z, apoio.amassa, deitado.lombar, deitado.cervical.min, deitado.cervical.max, deitado.cabeca, cabeca.folgaNoBanco, pes.meiaDistancia, pes.alemDaCoxa, cotovelo.paraOsPes, escapula.retracao, escapula.depressao, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 460 cm² (padrão); quina: 76 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -4038,6 +4041,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tronco fica ereto, sem arredondar a lombar (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | o kettlebell junto ao peito, base para baixo, com as mãos nas laterais da alça (e, embaixo, sem bater nas coxas) (consenso) | da bola à pele do peito e da barriga, de 0,8 a 0,8 cm; a base fica para baixo, com o eixo de 4,3° a 28,3° da vertical (acompanha o tronco); cada mão fica a no máximo 0 cm do meio da sua haste da alça; a bola passa a no mínimo 3,2 cm da pele das coxas | como a ficha pede | ok |
 | Ficha | os cotovelos apontam para baixo e, embaixo, ficam entre os joelhos (consenso) | embaixo, cada cotovelo fica 2,2 cm para dentro do joelho; o braço desce a no máximo 15,8° da vertical; o braço passa a 0,8 cm da coxa (de ponto a ponto da pele) | como a ficha pede | ok |
+| Ficha | o kettlebell fica junto ao peito, entre os joelhos embaixo: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o kettlebell na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o kettlebell, "atrás" = o kettlebell esconde a parte): lateral: a perna direita na frente 3,8, a perna esquerda atrás 4,7, o braço esquerdo atrás 10,4; frontal: o tronco atrás 18,9, o braço direito atrás 4,7, o braço esquerdo atrás 4,7 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.abaixoDeC7, kettlebell.folgaNoPeito, cotovelos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 350 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -4255,6 +4259,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | tronco levemente inclinado à frente na descida (consenso) | o tórax inclina 7,3° à frente da vertical em cima e 23,3° embaixo | como a ficha pede | ok |
 | Ficha | ombros longe das orelhas o ciclo inteiro (consenso) | do alto do ombro à base do crânio, ao longo do tronco: no mínimo 20,8 cm no caminho (em pé, parado: 18,7 cm) | como a ficha pede | ok |
 | Ficha | pernas paradas (consenso) | o quadril fica de 8,5° a 8,5° e o joelho de 69,9° a 69,9° (em relação à bacia); o pé fica a no mínimo 64,9 cm do chão | como a ficha pede | ok |
+| Ficha | o corpo fica entre as paralelas: em todas as vistas, a parte do corpo (dos dois lados) que fica entre a estrutura delas e quem olha a esconde, e a que fica atrás dela (de lado, as pernas atrás do montante de perto) é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a estrutura das paralelas na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a estrutura das paralelas, "atrás" = a estrutura das paralelas esconde a parte): lateral: a perna direita na frente 25,4, a perna direita atrás 25,4, a perna esquerda na frente 20,1, a perna esquerda atrás 30,7; frontal: nada se cruza com a peça na tela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.cima, polo.fora, polo.cima, polo.frente, pescoco, quadril, joelho, pe.plantar, pernas.juntas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito, triceps; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 464 cm² (padrão); de lado: 142 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -5008,6 +5013,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha (desenho) | cada ramo vai esticado da mão à bucha, de 25,2 a 25,2 cm (o ramo tem 25,2 cm fora da ponta de borracha) | como a ficha pede | ok |
 | Ficha | a corda e o cabo passam entre as pernas sem encostar no corpo (consenso) | a corda e o cabo passam a no mínimo 1,9 cm da pele (coxa) | como a ficha pede | ok |
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 27,1 cm e a pilha sobe 13,6 cm (esperado 13,6) | como a ficha pede | ok |
+| Ficha | a corda passa entre as pernas até o cabo atrás: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a corda na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a corda, "atrás" = a corda esconde a parte): lateral: a perna direita na frente 3,9, a perna esquerda atrás 5,9; quinaTras: o tronco na frente 38,3, a perna direita na frente 4,2, a perna esquerda atrás 18,3 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.baixo, tronco.baixo, braco.cima, maos.folga, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 402 cm² (padrão); de lado: 68 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -5454,6 +5460,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pegada um pouco mais aberta que os ombros (consenso) | as pegadas ficam a 50 cm uma da outra; os centros dos ombros a 38,3 cm | como a ficha pede | ok |
 | Ficha | as duas mãos seguram a barra, que se move inteira (as mãos não deslizam nela e ela fica na horizontal) (consenso) | o centro de cada mão fica a no máximo 0 cm da barra; as pegadas ficam de 50 a 50 cm uma da outra; a barra sai da horizontal no máximo 0 cm de uma mão à outra | como a ficha pede | ok |
 | Ficha | a barra sobe sem encostar nas coxas nem nos joelhos (consenso) | a barra fica a no mínimo 3,6 cm da pele das coxas e dos joelhos | como a ficha pede | ok |
+| Ficha | a barra fica na frente das coxas e da barriga: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a barra na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a barra, "atrás" = a barra esconde a parte): lateral: nada se cruza com a peça na tela; quinaTras: o tronco na frente 9,9, a perna direita na frente 9,9, a perna esquerda na frente 3 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, cotovelo.inicio, barra.livre, cotovelo.polo.fora, cotovelo.polo.quadril, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 565 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -6141,6 +6148,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão na outra coxa (consenso) | a mão esquerda fica a 0,8 cm da pele da coxa esquerda e anda 0 cm | como a ficha pede | ok |
 | Ficha | o halter fica na mão e não atravessa o corpo (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 1,4 cm (cabeca) | como a ficha pede | ok |
 | Ficha | o halter não atravessa a cadeira nem o chão (consenso) | a menor folga entre as cabeças do halter e o banco ou o chão é 7,1 cm (chão) | como a ficha pede | ok |
+| Ficha | o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o halter na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o halter, "atrás" = o halter esconde a parte): frontal: o tronco atrás 16,9, a perna direita atrás 28,7, a perna esquerda atrás 16,2, o braço direito atrás 4,1, o braço esquerdo atrás 24,6; lateral: a perna direita na frente 3,6, a perna esquerda atrás 13,5, o braço direito na frente 32,6 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.abrem, joelho, assento.amassa, lombar, toracica, cervical, cabeca, apoio.acima, apoio.amassa, rosca.plano, maos.supinacao, maoL.paraDentro, maoL.poloDesce, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
