@@ -1,7 +1,8 @@
-// O pintor por pares (estudo de 19/11/2026: docs/revisoes/animacao-nova/estudo-do-pintor.md). Pronto para ligar, e
-// DESLIGADO em todas as animações: liga-se uma a uma, em ./pintor-ligado.ts, depois que o Gustavo aprova a folha de
-// antes e depois de cada uma (scripts/animacao-nova/folha-do-pintor.mjs). Etapa 1 (19/11): o mesmo resultado do
-// protótipo do estudo, quadro a quadro, com menos conta (ver "Etapa 1" no relatório).
+// O pintor por pares (estudo de 19/11/2026: docs/revisoes/animacao-nova/estudo-do-pintor.md). Liga-se por animação, em
+// ./pintor-ligado.ts, depois que o Gustavo aprova a folha de antes e depois de cada uma
+// (scripts/animacao-nova/folha-do-pintor.mjs); fora da lista, o desenho é o de hoje. Etapa 1 (19/11): o mesmo resultado
+// do protótipo do estudo, quadro a quadro, com menos conta. Etapa 2 (19/11): a folga do recorte corrigida e o primeiro
+// lote ligado (ver as duas etapas no relatório). Testes: tests/unit/pintor-por-pares.test.ts.
 //
 // O pintor de hoje (`pintar`, em ./desenho.ts) ordena itens inteiros por uma profundidade só: cada sólido da peça pelo
 // meio dele (mais o `dz`), cada grupo do Boneco pela média das partes (mais o `vies`). Uma peça comprida, ou um corpo
