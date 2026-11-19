@@ -208,11 +208,23 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     cargas: [{ massa: f('carga'), pos: H.centro }],
     marcas: { halter: e.lado.R.pegada, piso: [0, 0, 0], assento: [0, A.altura, A.zBorda] },
     vies: { maoR: 1 },
-    // de lado, o braço que trabalha fica por dentro da coxa direita, que está mais perto de quem olha: a perna direita é
-    // pintada por cima do braço (senão o braço parecia apoiado por fora da coxa)
-    viesNaVista: { lateral: { pernaR: 30 } },
+    // De lado, embaixo, o halter pende entre as pernas, de 13 a 18 cm atrás da canela de perto, e era pintado por cima
+    // dela: a cabeça de perto do halter (pintada pela profundidade do meio dela) ficava à frente do item do corpo, que
+    // leva o tronco e as pernas de perto juntos e é pintado pela média deles. O corpo e o braço que trabalha vêm para a
+    // frente do halter na pintura, juntos (o braço continua por cima do corpo, como antes); a regra
+    // rosca-concentrada-halter-pintado-no-lugar mede, nos dois lados e nas duas vistas. (O `pernaR: 30` de antes não
+    // fazia nada: a perna de perto não é pintada à parte, mas no item do corpo. O braço fica por dentro da coxa e na
+    // frente da cintura; com um item só para as duas, o desenho continua com o braço por cima das duas, como foi
+    // aprovado.)
+    viesNaVista: { lateral: { corpo: VIES_DE_LADO, bracoR: VIES_DE_LADO } },
   };
 }
+
+/**
+ * Quanto o corpo e o braço que trabalha vêm para a frente do halter na pintura, de lado (cm de profundidade): a cabeça
+ * de perto do halter chegava a 11,4 cm à frente do corpo, embaixo; com 15 cm, o corpo passa a ela com 3,6 cm de folga.
+ */
+const VIES_DE_LADO = 15;
 
 export const roscaConcentrada: Exercicio = {
   ficha: F,

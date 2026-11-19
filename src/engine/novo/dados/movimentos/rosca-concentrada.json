@@ -52,7 +52,8 @@
   {"id": "tronco-quase-parado", "pede": "o tronco não balança", "selo": "consenso", "fonte": "app"},
   {"id": "rosca-concentrada-mao-na-outra-coxa", "pede": "a outra mão na outra coxa", "selo": "consenso", "fonte": "app"},
   {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
-  {"id": "halter-fora-do-banco", "pede": "o halter não atravessa a cadeira nem o chão", "selo": "consenso", "fonte": "desenho"}
+  {"id": "halter-fora-do-banco", "pede": "o halter não atravessa a cadeira nem o chão", "selo": "consenso", "fonte": "desenho"},
+  {"id": "rosca-concentrada-halter-pintado-no-lugar", "pede": "o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "tronco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco sobe para ajudar a levantar o halter, e o braço sai da coxa com ele", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},

@@ -57,3 +57,18 @@ A ficha da técnica dá só o essencial (braço apoiado por dentro da coxa; só 
 - **De lado, o halter embaixo é pintado por cima da canela direita**, embora esteja atrás dela (a ordem de pintura do halter não segue a da perna). Não é uma peça atravessando a outra, mas parece o halter na frente da perna.
 - **O braço esquerdo** sai um pouco para fora (o cotovelo aponta para fora e para baixo): é a pose comum de quem apoia a mão na coxa, mas lembra uma asa no quadro de frente.
 - O plano do antebraço (`rosca.plano`, 60° do lado de dentro para a frente) é desenho: com o bíceps virado só para dentro, o halter batia na perna esquerda no meio da subida.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M9) achou que, de lado, embaixo, o halter, que pende entre as pernas, era pintado por cima da canela de perto, que fica de 13 a 18 cm mais perto de quem olha. **Causa:** a cabeça de perto do halter, pintada pela profundidade do meio dela, ficava até 11,4 cm à frente do item do corpo (o tronco com as pernas de perto, pintado pela média deles).
+
+**O que mudou.** Só no exercício: `viesNaVista` de lado traz o corpo e o braço que trabalha 15 cm para a frente do halter na pintura, juntos (o braço continua por cima do corpo, como antes). O `pernaR: 30` que estava ali saiu: ele não fazia nada, porque a perna de perto não é pintada à parte, mas no item do corpo. A regra nova `rosca-concentrada-halter-pintado-no-lugar` mede o cabo e as duas cabeças do halter contra cada parte do corpo, dos dois lados, nas duas vistas (a mão, no cabo, não conta).
+
+**Antes → depois** (pior quadro, cm de folga de pintura): de lado, a perna direita, que esconde o halter, −11,4 → 3,6; o braço direito 17,6 → 32,6; a perna esquerda (atrás dele) 13,5, sem mudança. De frente, nada muda (o halter fica na frente do tronco, das pernas e dos braços: 4,1 a 28,7). A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 3 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.**
+- **De lado, o braço que trabalha continua por cima da coxa direita**, embora fique por dentro dela (medido pelo raio: a coxa e a canela escondem de 100 a 240 pontos do braço). O braço também fica na frente da cintura (esconde 150 pontos dela), e as duas, a coxa e a cintura, são o mesmo item do Boneco: o pintor só acerta uma. Pintar o braço atrás do corpo escondia o braço quase inteiro de lado, junto com o bíceps; ficou como foi aprovado. O comentário antigo do exercício dizia o contrário (o `pernaR: 30`), e estava errado.
+- **A mão cobre a borda da cabeça de perto do halter** de lado: antes isso acontecia no meio do movimento; agora também embaixo e em cima.
+- Vista de cima: o exercício não a declara (as vistas são de frente e de lado, e os erros, de lado e de frente), então a cabeça que some de cima não se aplica aqui; não pus o `viesNaVista` de cima.
