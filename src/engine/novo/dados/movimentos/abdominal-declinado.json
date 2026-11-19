@@ -45,6 +45,7 @@
   {"id": "abdominal-declinado-costas-saem-do-banco", "pede": "enrola a coluna até as costas saírem do banco; embaixo, as costas encostam", "selo": "consenso", "fonte": "app"},
   {"id": "abdominal-declinado-bacia-no-banco", "pede": "a bacia continua apoiada no banco: quem sobe é a coluna, enrolando", "selo": "consenso", "fonte": "ficha"},
   {"id": "abdominal-declinado-pernas-presas", "pede": "os pés presos nos rolos: os rolos atrás dos joelhos e na frente dos tornozelos, encostados nas pernas", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-declinado-corpo-por-cima-do-banco", "pede": "o corpo deitado no encosto aparece por cima dele onde está na frente dele, nos dois lados e em todas as vistas; nos rolos, a cabeça, o tronco e os braços", "selo": "desenho", "fonte": "desenho"},
   {"id": "abdominal-pescoco-acompanha", "pede": "sem puxar o pescoço: ele acompanha o tronco", "selo": "consenso", "fonte": "app"},
   {"id": "abdominal-maos-no-peito", "pede": "mãos cruzadas no peito, sem puxar a cabeça", "selo": "consenso", "fonte": "app"}
  ],

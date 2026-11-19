@@ -6,13 +6,48 @@ import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { regioesDasCostas } from '../exercicios/abdominal';
-import { bancoDoDeclinado, daFace } from '../exercicios/abdominal-declinado';
+import { abdominalDeclinado, bancoDoDeclinado, daFace } from '../exercicios/abdominal-declinado';
+import type { Quadro } from '../movimento';
 import { rolosDoDeclinado } from '../pecas-de-cena/banco-declinado';
 import { sub } from '../vec';
+import { estofadoEmCaixa, estofadoEmVolume, nadaPorBaixo, pinturaNasVistas, textoDaPintura } from './pintura-sobre-o-estofado';
+import type { EstofadoMedido, ParteMedida } from './pintura-sobre-o-estofado';
 
 const menor = (v: number[]) => (v.length ? Math.min(...v) : 1e9);
 
+/** Os estofados do banco no quadro: o encosto (a caixa) e os quatro rolos das pernas (os volumes: os dos joelhos, o direito e o esquerdo, e os dos tornozelos), nesta ordem. */
+function estofadosDoBanco(x: Quadro): EstofadoMedido[] {
+  return x.prims.flatMap((p) => (p.cls !== 'estofado' ? [] : p.t === 'caixa' ? [estofadoEmCaixa(p)] : p.t === 'volume' ? [estofadoEmVolume(p.vol.aneis)] : []));
+}
+const SEM_AS_PERNAS: ParteMedida[] = [
+  { grupo: 'corpo', volume: 'cabeca' },
+  { grupo: 'corpo', volume: 'tronco' },
+  { grupo: 'corpo', volume: 'pelve' },
+  ...(['R', 'L'] as const).flatMap((k) => [
+    { grupo: `braco${k}`, volume: 'braco' },
+    { grupo: `braco${k}`, volume: 'ante' },
+  ]),
+];
+const PERNAS: ParteMedida[] = (['R', 'L'] as const).flatMap((k) => ['coxa', 'canela', 'pe'].map((volume) => ({ grupo: `perna${k}`, volume })));
+const NOMES_DOS_ESTOFADOS = ['o encosto', 'o rolo direito dos joelhos', 'o rolo esquerdo dos joelhos', 'o rolo direito dos tornozelos', 'o rolo esquerdo dos tornozelos'];
+
 export const REGRAS_BANCO_DECLINADO: Record<string, Regra> = {
+  'abdominal-declinado-corpo-por-cima-do-banco': (q, corpo) => {
+    // (acréscimo de 18/11, a auditoria da fase C) em cada vista do exercício e na de cada erro: os anéis da cabeça,
+    // do tronco, da bacia e dos braços e pernas dos dois lados que ficam na frente do encosto e por cima dele na tela
+    // não podem ficar por baixo dele na pintura; nos rolos, o mesmo para a cabeça, o tronco, a bacia e os braços. As
+    // pernas ficam fora da conta dos rolos: elas se enrolam neles (o rolo na frente do tornozelo amassa o peito do pé, e
+    // o pé passa dos dois lados dele), e com um item por rolo o pintor não tem uma ordem que acerte as duas coisas
+    // (a conferência escrita dá os números)
+    const n = estofadosDoBanco(q[0]!).length;
+    const r = Array.from({ length: n }, (_, i) => pinturaNasVistas(abdominalDeclinado, q, corpo, (x) => estofadosDoBanco(x)[i]!, i === 0 ? [...SEM_AS_PERNAS, ...PERNAS] : SEM_AS_PERNAS));
+    const so = (v: ReturnType<typeof pinturaNasVistas>) => v.map((x) => ({ ...x, partes: Object.fromEntries(Object.entries(x.partes).filter(([, c]) => c.naFrente > 0)) }));
+    const texto = (v: ReturnType<typeof pinturaNasVistas>) => (so(v).every((x) => !Object.keys(x.partes).length) ? 'nenhum anel na frente dele e por cima dele na tela' : textoDaPintura(so(v)));
+    return {
+      medido: `anéis pintados por baixo de cada estofado do banco, de quantos ficam na frente dele e por cima dele na tela (o pior quadro, nas vistas de lado e de três quartos e nos três erros): ${r.map((v, i) => `${NOMES_DOS_ESTOFADOS[i] ?? `estofado ${i + 1}`} (${i ? 'sem as pernas' : 'o corpo todo'}): ${texto(v)}`).join('; ')}`,
+      ok: r.every(nadaPorBaixo),
+    };
+  },
   'abdominal-declinado-costas-saem-do-banco': (q) => {
     // embaixo, as costas na altura das escápulas encostam na face (amassam até 1,5 cm, sem folga de mais de 1 cm); em
     // cima, as costas da altura das escápulas e a parte de cima da lombar saem dela
