@@ -176,6 +176,22 @@ Separar "encerra o treino de hoje" de "encerra este exercício" é claro e séri
 
     ![O mesmo exercício numa tela média](capturas/treino-tela-media-mesmo-exercicio.png)
 
+  - **Não é só na tela mais estreita.** O "iPhone SE" do simulador é o de 2016. Medi então a tela de treino nos tamanhos mais comuns:
+
+    | Tela | Exemplo | "Série feita" | Altura do boneco | Abas do guia |
+    |---|---|---|---|---|
+    | 320 × 568 | iPhone SE antigo | **fora da tela** | 104 | não |
+    | 360 × 640 | Android pequeno | cabe | 104 | não |
+    | 375 × 667 | iPhone SE atual, iPhone 8 | cabe | **70** | não |
+    | 390 × 664 | iPhone 13/14 no Safari, com as barras (aproximação) | cabe | 86 | não |
+    | 360 × 740 | Android comum | cabe | 133 | não |
+    | 390 × 797 | iPhone 13/14 com o app instalado | cabe | 160 | sim |
+    | 412 × 839 | Pixel 7 | cabe | 134 | sim |
+
+    As legendas do boneco saem com letra de **8 pontos** em todos. Só nas telas mais altas aparecem as abas (Técnica, Erros, Músculos). No tamanho do iPhone SE atual, o boneco tem 70 pontos de altura e a cabeça fica atrás do rótulo:
+
+    ![Tela de 375 × 667: boneco de 70 pontos, cortado](capturas/treino-375x667-boneco-cortado.png)
+
 - **O que ela não perdoa:** trocar para a música no meio do descanso e não ser avisada (ver "segundo plano", abaixo). E não ter gráfico de evolução: depois de um treino, a "evolução" de um exercício é uma linha de texto.
 
 ---
