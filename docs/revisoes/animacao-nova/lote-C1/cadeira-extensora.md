@@ -52,3 +52,22 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **No erro do joelho fora do eixo**, a diferença se lê pelo ponto do joelho fora do centro do came e pelo rolo que sobe para o peito do pé; é sutil no tamanho da miniatura.
 - **No erro do quadril**, o tronco deita só 3,4° a mais (o que o encosto deixa); o que se vê é a bacia fora do assento, mais que o tronco "ajudando".
 - **O assento a 56 cm é de desenho** (as fichas não dão): é o que deixa o pé fora do chão com o joelho a 95°.
+
+## Correção de 18/11 (auditoria)
+
+A auditoria de 18/11 (`../auditoria-fase-c.md`) tirou esta animação da aprovação. O que ela achou, a causa, o que mudou e os números antes e depois (corpo do app; "anéis" = os do Boneco, medidos como na auditoria).
+
+| Achado | Causa | O que mudou | Antes | Depois |
+|---|---|---|---|---|
+| **Três quartos, no alto da subida: o rolo pintado sobre o pé de perto** (pequeno) | O pé e a canela vão juntos no mesmo item de pintura (o do corpo); o rolo fica por cima da canela e, no alto, o pé fica em pé na frente dele: nenhuma ordem dá as duas coisas | O rolo continua pintado por cima das pernas, com um recorte (máscara) do tamanho de cada pé, só nos trechos em que o pé está mesmo na frente dele, medido raio a raio na vista desenhada (opção `naFrenteDoRolo` da peça, desligada por padrão) | anéis por baixo do rolo, no pior quadro: pé direito 8 de 20 e esquerdo 6 de 20 (no erro do eixo); na técnica, 5 de 20 | pé direito 1 de 20 (a linha de contato), o resto 0 |
+| (achado aqui) Três quartos: a alavanca e a luva por cima das pernas | A mesma ordem por centro: elas ficam do lado de fora da perna de longe | Vão para trás na ordem de pintura (`pintura.movelAtras`, 60 cm; opção `dz` da peça) | por cima | atrás |
+| Erro "Joelho fora do eixo": o pé entra no rolo (pequeno) | O rolo escorregava calculado pela linha da canela; no tornozelo e no pé a pele sai da linha | No erro, o rolo para na pele (canela e pé), afundando o mesmo 0,5 cm da técnica | 3,6 cm | 0,5 cm (36 pontos por anel) |
+| De lado, erro "Joelho fora do eixo": o encosto pintado sobre as costas (médio) | Não reproduzi: o encosto vai na estrutura, pintada numa camada abaixo do corpo; medindo como a auditoria descreve, nenhum anel do tronco fica por baixo de estofado, antes e depois | Nada no desenho; a regra nova confere a ordem | 0 anéis | 0 anéis |
+| De lado, erro "Tirar o quadril do banco": as mãos sobem da alça (médio) | Com a bacia 6 cm acima e o tronco deitando para continuar no encosto, o braço (já quase esticado) não alcançava a alça | Os ombros descem (as mãos empurram as alças) até 10° da clavícula (`erro.ombros.desceMax`, de desenho); a bacia sobe só o que os braços deixam (calibrado) | 4,8 cm | 0,0 cm; os ombros descem 10° e a bacia sobe 3,4 cm (pedidos 6), o tronco deita 1,6° a mais |
+| (achado aqui) Erro "Joelho fora do eixo": as mãos saíam da alça | O corpo recua 6 cm e as alças não | O mesmo (os ombros no limite) | 2,6 cm | 0,1 cm |
+
+**A conferência nova (`cadeira-extensora-pintura-e-maos`, em `regras/cadeiras.ts`)**: a mesma da flexora (ver `cadeira-flexora.md`). No estado antigo ela falha (pé direito 8/20 e esquerdo 6/20; mãos a 4,8 cm no "Tirar o quadril do banco"); agora passa: pé direito 1/20; o rolo na frente das pernas e pintado por baixo delas em 1 ponto (perna direita) e 2 de 52 (esquerda), na borda; mãos a no máximo 0,1 cm.
+
+**Conferência automática:** `node scripts/animacao-nova/conferir.mjs cadeira-extensora`: 0 falhas, 1 aviso (as linhas de desenho da ficha). A folha da peça saiu igual. Quadros grandes regravados (`../quadros/cadeira-extensora.png`, agora com o meio de três quartos); olhei também os quatro erros de três quartos.
+
+**O que ainda não ficou bom:** a bacia do erro "Tirar o quadril do banco" sobe 3,4 cm, e não 6: com as mãos nas alças é o que os braços deixam; o erro se lê pela linha do quadril e pelo corpo vermelho, mas menos que antes. O recorte do rolo segue o contorno do pé por anéis (com 0,4 cm de folga): na borda, uma lasca de alguns milímetros do rolo pode sumir junto do pé. O limite de 10° da clavícula é de desenho, sem fonte medida.

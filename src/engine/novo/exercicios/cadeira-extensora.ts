@@ -12,7 +12,7 @@ import { EXTENSORA } from "../pecas-de-cena/cadeira-extensora";
 import type { Corpo } from "../tabelas";
 import { mix } from "../vec";
 import {
-  deitaEncostado,
+  erroComAsMaosNasAlcas,
   naCadeira,
   quadroNaCadeira,
   sentarNaCadeira,
@@ -41,31 +41,34 @@ const sentado = (corpo: Corpo) =>
 const inicio = (corpo: Corpo) =>
   naCadeira(corpo, O, sentado(corpo), f("joelho.embaixo")).alavanca;
 
+/** Os erros com as mãos nas alças (a auditoria de 18/11/2026). */
+const erroQuadril = (corpo: Corpo) =>
+  erroComAsMaosNasAlcas(corpo, O, sentado(corpo), `${F.id}:quadril`, f("joelho.emCima"), { sobe: f("erro.quadril.sobe"), encosta: true }, f("erro.ombros.desceMax"));
+const erroEixo = (corpo: Corpo) =>
+  erroComAsMaosNasAlcas(corpo, O, sentado(corpo), `${F.id}:eixo`, f("joelho.emCima"), { recua: f("erro.eixo.recua") }, f("erro.ombros.desceMax"));
+/**
+ * A ordem de pintura (a auditoria de 18/11/2026): a alavanca, o came e as placas ficam do lado de fora da perna de
+ * longe e vão para trás das pernas; o rolo fica na frente das canelas e é pintado por cima delas, menos onde os pés
+ * ficam na frente dele (no alto da subida, de três quartos, o pé fica em pé na frente do rolo).
+ */
+const PINTURA = { dz: { movel: f("pintura.movelAtras") }, pesNaFrente: true };
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const S = sentado(corpo);
   const n = f("erro.ritmo.expoente");
   // no tranco, a perna já está quase em cima no meio da subida; na descida rápida, quase embaixo no meio da descida
   const v = erro === "tranco" ? 1 - (1 - u) ** n : erro === "cai" ? u ** n : u;
   const joelho = mix(f("joelho.embaixo"), f("joelho.emCima"), v);
-  // no erro do quadril, a bacia sobe e o tronco deita até as costas continuarem no encosto (empurrando-o)
-  const deita =
-    erro === "quadril"
-      ? deitaEncostado(
-          corpo,
-          O,
-          S,
-          F.id,
-          f("joelho.emCima"),
-          f("erro.quadril.sobe"),
-        )
-      : 0;
-  const dv: Desvio =
-    erro === "quadril"
-      ? { sobe: f("erro.quadril.sobe") * u, deita: deita * u }
-      : erro === "eixo"
-        ? { recua: f("erro.eixo.recua") }
-        : {};
-  return quadroNaCadeira(corpo, O, S, joelho, inicio(corpo), f("placas"), dv);
+  // no erro do quadril, a bacia sobe e o tronco deita até as costas continuarem no encosto (empurrando-o); as mãos
+  // continuam nas alças, nesse erro e no do joelho fora do eixo: os ombros descem, e a bacia sobe só o que os braços
+  // deixam (./cadeira-de-joelho.ts)
+  const q = erro === "quadril" ? erroQuadril(corpo) : undefined;
+  const dv: Desvio = q
+    ? { sobe: q.sobe * u, deita: q.deita * u, ombrosDescem: q.ombrosDescem * u }
+    : erro === "eixo"
+      ? { recua: f("erro.eixo.recua"), ombrosDescem: erroEixo(corpo).ombrosDescem }
+      : {};
+  return quadroNaCadeira(corpo, O, S, joelho, inicio(corpo), f("placas"), dv, 0, PINTURA);
 }
 
 export const cadeiraExtensora: Exercicio = {

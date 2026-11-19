@@ -3,10 +3,10 @@
   "vistaMiniatura": "quina",
   "quadros": {
    "lateral": [
-    -137.36052064678083,
-    -194.46245187943398,
-    263.4925493361844,
-    197.61941200213835
+    -135.76631179789322,
+    -192.16874836357215,
+    260.29416901880046,
+    195.22062676410036
    ],
    "quina": [
     -116.00132658938284,
@@ -24,8 +24,8 @@
   "caixas": {
    "ansur2-homem-imc-normal|lateral|cinza|0|": [
     -70.69668901417961,
-    -149.78266871173952,
-    59.46819705680244,
+    -148.03130667547003,
+    59.45823443719368,
     -5.5
    ],
    "ansur2-homem-imc-normal|quina|cinza|0|": [
@@ -43,7 +43,16 @@
   }
  },
  "calibragens": {
-  "ansur2-homem-imc-normal|cadeira-extensora:deita-encostado": 3.3828455209732056,
+  "ansur2-homem-imc-normal|cadeira-extensora:eixo:maos-nas-alcas": {
+   "sobe": 0,
+   "deita": 0,
+   "ombrosDescem": 10
+  },
+  "ansur2-homem-imc-normal|cadeira-extensora:quadril:maos-nas-alcas": {
+   "sobe": 3.399905204772949,
+   "deita": 1.569799780845642,
+   "ombrosDescem": 10
+  },
   "ansur2-homem-imc-normal|cadeira-extensora:sentado": {
    "y": 65.31754443934187,
    "z": -36.29877922565076,

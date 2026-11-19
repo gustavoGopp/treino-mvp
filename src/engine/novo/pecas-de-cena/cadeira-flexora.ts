@@ -19,11 +19,13 @@
 // Eixos: quem senta olha para +z; o assento fica centrado em x = 0, com a borda da frente em z = 0. O lado esquerdo de
 // quem senta é +x (o direito, que a vista de lado mostra, é −x): o came, a alavanca e a torre ficam à esquerda, para não
 // esconder o joelho de quem olha de lado.
-import type { Prim } from '../desenho';
+import type { Anel } from '../corpo3d';
+import { casco } from '../desenho';
+import type { P2, Prim } from '../desenho';
 import type { PecaPropria } from '../pecas';
 import { cilindro } from '../pecas';
 import { obj } from '../tabelas';
-import { add, mul } from '../vec';
+import { add, dot, mul, sub } from '../vec';
 import type { V3 } from '../vec';
 
 /**
@@ -110,6 +112,90 @@ function encosto(m: Pick<CadeiraFlexora, 'encosto'>, mod: ModeloDaCadeira) {
 export interface OpcoesDaPeca {
   travaAParte?: boolean;
   cantosRedondos?: boolean;
+  /**
+   * Acréscimo de 19/11/2026 (correção da auditoria): quanto a parte que se mexe vai para trás na ordem de pintura (cm,
+   * positivo = mais longe de quem olha; o desenho não muda). `movel`: a alavanca, a luva, o came, o cabo e as placas,
+   * que ficam do lado de fora da perna de longe; `rolo`: o rolo e a haste que o leva para baixo das pernas. Sem isso,
+   * cada um entra na ordem pelo próprio centro, e o Boneco entra pelo centro do corpo (a perna de perto vai junto com
+   * o tronco): de três quartos, o rolo e a alavanca, mais perto de quem olha que o tronco, saíam pintados por cima das
+   * pernas.
+   */
+  dz?: { movel?: number; rolo?: number };
+  /**
+   * Acréscimo de 19/11/2026 (correção da auditoria), desligado por padrão: as partes do corpo (cada uma pelos anéis
+   * dela, como o Boneco a desenha) que o rolo não cobre onde elas ficam na frente dele. Na extensora, no alto da
+   * subida, o pé fica em pé na frente do rolo, e a canela, embaixo dele; o pé e a canela vão juntos na ordem de pintura
+   * (num item só, o do corpo), e nenhuma ordem dava as duas coisas. O rolo é pintado por cima das pernas, com um recorte
+   * (máscara) do tamanho dessas partes, só nos trechos em que elas estão mesmo na frente dele, medido raio a raio na
+   * vista desenhada: de cada ponto da metade do anel virada para quem olha, um raio até quem olha que não atravessa o rolo.
+   */
+  naFrenteDoRolo?: Anel[][];
+}
+
+/** Um nome curto e estável para a máscara (o mesmo recorte dá o mesmo nome, em qualquer <svg> da página). */
+function nomeDoRecorte(t: string): string {
+  let h = 2166136261;
+  for (let i = 0; i < t.length; i++) h = Math.imul(h ^ t.charCodeAt(i), 16777619);
+  return `cr${(h >>> 0).toString(36)}`;
+}
+
+/**
+ * O recorte do rolo (`OpcoesDaPeca.naFrenteDoRolo`): a máscara que deixa de fora do último item desenhado (o rolo) as
+ * partes do corpo que ficam na frente dele nesta vista. `a` e `b`: as pontas do eixo do rolo desenhado; `r`: o raio.
+ */
+function recortarORolo(C: Parameters<PecaPropria['desenhar']>[0], a: V3, b: V3, r: number, partes: Anel[][]): void {
+  // a projeção da cena é linear: lida em quatro pontos do próprio rolo (para não mexer na caixa da peça)
+  const P0 = C.P(a),
+    PX = C.P(add(a, [1, 0, 0])),
+    PY = C.P(add(a, [0, 1, 0])),
+    PZ = C.P(add(a, [0, 0, 1]));
+  const col = (k: number): V3 => [PX[k]! - P0[k]!, PY[k]! - P0[k]!, PZ[k]! - P0[k]!];
+  const tx = col(0),
+    ty = col(1),
+    // para quem olha (o gerador conta a profundidade para longe)
+    para = mul(col(2), -1);
+  const tela = (p: V3): [number, number] => [P0[0]! + dot(sub(p, a), tx), P0[1]! + dot(sub(p, a), ty)];
+  const L = sub(b, a),
+    comp = Math.hypot(...L),
+    u = mul(L, 1 / comp);
+  const noRolo = (p: V3) => {
+    const d = sub(p, a),
+      t = dot(d, u);
+    return t >= 0 && t <= comp && Math.hypot(...sub(d, mul(u, t))) <= r;
+  };
+  const ponto = (an: Anel, th: number, folga = 0): V3 => {
+    const sn = Math.sin(th);
+    return add(add(an.c, mul(an.x, (an.a + folga) * Math.cos(th))), mul(an.z, ((sn >= 0 ? an.f : an.b) + folga) * sn));
+  };
+  const N = 24;
+  // o anel fica na frente do rolo se nenhum ponto da metade dele virada para quem olha tem o rolo no caminho
+  const naFrente = (an: Anel) => {
+    for (let i = 0; i < N; i++) {
+      const p = ponto(an, (i * 2 * Math.PI) / N);
+      if (dot(sub(p, an.c), para) < 0) continue;
+      // um pouco para dentro, e o raio até quem olha
+      const dentro = sub(an.c, p),
+        n = Math.hypot(...dentro) || 1;
+      const q0 = add(p, mul(dentro, 0.4 / n));
+      for (let s = 0; s <= 150; s += 0.5) if (noRolo(add(q0, mul(para, s)))) return false;
+    }
+    return true;
+  };
+  let furos = '';
+  for (const aneis of partes) {
+    const frente = aneis.map(naFrente);
+    for (let i = 0; i + 1 < aneis.length; i++) {
+      if (!frente[i] || !frente[i + 1]) continue;
+      const pts: P2[] = [];
+      for (const an of [aneis[i]!, aneis[i + 1]!]) for (let j = 0; j < N; j++) pts.push(tela(ponto(an, (j * 2 * Math.PI) / N, 0.4)));
+      furos += `<polygon points="${casco(pts).map((q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`).join(' ')}" fill="#000"/>`;
+    }
+  }
+  const item = C.itens[C.itens.length - 1];
+  if (!furos || !item) return;
+  const id = nomeDoRecorte(furos);
+  C.defs.push(`<mask id="${id}" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><rect x="-2000" y="-2000" width="4000" height="4000" fill="#fff"/>${furos}</mask>`);
+  item.svg = `<g mask="url(#${id})">${item.svg}</g>`;
 }
 
 /**
@@ -125,6 +211,9 @@ export function cadeiraFlexora(m: CadeiraFlexora, mod: ModeloDaCadeira = FLEXORA
   const dAl = direcaoDaAlavanca(m.alavanca);
   const centroRolo = add(G.eixo, mul(dAl, m.rolo));
   const rRolo = g('roloDiam') / 2;
+  // as pontas do rolo desenhado (do lado direito de quem senta, até 6 cm antes da ponta do lado da luva)
+  const pontaR = add(centroRolo, [-g('roloComp') / 2, 0, 0]),
+    pontaL = add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]);
   const meiaLarg = g('assentoLarg') / 2;
   // a trava das coxas: logo atrás do joelho, sobre as coxas
   const zTrava = mod.trava ? G.frenteTopo[2] - g('travaComp') / 2 - 4 : 0;
@@ -222,33 +311,37 @@ export function cadeiraFlexora(m: CadeiraFlexora, mod: ModeloDaCadeira = FLEXORA
     t: 'propria',
     nome: `alavanca da ${mod.nome}`,
     desenhar(C, M) {
+      // a ordem de pintura (só se a animação pedir; sem `op.dz`, as opções são as de sempre)
+      const dzM = op.dz?.movel ? { dz: op.dz.movel } : {},
+        dzR = op.dz?.rolo ? { dz: op.dz.rolo } : {};
       // as placas: as que ficam embaixo e as do pino, que sobem; a haste que as atravessa
       const xP = (xT0 + xT1) / 2 - g('pilhaLarg') / 2,
         zP = zTorre + g('pilhaProf') / 2;
-      if (n - k > 0) C.pilha([xP, tubo + 2, zP], X, [0, 0, -1], g('pilhaLarg'), hp * (n - k), g('pilhaProf'), n - k);
+      if (n - k > 0) C.pilha([xP, tubo + 2, zP], X, [0, 0, -1], g('pilhaLarg'), hp * (n - k), g('pilhaProf'), n - k, dzM);
       const yDo = tubo + 2 + hp * (n - k) + subida;
-      C.pilha([xP, yDo, zP], X, [0, 0, -1], g('pilhaLarg'), hp * k, g('pilhaProf'), k);
-      C.cilindro([(xT0 + xT1) / 2, yDo + hp * k, zTorre], [(xT0 + xT1) / 2, yDo + hp * k + 10, zTorre], 1.2, M.cromo, { lados: 8 });
+      C.pilha([xP, yDo, zP], X, [0, 0, -1], g('pilhaLarg'), hp * k, g('pilhaProf'), k, dzM);
+      C.cilindro([(xT0 + xT1) / 2, yDo + hp * k, zTorre], [(xT0 + xT1) / 2, yDo + hp * k + 10, zTorre], 1.2, M.cromo, { lados: 8, ...dzM });
       // o cabo: do came, desce até a polia do pé da torre e sobe por dentro dela até o alto das placas
       const rC = g('cameDiam') / 2;
       const saida = add(G.eixo, [xC - 1, -rC, 0]);
       const polia: V3 = [(xT0 + xT1) / 2, 10 - 4.5, zT1 + 2];
-      C.linha(saida, [saida[0], 10 - 4.5, saida[2]], '#202327', 0.7);
-      C.linha([saida[0], 10 - 4.5, saida[2]], polia, '#202327', 0.7);
+      C.linha(saida, [saida[0], 10 - 4.5, saida[2]], '#202327', 0.7, dzM);
+      C.linha([saida[0], 10 - 4.5, saida[2]], polia, '#202327', 0.7, dzM);
       // o came e o eixo
       const cx = (x: number): V3 => [x, G.eixo[1], G.eixo[2]];
-      C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24 });
-      C.cilindro(cx(xC + 3), cx(xC + 6), 3, M.cromo, { lados: 12 });
+      C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24, ...dzM });
+      C.cilindro(cx(xC + 3), cx(xC + 6), 3, M.cromo, { lados: 12, ...dzM });
       // a alavanca: do came até o rolo, no lado esquerdo; o rolo passa por baixo das duas pernas
       const pontaAl = add(G.eixo, mul(dAl, g('alavancaMax')));
       const lado = (v: V3, x: number): V3 => [x, v[1], v[2]];
-      C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0] });
+      C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0], ...dzM });
       // a luva do rolo, que corre na alavanca, e a haste que leva o rolo para baixo das pernas
-      C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0] });
-      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10 });
-      C.cilindro(add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
+      C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0], ...dzM });
+      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10, ...dzR });
+      C.cilindro(pontaR, pontaL, rRolo, M.estofado, { lados: 18, ...dzR });
+      if (op.naFrenteDoRolo?.length) recortarORolo(C, pontaR, pontaL, rRolo, op.naFrenteDoRolo);
     },
   };
   const trava: PecaPropria | undefined = mod.trava && op.travaAParte ? { t: 'propria', nome: `trava da ${mod.nome}`, fixa: [m.trava], desenhar: (C, M) => desenharTrava(C, M) } : undefined;
-  return { prims, fixa, movel, trava, eixo: G.eixo, centroRolo, frenteDoEncosto: E, subida, extremos: { zTras, zFrente, xDireita: -meiaLarg - 6, xEsquerda: xT1 + 2 } };
+  return { prims, fixa, movel, trava, eixo: G.eixo, centroRolo, pontasDoRolo: [pontaR, pontaL] as [V3, V3], frenteDoEncosto: E, subida, extremos: { zTras, zFrente, xDireita: -meiaLarg - 6, xEsquerda: xT1 + 2 } };
 }
