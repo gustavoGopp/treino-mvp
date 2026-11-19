@@ -40,9 +40,9 @@ function pelveParaInclinar(corpo: Corpo, inclina: number, toracica: number): num
   }, -30, 70, 30);
 }
 
-function troncoEPernas(corpo: Corpo, pelveY: number, frente: number, toracica: number): { t: Tronco; pernas: Record<Lado, PosePerna> } {
+function troncoEPernas(corpo: Corpo, pelveY: number, frente: number, toracica: number, atras = 0): { t: Tronco; pernas: Record<Lado, PosePerna> } {
   const w = f('pes.meiaDistancia');
-  const t = resolverTronco(corpo, { pelve: [0, pelveY, f('pelve.z')], frente, toracica, cervical: f('cervical'), cabeca: f('cabeca') });
+  const t = resolverTronco(corpo, { pelve: [0, pelveY, f('pelve.z') - atras], frente, toracica, cervical: f('cervical'), cabeca: f('cabeca') });
   const perna = (k: Lado): PosePerna => ({ pe: { bola: [sinal(k) * w, 0, f('pe.z')], dir: [sinal(k) * 0.12, 0, 1], calc: 0 }, polo: [sinal(k) * 0.1, 0, 1] });
   return { t, pernas: { R: perna('R'), L: perna('L') } };
 }
@@ -99,13 +99,15 @@ function pedido(c: Pick<Calibrado, 'cotBaixo'>, u: number, erro?: string) {
     cotovelo: mix(alto, c.cotBaixo, u),
     inclina: erro === 'tronco' ? mix(f('tronco.inclinacao'), f('erro.tronco.inclinacao'), u) : f('tronco.inclinacao'),
     toracica: erro === 'tronco' ? u * f('erro.tronco.toracica') : 0,
+    // ao debruçar, o quadril vai para trás e a cabeça fica atrás do cabo (até 19/11 o cabo atravessava a cabeça)
+    atras: erro === 'tronco' ? u * f('erro.tronco.quadrilAtras') : 0,
   };
 }
 
 function montar(corpo: Corpo, c: Pick<Calibrado, 'pelveY' | 'frente' | 'cotBaixo'>, u: number, erro?: string): Esq {
   const p = pedido(c, u, erro);
   const frente = erro === 'tronco' ? pelveParaInclinar(corpo, p.inclina, p.toracica) : c.frente;
-  const { t, pernas } = troncoEPernas(corpo, c.pelveY, frente, p.toracica);
+  const { t, pernas } = troncoEPernas(corpo, c.pelveY, frente, p.toracica, p.atras);
   const certo = resolverMembros(t, bracos(t, p.cotovelo), pernas);
   if (erro !== 'cotovelos') return certo;
   // os cotovelos abrem: as mãos seguem na barra, no mesmo caminho, e o cotovelo gira para fora em volta da linha do

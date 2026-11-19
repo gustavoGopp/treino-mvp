@@ -27,8 +27,9 @@
   "cabo.inclinacao": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "em cima, o cabo sai da roldana um pouco à frente da barra: de frente para a coluna, a cerca de meio passo (como no tríceps na corda)"},
   "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado em cima: a pilha já sai 2 cm do repouso"},
   "erro.cotovelos.polo": {"v": 0.35, "un": "proporção", "selo": "desenho", "fonte": "desenho", "o": "erro: o cotovelo aponta para fora (quanto para fora em relação a para trás): os braços abrem e saem do tronco, com a barra no mesmo caminho"},
-  "erro.tronco.inclinacao": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: o tronco debruça sobre a barra enquanto as mãos descem (como no tríceps na corda)"},
+  "erro.tronco.inclinacao": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: o tronco debruça sobre a barra enquanto as mãos descem (como no tríceps na corda)"},
   "erro.tronco.toracica": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: as costas arredondam um pouco ao debruçar"},
+  "erro.tronco.quadrilAtras": {"v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: ao debruçar, o quadril vai para trás (os pés parados), e a cabeça e o peito ficam atrás do cabo, que continua reto da barra à roldana (correção de 19/11/2026: com o quadril parado, o cabo atravessava a cabeça)"},
   "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, o cotovelo dobra só 55° (o antebraço para bem abaixo da horizontal)"}
  },
  "fases": [
@@ -48,7 +49,8 @@
   {"id": "palmas-para-baixo", "pede": "pegada por cima: o polegar para dentro, ao longo da barra", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-barra-fora-do-corpo", "pede": "a barra passa à frente do tronco e das coxas, sem atravessar", "selo": "desenho", "fonte": "desenho"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à barra, sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
-  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"}
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cotovelos", "instante": 0, "titulo": "Abrir os cotovelos", "vista": "posterior", "oQueMuda": "os cotovelos saem para fora, longe do tronco, e a barra desce no mesmo caminho: vira um empurrar com o peito", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

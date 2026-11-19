@@ -55,3 +55,30 @@ Não há correção registrada para este exercício. Vale a da rosca na polia (0
 - **O rótulo "estende até o fim"** (no punho) tem o fio cruzando o antebraço no quadro de cima, porque o lado da torre não tem espaço e os dois textos ficam à esquerda; o mesmo acontece no "só o antebraço se mexe" da rosca na polia aprovada. Tentei pôr o texto acima do corpo: o quadro abria até mostrar a coluna inteira e o fio cruzava a cabeça.
 - **De trás, a barra não aparece** no quadro de cima (fica atrás do corpo). O erro de abrir os cotovelos se lê pelos braços.
 - **A força do cabo não entra no equilíbrio**, como em todas as animações na polia.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M6) achou que, no erro "Usar o tronco", de lado, o cabo atravessa a cabeça (7,8 cm) e o tronco (3,7 cm). A animação saiu da aprovação até a correção.
+
+**A causa.** O erro debruçava o tronco até 34° com o quadril parado: a cabeça e o peito iam à frente, para dentro da linha do cabo, que continua reto da barra à roldana, no alto e à frente.
+
+**A mudança** (só no erro, dentro do que a ficha diz: "o tronco debruça sobre a barra enquanto as mãos descem"):
+
+1. O tronco debruça até 30° (era 34°; `erro.tronco.inclinacao`).
+2. Linha nova da ficha, `erro.tronco.quadrilAtras` (14 cm, selo desenho): ao debruçar, o quadril vai para trás (os pés parados), como quem se apoia na barra; a cabeça e o peito ficam atrás do cabo.
+
+**A regra nova** (comum, `cabos-fora-do-corpo-nos-erros`, em `regras/vistas-do-guia.ts`, ligada só nas fichas do tríceps com barra reta, da puxada com barra reta e da rosca de costas): em cada erro, em 6 instantes (0, 1/4, 1/2, 3/4, 1 e o instante do erro), cada cabo e cada fita do engate (os fios do quadro, fora os riscos da pilha), de meio em meio centímetro, contra o corpo inteiro (os dois lados): quanto entram em cada parte, medido na elipse do anel do Boneco interpolado ali. Não podem entrar mais de 0,5 cm. Ficam de fora as mãos que seguram e, delas, o antebraço a até 8 cm do punho, como na regra do cabo no ciclo (`polia-braco-cabos-livres-do-corpo`, que só olha o ciclo certo).
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| "Usar o tronco": quanto o cabo entra no corpo (pior instante) | **8,8 cm (cabeça)** | passa a 0,6 cm do peito |
+| "Abrir os cotovelos" e "Volta curta" | passa a 2,6 cm da cabeça | igual |
+| o tronco no fim do erro | 34° da vertical, quadril parado | 30°, quadril 14 cm para trás (o certo: 15°) |
+
+(A auditoria mediu 7,8 cm em u = 1; a regra mede seis instantes e acha 8,8 cm. A diferença é a amostragem.)
+
+Rodada no estado de antes (o exercício e a ficha de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes.
+
+**Olhado nos quadros** (`quadros/triceps-barra-reta.png`): no erro, de lado, o tronco vermelho debruça sobre a barra com o quadril para trás, e o cabo sobe da barra rente ao peito e à frente do rosto, sem cruzá-los; o tronco certo, tracejado, fica bem mais em pé. Os outros dois erros, de trás e de lado, e o ciclo não mudaram.
+
+**O que ainda não ficou bom.** O cabo passa a 0,6 cm do peito no fim do erro: é o que a geometria deixa (a barra desce rente às coxas e o cabo sobe dela quase junto ao corpo). O debruçar é um pouco menor que antes (30° contra 34°), compensado pelo quadril para trás.
