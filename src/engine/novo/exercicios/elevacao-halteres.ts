@@ -7,7 +7,8 @@ import type { Corpo } from '../tabelas';
 import { criarElevacao } from './elevar-o-braco';
 
 // o halter sextavado de 10 lb (halteres leves, como a ficha pede): embaixo, ele cabe na frente das coxas
-const E = criarElevacao(ficha, 'halteres', { halter: 'halterLeve' });
+// (correção de 19/11/2026) no erro "Balançar o tronco", o braço começa à folga da coxa com o tronco inclinado
+const E = criarElevacao(ficha, 'halteres', { halter: 'halterLeve', folgaNoBalanco: true });
 
 /**
  * O quadro do núcleo, com a cabeça desenhada de cima: ela fica dentro da silhueta dos ombros e o contorno único do
