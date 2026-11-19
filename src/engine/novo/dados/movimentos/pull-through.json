@@ -50,7 +50,8 @@
   {"id": "pull-through-polia-atras", "pede": "polia embaixo, de costas para a torre, dois passos à frente", "selo": "consenso", "fonte": "ficha"},
   {"id": "triceps-frances-corda-na-mao", "pede": "cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha", "selo": "desenho", "fonte": "objetos"},
   {"id": "triceps-frances-corda-livre-da-cabeca", "pede": "a corda e o cabo passam entre as pernas sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
-  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"}
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
+  {"id": "pull-through-corda-pintada-no-lugar", "pede": "a corda passa entre as pernas até o cabo atrás: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "bracos", "instante": 0, "titulo": "Puxar com os braços", "vista": "lateral", "oQueMuda": "em pé, os cotovelos dobram e as mãos sobem a corda, com o quadril ainda dobrado: os braços levantaram no lugar do quadril", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

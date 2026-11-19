@@ -124,8 +124,17 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const col = colunasECabos(c.cabos, [corda.bucha], c.repouso, f('pilha.folga'), false, CORTADA_EM);
   const pecas: Peca[] = [...col.pecas!.filter((p) => p.t === 'torre'), pc.peca, ...col.pecas!.filter((p) => p.t !== 'torre')];
   const marcas: Record<string, V3> = { ...col.marcas, bucha: corda.bucha, saiR: corda.ramos[0]!.sai, saiL: corda.ramos[1]!.sai, saida: col.marcas['cabo.saida']! };
-  return { esq: e, prims: [chao(-70, 70, c.cabos[0]!.torre.base[2] - 50, 90), ...pc.prims, ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
+  return { esq: e, prims: [chao(-70, 70, c.cabos[0]!.torre.base[2] - 50, 90), ...pc.prims, ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 }, viesNaVista: VIES_NA_VISTA };
 }
+/**
+ * A corda passa entre as pernas, atrás da coxa de perto. De lado (e de três quartos por trás, em pé), cada ramo é pintado
+ * pela profundidade do meio dele e saía à frente do item do corpo (o tronco com as pernas de perto, pintado pela média
+ * deles): a corda aparecia por cima da coxa de perto. O corpo vem para a frente da corda na pintura, e o braço de perto
+ * vem junto, para continuar por cima do corpo, como antes; a regra pull-through-corda-pintada-no-lugar mede, nos dois
+ * lados e nas duas vistas. De lado, a ponta de borracha do ramo direito chegava a 6,1 cm à frente do corpo (10 cm deixa
+ * 3,9 de folga); de três quartos por trás, em pé, 19,1 cm à frente dele, que fica em 11,2 (12 cm deixa 4,1).
+ */
+const VIES_NA_VISTA = { lateral: { corpo: 10, bracoR: 10 }, quinaTras: { corpo: 12, bracoR: 12 } };
 
 export const pullThrough: Exercicio = {
   ficha: F,

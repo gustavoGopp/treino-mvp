@@ -57,3 +57,15 @@ Não há correção registrada para este exercício. Do stiff: a coluna longa (p
 - **A cena é larga** (a coluna 1,4 m atrás): de lado, o rótulo "quadril para trás" fica acima do corpo e o fio desce por cima do tronco; tirei o segundo rótulo dessa vista ("braços só seguram" foi para a de três quartos) para os fios não se cruzarem. O corpo fica menor que no stiff aprovado, que não tem coluna.
 - **No modo Trajetória**, os nomes "mãos" e "quadril" ficam acima do corpo, com os fios por cima dele (mesmo motivo).
 - **A força do cabo não entra no equilíbrio**, como em todas as animações na polia: de verdade, o cabo puxa as mãos para trás e a pessoa se inclina um pouco mais à frente.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M10) achou que, de lado, no começo e no meio, a corda, que passa entre as pernas, era pintada por cima da coxa de perto (e, pequeno, de três quartos por trás, por cima da pelve). **Causa:** cada ramo da corda é um item, pintado pela profundidade do meio dele, e saía à frente do item do corpo (o tronco com as pernas de perto, pintado pela média deles).
+
+**O que mudou.** Só no exercício: `viesNaVista` traz o corpo e o braço de perto (juntos, para o braço continuar por cima do corpo, como antes) 10 cm para a frente da corda de lado e 12 cm de três quartos por trás. A regra nova `pull-through-corda-pintada-no-lugar` mede os dois ramos, as pontas de borracha, a bucha e o cabo contra cada parte do corpo, dos dois lados, nas duas vistas (as mãos, nos ramos, não contam).
+
+**Antes → depois** (pior quadro, cm de folga de pintura): de lado, a perna direita, que esconde a corda, −6,1 → 3,9; de três quartos por trás, −7,8 → 4,2; a perna esquerda (atrás da corda) 5,9 e 18,3, sem mudança; o tronco 26,3 → 38,3. A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 2 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** Os antebraços continuam entrando na pelve e na cintura (pequeno da auditoria): por isso o raio diz que a coxa de perto "esconde" o braço, o que só é verdade porque o braço está dentro dela. Não mexi na pose.

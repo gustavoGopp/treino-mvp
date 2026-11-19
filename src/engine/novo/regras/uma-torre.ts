@@ -6,9 +6,12 @@ import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { LADOS } from '../esqueleto';
+import { pullThrough } from '../exercicios/pull-through';
 import { obj } from '../tabelas';
-import { add, dist, dot, mul, paraRef, sub } from '../vec';
+import { add, dist, dot, mul, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
+import { regraDePintura } from './ordem-de-pintura';
+import type { ParteDaPeca } from './ordem-de-pintura';
 
 const rad = Math.PI / 180;
 /** Distância de um ponto a um segmento. */
@@ -80,6 +83,37 @@ export const REGRAS_UMA_TORRE: Record<string, Regra> = {
     return { medido: `a roldana a ${f1(r[1])} cm do chão (o ponto mais baixo da coluna: ${f1(obj('torre', 'poliaMin'))} cm), ${f1(atras)} cm atrás do meio da pelve e ${f1(calc)} cm atrás dos calcanhares`, ok: Math.abs(r[1] - obj('torre', 'poliaMin')) <= 0.5 && atras >= 50 && atras <= 90 && calc >= 30 };
   },
   // ----- pull-through -----
+  // A corda (os dois ramos, as pontas de borracha e a bucha, na ordem em que a peça os desenha) e o cabo, contra o corpo,
+  // nos dois lados, em cada vista do guia (acréscimo de 19/11, auditoria das fases A e B): de lado, no começo e no meio,
+  // a corda, que passa entre as pernas, era pintada por cima da coxa de perto. As mãos fecham nos ramos e não contam.
+  'pull-through-corda-pintada-no-lugar': regraDePintura({
+    exercicio: () => pullThrough,
+    nome: 'a corda',
+    fora: ['mao', 'polegar'],
+    peca: (q) => {
+      const corda = q.pecas?.find((p) => p.t === 'propria' && p.nome === 'corda-triceps'),
+        cabo = q.pecas?.find((p) => p.t === 'cabo');
+      const bucha = q.marcas.bucha;
+      if (!corda || !bucha) return [];
+      const r = obj('cordaTriceps', 'diam') / 2,
+        rp = obj('cordaTriceps', 'pontaDiam') / 2,
+        meiaMao = q.esq.corpo.m('mao.largura') / 2;
+      // cada ramo, como em montarCorda (../pecas-de-cena/corda-triceps.ts): reto da pegada à bucha
+      const partes: ParteDaPeca[] = LADOS.flatMap((k, i) => {
+        const p = q.esq.lado[k].pegada,
+          u = norm(sub(bucha, p));
+        const entra = add(p, mul(u, -meiaMao)),
+          sai = add(p, mul(u, meiaMao));
+        return [
+          { eixo: [entra, sai], raio: r, itens: [3 * i] },
+          { eixo: [sai, bucha], raio: r, itens: [3 * i + 1] },
+          { eixo: [entra, add(entra, mul(u, -obj('cordaTriceps', 'pontaComp')))], raio: rp, itens: [3 * i + 2] },
+        ];
+      });
+      partes.push({ eixo: [bucha], raio: obj('cordaTriceps', 'anelDiam') / 2, itens: [6] });
+      return [{ peca: corda, partes }, ...(cabo && cabo.t === 'cabo' ? [{ peca: cabo, partes: [{ eixo: [cabo.a, cabo.b], raio: Math.max(obj('torre', 'caboDiam'), 0.9) / 2 }] }] : [])];
+    },
+  }),
   'pull-through-bracos-so-seguram': (q) => {
     const [a, b] = faixa(q.flatMap((x) => LADOS.map((k) => x.esq.lado[k].ang.cotovelo)));
     return { medido: `o cotovelo fica de ${f1(a)}° a ${f1(b)}° o ciclo todo`, ok: b <= 10 };
