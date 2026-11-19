@@ -129,12 +129,22 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'terra-hexagonal': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'agachamento-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'supino-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'cadeira-flexora': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'cadeira-extensora': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'mergulho-graviton': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'voador-invertido': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'abdominal-declinado': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
-  'remada-articulada': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'elevacao-lateral-unilateral-elastico': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'abertura-elastico': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'elevacao-lateral-unilateral': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'elevacao-lateral-caneleira': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'crucifixo-polia-baixo': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'remada-unilateral-elastico': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'extensao-joelho-mini-band': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'triceps-barra-reta': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'puxada-barra-reta': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'rosca-polia-costas': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'cadeira-flexora': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'cadeira-extensora': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'mergulho-graviton': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'voador-invertido': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'abdominal-declinado': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'remada-articulada': { em: '2026-11-19', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abdominal-maquina': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'coice-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
@@ -164,7 +174,7 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'abducao-elastico', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'crucifixo-invertido-curvado', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'supino-polia', 'supino-inclinado-polia', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'cadeira-flexora', 'cadeira-extensora', 'mergulho-graviton', 'voador-invertido', 'abdominal-declinado', 'remada-articulada', 'abdominal-maquina', 'coice-polia', 'abducao-polia', 'remada-invertida', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'barra-fixa-graviton', 'puxada-frente', 'remada-baixa-estacao', 'voador', 'supino-maquina', 'desenvolvimento-maquina', 'mesa-flexora', 'leg-press', 'hack', 'abducao-maquina', 'aducao-maquina', 'rosca-scott', 'agachamento-barra', 'supino-barra', 'desenvolvimento-barra', 'terra-romeno-barra', 'hip-thrust'];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'abducao-elastico', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'crucifixo-invertido-curvado', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'supino-polia', 'supino-inclinado-polia', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'elevacao-lateral-unilateral', 'elevacao-lateral-caneleira', 'crucifixo-polia-baixo', 'remada-unilateral-elastico', 'extensao-joelho-mini-band', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'cadeira-flexora', 'cadeira-extensora', 'mergulho-graviton', 'voador-invertido', 'abdominal-declinado', 'remada-articulada', 'abdominal-maquina', 'coice-polia', 'abducao-polia', 'remada-invertida', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'barra-fixa-graviton', 'puxada-frente', 'remada-baixa-estacao', 'voador', 'supino-maquina', 'desenvolvimento-maquina', 'mesa-flexora', 'leg-press', 'hack', 'abducao-maquina', 'aducao-maquina', 'rosca-scott', 'agachamento-barra', 'supino-barra', 'desenvolvimento-barra', 'terra-romeno-barra', 'hip-thrust'];
 
 /**
  * As animações novas feitas que ainda não estão aprovadas, com o motivo: as de maior risco, que quem integra separou para
@@ -173,20 +183,10 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
 export const EM_REVISAO: Record<string, string> = {
   'coice-elastico': 'volta para quem fez: auditoria das fases A e B (19/11): de três quartos por trás, o colchonete é pintado por cima dos joelhos, das canelas, dos pés e das mãos',
   'coice-caneleira': 'volta para quem fez: auditoria das fases A e B (19/11): de três quartos, o colchonete cobre o joelho e a canela de apoio de longe',
-  'elevacao-lateral-unilateral-elastico': 'volta para quem fez: auditoria das fases A e B (19/11): de cima, a cabeça some dentro da silhueta dos ombros',
-  'abertura-elastico': 'volta para quem fez: auditoria das fases A e B (19/11): de cima, a cabeça some por completo',
-  'elevacao-lateral-unilateral': 'volta para quem fez: auditoria das fases A e B (19/11): de cima, a cabeça some dentro da silhueta dos ombros',
-  'elevacao-lateral-caneleira': 'volta para quem fez: auditoria das fases A e B (19/11): de cima, a cabeça some dentro da silhueta dos ombros',
-  'crucifixo-polia-baixo': 'volta para quem fez: auditoria das fases A e B (19/11): de lado, os cabos terminam no ar, sem coluna',
   'remada-barra': 'volta para quem fez: auditoria das fases A e B (19/11): de três quartos por trás, no fim, a barra é pintada por cima do quadril e das coxas',
   'crucifixo-halteres': 'volta para quem fez: auditoria das fases A e B (19/11): de três quartos, a perna de perto aparece atrás do pé do banco',
   'mergulho': 'volta para quem fez: auditoria das fases A e B (19/11): de lado, as pernas aparecem na frente da coluna da paralela de perto',
   'goblet-kettlebell': 'volta para quem fez: auditoria das fases A e B (19/11): de lado, no fim, o kettlebell é pintado por cima do joelho de perto',
-  'remada-unilateral-elastico': 'volta para quem fez: auditoria das fases A e B (19/11): a mão de apoio fica dentro da coxa',
-  'extensao-joelho-mini-band': 'volta para quem fez: auditoria das fases A e B (19/11): as linhas dos dois rótulos se cruzam',
-  'triceps-barra-reta': 'volta para quem fez: auditoria das fases A e B (19/11): no erro "Usar o tronco", o cabo entra na cabeça e no tronco',
-  'puxada-barra-reta': 'volta para quem fez: auditoria das fases A e B (19/11): no erro "Puxar pela nuca", o cabo entra na cabeça e no pescoço',
-  'rosca-polia-costas': 'volta para quem fez: auditoria das fases A e B (19/11): no erro "Trazer o cotovelo para a frente", o cabo entra no braço',
   'rosca-concentrada': 'volta para quem fez: auditoria das fases A e B (19/11): de lado, o halter é pintado por cima da canela de perto',
   'pull-through': 'volta para quem fez: auditoria das fases A e B (19/11): de lado, a corda é pintada por cima da coxa de perto',
   'panturrilha-leg-press': 'espera o ok do Gustavo: é a primeira com o quadro só na perna (o corpo cortado) e uma vista só, para o tornozelo se ler',

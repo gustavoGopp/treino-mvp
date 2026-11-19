@@ -57,7 +57,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abducao-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-maquina.png) |
 | `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-mini-band.png) |
 | `abducao-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/abducao-polia.png) |
-| `abertura-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abertura-elastico.png) |
+| `abertura-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-elastico.png) |
 | `abertura-t-deitado` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-t-deitado.png) |
 | `aducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-caneleira.png) |
 | `aducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/aducao-deitado.png) |
@@ -95,7 +95,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `crucifixo-invertido-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-polia.png) |
 | `crucifixo-invertido-sentado` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-sentado.png) |
 | `crucifixo-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia.png) |
-| `crucifixo-polia-baixo` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/crucifixo-polia-baixo.png) |
+| `crucifixo-polia-baixo` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia-baixo.png) |
 | `desenvolvimento` | 3 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento.png) |
 | `desenvolvimento-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/desenvolvimento-barra.png) |
 | `desenvolvimento-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-elastico.png) |
@@ -107,14 +107,14 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `elevacao-joelhos` | 7 | M | M! | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-joelhos.png) |
 | `elevacao-joelhos-paralelas` | 7 | M | M | M! | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-joelhos-paralelas.png) |
 | `elevacao-lateral` | 3 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral.png) |
-| `elevacao-lateral-caneleira` | ? | M | M | M | M | M | C | O | M! | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/elevacao-lateral-caneleira.png) |
+| `elevacao-lateral-caneleira` | ? | M | M | M | M | M | C | O | M! | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-caneleira.png) |
 | `elevacao-lateral-deitado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-deitado.png) |
 | `elevacao-lateral-elastico` | 3 | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-elastico.png) |
-| `elevacao-lateral-unilateral` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/elevacao-lateral-unilateral.png) |
-| `elevacao-lateral-unilateral-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/elevacao-lateral-unilateral-elastico.png) |
+| `elevacao-lateral-unilateral` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-unilateral.png) |
+| `elevacao-lateral-unilateral-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-unilateral-elastico.png) |
 | `extensao-joelho-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-caneleira.png) |
 | `extensao-joelho-elastico` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-elastico.png) |
-| `extensao-joelho-mini-band` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/extensao-joelho-mini-band.png) |
+| `extensao-joelho-mini-band` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/extensao-joelho-mini-band.png) |
 | `extensao-triceps-peso-corpo` | 2 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/extensao-triceps-peso-corpo.png) |
 | `face-pull` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/face-pull.png) |
 | `face-pull-elastico` | 4 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/face-pull-elastico.png) |
@@ -151,7 +151,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `ponte-kettlebell` | 6 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/ponte-kettlebell.png) |
 | `ponte-pes-bola` | 6 | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/ponte-pes-bola.png) |
 | `pull-through` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/pull-through.png) |
-| `puxada-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/puxada-barra-reta.png) |
+| `puxada-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-barra-reta.png) |
 | `puxada-elastico` | 4 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-elastico.png) |
 | `puxada-frente` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/puxada-frente.png) |
 | `puxada-unilateral` | 0 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/puxada-unilateral.png) |
@@ -166,7 +166,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `remada-invertida` | ? | M | M | M! | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-invertida.png) |
 | `remada-suspensao` | 4 | M | M | M! | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-suspensao.png) |
 | `remada-unilateral` | 4 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral.png) |
-| `remada-unilateral-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-unilateral-elastico.png) |
+| `remada-unilateral-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-elastico.png) |
 | `remada-unilateral-kettlebell` | 4 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-kettlebell.png) |
 | `remada-unilateral-polia` | 4 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-polia.png) |
 | `remada-unilateral-sem-banco` | 4 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-sem-banco.png) |
@@ -181,7 +181,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `rosca-martelo` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo.png) |
 | `rosca-martelo-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-martelo-elastico.png) |
 | `rosca-polia` | 5 | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia.png) |
-| `rosca-polia-costas` | ? | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/rosca-polia-costas.png) |
+| `rosca-polia-costas` | ? | M | M! | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-polia-costas.png) |
 | `rosca-scott` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-scott.png) |
 | `rosca-scott-banco-inclinado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-scott-banco-inclinado.png) |
 | `rosca-suspensao` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-suspensao.png) |
@@ -200,7 +200,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `supino-smith` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-smith.png) |
 | `terra-hexagonal` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/terra-hexagonal.png) |
 | `terra-romeno-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/terra-romeno-barra.png) |
-| `triceps-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/triceps-barra-reta.png) |
+| `triceps-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-barra-reta.png) |
 | `triceps-corda` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-corda.png) |
 | `triceps-elastico-acima` | 5 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-acima.png) |
 | `triceps-elastico-alto` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-alto.png) |

@@ -17,7 +17,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | abducao-maquina | 282 | 33 | 0 | 2 |
 | abducao-mini-band | 270 | 33 | 0 | 3 |
 | abducao-polia | 258 | 39 | 0 | 2 |
-| abertura-elastico | 240 | 41 | 0 | 3 |
+| abertura-elastico | 240 | 42 | 0 | 3 |
 | abertura-t-deitado | 270 | 31 | 0 | 3 |
 | aducao-caneleira | 270 | 35 | 0 | 2 |
 | aducao-deitado | 270 | 34 | 0 | 2 |
@@ -55,7 +55,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | crucifixo-invertido-polia | 258 | 40 | 0 | 2 |
 | crucifixo-invertido-sentado | 240 | 41 | 0 | 2 |
 | crucifixo-polia | 288 | 38 | 0 | 2 |
-| crucifixo-polia-baixo | 270 | 37 | 0 | 2 |
+| crucifixo-polia-baixo | 270 | 38 | 0 | 2 |
 | desenvolvimento | 273 | 38 | 0 | 3 |
 | desenvolvimento-barra | 249 | 37 | 0 | 2 |
 | desenvolvimento-elastico | 273 | 41 | 0 | 3 |
@@ -67,14 +67,14 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | elevacao-joelhos | 240 | 35 | 0 | 4 |
 | elevacao-joelhos-paralelas | 240 | 34 | 0 | 2 |
 | elevacao-lateral | 246 | 39 | 0 | 2 |
-| elevacao-lateral-caneleira | 234 | 39 | 0 | 3 |
+| elevacao-lateral-caneleira | 234 | 40 | 0 | 3 |
 | elevacao-lateral-deitado | 234 | 36 | 0 | 2 |
 | elevacao-lateral-elastico | 246 | 42 | 0 | 4 |
-| elevacao-lateral-unilateral | 234 | 41 | 0 | 3 |
-| elevacao-lateral-unilateral-elastico | 234 | 41 | 0 | 4 |
+| elevacao-lateral-unilateral | 234 | 42 | 0 | 3 |
+| elevacao-lateral-unilateral-elastico | 234 | 42 | 0 | 4 |
 | extensao-joelho-caneleira | 270 | 32 | 0 | 1 |
 | extensao-joelho-elastico | 276 | 35 | 0 | 2 |
-| extensao-joelho-mini-band | 246 | 34 | 0 | 2 |
+| extensao-joelho-mini-band | 246 | 35 | 0 | 2 |
 | extensao-triceps-peso-corpo | 273 | 34 | 0 | 5 |
 | face-pull | 264 | 39 | 0 | 2 |
 | face-pull-elastico | 264 | 40 | 0 | 3 |
@@ -111,7 +111,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | ponte-kettlebell | 282 | 37 | 0 | 1 |
 | ponte-pes-bola | 276 | 38 | 0 | 3 |
 | pull-through | 246 | 40 | 0 | 2 |
-| puxada-barra-reta | 240 | 42 | 0 | 3 |
+| puxada-barra-reta | 240 | 43 | 0 | 3 |
 | puxada-elastico | 240 | 37 | 0 | 4 |
 | puxada-frente | 240 | 41 | 0 | 2 |
 | puxada-unilateral | 240 | 34 | 0 | 4 |
@@ -126,7 +126,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | remada-invertida | 255 | 40 | 0 | 2 |
 | remada-suspensao | 279 | 39 | 0 | 2 |
 | remada-unilateral | 279 | 42 | 0 | 2 |
-| remada-unilateral-elastico | 255 | 43 | 0 | 3 |
+| remada-unilateral-elastico | 255 | 44 | 0 | 3 |
 | remada-unilateral-kettlebell | 279 | 42 | 0 | 2 |
 | remada-unilateral-polia | 279 | 42 | 0 | 2 |
 | remada-unilateral-sem-banco | 279 | 42 | 0 | 2 |
@@ -141,7 +141,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | rosca-martelo | 474 | 37 | 0 | 3 |
 | rosca-martelo-elastico | 252 | 40 | 0 | 4 |
 | rosca-polia | 258 | 41 | 0 | 3 |
-| rosca-polia-costas | 240 | 38 | 0 | 3 |
+| rosca-polia-costas | 240 | 39 | 0 | 3 |
 | rosca-scott | 270 | 43 | 0 | 2 |
 | rosca-scott-banco-inclinado | 270 | 40 | 0 | 2 |
 | rosca-suspensao | 255 | 38 | 0 | 2 |
@@ -160,7 +160,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | supino-smith | 291 | 36 | 0 | 2 |
 | terra-hexagonal | 264 | 38 | 0 | 2 |
 | terra-romeno-barra | 285 | 37 | 0 | 2 |
-| triceps-barra-reta | 234 | 40 | 0 | 3 |
+| triceps-barra-reta | 234 | 41 | 0 | 3 |
 | triceps-corda | 234 | 38 | 0 | 2 |
 | triceps-elastico-acima | 264 | 37 | 0 | 3 |
 | triceps-elastico-alto | 234 | 39 | 0 | 3 |
@@ -794,6 +794,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico seguro com a mão inteira, uma ponta em cada mão (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 76–161,3 cm uma da outra | como a ficha pede | ok |
 | Ficha | o elástico não encosta no corpo (desenho) | o elástico passa a no mínimo 0,4 cm da pele (ante) | como a ficha pede | ok |
 | Ficha | os dois braços abrem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | cima: o tronco visto a 0° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 12,8 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; posterior: o tronco visto a 90° do eixo dele (no mínimo), até 20,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -6,6 cm mais perto de quem olha que o tronco; não some; quina: o tronco visto a 76° do eixo dele (no mínimo), até 18,5% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 2,4 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho, tronco, cervical, cabeca, inicio.maos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 52 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -2517,7 +2518,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cada cabo vai reto da roldana à mão, sem encostar no corpo (consenso) | os cabos passam a no mínimo 6,9 cm da pele (cabo, ante) | como a ficha pede | ok |
 | Ficha | cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina (consenso) | cabo: o cabo anda 95,9 cm e a pilha sobe 47,9 cm (esperado 47,9); cabo2: o cabo anda 95,9 cm e a pilha sobe 47,9 cm (esperado 47,9) | como a ficha pede | ok |
 | Ficha | tronco reto e parado: quem sobe são os braços (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, joelho, toracica, cervical, cabeca, escapula.prot, mao.supinacao.inicio, mao.supinacao.fim, polia.meiaDistancia, polia.atras, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | em cada vista do guia, cada cabo termina na roldana de uma coluna que aparece (de lado, a coluna de longe, atrás do corpo) (desenho) | frontal: 2 colunas aparecem, e a saída de cada cabo fica no máximo 5,5 cm do centro da roldana mais perto, na tela; lateral: 1 coluna aparece, e a saída de cada cabo fica no máximo 3,6 cm do centro da roldana mais perto, na tela (raio da roldana: 5,5 cm) | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, joelho, toracica, cervical, cabeca, escapula.prot, mao.supinacao.inicio, mao.supinacao.fim, polia.meiaDistancia, polia.atras, coluna.deLado.noQuadro, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 496 cm² (padrão); de lado: 89 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -3081,6 +3083,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | sem embalo: o tronco fica parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + caneleiras) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -1,4 a 1 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a caneleira presa no antebraço, logo acima do punho, sem escorregar; a mão relaxada (não segura a caneleira) (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do punho, no eixo do antebraço (a 0 cm dele): a borda de baixo a 2 cm do punho; a mão fica relaxada o ciclo todo | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, plano.transicao, plano, polegar.paraCima, mao.raio, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
@@ -3227,6 +3230,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cotovelo levemente dobrado; o cotovelo lidera (consenso) | no alto, o cotovelo fica 6,8 cm acima do centro da mão; o cotovelo dobra de 15° a 15° na subida | como a ficha pede | ok |
 | Ficha | ombro baixo, longe da orelha (consenso) | a clavícula sobe no máximo 0° além do ritmo do ombro; a ponta do ombro sobe 1,9 cm com o braço (a clavícula vai de 11° a 15,1°) | como a ficha pede | ok |
 | Ficha | embaixo, o halter ao lado da coxa, sem atravessá-la (consenso) | da carga (ou da mão) à pele das pernas: no mínimo 0,5 cm | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 19,7° do eixo dele (no mínimo), até 39,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 10,3 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, tronco.lado.naBacia, cervical, cabeca, cotovelo, cotovelo.giro, carga.folga, carga, parede.cotovelo, parede.mao.acimaDoOmbro, parede.mao.aFrente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
@@ -3277,6 +3281,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico sai de sob o pé do lado oposto e cruza à frente do corpo até a mão (consenso) | o tubo sai de sob o pé esquerdo e passa diante da perna direita de 20 a 52 cm do chão, no mínimo 0,7 cm à frente da pele dela | como a ficha pede | ok |
 | Ficha | a ponta do elástico na mão que trabalha; a outra mão solta (consenso) | o centro da mão direita fica a 0–0 cm do pegador; a mão esquerda fica no mínimo a 44 cm do elástico | como a ficha pede | ok |
 | Ficha | o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante (desenho) | o trecho entre o pé e a mão estica de 1,1 vez (embaixo) a 2,3 vezes (no alto) o comprimento em repouso (63,7 cm); o máximo do fabricante é 3 | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 20,3% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; quinaTras: o tronco visto a 87° do eixo dele (no mínimo), até 20,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -9,9 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, cotovelo, cotovelo.giro, carga.folga, livre.paraFora, livre.cotovelo, elastico.esticaEmbaixo, elastico.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
@@ -3406,6 +3411,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | estende até a perna ficar reta; no começo, o joelho dobrado e o pé perto do outro (consenso) | o joelho vai de 85° (começo) a 2° (em cima); no começo, os tornozelos ficam a 23,2 cm um do outro e o pé que sobe a 4,6 cm do chão | como a ficha pede | ok |
 | Ficha | um pé fica no chão, segurando a mini-band (consenso) | o pé esquerdo fica chapado no chão (bola e calcanhar a no máximo 0 cm) e anda 0 cm no ciclo | como a ficha pede | ok |
 | Ficha | a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima (consenso) | o meio da faixa fica a 7–7 cm do tornozelo direito e 7–7 cm do esquerdo (a borda de baixo a 4,5 cm); ela vai de 1,1 vezes (começo) a 2,3 vezes (fim) | como a ficha pede | ok |
+| Ficha | em cada vista, a linha de cada rótulo vai ao ponto dele sem cruzar a do outro (desenho) | quina: as linhas se cruzam em 0 de 24 instantes; lateral: as linhas se cruzam em 0 de 24 instantes | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadrilABorda, pes.meiaDistancia, joelho, assento.amassa, maos.aFrente, lombar.sentado, pescoco.compensa, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 357 cm² (padrão); quina: 323 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -5053,6 +5059,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a barra passa à frente do rosto e chega ao peito sem atravessar o corpo (desenho) | a barra passa a no mínimo 1,1 cm da pele (tronco) | como a ficha pede | ok |
 | Ficha | o cabo vai reto da roldana à barra, sem encostar no corpo (desenho) | os cabos passam a no mínimo 12,9 cm da pele (cabo, tronco) | como a ficha pede | ok |
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 62 cm e a pilha sobe 31 cm (esperado 31) | como a ficha pede | ok |
+| Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Deitar o tronco para trás: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca); Puxar pela nuca: passa a no mínimo 1 cm da pele (o cabo, cabeca); Volta curta: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | coxa.inclinacao, cervical, cabeca, barra.folga, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 594 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -5765,9 +5772,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Amplitudes | elevação do braço | 53,7° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 17,8° | média 14,8°, máximo observado 48° (cdc) | AVISO |
 | Amplitudes | flexão plantar do tornozelo | 4,1° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 31,4° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 34,7° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 55,4° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 45,3° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 15° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -5782,8 +5789,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | tronco parado, sem girar (consenso) | a base do pescoço e a bacia andam no máximo 0 cm e o tórax gira no máximo 0° | como a ficha pede | ok |
 | Ficha | tronco inclinado à frente (consenso) | o peito fica a 56,3° da vertical (33,7° da horizontal) | como a ficha pede | ok |
 | Ficha | um pé à frente do outro, o do lado da mão que puxa atrás (consenso) | o tornozelo do lado da carga (direito) fica 66 cm atrás do outro | como a ficha pede | ok |
-| Ficha | mão livre apoiada na coxa da frente (consenso) | a mão fica a 0,2 cm da pele da coxa da frente, a 88,2% do caminho do quadril ao joelho | como a ficha pede | ok |
-| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 12° a 12° | como a ficha pede | ok |
+| Ficha | mão livre apoiada na coxa da frente (consenso) | a mão fica a 0,5 cm da pele da coxa da frente, a 97,2% do caminho do quadril ao joelho | como a ficha pede | ok |
+| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 40° a 40° | como a ficha pede | ok |
 | Ficha | fim: cotovelo atrás do tronco (consenso) | no fim, o centro do cotovelo fica 5,4 cm além da linha das costas | como a ficha pede | ok |
 | Ficha | cotovelo para trás, perto do corpo (consenso) | o braço se afasta no máximo 16° do lado do tronco | como a ficha pede | ok |
 | Ficha | fim: a mão perto do quadril (consenso) | no fim, a mão fica a 87,3% do caminho do ombro ao quadril, ao longo do tronco | como a ficha pede | ok |
@@ -5792,6 +5799,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pegada neutra (palma virada para o corpo), como na sem banco (desenho) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
 | Ficha | o pé da frente inteiro sobre o elástico: ele passa sob o meio da sola, com o calcanhar no chão (consenso) | o elástico passa sob a sola de 46,5% a 61,6% do caminho do calcanhar à bola do pé, a 0,6–0,6 cm do chão; o calcanhar fica 0–0 cm acima da bola do pé | como a ficha pede | ok |
 | Ficha | o elástico não atravessa o corpo (consenso) | o elástico passa a no mínimo 3,2 cm da pele (canela) | como a ficha pede | ok |
+| Ficha | a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros) (consenso) | o centro da mão de apoio fica de 97,2% a 97,2% do caminho do quadril ao joelho, no mínimo 2,7 cm fora da pele da coxa (Girar o tronco; negativo = dentro) e 3,7 cm para dentro da borda lateral dela; a pele da mão entra até 0 cm na coxa (Girar o tronco) e a do antebraço até 1 cm (Pisar só com a ponta do pé); a mão fica a até 0,5 cm da pele da coxa | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, elastico.folgaNaPerna, elastico.entreOsTrechos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 176 cm² (padrão); quina: 124 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -6520,6 +6528,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cabo vai reto da roldana ao estribo, saindo de trás do corpo, sem encostar nele (desenho) | os cabos passam a no mínimo 4,3 cm da pele (cabo, ante) | como a ficha pede | ok |
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 60,4 cm e a pilha sobe 30,2 cm (esperado 30,2) | como a ficha pede | ok |
 | Ficha | tronco parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Trazer o cotovelo para a frente: entra até 0,3 cm (a fita do engate, ante:R); Girar o tronco: passa a no mínimo 2,1 cm da pele (a fita do engate, ante:R); Carga demais: passa a no mínimo 2,5 cm da pele (a fita do engate, ante:R) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, braco.paraFora, antebraco.paraFora, pilha.folga, outro.braco | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
@@ -7398,6 +7407,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a barra passa à frente do tronco e das coxas, sem atravessar (desenho) | a barra passa a no mínimo 3,2 cm da pele (coxa) | como a ficha pede | ok |
 | Ficha | o cabo vai reto da roldana à barra, sem encostar no corpo (desenho) | os cabos passam a no mínimo 6 cm da pele (cabo, emendaDaCintura) | como a ficha pede | ok |
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 50,3 cm e a pilha sobe 25,1 cm (esperado 25,1) | como a ficha pede | ok |
+| Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Abrir os cotovelos: passa a no mínimo 2,6 cm da pele (o cabo, cabeca); Usar o tronco: passa a no mínimo 0,6 cm da pele (o cabo, tronco); Volta curta: passa a no mínimo 2,6 cm da pele (o cabo, cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.z, pelve.z, cervical, cabeca, braco.paraDentro, barra.folga, cabo.inclinacao, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 218 cm² (padrão); de lado: 56 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |

@@ -3987,6 +3987,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho)",
+    "medido": "cima: o tronco visto a 0° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 12,8 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; posterior: o tronco visto a 90° do eixo dele (no mínimo), até 20,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -6,6 cm mais perto de quem olha que o tronco; não some; quina: o tronco visto a 76° do eixo dele (no mínimo), até 18,5% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 2,4 cm mais perto de quem olha que o tronco; não some",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "pes.meiaDistancia, joelho, tronco, cervical, cabeca, inicio.maos",
@@ -15250,9 +15257,16 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "em cada vista do guia, cada cabo termina na roldana de uma coluna que aparece (de lado, a coluna de longe, atrás do corpo) (desenho)",
+    "medido": "frontal: 2 colunas aparecem, e a saída de cada cabo fica no máximo 5,5 cm do centro da roldana mais perto, na tela; lateral: 1 coluna aparece, e a saída de cada cabo fica no máximo 3,6 cm do centro da roldana mais perto, na tela (raio da roldana: 5,5 cm)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, joelho, toracica, cervical, cabeca, escapula.prot, mao.supinacao.inicio, mao.supinacao.fim, polia.meiaDistancia, polia.atras, pilha.folga",
+    "medido": "pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, joelho, toracica, cervical, cabeca, escapula.prot, mao.supinacao.inicio, mao.supinacao.fim, polia.meiaDistancia, polia.atras, coluna.deLado.noQuadro, pilha.folga",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -18946,6 +18960,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho)",
+    "medido": "frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "joelho, tronco, cervical, cabeca, plano.transicao, plano, polegar.paraCima, mao.raio, carga.folga, carga",
@@ -19905,6 +19926,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho)",
+    "medido": "frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 19,7° do eixo dele (no mínimo), até 39,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 10,3 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "joelho, tronco, tronco.lado.naBacia, cervical, cabeca, cotovelo, cotovelo.giro, carga.folga, carga, parede.cotovelo, parede.mao.acimaDoOmbro, parede.mao.aFrente",
@@ -20230,6 +20258,13 @@
     "grupo": "Ficha",
     "oQue": "o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante (desenho)",
     "medido": "o trecho entre o pé e a mão estica de 1,1 vez (embaixo) a 2,3 vezes (no alto) o comprimento em repouso (63,7 cm); o máximo do fabricante é 3",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho)",
+    "medido": "frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 20,3% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; quinaTras: o tronco visto a 87° do eixo dele (no mínimo), até 20,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -9,9 cm mais perto de quem olha que o tronco; não some",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -21070,6 +21105,13 @@
     "grupo": "Ficha",
     "oQue": "a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima (consenso)",
     "medido": "o meio da faixa fica a 7–7 cm do tornozelo direito e 7–7 cm do esquerdo (a borda de baixo a 4,5 cm); ela vai de 1,1 vezes (começo) a 2,3 vezes (fim)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "em cada vista, a linha de cada rótulo vai ao ponto dele sem cruzar a do outro (desenho)",
+    "medido": "quina: as linhas se cruzam em 0 de 24 instantes; lateral: as linhas se cruzam em 0 de 24 instantes",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -31826,6 +31868,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho)",
+    "medido": "Deitar o tronco para trás: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca); Puxar pela nuca: passa a no mínimo 1 cm da pele (o cabo, cabeca); Volta curta: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "coxa.inclinacao, cervical, cabeca, barra.folga, pilha.folga",
@@ -36497,7 +36546,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "31,4°",
+    "medido": "34,7°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
@@ -36511,7 +36560,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do punho",
-    "medido": "55,4°",
+    "medido": "45,3°",
     "limite": "média 70°, máximo observado 95° (aaos)",
     "nivel": "ok"
    },
@@ -36616,14 +36665,14 @@
    {
     "grupo": "Ficha",
     "oQue": "mão livre apoiada na coxa da frente (consenso)",
-    "medido": "a mão fica a 0,2 cm da pele da coxa da frente, a 88,2% do caminho do quadril ao joelho",
+    "medido": "a mão fica a 0,5 cm da pele da coxa da frente, a 97,2% do caminho do quadril ao joelho",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "a mão livre fica parada na coxa (consenso)",
-    "medido": "a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 12° a 12°",
+    "medido": "a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 40° a 40°",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -36680,6 +36729,13 @@
     "grupo": "Ficha",
     "oQue": "o elástico não atravessa o corpo (consenso)",
     "medido": "o elástico passa a no mínimo 3,2 cm da pele (canela)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros) (consenso)",
+    "medido": "o centro da mão de apoio fica de 97,2% a 97,2% do caminho do quadril ao joelho, no mínimo 2,7 cm fora da pele da coxa (Girar o tronco; negativo = dentro) e 3,7 cm para dentro da borda lateral dela; a pele da mão entra até 0 cm na coxa (Girar o tronco) e a do antebraço até 1 cm (Pisar só com a ponta do pé); a mão fica a até 0,5 cm da pele da coxa",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -41461,6 +41517,13 @@
     "grupo": "Ficha",
     "oQue": "tronco parado (consenso)",
     "medido": "a base do pescoço se move no máximo 0 cm",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho)",
+    "medido": "Trazer o cotovelo para a frente: entra até 0,3 cm (a fita do engate, ante:R); Girar o tronco: passa a no mínimo 2,1 cm da pele (a fita do engate, ante:R); Carga demais: passa a no mínimo 2,5 cm da pele (a fita do engate, ante:R)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -47208,6 +47271,13 @@
     "grupo": "Ficha",
     "oQue": "a pilha sobe o curso do cabo dividido pela relação da máquina (desenho)",
     "medido": "cabo: o cabo anda 50,3 cm e a pilha sobe 25,1 cm (esperado 25,1)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho)",
+    "medido": "Abrir os cotovelos: passa a no mínimo 2,6 cm da pele (o cabo, cabeca); Usar o tronco: passa a no mínimo 0,6 cm da pele (o cabo, tronco); Volta curta: passa a no mínimo 2,6 cm da pele (o cabo, cabeca)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
