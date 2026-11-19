@@ -24,7 +24,7 @@ import { desenharBoneco, formaDoBoneco } from './boneco';
 import { VISTAS, casco, contorno, desenharPrim } from './desenho';
 import type { Camera, IdVista, Item, P2, Prim } from './desenho';
 import { equipamentoRealista } from './equipamento';
-import type { Esq, Lado } from './esqueleto';
+import type { Lado } from './esqueleto';
 import { duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Peca } from './pecas';
@@ -153,17 +153,18 @@ function distAoSegmento(p: V3, a: V3, b: V3): number {
   return dist(p, add(a, mul(d, t)));
 }
 
-/* ============================== o pintor de estudo (ver ./pintor-por-pares.ts) ============================== */
-/** Um remendo do pintor de estudo: o item `de` pintado de novo, só dentro de `dentro` e fora de `fora` (na tela). */
+/* ============================== o pintor por pares (ver ./pintor-por-pares.ts) ============================== */
+/** Um remendo do pintor por pares: o item `de` pintado de novo, só dentro de `dentro` e fora de `fora` (na tela). */
 export interface RemendoDeEstudo {
   de: Item;
   dentro: P2[][];
   fora: P2[][];
 }
-/** Um pintor de estudo (desligado no app): marca o que cada item é e devolve a camada 1 na ordem dele. */
+/**
+ * Um pintor de estudo (o pintor por pares, desligado no app): devolve a camada 1 na ordem dele. O que cada item é vem
+ * do próprio item (`Item.pp`): o Boneco já diz as partes; as peças, a conferência diz aqui (desenha cada uma sozinha).
+ */
 export interface PintorDeEstudo {
-  marcarBoneco(itens: Item[], e: Esq, cam: Camera, roupa: boolean): Item[];
-  marcarPeca(it: Item, peca: number): Item;
   ordenar(itens: Item[]): Item[];
   remendoDe(it: Item): RemendoDeEstudo | undefined;
 }
@@ -287,12 +288,12 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
   const forma = formaDoBoneco(e, { cabeloAtrasPrimeiro: dot(cam.para, e.cabeca.z) > 0.45 });
   const eq = equipamentoDoQuadro(q, cam, prefixo);
   if (!eq.length) return [];
+  // com o pintor por pares, cada item diz de que peça do quadro é (desenhada sozinha, a peça diria 0)
+  if (pintor) for (const x of eq) x.it = { ...x.it, pp: { k: 'peca', peca: x.peca } };
   // Estudo do pintor (acréscimo de 19/11, só com `pintor`; sem ele, nada muda): a ordem de cada item é a posição dele
   // na lista do pintor de estudo, e um remendo (o item pintado de novo, recortado) conta só dentro do recorte.
   const ordensDe = new Map<Item, Ordem[]>();
   if (pintor) {
-    pintor.marcarBoneco(boneco, e, cam, false);
-    eq.forEach((x) => pintor.marcarPeca(x.it, x.peca));
     pintor.ordenar([...eq.map((x) => x.it), ...boneco]).forEach((it, r) => {
       const rec = pintor.remendoDe(it);
       const base = rec?.de ?? it;

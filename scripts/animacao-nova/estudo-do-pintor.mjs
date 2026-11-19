@@ -1,6 +1,7 @@
-// Estudo do pintor (19/11/2026): mede o protótipo desligado src/engine/novo/pintor-por-pares.ts contra o pintor de
-// hoje. Não muda nada do app: o pintor de estudo só entra no pacote que este script monta (um plugin troca, só para
-// src/engine/novo/cena.ts, o `pintar`, o `desenharBoneco` e o `equipamentoRealista` pelas versões do estudo).
+// Estudo do pintor (19/11/2026): mede o pintor por pares (src/engine/novo/pintor-por-pares.ts, desligado no app)
+// contra o pintor de hoje. Não muda nada do app: a cena pinta por pares só quando o script pede (`pintor: 'pares'`
+// nas opções da cena). Etapa 1 (19/11): o protótipo do estudo virou o pintor pronto para ligar, com o mesmo resultado;
+// este script passou a usar a opção da cena, no lugar do plugin que trocava o pintor no pacote.
 // Relatório: docs/revisoes/animacao-nova/estudo-do-pintor.md.
 //
 // Uso: node scripts/animacao-nova/estudo-do-pintor.mjs <passo> [ids...]
@@ -9,10 +10,11 @@
 //   desenho      o desenho de cada animação, nos quadros que a conferência mede, nos dois pintores: o SVG e, quando o
 //                SVG muda, os pixels (a fração da figura que muda)
 //   tempo        o tempo de montar um quadro (svgDaCena), nos dois pintores
-//   tamanho      quanto o pintor de estudo somaria ao pacote do motor (comprimido)
+//   tamanho      quanto o pintor por pares soma ao pacote do motor (comprimido)
 //   imagens      antes e depois dos casos (docs/revisoes/animacao-nova/estudo-do-pintor/), cada um id:vista:u[:erro]
 //   resumo       as tabelas do relatório, a partir do que os outros passos gravaram
 // SEM_CONTATO=1 mede a variante rejeitada (o contato também decide).
+// As folhas de antes e depois de cada animação, para ligar uma a uma, são de folha-do-pintor.mjs.
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -26,30 +28,20 @@ const CONTATO = !process.env.SEM_CONTATO;
 const SUF = CONTATO ? '' : '-sem-contato';
 const TMP = 'node_modules/.tmp/estudo-do-pintor';
 mkdirSync(TMP, { recursive: true });
-const NOVO = resolve('src/engine/novo');
 
-/** Só para cena.ts: o pintor, o Boneco e o equipamento do estudo (o resto do motor é o mesmo). */
-const PINTOR_DE_ESTUDO = {
-  name: 'pintor-de-estudo',
-  setup(b) {
-    const troca = { './desenho': 'pintarPorPares as pintar', './boneco': 'desenharBonecoMarcado as desenharBoneco', './equipamento': 'equipamentoMarcado as equipamentoRealista' };
-    b.onResolve({ filter: /^\.\/(desenho|boneco|equipamento)$/ }, (a) => (a.importer === `${NOVO}/cena.ts` ? { path: a.path, namespace: 'estudo' } : undefined));
-    b.onLoad({ filter: /.*/, namespace: 'estudo' }, (a) => ({
-      contents: `export * from '${NOVO}/${a.path.slice(2)}.ts'; export { ${troca[a.path]} } from '${NOVO}/pintor-por-pares.ts';`,
-      loader: 'ts',
-      resolveDir: NOVO,
-    }));
-  },
-};
 let n = 0;
+/** O motor, num pacote só para o script. `estudo`: a cena pinta por pares (a opção `pintor` da cena). */
 async function motor(estudo) {
   const entrada = `export * from './src/engine/novo/index.ts'; export { APROVADOS, EM_REVISAO } from './src/engine/novo/aprovados.ts'; export * as PP from './src/engine/novo/pintor-por-pares.ts';`;
-  const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false, loader: { '.json': 'json' }, plugins: estudo ? [PINTOR_DE_ESTUDO] : [] });
+  const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false, loader: { '.json': 'json' } });
   const arq = `${TMP}/motor-${estudo ? 'estudo' : 'hoje'}-${process.pid}-${n++}.mjs`;
   writeFileSync(arq, outputFiles[0].text);
   const m = await import(pathToFileURL(resolve(arq)).href);
-  if (estudo) Object.assign(m.PP.PINTOR_POR_PARES, { ligado: true, opcoes: { ...m.PP.PADRAO, contato: CONTATO } });
-  return m;
+  m.PP.PADRAO.contato = CONTATO;
+  if (!estudo) return m;
+  // as cenas deste motor pintam por pares
+  const svgDaCena = m.svgDaCena;
+  return { ...m, svgDaCena: (ex, t, o, vb, tema) => svgDaCena(ex, t, { ...o, pintor: 'pares' }, vb, tema) };
 }
 const grupoDe = (m, id) => (m.EM_REVISAO[id] ? 'revisao' : m.APROVADOS[id] ? (m.APROVADOS[id].em < '2026-11-17' ? 'antiga' : 'sessao') : 'outra');
 /** O instante t do ciclo em que o quadro u aparece no app (como em conferencia-de-pintura.mjs). */
@@ -85,7 +77,7 @@ if (passo === 'conferencia') {
   const lista = ids.length ? ids : Object.keys(m.EXERCICIOS).sort();
   for (const modo of process.env.MODOS ? process.env.MODOS.split(',') : ['hoje', 'pares', 'remendos']) {
     const opcoes = { ...PP.PADRAO, remendos: modo === 'remendos', contato: CONTATO };
-    const pintor = modo === 'hoje' ? undefined : { marcarBoneco: PP.marcarBoneco, marcarPeca: PP.marcarPeca, ordenar: (it) => PP.ordenarPorPares(it, opcoes), remendoDe: PP.remendoDe };
+    const pintor = modo === 'hoje' ? undefined : { ordenar: (it) => PP.ordenarPorPares(it, opcoes), remendoDe: PP.remendoDe };
     const out = [];
     let remendos = 0;
     const t0 = performance.now();
@@ -188,7 +180,9 @@ if (passo === 'tempo') {
       const T = m.duracao(ex.ficha.fases);
       // 24 quadros do ciclo, na primeira vista (a que o app abre), no modo Técnica; uma volta para aquecer
       const vb = m.enquadrar(ex, { corpo, vista: ex.vistas[0], boneco: 'cinza' });
-      const um = (k) => m.svgDaCena(ex, (k / 24) * T, { corpo, vista: ex.vistas[0], boneco: 'cinza', modo: 'tec' }, vb);
+      // o tema troca de um quadro para o outro: a cena guarda o que pintou por pares para o mesmo ponto do movimento
+      // (cena.ts, pintadoPorPares), e aqui se mede a conta de cada quadro, sem o que foi guardado
+      const um = (k) => m.svgDaCena(ex, (k / 24) * T, { corpo, vista: ex.vistas[0], boneco: 'cinza', modo: 'tec' }, vb, k % 2 ? 'escuro' : 'claro');
       for (let k = 0; k < 24; k++) um(k);
       const t0 = performance.now();
       for (let r = 0; r < 3; r++) for (let k = 0; k < 24; k++) um(k);
@@ -200,51 +194,40 @@ if (passo === 'tempo') {
     res.porId.push({ id, ...tempos });
     console.log(`${id.padEnd(40)} hoje ${tempos.hoje.toFixed(2)} ms  estudo ${tempos.estudo.toFixed(2)} ms  (${(tempos.estudo / tempos.hoje).toFixed(2)}×)`);
   }
-  // só a ordem (sem marcar): os itens do quadro já marcados, ordenados de novo
+  // só a ordem: os itens do quadro (o Boneco e o equipamento já dizem o que cada item é), ordenados por pares
   const PP = e.PP;
   let soOrdem = 0,
-    soMarcar = 0,
     nq = 0;
   for (const id of lista) {
     const ex = e.EXERCICIOS[id],
       corpo = e.CORPOS.homem;
-    const cam = e.VISTAS[ex.vistas[0]];
+    const T = e.duracao(ex.ficha.fases);
     for (let k = 0; k < 8; k++) {
-      const q = ex.quadro(corpo, k / 8);
+      const itens = e.itensDaCena(ex, (k / 8) * T, { corpo, vista: ex.vistas[0], boneco: 'cinza', modo: 'tec' });
       const t0 = performance.now();
-      const bon = PP.desenharBonecoMarcado(q.esq, cam, { estilo: 'cinza' });
-      const eq = q.pecas ? PP.equipamentoMarcado(q.pecas, cam, 'claro', `t-${id}-`).itens : [];
-      const t1 = performance.now();
-      e.desenharBoneco(q.esq, cam, { estilo: 'cinza' });
-      if (q.pecas) e.equipamentoRealista(q.pecas, cam, 'claro', `t-${id}-`);
-      const t2 = performance.now();
-      PP.ordenarPorPares([...eq, ...bon]);
-      const t3 = performance.now();
-      soMarcar += t1 - t0 - (t2 - t1);
-      soOrdem += t3 - t2;
+      PP.ordenarPorPares(itens);
+      soOrdem += performance.now() - t0;
       nq++;
     }
   }
   res.soOrdem = soOrdem / nq;
-  res.soMarcar = soMarcar / nq;
   writeFileSync(`${TMP}/tempo${SUF}${ids.length ? '-parcial' : ''}.json`, JSON.stringify(res));
-  console.log(`média por quadro: hoje ${(res.hoje / res.quadros).toFixed(2)} ms, estudo ${(res.estudo / res.quadros).toFixed(2)} ms; só a ordem ${res.soOrdem.toFixed(2)} ms, só as marcas ${res.soMarcar.toFixed(2)} ms`);
+  console.log(`média por quadro: hoje ${(res.hoje / res.quadros).toFixed(2)} ms, estudo ${(res.estudo / res.quadros).toFixed(2)} ms; só a ordem ${res.soOrdem.toFixed(2)} ms`);
 }
 
 /* ============================== tamanho ============================== */
 if (passo === 'tamanho') {
+  // o motor sem os dados de cada exercício (o que todo exercício usa): cena, Boneco, equipamento, desenho; e o pintor
+  // por pares, que o app baixa à parte, só com uma animação em que ele está ligado (src/features/programa/trabalhoBoneco.ts)
   const pacote = async (entrada) => {
     const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false, minify: true, loader: { '.json': 'json' } });
     const t = outputFiles[0].text;
     return { bruto: t.length, gz: gzipSync(t).length };
   };
-  // o motor sem os dados de cada exercício (o que todo exercício usa): cena, Boneco, equipamento, desenho
-  const base = await pacote(`export { svgAnimado, svgDaCena, enquadrar } from './src/engine/novo/cena.ts';`);
-  // com o pintor por pares e as marcas que o estudo usa; e só o pintor (numa ligação de verdade, o Boneco e o
-  // equipamento diriam o que cada item é ao montá-lo, sem as marcas por comparação de texto do estudo)
-  const com = await pacote(`export { svgAnimado, svgDaCena, enquadrar } from './src/engine/novo/cena.ts'; export { pintarPorPares, desenharBonecoMarcado, equipamentoMarcado } from './src/engine/novo/pintor-por-pares.ts';`);
-  const so = await pacote(`export { svgAnimado, svgDaCena, enquadrar } from './src/engine/novo/cena.ts'; export { pintarPorPares, marcarPeca } from './src/engine/novo/pintor-por-pares.ts';`);
-  const r = { base, com, so, soma: { bruto: com.bruto - base.bruto, gz: com.gz - base.gz }, somaSo: { bruto: so.bruto - base.bruto, gz: so.gz - base.gz } };
+  const cena = `export { svgAnimado, svgDaCena, enquadrar } from './src/engine/novo/cena.ts';`;
+  const base = await pacote(cena);
+  const com = await pacote(`${cena} export { pintarPorPares } from './src/engine/novo/pintor-por-pares.ts';`);
+  const r = { base, com, soma: { bruto: com.bruto - base.bruto, gz: com.gz - base.gz } };
   writeFileSync(`${TMP}/tamanho.json`, JSON.stringify(r));
   console.log(r);
 }
@@ -271,7 +254,7 @@ if (passo === 'imagens') {
       b = e.svgDaCena(exE, t, { ...o, corpo: e.CORPOS.homem }, vb);
     // os achados da conferência no quadro, nos dois pintores (em magenta)
     const PP = h.PP;
-    const pintor = { marcarBoneco: PP.marcarBoneco, marcarPeca: PP.marcarPeca, ordenar: (it) => PP.ordenarPorPares(it, { ...PP.PADRAO, contato: CONTATO }), remendoDe: PP.remendoDe };
+    const pintor = { ordenar: (it) => PP.ordenarPorPares(it, { ...PP.PADRAO, contato: CONTATO }), remendoDe: PP.remendoDe };
     const q = exH.quadro(corpo, Number(u), erro || undefined);
     const ach = (p) => h.pinturaDoQuadro(q, vista, '', `img-${id}-`, true, p).filter((x) => !x.deProposito);
     const marcas = (l) => `<g fill="#ff00aa" opacity="0.55">${l.flatMap((x) => x.pontos).map(([x, y]) => `<rect x="${(x - 0.25).toFixed(2)}" y="${(y - 0.25).toFixed(2)}" width="0.5" height="0.5"/>`).join('')}</g></svg>`;

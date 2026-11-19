@@ -1,6 +1,7 @@
-// Estudo do pintor (19/11/2026): um PROTÓTIPO, DESLIGADO. O app não importa este arquivo; só o estudo o usa
-// (scripts/animacao-nova/estudo-do-pintor.mjs, que troca o pintor da cena por este na hora de empacotar) e a
-// conferência da pintura, quando recebe o pintor de estudo. Relatório: docs/revisoes/animacao-nova/estudo-do-pintor.md.
+// O pintor por pares (estudo de 19/11/2026: docs/revisoes/animacao-nova/estudo-do-pintor.md). Pronto para ligar, e
+// DESLIGADO em todas as animações: liga-se uma a uma, em ./pintor-ligado.ts, depois que o Gustavo aprova a folha de
+// antes e depois de cada uma (scripts/animacao-nova/folha-do-pintor.mjs). Etapa 1 (19/11): o mesmo resultado do
+// protótipo do estudo, quadro a quadro, com menos conta (ver "Etapa 1" no relatório).
 //
 // O pintor de hoje (`pintar`, em ./desenho.ts) ordena itens inteiros por uma profundidade só: cada sólido da peça pelo
 // meio dele (mais o `dz`), cada grupo do Boneco pela média das partes (mais o `vies`). Uma peça comprida, ou um corpo
@@ -14,20 +15,19 @@
 //    que se cruzam na tela, ficam na ordem de hoje (o desenho aprovado). A ordem final é a ordenação topológica dessas
 //    regras que, onde nada obriga, mantém a de hoje: dois itens que não se cruzam na tela podem trocar de lugar sem
 //    mudar nada no desenho. Um ciclo (raro) é desfeito largando a regra de menor área.
-// 2) Remendos (opcional). Quando um item do Boneco está na frente de uma peça num pedaço e atrás em outro (o corpo não é
-//    convexo: a perna passa na frente da ponta do banco e o tronco fica atrás da outra), a ordem única serve a um dos
-//    pedaços; no outro, o item que devia ficar por cima é pintado de novo, logo depois do outro, recortado
-//    (clipPath, ou mask quando há o que tirar) à região dos trechos do corpo em que ele está na frente. O trecho é o
-//    casco de dois anéis vizinhos de uma parte, folgado FOLGA_DO_RECORTE cm (para o traço do contorno entrar inteiro).
-import { desenharBoneco, formaDoBoneco } from './boneco';
-import type { OpcoesDoBoneco } from './boneco';
+// 2) Remendos. Quando um item do Boneco está na frente de uma peça num pedaço e atrás em outro (o corpo não é convexo:
+//    a perna passa na frente da ponta do banco e o tronco fica atrás da outra), a ordem única serve a um dos pedaços;
+//    no outro, o item que devia ficar por cima é pintado de novo, logo depois do outro, recortado (clipPath, ou mask
+//    quando há o que tirar) à região dos trechos do corpo em que ele está na frente. O trecho é o casco de dois anéis
+//    vizinhos de uma parte, folgado FOLGA_DO_RECORTE cm (para o traço do contorno entrar inteiro).
+//
+// O que cada item é vem do próprio item (`Item.pp`): o Boneco diz que partes cada item pinta, e o equipamento realista
+// diz de que peça é cada item (no protótipo, isso era achado comparando o texto dos caminhos e desenhando cada peça
+// sozinha). Sem Math.random e sem relógio: a mesma entrada dá o mesmo SVG (o nome de cada recorte sai do conteúdo).
 import type { Anel } from './corpo3d';
-import { casco, contorno, pintar } from './desenho';
-import type { Camera, Item, P2 } from './desenho';
-import { equipamentoRealista } from './equipamento';
-import type { Tema } from './equipamento';
-import type { Esq, Lado } from './esqueleto';
-import type { Peca } from './pecas';
+import { casco, pintar } from './desenho';
+import type { Camera, Item, MarcaDoPintor, P2, ParteDoItem } from './desenho';
+import type { Lado } from './esqueleto';
 import type { Geometria3d } from './realista/base.mjs';
 import { add, cross, dist, dot, len, mul, norm, sub } from './vec';
 import type { V3 } from './vec';
@@ -46,22 +46,13 @@ export interface OpcoesDoPintor {
   contato: boolean;
 }
 export const PADRAO: OpcoesDoPintor = { passo: 1, tolerancia: 1, areaMinima: 1, remendos: true, contato: true };
-/** A opção do estudo: desligada. Só o script do estudo a liga. */
-export const PINTOR_POR_PARES = { ligado: false, opcoes: { ...PADRAO } };
 /** Folga do recorte em volta de cada trecho do corpo (cm): o traço do contorno do Boneco cabe dentro dela. */
 export const FOLGA_DO_RECORTE = 1.5;
 /** A mão não decide nada contra a peça que segura (a que passa a até 4 cm da pegada; da mesma peça, até 12 cm). */
 const RAIO_DA_PEGADA = 4,
   PERTO_DA_PEGADA = 12;
 
-/* ============================== marcas: o que cada item é, em 3D ============================== */
-interface VolMarcado {
-  nome: string;
-  lado?: Lado;
-  aneis: Anel[];
-}
-type Marca = { k: 'corpo'; e: Esq; cam: Camera; vols: VolMarcado[] } | { k: 'peca'; peca: number };
-const MARCAS = new WeakMap<Item, Marca>();
+type MarcaDoCorpo = Extract<MarcaDoPintor, { k: 'corpo' }>;
 /** Um item de remendo: o item `de`, pintado de novo, só dentro de `dentro` e fora de `fora` (polígonos na tela). */
 export interface Remendo {
   de: Item;
@@ -69,54 +60,8 @@ export interface Remendo {
   fora: P2[][];
 }
 const REMENDOS = new WeakMap<Item, Remendo>();
+/** O remendo que um item da lista de `ordenarPorPares` é (para a conferência da pintura medir só dentro do recorte). */
 export const remendoDe = (it: Item): Remendo | undefined => REMENDOS.get(it);
-
-/** Diz, para cada item do Boneco, que partes (volumes) ele pinta: pelo caminho do preenchimento de cada uma. */
-export function marcarBoneco(itens: Item[], e: Esq, cam: Camera, roupa: boolean): Item[] {
-  const forma = formaDoBoneco(e, { roupa, cabeloAtrasPrimeiro: dot(cam.para, e.cabeca.z) > 0.45 });
-  const vols = new Map<Item, VolMarcado[]>();
-  // o lado de longe (como em desenharBoneco): os caminhos dele levam a classe `lg`. De lado, num exercício simétrico,
-  // o braço de perto e o de longe têm o mesmo caminho; a classe diz qual item é de qual
-  const prof = (k: Lado) => dot(e.lado[k].ombro, cam.para) + dot(e.lado[k].quadril, cam.para);
-  const longe: Lado | null = Math.abs(prof('R') - prof('L')) < 6 ? null : prof('R') < prof('L') ? 'R' : 'L';
-  const pinta = (s: string, fill: string, deLonge: boolean) => {
-    for (let i = s.indexOf(fill); i >= 0; i = s.indexOf(fill, i + 1)) if (s.slice(Math.max(0, i - 4), i) === 'lg" ' === deLonge) return true;
-    return false;
-  };
-  for (const g of forma.grupos)
-    for (const v of g.volumes) {
-      const fill = `d="${contorno(cam, v.vol, null, true).fill}"`;
-      for (const it of itens)
-        if (pinta(it.s, fill, !!g.lado && g.lado === longe)) {
-          let l = vols.get(it);
-          if (!l) vols.set(it, (l = []));
-          l.push({ nome: v.nome ?? g.id, lado: g.lado, aneis: v.vol.aneis });
-        }
-    }
-  for (const [it, l] of vols) MARCAS.set(it, { k: 'corpo', e, cam, vols: l });
-  return itens;
-}
-/** Diz de que peça é cada item (o índice dela no quadro). */
-export function marcarPeca(it: Item, peca: number): Item {
-  MARCAS.set(it, { k: 'peca', peca });
-  return it;
-}
-/** `desenharBoneco`, com as marcas (para a cena do estudo). */
-export function desenharBonecoMarcado(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
-  const itens = desenharBoneco(e, cam, o);
-  return o.suf === '-f' ? itens : marcarBoneco(itens, e, cam, o.estilo === 'pele');
-}
-/** `equipamentoRealista`, com as marcas (para a cena do estudo). Conta os itens de cada peça desenhando-a sozinha. */
-export function equipamentoMarcado(pecas: Peca[], cam: Camera, tema: Tema, id: string): { itens: Item[]; defs: string } {
-  const r = equipamentoRealista(pecas, cam, tema, id);
-  let i0 = 0;
-  pecas.forEach((p, i) => {
-    const n = equipamentoRealista([p], cam, tema, `${id}${i}-pp-`).itens.length;
-    for (let k = i0; k < i0 + n && k < r.itens.length; k++) marcarPeca(r.itens[k]!, i);
-    i0 += n;
-  });
-  return r;
-}
 
 /* ============================== a forma 3D de uma peça (como em ./conferir-pintura.ts) ============================== */
 interface Plano {
@@ -147,6 +92,7 @@ function planos(faces: V3[][]): Plano[] {
   }
   return out;
 }
+/** A forma de cada `g3`, guardada: as peças paradas repetem o mesmo item (e o mesmo `g3`) em todos os quadros. */
 const FORMAS = new WeakMap<object, Forma | null>();
 function formaDe(g: Geometria3d): Forma | null {
   if (FORMAS.has(g)) return FORMAS.get(g)!;
@@ -172,8 +118,14 @@ function distAoSegmento(p: V3, a: V3, b: V3): number {
   const t = l2 < 1e-12 ? 0 : Math.max(0, Math.min(1, dot(sub(p, a), d) / l2));
   return dist(p, add(a, mul(d, t)));
 }
-function distanciaAForma(f: Forma, p: V3): number {
-  if (f.t === 'solido') return Math.max(...f.planos.map((pl) => dot(pl.n, p) - pl.d));
+/** A distância (cm; negativa = dentro) de um ponto até a forma. No sólido, a conta é feita sem criar vetores. */
+function distanciaAForma(f: Forma, p0: number, p1: number, p2: number): number {
+  if (f.t === 'solido') {
+    let m = -Infinity;
+    for (const pl of f.planos) m = Math.max(m, pl.n[0] * p0 + pl.n[1] * p1 + pl.n[2] * p2 - pl.d);
+    return m;
+  }
+  const p: V3 = [p0, p1, p2];
   if (f.t === 'esfera') return dist(p, f.c) - f.r;
   const P = f.t === 'placa' ? [...f.pts, f.pts[0]!] : f.pts;
   let m = 1e9;
@@ -181,30 +133,92 @@ function distanciaAForma(f: Forma, p: V3): number {
   return m - (f.t === 'fio' ? f.r : 0);
 }
 
-/** A folga (cm; negativa = dentro) de um ponto até a pele de um trecho do corpo e dos dois vizinhos, pela seção oval. */
-function folgaAoTrecho(p: V3, tr: Trecho): number {
-  const A = tr.vol.aneis;
-  let menor = Infinity;
-  for (let i = Math.max(0, tr.r - 1); i <= Math.min(A.length - 2, tr.r + 1); i++) {
-    const a = A[i]!,
-      b = A[i + 1]!;
-    const d = sub(b.c, a.c),
-      l2 = dot(d, d);
-    if (l2 < 1e-9) continue;
-    const t = Math.max(0, Math.min(1, dot(sub(p, a.c), d) / l2));
-    const mx = (u: number, v: number) => u + (v - u) * t;
-    const r = sub(p, add(a.c, mul(d, t)));
-    const u = dot(r, norm(add(mul(a.x, 1 - t), mul(b.x, t)))),
-      v = dot(r, norm(add(mul(a.z, 1 - t), mul(b.z, t))));
-    const ra = mx(a.a, b.a),
-      rv = v >= 0 ? mx(a.f, b.f) : mx(a.b, b.b);
-    if (ra < 1e-6 || rv < 1e-6) continue;
-    const rho = Math.hypot(u / ra, v / rv);
-    menor = Math.min(menor, rho < 1e-6 ? -Math.min(ra, rv) : Math.hypot(u, v) * (1 - 1 / rho));
-  }
-  if (A.length === 1) menor = dist(p, A[0]!.c) - Math.max(A[0]!.a, A[0]!.f, A[0]!.b);
-  return menor;
+/**
+ * A folga (cm; negativa = dentro) de um ponto até a pele do segmento entre os anéis i e i + 1 de uma parte, pela seção
+ * oval; Infinity quando o segmento não conta (curto demais, ou com raio nulo). A folga a um trecho do corpo é a menor
+ * das folgas aos segmentos dele e dos dois vizinhos. As mesmas contas, na mesma ordem, do protótipo (a mesma resposta,
+ * até o último bit), sem criar vetores.
+ */
+function folgaAoSegmento(p0: number, p1: number, p2: number, A: Anel[], i: number): number {
+  const a = A[i]!,
+    b = A[i + 1]!;
+  const ac = a.c,
+    bc = b.c;
+  const d0 = bc[0] - ac[0],
+    d1 = bc[1] - ac[1],
+    d2 = bc[2] - ac[2];
+  const l2 = d0 * d0 + d1 * d1 + d2 * d2;
+  if (l2 < 1e-9) return Infinity;
+  const t = Math.max(0, Math.min(1, ((p0 - ac[0]) * d0 + (p1 - ac[1]) * d1 + (p2 - ac[2]) * d2) / l2));
+  const s = 1 - t;
+  const r0 = p0 - (ac[0] + d0 * t),
+    r1 = p1 - (ac[1] + d1 * t),
+    r2 = p2 - (ac[2] + d2 * t);
+  const x0 = a.x[0] * s + b.x[0] * t,
+    x1 = a.x[1] * s + b.x[1] * t,
+    x2 = a.x[2] * s + b.x[2] * t;
+  const lx = Math.hypot(x0, x1, x2) || 1;
+  const z0 = a.z[0] * s + b.z[0] * t,
+    z1 = a.z[1] * s + b.z[1] * t,
+    z2 = a.z[2] * s + b.z[2] * t;
+  const lz = Math.hypot(z0, z1, z2) || 1;
+  const u = r0 * (x0 / lx) + r1 * (x1 / lx) + r2 * (x2 / lx),
+    v = r0 * (z0 / lz) + r1 * (z1 / lz) + r2 * (z2 / lz);
+  const ra = a.a + (b.a - a.a) * t,
+    rv = v >= 0 ? a.f + (b.f - a.f) * t : a.b + (b.b - a.b) * t;
+  if (ra < 1e-6 || rv < 1e-6) return Infinity;
+  const rho = Math.hypot(u / ra, v / rv);
+  return rho < 1e-6 ? -Math.min(ra, rv) : Math.hypot(u, v) * (1 - 1 / rho);
 }
+/**
+ * `folgaAoSegmento(...) <= tol`, depressa. A mesma conta com Math.sqrt no lugar de Math.hypot (cinco vezes mais rápida,
+ * e com diferença na casa de 1e-12 cm): quando a folga passa longe de `tol` (mais de MARGEM cm), a resposta é a mesma da
+ * conta exata; perto de `tol`, ou nos casos de borda (eixo nulo, ponto quase no eixo, v quase zero, que decide o lado
+ * da seção), vale a conta exata. A resposta é sempre a da conta exata.
+ */
+const MARGEM = 1e-6;
+function folgaAbaixo(p0: number, p1: number, p2: number, A: Anel[], i: number, tol: number): boolean {
+  const a = A[i]!,
+    b = A[i + 1]!;
+  const ac = a.c,
+    bc = b.c;
+  const d0 = bc[0] - ac[0],
+    d1 = bc[1] - ac[1],
+    d2 = bc[2] - ac[2];
+  const l2 = d0 * d0 + d1 * d1 + d2 * d2;
+  if (l2 < 1e-9) return false;
+  const t = Math.max(0, Math.min(1, ((p0 - ac[0]) * d0 + (p1 - ac[1]) * d1 + (p2 - ac[2]) * d2) / l2));
+  const s = 1 - t;
+  const r0 = p0 - (ac[0] + d0 * t),
+    r1 = p1 - (ac[1] + d1 * t),
+    r2 = p2 - (ac[2] + d2 * t);
+  const x0 = a.x[0] * s + b.x[0] * t,
+    x1 = a.x[1] * s + b.x[1] * t,
+    x2 = a.x[2] * s + b.x[2] * t;
+  const z0 = a.z[0] * s + b.z[0] * t,
+    z1 = a.z[1] * s + b.z[1] * t,
+    z2 = a.z[2] * s + b.z[2] * t;
+  const lx = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2),
+    lz = Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+  const exata = () => folgaAoSegmento(p0, p1, p2, A, i) <= tol;
+  if (lx < 1e-3 || lz < 1e-3) return exata();
+  const u = (r0 * x0 + r1 * x1 + r2 * x2) / lx,
+    v = (r0 * z0 + r1 * z1 + r2 * z2) / lz;
+  if (Math.abs(v) < MARGEM) return exata();
+  const ra = a.a + (b.a - a.a) * t,
+    rv = v >= 0 ? a.f + (b.f - a.f) * t : a.b + (b.b - a.b) * t;
+  if (ra < 1e-6 || rv < 1e-6) return false;
+  const q = Math.sqrt(u * u + v * v);
+  if (q < 1e-3) return exata();
+  const rho = Math.sqrt((u / ra) * (u / ra) + (v / rv) * (v / rv));
+  if (rho < 1e-5) return exata();
+  const f = q * (1 - 1 / rho);
+  if (f > tol + MARGEM) return false;
+  if (f < tol - MARGEM) return true;
+  return exata();
+}
+/** A folga de um ponto até a parte de um anel só (uma esfera). */
+const folgaAoAnel = (p0: number, p1: number, p2: number, an: Anel) => Math.hypot(p0 - an.c[0], p1 - an.c[1], p2 - an.c[2]) - Math.max(an.a, an.f, an.b);
 /** Uma peça pintada pelo menos isto (cm) atrás da profundidade do próprio centro foi empurrada para trás de propósito. */
 const EMPURRADA = 50;
 function empurrada(it: Item, f: Forma, cam: Camera): boolean {
@@ -219,11 +233,26 @@ interface Grade {
   h: number;
   W: number;
   H: number;
+  /**
+   * As células dentro da caixa de alguma peça, em somas acumuladas ((W + 1) × (H + 1)): só nelas o corpo é lido, e o
+   * triângulo do corpo que não alcança nenhuma não precisa ser desenhado na grade.
+   */
+  pecas?: Int32Array;
 }
-/** Um item do corpo na grade: a pele mais perto de quem olha e de que trecho ela é. */
+/** Quantas células dentro da caixa de alguma peça há no retângulo [i0, i1] × [j0, j1] da grade. */
+function celulasDePeca(G: Grade, i0: number, i1: number, j0: number, j1: number): number {
+  const S = G.pecas!,
+    L = G.W + 1;
+  return S[(j1 + 1) * L + i1 + 1]! - S[j0 * L + i1 + 1]! - S[(j1 + 1) * L + i0]! + S[j0 * L + i0]!;
+}
+/** Um item do corpo na grade: a pele mais perto de quem olha e de que trecho ela é; e as células que ele pode cobrir. */
 interface CorpoNaGrade {
   z: Float32Array;
   s: Int32Array;
+  i0: number;
+  i1: number;
+  j0: number;
+  j1: number;
 }
 /** Uma peça na grade, dentro da caixa dela: a profundidade em que o raio entra nela. */
 interface PecaNaGrade {
@@ -235,8 +264,29 @@ interface PecaNaGrade {
 }
 interface Trecho {
   no: number;
-  vol: VolMarcado;
+  vol: ParteDoItem;
   r: number;
+}
+/**
+ * As grades de cada quadro saem de um pedaço de memória reaproveitado de um quadro para o outro (sem criar e jogar fora
+ * dezenas de vetores grandes por quadro). `zerar` no começo de cada quadro; nada da grade sobrevive ao quadro.
+ */
+const MEMORIA = { f: new Float32Array(1 << 16), i: new Int32Array(1 << 16), nf: 0, ni: 0 };
+function grade32(n: number, v: number): Float32Array {
+  if (MEMORIA.nf + n > MEMORIA.f.length) {
+    MEMORIA.f = new Float32Array(Math.max(2 * MEMORIA.f.length, 2 * n));
+    MEMORIA.nf = 0;
+  }
+  const a = MEMORIA.f.subarray(MEMORIA.nf, (MEMORIA.nf += n));
+  return a.fill(v);
+}
+function gradeInt(n: number, v: number): Int32Array {
+  if (MEMORIA.ni + n > MEMORIA.i.length) {
+    MEMORIA.i = new Int32Array(Math.max(2 * MEMORIA.i.length, 2 * n));
+    MEMORIA.ni = 0;
+  }
+  const a = MEMORIA.i.subarray(MEMORIA.ni, (MEMORIA.ni += n));
+  return a.fill(v);
 }
 const NA = 16;
 const COS = Array.from({ length: NA }, (_, k) => Math.cos((2 * Math.PI * k) / NA)),
@@ -259,7 +309,7 @@ function anelNaTela(cam: Camera, an: Anel, folga = 0, n = NA): T3[] {
   }
   return out;
 }
-function rasterTriangulo(G: Grade, a: T3, b: T3, c: T3, faz: (ix: number, z: number) => void) {
+function rasterTriangulo(G: Grade, a: T3, b: T3, c: T3, z: Float32Array, s: Int32Array, t: number) {
   const { x0, y0, h, W, H } = G;
   const ax = (a[0] - x0) / h,
     ay = (a[1] - y0) / h,
@@ -273,6 +323,7 @@ function rasterTriangulo(G: Grade, a: T3, b: T3, c: T3, faz: (ix: number, z: num
     i1 = Math.min(W - 1, Math.ceil(Math.max(ax, bx, cx))),
     j0 = Math.max(0, Math.floor(Math.min(ay, by, cy))),
     j1 = Math.min(H - 1, Math.ceil(Math.max(ay, by, cy)));
+  if (i1 < i0 || j1 < j0 || (G.pecas && !celulasDePeca(G, i0, i1, j0, j1))) return;
   for (let j = j0; j <= j1; j++) {
     const py = j + 0.5;
     for (let i = i0; i <= i1; i++) {
@@ -281,7 +332,12 @@ function rasterTriangulo(G: Grade, a: T3, b: T3, c: T3, faz: (ix: number, z: num
         w1 = ((cx - px) * (ay - py) - (cy - py) * (ax - px)) / area,
         w2 = 1 - w0 - w1;
       if (w0 < -1e-9 || w1 < -1e-9 || w2 < -1e-9) continue;
-      faz(j * W + i, w0 * a[2] + w1 * b[2] + w2 * c[2]);
+      const ix = j * W + i,
+        zz = w0 * a[2] + w1 * b[2] + w2 * c[2];
+      if (zz > z[ix]!) {
+        z[ix] = zz;
+        s[ix] = t;
+      }
     }
   }
 }
@@ -299,40 +355,74 @@ function virado(a: T3, b: T3, c: T3, cen: T3): boolean {
   const s = n0 * ((a[0] + b[0] + c[0]) / 3 - cen[0]) + n1 * ((a[1] + b[1] + c[1]) / 3 - cen[1]) + n2 * ((a[2] + b[2] + c[2]) / 3 - cen[2]);
   return (s >= 0 ? n2 : -n2) > -1e-9;
 }
-function corpoNaGrade(G: Grade, cam: Camera, vols: VolMarcado[], trechos: Trecho[], no: number): CorpoNaGrade {
+function corpoNaGrade(G: Grade, cam: Camera, vols: ParteDoItem[], trechos: Trecho[], no: number): CorpoNaGrade {
   const n = G.W * G.H;
-  const z = new Float32Array(n).fill(-Infinity),
-    s = new Int32Array(n).fill(-1);
+  const z = grade32(n, -Infinity),
+    s = gradeInt(n, -1);
+  // as células que a malha pode cobrir: a caixa dos vértices (para pular depressa as peças longe deste item)
+  let mx0 = Infinity,
+    my0 = Infinity,
+    mx1 = -Infinity,
+    my1 = -Infinity;
+  const caixa = (p: T3) => {
+    if (p[0] < mx0) mx0 = p[0];
+    if (p[0] > mx1) mx1 = p[0];
+    if (p[1] < my0) my0 = p[1];
+    if (p[1] > my1) my1 = p[1];
+  };
   for (const vol of vols) {
     const A = vol.aneis.map((an) => ({ anel: anelNaTela(cam, an), c: naTela3(cam, an.c) }));
     const base = trechos.length;
     for (let r = 0; r + 1 < A.length || (r === 0 && A.length === 1); r++) trechos.push({ no, vol, r });
-    const faz = (t: number) => (ix: number, zz: number) => {
-      if (zz > z[ix]!) {
-        z[ix] = zz;
-        s[ix] = t;
-      }
+    for (const x of A) {
+      caixa(x.c);
+      x.anel.forEach(caixa);
+    }
+    // o trecho fora da grade não cobre célula nenhuma (pula os triângulos dele)
+    const gx1 = G.x0 + (G.W + 1) * G.h,
+      gy1 = G.y0 + (G.H + 1) * G.h;
+    const fora = (P: T3[], Q: T3[]) => {
+      let a = Infinity,
+        b = -Infinity,
+        c = Infinity,
+        d = -Infinity;
+      for (const R of [P, Q])
+        for (const p of R) {
+          if (p[0] < a) a = p[0];
+          if (p[0] > b) b = p[0];
+          if (p[1] < c) c = p[1];
+          if (p[1] > d) d = p[1];
+        }
+      return b < G.x0 - G.h || a > gx1 || d < G.y0 - G.h || c > gy1;
     };
     for (let r = 0; r + 1 < A.length; r++) {
       const P = A[r]!.anel,
         Q = A[r + 1]!.anel;
+      if (fora(P, Q)) continue;
       const c0 = A[r]!.c,
         c1 = A[r + 1]!.c;
       const cen: T3 = [(c0[0] + c1[0]) / 2, (c0[1] + c1[1]) / 2, (c0[2] + c1[2]) / 2];
-      const f = faz(base + r);
       for (let k = 0; k < NA; k++) {
         const k2 = (k + 1) % NA;
-        if (virado(P[k]!, P[k2]!, Q[k2]!, cen)) rasterTriangulo(G, P[k]!, P[k2]!, Q[k2]!, f);
-        if (virado(P[k]!, Q[k2]!, Q[k]!, cen)) rasterTriangulo(G, P[k]!, Q[k2]!, Q[k]!, f);
+        if (virado(P[k]!, P[k2]!, Q[k2]!, cen)) rasterTriangulo(G, P[k]!, P[k2]!, Q[k2]!, z, s, base + r);
+        if (virado(P[k]!, Q[k2]!, Q[k]!, cen)) rasterTriangulo(G, P[k]!, Q[k2]!, Q[k]!, z, s, base + r);
       }
     }
     for (const r of [0, A.length - 1]) {
       const { anel, c } = A[r]!;
-      const f = faz(base + Math.min(r, Math.max(0, A.length - 2)));
-      for (let k = 0; k < NA; k++) rasterTriangulo(G, c, anel[k]!, anel[(k + 1) % NA]!, f);
+      const t = base + Math.min(r, Math.max(0, A.length - 2));
+      for (let k = 0; k < NA; k++) rasterTriangulo(G, c, anel[k]!, anel[(k + 1) % NA]!, z, s, t);
     }
   }
-  return { z, s };
+  // folga de uma célula para cada lado: a caixa só serve para pular, e nunca pode deixar de fora uma célula coberta
+  return {
+    z,
+    s,
+    i0: Math.max(0, Math.floor((mx0 - G.x0) / G.h) - 1),
+    i1: Math.min(G.W - 1, Math.ceil((mx1 - G.x0) / G.h) + 1),
+    j0: Math.max(0, Math.floor((my0 - G.y0) / G.h) - 1),
+    j1: Math.min(G.H - 1, Math.ceil((my1 - G.y0) / G.h) + 1),
+  };
 }
 /** A caixa de uma forma na tela. */
 function caixaDaForma(f: Forma, cam: Camera): [number, number, number, number] {
@@ -375,7 +465,7 @@ function pecaNaGrade(G: Grade, cam: Camera, f: Forma): PecaNaGrade | null {
   if (i1 < i0 || j1 < j0) return null;
   const w = i1 - i0 + 1,
     hh = j1 - j0 + 1;
-  const z = new Float32Array(w * hh).fill(-Infinity);
+  const z = grade32(w * hh, -Infinity);
   const marca = (i: number, j: number, zz: number) => {
     const k = (j - j0) * w + (i - i0);
     if (zz > z[k]!) z[k] = zz;
@@ -385,6 +475,8 @@ function pecaNaGrade(G: Grade, cam: Camera, f: Forma): PecaNaGrade | null {
   if (f.t === 'solido') {
     const fr = f.planos.filter((p) => dot(p.n, cam.para) > 1e-9).map((p) => [dot(p.n, cam.dir), dot(p.n, cam.cima), dot(p.n, cam.para), p.d] as const);
     if (!fr.length) return null;
+    const nf = fr.length,
+      F = new Float64Array(fr.flat());
     const Hc = casco(f.pts.map((p): P2 => [dot(p, cam.dir), -dot(p, cam.cima)]));
     for (let j = j0; j <= j1; j++) {
       const y = sy(j);
@@ -401,11 +493,12 @@ function pecaNaGrade(G: Grade, cam: Camera, f: Forma): PecaNaGrade | null {
       if (xa > xb) continue;
       const ia = Math.max(i0, Math.ceil((xa - x0) / h - 0.5)),
         ib = Math.min(i1, Math.floor((xb - x0) / h - 0.5));
+      const linha = (j - j0) * w - i0;
       for (let i = ia; i <= ib; i++) {
         const x = sx(i);
         let entra = Infinity;
-        for (const [nd, nc, np, d] of fr) entra = Math.min(entra, (d - x * nd + y * nc) / np);
-        marca(i, j, entra);
+        for (let q = 0; q < nf; q++) entra = Math.min(entra, (F[q * 4 + 3]! - x * F[q * 4]! + y * F[q * 4 + 1]!) / F[q * 4 + 2]!);
+        if (entra > z[linha + i]!) z[linha + i] = entra;
       }
     }
   } else if (f.t === 'esfera') {
@@ -460,6 +553,99 @@ function dentroDoPoligono(x: number, y: number, P: readonly (readonly number[])[
   return dentro;
 }
 
+/* ============================== o contato: os trechos perto de um ponto ============================== */
+/** Lado do bloco de células em que os trechos do corpo são separados, para achar depressa os que podem estar perto. */
+const BLOCO = 4;
+/**
+ * `encosta(p)`: se o ponto p (no raio de uma célula da grade) está a até `tol` cm da pele de algum trecho do corpo (ou
+ * dentro dela). A mesma resposta de conferir todos os trechos, um por um, como no protótipo: cada trecho entra só nos
+ * blocos de células que a caixa 3D dele, projetada na tela, pode cobrir (com folga), e o ponto é conferido contra os
+ * trechos do bloco dele, pela mesma caixa 3D e pela mesma folga.
+ */
+function contatoComOCorpo(G: Grade, cam: Camera, trechos: Trecho[], tol: number) {
+  const caixas = new Float64Array(trechos.length * 6);
+  const nbx = Math.ceil(G.W / BLOCO),
+    nby = Math.ceil(G.H / BLOCO);
+  // os blocos que cada trecho alcança (em blocos), e a lista de cada bloco, feita só quando o bloco é consultado
+  const alcance = new Int32Array(trechos.length * 4);
+  const blocos: (number[] | undefined)[] = new Array(nbx * nby);
+  const FOLGA = 1e-6;
+  trechos.forEach((tr, t) => {
+    const A = tr.vol.aneis;
+    const lo: V3 = [1e9, 1e9, 1e9],
+      hi: V3 = [-1e9, -1e9, -1e9];
+    for (const an of [A[tr.r]!, A[Math.min(A.length - 1, tr.r + 1)]!]) {
+      const r = Math.max(an.a, an.f, an.b) + tol;
+      for (let k = 0; k < 3; k++) {
+        lo[k] = Math.min(lo[k]!, an.c[k]! - r);
+        hi[k] = Math.max(hi[k]!, an.c[k]! + r);
+      }
+    }
+    caixas.set([lo[0], lo[1], lo[2], hi[0], hi[1], hi[2]], t * 6);
+    // a caixa na tela: os oito cantos projetados
+    let sx0 = Infinity,
+      sx1 = -Infinity,
+      sy0 = Infinity,
+      sy1 = -Infinity;
+    for (const a of [lo[0], hi[0]])
+      for (const b of [lo[1], hi[1]])
+        for (const c of [lo[2], hi[2]]) {
+          const x = a * cam.dir[0] + b * cam.dir[1] + c * cam.dir[2],
+            y = -(a * cam.cima[0] + b * cam.cima[1] + c * cam.cima[2]);
+          sx0 = Math.min(sx0, x);
+          sx1 = Math.max(sx1, x);
+          sy0 = Math.min(sy0, y);
+          sy1 = Math.max(sy1, y);
+        }
+    // as células cujo centro pode cair dentro, com uma célula a mais de cada lado
+    const i0 = Math.max(0, Math.floor((sx0 - FOLGA - G.x0) / G.h - 0.5) - 1),
+      i1 = Math.min(G.W - 1, Math.ceil((sx1 + FOLGA - G.x0) / G.h - 0.5) + 1),
+      j0 = Math.max(0, Math.floor((sy0 - FOLGA - G.y0) / G.h - 0.5) - 1),
+      j1 = Math.min(G.H - 1, Math.ceil((sy1 + FOLGA - G.y0) / G.h - 0.5) + 1);
+    alcance.set([Math.floor(i0 / BLOCO), Math.floor(i1 / BLOCO), Math.floor(j0 / BLOCO), Math.floor(j1 / BLOCO)], t * 4);
+  });
+  const doBloco = (bi: number, bj: number): number[] => {
+    const l: number[] = [];
+    for (let t = 0; t < trechos.length; t++) if (alcance[t * 4]! <= bi && bi <= alcance[t * 4 + 1]! && alcance[t * 4 + 2]! <= bj && bj <= alcance[t * 4 + 3]!) l.push(t);
+    return l;
+  };
+  // cada segmento (entre dois anéis vizinhos de uma parte) é conferido uma vez por ponto: os trechos vizinhos dividem
+  // segmentos (a folga a um trecho é a menor das folgas aos segmentos dele e dos vizinhos, e basta uma abaixo de `tol`)
+  const baseDe = new Map<ParteDoItem, number>();
+  let nSeg = 0;
+  for (const tr of trechos)
+    if (!baseDe.has(tr.vol)) {
+      baseDe.set(tr.vol, nSeg);
+      nSeg += Math.max(1, tr.vol.aneis.length - 1);
+    }
+  const visto = new Int32Array(nSeg);
+  let vez = 0;
+  /** O ponto p, no raio da célula (ig, jg) da grade. */
+  return (ig: number, jg: number, p0: number, p1: number, p2: number): boolean => {
+    const bi = Math.floor(ig / BLOCO),
+      bj = Math.floor(jg / BLOCO);
+    const l = (blocos[bj * nbx + bi] ??= doBloco(bi, bj));
+    vez++;
+    for (const t of l) {
+      const k = t * 6;
+      if (!(p0 >= caixas[k]! && p1 >= caixas[k + 1]! && p2 >= caixas[k + 2]! && p0 <= caixas[k + 3]! && p1 <= caixas[k + 4]! && p2 <= caixas[k + 5]!)) continue;
+      const tr = trechos[t]!,
+        A = tr.vol.aneis;
+      if (A.length === 1) {
+        if (folgaAoAnel(p0, p1, p2, A[0]!) <= tol) return true;
+        continue;
+      }
+      const b = baseDe.get(tr.vol)!;
+      for (let i = Math.max(0, tr.r - 1); i <= Math.min(A.length - 2, tr.r + 1); i++) {
+        if (visto[b + i] === vez) continue;
+        visto[b + i] = vez;
+        if (folgaAbaixo(p0, p1, p2, A, i, tol)) return true;
+      }
+    }
+    return false;
+  };
+}
+
 /* ============================== a ordem ============================== */
 /** O resultado de um par (item do corpo, item de peça): por trecho do corpo, quantas células cada um tem na frente. */
 interface Par {
@@ -480,9 +666,8 @@ export interface Medida {
   ciclos: number;
   remendos: number;
 }
+/** O que o último quadro ordenado teve (para os scripts que medem). */
 export const ULTIMA: Medida = { pares: 0, ciclos: 0, remendos: 0 };
-/** Para o estudo: o último quadro ordenado, por dentro (os nós, os pares, as regras largadas e a ordem). */
-export const DEPURA: { ligado: boolean; ultimo?: unknown } = { ligado: false };
 const hash = (t: string) => {
   let h = 2166136261;
   for (let i = 0; i < t.length; i++) {
@@ -498,26 +683,31 @@ const caminho = (P: P2[][]) => P.map((Q) => `M${Q.map((p) => `${f1(p[0])} ${f1(p
  * Os itens da camada 1 (o corpo e o equipamento) na ordem do pintor por pares, com os remendos no lugar. Os itens sem
  * marca (de outro quadro, os rótulos) e os das outras camadas não entram: `pintarPorPares` os põe antes e depois.
  */
-export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PARES.opcoes): Item[] {
+export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): Item[] {
   ULTIMA.pares = ULTIMA.ciclos = ULTIMA.remendos = 0;
+  MEMORIA.nf = MEMORIA.ni = 0;
   // a ordem de hoje (a de `pintar`)
   const hoje = itens
     .map((it, i) => ({ it, i }))
     .filter((x) => x.it.camada === 1)
     .sort((a, b) => a.it.d - b.it.d || a.i - b.i)
     .map((x) => x.it);
-  const corpos = hoje.filter((it) => MARCAS.get(it)?.k === 'corpo');
-  const m0 = corpos.length ? (MARCAS.get(corpos[0]!) as Extract<Marca, { k: 'corpo' }>) : null;
+  let m0: MarcaDoCorpo | undefined;
+  for (const it of hoje)
+    if (it.pp?.k === 'corpo') {
+      m0 = it.pp;
+      break;
+    }
   if (!m0) return hoje;
   const cam = m0.cam,
     e = m0.e;
   // os nós: o corpo (marcado) e as peças com forma; os outros itens (furos, detalhes sem forma) vão grudados na peça
-  type No = { it: Item; ordem: number; tipo: 'corpo' | 'peca' | 'solto'; forma?: Forma; peca?: number; vols?: VolMarcado[]; cx?: [number, number, number, number] };
+  type No = { it: Item; ordem: number; tipo: 'corpo' | 'peca' | 'solto'; forma?: Forma; peca?: number; vols?: ParteDoItem[]; cx?: [number, number, number, number] };
   const nos: No[] = [];
   const grudados = new Map<number, Item[]>();
   const ultimoDaPeca = new Map<number, number>();
   hoje.forEach((it, ordem) => {
-    const mk = MARCAS.get(it);
+    const mk = it.pp;
     if (mk?.k === 'corpo' && mk.e === e) return void nos.push({ it, ordem, tipo: 'corpo', vols: mk.vols, cx: it.cx });
     const forma = it.g3 ? formaDe(it.g3) : null;
     // a peça empurrada para trás de propósito (as pontas da barra longa, `pontasAtras`) fica onde está: é escolha
@@ -572,13 +762,49 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
   if (gx1 > gx0 && gy1 > gy0) {
     const h = o.passo;
     const G: Grade = { x0: gx0, y0: gy0, h, W: Math.ceil((gx1 - gx0) / h), H: Math.ceil((gy1 - gy0) / h) };
+    {
+      // as células dentro da caixa de alguma peça (a mesma caixa, com uma célula de folga, de pecaNaGrade)
+      const { W, H } = G,
+        L = W + 1;
+      const D = new Int32Array(L * (H + 1));
+      for (const x of nos) {
+        if (x.tipo !== 'peca') continue;
+        const ck = x.cx!;
+        const i0 = Math.max(0, Math.floor((ck[0] - G.x0) / h) - 1),
+          i1 = Math.min(W - 1, Math.ceil((ck[2] - G.x0) / h) + 1),
+          j0 = Math.max(0, Math.floor((ck[1] - G.y0) / h) - 1),
+          j1 = Math.min(H - 1, Math.ceil((ck[3] - G.y0) / h) + 1);
+        if (i1 < i0 || j1 < j0) continue;
+        D[j0 * L + i0]!++;
+        D[j0 * L + i1 + 1]!--;
+        D[(j1 + 1) * L + i0]!--;
+        D[(j1 + 1) * L + i1 + 1]!++;
+      }
+      // a cobertura de cada célula, e as somas acumuladas de "coberta"
+      const S = new Int32Array(L * (H + 1));
+      const linha = new Int32Array(L);
+      for (let j = 0; j < H; j++) {
+        let acc = 0,
+          soma = 0;
+        for (let i = 0; i < W; i++) {
+          linha[i] = linha[i]! + D[j * L + i]!;
+          acc += linha[i]!;
+          soma += acc > 0 ? 1 : 0;
+          S[(j + 1) * L + i + 1] = S[j * L + i + 1]! + soma;
+        }
+      }
+      G.pecas = S;
+    }
     const corposNaGrade = new Map<number, CorpoNaGrade>();
     nos.forEach((x, k) => {
       if (x.tipo === 'corpo') corposNaGrade.set(k, corpoNaGrade(G, cam, x.vols!, trechos, k));
     });
     // a peça que cada mão segura (a mão não decide nada contra ela)
     const segura = new Map<string, boolean>();
-    const perto = (k: number, lado: Lado, r: number) => distanciaAForma(nos[k]!.forma!, e.lado[lado].pegada) <= r;
+    const perto = (k: number, lado: Lado, r: number) => {
+      const p = e.lado[lado].pegada;
+      return distanciaAForma(nos[k]!.forma!, p[0], p[1], p[2]) <= r;
+    };
     const daMao = (k: number, lado: Lado) => {
       const ch = `${k}${lado}`;
       let r = segura.get(ch);
@@ -586,36 +812,38 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
       return r;
     };
     const a1 = h * h;
-    // a caixa 3D de cada trecho, para achar depressa os trechos perto de um ponto (o contato)
-    const caixas = trechos.map((tr) => {
-      const A = tr.vol.aneis;
-      const lo: V3 = [1e9, 1e9, 1e9],
-        hi: V3 = [-1e9, -1e9, -1e9];
-      for (const an of [A[tr.r]!, A[Math.min(A.length - 1, tr.r + 1)]!]) {
-        const r = Math.max(an.a, an.f, an.b) + o.tolerancia;
-        for (let k = 0; k < 3; k++) {
-          lo[k] = Math.min(lo[k]!, an.c[k]! - r);
-          hi[k] = Math.max(hi[k]!, an.c[k]! + r);
-        }
-      }
-      return [lo, hi] as const;
-    });
-    const encostaNoCorpo = (p: V3) =>
-      trechos.some((tr, t) => {
-        const [lo, hi] = caixas[t]!;
-        return p[0] >= lo[0] && p[1] >= lo[1] && p[2] >= lo[2] && p[0] <= hi[0] && p[1] <= hi[1] && p[2] <= hi[2] && folgaAoTrecho(p, tr) <= o.tolerancia;
-      });
+    const encosta = o.contato ? contatoComOCorpo(G, cam, trechos, o.tolerancia) : null;
+    const [dir, cima, para] = [cam.dir, cam.cima, cam.para];
     nos.forEach((x, kp) => {
       if (x.tipo !== 'peca') return;
+      // a peça cuja caixa não cruza a de nenhum item do corpo não forma par com nenhum (pula a grade dela)
+      const ck = caixaDaForma(x.forma!, cam);
+      const ci0 = Math.floor((ck[0] - G.x0) / h) - 1,
+        ci1 = Math.ceil((ck[2] - G.x0) / h) + 1,
+        cj0 = Math.floor((ck[1] - G.y0) / h) - 1,
+        cj1 = Math.ceil((ck[3] - G.y0) / h) + 1;
+      let alcanca = false;
+      for (const C of corposNaGrade.values()) if (ci0 <= C.i1 && C.i0 <= ci1 && cj0 <= C.j1 && C.j0 <= cj1) alcanca = true;
+      if (!alcanca) return;
       const P = pecaNaGrade(G, cam, x.forma!);
       if (!P) return;
+      // o contato da peça com o corpo, por célula: o ponto da peça no raio é o mesmo para todos os itens do corpo
+      // (0 = ainda não visto, 1 = encosta, 2 = não encosta)
+      const encostou = new Uint8Array(P.w * P.hh);
       for (const [kc, C] of corposNaGrade) {
         const par: Par = { corpo: kc, peca: kp, aC: 0, aP: 0, frente: new Map(), atras: new Map(), cruzam: false };
-        for (let j = 0; j < P.hh; j++)
-          for (let i = 0; i < P.w; i++) {
-            const zp = P.z[j * P.w + i]!;
+        // só onde a caixa do item do corpo e a da peça se cruzam (fora dela, um dos dois não cobre a célula); a mesma
+        // ordem das células (linha a linha), para os trechos entrarem na mesma ordem
+        const ja = Math.max(P.j0, C.j0),
+          jb = Math.min(P.j0 + P.hh - 1, C.j1),
+          ia = Math.max(P.i0, C.i0),
+          ib = Math.min(P.i0 + P.w - 1, C.i1);
+        for (let jg = ja; jg <= jb; jg++)
+          for (let ig = ia; ig <= ib; ig++) {
+            const kk = (jg - P.j0) * P.w + (ig - P.i0);
+            const zp = P.z[kk]!;
             if (zp === -Infinity) continue;
-            const ix = (j + P.j0) * G.W + (i + P.i0);
+            const ix = jg * G.W + ig;
             const zc = C.z[ix]!;
             if (zc === -Infinity) continue;
             const t = C.s[ix]!;
@@ -623,11 +851,17 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
             par.cruzam = true;
             if ((tr.vol.nome === 'mao' || tr.vol.nome === 'polegar') && tr.vol.lado && daMao(kp, tr.vol.lado)) continue;
             const dif = zc - zp;
-            // o contato (opção `contato`): o ponto que fica escondido está encostado no outro, ou dentro dele (a pele que
-            // afunda no assento, a coxa deitada no banco): não decide nada, como na conferência
-            const noRaio = (z: number): V3 => add(add(mul(cam.dir, G.x0 + (i + P.i0 + 0.5) * G.h), mul(cam.cima, -(G.y0 + (j + P.j0 + 0.5) * G.h))), mul(cam.para, z));
-            if (o.contato && dif > o.tolerancia && encostaNoCorpo(noRaio(zp))) continue;
-            if (o.contato && dif < -o.tolerancia && distanciaAForma(x.forma!, noRaio(zc)) <= o.tolerancia) continue;
+            // o contato: o ponto que fica escondido está encostado no outro, ou dentro dele (a pele que afunda no
+            // assento, a coxa deitada no banco): não decide nada, como na conferência
+            if (encosta && (dif > o.tolerancia || dif < -o.tolerancia)) {
+              const X = G.x0 + (ig + 0.5) * G.h,
+                Y = -(G.y0 + (jg + 0.5) * G.h);
+              if (dif > o.tolerancia) {
+                let v = encostou[kk]!;
+                if (!v) encostou[kk] = v = encosta(ig, jg, dir[0] * X + cima[0] * Y + para[0] * zp, dir[1] * X + cima[1] * Y + para[1] * zp, dir[2] * X + cima[2] * Y + para[2] * zp) ? 1 : 2;
+                if (v === 1) continue;
+              } else if (distanciaAForma(x.forma!, dir[0] * X + cima[0] * Y + para[0] * zc, dir[1] * X + cima[1] * Y + para[1] * zc, dir[2] * X + cima[2] * Y + para[2] * zc) <= o.tolerancia) continue;
+            }
             if (dif > o.tolerancia) {
               par.aC += a1;
               par.frente.set(t, (par.frente.get(t) ?? 0) + 1);
@@ -681,24 +915,22 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
       ULTIMA.pares++;
     } else regra(...hojeAntes(p.corpo, p.peca), 0);
   }
-  // ordenação topológica: entre os que podem sair, o que vem primeiro hoje; num ciclo, larga as regras de menor peso
+  // ordenação topológica: entre os que podem sair, o que vem primeiro hoje; num ciclo, larga as regras de menor peso.
+  // `falta[k]`: quantas regras que chegam em k ainda esperam um nó que não saiu
   const entra = new Map<number, Map<number, number>>();
+  const falta = new Int32Array(N);
   for (const [a, m] of arestas)
     for (const [b, w] of m) {
       let x = entra.get(b);
       if (!x) entra.set(b, (x = new Map()));
       x.set(a, w);
+      falta[b]!++;
     }
   const feito = new Array<boolean>(N).fill(false);
-  const largadas: [number, number, number][] = [];
   const ordem: number[] = [];
   while (ordem.length < N) {
     let escolha = -1;
-    for (let k = 0; k < N; k++) {
-      if (feito[k]) continue;
-      const pend = [...(entra.get(k) ?? new Map<number, number>()).keys()].some((a) => !feito[a]);
-      if (!pend && (escolha < 0 || nos[k]!.ordem < nos[escolha]!.ordem)) escolha = k;
-    }
+    for (let k = 0; k < N; k++) if (!feito[k] && !falta[k] && (escolha < 0 || nos[k]!.ordem < nos[escolha]!.ordem)) escolha = k;
     if (escolha < 0) {
       // ciclo: entre os que não esperam nenhuma regra fixa, o que larga menos peso
       let melhor = Infinity;
@@ -717,18 +949,12 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
           escolha = k;
         }
       }
-      for (const [a, w] of entra.get(escolha) ?? []) if (!feito[a]) largadas.push([a, escolha, w]);
       ULTIMA.ciclos++;
     }
     feito[escolha] = true;
     ordem.push(escolha);
+    for (const b of arestas.get(escolha)?.keys() ?? []) falta[b]!--;
   }
-  if (DEPURA.ligado)
-    DEPURA.ultimo = {
-      nos: nos.map((x, k) => ({ k, tipo: x.tipo, ordem: x.ordem, pos: ordem.indexOf(k), d: x.it.d, peca: x.peca, vols: x.vols?.map((v) => v.nome + (v.lado ?? '')).join(','), s: x.it.s.slice(0, 90) })),
-      pares: pares.map((p) => ({ corpo: p.corpo, peca: p.peca, aC: p.aC, aP: p.aP })),
-      largadas,
-    };
   const pos = new Array<number>(N);
   ordem.forEach((k, i) => (pos[k] = i));
   // os remendos: depois do item de cima de cada par, o de baixo pintado de novo onde ele devia ficar por cima
@@ -758,7 +984,10 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
       if (area < o.areaMinima) continue;
       const de = corpoPorCima ? p.peca : p.corpo,
         cima = corpoPorCima ? p.corpo : p.peca;
-      const dentro = ts.sort((a, b) => a - b).map(cascoT);
+      // ATENÇÃO (achado da etapa 1): o protótipo fazia `.map(cascoT)`, e o map passa a posição na lista como a folga
+      // (0, 1, 2… cm, e não FOLGA_DO_RECORTE). Mantido de propósito nesta etapa, que não pode mudar o resultado do
+      // protótipo; corrigir muda o desenho dos remendos com mais de um trecho, e fica para a etapa 2.
+      const dentro = ts.sort((a, b) => a - b).map((t, i) => cascoT(t, i));
       const cx = caixa(dentro);
       // os trechos do mesmo corpo em que vale a ordem de antes saem do recorte (de cima, a cabeça cobre os pés: o
       // halter, por cima dos pés, não pode ir por cima da cabeça)
@@ -805,22 +1034,18 @@ export function ordenarPorPares(itens: Item[], o: OpcoesDoPintor = PINTOR_POR_PA
       l.push(it);
       depois.set(cima, l);
       ULTIMA.remendos++;
-      if (DEPURA.ligado) ((DEPURA.ultimo as { remendos?: unknown[] }).remendos ??= []).push({ de, cima, area, trechos: ts.map((t) => `${trechos[t]!.vol.nome}${trechos[t]!.vol.lado ?? ''}#${trechos[t]!.r}`).join(','), fora: fora.length });
     }
   }
   const out: Item[] = [];
-  for (const k of ordem) {
-    out.push(nos[k]!.it, ...(grudados.get(k) ?? []), ...(depois.get(k) ?? []));
-  }
+  for (const k of ordem) out.push(nos[k]!.it, ...(grudados.get(k) ?? []), ...(depois.get(k) ?? []));
   return out;
 }
 
-/** `pintar`, com a camada 1 na ordem por pares (o que o estudo põe no lugar do pintor da cena). */
-export function pintarPorPares(itens: Item[]): string {
-  if (!PINTOR_POR_PARES.ligado) return pintar(itens);
-  const meio = ordenarPorPares(itens);
+/** `pintar` (./desenho.ts), com a camada 1 (o corpo e o equipamento) na ordem por pares. */
+export function pintarPorPares(itens: Item[], o: OpcoesDoPintor = PADRAO): string {
+  const meio = ordenarPorPares(itens, o);
   const resto = itens.map((it, i) => ({ it, i })).filter((x) => x.it.camada !== 1);
   const antes = pintar(resto.filter((x) => x.it.camada < 1).map((x) => x.it)),
-    depoisS = pintar(resto.filter((x) => x.it.camada > 1).map((x) => x.it));
-  return antes + meio.map((it) => it.s).join('') + depoisS;
+    depois = pintar(resto.filter((x) => x.it.camada > 1).map((x) => x.it));
+  return antes + meio.map((it) => it.s).join('') + depois;
 }

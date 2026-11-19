@@ -13,6 +13,7 @@ import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
 import { enquadramentoGuardado } from './preparo';
+import { PINTOR_POR_PARES_LIGADO } from './pintor-ligado';
 
 export type Modo = 'tec' | 'mus' | 'traj' | 'err';
 export interface OpcoesCena {
@@ -28,6 +29,12 @@ export interface OpcoesCena {
   equipamento?: 'realista' | 'simples';
   /** O tema decide os tons do equipamento realista (as cores do corpo vêm do CSS). */
   tema?: Tema;
+  /**
+   * A ordem de pintura do corpo e do equipamento: 'hoje' (`pintar`, por uma profundidade só por item) ou 'pares' (o
+   * pintor por pares, ./pintor-por-pares.ts). Sem ela, vale a lista de ./pintor-ligado.ts (etapa 1: vazia). Só os
+   * scripts que comparam os dois pintores a passam.
+   */
+  pintor?: 'hoje' | 'pares';
 }
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
@@ -410,11 +417,45 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
 export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
   return svgEmU(ex, instante(ex.ficha.fases, t).u, o, vb, tema);
 }
+/**
+ * O pintor por pares (./pintor-por-pares.ts), quando carregado. Ele fica fora do pacote do motor (o app só o baixa
+ * quando abre uma animação em que ele está ligado: src/features/programa/trabalhoBoneco.ts o carrega junto com ela e o
+ * entrega aqui); os scripts o recebem pelo ./index.ts.
+ */
+let PINTOR_POR_PARES: ((itens: Item[]) => string) | null = null;
+export function registrarPintorPorPares(pintor: (itens: Item[]) => string): void {
+  PINTOR_POR_PARES = pintor;
+}
+/**
+ * O corpo e o equipamento pintados por pares (./pintor-por-pares.ts) num ponto do movimento, guardados: a ordem por pares
+ * custa várias vezes a de hoje, e o mesmo ponto do movimento volta muitas vezes na volta da animação (nas pausas, e no
+ * começo e no fim do ciclo: um terço dos quadros, ou mais). O quadro do movimento é o mesmo para o mesmo u arredondado
+ * a 1/400 (quadroDe), e o desenho também. Só a animação que está na tela fica guardada (como em svgAnimado).
+ */
+const PINTADOS = { ex: null as Exercicio | null, chave: '', quadros: new Map<number, { corpo: string; defs: string }>() };
+function pintadoPorPares(ex: Exercicio, u: number, o: OpcoesCena): string {
+  const chave = [o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', o.tema ?? ''].join('|');
+  if (PINTADOS.ex !== ex || PINTADOS.chave !== chave) {
+    PINTADOS.ex = ex;
+    PINTADOS.chave = chave;
+    PINTADOS.quadros.clear();
+  }
+  const k = Math.round(u * 400);
+  let p = PINTADOS.quadros.get(k);
+  if (!p) {
+    // sem o pintor carregado, um erro, e não o desenho de hoje no lugar do aprovado
+    if (!PINTOR_POR_PARES) throw new Error(`o pintor por pares não foi carregado (registrarPintorPorPares), e ${ex.ficha.id} o pede`);
+    const corpo = PINTOR_POR_PARES(itensEmU(ex, u, o));
+    PINTADOS.quadros.set(k, (p = { corpo, defs: DEFS }));
+  }
+  DEFS = p.defs;
+  return p.corpo;
+}
 function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema): string {
   // a linha do chão (y = 0), nas vistas em que o chão fica de perfil
   const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
   DEFS = '';
-  const corpo = pintar(itensEmU(ex, u, { ...o, tema }));
+  const corpo = (o.pintor ?? (PINTOR_POR_PARES_LIGADO.has(ex.ficha.id) ? 'pares' : 'hoje')) === 'pares' ? pintadoPorPares(ex, u, { ...o, tema }) : pintar(itensEmU(ex, u, { ...o, tema }));
   return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}${camadaDeRotulos(ex, u, o, vb)}</svg>`;
 }
 /**
@@ -426,7 +467,7 @@ function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, nu
 const PASSOS_GUARDADOS = 240;
 const PRONTOS = { chave: '', quadros: new Map<number, string>() };
 export function svgAnimado(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
-  const chave = [ex.ficha.id, o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', tema, vb.join(',')].join('|');
+  const chave = [ex.ficha.id, o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', o.pintor ?? '', tema, vb.join(',')].join('|');
   if (chave !== PRONTOS.chave) {
     PRONTOS.chave = chave;
     PRONTOS.quadros.clear();

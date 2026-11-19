@@ -3,7 +3,7 @@
 // suporte da seção oval. Estilo "prancha" = cor chapada e contorno; estilo "volume" = o mesmo, mais a sombra própria
 // (a faixa entre a silhueta do lado escuro e a linha onde a luz deixa de bater), também calculada.
 import type { Anel, Corpo3d, IdParte, Junta, Parte, Volume } from './corpo3d';
-import type { Lado } from './esqueleto';
+import type { Esq, Lado } from './esqueleto';
 import type { Geometria3d } from './realista/base.mjs';
 import { add, comb, cross, dot, mul, norm, sub } from './vec';
 import type { Ref, V3 } from './vec';
@@ -48,7 +48,19 @@ export interface Item {
   cx?: [number, number, number, number];
   /** A forma 3D do item do equipamento realista, só para a conferência da pintura (não entra no desenho). */
   g3?: Geometria3d;
+  /**
+   * O que o item é, para o pintor por pares (./pintor-por-pares.ts; não entra no desenho): no Boneco, as partes que o
+   * item pinta; no equipamento realista, o índice da peça no quadro.
+   */
+  pp?: MarcaDoPintor;
 }
+/** Uma parte do Boneco que um item pinta: o nome do volume, o lado e os anéis (em 3D). */
+export interface ParteDoItem {
+  nome: string;
+  lado?: Lado;
+  aneis: Anel[];
+}
+export type MarcaDoPintor = { k: 'corpo'; e: Esq; cam: Camera; vols: ParteDoItem[] } | { k: 'peca'; peca: number };
 
 /* ============================== contorno de um volume ============================== */
 interface Contorno {
