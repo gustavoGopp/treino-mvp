@@ -24,7 +24,7 @@ import { desenharBoneco, formaDoBoneco } from './boneco';
 import { VISTAS, casco, contorno, desenharPrim } from './desenho';
 import type { Camera, IdVista, Item, P2, Prim } from './desenho';
 import { equipamentoRealista } from './equipamento';
-import type { Lado } from './esqueleto';
+import type { Esq, Lado } from './esqueleto';
 import { duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Peca } from './pecas';
@@ -153,6 +153,26 @@ function distAoSegmento(p: V3, a: V3, b: V3): number {
   return dist(p, add(a, mul(d, t)));
 }
 
+/* ============================== o pintor de estudo (ver ./pintor-por-pares.ts) ============================== */
+/** Um remendo do pintor de estudo: o item `de` pintado de novo, só dentro de `dentro` e fora de `fora` (na tela). */
+export interface RemendoDeEstudo {
+  de: Item;
+  dentro: P2[][];
+  fora: P2[][];
+}
+/** Um pintor de estudo (desligado no app): marca o que cada item é e devolve a camada 1 na ordem dele. */
+export interface PintorDeEstudo {
+  marcarBoneco(itens: Item[], e: Esq, cam: Camera, roupa: boolean): Item[];
+  marcarPeca(it: Item, peca: number): Item;
+  ordenar(itens: Item[]): Item[];
+  remendoDe(it: Item): RemendoDeEstudo | undefined;
+}
+/** Uma pintura de um item: a ordem dela e, num remendo, o recorte. */
+interface Ordem {
+  k: number;
+  rec?: RemendoDeEstudo;
+}
+
 /* ============================== as partes do Boneco ============================== */
 interface Parte {
   grupo: string;
@@ -258,24 +278,39 @@ export const EMPURRADA = 50;
  * Num quadro e numa vista: as partes do corpo pintadas do jeito errado contra uma peça. `pontos` = guardar os pontos da
  * grade de cada achado (para a imagem).
  */
-export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo: string, pontos = false): AchadoDePintura[] {
+export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo: string, pontos = false, pintor?: PintorDeEstudo): AchadoDePintura[] {
   const cam = VISTAS[vista];
   const h = PASSO_DA_GRADE;
   const e = q.esq;
   // o Boneco como o app pinta, e a ordem de cada parte: a do último item que pinta o contorno dela
   const boneco = desenharBoneco(e, cam, { estilo: 'cinza', vies: viesNaVista(q, vista) });
   const forma = formaDoBoneco(e, { cabeloAtrasPrimeiro: dot(cam.para, e.cabeca.z) > 0.45 });
-  const partes: (Parte & { ordem: number })[] = [];
+  const eq = equipamentoDoQuadro(q, cam, prefixo);
+  if (!eq.length) return [];
+  // Estudo do pintor (acréscimo de 19/11, só com `pintor`; sem ele, nada muda): a ordem de cada item é a posição dele
+  // na lista do pintor de estudo, e um remendo (o item pintado de novo, recortado) conta só dentro do recorte.
+  const ordensDe = new Map<Item, Ordem[]>();
+  if (pintor) {
+    pintor.marcarBoneco(boneco, e, cam, false);
+    eq.forEach((x) => pintor.marcarPeca(x.it, x.peca));
+    pintor.ordenar([...eq.map((x) => x.it), ...boneco]).forEach((it, r) => {
+      const rec = pintor.remendoDe(it);
+      const base = rec?.de ?? it;
+      const l = ordensDe.get(base) ?? [];
+      l.push({ k: 1e6 + r, rec });
+      ordensDe.set(base, l);
+    });
+  }
+  const ordens = (it: Item): Ordem[] => ordensDe.get(it) ?? [{ k: ordem(it) }];
+  const partes: (Parte & { ordens: Ordem[] })[] = [];
   for (const g of forma.grupos)
     for (const v of g.volumes) {
       const fill = `d="${contorno(cam, v.vol, null, true).fill}"`;
       const dela = boneco.filter((it) => it.s.includes(fill));
       // a parte que o app não pinta (o braço de longe escondido atrás do corpo) fica de fora
       if (!dela.length) continue;
-      partes.push({ grupo: g.id, nome: v.nome ?? g.id, lado: g.lado, aneis: v.vol.aneis, ordem: Math.max(...dela.map(ordem)) });
+      partes.push({ grupo: g.id, nome: v.nome ?? g.id, lado: g.lado, aneis: v.vol.aneis, ordens: dela.flatMap(ordens) });
     }
-  const eq = equipamentoDoQuadro(q, cam, prefixo);
-  if (!eq.length) return [];
   // a malha de cada parte, na tela: N pontos por anel, [x, y, profundidade]
   const tela = (p: V3): [number, number, number] => [dot(p, cam.dir), -dot(p, cam.cima), dot(p, cam.para)];
   const malhas = partes.map((pt) =>
@@ -329,7 +364,34 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
   // profundidade dele ali e de que parte)
   const G = grade(n);
   const { zF, kT, zT, vF, vT, eK, eKz, eF, eKi, eFi } = G;
-  const triangulo = (a: number[], b: number[], c: number[], vi: number, k: number) => {
+  // o recorte de cada remendo, na grade (estudo do pintor)
+  const mascaras = new Map<RemendoDeEstudo, Uint8Array>();
+  const mascara = (rec: RemendoDeEstudo): Uint8Array => {
+    let m = mascaras.get(rec);
+    if (m) return m;
+    m = new Uint8Array(n);
+    const pinta = (P: P2[], v: number) => {
+      const xs = P.map((p) => p[0]),
+        ys = P.map((p) => p[1]);
+      const i0 = Math.max(0, Math.floor((Math.min(...xs) - x0) / h)),
+        i1 = Math.min(W - 1, Math.ceil((Math.max(...xs) - x0) / h)),
+        j0 = Math.max(0, Math.floor((Math.min(...ys) - y0) / h)),
+        j1 = Math.min(H - 1, Math.ceil((Math.max(...ys) - y0) / h));
+      for (let j = j0; j <= j1; j++)
+        for (let i = i0; i <= i1; i++) if (dentroDoPoligono(x0 + (i + 0.5) * h, y0 + (j + 0.5) * h, P)) m![j * W + i] = v;
+    };
+    for (const P of rec.dentro) pinta(P, 1);
+    for (const P of rec.fora) pinta(P, 0);
+    mascaras.set(rec, m);
+    return m;
+  };
+  /** A ordem de um item num ponto da grade: a maior das pinturas dele que cobrem o ponto. */
+  const kNo = (os: Ordem[], ix: number) => {
+    let k = -Infinity;
+    for (const o of os) if (o.k > k && (!o.rec || mascara(o.rec)[ix])) k = o.k;
+    return k;
+  };
+  const triangulo = (a: number[], b: number[], c: number[], vi: number, ks: Ordem[]) => {
     const ax = (a[0]! - x0) / h,
       ay = (a[1]! - y0) / h,
       bx = (b[0]! - x0) / h,
@@ -356,6 +418,7 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
           zF[ix] = z;
           vF[ix] = vi;
         }
+        const k = ks.length === 1 && !ks[0]!.rec ? ks[0]!.k : kNo(ks, ix);
         if (k > kT[ix]!) {
           kT[ix] = k;
           zT[ix] = z;
@@ -385,7 +448,7 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
     return (s >= 0 ? n2 : -n2) > -1e-9;
   };
   malhas.forEach((m, vi) => {
-    const k = partes[vi]!.ordem;
+    const k = partes[vi]!.ordens;
     for (let r = 0; r + 1 < m.length; r++) {
       const A = m[r]!.anel,
         B = m[r + 1]!.anel;
@@ -404,7 +467,8 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
   });
   // as peças: o item de maior ordem que cobre o ponto (eK, a entrada dele e qual) e a peça mais perto de quem olha
   // (eF, a entrada e a saída dela e qual)
-  const marca = (ix: number, idx: number, k: number, entra: number) => {
+  const marca = (ix: number, idx: number, ks: Ordem[], entra: number) => {
+    const k = ks.length === 1 && !ks[0]!.rec ? ks[0]!.k : kNo(ks, ix);
     if (k > eK[ix]!) {
       eK[ix] = k;
       eKz[ix] = entra;
@@ -417,7 +481,7 @@ export function pinturaDoQuadro(q: Quadro, vista: IdVista, onde: string, prefixo
   };
   const caixaNaGrade = (xa: number, ya: number, xb: number, yb: number) => [Math.max(0, Math.floor((xa - x0) / h)), Math.min(W - 1, Math.ceil((xb - x0) / h)), Math.max(0, Math.floor((ya - y0) / h)), Math.min(H - 1, Math.ceil((yb - y0) / h))] as const;
   eq.forEach(({ it, forma: f }, idx) => {
-    const k = ordem(it);
+    const k = ordens(it);
     if (f.t === 'solido') {
       // o sólido convexo: na tela, o contorno dele (o casco dos cantos); a entrada do raio é a face da frente mais perto
       const s = solidoNaTela(it, f, cam);
