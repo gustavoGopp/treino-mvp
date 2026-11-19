@@ -53,6 +53,23 @@ export interface OpcoesDaRemada {
    * tronco (`folgaDaCarga`): por exemplo, a da carga até o encosto do banco. Sem o campo, nada muda.
    */
   folgaExtra?: (q: Quadro) => number;
+  /**
+   * Opcional (correção de 19/11/2026, as remadas de um braço sem banco): a puxada termina com a mão ao lado do quadril,
+   * e não embaixo da barriga. Com o tronco a 55° da vertical e o antebraço na vertical até o fim, o cotovelo já está no
+   * limite de trás e a mão termina 10 cm à frente do quadril e 7 cm abaixo dele; vista de lado e de três quartos, a carga
+   * fica na frente da virilha e da coxa (o aviso do Gustavo: "puxando pra dentro do próprio corpo"). Com o campo, o
+   * antebraço que puxa inclina para trás no caminho (de 0 no começo a `f('braco.fim.recuo')` graus no fim), num arco que
+   * leva a mão para trás, em direção ao quadril, e a carga gira com a mão (a pegada neutra fica a mesma: o cabo ou a alça
+   * atravessa a palma). Sem o campo, nada muda.
+   */
+  recuoDoAntebraco?: boolean;
+  /**
+   * Opcional (correção de 19/11/2026, a remada curvada com halteres): no erro "só com os braços" (`soBracos`), o halter
+   * gira com a mão, com o cabo atravessado na palma, como numa rosca martelo. O antebraço dobra para a frente como numa
+   * rosca, e o halter deitado entrava 2,2 cm no antebraço. No movimento certo e nos outros erros, nada muda (com
+   * `recuoDoAntebraco`, o halter já gira com a mão sempre). Sem o campo, nada muda.
+   */
+  halterGiraComAMao?: boolean;
 }
 export interface Remada {
   ficha: Ficha;
@@ -119,6 +136,11 @@ export function criarRemada(fichaJson: unknown, op: OpcoesDaRemada): Remada {
     const af = (fora * (1 - u) + maisFora) * rad;
     fora += maisFora;
     let ante: V3 = [s * Math.sin(af), -Math.cos(af), 0];
+    // (opcional) o antebraço inclina para trás, em direção ao quadril, até `braco.fim.recuo` graus no fim
+    if (op.recuoDoAntebraco && tipo !== 'soBracos') {
+      const r = f('braco.fim.recuo') * u * rad;
+      ante = norm(add(mul(ante, Math.cos(r)), [0, 0, -Math.sin(r)]));
+    }
     if (tipo === 'soBracos') {
       atras = mix(f('braco.inicio.atras'), f('erro.soBracos.atras'), u);
       fora = f('braco.inicio.fora') + maisFora;
@@ -198,8 +220,11 @@ export function criarRemada(fichaJson: unknown, op: OpcoesDaRemada): Remada {
         const Lk = e.lado[k];
         if (op.carga === 'halter') {
           // o halter pende na vertical, com o cabo de frente para trás (pegada neutra)
+          // (com `recuoDoAntebraco`, ou `halterGiraComAMao` no erro "só com os braços", o halter gira com a mão: o cabo
+          // fica atravessado na palma)
+          const gira = op.recuoDoAntebraco || (op.halterGiraComAMao && tipo === 'soBracos');
           const centro = Lk.pegada,
-            eixo = norm(perp(Lk.mao.x, [0, 1, 0]));
+            eixo = gira ? norm(perp(Lk.mao.x, Lk.antebraco.y)) : norm(perp(Lk.mao.x, [0, 1, 0]));
           q.prims.push(...halter(centro, eixo, 0.4));
           q.pecas!.push({ t: 'halter', centro, eixo });
           q.cargas.push({ massa: f('carga'), pos: centro });

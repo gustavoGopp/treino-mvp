@@ -58,3 +58,10 @@ Músculos: dorsal e meio das costas (`trapMedInf`) do lado direito em vermelho; 
 
 - **De lado, no começo, o halter aparece desenhado por cima do banco** (`lateral:tec:f0`): ele fica 28 cm para o lado de fora, na frente do banco, mas de perfil as duas figuras se sobrepõem e pode parecer que o halter está apoiado no banco. É a mesma leitura de uma foto de lado; não mudei a geometria por isso.
 - O pé de apoio fica de sola para cima com o calcanhar alto (como numa pessoa de verdade com o peito do pé no banco); de lado ele lembra uma ponta.
+
+## Correção de 19/11 (halter dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), medi esta com as mesmas regras. **Nada mudou aqui.**
+- `peso-fora-do-corpo` (as cabeças do halter contra a superfície do corpo, no ciclo e em cada erro em 9 instantes): **0 cm**; o halter não entra no corpo.
+- `remada-carga-pintada-no-lugar` (a ordem de pintura do halter contra o corpo, nas vistas do guia): passa (de lado, o halter é pintado na frente do tronco com 19,8 cm de folga; de três quartos de trás, nada se cruza).
+- O fim da puxada: a mão fica 18,4 cm à frente do centro do quadril e 12,2 cm abaixo dele, a 67% do caminho do ombro ao quadril. Com o tronco quase deitado (13,7° acima da horizontal), é ao lado das costelas de baixo, com o antebraço na vertical: é a remada de verdade, e não o defeito da remada sem banco. A regra `remada-sem-banco-carga-ao-lado-do-quadril` é das remadas sem banco e não vale aqui.
