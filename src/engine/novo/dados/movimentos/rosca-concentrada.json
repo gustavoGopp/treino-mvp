@@ -32,6 +32,7 @@
   "maoL.poloDesce": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo esquerdo aponta para fora e para baixo (0,6 da direção para baixo): o braço descansa ao lado da coxa, sem a asa aberta, e o punho dobra pouco"},
   "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "'um halter': o sextavado de 10 lb, o das roscas alternada e martelo aprovadas, na mão direita"},
   "erro.tronco.sobe": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia endireita 20° enquanto o halter sobe; o braço vai junto com o tronco e o cotovelo sai da coxa"},
+  "erro.tronco.folgaDoRosto": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: com o tronco endireitando, em cima o cotovelo dobra até o halter chegar a 1 cm do rosto, e não mais que os 125° do movimento certo. Correção de 19/11/2026: com os 125°, a cabeça do halter entrava 1,1 cm no rosto (regra peso-fora-do-corpo)"},
   "erro.tira.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: na subida, o braço sai da coxa: gira 30° no ombro, para a frente e para cima (o da rosca Scott aprovada)"},
   "erro.tira.cotovelo": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: com o braço fora da coxa, o cotovelo dobra só 100° em cima (o ombro faz parte da subida)"},
   "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: embaixo, a volta para com o cotovelo dobrado 55°, como o 'descer pouco' das roscas aprovadas"}
@@ -53,7 +54,8 @@
   {"id": "rosca-concentrada-mao-na-outra-coxa", "pede": "a outra mão na outra coxa", "selo": "consenso", "fonte": "app"},
   {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
   {"id": "halter-fora-do-banco", "pede": "o halter não atravessa a cadeira nem o chão", "selo": "consenso", "fonte": "desenho"},
-  {"id": "rosca-concentrada-halter-pintado-no-lugar", "pede": "o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele", "selo": "desenho", "fonte": "desenho"}
+  {"id": "rosca-concentrada-halter-pintado-no-lugar", "pede": "o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele", "selo": "desenho", "fonte": "desenho"},
+  {"id": "peso-fora-do-corpo", "pede": "a cabeça do halter não entra no corpo (coxas, tronco, cabeça), em nenhum quadro do ciclo nem dos erros; no erro \"Balançar o tronco\", em cima, o halter fica a 1 cm do rosto (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "app"}
  ],
  "erros": [
   {"id": "tronco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco sobe para ajudar a levantar o halter, e o braço sai da coxa com ele", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},

@@ -72,3 +72,22 @@ Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/no
 - **De lado, o braço que trabalha continua por cima da coxa direita**, embora fique por dentro dela (medido pelo raio: a coxa e a canela escondem de 100 a 240 pontos do braço). O braço também fica na frente da cintura (esconde 150 pontos dela), e as duas, a coxa e a cintura, são o mesmo item do Boneco: o pintor só acerta uma. Pintar o braço atrás do corpo escondia o braço quase inteiro de lado, junto com o bíceps; ficou como foi aprovado. O comentário antigo do exercício dizia o contrário (o `pernaR: 30`), e estava errado.
 - **A mão cobre a borda da cabeça de perto do halter** de lado: antes isso acontecia no meio do movimento; agora também embaixo e em cima.
 - Vista de cima: o exercício não a declara (as vistas são de frente e de lado, e os erros, de lado e de frente), então a cabeça que some de cima não se aplica aqui; não pus o `viesNaVista` de cima.
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no fim do erro "Balançar o tronco"**, o tronco endireita e leva o braço junto; com o cotovelo dobrando os 125° do movimento certo, **a cabeça do halter entrava 1,1 cm no rosto** (1,2 cm pela checagem da pintura).
+
+**A mudança.**
+
+- Nesse erro, em cima, o cotovelo dobra até o halter ficar a 1 cm da pele (`erro.tronco.folgaDoRosto`; o halter engordado de 1 cm não entra no corpo, pela regra `peso-fora-do-corpo`), e não mais que os 125°: 122,3°, calibrado e guardado no preparo (`rosca-concentrada:tronco-cima`).
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no rosto (erro "Balançar o tronco", fim) | 1,1 cm | 0 cm (a 1 cm da pele) |
+| cotovelo em cima, no erro | 125° | 122,3° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (1,1 cm, na cabeça, no erro "Balançar o tronco"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/rosca-concentrada-peso.png`; os quadros grandes foram regravados (`quadros/rosca-concentrada.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **1 falha e 3 avisos** (antes: 2 falhas e 3 avisos, entre elas a de pesos).
+
+**O que ainda não ficou bom.**
+- A falha que sobra é de antes e não é do peso: de frente, no fim da subida do movimento certo, o halter é pintado por cima da cabeça, que está na frente dele (1,5 cm², em 2 quadros). Não corrigi.
