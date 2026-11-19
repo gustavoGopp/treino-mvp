@@ -13,7 +13,7 @@
 // frente e a lombar arqueia o mesmo tanto, com o peito no estofado (como na flexão de joelho com elástico aprovada,
 // ./flexao-joelho.ts). No "Rolo no lugar errado", o corpo faz o movimento certo e o rolo fica no meio da panturrilha.
 import ficha from '../dados/movimentos/mesa-flexora.json';
-import { pontosDoBoneco } from '../boneco';
+import { formaDoBoneco, pontosDoBoneco } from '../boneco';
 import { calibragem } from '../calibragens';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
@@ -191,7 +191,13 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const k = afastamento(corpo, s);
   const r = rolo(e, s, k);
   const r0 = rolo(esqueleto(corpo, f('joelho.inicio')), s, k);
-  const M = maquina({ alavanca: r.alavanca, inicio: r0.alavanca, rolo: r0.dist, placas: f('placas'), noQuadro: noQuadro() });
+  // o rolo não cobre os pés onde eles ficam na frente dele (de cima, no fim da subida, o calcanhar fica acima do rolo e
+  // o passa um pouco; a auditoria de 18/11/2026), e a haste que o atravessa fica atrás dele na pintura (de cima, em
+  // parte da subida, saía por cima dele)
+  const pes = formaDoBoneco(e)
+    .grupos.filter((g) => g.id.startsWith('perna'))
+    .flatMap((g) => g.volumes.filter((v) => v.nome === 'pe').map((v) => v.vol.aneis));
+  const M = maquina({ alavanca: r.alavanca, inicio: r0.alavanca, rolo: r0.dist, placas: f('placas'), noQuadro: noQuadro(), naFrenteDoRolo: pes, hasteAtras: 2 });
   return {
     esq: e,
     prims: [chao(-90, 90, M.extremos.zTras - 10, M.extremos.zFrente + 10), ...M.prims],

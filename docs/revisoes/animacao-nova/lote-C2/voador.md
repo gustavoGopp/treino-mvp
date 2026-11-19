@@ -69,3 +69,19 @@ Nenhuma. A máquina, o núcleo e as regras são arquivos novos; os registros gan
 - **"Tirar as costas" fica na vista de três quartos por trás, com o corpo menor**: de lado, o nome do erro caía em cima da torre.
 - **O encosto é curto (32 cm) e começa 43 cm acima do assento**: ele também é o apoio do peito do invertido, e embaixo dele passam as coxas de quem senta virado para ele. No voador, a lombar fica sem apoio.
 - **Os ângulos (84,8° aberto, −12° fechado) são escolhas**: a ficha só diz "até alongar, sem passar da linha do ombro" e "à frente do peito".
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**O achado da auditoria: de cima, o alto do encosto é pintado sobre o alto das costas. Confirma-se.** No desenho real, de cima, 2 anéis do tronco ficam na frente do encosto e por cima dele na tela e são pintados por baixo dele: a borda da frente do encosto cortava o alto das costas em linha reta. A causa: o encosto entra na ordem pelo centro dele (104,2), acima do centro do corpo (96,3), e o alto das costas passa acima do topo dele.
+
+**O que mudou.** Subir o corpo na ordem não servia: os joelhos passariam por cima dos pegadores e os braços ficariam por baixo do tronco. A peça (`pecas-de-cena/voador.ts`) ganhou a opção `encostoAtrasDeCima`, desligada por padrão: de cima, o encosto, com o tubo e a barra que o prendem por trás, vai para trás na ordem de pintura (o desenho não muda). O núcleo `no-voador.ts` a repassa (opção nova, desligada por padrão); o voador a liga com 12 cm (linha nova da ficha, `pintura.encostoAtrasDeCima`). O voador invertido não muda.
+
+| de cima | antes | depois |
+|---|---|---|
+| anéis do tronco por baixo do encosto | 2 de 2 | 0 de 2 |
+
+**Conferência nova:** `voador-costas-por-cima-do-encosto` (`regras/voador.ts`): nas duas vistas e na de cada erro (também a de três quartos de trás), na técnica e nos três erros, os anéis da cabeça, do tronco e dos braços, antebraços, coxas e canelas dos dois lados contra o encosto. Depois: passa.
+
+**Conferência automática:** 0 falha, 1 aviso (o de antes; a lista das linhas de desenho ganhou `pintura.encostoAtrasDeCima`). Preparo: as calibrações do voador têm a chave com as opções do núcleo, e a chave ganhou a opção nova; os valores não mudam. Quadros refeitos.
+
+**O que ainda não ficou bom:** nada que eu tenha visto nos quadros de cima, de frente e de três quartos de trás.

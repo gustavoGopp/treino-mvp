@@ -51,6 +51,8 @@ export interface OpcoesDoVoador {
   psiMeio: number;
   /** Os pés no chão: a meia distância entre eles e quanto a bola do pé fica à frente da bacia. */
   pes: { meia: number; frente: number };
+  /** Acréscimo de 19/11/2026, desligado por padrão: de cima, o encosto atrás na ordem de pintura (`Voador.encostoAtrasDeCima`). */
+  encostoAtrasDeCima?: number;
 }
 
 /** O que muda no instante: o tronco (nos erros) e as escápulas. */
@@ -168,7 +170,7 @@ export function noVoador(corpo: Corpo, o: OpcoesDoVoador, i: Instante, inicio: n
     }
   }
     const e = resolverMembros(t, { R: braco(o, 'R', alfa.R, i.psi, i), L: braco(o, 'L', alfa.L, i.psi, i) }, pe);
-  const M = voador({ modo: o.modo, alfa, inicio, placas });
+  const M = voador({ modo: o.modo, alfa, inicio, placas, ...(o.encostoAtrasDeCima ? { encostoAtrasDeCima: o.encostoAtrasDeCima } : {}) });
   const pega = (k: Lado): V3 => (o.modo === 'voador' ? M.pegador[k] : M.alca[k].centro);
   return {
     esq: e,

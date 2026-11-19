@@ -25,6 +25,7 @@ const O: OpcoesDoVoador = {
   amassa: f('assento.amassa'),
   psiMeio: f('psi.meio'),
   pes: { meia: f('pes.meiaDistancia'), frente: f('pes.frente') },
+  encostoAtrasDeCima: f('pintura.encostoAtrasDeCima'),
 };
 
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {

@@ -19,10 +19,12 @@
 // Eixos: quem deita fica de bruços com a cabeça para +z; o eixo da alavanca fica em z = 0, no meio da largura (x = 0),
 // na altura `eixoAltura`. O lado esquerdo de quem deita é +x (o direito, que a vista de lado mostra, é −x): o came, a
 // alavanca e a torre ficam à esquerda, para não esconder o joelho e a perna de quem olha de lado.
+import type { Anel } from '../corpo3d';
 import type { Prim } from '../desenho';
 import type { PecaPropria } from '../pecas';
 import { cilindro } from '../pecas';
 import { obj } from '../tabelas';
+import { recortarORolo } from './cadeira-flexora';
 import { add, mul } from '../vec';
 import type { V3 } from '../vec';
 
@@ -45,6 +47,19 @@ export interface MesaFlexora {
    * borda do quadro. Sem eles, a máquina inteira entra no enquadramento (como no cartão).
    */
   noQuadro?: V3[];
+  /**
+   * Acréscimo de 19/11/2026 (a auditoria da fase C), desligado por padrão: as partes do corpo (os anéis de cada uma, como
+   * o Boneco as desenha) que o rolo não cobre onde elas ficam na frente dele, o mesmo recorte do rolo da cadeira
+   * extensora (`recortarORolo`, ./cadeira-flexora.ts). De cima, no fim da subida, o calcanhar fica acima do rolo e o
+   * passa um pouco, mas o rolo entra na ordem de pintura acima do corpo (os pés vão no item do corpo) e o cobria.
+   */
+  naFrenteDoRolo?: Anel[][];
+  /**
+   * Acréscimo de 19/11/2026, desligado por padrão: quanto a haste que atravessa o rolo vai para trás na ordem de
+   * pintura (cm; o desenho não muda). Ela fica dentro do rolo, na mesma profundidade dele, e de cima, em parte da subida,
+   * saía pintada por cima do rolo.
+   */
+  hasteAtras?: number;
 }
 
 /** Um estofado: a ponta de onde ele sai, a direção em que ele vai (ao longo do topo) e a normal do topo. */
@@ -213,8 +228,9 @@ export function mesaFlexora(m: MesaFlexora) {
       C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0] });
       // a luva do rolo, que corre na alavanca, e a haste que leva o rolo para cima das pernas
       C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0] });
-      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10 });
+      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10, ...(m.hasteAtras ? { dz: m.hasteAtras } : {}) });
       C.cilindro(add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
+      if (m.naFrenteDoRolo?.length) recortarORolo(C, add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, m.naFrenteDoRolo, true);
     },
   };
   return { prims, fixa, movel, eixo: G.eixo, centroRolo, subida, coxa: G.coxa, peito: G.peito, pegadores: G.pegadores, extremos: { zTras, zFrente, xDireita: -meiaLarg - 6, xEsquerda: xT1 + 2 } };

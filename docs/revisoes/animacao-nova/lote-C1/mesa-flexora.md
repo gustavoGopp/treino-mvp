@@ -63,3 +63,21 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **A torre fica atrás da cabeça e dos braços, na vista de lado.** No meio do estofado ela ficava atrás do quadril e os rótulos caíam sobre ela; na ponta da frente, os rótulos ficam livres, mas a cabeça e as mãos se desenham na frente dos montantes.
 - **O erro do rolo não pinta o corpo de vermelho:** o que erra é a regulagem da máquina.
 - **No erro do quadril, o título encosta no montante da torre**, atrás dele.
+
+## Correção de 19/11 (auditoria, pequenos)
+
+**O achado da auditoria: de cima, no fim, o rolo é pintado sobre os calcanhares, que ficam 1,8 cm acima dele. Confirma-se.** No desenho real (u = 1), de cima, cada pé passa 2,9 cm por cima do rolo em planta (o pé vai de z = −2,2 a 18,6 cm, e o rolo de 15,7 a 26,7), e toda a pele do pé nessa faixa fica acima do topo do rolo (o mais baixo, 0,5 cm abaixo: o calcanhar encostado nele). O rolo entra na ordem de pintura acima do corpo, e os pés vão no item do corpo: ele os cobria. Medida de pintura com margem zero: 6 anéis de cada pé por baixo do rolo (no quadro grande, a borda de cima do rolo cortava os calcanhares).
+
+**O que mudou.** A peça (`pecas-de-cena/mesa-flexora.ts`) ganhou duas opções, desligadas por padrão: `naFrenteDoRolo` (o rolo não cobre as partes do corpo dadas onde elas ficam na frente dele: o mesmo recorte do rolo da cadeira extensora, `recortarORolo`, agora exportado de `pecas-de-cena/cadeira-flexora.ts`, com uma opção nova, desligada por padrão, de testar só o ponto do anel mais perto de quem olha) e `hasteAtras` (a haste que atravessa o rolo vai 2 cm para trás na ordem: de cima, em parte da subida, perto de u = 0,8, ela saía pintada por cima do rolo, o que já acontecia antes). O exercício passa os anéis dos dois pés e a haste para trás. A cadeira extensora e a flexora não mudam.
+
+| de cima | antes | depois |
+|---|---|---|
+| anéis de cada pé na frente do rolo e pintados por baixo dele, no fim | 6 de 6 (margem 0) | 0 |
+| o pior quadro, na técnica e nos erros, nas duas vistas | — | 0 de 9 em cada pé |
+| a haste por cima do rolo, u = 0,8 | sim | não |
+
+**Conferência nova:** `mesa-flexora-pes-por-cima-do-rolo` (`regras/mesa-flexora.ts`): nas duas vistas e na de cada erro, na técnica e nos dois erros, os anéis das canelas e dos pés dos dois lados que ficam na frente do rolo e por cima dele na tela (a mais de 0,5 cm da borda dele) não podem ficar por baixo dele, contando o recorte. Depois: passa.
+
+**Conferência automática:** 0 falha, 2 avisos (os de antes). O preparo não muda. Quadros refeitos.
+
+**O que ainda não ficou bom:** no recorte, o calcanhar aparece sem a linha de contorno escura por cima do rolo (o recorte mostra o pé que está embaixo, como na cadeira extensora). Na vista de três quartos, que o exercício não declara, não conferi.

@@ -24,6 +24,7 @@
   "psi.fechado": { "v": -12, "un": "graus", "selo": "consenso", "fonte": "crucifixo", "o": "fechado: as mãos à frente do peito, quase se tocando; cada braço passa 12° da frente para dentro (a conferência mede a folga entre as mãos)" },
   "psi.aberto": { "v": 85, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "aberto: o peito alongado, sem levar os braços para trás da linha do ombro; o braço da máquina para 5° antes dela" },
   "psi.meio": { "v": 36, "un": "graus", "selo": "desenho", "fonte": "maquina", "o": "o meio do arco, em que o centro do ombro fica exatamente sob o eixo (o ritmo da escápula move o ombro alguns milímetros ao longo do arco)" },
+  "pintura.encostoAtrasDeCima": { "v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "ordem de pintura (a auditoria de 18/11/2026): de cima, o encosto (e o tubo e a barra que o prendem por trás) vai 12 cm para trás na ordem. Ele entra pelo centro dele, mais alto que o centro do corpo, e era pintado por cima do alto das costas, que passa acima dele; o desenho não muda" },
   "inicio": { "v": 104, "un": "graus", "selo": "consenso", "fonte": "lf-fly", "o": "a posição inicial da máquina (a regulagem do alto de cada braço, em graus do braço da máquina a partir da frente): as placas descansam com o braço da máquina a 104°, 10° além do aberto, e a volta não as deixa descansar (\"without letting the resistance rest on the stack\")" },
   "erro.abrir.psi": { "v": 112, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os braços passam 22° da linha do ombro (a posição inicial regulada longe demais)" },
   "erro.abrir.inicio": { "v": 125, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a posição inicial regulada longe demais (o braço da máquina a 125°), para os braços passarem da linha do ombro" },
@@ -47,7 +48,8 @@
   { "id": "voador-costas-no-encosto", "pede": "sentado, as costas no encosto, o tronco parado", "selo": "consenso", "fonte": "ficha" },
   { "id": "voador-abre-ate-a-linha-do-ombro", "pede": "abre até alongar, sem levar os braços para trás da linha do ombro", "selo": "consenso", "fonte": "ficha" },
   { "id": "voador-fecha-a-frente-do-peito", "pede": "fecha à frente do peito, as mãos quase se tocando", "selo": "consenso", "fonte": "app" },
-  { "id": "voador-placas-sem-descansar", "pede": "as placas sobem com o arco do came e não descansam na volta", "selo": "consenso", "fonte": "lf-fly" }
+  { "id": "voador-placas-sem-descansar", "pede": "as placas sobem com o arco do came e não descansam na volta", "selo": "consenso", "fonte": "lf-fly" },
+  { "id": "voador-costas-por-cima-do-encosto", "pede": "em cada vista e em cada erro, nos dois lados: o encosto não é pintado por cima de uma parte do corpo que fica na frente dele (de cima, o alto das costas)", "selo": "desenho", "fonte": "desenho" }
  ],
  "erros": [
   { "id": "abrir", "instante": 1, "titulo": "Abrir demais", "vista": "cima", "oQueMuda": "aberto, os braços passam da linha do ombro (22° atrás dela)", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
