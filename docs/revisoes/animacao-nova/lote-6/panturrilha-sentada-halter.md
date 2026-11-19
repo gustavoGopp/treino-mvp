@@ -51,3 +51,22 @@ Conferência automática: **0 falha, 2 avisos**: as linhas de desenho da ficha d
 - **A cabeça de dentro do halter passa por cima da outra coxa.** Com os pés na largura do quadril, as coxas ficam quase encostadas, e o halter de 33 cm atravessado numa coxa só apoia também na outra (a altura dele é calculada pela coxa mais alta debaixo dele). É o que acontece na vida real com esse halter; não mudei a largura dos pés, que a ficha pede.
 - **A pronação da mão esquerda passa da média** (93,6°): ver acima.
 - **O corpo fica menor no quadro de lado** que nas panturrilhas em pé (sentado, com o banco e o degrau dos dois lados). Só a ponta do banco conta no enquadramento (25 cm).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no erro "Halter escorregando"** (da metade em diante), o halter ia sempre a 22 cm do joelho, e a cabeça de dentro, que passa por cima da outra coxa, **entrava 10,3 cm na barriga** (12,2 cm pela checagem da pintura). O ciclo e os outros erros não tinham peso dentro do corpo.
+
+**A mudança.**
+
+- No erro, o halter escorrega pela coxa, para o quadril (a coxa fica inclinada para lá), **até a cabeça de dentro encostar na barriga, e para ali**: o maior escorregão em que ela não entra na barriga, menos meio centímetro (`erro.halter.encosto` e `erro.halter.recuo`; o halter desenhado já entrava 1,1 cm no primeiro toque do prisma da regra), e não mais que os 22 cm de antes. Calibrado no fim da subida e guardado no preparo (`panturrilha-sentada-halter:halter-escorregado`): no corpo do app, 10,2 cm do joelho.
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no corpo (erro "Halter escorregando") | 10,3 cm (barriga) | 0 cm |
+| onde o halter para no erro | 22 cm do joelho | 10,2 cm do joelho (8 no certo) |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (10,3 cm, no tronco, no erro "Halter escorregando"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/panturrilha-sentada-halter-peso.png`; os quadros grandes foram regravados (`quadros/panturrilha-sentada-halter.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 3 avisos** (antes: 0 falhas e 4 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- **O escorregão ficou curto** (2,2 cm além do lugar certo) e o erro se lê menos que antes: com o halter de 33 cm atravessado na coxa, a cabeça de dentro passa por cima da outra coxa e chega à barriga logo. É o que acontece nesse corpo; para o erro se ler mais, ele teria de ser outro (o halter escorregando para fora da coxa, com a mão esquerda solta, como diz o cartão: "uma mão solta e o halter desliza da coxa"). Não fiz, porque muda o erro aprovado; fica para o Gustavo decidir.

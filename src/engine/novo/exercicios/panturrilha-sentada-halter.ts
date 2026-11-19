@@ -9,6 +9,7 @@
 //  - a altura do halter: as cabeças ficam à espessura da toalha da pele da coxa (medida na superfície do Boneco).
 import ficha from '../dados/movimentos/panturrilha-sentada-halter.json';
 import { pontosDoBoneco } from '../boneco';
+import { calibragem } from '../calibragens';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
@@ -19,6 +20,7 @@ import { step } from '../pecas-de-cena/degrau';
 import { retArred } from '../realista/base.mjs';
 import type { Material } from '../realista/base.mjs';
 import type { Corpo } from '../tabelas';
+import { pesoNoCorpo } from '../regras/peso-fora-do-corpo';
 import { obj } from '../tabelas';
 import { add, cross, dot, mix, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
@@ -124,20 +126,53 @@ function toalhaNaCoxa(H: ReturnType<typeof halterNaCoxa>): PecaPropria {
   };
 }
 
-function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
-  const C = calibrar(corpo);
+/**
+ * Erro "Halter escorregando" (correção de 19/11/2026): até onde o halter escorrega para o quadril. Ele desce pela coxa
+ * (que fica inclinada para o quadril) até a cabeça de dentro, que passa por cima da outra coxa, encostar na barriga
+ * (no máximo `erro.halter.encosto` cm na pele), e não mais que `erro.halter.doJoelho`. Antes ele ia sempre a 22 cm do joelho e a
+ * cabeça de dentro entrava 10,3 cm na barriga. Calibrado no fim da subida (u = 1), onde a coxa mais inclina.
+ */
+function escorregaAte(corpo: Corpo): number {
+  return calibragem(corpo, 'panturrilha-sentada-halter:halter-escorregado', () => {
+    const entra = (d: number) => {
+      const { e, H } = montar(corpo, calibrar(corpo), { ...poseDoCalcanhar(corpo, 1, undefined), lombar: 0, toracica: 0, doJoelho: d });
+      return pesoNoCorpo({ esq: e, prims: halter(H.centro, H.eixo, 0.6), pecas: [], fios: [], cargas: [], marcas: {} }).cm;
+    };
+    // o maior escorregão em que a cabeça entra no máximo `erro.halter.encosto` cm (busca pela metade; a medida pula de
+    // 0 para uns 0,6 cm no primeiro toque, e por isso fica a ponta de baixo do intervalo, a que ainda não entra)
+    let a = f('halter.doJoelho'),
+      b = f('erro.halter.doJoelho');
+    if (entra(b) <= f('erro.halter.encosto')) return b;
+    for (let i = 0; i < 24; i++) {
+      const c = (a + b) / 2;
+      if (entra(c) <= f('erro.halter.encosto')) a = c;
+      else b = c;
+    }
+    // e para meio centímetro antes (`erro.halter.recuo`): o halter desenhado, medido pela conferência da pintura, já
+    // entrava 1,1 cm na barriga no primeiro toque do prisma da regra
+    return a - f('erro.halter.recuo');
+  });
+}
+
+/** O giro do pé na bola (graus) no instante u. */
+function poseDoCalcanhar(corpo: Corpo, u: number, erro?: string): { calc: number } {
   const dB = corpo.m('pe.calcanharABola');
   const giro = (h: number) => Math.asin(h / dB) * deg;
   const fr = erro === 'curta' ? f('erro.curta.fracao') : 1;
   // na amplitude curta o calcanhar faz só uma parte do caminho, em volta do meio
   const meio = (giro(-f('calcanhar.embaixo')) + giro(f('calcanhar.topo'))) / 2;
-  const calc = meio + (mix(giro(-f('calcanhar.embaixo')), giro(f('calcanhar.topo')), u) - meio) * fr;
+  return { calc: meio + (mix(giro(-f('calcanhar.embaixo')), giro(f('calcanhar.topo')), u) - meio) * fr };
+}
+
+function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
+  const C = calibrar(corpo);
+  const { calc } = poseDoCalcanhar(corpo, u, erro);
   const tronco = erro === 'tronco';
   const { e, H } = montar(corpo, C, {
     calc,
     lombar: tronco ? f('erro.tronco.lombar') * u : 0,
     toracica: tronco ? f('erro.tronco.toracica') * u : 0,
-    doJoelho: erro === 'halter' ? mix(f('halter.doJoelho'), f('erro.halter.doJoelho'), u) : f('halter.doJoelho'),
+    doJoelho: erro === 'halter' ? mix(f('halter.doJoelho'), escorregaAte(corpo), u) : f('halter.doJoelho'),
   });
   const zBanco = f('banco.frenteDoQuadril') - obj('bancoReto', 'comp') / 2;
   const S = step(C.bolaZ - f('bola.daBeirada'));
