@@ -247,11 +247,14 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
   const comSombra = Math.abs(cam.para[1]) > 0.1 && Math.abs(cam.para[1]) < 0.9;
   const itens: Item[] = [];
   let defs = '';
+  // cada item leva o índice da peça (para o pintor por pares, ./pintor-por-pares.ts; não entra no desenho)
+  let peca = 0;
   const junta = (r: { itens: Item[]; defs: string }) => {
-    itens.push(...r.itens);
+    for (const it of r.itens) itens.push({ ...it, pp: { k: 'peca', peca } });
     defs += r.defs;
   };
   pecas.forEach((p, i) => {
+    peca = i;
     const pid = `${id}${i}`;
     const fixa = (nome: string, dados: unknown) => `${nome}|${cam.nome}|${tema}|${pid}|${JSON.stringify(dados)}`;
     if (p.t === 'halter') junta(desenhar(null, cam, pid, (C) => halter(C, M, p)));

@@ -1,6 +1,8 @@
 # Estudo do pintor: ordem por pares (19/11/2026)
 
-**Estudo de viabilidade. Nada do app mudou.** O protótipo (`src/engine/novo/pintor-por-pares.ts`) está desligado e o app não o importa (conferido pelo grafo do pacote de `app.ts` e `ponte.ts`); a conferência da pintura (`conferir-pintura.ts`) ganhou um parâmetro opcional para medir com ele, e sem esse parâmetro dá o mesmo resultado de antes, achado por achado. `node scripts/animacao-nova/preparo.mjs conferir` passa e `npm run check` passa. As medidas saem de `node scripts/animacao-nova/estudo-do-pintor.mjs` (os passos estão no topo do script).
+**Estudo de viabilidade. Nada do app mudou.** Atualização de 19/11, depois da decisão do Gustavo ("pode seguir com o pintor novo em etapas"): a etapa 1 (baixar o custo e medir no celular) está em [Etapa 1 (19/11)](#etapa-1-1911), no fim; o protótipo virou o pintor pronto para ligar, com o mesmo resultado, e continua desligado em todas as animações. O resto do texto é o estudo como foi feito, com o protótipo (os números de tempo e de pacote dele são os de antes da etapa 1).
+
+O protótipo (`src/engine/novo/pintor-por-pares.ts`) está desligado e o app não o importa (conferido pelo grafo do pacote de `app.ts` e `ponte.ts`); a conferência da pintura (`conferir-pintura.ts`) ganhou um parâmetro opcional para medir com ele, e sem esse parâmetro dá o mesmo resultado de antes, achado por achado. `node scripts/animacao-nova/preparo.mjs conferir` passa e `npm run check` passa. As medidas saem de `node scripts/animacao-nova/estudo-do-pintor.mjs` (os passos estão no topo do script).
 
 ## Resumo
 
@@ -266,3 +268,137 @@ O caminho que eu proponho: primeiro baixar o custo e medir no celular (é a dúv
 
 Se a decisão for não mexer em nada aprovado, o protótipo ainda serve: como ferramenta da conferência, ele diz, para cada achado, qual ordem resolveria, o que deixa a correção por exercício mais rápida.
 
+
+## Etapa 1 (19/11)
+
+O Gustavo decidiu em 19/11: "pode seguir com o pintor novo em etapas". A etapa 1 é baixar o custo e medir no celular, sem mudar o desenho de nada que vai para o app; a etapa 2 é ligar o pintor animação por animação, com uma folha de antes e depois para ele aprovar. **O pintor continua desligado em todas as animações.**
+
+### O que mudou no código
+
+- **O pintor ficou pronto para ligar.** `src/engine/novo/pintor-por-pares.ts` deixou de ser o protótipo: o mesmo algoritmo, com menos conta. O que cada item é vem do próprio item (`Item.pp`, em `desenho.ts`): o Boneco diz, ao montar cada item, que partes ele pinta (`desenharBoneco`), e o equipamento realista diz de que peça é cada item (`equipamentoRealista`). Saíram as marcas de estudo (achar as partes comparando o texto dos caminhos e desenhar cada peça sozinha) e o código de depuração. O SVG do Boneco e do equipamento não muda: os campos novos não entram no desenho.
+- **Ligar por animação: uma lista.** `src/engine/novo/pintor-ligado.ts` (`PINTOR_POR_PARES_LIGADO`, vazia). A cena (`cena.ts`) pinta por pares as animações da lista; fora dela, `pintar`, como hoje. A opção `pintor: 'hoje' | 'pares'` da cena passa por cima da lista, só para os scripts que comparam os dois.
+- **O pintor fica fora do pacote até ser pedido.** O Worker do Boneco (`trabalhoBoneco.ts`) baixa o pintor junto com a primeira animação ligada e o entrega ao motor (`registrarPintorPorPares`, pela ponte); os scripts o recebem por `index.ts`. Uma animação ligada sem o pintor carregado dá erro, e não o desenho de hoje no lugar do aprovado.
+- **A folha de antes e depois:** `node scripts/animacao-nova/folha-do-pintor.mjs <ids...>` (ou `--piores <n>`) grava `docs/revisoes/animacao-nova/pintor-por-pares/<id>.png`.
+- A conferência da pintura (`conferir-pintura.ts`) recebe o pintor do mesmo jeito (`ordenar` e `remendoDe`); sem ele, nada muda. O script do estudo usa a opção da cena, no lugar do plugin que trocava o pintor no pacote.
+
+### O mesmo resultado do protótipo
+
+Conferido com o protótipo do estudo (o arquivo de antes da etapa 1, tirado do git) lado a lado com o pintor novo, nas 171 animações:
+
+- **O desenho:** 17.329 quadros (em cada vista declarada, 24 quadros do ciclo no modo Técnica em cinza, 6 no modo Músculos em cor de pele e 2 no modo Trajetória no tema escuro; em cada erro, 6 quadros em cada vista, cinza e cor de pele alternados; e a miniatura). O SVG do pintor novo é igual ao do protótipo, caractere por caractere, nos 17.329. E o app de hoje (o pintor desligado) é igual ao de antes da etapa 1 nos 17.329.
+- **A conferência:** nos quadros de sempre (`quadrosMedidos`), os achados com o pintor novo são os mesmos do protótipo, achado por achado (os mesmos que somem e aparecem, com a mesma área), e com o mesmo número de remendos; sem o pintor, os mesmos de antes.
+- `node scripts/animacao-nova/preparo.mjs conferir` passa (171 exercícios, 155 calibrações; o preparo não mudou) e `npm run check` passa (915 testes).
+
+Com o código de hoje (que mudou desde o estudo), a conferência de sempre dá: hoje, 2.166 achados de pintura em 94 animações, 38.902 cm²; por pares, só a ordem, 807 achados em 64 animações, 6.503 cm²; por pares, com os remendos, 391 achados em 53 animações, **1.248 cm² (−97%)**.
+
+**Um defeito do protótipo, mantido de propósito.** No remendo, o recorte de cada trecho do corpo devia ter 1,5 cm de folga (`FOLGA_DO_RECORTE`), mas o protótipo fazia `.map(cascoT)`, e o `map` passa a posição na lista como folga: o primeiro trecho fica com 0 cm, o segundo com 1 cm, o terceiro com 2 cm. A etapa 1 não podia mudar o resultado, então o pintor novo faz o mesmo, com um aviso no código. Corrigir muda o desenho dos remendos com mais de um trecho (o traço do contorno na borda do recorte) e fica para a etapa 2, antes de ligar a primeira animação.
+
+### O tempo no computador
+
+`svgDaCena`, 24 quadros do ciclo na vista que o app abre, três voltas depois de uma de aquecimento, nas 171, os três pintores em seguida em cada animação (do mesmo jeito do passo `tempo` do script do estudo; o tema troca de um quadro para o outro, para medir a conta de cada quadro e não o que a cena guarda). Nesta máquina (4 núcleos, dividida com outras sessões: os números variam uns 10% de uma medida para outra).
+
+| | hoje | protótipo | etapa 1 |
+|---|---|---|---|
+| média das 171 | 2,62 ms | 7,23 ms | 4,11 ms |
+| mediana | 2,46 ms | 5,68 ms | 3,85 ms |
+| 90% abaixo de | 3,28 ms | 12,92 ms | 5,76 ms |
+| `abducao-maquina` | 2,4 ms | 28,6 ms | 7,0 ms |
+| `aducao-maquina` | 2,7 ms | 26,3 ms | 6,8 ms |
+| `supino-polia` | 3,1 ms | 20,6 ms | 7,1 ms |
+| quanto custa a mais que hoje (mediana; pior animação) | | 2,3×; 13,5× | 1,6×; 3,8× |
+
+O pintor somava de 2 a 26 ms por quadro; agora soma de 1 a 5 ms. De onde veio, sem mudar o resultado:
+
+1. **As marcas** (1,4 ms por quadro no protótipo): o Boneco e o equipamento dizem o que cada item é ao montá-lo.
+2. **O contato**, que era metade da conta nas máquinas: cada ponto escondido era conferido contra todos os trechos do corpo. Agora cada trecho entra só nos blocos de 4 × 4 células que a caixa dele alcança na tela; cada segmento entre dois anéis é conferido uma vez por ponto (os trechos vizinhos dividem segmentos), e a conta para no primeiro que encosta; a folga é calculada com `Math.sqrt` (5× mais rápido que `Math.hypot`) e, quando ela fica a menos de 0,000001 cm da tolerância, ou nos casos de borda, de novo com a conta exata do protótipo, então a resposta é sempre a dele; e o contato de uma célula de uma peça vale para todos os itens do corpo.
+3. **As caixas antes da grade:** a peça cuja caixa não cruza a de nenhum item do corpo não é desenhada na grade; cada par só percorre as células em que as duas caixas se cruzam (na mesma ordem); os triângulos do corpo fora da grade, ou fora da caixa de todas as peças, não são desenhados.
+4. A ordenação topológica conta as regras que faltam, em vez de refazer a lista a cada passo, e as grades usam uma memória reaproveitada de um quadro para o outro.
+5. **A cena guarda o que pintou por pares** em cada ponto do movimento (o u arredondado a 1/400, como o quadro do movimento já é guardado), só para a animação que está na tela. Na volta que o Worker monta, um terço dos quadros ou mais repete um ponto já pintado (as pausas, e o começo e o fim do ciclo): `aducao-maquina`, 73 pontos diferentes em 126 quadros. Não entra na tabela acima, mas entra na medida do celular.
+
+Ideias deixadas de lado: a grade mais grossa onde a decisão é clara e calcular os pares só quando a ordem pode mudar não dão, garantido, o mesmo resultado; a ordem calculada de antemão está abaixo.
+
+### O tempo no celular
+
+**Como medi.** O Worker do Boneco monta a volta inteira da animação, um quadro a cada 1/30 s do ciclo, e devolve a vez com `setTimeout(0)` entre um e outro (`boneco.worker.ts`); o guia mostra o quadro do instante, ou o último pronto antes dele (`Guia.tsx`). Medi esse mesmo laço (`ponte.quadroDoMotorNovo`, com o preparo do exercício carregado), no Chromium do Playwright (1.63.0), com a CPU limitada pelo CDP (`Emulation.setCPUThrottlingRate`). O Chromium não limita a CPU de um Worker ("Operation is only supported for pages, not workers"), então o laço roda na linha principal da página, que é limitada, cada medida numa página nova (o motor sem nada guardado, como na primeira vez que a pessoa abre a animação). **4×** é a taxa que o Lighthouse usa para o celular médio; **6×**, um celular de entrada. Modo Técnica, cinza, a primeira vista.
+
+A animação anda a 30 quadros por segundo (33 ms por quadro). A primeira volta engasga quando um quadro fica pronto depois do instante em que devia aparecer (a animação começa quando o primeiro quadro chega): enquanto isso, a tela fica parada no último quadro pronto. Da segunda volta em diante, os quadros já estão prontos (o guia os guarda).
+
+Com a CPU 4× mais lenta (celular médio):
+
+| animação (ciclo) | hoje: 1º quadro, volta, quadros atrasados | protótipo | etapa 1 |
+|---|---|---|---|
+| `aducao-maquina` (4,2 s) | 138 ms, 2,1 s, nenhum | 456 ms, 11,8 s, 125 de 126 (até 7,1 s) | 265 ms, 3,3 s, nenhum |
+| `abducao-maquina` (4,7 s) | 120 ms, 2,2 s, nenhum | 336 ms, 12,2 s, 140 de 141 (até 7,2 s) | 262 ms, 3,1 s, nenhum |
+| `supino-polia` (4,4 s) | 177 ms, 2,6 s, nenhum | 293 ms, 8,2 s, 131 de 132 (até 3,6 s) | 289 ms, 4,1 s, 7 (até 23 ms) |
+| `mesa-flexora` (4,4 s) | 166 ms, 3,0 s, 1 (1 ms) | 278 ms, 8,1 s, 131 de 132 (até 3,4 s) | 244 ms, 3,7 s, nenhum |
+| `supino-inclinado-polia` (4,4 s) | 203 ms, 2,6 s, nenhum | | 336 ms, 3,6 s, nenhum |
+| `voador-invertido` (5,0 s) | 161 ms, 2,4 s, nenhum | | 244 ms, 3,5 s, nenhum |
+| `crucifixo-inclinado-halteres` (5,1 s) | 151 ms, 1,9 s, nenhum | | 237 ms, 3,3 s, nenhum |
+| `goblet` (4,7 s) | 278 ms, 2,8 s, nenhum | 287 ms, 4,2 s, 6 (até 23 ms) | 255 ms, 3,0 s, nenhum |
+| `supino-reto` (4,9 s) | 124 ms, 2,2 s, nenhum | 181 ms, 4,4 s, 32 (até 53 ms) | 207 ms, 2,7 s, nenhum |
+| `rosca-elastico` (4,2 s) | 217 ms, 2,3 s, nenhum | | 273 ms, 2,3 s, nenhum |
+| `agachamento-elastico` (4,7 s) | 229 ms, 2,9 s, nenhum | | 342 ms, 3,6 s, nenhum |
+| `remada-unilateral` (4,7 s) | 839 ms, 3,1 s, nenhum | | 758 ms, 3,1 s, nenhum |
+| `flexao-bola` (4,1 s) | 274 ms, 2,5 s, nenhum | | 293 ms, 2,3 s, nenhum |
+
+Num quadro que não repete um ponto já pintado, a conta passa de uns 10–16 ms para uns 22–28 ms nas máquinas (os 5% mais lentos: de 15–27 para 33–55 ms), contra os 33 ms de um quadro da animação; os quadros que repetem saem quase de graça, e a volta inteira fica pronta antes do fim do ciclo em todas as medidas. **No celular médio, a primeira volta não engasga** (o pior caso, `supino-polia`, tem 7 quadros até 23 ms atrasados, menos de um quadro). O protótipo engasgava feio nas máquinas: a primeira volta levava de 8 a 12 s num ciclo de 4,2 a 4,7 s. O primeiro quadro chega até 150 ms mais tarde que hoje (de 120–280 ms para 210–340 ms); o da `remada-unilateral`, o mais demorado hoje, não muda.
+
+Com a CPU 6× mais lenta (celular de entrada):
+
+| animação (ciclo) | hoje: volta, quadros atrasados | etapa 1 |
+|---|---|---|
+| `aducao-maquina` (4,2 s) | 2,8 s, nenhum | 4,4 s, 34 de 126 (até 372 ms) |
+| `abducao-maquina` (4,7 s) | 3,0 s, 4 (até 7 ms) | 4,5 s, 39 de 141 (até 435 ms) |
+| `supino-inclinado-polia` (4,4 s) | 3,4 s, 4 (até 7 ms) | 4,9 s, 65 de 132 (até 310 ms) |
+| `voador-invertido` (5,0 s) | 3,1 s, nenhum | 5,0 s, 36 de 150 (até 430 ms) |
+| `crucifixo-inclinado-halteres` (5,1 s) | 2,6 s, 3 (até 5 ms) | 4,9 s, 34 de 152 (até 298 ms) |
+| `mesa-flexora` (4,4 s) | 4,1 s, 5 (até 16 ms) | 5,1 s, 97 de 132 (até 587 ms) |
+| `supino-polia` (4,4 s) | 3,5 s, 9 (até 30 ms) | 5,0 s, 77 de 132 (até 402 ms) |
+| `goblet` (4,7 s) | 3,7 s, nenhum | 4,0 s, nenhum |
+| `supino-reto` (4,9 s) | 3,1 s, 3 (até 13 ms) | 3,9 s, nenhum |
+| `agachamento-elastico` (4,7 s) | 3,7 s, 1 (1 ms) | 4,1 s, 17 (até 38 ms) |
+
+**No celular de entrada, a primeira volta das máquinas engasga:** a animação fica parada por até meio segundo em alguns trechos, só na primeira volta (o primeiro quadro chega em 300 a 400 ms, contra 180 a 350 hoje). Nas leves, não. Se isso pesar, o passo seguinte é a ordem calculada de antemão (abaixo), só para as máquinas.
+
+### A ordem calculada de antemão (avaliada, não feita)
+
+As animações têm ciclo e erros fixos, então a ordem de pintura de cada quadro que o Worker monta poderia vir pronta no preparo (`dados/preparo/<id>.json`), e o celular só a leria. Medi o tamanho numa amostra de 19 animações (uma a cada nove, em ordem alfabética), para todas as combinações que o guia pode pedir (cada vista do guia, a técnica e cada erro nas vistas dele, cinza e cor de pele, que tem outra forma: o short e o tênis) e cada ponto diferente do movimento na volta de 30 quadros por segundo: a ordem (só quando muda) e cada remendo (de quem, depois de quem, os trechos do recorte). Por animação, em média, 39 kB (1,3 kB comprimidos), de 9 a 251 kB (até 8,4 kB comprimidos, na `abducao-elastico`); hoje o preparo de cada animação tem 0,5 kB comprimidos. Nas 171, cerca de 6,6 MB no repositório (hoje a pasta toda tem 752 kB) e 0,23 MB comprimidos, baixados um exercício por vez. No pacote do app, nada a mais (o pintor continuaria sendo baixado para o que não estiver guardado).
+
+Cabe, mas não recomendo agora: o celular médio já não engasga; o preparo passaria a depender do arredondamento exato do tempo (o mesmo u, quadro a quadro), e qualquer mudança num exercício, no Boneco ou numa peça pede o preparo refeito e conferido; e o motor ainda precisaria do pintor para o que não estiver guardado (o quadro pausado num instante qualquer, o corpo da mulher). Fica como o plano B para o celular de entrada, só nas máquinas, se o Gustavo achar que o engasgo da primeira volta pesa.
+
+### O pacote
+
+O pintor tem 18,6 kB no build (8,1 kB comprimidos). Ligado direto na cena, ele entraria no pacote das miniaturas e passaria do orçamento de quem volta: medi 286,1 kB, com o limite em 285. Por isso ele é baixado à parte, só com uma animação ligada (`trabalhoBoneco.ts`).
+
+| orçamento de quem volta (`tests/e2e/orcamento.spec.ts`, rodado agora) | kB comprimidos | arquivos |
+|---|---|---|
+| antes da etapa 1 | 277,8 | 38 |
+| etapa 1 (pintor pronto e desligado) | 279,4 (+1,6) | 40 |
+| limite | 285 | |
+
+O acréscimo de 1,6 kB é o que o Boneco e o equipamento dizem de cada item, a lista, a carga do pintor e o que a cena guarda, mais dois arquivos pequenos que o build separou (o desenho, que o pintor também usa, e a lista). Quando a primeira animação for ligada, quem abrir o programa num dia com ela baixa mais 8 kB: hoje isso passaria do limite em uns 2,5 kB. A boas-vindas não muda (154,4 kB).
+
+### As folhas de antes e depois
+
+Em [`pintor-por-pares/`](pintor-por-pares/), as 6 animações com mais área pintada errada hoje, para o Gustavo ver como vai ser a etapa 2. Em cima de cada folha, a área pintada errada pela conferência inteira, hoje e por pares; depois, cada vista declarada no começo, no meio e no fim do movimento; e cada erro em que o desenho muda, no quadro em que mais muda. Em cada quadro: o de hoje, o por pares, o que muda (em magenta) e os achados da conferência naquele quadro.
+
+| animação | hoje | por pares |
+|---|---|---|
+| [`remada-unilateral`](pintor-por-pares/remada-unilateral.png) | 6.892 cm², 76 achados | 0 |
+| [`triceps-testa-halteres`](pintor-por-pares/triceps-testa-halteres.png) | 4.134 cm², 91 achados | 0 |
+| [`puxada-barra-reta`](pintor-por-pares/puxada-barra-reta.png) | 2.183 cm², 45 achados | 0 |
+| [`puxada-unilateral`](pintor-por-pares/puxada-unilateral.png) | 2.101 cm², 43 achados | 0 |
+| [`voador`](pintor-por-pares/voador.png) | 1.864 cm², 34 achados | 8 cm², 2 achados |
+| [`abdominal-declinado`](pintor-por-pares/abdominal-declinado.png) | 1.833 cm², 105 achados | 1 cm², 1 achado |
+
+### O que falta para a etapa 2
+
+| o quê | quanto |
+|---|---|
+| Corrigir a folga do recorte (o defeito do protótipo, acima) e conferir o que muda | meio dia |
+| Testes do pintor (pares, ciclo, remendo, determinismo, o mesmo SVG com e sem o que a cena guarda) e a regressão visual do motor (`tests/motor`) para cada animação ligada | 1 dia |
+| O orçamento: com a primeira animação ligada, o pacote de quem volta passa do limite em uns 2,5 kB (subir o limite, como em 16/11, ou baixar o motor, que está no backlog) | decisão do Gustavo |
+| Ligar uma a uma: a folha de cada uma, a revisão do Gustavo, a lista, e tirar as correções por exercício que sobram (`vies`, `dz`), com a conferência | meio dia por lote, mais a revisão dele |
+| As 53 animações em que ainda sobra achado pequeno, na linha de contato | 1 a 2 dias |
+| Se o engasgo da primeira volta no celular de entrada pesar: a ordem de antemão, só nas máquinas | 1 a 2 dias |
+| `como-fazer-uma-animacao.md` (seção 10) | uma hora |

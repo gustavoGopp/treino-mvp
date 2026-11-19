@@ -5,6 +5,8 @@
 // único motor do app. Nada aqui decide treino nem músculo: só traduz o pedido da tela.
 import type { IdEstilo } from './boneco';
 import { caixaDoCiclo, enquadrar, svgDaCena, vistasDoModoMusculos } from './cena';
+/** Para o Worker entregar o pintor por pares ao motor, quando abre uma animação em que ele está ligado (./cena.ts). */
+export { registrarPintorPorPares } from './cena';
 import type { Modo } from './cena';
 import { enquadramentoGuardado } from './preparo';
 import type { Enquadramento } from './preparo';

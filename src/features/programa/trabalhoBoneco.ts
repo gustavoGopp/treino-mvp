@@ -1,6 +1,7 @@
 import CATALOGO from '../../engine/novo/dados/catalogo-do-guia.json';
 import { APROVADOS } from '../../engine/novo/aprovados';
 import type { Exercicio } from '../../engine/novo/movimento';
+import { PINTOR_POR_PARES_LIGADO } from '../../engine/novo/pintor-ligado';
 import { registrarPreparo } from '../../engine/novo/preparo';
 import type { Preparo } from '../../engine/novo/preparo';
 import type { Pedido } from './desenhoFora';
@@ -28,9 +29,13 @@ export function animacao(animacaoId: string): Promise<Exercicio | undefined> {
       (p) => registrarPreparo(animacaoId, p.default),
       () => undefined,
     );
+    // o pintor por pares (src/engine/novo/pintor-por-pares.ts) só vem com uma animação em que ele está ligado
+    const pintor = PINTOR_POR_PARES_LIGADO.has(animacaoId)
+      ? Promise.all([import('../../engine/novo/pintor-por-pares'), aPonte()]).then(([p, c]) => c.registrarPintorPorPares((itens) => p.pintarPorPares(itens)))
+      : undefined;
     carregados.set(
       animacaoId,
-      Promise.all([carregar(), preparo]).then(
+      Promise.all([carregar(), preparo, pintor]).then(
         ([m]) => Object.values(m).find((x): x is Exercicio => !!x && typeof x === 'object' && (x as Exercicio).ficha?.id === animacaoId),
         () => undefined,
       ),
