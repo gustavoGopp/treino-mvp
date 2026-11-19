@@ -263,3 +263,8 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | restante | `rosca-barra-w` | corrigida em 19/11 (o peso não entra mais no corpo; regra peso-fora-do-corpo ligada) e a correção aprovada pelo Gustavo ("pode aprovar as 10", nas imagens de antes e depois) |
 | restante | `rosca-concentrada` | corrigida em 19/11 (o peso não entra mais no corpo; regra peso-fora-do-corpo ligada) e a correção aprovada pelo Gustavo ("pode aprovar as 10", nas imagens de antes e depois) |
 | restante | `triceps-testa-halteres` | corrigida em 19/11 (o peso não entra mais no corpo; regra peso-fora-do-corpo ligada) e a correção aprovada pelo Gustavo ("pode aprovar as 10", nas imagens de antes e depois) |
+| pintor | `abdominal-declinado` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
+| pintor | `puxada-barra-reta` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
+| pintor | `puxada-unilateral` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
+| pintor | `remada-unilateral` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
+| pintor | `triceps-testa-halteres` | pintor por pares ligado em 19/11 (lote 1) e aprovado pelo Gustavo ("pode aprovar as 5", na folha-resumo) |
