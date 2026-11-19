@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 3249 células dos cuidados 1 a 19: M 1311, M! 132, O 1251, C 513, – 22, ✗ 20.
+Contagem das 3249 células dos cuidados 1 a 19: M 1312, M! 131, O 1251, C 513, – 22, ✗ 20.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -48,7 +48,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abdominal-chao` | 7 | M | M | M | O | M | C | O | M! | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-chao.png) |
 | `abdominal-declinado` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abdominal-declinado.png) |
 | `abdominal-invertido` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/abdominal-invertido.png) |
-| `abdominal-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abdominal-maquina.png) |
+| `abdominal-maquina` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-maquina.png) |
 | `abdominal-polia` | 7 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-polia.png) |
 | `abducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-caneleira.png) |
 | `abducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | G (quadros) | [quadros](quadros/abducao-deitado.png) |
@@ -85,7 +85,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `coice-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-caneleira.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
 | `coice-maquina` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | não aprovada | [quadros](quadros/coice-maquina.png) |
-| `coice-polia` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/coice-polia.png) |
+| `coice-polia` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/coice-polia.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
 | `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
 | `crucifixo-inclinado-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-inclinado-halteres.png) |
@@ -130,7 +130,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `goblet` | 0 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/goblet.png) |
 | `goblet-kettlebell` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/goblet-kettlebell.png) |
 | `hack` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/hack.png) |
-| `hip-thrust` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/hip-thrust.png) |
+| `hip-thrust` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/hip-thrust.png) |
 | `hiperextensao` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/hiperextensao.png) |
 | `leg-press` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/leg-press.png) |
 | `mergulho` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/mergulho.png) |
@@ -159,7 +159,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `remada-articulada` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-articulada.png) |
 | `remada-baixa` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa.png) |
 | `remada-baixa-estacao` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-baixa-estacao.png) |
-| `remada-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/remada-barra.png) |
+| `remada-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/remada-barra.png) |
 | `remada-curvada-elastico` | ? | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-curvada-elastico.png) |
 | `remada-curvada-halteres` | 4 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-curvada-halteres.png) |
 | `remada-elastico` | 4 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-elastico.png) |
@@ -199,7 +199,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `supino-reto` | 0 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/supino-reto.png) |
 | `supino-smith` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/supino-smith.png) |
 | `terra-hexagonal` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/terra-hexagonal.png) |
-| `terra-romeno-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/terra-romeno-barra.png) |
+| `terra-romeno-barra` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/terra-romeno-barra.png) |
 | `triceps-barra-reta` | ? | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-barra-reta.png) |
 | `triceps-corda` | 5 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-corda.png) |
 | `triceps-elastico-acima` | 5 | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/triceps-elastico-acima.png) |
@@ -295,8 +295,6 @@ Os demais:
 - `coice-maquina`
   - cuidado 14: o erro "Soltar a volta" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: flexão plantar do tornozelo → 80,7°
-- `coice-polia`
-  - cuidado 2: dorsiflexão do tornozelo → 20°
 - `crucifixo-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (198,1 a 263,6 cm); em cima, 1,3 vezes
 - `crucifixo-inverso`

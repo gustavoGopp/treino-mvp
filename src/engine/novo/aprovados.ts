@@ -136,6 +136,9 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'mergulho': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'face-pull-suspensao': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'barra-fixa-negativa': { em: '2026-11-18', oQueEleDisse: 'pode aprovar a barra negativa assim', como: 'nos quadros' },
+  'terra-romeno-barra': { em: '2026-11-18', oQueEleDisse: 'pode ser pequena (a anilha de 5 kg, de 24 cm)', como: 'nos quadros' },
+  'remada-barra': { em: '2026-11-18', oQueEleDisse: 'pode ser pequena (a anilha de 5 kg, de 24 cm)', como: 'nos quadros' },
+  'hip-thrust': { em: '2026-11-18', oQueEleDisse: 'pode ser pequena (a anilha de 5 kg, de 24 cm)', como: 'nos quadros' },
   'rosca-scott': { em: '2026-11-18', oQueEleDisse: 'aprovo (a rosca Scott corrigida, com os dois braços na almofada de três quartos)', como: 'nos quadros' },
   'agachamento-barra': { em: '2026-11-18', oQueEleDisse: 'aprovo (o suporte aberto, como as fichas de fabricante)', como: 'nos quadros' },
   'supino-barra': { em: '2026-11-18', oQueEleDisse: 'aprovo (o suporte aberto, como as fichas de fabricante)', como: 'nos quadros' },
@@ -144,6 +147,8 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'terra-hexagonal': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'agachamento-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'supino-smith': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'abdominal-maquina': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'coice-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-polia': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'remada-invertida': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'rosca-maquina': { em: '2026-11-18', oQueEleDisse: DELEGOU, como: 'por delegação' },
@@ -171,7 +176,7 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'pull-through', 'mergulho', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'abducao-polia', 'remada-invertida', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'barra-fixa-graviton', 'puxada-frente', 'remada-baixa-estacao', 'voador', 'supino-maquina', 'desenvolvimento-maquina', 'mesa-flexora', 'leg-press', 'hack', 'abducao-maquina', 'aducao-maquina', 'rosca-scott', 'agachamento-barra', 'supino-barra', 'desenvolvimento-barra'];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band', 'rosca-martelo-elastico', 'triceps-elastico-alto', 'elevacao-lateral-unilateral-elastico', 'abertura-elastico', 'crucifixo-invertido-curvado', 'elevacao-lateral-unilateral', 'rosca-scott-banco-inclinado', 'desenvolvimento-unilateral', 'desenvolvimento-em-pe-halteres', 'triceps-frances-unilateral-halter', 'afundo-tras', 'agachamento-halteres', 'goblet-kettlebell', 'stiff-unilateral-kettlebell', 'elevacao-lateral-deitado', 'elevacao-lateral-caneleira', 'coice-caneleira', 'crucifixo-invertido-sentado', 'crucifixo-invertido-caneleira', 'rosca-concentrada', 'supino-polia', 'supino-inclinado-polia', 'crucifixo-polia-baixo', 'triceps-barra-reta', 'puxada-barra-reta', 'rosca-polia-costas', 'pull-through', 'mergulho', 'face-pull-suspensao', 'barra-fixa-negativa', 'rosca-barra-w', 'terra-hexagonal', 'agachamento-smith', 'supino-smith', 'abdominal-maquina', 'coice-polia', 'abducao-polia', 'remada-invertida', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'barra-fixa-graviton', 'puxada-frente', 'remada-baixa-estacao', 'voador', 'supino-maquina', 'desenvolvimento-maquina', 'mesa-flexora', 'leg-press', 'hack', 'abducao-maquina', 'aducao-maquina', 'rosca-scott', 'agachamento-barra', 'supino-barra', 'desenvolvimento-barra', 'terra-romeno-barra', 'remada-barra', 'hip-thrust'];
 
 /**
  * As animações novas feitas que ainda não estão aprovadas, com o motivo: as de maior risco, que quem integra separou para
@@ -184,11 +189,6 @@ export const EM_REVISAO: Record<string, string> = {
   'voador-invertido': 'volta para quem fez: auditoria de 18/11: de cima, o apoio do peito é pintado por cima da cabeça',
   'abdominal-declinado': 'volta para quem fez: auditoria de 18/11: no erro "Puxar o pescoço", o estofado é pintado por cima do tronco',
   'remada-articulada': 'volta para quem fez: auditoria de 18/11: o rótulo "peito na almofada" aponta para a nuca',
-  'abdominal-maquina': 'volta para quem fez: de lado, no começo, o pegador fica na frente dos olhos e cobre o rosto',
-  'coice-polia': 'volta para quem fez: o rótulo diz "joelho quase estendido" e o joelho dobra 34° no meio do chute',
   'panturrilha-leg-press': 'espera o ok do Gustavo: é a primeira com o quadro só na perna (o corpo cortado) e uma vista só, para o tornozelo se ler',
   'coice-maquina': 'espera o Gustavo escolher a máquina: de quatro apoios, como a ficha da técnica, ou em pé, como o cartão de equipamento e as fichas da LF, HS e Movement',
-  'terra-romeno-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
-  'remada-barra': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
-  'hip-thrust': 'espera o ok do Gustavo nas anilhas de 5 kg (24 cm): as de 20 kg (45 cm) tapam de lado o que o exercício ensina',
 };

@@ -190,3 +190,8 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | C | `voador-invertido` | **desaprovada em 18/11** pela auditoria da fase C (de cima, o apoio do peito é pintado por cima da cabeça); volta para quem fez |
 | C | `abdominal-declinado` | **desaprovada em 18/11** pela auditoria da fase C (no erro "Puxar o pescoço", o estofado é pintado por cima do tronco); volta para quem fez |
 | C | `remada-articulada` | **desaprovada em 18/11** pela auditoria da fase C (o rótulo "peito na almofada" aponta para a nuca); volta para quem fez |
+| B1 | `terra-romeno-barra` | aprovada pelo Gustavo em 18/11/2026 ("pode ser pequena", à pergunta da anilha: a de 5 kg, 24 cm) |
+| B1 | `remada-barra` | aprovada pelo Gustavo em 18/11/2026 ("pode ser pequena", à pergunta da anilha: a de 5 kg, 24 cm) |
+| B1 | `hip-thrust` | aprovada pelo Gustavo em 18/11/2026 ("pode ser pequena", à pergunta da anilha: a de 5 kg, 24 cm) |
+| C3 | `abdominal-maquina` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (peça nova (LF SS-AB, manual Insignia); o eixo do braço no polo da rotação do peito; voltou uma vez: o pegador cobria o rosto de lado (agora as mãos na frente do peito e as hastes por fora dos cotovelos); medidos os dois lados) |
+| C3 | `coice-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o primeiro coice em pé do motor; a tornozeleira aprovada; voltou uma vez: o joelho dobrava 34° com o rótulo dizendo quase estendido (agora 8° o ciclo todo, com a bacia 4° mais alta do lado que trabalha)) |

@@ -1119,7 +1119,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "143,4°",
+    "medido": "122,7°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -1147,7 +1147,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "47,4°",
+    "medido": "38,8°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -1168,14 +1168,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "4,8°",
+    "medido": "0°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "supinação do antebraço",
-    "medido": "0°",
+    "medido": "80,7°",
     "limite": "média 87,5°, máximo observado 131° (cdc)",
     "nivel": "ok"
    },
@@ -1238,7 +1238,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "4% da velocidade de pico (cotovelo direito, Enrolar · concêntrica); pico de 55,3 cm/s",
+    "medido": "4,1% da velocidade de pico (cotovelo direito, Enrolar · concêntrica); pico de 55,3 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "ok"
    },
@@ -1294,7 +1294,14 @@
    {
     "grupo": "Ficha",
     "oQue": "as mãos seguram os pegadores, e os braços só seguram (consenso)",
-    "medido": "o centro da pegada fica a no máximo 0 cm do pegador, com a mão fechada nele; em relação ao tórax, a mão anda 5,4 cm e o cotovelo vai de 138,2° a 143,4°",
+    "medido": "o centro da pegada fica a no máximo 0 cm do pegador, com a mão fechada nele; em relação ao tórax, a mão anda 4,4 cm e o cotovelo vai de 116,3° a 122,7°",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "o braço da máquina e os pegadores livres do corpo e longe do rosto (desenho)",
+    "medido": "nos dois lados, as hastes do braço da máquina e dos pegadores e a empunhadura ficam a no mínimo 0,9 cm da pele (coxa, direito; fora a mão que segura) e a 11,1 cm da cabeça",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -1308,7 +1315,7 @@
    {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "quadril.aBorda, joelho, pes.meiaDistancia, assento.amassa, lombar.apoio.folga, almofada.folga, maos.meiaDistancia, maos.acimaDoC7, maos.aFrente, maos.pegadorSobe, arco.acimaDoOmbro, rolos.aFrente, rolos.folga, maquina.atrasDoEixo",
+    "medido": "quadril.aBorda, joelho, pes.meiaDistancia, assento.amassa, lombar.apoio.folga, almofada.folga, maos.meiaDistancia, maos.acimaDoC7, maos.aFrente, maos.pegadorSobe, haste.folga, rolos.aFrente, rolos.folga, maquina.atrasDoEixo",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -1333,32 +1340,32 @@
     90.00000002929909
    ],
    "cotovelo": [
-    138.16665847919538,
-    143.440128905382
+    116.31744418914579,
+    122.73663005860715
    ],
    "quadril": [
     88.70434628922472,
     88.70434628922472
    ],
    "ombro": [
-    41.00520020837513,
-    47.36071727165957
+    36.573547151720184,
+    38.794460571990136
    ],
    "dorsiflexao": [
     -0.020701348378636908,
     -0.020701348378636908
    ],
    "punho": [
-    -0.0000017075472925031877,
-    0.0000017075472925031877
+    -0.0000012074182697257333,
+    0.0000012074182697257333
    ],
    "pronacao": [
-    4.280711403563458,
-    4.782569402444452
+    -80.6756901516924,
+    -76.9078984374134
    ],
    "clavicula": [
-    11.967669223299966,
-    12.255348315303792
+    11.764911136709658,
+    11.867436183915782
    ]
   },
   "falhas": 0,
@@ -11843,14 +11850,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do joelho (máxima no ciclo)",
-    "medido": "34°",
+    "medido": "8°",
     "limite": "média 140°, máximo observado 164° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "49°",
+    "medido": "48,8°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -11878,21 +11885,21 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "67,8°",
+    "medido": "67,7°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "dorsiflexão do tornozelo",
-    "medido": "20°",
+    "medido": "14°",
     "limite": "média 14,8°, máximo observado 48° (cdc)",
-    "nivel": "aviso"
+    "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão plantar do tornozelo",
-    "medido": "9°",
+    "medido": "14°",
     "limite": "média 56,7°, máximo observado 90° (cdc)",
     "nivel": "ok"
    },
@@ -11906,7 +11913,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "supinação do antebraço",
-    "medido": "22,3°",
+    "medido": "22,4°",
     "limite": "média 87,5°, máximo observado 131° (cdc)",
     "nivel": "ok"
    },
@@ -11955,14 +11962,14 @@
    {
     "grupo": "Cabos",
     "oQue": "cabo: a pilha sobe o curso do cabo dividido pela relação da máquina (2:1)",
-    "medido": "o cabo anda 45,1 cm e a pilha sobe 22,6 cm",
-    "limite": "esperado 22,6 cm; tolerância 0,3 cm",
+    "medido": "o cabo anda 43,2 cm e a pilha sobe 21,6 cm",
+    "limite": "esperado 21,6 cm; tolerância 0,3 cm",
     "nivel": "ok"
    },
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "6,7% da velocidade de pico (cotovelo direito, Levar para trás · concêntrica); pico de 40,7 cm/s",
+    "medido": "6,9% da velocidade de pico (cotovelo direito, Levar para trás · concêntrica); pico de 40,6 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "ok"
    },
@@ -11983,14 +11990,14 @@
    {
     "grupo": "Ficha",
     "oQue": "a perna vai de à frente do corpo até a coxa passar um pouco da linha do corpo (um estudo)",
-    "medido": "de lado, a coxa vai de 22,1° à frente da vertical a 18° atrás dela, 8,8° além da linha do corpo (que desce dos ombros ao quadril)",
+    "medido": "de lado, a coxa vai de 22,3° à frente da vertical a 18,1° atrás dela, 8,9° além da linha do corpo (que desce dos ombros ao quadril)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
-    "oQue": "o joelho quase estendido (nas pontas do caminho; no meio, dobra o que o pé precisa para não raspar o chão) (um estudo)",
-    "medido": "o joelho da perna que trabalha dobra 13° no máximo nas pontas do caminho e de 13° a 34° no caminho todo",
+    "oQue": "o joelho quase estendido (até 15°) o ciclo todo (um estudo)",
+    "medido": "o joelho da perna que trabalha dobra de 8° a 8° no caminho todo",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -12003,15 +12010,15 @@
    },
    {
     "grupo": "Ficha",
-    "oQue": "a bacia não gira nem a coxa abre para o lado (consenso)",
-    "medido": "a linha dos quadris fica a no máximo 0° da horizontal e a bacia gira 0°; a coxa abre no máximo 5° para o lado",
+    "oQue": "a bacia não gira nem rola no ciclo, o tórax fica reto e a coxa não abre para o lado (consenso)",
+    "medido": "a linha dos quadris fica de 3,9° a 3,9° da horizontal (o lado que trabalha mais alto) e a bacia gira 0°; o tórax inclina 0,9° para o lado; a coxa abre no máximo 5° para o lado",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "o peso fica sobre o pé de apoio (as mãos só apoiam) (consenso)",
-    "medido": "o centro de massa fica de 35,3% a 37% do caminho do calcanhar à ponta do pé de apoio e de 0 a 0 cm do eixo dele (meia largura do pé: 5 cm)",
+    "medido": "o centro de massa fica de 37% a 37,2% do caminho do calcanhar à ponta do pé de apoio e de -0,1 a 0 cm do eixo dele (meia largura do pé: 5 cm)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -12039,21 +12046,21 @@
    {
     "grupo": "Ficha",
     "oQue": "o cabo vai reto da roldana à tornozeleira sem encostar no corpo (desenho)",
-    "medido": "os cabos passam a no mínimo 4,5 cm da pele (cabo, canela)",
+    "medido": "os cabos passam a no mínimo 7,2 cm da pele (cabo, canela)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "a pilha sobe o que o cabo anda dividido pela relação da máquina (consenso)",
-    "medido": "cabo: o cabo anda 45,1 cm e a pilha sobe 22,6 cm (esperado 22,6)",
+    "medido": "cabo: o cabo anda 43,2 cm e a pilha sobe 21,6 cm (esperado 21,6)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "pe.apoio.paraFora, joelho.apoio, joelho.sino, joelho.sinoCentro, pe.livre.acimaDoChao, pe.livre.flexaoPlantar, pe.livre.dorsiflexaoMax, pe.livre.flexaoPlantarMax, coxa.abre, torre.mao.altura, torre.cotovelo, torre.montanteDiam, pilha.folga, quadro.torreAte",
+    "medido": "pe.apoio.paraFora, joelho.apoio, bacia.sobe, pe.livre.acimaDoChao, pe.livre.flexaoPlantar, pe.livre.dorsiflexaoMax, pe.livre.flexaoPlantarMax, coxa.abre, torre.mao.altura, torre.cotovelo, torre.montanteDiam, pilha.folga, quadro.torreAte",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -12067,47 +12074,47 @@
    {
     "grupo": "Músculos",
     "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
-    "medido": "de três quartos, de trás: 247 cm² (padrão); de lado: 155 cm²",
+    "medido": "de três quartos, de trás: 249 cm² (padrão); de lado: 158 cm²",
     "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
     "nivel": "ok"
    }
   ],
   "angulos": {
    "joelho": [
-    12.992405332624886,
-    33.96962133049964
+    7.999999999999845,
+    8.000000000000163
    ],
    "cotovelo": [
-    20.873029603210814,
-    48.990105919234786
+    19.44621159765164,
+    48.41158110229784
    ],
    "quadril": [
-    -6.022750884811931,
+    -6.022750884811928,
     34.10134084086095
    ],
    "ombro": [
-    52.716504236963736,
-    67.80139254500293
+    52.05840218384136,
+    67.7175374692619
    ],
    "dorsiflexao": [
-    -9.007594667375074,
-    20.000000000000014
+    -14,
+    14.000000000000014
    ],
    "punho": [
     -0.0000014787793334710982,
-    0.0000017075472925031877
+    0.0000014787793334710982
    ],
    "pronacao": [
-    -22.313378006520907,
-    -21.004682395480145
+    -22.358515143742977,
+    -20.938668567550295
    ],
    "clavicula": [
-    12.507025141644775,
-    13.182717134558816
+    12.476413473115636,
+    13.174892730949477
    ]
   },
   "falhas": 0,
-  "avisos": 2
+  "avisos": 1
  },
  "crucifixo-elastico": {
   "id": "crucifixo-elastico",
