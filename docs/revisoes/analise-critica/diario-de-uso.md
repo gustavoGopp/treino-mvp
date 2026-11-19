@@ -66,12 +66,13 @@ A diferença entre 13 e 24 toques vem toda de um lugar: os **detalhes do equipam
 
    ![O app pergunta se o banco declina](capturas/trava-banco-declina-p1.png)
 
-   E depois isto, já com três erros em vermelho antes de ele tocar em qualquer coisa:
+   E depois isto: a folha já abre com três erros em vermelho, em campos que ele nunca tinha visto:
 
-   ![Halteres: três erros antes de tocar](capturas/trava-halteres-erros-p1.png)
+   ![Halteres: três erros em campos que ele ainda não viu](capturas/trava-halteres-erros-p1.png)
 
    - **Fato:** o aviso diz "Falta pouco: há 4 detalhes para completar". São eles: se o banco declina; o halter mais leve; o mais pesado; de quanto em quanto.
-   - **Fato:** o texto do erro é "Use um número maior que zero."
+   - **Fato:** o texto do erro é "Use um número maior que zero." Os erros nascem do toque em "Gerar meu programa", que marca todos os campos de uma vez (`src/features/onboarding/Inventario.tsx:252-259`), e não somem enquanto ele preenche.
+   - **Fato:** só o atalho "Academia completa" vem com valores típicos já preenchidos (`src/domain/taxonomia/atalhos.ts:99`). Os outros três perguntam tudo.
    - **O que ele não entendeu:** por que um app que prometeu "com o que tiver" quer saber o halter mais pesado do prédio. Ele não sabe. Está no sofá.
    - **Opinião:** é aqui que o curioso desiste. Ele ainda não viu nada do app e já recebeu uma tarefa.
 
@@ -84,9 +85,9 @@ A diferença entre 13 e 24 toques vem toda de um lugar: os **detalhes do equipam
 - **O que funcionou:** a tela é limpa. Dá para ver que são 3 treinos (A, B, C), 6 exercícios, cerca de 31 minutos.
 - **O que ele não entendeu:**
   - "2 × 8–15". Ninguém explicou que são 2 séries de 8 a 15 repetições.
-  - Por que o supino tem "1 ×". Uma série só parece pouco, ou erro. (A explicação existe: nas primeiras semanas o app corta as séries pela metade, de propósito. Mas ela está em "Meus dados → Entenda o treino → O seu programa". Nesta tela, nada.)
+  - Por que o supino tem "1 ×". Uma série só parece pouco, ou erro. A explicação existe, mas está em "Meus dados → Entenda o treino → O seu programa", e é esta: "Semana 1. Cerca de metade das séries [...] e carga 10–20% abaixo da que você usava antes da pausa". **Ele nunca treinou.** Como não havia "nunca treinei", marcou "parei há mais de 6 meses", e o app o tratou como quem volta de uma pausa: cortou as séries para 55% e 2 séries viraram 1 no arredondamento (`src/domain/gerador/index.ts:2241`). Quem diz que treina há 5 meses recebe outra rampa, que nunca dá 1 série.
   - "Agachamento goblet com calcanhar elevado": o primeiro exercício da vida dele tem esse nome.
-  - Ele pediu 45 minutos e recebeu 31.
+  - Ele pediu 45 minutos e recebeu 31. (É a mesma semana reduzida: o programa cheio daria 43 ou 44. A tela não diz.)
 - **Fato:** o 3º exercício, "Puxada pela frente no puxador", um dos mais comuns de qualquer academia, não tem animação. Aparece um ícone de folha.
 - **Fato:** nada na tela diz "isto foi montado para você: 3 dias, academia do prédio, começando do zero".
 
@@ -101,7 +102,7 @@ Ao tocar num exercício:
 ![Guia em tela cheia](capturas/guia-tela-cheia-p1.png)
 
 - **O que funcionou:** o boneco é claro, as três dicas são curtas e boas ("Peito alto, halter colado").
-- **O que ele não entendeu:** "DESCIDA · EXCÊNTRICA", o selo "FIRME", a aba "Trajetória". E há 8 gavetas de texto abaixo.
+- **O que ele não entendeu:** "DESCIDA · EXCÊNTRICA", a aba "Trajetória" e o selo "FIRME" (descobri depois, no código, que é a respiração: INSPIRA, EXPIRA ou FIRME). E há 8 gavetas de texto abaixo.
 
 ### A sessão, como se fosse na academia
 
@@ -119,12 +120,14 @@ Ao tocar num exercício:
 Relógio enorme, o que vem a seguir, e a série seguinte se marca com **um toque**. A partir da 2ª série, o registro é mais rápido do que em muito aplicativo conhecido.
 
 - **O que ele não entendeu:** fez 6 kg com folga dentro da meta e o app sugeriu **baixar** para 4 kg, com a explicação "acerto da carga". No fim, "próxima: 2 kg".
+  - **Por que acontece (li depois no código):** a tela mostra uma meta larga (8 a 15 repetições, sobrando 3 ou 4). Por dentro, o app só aceita o **meio** dessa meta: a soma de repetições e sobra tem de ficar entre 13 e 17 (`src/domain/progressao/calibracao.ts:19-21,50`). Ele fez 8 + 3 = 11. Está dentro do que a tela mostra e fora do que o app aceita. E 8 é justamente o número que a tela já traz preenchido. Quem aceita o que a tela oferece vê a carga cair a cada série.
+  - **Opinião:** é regra, não defeito de programação; há teste que a fixa. Mas a tela e a regra dizem coisas diferentes, e quem paga é o iniciante.
 
 **Exercício sem animação:**
 
 ![Exercício sem animação: um buraco no lugar do boneco](capturas/treino-sem-animacao-p1.png)
 
-- **Fato:** no lugar do boneco fica um espaço vazio de cerca de 230 pontos. Parece que a tela não carregou.
+- **Fato:** no lugar do boneco fica um espaço vazio de cerca de 230 pontos. Parece que a tela não carregou. (É de propósito: `src/styles.css:690` diz "o vazio fica em cima".)
 
 **Trocar exercício e "Senti algo"** funcionam bem:
 
@@ -270,7 +273,7 @@ As fontes estão em [`mercado.md`](mercado.md), na parte "O que um web app insta
 | "Empurrar", "Puxar", "Corpo todo A/B/C" | Nomes dos treinos |
 | "Rotina e divisão" | Meus dados |
 | "Quantas manoplas?", "Peso de cada manopla" | Equipamento |
-| "Use um número maior que zero.", "Use um número inteiro maior que zero." | Equipamento, antes de tocar |
+| "Use um número maior que zero.", "Use um número inteiro maior que zero." | Equipamento, em campos ainda não preenchidos |
 | "Vamos pausar o programa automático" | Triagem |
 | "Exportar meus dados (JSON)", "exporte uma cópia de vez em quando" | Dentro de "Guardar uma cópia" |
 | "Este navegador não garantiu guardar seus dados de forma permanente" | Meus dados → "por quê?" |
@@ -315,7 +318,7 @@ Aqui o app está **bem acima da média**. Digo uma vez:
 | Instalação | Manifesto correto; no iPhone, o app explica como instalar |
 | Tela de 360 pontos | Funciona |
 | Tela de 320 pontos | **Falha na tela de treino** (boneco cortado, botão fora da tela) |
-| Trocar de celular | Só com a cópia manual. O app avisa do risco em "Meus dados" e, no iPhone, no fim da lista de exercícios |
+| Trocar de celular | Só com a cópia manual. O app avisa do risco em "Meus dados", no iPhone no fim da lista de exercícios, e lembra de fazer a cópia depois de 3 treinos (`src/domain/dados/index.ts:46-54`) |
 
 ---
 
