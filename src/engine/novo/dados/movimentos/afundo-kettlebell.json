@@ -18,10 +18,11 @@
   "joelhoDeTras.aoChao": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão)"},
   "tronco": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "tronco quase vertical"},
   "erro.valgo.joelho": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto o joelho da frente cai para dentro"},
-  "erro.tronco": {"v": 36, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco cai para a frente"},
+  "erro.tronco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco cai para a frente. Correção de 19/11/2026: eram 36°; com a bola encostada no peito (e não dentro dele), embaixo o kettlebell, que pende na vertical, chegava à coxa da frente e entrava 2,4 cm nela. Com 30°, embaixo a bola encosta na coxa da frente sem entrar nela"},
   "erro.raso.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: desce só 40% do caminho (como na animação de hoje)"},
   "maos.abaixoDeC7": {"v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "kettlebell junto ao peito: altura das mãos, na alça, abaixo da base do pescoço (no alto do peito); a ficha não dá número"},
-  "kettlebell.folgaNoPeito": {"v": 0.8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola encosta no peito: folga entre a bola e a pele"},
+  "kettlebell.folgaNoPeito": {"v": 0.8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola encosta no peito: folga entre a bola e a pele, sobre a frente do peito estimada pela profundidade do peito (desde 19/11/2026, a posição de partida da calibração de kettlebell.encostoNoPeito)"},
+  "kettlebell.encostoNoPeito": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola encosta no peito sem entrar nele: no máximo 0,3 cm na pele (o amassado), fora as mãos. Correção de 19/11/2026: a frente do peito estava estimada pela profundidade do peito, e não medida na pele, e a bola entrava 3,8 cm no peito; agora o kettlebell vai para a frente do tórax até a bola encostar, calibrado em pé (regra peso-fora-do-corpo)"},
   "carga": {"v": 12, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o kettlebell desenhado (12 kg); entra no equilíbrio"}
  },
  "fases": [
@@ -35,7 +36,8 @@
   {"id": "desce-reto", "pede": "a descida é reta: o quadril desce sem ir para a frente nem para trás", "selo": "consenso", "fonte": "ficha"},
   {"id": "joelho-de-tras-perto-do-chao", "pede": "embaixo, o joelho de trás fica a poucos centímetros do chão", "selo": "consenso", "fonte": "ficha"},
   {"id": "tronco-quase-vertical", "pede": "o tronco fica quase vertical", "selo": "consenso", "fonte": "ficha"},
-  {"id": "pe-da-frente-inteiro-no-chao", "pede": "o pé da frente fica inteiro no chão", "selo": "consenso", "fonte": "ficha"}
+  {"id": "pe-da-frente-inteiro-no-chao", "pede": "o pé da frente fica inteiro no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-fora-do-corpo", "pede": "a bola do kettlebell encostada no peito, sem entrar nele, e sem entrar na coxa da frente, em todos os quadros do ciclo e dos erros (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [
   {"id": "valgo", "instante": 1, "titulo": "Joelho da frente para dentro", "vista": "frontal", "oQueMuda": "o joelho da frente sai da linha do pé, para dentro", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
