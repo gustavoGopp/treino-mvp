@@ -59,7 +59,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   return {
     esq: e,
     prims: [chao(-70, 70, -90, 110), ...colchonete(0, zCol), ...peca.prims],
-    pecas: [{ t: 'colchonete', x0: 0, z0: zCol }, peca.peca],
+    pecas: [{ t: 'colchonete', x0: 0, z0: zCol, noFundo: true }, peca.peca],
     fios: [],
     cargas: [{ massa: f('caneleira.massa'), pos: can.centro }],
     marcas: { piso: [0, O.piso, 0], caneleira: can.centro, caneleiraRaio: [can.raio, 0, 0] },

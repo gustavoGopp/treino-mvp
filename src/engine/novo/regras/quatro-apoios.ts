@@ -5,6 +5,7 @@ import { formaDoBoneco, pontosDoBoneco } from '../boneco';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Esq, Lado } from '../esqueleto';
+import { coiceCaneleira } from '../exercicios/coice-caneleira';
 import { coiceElastico } from '../exercicios/coice-elastico';
 import type { Exercicio, Quadro } from '../movimento';
 import { obj } from '../tabelas';
@@ -93,6 +94,7 @@ function colchoneteEmbaixo(exercicio: () => Exercicio): Regra {
 
 export const REGRAS_QUATRO_APOIOS: Record<string, Regra> = {
   'coice-elastico-colchonete-embaixo': colchoneteEmbaixo(() => coiceElastico),
+  'coice-caneleira-colchonete-embaixo': colchoneteEmbaixo(() => coiceCaneleira),
   'quatro-apoios-maos-e-joelhos': (q) => {
     const x = q[0]!,
       e = x.esq;
