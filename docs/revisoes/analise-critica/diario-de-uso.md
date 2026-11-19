@@ -285,6 +285,8 @@ As fontes estão em [`mercado.md`](mercado.md), na parte "O que um web app insta
 
 **Uma coisa que já está certa:** o botão principal diz "Guardar uma cópia", não "Exportar". O jargão só aparece na folha que abre depois.
 
+![Dentro de "Guardar uma cópia", o botão diz "Exportar meus dados (JSON)"](capturas/guardar-copia-p1.png)
+
 **Outra:** existe um bom glossário ("RIR: quantas repetições ainda sobravam quando você parou"). Ele está em "Meus dados → Entenda o treino → Como ler o treino", a três toques de onde a dúvida nasce.
 
 ---
@@ -295,6 +297,8 @@ As fontes estão em [`mercado.md`](mercado.md), na parte "O que um web app insta
 - **Fato:** o app não tem nome. Chama-se "treino-mvp" na aba do navegador e "Treino" no ícone. O ícone é um halter branco num quadrado preto.
 - **Onde tem cara própria:** no descanso (o relógio gigante que inverte a tela) e no boneco. São as duas coisas que ninguém confundiria com outro app.
 - **Onde parece modelo pronto:** na abertura, no cadastro e em "Meus dados". São listas cinza sobre fundo cinza.
+
+  ![Meus dados](capturas/meus-dados-p1.png)
 - **Densidade.** Medi a tela de treino numa tela média: 15 controles e cerca de 400 letras visíveis de uma vez, com o boneco espremido em 15% da altura. Na tela estreita, não cabe.
 - **Modo escuro:** funciona e fica bonito.
 
@@ -372,6 +376,8 @@ Máquinas novas, bem desenhadas, que **ainda não aparecem no app**:
 ![Puxada pela frente](capturas/anim-puxada-frente.png)
 
 ![Leg press](capturas/anim-leg-press.png)
+
+As outras folhas da amostra que guardei: [goblet](capturas/anim-goblet.png), [agachamento com barra](capturas/anim-agachamento-barra.png), [supino reto](capturas/anim-supino-reto.png), [cadeira extensora](capturas/anim-cadeira-extensora.png), [nórdico](capturas/anim-nordico.png), [hip thrust](capturas/anim-hip-thrust.png).
 
 ### O que tiro disso
 
