@@ -174,6 +174,8 @@ function kettlebell(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'kettl
     c[2],
     `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(K.R)} ${f1(K.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${borda}" stroke-width="${escuro ? 0.8 : 0.5}"/></g><ellipse cx="${f1(c[0] - K.R * 0.42)}" cy="${f1(c[1] - K.R * 0.44)}" rx="${f1(K.R * 0.22)}" ry="${f1(K.R * 0.13)}" transform="rotate(-35 ${f1(c[0] - K.R * 0.42)} ${f1(c[1] - K.R * 0.44)})" fill="#fff" opacity="0.26"/>`,
   );
+  // a bola, para a conferência da pintura (não muda o desenho)
+  C.geo({ esfera: P(K.centro), r: K.R });
   // a alça: duas hastes que saem da bola e a barra de cima (um pouco para trás na pintura: as mãos ficam por cima)
   const alto = K.altura - K.rAlca;
   const pe = K.centro + Math.sqrt(Math.max(0, K.R * K.R - K.meiaAlca * K.meiaAlca)) - 1;
@@ -227,7 +229,7 @@ function desenhar(chave: string | null, cam: Camera, id: string, monta: (C: Cena
   });
   monta(C);
   // a sombra (profundidade enorme no gerador) vai para a camada do chão; a caixa da peça entra no primeiro item
-  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}) }));
+  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}), ...(it.g3 ? { g3: it.g3 } : {}) }));
   const out = { itens, defs: C.defs.join('') };
   if (chave) GUARDADO.set(chave, out);
   return out;
