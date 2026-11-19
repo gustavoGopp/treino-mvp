@@ -6,7 +6,10 @@ import type { Regra } from '../conferir-util';
 import { formaDoKettlebell } from '../equipamento';
 import { LADOS } from '../esqueleto';
 import type { Quadro } from '../movimento';
-import { angulo, dist, sub } from '../vec';
+import { gobletKettlebell } from '../exercicios/goblet-kettlebell';
+import { angulo, comb, dist, norm, sub } from '../vec';
+import type { V3 } from '../vec';
+import { regraDePintura } from './ordem-de-pintura';
 import { folgaDaCarga } from './stiffs';
 
 /** A peça do kettlebell no quadro (base, cima e lado). */
@@ -25,6 +28,26 @@ function folgaNoTronco(q: Quadro): number {
 }
 
 export const regrasDoGobletKettlebell: Record<string, Regra> = {
+  // O kettlebell (a bola, as duas hastes e a barra da alça, na ordem em que a peça as desenha) contra o corpo, nos dois
+  // lados, em cada vista do guia (acréscimo de 19/11, auditoria das fases A e B): de lado, embaixo, a bola, que fica
+  // entre os joelhos, empatava com o tronco na pintura e saía por cima do joelho de perto. As mãos fecham na alça e não
+  // contam.
+  'goblet-kettlebell-pintado-no-lugar': regraDePintura({
+    exercicio: () => gobletKettlebell,
+    nome: 'o kettlebell',
+    fora: ['mao', 'polegar'],
+    peca: (q) => {
+      const p = peca(q);
+      const K = formaDoKettlebell();
+      const u = norm(p.cima),
+        l = norm(p.lado);
+      const P = (h: number, x = 0): V3 => comb([1, p.base], [h, u], [x, l]);
+      const alto = K.altura - K.rAlca,
+        pe = K.centro + Math.sqrt(Math.max(0, K.R * K.R - K.meiaAlca * K.meiaAlca)) - 1;
+      const haste = (s: number, i: number) => ({ eixo: [P(pe, s * K.meiaAlca), P(alto, s * K.meiaAlca)], raio: K.rAlca, itens: [i] });
+      return [{ peca: p, partes: [{ eixo: [P(K.centro)], raio: K.R, itens: [0] }, haste(-1, 1), haste(1, 2), { eixo: [P(alto, -K.meiaAlca - K.rAlca * 0.6), P(alto, K.meiaAlca + K.rAlca * 0.6)], raio: K.rAlca, itens: [3] }] }];
+    },
+  }),
   'goblet-kettlebell-junto-ao-peito': (q) => {
     const K = formaDoKettlebell();
     const amostra = q.filter((_, i) => i % 3 === 0 || i === q.length - 1);

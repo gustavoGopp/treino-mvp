@@ -39,7 +39,8 @@
   {"id": "peso-no-meio-do-pe", "pede": "os calcanhares ficam no chão: o peso no meio do pé", "selo": "consenso", "fonte": "ficha"},
   {"id": "lombar-neutra", "pede": "o tronco fica ereto, sem arredondar a lombar", "selo": "consenso", "fonte": "ficha"},
   {"id": "goblet-kettlebell-junto-ao-peito", "pede": "o kettlebell junto ao peito, base para baixo, com as mãos nas laterais da alça (e, embaixo, sem bater nas coxas)", "selo": "consenso", "fonte": "ficha"},
-  {"id": "goblet-kettlebell-cotovelos-entre-os-joelhos", "pede": "os cotovelos apontam para baixo e, embaixo, ficam entre os joelhos", "selo": "consenso", "fonte": "ficha"}
+  {"id": "goblet-kettlebell-cotovelos-entre-os-joelhos", "pede": "os cotovelos apontam para baixo e, embaixo, ficam entre os joelhos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "goblet-kettlebell-pintado-no-lugar", "pede": "o kettlebell fica junto ao peito, entre os joelhos embaixo: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "tronco", "instante": 1, "titulo": "Tronco tomba", "vista": "lateral", "oQueMuda": "o tronco cai para a frente: o peito inclina 48° em vez de 27°, e a lombar dobra", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
