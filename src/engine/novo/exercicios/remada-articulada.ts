@@ -30,7 +30,7 @@ import { REMADA_ARTICULADA, bracoNoAngulo, faceDoApoioDoPeito } from '../pecas-d
 import { remadaArticulada as maquina } from '../pecas-de-cena/remada-articulada';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { dirRef, dot, mix, norm, sub } from '../vec';
+import { add, dirRef, dot, mix, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 import { apoioNoAssentoDaMaquina, linhaDoPeito, pesNoChao, troncoNaMaquina } from './maquina-de-empurrar';
 import type { OpcoesDeEmpurrar } from './maquina-de-empurrar';
@@ -223,6 +223,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const M = maquina({ braco, inicio: R.inicio, assento: R.h, placas: f('placas'), apoio }, { bracoDePertoAtras: true });
   const fo = folgasNoApoio(e, apoio);
   const bR = bracoNoAngulo(MOD, 'R', braco);
+  // a face do apoio do peito (a que o peito toca): o meio dela, a direção que sobe por ela e a que vai para o corpo
+  const A = faceDoApoioDoPeito(MOD, apoio);
   return {
     esq: e,
     prims: [chao(-90, 100, -100, 110), ...M.prims],
@@ -242,6 +244,11 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
       peitoNoApoio: [Math.min(fo.baixo, fo.cima), fo.baixo, fo.cima],
       regulagem: [R.h, R.inicio, R.fim],
       peito: [linhaDoPeito(corpo, e), 0, 0],
+      // onde o peito encosta no apoio: o meio da face dele, no meio do corpo (o ponto do rótulo "peito na almofada")
+      peitoNaAlmofada: add(A.base, mul(A.sobe, A.comp / 2)),
+      apoioSobe: A.sobe,
+      apoioTras: A.tras,
+      apoioMedidas: [A.comp, A.larg, 0],
     },
   };
 }
