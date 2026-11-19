@@ -6,10 +6,13 @@ import ficha from '../dados/movimentos/remada-unilateral-kettlebell.json';
 import { daFicha, fichaSchema } from '../movimento';
 import type { Exercicio } from '../movimento';
 import { criarRemada } from './remada';
-import { baseSemBanco } from './remada-sem-banco';
+import { baseSemBanco, peleDaCoxaNaSuperficie } from './remada-sem-banco';
 
 const f = daFicha(fichaSchema.parse(ficha));
-const R = criarRemada(ficha, { bracos: 'R', carga: 'kettlebell', base: (c) => baseSemBanco(c, f), erros: { gira: 'girar', arred: 'arredondar', curta: 'curta' } });
+// a mão de apoio pousa na pele da coxa medida na superfície (`peleDaCoxaNaSuperficie`, como na remada com elástico): com
+// a medida da base comum, o ponto em que ela pousava caía entre dois anéis da coxa e ficava perto do eixo dela, e a mão e
+// o antebraço entravam na coxa (auditoria das aprovadas antigas, 19/11)
+const R = criarRemada(ficha, { bracos: 'R', carga: 'kettlebell', base: (c) => baseSemBanco(c, f, { pele: peleDaCoxaNaSuperficie }), erros: { gira: 'girar', arred: 'arredondar', curta: 'curta' } });
 
 export const remadaUnilateralKettlebell: Exercicio = {
   ficha: R.ficha,

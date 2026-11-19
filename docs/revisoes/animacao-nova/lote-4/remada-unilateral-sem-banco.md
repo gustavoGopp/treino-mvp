@@ -54,3 +54,25 @@ Músculos: dorsal e meio das costas do lado direito em vermelho; ombro de trás 
 
 - **De lado, a mão livre na coxa não aparece** (fica atrás da perna e do braço direitos): é o lado de longe. Por isso o rótulo dela foi para a outra vista, e o modo Músculos fica de lado, que mostra menos o músculo que a vista de trás. Risco de o Gustavo preferir a de três quartos, de trás, como segunda vista.
 - A dica "cotovelo para o quadril" ficou de fora: de lado, o fio dela atravessava as costas no fim da puxada; a trajetória do cotovelo mostra o mesmo.
+
+
+## Correção de 19/11 (mão de apoio; auditoria das aprovadas antigas)
+
+O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado nas auditorias: a mão de apoio entrava na coxa da frente. A base das remadas sem banco (`./remada-sem-banco.ts`) procura o ponto da pele da coxa entre pontos a até 2,5 cm de um plano; entre dois anéis afastados ela não acha nenhum e põe a mão perto do eixo da coxa. É o mesmo defeito, e a mesma correção, da remada unilateral com elástico (M4).
+
+**A mudança.** A base passa a usar a opção `pele: peleDaCoxaNaSuperficie` (acréscimo de 19/11, desligada por padrão: o anel da coxa interpolado e a elipse dele). Com a mão pousada na pele, o braço de apoio quase estendido levava o meio da mão além do joelho (com 12° pedidos, o cotovelo não chegava a menos de 22° e o centro da mão ficava a 104% do caminho do quadril ao joelho; a regra antiga `mao-de-apoio-na-coxa` falhava): o cotovelo de apoio da ficha (`apoio.cotovelo`) vai de **12° a 40°**, o mesmo da remada com elástico. A pose do resto do corpo, o braço que puxa, o halter, os rótulos e os erros não mudam. A ficha liga a regra `remada-elastico-mao-de-apoio-sobre-a-coxa` (`src/engine/novo/regras/remada-unilateral-elastico.ts`), que mede no ciclo e nos erros.
+
+| mão de apoio (ciclo e erros) | antes (`72d00fc`) | depois |
+|---|---|---|
+| centro da mão até o eixo da coxa | 2,3 cm | 8,9 cm |
+| centro da mão fora da pele da coxa (negativo = dentro) | −3,8 cm | +2,7 cm |
+| a pele da mão entra na coxa | 5,7 cm | 0 cm |
+| a pele do antebraço entra na coxa | 6,8 cm (6,7 no ciclo) | 0,9 cm (0,8 no ciclo; o amassado aceito é 1 cm) |
+| onde fica o centro da mão (quadril → joelho) | 88,2% | 97,2% |
+| centro da mão até a borda lateral da coxa | 4,7 cm | 3,7 cm |
+| a mão até a pele da coxa | 0,2 cm | 0,5 cm |
+| cotovelo de apoio | 12° (32° no erro "Girar o tronco") | 40° (51° no erro "Girar o tronco") |
+
+A conferência dá 0 falhas antes e depois (a regra nova não estava ligada antes; ligada no estado de antes, ela falha). O antes e depois está em `correcao-das-antigas/remada-unilateral-sem-banco.png` (de três quartos inteiro e de perto, e de lado de perto); os quadros grandes foram regravados (`quadros/remada-unilateral-sem-banco.png`).
+
+**O que ainda não ficou bom.** A mão pousa perto do joelho (97% do caminho), e não no meio da coxa; de três quartos aparece só um pedaço da palma sobre a coxa, perto do joelho, como na remada com elástico aprovada.

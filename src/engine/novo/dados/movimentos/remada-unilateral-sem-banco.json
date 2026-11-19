@@ -68,11 +68,11 @@
    "o": "pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril"
   },
   "apoio.cotovelo": {
-   "v": 12,
+   "v": 40,
    "un": "graus",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia"
+   "o": "o braço de apoio firme na coxa, com o cotovelo um pouco dobrado; daí sai o ponto da coxa em que a mão apoia. Correção de 19/11/2026 (como na remada unilateral com elástico): com a mão pousada na pele da coxa (e não dentro dela, como até a auditoria das aprovadas antigas), o braço quase estendido (12°) levava o meio da mão além do joelho"
   },
   "braco.inicio.atras": {
    "v": 3,
@@ -306,6 +306,12 @@
   {
    "id": "palmas-uma-para-a-outra",
    "pede": "pegada neutra (palma virada para o corpo)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "remada-elastico-mao-de-apoio-sobre-a-coxa",
+   "pede": "a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros)",
    "selo": "consenso",
    "fonte": "ficha"
   }
