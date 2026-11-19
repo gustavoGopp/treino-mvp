@@ -24,8 +24,19 @@ App web (PWA) que monta um programa de hipertrofia baseado em evidência, só co
 - **Escopo:** fora do MVP ficam nutrição, login e nuvem, pagamentos, app nativo, recursos sociais, relógios, outros objetivos fora do treino de força (emagrecimento pela dieta, corrida, esportes), treinador humano, cardio prescrito e deload automático. Desde 04/11/2026, a pergunta de objetivo (ganhar músculo, manter o músculo na dieta, ficar mais forte, saúde) entra no MVP, só dentro do treino de força (`docs/pesquisa-v2/12-outros-objetivos.md`). Ideias novas vão para `docs/backlog.md`.
 - **Marcos:** ao fim de cada marco, atualizar `docs/devlog.md` (o que mudou, imagem ou GIF, rascunho de post) e parar para a revisão do Gustavo antes de seguir.
 
+## Verificação
+O porquê e a manutenção estão em `docs/verificacao/README.md`.
+- **"Pronto" é conferido com evidência.** Antes de dizer que terminou, antes de commit de código e antes de enviar, siga o roteiro `.claude/skills/verificar/SKILL.md`: ler o diff, `npm run check`, os itens de `docs/verificacao/lista.md` que o diff aciona, abrir no app as telas mudadas, e relatar o que rodou e o que não rodou.
+- **Antes de enviar código, e sempre antes da `main`: `npm run verificar`.** É o mesmo comando que o GitHub roda (com cobertura e testes de tela); o `check` sozinho não basta.
+- **Três rodadas.** Se uma conferência ainda falha depois de 3 tentativas de conserto, pare e explique ao Gustavo o que falha, o que tentou e o que precisa dele.
+- **Teste que falha às vezes é defeito:** nada de pular, pôr espera, tentar de novo até passar ou afrouxar o que ele confere. Limite de tempo só sobe com a medida (com cobertura) no comentário.
+- **A mudança não reescreve o que a julga:** snapshots das personas, linhas de base do motor e a régua só mudam com o motivo medido; gabaritos, só com o ok do Gustavo.
+- **O que escapou vira item** de `docs/verificacao/lista.md` (gatilho no diff, conferência, origem); a lista é podada no fechamento de cada marco.
+- **Ganchos** (`.claude/settings.json`): ao parar, roda o `check` se a sessão mudou código; antes de `git push`, o portão confere o carimbo do `verificar` (modo observar); regravar gabarito pede confirmação.
+
 ## Comandos
 - `npm run dev`: servidor local
-- `npm run check`: lint + typecheck + testes unitários
+- `npm run check`: lint + typecheck + testes unitários (a camada barata)
+- `npm run verificar`: o mesmo que o GitHub roda (lint, tipos, unitários com cobertura, testes de tela)
 - `npm run test:e2e`: Playwright (build + preview). Localmente, o Chromium já instalado precisa da versão fixada 1.63.0.
 - `node referencia/qa/check-motor.cjs check|sheet`: QA do guia original
