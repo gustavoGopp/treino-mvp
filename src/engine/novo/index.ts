@@ -10,6 +10,7 @@ export * from './cena';
 export * from './exercicios/registro';
 export { EXERCICIOS } from './app';
 export * from './conferir';
+export * from './conferir-pintura';
 export * from './conferir-musculos';
 export * from './tabela-musculos';
 export * from './boneco';

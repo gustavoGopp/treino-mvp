@@ -50,6 +50,8 @@ export function faixaElastica(pts: V3[], estica: number, nome = 'faixa', cenario
           const z = Q.reduce((s, q) => s + q[2], 0) / Q.length;
           const linha = (cor: string, w: number) => `<path d="${d}" stroke="${cor}" stroke-width="${f1(w)}" stroke-linecap="butt" fill="none"/>`;
           C.bruto(z, linha(M.estofado[3]!, larg + 0.45) + linha(M.estofado[1]!, larg) + linha(mix(M.estofado[1]!, '#ffffff', 0.35), larg * 0.22));
+          // o pedaço, para a conferência da pintura e dos fios (não muda o desenho)
+          C.geo({ fio: p, w: larg + 0.45 });
         }
       },
     },

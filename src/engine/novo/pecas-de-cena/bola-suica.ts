@@ -72,6 +72,8 @@ export function bolaSuica(x: number, z: number, giro: number): { prims: Prim[]; 
       const brilho = `<ellipse cx="${f1(c[0] - B.R * 0.4)}" cy="${f1(c[1] - B.R * 0.42)}" rx="${f1(B.R * 0.2)}" ry="${f1(B.R * 0.12)}" transform="rotate(-35 ${f1(c[0] - B.R * 0.4)} ${f1(c[1] - B.R * 0.42)})" fill="#fff" opacity="0.35"/>`;
       // pintada na profundidade da parte de trás da bola: o que apoia nela (os pés, as pernas) fica por cima
       C.bruto(c[2] + B.R * 0.9, forma + costura + brilho);
+      // a esfera, para a conferência da pintura (não muda o desenho)
+      C.geo({ esfera: centro, r: B.R });
       if (o.comSombra) C.sombra(x, z, B.R * 0.8, B.R * 0.8, 0.18);
     },
   };

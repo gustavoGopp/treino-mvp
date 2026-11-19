@@ -4,6 +4,7 @@
 // (a faixa entre a silhueta do lado escuro e a linha onde a luz deixa de bater), também calculada.
 import type { Anel, Corpo3d, IdParte, Junta, Parte, Volume } from './corpo3d';
 import type { Lado } from './esqueleto';
+import type { Geometria3d } from './realista/base.mjs';
 import { add, comb, cross, dot, mul, norm, sub } from './vec';
 import type { Ref, V3 } from './vec';
 
@@ -45,6 +46,8 @@ export interface Item {
   s: string;
   /** Caixa na tela [x0, y0, x1, y1], para o enquadramento. */
   cx?: [number, number, number, number];
+  /** A forma 3D do item do equipamento realista, só para a conferência da pintura (não entra no desenho). */
+  g3?: Geometria3d;
 }
 
 /* ============================== contorno de um volume ============================== */

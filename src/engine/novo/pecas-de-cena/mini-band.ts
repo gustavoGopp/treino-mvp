@@ -387,6 +387,8 @@ export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
           const z = Q.reduce((s, q) => s + q[2], 0) / 4 - POR_CIMA;
           const d = `M${Q.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L')}Z`;
           C.bruto(z, `<path d="${d}" fill="${luz ? M[2] : M[1]}" stroke="${luz ? M[2] : M[1]}" stroke-width="0.6" stroke-linejoin="round"/>`);
+          // o pedaço, para a conferência da pintura (não muda o desenho)
+          C.geo({ placa: cantos });
           // as bordas da faixa (o traço escuro) e um brilho no meio
           const linha = (p: V3, q: V3) => {
             const P = C.P(p),
