@@ -59,3 +59,29 @@ Não há correção registrada para este exercício. Da puxada unilateral, valem
 - **O corpo fica menor no quadro de três quartos** (a coluna de 2,39 m entra inteira de lado e quase inteira de três quartos), do mesmo tamanho da puxada unilateral aprovada.
 - **De lado, o fio do rótulo "estende tudo na volta"** cruza o cabo para chegar ao punho. Troquei a dica "peito aberto" (que apontava para o ombro e cruzava o fio do cotovelo) por esta, que fica do outro lado.
 - **A força do cabo não entra no equilíbrio**, como em todas as animações na polia.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M7) achou que, no erro "Puxar pela nuca", de três quartos por trás, o cabo atravessa a cabeça (3,9 cm) e o pescoço (2,6 cm), e a fita do engate entra 1,6 cm no pescoço. A animação saiu da aprovação até a correção.
+
+**A causa.** No fim do erro, a barra fica atrás do pescoço, rente à nuca (2 cm), e o cabo sobe dela até a roldana, no alto e à frente: com o pescoço dobrado só 22° e o queixo 10°, a cabeça ficava na linha do cabo.
+
+**A mudança** (só no erro, dentro do que a ficha diz: "a cabeça vai à frente e a barra desce atrás dela, até a nuca"):
+
+1. O pescoço dobra 30° (era 22°; `erro.nuca.cervical`) e o queixo vai ao peito 16° (era 10°; `erro.nuca.cabeca`): a cabeça vai mais à frente e para baixo.
+2. A barra para 12 cm acima do centro dos ombros (era 9; `erro.nuca.acima`) e a 5 cm da pele da nuca (era 2; `erro.nuca.folga`).
+3. O cabo do erro é desenhado em dois trechos, partidos no ponto mais perto do alto da cabeça, cada um pintado na sua profundidade: de três quartos por trás, o trecho que desce por trás da cabeça até a barra aparece por cima dela (um trecho só era pintado inteiro atrás do corpo, e o cabo parecia passar por dentro da cabeça). O ciclo certo e os outros erros continuam com o cabo inteiro.
+
+**A regra nova** (comum, `cabos-fora-do-corpo-nos-erros`, em `regras/vistas-do-guia.ts`, ligada só nas fichas do tríceps com barra reta, da puxada com barra reta e da rosca de costas): em cada erro, em 6 instantes (0, 1/4, 1/2, 3/4, 1 e o instante do erro), cada cabo e cada fita do engate (os fios do quadro, fora os riscos da pilha), de meio em meio centímetro, contra o corpo inteiro (os dois lados): quanto entram em cada parte, medido na elipse do anel do Boneco interpolado ali. Não podem entrar mais de 0,5 cm. Ficam de fora as mãos que seguram e, delas, o antebraço a até 8 cm do punho, como na regra do cabo no ciclo (`polia-braco-cabos-livres-do-corpo`, que só olha o ciclo certo).
+
+| | antes (`1828c0e`) | depois |
+|---|---|---|
+| "Puxar pela nuca": quanto o cabo entra no corpo (pior instante) | **4,4 cm (cabeça)** | passa a 1 cm da cabeça |
+| "Deitar o tronco para trás" e "Volta curta" | a fita do engate passa a 0,6 cm da cabeça | igual |
+| no fim do erro: pescoço, queixo, barra acima dos ombros, barra à nuca | 22°, 10°, 9 cm, 2 cm | 30°, 16°, 12 cm, 5 cm |
+
+Rodada no estado de antes (o exercício e a ficha de `1828c0e`, com a regra nova), a conferência dá **1 falha** (esta regra). No estado novo: **0 falhas**, os mesmos avisos de antes.
+
+**Olhado nos quadros** (`quadros/puxada-barra-reta.png`, e de três quartos por trás a 30%, 60%, 80% e 100% do erro): a barra passa por cima da cabeça e desce atrás dela até a nuca; o cabo sobe da barra por cima da nuca e do alto da cabeça até a roldana. No tema escuro e no cor de pele, igual.
+
+**O que ainda não ficou bom.** A barra para a 5 cm da nuca, e não encostada nela: é o que deixa o cabo passar por cima da cabeça com a cabeça dobrada só até onde o pescoço vai sem forçar. A cabeça baixa mais que antes (46° somando pescoço e cabeça).

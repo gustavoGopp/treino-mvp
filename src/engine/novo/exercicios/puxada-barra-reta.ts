@@ -21,7 +21,7 @@ import type { Peca } from '../pecas';
 import { barraReta, montarBarra } from '../pecas-de-cena/polia-braco-barra-reta';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, dirRef, dist, mix, mul, noRef, norm, paraRef, sub } from '../vec';
+import { add, dirRef, dist, dot, mix, mul, noRef, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 import { alcanceDoBraco } from './dobrar-o-quadril';
 import { colunasECabos, compDoCabo, menorNoCiclo } from './polia-bracos';
@@ -181,7 +181,18 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const barra = barraDe(e, c.cabos);
   const pb = barraReta(barra);
   const col = colunasECabos(c.cabos, [barra.ponta], c.repouso, f('pilha.folga'), false, CORTADA_EM);
-  const pecas: Peca[] = [{ t: 'colchonete', x0: 0, z0: -22 }, ...col.pecas!.filter((p) => p.t === 'torre'), pb.peca, ...col.pecas!.filter((p) => p.t !== 'torre')];
+  // no erro "nuca", o cabo sobe da barra (atrás do pescoço) por cima da cabeça até a roldana: desenhado em dois trechos,
+  // partidos no ponto mais perto do alto da cabeça, cada um pintado na profundidade dele (o trecho de trás da cabeça na
+  // frente dela, de três quartos por trás; um trecho só ficava inteiro atrás do corpo)
+  const cabos = col.pecas!.flatMap((p): Peca[] => {
+    if (erro !== 'nuca' || p.t !== 'cabo') return p.t === 'torre' ? [] : [p];
+    const topo = noRef(e.cabeca, [0, 12, 0]);
+    const ab = sub(p.b, p.a);
+    const s = Math.max(0, Math.min(1, dot(sub(topo, p.a), ab) / dot(ab, ab)));
+    const meio = add(p.a, mul(ab, s));
+    return [{ t: 'cabo', a: p.a, b: meio }, { t: 'cabo', a: meio, b: p.b }];
+  });
+  const pecas: Peca[] = [{ t: 'colchonete', x0: 0, z0: -22 }, ...col.pecas!.filter((p) => p.t === 'torre'), pb.peca, ...cabos];
   const marcas: Record<string, V3> = { ...col.marcas, barra: barra.meio, 'barra.a': barra.a, 'barra.b': barra.b };
   return {
     esq: e,

@@ -26,10 +26,10 @@
   "cotovelo.poloAtras": {"v": 1.8, "un": "proporção", "selo": "consenso", "fonte": "ficha", "o": "'cotovelos para baixo e para trás': quanto o cotovelo aponta para trás em relação a para baixo"},
   "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado no alto: a pilha já sai 2 cm do repouso"},
   "erro.tronco": {"v": -32, "un": "graus", "selo": "desenho", "fonte": "puxada", "o": "erro: o peito vai a 32° atrás da vertical no fim (a puxada unilateral usa 30°)"},
-  "erro.nuca.cervical": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço dobra 22° e a cabeça vai à frente, para a barra passar atrás dela"},
-  "erro.nuca.cabeca": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o queixo vai ao peito (10°)"},
-  "erro.nuca.acima": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o centro da barra fica 9 cm acima do centro dos ombros, atrás do pescoço"},
-  "erro.nuca.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: a barra passa a 2 cm da pele da nuca e do alto da cabeça"},
+  "erro.nuca.cervical": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço dobra 30° e a cabeça vai à frente, para a barra passar atrás dela e o cabo, que sobe da barra à roldana, passar por cima da cabeça (correção de 19/11/2026: com 22°, o cabo atravessava a cabeça no fim)"},
+  "erro.nuca.cabeca": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o queixo vai ao peito (16°; era 10° até a correção de 19/11/2026)"},
+  "erro.nuca.acima": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o centro da barra fica 12 cm acima do centro dos ombros, atrás do pescoço (era 9 cm até a correção de 19/11/2026)"},
+  "erro.nuca.folga": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: a barra passa a 5 cm da pele da nuca e do alto da cabeça (era 2 cm até a correção de 19/11/2026: com a barra rente à nuca, o cabo que sobe dela atravessava a cabeça)"},
   "erro.curta": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "puxada", "o": "erro: a volta só vai até a metade do caminho (45%), sem estender os braços (como na puxada unilateral)"}
  },
  "fases": [
@@ -50,7 +50,8 @@
   {"id": "tronco-quase-parado", "pede": "tronco reto e parado", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-barra-fora-do-corpo", "pede": "a barra passa à frente do rosto e chega ao peito sem atravessar o corpo", "selo": "desenho", "fonte": "desenho"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à barra, sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
-  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"}
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "tronco", "instante": 1, "titulo": "Deitar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco deita para trás enquanto a barra desce: o peso do corpo puxa no lugar das costas", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
