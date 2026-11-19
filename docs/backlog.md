@@ -511,6 +511,7 @@ O que sobrou do corte de texto (`devlog.md`, "Bem menos texto"; o registro das d
 ## Da verificação permanente (19/11/2026)
 
 O porquê e a manutenção estão em `verificacao/README.md`.
+- **Na `main` desde 19/11/2026** (`b55a98b`), com a verificação do GitHub passando pelo comando novo.
 - **Decidir se o portão do envio passa a barrar** (modo exigir em `scripts/verificacao/portao-envio.mjs`): depois de 2 a 3 semanas observando, conferir nos relatos das sessões quantos envios de código saíram sem o `verificar` e se houve alarme falso.
 - **A margem de 206 px como teste de verdade** (item 5 da lista): hoje é uma conferência do roteiro com `MARGEM=1`; vale uma folga mínima de alguns pixels nos cenários de zoom de 200%, para não depender de alguém olhar.
 - **Se o `verificar` passar de 10 min:** separar os testes de tela por área, para o roteiro rodar só os que o diff aciona antes do commit (o `verificar` inteiro continua antes de enviar).

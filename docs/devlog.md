@@ -2164,4 +2164,6 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 
 **Imagem.** Sem imagem: nada mudou nas telas (o botão que piscava durava um instante).
 
+**Na `main` (19/11/2026, com o ok do Gustavo).** Junção sem forçar (`b55a98b`; a mensagem dela diz 20/11 por engano). A verificação do GitHub rodou pela primeira vez com o comando novo e passou: o passo é um só, `npm run verificar`, e terminou com "tudo passou" (lint 10 s, tipos 17 s, unitários com cobertura 134 s, telas 551 s; 13 min no total, como antes). Lá a cobertura leva o dobro do tempo daqui (134 contra 68 s), o que confirma a lição de 17/11: medir os limites de tempo com a cobertura ligada.
+
 **Rascunho de post.** "Li como a equipe do Claude Code confere o trabalho que a IA faz. A ideia central: ninguém lê mais cada linha; a confiança vem de a IA provar que está certo antes de dizer 'pronto'. No meu app, as falhas que escaparam tinham a mesma cara: passou no meu computador, quebrou no servidor. A lição ficava anotada, e uma lição anotada depende de alguém lembrar. Agora o comando que eu rodo é o mesmo do servidor, e cada falha passada virou um item que dispara sozinho quando o arquivo dela muda. No primeiro dia, a verificação achou um teste que falhava 1 vez em 5. Não era azar: era um botão que piscava na tela por um instante."
