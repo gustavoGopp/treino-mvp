@@ -2139,3 +2139,29 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 >
 > Texto difícil esconde erro. Enquanto a regra estava em jargão, ninguém lia; quando virou uma frase simples, bastou ler.
 
+
+## Verificação permanente (19/11/2026)
+
+**O pedido.** O Gustavo pediu para avaliar dois textos da Anthropic (o artigo sobre como a equipe do Claude Code verifica o próprio trabalho e a página do Code Mode) e aplicar no projeto, de forma permanente, o que fizesse sentido. A avaliação inteira está em `verificacao/README.md`.
+
+**O veredito.** O artigo faz sentido, e o projeto já fazia boa parte (testes de tela, de propriedade e diferenciais; gabaritos que só mudam com o ok do Gustavo). O que faltava era transformar as lições que estavam no backlog em coisas que rodam sozinhas: as duas falhas de 13 e 17/11 vieram de "passou aqui, quebrou no GitHub". O Code Mode fica de fora: não funciona nas sessões na nuvem, onde o projeto é feito, e é experimental.
+
+**O que mudou** (decidido pela sessão):
+- **`npm run verificar`:** um comando só, que o GitHub também chama. Roda lint, tipos, unitários com cobertura e telas, do mais barato ao mais caro. Um teste falha se os dois voltarem a ser diferentes.
+- **O roteiro `verificar`** (`.claude/skills/verificar/SKILL.md`): o passo a passo que o Claude segue antes de dizer "pronto", inclusive abrir as telas mudadas no app de verdade.
+- **A lista de conferência pelo diff** (`verificacao/lista.md`): 12 itens, cada um com o gatilho, a conferência e a falha que o criou.
+- **Três ganchos** (`.claude/settings.json`): ao parar, o `check` roda sozinho se a sessão mudou código (3 rodadas e para); antes de enviar, o portão confere se o conteúdo passou pelo `verificar` (por enquanto só observa e avisa); regravar um gabarito pede confirmação na tela.
+- **`CLAUDE.md`** ganhou a seção "Verificação".
+
+**O que a verificação achou no primeiro dia.** Rodando os testes de tela para medir o tempo, um teste falhou no código da `main`. Repetido sozinho, falhava 1 vez em 5. Pela regra nova, teste que falha às vezes é defeito a investigar, não azar: a causa era do app. Ao tocar "Tentar de novo" no cartão de texto que não baixou, o botão "Recarregar o app" piscava por um instante antes da nova tentativa terminar. O teste via o botão e esperava uma recarga que não vinha. O conserto foi de uma linha, e o teste passou 15 de 15 vezes.
+
+| | Antes | Depois |
+|---|---|---|
+| O que roda antes de enviar | `npm run check` (sem cobertura, sem telas) | `npm run verificar`, igual ao GitHub |
+| Lições de falhas passadas | no backlog, dependendo de alguém lembrar | `verificacao/lista.md`, lida pelo roteiro a cada mudança |
+| Regravar gabarito | regra escrita | regra escrita e confirmação na tela |
+| Teste do cartão de texto | falhava 1 vez em 5 | 15 de 15 |
+
+**Imagem.** Sem imagem: nada mudou nas telas (o botão que piscava durava um instante).
+
+**Rascunho de post.** "Li como a equipe do Claude Code confere o trabalho que a IA faz. A ideia central: ninguém lê mais cada linha; a confiança vem de a IA provar que está certo antes de dizer 'pronto'. No meu app, as falhas que escaparam tinham a mesma cara: passou no meu computador, quebrou no servidor. A lição ficava anotada, e uma lição anotada depende de alguém lembrar. Agora o comando que eu rodo é o mesmo do servidor, e cada falha passada virou um item que dispara sozinho quando o arquivo dela muda. No primeiro dia, a verificação achou um teste que falhava 1 vez em 5. Não era azar: era um botão que piscava na tela por um instante."

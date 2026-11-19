@@ -40,7 +40,7 @@ MARGEM=1 node scripts/design/frontend-novo/olhar.mjs .verificacao/telas/estreita
 - Para um fluxo novo (tocar, preencher, voltar), escreva ou estenda um teste em `tests/e2e/`: ele vira a prova permanente do fluxo.
 - Para o motor: `npx playwright test --project=motor` e `npm run conferir:animacao`.
 
-## 5. Camada completa: `npm run verificar` (cerca de 5 a 6 min)
+## 5. Camada completa: `npm run verificar` (cerca de 8 min)
 
 O mesmo que a verificação do GitHub roda: lint, tipos, unitários **com cobertura** e todos os testes de tela, parando no primeiro erro. Obrigatório antes de enviar código e sempre antes de levar algo à `main`. Quando passa, carimba o conteúdo conferido, e o portão do envio reconhece o carimbo. Rode-o sem nada pesado em paralelo (outra rodada de testes, a auditoria): testes disputando o processador estouram limites de tempo.
 

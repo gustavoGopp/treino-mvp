@@ -51,4 +51,4 @@ Os ganchos ficam em `.claude/settings.json`, que vai junto com o repositório: v
 - **Padrão de revisão** só vira item depois de aparecer em pelo menos dois marcos.
 - **Podar:** no fechamento de cada marco, olhar a lista e tirar o que um teste já cobre ou o que não acionou nada há muito tempo.
 - **O portão do envio:** depois de 2 a 3 semanas em modo observar, olhar o `.verificacao/registro.log` das sessões (e o que o Claude relatou) e decidir se passa a barrar. Mudar o modo é uma linha em `portao-envio.mjs`, com o motivo no devlog.
-- **Tempo:** a camada barata leva cerca de 1,5 min; a completa, cerca de 5 a 6 min (medidas de 19/11/2026, numa sessão na nuvem). Se a completa passar de 10 min, vale separar os testes de tela por área para o roteiro rodar só os que o diff aciona.
+- **Tempo:** a camada barata leva cerca de 1,5 min; a completa, cerca de 8 min, dos quais 6,5 são os testes de tela (medidas de 19/11/2026, numa sessão na nuvem). Se a completa passar de 10 min, vale separar os testes de tela por área para o roteiro rodar só os que o diff aciona.
