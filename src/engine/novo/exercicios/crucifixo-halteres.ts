@@ -63,8 +63,19 @@ function deitar(corpo: Corpo): Deitado {
   // o banco é posto pela cabeça, como no supino reto
   const zTopoDaCabeca = noRef(t.cabeca, [0, m('cabeca.tragionAoTopo'), 0])[2];
   const zBanco = zTopoDaCabeca - f('cabeca.folgaNoBanco') + obj('bancoReto', 'comp') / 2;
-  return { t, pernas, prims: [chao(-110, 110, -90, 130), ...bancoReto(0, zBanco)], pecas: [{ t: 'bancoReto', x0: 0, z0: zBanco }] };
+  return { t, pernas, prims: [chao(-110, 110, -90, 130), ...bancoReto(0, zBanco)], pecas: [{ t: 'bancoReto', x0: 0, z0: zBanco, atras: BANCO_ATRAS }] };
 }
+/**
+ * O banco vai para trás na pintura (cm de profundidade). Os pés passam além da ponta do banco, na frente do pé e da
+ * travessa dele, e a perna de perto é pintada no item do corpo (pela média do tronco, que fica em cima do meio do banco):
+ * de três quartos ela ficava atrás do pé do banco, 27 cm mais perto de quem olha; de frente (nos erros), as duas pernas
+ * ficavam atrás das travessas e das sapatas. A estrutura vai para trás de tudo o que se cruza com ela (de frente, a
+ * travessa de perto era pintada 61,3 cm à frente das pernas; 70 deixa 8,5 de folga). O estofado vai só o bastante para
+ * ficar atrás do corpo deitado nele de três quartos (era pintado 6,4 cm à frente), mas continua à frente do braço de
+ * longe, que passa atrás dele (pintado 5 cm atrás do corpo): com 9 cm, 2,5 de folga para os dois lados. A regra
+ * crucifixo-halteres-banco-pintado-no-lugar mede, nos dois lados e nas três vistas.
+ */
+const BANCO_ATRAS = { estofado: 9, estrutura: 70 };
 
 const { quadro } = crucifixoDeitado(F, deitar);
 

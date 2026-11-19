@@ -59,3 +59,23 @@ O cartão tem três erros. Dois viraram desenho, na ordem do app (os do coice co
 - **As pontas dos pés passam da ponta de trás do colchonete** (100 cm, medida provisória da tabela), como no coice com elástico.
 - **As costas sobem 15,8° para os ombros** (as proporções com "mãos sob os ombros, joelhos sob o quadril"), como no coice com elástico.
 - **O rótulo "coxa na linha do tronco"** aponta para o joelho, que no começo está embaixo: o texto fala do fim do movimento (o mesmo do coice com elástico).
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (G2) achou que, de três quartos, o colchonete cobria o joelho e o começo da canela da perna de apoio, a de longe, em todo o ciclo. **Causa:** a mesma do coice com elástico: o colchonete é um item só, pintado pela profundidade do meio dele, e a perna de longe é pintada atrás do corpo.
+
+**O que mudou.** O colchonete liga a opção nova `noFundo` da peça comum (pintado na profundidade do canto mais longe), e `colchonete.recua` passou de −13 para −11 cm, como no coice com elástico (com −13, a ponta dos dedos passava 0,7 cm da ponta da frente do colchonete). A regra nova `coice-caneleira-colchonete-embaixo` mede, em cada vista do guia, quanto cada parte do corpo, dos dois lados, é pintada à frente do colchonete, e a folga da mão e do joelho que apoiam até a borda.
+
+**Antes → depois** (pior quadro, cm de pintura à frente do colchonete; negativo = coberto):
+
+| vista | tronco e perna direita | perna esquerda (a de apoio) | braço direito | braço esquerdo |
+|---|---|---|---|---|
+| três quartos | 29,0 → 75,8 | −23,3 → 23,5 | 36,5 → 83,3 | 10,7 → 57,5 |
+| lateral | 0,0 → 25,0 | −8,3 → 16,7 | 16,2 → 41,2 | −16,6 → 8,4 |
+| por trás (erro "Girar o quadril") | −28,2 → 21,8 | −28,2 → 21,8 | −35,3 → 14,7 | −35,4 → 14,6 |
+
+Mãos 1,3 cm para dentro da borda (antes, −0,7); joelhos 14,2 e 13,7. A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 3 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** O pé de apoio continua além da ponta de trás do colchonete (o pequeno da auditoria), agora 2 cm a mais: o colchonete de 100 cm (provisório) não cabe o corpo inteiro de quatro apoios.

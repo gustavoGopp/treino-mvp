@@ -5,11 +5,24 @@
 // ./rosca-scott.ts), o halter no alto e a outra mão. O limite vem do que a ficha pede, não do que a pose deu.
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
-import { bracoNaCoxa } from '../exercicios/rosca-concentrada';
+import { bracoNaCoxa, roscaConcentrada } from '../exercicios/rosca-concentrada';
 import { distanciaEntre } from '../exercicios/sentado-na-ponta';
 import { dist } from '../vec';
+import { partesDoHalter, regraDePintura } from './ordem-de-pintura';
 
 export const REGRAS_ROSCA_CONCENTRADA: Record<string, Regra> = {
+  // O halter (o cabo e as duas cabeças) contra o corpo, nos dois lados, em cada vista do guia (acréscimo de 19/11,
+  // auditoria das fases A e B): de lado, embaixo, o halter, que pende entre as pernas, era pintado por cima da canela de
+  // perto, que fica de 13 a 18 cm mais perto de quem olha. A mão fecha no cabo e não conta.
+  'rosca-concentrada-halter-pintado-no-lugar': regraDePintura({
+    exercicio: () => roscaConcentrada,
+    nome: 'o halter',
+    fora: ['mao', 'polegar'],
+    peca: (q) => {
+      const p = q.pecas?.find((x) => x.t === 'halter');
+      return p && p.t === 'halter' ? [{ peca: p, partes: partesDoHalter(p) }] : [];
+    },
+  }),
   'rosca-concentrada-braco-na-coxa': (q) => {
     // a cada 3 quadros: a parte de trás do braço encosta por dentro da coxa direita (não descola mais de meio
     // centímetro) e não a atravessa (amassa até 2,5 cm, a tolerância da conferência para o corpo no estofado); o

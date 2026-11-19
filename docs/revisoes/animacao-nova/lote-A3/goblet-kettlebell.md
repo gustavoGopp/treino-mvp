@@ -59,3 +59,15 @@ O kettlebell da tabela de objetos (modelo de competição, medidas de fabricante
 - **O rótulo "cotovelos entre os joelhos"** (de frente) aponta para o cotovelo também no quadro "Em pé", quando ele ainda está na altura do peito: o texto fala do fundo. É a dica do cartão ("Amplitude"); a outra opção era "joelho na direção do pé" do goblet aprovado, que não é dica deste cartão.
 - **De lado, o punho fica por cima da alça** e a alça não aparece (a mão a cobre): o kettlebell se lê pela bola. De frente a alça e as duas mãos aparecem.
 - **No erro "Tronco tomba" a lombar também dobra**, embora o cartão fale só do tronco: sem isso a pose seria impossível (o quadril passaria do que dobra). Está dito acima.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M3) achou que, de lado, embaixo, o kettlebell, que fica entre os joelhos, era pintado por cima do joelho de perto, que está 17,6 cm mais perto de quem olha. **Causa:** a bola empatava com o item do corpo (d = 0) e a haste de perto da alça ficava 0,2 cm à frente dele.
+
+**O que mudou.** Só no exercício: `viesNaVista` de lado traz o corpo (o tronco com as pernas de perto) 4 cm para a frente do kettlebell na pintura; o braço de perto, que segura a alça, continua 6,4 cm à frente do corpo. A regra nova `goblet-kettlebell-pintado-no-lugar` mede a bola, as duas hastes e a barra da alça contra cada parte do corpo, dos dois lados, nas duas vistas (as mãos, na alça, não contam).
+
+**Antes → depois** (pior quadro, cm de folga de pintura): de lado, a perna direita, que esconde o kettlebell, −0,2 → 3,8; a perna esquerda (atrás dele) 4,7 e o braço esquerdo 10,4, sem mudança. De frente, o tronco 18,9 e os braços 4,7, sem mudança. Em pé, a bola encostada no peito se desenha igual a antes (ela não se cruza com o tronco na tela). A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 3 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** No erro "Tronco tomba", os antebraços continuam entrando nas coxas (pequeno da auditoria, fora deste pedido).

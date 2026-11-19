@@ -47,7 +47,13 @@
   { "id": "crucifixo-cotovelos-na-altura-do-tronco", "pede": "embaixo: cotovelos mais ou menos na altura do tronco", "selo": "consenso", "fonte": "ficha" },
   { "id": "supino-inclinado-halteres-nao-batem", "pede": "em cima, sem encostar um halter no outro", "selo": "consenso", "fonte": "app" },
   { "id": "crucifixo-deitado-no-banco-reto", "pede": "cabeça, costas e glúteo apoiados no banco a série toda", "selo": "consenso", "fonte": "ficha" },
-  { "id": "carga-livre-do-corpo-e-do-banco", "pede": "o halter não bate no corpo nem no banco", "selo": "consenso", "fonte": "ficha" }
+  { "id": "carga-livre-do-corpo-e-do-banco", "pede": "o halter não bate no corpo nem no banco", "selo": "consenso", "fonte": "ficha" },
+  {
+   "id": "crucifixo-halteres-banco-pintado-no-lugar",
+   "pede": "deitado no banco reto, os pés no chão além da ponta dele: em todas as vistas, a parte do corpo (dos dois lados) que fica entre o banco e quem olha o esconde, e a que fica atrás dele é escondida por ele",
+   "selo": "desenho",
+   "fonte": "desenho"
+  }
  ],
  "erros": [
   { "id": "supino", "instante": 1, "titulo": "Dobrar e esticar os cotovelos", "vista": "frontal", "oQueMuda": "o cotovelo dobra 90° na descida e as mãos vêm para o lado do peito, como num supino; o peito sai da posição alongada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },

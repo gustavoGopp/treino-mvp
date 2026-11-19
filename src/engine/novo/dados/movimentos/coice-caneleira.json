@@ -60,11 +60,11 @@
    "o": "o pé em ângulo reto com a canela: no alto, a sola para o teto (o do coice com elástico)"
   },
   "colchonete.recua": {
-   "v": -13,
+   "v": -11,
    "un": "cm",
    "selo": "desenho",
    "fonte": "aprovada",
-   "o": "o meio do colchonete 13 cm atrás do meio entre as mãos e os joelhos: as mãos e os joelhos cabem nele (o do coice com elástico; o colchonete tem 100 cm, medida provisória da tabela)"
+   "o": "o meio do colchonete 11 cm atrás do meio entre as mãos e os joelhos: as mãos (com a ponta dos dedos) e os joelhos cabem nele (o do coice com elástico; o colchonete tem 100 cm, medida provisória da tabela)"
   },
   "erro.lombar.acima": {
    "v": 20,
@@ -156,6 +156,12 @@
   "pelve"
  ],
  "regras": [
+  {
+   "id": "coice-caneleira-colchonete-embaixo",
+   "pede": "as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
   {
    "id": "quatro-apoios-maos-e-joelhos",
    "pede": "em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete",

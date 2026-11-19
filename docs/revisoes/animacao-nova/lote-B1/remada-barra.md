@@ -61,3 +61,15 @@ Não há correção registrada para este exercício. Das remadas aprovadas: o tr
 - **De lado, a anilha de perto cobre as mãos e a barra cobre parte da coxa** no fim da puxada; a pegada fechada se vê na vista de três quartos, de trás.
 - **O caminho da barra é uma reta** da pendurada à barriga. De lado ela parece subir e voltar um pouco para trás, como na remada de verdade, mas não há fonte para a curva; ficou a reta.
 - **No erro "Puxar para o peito", de três quartos, o braço de longe some atrás do tronco**; o cotovelo aberto se lê pelo braço de perto.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (G8) achou que, de três quartos por trás, no fim da puxada, a barra, que está na frente da barriga, era pintada por cima do quadril e das coxas, como se passasse por trás da pessoa. **Causa:** a pegada da barra é um item só, pintado pela profundidade do meio dela; encostada na barriga, ela empatava com o item do tronco (pintado pela média das partes dele) e passava à frente da perna de longe.
+
+**O que mudou.** Só no exercício: `viesNaVista` de três quartos por trás traz o corpo inteiro (o tronco com as pernas de perto, a perna de longe e os dois braços, o mesmo tanto, para nada mudar entre eles) 10 cm para a frente da barra na pintura. A peça da barra não mudou e a anilha continua a de 5 kg, como o Gustavo aprovou. A regra nova `remada-barra-pegada-pintada-no-lugar` mede a pegada e as duas linhas da recartilha contra cada parte do corpo, dos dois lados, nas duas vistas (as mãos, que fecham em volta da barra, não contam).
+
+**Antes → depois** (pior quadro, cm de folga de pintura; negativo = ordem errada): de três quartos por trás, o tronco e a perna direita, que escondem a barra, −0,1 → 9,9; a perna esquerda, −7,0 → 3,0. De lado, nada se cruza com a pegada (fora as mãos). A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 2 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** De lado, a anilha de perto continua cobrindo as mãos (já estava na lista acima). As mangas e as anilhas não entram na regra: elas ficam fora do corpo e não se cruzam com ele na tela.

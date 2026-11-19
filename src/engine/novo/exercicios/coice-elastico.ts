@@ -97,7 +97,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   return {
     esq: e,
     prims: [chao(-70, 70, -90, 110), ...colchonete(0, zCol), ...fx.prims],
-    pecas: [{ t: 'colchonete', x0: 0, z0: zCol }, fx.peca],
+    pecas: [{ t: 'colchonete', x0: 0, z0: zCol, noFundo: true }, fx.peca],
     fios: [{ id: 'elastico', comp: l.comp, estica: true, objeto: 'elasticoLongo' }],
     cargas: [],
     marcas: { sola: l.sola, piso: [0, O.piso, 0] },

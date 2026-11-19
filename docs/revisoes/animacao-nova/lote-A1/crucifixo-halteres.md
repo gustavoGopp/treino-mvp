@@ -80,3 +80,25 @@ Nenhum erro ficou de fora: os quatro têm consequência visível.
 - **Erro "tirar as escápulas":** a diferença é pequena (o ombro sobe 3,5 cm), como no erro parecido do supino reto aprovado; quem mostra é a linha vermelha do ombro, mais que o corpo. O nome aponta para o cotovelo (no ombro, o quadro abria até 53%).
 - **Erro "bater os halteres":** de cima, o fio do título passa por cima da cabeça.
 - **Supinação de 72°:** é o que a pegada com as palmas uma para a outra pede com o cotovelo para fora; fica abaixo da média da tabela (87,5°), mas é mais que nos supinos. Vale o olho de quem conhece o movimento.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M1) achou que, de três quartos, a canela e o pé de perto apareciam atrás do pé (o poste e a travessa) do banco, embora estejam 27 cm mais perto de quem olha. **Causa:** a perna de perto é pintada no item do corpo, pela média do tronco, que fica em cima do meio do banco; o pé do banco, na ponta de perto, é pintado pela profundidade dele e passava à frente. Medindo, achei mais dois do mesmo tipo: de três quartos, o estofado era pintado 6,4 cm à frente do corpo deitado nele (cobria a borda de baixo das costas e o alto da coxa de perto); de frente (a vista dos erros), as duas pernas ficavam atrás das travessas e das sapatas, 61,5 cm na ordem errada.
+
+**O que mudou.**
+- A peça comum `bancoReto` ganhou a opção `atras` (desligada por padrão): quanto o estofado e a estrutura (a viga, os pés, as travessas e as sapatas) vão para trás na pintura. Só este exercício a liga: estofado 9 cm, estrutura 70 cm.
+- A regra nova `crucifixo-halteres-banco-pintado-no-lugar` mede cada parte do banco (o estofado, a viga, os dois pés, as duas travessas e as quatro sapatas, como caixas) contra cada parte do corpo, dos dois lados, nas três vistas do guia.
+
+**Antes → depois** (pior quadro, cm de folga de pintura; negativo = ordem errada):
+
+| vista | tronco | perna direita | perna esquerda | braço direito | braço esquerdo |
+|---|---|---|---|---|---|
+| três quartos | −6,5 → 2,5 (na frente) | −26,3 → 2,5 (na frente) | — | 11,9 → 20,9 (na frente) | 11,5 → 2,5 (atrás do estofado) |
+| de frente (erros) | — | −61,5 → 8,5 (na frente) | −61,5 → 8,5 (na frente) | — | — |
+| de cima | 10,7 → 19,7 | 10,7 → 19,7 | 10,7 → 19,7 | 49,9 → 58,9 | 49,9 → 58,9 |
+
+("—" = não se cruza com o banco na tela.) O estofado tem pouca margem de três quartos, 2,5 cm para cada lado: ele tem de ficar atrás do corpo deitado nele e na frente do braço de longe, que passa atrás dele, e o Boneco pinta o braço de longe só 5 cm atrás do corpo. A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 2 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** O rótulo "cotovelos fixos" continua apontando para o punho (pequeno da auditoria, fora deste pedido).

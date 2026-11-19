@@ -85,8 +85,20 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     fios: [],
     cargas: [{ massa, pos: centro }],
     marcas: { kettlebell: meio },
+    // De lado, o kettlebell (no meio, entre os joelhos embaixo) e o tronco com as pernas de perto (um item só, pintado
+    // pela média das partes) ficavam na mesma profundidade de pintura, e a bola e a haste de perto da alça saíam por
+    // cima do joelho de perto, que está 17,6 cm mais perto de quem olha. O corpo vem um pouco para a frente na pintura,
+    // ainda atrás do braço de perto (que segura a alça); a regra goblet-kettlebell-pintado-no-lugar mede, nos dois lados
+    // e nas duas vistas.
+    viesNaVista: { lateral: { corpo: VIES_DE_LADO } },
   };
 }
+/**
+ * Quanto o corpo vem para a frente do kettlebell na pintura, de lado (cm de profundidade): a haste de perto da alça era
+ * pintada 0,2 cm à frente do joelho de perto; com 4 cm, o joelho passa a ela com 3,8 cm de folga, e o braço de perto
+ * continua 6,4 cm à frente do corpo.
+ */
+const VIES_DE_LADO = 4;
 
 export const gobletKettlebell: Exercicio = {
   ficha: F,

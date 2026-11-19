@@ -54,3 +54,19 @@ As paralelas são a peça aprovada da elevação de joelhos nas paralelas (Body-
 - **De frente, a descida quase não aparece:** os cotovelos vão para trás e somem atrás do braço; a vista de frente serve aos ombros e ao peito. De três quartos a descida se lê melhor, mas o peito some (ver "As vistas").
 - **As pernas dobradas com os pés para trás** são escolha de desenho (a ficha não diz); com as barras a 132 cm, as pernas esticadas também não chegariam ao chão.
 - **No erro "Balançar"**, de lado, as pernas esticadas para a frente ficam desenhadas por cima do montante das paralelas (só sobreposição; elas não encostam nele).
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (M2) achou que, de lado, as pernas, que ficam entre as paralelas, apareciam na frente da coluna (o montante) da paralela de perto, que está 19 cm mais perto de quem olha. **Causa:** a estrutura das paralelas (os montantes até o chão e a base) ia inteira para a camada de cenário, pintada antes do corpo inteiro, para ficar fora do enquadramento.
+
+**A decisão, medida.** O corte de ilustração (o cenário atrás do corpo) seria a escolha certa se o montante de perto, na frente, escondesse uma parte grande do corpo. Medi por pixel (o corpo pintado numa cor só, 800 × 600): com a estrutura no lugar, o montante de perto esconde uma faixa da canela, 781 a 837 pixels a mais que o cenário, de 24 550 a 27 713 do corpo: 3,0% a 3,4%. As pernas continuam se lendo (a coxa, o joelho e o pé aparecem) e a faixa é o que uma foto mostraria. De frente, os montantes ficam atrás do corpo de qualquer jeito. Por isso a estrutura foi para o lugar dela na pintura.
+
+**O que mudou.**
+- A peça comum `paralelas` ganhou a opção `estruturaNoLugar` (desligada por padrão): a estrutura é pintada na profundidade de cada parte, com o corpo, e continua fora do enquadramento. A peça também exporta `partesDaEstrutura` (o eixo e o raio de cada parte, para as regras). Só este exercício liga a opção; a elevação de joelhos nas paralelas não muda.
+- A regra nova `mergulho-paralelas-pintadas-no-lugar` mede cada parte da estrutura (os trilhos e as travessas da base, os pés de borracha e, de cada lado, o montante, o tubo que desce até a base, o braço da frente e o tubo que desce dele) contra cada parte do corpo, dos dois lados, nas duas vistas.
+
+**Antes → depois** (pior quadro, de lado): a perna direita, escondida pelo montante de perto, era pintada atrás da estrutura inteira (cenário) → 25,4 cm à frente dela na ordem certa; a perna esquerda, 20,1 (ela esconde o montante de longe) e 30,7 (é escondida pelo de perto). De frente, nada se cruza com a estrutura. A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 2 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.** Nada que eu tenha visto nas duas vistas e nos três erros.

@@ -78,7 +78,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   // o cotovelo vai da dobra de cima à de baixo, sem tranco; a altura do corpo sai dele, com o corpo no prumo
   const balanco = erro === 'e2' ? f('erro.balanco.z') * Math.sin(Math.PI * u) ** 2 : 0;
   const e = corpoCom(corpo, u, mix(f('cotovelo.cima'), embaixo, u), erro, balanco);
-  const par = paralelas(0);
+  // a estrutura das paralelas no lugar dela na pintura: de lado, o montante da paralela de perto fica na frente das
+  // pernas (19 cm mais perto de quem olha), e não atrás delas (a regra mergulho-paralelas-pintadas-no-lugar mede)
+  const par = paralelas(0, { estruturaNoLugar: true });
   const eixo = eixosDasParalelas(0);
   return {
     esq: e,
