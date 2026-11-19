@@ -4,7 +4,7 @@
 // cena, e devolvida como itens de pintura, para se misturar com o Boneco na ordem certa de profundidade.
 import type { Camera, Item } from './desenho';
 import type { Peca, Torre } from './pecas';
-import { centroDaRoldana } from './pecas';
+import { centroDaRoldana, medidasDoColchonete } from './pecas';
 import { MAT, cena as cenaRealista, mix, retArred } from './realista/base.mjs';
 import type { CenaRealista } from './realista/base.mjs';
 import { obj } from './tabelas';
@@ -58,9 +58,8 @@ function bancoReto(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'bancoR
   if (comSombra) C.sombra(p.x0, p.z0, baseL, comp / 2 + 8, 0.18);
 }
 function colchonete(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'colchonete' }>): void {
-  const comp = obj('colchonete', 'comp'),
-    larg = obj('colchonete', 'larg'),
-    esp = obj('colchonete', 'esp'),
+  // `comprido` (acréscimo de 19/11): as medidas do colchonete medido, em vez das da tabela
+  const { comp, larg, esp } = medidasDoColchonete(p),
     r = 3;
   if (!p.noFundo) return C.prisma(retArred(larg, comp, r, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, esp, 0], M.plataforma);
   // `noFundo`: na profundidade do canto mais longe de quem olha (no gerador, o maior z: o centro do arredondado mais
@@ -277,7 +276,27 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
       const primeiro = r.itens.findIndex((it) => it.camada >= 1);
       junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
     }
-    else if (p.t === 'colchonete') junta(desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p)));
+    else if (p.t === 'colchonete') {
+      const r = desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p));
+      if (p.noQuadro === undefined) return junta(r);
+      // `noQuadro` (acréscimo de 19/11): só o trecho do meio, com esse comprimento, conta para o enquadramento; as
+      // pontas do colchonete comprido podem ser cortadas pela borda do quadro
+      const { larg, esp } = medidasDoColchonete(p);
+      const cx: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+      for (const x of [-1, 1])
+        for (const y of [0, esp])
+          for (const z of [-1, 1]) {
+            const q: V3 = [p.x0 + (x * larg) / 2, y, p.z0 + (z * p.noQuadro) / 2];
+            const tx = dot(q, cam.dir),
+              ty = -dot(q, cam.cima);
+            cx[0] = Math.min(cx[0], tx);
+            cx[1] = Math.min(cx[1], ty);
+            cx[2] = Math.max(cx[2], tx);
+            cx[3] = Math.max(cx[3], ty);
+          }
+      const primeiro = r.itens.findIndex((it) => it.camada >= 1);
+      junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
+    }
     else if (p.t === 'torre') {
       if (!torreNaVista(p, cam)) return;
       const a = desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)),

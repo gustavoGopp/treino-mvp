@@ -9,10 +9,9 @@ import ficha from '../dados/movimentos/coice-caneleira.json';
 import type { Esq, PosePerna, Tronco } from '../esqueleto';
 import { daFicha, fichaSchema } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
-import { chao, colchonete } from '../pecas';
+import { chao, colchonete, medidasDoColchonete } from '../pecas';
 import { caneleira, caneleiraNaPerna } from '../pecas-de-cena/caneleira';
 import type { Corpo } from '../tabelas';
-import { obj } from '../tabelas';
 import { girar, mix, mul, norm } from '../vec';
 import type { V3 } from '../vec';
 import { calibrarQuatroApoios, emQuatroApoios } from './quatro-apoios';
@@ -21,7 +20,9 @@ import type { OpcoesQuatroApoios } from './quatro-apoios';
 const F = fichaSchema.parse(ficha);
 const f = daFicha(F);
 const rad = Math.PI / 180;
-const O: OpcoesQuatroApoios = { piso: obj('colchonete', 'esp'), maosMeia: f('maos.meiaDistancia'), cotovelo: f('cotovelo'), lombar: f('lombar'), cervical: f('cervical') };
+// o colchonete comprido, o medido (acréscimo de 19/11: o da tabela, de 100 cm, deixava o pé de apoio fora)
+const COLCHONETE = medidasDoColchonete({ comprido: true });
+const O: OpcoesQuatroApoios = { piso: COLCHONETE.esp, maosMeia: f('maos.meiaDistancia'), cotovelo: f('cotovelo'), lombar: f('lombar'), cervical: f('cervical') };
 
 /** Uma direção no plano de lado do corpo: 0° = para baixo, 90° = para trás (para os pés), 180° = para cima. */
 const dir = (graus: number): V3 => [0, -Math.cos(graus * rad), -Math.sin(graus * rad)];
@@ -36,17 +37,19 @@ function coxaEm(corpo: Corpo, u: number, erro?: string): { atras: number; abre: 
 }
 
 /** A perna que trabalha: a coxa `atras` graus atrás da vertical (e `abre` para fora), o joelho dobrado, o pé em ângulo reto. */
-function pernaQueTrabalha(atras: number, abre: number): PosePerna {
+function pernaQueTrabalha(atras: number, abre: number, pf: number): PosePerna {
   // a perna inteira gira `abre` graus em volta da vertical, para fora (para −x, o lado de fora da perna direita)
   const fora = (d: V3): V3 => norm(girar(d, [0, 1, 0], abre));
   const fi = atras + f('joelho');
-  return { coxa: fora(dir(atras)), canela: fora(dir(fi)), peDir: fora(dir(fi - 90 + f('pe.flexaoPlantar'))), polo: fora(dir(atras - 90)) };
+  return { coxa: fora(dir(atras)), canela: fora(dir(fi)), peDir: fora(dir(fi - 90 + pf)), polo: fora(dir(atras - 90)) };
 }
 
 function esqueleto(corpo: Corpo, u: number, erro?: string): Esq {
   const { atras, abre } = coxaEm(corpo, u, erro);
   const d = { bacia: erro === 'lombar' ? f('erro.lombar.bacia') * u : 0, rola: erro === 'gira' ? f('erro.gira.rola') * u : 0 };
-  return emQuatroApoios(corpo, O, (_t: Tronco) => pernaQueTrabalha(atras, abre), d);
+  // o pé: solto no começo (a ponta não entra no colchonete) e em ângulo reto com a canela no alto (acréscimo de 19/11)
+  const pf = mix(f('pe.flexaoPlantar.inicio'), f('pe.flexaoPlantar'), u);
+  return emQuatroApoios(corpo, O, (_t: Tronco) => pernaQueTrabalha(atras, abre, pf), d);
 }
 
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
@@ -58,8 +61,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const zCol = c.zMao / 2 + f('colchonete.recua');
   return {
     esq: e,
-    prims: [chao(-70, 70, -90, 110), ...colchonete(0, zCol), ...peca.prims],
-    pecas: [{ t: 'colchonete', x0: 0, z0: zCol, noFundo: true }, peca.peca],
+    prims: [chao(-70, 70, zCol - COLCHONETE.comp / 2 - 10, zCol + COLCHONETE.comp / 2 + 10), ...colchonete(0, zCol, true), ...peca.prims],
+    pecas: [{ t: 'colchonete', x0: 0, z0: zCol, noFundo: true, comprido: true, noQuadro: f('colchonete.noQuadro') }, peca.peca],
     fios: [],
     cargas: [{ massa: f('caneleira.massa'), pos: can.centro }],
     marcas: { piso: [0, O.piso, 0], caneleira: can.centro, caneleiraRaio: [can.raio, 0, 0] },

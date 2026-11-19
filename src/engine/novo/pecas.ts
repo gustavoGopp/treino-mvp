@@ -167,7 +167,24 @@ export type Peca =
    * três quartos o meio ficava mais perto de quem olha que o corpo de quatro apoios, e o colchonete cobria os joelhos,
    * as canelas, os pés e as mãos que estão em cima dele (o coice, na auditoria das fases A e B).
    */
-  | { t: 'colchonete'; x0: number; z0: number; noFundo?: boolean }
+  | {
+      t: 'colchonete';
+      x0: number;
+      z0: number;
+      noFundo?: boolean;
+      /**
+       * `comprido` (acréscimo de 19/11, desligado por padrão): o colchonete de exercício medido
+       * (./dados/objetos/colchonete-comprido.json: comprimento, largura e espessura do mesmo modelo), e não o da tabela
+       * (100 × 50 × 1,5 cm, provisório), curto para o corpo de quatro apoios (no coice, o pé de apoio ficava fora).
+       */
+      comprido?: boolean;
+      /**
+       * `noQuadro` (acréscimo de 19/11, desligado por padrão): o comprimento (cm), em volta do meio do colchonete, que
+       * conta para o enquadramento. O colchonete comprido passa do corpo nas duas pontas, e de três quartos ele
+       * deixava o corpo pequeno no quadro; as pontas que sobram podem ser cortadas pela borda do quadro.
+       */
+      noQuadro?: number;
+    }
   /** Kettlebell: o centro da base, o eixo que vai da base à alça e o eixo que atravessa a alça (de uma haste à outra). */
   | { t: 'kettlebell'; base: V3; cima: V3; lado: V3 }
   /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */
@@ -275,10 +292,16 @@ export function estribo(pegada: V3, eixo: V3, paraOCabo: V3): { prims: Prim[]; e
   };
 }
 
-export function colchonete(x0: number, z0: number): Prim[] {
-  const c = obj('colchonete', 'comp') / 2,
-    l = obj('colchonete', 'larg') / 2,
-    e = obj('colchonete', 'esp') / 2;
+/** As medidas do colchonete (cm): o da tabela ou, com `comprido` (acréscimo de 19/11), o medido. */
+export function medidasDoColchonete(o: { comprido?: boolean } = {}): { comp: number; larg: number; esp: number } {
+  const id = o.comprido ? 'colchoneteComprido' : 'colchonete';
+  return { comp: obj(id, 'comp'), larg: obj(id, 'larg'), esp: obj(id, 'esp') };
+}
+export function colchonete(x0: number, z0: number, comprido = false): Prim[] {
+  const m = medidasDoColchonete({ comprido });
+  const c = m.comp / 2,
+    l = m.larg / 2,
+    e = m.esp / 2;
   return [caixaReta([x0, e, z0], [l, e, c], 'tapete', -50)];
 }
 export const chao = (x0: number, x1: number, z0: number, z1: number): Prim => ({ t: 'chao', y: 0, x0, x1, z0, z1, cls: 'chao' });

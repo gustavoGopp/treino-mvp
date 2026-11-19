@@ -86,3 +86,43 @@ Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/no
 **O que ainda não ficou bom.**
 - **O elástico passa por cima da canela de perto em alguns quadros**, de três quartos por trás no começo: o trecho que vai da borda de dentro da sola até a mão esquerda, por baixo do corpo, é pintado pedaço a pedaço pela profundidade de cada um e sai por cima da canela direita, que está na frente dele. Antes o colchonete cobria esse lugar e escondia o defeito; agora ele aparece (uns 10 cm de faixa sobre a canela, que se lê como a faixa enrolada no pé). Não mexi na faixa, que é outra peça; fica para quem fizer a próxima rodada.
 - **O pé de apoio continua além da ponta de trás do colchonete**, 1,7 cm acima do chão (o pequeno da auditoria): com o colchonete 2 cm mais para a frente, passa 2 cm a mais. O colchonete de 100 cm (medida provisória da tabela) não cabe o corpo de quatro apoios dos dedos das mãos aos pés.
+
+## Correção de 19/11 (colchonete)
+
+Os dois pontos que a correção da auditoria deixou: o colchonete de 100 cm (medida provisória da tabela) não cabia o corpo de quatro apoios, e o pé de apoio ficava além da ponta de trás, 1,7 cm acima do chão; e, de três quartos por trás, o trecho do elástico que passa entre as pernas era pintado por cima da canela de perto.
+
+**O colchonete.** Medida lida na página pública do fabricante, sem login: Gaiam Essentials Fitness Mat (10 mm), colchonete de exercício de espuma NBR, "72" x 23.6" x 10mm thick" (https://www.gaiam.com/products/gaiam-essentials-fitness-mat-10mm, lida em 19/11/2026; a outra versão do mesmo colchonete na loja dá 24 × 72 pol). Fica em `src/engine/novo/dados/objetos/colchonete-comprido.json` (`colchoneteComprido`): **182,9 × 59,9 × 1 cm**, as três com tipo `medida`.
+- A peça comum `colchonete` ganhou a opção `comprido` (desligada por padrão; `pecas.ts`, com `medidasDoColchonete`, e o desenho em `equipamento.ts`): com ela, a peça usa as três medidas do colchonete medido. As outras dez animações aprovadas que usam o colchonete não ligam a opção e não mudam (o preparo delas é o mesmo; só os dois coices mudaram).
+- Os dois coices ligam a opção. O corpo apoia no tampo de 1 cm (antes, 1,5): fica 0,5 cm mais baixo, com as mesmas contas.
+- `colchonete.recua` passou de −11 para −25 cm: o colchonete fica sob o meio do corpo, com 28,6 cm de sobra à frente da ponta dos dedos e 28,6 cm atrás da ponta do pé de apoio; dos lados, 7,2 cm além da mão.
+- O colchonete inteiro deixava o corpo 10% menor no quadro de três quartos por trás. A peça ganhou também a opção `noQuadro` (desligada por padrão; `equipamento.ts`): só o trecho do meio, com o comprimento dado, conta para o enquadramento. Linha nova `colchonete.noQuadro` (140 cm, desenho: os ~126 cm das pontas dos dedos às pontas dos pés de apoio, mais 7 cm de cada lado). Contra o quadro de antes (com o colchonete de 100 cm), a largura da cena de lado foi de 217,6 para 205,9 cm (o corpo 5% maior), e a de três quartos por trás, de 152 para 158,4 cm (o corpo 4% menor).
+- A ponta do pé que trabalha, no começo, entrava 0,8 cm no chão (o pé em ângulo reto com a canela); com o colchonete embaixo dela, entraria 2,3 cm nele. Linha nova `pe.flexaoPlantar.inicio` (15°, desenho): no começo o tornozelo fica solto, o pé vai 15° além do ângulo reto e volta a ele no alto; a ponta fica 0,6 cm acima do tampo.
+
+**O elástico atrás da canela de perto.** A faixa é pintada pedaço a pedaço, cada um na profundidade do meio dele; o Boneco pinta o tronco, a bacia, a cabeça e as pernas de perto num item só, na profundidade do tronco. De três quartos por trás, o meio do trecho entre as pernas fica mais perto de quem olha que o tronco, e ele saía por cima da canela de perto. A peça da faixa (`pecas-de-cena/elastico-longo.ts`) ganhou a opção `profundidade` (desligada por padrão: as outras animações com a faixa não mudam), e este exercício a usa (`pinturaDaFaixa`): para cada parte do Boneco, dos dois lados, conta-se em quantos pontos do pedaço ela fica na frente dele e em quantos atrás (um raio até quem olha, como na regra de pintura); o pedaço vai para trás do item de cada parte que o esconde e para a frente do item de cada parte que ele esconde, com meio centímetro de folga, nas profundidades em que o app pinta esses itens. A palma (em cima das pontas do laço) e o pé (o laço dá a volta na sola, encostado nela) não contam, aqui e na regra. `realista/base.d.mts` passou a declarar o `rot` que `base.mjs` já tinha.
+
+**A regra `coice-elastico-colchonete-embaixo`, ampliada.** Mede também, nos dois lados: a folga até a borda do resto da canela e do pé que encostam no tampo (até 1,5 cm acima dele); a altura do ponto mais baixo de cada pé sobre o que está embaixo dele (o tampo, dentro das bordas, ou o chão), com o pé de apoio de −1 a 1 cm e o outro sem afundar mais de 1 cm; e a pintura do elástico contra cada parte do Boneco, em cada vista do guia (`regraDePintura`, de `regras/ordem-de-pintura.ts`). Ela falha no estado antigo (com a regra nova e os arquivos do exercício e da ficha de antes) e passa no novo.
+
+**Antes → depois** (pior quadro do ciclo e dos erros):
+
+| medida | antes | depois |
+|---|---|---|
+| colchonete | 100 × 50 × 1,5 cm (provisório) | 182,9 × 59,9 × 1 cm (medido) |
+| pé esquerdo (de apoio): folga até a borda | −9,2 cm (além da ponta de trás; a ponta do pé 24,4 cm além, na auditoria) | 19,7 cm |
+| pé esquerdo: ponto mais baixo sobre o que está embaixo | 1,7 a 1,8 cm (no ar, sobre o chão) | 0,2 a 0,3 cm (no tampo) |
+| canela esquerda: folga até a borda | −7,9 cm | 19,7 cm |
+| pé direito (o que trabalha), no começo | 25 cm além da ponta, 0,8 cm dentro do chão | 19,5 cm dentro, 0,6 cm acima do tampo |
+| mãos / joelho direito / joelho esquerdo | 1,3 / 14,2 / 13,7 cm | 7,8 / 19,2 / 18,7 cm |
+| elástico contra a perna direita (de perto), "na frente" | lateral −1,7; três quartos de trás −55,3; por trás (erro "Girar o quadril") −70,6 | 0,5 nas três |
+| elástico contra a perna esquerda, "na frente" (por trás) | −32,3 | 8,8 |
+| elástico contra o braço direito, "na frente" | −0,6 / −1 / −5,3 | 0,5 / 0,5 / 0,5 |
+| colchonete por baixo de tudo (o pior grupo) | 8,4 (braço esquerdo, de lado) | 13,3 |
+
+(Nas linhas de pintura, cm de profundidade de pintura; negativo = na ordem errada; "na frente" = a parte esconde o elástico.) **Conferência automática: 0 falha e os mesmos 4 avisos** (no 4º, as linhas novas `pe.flexaoPlantar.inicio` e `colchonete.noQuadro` entram na lista das escolhas de desenho). `node scripts/animacao-nova/preparo.mjs conferir`: só os dois coices mudaram.
+
+**Olhei** cada vista e cada erro, nos dois lados (de lado, três quartos de trás, por trás no erro de girar, e as de cor de pele): o colchonete cabe o corpo inteiro, o pé de apoio fica no tampo, e, de três quartos por trás, o trecho entre as pernas some atrás da canela de perto e volta a aparecer entre o joelho e a mão esquerda.
+
+**O que ainda não ficou bom.**
+- **O colchonete comprido passa do corpo** (vai de 92 cm atrás a 91 cm à frente do meio do corpo): de três quartos por trás, o corpo ficou 4% menor no quadro que antes, e a ponta do colchonete chega perto da borda do quadro.
+- **No desenho de cor de pele, por trás, no erro de girar o quadril**, o cabelo entra no item do tronco e muda a profundidade dele: em alguns pedaços do elástico que correm por baixo da perna levantada e passam na frente do braço direito, não há profundidade que sirva aos dois desenhos. Vale a do cinza (o dos erros, e o que a regra mede).
+- **Onde o laço dá a volta na sola** e onde ele passa sob a palma, a mesma parte do corpo fica na frente e atrás do mesmo pedaço; a pintura e a regra deixam o pé e a palma de fora.
+- O que já estava na lista e segue igual: as costas sobem 15,8° para os ombros, o rótulo "coxa na linha do tronco" aponta para o joelho embaixo no começo, e o erro de girar, de trás, é o quadro mais carregado.
