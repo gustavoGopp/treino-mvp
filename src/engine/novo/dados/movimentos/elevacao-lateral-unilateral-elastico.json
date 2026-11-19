@@ -51,7 +51,8 @@
   {"id": "elastico-livre-do-corpo", "pede": "o tubo passa à frente das pernas e do corpo sem entrar neles", "selo": "desenho", "fonte": "objetos"},
   {"id": "elastico-unilateral-cruza-a-frente", "pede": "o elástico sai de sob o pé do lado oposto e cruza à frente do corpo até a mão", "selo": "consenso", "fonte": "ficha"},
   {"id": "elastico-unilateral-na-mao-que-trabalha", "pede": "a ponta do elástico na mão que trabalha; a outra mão solta", "selo": "consenso", "fonte": "app"},
-  {"id": "elastico-unilateral-esticado-desde-embaixo", "pede": "o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante", "selo": "desenho", "fonte": "ficha"}
+  {"id": "elastico-unilateral-esticado-desde-embaixo", "pede": "o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante", "selo": "desenho", "fonte": "ficha"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "encolher", "instante": 1, "titulo": "Encolher o ombro", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: o ombro vai em direção à orelha", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},

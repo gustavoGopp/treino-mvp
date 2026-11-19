@@ -210,6 +210,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     cargas: [],
     marcas: { mao: pR, maoL: pL, trechoLivre: [entre, c.repouso, 0] },
     vies: { maoR: 1, maoL: 1 },
+    // de cima, a cabeça fica dentro da silhueta dos ombros e o contorno único do Boneco não a desenhava (sobrava só o
+    // calombo do rosto; auditoria de 18/11, G4): ela ganha o contorno próprio por cima do corpo (`cabeca`, opção do Boneco)
+    viesNaVista: { cima: { cabeca: 1 } },
   };
 }
 

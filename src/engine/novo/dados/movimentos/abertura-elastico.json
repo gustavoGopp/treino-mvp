@@ -48,7 +48,8 @@
   {"id": "tronco-quase-parado", "pede": "o corpo parado: só os braços abrem", "selo": "consenso", "fonte": "app"},
   {"id": "elastico-nas-maos", "pede": "o elástico seguro com a mão inteira, uma ponta em cada mão", "selo": "consenso", "fonte": "app"},
   {"id": "elastico-livre-do-corpo", "pede": "o elástico não encosta no corpo", "selo": "desenho", "fonte": "objetos"},
-  {"id": "elastico-bracos-juntos", "pede": "os dois braços abrem juntos", "selo": "consenso", "fonte": "app"}
+  {"id": "elastico-bracos-juntos", "pede": "os dois braços abrem juntos", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cotovelos", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos dobram e vão para trás: vira uma remada, e o ombro de trás trabalha menos", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

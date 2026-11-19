@@ -75,3 +75,4 @@ export { REGRAS_BANCO_ROMANO } from './banco-romano';
 export { REGRAS_BANCO_DECLINADO } from './banco-declinado';
 export { REGRAS_MAQUINAS_DE_BRACO } from './maquinas-de-braco';
 export { REGRAS_AVULSOS_C3 } from './avulsos-c3';
+export { REGRAS_VISTAS_DO_GUIA } from './vistas-do-guia';
