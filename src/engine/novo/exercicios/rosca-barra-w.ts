@@ -151,9 +151,25 @@ function calcular(corpo: Corpo): Calibrado {
   return { pelve, abre, cotBaixo };
 }
 
+/**
+ * Correção de 19/11/2026: no erro "Balançar o tronco", o tronco começa 10° inclinado à frente, os braços vão com ele e,
+ * com o cotovelo do movimento certo, a barra entrava 1,3 cm nas coxas. Embaixo, nesse erro, o cotovelo dobra o que a
+ * barra precisa para passar à mesma folga das coxas (`barra.folga`), como no movimento certo.
+ */
+function cotoveloEmbaixoNoBalanco(corpo: Corpo): number {
+  return calibragem(corpo, 'rosca-barra-w:balanco-embaixo', () => {
+    const c = calibrar(corpo);
+    const folga = (cot: number) => {
+      const e = montarEmPe(corpo, pedidoDoCorpo(cot, c.abre, 0, 'balanco'), c.pelve);
+      return folgaDasPernas(e, esferasDaBarra(e)) - f('barra.folga');
+    };
+    return folga(c.cotBaixo) >= 0 ? c.cotBaixo : resolver1(folga, c.cotBaixo, 60, 26);
+  });
+}
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const c = calibrar(corpo);
-  const baixo = erro === 'curta' ? f('erro.curta.cotovelo') : c.cotBaixo;
+  const baixo = erro === 'curta' ? f('erro.curta.cotovelo') : erro === 'balanco' ? cotoveloEmbaixoNoBalanco(corpo) : c.cotBaixo;
   const e = montarEmPe(corpo, pedidoDoCorpo(mix(baixo, f('cotovelo.cima'), u), c.abre, u, erro), c.pelve);
   const B = barraDe(e);
   const pb = barraW(B);

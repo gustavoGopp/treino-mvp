@@ -64,3 +64,22 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **A anilha de 5 kg tapa a mão de perto, de lado, embaixo**, como numa foto de rosca com barra; não troquei a anilha porque a de 45 cm taparia mais.
 - **As juntas da curva** são trechos retos que passam um pouco da dobra (cilindros sobrepostos): de perto, numa dobra se vê um pequeno degrau. Na cena, no tamanho do celular, não aparece.
 - **A curva da peça foi ajustada pela animação** (as dobras onde a mão cai com o braço junto do tronco); como os números da curva já eram de desenho, nenhuma medida de fabricante mudou, mas a peça e a rosca ficam presas uma à outra até alguém achar a medida.
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no começo do erro "Balançar o tronco"**, o tronco começa 10° inclinado à frente e os braços vão com ele: com o cotovelo do movimento certo embaixo (13,9°), **a barra entrava 1,3 cm nas coxas** (1,4 cm pela checagem da pintura).
+
+**A mudança.**
+
+- Nesse erro, embaixo, o cotovelo dobra o que a barra precisa para passar à mesma folga das coxas que no movimento certo (`barra.folga`, 0,5 cm): 18,3°, calibrado e guardado no preparo (`rosca-barra-w:balanco-embaixo`). Daí ele sobe como antes.
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a barra entra nas coxas (erro "Balançar o tronco", começo) | 1,3 cm | 0 cm |
+| cotovelo embaixo, no erro | 13,9° | 18,3° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (1,3 cm, na coxa direita, no erro "Balançar o tronco"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/rosca-barra-w-peso.png`; os quadros grandes foram regravados (`quadros/rosca-barra-w.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **1 falha e 2 avisos** (antes: 2 falhas e 2 avisos, entre elas a de pesos).
+
+**O que ainda não ficou bom.**
+- A falha que sobra é de antes: de três quartos, no começo do erro "Balançar o tronco", a coxa direita é pintada por cima de um pedaço da barra, que está na frente dela (2,3 cm², em 3 quadros). A barra não entra mais na coxa, mas de três quartos ainda pode parecer encostada nela. Não corrigi a ordem de pintura.

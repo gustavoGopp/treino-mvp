@@ -46,10 +46,21 @@ export function noPlano(a: number, p: number) {
   return { umero, sobe, frente };
 }
 
+export interface OpcoesDaElevacao {
+  /** O id do halter na tabela de objetos (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb). */
+  halter?: string;
+  /**
+   * Opcional (correção de 19/11/2026, a elevação com halteres): no erro "Balançar o tronco", o braço começa na elevação
+   * em que a carga fica à mesma folga da coxa que no movimento certo (`carga.folga`), calibrada com o tronco inclinado e os
+   * joelhos dobrados do começo do erro. Sem o campo, o braço começa na elevação do movimento certo (medida com o tronco
+   * em pé), e a cabeça do halter entrava 6,7 cm na coxa, que vem para a frente com o joelho dobrado. Sem o campo, nada muda.
+   */
+  folgaNoBalanco?: boolean;
+}
 /**
  * `opcoes.halter`: o id do halter na tabela de objetos (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb).
  */
-export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: { halter?: string } = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
+export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: OpcoesDaElevacao = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const polia = maos === 'polia';
@@ -172,6 +183,19 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
     if (polia) c.rep = montar(corpo, 0).comp;
     return c;
   }
+  /**
+   * (opção `folgaNoBalanco`) A elevação do braço no começo do erro "Balançar o tronco": a carga à folga pedida da pele da
+   * coxa, com o tronco inclinado e os joelhos dobrados do começo do erro.
+   */
+  function inicioDoBalanco(corpo: Corpo): number {
+    return calibragem(corpo, `${F.id}:inicio-do-balanco`, () => {
+      const base: Omit<Pedido, 'a'> = { ...pedidoBase(0), tronco: f('erro.balanco.frente'), lombar: 0, joelho: f('erro.balanco.joelho') };
+      return resolver1((a) => {
+        const e = pose(corpo, { ...base, a }).e;
+        return folgaDasPernas(e, LADOS_QUE_SOBEM.flatMap((k) => esferas(e, k))) - f('carga.folga');
+      }, 0, 60, 22);
+    });
+  }
   /** O braço passa do plano de baixo para o da subida logo no começo (até 40% do caminho), sem tranco. */
   const noPlanoDeSubida = (u: number) => suave(Math.min(1, u / f('plano.transicao')));
   function pedidoBase(u: number): Omit<Pedido, 'a'> {
@@ -188,6 +212,8 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
       p.lombar = f('erro.balanco.lombar') * u;
       p.joelho = mix(f('erro.balanco.joelho'), f('joelho'), u);
       p.alfa = undefined;
+      // (opcional) o braço começa à folga da coxa com o tronco inclinado e os joelhos dobrados
+      if (opcoes.folgaNoBalanco) p.a = mix(inicioDoBalanco(corpo), f('braco.topo'), u);
     }
     return p;
   }

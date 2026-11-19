@@ -63,3 +63,23 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **O rótulo "cotovelos para o teto"** tem o fio passando pelo antebraço no quadro de cima (os dois ficam quase em linha).
 - **O fim da descida depende do chão:** no banco, a amplitude seria maior. Se o Gustavo preferir a versão no banco, a pose de baixo muda.
 - **O colchonete** tem as medidas provisórias da tabela (100 × 50 cm).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no fim do erro "Ir até a falha"**, o halter entrava **2,8 cm na cabeça** (3,9 cm pela checagem da pintura). Os antebraços tombam para o meio até o halter ficar a 1 cm da testa, mas essa folga era medida entre pontos soltos do halter e os 12 pontos de cada anel da cabeça, e o halter passava entre eles.
+
+**A mudança.**
+
+- A folga do erro (`erro.falha.folga`, 1 cm) passa a ser medida na superfície: o maior giro dos antebraços para o meio em que os halteres, engordados de 1 cm para todos os lados, não entram no corpo (pela regra `peso-fora-do-corpo`). No corpo do app, os antebraços tombam 10,5° para o meio, e não 18,1°; o halter desce rente à testa, a 1 cm dela.
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| o halter entra na cabeça (erro "Ir até a falha", fim) | 2,8 cm | 0 cm (a 1 cm da pele) |
+| giro dos antebraços para o meio | 18,1° | 10,5° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (2,8 cm, na cabeça, no erro "Ir até a falha"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/triceps-testa-halteres-peso.png`; os quadros grandes foram regravados (`quadros/triceps-testa-halteres.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **1 falha e 1 aviso** (antes: 2 falhas e 1 aviso, entre elas a de pesos).
+
+**O que ainda não ficou bom.**
+- A falha que sobra é de antes e não é do peso: de três quartos, o colchonete é pintado por cima do tronco, da bacia e da coxa direita, que estão na frente dele. Não corrigi (fora deste trabalho).
+- O erro ficou um pouco menos marcado de cima (os halteres se juntam menos sobre a testa).

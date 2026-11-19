@@ -76,3 +76,22 @@ O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado 
 | eixo do tórax e quem olha (mínimo); contorno da cabeça dentro da silhueta (máximo); a cabeça à frente do tronco (máximo) | 13,3°; 45,1%; 11,2 cm | iguais (a pose não mudou) |
 
 No estado de antes, com a regra na ficha, a conferência dá 1 falha (esta regra). No estado novo: 0 falhas e os mesmos avisos de antes. O antes e depois está em `correcao-das-antigas/elevacao-halteres.png`; os quadros grandes foram regravados (`quadros/elevacao-halteres.png`).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no começo do erro "Balançar o tronco"** (o tronco 30° à frente, os joelhos dobrados 24°), o braço ficava na elevação do movimento certo, medida com o tronco em pé, e **a cabeça do halter entrava 6,7 cm na coxa direita** (e na esquerda; 7,7 cm pela checagem da pintura).
+
+**A mudança.**
+
+- Opção nova do núcleo `exercicios/elevar-o-braco.ts`, `folgaNoBalanco` (aditiva; desligada, nada muda; as elevações na polia, com elástico e com caneleira não a usam): no erro, o braço começa na elevação em que os halteres ficam à mesma folga das coxas que no movimento certo (`carga.folga`, 1,5 cm), calibrada com o tronco inclinado e os joelhos dobrados do começo do erro e guardada no preparo (`elevacao-halteres:inicio-do-balanco`): 36,3°, em vez de 23,2°. Os halteres pendem na frente das coxas; daí o braço sobe até o topo, como antes.
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no corpo (erro "Balançar o tronco", começo) | 6,7 cm (coxa direita; também na esquerda) | 0 cm |
+| elevação do braço no começo do erro | 23,2° | 36,3° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (6,7 cm, na coxa direita, no erro "Balançar o tronco"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/elevacao-halteres-peso.png`; os quadros grandes foram regravados (`quadros/elevacao-halteres.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 4 avisos** (antes: 0 falhas e 5 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- De lado, no começo do erro, os braços ficam mais afastados do tronco do que no quadro de antes (é o que os halteres pendendo na frente das coxas pedem com o tronco inclinado).

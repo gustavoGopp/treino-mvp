@@ -4,8 +4,9 @@
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { folgaDaBarra, raioDaBarra } from '../exercicios/barra-nas-costas';
+import { folgaDaBarraNosPontos, peleDensa } from '../exercicios/com-barra-longa';
 import { obj } from '../tabelas';
-import { dist, dot, sub } from '../vec';
+import { add, dist, dot, mul, sub } from '../vec';
 
 const marca = (q: Parameters<Regra>[0][number], nome: string) => {
   const m = q.marcas[nome];
@@ -93,14 +94,20 @@ export const REGRAS_BARRA_NO_SUPORTE: Record<string, Regra> = {
     return { medido: `com a barra no peito, o topo das travas fica ${f1(folga)} cm abaixo dela, e a barra ${f1(zPonta - zb)} cm para dentro da ponta delas`, ok: folga > 0 && folga <= 4.5 && zb >= zFace && zb <= zPonta };
   },
   // ----- desenvolvimento em pé -----
-  'barra-no-alto-do-peito': (q, corpo) => {
+  'barra-no-alto-do-peito': (q, corpo, ex) => {
     const x = q[0]!;
     const b = marca(x, 'barra');
-    const fol = folgaDaBarra(x.esq, b, x.esq.torax.x, ['tronco', 'pescoco'], 21).folga;
+    // (acréscimo de 19/11/2026, só quando a ficha tem `barra.folgaNoPeito`: o desenvolvimento em pé com barra) a folga
+    // medida na pele densa, a mesma em que a animação apoia a barra; nos 12 pontos de cada anel, a barra que encosta na
+    // pele densa fica a 1,2 cm dos pontos, e a que encostava nos pontos entrava 1,3 cm no peito (regra peso-fora-do-corpo)
+    const densa = !!ex && 'barra.folgaNoPeito' in ex.ficha.param;
+    const fol = densa
+      ? folgaDaBarraNosPontos(peleDensa(x.esq, new Set(['tronco', 'pescoco'])), add(b, mul(x.esq.torax.x, -21)), add(b, mul(x.esq.torax.x, 21)))
+      : folgaDaBarra(x.esq, b, x.esq.torax.x, ['tronco', 'pescoco'], 21).folga;
     const ao = -dot(sub(b, x.esq.torax.o), x.esq.torax.y);
     const alto = corpo.m('altura.cervical') - corpo.m('altura.supraesternal');
     const frente = Math.min(x.esq.lado.R.cotovelo[2], x.esq.lado.L.cotovelo[2]) - b[2];
-    return { medido: `embaixo, a barra fica a ${f1(fol)} cm da pele do peito, ${f1(ao)} cm abaixo da base do pescoço ao longo do tronco (o alto do esterno fica a ${f1(alto)} cm); os cotovelos ficam ${f1(frente)} cm à frente dela`, ok: Math.abs(fol) <= 0.6 && Math.abs(ao - alto) <= 1.5 && frente > 0 };
+    return { medido: `embaixo, a barra fica a ${f1(fol)} cm da pele do peito${densa ? ' (pele densa)' : ''}, ${f1(ao)} cm abaixo da base do pescoço ao longo do tronco (o alto do esterno fica a ${f1(alto)} cm); os cotovelos ficam ${f1(frente)} cm à frente dela`, ok: Math.abs(fol) <= 0.6 && Math.abs(ao - alto) <= 1.5 && frente > 0 };
   },
   'barra-rente-ao-rosto': (q) => {
     let min = 1e9,

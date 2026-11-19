@@ -65,3 +65,26 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md`.
 - **O equilíbrio fica no limite** (o centro de massa anda até 4,9 cm à frente do meio do pé; o limite é 5 cm): é a barra indo para a frente em volta do rosto.
 - **O corpo fica menor no quadro de lado** que no agachamento: a barra em cima chega a 2,07 m e a anilha passa disso.
 - **O suporte é diferente do cartão de hoje** (gaiola × suporte aberto; ver `resumo-suporte.md`).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **embaixo, a barra entrava 1,3 cm no peito** (no começo do ciclo e dos erros "Arquear a lombar" e "Impulso com as pernas"). Ela era apoiada no primeiro toque contra os 12 pontos de cada anel do Boneco, e assentava entre eles.
+
+**A mudança.**
+
+- O primeiro toque passa a ser medido na pele densa (36 pontos por anel, com anéis entre os anéis), e a barra para a 0,3 cm dela (`barra.folgaNoPeito`): 1,3 cm mais à frente no tórax. Medida pela regra `peso-fora-do-corpo`, ela encosta sem entrar.
+- Com a barra mais à frente, os cotovelos ficavam 0,4 cm atrás dela (a ficha pede "um pouco à frente"). O punho dobra 45°, e não 40° (`punho.extensao`; medido, 53,6°, dentro da amplitude normal), e embaixo o cotovelo aponta 0,3 para baixo, e não 0,55 (`cotovelo.poloParaBaixo`): eles ficam 0,8 cm à frente da barra (eram 1,3 cm).
+- A regra `barra-no-alto-do-peito` (`regras/barra-no-suporte.ts`) ganhou um acréscimo, ligado só quando a ficha tem `barra.folgaNoPeito`: mede a folga na pele densa, a mesma em que a animação apoia a barra. Nos pontos dos anéis, a barra encostada na pele densa fica a 1,2 cm deles, e a regra (até 0,6 cm) falhava. As puxadas que usam a mesma regra não têm o campo e não mudam.
+- O equilíbrio e o lugar do suporte mudam um pouco com a barra (o suporte, 1,1 cm).
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a barra entra no peito (embaixo) | 1,3 cm | 0 cm (a 0,3 cm da pele densa) |
+| os cotovelos à frente da barra (embaixo) | 1,3 cm | 0,8 cm |
+| extensão do punho (medida) | 47° | 53,6° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (1,3 cm, no tronco, no começo do ciclo); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/desenvolvimento-barra-peso.png`; os quadros grandes foram regravados (`quadros/desenvolvimento-barra.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **1 falha e 2 avisos** (antes: 2 falhas e 2 avisos, entre elas a de pesos).
+
+**O que ainda não ficou bom.**
+- A falha que sobra é de antes e não é do peso: de frente, no começo do erro "Impulso com as pernas", os braços são pintados por cima da barra, que está na frente deles (14 cm²). Não corrigi.
+- Os cotovelos ficam um pouco mais para dentro embaixo (de 20,2 para 18,8 cm do meio do corpo).

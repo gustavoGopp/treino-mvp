@@ -19,7 +19,7 @@
   "erro.cotovelos.fora": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os braços abrem 25° para os lados enquanto o cotovelo dobra (os cotovelos deixam de apontar para o teto)" },
   "erro.ombro.braco": { "v": -35, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o braço desce até 35° para o lado dos pés (o cotovelo vai para perto do tronco, como num supino); o certo fica 10° para o lado da cabeça" },
   "erro.falha.cotovelo": { "v": 100, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: na repetição em que a forma cede, o cotovelo dobra 100° e os antebraços tombam para o meio: os halteres descem sobre a testa, e não para os lados da cabeça" },
-  "erro.falha.folga": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: os antebraços tombam para o meio até o halter ficar a 1 cm da testa (o certo passa a mais de 3 cm da cabeça)" }
+  "erro.falha.folga": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: os antebraços tombam para o meio até o halter ficar a 1 cm da testa (o certo passa a mais de 3 cm da cabeça). Correção de 19/11/2026: a folga era medida entre pontos soltos do halter e da cabeça, e o halter passava entre eles e entrava 2,8 cm na cabeça; agora é medida na superfície (o halter engordado de 1 cm não entra no corpo, pela regra peso-fora-do-corpo)" }
  },
  "fases": [
   { "nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app" },
@@ -32,7 +32,8 @@
   { "id": "so-o-cotovelo-dobra-no-testa", "pede": "só os cotovelos dobram: o braço fica parado, apontado para o teto", "selo": "consenso", "fonte": "ficha" },
   { "id": "pegada-neutra-no-testa", "pede": "pegada neutra: palmas uma para a outra", "selo": "consenso", "fonte": "ficha" },
   { "id": "halteres-ao-lado-da-cabeca", "pede": "embaixo, os halteres ficam ao lado da cabeça, sem encostar nela nem no colchonete", "selo": "consenso", "fonte": "app" },
-  { "id": "costas-e-quadril-no-colchonete", "pede": "deitado, as costas, a cabeça e o glúteo apoiados no colchonete", "selo": "consenso", "fonte": "app" }
+  { "id": "costas-e-quadril-no-colchonete", "pede": "deitado, as costas, a cabeça e o glúteo apoiados no colchonete", "selo": "consenso", "fonte": "app" },
+  {"id": "peso-fora-do-corpo", "pede": "nenhuma cabeça de halter entra no corpo (cabeça, braços, tronco), em nenhum quadro do ciclo nem dos erros; no erro \"Ir até a falha\", o halter desce rente à testa sem entrar nela (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [
   { "id": "cotovelos", "instante": 1, "titulo": "Abrir os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo" },

@@ -20,7 +20,7 @@
   "braco.aFrente": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "o braço 8° à frente da linha do tronco, ainda ao lado dele (a regra das roscas aceita até 10°): embaixo, a barra passa à frente das coxas com o braço quase estendido (o da rosca na polia aprovada)"},
   "escapula.prot": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a escápula no ritmo normal (a ficha não pede ombros para trás, ao contrário da rosca na polia)"},
   "cotovelo.baixo.minimo": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, braços quase estendidos: o cotovelo dobra no mínimo 10° (ou o que a barra pede para passar à frente das coxas, à folga abaixo)"},
-  "barra.folga": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a barra quase encosta nas coxas: passa 0,5 cm à frente da pele (na rosca na polia aprovada, 1,5 cm; aqui a dobra do meio da barra W fica 2,3 cm atrás das mãos, mais perto das coxas, e com 1,5 cm o cotovelo ficaria dobrado demais embaixo)"},
+  "barra.folga": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a barra quase encosta nas coxas: passa 0,5 cm à frente da pele (na rosca na polia aprovada, 1,5 cm; aqui a dobra do meio da barra W fica 2,3 cm atrás das mãos, mais perto das coxas, e com 1,5 cm o cotovelo ficaria dobrado demais embaixo). Desde 19/11/2026, também no começo do erro \"Balançar o tronco\": com o tronco 10° à frente, os braços vão com ele e, com o cotovelo do movimento certo, a barra entrava 1,3 cm nas coxas; nesse erro, embaixo, o cotovelo dobra o que a barra precisa para passar a esta folga"},
   "cotovelo.cima": {"v": 132, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima, a barra perto dos ombros com os cotovelos ainda no lugar (o mesmo ângulo das roscas aprovadas; a regra mede a distância da mão ao ombro); a flexão média do cotovelo é 148° (cdc)"},
   "anilhas": {"v": 5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 5 kg de cada lado (a de 24 cm da tabela): com a barra de 12 kg, 22 kg, que entram no equilíbrio"},
   "erro.balanco.inicio": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: embaixo, o tronco começa 10° inclinado à frente para pegar impulso (como na rosca na polia aprovada)"},
@@ -44,7 +44,8 @@
   {"id": "braco-estendido-embaixo-na-rosca", "pede": "início: braços quase estendidos", "selo": "consenso", "fonte": "app"},
   {"id": "carga-perto-do-ombro-no-topo", "pede": "fim: barra perto dos ombros, com os cotovelos ainda no lugar", "selo": "consenso", "fonte": "app"},
   {"id": "barra-w-fora-do-corpo", "pede": "a barra passa à frente das coxas e do tronco, sem atravessar", "selo": "consenso", "fonte": "desenho"},
-  {"id": "tronco-quase-parado", "pede": "tronco reto, sem balançar", "selo": "consenso", "fonte": "ficha"}
+  {"id": "tronco-quase-parado", "pede": "tronco reto, sem balançar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-fora-do-corpo", "pede": "a barra não entra no corpo (coxas, tronco, braços), em nenhum quadro do ciclo nem dos erros; no começo do erro \"Balançar o tronco\", com o tronco inclinado à frente, ela passa à frente das coxas (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "app"}
  ],
  "erros": [
   {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa inclinado à frente e é jogado para trás para a barra subir, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},

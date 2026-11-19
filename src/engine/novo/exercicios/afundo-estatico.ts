@@ -1,6 +1,7 @@
 // O afundo estático (com o peso do corpo, com halteres e os próximos): o que as variações têm em comum. Passo largo,
 // o pé da frente inteiro no chão e o de trás na ponta; o quadril desce reto até o joelho de trás ficar a poucos
 // centímetros do chão. Cada variação traz a sua ficha de movimento e diz o que as mãos fazem.
+import { calibragem } from '../calibragens';
 import { sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
@@ -8,6 +9,7 @@ import type { Ficha, Quadro } from '../movimento';
 import { chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
+import { pesoNoCorpo } from '../regras/peso-fora-do-corpo';
 import { obj } from '../tabelas';
 import { add, dirRef, mix, noRef, norm } from '../vec';
 import type { V3 } from '../vec';
@@ -40,13 +42,40 @@ export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { f
     const K = formaDoKettlebell();
     return (K.topoDaBola + K.altura - K.rAlca) / 2;
   };
-  /** O centro da base do kettlebell: a bola encosta no peito, com as mãos na altura que a ficha dá. */
-  const baseDoKettlebell = (t: Tronco): V3 => {
+  /**
+   * O centro da base do kettlebell: a bola encosta no peito, com as mãos na altura que a ficha dá. `frente`: quanto ele vai
+   * para a frente do tórax, além da posição estimada pela profundidade do peito (ver `frenteDaBola`).
+   */
+  const baseDoKettlebell = (t: Tronco, frente = 0): V3 => {
     const K = formaDoKettlebell();
-    const maoNoPeito = noRef(t.torax, [0, -f('maos.abaixoDeC7'), t.corpo.m('prof.peito') * 0.68 + K.R + f('kettlebell.folgaNoPeito')]);
+    const maoNoPeito = noRef(t.torax, [0, -f('maos.abaixoDeC7'), t.corpo.m('prof.peito') * 0.68 + K.R + f('kettlebell.folgaNoPeito') + frente]);
     return [maoNoPeito[0], maoNoPeito[1] - alturaDaPegada(), maoNoPeito[2]];
   };
-  function pose(corpo: Corpo, quadrilY: number, u: number, o: { tronco?: number; valgo?: number } = {}): Esq {
+  /**
+   * Acréscimo de 19/11/2026, só quando a ficha tem `kettlebell.encostoNoPeito` (o afundo com kettlebell): a posição
+   * estimada pela profundidade do peito deixava a bola 3,8 cm dentro do peito. Com o campo, o kettlebell vai para a frente
+   * do tórax até a bola entrar no máximo `kettlebell.encostoNoPeito` cm no corpo (o amassado da pele), calibrado em pé
+   * (u = 0), fora as mãos que seguram. Sem o campo, nada muda.
+   */
+  function frenteDaBola(corpo: Corpo): number {
+    if (!tem('kettlebell.encostoNoPeito')) return 0;
+    return calibragem(corpo, `${F.id}:bola-no-peito`, () => {
+      const y = calibrar(corpo).cima;
+      return resolver1(
+        (d) => {
+          const e = pose(corpo, y, 0, { frente: d });
+          const K = formaDoKettlebell();
+          const meio: V3 = [(e.lado.R.pegada[0] + e.lado.L.pegada[0]) / 2, (e.lado.R.pegada[1] + e.lado.L.pegada[1]) / 2, (e.lado.R.pegada[2] + e.lado.L.pegada[2]) / 2];
+          const centro: V3 = [meio[0], meio[1] - alturaDaPegada() + K.centro, meio[2]];
+          return pesoNoCorpo({ esq: e, prims: [{ t: 'esfera', c: centro, r: K.R, cls: 'ferro' }], pecas: [], fios: [], cargas: [], marcas: {} }).cm - f('kettlebell.encostoNoPeito');
+        },
+        0,
+        15,
+        24,
+      );
+    });
+  }
+  function pose(corpo: Corpo, quadrilY: number, u: number, o: { tronco?: number; valgo?: number; frente?: number } = {}): Esq {
     return afundar(corpo, {
       frente: FRENTE,
       quadrilY,
@@ -68,7 +97,7 @@ export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { f
             // Kettlebell junto ao peito, com a base para baixo: cada mão segura uma haste da alça ("mãos nos lados
             // da alça"), os cotovelos perto do corpo. O kettlebell pende na vertical e a bola encosta no peito.
             const K = formaDoKettlebell();
-            const pegada = add(baseDoKettlebell(t), [s * K.meiaAlca, alturaDaPegada(), 0]);
+            const pegada = add(baseDoKettlebell(t, o.frente ?? frenteDaBola(corpo)), [s * K.meiaAlca, alturaDaPegada(), 0]);
             return { pegada, polo: dirRef(t.torax, [s * 0.25, -1, 0.1]), mao: { polegar: [0, 1, 0], forma: 'pegada', diam: obj('kettlebell', 'alcaDiam') } };
           }
           // braços pendendo ao lado do corpo, um pouco afastados para o halter não bater na coxa; o halter pende na
@@ -86,8 +115,9 @@ export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { f
     let c = CACHE.get(corpo);
     if (c) return c;
     const raioDoJoelho = corpo.secoes.coxa![corpo.secoes.coxa!.length - 1]!.b;
-    const baixo = resolver1((y) => pose(corpo, y, 1).lado[TRAS].joelho[1] - raioDoJoelho - f('joelhoDeTras.aoChao'), 35, 75);
-    const cima = resolver1((y) => f('joelho.cima') - pose(corpo, y, 0).lado[FRENTE].ang.joelho, 100, baixo);
+    // (as pernas não dependem dos braços: aqui o kettlebell fica onde a ficha o estima, sem calibrar)
+    const baixo = resolver1((y) => pose(corpo, y, 1, { frente: 0 }).lado[TRAS].joelho[1] - raioDoJoelho - f('joelhoDeTras.aoChao'), 35, 75);
+    const cima = resolver1((y) => f('joelho.cima') - pose(corpo, y, 0, { frente: 0 }).lado[FRENTE].ang.joelho, 100, baixo);
     c = { cima, baixo };
     CACHE.set(corpo, c);
     return c;

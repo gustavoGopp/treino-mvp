@@ -26,7 +26,8 @@ import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, dirRef, mix, mul, noRef, norm, paraRef } from '../vec';
 import type { V3 } from '../vec';
-import { folgaDaBarra, primeiroToque } from './barra-nas-costas';
+import { primeiroToque } from './barra-nas-costas';
+import { folgaDaBarraNosPontos, peleDensa } from './com-barra-longa';
 import { dobrarOQuadril } from './dobrar-o-quadril';
 
 const F = fichaSchema.parse(ficha);
@@ -85,8 +86,10 @@ function emPe(corpo: Corpo, p: Pedido, local: V3, u: number): { e: Esq; alfa: nu
       centro = noRef(T, local);
       const braco = (k: Lado): PoseBraco => {
         const s = sinal(k);
-        // embaixo o cotovelo aponta para a frente e para baixo; em cima, para fora
-        const polo = norm(add(mul(dirRef(T, [s * 0.35, -0.55, 1]), 1 - u), mul(dirRef(T, [s, 0.1, 0.25]), u)));
+        // embaixo o cotovelo aponta para a frente e para baixo; em cima, para fora (correção de 19/11/2026: com a barra
+        // encostada no peito, e não dentro dele, ela fica 1,6 cm mais à frente, e o cotovelo, que apontava 0,55 para
+        // baixo, ficava 0,4 cm atrás dela; apontando 0,3 para baixo, com o punho dobrado 45°, fica 0,8 cm à frente)
+        const polo = norm(add(mul(dirRef(T, [s * 0.35, -f('cotovelo.poloParaBaixo'), 1]), 1 - u), mul(dirRef(T, [s, 0.1, 0.25]), u)));
         // a mão: a barra no meio da palma; embaixo o punho dobra para trás (a barra apoia na base da mão) e, em cima, fica
         // reto
         const b = f('punho.extensao') * (1 - u) * rad;
@@ -109,9 +112,17 @@ function pontas(corpo: Corpo): { baixo: V3; cima: V3 } {
   return calibragem(corpo, 'desenvolvimento-barra:pontas', () => {
     const y = -f('barra.peito');
     let zb = 14;
+    // Correção de 19/11/2026: a folga era medida contra os 12 pontos de cada anel do Boneco, e a barra assentava entre
+    // eles e entrava 1,3 cm no peito; agora é medida na pele densa (36 pontos por anel, com anéis entre os anéis), e a
+    // barra para a `barra.folgaNoPeito` cm dela
+    const meia = f('pegada.meia') - 4;
     for (let i = 0; i < 2; i++) {
       const e = emPe(corpo, certo(), [0, y, zb], 0).e;
-      zb = primeiroToque((z) => folgaDaBarra(e, noRef(e.torax, [0, y, z]), e.torax.x, ['tronco', 'pescoco'], f('pegada.meia') - 4).folga, 30, 0);
+      const pele = peleDensa(e, new Set(['tronco', 'pescoco']));
+      zb = primeiroToque((z) => {
+        const c = noRef(e.torax, [0, y, z]);
+        return folgaDaBarraNosPontos(pele, add(c, mul(e.torax.x, -meia)), add(c, mul(e.torax.x, meia))) - f('barra.folgaNoPeito');
+      }, 30, 0);
     }
     let cima: V3 = [0, 50, 0];
     for (let i = 0; i < 3; i++) {

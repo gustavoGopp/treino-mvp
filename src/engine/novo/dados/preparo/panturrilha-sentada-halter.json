@@ -3,10 +3,10 @@
   "vistaMiniatura": "lateral",
   "quadros": {
    "lateral": [
-    -102.26105402927561,
-    -205.76596177253674,
-    285.48492582105536,
-    214.1136943657915
+    -72.58399146516507,
+    -161.25036792637093,
+    226.1308006928342,
+    169.5981005196257
    ],
    "quina": [
     -77.5716021474739,
@@ -42,5 +42,7 @@
    ]
   }
  },
- "calibragens": {}
+ "calibragens": {
+  "ansur2-homem-imc-normal|panturrilha-sentada-halter:halter-escorregado": 10.208599209785461
+ }
 }

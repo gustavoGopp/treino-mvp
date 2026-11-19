@@ -17,10 +17,11 @@ import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { halter } from '../pecas';
 import type { Peca } from '../pecas';
+import { pesoNoCorpo } from '../regras/peso-fora-do-corpo';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, girar, mul, norm, perp } from '../vec';
-import { colchoneteNaCena, deitadoNoColchonete, folgaDoHalterACabeca, folgaDoHalterAoChao, pernasNoChao, piso, zDaBola, zDoColchonete } from './deitado-no-chao-halteres';
+import { add, girar, mul, norm, perp, sub } from '../vec';
+import { colchoneteNaCena, deitadoNoColchonete, folgaDoHalterAoChao, pernasNoChao, piso, zDaBola, zDoColchonete } from './deitado-no-chao-halteres';
 
 const F = fichaSchema.parse(ficha);
 const f = daFicha(F);
@@ -66,6 +67,23 @@ interface Cal {
 const CACHE = new WeakMap<Corpo, Cal>();
 const certo = (cotovelo: number): Pedido => ({ cotovelo, paraTras: f('braco.paraTras'), fora: 0, paraDentro: 0 });
 
+/**
+ * Quanto os dois halteres, engordados de `folga` cm para todos os lados (as cabeças mais largas e mais compridas), entram
+ * no corpo (cm; 0 = ficam a `folga` cm ou mais da pele), pela regra peso-fora-do-corpo, fora as mãos que seguram.
+ */
+function halterComFolgaNoCorpo(e: Esq, folga: number): number {
+  const prims = (['R', 'L'] as Lado[]).flatMap((k) =>
+    halter(e.lado[k].pegada, e.lado[k].mao.x, 0.2, HALTER)
+      .filter((p) => p.t === 'prisma')
+      .map((p) => {
+        if (p.t !== 'prisma') return p;
+        const ax = norm(sub(p.b, p.a));
+        return { ...p, a: add(p.a, mul(ax, -folga)), b: add(p.b, mul(ax, folga)), ra: p.ra + folga, rb: p.rb + folga };
+      }),
+  );
+  return pesoNoCorpo({ esq: e, prims, pecas: [], fios: [], cargas: [], marcas: {} }).cm;
+}
+
 function calibrar(corpo: Corpo): Cal {
   let c = CACHE.get(corpo);
   if (c) return c;
@@ -80,10 +98,18 @@ function calibrar(corpo: Corpo): Cal {
       const L = pose(certo(x)).lado.R;
       return folgaDoHalterAoChao(L.pegada, L.mao.x, HALTER, zCol) - f('halter.folgaEmbaixo');
     }, 60, 170, 30);
-    const falha = resolver1((x) => {
+    // Correção de 19/11/2026: a folga era medida entre os pontos do halter e os 12 pontos de cada anel da cabeça, e o
+    // halter passava entre eles e entrava 2,8 cm na cabeça. Agora ela é medida na superfície: o maior giro em que o
+    // halter, engordado de `erro.falha.folga` cm para todos os lados, ainda não entra no corpo (a cabeça, os braços).
+    let a = 0,
+      b = 30;
+    for (let i = 0; i < 24; i++) {
+      const x = (a + b) / 2;
       const e = pose({ ...certo(f('erro.falha.cotovelo')), paraDentro: x });
-      return folgaDoHalterACabeca(e, e.lado.R.pegada, e.lado.R.mao.x, HALTER) - f('erro.falha.folga');
-    }, 0, 30, 24);
+      if (halterComFolgaNoCorpo(e, f('erro.falha.folga')) <= 0) a = x;
+      else b = x;
+    }
+    const falha = a;
     return { pose: { ...t.pose }, zBola, zCol, baixo, falha };
   });
   CACHE.set(corpo, c);

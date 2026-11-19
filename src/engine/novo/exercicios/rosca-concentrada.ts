@@ -20,6 +20,7 @@ import { daFicha, fichaSchema, resolver1, suave } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { chao } from '../pecas';
 import { cadeira, parede } from '../pecas-de-cena/cadeira';
+import { pesoNoCorpo } from '../regras/peso-fora-do-corpo';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, cross, dirRef, dist, dot, girar, mix, mul, norm, paraRef, perp, sub } from '../vec';
@@ -180,11 +181,43 @@ function maoEsquerda(P: Parado): PoseBraco {
   return { punho: P.maoL.punho, polo: POLO_L(), mao: { polegar: P.maoL.polegar, dedos: P.maoL.dedos, forma: 'aberta' } };
 }
 
-function esqueleto(corpo: Corpo, u: number, erro?: string): Esq {
+/**
+ * Correção de 19/11/2026: no erro "Balançar o tronco", o tronco endireita e leva o braço junto; com o cotovelo dobrando
+ * os 125° do movimento certo, a cabeça do halter chegava ao rosto e entrava 1,1 cm nele. Nesse erro, em cima, o cotovelo
+ * dobra até o halter ficar a `erro.tronco.folgaDoRosto` cm da pele (o halter engordado dessa folga não entra no corpo,
+ * pela regra peso-fora-do-corpo), e não mais que `cotovelo.cima`.
+ */
+function cimaNoErroDoTronco(corpo: Corpo): number {
+  return calibragem(corpo, 'rosca-concentrada:tronco-cima', () => {
+    const folga = f('erro.tronco.folgaDoRosto');
+    const entra = (cot: number) => {
+      const e = esqueleto(corpo, 1, 'tronco', cot);
+      const prims = halterNaMao(e, 'R', HALTER)
+        .prims.filter((p) => p.t === 'prisma')
+        .map((p) => {
+          if (p.t !== 'prisma') return p;
+          const ax = norm(sub(p.b, p.a));
+          return { ...p, a: add(p.a, mul(ax, -folga)), b: add(p.b, mul(ax, folga)), ra: p.ra + folga, rb: p.rb + folga };
+        });
+      return pesoNoCorpo({ esq: e, prims, pecas: [], fios: [], cargas: [], marcas: {} }).cm;
+    };
+    let a = f('cotovelo.baixo'),
+      b = f('cotovelo.cima');
+    if (entra(b) <= 0) return b;
+    for (let i = 0; i < 24; i++) {
+      const c = (a + b) / 2;
+      if (entra(c) <= 0) a = c;
+      else b = c;
+    }
+    return a;
+  });
+}
+
+function esqueleto(corpo: Corpo, u: number, erro?: string, cimaDoTronco?: number): Esq {
   const P = parado(corpo);
   const x = Math.max(0, Math.min(1, u));
   const baixo = erro === 'curta' ? f('erro.curta.cotovelo') : f('cotovelo.baixo');
-  const cima = erro === 'tira' ? f('erro.tira.cotovelo') : f('cotovelo.cima');
+  const cima = erro === 'tira' ? f('erro.tira.cotovelo') : erro === 'tronco' ? (cimaDoTronco ?? cimaNoErroDoTronco(corpo)) : f('cotovelo.cima');
   // balançar o tronco: a bacia endireita enquanto o braço sobe; o braço acompanha o tronco e sai da coxa
   const frente = P.frente - (erro === 'tronco' ? f('erro.tronco.sobe') * suave(x) : 0);
   const t: Tronco = troncoNaPonta(corpo, O, P.y, coluna(frente));
