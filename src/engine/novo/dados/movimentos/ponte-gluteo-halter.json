@@ -44,7 +44,8 @@
   {"id": "ponte-calcanhares-no-chao", "pede": "empurra pelos calcanhares: o pé inteiro fica no chão", "selo": "consenso", "fonte": "ficha"},
   {"id": "ponte-pes-a-um-palmo", "pede": "pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé", "selo": "consenso", "fonte": "ficha"},
   {"id": "ponte-carga-nas-duas-maos", "pede": "as duas mãos seguram o halter o tempo todo, pelas pontas", "selo": "consenso", "fonte": "ficha"},
-  {"id": "ponte-carga-no-quadril", "pede": "o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril", "selo": "consenso", "fonte": "ficha"}
+  {"id": "ponte-carga-no-quadril", "pede": "o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-fora-do-corpo", "pede": "o halter assenta na dobra do quadril sem entrar no corpo (barriga, emenda da cintura, coxas, braços), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele). Correção de 19/11/2026: ele assentava entre os 12 pontos de cada anel do Boneco e entrava 2,1 cm na emenda da cintura (3,3 cm no erro do halter rolando); agora assenta na superfície inteira (opção superficieDensa do núcleo)", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [
   {"id": "e1", "instante": 1, "titulo": "Arquear a lombar no topo", "vista": "lateral", "oQueMuda": "no topo, a lombar arqueia e a barriga sobe, com o quadril menos estendido", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},

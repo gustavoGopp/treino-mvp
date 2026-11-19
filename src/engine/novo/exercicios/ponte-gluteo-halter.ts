@@ -6,7 +6,9 @@ import ficha from '../dados/movimentos/ponte-gluteo-halter.json';
 import type { Exercicio } from '../movimento';
 import { criarPonte } from './ponte';
 
-const P = criarPonte(ficha, 'halter');
+// (correção de 19/11/2026) o halter assenta sobre a superfície inteira do corpo (a emenda da cintura inclusive), e não
+// entre os pontos dos anéis
+const P = criarPonte(ficha, 'halter', { superficieDensa: true });
 
 export const ponteGluteoHalter: Exercicio = {
   ficha: P.ficha,

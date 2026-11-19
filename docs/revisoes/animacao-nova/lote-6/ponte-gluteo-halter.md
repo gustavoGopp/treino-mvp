@@ -55,3 +55,23 @@ Só o glúteo, principal (biblioteca). Vistas: de lado (padrão; Músculos) e de
 - No topo, o cotovelo fica a 24 cm do chão (16 cm na de hoje). Com o halter assentado na pele do Boneco e as mãos nas pontas dele, o antebraço não alcança mais baixo; baixar o cotovelo pede o halter mais baixo, o que o faria entrar na barriga.
 - O calcanhar fica a 15,4 cm do glúteo (um pouco menos que um palmo), como na ponte sem carga.
 - De cima, o corpo deitado se lê como uma figura de frente; a vista serve ao erro do halter rolando, e a técnica se lê de lado.
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **o halter entrava 2,1 cm na emenda da cintura** no ciclo (3,3 cm no erro "Halter rolando"; 2,1 cm e 1,4 cm na cintura e no tronco pela checagem da pintura). O halter assentava no corpo pelos 12 pontos de cada anel do Boneco, sem a emenda da cintura (o volume que junta o tronco à bacia): entre os pontos, ele afundava. E, como a dobra do quadril era procurada nesses pontos, ele parava sobre a barriga baixa, 9,5 cm mais para o lado da cabeça que a dobra.
+
+**A mudança.**
+
+- Opção nova do núcleo `exercicios/ponte.ts`, `superficieDensa` (aditiva; desligada, nada muda; a ponte com kettlebell e a sem carga não a usam): a carga assenta sobre a superfície inteira das partes onde ela apoia, a emenda da cintura inclusive, com pontos entre os anéis (a cada ~1 cm) e 36 em volta de cada anel. O halter agora fica na dobra do quadril, como a ficha pede, e não entra no corpo.
+- As mãos e os cotovelos vão junto com o halter (as mãos nas pontas das cabeças).
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| o halter entra no corpo (ciclo) | 2,1 cm (emenda da cintura) | 0 cm |
+| o halter entra no corpo (erro "Halter rolando") | 3,3 cm (emenda da cintura) | 0,2 cm (no antebraço direito, que segura) |
+| onde o halter fica, embaixo | sobre a barriga baixa | na dobra do quadril |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (2,1 cm no ciclo e 3,3 cm no erro "Halter rolando", na emenda da cintura); no de agora, passa (0,2 cm, no antebraço, no erro "Halter rolando"). O antes e depois está em `correcao-das-antigas/ponte-gluteo-halter-peso.png`; os quadros grandes foram regravados (`quadros/ponte-gluteo-halter.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 2 avisos** (antes: 0 falhas e 3 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- O halter mudou de lugar (9,5 cm, da barriga baixa para a dobra do quadril): é o que a ficha pede, mas o quadro aprovado mudou mais que só a altura.
