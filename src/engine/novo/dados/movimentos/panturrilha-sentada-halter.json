@@ -7,7 +7,8 @@
   "kassiano2023b": "Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a parte alongada rendeu mais (um estudo): a ponta dos pés num apoio para o calcanhar descer, pausa de ~1 s embaixo",
   "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-sentada-halter.ts): o tornozelo sobe 12 cm do alongado ao topo, o halter perto do joelho, a ordem das fases (começa pela descida) e os erros",
   "objetos": "src/engine/novo/dados/objetos.json (banco reto, halter de 25 lb), dados/objetos/step.json (o step como degrau baixo) e dados/objetos/toalha.json (a toalha de mão dobrada em quatro: 2 cm)",
-  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado",
+  "cartao": "Texto do app (src/conteudo/exercicios/panturrilha-sentada-halter.json), erro 'Halter escorregando': 'Uma mão solta e o halter desliza da coxa. As duas mãos nele, a série inteira.' Desenhado assim por decisão do Gustavo de 19/11/2026 ('pode mudar o erro, como diz o cartão'); o cartão não dá números: os valores são de desenho"
  },
  "param": {
   "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente"},
@@ -23,9 +24,14 @@
   "erro.curta.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o calcanhar só faz 40% do caminho, embaixo e em cima (como hoje)"},
   "erro.tronco.lombar": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: na subida a lombar estende 10 graus e o tronco vai para trás (hoje, 14 graus)"},
   "erro.tronco.toracica": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas de cima vão 12 graus para trás (hoje, 16 graus)"},
-  "erro.halter.doJoelho": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: o halter escorrega para o meio da coxa, até 22 cm do joelho (na animação de hoje, 14 cm mais para trás), se a barriga deixar: ele para quando a cabeça de dentro encosta na barriga (erro.halter.encosto)"},
-  "erro.halter.encosto": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o halter escorrega pela coxa, para o quadril, até a cabeça de dentro (que passa por cima da outra coxa) encostar na barriga, entrando no máximo 0,3 cm na pele (o amassado), e para ali. Correção de 19/11/2026: ele ia sempre a 22 cm do joelho e a cabeça de dentro entrava 10,3 cm na barriga; no corpo do app, ele para a 10,2 cm do joelho (calibrado no fim da subida, regra peso-fora-do-corpo)"},
-  "erro.halter.recuo": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o halter para meio centímetro antes do ponto em que a cabeça de dentro encosta na barriga, medido pela regra peso-fora-do-corpo: o halter desenhado (o que a conferência da pintura mede) já entrava 1,1 cm na barriga nesse ponto"}
+  "erro.halter.saiDeLado": {"v": 24, "un": "cm", "selo": "desenho", "fonte": "cartao", "o": "erro: a mão esquerda solta e o halter desliza para fora da coxa direita, ao longo do cabo, 24 cm: a cabeça de fora e o cabo passam da beirada da toalha (que fica 13 cm por fora da lateral da coxa), e o centro do halter termina 18 cm por fora da lateral da coxa. Até a manhã de 19/11 ele escorregava pela coxa, para o quadril"},
+  "erro.halter.gira": {"v": 65, "un": "graus", "selo": "desenho", "fonte": "cartao", "o": "erro: enquanto desliza, o halter gira 65 graus em volta do eixo da coxa: a cabeça de fora desce pela lateral da coxa e a de dentro fica na beirada da toalha; ele desce até apoiar na toalha ou na coxa (calculado, sem entrar em nenhuma das duas)"},
+  "erro.halter.deslizeAcaba": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: o deslize de lado acontece nos primeiros 70% do erro"},
+  "erro.halter.giroComeca": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: o halter começa a girar quando 30% do erro já passou (a cabeça de fora já está saindo da toalha) e gira até o fim"},
+  "erro.halter.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o halter para 0,3 cm acima do primeiro toque na toalha ou na coxa (para o halter desenhado e a reta entre os instantes calculados não entrarem nelas)"},
+  "erro.halter.maoSobe": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "cartao", "o": "erro: a mão esquerda solta a cabeça de dentro ('uma mão solta'): sobe 4 cm, aberta, e fica perto do halter sem tocá-lo"},
+  "erro.halter.maoSoltaAte": {"v": 0.25, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: a mão esquerda sai da cabeça de dentro no primeiro quarto do erro, antes de o halter andar"},
+  "erro.halter.maoSegue": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: a mão que soltou vai 30% do caminho atrás da cabeça de dentro (como quem tenta pegá-la de volta), sem tocá-la"}
  },
  "fases": [
   {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"},
@@ -40,12 +46,14 @@
   {"id": "calcanhar-sobe-o-maximo", "pede": "em cima, o calcanhar o mais alto possível (10 cm acima do apoio)", "selo": "consenso", "fonte": "ficha"},
   {"id": "tronco-quase-parado", "pede": "o tronco fica reto e parado", "selo": "consenso", "fonte": "ficha"},
   {"id": "halter-sobre-a-coxa-perto-do-joelho", "pede": "o halter deitado sobre a coxa, perto do joelho", "selo": "consenso", "fonte": "ficha"},
-  {"id": "peso-fora-do-corpo", "pede": "o halter deitado na coxa não entra no corpo (coxas, barriga, braços), em nenhum quadro do ciclo nem dos erros; no erro, ele escorrega até encostar na barriga (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "ficha"}
+  {"id": "peso-fora-do-corpo", "pede": "o halter deitado na coxa não entra no corpo (coxas, barriga, braços), em nenhum quadro do ciclo nem dos erros; no erro, ele desliza de lado e desce pela lateral da coxa sem entrar nela", "selo": "consenso", "fonte": "ficha"},
+  {"id": "panturrilha-sentada-maos-no-halter", "pede": "as duas mãos no halter a série inteira; no erro 'Halter escorregando', uma mão solta (a esquerda: sai do halter, aberta, e fica perto dele sem tocá-lo) e a outra continua segurando", "selo": "consenso", "fonte": "cartao"},
+  {"id": "panturrilha-sentada-halter-sai-de-lado", "pede": "no erro 'Halter escorregando', o halter desliza da coxa para o lado, sem entrar na toalha que ficou na coxa", "selo": "desenho", "fonte": "cartao"}
  ],
  "erros": [
   {"id": "curta", "instante": 0, "titulo": "Amplitude curta", "vista": "lateral", "oQueMuda": "o calcanhar sobe pouco e desce pouco", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
   {"id": "tronco", "instante": 1, "titulo": "Levantar o tronco", "vista": "lateral", "oQueMuda": "na subida o tronco vai para trás e sobe com o halter", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
-  {"id": "halter", "instante": 1, "titulo": "Halter escorregando", "vista": "lateral", "oQueMuda": "o halter escorrega para o meio da coxa, e as mãos vão com ele", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"}
+  {"id": "halter", "instante": 1, "titulo": "Halter escorregando", "vista": "frontal", "oQueMuda": "a mão esquerda solta e o halter desliza para fora da coxa, girando e descendo pela lateral dela; a mão direita vai com ele", "destaca": ["bracos"], "linha": ["ombro:L", "cotovelo:L", "pegada:L"], "foco": "pegada:L"}
  ],
  "simetrico": false,
  "rotulos": [

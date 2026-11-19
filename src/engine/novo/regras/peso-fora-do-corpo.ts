@@ -128,20 +128,22 @@ interface Trecho {
   raio: number;
   parte: string;
 }
-/** Os trechos da superfície do corpo, menos as mãos que seguram (`semMao`). */
-function trechosDoCorpo(q: Quadro, semMao: Set<Lado>): Trecho[] {
+/** Os trechos da superfície do corpo, menos as mãos que seguram (`semMao`) e, se `partes` vier, só as partes que ela aceita. */
+function trechosDoCorpo(q: Quadro, semMao: Set<Lado>, partes?: (parte: string) => boolean): Trecho[] {
   const out: Trecho[] = [];
   for (const g of formaDoBoneco(q.esq).grupos)
     for (const v of g.volumes) {
       const nome = v.nome ?? g.id;
       if ((nome === 'mao' || nome === 'polegar') && g.lado && semMao.has(g.lado)) continue;
+      const parte = `${nome}${g.lado ? `:${g.lado}` : ''}`;
+      if (partes && !partes(parte)) continue;
       const A = v.vol.aneis;
       for (let i = 0; i + 1 < A.length; i++) {
         const a0 = A[i]!,
           a1 = A[i + 1]!;
         const d = sub(a1.c, a0.c);
         const r = Math.max(a0.a, a0.f, a0.b, a1.a, a1.f, a1.b);
-        out.push({ a0, a1, d, d2: dot(d, d), c: lerp(a0.c, a1.c, 0.5), raio: r + Math.sqrt(dot(d, d)) / 2, parte: `${nome}${g.lado ? `:${g.lado}` : ''}` });
+        out.push({ a0, a1, d, d2: dot(d, d), c: lerp(a0.c, a1.c, 0.5), raio: r + Math.sqrt(dot(d, d)) / 2, parte });
       }
     }
   return out;
@@ -201,12 +203,23 @@ export interface PesoNoCorpo {
   /** O ponto do peso que mais entra. */
   ponto?: V3;
 }
+/**
+ * Opções da medida (acréscimo de 19/11/2026, para a mão que solta o halter na panturrilha sentada): `partes` mede só
+ * as partes que aceita (`coxa:R`, `tronco`, `mao:L`...); `maosSoltas`, as mãos que contam mesmo perto do peso (a mão
+ * que soltou o peso não o segura, e ele não pode entrar nela).
+ */
+export interface OpcoesDoPeso {
+  partes?: (parte: string) => boolean;
+  maosSoltas?: Lado[];
+}
 /** Quanto os pesos de um quadro entram no corpo (o pior ponto). */
-export function pesoNoCorpo(q: Quadro): PesoNoCorpo {
+export function pesoNoCorpo(q: Quadro, op: OpcoesDoPeso = {}): PesoNoCorpo {
   const pesos = pesosDoQuadro(q);
   if (!pesos.length) return { cm: 0, parte: '', peso: '' };
   const pontos = pesos.map((x) => pontosDoPeso(x.prim));
-  const trechos = trechosDoCorpo(q, maosQueSeguram(q, pontos));
+  const seguram = maosQueSeguram(q, pontos);
+  for (const k of op.maosSoltas ?? []) seguram.delete(k);
+  const trechos = trechosDoCorpo(q, seguram, op.partes);
   const pior: PesoNoCorpo = { cm: 0, parte: '', peso: '' };
   pesos.forEach((x, i) => {
     for (const p of pontos[i]!)
