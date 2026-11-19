@@ -1,21 +1,98 @@
 // Regras medidas dos exercícios em quatro apoios (núcleo ../exercicios/quatro-apoios.ts) e do coice com elástico. A
 // perna que trabalha é a direita; a de apoio, a esquerda. Marcas que os quadros dão: `piso` (o tampo do colchonete) e,
 // no coice com elástico, `sola` (o ponto do laço na sola do pé).
-import { pontosDoBoneco } from '../boneco';
+import { formaDoBoneco, pontosDoBoneco } from '../boneco';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
-import type { Esq } from '../esqueleto';
-import type { Quadro } from '../movimento';
+import type { Esq, Lado } from '../esqueleto';
+import { coiceElastico } from '../exercicios/coice-elastico';
+import type { Exercicio, Quadro } from '../movimento';
 import { obj } from '../tabelas';
-import { add, angulo, dist, mul, sub } from '../vec';
+import { add, angulo, comb, dist, mul, sub } from '../vec';
 import type { V3 } from '../vec';
+import { GRUPOS, NOME_DO_GRUPO, pinturaDaPeca, pinturaDoBoneco, vistasDoGuia } from './ordem-de-pintura';
+import type { Grupo } from './ordem-de-pintura';
 
 const piso = (q: Quadro) => q.marcas.piso?.[1] ?? 0;
 const deLado = (v: V3): V3 => [0, v[1], v[2]];
 /** A linha do tronco, dos ombros ao quadril, vista de lado. */
 const linhaDoTronco = (e: Esq): V3 => deLado(sub(e.pelve.o, e.torax.o));
 
+const LADOS: Lado[] = ['R', 'L'];
+
+/**
+ * A pele de um lado que apoia no colchonete (a até 1,5 cm do tampo): a mão e o joelho (os 8 cm da perna em volta da
+ * junta). Para cada uma, a menor folga até a borda do colchonete (cm, positivo = dentro), ou nada se não apoia.
+ */
+function apoiosNoColchonete(q: Quadro): Record<string, number> {
+  const col = q.pecas?.find((p) => p.t === 'colchonete');
+  if (!col || col.t !== 'colchonete') return {};
+  const esp = obj('colchonete', 'esp'),
+    meiaLarg = obj('colchonete', 'larg') / 2,
+    meioComp = obj('colchonete', 'comp') / 2;
+  const out: Record<string, number> = {};
+  for (const g of formaDoBoneco(q.esq).grupos) {
+    const k = g.lado;
+    if (!k) continue;
+    for (const v of g.volumes) {
+      const parte = g.id.startsWith('braco') && v.nome === 'mao' ? `mão ${k}` : g.id.startsWith('perna') && (v.nome === 'coxa' || v.nome === 'canela') ? `joelho ${k}` : null;
+      if (!parte) continue;
+      for (const an of v.vol.aneis)
+        for (let i = 0; i < 12; i++) {
+          const th = (i * Math.PI) / 6,
+            sn = Math.sin(th);
+          const p: V3 = comb([1, an.c], [an.a * Math.cos(th), an.x], [(sn >= 0 ? an.f : an.b) * sn, an.z]);
+          if (p[1] > esp + 1.5 || (parte.startsWith('joelho') && dist(p, q.esq.lado[k].joelho) > 8)) continue;
+          const folga = Math.min(meiaLarg - Math.abs(p[0] - col.x0), meioComp - Math.abs(p[2] - col.z0));
+          out[parte] = Math.min(out[parte] ?? 1e9, folga);
+        }
+    }
+  }
+  return out;
+}
+
+/**
+ * O colchonete fica no chão, embaixo de tudo o que apoia nele (acréscimo de 19/11, auditoria das fases A e B: de três
+ * quartos, ele era pintado por cima dos joelhos, das canelas, dos pés e das mãos): em cada vista do guia, cada parte do
+ * Boneco (os dois lados; as pernas de perto vão no item do tronco) é pintada depois dele. Mede, por vista, quanto cada grupo é pintado à frente do colchonete no pior quadro
+ * (a cada 3 quadros do movimento certo e cada erro no começo, no meio e no fim, na vista dele; negativo = o colchonete
+ * cobre a parte), e a folga da mão e do joelho que apoiam até a borda do colchonete (os dois lados).
+ */
+function colchoneteEmbaixo(exercicio: () => Exercicio): Regra {
+  return (q, corpo) => {
+    const ex = exercicio();
+    const amostra = q.filter((_, i) => i % 3 === 0 || i === q.length - 1).map((x) => ({ x, erro: undefined as string | undefined }));
+    for (const e of ex.ficha.erros) for (const u of [0, 0.5, 1]) amostra.push({ x: ex.quadro(corpo, u, e.id), erro: e.id });
+    const porVista: string[] = [];
+    let ok = true;
+    for (const vista of vistasDoGuia(ex)) {
+      const pior: Partial<Record<Grupo, number>> = {};
+      for (const { x, erro } of amostra) {
+        if (erro && ex.ficha.erros.find((e) => e.id === erro)!.vista !== vista) continue;
+        const col = x.pecas?.find((p) => p.t === 'colchonete');
+        if (!col) continue;
+        const fundo = Math.max(...pinturaDaPeca(col, vista));
+        const b = pinturaDoBoneco(x, vista);
+        for (const g of GRUPOS) if (b[g] !== undefined) pior[g] = Math.min(pior[g] ?? 1e9, b[g]! - fundo);
+      }
+      ok &&= GRUPOS.every((g) => (pior[g] ?? 1) > 0);
+      porVista.push(`${vista}: ${GRUPOS.filter((g) => pior[g] !== undefined).map((g) => `${NOME_DO_GRUPO[g]} ${f1(pior[g]!)}`).join(', ')}`);
+    }
+    const apoio: Record<string, number> = {};
+    for (const { x } of amostra) for (const [parte, folga] of Object.entries(apoiosNoColchonete(x))) apoio[parte] = Math.min(apoio[parte] ?? 1e9, folga);
+    const partes = LADOS.flatMap((k) => [`mão ${k}`, `joelho ${k}`]).filter((p) => apoio[p] !== undefined);
+    const nomeDe = (p: string) => p.replace(' R', ' direito').replace(' L', ' esquerdo').replace('mão direito', 'mão direita').replace('mão esquerdo', 'mão esquerda');
+    return {
+      medido:
+        `quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): ${porVista.join('; ')}; ` +
+        `a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): ${partes.map((p) => `${nomeDe(p)} ${f1(apoio[p]!)}`).join(', ')}`,
+      ok: ok && LADOS.every((k) => apoio[`mão ${k}`] !== undefined && apoio[`mão ${k}`]! >= 0) && apoio['joelho L'] !== undefined && apoio['joelho L']! >= 0 && (apoio['joelho R'] ?? 0) >= 0,
+    };
+  };
+}
+
 export const REGRAS_QUATRO_APOIOS: Record<string, Regra> = {
+  'coice-elastico-colchonete-embaixo': colchoneteEmbaixo(() => coiceElastico),
   'quatro-apoios-maos-e-joelhos': (q) => {
     const x = q[0]!,
       e = x.esq;

@@ -140,7 +140,13 @@ export type Peca =
     }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
-  | { t: 'colchonete'; x0: number; z0: number }
+  /**
+   * `noFundo` (acréscimo de 19/11, desligado por padrão): o colchonete é pintado na profundidade do canto dele mais
+   * longe de quem olha, e não na do meio. Ele fica no chão, embaixo de tudo o que apoia nele; pintado pelo meio, de
+   * três quartos o meio ficava mais perto de quem olha que o corpo de quatro apoios, e o colchonete cobria os joelhos,
+   * as canelas, os pés e as mãos que estão em cima dele (o coice, na auditoria das fases A e B).
+   */
+  | { t: 'colchonete'; x0: number; z0: number; noFundo?: boolean }
   /** Kettlebell: o centro da base, o eixo que vai da base à alça e o eixo que atravessa a alça (de uma haste à outra). */
   | { t: 'kettlebell'; base: V3; cima: V3; lado: V3 }
   /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */

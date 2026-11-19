@@ -61,3 +61,28 @@ Não há correção registrada para este id. Da anatomia (achado 1): sem posteri
 - **As costas sobem 15,8° para os ombros.** É a conta das proporções com "mãos sob os ombros, joelhos sob o quadril", mas quem espera as costas "paralelas ao chão" pode estranhar.
 - **O rótulo "coxa na linha do tronco"** aponta para o joelho, que no quadro do começo está embaixo: o texto fala do fim do movimento.
 - **De trás, o erro de girar o quadril** é o quadro mais carregado (a perna em vermelho, os dois trechos do elástico e os braços); lê-se, mas pede atenção.
+
+## Correção de 19/11 (auditoria)
+
+A auditoria das fases A e B (G1) achou que, de três quartos por trás, o colchonete era pintado por cima do corpo em todo o ciclo, nos dois lados: joelhos, canelas, pés e mãos. **Causa:** o colchonete é um item só, pintado pela profundidade do meio dele; desse ângulo o meio dele fica mais perto de quem olha que o meio do corpo de quatro apoios, que está em cima dele.
+
+**O que mudou.**
+- A peça comum `colchonete` ganhou a opção `noFundo` (desligada por padrão): pintado na profundidade do canto mais longe de quem olha (o centro do arredondado mais longe, mais o raio dele). O desenho e a caixa do enquadramento não mudam. Só este exercício e o coice com caneleira a ligam.
+- A regra nova `coice-elastico-colchonete-embaixo` mede, em cada vista do guia (lateral, três quartos de trás e, no erro, por trás), quanto cada parte do corpo, dos dois lados, é pintada à frente do colchonete, e a folga da mão e do joelho que apoiam até a borda dele.
+- Ela achou a ponta dos dedos 0,7 cm além da ponta da frente do colchonete: `colchonete.recua` passou de −13 para −11 cm (o colchonete 2 cm para a frente).
+
+**Antes → depois** (pior quadro, cm de pintura à frente do colchonete; negativo = coberto):
+
+| vista | tronco e perna direita | perna esquerda | braço direito | braço esquerdo |
+|---|---|---|---|---|
+| três quartos de trás | −9,0 → 43,7 | −14,0 → 38,7 | −14,6 → 38,2 | −32,7 → 20,1 |
+| lateral | 0,0 → 25,0 | −8,3 → 16,7 | 16,2 → 41,2 | −16,6 → 8,4 |
+| por trás (erro "Girar o quadril") | −28,2 → 21,8 | −28,2 → 21,8 | −35,3 → 14,7 | −35,4 → 14,6 |
+
+A mão direita e a esquerda ficam 1,3 cm para dentro da borda (antes, −0,7); os joelhos, 14,2 (direito) e 13,7 (esquerdo). No teste por pixel da auditoria (o corpo pintado numa cor só), a cor do colchonete aparecia em 51 a 67 pontos de pele de três quartos por trás; agora em nenhum. A regra falha no estado antigo e passa no novo; a conferência automática dá 0 falha e os mesmos 4 avisos.
+
+Como a ordem de pintura é medida (a regra nova, com o núcleo em `src/engine/novo/regras/ordem-de-pintura.ts`): em cada vista do guia (as do exercício e as dos erros), a cada 3 quadros do movimento certo e em cada erro no começo, no meio e no fim, um raio sai de cada ponto do eixo da peça até quem olha e de cada ponto da pele virada para quem olha (a 85% do raio) até quem olha; se ele atravessa o corpo (os dois lados, cada grupo à parte), aquela parte do corpo tem de ser pintada depois do item que pinta a peça; se atravessa a peça, antes. A folga é a diferença de profundidade de pintura (cm; negativa = ordem errada). Contam só os cruzamentos de 4 pontos ou mais; a pele que fica dentro de outra parte do corpo ou dentro da própria peça não conta; quando a mesma parte esconde e é escondida pela mesma peça, vale o lado com mais pontos.
+
+**O que ainda não ficou bom.**
+- **O elástico passa por cima da canela de perto em alguns quadros**, de três quartos por trás no começo: o trecho que vai da borda de dentro da sola até a mão esquerda, por baixo do corpo, é pintado pedaço a pedaço pela profundidade de cada um e sai por cima da canela direita, que está na frente dele. Antes o colchonete cobria esse lugar e escondia o defeito; agora ele aparece (uns 10 cm de faixa sobre a canela, que se lê como a faixa enrolada no pé). Não mexi na faixa, que é outra peça; fica para quem fizer a próxima rodada.
+- **O pé de apoio continua além da ponta de trás do colchonete**, 1,7 cm acima do chão (o pequeno da auditoria): com o colchonete 2 cm mais para a frente, passa 2 cm a mais. O colchonete de 100 cm (medida provisória da tabela) não cabe o corpo de quatro apoios dos dedos das mãos aos pés.

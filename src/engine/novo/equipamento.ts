@@ -56,8 +56,17 @@ function bancoReto(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'bancoR
 }
 function colchonete(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'colchonete' }>): void {
   const comp = obj('colchonete', 'comp'),
-    larg = obj('colchonete', 'larg');
-  C.prisma(retArred(larg, comp, 3, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, obj('colchonete', 'esp'), 0], M.plataforma);
+    larg = obj('colchonete', 'larg'),
+    esp = obj('colchonete', 'esp'),
+    r = 3;
+  if (!p.noFundo) return C.prisma(retArred(larg, comp, r, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, esp, 0], M.plataforma);
+  // `noFundo`: na profundidade do canto mais longe de quem olha (no gerador, o maior z: o centro do arredondado mais
+  // longe, mais o raio dele), e não na do meio. Os pontos medidos ficam dentro do colchonete: não mexem na caixa dele
+  // na tela (o enquadramento)
+  let fundo = -1e9;
+  for (const x of [-1, 1]) for (const z of [-1, 1]) for (const y of [0, esp]) fundo = Math.max(fundo, C.P([p.x0 + x * (larg / 2 - r), y, p.z0 + z * (comp / 2 - r)])[2] + r);
+  const meio = C.P([p.x0, esp / 2, p.z0])[2];
+  C.prisma(retArred(larg, comp, r, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, esp, 0], M.plataforma, { dz: fundo - meio });
 }
 /** A parte fixa da coluna de polia: base, estrutura, guias, trilho com furos e a viga de cima. */
 function torreFixa(C: CenaRealista, M: typeof MAT, t: Torre, comSombra: boolean): void {

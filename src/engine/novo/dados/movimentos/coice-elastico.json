@@ -74,11 +74,11 @@
    "o": "o trecho da mão esquerda cruza por baixo do corpo, entre as coxas, e contorna a coxa de apoio pelo lado de dentro: a direção em que ele se afasta do corpo é para baixo e 0,7 disso para dentro (sem isso, ele atravessava a coxa de apoio)"
   },
   "colchonete.recua": {
-   "v": -13,
+   "v": -11,
    "un": "cm",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o meio do colchonete 13 cm atrás do meio entre as mãos e os joelhos: as mãos (com os dedos) e os joelhos cabem nele; ele tem 100 cm (medida provisória da tabela), e as pontas dos pés passam da ponta de trás"
+   "o": "o meio do colchonete 11 cm atrás do meio entre as mãos e os joelhos: as mãos (com a ponta dos dedos, que com 13 cm passava 0,7 cm da ponta da frente) e os joelhos cabem nele; ele tem 100 cm (medida provisória da tabela), e as pontas dos pés passam da ponta de trás"
   },
   "erro.lombar.acima": {
    "v": 20,
@@ -163,6 +163,12 @@
   "pelve"
  ],
  "regras": [
+  {
+   "id": "coice-elastico-colchonete-embaixo",
+   "pede": "as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
   {
    "id": "quatro-apoios-maos-e-joelhos",
    "pede": "em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete",
