@@ -355,3 +355,62 @@ O que sobrou do corte de texto (`devlog.md`, "Bem menos texto"; o registro das d
 
 **Não medido**: o leitor de tela de verdade nas telas novas (a página "Entenda o treino" e os nomes acessíveis que ficaram no lugar do texto) e um aparelho de verdade.
 
+## Das animações restantes (20/11/2026)
+
+O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`, "As 81 animações restantes"; o estado de cada uma em `revisoes/animacao-nova/andamento.md`, a partir de "As animações restantes"; o plano em `revisoes/animacoes-restantes/plano.md`; as notas em `revisoes/animacoes-restantes/notas-para-o-fechamento.md`).
+
+**Ligar as fases A, B e C no app** (decisões do Gustavo: "liga por fase", 17/11; a fase A só depois da sessão do desempate, "pode seguir com a sua recomendação", 18/11)
+- **Antes de tudo, a sessão do desempate** (`prompts/sessao-desempate-do-gerador.md`): com as 81 animadas, o último critério do gerador ("o que o guia já mostra animado") deixa de separar alguém, e a ordem alfabética do nome interno passa a decidir. Na amostra de 3.751 programas do estresse, 82,5% mudam com as 81 ligadas (`revisoes/animacoes-restantes/efeito-no-treino.json`). Essa sessão avisa aqui quando a fase A puder ser ligada.
+- **O que a ligação pede, a cada fase** (plano, seções 4, 6, 7 e 8): o `animacaoId` dos exercícios em `src/domain/biblioteca/exercicios.json` (a única mudança permitida em `src/domain/`); o texto do guia de `revisoes/animacoes-restantes/textos/<id>.json` no lugar do cartão em `src/conteudo/exercicios/<id>.json`; os ids no catálogo do guia (`src/engine/novo/dados/catalogo-do-guia.json`) e fora de `ESPERAM_A_LIGACAO` (`src/engine/novo/aprovados.ts`); o efeito nas personas mostrado ao Gustavo em português simples ("a Ana passa a fazer X no lugar de Y") e, só depois do ok dele, os instantâneos do gerador e os testes das personas regravados; `npm run auditoria`; os testes que protegem o cartão de texto (`tests/unit/conteudo.test.ts`, a lista `SEM_DESENHO` de `tests/unit/motor-novo-ponte.test.ts` e os de ponta a ponta que usam um cartão como exemplo: `treino.spec.ts`, `correcoes-auditoria.spec.ts`, `seu-treino.spec.ts`); e o peso da tela do programa (`tests/e2e/orcamento.spec.ts`), porque o dia passa a trazer as peças novas e a folga é pequena.
+- **Duas decisões que a ligação leva ao Gustavo:** o campo "como registrar e subir a carga" (`carga`), que o guia animado não tem (recomendação: manter, com um campo novo na tela do guia); e o cartão de texto (`CartaoTexto`) como reserva para a animação que não carrega (recomendação: manter, com um teste que force a falha).
+- **O texto do guia de quatro exercícios do C3 não foi escrito:** `abdominal-maquina`, `coice-polia`, `abducao-polia` e `remada-invertida` (as animações ficaram prontas depois do texto do lote; `scripts/animacao-nova/conferir-textos-restantes.ts`, lista `PARCIAIS`). Os outros 77 estão em `revisoes/animacoes-restantes/textos/`.
+
+**O pintor por pares** (`revisoes/animacao-nova/estudo-do-pintor.md`, "Etapa 2"; a lista em `src/engine/novo/pintor-ligado.ts`)
+- **Ligado em 17 animações** (lote 1, 5; lote 2, 12), todas aprovadas pelo Gustavo pelas folhas; o `coice-maquina`, do lote 2, está em revisão por outro motivo (o tipo de máquina).
+- **Os lotes 3 a 6** (12, 13, 13 e 15 animações, na ordem da tabela do estudo): a folha e a folha-resumo de cada lote, a conferência de cada animação e o ok do Gustavo; meio dia por lote.
+- **O `voador`** (e a `hiperextensao`) só entram com o ajuste do pintor (`pecaComPeca: 'contorno'` e `contatoNoRemendo`, em `PADRAO`, desligados), que muda o desenho de três animações do lote 1 já aprovadas (`remada-unilateral`, até 0,71% da figura; `abdominal-declinado` e `triceps-testa-halteres`, até 0,08%). Falta a folha dessas três, o pintor de hoje × com o ajuste, para o Gustavo decidir.
+- **As 18 que esperam conserto** (por pares, ganham um achado novo, quase sempre de 1 a 3 cm², na linha em que o corpo encosta na peça): `crucifixo-inclinado-halteres`, `supino-inclinado-polia`, `hip-thrust`, `abducao-caneleira`, `flexao-elastico`, `ponte-kettlebell`, `remada-curvada-elastico`, `abdominal-maquina`, `remada-unilateral-elastico`, `panturrilha-em-pe-maquina`, `coice-caneleira`, `elevacao-halteres`, `stiff-elastico`, `elevacao-lateral`, `aducao-caneleira`, `puxada-frente`, `rosca-polia-costas`, `crucifixo-elastico`. O conserto é no exercício ou na forma 3D da peça, uma a uma (1 a 2 dias); o recorte pela grade de 1 cm e a grade de 0,5 cm no pintor foram medidos e não resolvem.
+- **As 4 que não ganham nada** com o pintor (a mesma área pintada errada): `abertura-elastico`, `desenvolvimento`, `pull-through` e `rosca-concentrada`. Não ligar; se a conferência acusar nelas, o conserto é no exercício.
+- **As 77 sem achado** ficam desligadas: ligar só mudaria desenho aprovado.
+- **O celular de entrada:** com a CPU 6× mais lenta, a primeira volta das máquinas com o pintor engasga (a `mesa-flexora`, 94 de 132 quadros atrasados, até 430 ms; a `aducao-maquina` e o `voador-invertido`, até 265 e 255 ms). O plano B (a ordem de pintura calculada de antemão, só nas máquinas: até 31 kB comprimidos a mais ao abrir o exercício e 1,4 MB a mais no repositório) foi medido e não foi feito; é decisão do Gustavo, se o engasgo pesar.
+- **Tirar as correções que sobram** nas animações ligadas (os três `vies` da mão do lote 1), uma a uma, com a conferência.
+
+**Decisões do Gustavo em aberto** (uma por vez, com imagem)
+- **`coice-maquina`:** a máquina de quatro apoios (a do cartão do exercício e da ficha da técnica) ou a em pé (a do desenho de equipamento e das fichas da Life Fitness, da Hammer Strength e da Movement). Está em revisão (`EM_REVISAO`), fora do app.
+- **`panturrilha-leg-press`:** a primeira animação com o quadro só na perna (o corpo cortado; campo novo e opcional `enquadra`) e uma vista só, para o tornozelo se ler. Está em revisão.
+- **O ajuste do pintor** e **o plano B do celular de entrada** (acima).
+- **Os pedidos ao conteúdo** (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`): as travas do supino no smith e do supino com barra, o "pise com o pé" de três cartões de elástico, o músculo secundário que a ficha propõe e a biblioteca não tem, e os desenhos de equipamento.
+- **A junção com a `main`**: nada foi para a `main`.
+
+**Os cartões de equipamento que diferem das peças novas** (`public/equipamento/`, não mexidos; detalhes no pedido ao conteúdo, seção 3)
+- **Tríceps na máquina:** o cartão é a de mergulho sentado; a peça segue a ficha da técnica (braço apoiado à frente). Decidir se o cartão muda e se o app precisa de um segundo equipamento.
+- **Glúteo na máquina:** o cartão é em pé; a animação (em revisão) é de quatro apoios.
+- **Supino, desenvolvimento e remada articulada na máquina (anilha × pilha):** os cartões são de anilhas; as peças são de pilha, como as fichas e o texto do app.
+- **Barra hexagonal:** no cartão os cabos correm ao longo das mangas, a 24 cm; na peça (Rogue TB-1) atravessam o hexágono, a 63,5 cm.
+- **Suporte:** o cartão é uma gaiola; a peça é o suporte aberto que o Gustavo aprovou.
+- E ainda: o abdominal na máquina (no cartão, eixo alto e sem apoio da lombar), a panturrilha em pé (no cartão, um carro na vertical; na peça, um braço que gira) e as cadeiras, a mesa e a panturrilha sentada, menores que as fichas. Recomendação: refazer os cartões com as peças novas, no gerador realista (`scripts/desenhos-equipamento/`), com a folha de comparação.
+
+**Pontos fracos que não foram corrigidos**
+- **A conferência automática sai com falha em 47 das 81 novas** (medido em 20/11: 46 de pintura, 4 de fio e 2 de peso dentro do corpo; 46 delas aprovadas, mais o `coice-maquina`, em revisão), e por isso `npm run conferir:animacao` sai com erro. As 90 antigas não têm falha (38 com aviso de pintura, fio ou peso). O caminho: os lotes 3 a 6 do pintor por pares e o conserto uma a uma do que ele não resolve. Os fios e os pesos são de pose de erro: o cabo ou o pegador entrando no antebraço ou na coxa (`coice-elastico`, `supino-polia`, `supino-inclinado-polia`, `triceps-elastico-alto`), a barra reta da polia na coxa no erro "Usar o tronco" (`triceps-barra-reta`, 7,1 cm) e a barra do smith 1,4 cm no tronco (`agachamento-smith`).
+- **O cenário pintado atrás do corpo de propósito** (`cenario`): no smith e no glúteo na máquina, de lado, a parte de perto da máquina passa atrás do corpo; no `mergulho`, a estrutura das paralelas também. A conferência de pintura não conta esses casos (são escolha declarada) e o pintor por pares não os toca.
+- **A barra reta da polia, de 20 polegadas, é curta para a puxada** (`puxada-barra-reta`): as mãos ficam na ponta dela.
+- **A almofada do banco romano** fica 5,4 cm abaixo do mínimo da ficha da Body-Solid (83,6 contra 89 cm), para a barriga do corpo da tabela não entrar nela.
+- **Medidas de desenho, sem ficha:** os ângulos da barra W, a argola e o mosquetão da tornozeleira, a guia do smith (uma ficha só), e a altura do assento, o eixo e o braço da maioria das máquinas (derivados do corpo, com o selo `desenho`).
+- **Erros sem desenho:** 19 erros, um em cada uma de 19 das 81 animações, mostram o movimento certo com o texto do erro (lista `SEM_DESENHO`): 13 de ritmo e 6 sem consequência visível. A proposta para os de ritmo (um ritmo próprio por erro na ficha do movimento; plano, seção 5) não foi feita.
+- **Os pequenos da auditoria das fases A e B** (18 linhas das tabelas por exercício, como rótulos de cotovelo que apontam para o punho) não foram revistos um a um; parte pode ter sumido com as correções de pintura, sem conferência dedicada.
+- **A `mesa-flexora` de três quartos** não foi conferida (a vista não é declarada); onde o calcanhar fica pouco acima do rolo, o furo do recorte aparece como dentes de milímetros na borda do rolo.
+
+**Pequenos que sobraram**
+- `tests/repo/privacidade.test.ts` passa perto do limite de tempo (5,3 s) quando a máquina está carregada; sozinho, passa. Em 20/11, na rodada completa com a máquina carregada, o teste do que vem calculado de antemão (`tests/unit/motor-novo-ponte.test.ts`) passou dos 5 s; sozinho, passa.
+- **O primeiro quadro mais lento:** a `abducao-deitado-mini-band` leva 372 ms no computador e 1,6 s com a CPU 4× mais lenta até o primeiro quadro (`scripts/animacao-nova/tempo-ate-o-primeiro-quadro.mjs`); é o núcleo que mede a pele contra o chão a cada pose, o mesmo da `abducao-caneleira` (387 ms e 1,5 s). Das 81, 10 passam de 500 ms com a CPU 4×.
+- No `coice-maquina`, de três quartos, a joelheira é pintada sobre a coxa de apoio e, no erro "Arquear a lombar", o antebraço entra 3,2 cm nas almofadas dos braços (auditoria da fase C); fica para depois da decisão da máquina.
+- A cadeira extensora teve o recorte do rolo corrigido e aprovado por delegação em 20/11, mas continua fora do pintor por pares (é do lote 3).
+
+**Os pontos cegos da conferência**
+- **A regra de contato de 1 cm** da conferência de pintura (o ponto só conta se a parte que devia aparecer está mais de 1 cm à frente da outra e a mais de 1 cm fora dela) apaga o que acontece na linha em que a pele encosta na peça: o calcanhar que encosta no rolo da mesa flexora, no fim, só é conferido pela regra própria da mesa. O pintor por pares usa a mesma tolerância, então um erro comum aos dois some dos dois.
+- **A beira do furo:** onde uma peça é furada para mostrar o corpo (o rolo da mesa flexora e da extensora), a pele que aparece num ponto da grade (0,5 cm) junto da borda do furo não conta.
+- **O resto:** a grade de 0,5 cm deixa passar fendas e lascas menores; peça contra peça não é medida; peça sem forma 3D (`g3` ou `C.geo`) não é vista; o desenho cor de pele não é medido.
+
+**Não medido**
+- **Num celular de verdade:** o tempo até o primeiro quadro e a primeira volta com o pintor foram medidos no Chromium, com a CPU limitada pelo CDP (4× e 6×), nunca num aparelho. O Lighthouse do guia e a memória com uma máquina na tela também não.
+
