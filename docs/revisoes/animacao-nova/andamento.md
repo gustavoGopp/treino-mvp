@@ -282,3 +282,9 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | pintor | `mesa-flexora` | pintor por pares ligado no lote 2; em conferência: de cima, as pernas passam a ser pintadas por cima do rolo (dúvida de 19/11) |
 | pintor | `mesa-flexora` | pintor por pares (lote 2) com o furo do recorte corrigido em 19/11, aprovado pelo Gustavo em 20/11 ("Aprovo a mesa") |
 | pintor | `cadeira-extensora` | o mesmo recorte corrigido (somem lascas do rolo e a haste sobre o pé); aprovada por delegação em 20/11 |
+| fio/peso | `agachamento-smith` | a barra encosta nas costas sem afundar (1,4 → 0 cm na conferência dos pesos); conferida nas folhas de antes e depois e reaprovada por delegação em 20/11 |
+| fio/peso | `coice-elastico` | o elástico sai de baixo da mão, ao lado do punho (2,3 → 0 cm no antebraço); reaprovado por delegação em 20/11. Ainda passa perto da sola do pé (a regra dos cabos nos erros fica desligada nele) |
+| fio/peso | `supino-polia` | no erro "Banco fora do meio", a mão gira o estribo para o lado do cabo (1,2 → 0 cm no antebraço); reaprovado por delegação em 20/11 |
+| fio/peso | `supino-inclinado-polia` | a mesma correção (1,7 → 0 cm no antebraço); reaprovado por delegação em 20/11 |
+| fio/peso | `triceps-barra-reta` | no erro "Usar o tronco", o cotovelo dobra 21° embaixo e a barra não entra mais nas coxas (7,1 → 0 cm); reaprovado por delegação em 20/11 |
+| fio/peso | `triceps-elastico-alto` | no erro "Jogar o tronco", o cotovelo dobra 19° embaixo e os pegadores não entram mais nas coxas (4,9 → 0 cm); reaprovado por delegação em 20/11 |
