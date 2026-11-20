@@ -31,7 +31,7 @@
 ## O que ainda não está bom
 
 - **As 81 ainda não aparecem no app.** Como você decidiu, elas esperam a sessão que define como o gerador escolhe entre exercícios equivalentes. Sem ela, ligar as animações mudaria mais de 80% dos treinos, por causa da ordem alfabética do nome (o búlgaro viraria agachamento com halteres para a Ana, por exemplo).
-- **A conferência automática ainda acusa defeito em 47 das 81.** Quase tudo é peça pintada por cima do corpo; o pintor novo resolve a maior parte, lote a lote.
+- **A conferência automática ainda acusa defeito em 45 das 81**, todos de peça pintada por cima do corpo; o pintor novo resolve a maior parte, lote a lote. Os 6 casos de cabo ou peso dentro do corpo (o smith, o coice com elástico, os supinos na polia e os dois tríceps) foram corrigidos e reaprovados hoje.
 - 19 erros mostram o movimento certo com o texto do erro, porque o erro é de ritmo ou não se vê.
 
 ## O que vem depois
