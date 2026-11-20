@@ -280,3 +280,5 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | pintor | `rosca-scott` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
 | pintor | `voador-invertido` | pintor por pares ligado em 19/11 (lote 2) e aprovado pelo Gustavo ("pode aprovar as 11", nas folhas-resumo) |
 | pintor | `mesa-flexora` | pintor por pares ligado no lote 2; em conferência: de cima, as pernas passam a ser pintadas por cima do rolo (dúvida de 19/11) |
+| pintor | `mesa-flexora` | pintor por pares (lote 2) com o furo do recorte corrigido em 19/11, aprovado pelo Gustavo em 20/11 ("Aprovo a mesa") |
+| pintor | `cadeira-extensora` | o mesmo recorte corrigido (somem lascas do rolo e a haste sobre o pé); aprovada por delegação em 20/11 |
