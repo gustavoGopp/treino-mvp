@@ -61,3 +61,24 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md`.
 - **O cabo passa a 0,8 cm da pele do antebraço** embaixo: não encosta (a regra pede 0,5 cm), mas fica rente.
 - **No erro do banco fora do meio**, o cabo do lado de perto continua reto embaixo, quando na vida real afrouxaria.
 - O encosto pintado por cima do tronco **de frente, no estilo com cor de pele**, é do pintor comum (também no aprovado); esta animação não usa a vista de frente.
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos fios (`conferir-pintura.ts`, tolerância de 1 cm) acusava **o cabo e a fita do estribo 1,7 cm dentro do antebraço esquerdo** no erro "Banco fora do meio", no topo (u = 1).
+
+**A causa, medida.** No erro, o banco e o corpo vão 22 cm para a esquerda: a roldana da esquerda fica a 65 cm da mão na horizontal (no certo, 87 cm), e o cabo sobe mais em pé, a uns 34° da vertical, rente ao antebraço esquerdo, que no topo desce do punho para fora a 14° da vertical. O estribo só gira em volta da pegada: com as palmas a 25° uma para a outra, o elo fica quase embaixo da mão, junto do punho, e dali a fita e o cabo atravessavam o antebraço de 6,5 a 13 cm do punho. Diminuir o desvio não resolvia: com o banco 12 cm fora do meio, o cabo ainda entrava 1,2 cm. Endireitar o antebraço esquerdo (sem os 14° para dentro) também resolvia, mas deixava a mão 6,5 cm mais para fora; fiquei com o giro da pegada, que muda menos.
+
+**A mudança.** No erro, a mão do lado da torre mais perto (a esquerda) gira o estribo para o lado do cabo: as palmas a 50° (`erro.banco.giro`; no certo e na mão direita, 25°). O elo sai do lado do antebraço e o cabo passa por fora dele. O banco continua 22 cm fora do meio (o erro não diminuiu); o resto do corpo, o ciclo e o outro erro não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| o cabo e a fita do estribo dentro do antebraço esquerdo, conferência dos fios (erro "Banco fora do meio", u = 1) | 1,7 cm | 0 (nada além da tolerância) |
+| regra `cabos-fora-do-corpo-nos-erros`, erro "Banco fora do meio" | entra 1,7 cm (o cabo, no antebraço esquerdo) | passa a no mínimo 0,1 cm da pele |
+| a mesma regra, erro "Tirar as costas do encosto" | entra 0,4 cm | entra 0,4 cm |
+| pintura: achados e área somada | 10, 76,8 cm² | 9, 75,3 cm² |
+
+A ficha liga `cabos-fora-do-corpo-nos-erros`: no estado de antes ela falha; no de agora, passa. Na pintura, nenhum achado cresceu (o do antebraço esquerdo de cima sobre o estribo sumiu; o do estribo sobre o antebraço direito, de três quartos, passou de 4 para 3,8 cm²). O antes e depois está em `../correcao-das-antigas/supino-inclinado-polia-fio-ou-peso.png`; os quadros grandes foram regravados com o erro também no topo (`cima:err:f1:banco` e `quina:err:f1:banco`) e olhados de cima e de três quartos, nos dois braços. A conferência automática dá **1 falha e 2 avisos** (antes: 2 falhas, a de fios e a de pintura, e 2 avisos); a de pintura é a de antes. O enquadramento de cima mudou menos de 0,1 cm.
+
+**O que ainda não ficou bom.**
+- No topo do erro, o cabo da esquerda passa rente ao antebraço (0,1 cm da pele, pela regra): não entra, mas encosta. Com as palmas a 45°, entrava 0,2 cm.
+- De cima, no erro, os dois estribos ficam em ângulos diferentes (a esquerda a 50°, a direita a 25°).
