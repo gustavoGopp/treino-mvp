@@ -29,3 +29,17 @@ Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (20/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/remada-invertida.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior; igual à biblioteca); a nota, dos erros "Quadril caído" e "Puxar com o queixo" e das linhas Posição e Puxar | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Preparo e Posição da tabela | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Preparo (a barra do rack, do smith ou uma barra baixa de praça), seção "Como a carga sobe" (pés mais à frente, corpo mais deitado: mais difícil) e linhas Puxar e Descida | consenso | `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão (a linha Montagem segura) | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/remada-invertida.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha (escrita em 12/11 para tirar o "Sem guia ainda") não cita estudo e não dá número para "a altura da cintura": a animação foi feita no smith, com a barra no pino mais perto que deixa o corpo deitado, 9,9 cm abaixo da cintura, e o corpo fica entre 55° e 73° da vertical (`docs/revisoes/animacao-nova/lote-C3/remada-invertida.md`); o texto segue o cartão ("na altura da cintura") e mantém as três barras. A montagem do smith pede só a barra travada nos ganchos; a regra `seguranca.montagem` pede no smith as travas logo abaixo do ponto mais baixo (a animação as pôs 6 cm abaixo da barra), e a nota seguiu o cartão (anotado em `docs/revisoes/animacoes-restantes/pedidos-ao-conteudo.md`). A ficha não fala das escápulas: a animação as junta no fim, da remada na suspensão aprovada, e o texto não diz.
