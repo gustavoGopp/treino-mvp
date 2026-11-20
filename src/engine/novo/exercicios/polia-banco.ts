@@ -127,7 +127,7 @@ export function criarSupinoNaPolia(fichaJson: unknown, banco: BancoDoSupino): Su
   }
 
   /* ------------------------------ o braço ------------------------------ */
-  function braco(t: Tronco, k: Lado, u: number, doTronco: number): PoseBraco {
+  function braco(t: Tronco, k: Lado, u: number, doTronco: number, giroDaPegada = f('pegada.giro')): PoseBraco {
     const s = sinal(k);
     const baixo = umeroEmbaixo(t, s, doTronco, f('braco.baixo'));
     const topo = norm([s * Math.sin(f('topo.abre') * rad), Math.cos(f('topo.abre') * rad), 0]);
@@ -138,7 +138,7 @@ export function criarSupinoNaPolia(fichaJson: unknown, banco: BancoDoSupino): Su
     const a = doTronco * rad;
     // o cotovelo aponta para fora e para os pés, um pouco para baixo do plano do peito
     const polo = norm(add(add(mul(fora, Math.sin(a)), mul(pes, Math.cos(a))), mul(peito, -0.2)));
-    const giro = f('pegada.giro') * rad;
+    const giro = giroDaPegada * rad;
     const polegar = norm([-s * Math.cos(giro), 0, -Math.sin(giro)]);
     return { umero, antebraco, polo, mao: { polegar, forma: 'pegada', diam: obj('estribo', 'pegadaDiam') }, prot: -f('escapula.retracao'), elev: -f('escapula.depressao') };
   }
@@ -149,7 +149,12 @@ export function criarSupinoNaPolia(fichaJson: unknown, banco: BancoDoSupino): Su
     // as costas saem do encosto enquanto a carga sobe (e voltam na descida)
     const b = banco === 'reto' ? deitado(corpo, dx) : sentadoNoBanco(corpo, dx, erro === 'costas' ? suave(x) : 0);
     const doTronco = erro === 'cot' ? f('erro.cot.doTronco') : f('cotovelos.doTronco');
-    const e = resolverMembros(b.t, { R: braco(b.t, 'R', x, doTronco), L: braco(b.t, 'L', x, doTronco) }, b.pernas);
+    // correção de 20/11/2026: no erro "banco fora do meio", o cabo do lado da torre mais perto sobe mais em pé, rente ao
+    // antebraço, e entrava nele (1,2 cm no banco plano e 1,7 cm no inclinado, no topo); a mão desse lado gira o estribo
+    // para o lado do cabo (`erro.banco.giro`, na ficha que tem a linha), e o elo e o cabo passam por fora do antebraço
+    const perto: Lado = f('erro.banco.desvio') > 0 ? 'L' : 'R';
+    const giro = (k: Lado) => (erro === 'banco' && k === perto && F.param['erro.banco.giro'] ? f('erro.banco.giro') : f('pegada.giro'));
+    const e = resolverMembros(b.t, { R: braco(b.t, 'R', x, doTronco, giro('R')), L: braco(b.t, 'L', x, doTronco, giro('L')) }, b.pernas);
     return { e, b };
   }
 

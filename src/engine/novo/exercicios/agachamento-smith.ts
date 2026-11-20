@@ -69,8 +69,11 @@ export function costasNaBarra(corpo: Corpo): number {
   });
 }
 
-/** O centro da barra no referencial do tórax: no alto das costas, encostada na pele. */
-const barraNoTorax = (corpo: Corpo): V3 => [0, -f('barra.abaixoDeC7'), costasNaBarra(corpo) - raioDaBarraDoSmith() + f('barra.amassa')];
+/**
+ * O centro da barra no referencial do tórax: no alto das costas, encostada na pele, sem afundar (`barra.folga`).
+ * Correção de 20/11/2026: ela afundava 0,5 cm e a conferência dos pesos a media 1,4 cm dentro do tronco.
+ */
+const barraNoTorax = (corpo: Corpo): V3 => [0, -f('barra.abaixoDeC7'), costasNaBarra(corpo) - raioDaBarraDoSmith() - f('barra.folga')];
 
 /** O ponto do chão sob a bola de cada pé e a direção dos dedos (s = −1 direita, +1 esquerda), como em ./agachar.ts. */
 function pes(corpo: Corpo) {
@@ -159,7 +162,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     atras: -1,
     anilhas: ANILHAS,
     // o quadro mostra a máquina inteira de frente para o fundo e de um lado ao outro, cortada um pouco acima da cabeça
-    noQuadro: cantosDoSmith({ base, sobePara: 1 }, f('quadro.ate')),
+    // (no movimento certo, onde a máquina ficava antes da correção de 20/11/2026, `quadro.pesAFrente`: o quadro e os
+    // rótulos não mudam)
+    noQuadro: cantosDoSmith({ base: erro === 'pes' ? base : baseDaGuia(corpo, f('quadro.pesAFrente')), sobePara: 1 }, f('quadro.ate')),
   });
   return {
     esq: r.e,

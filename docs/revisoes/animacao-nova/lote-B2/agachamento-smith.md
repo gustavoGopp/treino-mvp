@@ -73,3 +73,30 @@ Nenhuma registrada para este exercício em `correcoes-ja-feitas.md` (ele nunca t
 - **O fio de "costas retas"** atravessa o braço embaixo (o braço fica atrás das costas, segurando a barra).
 - **O erro dos pés** mostra o joelho e a canela no quadro parado; o tronco que "tomba" só se vê em movimento (ver acima).
 - **O centro de massa embaixo fica a 1,3 cm da borda do calcanhar.** É a leitura de quem encosta na barra; a conferência só exige que fique sobre o apoio. Se o Gustavo preferir o peso no meio do pé, o tronco fica em pé o tempo todo (1° a 3°) e o joelho passa 15 cm da ponta do pé (testei com os pés 6 cm à frente: parece um agachamento frontal, não um smith com os pés à frente).
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos pesos (`conferir-pintura.ts`, tolerância de 1 cm) acusava **a barra do smith 1,4 cm dentro do tronco**, no ciclo inteiro e nos dois erros (pior em u = 0,69). O apoio da barra no trapézio é contato pedido pela técnica; o que passava da conta era o quanto ela afundava.
+
+**A causa, medida.** A barra era posta 0,5 cm dentro da pele das costas (`barra.amassa`), de propósito ("ela apoia, não flutua"). Contra a pele desenhada (a pele densa, o casco que o desenho liga de um anel ao outro), ela afundava mesmo 0,5 cm; a conferência dos pesos mede cada ponto da barra contra a seção oval de cada anel e, nas costas, onde a seção é muito achatada (1,8 cm para trás e 15 cm para o lado), lia 1,3 a 1,4 cm. A regra `peso-fora-do-corpo` (tolerância 0,5 cm) lia 0,8 cm. Com a barra encostada em 0 cm, a conferência dos pesos já passava (0 cm), mas a regra ainda lia 0,6 cm: ela procura a borda da seção de 5 em 5 graus e, numa elipse tão achatada, um ponto que entra meio milímetro nela conta perto de 0,6 cm. Com a barra a 0,05 cm da pele, ela lê 0.
+
+**A mudança.**
+
+- A barra encosta nas costas sem afundar: a superfície dela fica a 0,05 cm da pele desenhada (`barra.folga`, no lugar de `barra.amassa`), 0,55 cm mais para trás no corpo. Na tela, continua encostada (meio milímetro é menos que o traço do contorno).
+- Para o corpo fazer o mesmo movimento, a máquina vai junto com a barra: os pés ficam 6,55 cm à frente da linha da barra em cima (`pes.aFrente`, eram 6). Sem isso, a barra na guia empurrava o quadril 0,55 cm para a frente e o tornozelo dobrava 0,6° a mais. No movimento certo, o quadril, os joelhos, o tronco e os tornozelos ficam iguais (a diferença é menor que 0,02 cm e 0,02°); só as mãos, que seguram a barra, vão 0,55 cm para trás com ela (cotovelo 143,4°, eram 143,8°).
+- O quadro mede a máquina onde ela ficava (`quadro.pesAFrente`, 6 cm): com o quadro 0,55 cm maior, o rótulo "costas retas" pulava para o outro lado do corpo. O quadro, a miniatura e os rótulos ficam como estavam (o preparo só muda na altura do fundo, que as travas usam).
+- No erro "Pés embaixo da barra", a máquina continua com a linha da barra no meio do pé; como a barra fica 0,55 cm mais para trás no corpo, o equilíbrio põe o tronco um pouco mais inclinado: 17,4° em pé (eram 16,5°) e 14,6° embaixo (eram 13,7°); o joelho passa 0,2 cm menos da ponta do pé. O erro se lê igual.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a barra dentro do tronco, conferência dos pesos (pior em u = 0,69) | 1,4 cm | 0 cm (nada além da tolerância) |
+| a barra dentro do tronco, regra `peso-fora-do-corpo` | 0,8 cm | 0 cm |
+| a superfície da barra até a pele das costas (`barra-no-alto-das-costas`) | −0,5 cm | 0 cm |
+| o meio do pé à frente da barra, em cima e embaixo | 6,1 e 11,9 cm | 6,6 e 12,4 cm |
+| as travas abaixo do ponto mais baixo da barra | 3 cm | 3 cm |
+| dorsiflexão do tornozelo (máximo) | 29,4° | 29,4° |
+
+A ficha liga `peso-fora-do-corpo`: no estado de antes ela falha (0,8 cm, no tronco, no erro "Descer pouco"); no de agora, passa (em 193 quadros, o peso não entra no corpo). O antes e depois está em `../correcao-das-antigas/agachamento-smith-fio-ou-peso.png`; os quadros grandes foram regravados e olhados vista por vista, de lado e de frente, nos dois erros e nos dois lados do corpo. A conferência automática dá **0 falha e 3 avisos** (antes: 1 falha, a dos pesos, e 3 avisos); a pintura continua sem achado.
+
+**O que ainda não ficou bom.**
+- A regra `peso-fora-do-corpo` mede mal uma seção muito achatada (a borda de 5 em 5 graus): um ponto que mal entra nas costas conta como 0,6 cm. Não mexi na regra, que é comum a todas as animações; por isso a barra fica a 0,05 cm da pele, e não em 0.

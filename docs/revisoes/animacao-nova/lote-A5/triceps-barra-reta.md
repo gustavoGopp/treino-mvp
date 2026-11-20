@@ -82,3 +82,28 @@ Rodada no estado de antes (o exercício e a ficha de `1828c0e`, com a regra nova
 **Olhado nos quadros** (`quadros/triceps-barra-reta.png`): no erro, de lado, o tronco vermelho debruça sobre a barra com o quadril para trás, e o cabo sobe da barra rente ao peito e à frente do rosto, sem cruzá-los; o tronco certo, tracejado, fica bem mais em pé. Os outros dois erros, de trás e de lado, e o ciclo não mudaram.
 
 **O que ainda não ficou bom.** O cabo passa a 0,6 cm do peito no fim do erro: é o que a geometria deixa (a barra desce rente às coxas e o cabo sobe dela quase junto ao corpo). O debruçar é um pouco menor que antes (30° contra 34°), compensado pelo quadril para trás.
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos pesos (`conferir-pintura.ts`, tolerância de 1 cm) acusava **a barra 7,1 cm dentro das duas coxas** no fim do erro "Usar o tronco" (u = 1). Esse erro tinha sido mudado em 19/11 para o cabo não atravessar a cabeça: o tronco debruça 30° e o quadril vai 14 cm para trás.
+
+**A causa, medida.** Os braços ficam presos ao tronco (o cotovelo junto das costelas); com o tronco 30° à frente e o quadril para trás, eles vão junto, e com o cotovelo do movimento certo embaixo (5,7°, estendido) as mãos ficavam 21 cm atrás de onde ficam no certo, dentro das coxas (agora, 12 cm atrás, à frente delas).
+
+**A mudança.** Nesse erro, embaixo, o cotovelo dobra o que a barra precisa para passar à mesma folga das coxas que no movimento certo (`barra.folga`, 1,5 cm): 21,3°, calibrado e guardado no preparo (`triceps-barra-reta:tronco-embaixo`). Daí para cima ele dobra como antes, até os 105° do começo. É o que o cartão descreve ("debruçar sobre a barra para descer a carga"): quem debruça não termina de estender os cotovelos. O tronco (30°), o quadril (14 cm para trás), o começo do erro, o ciclo e os outros dois erros não mudam. A amplitude do erro não diminuiu.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a barra dentro das coxas (conferência dos pesos; erro "Usar o tronco", u = 1) | 7,1 cm (as duas coxas) | 0 (nada além da tolerância) |
+| cotovelo embaixo, no erro | 5,7° | 21,3° |
+| o cabo até a pele, regra `cabos-fora-do-corpo-nos-erros`, nesse erro | 0,6 cm (o tronco) | 4,5 cm (a cabeça) |
+| pintura: achados e área somada | 3, 3,5 cm² | 2, 5,0 cm² |
+
+**As regras.** A ficha já liga `cabos-fora-do-corpo-nos-erros`, e ela passava antes e passa agora: ela mede o cabo, e o que entrava era a barra. A regra `peso-fora-do-corpo` não foi ligada: ela só conta a barra quando o quadro tem carga (`cargas`), e na polia a carga é a pilha, que não entra no equilíbrio do corpo; ligada, ela passaria no estado de antes e no de agora sem ver a barra. Quem mede a barra aqui é a conferência dos pesos (na pintura), que falhava antes e passa agora.
+
+**A pintura.** De trás, no fim desse erro, antes a barra inteira era pintada por cima das coxas (ela estava dentro delas, e a conferência conta isso como contato, por isso só 3,5 cm²); agora ela fica atrás das coxas e só o meio dela (a aba e o mosquetão) aparece no vão entre elas, como deve, mas a borda da aba é pintada por cima da beira de dentro das coxas: 3 cm² na direita e 2 cm² na esquerda (antes 1,5 e 1; o da bacia, 1 cm², sumiu). No desenho, a barra atravessando as coxas de trás sumiu (ver `../correcao-das-antigas/triceps-barra-reta-fio-ou-peso.png`).
+
+Os quadros grandes foram regravados, com o erro também de trás (`posterior:err:f1:tronco`), e olhados nas duas vistas, nos dois lados do corpo. A conferência automática dá **1 falha e 3 avisos** (antes: 2 falhas, a de pesos e a de pintura, e 3 avisos).
+
+**O que ainda não ficou bom.**
+- A área da pintura errada de trás, nesse erro, cresceu 1,5 cm² (a aba no vão entre as coxas, ver acima). Não mexi na ordem de pintura da barra, que é a mesma da rosca na polia aprovada.
+- No fim do erro, o cotovelo fica dobrado 21° (no certo, 6°): lê-se como "não estendeu", junto do tronco debruçado; não é algo que o cartão descreva em número.

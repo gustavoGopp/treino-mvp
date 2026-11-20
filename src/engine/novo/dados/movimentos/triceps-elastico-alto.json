@@ -19,7 +19,7 @@
   "braco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "corda", "o": "cotovelos colados ao corpo: o braço 15° à frente do eixo do tronco inclinado, ou seja, na vertical, ao lado das costelas (o do tríceps na polia aprovado)"},
   "braco.paraDentro": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "o braço vai um pouco para o meio, até o cotovelo encostar ao lado das costelas"},
   "cotovelo.alto": {"v": 112, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima: cotovelos dobrados, mãos na altura do peito (o número do tríceps na polia aprovado; a conferência mede a altura das mãos)"},
-  "cotovelo.baixo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: os braços retos, o cotovelo estendido"},
+  "cotovelo.baixo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: os braços retos, o cotovelo estendido. Desde 20/11/2026, no fim do erro \"Jogar o tronco\" o cotovelo para antes: com o peito a 34° e o quadril parado, os braços vão com o tronco e, estendidos, os pegadores entravam 4,9 cm nas coxas; nesse erro, embaixo, o cotovelo dobra o que os pegadores precisam para ficar à mesma folga das coxas que no movimento certo (18,9°, calibrado)"},
   "maos.pronacao": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a pegada no pegador: palmas para baixo em cima e para trás embaixo (o antebraço 70° pronado a partir da pegada neutra; a média do corpo é 80°). O cartão não diz a pegada; com a pegada de lado a lado, a fita em triângulo sobe pelos dois lados do punho até o tubo"},
   "cabo.inclinacao": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, o elástico sobe das mãos até a âncora a 28° da vertical: de frente para a porta, a cerca de meio passo, com as mãos a uns 45 cm da porta (com os 20° do cabo do tríceps na polia aprovado, as mãos ficavam quase encostadas na porta, porque a âncora fica no topo dela, mais baixa que a roldana da polia). A distância até a porta sai daqui"},
   "elastico.noQuadro": {"v": 45, "un": "cm", "selo": "desenho", "fonte": "puxada", "o": "quanto do tubo, a partir da ponta junto do pegador, é desenhado como parte do exercício; dali até a porta ele é cenário e sai pela borda do quadro (como na puxada com elástico aprovada)"},
@@ -44,7 +44,8 @@
   {"id": "triceps-corda-tronco-parado", "pede": "tronco levemente inclinado à frente e parado", "selo": "consenso", "fonte": "app"},
   {"id": "elastico-nas-maos", "pede": "uma ponta do elástico em cada mão", "selo": "consenso", "fonte": "app"},
   {"id": "elastico-livre-do-corpo", "pede": "o elástico vai das mãos à âncora sem encostar no corpo nem no rosto", "selo": "desenho", "fonte": "objetos"},
-  {"id": "elastico-bracos-juntos", "pede": "os dois braços estendem juntos", "selo": "consenso", "fonte": "app"}
+  {"id": "elastico-bracos-juntos", "pede": "os dois braços estendem juntos", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o elástico continua reto do pegador à âncora sem atravessar o corpo", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "cotovelos", "instante": 0, "titulo": "Cotovelos soltos", "vista": "lateral", "oQueMuda": "em cima, os cotovelos vão para a frente e saem do lado do tronco; ao empurrar, o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

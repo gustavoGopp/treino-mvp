@@ -84,10 +84,14 @@ function laco(corpo: Corpo, e: Esq): { pts: V3[]; comp: number; sola: V3 } {
     L0 = e.lado.L;
   const daPernaDeApoio = (p: V3) => Math.min(dist(p, L0.joelho), dist(p, L0.tornozelo), dist(p, L0.quadril) + 6) < Math.min(dist(p, R0.joelho), dist(p, R0.tornozelo), dist(p, R0.quadril) + 6);
   const op = { lado: [0, -1, 0] as V3, partes: PARTES, folga: f('elastico.folga'), fatia: 2.5, livreNasPontas: 3, aceita: (p: V3) => !daPernaDeApoio(p) };
-  const R = fioPorFora(e, palma('R'), bR, op);
+  // correção de 20/11/2026: cada trecho sai de baixo da mão pela beira de dentro do calcanhar dela, rente ao colchonete
+  // (`elastico.saida.*`). Saindo do meio da palma, o trecho subia rumo ao pé por dentro do punho (até 2,3 cm, no erro de
+  // arquear a lombar): o punho fica a 1 ou 2 cm do colchonete, e não há por onde o elástico passar embaixo dele
+  const saida = (k: Lado): V3 => add(palma(k), [-sinal(k) * f('elastico.saida.dentro'), 0, -f('elastico.saida.atras')]);
+  const R = [palma('R'), ...fioPorFora(e, saida('R'), bR, op)];
   // o trecho da mão esquerda cruza por baixo do corpo, entre as coxas: ele contorna também a coxa de apoio, pelo lado
   // de dentro dela (a virilha), em vez de atravessá-la
-  const L = fioPorFora(e, palma('L'), bL, { ...op, lado: norm([-f('elastico.paraDentro'), -1, 0]), aceita: undefined });
+  const L = [palma('L'), ...fioPorFora(e, saida('L'), bL, { ...op, lado: norm([-f('elastico.paraDentro'), -1, 0]), aceita: undefined })];
   // no colchonete, o laço não desce abaixo do tampo
   const noTampo = (p: V3): V3 => [p[0], Math.max(p[1], O.piso + esp / 2), p[2]];
   const pts = [...R, ...L.reverse(), palma('R')].map(noTampo);

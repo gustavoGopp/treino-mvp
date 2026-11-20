@@ -10,6 +10,7 @@
 //  - a coluna fica à frente, onde o cabo, em cima, fica a `cabo.inclinacao` graus da vertical; o cabo vai reto da
 //    ponta do mosquetão à roldana, e a pilha sobe o curso do cabo dividido pela relação da máquina.
 import ficha from '../dados/movimentos/triceps-barra-reta.json';
+import { calibragem } from '../calibragens';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
@@ -92,11 +93,15 @@ interface Calibrado {
 }
 const CAL = new WeakMap<Corpo, Calibrado>();
 
+/** O que `montar` recebe: a calibração e, no erro de usar o tronco, o cotovelo embaixo (`cotTronco`). */
+type ParaMontar = Pick<Calibrado, 'pelveY' | 'frente' | 'cotBaixo'> & { cotTronco?: number };
+
 /** O pedido de cada instante: a flexão do cotovelo, a inclinação do peito e a da torácica. */
-function pedido(c: Pick<Calibrado, 'cotBaixo'>, u: number, erro?: string) {
+function pedido(c: Pick<ParaMontar, 'cotBaixo' | 'cotTronco'>, u: number, erro?: string) {
   const alto = erro === 'curta' ? f('erro.curta.cotovelo') : f('cotovelo.alto');
+  const baixo = erro === 'tronco' && c.cotTronco !== undefined ? c.cotTronco : c.cotBaixo;
   return {
-    cotovelo: mix(alto, c.cotBaixo, u),
+    cotovelo: mix(alto, baixo, u),
     inclina: erro === 'tronco' ? mix(f('tronco.inclinacao'), f('erro.tronco.inclinacao'), u) : f('tronco.inclinacao'),
     toracica: erro === 'tronco' ? u * f('erro.tronco.toracica') : 0,
     // ao debruçar, o quadril vai para trás e a cabeça fica atrás do cabo (até 19/11 o cabo atravessava a cabeça)
@@ -104,7 +109,7 @@ function pedido(c: Pick<Calibrado, 'cotBaixo'>, u: number, erro?: string) {
   };
 }
 
-function montar(corpo: Corpo, c: Pick<Calibrado, 'pelveY' | 'frente' | 'cotBaixo'>, u: number, erro?: string): Esq {
+function montar(corpo: Corpo, c: ParaMontar, u: number, erro?: string): Esq {
   const p = pedido(c, u, erro);
   const frente = erro === 'tronco' ? pelveParaInclinar(corpo, p.inclina, p.toracica) : c.frente;
   const { t, pernas } = troncoEPernas(corpo, c.pelveY, frente, p.toracica, p.atras);
@@ -158,9 +163,26 @@ function calibrar(corpo: Corpo): Calibrado {
   return c;
 }
 
+/**
+ * Correção de 20/11/2026: no erro "Usar o tronco", o tronco debruça 30° e o quadril vai 14 cm para trás; os braços vão
+ * com o tronco e, com o cotovelo do movimento certo embaixo, a barra entrava 7,1 cm nas coxas. Embaixo, nesse erro, o
+ * cotovelo dobra o que a barra precisa para passar à mesma folga das coxas que no movimento certo (`barra.folga`): quem
+ * debruça para descer a carga não termina de estender os cotovelos.
+ */
+function cotoveloEmbaixoNoTronco(corpo: Corpo): number {
+  return calibragem(corpo, 'triceps-barra-reta:tronco-embaixo', () => {
+    const c = calibrar(corpo);
+    const folga = (cot: number) => {
+      const e = montar(corpo, { ...c, cotTronco: cot }, 1, 'tronco');
+      return folgaDasPernas(e, esferasDaBarra(e)) - f('barra.folga');
+    };
+    return folga(c.cotBaixo) >= 0 ? c.cotBaixo : resolver1(folga, c.cotBaixo, 90, 30);
+  });
+}
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const c = calibrar(corpo);
-  const e = montar(corpo, c, u, erro);
+  const e = montar(corpo, erro === 'tronco' ? { ...c, cotTronco: cotoveloEmbaixoNoTronco(corpo) } : c, u, erro);
   const barra = barraDe(e, c.cabos);
   const pb = barraReta(barra);
   const col = colunasECabos(c.cabos, [barra.ponta], c.repouso, f('pilha.folga'), false, CORTADA_EM);

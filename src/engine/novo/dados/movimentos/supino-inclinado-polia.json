@@ -24,6 +24,7 @@
   "polia.altura": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "poliaBaixa", "o": "'com as polias embaixo': o centro da roldana a 22 cm do chão (a polia baixa dos exercícios aprovados); de cada lado, na linha do meio do caminho das mãos"},
   "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o cabo já tenso embaixo, no alongado: a pilha sai 2 cm do repouso (como no crucifixo na polia aprovado)"},
   "erro.banco.desvio": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o banco (e a pessoa) 22 cm para a esquerda do meio das torres: o cabo da direita fica mais comprido e a pilha da direita sobe mais"},
+  "erro.banco.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: do lado da torre mais perto (a esquerda), o cabo sobe mais em pé e passa rente ao antebraço; a mão desse lado gira o estribo para o lado do cabo, as palmas a 50° (no certo, 25°), e o elo fica por fora do antebraço. Desde 20/11/2026: com a pegada do certo, o cabo entrava no antebraço esquerdo no topo"},
   "erro.costas.frente": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a pelve, parada no assento, gira 24° à frente enquanto a carga sobe: o tronco sai do encosto"},
   "erro.costas.lombar": {"v": -18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 18° além da curva de repouso ('arquear para ajudar')"},
   "erro.costas.toracica": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima estendem 8° (o peito sobe)"},
@@ -44,7 +45,8 @@
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
   {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
   {"id": "polia-banco-maos-ao-lado-do-peito", "pede": "início: mãos ao lado do peito, na altura dele, com o antebraço na vertical, e cotovelos a ~30–60° do tronco", "selo": "consenso", "fonte": "app"},
-  {"id": "polia-banco-topo-para-dentro", "pede": "fim: braços quase estendidos acima do peito, as mãos um pouco para dentro dos ombros", "selo": "consenso", "fonte": "app"}
+  {"id": "polia-banco-topo-para-dentro", "pede": "fim: braços quase estendidos acima do peito, as mãos um pouco para dentro dos ombros", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana ao elo do estribo sem atravessar o corpo (no banco fora do meio, o cabo do lado mais perto passa por fora do antebraço)", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "banco", "instante": 0, "titulo": "Banco fora do meio", "vista": "cima", "oQueMuda": "o banco e a pessoa ficam 22 cm para um lado: o cabo de um lado fica bem mais comprido que o do outro, e a pilha dele sobe mais", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},

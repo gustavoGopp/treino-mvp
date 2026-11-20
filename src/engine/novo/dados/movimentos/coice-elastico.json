@@ -73,6 +73,8 @@
    "fonte": "desenho",
    "o": "o elástico passa por baixo da coxa, do joelho e da canela, por cima da pele (a metade da espessura mais a roupa)"
   },
+  "elastico.saida.dentro": {"v": 4.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada trecho do elástico sai de baixo da mão pela beira de dentro do calcanhar dela, rente ao colchonete: 4,5 cm para dentro do centro da palma (ali a mão tem 3,5 cm de meia largura). Desde 20/11/2026: saindo do centro da palma, o trecho subia rumo ao pé por dentro do punho (até 2,3 cm), que fica a 1 ou 2 cm do colchonete"},
+  "elastico.saida.atras": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "...e 3 cm para trás do centro da palma, no calcanhar da mão, à frente do punho"},
   "elastico.paraDentro": {
    "v": 0.7,
    "un": "fração",
