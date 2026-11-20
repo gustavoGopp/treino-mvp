@@ -4,7 +4,7 @@
 
 - **Os 81 exercícios que eram só texto agora têm o Boneco mostrando como fazer.** Com eles, os 171 exercícios do app têm animação. 79 estão aprovadas; 2 esperam você (abaixo).
 - **28 aparelhos novos**, desenhados com a medida do fabricante: a barra com anilhas, o suporte, o smith, a barra W e a hexagonal, e as máquinas (cadeira flexora e extensora, mesa flexora, leg press, hack, abdutora e adutora, puxador, remadas, voador, graviton, rosca, tríceps, abdominal e panturrilha na máquina, os bancos). As máquinas funcionam: o braço gira no eixo e a pilha de pesos sobe.
-- **O texto do guia de 77 deles** (onde sentir, a respiração, o que conferir), tirado da ficha de cada exercício, com a fonte. Faltam 4.
+- **O texto do guia dos 81** (onde sentir, a respiração, o que conferir), tirado da ficha de cada exercício, com a fonte.
 - **Duas revisões do zero** depois que você achou o braço fora da almofada na rosca Scott. Elas acharam defeitos parecidos em 24 animações (peça desenhada por cima do corpo, a cabeça que some vista de cima, o cabo atravessando o corpo). Todas foram corrigidas e aprovadas de novo, e a conferência automática passou a medir esse tipo de erro sozinha, em todas.
 - **As correções nas animações antigas que você aprovou**: a cabeça vista de cima (11), as três remadas, e o peso que entrava no corpo (10).
 - **O jeito novo de decidir o que fica na frente** (o "pintor novo"): já está em 17 animações, que você aprovou nas folhas.
@@ -39,6 +39,6 @@
 1. A sessão do gerador que define o desempate (o pedido já está escrito).
 2. Ligar as animações no app, uma fase de cada vez, mostrando antes a você o que muda no treino de cada pessoa de teste.
 3. Os próximos lotes do pintor novo, cada um com a folha de antes e depois para você.
-4. O texto do guia dos 4 que faltam, e os ajustes que você decidir na lista acima.
+4. Os ajustes que você decidir na lista acima.
 
 Os detalhes estão no diário do projeto (devlog), na pendência "Das animações restantes" e em `pedidos-ao-conteudo.md`, nesta pasta.
