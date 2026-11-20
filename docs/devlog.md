@@ -1923,3 +1923,111 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 >
 > Texto difícil esconde erro. Enquanto a regra estava em jargão, ninguém lia; quando virou uma frase simples, bastou ler.
 
+## As 81 animações restantes, as auditorias e o pintor novo (17 a 20/11/2026)
+
+**Por quê.** Depois das 90 animações refeitas no motor novo, 81 dos 171 exercícios da biblioteca continuavam aparecendo no guia como um cartão de texto: quem tem uma cadeira flexora, um leg press ou uma barra com anilhas lia como fazer, mas não via. O Gustavo pediu em 17/11: "quero que você faça agora um prompt para fazer animação de todos os treinos restantes que faltam". O pedido (`prompts/sessao-animacoes-restantes.md`) manteve o padrão das 90: o mesmo motor, cada movimento numa ficha com números e fonte, a conferência automática quadro a quadro e o mesmo modo de aprovação ("pode continuar assim", 17/11).
+
+**O que mudou.**
+
+- **As 81 animações, em três fases e 11 lotes** (`revisoes/animacoes-restantes/plano.md`). **Fase A** (42), com peças que o motor já desenhava: halteres no banco, elástico e mini band, halteres e kettlebell em pé, sentado ou deitado, polia, pendurado. **Fase B** (10), com barra. **Fase C** (29), com máquina ou banco novo, começando pela cadeira flexora, a mais prescrita das 81. Saíram núcleos novos, como o de quatro apoios, e o estado de cada uma está em `revisoes/animacao-nova/andamento.md`, a partir de "As animações restantes".
+- **As peças novas, 28, cada uma com a sua folha** (`revisoes/animacoes-restantes/pecas/`): a barra longa com anilhas e presilhas (medidas da IWF e da IPF), o suporte de agachamento, o smith, a barra W e a barra hexagonal, e as máquinas e bancos (cadeira flexora e extensora, mesa flexora, abdutora e adutora, leg press 45°, hack, puxador, estação de remada, remada articulada, supino e desenvolvimento na máquina, voador, graviton, rosca, tríceps e abdominal na máquina, panturrilha em pé e sentada, glúteo na máquina, banco romano, banco Scott, banco declinado, tornozeleira de polia), mais a caixa para subir na barra. Cada peça parte do cartão de equipamento do app, com as medidas de fabricante lidas em páginas públicas. A máquina funciona: o braço gira no eixo, a pilha sobe quando o cabo é puxado, o banco regula. O que nenhuma ficha dá (a altura do assento, o eixo, o braço) vem do corpo (o eixo da cadeira alinhado ao joelho, por exemplo), com o selo `desenho` e o motivo. A barra e a cadeira flexora foram mostradas ao Gustavo antes de qualquer outra (a Parte B do pedido); depois, só as que fugiam do padrão.
+- **O texto do guia de 77 das 81** (`revisoes/animacoes-restantes/textos/`): onde sentir, a respiração, a lista de conferência, as variações e os rótulos, tirados da ficha da técnica e do cartão, com a fonte. A respiração segue a das 90, com a fonte que a base já tinha (MacDougall 1985). Um script confere que os campos do cartão ficaram iguais e que os erros batem, na ordem, com os da animação (`scripts/animacao-nova/conferir-textos-restantes.ts`). Faltam 4 do lote C3, animados depois que o texto do lote foi escrito.
+- **Duas auditorias, com olhos novos.** Em 18/11 o Gustavo achou, na rosca Scott, o braço de longe fora da almofada na vista de três quartos, que a conferência automática e a conferência quadro a quadro tinham deixado passar ("tome cuidado com as proporções e detalhes"). A rosca Scott voltou, e duas auditorias mediram de novo o que já estava aprovado, nos dois lados do corpo: a da fase C (29 animações; `revisoes/animacao-nova/auditoria-fase-c.md`) e a das fases A e B (47 animações; `auditoria-fases-a-b.md`: 8 graves e 10 médios). Todas passavam na conferência com 0 falha. Quase tudo era **ordem de pintura** (uma peça pintada por cima de uma parte do corpo que está na frente dela: o rolo da cadeira flexora, o colchonete dos coices, a barra da remada), **a cabeça que some vista de cima**, ou **o cabo atravessando o corpo** nas poses de erro. As 24 animações com achado grave ou médio saíram da aprovação, foram corrigidas e reaprovadas, cada uma com uma regra nova que falha se o defeito voltar. O guia dos agentes ganhou a lição (`como-fazer-uma-animacao.md`, seção 10): toda regra de contato mede os dois lados do corpo e as bordas do apoio.
+- **A conferência automática de pintura, fios e pesos** (19/11; `revisoes/animacao-nova/conferencia-de-pintura.md`). O método das auditorias virou três checagens que rodam em todas as animações, em cada vista e em cada erro: a peça pintada por cima do corpo que está na frente dela (ou o contrário), o cabo, a corda ou o elástico dentro do corpo, e o peso rígido dentro do corpo. Antes de valer, ela achou sozinha os três casos já conhecidos (a rosca Scott, a cadeira flexora e o mergulho no graviton, nos commits de antes das correções). Nas 90 antigas um achado é aviso; nas novas, falha.
+- **As correções nas animações antigas**, todas aprovadas pelo Gustavo nas imagens de antes e depois (`revisoes/animacao-nova/correcao-das-antigas/`): **a cabeça vista de cima** em 11 (ela some dentro da silhueta dos ombros, porque o contorno do Boneco é um só; agora ganha o contorno próprio na vista em que sumia); **a mão de apoio** que entrava na coxa nas remadas sem banco com halter e com kettlebell; **o peso dentro do corpo** em 10 (6 antigas e 4 novas), achado depois que o Gustavo viu o halter "puxando pra dentro do próprio corpo" no fim da remada sem banco; e **as três remadas**, em que a carga agora termina ao lado do quadril e é pintada no lugar.
+- **O pintor por pares** (`revisoes/animacao-nova/estudo-do-pintor.md`). O motor pintava cada peça inteira por uma profundidade só, e cada erro de ordem era consertado no exercício, um por um. O pintor novo olha cada par (uma parte do Boneco, uma peça) que se cruza na tela, mede qual dos dois está mesmo na frente e, onde a ordem única não serve, pinta de novo só o pedaço que devia ficar por cima; o desenho de cada peça e do corpo não muda. No estudo, a área pintada errada nas 171 caiu de 41.458 para 1.266 cm² (−97%). O Gustavo decidiu "pode seguir com o pintor novo em etapas". **Etapa 1:** o custo a mais do pintor, contra o de hoje, caiu de 2,3 para 1,6 vez na mediana (de 13,5 para 3,8 vezes na pior animação), e ele foi medido no celular simulado; ele é baixado à parte, só no dia que tem uma animação em que está ligado. **Etapa 2:** ligado animação por animação, cada uma com a folha de antes e depois. **Lote 1** (5 animações: 17.143 cm² e 360 achados → 0) e **lote 2** (12: 8.557 → 241 cm²; depois do conserto do recorte do rolo, a mesa flexora foi a 0), aprovados por ele. **O que falta:** os lotes 3 a 6 (53 animações), o `voador` (que só entra com um ajuste do pintor que muda um pouco três animações já aprovadas), 18 animações em que o pintor acrescenta um achado pequeno na linha de contato e precisam de conserto uma a uma, 4 que não ganham nada com ele, e o celular de entrada, onde a primeira volta das máquinas engasga.
+
+![A barra longa com anilhas: o cartão de hoje e a peça nova, no tamanho do cartão e ampliada, com as medidas](revisoes/animacoes-restantes/pecas/folha-barra.png)
+
+![A cadeira flexora, a primeira máquina: a alavanca gira no eixo, as placas sobem](revisoes/animacoes-restantes/pecas/folha-cadeira-flexora.png)
+
+![O leg press 45°](revisoes/animacoes-restantes/pecas/folha-leg-press.png)
+
+![O smith, com a guia a 7°](revisoes/animacoes-restantes/pecas/folha-smith.png)
+
+![O voador, que serve também ao voador invertido](revisoes/animacoes-restantes/pecas/folha-voador.png)
+
+![Agachamento com barra no suporte aberto](revisoes/animacao-nova/quadros/agachamento-barra.png)
+
+![Leg press](revisoes/animacao-nova/quadros/leg-press.png)
+
+![Puxada pela frente no puxador](revisoes/animacao-nova/quadros/puxada-frente.png)
+
+![A rosca Scott de três quartos, depois da correção: os dois braços na almofada](revisoes/animacoes-restantes/pecas/rosca-scott-tres-quartos.png)
+
+![Remada unilateral sem banco: antes e depois da correção de 19/11](revisoes/animacao-nova/correcao-das-antigas/remada-unilateral-sem-banco-halter.png)
+
+![Elevação lateral vista de cima: a cabeça antes e depois](revisoes/animacao-nova/correcao-das-antigas/elevacao-lateral.png)
+
+![O pintor por pares, lote 1: o pior quadro de cada animação, hoje, por pares e o que muda](revisoes/animacao-nova/pintor-por-pares/lote-1-resumo.png)
+
+**Como foi aprovado.** Como nas 90: quem integra conferiu cada animação quadro a quadro, consertou o que estava errado e levou ao Gustavo só as de maior risco, uma por vez, com imagem. A contagem sai de `src/engine/novo/aprovados.ts` (`APROVADOS`, `ESPERAM_A_LIGACAO` e `EM_REVISAO`) e do andamento.
+
+| Estado das 81 | Quantas |
+|---|---|
+| Aprovadas pelo Gustavo vendo os quadros | 9 |
+| Aprovadas por delegação (conferidas por quem integra, com a frase dele de 15/11) | 70 |
+| Em revisão, esperando a decisão dele (`coice-maquina`, `panturrilha-leg-press`) | 2 |
+| **Das 79 aprovadas, desaprovadas e reaprovadas depois** | **25** |
+| ↳ pela auditoria da fase C (18/11), todas reaprovadas por delegação | 6 |
+| ↳ pela auditoria das fases A e B (19/11): 17 reaprovadas por delegação e a remada com barra, que manteve a decisão dele | 18 |
+| ↳ pelo próprio Gustavo (a rosca Scott, 18/11), reaprovada por ele | 1 |
+
+As frases das 9 aprovadas por ele: a rosca Scott no banco inclinado, "pode aprovar a rosca scott assim" (17/11); a barra só na descida, "pode aprovar a barra negativa assim" (18/11); o agachamento, o supino e o desenvolvimento com barra, "aprovo", à pergunta "Aprovo assim ou prefere a gaiola?" (o suporte aberto, 18/11); o terra romeno, a remada e o hip thrust com barra, "pode ser pequena" (a anilha de 5 kg, 18/11); e a rosca Scott corrigida, "aprovo" (18/11).
+
+Fora das 81, ele aprovou nas imagens de antes e depois: as 11 da cabeça ("pode aprovar as 11 da cabeça"), as três remadas ("pode aprovar as três remadas"), as 10 do peso fora do corpo ("pode aprovar as 10"), o erro do halter escorregando na panturrilha sentada ("pode mudar o erro, como diz o cartão"), os dois lotes do pintor ("pode aprovar as 5", "pode aprovar as 11") e a mesa flexora com o recorte do rolo corrigido ("Aprovo a mesa", 20/11). E três decisões de rumo: "liga por fase" (17/11), "pode seguir com a sua recomendação" (esperar a sessão do desempate antes de ligar a fase A, 18/11) e "pode subir o limite para 290 kB ou até mais se precisar" (19/11).
+
+**As medidas.**
+
+| Medida | No começo da sessão (16 e 17/11) | Hoje (20/11) |
+|---|---|---|
+| Animações no motor | 90 | 171 |
+| Animações que passam na conferência automática sem falha | 90 de 90 | 124 de 171: as 90 antigas e 34 das 81 novas |
+| O que a tela do programa baixa na 1ª visita (`tests/e2e/orcamento.spec.ts`, rodado hoje) | 275 kB, limite 285 | 288,1 kB em 41 arquivos, limite 290 |
+| Tempo para montar um quadro no computador, mediana das 171 (do estudo do pintor, etapa 1) | 2,46 ms | 3,85 ms com o pintor por pares; o pior, 7,1 ms |
+| A primeira volta com o pintor, celular médio simulado (CPU 4×) | (sem pintor) | sem engasgo; o pior, o `supino-polia`, com 7 quadros até 23 ms atrasados |
+| A primeira volta com o pintor, celular de entrada simulado (CPU 6×) | (sem pintor) | engasga nas máquinas: a `mesa-flexora` com 94 de 132 quadros atrasados, até 430 ms |
+| Tempo até o primeiro quadro das 81 novas, no computador (mediana; pior caso) | (não havia) | 61 ms; 372 ms (`abducao-deitado-mini-band`) |
+| O mesmo, com a CPU 4× mais lenta | (não havia) | 226 ms; 1,6 s (`abducao-deitado-mini-band`) |
+| O mesmo nas 90 antigas, medido hoje do mesmo jeito: computador; CPU 4× | 63 ms; 445 ms (16/11) | 82 ms e 387 ms; 316 ms e 1,5 s (as duas vezes, `abducao-caneleira`) |
+| Testes unitários (`npm run check`) | 915 | 931 |
+
+**Como medi o tempo até o primeiro quadro.** O script que deu os números de 16/11 não ficou no repositório; por isso escrevi um (`scripts/animacao-nova/tempo-ate-o-primeiro-quadro.mjs`) e medi as 171 do mesmo jeito. Ele faz o que o Worker do Boneco faz quando o guia abre um exercício: a ficha e o primeiro quadro (a primeira vista, modo Técnica, cinza, tema claro, no começo do ciclo), com o que vem calculado de antemão e, nas animações em que ele está ligado, o pintor por pares. Cada medida é numa página nova do Chromium dos testes (o motor sem nada guardado), três por animação, e vale a mediana de cada uma. Fica de fora o que vem antes no app: baixar e ler o arquivo do exercício. A máquina (4 núcleos) estava dividida com outras sessões, com carga de 3 a 6; os números variam de uma medida para a outra. Das 81, 16 passam de 100 ms no computador; com a CPU 4× mais lenta, 23 passam de 300 ms e 10 de 500 ms. A miniatura do cartão, medida do mesmo jeito: 43 ms na mediana e 182 ms no pior caso (`crucifixo-inverso`) no computador; 171 ms e 636 ms com a CPU 4×. As mais lentas são as que medem a pele contra o chão ou o banco a cada pose (a abdução deitada com mini band usa o mesmo núcleo da abdução com caneleira, uma das seis de primeira volta pesada desde 16/11).
+
+O celular é sempre o Chromium com a CPU limitada; nada foi medido num aparelho de verdade.
+
+**O que mudou nos treinos gerados: nada, ainda.** As 81 estão aprovadas, mas fora do app: nenhuma ganhou o `animacaoId` na biblioteca (`src/domain/biblioteca/exercicios.json` não mudou na sessão), e por isso o gerador e as personas estão como estavam. O motivo, decidido pelo Gustavo em 18/11: o último critério de desempate do gerador é "o que o guia já mostra animado"; com todas animadas, ele deixa de separar alguém, e quem decide passa a ser a ordem alfabética do nome interno, que nunca foi escolhida por evidência. A fase A só entra depois de uma sessão do gerador que defina essa ordem com fonte (`prompts/sessao-desempate-do-gerador.md`). O efeito, medido em 17/11 numa amostra de 3.751 programas do teste de estresse (1 em 40) e nas personas, ligando lote a lote (`revisoes/animacoes-restantes/efeito-no-treino.json`; o gerador não mudou desde então):
+- **Programas da amostra que mudam:** 15,7% com o lote A1, 80,4% com a fase A inteira, 80,9% com a B e 82,5% com as 81. Em 519 deles só muda a ordem dos exercícios.
+- **As maiores trocas, com as 81:** o goblet vira o agachamento com 2 halteres (331 programas), o búlgaro também (309), a ponte de glúteo vira o coice com elástico (153), a rosca martelo vira a rosca concentrada (118), o búlgaro vira o afundo para trás (98). Todas pela ordem alfabética.
+- **Nas personas:** a Ana passaria a fazer o agachamento com 2 halteres no lugar do búlgaro; o Diego, a remada curvada com elástico no lugar da sentada e o coice com elástico no lugar da ponte de glúteo; o Bruno, cinco trocas (entre elas o crucifixo inverso no banco inclinado no lugar do face pull e o tríceps com barra reta no lugar do tríceps na corda); a Carla, que tem academia completa, oito (supino na máquina, puxada no puxador, remada articulada, desenvolvimento com barra, entre outras). A Elisa e o Fábio não mudam.
+
+**O que não ficou bom.**
+- **A conferência automática sai com falha em 47 das 81 novas** (46 de pintura, 4 de fio e 2 de peso dentro do corpo; `node scripts/animacao-nova/conferir.mjs`, rodado hoje). 46 delas estão aprovadas. Quando foram aprovadas, a checagem de pintura não existia; as auditorias acharam e mandaram corrigir os graves e os médios, mas o que sobra (de 1,5 a 177 cm² no pior achado de cada uma; o maior, o `voador`) ficou para o pintor por pares e para o conserto uma a uma. O critério de pronto pedia a conferência sem falha em todas: não está cumprido, e `npm run conferir:animacao` sai com erro. Nas 90 antigas não há falha; 38 têm aviso de pintura, fio ou peso (eram 49 em 19/11).
+- **Quatro exercícios sem o texto do guia** (`abdominal-maquina`, `coice-polia`, `abducao-polia`, `remada-invertida`).
+- **19 erros sem desenho**, um em cada uma de 19 das 81: 13 de ritmo ("Quicar a barra", "Soltar a volta", "Embalar") e 6 sem consequência visível ("Parar longe da falha", "Esquecer a trava"). O guia mostra o movimento certo com o texto do erro. A proposta de um ritmo próprio por erro não foi feita.
+- **O que a auditoria pegou e a conferência quadro a quadro não.** 25 das 79 aprovadas tiveram de ser desaprovadas: delegar com conferência a olho deixou passar defeitos de pintura e de lado de longe que o Gustavo e as auditorias acharam. A conferência nova mede isso, mas tem pontos cegos: a tolerância de contato de 1 cm apaga o que acontece onde a pele encosta na peça, e a beira de um furo (0,5 cm) não conta.
+- **Peças que não são a do cartão de equipamento**: a máquina de tríceps (o cartão é a de mergulho sentado), a de glúteo (em pé no cartão, de quatro apoios na animação), as de supino, desenvolvimento e remada articulada (de anilha no cartão, de pilha na peça), a barra hexagonal e o suporte (gaiola no cartão). Quem marca uma máquina pode ver outra no guia.
+- **Medidas de desenho:** a altura do assento, o eixo e o braço da maioria das máquinas não estão em ficha nenhuma e vêm do corpo; a almofada do banco romano ficou 5,4 cm abaixo do mínimo da ficha, para a barriga do corpo da tabela caber; a barra reta da polia, de 20 polegadas, é curta para a puxada.
+- **O tempo:** a primeira volta das máquinas com o pintor engasga no celular de entrada simulado, e algumas animações levam mais de 1 s até o primeiro quadro com a CPU 4× mais lenta. A folga do orçamento é de 1,9 kB, e a ligação das fases traz peças novas para o dia.
+- **Um teste do motor** (`tests/unit/motor-novo-ponte.test.ts`, o que confere o que vem calculado de antemão) passou do limite de 5 s na rodada completa, com a máquina carregada por outras sessões; sozinho, passa. O de privacidade já fazia isso.
+- **Nada foi ligado ao app.** As 81 esperam a sessão do desempate; até lá, quem usa o app continua vendo o cartão de texto nesses exercícios.
+
+O resto está no backlog, "Das animações restantes", e os pedidos ao conteúdo, num arquivo só (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`).
+
+**Resultado:** `npm run check` com 931 testes (930 na rodada completa e o 931º sozinho, acima); o orçamento de ponta a ponta passando (288,1 kB de 290); `npm run conferir:animacao` com falha em 47 das novas. Não rodei o `npm run test:e2e` inteiro neste fechamento. `src/storage/`, `api/`, as personas e a biblioteca não mudaram na sessão. Nada foi para a `main`.
+
+**Rascunho de post para o LinkedIn**
+
+> Terminei as animações do meu app de treino: os 171 exercícios agora têm o boneco que mostra como fazer. E nenhuma das 81 novas está no app ainda.
+>
+> O motivo é o que eu mais aprendi nesta etapa. O gerador de treino, quando dois exercícios empatam, prefere o que tem animação. Com tudo animado, o desempate passa a ser a ordem alfabética. Ligar as animações trocaria o búlgaro pelo agachamento com halteres em centenas de treinos, por causa de uma letra. Antes de ligar, essa escolha vai ser feita com evidência.
+>
+> Para chegar até aqui foram 28 aparelhos desenhados com a medida do fabricante: barra, smith, leg press, cadeira flexora. Máquina que funciona: o braço gira no eixo, a pilha de pesos sobe.
+>
+> E duas lições:
+>
+> 1. A conferência automática passava tudo. O dono do produto olhou uma imagem e achou um braço fora do apoio. Duas auditorias depois, 24 animações tinham voltado para correção. Hoje a conferência mede o que ela não via.
+> 2. Em vez de consertar cada desenho errado à mão, mudei a forma de decidir o que fica na frente. A área pintada errada caiu 97% no estudo. Está entrando aos poucos, com aprovação animação por animação.
+>
+> O que ainda não ficou bom está escrito, como sempre: 47 animações com falha na conferência nova, e o celular mais simples, em que a primeira volta das máquinas engasga.
+
