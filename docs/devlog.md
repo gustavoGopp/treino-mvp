@@ -2014,7 +2014,7 @@ O celular é sempre o Chromium com a CPU limitada; nada foi medido num aparelho 
 
 O resto está no backlog, "Das animações restantes", e os pedidos ao conteúdo, num arquivo só (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`).
 
-**Resultado:** `npm run check` com 931 testes (930 na rodada completa e o 931º sozinho, acima); o orçamento de ponta a ponta passando (288,1 kB de 290); `npm run conferir:animacao` com falha em 45 das novas, todas de pintura. Não rodei o `npm run test:e2e` inteiro neste fechamento. `src/storage/`, `api/`, as personas e a biblioteca não mudaram na sessão. Nada foi para a `main`.
+**Resultado (rodado parte por parte no fim do dia 20/11):** `npm run check` com 931 testes, todos passando; `npm run test:e2e` com 179 testes, todos passando, entre eles o orçamento (288,1 kB de 290) e a linha de base do motor novo, regravada só nas seis correções de fio ou peso; `npm run auditoria` inteira, com os relatórios idênticos aos guardados (o gerador não mudou); `npm run conferir:animacao` com falha em 45 das novas, todas de pintura. `src/storage/`, `api/`, as personas e a biblioteca não mudaram na sessão. Nada foi para a `main`.
 
 **Rascunho de post para o LinkedIn**
 
