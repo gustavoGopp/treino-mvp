@@ -126,3 +126,28 @@ Os dois pontos que a correção da auditoria deixou: o colchonete de 100 cm (med
 - **No desenho de cor de pele, por trás, no erro de girar o quadril**, o cabelo entra no item do tronco e muda a profundidade dele: em alguns pedaços do elástico que correm por baixo da perna levantada e passam na frente do braço direito, não há profundidade que sirva aos dois desenhos. Vale a do cinza (o dos erros, e o que a regra mede).
 - **Onde o laço dá a volta na sola** e onde ele passa sob a palma, a mesma parte do corpo fica na frente e atrás do mesmo pedaço; a pintura e a regra deixam o pé e a palma de fora.
 - O que já estava na lista e segue igual: as costas sobem 15,8° para os ombros, o rótulo "coxa na linha do tronco" aponta para o joelho embaixo no começo, e o erro de girar, de trás, é o quadro mais carregado.
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos fios (`conferir-pintura.ts`, tolerância de 1 cm, fora a mão e o pé, onde o fio se prende) acusava **o elástico 2,3 cm dentro do antebraço direito**, no erro "Arquear a lombar no fim" (u = 1), e acima de 1 cm em 12 quadros, também no movimento certo (2,1 cm em cima).
+
+**A causa, medida.** Cada trecho saía do centro da palma, no colchonete, e ia em linha reta até o primeiro ponto em que encosta na perna. A mão está espalmada e o punho fica a 1 ou 2 cm do colchonete (o ponto mais baixo do antebraço, junto do punho, a 1,7 cm de altura): a reta subia rumo ao pé atravessando o punho, 5 cm atrás do centro da palma. O caminho do elástico (`fioPorFora`) não via o punho porque ignora os 3 cm junto de cada ponta e pega a pele de 12 pontos por anel.
+
+**A mudança.** Cada trecho sai de baixo da mão pela beira de dentro do calcanhar dela, rente ao colchonete (`elastico.saida.dentro`, 4,5 cm para dentro do centro da palma, onde a mão tem 3,5 cm de meia largura; `elastico.saida.atras`, 3 cm para trás), e dali segue para o pé como antes, passando ao lado do punho. Debaixo da palma, o laço continua de uma mão à outra. O corpo, os erros e o resto do caminho não mudam. O elástico fica 4 cm mais comprido no alto (estica de 1,3 a 1,7 vezes; eram 1,6; o máximo do fabricante é 2,5).
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| o elástico dentro do antebraço direito (conferência dos fios; pior: erro "Arquear a lombar no fim", u = 1) | 2,3 cm | 0 (nada além da tolerância) |
+| o mesmo, no movimento certo, em cima | 2,1 cm | 0 |
+| o elástico dentro da mão direita, regra `cabos-fora-do-corpo-nos-erros` (erro "Girar o quadril") | 1,9 cm | 0,2 cm |
+| quanto o elástico estica (embaixo e no alto) | 1,3 e 1,6 vez | 1,3 e 1,7 vez |
+| pintura: achados e área somada (o pior quadro de cada) | 11, 61 cm² | 10, 48 cm² |
+
+Na pintura, nenhum achado cresceu em área (o maior, a faixa por cima do pé direito, de trás, no erro de girar o quadril: 13,8 → 13,3 cm²; a canela direita, de trás: 9,5 → 9,5 cm²) e o do pé esquerdo, de trás, sumiu; alguns aparecem em mais quadros, menores (o do pé direito, de lado, em 3 quadros com 2,5 cm², contra 1 quadro com 3,3 cm²; o da canela direita, de lado, em 3 quadros com 1,8 cm², contra 1 com 3,3 cm²). Escolhi 4,5 cm para dentro entre 3,5, 4, 4,5 e 5 cm porque foi a única saída em que nenhuma área da pintura cresceu.
+
+**A regra `cabos-fora-do-corpo-nos-erros` não foi ligada.** No estado de antes ela falha (o elástico 2,1 cm no antebraço, no movimento certo; 1,9 cm na mão no erro de girar; e 3,6 cm no pé, no erro de arquear a lombar). No de agora, a mão e o antebraço passam (0,2 cm), mas o pé continua: **o trecho da mão esquerda sai da beira de dentro da sola e vai direto para a frente do tornozelo, atravessando o pé (até 3,6 cm)**. A conferência dos fios deixa o pé de fora (é onde o laço se prende); a regra, não. Tentei contornar o pé: (1) pelo lado de dentro do pé e pela dobra da frente do tornozelo e (2) pelo lado de dentro e por baixo da ponta do pé. As duas passam na regra, mas, de trás (o erro de girar o quadril), o pedaço que dá a volta fica entre o pé e a canela, que o Boneco pinta num item só: ou a faixa sai por cima do pé (a caixa do laço desenhada sobre a sola), ou a regra de pintura do coice (`coice-elastico-colchonete-embaixo`) falha, e a área pintada errada cresce (o pé de trás chegava a 24 cm², a canela a 18 cm²). A regra ligada também não passaria deixando o pé de fora sem mudar a regra comum, o que não fiz. Fica para quem decidir o caminho do laço em volta do pé (ou separar o pé da perna na pintura).
+
+O antes e depois está em `../correcao-das-antigas/coice-elastico-fio-ou-peso.png`; os quadros grandes foram regravados e olhados nas três vistas (de lado, três quartos de trás e de trás no erro), nos dois lados do corpo. A conferência automática dá **1 falha e 4 avisos** (antes: 2 falhas, a de fios e a de pintura, e 4 avisos); a de pintura é a de antes, menor.
+
+**O que ainda não ficou bom.**
+- O trecho da mão esquerda atravessa o pé perto da sola (até 3,6 cm), como antes; ver acima.
