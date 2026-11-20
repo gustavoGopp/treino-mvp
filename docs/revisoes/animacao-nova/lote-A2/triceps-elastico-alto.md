@@ -65,3 +65,23 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md`.
 ## Risco de o Gustavo não gostar
 
 **Baixo.** É o tríceps na polia aprovado com a âncora da puxada com elástico aprovada; a técnica confere em tudo e as duas vistas se leem. O ponto mais fraco é o pegador pouco visível de lado.
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos fios (`conferir-pintura.ts`, tolerância de 1 cm) acusava **os pegadores 4,9 cm dentro das duas coxas** no fim do erro "Jogar o tronco" (u = 1).
+
+**A causa, medida.** No erro, o peito dobra a 34° (no certo, 15°) com o quadril parado; os braços ficam colados ao tronco e vão com ele. Com o cotovelo do movimento certo embaixo (4°, estendido), as mãos ficavam 8,5 cm atrás de onde ficam no certo, e as pontas dos pegadores (a fita que dá a volta na pegada, a 6 cm do centro da mão) entravam nas coxas.
+
+**A mudança.** Nesse erro, embaixo, o cotovelo dobra o que os pegadores precisam para ficar à mesma folga das coxas que no movimento certo: 18,9°, calibrado e guardado no preparo (`triceps-elastico-alto:tronco-embaixo`); as mãos terminam onde terminam no certo. Daí para cima ele dobra como antes. É o que o cartão descreve ("o corpo dobra para empurrar"): quem dobra o corpo não termina de estender os cotovelos. O tronco (34°), o começo do erro, o ciclo e o outro erro não mudam; a amplitude do erro não diminuiu.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| os pegadores dentro das coxas (conferência dos fios; erro "Jogar o tronco", u = 1) | 4,9 cm (as duas) | 0 (nada além da tolerância) |
+| cotovelo embaixo, no erro | 4° | 18,9° |
+| o elástico até a pele, regra `cabos-fora-do-corpo-nos-erros`, nesse erro | 0,6 cm | 2,4 cm |
+| pintura (de trás, o elástico por cima do tronco, da cintura e da bacia, nesse erro) | 3 achados, 41,9 cm² | nenhum |
+
+A ficha liga `cabos-fora-do-corpo-nos-erros`. Ela passa no estado de antes e no de agora: mede o tubo, que é um fio da conferência, e não os pegadores, que são só desenho; quem via os pegadores nas coxas era a conferência dos fios (na pintura), que falhava antes e passa agora. A `peso-fora-do-corpo` não se aplica (não há peso livre). O antes e depois está em `../correcao-das-antigas/triceps-elastico-alto-fio-ou-peso.png`; os quadros grandes foram regravados, com o erro também de trás (`posterior:err:f1:tronco`), e olhados nas duas vistas, nos dois lados do corpo. A conferência automática dá **0 falha e 3 avisos** (antes: 2 falhas, a de fios e a de pintura, e 3 avisos).
+
+**O que ainda não ficou bom.**
+- No fim do erro, o cotovelo fica dobrado 19° (no certo, 4°): lê-se como "não estendeu", junto do tronco dobrado; não é algo que o cartão descreva em número.

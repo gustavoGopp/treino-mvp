@@ -10,6 +10,7 @@
 //  - o tubo vai reto de cada pegador até a alça da âncora; a porta fica onde, em cima, o tubo sobe a `cabo.inclinacao`
 //    graus da vertical, como o cabo do tríceps na polia. A porta, a âncora e o trecho do tubo perto delas são cenário.
 import ficha from '../dados/movimentos/triceps-elastico-alto.json';
+import { calibragem } from '../calibragens';
 import { LADOS, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, Tronco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1, suave } from '../movimento';
@@ -22,6 +23,8 @@ import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, dirRef, mix, mul, norm, perp, sub } from '../vec';
 import type { V3 } from '../vec';
+import { folgaDasPernas } from './dobrar-o-quadril';
+import type { Esfera } from './dobrar-o-quadril';
 import { comprimento } from './elastico-faixa';
 import { equilibrar, montarEmPe, polegarDaPegada } from './polia-bracos';
 import type { PedidoEmPe, PelveParada } from './polia-bracos';
@@ -49,12 +52,13 @@ function braco(t: Tronco, k: Lado, frente: number, cotovelo: number): PoseBraco 
 }
 
 /** O corpo no instante u: os pés lado a lado (a bola de cada pé à frente do tornozelo, como no face pull com elástico aprovado). */
-function pedido(corpo: Corpo, u: number, erro?: string): PedidoEmPe {
+function pedido(corpo: Corpo, u: number, erro?: string, cotTronco?: number): PedidoEmPe {
   const w = f('pes.meiaDistancia'),
     z = corpo.m('pe.calcanharABola') - corpo.m('pe.calcanharAoTornozelo');
   // no erro dos cotovelos, em cima o braço vai à frente e volta ao lado do tronco enquanto as mãos descem
   const frente = erro === 'cotovelos' ? mix(f('erro.cotovelo.frente'), f('braco.frente'), suave(u)) : f('braco.frente');
-  const cotovelo = mix(erro === 'cotovelos' ? f('erro.cotovelo.cotovelo') : f('cotovelo.alto'), f('cotovelo.baixo'), u);
+  const baixo = erro === 'tronco' && cotTronco !== undefined ? cotTronco : f('cotovelo.baixo');
+  const cotovelo = mix(erro === 'cotovelos' ? f('erro.cotovelo.cotovelo') : f('cotovelo.alto'), baixo, u);
   return {
     pes: { R: { bola: [-w, 0, z] }, L: { bola: [w, 0, z] } },
     joelho: f('joelho'),
@@ -111,9 +115,38 @@ function tuboAteAPorta(pts: V3[], estica: number): PecaPropria {
   };
 }
 
+/** Os pegadores nas duas mãos como filas de esferas, de uma ponta da pegada à outra (para a folga até as pernas). */
+function esferasDosPegadores(e: Esq): Esfera[] {
+  const L = obj('elastico', 'pegadorComp') / 2,
+    r = obj('elastico', 'pegadorDiam') / 2;
+  return LADOS.flatMap((k) => {
+    const u = norm(e.lado[k].mao.x);
+    return Array.from({ length: 9 }, (_, i) => ({ c: add(e.lado[k].pegada, mul(u, -L + (2 * L * i) / 8)), r }));
+  });
+}
+
+/**
+ * Correção de 20/11/2026: no erro "Jogar o tronco", o peito dobra a 34° com o quadril parado; os braços vão com o
+ * tronco e, com o cotovelo do movimento certo embaixo (estendido), os pegadores entravam 4,9 cm nas coxas. Embaixo,
+ * nesse erro, o cotovelo dobra o que os pegadores precisam para ficar à mesma folga das coxas que no movimento certo:
+ * quem dobra o corpo para empurrar não termina de estender os cotovelos.
+ */
+function cotoveloEmbaixoNoTronco(corpo: Corpo): number {
+  return calibragem(corpo, 'triceps-elastico-alto:tronco-embaixo', () => {
+    const c = calibrar(corpo);
+    const certo = montarEmPe(corpo, pedido(corpo, 1), c.pelve);
+    const alvo = folgaDasPernas(certo, esferasDosPegadores(certo));
+    const folga = (cot: number) => {
+      const e = montarEmPe(corpo, pedido(corpo, 1, 'tronco', cot), c.pelve);
+      return folgaDasPernas(e, esferasDosPegadores(e)) - alvo;
+    };
+    return folga(f('cotovelo.baixo')) >= 0 ? f('cotovelo.baixo') : resolver1(folga, f('cotovelo.baixo'), 90, 30);
+  });
+}
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const c = calibrar(corpo);
-  const e = montarEmPe(corpo, pedido(corpo, u, erro), c.pelve);
+  const e = montarEmPe(corpo, pedido(corpo, u, erro, erro === 'tronco' ? cotoveloEmbaixoNoTronco(corpo) : undefined), c.pelve);
   const porta = portaEm(c.zPorta);
   const t = tubo(e, porta.alca);
   const estica = t.comp / obj('elastico', 'comp');
