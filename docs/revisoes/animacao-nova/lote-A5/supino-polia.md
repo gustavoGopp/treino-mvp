@@ -62,3 +62,23 @@ Não há correção registrada para este exercício em `correcoes-ja-feitas.md` 
 - **No quadro de baixo (f0), de três quartos**, o antebraço de longe passa sobre a barriga e o de perto fica junto da cabeça: é o ângulo, não a pose (a pose medida é a do supino reto).
 - **No erro do banco fora do meio**, o cabo do lado de perto continua reto embaixo, quando na vida real afrouxaria (ver acima).
 - **O antebraço passa a 2 cm do cabo** embaixo: não encosta, mas fica perto.
+
+## Correção de 20/11 (fio ou peso dentro do corpo)
+
+A conferência dos fios (`conferir-pintura.ts`, tolerância de 1 cm) acusava **o cabo e a fita do estribo 1,2 cm dentro do antebraço esquerdo** no erro "Banco fora do meio", no topo (u = 1).
+
+**A causa, medida.** No erro, o banco e o corpo vão 22 cm para a esquerda: a roldana da esquerda fica a 65 cm da mão na horizontal (no certo, 87 cm), e o cabo dela sobe mais em pé, a uns 43° da vertical, rente ao antebraço esquerdo, que no topo desce do punho para fora a 14° da vertical. O estribo pende para o lado do cabo, mas só pode girar em volta da pegada: com as palmas a 25° uma para a outra (a pegada do certo), a pegada fica quase de lado a lado, a parte do cabo que vai para fora não conta, e o elo fica quase embaixo da mão, junto do punho. Dali, a fita e o cabo atravessavam o antebraço de 7 a 9 cm do punho. Diminuir o desvio não resolvia bem: com o banco 12 cm fora do meio, o cabo ainda entrava 0,6 cm (e a regra pede até 0,5).
+
+**A mudança.** No erro, a mão do lado da torre mais perto (a esquerda) gira o estribo para o lado do cabo: as palmas a 50° (`erro.banco.giro`; no certo e na mão direita, 25°). O estribo pende mais para fora, o elo sai do lado do antebraço, e o cabo passa por fora dele. O banco continua 22 cm fora do meio (o erro não diminuiu); o resto do corpo, o ciclo e o outro erro não mudam. O núcleo `polia-banco.ts` (só destes dois supinos) lê a linha apenas na ficha que a tem.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| o cabo e a fita do estribo dentro do antebraço esquerdo, conferência dos fios (erro "Banco fora do meio", u = 1) | 1,2 cm | 0 (nada além da tolerância) |
+| regra `cabos-fora-do-corpo-nos-erros`, erro "Banco fora do meio" | entra 1,2 cm (a fita, no antebraço esquerdo) | passa a no mínimo 1,1 cm da pele |
+| a mesma regra, erro "Cotovelos abertos a 90°" | entra 0,2 cm | entra 0,2 cm |
+| pintura: achados e área somada | 6, 29,2 cm² | 6, 28,9 cm² |
+
+A ficha liga `cabos-fora-do-corpo-nos-erros`: no estado de antes ela falha; no de agora, passa. Na pintura, nenhum achado cresceu (o braço esquerdo de cima, por cima do cabo, passou de 2,3 para 2 cm²). O antes e depois está em `../correcao-das-antigas/supino-polia-fio-ou-peso.png`; os quadros grandes foram regravados com o erro também no topo (`cima:err:f1:banco` e `quinaTras:err:f1:banco`) e olhados de cima e de três quartos, nos dois braços. A conferência automática dá **1 falha e 2 avisos** (antes: 2 falhas, a de fios e a de pintura, e 2 avisos); a de pintura é a de antes. O enquadramento de cima mudou menos de 0,2 cm (o estribo girado).
+
+**O que ainda não ficou bom.**
+- De cima, no erro, os dois estribos ficam em ângulos diferentes (a esquerda a 50°, a direita a 25°). É pequeno, e cabe no erro ("um lado puxa mais que o outro"), mas não é algo que a ficha da técnica descreva.
