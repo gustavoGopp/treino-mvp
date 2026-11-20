@@ -4,177 +4,177 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 | animação | quadros | itens | falhas | avisos |
 |---|---|---|---|---|
-| abdominal-bola | 270 | 32 | 0 | 1 |
-| abdominal-chao | 270 | 33 | 0 | 2 |
-| abdominal-declinado | 270 | 34 | 0 | 1 |
-| abdominal-invertido | 270 | 31 | 0 | 1 |
-| abdominal-maquina | 282 | 37 | 0 | 1 |
-| abdominal-polia | 294 | 39 | 0 | 2 |
-| abducao-caneleira | 276 | 35 | 0 | 1 |
-| abducao-deitado | 276 | 34 | 0 | 1 |
-| abducao-deitado-mini-band | 276 | 36 | 0 | 2 |
-| abducao-elastico | 258 | 37 | 0 | 3 |
-| abducao-maquina | 282 | 33 | 0 | 2 |
-| abducao-mini-band | 270 | 33 | 0 | 3 |
-| abducao-polia | 258 | 39 | 0 | 2 |
-| abertura-elastico | 240 | 42 | 0 | 3 |
-| abertura-t-deitado | 270 | 31 | 0 | 3 |
-| aducao-caneleira | 270 | 35 | 0 | 2 |
-| aducao-deitado | 270 | 34 | 0 | 2 |
-| aducao-maquina | 252 | 33 | 0 | 2 |
-| afundo | 270 | 36 | 0 | 5 |
-| afundo-kettlebell | 270 | 34 | 0 | 4 |
-| afundo-peso-corpo | 270 | 33 | 0 | 4 |
-| afundo-tras | 300 | 34 | 0 | 5 |
-| afundo-tras-peso-corpo | 300 | 33 | 0 | 5 |
-| agachamento-barra | 291 | 38 | 0 | 4 |
-| agachamento-elastico | 279 | 34 | 0 | 5 |
-| agachamento-halteres | 279 | 36 | 0 | 4 |
-| agachamento-peso-corpo | 279 | 33 | 0 | 4 |
-| agachamento-smith | 279 | 36 | 0 | 3 |
-| barra-fixa | 306 | 36 | 0 | 4 |
-| barra-fixa-graviton | 306 | 39 | 0 | 2 |
-| barra-fixa-negativa | 516 | 36 | 0 | 4 |
-| barra-fixa-supinada | 306 | 36 | 0 | 5 |
-| bulgaro | 270 | 37 | 0 | 3 |
-| bulgaro-peso-corpo | 270 | 35 | 0 | 3 |
-| bulgaro-suspensao | 270 | 38 | 0 | 2 |
-| cadeira-extensora | 270 | 38 | 0 | 1 |
-| cadeira-flexora | 246 | 39 | 0 | 1 |
-| caminhada-lateral-mini-band | 564 | 33 | 0 | 4 |
-| coice-caneleira | 240 | 35 | 0 | 3 |
-| coice-elastico | 240 | 36 | 0 | 4 |
-| coice-maquina | 234 | 35 | 0 | 2 |
-| coice-polia | 255 | 38 | 0 | 1 |
-| crucifixo-elastico | 288 | 38 | 0 | 3 |
-| crucifixo-halteres | 303 | 38 | 0 | 2 |
-| crucifixo-inclinado-halteres | 303 | 38 | 0 | 2 |
-| crucifixo-inverso | 264 | 43 | 0 | 1 |
-| crucifixo-invertido-caneleira | 240 | 39 | 0 | 2 |
-| crucifixo-invertido-curvado | 264 | 41 | 0 | 1 |
-| crucifixo-invertido-polia | 258 | 40 | 0 | 2 |
-| crucifixo-invertido-sentado | 240 | 41 | 0 | 2 |
-| crucifixo-polia | 288 | 38 | 0 | 2 |
-| crucifixo-polia-baixo | 270 | 38 | 0 | 2 |
-| desenvolvimento | 273 | 38 | 0 | 3 |
-| desenvolvimento-barra | 249 | 37 | 0 | 2 |
-| desenvolvimento-elastico | 273 | 41 | 0 | 3 |
-| desenvolvimento-em-pe-halteres | 249 | 39 | 0 | 2 |
-| desenvolvimento-maquina | 273 | 37 | 0 | 2 |
-| desenvolvimento-unilateral | 249 | 39 | 0 | 2 |
-| desenvolvimento-unilateral-kettlebell | 273 | 40 | 0 | 4 |
-| elevacao-halteres | 246 | 39 | 0 | 3 |
-| elevacao-joelhos | 240 | 35 | 0 | 4 |
-| elevacao-joelhos-paralelas | 240 | 34 | 0 | 2 |
-| elevacao-lateral | 246 | 39 | 0 | 2 |
-| elevacao-lateral-caneleira | 234 | 40 | 0 | 3 |
-| elevacao-lateral-deitado | 234 | 36 | 0 | 2 |
-| elevacao-lateral-elastico | 246 | 42 | 0 | 4 |
-| elevacao-lateral-unilateral | 234 | 42 | 0 | 3 |
-| elevacao-lateral-unilateral-elastico | 234 | 42 | 0 | 4 |
-| extensao-joelho-caneleira | 270 | 32 | 0 | 1 |
-| extensao-joelho-elastico | 276 | 35 | 0 | 2 |
-| extensao-joelho-mini-band | 246 | 35 | 0 | 2 |
-| extensao-triceps-peso-corpo | 273 | 34 | 0 | 5 |
-| face-pull | 264 | 39 | 0 | 2 |
-| face-pull-elastico | 264 | 40 | 0 | 3 |
-| face-pull-suspensao | 255 | 39 | 0 | 2 |
-| flexao | 225 | 34 | 0 | 6 |
-| flexao-bola | 246 | 36 | 0 | 2 |
-| flexao-elastico | 225 | 37 | 0 | 6 |
-| flexao-fechada | 225 | 34 | 0 | 6 |
-| flexao-joelho-deslizante | 288 | 32 | 0 | 1 |
-| flexao-joelho-elastico | 270 | 36 | 0 | 3 |
-| flexao-joelho-suspensao | 288 | 33 | 0 | 2 |
-| flexao-pes-elevados | 255 | 36 | 0 | 7 |
-| goblet | 279 | 34 | 0 | 3 |
-| goblet-kettlebell | 279 | 37 | 0 | 3 |
-| hack | 276 | 34 | 0 | 2 |
-| hip-thrust | 282 | 36 | 0 | 2 |
-| hiperextensao | 246 | 34 | 0 | 1 |
-| leg-press | 276 | 34 | 0 | 3 |
-| mergulho | 249 | 35 | 0 | 2 |
-| mergulho-graviton | 249 | 36 | 0 | 1 |
-| mesa-flexora | 264 | 36 | 0 | 2 |
-| nordico | 420 | 35 | 0 | 4 |
-| panturrilha | 348 | 33 | 0 | 2 |
-| panturrilha-b | 348 | 34 | 0 | 3 |
-| panturrilha-chao | 378 | 31 | 0 | 1 |
-| panturrilha-degrau | 300 | 33 | 0 | 2 |
-| panturrilha-em-pe-maquina | 312 | 36 | 0 | 2 |
-| panturrilha-leg-press | 276 | 34 | 0 | 2 |
-| panturrilha-sentada | 264 | 36 | 0 | 2 |
-| panturrilha-sentada-halter | 264 | 34 | 0 | 2 |
-| pike | 225 | 34 | 0 | 2 |
-| ponte-gluteo | 282 | 36 | 0 | 1 |
-| ponte-gluteo-halter | 282 | 37 | 0 | 2 |
-| ponte-kettlebell | 282 | 37 | 0 | 1 |
-| ponte-pes-bola | 276 | 38 | 0 | 3 |
-| pull-through | 246 | 41 | 0 | 2 |
-| puxada-barra-reta | 240 | 43 | 0 | 3 |
-| puxada-elastico | 240 | 37 | 0 | 4 |
-| puxada-frente | 240 | 41 | 0 | 2 |
-| puxada-unilateral | 240 | 34 | 0 | 4 |
-| remada-apoiada | 279 | 42 | 0 | 2 |
-| remada-articulada | 279 | 44 | 0 | 2 |
-| remada-baixa | 279 | 42 | 0 | 2 |
-| remada-baixa-estacao | 267 | 43 | 0 | 2 |
-| remada-barra | 255 | 40 | 0 | 2 |
-| remada-curvada-elastico | 255 | 42 | 0 | 3 |
-| remada-curvada-halteres | 255 | 40 | 0 | 2 |
-| remada-elastico | 279 | 36 | 0 | 3 |
-| remada-invertida | 255 | 40 | 0 | 2 |
-| remada-suspensao | 279 | 39 | 0 | 2 |
-| remada-unilateral | 279 | 42 | 0 | 2 |
-| remada-unilateral-elastico | 255 | 44 | 0 | 3 |
-| remada-unilateral-kettlebell | 279 | 42 | 0 | 2 |
-| remada-unilateral-polia | 279 | 42 | 0 | 2 |
-| remada-unilateral-sem-banco | 279 | 42 | 0 | 2 |
-| roda-abdominal | 300 | 38 | 0 | 2 |
-| rosca-alternada | 474 | 37 | 0 | 3 |
-| rosca-barra-w | 246 | 38 | 0 | 2 |
-| rosca-concentrada | 240 | 41 | 0 | 3 |
-| rosca-elastico | 252 | 40 | 0 | 4 |
-| rosca-inclinada | 270 | 39 | 0 | 3 |
-| rosca-kettlebell | 252 | 37 | 0 | 2 |
-| rosca-maquina | 252 | 43 | 0 | 2 |
-| rosca-martelo | 474 | 37 | 0 | 3 |
-| rosca-martelo-elastico | 252 | 40 | 0 | 4 |
-| rosca-polia | 258 | 41 | 0 | 3 |
-| rosca-polia-costas | 240 | 39 | 0 | 3 |
-| rosca-scott | 270 | 43 | 0 | 2 |
-| rosca-scott-banco-inclinado | 270 | 40 | 0 | 2 |
-| rosca-suspensao | 255 | 38 | 0 | 2 |
-| stiff | 285 | 36 | 0 | 2 |
-| stiff-elastico | 285 | 35 | 0 | 2 |
-| stiff-kettlebell | 285 | 36 | 0 | 2 |
-| stiff-unilateral | 291 | 36 | 0 | 2 |
-| stiff-unilateral-kettlebell | 291 | 37 | 0 | 2 |
-| supino-barra | 258 | 34 | 0 | 2 |
-| supino-chao-halteres | 282 | 35 | 0 | 2 |
-| supino-inclinado | 291 | 38 | 0 | 2 |
-| supino-inclinado-polia | 264 | 39 | 0 | 2 |
-| supino-maquina | 273 | 37 | 0 | 2 |
-| supino-polia | 264 | 38 | 0 | 2 |
-| supino-reto | 291 | 33 | 0 | 2 |
-| supino-smith | 291 | 36 | 0 | 2 |
-| terra-hexagonal | 264 | 38 | 0 | 2 |
-| terra-romeno-barra | 285 | 37 | 0 | 2 |
-| triceps-barra-reta | 234 | 41 | 0 | 3 |
-| triceps-corda | 234 | 38 | 0 | 2 |
-| triceps-elastico-acima | 264 | 37 | 0 | 3 |
-| triceps-elastico-alto | 234 | 39 | 0 | 3 |
-| triceps-frances | 264 | 36 | 0 | 1 |
-| triceps-frances-halter | 264 | 37 | 0 | 3 |
-| triceps-frances-kettlebell | 264 | 37 | 0 | 1 |
-| triceps-frances-polia-unilateral | 264 | 36 | 0 | 1 |
-| triceps-frances-unilateral-halter | 270 | 37 | 0 | 1 |
-| triceps-maquina | 246 | 42 | 0 | 1 |
-| triceps-suspensao | 243 | 38 | 0 | 1 |
-| triceps-testa-halteres | 276 | 34 | 0 | 1 |
-| voador | 297 | 37 | 0 | 1 |
-| voador-invertido | 300 | 38 | 0 | 1 |
-| yt-suspensao | 279 | 38 | 0 | 2 |
+| abdominal-bola | 270 | 35 | 0 | 1 |
+| abdominal-chao | 270 | 36 | 0 | 2 |
+| abdominal-declinado | 270 | 37 | 0 | 1 |
+| abdominal-invertido | 270 | 34 | 0 | 1 |
+| abdominal-maquina | 282 | 40 | 1 | 1 |
+| abdominal-polia | 294 | 42 | 0 | 4 |
+| abducao-caneleira | 276 | 38 | 0 | 2 |
+| abducao-deitado | 276 | 37 | 0 | 1 |
+| abducao-deitado-mini-band | 276 | 39 | 1 | 2 |
+| abducao-elastico | 258 | 40 | 1 | 3 |
+| abducao-maquina | 282 | 36 | 1 | 2 |
+| abducao-mini-band | 270 | 36 | 0 | 4 |
+| abducao-polia | 258 | 42 | 1 | 2 |
+| abertura-elastico | 240 | 45 | 1 | 3 |
+| abertura-t-deitado | 270 | 35 | 0 | 3 |
+| aducao-caneleira | 270 | 38 | 0 | 3 |
+| aducao-deitado | 270 | 37 | 0 | 2 |
+| aducao-maquina | 252 | 36 | 0 | 2 |
+| afundo | 270 | 39 | 0 | 5 |
+| afundo-kettlebell | 270 | 38 | 0 | 4 |
+| afundo-peso-corpo | 270 | 36 | 0 | 4 |
+| afundo-tras | 300 | 37 | 0 | 5 |
+| afundo-tras-peso-corpo | 300 | 36 | 0 | 5 |
+| agachamento-barra | 291 | 41 | 0 | 4 |
+| agachamento-elastico | 279 | 37 | 0 | 7 |
+| agachamento-halteres | 279 | 39 | 0 | 4 |
+| agachamento-peso-corpo | 279 | 36 | 0 | 4 |
+| agachamento-smith | 279 | 39 | 1 | 3 |
+| barra-fixa | 306 | 39 | 0 | 4 |
+| barra-fixa-graviton | 306 | 42 | 1 | 2 |
+| barra-fixa-negativa | 516 | 39 | 1 | 4 |
+| barra-fixa-supinada | 306 | 39 | 0 | 5 |
+| bulgaro | 270 | 40 | 0 | 3 |
+| bulgaro-peso-corpo | 270 | 38 | 0 | 3 |
+| bulgaro-suspensao | 270 | 41 | 0 | 3 |
+| cadeira-extensora | 270 | 41 | 0 | 1 |
+| cadeira-flexora | 246 | 42 | 0 | 1 |
+| caminhada-lateral-mini-band | 564 | 36 | 1 | 4 |
+| coice-caneleira | 240 | 38 | 1 | 3 |
+| coice-elastico | 240 | 39 | 2 | 4 |
+| coice-maquina | 234 | 38 | 1 | 2 |
+| coice-polia | 255 | 41 | 1 | 1 |
+| crucifixo-elastico | 288 | 42 | 0 | 5 |
+| crucifixo-halteres | 303 | 41 | 0 | 2 |
+| crucifixo-inclinado-halteres | 303 | 41 | 1 | 2 |
+| crucifixo-inverso | 264 | 46 | 1 | 1 |
+| crucifixo-invertido-caneleira | 240 | 42 | 1 | 2 |
+| crucifixo-invertido-curvado | 264 | 44 | 0 | 1 |
+| crucifixo-invertido-polia | 258 | 44 | 0 | 2 |
+| crucifixo-invertido-sentado | 240 | 44 | 0 | 2 |
+| crucifixo-polia | 288 | 42 | 0 | 3 |
+| crucifixo-polia-baixo | 270 | 41 | 1 | 2 |
+| desenvolvimento | 273 | 42 | 0 | 4 |
+| desenvolvimento-barra | 249 | 41 | 1 | 2 |
+| desenvolvimento-elastico | 273 | 45 | 0 | 4 |
+| desenvolvimento-em-pe-halteres | 249 | 42 | 0 | 2 |
+| desenvolvimento-maquina | 273 | 41 | 0 | 2 |
+| desenvolvimento-unilateral | 249 | 42 | 0 | 2 |
+| desenvolvimento-unilateral-kettlebell | 273 | 43 | 0 | 5 |
+| elevacao-halteres | 246 | 44 | 0 | 4 |
+| elevacao-joelhos | 240 | 38 | 0 | 4 |
+| elevacao-joelhos-paralelas | 240 | 37 | 0 | 2 |
+| elevacao-lateral | 246 | 43 | 0 | 4 |
+| elevacao-lateral-caneleira | 234 | 43 | 1 | 3 |
+| elevacao-lateral-deitado | 234 | 39 | 0 | 2 |
+| elevacao-lateral-elastico | 246 | 46 | 0 | 4 |
+| elevacao-lateral-unilateral | 234 | 45 | 0 | 3 |
+| elevacao-lateral-unilateral-elastico | 234 | 45 | 1 | 4 |
+| extensao-joelho-caneleira | 270 | 35 | 0 | 2 |
+| extensao-joelho-elastico | 276 | 38 | 0 | 3 |
+| extensao-joelho-mini-band | 246 | 38 | 1 | 2 |
+| extensao-triceps-peso-corpo | 273 | 37 | 0 | 6 |
+| face-pull | 264 | 43 | 0 | 2 |
+| face-pull-elastico | 264 | 44 | 0 | 4 |
+| face-pull-suspensao | 255 | 42 | 1 | 2 |
+| flexao | 225 | 37 | 0 | 6 |
+| flexao-bola | 246 | 39 | 0 | 3 |
+| flexao-elastico | 225 | 40 | 0 | 8 |
+| flexao-fechada | 225 | 37 | 0 | 6 |
+| flexao-joelho-deslizante | 288 | 35 | 0 | 1 |
+| flexao-joelho-elastico | 270 | 39 | 0 | 5 |
+| flexao-joelho-suspensao | 288 | 36 | 0 | 2 |
+| flexao-pes-elevados | 255 | 39 | 0 | 7 |
+| goblet | 279 | 38 | 0 | 3 |
+| goblet-kettlebell | 279 | 40 | 0 | 3 |
+| hack | 276 | 38 | 0 | 2 |
+| hip-thrust | 282 | 39 | 1 | 2 |
+| hiperextensao | 246 | 37 | 1 | 1 |
+| leg-press | 276 | 38 | 0 | 3 |
+| mergulho | 249 | 38 | 0 | 2 |
+| mergulho-graviton | 249 | 39 | 0 | 1 |
+| mesa-flexora | 264 | 40 | 0 | 2 |
+| nordico | 420 | 38 | 0 | 4 |
+| panturrilha | 348 | 36 | 0 | 2 |
+| panturrilha-b | 348 | 37 | 0 | 3 |
+| panturrilha-chao | 378 | 34 | 0 | 1 |
+| panturrilha-degrau | 300 | 36 | 0 | 2 |
+| panturrilha-em-pe-maquina | 312 | 39 | 1 | 2 |
+| panturrilha-leg-press | 276 | 37 | 0 | 2 |
+| panturrilha-sentada | 264 | 39 | 1 | 2 |
+| panturrilha-sentada-halter | 264 | 40 | 0 | 3 |
+| pike | 225 | 37 | 0 | 2 |
+| ponte-gluteo | 282 | 39 | 0 | 1 |
+| ponte-gluteo-halter | 282 | 41 | 0 | 2 |
+| ponte-kettlebell | 282 | 40 | 0 | 2 |
+| ponte-pes-bola | 276 | 41 | 0 | 4 |
+| pull-through | 246 | 44 | 1 | 2 |
+| puxada-barra-reta | 240 | 46 | 0 | 3 |
+| puxada-elastico | 240 | 40 | 0 | 4 |
+| puxada-frente | 240 | 44 | 1 | 2 |
+| puxada-unilateral | 240 | 37 | 0 | 4 |
+| remada-apoiada | 279 | 45 | 0 | 3 |
+| remada-articulada | 279 | 47 | 0 | 2 |
+| remada-baixa | 279 | 45 | 0 | 2 |
+| remada-baixa-estacao | 267 | 46 | 0 | 2 |
+| remada-barra | 255 | 43 | 0 | 2 |
+| remada-curvada-elastico | 255 | 45 | 1 | 3 |
+| remada-curvada-halteres | 255 | 44 | 0 | 3 |
+| remada-elastico | 279 | 39 | 0 | 3 |
+| remada-invertida | 255 | 43 | 0 | 2 |
+| remada-suspensao | 279 | 42 | 0 | 2 |
+| remada-unilateral | 279 | 45 | 0 | 2 |
+| remada-unilateral-elastico | 255 | 47 | 1 | 3 |
+| remada-unilateral-kettlebell | 279 | 49 | 0 | 2 |
+| remada-unilateral-polia | 279 | 45 | 0 | 2 |
+| remada-unilateral-sem-banco | 279 | 49 | 0 | 2 |
+| roda-abdominal | 300 | 41 | 0 | 3 |
+| rosca-alternada | 474 | 41 | 0 | 3 |
+| rosca-barra-w | 246 | 42 | 1 | 2 |
+| rosca-concentrada | 240 | 45 | 1 | 3 |
+| rosca-elastico | 252 | 43 | 0 | 5 |
+| rosca-inclinada | 270 | 42 | 0 | 3 |
+| rosca-kettlebell | 252 | 40 | 0 | 2 |
+| rosca-maquina | 252 | 46 | 1 | 2 |
+| rosca-martelo | 474 | 40 | 0 | 3 |
+| rosca-martelo-elastico | 252 | 43 | 1 | 4 |
+| rosca-polia | 258 | 44 | 0 | 4 |
+| rosca-polia-costas | 240 | 42 | 1 | 3 |
+| rosca-scott | 270 | 46 | 1 | 2 |
+| rosca-scott-banco-inclinado | 270 | 43 | 1 | 2 |
+| rosca-suspensao | 255 | 41 | 0 | 3 |
+| stiff | 285 | 39 | 0 | 2 |
+| stiff-elastico | 285 | 38 | 0 | 4 |
+| stiff-kettlebell | 285 | 39 | 0 | 3 |
+| stiff-unilateral | 291 | 39 | 0 | 3 |
+| stiff-unilateral-kettlebell | 291 | 40 | 0 | 2 |
+| supino-barra | 258 | 37 | 0 | 2 |
+| supino-chao-halteres | 282 | 38 | 1 | 2 |
+| supino-inclinado | 291 | 41 | 0 | 2 |
+| supino-inclinado-polia | 264 | 42 | 2 | 2 |
+| supino-maquina | 273 | 41 | 0 | 2 |
+| supino-polia | 264 | 41 | 2 | 2 |
+| supino-reto | 291 | 36 | 0 | 2 |
+| supino-smith | 291 | 39 | 0 | 2 |
+| terra-hexagonal | 264 | 41 | 1 | 2 |
+| terra-romeno-barra | 285 | 40 | 1 | 2 |
+| triceps-barra-reta | 234 | 44 | 2 | 3 |
+| triceps-corda | 234 | 41 | 0 | 3 |
+| triceps-elastico-acima | 264 | 40 | 0 | 4 |
+| triceps-elastico-alto | 234 | 42 | 2 | 3 |
+| triceps-frances | 264 | 39 | 0 | 1 |
+| triceps-frances-halter | 264 | 40 | 0 | 4 |
+| triceps-frances-kettlebell | 264 | 40 | 0 | 2 |
+| triceps-frances-polia-unilateral | 264 | 39 | 0 | 3 |
+| triceps-frances-unilateral-halter | 270 | 40 | 0 | 1 |
+| triceps-maquina | 246 | 45 | 1 | 1 |
+| triceps-suspensao | 243 | 41 | 0 | 1 |
+| triceps-testa-halteres | 276 | 38 | 0 | 1 |
+| voador | 297 | 41 | 1 | 1 |
+| voador-invertido | 300 | 41 | 0 | 1 |
+| yt-suspensao | 279 | 41 | 0 | 3 |
 
 "ok" = dentro do limite; "AVISO" = possível, mas fora da média ou ainda provisório (precisa do ok do Gustavo); "FALHA" = não pode ir para o app.
 
@@ -216,6 +216,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o pescoço acompanha o tronco: a cabeça não cai para trás embaixo nem o queixo vai ao peito em cima (consenso) | a cabeça dobra sobre o alto do tórax de 5° a 13° além do que dobra em pé (negativo = cai para trás) | como a ficha pede | ok |
 | Ficha | mãos cruzadas no peito, sem puxar a cabeça (consenso) | os punhos andam 0 cm em relação ao tórax; a mão mais perto da cabeça fica a 10,6 cm dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pelve.frente, lombar.base, bola.lombar, bola.amassa, toracica.base, toracica.topo, lombar.topo, canela.aFrente, maos.x, maos.y, maos.abaixo, maos.acima, maos.poloFora, maos.poloPes, maos.poloTras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 175 cm² (padrão); de lado: 143 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -257,6 +260,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o pescoço acompanha o tronco, sem o queixo ir ao peito (consenso) | a cabeça dobra sobre o alto do tórax de -28,8° a 13° além do que dobra em pé (positivo = o queixo para o peito) | como a ficha pede | ok |
 | Ficha | mãos cruzadas no peito, sem puxar a cabeça (consenso) | os punhos andam 0 cm em relação ao tórax; a mão mais perto da cabeça fica a 9,8 cm dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar.base, toracica.topo, lombar.topo, joelho, ombro.z, maos.x, maos.y, maos.abaixo, maos.acima, maos.poloFora, maos.poloPes, maos.poloTras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Oblíquo externo aparece como secundário dentro de um grupo que o conteúdo conta como principal (abdomen) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 130 cm² (padrão); de lado: 121 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -301,6 +307,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | sem puxar o pescoço: ele acompanha o tronco (consenso) | a cabeça dobra sobre o alto do tórax de -28,8° a 13° além do que dobra em pé (positivo = o queixo para o peito) | como a ficha pede | ok |
 | Ficha | mãos cruzadas no peito, sem puxar a cabeça (consenso) | os punhos andam 0 cm em relação ao tórax; a mão mais perto da cabeça fica a 9,8 cm dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | declina, lombar.base, ombro.z, ponta.alemDoQuadril, coxa.angulo, joelho, apoio.amassa, toracica.topo, maos.x, maos.y, maos.abaixo, maos.acima, maos.poloFora, maos.poloPes, maos.poloTras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 110 cm² (padrão); quina: 99 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -341,12 +350,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | enrola a pelve em direção ao peito, tirando o quadril do chão; embaixo, o quadril no chão (consenso) | embaixo, a pele do glúteo fica a 0 cm do chão; no alto, a 7,7 cm (o centro da bacia sobe 11,1 cm); o joelho anda 33,8 cm na direção da cabeça | como a ficha pede | ok |
 | Ficha | embaixo, coxas na vertical; joelhos a ~90° o ciclo inteiro (consenso) | embaixo, a coxa fica a 0° da vertical; o joelho dobra de 90° a 90° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar.base, pelve.enrola, pe.plantar, ombro.z, maos.alcance, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 99 cm² (padrão); quina: 84 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Abdominal na máquina (`abdominal-maquina`)
 
-282 quadros conferidos. 0 falha(s), 1 aviso(s).
+282 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 116 a 123; quadril 89 a 89; ombro 37 a 39; dorsiflexao -0 a -0; punho -0 a 0; pronacao -81 a -77; clavicula 12 a 12.
 
@@ -387,12 +399,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o braço da máquina e os pegadores livres do corpo e longe do rosto (desenho) | nos dois lados, as hastes do braço da máquina e dos pegadores e a empunhadura ficam a no mínimo 0,9 cm da pele (coxa, direito; fora a mão que segura) e a 11,1 cm da cabeça | como a ficha pede | ok |
 | Ficha | os pés presos sob os rolos (consenso) | pé direito: o rolo a 0,2 cm do peito do pé, dentro do comprimento do rolo; pé esquerdo: o rolo a 0,2 cm do peito do pé, dentro do comprimento do rolo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadril.aBorda, joelho, pes.meiaDistancia, assento.amassa, lombar.apoio.folga, almofada.folga, maos.meiaDistancia, maos.acimaDoC7, maos.aFrente, maos.pegadorSobe, haste.folga, rolos.aFrente, rolos.folga, maquina.atrasDoEixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: braço da máquina de abdominal (cromo) pintado sobre braço esquerdo (a parte do corpo está na frente) (43 cm², até 27,8 cm à frente; pior em erro "Puxar com os braços", u = 1,00; em 6 quadro(s)); três quartos: antebraço esquerdo pintado sobre braço da máquina de abdominal (metal) (a peça está na frente) (20,5 cm², até 18,3 cm à frente; pior em erro "Puxar com os braços", u = 1,00; em 3 quadro(s)); três quartos: braço da máquina de abdominal (cromo) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (15,5 cm², até 37,9 cm à frente; pior em erro "Só dobrar o quadril", u = 0,00; em 4 quadro(s)); três quartos: pé esquerdo pintado sobre máquina de abdominal (metal) (a peça está na frente) (4 cm², até 11,4 cm à frente; pior em técnica, t = 1,57 s (u = 0,92); em 12 quadro(s)); três quartos: braço da máquina de abdominal (cromo) pintado sobre mão esquerda (a parte do corpo está na frente) (1,3 cm², até 53,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 2 quadro(s)); três quartos: braço da máquina de abdominal (cromo) pintado sobre polegar esquerdo (a parte do corpo está na frente) (1 cm², até 50,6 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 2 quadro(s)); e mais 2 (fora 12 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 160 cm² (padrão); de lado: 116 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Abdominal na polia com corda (`abdominal-polia`)
 
-294 quadros conferidos. 0 falha(s), 2 aviso(s).
+294 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 102 a 102; cotovelo 132 a 135; quadril 45 a 45; ombro 86 a 106; dorsiflexao -81 a -81; punho -0 a 0; pronacao -15 a -7; clavicula 14 a 15.
 
@@ -435,12 +450,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a corda esticada da mão à bucha (desenho) | cada ramo vai esticado da mão à bucha, de 25,2 a 25,2 cm (o ramo tem 25,2 cm fora da ponta de borracha) | como a ficha pede | ok |
 | Ficha | a corda e o cabo não atravessam a cabeça nem o corpo (desenho) | a corda e o cabo passam a no mínimo 0,7 cm da pele (cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | torre.folga, cervical.inicio, cervical.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: corda-triceps (borracha) pintado sobre cabeça (a parte do corpo está na frente) (2,8 cm², até 25,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); três quartos: corda-triceps pintado sobre cabeça (a parte do corpo está na frente) (2,3 cm², até 12,1 cm à frente; pior em técnica, t = 0,82 s (u = 0,13); em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "cabo" da conferência e cabo (traço) entra 5,7 cm em pescoço (pior em erro "Puxar com os braços", u = 1,00; em 1 quadro(s)); fio "cabo" da conferência e cabo (traço) entra 2 cm em cabeça (pior em erro "Puxar com os braços", u = 1,00; em 2 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 122 cm² (padrão); de lado: 116 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Abdução de quadril deitado de lado, com caneleira (`abducao-caneleira`)
 
-276 quadros conferidos. 0 falha(s), 1 aviso(s).
+276 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 0 a 0; cotovelo 85 a 85; quadril -10 a -10; ombro 68 a 68; dorsiflexao -10 a -10; punho 47 a 47; pronacao 39 a 39; clavicula 13 a 13.
 
@@ -479,6 +497,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a caneleira bem presa no tornozelo da perna de cima: não escorrega (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do tornozelo, ao longo da canela; o ponto mais baixo dela fica a 8,3 cm do piso | como a ficha pede | ok |
 | Ficha | as duas pernas não se atravessam (desenho) | a menor folga entre as duas pernas (do meio da coxa ao tornozelo) é de 3,8 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, pernaDeBaixo.quadril, pernaDeBaixo.joelho, caneleira.massa, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: caneleira pintado sobre pé direito (a parte do corpo está na frente) (43,3 cm², até 15 cm à frente; pior em erro "Subir alto demais com tranco", u = 1,00; em 9 quadro(s)); três quartos: pé direito pintado sobre caneleira (a peça está na frente) (25,8 cm², até 22,5 cm à frente; pior em erro "Rolar o quadril para trás", u = 0,50; em 3 quadro(s)); três quartos: canela direita pintado sobre caneleira (a peça está na frente) (12 cm², até 8,5 cm à frente; pior em erro "Rolar o quadril para trás", u = 0,50; em 3 quadro(s)); de frente: caneleira pintado sobre canela direita (a parte do corpo está na frente) (11 cm², até 13,2 cm à frente; pior em erro "Levar a perna para a frente", u = 1,00; em 3 quadro(s)); de cima: caneleira pintado sobre canela direita (a parte do corpo está na frente) (7,5 cm², até 11 cm à frente; pior em técnica, t = 3,07 s (u = 0,91); em 13 quadro(s)); de frente: caneleira pintado sobre pé direito (a parte do corpo está na frente) (2,8 cm², até 14,3 cm à frente; pior em técnica, t = 0,77 s (u = 0,10); em 11 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 217 cm² (padrão); de cima: 155 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -522,12 +543,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a perna sobe sem passar de ~45° (consenso) | a perna de cima abre de -8° a 35° | como a ficha pede | ok |
 | Ficha | as duas pernas não se atravessam (desenho) | a menor folga entre as duas pernas (do meio da coxa ao tornozelo) é de 3,8 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, pernaDeBaixo.quadril, pernaDeBaixo.joelho, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 217 cm² (padrão); de cima: 155 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Abdução de quadril deitado de lado, com mini-band nos tornozelos (`abducao-deitado-mini-band`)
 
-276 quadros conferidos. 0 falha(s), 2 aviso(s).
+276 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 0 a 0; cotovelo 85 a 85; quadril -10 a -10; ombro 68 a 68; dorsiflexao -10 a -10; punho 47 a 47; pronacao 39 a 39; clavicula 13 a 13.
 
@@ -567,12 +591,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima (consenso) | o meio da faixa fica a 7–7 cm do tornozelo direito e 7–7 cm do esquerdo (a borda de baixo a 4,5 cm); ela vai de 1,1 vezes (começo) a 2,3 vezes (fim) | como a ficha pede | ok |
 | Ficha | as duas pernas não se atravessam (desenho) | a menor folga entre as duas pernas (do meio da coxa ao tornozelo) é de 4,1 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, pernaDeBaixo.quadril, pernaDeBaixo.joelho, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: mini-band pintado sobre canela direita (a parte do corpo está na frente) (10,8 cm², até 30,2 cm à frente; pior em erro "Levar a perna para a frente", u = 0,50; em 2 quadro(s)); três quartos: pé esquerdo pintado sobre mini-band (a peça está na frente) (5,8 cm², até 5,4 cm à frente; pior em erro "Rolar o quadril para trás", u = 0,00; em 1 quadro(s)); de frente: mini-band pintado sobre canela esquerda (a parte do corpo está na frente) (4,3 cm², até 8,2 cm à frente; pior em erro "Levar a perna para a frente", u = 0,50; em 2 quadro(s)); de frente: mini-band pintado sobre canela direita (a parte do corpo está na frente) (3 cm², até 13,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 9 quadro(s)); de frente: mini-band pintado sobre pé esquerdo (a parte do corpo está na frente) (1 cm², até 11,4 cm à frente; pior em erro "Levar a perna para a frente", u = 0,50; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 217 cm² (padrão); de cima: 155 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Abdução de quadril em pé com elástico preso sob o outro pé (`abducao-elastico`)
 
-258 quadros conferidos. 0 falha(s), 3 aviso(s).
+258 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 105 a 105; quadril 0 a 0; ombro 53 a 53; dorsiflexao 9 a 9; punho -0 a 0; pronacao 70 a 70; clavicula 13 a 13.
 
@@ -613,12 +640,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico em volta do tornozelo de fora (consenso) | a volta do elástico fica 4–4 cm acima do centro do tornozelo, a 0,5–0,5 cm do eixo além da pele | como a ficha pede | ok |
 | Ficha | o elástico não atravessa o corpo (consenso) | o elástico passa a no mínimo 0,9 cm da pele (canela) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.apoio.paraFora, joelho.apoio, pe.livre.acimaDoChao, abducao.topo, pe.livre.flexaoPlantar, maos.naCintura.acima, parede.mao.acimaDoOmbro, parede.mao.aFrente, parede.cotovelo, elastico.noTornozelo, elastico.folga, elastico.entreOsTrechos, elastico.sobra.direcao | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: canela direita pintado sobre faixa (traço) (a peça está na frente) (10 cm², até 6,3 cm à frente; pior em erro "Girar o pé para fora", u = 0,50; em 12 quadro(s)); de trás: faixa (traço) pintado sobre canela direita (a parte do corpo está na frente) (6 cm², até 8,3 cm à frente; pior em erro "Girar o pé para fora", u = 1,00; em 8 quadro(s)); de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (4 cm², até 12 cm à frente; pior em erro "Girar o pé para fora", u = 0,50; em 9 quadro(s)); de frente: pé direito pintado sobre faixa (traço) (a peça está na frente) (3,8 cm², até 5,2 cm à frente; pior em técnica, t = 0,72 s (u = 0,06); em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 217 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Abdução na cadeira abdutora (`abducao-maquina`)
 
-282 quadros conferidos. 0 falha(s), 2 aviso(s).
+282 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 56 a 56; quadril 69 a 69; ombro 36 a 36; dorsiflexao 1 a 1; punho 0 a 0; pronacao -28 a -28; clavicula 12 a 12.
 
@@ -655,12 +685,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as placas sem encostar no começo de cada repetição, subindo com o arco do came (consenso) | as placas do pino ficam de 3,9 a 17,6 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
 | Ficha | abre as pernas até o fim confortável (consenso) | cada coxa abre de 8° a 36°; os joelhos vão de 28,2 a 65,2 cm um do outro; a perna não muda de inclinação (0°) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, cervical, cabeca, assento.amassa, inicio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: braços da cadeira abdutora (estofado) pintado sobre canela direita (a parte do corpo está na frente) (17,5 cm², até 19,8 cm à frente; pior em erro "Soltar a volta", u = 0,50; em 8 quadro(s)); de frente: braços da cadeira abdutora (estofado) pintado sobre canela esquerda (a parte do corpo está na frente) (15,5 cm², até 17,9 cm à frente; pior em erro "Abrir pouco", u = 1,00; em 8 quadro(s)); de frente: braços da cadeira abdutora (estofado) pintado sobre coxa direita (a parte do corpo está na frente) (1 cm², até 15,7 cm à frente; pior em erro "Soltar a volta", u = 0,50; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Abdução de quadril sentado, com mini-band (`abducao-mini-band`)
 
-270 quadros conferidos. 0 falha(s), 3 aviso(s).
+270 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 43 a 43; quadril 78 a 83; ombro 20 a 20; dorsiflexao 1 a 7; punho 0 a 0; pronacao -29 a -29; clavicula 11 a 11.
 
@@ -697,12 +730,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a faixa nas coxas, logo acima dos joelhos, já um pouco esticada no início (consenso) | o meio da faixa fica 8 cm acima do centro do joelho (a borda de baixo a 5,5 cm); no início, ela já está esticada 1,3 vezes | como a ficha pede | ok |
 | Ficha | abre os joelhos até o fim confortável, os pés no lugar (consenso) | os joelhos vão de 20,7 cm a 51,6 cm um do outro (os quadris a 16,7 cm); a coxa abre de 2,8° a 25° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, assento.amassa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: mini-band pintado sobre coxa direita (a parte do corpo está na frente) (1 cm², até 14,5 cm à frente; pior em erro "Embalar o tronco", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 8 cm² (não serve: o principal quase não aparece); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Abdução na polia com tornozeleira (`abducao-polia`)
 
-258 quadros conferidos. 0 falha(s), 2 aviso(s).
+258 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 0 a 0; cotovelo 105 a 105; quadril 3 a 17; ombro 53 a 53; dorsiflexao -17 a -3; punho -0 a 0; pronacao 70 a 70; clavicula 13 a 13.
 
@@ -745,12 +781,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cabo vai reto da roldana à tornozeleira sem encostar no corpo (desenho) | os cabos passam a no mínimo 6,5 cm da pele (cabo, canela) | como a ficha pede | ok |
 | Ficha | a pilha sobe o que o cabo anda dividido pela relação da máquina (consenso) | cabo: o cabo anda 44,7 cm e a pilha sobe 22,4 cm (esperado 22,4) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.apoio.paraFora, joelho.apoio, pe.livre.acimaDoChao, pe.livre.flexaoPlantar, flexao.inicio, abducao.topo, maos.naCintura.acima, torre.mao.altura, torre.mao.aFrente, torre.cotovelo, torre.trilhoDiam, pilha.folga, quadro.torreAte | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: tornozeleira (estofado) pintado sobre canela esquerda (a parte do corpo está na frente) (14,3 cm², até 28,8 cm à frente; pior em técnica, t = 0,72 s (u = 0,06); em 4 quadro(s)); de trás: tornozeleira pintado sobre canela esquerda (a parte do corpo está na frente) (11,8 cm², até 26,2 cm à frente; pior em técnica, t = 0,72 s (u = 0,06); em 5 quadro(s)); de trás: tornozeleira pintado sobre canela direita (a parte do corpo está na frente) (2,3 cm², até 10,7 cm à frente; pior em técnica, t = 3,58 s (u = 0,22); em 5 quadro(s)); de trás: tornozeleira (estofado) pintado sobre canela direita (a parte do corpo está na frente) (1 cm², até 10 cm à frente; pior em técnica, t = 3,58 s (u = 0,22); em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 217 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Abertura com o elástico entre as mãos, sem ponto de ancoragem (`abertura-elastico`)
 
-240 quadros conferidos. 0 falha(s), 3 aviso(s).
+240 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 8 a 8; quadril 5 a 5; ombro 77 a 87; dorsiflexao 4 a 4; punho -0 a 0; pronacao 20 a 50; clavicula 14 a 14.
 
@@ -796,6 +835,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os dois braços abrem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
 | Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | cima: o tronco visto a 0° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 12,8 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; posterior: o tronco visto a 90° do eixo dele (no mínimo), até 20,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -6,6 cm mais perto de quem olha que o tronco; não some; quina: o tronco visto a 76° do eixo dele (no mínimo), até 18,5% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 2,4 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho, tronco, cervical, cabeca, inicio.maos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: faixa (traço) pintado sobre cabeça (a parte do corpo está na frente) (16 cm², até 30,1 cm à frente; pior em técnica, t = 2,00 s (u = 1,00); em 3 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 52 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -835,13 +877,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | braços em T, cotovelos estendidos (um estudo) | visto de cima, o braço fica de 90° a 90° da linha do corpo; o cotovelo dobra no máximo 5° | como a ficha pede | ok |
 | Ficha | embaixo, as mãos quase tocam o chão; em cima, os braços na altura do corpo ou um pouco acima (consenso) | embaixo, a mão fica a 3 cm do chão; no alto, o centro da mão fica 11,1 cm acima do centro do ombro | como a ficha pede | ok |
 | Ficha | sem encolher os ombros (consenso) | a clavícula fica de 14,2° a 14,2° de elevação; a ponta do ombro anda 0 cm na direção da cabeça | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de frente, deitado de bruços, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 0,7° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,3 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; quinaTras: o tronco visto a 142,3° do eixo dele (no mínimo), até 31,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -62,4 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, pe.plantar, pe.folga, maos.folgaEmbaixo, bracos.topo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 69 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Adução de quadril deitado de lado, com caneleira (`aducao-caneleira`)
 
-270 quadros conferidos. 0 falha(s), 2 aviso(s).
+270 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 0 a 0; cotovelo 15 a 15; quadril 0 a 0; ombro 152 a 152; dorsiflexao -10 a -10; punho 0 a 0; pronacao -50 a -50; clavicula 47 a 47.
 
@@ -880,6 +926,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a caneleira bem presa no tornozelo da perna de baixo: não escorrega (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do tornozelo, ao longo da canela; o ponto mais baixo dela fica a 4,8 cm do piso | como a ficha pede | ok |
 | Ficha | as duas pernas não se atravessam (desenho) | a menor folga entre as duas pernas (do meio da coxa ao tornozelo) é de 13,9 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, peDeCima.abaixo, peDeCima.giro, caneleira.massa, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: caneleira pintado sobre pé direito (a parte do corpo está na frente) (18,8 cm², até 11,5 cm à frente; pior em erro "Subir com tranco", u = 1,00; em 9 quadro(s)); de cima: caneleira pintado sobre canela direita (a parte do corpo está na frente) (2,8 cm², até 10,2 cm à frente; pior em erro "Subir com tranco", u = 1,00; em 4 quadro(s)); de frente: caneleira pintado sobre canela direita (a parte do corpo está na frente) (2,3 cm², até 9,7 cm à frente; pior em erro "Girar o quadril", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: adutores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -923,6 +972,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, a perna a um dedo do chão, sem descansar (consenso) | embaixo, a perna de baixo fica a 1,5 cm do piso | como a ficha pede | ok |
 | Ficha | as duas pernas não se atravessam (desenho) | a menor folga entre as duas pernas (do meio da coxa ao tornozelo) é de 13,9 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, peDeCima.abaixo, peDeCima.giro, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: adutores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -965,6 +1017,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as placas sem encostar no começo de cada repetição, subindo com o arco do came (consenso) | as placas do pino ficam de 3,9 a 15,1 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
 | Ficha | das pernas abertas até um alongamento confortável, fecha até as almofadas quase se tocarem (consenso) | cada coxa vai de 34° aberta a 11°; no fim, as almofadas ficam a 1,2 cm uma da outra (nos cantos de trás) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, cervical, cabeca, assento.amassa, inicio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: adutores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 138 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1009,6 +1064,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tronco fica quase vertical (consenso) | o peito inclina no máximo 5,3° da vertical | como a ficha pede | ok |
 | Ficha | o pé da frente fica inteiro no chão (consenso) | o calcanhar e a bola do pé da frente ficam a no máximo 0 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, peDeTras.calcanhar.cima, bracos.paraFora, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Quadríceps aparece como secundário dentro de um grupo que o conteúdo conta como principal (quadriceps) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1017,7 +1075,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 270 quadros conferidos. 0 falha(s), 4 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 14 a 91; cotovelo 132 a 132; quadril 40 a 93; ombro 19 a 19; dorsiflexao -22 a 2; punho -0 a 0; pronacao -18 a -18; clavicula 11 a 11.
+Ângulos no ciclo (lado direito, graus): joelho 14 a 91; cotovelo 124 a 124; quadril 40 a 93; ombro 23 a 23; dorsiflexao -22 a 2; punho -0 a 0; pronacao -18 a -18; clavicula 11 a 11.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -1027,15 +1085,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 92,3° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 131,7° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 124,2° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 92,8° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 13,5° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0,4° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 19,3° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 22,9° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 31,8° | média 14,8°, máximo observado 48° (cdc) | AVISO |
 | Amplitudes | flexão plantar do tornozelo | 21,6° | média 56,7°, máximo observado 90° (cdc) | ok |
 | Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
-| Amplitudes | supinação do antebraço | 18,5° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 18,3° | média 87,5°, máximo observado 131° (cdc) | ok |
 | Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 66° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -1051,7 +1109,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o joelho de trás fica a poucos centímetros do chão (consenso) | embaixo, a pele do joelho de trás fica a 4 cm do chão (o centro do joelho a 9 cm) | como a ficha pede | ok |
 | Ficha | o tronco fica quase vertical (consenso) | o peito inclina no máximo 5,3° da vertical | como a ficha pede | ok |
 | Ficha | o pé da frente fica inteiro no chão (consenso) | o calcanhar e a bola do pé da frente ficam a no máximo 0 cm do chão | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, maos.abaixoDeC7, kettlebell.folgaNoPeito, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | a bola do kettlebell encostada no peito, sem entrar nele, e sem entrar na coxa da frente, em todos os quadros do ciclo e dos erros (até 0,5 cm, o amassado da pele) (consenso) | em 196 quadros (ciclo e erros), a bola do kettlebell entra no máximo 0,2 cm no corpo (coxa:R, no erro "Tronco cai para a frente"); tolerância 0,5 cm | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, maos.abaixoDeC7, kettlebell.folgaNoPeito, kettlebell.encostoNoPeito, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Quadríceps aparece como secundário dentro de um grupo que o conteúdo conta como principal (quadriceps) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1094,6 +1156,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tronco fica quase vertical (consenso) | o peito inclina no máximo 5,3° da vertical | como a ficha pede | ok |
 | Ficha | o pé da frente fica inteiro no chão (consenso) | o calcanhar e a bola do pé da frente ficam a no máximo 0 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, maos.naCintura.acima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Quadríceps aparece como secundário dentro de um grupo que o conteúdo conta como principal (quadriceps) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1137,6 +1202,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o peso fica na perna da frente (consenso) | embaixo, o centro de massa fica a 61,2% do caminho entre a ponta do pé de trás e o tornozelo da frente | como a ficha pede | ok |
 | Ficha | o pé da frente não sai do lugar (consenso) | o calcanhar e a bola do pé da frente ficam a no máximo 0 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, bracos.paraFora, carga, passo.quandoApoia, passo.altura | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Quadríceps aparece como secundário dentro de um grupo que o conteúdo conta como principal (quadriceps) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1179,6 +1247,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o peso fica no pé da frente (consenso) | embaixo, o centro de massa fica a 60,9% do caminho entre a ponta do pé de trás e o tornozelo da frente | como a ficha pede | ok |
 | Ficha | o pé da frente não sai do lugar (consenso) | o calcanhar e a bola do pé da frente ficam a no máximo 0 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.atrasDoQuadril, peDeTras.calcanhar, maos.naCintura.acima, passo.quandoApoia, passo.altura | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Quadríceps aparece como secundário dentro de um grupo que o conteúdo conta como principal (quadriceps) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1227,12 +1298,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pinos de segurança um pouco abaixo do ponto mais baixo da barra, debaixo dela (consenso) | embaixo, a barra passa 4,3 cm acima do topo dos pinos e fica 8,7 cm para dentro da ponta deles | como a ficha pede | ok |
 | Ficha | fora do rack, a barra desce sem bater nos ganchos (consenso) | a barra passa no mínimo 30,8 cm atrás da ponta do gancho (o berço a 130 cm do chão) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.abaixoDaC7, pegada.meia, carga.anilhas, suporte.passos, pinos.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas (fora 21 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 334 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Agachamento com elástico (`agachamento-elastico`)
 
-279 quadros conferidos. 0 falha(s), 5 aviso(s).
+279 quadros conferidos. 0 falha(s), 7 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 153 a 153; quadril 8 a 131; ombro 16 a 16; dorsiflexao 1 a 30; punho -0 a 0; pronacao 81 a 81; clavicula 11 a 11.
 
@@ -1270,6 +1344,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o calcanhar fica apoiado: o peso no meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,3 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, elastico.folgaNoJoelho, maos.aFrenteDoOmbro, maos.acimaDoOmbro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: antebraço esquerdo pintado sobre elástico (traço) (a peça está na frente) (13,5 cm², até 14,2 cm à frente; pior em técnica, t = 1,55 s (u = 0,38); em 8 quadro(s)); de frente: antebraço direito pintado sobre elástico (traço) (a peça está na frente) (12,8 cm², até 13,9 cm à frente; pior em técnica, t = 1,55 s (u = 0,38); em 8 quadro(s)); de frente: braço esquerdo pintado sobre pegador do elástico (borracha) (a peça está na frente) (5,5 cm², até 17,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: braço direito pintado sobre pegador do elástico (borracha) (a peça está na frente) (5,3 cm², até 17,5 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: braço esquerdo pintado sobre elástico (traço) (a peça está na frente) (5,3 cm², até 12,6 cm à frente; pior em técnica, t = 0,77 s (u = 0,01); em 7 quadro(s)); de frente: braço direito pintado sobre elástico (traço) (a peça está na frente) (4 cm², até 12,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 8 quadro(s)); e mais 2 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e elástico (traço) entra 1,6 cm em canela direita (pior em técnica, t = 1,55 s (u = 0,38); em 2 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1,6 cm em canela esquerda (pior em técnica, t = 1,55 s (u = 0,38); em 2 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1 cm em coxa direita (pior em erro "Descer pouco", u = 0,50; em 1 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1 cm em coxa esquerda (pior em erro "Descer pouco", u = 0,50; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 352 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1315,6 +1392,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | um halter em cada mão, ao lado do corpo, braços estendidos: o halter pende na vertical por fora da perna, sem encostar nela (consenso) | da cabeça do halter à pele da coxa ou da canela, de 1 a 3,5 cm; o centro do halter fica no mínimo 6,1 cm por fora do joelho e do tornozelo; o cotovelo dobra de 4° a 4° | como a ficha pede | ok |
 | Ficha | embaixo, o halter passa ao lado do pé sem encostar nele (consenso) | embaixo, a carga fica a 4 cm da pele do pé | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, cotovelo, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 323 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1357,12 +1437,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o calcanhar fica apoiado: o peso no meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,3 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, bracos.paraDentro, cotovelo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 347 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Agachamento no smith (`agachamento-smith`)
 
-279 quadros conferidos. 0 falha(s), 3 aviso(s).
+279 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 118; cotovelo 144 a 144; quadril 6 a 109; ombro 31 a 32; dorsiflexao 2 a 29; punho -0 a 0; pronacao -25 a -21; clavicula 11 a 12.
 
@@ -1402,6 +1485,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os pés um pouco à frente da linha da barra (consenso) | o meio do pé fica 6,1 cm à frente da barra em cima e 11,9 cm embaixo (a barra desce para trás, na guia) | como a ficha pede | ok |
 | Ficha | as travas de segurança logo abaixo do ponto mais baixo (a barra não chega nelas no movimento certo) (consenso) | as travas param a barra 3 cm abaixo do ponto mais baixo dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, barra.amassa, pegada.meia, anilhas, quadro.ate | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 32 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | barra do smith entra 1,4 cm em tronco (pior em técnica, t = 3,87 s (u = 0,69); em 12 quadro(s)) | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | FALHA |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 363 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1446,13 +1532,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os ombros ficam longe das orelhas no topo (sem despencar embaixo) (consenso) | do alto do ombro à base do crânio, ao longo do tronco: 16,1 cm pendurado e 20,4 cm no topo (em pé, parado: 18,7 cm) | como a ficha pede | ok |
 | Ficha | no topo, os cotovelos descem para os lados das costelas (consenso) | no topo, o cotovelo fica 19,4 cm abaixo do ombro, 40 cm do meio do corpo e 9,4 cm à frente da linha da coluna (o peito tem 22,6 cm de fundo); o braço fica a 50,4° da linha do tronco | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.z, escapula.pendurado, escapula.encaixada, escapula.topo, escapula.prot.topo, puxada.inicio, inclina.fim, bacia.topo, toracica.topo, lombar.topo, pescoco.topo, quadril.topo, joelho.topo, pe.plantar, polo.pendurado.fora, polo.pendurado.cima, polo.pendurado.frente, polo.topo.frente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 9 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas); Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 532 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Barra fixa assistida no graviton (`barra-fixa-graviton`)
 
-306 quadros conferidos. 0 falha(s), 2 aviso(s).
+306 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 62 a 117; cotovelo 8 a 139; quadril -3 a 3; ombro 52 a 165; dorsiflexao -55 a -55; punho -0 a 0; pronacao 11 a 35; clavicula 4 a 21.
 
@@ -1494,13 +1583,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os ombros ficam longe das orelhas no topo (sem despencar embaixo) (consenso) | do alto do ombro à base do crânio, ao longo do tronco: 16,1 cm pendurado e 20,4 cm no topo (em pé, parado: 18,7 cm) | como a ficha pede | ok |
 | Ficha | no topo, os cotovelos descem para os lados das costelas (consenso) | no topo, o cotovelo fica 18,6 cm abaixo do ombro, 41,6 cm do meio do corpo e 6,5 cm à frente da linha da coluna (o peito tem 22,6 cm de fundo); o braço fica a 52,5° da linha do tronco | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | escapula.pendurado, escapula.encaixada, escapula.topo, escapula.prot.topo, puxada.inicio, inclina.fim, bacia.topo, toracica.topo, lombar.topo, pescoco.topo, polo.pendurado.fora, polo.pendurado.cima, polo.pendurado.frente, polo.topo.frente, quadril, quadril.topo, canela.desce, pe.plantar, pernas.juntas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: canela esquerda pintado sobre alavanca dos joelhos do graviton (estofado) (a peça está na frente) (38 cm², até 39,6 cm à frente; pior em técnica, t = 2,55 s (u = 1,00); em 4 quadro(s)); três quartos, de trás: canela direita pintado sobre alavanca dos joelhos do graviton (estofado) (a peça está na frente) (29,5 cm², até 27,5 cm à frente; pior em técnica, t = 2,55 s (u = 1,00); em 4 quadro(s)) (fora 16 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas); Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 369 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Barra fixa só na descida (negativa) (`barra-fixa-negativa`)
 
-516 quadros conferidos. 0 falha(s), 4 aviso(s).
+516 quadros conferidos. 1 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 19 a 149; cotovelo 8 a 135; quadril 29 a 132; ombro 52 a 164; dorsiflexao -34 a 6; punho -0 a 0; pronacao 12 a 38; clavicula 4 a 12.
 
@@ -1539,6 +1631,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | ombros longe das orelhas na descida inteira (consenso) | do alto do ombro à base do crânio, ao longo do tronco: no mínimo 18,4 cm na descida (em pé, parado: 18,7 cm); a clavícula fica de 4,5° a 12° de elevação | como a ficha pede | ok |
 | Ficha | na descida, os pés fora do apoio, sem encostar nele (consenso) | na descida, as pernas ficam a no mínimo 2,3 cm da caixa (coxa) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.altura, escapula.encaixada, escapula.topo, escapula.prot.topo, escapulas.fim, puxada.inicio, inclina.fim, bacia.topo, toracica.topo, lombar.topo, pescoco.topo, quadril, joelho, pe.plantar, pernas.juntas, polo.pendurado.fora, polo.pendurado.cima, polo.pendurado.frente, polo.topo.fora, polo.topo.cima, polo.topo.frente, caixa.tras, pes.naCaixa, pes.meiaDistancia, volta.pes.fim, volta.sobe.fim, volta.pes.arco, volta.calcanhar, volta.pes.recua | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: caixa de salto pintado sobre pé direito (a parte do corpo está na frente) (70,5 cm², até 27,7 cm à frente; pior em técnica, t = 7,17 s (u = 1,69); em 1 quadro(s)); três quartos: caixa de salto pintado sobre pé esquerdo (a parte do corpo está na frente) (69,3 cm², até 27,2 cm à frente; pior em técnica, t = 7,17 s (u = 1,69); em 1 quadro(s)) (fora 10 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 16 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 16 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas); Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 519 cm² (padrão); quina: 142 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1584,6 +1679,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os ombros ficam longe das orelhas no topo (sem despencar embaixo) (consenso) | do alto do ombro à base do crânio, ao longo do tronco: 16,1 cm pendurado e 20,5 cm no topo (em pé, parado: 18,7 cm) | como a ficha pede | ok |
 | Ficha | na subida, os cotovelos descem à frente do corpo, rentes às costelas (consenso) | no topo, o cotovelo fica 21,8 cm abaixo do ombro, 16,8 cm do meio do corpo e 22,4 cm à frente da linha da coluna (o peito tem 22,6 cm de fundo); o braço fica a 44,3° da linha do tronco (o centro do ombro fica a 18 cm do meio do corpo) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.z, escapula.pendurado, escapula.encaixada, escapula.topo, escapula.prot.topo, puxada.inicio, inclina.fim, bacia.topo, toracica.topo, lombar.topo, pescoco.topo, quadril.topo, joelho.topo, pe.plantar, polo.pendurado.fora, polo.pendurado.cima, polo.topo.fora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 6 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 532 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -1631,6 +1729,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o peso fica na perna da frente (consenso) | o centro de massa (corpo + carga) fica de 61,4% a 62,5% do caminho entre o tornozelo de trás e o da frente | como a ficha pede | ok |
 | Ficha | a mão livre segura a coluna da estação só para equilibrar: fica parada (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 106,4° a 127,4° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.tornozeloAtrasDoQuadril, peDeTras.tornozeloDaBorda, apoio.maoAoLado, apoio.maoAltura, apoio.maoAFrenteDoQuadril, bracos.paraFora, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 353 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1675,12 +1776,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o peito do pé de trás fica apoiado no assento da cadeira, com o cadarço para baixo (consenso) | o pé de trás fica de 0 a 0 cm do tampo do apoio, com a sola para cima, e o tornozelo anda 0 cm | como a ficha pede | ok |
 | Ficha | o peso fica na perna da frente (consenso) | o centro de massa (corpo + carga) fica de 59,6% a 61% do caminho entre o tornozelo de trás e o da frente | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.tornozeloAtrasDoQuadril, peDeTras.tornozeloDaBorda, maos.naCintura.acima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 353 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Búlgaro com o pé de trás na suspensão (`bulgaro-suspensao`)
 
-270 quadros conferidos. 0 falha(s), 2 aviso(s).
+270 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 14 a 91; cotovelo 105 a 105; quadril 53 a 108; ombro 53 a 53; dorsiflexao -24 a -2; punho -0 a 0; pronacao 70 a 70; clavicula 13 a 13.
 
@@ -1722,6 +1826,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a alça fica na altura do meio da canela (consenso) | o fundo do berço fica de 28,3 a 28,3 cm do chão (o meio da canela do corpo: 28,3 cm; o fabricante: 20,3 a 30,5 cm) | como a ficha pede | ok |
 | Ficha | na descida, o pé de trás vai para trás com a fita, que não estica (consenso) | na descida, o pé de trás anda 6,7 cm para trás e -0,2 cm para cima; da âncora ao fundo do berço, de 154,6 a 154,7 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | peDaFrente.aFrenteDoQuadril, peDeTras.tornozeloAtrasDoQuadril, fita.alcaAFrenteDaAncora, fita.peVaiParaTras, fita.contatoAteOTornozelo, fita.flexaoPlantarEmCima, fita.bercoFolga, fita.giroDaFita, maos.naCintura.acima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: pé esquerdo pintado sobre fita de suspensão (borracha) (a peça está na frente) (10 cm², até 17,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -1769,6 +1876,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, os joelhos bem dobrados, com o pé fora do chão; em cima, quase esticados (consenso) | o joelho vai de 95° (bem dobrado) a 10° (quase esticado); embaixo, o pé fica a 11,6 cm do chão | como a ficha pede | ok |
 | Ficha | nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo na frente das canelas e atrás dos pés que ficam na frente dele, o encosto atrás das costas e as mãos nas alças (consenso) | anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 1/20 (quina, técnica, quadro 36); quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 1/6 (quina, técnica, quadro 84); quina perna esquerda 2/52 (quina, técnica, quadro 84); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0,1 cm do meio da alça, também nos erros (lateral, erro "Joelho fora do eixo", u = 0, mão direita) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 367 cm² (padrão); de lado: 356 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -1817,12 +1927,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | início com os joelhos quase esticados; fim com os joelhos bem dobrados (consenso) | o joelho vai de 10° (quase esticado) a 115° (bem dobrado) | como a ficha pede | ok |
 | Ficha | nas duas vistas, na técnica e nos erros, nos dois lados do corpo: o rolo atrás das canelas (pintado por baixo delas), o encosto atrás das costas e as mãos nas alças (consenso) | anéis das canelas e dos pés na frente do rolo e pintados por baixo dele, no pior quadro: lateral canela direita 0/13; lateral pe direita 0/20; lateral canela esquerda 0/13; lateral pe esquerda 0/20; quina canela direita 0/13; quina pe direita 0/20; quina canela esquerda 0/13; quina pe esquerda 0/20; pontos do rolo na frente das pernas e pintados por baixo delas: lateral perna direita 0/0; lateral perna esquerda 0/0; quina perna direita 3/3 (quina, técnica, quadro 0); quina perna esquerda 2/2 (quina, técnica, quadro 42); o encosto e o assento são pintados antes do tronco (lateral: numa camada abaixo do corpo; quina: numa camada abaixo do corpo); as duas mãos ficam a no máximo 0 cm do meio da alça, também nos erros | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, maos.naAlca, maos.prot, rolo.amassa, pe.flexaoPlantar, placas, erro.ombros.desceMax, pintura.movelAtras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 67 cm² (padrão); quina: 49 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Caminhada lateral com mini-band (`caminhada-lateral-mini-band`)
 
-564 quadros conferidos. 0 falha(s), 4 aviso(s).
+564 quadros conferidos. 1 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 20 a 65; cotovelo 105 a 105; quadril 31 a 54; ombro 53 a 53; dorsiflexao 5 a 26; punho 0 a 0; pronacao 70 a 70; clavicula 13 a 13.
 
@@ -1859,14 +1972,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | dedos para a frente (consenso) | os dedos dos dois pés ficam a no máximo 0° da frente | como a ficha pede | ok |
 | Ficha | pés na largura do quadril no começo e afastados além do quadril no passo; o outro pé fica parado (consenso) | os pés vão de 20 cm a 66 cm um do outro (os quadris a 16,7 cm); o pé que dá o passo sobe 9 cm; o outro anda 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | passo, passo.altura, maos.naCintura.acima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: mini-band pintado sobre coxa esquerda (a parte do corpo está na frente) (5 cm², até 12,2 cm à frente; pior em técnica, t = 7,83 s (u = 0,85); em 16 quadro(s)); três quartos, de trás: mini-band pintado sobre coxa direita (a parte do corpo está na frente) (4,3 cm², até 20,8 cm à frente; pior em técnica, t = 6,27 s (u = 0,63); em 16 quadro(s)); de frente: mini-band pintado sobre coxa direita (a parte do corpo está na frente) (2,8 cm², até 10 cm à frente; pior em técnica, t = 1,57 s (u = 0,13); em 14 quadro(s)); três quartos: mini-band pintado sobre coxa direita (a parte do corpo está na frente) (2,8 cm², até 23,7 cm à frente; pior em técnica, t = 1,57 s (u = 0,13); em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 16 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 16 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 359 cm² (padrão); quina: 17 cm² (não serve: o principal quase não aparece); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Coice de glúteo em quatro apoios com caneleira (`coice-caneleira`)
 
-240 quadros conferidos. 0 falha(s), 3 aviso(s).
+240 quadros conferidos. 1 falha(s), 3 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 5 a 5; quadril -1 a 61; ombro 73 a 73; dorsiflexao -0 a 0; punho 93 a 93; pronacao 77 a 77; clavicula 13 a 13.
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 5 a 5; quadril -1 a 61; ombro 73 a 73; dorsiflexao -15 a -0; punho 93 a 93; pronacao 77 a 77; clavicula 13 a 13.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -1892,25 +2008,28 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: joelho.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
-| Chão | ponto mais baixo do corpo | -0,8 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
-| Chão | ponto mais baixo do corpo nos erros desenhados | -0,8 cm (Arquear a lombar no fim) | não pode passar de −1,5 cm | ok |
+| Chão | ponto mais baixo do corpo | 0,6 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 0,6 cm (Arquear a lombar no fim) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (joelho direito, Coice · concêntrica); pico de 83,9 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
-| Ficha | as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quina: o tronco 75,8, a perna direita 75,8, a perna esquerda 23,5, o braço direito 83,3, o braço esquerdo 57,5; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7 | como a ficha pede | ok |
+| Ficha | as mãos, os joelhos, as canelas e os pés que apoiam ficam em cima do colchonete, dentro das bordas, e o pé de apoio no tampo; nenhum pé afunda; nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 30, a perna direita 30, a perna esquerda 21,6, o braço direito 46,2, o braço esquerdo 13,3; quina: o tronco 110,5, a perna direita 110,5, a perna esquerda 58,2, o braço direito 118, o braço esquerdo 92,2; posterior: o tronco 49,3, a perna direita 49,3, a perna esquerda 49,3, o braço direito 42,2, o braço esquerdo 42,1; a menor folga da pele que encosta no tampo até a borda do colchonete (cm, positivo = dentro): mão direita 7,8, joelho direito 19,2, pé direito 19,5, mão esquerda 7,8, joelho esquerdo 18,7, canela esquerda 19,7, pé esquerdo 19,7; o ponto mais baixo do pé esquerdo (o de apoio) fica de 0,2 a 0,3 cm acima do que está embaixo dele (o tampo, ou o chão fora do colchonete), e o do pé direito, no mínimo a 0,6 cm | como a ficha pede | ok |
 | Ficha | em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete (consenso) | o centro da palma fica a no máximo 2 cm da vertical do ombro, com o cotovelo dobrado 5°; o joelho de apoio a 0 cm da vertical do quadril, a -0,4 cm do tampo do colchonete; a linha dos ombros ao quadril sobe 15,8° à frente | como a ficha pede | ok |
 | Ficha | estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado (consenso) | no alto, a coxa faz 0° com a linha do tronco (o joelho 0 cm em relação a ela); a bacia gira no máximo 0° no ciclo (a lombar não arqueia); o joelho fica dobrado de 90° a 90° | como a ficha pede | ok |
 | Ficha | o quadril de frente para o chão, sem girar (consenso) | a linha dos quadris fica a no máximo 0° da horizontal; a bacia anda 0 cm; a coxa abre no máximo 0° para o lado | como a ficha pede | ok |
 | Ficha | a caneleira bem presa no tornozelo da perna que trabalha: não escorrega e não entra no colchonete (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do tornozelo, ao longo da canela; o ponto mais baixo dela fica a 6,6 cm do piso | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo, cervical, pe.flexaoPlantar, colchonete.recua, caneleira.massa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo, cervical, pe.flexaoPlantar.inicio, pe.flexaoPlantar, colchonete.recua, colchonete.noQuadro, caneleira.massa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: caneleira pintado sobre pé direito (a parte do corpo está na frente) (57,3 cm², até 23,6 cm à frente; pior em erro "Girar o quadril", u = 0,00; em 3 quadro(s)); três quartos: canela direita pintado sobre caneleira (a peça está na frente) (8,3 cm², até 5,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); três quartos: caneleira pintado sobre pé direito (a parte do corpo está na frente) (6,8 cm², até 10,9 cm à frente; pior em erro "Arquear a lombar no fim", u = 1,00; em 2 quadro(s)); três quartos: pé direito pintado sobre caneleira (a peça está na frente) (4,8 cm², até 7,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); três quartos: caneleira pintado sobre canela direita (a parte do corpo está na frente) (2,5 cm², até 9,8 cm à frente; pior em erro "Girar o quadril", u = 1,00; em 2 quadro(s)); de lado: caneleira pintado sobre canela direita (a parte do corpo está na frente) (1,8 cm², até 9,6 cm à frente; pior em erro "Girar o quadril", u = 0,50; em 2 quadro(s)); e mais 1 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 107 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Coice de glúteo em quatro apoios com elástico (`coice-elastico`)
 
-240 quadros conferidos. 0 falha(s), 4 aviso(s).
+240 quadros conferidos. 2 falha(s), 4 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 5 a 5; quadril -1 a 61; ombro 73 a 73; dorsiflexao -0 a 0; punho 93 a 93; pronacao 77 a 77; clavicula 13 a 13.
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 5 a 5; quadril -1 a 61; ombro 73 a 73; dorsiflexao -15 a -0; punho 93 a 93; pronacao 77 a 77; clavicula 13 a 13.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -1936,24 +2055,27 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: joelho.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
-| Chão | ponto mais baixo do corpo | -0,8 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
-| Chão | ponto mais baixo do corpo nos erros desenhados | -0,8 cm (Arquear a lombar no fim) | não pode passar de −1,5 cm | ok |
+| Chão | ponto mais baixo do corpo | 0,6 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 0,6 cm (Arquear a lombar no fim) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Cabos | elástico: quanto estica no ciclo (1 = comprimento em repouso) | de 1,3 a 1,6 vezes (262,3 a 341,9 cm); em cima, 1,3 vezes | nunca frouxo (1 ou mais), mais esticado em cima e nunca além de 2,5 vezes (o máximo do fabricante) | AVISO |
+| Cabos | elástico: quanto estica no ciclo (1 = comprimento em repouso) | de 1,3 a 1,6 vezes (263,4 a 341,9 cm); em cima, 1,3 vezes | nunca frouxo (1 ou mais), mais esticado em cima e nunca além de 2,5 vezes (o máximo do fabricante) | AVISO |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (joelho direito, Coice · concêntrica); pico de 83,9 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
-| Ficha | as mãos e os joelhos apoiam em cima do colchonete, dentro das bordas, e nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 25, a perna direita 25, a perna esquerda 16,7, o braço direito 41,2, o braço esquerdo 8,4; quinaTras: o tronco 43,7, a perna direita 43,7, a perna esquerda 38,7, o braço direito 38,2, o braço esquerdo 20,1; posterior: o tronco 21,8, a perna direita 21,8, a perna esquerda 21,8, o braço direito 14,7, o braço esquerdo 14,6; a menor folga da pele que apoia até a borda do colchonete (cm, positivo = dentro): mão direita 1,3, joelho direito 14,2, mão esquerda 1,3, joelho esquerdo 13,7 | como a ficha pede | ok |
+| Ficha | as mãos, os joelhos, as canelas e os pés que apoiam ficam em cima do colchonete, dentro das bordas, e o pé de apoio no tampo; nenhum pé afunda; nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista; e o elástico é pintado atrás das partes do corpo que ficam na frente dele (as canelas de perto e de longe), e na frente das que ele cobre (desenho) | quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 30, a perna direita 30, a perna esquerda 21,6, o braço direito 46,2, o braço esquerdo 13,3; quinaTras: o tronco 68,2, a perna direita 68,2, a perna esquerda 63,2, o braço direito 62,6, o braço esquerdo 44,5; posterior: o tronco 49,3, a perna direita 49,3, a perna esquerda 49,3, o braço direito 42,2, o braço esquerdo 42,1; a menor folga da pele que encosta no tampo até a borda do colchonete (cm, positivo = dentro): mão direita 7,8, joelho direito 19,2, pé direito 19,5, mão esquerda 7,8, joelho esquerdo 18,7, canela esquerda 19,7, pé esquerdo 19,7; o ponto mais baixo do pé esquerdo (o de apoio) fica de 0,2 a 0,3 cm acima do que está embaixo dele (o tampo, ou o chão fora do colchonete), e o do pé direito, no mínimo a 0,6 cm; a folga de pintura de cada parte do corpo que se cruza com o elástico na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o elástico, "atrás" = o elástico esconde a parte): lateral: a perna direita na frente 0,5, a perna direita atrás 11,5, a perna esquerda atrás 4,1, o braço direito na frente 0,5, o braço esquerdo atrás 0,3; quinaTras: a perna direita na frente 0,5, a perna direita atrás 45,2, a perna esquerda atrás 4,5, o braço direito na frente 0,5, o braço direito atrás 0,7, o braço esquerdo atrás 6,6; posterior: o tronco atrás 87,7, a perna direita na frente 0,5, a perna direita atrás 68,1, a perna esquerda na frente 8,8, o braço direito na frente 0,5, o braço direito atrás 6,6 | como a ficha pede | ok |
 | Ficha | em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete (consenso) | o centro da palma fica a no máximo 2 cm da vertical do ombro, com o cotovelo dobrado 5°; o joelho de apoio a 0 cm da vertical do quadril, a -0,4 cm do tampo do colchonete; a linha dos ombros ao quadril sobe 15,8° à frente | como a ficha pede | ok |
 | Ficha | estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado (consenso) | no alto, a coxa faz 0° com a linha do tronco (o joelho 0 cm em relação a ela); a bacia gira no máximo 0° no ciclo (a lombar não arqueia); o joelho fica dobrado de 90° a 90° | como a ficha pede | ok |
 | Ficha | o quadril de frente para o chão, sem girar (consenso) | a linha dos quadris fica a no máximo 0° da horizontal; a bacia anda 0 cm; a coxa abre no máximo 0° para o lado | como a ficha pede | ok |
 | Ficha | o laço na sola do pé e as pontas presas sob as mãos; o elástico estica mais no alto (consenso) | o laço passa a 0,2 cm do meio da sola; as pontas ficam a 1,8 cm do centro da palma direita, sob a mão; ele vai de 1,3 vezes (embaixo) a 1,6 vezes (no alto) | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo, cervical, pe.flexaoPlantar, elastico.folga, elastico.paraDentro, colchonete.recua | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo, cervical, pe.flexaoPlantar.inicio, pe.flexaoPlantar, elastico.folga, elastico.paraDentro, colchonete.recua, colchonete.noQuadro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (13,8 cm², até 36,5 cm à frente; pior em erro "Girar o quadril", u = 0,50; em 2 quadro(s)); de trás: faixa (traço) pintado sobre canela direita (a parte do corpo está na frente) (9,5 cm², até 24,8 cm à frente; pior em erro "Girar o quadril", u = 1,00; em 1 quadro(s)); três quartos, de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (8 cm², até 15,2 cm à frente; pior em técnica, t = 0,67 s (u = 0,12); em 7 quadro(s)); de trás: faixa (traço) pintado sobre coxa direita (a parte do corpo está na frente) (6 cm², até 48,7 cm à frente; pior em erro "Girar o quadril", u = 1,00; em 2 quadro(s)); de trás: faixa (traço) pintado sobre canela esquerda (a parte do corpo está na frente) (5,5 cm², até 78,3 cm à frente; pior em erro "Girar o quadril", u = 0,50; em 3 quadro(s)); de lado: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (3,3 cm², até 5,8 cm à frente; pior em técnica, t = 0,67 s (u = 0,12); em 1 quadro(s)); e mais 5 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e faixa (traço) entra 2,3 cm em antebraço direito (pior em erro "Arquear a lombar no fim", u = 1,00; em 12 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | FALHA |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 205 cm² (padrão); de lado: 155 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Coice na máquina de glúteo (`coice-maquina`)
 
-234 quadros conferidos. 0 falha(s), 2 aviso(s).
+234 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 87 a 87; quadril -1 a 89; ombro 87 a 87; dorsiflexao -0 a 0; punho -0 a -0; pronacao -0 a -0; clavicula 14 a 14.
 
@@ -1992,12 +2114,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a sola do pé na plataforma da alavanca, que gira com a perna sem descolar nem atravessar o pé (consenso) | a pele da sola fica de -0,3 a -0,3 cm da face da plataforma (negativo = afunda na borracha); a plataforma fica de 66 a 66 cm do eixo (a alavanca não estica) | como a ficha pede | ok |
 | Ficha | a alavanca gira com a coxa e as placas sobem o arco do came (raio × ângulo) (consenso) | a alavanca gira com a coxa (diferença máxima de 0°); as placas sobem até 17,3 cm, a no máximo 0 cm do arco do came (raio de 11 cm × ângulo) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, umero.aFrente, antebraco.paraDentro, apoio.amassa, pe.flexaoPlantar, plataforma.amassa, quadro.ate, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: pé direito pintado sobre plataforma do pé da máquina de glúteo (plataforma) (a peça está na frente) (1,5 cm², até 9,9 cm à frente; pior em erro "Girar o quadril", u = 1,00; em 1 quadro(s)) (fora 25 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 115 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Coice na polia com tornozeleira (`coice-polia`)
 
-255 quadros conferidos. 0 falha(s), 1 aviso(s).
+255 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 19 a 48; quadril -6 a 34; ombro 52 a 68; dorsiflexao -14 a 14; punho -0 a 0; pronacao -22 a -21; clavicula 12 a 13.
 
@@ -2039,12 +2164,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cabo vai reto da roldana à tornozeleira sem encostar no corpo (desenho) | os cabos passam a no mínimo 7,2 cm da pele (cabo, canela) | como a ficha pede | ok |
 | Ficha | a pilha sobe o que o cabo anda dividido pela relação da máquina (consenso) | cabo: o cabo anda 43,2 cm e a pilha sobe 21,6 cm (esperado 21,6) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.apoio.paraFora, joelho.apoio, bacia.sobe, pe.livre.acimaDoChao, pe.livre.flexaoPlantar, pe.livre.dorsiflexaoMax, pe.livre.flexaoPlantarMax, coxa.abre, torre.mao.altura, torre.cotovelo, torre.montanteDiam, pilha.folga, quadro.torreAte | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: tornozeleira (estofado) pintado sobre pé direito (a parte do corpo está na frente) (10,5 cm², até 14,8 cm à frente; pior em erro "Dobrar o joelho", u = 1,00; em 4 quadro(s)); três quartos, de trás: tornozeleira pintado sobre pé direito (a parte do corpo está na frente) (6,5 cm², até 12 cm à frente; pior em erro "Dobrar o joelho", u = 1,00; em 6 quadro(s)); três quartos, de trás: tornozeleira pintado sobre canela direita (a parte do corpo está na frente) (2,3 cm², até 10,4 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 6 quadro(s)); três quartos, de trás: tornozeleira (estofado) pintado sobre canela direita (a parte do corpo está na frente) (1,8 cm², até 9,9 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 7 quadro(s)); de lado: tornozeleira pintado sobre canela direita (a parte do corpo está na frente) (1,3 cm², até 8 cm à frente; pior em erro "Arquear a lombar", u = 1,00; em 4 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 249 cm² (padrão); de lado: 158 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Crucifixo com elástico (`crucifixo-elastico`)
 
-288 quadros conferidos. 0 falha(s), 3 aviso(s).
+288 quadros conferidos. 0 falha(s), 5 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 12 a 12; cotovelo 20 a 20; quadril 26 a 26; ombro 76 a 76; dorsiflexao -2 a -2; punho -0 a 0; pronacao -86 a -86; clavicula 14 a 14.
 
@@ -2085,7 +2213,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tubo vai das mãos à âncora por fora dos braços e das costas, sem entrar no corpo (desenho) | o elástico passa a no mínimo 1 cm da pele (ante) | como a ficha pede | ok |
 | Ficha | cada mão segura um pegador (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 10–160 cm uma da outra | como a ficha pede | ok |
 | Ficha | os dois braços fecham juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 11 de 11 quadros, com contorno próprio em 11; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,5% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,9 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.frente.z, pe.tras.z, pe.tras.calcanhar, cervical, cabeca, braco.abaixo, elastico.folga, elastico.noQuadro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: pé direito pintado sobre elástico (traço) (a peça está na frente) (6 cm², até 93,8 cm à frente; pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)); de frente: elástico (traço) pintado sobre mão direita (a parte do corpo está na frente) (2,3 cm², até 14 cm à frente; pior em técnica, t = 3,20 s (u = 0,75); em 5 quadro(s)); de frente: elástico (traço) pintado sobre mão esquerda (a parte do corpo está na frente) (2,3 cm², até 14 cm à frente; pior em técnica, t = 3,20 s (u = 0,75); em 5 quadro(s)) (fora 8 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | pegadorR (traço) entra 1,5 cm em antebraço direito (pior em erro "Elástico frouxo com os braços abertos", u = 0,50; em 2 quadro(s)); pegadorL (traço) entra 1,5 cm em antebraço esquerdo (pior em erro "Elástico frouxo com os braços abertos", u = 0,50; em 2 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 474 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -2133,12 +2265,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter não bate no corpo nem no banco (consenso) | a carga fica a no mínimo 0,4 cm da pele e 39 cm das peças da cena | como a ficha pede | ok |
 | Ficha | deitado no banco reto, os pés no chão além da ponta dele: em todas as vistas, a parte do corpo (dos dois lados) que fica entre o banco e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o banco na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o banco, "atrás" = o banco esconde a parte): cima: o tronco na frente 19,7, a perna direita na frente 19,7, a perna esquerda na frente 19,7, o braço direito na frente 58,9, o braço esquerdo na frente 58,9; quina: o tronco na frente 2,5, a perna direita na frente 2,5, o braço direito na frente 20,9, o braço esquerdo atrás 2,5; frontal: a perna direita na frente 8,5, a perna esquerda na frente 8,5 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | deitado.pelve.z, apoio.amassa, deitado.lombar, deitado.cervical.min, deitado.cervical.max, deitado.cabeca, cabeca.folgaNoBanco, pes.meiaDistancia, pes.alemDaCoxa, cotovelo.paraOsPes, escapula.retracao, escapula.depressao, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 45 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 460 cm² (padrão); quina: 76 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Crucifixo inclinado com halteres (`crucifixo-inclinado-halteres`)
 
-303 quadros conferidos. 0 falha(s), 2 aviso(s).
+303 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 84 a 84; cotovelo 25 a 25; quadril 20 a 20; ombro 77 a 106; dorsiflexao 0 a 0; punho -0 a 0; pronacao -79 a -72; clavicula 10 a 11.
 
@@ -2180,12 +2315,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, sem bater um halter no outro (consenso) | os dois halteres ficam a no mínimo 3 cm um do outro | como a ficha pede | ok |
 | Ficha | o halter não bate no corpo nem no banco (consenso) | a carga fica a no mínimo 0,4 cm da pele e 39,2 cm das peças da cena | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cotovelo.paraOsPes, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: banco-regulavel (metal) pintado sobre pé direito (a parte do corpo está na frente) (33,5 cm², até 21,5 cm à frente; pior em técnica, t = 2,52 s (u = 0,91); em 15 quadro(s)); três quartos: banco-regulavel (metal) pintado sobre canela direita (a parte do corpo está na frente) (17,3 cm², até 20,5 cm à frente; pior em erro "Descer demais", u = 1,00; em 15 quadro(s)); três quartos: banco-regulavel (borracha) pintado sobre pé direito (a parte do corpo está na frente) (3,8 cm², até 14,4 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 15 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 455 cm² (padrão); quina: 103 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Crucifixo inverso com halteres, peito apoiado no banco inclinado (`crucifixo-inverso`)
 
-264 quadros conferidos. 0 falha(s), 1 aviso(s).
+264 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 15 a 15; cotovelo 15 a 15; quadril 42 a 42; ombro 53 a 89; dorsiflexao -12 a -12; punho -0 a 0; pronacao -68 a -68; clavicula 11 a 12.
 
@@ -2232,12 +2370,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os halteres não batem no corpo nem no banco (consenso) | a carga fica a no mínimo 2,1 cm da pele e 9 cm das peças da cena | como a ficha pede | ok |
 | Ficha | o halter não encosta no chão com os braços pendurados (consenso) | com o braço estendido, o halter fica a 49,1 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | inicio.fora, cotovelo.paraTras, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: halter (ferro) pintado sobre coxa esquerda (a parte do corpo está na frente) (11,5 cm², até 42,4 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de trás: halter (ferro) pintado sobre coxa direita (a parte do corpo está na frente) (11,3 cm², até 41,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de trás: halter (ferro) pintado sobre canela esquerda (a parte do corpo está na frente) (4,8 cm², até 40 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de trás: halter (ferro) pintado sobre canela direita (a parte do corpo está na frente) (4,8 cm², até 39,6 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 72 cm² (padrão); de três quartos, de trás: 60 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Crucifixo invertido sentado com caneleira presa no punho (`crucifixo-invertido-caneleira`)
 
-240 quadros conferidos. 0 falha(s), 2 aviso(s).
+240 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 60 a 60; cotovelo 15 a 15; quadril 145 a 145; ombro 82 a 87; dorsiflexao -17 a -17; punho -0 a 0; pronacao -68 a -68; clavicula 12 a 12.
 
@@ -2280,6 +2421,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | sem encolher os ombros nem juntar as escápulas (consenso) | no fim, a clavícula fica 2° atrás do ritmo (positivo = para trás; a remada, que junta as escápulas, chega a 10°); ela sobe no máximo -2° além do ritmo | como a ficha pede | ok |
 | Ficha | a caneleira não bate nas pernas, no tronco, na cadeira nem no chão (consenso) | a carga fica a no mínimo 6,8 cm da pele, 33,1 cm da cadeira e 15,5 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, assento.amassa, lombar, toracica, cervical, cabeca, inicio.paraTras, inicio.folgaDoChao, cotovelo.paraTras, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: caneleira pintado sobre bacia (a parte do corpo está na frente) (32,5 cm², até 75,6 cm à frente; pior em erro "Virar remada", u = 1,00; em 2 quadro(s)); de cima: caneleira pintado sobre antebraço esquerdo (a parte do corpo está na frente) (3,5 cm², até 19 cm à frente; pior em erro "Virar remada", u = 1,00; em 1 quadro(s)); de cima: caneleira pintado sobre antebraço direito (a parte do corpo está na frente) (3 cm², até 19 cm à frente; pior em erro "Virar remada", u = 1,00; em 1 quadro(s)); três quartos, de trás: caneleira pintado sobre antebraço esquerdo (a parte do corpo está na frente) (2,8 cm², até 9,8 cm à frente; pior em técnica, t = 3,33 s (u = 0,21); em 4 quadro(s)); de cima: caneleira pintado sobre braço direito (a parte do corpo está na frente) (2,5 cm², até 21,4 cm à frente; pior em erro "Virar remada", u = 1,00; em 1 quadro(s)); de cima: caneleira pintado sobre braço esquerdo (a parte do corpo está na frente) (2 cm², até 20,5 cm à frente; pior em erro "Virar remada", u = 1,00; em 1 quadro(s)); e mais 2 (fora 11 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 72 cm² (padrão); de três quartos, de trás: 58 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -2330,6 +2474,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | palmas uma para a outra (embaixo); a mão não gira (consenso) | o polegar fica no máximo 2,6° fora da direção para a frente (o cabo do halter de frente para trás, a mão sem girar) | como a ficha pede | ok |
 | Ficha | os halteres pendem sem bater nas pernas nem no tronco (consenso) | a carga fica a no mínimo 2,1 cm da pele | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, inicio.fora, cotovelo.paraTras, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 39 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 72 cm² (padrão); de três quartos, de trás: 60 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -2378,7 +2525,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cada cabo vai reto da roldana à mão, sem encostar no corpo (consenso) | os cabos passam a no mínimo 8,4 cm da pele (cabo, ante) | como a ficha pede | ok |
 | Ficha | cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina (consenso) | cabo: o cabo anda 103,9 cm e a pilha sobe 52 cm (esperado 52); cabo2: o cabo anda 103,9 cm e a pilha sobe 52 cm (esperado 52) | como a ficha pede | ok |
 | Ficha | o tronco fica parado: sem embalo (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | posterior: o tronco visto a 93° do eixo dele (no mínimo), até 20,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -9,9 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 3° do eixo dele (no mínimo), até 78,2% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 12,8 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -11,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, polia.meiaDistancia, inicio.desnivel, desnivel.some, mao.supinacao.inicio, mao.supinacao.fim, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 69 cm² (padrão); de trás: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -2429,12 +2580,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | palmas uma para a outra (embaixo); a mão não gira (consenso) | o polegar fica no máximo 4,7° fora da direção para a frente (o cabo do halter de frente para trás, a mão sem girar) | como a ficha pede | ok |
 | Ficha | a carga não bate nas pernas, no tronco, na cadeira nem no chão (consenso) | a carga fica a no mínimo 2,1 cm da pele, 20,8 cm da cadeira e 2 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, assento.amassa, lombar, toracica, cervical, cabeca, inicio.folgaDoChao, cotovelo.paraTras, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 11 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 60 cm² (padrão); de três quartos, de trás: 59 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Crucifixo na polia (crossover) (`crucifixo-polia`)
 
-288 quadros conferidos. 0 falha(s), 2 aviso(s).
+288 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 12 a 12; cotovelo 20 a 20; quadril 38 a 38; ombro 74 a 79; dorsiflexao -13 a -13; punho -0 a 0; pronacao -60 a -30; clavicula 13 a 14.
 
@@ -2475,13 +2629,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cada cabo vai reto da roldana à mão, sem encostar no corpo (consenso) | os cabos passam a no mínimo 3 cm da pele (cabo, ante) | como a ficha pede | ok |
 | Ficha | cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina (consenso) | cabo: o cabo anda 96 cm e a pilha sobe 48 cm (esperado 48); cabo2: o cabo anda 96 cm e a pilha sobe 48 cm (esperado 48) | como a ficha pede | ok |
 | Ficha | o tronco fica parado: quem fecha são os braços (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 78° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 5,3 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 12° do eixo dele (no mínimo), até 56,3% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,6 cm mais perto de quem olha que o tronco; sumiria em 11 de 11 quadros, com contorno próprio em 11; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 15,8% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, cervical, cabeca, polia.meiaDistancia, arco.inicio.el, mao.supinacao.inicio, mao.supinacao.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: antebraço direito pintado sobre estribo (traço) (a peça está na frente) (4,3 cm², até 5,2 cm à frente; pior em técnica, t = 2,40 s (u = 1,00); em 5 quadro(s)); de cima: antebraço esquerdo pintado sobre estribo (traço) (a peça está na frente) (2,8 cm², até 5,5 cm à frente; pior em técnica, t = 2,40 s (u = 1,00); em 5 quadro(s)); de lado: antebraço direito pintado sobre estribo (traço) (a peça está na frente) (2,8 cm², até 3,8 cm à frente; pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)); de frente: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (2,5 cm², até 11,2 cm à frente; pior em erro "Transformar em supino", u = 1,00; em 4 quadro(s)); de frente: antebraço esquerdo pintado sobre cabo (traço) (a peça está na frente) (2,3 cm², até 10,4 cm à frente; pior em técnica, t = 2,40 s (u = 1,00); em 4 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 499 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Crucifixo na polia de baixo para cima (`crucifixo-polia-baixo`)
 
-270 quadros conferidos. 0 falha(s), 2 aviso(s).
+270 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 12 a 12; cotovelo 20 a 20; quadril 27 a 27; ombro 27 a 85; dorsiflexao -10 a -10; punho -0 a 0; pronacao -70 a -55; clavicula 11 a 14.
 
@@ -2523,12 +2681,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | tronco reto e parado: quem sobe são os braços (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | em cada vista do guia, cada cabo termina na roldana de uma coluna que aparece (de lado, a coluna de longe, atrás do corpo) (desenho) | frontal: 2 colunas aparecem, e a saída de cada cabo fica no máximo 5,5 cm do centro da roldana mais perto, na tela; lateral: 1 coluna aparece, e a saída de cada cabo fica no máximo 3,6 cm do centro da roldana mais perto, na tela (raio da roldana: 5,5 cm) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.tras.calcanhar, peso.partilha, joelho, toracica, cervical, cabeca, escapula.prot, mao.supinacao.inicio, mao.supinacao.fim, polia.meiaDistancia, polia.atras, coluna.deLado.noQuadro, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: braço esquerdo pintado sobre cabo (traço) (a peça está na frente) (5,8 cm², até 40,9 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 1 quadro(s)); de frente: braço direito pintado sobre cabo (traço) (a peça está na frente) (5,5 cm², até 41 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 1 quadro(s)); de frente: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (5,3 cm², até 13,8 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 4 quadro(s)); de frente: antebraço esquerdo pintado sobre cabo (traço) (a peça está na frente) (5,3 cm², até 14,3 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 4 quadro(s)); de lado: antebraço direito pintado sobre estribo (traço) (a peça está na frente) (5,3 cm², até 4,9 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 4 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 496 cm² (padrão); de lado: 89 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Desenvolvimento sentado com halteres (`desenvolvimento`)
 
-273 quadros conferidos. 0 falha(s), 3 aviso(s).
+273 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 97 a 97; cotovelo 10 a 114; quadril 66 a 66; ombro 59 a 159; dorsiflexao 14 a 14; punho 0 a 0; pronacao 30 a 30; clavicula 13 a 17.
 
@@ -2568,16 +2729,20 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | antebraços na vertical (consenso) | o antebraço desvia no máximo 0° da vertical | como a ficha pede | ok |
 | Ficha | em cima, braços quase estendidos sobre os ombros (consenso) | no topo, o cotovelo dobra 10° e o centro da mão fica a 5,3 cm da vertical do ombro | como a ficha pede | ok |
 | Ficha | os halteres sobem sem bater na cabeça e sem bater um no outro (consenso) | a carga passa a no mínimo 14,3 cm da cabeça; as pontas de dentro dos halteres ficam a no mínimo 12,4 cm uma da outra | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima, do erro dos cotovelos, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | lateral: o tronco visto a 90° do eixo dele (no mínimo), até 20,8% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,4 cm mais perto de quem olha que o tronco; não some; frontal: o tronco visto a 104,7° do eixo dele (no mínimo), até 22,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -17,7 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 14,7° do eixo dele (no mínimo), até 67,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 12,2 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, cabeca, estofado.afunda, pes.meiaDistancia, pes.aFrente, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: banco-regulavel (borracha) pintado sobre pé esquerdo (a parte do corpo está na frente) (1,5 cm², até 22,7 cm à frente; pior em erro "Cotovelos para trás", u = 0,50; em 5 quadro(s)); de frente: banco-regulavel (borracha) pintado sobre pé direito (a parte do corpo está na frente) (1 cm², até 22,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 8 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, parte de cima aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 40 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Desenvolvimento em pé com barra (`desenvolvimento-barra`)
 
-249 quadros conferidos. 0 falha(s), 2 aviso(s).
+249 quadros conferidos. 1 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 10 a 147; quadril 5 a 5; ombro 24 a 168; dorsiflexao 3 a 3; punho -27 a 47; pronacao 14 a 69; clavicula 11 a 17.
+Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 10 a 144; quadril 5 a 5; ombro 26 a 168; dorsiflexao 3 a 3; punho -22 a 54; pronacao 14 a 70; clavicula 11 a 17.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -2587,41 +2752,45 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 8° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 147,3° | média 148°, máximo observado 166° (cdc) | ok |
-| Amplitudes | flexão do quadril | 4,5° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 143,8° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 4,7° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0,4° | média 40°, máximo observado 60° (aaos) | ok |
 | Amplitudes | elevação do braço | 168,5° | média 170°, máximo observado 192° (cdc) | ok |
-| Amplitudes | dorsiflexão do tornozelo | 3,5° | média 14,8°, máximo observado 48° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 3,3° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 69,2° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 69,8° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 47° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 53,6° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
 | Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Arquear a lombar) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 14,2% da velocidade de pico (cabeça, Subida · concêntrica); pico de 112 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 14,2% da velocidade de pico (cabeça, Subida · concêntrica); pico de 106,6 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
-| Ficha | embaixo, a barra apoiada na parte de cima do peito, com os cotovelos um pouco à frente dela (consenso) | embaixo, a barra fica a 0 cm da pele do peito, 8 cm abaixo da base do pescoço ao longo do tronco (o alto do esterno fica a 8 cm); os cotovelos ficam 1,3 cm à frente dela | como a ficha pede | ok |
+| Ficha | embaixo, a barra apoiada na parte de cima do peito, com os cotovelos um pouco à frente dela (consenso) | embaixo, a barra fica a 0,3 cm da pele do peito (pele densa), 8 cm abaixo da base do pescoço ao longo do tronco (o alto do esterno fica a 8 cm); os cotovelos ficam 0,8 cm à frente dela | como a ficha pede | ok |
 | Ficha | a barra sobe rente ao rosto, sem bater nele (consenso) | a barra passa a no mínimo 1,5 cm da pele (da cabeça); o pescoço estende até 12° para ela passar | como a ficha pede | ok |
 | Ficha | em cima, braços quase estendidos, sem travar, com a barra sobre os ombros (consenso) | em cima, a barra fica a 1,4 cm da vertical dos ombros e o cotovelo dobra 10° | como a ficha pede | ok |
 | Ficha | sem arquear a lombar (abdômen e glúteos firmes) (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | sem jogar o tronco (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | sem impulso com as pernas (consenso) | os joelhos dobram de 8° a 8° (direito) e de 8° a 8° (esquerdo) no ciclo | como a ficha pede | ok |
-| Ficha | o centro de massa (corpo + barra) fica perto do meio do pé, com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -2,5 a 4,8 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
+| Ficha | o centro de massa (corpo + barra) fica perto do meio do pé, com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -2,7 a 4,6 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a barra no rack na altura do peito (consenso) | o berço do gancho a 130 cm do chão; a altura do peito (no mamilo) é 129,4 cm | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pegada.meia, punho.extensao, barra.folgaDoRosto, cabeca.paraTras, cabeca.entra, cabeca.sai, caminho.passo, carga.anilhas, suporte.passos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | a barra apoiada no alto do peito, encostada sem entrar nele, e fora do corpo no caminho todo, no ciclo e nos erros (até 0,5 cm, o amassado da pele) (consenso) | em 132 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pegada.meia, punho.extensao, cotovelo.poloParaBaixo, barra.folgaNoPeito, barra.folgaDoRosto, cabeca.paraTras, cabeca.entra, cabeca.sai, caminho.passo, carga.anilhas, suporte.passos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: braço direito pintado sobre barra longa (cromo) (a peça está na frente) (14,3 cm², até 9,9 cm à frente; pior em erro "Impulso com as pernas", u = 0,00; em 4 quadro(s)); de frente: braço esquerdo pintado sobre barra longa (cromo) (a peça está na frente) (14 cm², até 9,7 cm à frente; pior em erro "Impulso com as pernas", u = 0,00; em 4 quadro(s)) (fora 17 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 56 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 54 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Desenvolvimento com elástico (`desenvolvimento-elastico`)
 
-273 quadros conferidos. 0 falha(s), 3 aviso(s).
+273 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 11 a 114; quadril 4 a 4; ombro 67 a 170; dorsiflexao 4 a 4; punho 0 a 0; pronacao 30 a 30; clavicula 13 a 17.
 
@@ -2665,7 +2834,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tubo desce das mãos aos pés sem entrar no corpo (desenho) | o elástico passa a no mínimo 0,6 cm da pele (ante) | como a ficha pede | ok |
 | Ficha | cada mão segura um pegador (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 46,3–90 cm uma da outra | como a ficha pede | ok |
 | Ficha | os dois braços sobem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima, do erro dos cotovelos, inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,3% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,4 cm mais perto de quem olha que o tronco; não some; frontal: o tronco visto a 88,7° do eixo dele (no mínimo), até 19,2% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -0,6 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 1,3° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,1 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, elastico.pontaAFrente, elastico.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: braço direito pintado sobre elástico (traço) (a peça está na frente) (20,5 cm², até 22,6 cm à frente; pior em erro "Cotovelos para trás", u = 0,00; em 1 quadro(s)); de cima: braço direito pintado sobre pegadorR (borracha) (a peça está na frente) (3 cm², até 33,5 cm à frente; pior em erro "Cotovelos para trás", u = 0,00; em 1 quadro(s)); de cima: braço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (2,8 cm², até 33,3 cm à frente; pior em erro "Cotovelos para trás", u = 0,00; em 1 quadro(s)); de cima: antebraço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (1,8 cm², até 28,6 cm à frente; pior em erro "Cotovelos para trás", u = 0,00; em 1 quadro(s)); de cima: antebraço direito pintado sobre pegadorR (borracha) (a peça está na frente) (1,5 cm², até 27,9 cm à frente; pior em erro "Cotovelos para trás", u = 0,00; em 1 quadro(s)); de frente: antebraço direito pintado sobre pegadorR (traço) (a peça está na frente) (1 cm², até 2,6 cm à frente; pior em técnica, t = 1,52 s (u = 0,96); em 1 quadro(s)); e mais 1 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 40 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -2714,6 +2887,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as pernas ficam paradas (consenso) | os joelhos dobram de 8° a 8° (direito) e de 8° a 8° (esquerdo) no ciclo | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halteres) fica perto do meio do pé, com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -3,2 a 2,3 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, braco.topo.frente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 35 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -2759,7 +2935,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | empurra para cima até quase estender os cotovelos (consenso) | em cima, o cotovelo ainda dobra 12° | como a ficha pede | ok |
 | Ficha | em cima, as mãos sobre os ombros (consenso) | em cima, o centro da mão fica a 3,2 cm da vertical do ombro | como a ficha pede | ok |
 | Ficha | as placas sobem com os braços da máquina e apoiam embaixo (desenho) | a alavanca gira de 81,7° a 132,3°; as placas sobem de 0 a 14,1 cm, a no máximo 0 cm do arco do came; no começo, elas apoiam (0 cm) | como a ficha pede | ok |
+| Ficha | medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, no assento ou nas peças mais que 2,5 cm (o que o estofado amassa) (desenho) | na pele densa, o quanto cada parte entra em cada peça (o pior quadro): braço direito no estofado 2,1 cm; braço esquerdo no estofado 2,1 cm; coxa direita no estofado 1,9 cm; coxa esquerda no estofado 1,9 cm; bacia no estofado 1,2 cm; cintura no estofado 1,2 cm; tronco no estofado 1 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, pes.meiaDistancia, joelho, cotovelos.desce, cotovelo.embaixo, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 4 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 48 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -2808,12 +2988,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão na cintura (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 98,1° a 98,1° | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halter) fica perto do meio do pé, com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -1,8 a 1,3 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, braco.topo.frente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 35 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Desenvolvimento unilateral em pé com kettlebell (`desenvolvimento-unilateral-kettlebell`)
 
-273 quadros conferidos. 0 falha(s), 4 aviso(s).
+273 quadros conferidos. 0 falha(s), 5 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 8 a 150; quadril 6 a 6; ombro 31 a 173; dorsiflexao 2 a 2; punho -0 a 0; pronacao 2 a 20; clavicula 12 a 17.
 
@@ -2857,12 +3040,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão na cintura (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 98,1° a 98,1° | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + kettlebell) fica perto do meio do pé, com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -3,6 a 1,7 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, braco.baixo.frente, braco.topo.frente, mao.giro.baixo, mao.giro.topo, kettlebell.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: braço direito pintado sobre kettlebell (ferro) (a peça está na frente) (1 cm², até 14,9 cm à frente; pior em técnica, t = 0,75 s (u = 0,08); em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 45 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Elevação lateral com halteres (`elevacao-halteres`)
 
-246 quadros conferidos. 0 falha(s), 3 aviso(s).
+246 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 15 a 15; quadril 23 a 23; ombro 23 a 96; dorsiflexao -1 a -1; punho -0 a 0; pronacao -16 a -6; clavicula 11 a 15.
 
@@ -2903,7 +3089,12 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, os halteres perto das coxas, sem atravessá-las (consenso) | da carga (ou da mão) à pele das pernas: no mínimo 2,7 cm | como a ficha pede | ok |
 | Ficha | sem embalo: o tronco fica parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -1,7 a 2 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
+| Ficha | nenhuma cabeça de halter entra no corpo (coxas, tronco), em nenhum quadro do ciclo nem dos erros; no começo do erro "Balançar o tronco", com o tronco inclinado e os joelhos dobrados, os halteres pendem na frente das coxas (até 0,5 cm, o amassado da pele) (consenso) | em 130 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, plano.transicao, cotovelo, cotovelo.giro, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: pé direito pintado sobre halter (ferro) (a peça está na frente) (28,3 cm², até 79,9 cm à frente; pior em técnica, t = 0,68 s (u = 0,07); em 4 quadro(s)); de cima: pé esquerdo pintado sobre halter (ferro) (a peça está na frente) (27,3 cm², até 80,2 cm à frente; pior em técnica, t = 0,68 s (u = 0,07); em 4 quadro(s)); de cima: pé esquerdo pintado sobre halter (cromo) (a peça está na frente) (2,5 cm², até 72,6 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de cima: pé direito pintado sobre halter (cromo) (a peça está na frente) (2,3 cm², até 72,6 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 78 cm² (padrão); de cima: 10 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -2948,6 +3139,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, joelhos pelo menos na altura do quadril (consenso) | no topo, o centro do joelho fica 14,8 cm acima do centro do quadril | como a ficha pede | ok |
 | Ficha | no fim, a pelve enrola (o abdômen trabalha, não só o quadril) (consenso) | do começo ao topo, a bacia gira 25° para trás em relação ao tórax, e a lombar dobra 25° (a pelve enrola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | polo.fora, polo.cima, polo.frente, pescoco, quadril.topo, joelho.topo, joelho.fim, pelve.enrola, tronco, pe.plantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 236 cm² (padrão); de lado: 134 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -2992,12 +3186,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, joelhos pelo menos na altura do quadril (consenso) | no topo, o centro do joelho fica 14,8 cm acima do centro do quadril | como a ficha pede | ok |
 | Ficha | no fim, a pelve enrola (o abdômen trabalha, não só o quadril) (consenso) | do começo ao topo, a bacia gira 25° para trás em relação ao tórax, e a lombar dobra 25° (a pelve enrola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | polo.fora, polo.cima, polo.frente, pescoco, quadril.topo, joelho.topo, joelho.fim, pelve.enrola, tronco, pe.plantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 236 cm² (padrão); de lado: 134 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Elevação lateral unilateral na polia (`elevacao-lateral`)
 
-246 quadros conferidos. 0 falha(s), 2 aviso(s).
+246 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 8; cotovelo 15 a 15; quadril 4 a 4; ombro 21 a 95; dorsiflexao 4 a 4; punho -0 a 0; pronacao -16 a -6; clavicula 11 a 14.
 
@@ -3038,14 +3235,18 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão segura a coluna da torre, parada (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 81° a 81° | como a ficha pede | ok |
 | Ficha | tronco reto e parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | o centro de massa fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado (consenso) | o centro de massa (corpo + carga) anda de -0,2 a 0,2 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 88,7° do eixo dele (no mínimo), até 19,2% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -0,6 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 1,3° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,1 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho, cervical, cabeca, plano.transicao, cotovelo, cotovelo.giro, carga.folga, mao.raio, torre.maoAltura, torre.aFrente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: cabo (traço) pintado sobre coxa direita (a parte do corpo está na frente) (17 cm², até 36,1 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 1 quadro(s)); de lado: estribo (traço) pintado sobre coxa direita (a parte do corpo está na frente) (10,5 cm², até 15,7 cm à frente; pior em erro "Balançar o tronco", u = 0,00; em 1 quadro(s)); de cima: pé esquerdo pintado sobre cabo (traço) (a peça está na frente) (6,3 cm², até 58,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 6 quadro(s)); de cima: pé direito pintado sobre cabo (traço) (a peça está na frente) (4,3 cm², até 84,9 cm à frente; pior em erro "Encolher o ombro", u = 1,00; em 6 quadro(s)); de frente: coxa esquerda pintado sobre estribo (traço) (a peça está na frente) (4,3 cm², até 5,9 cm à frente; pior em erro "Balançar o tronco", u = 0,00; em 1 quadro(s)); de frente: coxa direita pintado sobre estribo (traço) (a peça está na frente) (3,8 cm², até 6,7 cm à frente; pior em erro "Balançar o tronco", u = 0,00; em 1 quadro(s)); e mais 2 (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e fio "cabo" da conferência e estribo (traço) e cabo (traço) entra 2,5 cm em coxa esquerda (pior em erro "Balançar o tronco", u = 0,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 33 cm² (padrão); de cima: 14 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Elevação lateral com caneleira presa no punho (`elevacao-lateral-caneleira`)
 
-234 quadros conferidos. 0 falha(s), 3 aviso(s).
+234 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 15 a 15; quadril 22 a 22; ombro 10 a 96; dorsiflexao 0 a 0; punho -0 a 0; pronacao -0 a 0; clavicula 11 a 15.
 
@@ -3088,6 +3289,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a caneleira presa no antebraço, logo acima do punho, sem escorregar; a mão relaxada (não segura a caneleira) (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do punho, no eixo do antebraço (a 0 cm dele): a borda de baixo a 2 cm do punho; a mão fica relaxada o ciclo todo | como a ficha pede | ok |
 | Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, plano.transicao, plano, polegar.paraCima, mao.raio, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: caneleira pintado sobre mão direita (a parte do corpo está na frente) (9,8 cm², até 11,7 cm à frente; pior em erro "Balançar o corpo", u = 1,00; em 2 quadro(s)); de cima: caneleira pintado sobre braço direito (a parte do corpo está na frente) (4,5 cm², até 54,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de cima: caneleira pintado sobre braço esquerdo (a parte do corpo está na frente) (4,5 cm², até 52 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 3 quadro(s)); de frente: caneleira pintado sobre mão direita (a parte do corpo está na frente) (2,5 cm², até 8,1 cm à frente; pior em erro "Encolher os ombros", u = 1,00; em 5 quadro(s)); de frente: caneleira pintado sobre mão esquerda (a parte do corpo está na frente) (2,5 cm², até 8,2 cm à frente; pior em erro "Encolher os ombros", u = 1,00; em 5 quadro(s)); de frente: caneleira pintado sobre antebraço direito (a parte do corpo está na frente) (2 cm², até 8 cm à frente; pior em erro "Balançar o corpo", u = 1,00; em 4 quadro(s)); e mais 3 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 78 cm² (padrão); de cima: 20 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -3133,6 +3337,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cotovelo levemente dobrado, o mesmo o movimento todo (consenso) | o cotovelo dobra de 15° a 15° no ciclo | como a ficha pede | ok |
 | Ficha | embaixo, o halter perto da coxa, à frente do corpo, sem encostar nem atravessar (consenso) | embaixo, o halter fica a 2,3 cm da pele das pernas, 28,6 cm à frente do centro do quadril; no ciclo, ele passa a no mínimo 2,3 cm do corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | piso, bracoDeBaixo.abre, bracoDeBaixo.prot, bracoDeBaixo.elev, bracoDeBaixo.cotovelo, maoDeCima.frente, maoDeCima.abaixo, pernas.quadril, pernas.joelho, pernas.folga, pe.flexaoPlantar, plano.baixo, plano, plano.transicao, cotovelo.giro, polegar.paraCima, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 39 cm² (padrão); de cima: 22 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -3183,7 +3390,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os dois pés pisam no meio do elástico, no meio da sola, inteiros no chão (consenso) | o elástico passa sob a sola de 50% a 50% do caminho do calcanhar à bola do pé, a 0,6–0,6 cm do chão; o calcanhar fica 0–0 cm acima da bola do pé | como a ficha pede | ok |
 | Ficha | o tubo sobe pelo lado de fora das pernas, sem entrar no corpo (desenho) | o elástico passa a no mínimo 2,7 cm da pele (canela) | como a ficha pede | ok |
 | Ficha | cada mão segura um pegador (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 41,6–141,3 cm uma da outra | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 19,9% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 8 de 8 quadros, com contorno próprio em 8; lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -12,7 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, plano.transicao, cotovelo, cotovelo.giro, carga.folga, elastico.folgaNaPerna | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 78 cm² (padrão); de cima: 17 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -3235,13 +3446,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o halter ao lado da coxa, sem atravessá-la (consenso) | da carga (ou da mão) à pele das pernas: no mínimo 0,5 cm | como a ficha pede | ok |
 | Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 19,7° do eixo dele (no mínimo), até 39,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 10,3 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, tronco.lado.naBacia, cervical, cabeca, cotovelo, cotovelo.giro, carga.folga, carga, parede.cotovelo, parede.mao.acimaDoOmbro, parede.mao.aFrente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 35 cm² (padrão); de cima: 2 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Elevação lateral unilateral com elástico preso sob o pé do outro lado (`elevacao-lateral-unilateral-elastico`)
 
-234 quadros conferidos. 0 falha(s), 4 aviso(s).
+234 quadros conferidos. 1 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 15 a 15; quadril 21 a 21; ombro 7 a 96; dorsiflexao 1 a 1; punho -0 a 0; pronacao -16 a -2; clavicula 11 a 15.
 
@@ -3286,13 +3500,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante (desenho) | o trecho entre o pé e a mão estica de 1,1 vez (embaixo) a 2,3 vezes (no alto) o comprimento em repouso (63,7 cm); o máximo do fabricante é 3 | como a ficha pede | ok |
 | Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | frontal: o tronco visto a 76,7° do eixo dele (no mínimo), até 20,3% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 7,8 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 13,3° do eixo dele (no mínimo), até 45,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 11,2 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; quinaTras: o tronco visto a 87° do eixo dele (no mínimo), até 20,1% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -9,9 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, tronco, cervical, cabeca, cotovelo, cotovelo.giro, carga.folga, livre.paraFora, livre.cotovelo, elastico.esticaEmbaixo, elastico.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: canela direita pintado sobre tubo (traço) (a peça está na frente) (19 cm², até 4,8 cm à frente; pior em técnica, t = 3,25 s (u = 0,18); em 5 quadro(s)); de cima: pé direito pintado sobre tubo (traço) (a peça está na frente) (4,8 cm², até 34,9 cm à frente; pior em erro "Inclinar o tronco", u = 1,00; em 2 quadro(s)); de frente: coxa direita pintado sobre tubo (traço) (a peça está na frente) (1,8 cm², até 5,1 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); de frente: coxa direita pintado sobre pegadorR (traço) (a peça está na frente) (1,3 cm², até 7,9 cm à frente; pior em erro "Pisar só com a ponta do pé", u = 0,00; em 4 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_lateral; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide, parte da frente aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 39 cm² (padrão); de cima: 8 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Extensão de joelho sentado, com caneleira (`extensao-joelho-caneleira`)
 
-270 quadros conferidos. 0 falha(s), 1 aviso(s).
+270 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 88; cotovelo 43 a 43; quadril 90 a 90; ombro 20 a 20; dorsiflexao -0 a 0; punho 0 a 0; pronacao -29 a -29; clavicula 11 a 11.
 
@@ -3328,12 +3545,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, o joelho quase esticado; embaixo, bem dobrado com o pé fora do chão (consenso) | o joelho vai de 88° (embaixo) a 10° (em cima); embaixo, o pé fica a 4,3 cm do chão | como a ficha pede | ok |
 | Ficha | a caneleira bem presa no tornozelo: não escorrega (consenso) | o centro da caneleira fica de 7,4 a 7,4 cm do centro do tornozelo, ao longo da canela; o ponto mais baixo dela fica a 12,6 cm do piso | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho, assento.amassa, pe.flexaoPlantar, caneleira.massa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: caneleira pintado sobre pé direito (a parte do corpo está na frente) (27 cm², até 13,2 cm à frente; pior em erro "Tirar a coxa do assento", u = 1,00; em 8 quadro(s)); três quartos: caneleira pintado sobre canela direita (a parte do corpo está na frente) (5 cm², até 11,1 cm à frente; pior em técnica, t = 1,50 s (u = 1,00); em 10 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 357 cm² (padrão); quina: 323 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Extensão de joelho sentado com elástico (`extensao-joelho-elastico`)
 
-276 quadros conferidos. 0 falha(s), 2 aviso(s).
+276 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 69; cotovelo 30 a 30; quadril 87 a 87; ombro 12 a 12; dorsiflexao -10 a -10; punho 0 a 0; pronacao -23 a -23; clavicula 11 a 11.
 
@@ -3372,12 +3592,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | costas retas, o tronco parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | a lombar não curva (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, banco.noQuadro, assento.amassa, coxa.desce, joelho.esquerdo, tornozelo.flexaoPlantar, cervical, cabeca, maos.aFrente, maos.diam, elastico.noQuadro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: pegador (borracha) pintado sobre pé direito (a parte do corpo está na frente) (8 cm², até 13,2 cm à frente; pior em erro "Tirar a coxa do assento", u = 1,00; em 6 quadro(s)); três quartos: pegador (traço) pintado sobre pé direito (a parte do corpo está na frente) (4,8 cm², até 11,7 cm à frente; pior em erro "Tirar a coxa do assento", u = 1,00; em 8 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 356 cm² (padrão); quina: 335 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Extensão de joelho sentado, com mini-band nos tornozelos (`extensao-joelho-mini-band`)
 
-246 quadros conferidos. 0 falha(s), 2 aviso(s).
+246 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 2 a 85; cotovelo 40 a 40; quadril 66 a 66; ombro 18 a 18; dorsiflexao -0 a 0; punho 0 a 0; pronacao -33 a -33; clavicula 11 a 11.
 
@@ -3416,12 +3639,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima (consenso) | o meio da faixa fica a 7–7 cm do tornozelo direito e 7–7 cm do esquerdo (a borda de baixo a 4,5 cm); ela vai de 1,1 vezes (começo) a 2,3 vezes (fim) | como a ficha pede | ok |
 | Ficha | em cada vista, a linha de cada rótulo vai ao ponto dele sem cruzar a do outro (desenho) | quina: as linhas se cruzam em 0 de 24 instantes; lateral: as linhas se cruzam em 0 de 24 instantes | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadrilABorda, pes.meiaDistancia, joelho, assento.amassa, maos.aFrente, lombar.sentado, pescoco.compensa, pe.flexaoPlantar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: mini-band pintado sobre pé direito (a parte do corpo está na frente) (3,8 cm², até 18,8 cm à frente; pior em técnica, t = 0,68 s (u = 0,05); em 4 quadro(s)); de lado: mini-band pintado sobre canela direita (a parte do corpo está na frente) (1,5 cm², até 19 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)) (fora 3 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 357 cm² (padrão); quina: 323 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Extensão de tríceps com o peso do corpo (`extensao-triceps-peso-corpo`)
 
-273 quadros conferidos. 0 falha(s), 5 aviso(s).
+273 quadros conferidos. 0 falha(s), 6 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 25 a 106; quadril 3 a 3; ombro 122 a 180; dorsiflexao 15 a 25; punho 37 a 68; pronacao -94 a -93; clavicula 16 a 17.
 
@@ -3459,6 +3685,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, a testa chega perto do apoio, sem bater (consenso) | embaixo, a cabeça fica a 6 cm da bancada; no caminho, nunca a menos de 6 cm | como a ficha pede | ok |
 | Ficha | embaixo, braços acima da cabeça (um estudo) | embaixo, o braço fica elevado 178° em relação ao tronco (180° = na linha do tronco, acima da cabeça) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | maos.dentroDaBeirada, pes.atrasDaBeirada, pes.meiaDistancia, calcanhar.sobe, cotovelo.cima, testa.aoApoio, pescoco.flexao | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: bancada pintado sobre cabeça (a parte do corpo está na frente) (38,3 cm², até 15 cm à frente; pior em erro "Ir até a falha", u = 1,00; em 3 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 182 cm² (padrão); de lado: 56 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -3506,13 +3735,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a corda e o cabo passam sem encostar no rosto nem no corpo (consenso) | a corda e o cabo passam a no mínimo 1,2 cm da pele (cabeca) | como a ficha pede | ok |
 | Ficha | o cabo vai reto da roldana à bucha, sem encostar no corpo (consenso) | os cabos passam a no mínimo 6,8 cm da pele (cabo, cabeca) | como a ficha pede | ok |
 | Ficha | peito parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -11,4 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 3° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,3 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; posterior: o tronco visto a 87° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -3,5 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, inicio.maos, fim.aFrente | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: costas) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 37 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Abertura com elástico na altura do rosto (`face-pull-elastico`)
 
-264 quadros conferidos. 0 falha(s), 3 aviso(s).
+264 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 11 a 132; quadril 1 a 1; ombro 94 a 121; dorsiflexao 5 a 5; punho -0 a 0; pronacao -20 a 30; clavicula 12 a 14.
 
@@ -3555,13 +3788,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico não atravessa o rosto nem os braços (consenso) | o elástico passa a no mínimo 10 cm da pele (cabeca) | como a ficha pede | ok |
 | Ficha | os dois braços puxam juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
 | Ficha | peito parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros (desenho) | lateral: o tronco visto a 90° do eixo dele (no mínimo), até 17,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -11,5 cm mais perto de quem olha que o tronco; não some; cima: o tronco visto a 3° do eixo dele (no mínimo), até 100% do contorno da cabeça dentro da silhueta do tronco, a cabeça até 13,3 cm mais perto de quem olha que o tronco; sumiria em 5 de 5 quadros, com contorno próprio em 5; posterior: o tronco visto a 87° do eixo dele (no mínimo), até 21,7% do contorno da cabeça dentro da silhueta do tronco, a cabeça até -3,5 cm mais perto de quem olha que o tronco; não some | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, elastico.noQuadro, inicio.maos, fim.aFrente, fim.polo.tras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: braço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (3,5 cm², até 19,6 cm à frente; pior em erro "Jogar o tronco para trás", u = 1,00; em 1 quadro(s)); de cima: braço direito pintado sobre pegadorR (borracha) (a peça está na frente) (3,3 cm², até 19,4 cm à frente; pior em erro "Jogar o tronco para trás", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: costas) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 33 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Remada alta na suspensão, com os cotovelos abertos (`face-pull-suspensao`)
 
-255 quadros conferidos. 0 falha(s), 2 aviso(s).
+255 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 6 a 140; quadril 2 a 2; ombro 74 a 101; dorsiflexao -28 a -2; punho -0 a 0; pronacao -45 a -16; clavicula 11 a 13.
 
@@ -3604,6 +3841,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim, as escápulas se juntam (consenso) | a clavícula vai para trás 17,6° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | a fita passa sem encostar na cabeça nem no pescoço (consenso) | a fita passa a no mínimo 11,2 cm da cabeça e do pescoço | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pes.alemDaAncora, pe.pontaSobe, corpo.inicio, pescoco.flexao, maos.polegarParaCima, fim.maos, fim.aFrente, fim.polo.tras, escapula.prot.inicio, escapula.elev | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: fita de suspensão (borracha) pintado sobre cabeça (a parte do corpo está na frente) (5,8 cm², até 25,9 cm à frente; pior em técnica, t = 2,83 s (u = 0,80); em 1 quadro(s)); de lado: fita de suspensão (borracha) pintado sobre antebraço direito (a parte do corpo está na frente) (1 cm², até 5,9 cm à frente; pior em erro "Cotovelos baixos", u = 0,50; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: costas) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 54 cm² (padrão); de lado: 3 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -3646,13 +3886,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o peito fica a poucos centímetros do chão (consenso) | embaixo, o peito fica a 5 cm do chão | como a ficha pede | ok |
 | Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 43,6° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 84 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Flexão de joelho na bola suíça (`flexao-bola`)
 
-246 quadros conferidos. 0 falha(s), 2 aviso(s).
+246 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 6 a 90; cotovelo 21 a 25; quadril 8 a 11; ombro 47 a 66; dorsiflexao -62 a -0; punho 20 a 23; pronacao -13 a -12; clavicula 12 a 13.
 
@@ -3692,12 +3935,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | calcanhares em cima da bola no começo; pés apoiados em cima dela no fim (consenso) | o pé fica de 0,9 a 1,4 cm para dentro da superfície da bola (a bola cede um pouco) | como a ficha pede | ok |
 | Ficha | coxas e canelas não atravessam a bola (consenso) | nenhum ponto das pernas entra na bola | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bracos.alcance, pe.afundaNaBola, ombro.z, bola.alemDoCalcanhar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: bolaSuica pintado sobre pé direito (a parte do corpo está na frente) (55,8 cm², até 18,6 cm à frente; pior em técnica, t = 1,37 s (u = 0,98); em 15 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 85 cm² (padrão); de lado: 67 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Flexão de braço com elástico (`flexao-elastico`)
 
-225 quadros conferidos. 0 falha(s), 6 aviso(s).
+225 quadros conferidos. 0 falha(s), 8 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 112; quadril 2 a 2; ombro 43 a 62; dorsiflexao 12 a 12; punho 79 a 94; pronacao 40 a 45; clavicula 12 a 13.
 
@@ -3737,6 +3983,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o meio do elástico passa pelas costas, na altura das escápulas (abaixo do pescoço) (consenso) | o meio do elástico fica de 12 a 12 cm abaixo da base do pescoço (C7), nas costas | como a ficha pede | ok |
 | Ficha | cada ponta do elástico fica presa entre a palma e o chão (consenso) | a ponta do elástico sob a mão anda 0 cm no ciclo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo, elastico.voltaNaMao, elastico.folgaNasCostas, elastico.atrasDoOmbro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: elástico (traço) pintado sobre braço direito (a parte do corpo está na frente) (17 cm², até 26,1 cm à frente; pior em técnica, t = 2,50 s (u = 1,00); em 13 quadro(s)); de cima: elástico (traço) pintado sobre braço esquerdo (a parte do corpo está na frente) (16,5 cm², até 27,6 cm à frente; pior em técnica, t = 1,87 s (u = 0,88); em 13 quadro(s)); de cima: pescoço pintado sobre elástico (traço) (a peça está na frente) (5,3 cm², até 6,4 cm à frente; pior em erro "Elástico sobe para o pescoço", u = 0,00; em 3 quadro(s)); de cima: cintura pintado sobre elástico (traço) (a peça está na frente) (4 cm², até 5,4 cm à frente; pior em erro "Elástico sobe para o pescoço", u = 0,00; em 1 quadro(s)); de cima: elástico (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (1,5 cm², até 23,8 cm à frente; pior em técnica, t = 0,62 s (u = 0,01); em 1 quadro(s)); de cima: elástico (traço) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (1,3 cm², até 23,7 cm à frente; pior em técnica, t = 0,62 s (u = 0,01); em 5 quadro(s)); e mais 1 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e elástico (traço) entra 4,9 cm em braço direito (pior em erro "Cotovelos abertos a 90°", u = 1,00; em 18 quadro(s)); fio "fita" da conferência e elástico (traço) entra 4,9 cm em braço esquerdo (pior em erro "Cotovelos abertos a 90°", u = 1,00; em 18 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1,7 cm em tronco (pior em erro "Elástico sobe para o pescoço", u = 1,00; em 3 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1 cm em antebraço direito (pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1 cm em antebraço esquerdo (pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 84 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -3781,6 +4030,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | de cima, as mãos ficam por dentro da linha dos ombros (consenso) | a borda de fora da mão fica a 18,7 cm do meio do corpo; a linha de fora do ombro, a 23,9 cm | como a ficha pede | ok |
 | Ficha | cotovelos para trás, rentes ao corpo (consenso) | embaixo, o braço faz 8,9° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | maos.abaixoDoOmbro, tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps, peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 145 cm² (padrão); de cima: 34 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -3822,12 +4074,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | com os joelhos dobrados, ombros, quadril e joelhos em linha (consenso) | no fim, de lado, ombro, quadril e joelho fazem 176,8° (180° = em linha); o joelho dobra 120° | como a ficha pede | ok |
 | Ficha | os calcanhares deslizam na toalha: ficam apoiados nela e andam para perto do glúteo (consenso) | o pé fica de 0 a 0 cm do tampo da toalha; o calcanhar desliza 64,7 cm na direção do corpo (0 cm para o lado) e termina 28,5 cm à frente do centro do quadril | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.fim, quadril.folgaNoInicio, ombro.z, maos.abaixoDoOmbro, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 67 cm² (padrão); quina: 41 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Flexão de joelho com elástico (`flexao-joelho-elastico`)
 
-270 quadros conferidos. 0 falha(s), 3 aviso(s).
+270 quadros conferidos. 0 falha(s), 5 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 12 a 115; cotovelo 121 a 121; quadril -3 a -3; ombro 161 a 161; dorsiflexao -55 a -55; punho 34 a 34; pronacao 18 a 18; clavicula 17 a 17.
 
@@ -3867,6 +4122,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico estica mais com os joelhos dobrados e já está um pouco esticado com as pernas estendidas (consenso) | o elástico estica 1,2 vez com as pernas estendidas e 2,2 vezes no fim (de 1,2 a 2,2 no caminho) | como a ficha pede | ok |
 | Ficha | as pontas do elástico ficam em volta dos dois tornozelos, por trás, logo acima do calcanhar (consenso) | o tubo sai da fita do pegador de 6,6 a 6,6 cm atrás do centro do tornozelo e de 4 a 4 cm acima dele, ao longo da canela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.fim, tornozelo.flexaoPlantar, lombar.deitado, escapulas.protracao, testa.altura, maos.meiaDistancia, colchonete.z, elastico.noQuadro, ancora.altura | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: pegador (traço) pintado sobre pé direito (a parte do corpo está na frente) (1,3 cm², até 13,5 cm à frente; pior em técnica, t = 3,00 s (u = 0,72); em 1 quadro(s)); de cima: pegador (traço) pintado sobre pé esquerdo (a parte do corpo está na frente) (1,3 cm², até 12,6 cm à frente; pior em técnica, t = 3,00 s (u = 0,72); em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e elástico (traço) entra 1,2 cm em canela esquerda (pior em erro "Dar tranco", u = 1,00; em 1 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1,2 cm em canela direita (pior em erro "Dar tranco", u = 1,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 645 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -3909,6 +4167,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | com os joelhos dobrados, ombros, quadril e joelhos em linha (consenso) | no fim, de lado, ombro, quadril e joelho fazem 171° (180° = em linha); o joelho dobra 110° | como a ficha pede | ok |
 | Ficha | os calcanhares nos berços da fita, que pende da âncora sobre os pés: no início os pés ficam embaixo da âncora, e os calcanhares andam num arco em volta da âncora até perto do glúteo (consenso) | o pé passa do fundo do berço de -0,6 a 0,7 cm (positivo = o pé sai do berço, para longe da âncora); no início a fita fica a 9,4° do prumo da âncora e o berço a 33,9 cm do chão; o calcanhar anda 55,3 cm na direção do corpo e sobe 1,1 cm, sempre de 151,3 a 151,3 cm da âncora (em linha reta), e termina 45,7 cm à frente do centro do quadril | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.fim, quadril.folgaNoInicio, quadril.fim, pe.angulo, fita.ancoraParaACabeca, fita.tronco, ombro.z, colchonete.z, maos.alcance, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 4 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 67 cm² (padrão); quina: 55 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -3953,6 +4214,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pés no apoio firme, sem sair do lugar (consenso) | o ponto mais baixo dos pés fica de 0 a 0 cm do tampo do apoio | como a ficha pede | ok |
 | Ficha | a cabeça fica abaixo do quadril, sem bater no chão (consenso) | embaixo, o ponto mais baixo da cabeça fica a 5 cm do chão | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | maos.abaixoDoOmbro, tornozelo.dorsiflexao, escapula.retracaoEmbaixo, pes.daBordaDoBanco, banco.pontaNoQuadro, pescoco.extensao, cabeca.extensao, cabeca.aoChao, pescoco.extensaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 84 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -3961,7 +4225,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 279 quadros conferidos. 0 falha(s), 3 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 130 a 130; quadril 11 a 127; ombro 15 a 15; dorsiflexao -8 a 22; punho 66 a 66; pronacao 39 a 39; clavicula 11 a 11.
+Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 114 a 114; quadril 12 a 129; ombro 25 a 25; dorsiflexao -10 a 20; punho 70 a 70; pronacao 31 a 31; clavicula 11 a 11.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -3971,16 +4235,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 126° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 129,7° | média 148°, máximo observado 166° (cdc) | ok |
-| Amplitudes | flexão do quadril | 126,8° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 114,2° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 129,4° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
-| Amplitudes | abertura do quadril para o lado | 16,4° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 15,1° | média 170°, máximo observado 192° (cdc) | ok |
-| Amplitudes | dorsiflexão do tornozelo | 21,5° | média 14,8°, máximo observado 48° (cdc) | AVISO |
-| Amplitudes | flexão plantar do tornozelo | 8,4° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 39,3° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | abertura do quadril para o lado | 16,2° | média 40°, máximo observado 60° (aaos) | ok |
+| Amplitudes | elevação do braço | 24,5° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 19,5° | média 14,8°, máximo observado 48° (cdc) | AVISO |
+| Amplitudes | flexão plantar do tornozelo | 9,6° | média 56,7°, máximo observado 90° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 31,1° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 65,7° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 69,9° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 6,9° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -3988,17 +4252,21 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Joelhos para dentro) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 10 a 10 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6,2% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 107,3 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6,5% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 112,6 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
-| Ficha | embaixo, o quadril fica na altura do joelho ou abaixo (consenso) | embaixo, o centro do quadril fica 6,8 cm abaixo do centro do joelho | como a ficha pede | ok |
-| Ficha | o joelho segue a direção da ponta do pé (consenso) | o joelho anda numa direção a 5,6° da direção do pé (visto de cima) | como a ficha pede | ok |
+| Ficha | embaixo, o quadril fica na altura do joelho ou abaixo (consenso) | embaixo, o centro do quadril fica 8,6 cm abaixo do centro do joelho | como a ficha pede | ok |
+| Ficha | o joelho segue a direção da ponta do pé (consenso) | o joelho anda numa direção a 6,2° da direção do pé (visto de cima) | como a ficha pede | ok |
 | Ficha | o peso fica no meio do pé, com o calcanhar apoiado (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,4 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.aberturaDaConcha, maos.giroParaFrente, maos.meiaEspessuraDaPalma, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | o halter encostado no peito, sem entrar nele, e a anilha sob o calcanhar, sem atravessar o pé, em todos os quadros do ciclo e dos erros (até 0,5 cm, o amassado da pele) (consenso) | em 202 quadros (ciclo e erros), a anilha entra no máximo 0,3 cm no corpo (pe:R, no ciclo); tolerância 0,5 cm | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.aberturaDaConcha, maos.giroParaFrente, maos.meiaEspessuraDaPalma, halter.encostoNoPeito, anilha.bordaAFrenteDoCalcanhar, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 346 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 344 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Agachamento goblet com kettlebell (`goblet-kettlebell`)
 
@@ -4043,6 +4311,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os cotovelos apontam para baixo e, embaixo, ficam entre os joelhos (consenso) | embaixo, cada cotovelo fica 2,2 cm para dentro do joelho; o braço desce a no máximo 15,8° da vertical; o braço passa a 0,8 cm da coxa (de ponto a ponto da pele) | como a ficha pede | ok |
 | Ficha | o kettlebell fica junto ao peito, entre os joelhos embaixo: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o kettlebell na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o kettlebell, "atrás" = o kettlebell esconde a parte): lateral: a perna direita na frente 3,8, a perna esquerda atrás 4,7, o braço esquerdo atrás 10,4; frontal: o tronco atrás 18,9, o braço direito atrás 4,7, o braço esquerdo atrás 4,7 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.abaixoDeC7, kettlebell.folgaNoPeito, cotovelos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 350 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4050,7 +4321,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 276 quadros conferidos. 0 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 12 a 105; cotovelo 145 a 145; quadril 12 a 71; ombro 84 a 84; dorsiflexao -40 a -5; punho -0 a 0; pronacao 50 a 50; clavicula 14 a 14.
+Ângulos no ciclo (lado direito, graus): joelho 12 a 105; cotovelo 148 a 148; quadril 12 a 71; ombro 78 a 78; dorsiflexao -40 a -5; punho -0 a 0; pronacao 21 a 21; clavicula 14 a 14.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -4060,14 +4331,14 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 105° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 145,3° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 147,9° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 71,3° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 17,9° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 84,2° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 78,1° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | -5,4° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 39,8° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 50,4° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 20,5° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
 | Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
@@ -4075,8 +4346,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 15,6 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
 | Chão | ponto mais baixo do corpo nos erros desenhados | 15,6 cm (Descer pouco) | não pode passar de −1,5 cm | ok |
-| Objetos | o corpo atravessa uma peça (banco, coluna) | até 2,1 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 59,3 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Objetos | o corpo atravessa uma peça (banco, coluna) | até 1,1 cm para dentro (estofado) | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,2% da velocidade de pico (quadril, Subida · concêntrica); pico de 59,3 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Ficha | embaixo, o joelho passa de 90° (um estudo) | embaixo, o joelho dobra 105° | como a ficha pede | ok |
@@ -4085,13 +4356,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o carro (o encosto, as almofadas e os pegadores) só anda na guia, a 45°, e a trava fica solta (consenso) | o encosto sai 0 cm da linha da guia, a 45° do chão; o carro anda de 3 cm acima a 31,7 cm abaixo do suporte de cima da trava (solta) | como a ficha pede | ok |
 | Ficha | os joelhos na direção dos pés, sem fechar para dentro (consenso) | o plano da perna fica a até 0° da direção dos dedos | como a ficha pede | ok |
 | Ficha | as mãos nos pegadores do carro (consenso) | a mão fica a até 0 cm do meio do pegador | como a ficha pede | ok |
+| Ficha | medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, nas almofadas dos ombros ou na chapa mais que 2,5 cm (o que o estofado amassa) (desenho) | na pele densa, o quanto cada parte entra em cada peça (o pior quadro): braço direito no estofado 2,1 cm; braço esquerdo no estofado 2,1 cm; bacia no estofado 1 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, cervical, cabeca, amassa, anilhas, trava.acima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas (fora 11 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 358 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Hip thrust (`hip-thrust`)
 
-282 quadros conferidos. 0 falha(s), 2 aviso(s).
+282 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 88 a 104; cotovelo 48 a 90; quadril 2 a 81; ombro 29 a 41; dorsiflexao -23 a -3; punho -0 a 0; pronacao 36 a 49; clavicula 11 a 12.
 
@@ -4131,12 +4406,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as duas mãos seguram a barra, que se move inteira (consenso) | o centro de cada mão fica a no máximo 0 cm da barra; as pegadas ficam de 56 a 56 cm uma da outra; a barra sai da horizontal no máximo 0 cm de uma mão à outra | como a ficha pede | ok |
 | Ficha | embaixo, o quadril perto do chão, sem as anilhas baterem nele (consenso) | embaixo, a pele do glúteo fica a 12 cm do chão e a borda das anilhas a 33 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | banco.z, quadril.folgaEmbaixo, barra.dobra, barra.segura, cabeca, maos.meiaDistancia, maos.poloFora, maos.poloCabeca, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: banco reto atravessado (estofado) pintado sobre braço esquerdo (a parte do corpo está na frente) (31 cm², até 43,1 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 7 quadro(s)); três quartos: antebraço direito pintado sobre barra longa (cromo) (a peça está na frente) (18 cm², até 26,9 cm à frente; pior em erro "Arquear a lombar no topo", u = 1,00; em 18 quadro(s)); três quartos: banco reto atravessado (estofado) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (14,3 cm², até 32 cm à frente; pior em erro "Subir pouco", u = 0,50; em 7 quadro(s)); três quartos: almofada da barra (borracha) pintado sobre coxa direita (a parte do corpo está na frente) (6,8 cm², até 40,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 6 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 27 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Hiperextensão no banco romano a 45° (`hiperextensao`)
 
-246 quadros conferidos. 0 falha(s), 1 aviso(s).
+246 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 0 a 0; cotovelo 117 a 117; quadril -0 a 80; ombro 30 a 30; dorsiflexao -0 a -0; punho -14 a -14; pronacao -40 a -40; clavicula 11 a 11.
 
@@ -4174,6 +4452,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | coluna neutra (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | mãos no peito, presas a ele e longe da cabeça (consenso) | os punhos andam 0 cm em relação ao tórax; a mão mais perto da cabeça fica a 16,2 cm dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | apoio.amassa, rolo.acimaDoTornozelo, maos.x, maos.y, maos.abaixo, maos.acima, maos.poloFora, maos.poloPes, maos.poloTras, erro.arred.lombar | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: pé esquerdo pintado sobre banco-romano (metal) (a peça está na frente) (38 cm², até 17,1 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: coxa direita pintado sobre banco-romano (estofado) (a peça está na frente) (25,3 cm², até 16 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: canela esquerda pintado sobre banco-romano (metal) (a peça está na frente) (22,3 cm², até 11,9 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: pé direito pintado sobre banco-romano (estofado) (a peça está na frente) (10,3 cm², até 18,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos, posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 221 cm² (padrão); quina: 88 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4216,7 +4497,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os joelhos seguem a direção dos pés (não fecham para dentro) (consenso) | o plano da perna fica a até 0° da direção dos dedos | como a ficha pede | ok |
 | Ficha | as mãos nos pegadores, paradas (consenso) | as mãos andam 0 cm no ciclo; falta 0 cm para alcançar o pegador | como a ficha pede | ok |
 | Ficha | o carro não chega nos batentes de baixo no movimento certo, e a trava fica solta (consenso) | no ponto mais baixo, o carro fica 4 cm acima dos batentes | como a ficha pede | ok |
+| Ficha | em cada vista e em cada erro, nos dois lados: o encosto e o assento não são pintados por cima de uma parte do corpo que fica na frente deles (de cima, a raiz dos braços) (desenho) | anéis pintados por baixo, de quantos ficam na frente e por cima na tela (o pior quadro); do encosto: de lado: braço direito 0 de 0, antebraço direito 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, tronco 0 de 0, bacia 0 de 0, cabeça 0 de 0; de cima: braço direito 0 de 5, antebraço direito 0 de 0, braço esquerdo 0 de 5, antebraço esquerdo 0 de 0, coxa direita 0 de 5, canela direita 0 de 4, coxa esquerda 0 de 5, canela esquerda 0 de 4, tronco 0 de 12, bacia 0 de 4, cabeça 0 de 17; do assento: de lado: braço direito 0 de 0, antebraço direito 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, tronco 0 de 0, bacia 0 de 0, cabeça 0 de 0; de cima: braço direito 0 de 0, antebraço direito 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa direita 0 de 11, canela direita 0 de 9, coxa esquerda 0 de 11, canela esquerda 0 de 9, tronco 0 de 1, bacia 0 de 10, cabeça 0 de 0 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, cervical, cabeca, amassa, anilhas, batente.abaixo, quadro.abaixo, quadro.chapa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas (fora 4 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 311 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4261,6 +4546,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pernas paradas (consenso) | o quadril fica de 8,5° a 8,5° e o joelho de 69,9° a 69,9° (em relação à bacia); o pé fica a no mínimo 64,9 cm do chão | como a ficha pede | ok |
 | Ficha | o corpo fica entre as paralelas: em todas as vistas, a parte do corpo (dos dois lados) que fica entre a estrutura delas e quem olha a esconde, e a que fica atrás dela (de lado, as pernas atrás do montante de perto) é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a estrutura das paralelas na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a estrutura das paralelas, "atrás" = a estrutura das paralelas esconde a parte): lateral: a perna direita na frente 25,4, a perna direita atrás 25,4, a perna esquerda na frente 20,1, a perna esquerda atrás 30,7; frontal: nada se cruza com a peça na tela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.cima, polo.fora, polo.cima, polo.frente, pescoco, quadril, joelho, pe.plantar, pernas.juntas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito, triceps; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 464 cm² (padrão); de lado: 142 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4306,6 +4594,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | tronco levemente inclinado à frente na descida (consenso) | o tórax inclina 7,3° à frente da vertical em cima e 23,3° embaixo | como a ficha pede | ok |
 | Ficha | ombros longe das orelhas o ciclo inteiro (consenso) | do alto do ombro à base do crânio, ao longo do tronco: no mínimo 20,8 cm no caminho (em pé, parado: 18,7 cm) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.cima, polo.fora, polo.cima, polo.frente, pescoco, quadril.cima, quadril.embaixo, canela.desce, pe.plantar, pernas.juntas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 3 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito, triceps; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 142 cm² (padrão); de três quartos, de trás: 100 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4350,7 +4641,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o rolo logo acima do calcanhar, atrás da perna, acompanhando a canela sem atravessá-la nem descolar dela (consenso) | o rolo fica de -0,3 a -0,3 cm da pele (negativo = o rolo afunda na perna) e encosta de 1,1 a 1,1 cm acima do centro do tornozelo, atrás da perna | como a ficha pede | ok |
 | Ficha | começa com as pernas quase estendidas e dobra até o rolo chegar perto do glúteo (consenso) | o joelho vai de 12° (começo) a 125° (fim); no fim, o rolo fica a 9,4 cm do glúteo | como a ficha pede | ok |
 | Ficha | a alavanca gira com a canela e as placas sobem o arco do came (raio × ângulo) (consenso) | a alavanca gira com a canela (diferença máxima de 0°); as placas sobem até 21,7 cm, a no máximo 0 cm do arco do came (raio de 11 cm × ângulo) | como a ficha pede | ok |
+| Ficha | em cada vista e em cada erro, nas duas pernas: o rolo não é pintado por cima dos pés e das canelas onde eles ficam na frente dele (de cima, no fim, os calcanhares), e o que fica atrás dele não aparece por cima dele, nem por um furo do recorte (de cima, no começo, os pés) (desenho) | anéis pintados por baixo do rolo, de quantos ficam na frente dele e por cima dele na tela; e anéis que aparecem por cima do rolo (por um furo do recorte ou pela ordem), de quantos ficam atrás dele (o pior quadro de cada, com o pintor ligado na animação): de lado, canela direita: 0 de 0; 0 de 0; de lado, pé direito: 0 de 0; 0 de 0; de lado, canela esquerda: 0 de 0; 0 de 0; de lado, pé esquerdo: 0 de 0; 0 de 0; de cima, canela direita: 0 de 0; 0 de 7; de cima, pé direito: 0 de 9; 0 de 5; de cima, canela esquerda: 0 de 0; 0 de 7; de cima, pé esquerdo: 0 de 9; 0 de 5 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, cervical, estofado.amassa, quadro.ate, rolo.amassa, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 596 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4395,6 +4690,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | joelhos na almofada, tíbias no chão (consenso) | o joelho fica de -1,2 a -0,8 cm do tampo do colchonete dobrado e a canela, perto do tornozelo, de -0,8 a -0,8 cm (negativo = afunda) | como a ficha pede | ok |
 | Ficha | no fim da descida, as mãos tocam o chão (consenso) | no toque, a palma fica a 0 cm do chão; no meio da descida, a 71,5 cm (as mãos esperam na frente do peito) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | almofada.amassa, calcanhar.sobOSofa, calcanhar.aperta, maos.aparam, maos.alcance, maos.aFrente, embaixo.giro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 13 quadros, 26 quadro-vistas (fora 2 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 13 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 13 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 67 cm² (padrão); quina: 11 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4437,6 +4735,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso) | o centro de massa (corpo + carga) fica de 0 a 0 cm da vertical da bola do pé; a cabeça anda 0,8 cm para a frente ou para trás na subida | como a ficha pede | ok |
 | Ficha | a mão na torre só equilibra: fica parada (consenso) | a mão que equilibra anda no máximo 0 cm no ciclo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, bola.daBeirada, calcanhar.embaixo, calcanhar.topo, livre.coxa, livre.joelho, livre.tornozelo, apoio.maoAoLado, apoio.maoAltura, apoio.maoAFrenteDaBola, bracos.paraFora, carga, step.x | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 150 cm² (padrão); de lado: 108 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4480,6 +4781,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o centro de massa fica sobre a bola dos pés: o corpo sobe reto, sem balançar para a frente (consenso) | o centro de massa (corpo + carga) fica de 0 a 0 cm da vertical da bola do pé; a cabeça anda 1,5 cm para a frente ou para trás na subida | como a ficha pede | ok |
 | Ficha | a mão na estação só equilibra: fica parada (consenso) | a mão que equilibra anda no máximo 0 cm no ciclo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bola.daBeirada, calcanhar.embaixo, calcanhar.topo, apoio.maoAoLado, apoio.maoAltura, apoio.maoAFrenteDaBola, bracos.paraFora, carga, step.x | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 364 cm² (padrão); de lado: 108 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -4520,6 +4824,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso) | o centro de massa (corpo + carga) fica de 0 a 0 cm da vertical da bola do pé; a cabeça anda 1 cm para a frente ou para trás na subida | como a ficha pede | ok |
 | Ficha | as mãos na parede só equilibram: ficam paradas (consenso) | a mão que equilibra anda no máximo 0 cm no ciclo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | calcanhar.topo, parede.aFrenteDaBola, maos.altura, maos.meiaDistancia, livre.sobe, livre.atras | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 13 quadros, 26 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 13 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 13 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 298 cm² (padrão); de lado: 108 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4562,12 +4869,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso) | o centro de massa (corpo + carga) fica de 0 a 0 cm da vertical da bola do pé; a cabeça anda 1,8 cm para a frente ou para trás na subida | como a ficha pede | ok |
 | Ficha | a mão no corrimão só equilibra: fica parada (consenso) | a mão que equilibra anda no máximo 0 cm no ciclo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bola.daBeirada, calcanhar.topo, corrimao.aFrenteDaBola, corrimao.aoLado, bracoLivre.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 298 cm² (padrão); de lado: 108 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Panturrilha em pé na máquina (`panturrilha-em-pe-maquina`)
 
-312 quadros conferidos. 0 falha(s), 2 aviso(s).
+312 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 132 a 136; quadril -9 a -1; ombro 36 a 38; dorsiflexao -39 a 30; punho -0 a 0; pronacao 57 a 58; clavicula 12 a 12.
 
@@ -4607,6 +4917,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos nos pegadores da máquina, que andam com as almofadas (consenso) | a mão fica a até 0 cm do centro do pegador, que anda com a máquina | como a ficha pede | ok |
 | Ficha | as placas sobem quando as almofadas sobem, o arco do came, e não descansam embaixo (consenso) | com as almofadas no ponto mais baixo, as placas ficam 0,4 cm acima do repouso; no mais alto, 2,4 cm; o braço fica no mínimo 2,3° acima da posição inicial; a subida difere do arco do came em até 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, bola.daBeirada, calcanhar.topo, almofada.amassa, carga, placas, inicio.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: braço da panturrilha em pé (estofado) pintado sobre pescoço (a parte do corpo está na frente) (15 cm², até 17,5 cm à frente; pior em erro "Dobrar os joelhos", u = 0,50; em 11 quadro(s)); três quartos, de trás: tronco pintado sobre braço da panturrilha em pé (estofado) (a peça está na frente) (8 cm², até 14,8 cm à frente; pior em erro "Dobrar os joelhos", u = 0,00; em 1 quadro(s)); três quartos, de trás: braço da panturrilha em pé (estofado) pintado sobre tronco (a parte do corpo está na frente) (7,5 cm², até 17,6 cm à frente; pior em técnica, t = 0,00 s (u = 1,00); em 11 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 301 cm² (padrão); de lado: 108 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4650,12 +4963,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos nos pegadores, paradas (consenso) | as mãos andam 0 cm no ciclo; falta 0 cm para alcançar o pegador | como a ficha pede | ok |
 | Ficha | a trava de segurança fechada na série inteira: o carro anda acima dos suportes dela (consenso) | no ponto mais baixo, o carro fica 4 cm acima dos suportes da trava fechada | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar, cervical, cabeca, amassa, pes.meia, pes.paraFora, tornozelo.embaixo, tornozelo.topo, anilhas, quadro.chapa, quadro.coxa | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 12 quadro-vistas (fora 10 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 108 cm² (padrão) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Panturrilha sentada na máquina (`panturrilha-sentada`)
 
-264 quadros conferidos. 0 falha(s), 2 aviso(s).
+264 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 84 a 91; cotovelo 60 a 91; quadril 85 a 100; ombro 32 a 33; dorsiflexao -42 a 24; punho -0 a 0; pronacao 55 a 61; clavicula 12 a 12.
 
@@ -4695,12 +5011,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos no pegador da almofada, que anda com ela (desenho) | a mão fica a até 0 cm do centro do pegador, que anda com a máquina | como a ficha pede | ok |
 | Ficha | a trava solta: as anilhas sobem com a alavanca, que não toca o batente (consenso) | do calcanhar mais baixo ao mais alto, as anilhas sobem 21 cm; a alavanca fica no mínimo 2° acima do batente (a trava aberta) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, assento.amassa, bola.daBeirada, calcanhar.topo, almofada.amassa, maos.aoLado, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: alavanca da panturrilha sentada (metal) pintado sobre coxa esquerda (a parte do corpo está na frente) (86,3 cm², até 25,5 cm à frente; pior em erro "Impulso com o quadril", u = 1,00; em 1 quadro(s)); três quartos: alavanca da panturrilha sentada (metal) pintado sobre canela esquerda (a parte do corpo está na frente) (8 cm², até 23,3 cm à frente; pior em erro "Impulso com o quadril", u = 1,00; em 1 quadro(s)); três quartos: alavanca da panturrilha sentada (metal) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (1,5 cm², até 9,5 cm à frente; pior em técnica, t = 2,20 s (u = 0,00); em 3 quadro(s)) (fora 2 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 106 cm² (padrão); quina: 87 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Panturrilha sentada com halter no joelho (`panturrilha-sentada-halter`)
 
-264 quadros conferidos. 0 falha(s), 2 aviso(s).
+264 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 85 a 90; cotovelo 107 a 125; quadril 97 a 110; ombro 47 a 51; dorsiflexao -54 a 14; punho 47 a 54; pronacao 41 a 46; clavicula 12 a 12.
 
@@ -4737,7 +5056,13 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, o calcanhar o mais alto possível (10 cm acima do apoio) (consenso) | em cima, o calcanhar fica 10 cm acima do apoio (a ficha: 10 cm) | como a ficha pede | ok |
 | Ficha | o tronco fica reto e parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | o halter deitado sobre a coxa, perto do joelho (consenso) | o centro do halter fica de 8 a 8 cm do joelho, ao longo da coxa, e de 15,8 a 15,8 cm acima do eixo da coxa | como a ficha pede | ok |
+| Ficha | o halter deitado na coxa não entra no corpo (coxas, barriga, braços), em nenhum quadro do ciclo nem dos erros; no erro, ele desliza de lado e desce pela lateral da coxa sem entrar nela (consenso) | em 207 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
+| Ficha | as duas mãos no halter a série inteira; no erro 'Halter escorregando', uma mão solta (a esquerda: sai do halter, aberta, e fica perto dele sem tocá-lo) e a outra continua segurando (consenso) | no ciclo, o centro da mão direita fica de 8,6 a 8,6 cm do centro da cabeça de fora, e o da esquerda de 9,2 a 9,2 cm do da de dentro; no erro "Halter escorregando", a direita continua segurando (8,6 a 8,6 cm) e a esquerda solta (sai 12,4 cm do lugar na cabeça de dentro, entra 0 cm no halter e fica de 3,1 a 8,8 cm dele, da metade do primeiro quarto em diante) | como a ficha pede | ok |
+| Ficha | no erro 'Halter escorregando', o halter desliza da coxa para o lado, sem entrar na toalha que ficou na coxa (desenho) | no fim do erro, o centro do halter fica 18,1 cm por fora da lateral da coxa direita, a cabeça de fora desceu 19,6 cm e o halter girou 65°; em 33 instantes, ele entra no máximo 0 cm na toalha | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, banco.frenteDoQuadril, bola.daBeirada, calcanhar.topo, halter.doJoelho, maoL.paraDentro, toalha.esp | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: step (estofado) pintado sobre pé esquerdo (a parte do corpo está na frente) (3,8 cm², até 10,1 cm à frente; pior em erro "Levantar o tronco", u = 1,00; em 15 quadro(s)); três quartos: step (estofado) pintado sobre pé direito (a parte do corpo está na frente) (3,5 cm², até 9,9 cm à frente; pior em técnica, t = 0,00 s (u = 1,00); em 15 quadro(s)); de frente: toalha-na-coxa pintado sobre coxa direita (a parte do corpo está na frente) (2 cm², até 16,6 cm à frente; pior em erro "Halter escorregando", u = 1,00; em 1 quadro(s)); de frente: toalha-na-coxa pintado sobre coxa esquerda (a parte do corpo está na frente) (1,8 cm², até 16,3 cm à frente; pior em erro "Halter escorregando", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: panturrilha; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 105 cm² (padrão); quina: 87 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4781,6 +5106,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pernas estendidas o ciclo inteiro (consenso) | os joelhos dobram de 5° a 5° | como a ficha pede | ok |
 | Ficha | cotovelos para trás, a meio caminho entre o tronco e os lados (consenso) | embaixo, o plano do braço abre 48,3° do plano do meio do corpo; o cotovelo aponta para trás (para os pés) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | maos.aFrenteDosPes, calcanhar.sobe, quadril.cima, cabeca.aoChao, cabeca.naLinhaDasMaos, pescoco.flexao | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_anterior; secundário: ombro_lateral, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 60 cm² (padrão); de lado: 52 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4826,6 +5154,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | empurra pelos calcanhares: o pé inteiro fica no chão (consenso) | o ponto mais baixo do pé fica de 0 a 0 cm do chão e o calcanhar (o ponto do osso) de 0 a 0 cm | como a ficha pede | ok |
 | Ficha | pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé (consenso) | embaixo, o calcanhar fica a 15,4 cm da pele do glúteo; no topo, a canela fica a 0° da vertical; os tornozelos a 16,7 cm um do outro (quadris a 16,7 cm) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadril.folgaEmbaixo, ombro.z, maos.alcance, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 115 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -4833,7 +5164,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 282 quadros conferidos. 0 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 116 a 134; cotovelo 96 a 99; quadril 0 a 55; ombro 38 a 58; dorsiflexao -16 a 0; punho -0 a 0; pronacao -67 a -31; clavicula 12 a 13.
+Ângulos no ciclo (lado direito, graus): joelho 116 a 134; cotovelo 77 a 80; quadril 0 a 55; ombro 28 a 41; dorsiflexao -16 a 0; punho -0 a 0; pronacao -57 a -25; clavicula 11 a 12.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -4843,15 +5174,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 133,6° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 99,3° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 80° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 54,8° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 57,9° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 41,1° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 0° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 16,5° | média 56,7°, máximo observado 90° (cdc) | ok |
 | Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
-| Amplitudes | supinação do antebraço | 67,4° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 56,7° | média 87,5°, máximo observado 131° (cdc) | ok |
 | Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -4860,24 +5191,28 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Chão | ponto mais baixo do corpo nos erros desenhados | -0,2 cm (Halter rolando) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 16,6 a 16,6 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 9,8% da velocidade de pico (mão direita, Subida · concêntrica); pico de 37,5 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,8% da velocidade de pico (mão direita, Subida · concêntrica); pico de 32,2 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
-| Ficha | ombros e cabeça ficam no chão o tempo todo, sem os ombros saírem do lugar (consenso) | o ponto mais baixo das costas fica de 0 a 0,4 cm do chão e o da cabeça de 0 a 0 cm; o centro do ombro anda 1,6 cm | como a ficha pede | ok |
+| Ficha | ombros e cabeça ficam no chão o tempo todo, sem os ombros saírem do lugar (consenso) | o ponto mais baixo das costas fica de 0 a 0,4 cm do chão e o da cabeça de 0 a 0 cm; o centro do ombro anda 1,9 cm | como a ficha pede | ok |
 | Ficha | embaixo, o quadril quase encosta no chão (consenso) | embaixo, a pele do glúteo fica a 1,5 cm do chão | como a ficha pede | ok |
-| Ficha | em cima, ombros, quadril e joelhos em linha (consenso) | no fim, de lado, ombro, quadril e joelho fazem 179,3° (180° = em linha); o joelho dobra 116,2° | como a ficha pede | ok |
+| Ficha | em cima, ombros, quadril e joelhos em linha (consenso) | no fim, de lado, ombro, quadril e joelho fazem 179,8° (180° = em linha); o joelho dobra 116,2° | como a ficha pede | ok |
 | Ficha | sem arquear a lombar no topo (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | empurra pelos calcanhares: o pé inteiro fica no chão (consenso) | o ponto mais baixo do pé fica de 0 a 0 cm do chão e o calcanhar (o ponto do osso) de 0 a 0 cm | como a ficha pede | ok |
 | Ficha | pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé (consenso) | embaixo, o calcanhar fica a 15,4 cm da pele do glúteo; no topo, a canela fica a 0° da vertical; os tornozelos a 16,7 cm um do outro (quadris a 16,7 cm) | como a ficha pede | ok |
 | Ficha | as duas mãos seguram o halter o tempo todo, pelas pontas (consenso) | o centro de cada mão fica a no máximo 0 cm do ponto da carga que ela segura; as duas pegadas a 33 cm uma da outra | como a ficha pede | ok |
-| Ficha | o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril (consenso) | a carga fica de 0 a 0 cm acima da barriga, do quadril e das coxas (negativo = dentro); o centro dela fica de 26,2 a 26,3 cm do meio dos dois quadris | como a ficha pede | ok |
+| Ficha | o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril (consenso) | a carga fica de 0 a 0,3 cm acima da barriga, do quadril e das coxas (negativo = dentro); o centro dela fica de 21,5 a 21,6 cm do meio dos dois quadris | como a ficha pede | ok |
+| Ficha | o halter assenta na dobra do quadril sem entrar no corpo (barriga, emenda da cintura, coxas, braços), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele). Correção de 19/11/2026: ele assentava entre os 12 pontos de cada anel do Boneco e entrava 2,1 cm na emenda da cintura (3,3 cm no erro do halter rolando); agora assenta na superfície inteira (opção superficieDensa do núcleo) (consenso) | em 138 quadros (ciclo e erros), a cabeça do halter entra no máximo 0,2 cm no corpo (ante:R, no erro "Halter rolando"); tolerância 0,5 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadril.folgaEmbaixo, ombro.z, maos.naCabeca.acima, maos.naCabeca.diam, maos.poloFora, maos.poloCabeca, maos.alcance, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Ponte de glúteo com kettlebell (`ponte-kettlebell`)
 
-282 quadros conferidos. 0 falha(s), 1 aviso(s).
+282 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 116 a 134; cotovelo 100 a 103; quadril 0 a 55; ombro 18 a 51; dorsiflexao -16 a 0; punho -0 a 0; pronacao -17 a 7; clavicula 11 a 12.
 
@@ -4918,12 +5253,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as duas mãos seguram o kettlebell o tempo todo, uma de cada lado da alça (consenso) | o centro de cada mão fica a no máximo 0 cm do ponto da carga que ela segura; as duas pegadas a 12,3 cm uma da outra | como a ficha pede | ok |
 | Ficha | o kettlebell deitado de lado sobre o quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril (consenso) | a carga fica de 0 a 0 cm acima da barriga, do quadril e das coxas (negativo = dentro); o centro dela fica de 26,5 a 26,5 cm do meio dos dois quadris | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | quadril.folgaEmbaixo, ombro.z, kettlebell.tomba, maos.cotoveloNoChao, maos.poloCabeca, maos.alcance, maos.paraFora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: kettlebell pintado sobre coxa direita (a parte do corpo está na frente) (47,8 cm², até 24,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 7 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 115 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Ponte de glúteo com os pés na bola (`ponte-pes-bola`)
 
-276 quadros conferidos. 0 falha(s), 3 aviso(s).
+276 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 9 a 42; cotovelo 23 a 25; quadril 1 a 39; ombro 41 a 55; dorsiflexao 10 a 27; punho 19 a 21; pronacao -13 a -12; clavicula 12 a 13.
 
@@ -4964,13 +5302,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os ombros e a cabeça ficam no chão (consenso) | o ponto mais baixo das costas e da nuca fica de -0,1 a 0,2 cm do chão e o da cabeça de -0,8 a 0,2 cm; o ombro anda 0,4 cm na direção do corpo | como a ficha pede | ok |
 | Ficha | sem arquear a lombar (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.angulo, bola.alemDoCalcanhar, pe.acompanha, pe.afundaNaBola, bracos.alcance, ombro.z | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: bolaSuica pintado sobre pé direito (a parte do corpo está na frente) (4 cm², até 9,2 cm à frente; pior em erro "Subir pouco", u = 0,50; em 14 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: gluteos; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Posteriores da coxa aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 155 cm² (padrão); quina: 117 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Pull-through na polia baixa com corda (`pull-through`)
 
-246 quadros conferidos. 0 falha(s), 2 aviso(s).
+246 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 12 a 20; cotovelo 4 a 4; quadril 6 a 87; ombro 15 a 35; dorsiflexao -5 a 6; punho -0 a 0; pronacao -25 a -17; clavicula 11 a 12.
 
@@ -5015,6 +5356,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 27,1 cm e a pilha sobe 13,6 cm (esperado 13,6) | como a ficha pede | ok |
 | Ficha | a corda passa entre as pernas até o cabo atrás: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a corda na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a corda, "atrás" = a corda esconde a parte): lateral: a perna direita na frente 3,9, a perna esquerda atrás 5,9; quinaTras: o tronco na frente 38,3, a perna direita na frente 4,2, a perna esquerda atrás 18,3 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.baixo, tronco.baixo, braco.cima, maos.folga, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: cabo (traço) pintado sobre coxa direita (a parte do corpo está na frente) (3 cm², até 18,2 cm à frente; pior em erro "Puxar com os braços", u = 0,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 402 cm² (padrão); de lado: 68 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5067,6 +5411,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 62 cm e a pilha sobe 31 cm (esperado 31) | como a ficha pede | ok |
 | Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Deitar o tronco para trás: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca); Puxar pela nuca: passa a no mínimo 1 cm da pele (o cabo, cabeca); Volta curta: passa a no mínimo 0,6 cm da pele (a fita do engate, cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | coxa.inclinacao, cervical, cabeca, barra.folga, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 594 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5113,12 +5460,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tubo vai das mãos à âncora sem entrar no corpo (desenho) | o elástico passa a no mínimo 14,4 cm da pele (ante) | como a ficha pede | ok |
 | Ficha | uma ponta em cada mão (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 20,7–41,5 cm uma da outra | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.fim.fora, elastico.noQuadro, colchonete.z | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 553 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Puxada pela frente no puxador (`puxada-frente`)
 
-240 quadros conferidos. 0 falha(s), 2 aviso(s).
+240 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 85 a 85; cotovelo 8 a 139; quadril 74 a 74; ombro 43 a 159; dorsiflexao 1 a 1; punho -0 a 0; pronacao -55 a 50; clavicula 6 a 27.
 
@@ -5163,6 +5513,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a barra (o trecho reto e as pontas) e o cabo não atravessam o corpo (desenho) | a barra passa a no mínimo 1,2 cm da pele (tronco); o cabo, a 6,3 cm | como a ficha pede | ok |
 | Ficha | o cabo sai reto da roldana até o mosquetão, que fica na barra o tempo todo; a pilha sobe o que o cabo anda (1:1) (desenho) | a saída do cabo fica de 5,5 a 5,5 cm do centro da roldana (a borda dela); o ponto em que o cabo prende fica de 13 a 13 cm do meio das mãos | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, assento.quadril, pes.meiaDistancia, joelho, cervical, cabeca, ombro.sobe, ombro.desce, barra.folga, cotovelo.polo, cotovelo.poloAtras, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: barra longa de puxada (cromo) pintado sobre braço esquerdo (a parte do corpo está na frente) (6 cm², até 31,3 cm à frente; pior em técnica, t = 2,00 s (u = 1,00); em 3 quadro(s)); três quartos, de trás: braço direito pintado sobre barra longa de puxada (cromo) (a peça está na frente) (3 cm², até 10,9 cm à frente; pior em erro "Puxar atrás da nuca", u = 1,00; em 1 quadro(s)); três quartos, de trás: coxa direita pintado sobre rolos das coxas (estofado) (a peça está na frente) (2,3 cm², até 9,9 cm à frente; pior em técnica, t = 1,33 s (u = 0,96); em 15 quadro(s)) (fora 2 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 581 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5205,13 +5558,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim, o ombro está mais baixo que no início (consenso) | do início ao fim, a ponta do ombro desce 5 cm | como a ficha pede | ok |
 | Ficha | o tronco quase não se move (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.fim.fora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 208 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Remada com halteres, peito apoiado no banco inclinado (`remada-apoiada`)
 
-279 quadros conferidos. 0 falha(s), 2 aviso(s).
+279 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 15 a 15; cotovelo 3 a 81; quadril 42 a 42; ombro 21 a 52; dorsiflexao -12 a -12; punho -0 a 0; pronacao 0 a 0; clavicula 11 a 13.
 
@@ -5257,6 +5613,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim as escápulas se juntam (consenso) | a clavícula vai para trás 13,2° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | pegada neutra (palmas uma para a outra) (consenso) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.maisDeitado, apoio.amassa, pes.meiaDistancia, pes.calcanhar, cervical, cabeca, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: halter (ferro) pintado sobre coxa esquerda (a parte do corpo está na frente) (16,8 cm², até 43,9 cm à frente; pior em erro "Encolher os ombros", u = 0,00; em 3 quadro(s)); de trás: halter (ferro) pintado sobre coxa direita (a parte do corpo está na frente) (16,3 cm², até 44 cm à frente; pior em erro "Encolher os ombros", u = 0,00; em 3 quadro(s)); de trás: halter (ferro) pintado sobre canela direita (a parte do corpo está na frente) (11 cm², até 45,9 cm à frente; pior em erro "Encolher os ombros", u = 0,00; em 1 quadro(s)); de trás: halter (ferro) pintado sobre canela esquerda (a parte do corpo está na frente) (10,8 cm², até 45,8 cm à frente; pior em erro "Encolher os ombros", u = 0,00; em 1 quadro(s)) (fora 3 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 611 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5310,6 +5669,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tronco não se mexe (o peito fica no apoio) (consenso) | a base do pescoço e a bacia andam no máximo 0 cm e o tórax gira no máximo 0° | como a ficha pede | ok |
 | Ficha | as placas sobem com os braços da máquina e apoiam embaixo (desenho) | a alavanca gira de -18,5° a 20,7°; as placas sobem de 0 a 8,9 cm, a no máximo 0 cm do arco do came; no começo, elas apoiam (0 cm) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, peito.amassa, bacia.noAssento, tronco.aFrente, lombar.sentado, pescoco.compensa, pes.meiaDistancia, joelho, cotovelo.desce, cotovelo.pouco, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas (fora 13 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 671 cm² (padrão); de lado: 175 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5361,6 +5723,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cabo e o triângulo não atravessam o corpo, as pernas nem o banco (desenho) | o cabo e o puxador passam a no mínimo 5,5 cm da pele (coxa) e 17,2 cm do banco | como a ficha pede | ok |
 | Ficha | o antebraço passa ao lado da cintura sem entrar nela (desenho) | o antebraço entra no máximo 0,3 cm na pele do tronco | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, banco.amassa, banco.atrasDaPonta, pes.meiaDistancia, joelho, maos.acimaDoQuadril, cabo.livreNoComeco, cotovelo.paraFora, cotovelo.paraFora.inicio, escapula.elev.inicio, escapula.elev.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 829 cm² (padrão); quina: 138 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5413,6 +5778,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o antebraço passa ao lado da cintura sem entrar nela (desenho) | o antebraço entra no máximo 0,3 cm na pele do tronco | como a ficha pede | ok |
 | Ficha | o cabo sai reto da polia baixa até a ponta do triângulo, que fica nas mãos o tempo todo; a pilha sobe o que o cabo anda (1:1) (desenho) | a saída do cabo fica de 5,5 a 5,5 cm do centro da roldana (a borda dela); o ponto em que o cabo prende fica de 15,9 a 15,9 cm do meio das mãos | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, assento.quadril, pes.meiaDistancia, pes.bolaAo, pes.paraFora, cervical, cabeca, maos.acimaDoQuadril, cotovelo.paraFora, cotovelo.paraFora.inicio, escapula.elev.inicio, escapula.elev.fim, placas, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 2 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 834 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5462,12 +5830,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a barra sobe sem encostar nas coxas nem nos joelhos (consenso) | a barra fica a no mínimo 3,6 cm da pele das coxas e dos joelhos | como a ficha pede | ok |
 | Ficha | a barra fica na frente das coxas e da barriga: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela (desenho) | a folga de pintura de cada parte do corpo que se cruza com a barra na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a barra, "atrás" = a barra esconde a parte): lateral: nada se cruza com a peça na tela; quinaTras: o tronco na frente 9,9, a perna direita na frente 9,9, a perna esquerda na frente 3 | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, cotovelo.inicio, barra.livre, cotovelo.polo.fora, cotovelo.polo.quadril, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 565 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Remada curvada em pé com elástico, pisando no meio (`remada-curvada-elastico`)
 
-255 quadros conferidos. 0 falha(s), 3 aviso(s).
+255 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 20 a 20; cotovelo 3 a 89; quadril 88 a 88; ombro 14 a 61; dorsiflexao -6 a -6; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
 
@@ -5513,12 +5884,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico não atravessa o corpo (consenso) | o elástico passa a no mínimo 3,1 cm da pele (canela) | como a ficha pede | ok |
 | Ficha | uma ponta em cada mão: o pegador dentro da mão fechada (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 51,3–56,8 cm uma da outra | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, elastico.folgaNaPerna, elastico.voltaNaMao, elastico.voltas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: elástico (traço) pintado sobre canela esquerda (a parte do corpo está na frente) (48,3 cm², até 20,4 cm à frente; pior em erro "Pisar só com a ponta do pé", u = 1,00; em 4 quadro(s)); três quartos, de trás: elástico (traço) pintado sobre coxa esquerda (a parte do corpo está na frente) (19 cm², até 26,1 cm à frente; pior em erro "Pisar só com a ponta do pé", u = 1,00; em 4 quadro(s)); três quartos, de trás: elástico (traço) pintado sobre pé esquerdo (a parte do corpo está na frente) (14 cm², até 17,5 cm à frente; pior em erro "Pisar só com a ponta do pé", u = 1,00; em 5 quadro(s)); três quartos, de trás: pé direito pintado sobre elástico (traço) (a peça está na frente) (9,5 cm², até 12,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 4 quadro(s)); três quartos, de trás: elástico (traço) pintado sobre pé direito (a parte do corpo está na frente) (5 cm², até 17 cm à frente; pior em erro "Pisar só com a ponta do pé", u = 0,50; em 8 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 551 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Remada curvada com halteres (`remada-curvada-halteres`)
 
-255 quadros conferidos. 0 falha(s), 2 aviso(s).
+255 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 20 a 20; cotovelo 3 a 89; quadril 92 a 92; ombro 14 a 61; dorsiflexao -10 a -10; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
 
@@ -5561,7 +5935,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os halteres pendem sem atravessar as pernas nem o tronco (consenso) | a carga fica a no mínimo 0,3 cm da pele | como a ficha pede | ok |
 | Ficha | no fim as escápulas se juntam (consenso) | a clavícula vai para trás 12,3° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | pegada neutra (palmas uma para a outra) (consenso) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
+| Ficha | nenhuma cabeça dos halteres entra no corpo (tronco, bacia, pernas, braços), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele); correção de 19/11/2026: no erro 'puxar só com os braços', o halter ficava deitado com o antebraço dobrado como numa rosca e entrava 2,2 cm no antebraço; agora ele gira com a mão (a pegada neutra fica a mesma) (consenso) | em 130 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: halter (ferro) pintado sobre coxa esquerda (a parte do corpo está na frente) (14 cm², até 30,5 cm à frente; pior em erro "Encolher os ombros", u = 1,00; em 1 quadro(s)); de trás: halter (ferro) pintado sobre coxa direita (a parte do corpo está na frente) (14 cm², até 31 cm à frente; pior em erro "Encolher os ombros", u = 1,00; em 1 quadro(s)); três quartos, de trás: halter (ferro) pintado sobre coxa esquerda (a parte do corpo está na frente) (3,3 cm², até 17,6 cm à frente; pior em erro "Subir o tronco", u = 1,00; em 2 quadro(s)); três quartos, de trás: halter (ferro) pintado sobre bacia (a parte do corpo está na frente) (1,5 cm², até 18,4 cm à frente; pior em erro "Encolher os ombros", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 551 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5607,6 +5985,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tubo vai das mãos aos pés sem entrar no corpo (desenho) | o elástico passa a no mínimo 2,3 cm da pele (canela) | como a ficha pede | ok |
 | Ficha | cada mão segura uma ponta (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 39–44,9 cm uma da outra | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.paraFrente, nadega.afunda, cervical, braco.inicio.abaixo, maos.fim.fora, maos.fim.acima, maos.fim.frente, maos.polegarParaDentro, elastico.voltaNaMao, elastico.voltas, colchonete.z | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 829 cm² (padrão); de lado: 176 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -5656,6 +6037,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as escápulas se juntam no fim (consenso) | a clavícula vai para trás 15,1° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | nenhuma parte do corpo atravessa a barra (desenho) | fora as mãos, a pele fica a no mínimo 1,2 cm da superfície da barra (tronco) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.pino, barra.sobreOPino, pes.meiaDistancia, pe.pontaSobe, pescoco.flexao, cotovelo.polo.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.fim, trava.abaixo, quadro.ate, quadro.fundo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 38 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 176 cm² (padrão); de três quartos, de trás: 69 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -5704,6 +6088,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as escápulas se juntam no fim (consenso) | a clavícula vai para trás 11° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | palmas viradas uma para a outra (consenso) | o antebraço fica de 94,6° a 100,6° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pes.alemDaAncora, pe.pontaSobe, corpo.inicio, maos.polegarParaDentro, pescoco.flexao, braco.fim.atras, escapula.prot.inicio, escapula.retr.fim, escapula.elev.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 390 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -5755,12 +6142,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim a escápula se junta à coluna (consenso) | a clavícula vai para trás 10,7° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | pegada neutra (palma virada para o banco) (consenso) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, apoio.cotovelo, apoio.maoParaDentro, joelho.afunda, canela.desce, joelho.R.folga, banco.alemDaMao, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 220 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Remada unilateral com elástico sob o pé da frente (`remada-unilateral-elastico`)
 
-255 quadros conferidos. 0 falha(s), 3 aviso(s).
+255 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 3 a 83; quadril 31 a 31; ombro 13 a 54; dorsiflexao 18 a 18; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
 
@@ -5808,6 +6198,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico não atravessa o corpo (consenso) | o elástico passa a no mínimo 3,2 cm da pele (canela) | como a ficha pede | ok |
 | Ficha | a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros) (consenso) | o centro da mão de apoio fica de 97,2% a 97,2% do caminho do quadril ao joelho, no mínimo 2,7 cm fora da pele da coxa (Girar o tronco; negativo = dentro) e 3,7 cm para dentro da borda lateral dela; a pele da mão entra até 0 cm na coxa (Girar o tronco) e a do antebraço até 1 cm (Pisar só com a ponta do pé); a mão fica a até 0,5 cm da pele da coxa | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, elastico.folgaNaPerna, elastico.entreOsTrechos | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: coxa direita pintado sobre elástico (traço) (a peça está na frente) (17,3 cm², até 16,8 cm à frente; pior em erro "Arredondar as costas", u = 1,00; em 3 quadro(s)); três quartos: coxa direita pintado sobre pegadorA (borracha) (a peça está na frente) (11,5 cm², até 17,4 cm à frente; pior em técnica, t = 2,12 s (u = 1,00); em 7 quadro(s)); três quartos: coxa direita pintado sobre pegadorB (traço) (a peça está na frente) (10,5 cm², até 13,9 cm à frente; pior em erro "Arredondar as costas", u = 1,00; em 6 quadro(s)); três quartos: coxa direita pintado sobre pegadorA (traço) (a peça está na frente) (9,8 cm², até 15,5 cm à frente; pior em erro "Arredondar as costas", u = 1,00; em 6 quadro(s)); três quartos: coxa direita pintado sobre pegadorB (borracha) (a peça está na frente) (5,5 cm², até 19,4 cm à frente; pior em técnica, t = 1,42 s (u = 0,99); em 7 quadro(s)); três quartos: bacia pintado sobre pegadorB (borracha) (a peça está na frente) (1,8 cm², até 12,2 cm à frente; pior em erro "Arredondar as costas", u = 1,00; em 1 quadro(s)); e mais 2 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 176 cm² (padrão); quina: 124 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -5815,7 +6208,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 279 quadros conferidos. 0 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 3 a 83; quadril 31 a 31; ombro 13 a 54; dorsiflexao 18 a 18; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
+Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 3 a 63; quadril 31 a 31; ombro 13 a 54; dorsiflexao 18 a 18; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -5825,16 +6218,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 29,9° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 82,6° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 63,5° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 89,1° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 1,9° | média 40°, máximo observado 60° (aaos) | ok |
 | Amplitudes | elevação do braço | 53,7° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 17,8° | média 14,8°, máximo observado 48° (cdc) | AVISO |
 | Amplitudes | flexão plantar do tornozelo | 4,1° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 31,4° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 34,7° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 55,4° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 45,3° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 15° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -5842,23 +6235,30 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Girar o tronco) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: kettlebell | distância da mão ao centro do objeto de 0 a 0 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 77 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 93,8 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
 | Ficha | costas retas (a lombar não arredonda) (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | tronco parado, sem girar durante a série (consenso) | a base do pescoço e a bacia andam no máximo 0 cm e o tórax gira no máximo 0° | como a ficha pede | ok |
 | Ficha | tronco inclinado à frente (consenso) | o peito fica a 56,3° da vertical (33,7° da horizontal) | como a ficha pede | ok |
 | Ficha | um pé à frente do outro, o do lado do kettlebell atrás (consenso) | o tornozelo do lado da carga (direito) fica 66 cm atrás do outro | como a ficha pede | ok |
-| Ficha | mão livre firme na coxa da frente (consenso) | a mão fica a 0,2 cm da pele da coxa da frente, a 88,2% do caminho do quadril ao joelho | como a ficha pede | ok |
-| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 12° a 12° | como a ficha pede | ok |
+| Ficha | mão livre firme na coxa da frente (consenso) | a mão fica a 0,5 cm da pele da coxa da frente, a 97,2% do caminho do quadril ao joelho | como a ficha pede | ok |
+| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 40° a 40° | como a ficha pede | ok |
 | Ficha | fim: cotovelo passando a linha das costas (consenso) | no fim, o centro do cotovelo fica 5,4 cm além da linha das costas | como a ficha pede | ok |
 | Ficha | cotovelo para trás, perto do corpo (consenso) | o braço se afasta no máximo 16° do lado do tronco | como a ficha pede | ok |
-| Ficha | fim: kettlebell ao lado do quadril (consenso) | no fim, a mão fica a 87,3% do caminho do ombro ao quadril, ao longo do tronco | como a ficha pede | ok |
+| Ficha | fim: kettlebell ao lado do quadril (consenso) | no fim, a mão fica a 102,6% do caminho do ombro ao quadril, ao longo do tronco | como a ficha pede | ok |
 | Ficha | começo: braço estendido, kettlebell embaixo do ombro (consenso) | no começo, o cotovelo dobra 3° | como a ficha pede | ok |
-| Ficha | o kettlebell pende embaixo da mão sem atravessar o corpo (consenso) | a carga fica a no mínimo 6 cm da pele | como a ficha pede | ok |
+| Ficha | o kettlebell pende embaixo da mão sem atravessar o corpo (consenso) | a carga fica a no mínimo 2,2 cm da pele | como a ficha pede | ok |
 | Ficha | no fim a escápula se junta à coluna (consenso) | a clavícula vai para trás 13,1° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | pegada neutra (palma virada para o corpo) (consenso) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, kettlebell.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros) (consenso) | o centro da mão de apoio fica de 97,2% a 97,2% do caminho do quadril ao joelho, no mínimo 2,7 cm fora da pele da coxa (Girar o tronco; negativo = dentro) e 3,7 cm para dentro da borda lateral dela; a pele da mão entra até 0 cm na coxa (Girar o tronco) e a do antebraço até 0,9 cm (Girar o tronco); a mão fica a até 0,5 cm da pele da coxa | como a ficha pede | ok |
+| Ficha | a bola do kettlebell não entra no corpo (tronco, bacia, coxas, braço de apoio), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele) (consenso) | em 120 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
+| Ficha | fim: o kettlebell ao lado do quadril, e não embaixo da barriga (o centro da pegada a até 5 cm do quadril, de frente para trás, e a até 10 cm na altura) (consenso) | no fim, o centro da pegada fica 1,6 cm atrás do centro do quadril e 5,2 cm abaixo dele | como a ficha pede | ok |
+| Ficha | em cada vista do guia, o kettlebell é pintado na frente das partes do corpo que ele esconde, e atrás das que o escondem (consenso) | a folga de pintura de cada parte do corpo que se cruza com a carga na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a carga, "atrás" = a carga esconde a parte): lateral: o tronco atrás 19,9, a perna direita atrás 20,5, a perna esquerda atrás 28,7; quina: a perna direita atrás 10,6, a perna esquerda atrás 62,2; quinaTras: a perna esquerda atrás 54,3 | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, pintura.quina.atras, braco.fim.recuo, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, kettlebell.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 176 cm² (padrão); quina: 124 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -5910,6 +6310,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim a escápula se junta à coluna (consenso) | a clavícula vai para trás 12,2° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | o cabo e o estribo não atravessam o corpo nem as pernas (desenho) | o cabo e o puxador passam a no mínimo 12,5 cm da pele (tronco) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, polia.aFrente, polia.paraFora, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 314 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -5917,7 +6320,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 279 quadros conferidos. 0 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 3 a 83; quadril 31 a 31; ombro 13 a 54; dorsiflexao 18 a 18; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
+Ângulos no ciclo (lado direito, graus): joelho 9 a 9; cotovelo 3 a 63; quadril 31 a 31; ombro 13 a 54; dorsiflexao 18 a 18; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 14.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -5927,16 +6330,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 29,9° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 82,6° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 63,5° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 89,1° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 1,9° | média 40°, máximo observado 60° (aaos) | ok |
 | Amplitudes | elevação do braço | 53,7° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 17,8° | média 14,8°, máximo observado 48° (cdc) | AVISO |
 | Amplitudes | flexão plantar do tornozelo | 4,1° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 31,4° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 34,7° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 55,4° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 45,3° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 15° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -5944,29 +6347,36 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Girar o tronco) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 0 a 0 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 77 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 93,8 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
 | Ficha | costas retas (a lombar não arredonda) (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Ficha | tronco parado, sem girar durante a série (consenso) | a base do pescoço e a bacia andam no máximo 0 cm e o tórax gira no máximo 0° | como a ficha pede | ok |
 | Ficha | tronco inclinado à frente (consenso) | o peito fica a 56,3° da vertical (33,7° da horizontal) | como a ficha pede | ok |
 | Ficha | um pé à frente do outro, o do lado do halter atrás (consenso) | o tornozelo do lado da carga (direito) fica 66 cm atrás do outro | como a ficha pede | ok |
-| Ficha | mão livre firme na coxa da frente (consenso) | a mão fica a 0,2 cm da pele da coxa da frente, a 88,2% do caminho do quadril ao joelho | como a ficha pede | ok |
-| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 12° a 12° | como a ficha pede | ok |
+| Ficha | mão livre firme na coxa da frente (consenso) | a mão fica a 0,5 cm da pele da coxa da frente, a 97,2% do caminho do quadril ao joelho | como a ficha pede | ok |
+| Ficha | a mão livre fica parada na coxa (consenso) | a mão de apoio anda 0 cm no ciclo; o cotovelo desse braço dobra de 40° a 40° | como a ficha pede | ok |
 | Ficha | fim: cotovelo passando a linha das costas (consenso) | no fim, o centro do cotovelo fica 5,4 cm além da linha das costas | como a ficha pede | ok |
 | Ficha | cotovelo para trás, perto do corpo (consenso) | o braço se afasta no máximo 16° do lado do tronco | como a ficha pede | ok |
-| Ficha | fim: halter ao lado do quadril (consenso) | no fim, a mão fica a 87,3% do caminho do ombro ao quadril, ao longo do tronco | como a ficha pede | ok |
+| Ficha | fim: halter ao lado do quadril (consenso) | no fim, a mão fica a 102,6% do caminho do ombro ao quadril, ao longo do tronco | como a ficha pede | ok |
 | Ficha | começo: braço estendido, halter embaixo do ombro (consenso) | no começo, o cotovelo dobra 3° | como a ficha pede | ok |
-| Ficha | o halter pende embaixo da mão sem atravessar o corpo (consenso) | a carga fica a no mínimo 0,3 cm da pele | como a ficha pede | ok |
+| Ficha | o halter pende embaixo da mão sem atravessar o corpo (consenso) | a carga fica a no mínimo 0,4 cm da pele | como a ficha pede | ok |
 | Ficha | no fim a escápula se junta à coluna (consenso) | a clavícula vai para trás 13,1° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | pegada neutra (palma virada para o corpo) (consenso) | o antebraço fica de 90° a 90° (90° = polegar para cima, palmas uma para a outra) | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros) (consenso) | o centro da mão de apoio fica de 97,2% a 97,2% do caminho do quadril ao joelho, no mínimo 2,7 cm fora da pele da coxa (Girar o tronco; negativo = dentro) e 3,7 cm para dentro da borda lateral dela; a pele da mão entra até 0 cm na coxa (Girar o tronco) e a do antebraço até 0,9 cm (Girar o tronco); a mão fica a até 0,5 cm da pele da coxa | como a ficha pede | ok |
+| Ficha | nenhuma cabeça do halter entra no corpo (tronco, bacia, coxas, braço de apoio), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele) (consenso) | em 120 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
+| Ficha | fim: o halter ao lado do quadril, e não embaixo da barriga (o centro da pegada a até 5 cm do quadril, de frente para trás, e a até 10 cm na altura) (consenso) | no fim, o centro da pegada fica 1,6 cm atrás do centro do quadril e 5,2 cm abaixo dele | como a ficha pede | ok |
+| Ficha | em cada vista do guia, o halter é pintado na frente das partes do corpo que ele esconde, e atrás das que o escondem (consenso) | a folga de pintura de cada parte do corpo que se cruza com a carga na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde a carga, "atrás" = a carga esconde a parte): lateral: o tronco atrás 22,2, a perna direita atrás 20,5, a perna esquerda atrás 30,5, o braço esquerdo atrás 38,2; quina: a perna direita atrás 11,9, a perna esquerda atrás 63,6; quinaTras: o tronco atrás 50,4, o braço direito atrás 11 | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.inclinacao, cervical, cabeca, pes.paraFora, joelho.frente, joelho.tras, pe.tras.calcanhar, pes.passo, apoio.cotovelo, braco.inicio.atras, braco.inicio.fora, pintura.quina.atras, braco.fim.recuo, escapula.prot.inicio, escapula.retr.fim, escapula.elev.inicio, escapula.elev.fim, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 176 cm² (padrão); quina: 124 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rolamento com a roda abdominal, de joelhos (`roda-abdominal`)
 
-300 quadros conferidos. 0 falha(s), 2 aviso(s).
+300 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 35 a 84; cotovelo 8 a 8; quadril 0 a 53; ombro 58 a 90; dorsiflexao -81 a -81; punho -0 a 0; pronacao 70 a 72; clavicula 13 a 14.
 
@@ -6008,6 +6418,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no ponto mais longe, o corpo reto dos joelhos aos ombros, a 37° do chão (consenso) | no ponto mais longe, a linha dos joelhos aos ombros fica a 37° do chão e o quadril, 0,2 cm acima dela; o quadril dobra 0° | como a ficha pede | ok |
 | Ficha | o rosto e o peito não encostam no chão (consenso) | o ponto mais baixo da cabeça fica a 53,1 cm do chão; o do peito e da barriga, a 23,3 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelhos.meiaDistancia, colchonete.z, inicio.coxa, cervical | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: colchonete (plataforma) pintado sobre coxa esquerda (a parte do corpo está na frente) (28,8 cm², até 27,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 14 quadro(s)); três quartos: colchonete (plataforma) pintado sobre pé esquerdo (a parte do corpo está na frente) (5 cm², até 24,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 15 quadro(s)); três quartos: colchonete (plataforma) pintado sobre canela esquerda (a parte do corpo está na frente) (3 cm², até 24 cm à frente; pior em técnica, t = 0,83 s (u = 0,02); em 8 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: abdomen; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 159 cm² (padrão); quina: 144 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -6015,7 +6428,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 474 quadros conferidos. 0 falha(s), 3 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 12 a 132; quadril 3 a 3; ombro 8 a 8; dorsiflexao 2 a 2; punho -0 a 0; pronacao -85 a -85; clavicula 11 a 11.
+Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 12 a 132; quadril 3 a 3; ombro 11 a 11; dorsiflexao 2 a 2; punho -0 a 0; pronacao -85 a -85; clavicula 11 a 11.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -6029,7 +6442,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Amplitudes | flexão do quadril | 3,1° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0,4° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 7,8° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 11,2° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 1,9° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
 | Amplitudes | pronação do antebraço (a partir do polegar para cima) | 0° | média 80°, máximo observado 108° (cdc) | ok |
@@ -6045,21 +6458,25 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 5,9% da velocidade de pico (mão direita, Direito sobe · concêntrica); pico de 120,2 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
-| Ficha | o cotovelo fica parado ao lado do tronco e só o antebraço sobe (consenso) | o cotovelo anda 0 cm enquanto dobra de 12° a 132°; o braço fica de 5° a 5° à frente da linha do tronco e 6° aberto para o lado | como a ficha pede | ok |
+| Ficha | o cotovelo fica parado ao lado do tronco e só o antebraço sobe (consenso) | o cotovelo anda 0 cm enquanto dobra de 12° a 132°; o braço fica de 5° a 5° à frente da linha do tronco e 10° aberto para o lado | como a ficha pede | ok |
 | Ficha | tronco parado, sem jogar o corpo para trás (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | embaixo, o braço estendido (consenso) | embaixo, o cotovelo dobra 12° | como a ficha pede | ok |
 | Ficha | em cima, o halter perto do ombro, com o cotovelo ainda ao lado do tronco (consenso) | em cima, o centro da pegada fica a 26,3 cm do centro do ombro (6,3 cm abaixo dele), com o braço 5° à frente da linha do tronco | como a ficha pede | ok |
 | Ficha | palmas para a frente (consenso) | o antebraço fica supinado de 85° a 85° (90° = palma toda para a frente) | como a ficha pede | ok |
-| Ficha | o halter fica na mão e não atravessa a coxa, o tronco nem o braço (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é -0,2 cm (coxa) | como a ficha pede | ok |
+| Ficha | o halter fica na mão e não atravessa a coxa, o tronco nem o braço (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 1,1 cm (coxa) | como a ficha pede | ok |
+| Ficha | nenhuma cabeça de halter entra no corpo (coxas, tronco, braços), em nenhum quadro do ciclo nem dos erros; com o braço embaixo, a cabeça de dentro encosta na coxa sem entrar (até 0,5 cm, o amassado da pele) (consenso) | em 124 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Ficha | um braço de cada vez: o outro espera embaixo (consenso) | enquanto o braço direito sobe, a mão esquerda anda 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, braco.paraFora, braco.aFrente, maos.supinacao, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 193 cm² (padrão); de lado: 54 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 193 cm² (padrão); de lado: 53 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Rosca com barra W (`rosca-barra-w`)
 
-246 quadros conferidos. 0 falha(s), 2 aviso(s).
+246 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 14 a 132; quadril 7 a 7; ombro 8 a 8; dorsiflexao -4 a -4; punho -0 a 0; pronacao -67 a -66; clavicula 11 a 11.
 
@@ -6099,14 +6516,18 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | fim: barra perto dos ombros, com os cotovelos ainda no lugar (consenso) | em cima, o centro da pegada fica a 26,3 cm do centro do ombro (4,4 cm abaixo dele), com o braço 8° à frente da linha do tronco | como a ficha pede | ok |
 | Ficha | a barra passa à frente das coxas e do tronco, sem atravessar (consenso) | a menor folga entre a barra e a pele (fora as mãos) é 3,4 cm (ante) | como a ficha pede | ok |
 | Ficha | tronco reto, sem balançar (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
+| Ficha | a barra não entra no corpo (coxas, tronco, braços), em nenhum quadro do ciclo nem dos erros; no começo do erro "Balançar o tronco", com o tronco inclinado à frente, ela passa à frente das coxas (até 0,5 cm, o amassado da pele) (consenso) | em 118 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho, cervical, cabeca, braco.aFrente, escapula.prot, barra.folga, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: coxa direita pintado sobre barra W (cromo) (a peça está na frente) (2,3 cm², até 7,7 cm à frente; pior em erro "Balançar o tronco", u = 0,00; em 3 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 128 cm² (padrão); de lado: 54 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca concentrada sentado, com halter (`rosca-concentrada`)
 
-240 quadros conferidos. 0 falha(s), 3 aviso(s).
+240 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 85 a 85; cotovelo 10 a 125; quadril 136 a 136; ombro 56 a 56; dorsiflexao 8 a 8; punho -0 a 0; pronacao -85 a -85; clavicula 13 a 13.
 
@@ -6148,15 +6569,19 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão na outra coxa (consenso) | a mão esquerda fica a 0,8 cm da pele da coxa esquerda e anda 0 cm | como a ficha pede | ok |
 | Ficha | o halter fica na mão e não atravessa o corpo (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 1,4 cm (cabeca) | como a ficha pede | ok |
 | Ficha | o halter não atravessa a cadeira nem o chão (consenso) | a menor folga entre as cabeças do halter e o banco ou o chão é 7,1 cm (chão) | como a ficha pede | ok |
-| Ficha | o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o halter na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o halter, "atrás" = o halter esconde a parte): frontal: o tronco atrás 16,9, a perna direita atrás 28,7, a perna esquerda atrás 16,2, o braço direito atrás 4,1, o braço esquerdo atrás 24,6; lateral: a perna direita na frente 3,6, a perna esquerda atrás 13,5, o braço direito na frente 32,6 | como a ficha pede | ok |
+| Ficha | o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele (desenho) | a folga de pintura de cada parte do corpo que se cruza com o halter na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; "na frente" = a parte esconde o halter, "atrás" = o halter esconde a parte): frontal: o tronco atrás 16,9, a perna direita atrás 28,7, a perna esquerda atrás 16,2, o braço direito atrás 4,1, o braço esquerdo atrás 24,6; lateral: a perna direita na frente 3,6, a perna esquerda atrás 13,5, o braço direito na frente 32,8 | como a ficha pede | ok |
+| Ficha | a cabeça do halter não entra no corpo (coxas, tronco, cabeça), em nenhum quadro do ciclo nem dos erros; no erro "Balançar o tronco", em cima, o halter fica a 1 cm do rosto (até 0,5 cm, o amassado da pele) (consenso) | em 118 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.abrem, joelho, assento.amassa, lombar, toracica, cervical, cabeca, apoio.acima, apoio.amassa, rosca.plano, maos.supinacao, maoL.paraDentro, maoL.poloDesce, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: halter (ferro) pintado sobre cabeça (a parte do corpo está na frente) (1,5 cm², até 13,8 cm à frente; pior em técnica, t = 2,00 s (u = 1,00); em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 67 cm² (padrão); de lado: 27 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca com elástico (`rosca-elastico`)
 
-252 quadros conferidos. 0 falha(s), 4 aviso(s).
+252 quadros conferidos. 0 falha(s), 5 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 8 a 132; quadril 2 a 2; ombro 12 a 12; dorsiflexao 3 a 3; punho -0 a 0; pronacao -80 a -80; clavicula 11 a 11.
 
@@ -6199,6 +6624,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cada mão segura um pegador (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 40,1–63,4 cm uma da outra | como a ficha pede | ok |
 | Ficha | os dois antebraços sobem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.paraFora, elastico.folgaNaPerna | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: antebraço esquerdo pintado sobre elástico (traço) (a peça está na frente) (16,5 cm², até 14,9 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 5 quadro(s)); de frente: antebraço direito pintado sobre elástico (traço) (a peça está na frente) (14,8 cm², até 14,2 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 5 quadro(s)); de frente: braço direito pintado sobre elástico (traço) (a peça está na frente) (7,8 cm², até 24,2 cm à frente; pior em erro "Cotovelos vão para a frente", u = 1,00; em 2 quadro(s)); de frente: braço esquerdo pintado sobre elástico (traço) (a peça está na frente) (6,8 cm², até 24 cm à frente; pior em erro "Cotovelos vão para a frente", u = 1,00; em 1 quadro(s)); de frente: braço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (5,5 cm², até 24,6 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 5 quadro(s)); de frente: braço direito pintado sobre pegadorR (borracha) (a peça está na frente) (5,3 cm², até 24,7 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 192 cm² (padrão); de lado: 53 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -6247,6 +6675,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter fica na mão e não atravessa o corpo (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é -0,3 cm (tronco) | como a ficha pede | ok |
 | Ficha | o halter não atravessa o banco nem o chão (consenso) | a menor folga entre as cabeças do halter e o banco ou o chão é 9 cm (estofado) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | apoio.amassa, cervical.min, pes.meiaDistancia, pes.aFrente, braco.paraFora, maos.supinacao, maos.encostaNaCabeca, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 192 cm² (padrão); de lado: 50 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
@@ -6293,13 +6724,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a bola fica pendurada embaixo da mão e não atravessa a coxa nem o antebraço (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 2,1 cm (ante) | como a ficha pede | ok |
 | Ficha | a bola fica pendurada embaixo da mão (na vertical) até encostar no antebraço (consenso) | com o antebraço abaixo de 60° de flexão, a bola fica no máximo 1,7° fora do ponto mais baixo (a alça inclina até 10,2°); acima, ela encosta no antebraço e gira até 1,7° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.paraFora, kettlebell.folga, livre.cotovelo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 96 cm² (padrão); de lado: 54 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca na máquina (tipo Scott) (`rosca-maquina`)
 
-252 quadros conferidos. 0 falha(s), 2 aviso(s).
+252 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 12 a 120; quadril 94 a 94; ombro 68 a 68; dorsiflexao 11 a 11; punho -0 a 0; pronacao -85 a -85; clavicula 10 a 10.
 
@@ -6345,6 +6779,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | costas sem arredondar ('chest up') (consenso) | flexão da lombar além da curva de repouso: 3° | como a ficha pede | ok |
 | Ficha | a barra e a alavanca não encostam no rosto nem no peito (consenso) | a linha entre os dois pegadores passa a no mínimo 6,3 cm da pele (cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, apoio.amassa, lombar.sentado, cervical, cabeca, pes.meiaDistancia, joelho, maos.supinacao, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: tronco pintado sobre apoio dos braços da máquina de rosca (metal) (a peça está na frente) (24 cm², até 16,7 cm à frente; pior em técnica, t = 1,40 s (u = 1,00); em 10 quadro(s)); três quartos: apoio dos braços da máquina de rosca (metal) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (3,3 cm², até 19,3 cm à frente; pior em técnica, t = 1,40 s (u = 1,00); em 10 quadro(s)); três quartos: apoio dos braços da máquina de rosca (metal) pintado sobre braço esquerdo (a parte do corpo está na frente) (3 cm², até 18,7 cm à frente; pior em técnica, t = 2,80 s (u = 0,61); em 10 quadro(s)); três quartos: antebraço direito pintado sobre alavanca da máquina de rosca (cromo) (a peça está na frente) (3 cm², até 12 cm à frente; pior em erro "Tirar o braço do apoio", u = 1,00; em 4 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 129 cm² (padrão); de lado: 54 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -6391,13 +6828,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter fica na mão e não atravessa a coxa, o tronco nem o braço (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 2,1 cm (ante) | como a ficha pede | ok |
 | Ficha | um braço de cada vez: o outro espera embaixo (consenso) | enquanto o braço direito sobe, a mão esquerda anda 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.paraFora, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 192 cm² (padrão); de lado: 54 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Rosca martelo com elástico (`rosca-martelo-elastico`)
 
-252 quadros conferidos. 0 falha(s), 4 aviso(s).
+252 quadros conferidos. 1 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 5 a 5; cotovelo 8 a 132; quadril 2 a 2; ombro 10 a 10; dorsiflexao 3 a 3; punho -0 a 0; pronacao -0 a 0; clavicula 11 a 11.
 
@@ -6440,13 +6880,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | uma ponta em cada mão (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 39,6–59 cm uma da outra | como a ficha pede | ok |
 | Ficha | os dois antebraços sobem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.paraFora, elastico.folgaNaPerna | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: antebraço direito pintado sobre elástico (traço) (a peça está na frente) (20,8 cm², até 16 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 4 quadro(s)); de frente: antebraço esquerdo pintado sobre elástico (traço) (a peça está na frente) (20,3 cm², até 15,7 cm à frente; pior em erro "Balançar o tronco", u = 1,00; em 5 quadro(s)); de frente: braço direito pintado sobre pegadorR (borracha) (a peça está na frente) (3,8 cm², até 19,8 cm à frente; pior em técnica, t = 1,40 s (u = 0,96); em 4 quadro(s)); de frente: braço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (3,8 cm², até 19,8 cm à frente; pior em técnica, t = 1,40 s (u = 0,96); em 4 quadro(s)); de frente: antebraço direito pintado sobre pegadorR (borracha) (a peça está na frente) (2,8 cm², até 15,3 cm à frente; pior em erro "Balançar o tronco", u = 0,50; em 2 quadro(s)); de frente: antebraço esquerdo pintado sobre pegadorL (borracha) (a peça está na frente) (2,8 cm², até 15,3 cm à frente; pior em erro "Balançar o tronco", u = 0,50; em 2 quadro(s)); e mais 2 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 192 cm² (padrão); de lado: 54 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Rosca direta na polia com barra reta (`rosca-polia`)
 
-258 quadros conferidos. 0 falha(s), 3 aviso(s).
+258 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 15 a 132; quadril 4 a 4; ombro 8 a 8; dorsiflexao 5 a 5; punho -0 a 0; pronacao -91 a -90; clavicula 11 a 11.
 
@@ -6490,13 +6933,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | ombros para trás (consenso) | a clavícula fica de 6° a 6° mais para trás que o ritmo normal do ombro | como a ficha pede | ok |
 | Ficha | tronco parado, sem balançar (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, antebraco.paraFora, barra.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: coxa direita pintado sobre barra-reta-polia (cromo) (a peça está na frente) (5,5 cm², até 13 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 119 cm² (padrão); de lado: 55 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca na polia baixa, de costas para a torre (`rosca-polia-costas`)
 
-240 quadros conferidos. 0 falha(s), 3 aviso(s).
+240 quadros conferidos. 1 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 12 a 142; quadril 3 a 3; ombro 23 a 23; dorsiflexao 5 a 5; punho -0 a 0; pronacao -91 a -90; clavicula 11 a 11.
 
@@ -6538,13 +6984,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | tronco parado (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Trazer o cotovelo para a frente: entra até 0,3 cm (a fita do engate, ante:R); Girar o tronco: passa a no mínimo 2,1 cm da pele (a fita do engate, ante:R); Carga demais: passa a no mínimo 2,5 cm da pele (a fita do engate, ante:R) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, braco.paraFora, antebraco.paraFora, pilha.folga, outro.braco | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: coxa direita pintado sobre cabo (traço) (a peça está na frente) (10,5 cm², até 20,1 cm à frente; pior em erro "Trazer o cotovelo para a frente", u = 0,50; em 3 quadro(s)); de lado: braço direito pintado sobre cabo (traço) (a peça está na frente) (8 cm², até 5,7 cm à frente; pior em erro "Trazer o cotovelo para a frente", u = 1,00; em 1 quadro(s)); três quartos: braço direito pintado sobre cabo (traço) (a peça está na frente) (5,5 cm², até 5,6 cm à frente; pior em erro "Trazer o cotovelo para a frente", u = 1,00; em 1 quadro(s)); três quartos: tronco pintado sobre cabo (traço) (a peça está na frente) (5,3 cm², até 10,2 cm à frente; pior em erro "Girar o tronco", u = 1,00; em 2 quadro(s)); três quartos: bacia pintado sobre cabo (traço) (a peça está na frente) (4,5 cm², até 13,5 cm à frente; pior em técnica, t = 2,67 s (u = 0,79); em 3 quadro(s)); de lado: estribo (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (2,3 cm², até 6,7 cm à frente; pior em erro "Trazer o cotovelo para a frente", u = 1,00; em 1 quadro(s)); e mais 2 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 56 cm² (padrão); quina: 56 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca Scott com barra W, no banco Scott (`rosca-scott`)
 
-270 quadros conferidos. 0 falha(s), 2 aviso(s).
+270 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 85 a 85; cotovelo 14 a 125; quadril 78 a 78; ombro 50 a 50; dorsiflexao 11 a 11; punho -0 a 0; pronacao -67 a -67; clavicula 12 a 12.
 
@@ -6590,13 +7039,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o corpo fica parado: só os antebraços se mexem (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Ficha | costas sem arredondar (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento, apoio.amassa, braco.inclina, cervical, cabeca, joelho, pes.meiaDistancia, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: banco-scott (estofado) pintado sobre tronco (a parte do corpo está na frente) (13 cm², até 18,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 131 cm² (padrão); de lado: 53 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca Scott com halter, braço apoiado no encosto do banco inclinado (`rosca-scott-banco-inclinado`)
 
-270 quadros conferidos. 0 falha(s), 2 aviso(s).
+270 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 18 a 18; cotovelo 14 a 125; quadril 28 a 28; ombro 56 a 56; dorsiflexao 15 a 15; punho -0 a 0; pronacao -85 a -85; clavicula 13 a 13.
 
@@ -6639,13 +7091,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter fica na mão e não atravessa o corpo (consenso) | a menor folga entre a carga e a pele (fora a mão que segura) é 0,4 cm (ante) | como a ficha pede | ok |
 | Ficha | o halter não atravessa o banco nem o chão (consenso) | a menor folga entre as cabeças do halter e o banco ou o chão é 5,2 cm (estofado) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | apoio.amassa, tronco.frente, cervical, cabeca, pes.meiaDistancia, pes.aFrente, braco.x, braco.inclina, maos.supinacao, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: banco-regulavel (estofado) pintado sobre antebraço direito (a parte do corpo está na frente) (43 cm², até 11,6 cm à frente; pior em erro "Travar o cotovelo embaixo", u = 0,00; em 1 quadro(s)); três quartos: banco-regulavel (estofado) pintado sobre braço direito (a parte do corpo está na frente) (17,3 cm², até 11,5 cm à frente; pior em erro "Travar o cotovelo embaixo", u = 0,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 61 cm² (padrão); de lado: 54 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Rosca na suspensão (`rosca-suspensao`)
 
-255 quadros conferidos. 0 falha(s), 2 aviso(s).
+255 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 0 a 115; quadril 2 a 2; ombro 74 a 74; dorsiflexao -28 a -9; punho -0 a 0; pronacao -85 a -67; clavicula 13 a 13.
 
@@ -6686,6 +7141,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | os cotovelos ficam altos e parados (consenso) | o braço gira no máximo 0° no tronco; no fim, o cotovelo fica 9,4 cm acima do ombro | como a ficha pede | ok |
 | Ficha | no fim, as mãos chegam perto da testa (consenso) | no fim, a pegada fica a 12,4 cm da cabeça, 23,6 cm à frente do centro dela e 4,6 cm acima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pes.alemDaAncora, pe.pontaSobe, corpo.inicio, maos.polegarParaCima, pescoco.flexao, cotovelo.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de cima: tronco pintado sobre fita de suspensão (borracha) (a peça está na frente) (22,8 cm², até 16,1 cm à frente; pior em erro "Cotovelos descem", u = 1,00; em 1 quadro(s)); de cima: bacia pintado sobre fita de suspensão (borracha) (a peça está na frente) (1,5 cm², até 20,4 cm à frente; pior em erro "Cotovelos descem", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: biceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Músculos do antebraço aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 141 cm² (padrão); de lado: 51 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
@@ -6732,12 +7190,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, os halteres chegam perto do meio da canela (consenso) | embaixo, o centro da pegada fica a 28,2 cm do chão, a 50,9% da canela (0% = tornozelo, 100% = joelho) | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halteres) fica sobre o meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.cima, joelho.baixo, maos.meiaDistancia, cotovelo, cotovelo.paraFora, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 394 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Stiff com elástico (`stiff-elastico`)
 
-285 quadros conferidos. 0 falha(s), 2 aviso(s).
+285 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 15; cotovelo 4 a 4; quadril 4 a 114; ombro 12 a 70; dorsiflexao -9 a 4; punho -0 a 0; pronacao 20 a 45; clavicula 11 a 13.
 
@@ -6776,12 +7237,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as mãos descem rentes às coxas e às canelas, sem atravessar as pernas (consenso) | da carga (ou da mão) à pele da coxa ou da canela, de 0,8 a 3,5 cm na descida | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo) fica sobre o meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.cima, joelho.baixo, maos.meiaDistancia, cotovelo, cotovelo.paraFora, carga.folga, mao.raio, elastico.voltaNaMao, elastico.folgaNaPerna | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: pé direito pintado sobre elástico (traço) (a peça está na frente) (9,5 cm², até 9,7 cm à frente; pior em técnica, t = 1,58 s (u = 0,38); em 10 quadro(s)); três quartos, de trás: elástico (traço) pintado sobre pé direito (a parte do corpo está na frente) (2,8 cm², até 12,6 cm à frente; pior em técnica, t = 3,17 s (u = 1,00); em 5 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e elástico (traço) entra 1,3 cm em coxa direita (pior em erro "Coluna arredondada", u = 0,00; em 4 quadro(s)); fio "fita" da conferência e elástico (traço) entra 1,3 cm em coxa esquerda (pior em erro "Coluna arredondada", u = 0,00; em 4 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 406 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Stiff com kettlebell (`stiff-kettlebell`)
 
-285 quadros conferidos. 0 falha(s), 2 aviso(s).
+285 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 15; cotovelo 4 a 4; quadril 6 a 105; ombro 21 a 68; dorsiflexao -10 a 2; punho -0 a 0; pronacao 24 a 46; clavicula 11 a 13.
 
@@ -6821,12 +7285,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o kettlebell não bate nas pernas nem nos pés (segurança: segurar firme e não deixar o kettlebell bater nas canelas) (consenso) | embaixo, a carga fica a 5,2 cm da pele do pé | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + kettlebell) fica sobre o meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.cima, joelho.baixo, maos.embaixo, cotovelo, cotovelo.paraFora, carga.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | kettlebell entra 1,7 cm em antebraço direito (pior em técnica, t = 3,95 s (u = 0,71); em 9 quadro(s)); kettlebell entra 1,7 cm em antebraço esquerdo (pior em técnica, t = 3,95 s (u = 0,71); em 9 quadro(s)) | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 397 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Stiff unilateral com halter (`stiff-unilateral`)
 
-291 quadros conferidos. 0 falha(s), 2 aviso(s).
+291 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 16; cotovelo 4 a 4; quadril 6 a 97; ombro 16 a 59; dorsiflexao -3 a 4; punho -0 a 0; pronacao 26 a 44; clavicula 11 a 13.
 
@@ -6866,6 +7333,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | halter perto da perna, sem atravessá-la (consenso) | da carga (ou da mão) à pele da coxa ou da canela, de 0,3 a 3,9 cm na descida | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halter) cai sobre o pé de apoio (consenso) | o centro de massa (corpo + halter) fica a no máximo 0 cm do meio do pé de apoio, para a frente ou para trás, e 0 cm de lado (pé de 19,9 cm do calcanhar à bola e 9,9 cm de largura) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho.cima, joelho.baixo, livre.coxa.cima, livre.joelho.cima, livre.joelho.baixo, livre.tornozelo, cotovelo, cotovelo.paraFora, carga.folga, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: halter (ferro) pintado sobre canela direita (a parte do corpo está na frente) (23,5 cm², até 14,4 cm à frente; pior em técnica, t = 3,23 s (u = 1,00); em 3 quadro(s)); três quartos, de trás: halter (ferro) pintado sobre coxa direita (a parte do corpo está na frente) (10,3 cm², até 16,1 cm à frente; pior em técnica, t = 2,42 s (u = 0,91); em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 218 cm² (padrão); de lado: 64 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -6912,6 +7382,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o kettlebell não encosta no pé (desenho) | embaixo, a carga fica a 5,4 cm da pele do pé | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + kettlebell) cai sobre o pé de apoio (consenso) | o centro de massa (corpo + halter) fica a no máximo 0 cm do meio do pé de apoio, para a frente ou para trás, e 0 cm de lado (pé de 19,9 cm do calcanhar à bola e 9,9 cm de largura) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, joelho.cima, joelho.baixo, livre.coxa.cima, livre.joelho.cima, livre.joelho.baixo, livre.tornozelo, cotovelo, cotovelo.paraFora, carga.folga, kettlebell.paraDentroDoPe | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 215 cm² (padrão); de lado: 62 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -6955,12 +7428,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | deitado com os olhos embaixo da barra nos ganchos, numa altura que se alcança com os cotovelos quase estendidos (consenso) | a barra nos ganchos fica 0 cm à frente ou atrás dos olhos, com o centro a 106,4 cm do chão, 5,9 cm abaixo da barra em cima (o berço a 105 cm: a IPF regula de 75 a 110); a ponta do banco passa 8,8 cm do centro dos montantes (a IPF pede 22 ± 5) | como a ficha pede | ok |
 | Ficha | travas de segurança logo abaixo da altura do peito, debaixo da barra (consenso) | com a barra no peito, o topo das travas fica 2,8 cm abaixo dela, e a barra 13,5 cm para dentro da ponta delas | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cabeca.folgaNoBanco, pegada.meia, carga.anilhas, ganchos.abaixo, pinos.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 14 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 465 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Supino no chão com halteres (`supino-chao-halteres`)
 
-282 quadros conferidos. 0 falha(s), 2 aviso(s).
+282 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 10 a 98; quadril 38 a 38; ombro 45 a 81; dorsiflexao -41 a -41; punho 0 a 0; pronacao 20 a 20; clavicula 12 a 14.
 
@@ -6999,6 +7475,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, a parte de trás do braço encosta de leve no chão, sem atravessá-lo (consenso) | embaixo, a pele da parte de trás do braço fica a 0 cm do chão; no caminho, no mínimo a 0 cm | como a ficha pede | ok |
 | Ficha | deitado, as costas, a cabeça e o glúteo apoiados no colchonete (consenso) | costas, glúteo e cabeça ficam a até 0 cm do tampo do colchonete (costas 0, glúteo 0, cabeça 0) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar.base, joelho, ombro.z, colchonete.alemDaCabeca, braco.cima, pegada.giro, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: colchonete (plataforma) pintado sobre pé direito (a parte do corpo está na frente) (14,3 cm², até 64,4 cm à frente; pior em erro "Quicar o cotovelo", u = 0,00; em 3 quadro(s)); de frente: colchonete (plataforma) pintado sobre pé esquerdo (a parte do corpo está na frente) (14 cm², até 64,4 cm à frente; pior em erro "Quicar o cotovelo", u = 0,00; em 3 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 462 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -7046,12 +7525,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter não bate no ombro, no peito nem no banco (consenso) | a carga fica a no mínimo 0,4 cm da pele e 16,8 cm das peças da cena | como a ficha pede | ok |
 | Ficha | sem bater um halter no outro (consenso) | os dois halteres ficam a no mínimo 2,5 cm um do outro | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | apoio.amassa, cervical.min, pes.aFrente, braco.topo.abre, halteres.folgaNoTopo, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 455 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Supino inclinado na polia, com o banco entre as torres (`supino-inclinado-polia`)
 
-264 quadros conferidos. 0 falha(s), 2 aviso(s).
+264 quadros conferidos. 2 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 84 a 84; cotovelo 14 a 120; quadril 20 a 20; ombro 46 a 118; dorsiflexao 0 a 0; punho -0 a 0; pronacao -22 a 12; clavicula 8 a 12.
 
@@ -7094,6 +7576,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | início: mãos ao lado do peito, na altura dele, com o antebraço na vertical, e cotovelos a ~30–60° do tronco (consenso) | embaixo, o braço faz 45° com o tronco (no plano das costas), o antebraço desvia 0° da vertical e a mão fica 5,4 cm abaixo da linha dos ombros, ao longo do tronco, e 23,5 cm à frente do centro do ombro | como a ficha pede | ok |
 | Ficha | fim: braços quase estendidos acima do peito, as mãos um pouco para dentro dos ombros (consenso) | no topo, o cotovelo dobra 14°, as mãos ficam 8,2 e 8,2 cm para dentro dos ombros e, de lado, 0 cm da vertical do ombro | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, braco.baixo, pegada.giro, polia.meiaDistancia, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: banco-regulavel (metal) pintado sobre pé direito (a parte do corpo está na frente) (33,3 cm², até 21,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 12 quadro(s)); três quartos: banco-regulavel (metal) pintado sobre canela direita (a parte do corpo está na frente) (17 cm², até 20,6 cm à frente; pior em erro "Tirar as costas do encosto", u = 0,50; em 12 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (6,3 cm², até 6,4 cm à frente; pior em erro "Tirar as costas do encosto", u = 0,50; em 3 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (4 cm², até 7,6 cm à frente; pior em erro "Banco fora do meio", u = 1,00; em 6 quadro(s)); três quartos: banco-regulavel (borracha) pintado sobre pé direito (a parte do corpo está na frente) (3,8 cm², até 14,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 12 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (3,5 cm², até 11,3 cm à frente; pior em erro "Banco fora do meio", u = 1,00; em 5 quadro(s)); e mais 4 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e fio "cabo" da conferência e estribo (traço) e cabo (traço) entra 1,7 cm em antebraço esquerdo (pior em erro "Banco fora do meio", u = 1,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | FALHA |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 455 cm² (padrão); quina: 103 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -7139,13 +7624,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cotovelos a ~30–60° do tronco (consenso) | embaixo, o braço faz 43,7° com o tronco, visto de frente para o peito (o cotovelo 5,7° à frente do plano do peito) | como a ficha pede | ok |
 | Ficha | empurra até quase estender os cotovelos, sem travar (consenso) | em cima, o cotovelo ainda dobra 12° | como a ficha pede | ok |
 | Ficha | as placas sobem com os braços da máquina e apoiam embaixo (desenho) | a alavanca gira de 7° a 35,5°; as placas sobem de 0 a 6,5 cm, a no máximo 0 cm do arco do came; no começo, elas apoiam (0 cm) | como a ficha pede | ok |
+| Ficha | medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, no assento ou nas peças mais que 2,5 cm (o que o estofado amassa) (desenho) | na pele densa, o quanto cada parte entra em cada peça (o pior quadro): braço direito no estofado 2,4 cm; braço esquerdo no estofado 2,4 cm; coxa direita no estofado 1,4 cm; coxa esquerda no estofado 1,4 cm; bacia no estofado 1,3 cm; cintura no estofado 1,2 cm; tronco no estofado 1 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, lombar.sentado, pescoco.compensa, joelho, cotovelos.atras, cotovelo.embaixo, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 438 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Supino na polia com o banco plano entre as torres (`supino-polia`)
 
-264 quadros conferidos. 0 falha(s), 2 aviso(s).
+264 quadros conferidos. 2 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 86 a 86; cotovelo 14 a 101; quadril -10 a -10; ombro 49 a 85; dorsiflexao 1 a 1; punho -0 a 0; pronacao -22 a 16; clavicula 8 a 10.
 
@@ -7187,6 +7676,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | fim: braços quase estendidos acima do peito, as mãos um pouco para dentro dos ombros (consenso) | no topo, o cotovelo dobra 14°, as mãos ficam 8,2 e 8,2 cm para dentro dos ombros e, de lado, 0 cm da vertical do ombro | como a ficha pede | ok |
 | Ficha | deitado, glúteo, costas e cabeça apoiados no banco, escápulas juntas e apoiadas, pés no chão (consenso) | o ponto mais baixo de cada parte acima do tampo do banco (negativo = amassa o estofado): costas de -1 a -1 cm, cabeça de -1 a -1 cm, glúteo de 0 a 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | reto.pelve.z, reto.pelve.altura, reto.lombar, reto.cervical, reto.cabeca, reto.cabeca.folgaNoBanco, reto.pes.alemDoJoelho, pes.meiaDistancia, braco.baixo, pegada.giro, polia.meiaDistancia, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: pé direito pintado sobre banco reto (metal) (a peça está na frente) (8,8 cm², até 17,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos, de trás: antebraço esquerdo pintado sobre estribo (traço) (a peça está na frente) (7,8 cm², até 5,9 cm à frente; pior em erro "Cotovelos abertos a 90°", u = 0,00; em 5 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (4 cm², até 11,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 6 quadro(s)); de cima: antebraço esquerdo pintado sobre cabo (traço) (a peça está na frente) (3,8 cm², até 12,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 7 quadro(s)); de cima: braço direito pintado sobre cabo (traço) (a peça está na frente) (2,5 cm², até 43,7 cm à frente; pior em erro "Banco fora do meio", u = 1,00; em 3 quadro(s)); de cima: braço esquerdo pintado sobre cabo (traço) (a peça está na frente) (2,3 cm², até 34,2 cm à frente; pior em erro "Banco fora do meio", u = 1,00; em 3 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e fio "cabo" da conferência e estribo (traço) e cabo (traço) entra 1,2 cm em antebraço esquerdo (pior em erro "Banco fora do meio", u = 1,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | FALHA |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 457 cm² (padrão); de três quartos, de trás: 86 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -7229,6 +7721,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cotovelos a 30–60° do tronco (consenso) | embaixo, o braço faz 50° com o tronco, visto de cima | como a ficha pede | ok |
 | Ficha | no topo, os halteres ficam sobre os ombros (consenso) | no topo, o halter fica a 5,3 cm da vertical do ombro | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cabeca.folgaNoBanco, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 465 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -7274,12 +7769,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | em cima, cotovelos quase estendidos, sem travar (consenso) | em cima, o cotovelo dobra 12° | como a ficha pede | ok |
 | Ficha | as travas de segurança logo acima do peito (a barra não chega nelas no movimento certo) (consenso) | as travas param a barra 1,5 cm abaixo do ponto mais baixo dela | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | barra.amassa, cabeca.folgaNoBanco, anilhas, quadro.ate | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas (fora 27 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 465 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Levantamento terra com barra hexagonal (`terra-hexagonal`)
 
-264 quadros conferidos. 0 falha(s), 2 aviso(s).
+264 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 90; cotovelo 4 a 4; quadril 5 a 135; ombro 12 a 58; dorsiflexao 1 a 11; punho -0 a 0; pronacao -0 a 0; clavicula 11 a 13.
 
@@ -7321,12 +7819,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | braços estendidos: só seguram a barra (consenso) | o cotovelo dobra de 4° a 4° (os braços só seguram) | como a ficha pede | ok |
 | Ficha | em cima: em pé, quadril e joelhos estendidos (consenso) | em cima, o joelho dobra 4° e o quadril 4,5° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.paraFora, joelho.baixo, cotovelo, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: barra hexagonal (metal) pintado sobre coxa esquerda (a parte do corpo está na frente) (42,5 cm², até 35,6 cm à frente; pior em erro "Quadril sobe antes", u = 0,50; em 1 quadro(s)); três quartos: canela direita pintado sobre barra hexagonal (metal) (a peça está na frente) (25 cm², até 32,4 cm à frente; pior em erro "Soltar a barra", u = 0,50; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps, gluteos; secundário: posteriores, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 519 cm² (padrão); quina: 422 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Levantamento terra romeno com barra (`terra-romeno-barra`)
 
-285 quadros conferidos. 0 falha(s), 2 aviso(s).
+285 quadros conferidos. 1 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 15; cotovelo 4 a 4; quadril 7 a 115; ombro 13 a 68; dorsiflexao -8 a 1; punho -0 a 0; pronacao 19 a 44; clavicula 11 a 13.
 
@@ -7367,12 +7868,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pegada na largura dos ombros, com as mãos por fora das coxas (consenso) | as pegadas ficam a 44 cm uma da outra (os centros dos ombros a 36,8 cm); o lado de dentro da mão fica a 17,6 cm do meio, e a coxa vai até 17 cm | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + barra) fica sobre o meio do pé (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,1 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | joelho.cima, joelho.baixo, cotovelo, cotovelo.paraFora, anilhas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos, de trás: barra longa (cromo) pintado sobre coxa esquerda (a parte do corpo está na frente) (40 cm², até 28 cm à frente; pior em técnica, t = 1,58 s (u = 0,38); em 3 quadro(s)); três quartos, de trás: barra longa (cromo) pintado sobre canela esquerda (a parte do corpo está na frente) (33,8 cm², até 18,4 cm à frente; pior em técnica, t = 2,37 s (u = 0,89); em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: posteriores; secundário: gluteos) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de três quartos, de trás: 410 cm² (padrão); de lado: 67 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Tríceps na polia com barra reta (`triceps-barra-reta`)
 
-234 quadros conferidos. 0 falha(s), 3 aviso(s).
+234 quadros conferidos. 2 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 6 a 105; quadril 20 a 20; ombro 15 a 15; dorsiflexao 3 a 3; punho -0 a 0; pronacao 90 a 90; clavicula 11 a 11.
 
@@ -7417,12 +7921,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a pilha sobe o curso do cabo dividido pela relação da máquina (desenho) | cabo: o cabo anda 50,3 cm e a pilha sobe 25,1 cm (esperado 25,1) | como a ficha pede | ok |
 | Ficha | nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho) | Abrir os cotovelos: passa a no mínimo 2,6 cm da pele (o cabo, cabeca); Usar o tronco: passa a no mínimo 0,6 cm da pele (o cabo, tronco); Volta curta: passa a no mínimo 2,6 cm da pele (o cabo, cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.z, pelve.z, cervical, cabeca, braco.paraDentro, barra.folga, cabo.inclinacao, pilha.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: barra-reta-polia (cromo) pintado sobre coxa direita (a parte do corpo está na frente) (1,5 cm², até 9,6 cm à frente; pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)); de trás: barra-reta-polia (borracha) pintado sobre bacia (a parte do corpo está na frente) (1 cm², até 15,2 cm à frente; pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)); de trás: barra-reta-polia (cromo) pintado sobre coxa esquerda (a parte do corpo está na frente) (1 cm², até 8,9 cm à frente; pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | barra-reta-polia entra 7,1 cm em coxa direita (pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)); barra-reta-polia entra 7,1 cm em coxa esquerda (pior em erro "Usar o tronco", u = 1,00; em 1 quadro(s)) | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | FALHA |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 218 cm² (padrão); de lado: 56 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Tríceps na polia com corda (`triceps-corda`)
 
-234 quadros conferidos. 0 falha(s), 2 aviso(s).
+234 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 4 a 112; quadril 20 a 20; ombro 15 a 15; dorsiflexao 3 a 3; punho -0 a 0; pronacao -62 a 2; clavicula 11 a 11.
 
@@ -7464,12 +7971,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a corda e o cabo passam sem encostar no corpo (desenho) | a corda e o cabo passam a no mínimo 3,7 cm da pele (coxa) | como a ficha pede | ok |
 | Ficha | cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha (desenho) | cada ramo vai esticado da mão à bucha, de 25,2 a 25,2 cm (o ramo tem 25,2 cm fora da ponta de borracha) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pe.z, pelve.z, cervical, cabeca, braco.paraDentro, maos.meiaDistancia.alto, cabo.inclinacao | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 12 quadros, 24 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "cabo" da conferência e cabo (traço) entra 7,8 cm em cabeça (pior em erro "Debruçar o tronco", u = 1,00; em 1 quadro(s)); fio "cabo" da conferência e cabo (traço) entra 6,4 cm em tronco (pior em erro "Debruçar o tronco", u = 1,00; em 1 quadro(s)); fio "cabo" da conferência e cabo (traço) entra 5,5 cm em cintura (pior em erro "Debruçar o tronco", u = 1,00; em 1 quadro(s)); fio "cabo" da conferência e cabo (traço) entra 2,1 cm em pescoço (pior em erro "Debruçar o tronco", u = 1,00; em 1 quadro(s)); fio "cabo" da conferência e cabo (traço) entra 1,2 cm em bacia (pior em erro "Debruçar o tronco", u = 1,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 208 cm² (padrão); de lado: 56 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Tríceps acima da cabeça com elástico (`triceps-elastico-acima`)
 
-264 quadros conferidos. 0 falha(s), 3 aviso(s).
+264 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 20 a 20; cotovelo 8 a 135; quadril 22 a 22; ombro 170 a 170; dorsiflexao 0 a 0; punho -0 a 0; pronacao -37 a 3; clavicula 17 a 17.
 
@@ -7510,12 +8020,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a faixa sobe pelas costas rente ao corpo, sem entrar nele (desenho) | o elástico passa a no mínimo 0,5 cm da pele (tronco) | como a ficha pede | ok |
 | Ficha | as duas mãos seguram juntas a ponta de cima do laço, atrás da cabeça (consenso) | o centro de cada mão fica a 0–0 cm do elástico; as mãos ficam a 14–14 cm uma da outra | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.frente.z, pe.tras.z, pelve.z, cervical, cabeca, braco.paraDentro, maos.meiaDistancia, elastico.folga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 18 quadros, 36 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e faixa (traço) entra 7,5 cm em tronco (pior em erro "Abrir os cotovelos", u = 1,00; em 5 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 18 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 67 cm² (padrão); de lado: 61 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Tríceps com elástico preso no alto, como na polia (`triceps-elastico-alto`)
 
-234 quadros conferidos. 0 falha(s), 3 aviso(s).
+234 quadros conferidos. 2 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 10 a 10; cotovelo 4 a 112; quadril 23 a 23; ombro 15 a 15; dorsiflexao 0 a 0; punho -0 a 0; pronacao 70 a 70; clavicula 11 a 11.
 
@@ -7558,6 +8071,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o elástico vai das mãos à âncora sem encostar no corpo nem no rosto (desenho) | o elástico passa a no mínimo 2,5 cm da pele (ante) | como a ficha pede | ok |
 | Ficha | os dois braços estendem juntos (consenso) | a maior diferença entre os dois cotovelos é 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cervical, cabeca, braco.paraDentro, maos.pronacao, cabo.inclinacao, elastico.noQuadro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de trás: elástico (traço) pintado sobre tronco (a parte do corpo está na frente) (30,3 cm², até 22,6 cm à frente; pior em erro "Jogar o tronco", u = 1,00; em 1 quadro(s)); de trás: elástico (traço) pintado sobre cintura (a parte do corpo está na frente) (8,3 cm², até 23,2 cm à frente; pior em erro "Jogar o tronco", u = 1,00; em 1 quadro(s)); de trás: elástico (traço) pintado sobre bacia (a parte do corpo está na frente) (3,3 cm², até 22,1 cm à frente; pior em erro "Jogar o tronco", u = 1,00; em 1 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | pegadorR (traço) entra 4,9 cm em coxa direita (pior em erro "Jogar o tronco", u = 1,00; em 1 quadro(s)); pegadorL (traço) entra 4,9 cm em coxa esquerda (pior em erro "Jogar o tronco", u = 1,00; em 1 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | FALHA |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 218 cm² (padrão); de lado: 56 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
@@ -7603,12 +8119,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a corda e o cabo passam sem encostar na cabeça nem no corpo (desenho) | a corda e o cabo passam a no mínimo 16,6 cm da pele (cabeca) | como a ficha pede | ok |
 | Ficha | cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha (desenho) | cada ramo vai esticado da mão à bucha, de 25,2 a 25,2 cm (o ramo tem 25,2 cm fora da ponta de borracha) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.frente.z, pe.tras.z, pe.tras.calcanhar, pelve.z, cervical, cabeca, braco.paraDentro, maos.meiaDistancia, maos.meiaDistancia.estendido, cabo.alongado | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 172 cm² (padrão); de lado: 60 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Tríceps francês sentado com halter (`triceps-frances-halter`)
 
-264 quadros conferidos. 0 falha(s), 3 aviso(s).
+264 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 80 a 80; cotovelo 8 a 130; quadril 84 a 84; ombro 163 a 163; dorsiflexao -7 a -7; punho -22 a 62; pronacao 91 a 105; clavicula 17 a 17.
 
@@ -7649,12 +8168,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o halter passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco (desenho) | a carga passa a no mínimo 1,4 cm da pele (ante) e a 49,5 cm do banco | como a ficha pede | ok |
 | Ficha | as duas mãos juntas sob a cabeça de cima do halter, 12 cm entre elas (consenso) | os centros das mãos ficam de 12 a 12 cm um do outro; a face de baixo da cabeça de cima fica de 1,8 a 1,8 cm do centro de cada mão, ao longo do halter (a palma) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | nadega.afunda, pes.meiaDistancia, coxa.inclinacao, pes.aFrenteDoJoelho, banco.daPonta, banco.noQuadro, cervical, cabeca, braco.paraDentro, palma.espessura, carga.giro.alongado, carga.giro.estendido, maos.dedosGiro | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: banco reto (metal) pintado sobre pé direito (a parte do corpo está na frente) (47 cm², até 63,3 cm à frente; pior em erro "Arquear as costas", u = 1,00; em 2 quadro(s)); de frente: banco reto (metal) pintado sobre pé esquerdo (a parte do corpo está na frente) (46,8 cm², até 63,3 cm à frente; pior em erro "Arquear as costas", u = 0,50; em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 205 cm² (padrão); de lado: 60 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Tríceps francês sentado com kettlebell (`triceps-frances-kettlebell`)
 
-264 quadros conferidos. 0 falha(s), 1 aviso(s).
+264 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 80 a 80; cotovelo 8 a 130; quadril 84 a 84; ombro 163 a 163; dorsiflexao -7 a -7; punho -24 a 24; pronacao -40 a 16; clavicula 17 a 17.
 
@@ -7695,12 +8217,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o kettlebell passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco (consenso) | a carga passa a no mínimo 5 cm da pele (ante) e a 52,7 cm do banco | como a ficha pede | ok |
 | Ficha | as duas mãos pelos lados da alça (a alça passa pelas duas mãos), a bola para baixo (consenso) | os centros das mãos ficam de 12,3 a 12,3 cm um do outro (hastes a 12,3 cm); o centro da bola fica de 2,2 a 14,6 cm abaixo do meio das mãos | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | nadega.afunda, pes.meiaDistancia, coxa.inclinacao, pes.aFrenteDoJoelho, banco.daPonta, banco.noQuadro, cervical, cabeca, braco.paraDentro, carga.giro.estendido | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: banco reto (metal) pintado sobre pé esquerdo (a parte do corpo está na frente) (47,3 cm², até 63,3 cm à frente; pior em erro "Arquear as costas", u = 0,50; em 2 quadro(s)); de frente: banco reto (metal) pintado sobre pé direito (a parte do corpo está na frente) (46,8 cm², até 63,3 cm à frente; pior em erro "Arquear as costas", u = 0,50; em 2 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 168 cm² (padrão); de lado: 60 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Tríceps francês unilateral na polia, com estribo (`triceps-frances-polia-unilateral`)
 
-264 quadros conferidos. 0 falha(s), 1 aviso(s).
+264 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 16 a 16; cotovelo 8 a 135; quadril 38 a 38; ombro 167 a 167; dorsiflexao -5 a -5; punho -0 a 0; pronacao -1 a 2; clavicula 17 a 17.
 
@@ -7740,6 +8265,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o cabo passa por trás do corpo, sem encostar nele (consenso) | o cabo passa a no mínimo 1,9 cm da pele (braco) | como a ficha pede | ok |
 | Ficha | a outra mão na cintura (consenso) | a pele da mão esquerda fica de 0,6 a 0,6 cm da pele da cintura e anda 0 cm em relação à pelve | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.frente.z, pe.tras.z, pe.tras.calcanhar, pelve.z, tronco.inclinacao, cervical, cabeca, braco.paraDentro, cabo.inclinacao, maoNaCintura.x, maoNaCintura.acima, maoNaCintura.z | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: antebraço direito pintado sobre estribo (traço) (a peça está na frente) (5,3 cm², até 5,4 cm à frente; pior em erro "Abrir o cotovelo", u = 0,50; em 2 quadro(s)); de frente: estribo (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (1,8 cm², até 5,4 cm à frente; pior em erro "Arquear as costas", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | fio "fita" da conferência e fio "cabo" da conferência e estribo (traço) e cabo (traço) entra 2,7 cm em antebraço direito (pior em erro "Arquear as costas", u = 1,00; em 7 quadro(s)) | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | AVISO |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 90 cm² (padrão); de lado: 64 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -7786,12 +8314,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a outra mão na cintura (segurar o cotovelo é opcional no cartão) (desenho) | a pele da mão esquerda fica de 0,6 a 0,6 cm da pele da cintura e anda 0 cm em relação à pelve | como a ficha pede | ok |
 | Ficha | o centro de massa (corpo + halter) fica perto do meio do pé (consenso) | o centro de massa (corpo + carga) anda de -2,9 a 2,1 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pe.frente.z, pe.tras.z, pe.tras.calcanhar, pelve.z, joelho.frente, cervical, cabeca, braco.paraDentro, maos.meiaDistancia, maoNaCintura.x, maoNaCintura.acima, maoNaCintura.z | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 90 cm² (padrão); de lado: 64 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Tríceps na máquina (braço apoiado à frente) (`triceps-maquina`)
 
-246 quadros conferidos. 0 falha(s), 1 aviso(s).
+246 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 8 a 100; quadril 94 a 94; ombro 68 a 68; dorsiflexao 11 a 11; punho -0 a 0; pronacao 0 a 0; clavicula 10 a 10.
 
@@ -7837,6 +8368,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | costas retas ('keeping the back straight') (consenso) | flexão da lombar além da curva de repouso: 3° | como a ficha pede | ok |
 | Ficha | os pegadores não encostam no rosto nem no peito (consenso) | a linha entre os dois pegadores passa a no mínimo 17,9 cm da pele (cabeca) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | assento.amassa, apoio.amassa, lombar.sentado, cervical, cabeca, pes.meiaDistancia, joelho, escapula.prot, escapula.elev, maos.supinacao, placas | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | três quartos: tronco pintado sobre apoio dos braços da máquina de tríceps (metal) (a peça está na frente) (24 cm², até 16,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 10 quadro(s)); três quartos: apoio dos braços da máquina de tríceps (metal) pintado sobre braço esquerdo (a parte do corpo está na frente) (3,3 cm², até 18,7 cm à frente; pior em erro "Amplitude curta em cima", u = 1,00; em 10 quadro(s)); três quartos: apoio dos braços da máquina de tríceps (metal) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (3 cm², até 19,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 10 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 12 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 56 cm² (padrão); quina: 28 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -7884,6 +8418,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim, as mãos chegam perto da testa (consenso) | no fim, a pegada fica a 15,3 cm da cabeça, 8,3 cm à frente do centro dela e 20,2 cm acima | como a ficha pede | ok |
 | Ficha | a fita passa por cima da cabeça, não no pescoço (consenso) | a fita passa a no mínimo 2,7 cm da cabeça e do pescoço | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pes.atrasDaAncora, calcanhar.sobe, corpo.inicio, pescoco.flexao, maos.polegarGira, cotovelo.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 30 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 56 cm² (padrão); de três quartos, de trás: 20 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -7926,13 +8463,17 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | pegada neutra: palmas uma para a outra (consenso) | o antebraço fica no máximo 0° fora da posição neutra (polegar para a cabeça, palmas uma para a outra) | como a ficha pede | ok |
 | Ficha | embaixo, os halteres ficam ao lado da cabeça, sem encostar nela nem no colchonete (consenso) | embaixo, o meio do halter fica ao lado da cabeça (z -85,1; a cabeça vai de -88,5 a -66); no ciclo, o halter passa no mínimo a 6 cm da cabeça e a 2 cm do colchonete | como a ficha pede | ok |
 | Ficha | deitado, as costas, a cabeça e o glúteo apoiados no colchonete (consenso) | costas, glúteo e cabeça ficam a até 0 cm do tampo do colchonete (costas 0, glúteo 0, cabeça 0) | como a ficha pede | ok |
+| Ficha | nenhuma cabeça de halter entra no corpo (cabeça, braços, tronco), em nenhum quadro do ciclo nem dos erros; no erro "Ir até a falha", o halter desce rente à testa sem entrar nela (até 0,5 cm, o amassado da pele) (consenso) | em 208 quadros (ciclo e erros), o peso não entra no corpo | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | lombar.base, joelho, ombro.z, colchonete.alemDaCabeca, braco.paraTras, cotovelo.estendido, halter.folgaEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 36 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: triceps; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | quina: 133 cm² (padrão); de lado: 55 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Voador (peck deck) (`voador`)
 
-297 quadros conferidos. 0 falha(s), 1 aviso(s).
+297 quadros conferidos. 1 falha(s), 1 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 84 a 84; cotovelo 20 a 22; quadril 70 a 70; ombro 72 a 84; dorsiflexao 1 a 1; punho -0 a 0; pronacao -64 a -63; clavicula 10 a 11.
 
@@ -7972,7 +8513,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | abre até alongar, sem levar os braços para trás da linha do ombro (consenso) | aberto, a linha do ombro à mão fica 84,8° a partir da frente (90° = na linha dos ombros), 5,2° antes dela | como a ficha pede | ok |
 | Ficha | fecha à frente do peito, as mãos quase se tocando (consenso) | fechado, as mãos ficam a 2,1 cm uma da outra, 61,6 cm à frente dos ombros | como a ficha pede | ok |
 | Ficha | as placas sobem com o arco do came e não descansam na volta (consenso) | as placas do pino ficam de 1,7 a 18,7 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, lombar, cervical, cabeca, assento.amassa, pes.meiaDistancia, pes.frente, psi.meio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Ficha | em cada vista e em cada erro, nos dois lados: o encosto não é pintado por cima de uma parte do corpo que fica na frente dele (de cima, o alto das costas) (desenho) | anéis pintados por baixo do encosto, de quantos ficam na frente dele e por cima dele na tela (o pior quadro), de cima: cabeça 0 de 0, tronco 0 de 2, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0; de frente: cabeça 0 de 5, tronco 0 de 9, braço direito 0 de 0, antebraço direito 0 de 5, coxa direita 0 de 0, canela direita 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 5, coxa esquerda 0 de 0, canela esquerda 0 de 0; três quartos, de trás: cabeça 0 de 0, tronco 0 de 0, braço direito 0 de 0, antebraço direito 0 de 0, coxa direita 0 de 0, canela direita 0 de 0, coxa esquerda 0 de 0, canela esquerda 0 de 0, braço esquerdo 0 de 0, antebraço esquerdo 0 de 0 | como a ficha pede | ok |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, lombar, cervical, cabeca, assento.amassa, pes.meiaDistancia, pes.frente, psi.meio, pintura.encostoAtrasDeCima | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de frente: tronco pintado sobre braços do voador (metal) (a peça está na frente) (177,3 cm², até 67,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: tronco pintado sobre braços do voador (borracha) (a peça está na frente) (47,8 cm², até 53,5 cm à frente; pior em técnica, t = 0,82 s (u = 0,02); em 5 quadro(s)); de frente: antebraço esquerdo pintado sobre braços do voador (metal) (a peça está na frente) (43,5 cm², até 30,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: antebraço direito pintado sobre braços do voador (metal) (a peça está na frente) (43,3 cm², até 31,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); três quartos, de trás: pé direito pintado sobre voador (metal) (a peça está na frente) (41 cm², até 19 cm à frente; pior em erro "Tirar as costas", u = 0,50; em 3 quadro(s)); de frente: cintura pintado sobre braços do voador (metal) (a peça está na frente) (36 cm², até 61,4 cm à frente; pior em erro "Dobrar e esticar os cotovelos", u = 0,00; em 1 quadro(s)); e mais 2 | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | FALHA |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de frente: 440 cm² (padrão); de cima: 178 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
@@ -8020,12 +8565,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | sem encolher os ombros nem juntar demais as escápulas no fim (consenso) | no fim, a clavícula fica 5° atrás do ritmo (positivo = para trás; a remada, que junta as escápulas, chega a 10°); ela sobe no máximo -2° além do ritmo | como a ficha pede | ok |
 | Ficha | as placas sobem com o arco do came e não descansam na volta (consenso) | as placas do pino ficam de 1,6 a 15,2 cm acima das de baixo (o arco do came, com erro de 0 cm) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | bacia, lombar, cervical, cabeca, cotovelo.paraBaixo, assento.amassa, pes.meiaDistancia, pes.frente, psi.meio | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | nada em 15 quadros, 33 quadro-vistas | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | ok |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 111 cm² (padrão); de trás: 44 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## T e Y na suspensão (`yt-suspensao`)
 
-279 quadros conferidos. 0 falha(s), 2 aviso(s).
+279 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 10; quadril 2 a 2; ombro 64 a 90; dorsiflexao -38 a 10; punho -0 a 0; pronacao -17 a -15; clavicula 13 a 13.
 
@@ -8067,6 +8615,9 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | as escápulas se juntam no T (consenso) | a clavícula vai para trás 18,2° do começo ao fim (a escápula se junta à coluna) | como a ficha pede | ok |
 | Ficha | a fita não estica: o corpo sobe junto (consenso) | o corpo vai de 65° a 18,8° da vertical (do tornozelo ao ombro) | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | pes.meiaDistancia, pes.alemDaAncora, pe.pontaSobe, corpo.inicio, pescoco.flexao, maos.polegarParaCima, escapula.prot.inicio, escapula.retr.fim, escapula.elev.fim | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Pintura | peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo) | de lado: braço direito pintado sobre fita de suspensão (borracha) (a peça está na frente) (6 cm², até 56,3 cm à frente; pior em erro "Quadril cai", u = 1,00; em 1 quadro(s)) | uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta | AVISO |
+| Fios | cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende) | ok |
+| Pesos | halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros) | nenhum entra além da tolerância em 15 quadros | o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura) | ok |
 | Músculos | o realçado é o do conteúdo (principal: ombro_posterior; secundário: nenhum) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 54 cm² (padrão); de lado: 4 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
