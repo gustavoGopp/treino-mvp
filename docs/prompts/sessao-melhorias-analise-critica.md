@@ -1,12 +1,12 @@
-# Prompt: sessão de melhorias da análise crítica do treino-mvp (os lotes M0 a M6, um de cada vez)
+# Prompt: sessão de melhorias da análise crítica do treino-mvp (a fila dos lotes M e dos pacotes D, um item de cada vez)
 
-> Escrito em 19/11/2026, pela sessão que fez a análise crítica do app inteiro (`docs/revisoes/analise-critica/`), depois que o Gustavo leu o relatório e respondeu às perguntas dele. As decisões estão em `docs/revisoes/analise-critica/decisoes-e-plano.md`. A ordem dos lotes foi recomendada por aquela sessão, pelo critério "o que mais faz um desconhecido desistir do app ou não voltar"; o Gustavo pode mudá-la antes de colar. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova. A mesma sessão pode conduzir vários lotes, parando ao fim de cada um; se ficar longa demais, comece outra com este mesmo texto.
+> Escrito em 19/11/2026, pela sessão que fez a análise crítica do app inteiro (`docs/revisoes/analise-critica/`), depois que o Gustavo leu o relatório e respondeu às perguntas dele. As decisões estão em `docs/revisoes/analise-critica/decisoes-e-plano.md`. A ordem foi recomendada por aquela sessão, pelo critério "o que mais faz um desconhecido desistir do app ou não voltar", e **confirmada pelo Gustavo em 21/11/2026**, quando ele também adiou a troca do nome e pediu uma conversa só, em fila. O texto vale a partir de "Você vai conduzir". A mesma sessão conduz vários itens, parando ao fim de cada um; se ficar longa demais, comece outra com este mesmo texto.
 >
-> **Existe outro prompt em aberto**, `docs/prompts/sessao-desenvolvimento-2.md` (pacotes D1 a D4), escrito no mesmo dia a partir do backlog. Os dois se cruzam em dois pontos, ditos abaixo. A ordem recomendada entre eles está no fim de `decisoes-e-plano.md`.
+> **Os pacotes D1 a D4** de `docs/prompts/sessao-desenvolvimento-2.md`, escritos em 19/11 a partir do backlog, **entram nesta mesma fila**. Aquele arquivo não precisa ser colado em outra sessão: esta o lê e o segue na hora de cada pacote D.
 
 ---
 
-Você vai conduzir a **sessão de melhorias da análise crítica** do **treino-mvp**, um web app (PWA, Vite + React + TypeScript) em pt-BR que monta um programa de hipertrofia baseado em evidência, só com o equipamento que a pessoa tem, e conduz cada treino com um guia animado (o "Boneco"), o temporizador de descanso e as sugestões de progressão. O app já faz a jornada inteira. Uma análise crítica independente (19/11/2026) concluiu que ele é um bom caderno de treino para quem já decidiu usá-lo, e ainda não é um app que um desconhecido entende, termina de configurar e volta a abrir. Esta sessão cuida disso, em sete lotes, **um de cada vez**.
+Você vai conduzir a **sessão de melhorias da análise crítica** do **treino-mvp**, um web app (PWA, Vite + React + TypeScript) em pt-BR que monta um programa de hipertrofia baseado em evidência, só com o equipamento que a pessoa tem, e conduz cada treino com um guia animado (o "Boneco"), o temporizador de descanso e as sugestões de progressão. O app já faz a jornada inteira. Uma análise crítica independente (19/11/2026) concluiu que ele é um bom caderno de treino para quem já decidiu usá-lo, e ainda não é um app que um desconhecido entende, termina de configurar e volta a abrir. Esta sessão cuida disso e do que a outra análise deixou aberto (o que pode enganar ou perder dados), numa fila de nove itens, **um de cada vez**.
 
 **Quem é o Gustavo.** É o dono do app. Não é programador nem da área de exercício, anatomia ou design. Fala de produto e de experiência, e prefere explicações simples e visuais, em pt-BR, sem jargão; quando um termo técnico for inevitável, explique-o numa frase. **Ele pediu para não decidir questões técnicas:** a sessão decide (como fazer, que limiar, como medir), registra o motivo e mostra o efeito medido. Para ele ficam as decisões de produto (o que a pessoa vê e faz, o que o app promete, os textos de segurança) e as aprovações que o `CLAUDE.md` pede. **Uma decisão de cada vez, com imagem do antes e do depois quando houver tela.**
 
@@ -21,34 +21,35 @@ Você vai conduzir a **sessão de melhorias da análise crítica** do **treino-m
 
 **O que a análise mandou proteger.** Não piore nada disto: o registro com um toque a partir da 2ª série; a tela de descanso; o "Senti algo"; trocar exercício; entrar sem conta; a acessibilidade (0 falhas no verificador, toques de 44 px ou mais); o funcionamento sem internet; o modo escuro e o movimento reduzido; o tom sem culpa ("nunca uma sequência que zera", sem vermelho e sem "você falhou"); a decisão de 16/11 de manter nível de evidência e fonte fora das telas.
 
-**Os lotes, na ordem recomendada.**
+**A fila, na ordem decidida pelo Gustavo em 21/11.** Ela junta os lotes M (desta análise) e os pacotes D (`docs/prompts/sessao-desenvolvimento-2.md`). Um item de cada vez.
 
-| # | Lote | Por que nesta ordem |
+| Ordem | Item | Por que nesta posição |
 |---|---|---|
-| M0 | **O nome** | É barato, e a abertura, o cartão e os textos dependem dele |
-| M1 | **A porta** | É onde um desconhecido desiste antes de ver o app: 21 e 24 toques para quem treina no prédio ou em casa, contra 13 na academia completa |
-| M2 | **O guia chega** | O Boneco é o que o app tem de seu, e hoje chega pequeno e pela metade |
-| M3 | **A primeira sessão fala a língua de quem começa** | O iniciante não entende a notação e vê a carga cair sem motivo |
-| M4 | **O descanso avisa** | Incomoda todo treino; depende de teste em aparelho de verdade |
-| M5 | **Um motivo para voltar** | Nada traz a pessoa de volta na primeira e na segunda semana |
-| M6 | **A triagem** | Para quem responde a verdade; texto de segurança, pede mais cuidado |
+| 1 | **M1 A porta** | É onde um desconhecido desiste antes de ver o app: 21 e 24 toques para quem treina no prédio ou em casa, contra 13 na academia completa |
+| 2 | **D2 Nada se perde no meio do caminho** | Perder dados é o pior que pode acontecer a quem já usa |
+| 3 | **M2 O guia chega** | O Boneco é o que o app tem de seu, e hoje chega pequeno e pela metade |
+| 4 | **M3 A primeira sessão fala a língua de quem começa, junto com D1 O app diz o que faz** | Os dois mexem na regra de acerto da carga; fazer junto evita mexer duas vezes |
+| 5 | **M4 O descanso avisa** | Incomoda todo treino; depende de teste em aparelho de verdade |
+| 6 | **M5 Um motivo para voltar** | Nada traz a pessoa de volta na primeira e na segunda semana |
+| 7 | **M6 A triagem** | Para quem responde a verdade; é texto de segurança e pede mais cuidado |
+| 8 | **D3 Os ajustes do treino que já têm medida** | Importa, mas não é o que faz um desconhecido desistir |
+| 9 | **D4 Mais leve e sem o motor antigo** | Limpeza e peso |
 
-Antes de cada lote, confira no `docs/devlog.md` e no `git log origin/main` se ele já foi feito, e veja se outra sessão mexe nos mesmos arquivos (`git for-each-ref --sort=-committerdate refs/remotes --count=10`). Se houver choque, registre e pergunte ao Gustavo antes de seguir.
+**Os pacotes D** valem como estão escritos em `docs/prompts/sessao-desenvolvimento-2.md` (o que fazer, as decisões do Gustavo, o aceite e o jeito de medir de cada um), com duas exceções:
+- **D1 e M3:** a regra de acerto da carga (`rir.calibracao`) é mexida **uma vez só**, no item 4 da fila, já com o que o M3 pede.
+- **D2 e M6:** a saída da triagem para quem ainda não foi avaliado (pedido 11 de `docs/revisoes/frontend-novo/pedidos-ao-dominio.md`) fica no **M6**. No D2, pule esse ponto.
 
-**Cruzamentos conhecidos.**
-- **Sessão das animações** (`claude/great-dirac-cabwvh`, em andamento em 19/11): não toque em `src/engine/novo/` nem no campo `animacaoId` de `src/domain/biblioteca/exercicios.json` até ela ir para a `main`.
-- **D1** (`sessao-desenvolvimento-2.md`) confere as regras contra o código e já cita `rir.calibracao`: a mudança da regra de acerto da carga (M3) se faz num lugar só.
-- **D2** leva ao Gustavo a saída da triagem para quem não foi avaliado (pedido 11 de `docs/revisoes/frontend-novo/pedidos-ao-dominio.md`): o M6 inclui isso; um dos dois faz.
+E uma correção ao texto dos pacotes D: ele diz que a triagem com perguntas de acompanhamento está "de lado por decisão" do Gustavo. Em 19/11 ele mudou isso (ver o M6).
 
-### M0. O nome
+Antes de cada item, confira no `docs/devlog.md` e no `git log origin/main` se ele já foi feito, e veja se outra sessão mexe nos mesmos arquivos (`git for-each-ref --sort=-committerdate refs/remotes --count=10`). Se houver choque, registre e pergunte ao Gustavo antes de seguir.
 
-O app se chama "treino-mvp" por decisão antiga ("a marca fica para depois da validação", `docs/PLANO-MVP.md:13`). Em 19/11 o Gustavo decidiu dar o nome agora. Os candidatos e a preferência da análise estão no fim de `decisoes-e-plano.md`.
+**A sessão das animações** (`claude/great-dirac-cabwvh`) ainda não tinha ido para a `main` em 21/11. Até ela ir, não toque em `src/engine/novo/` nem no campo `animacaoId` de `src/domain/biblioteca/exercicios.json`. O D4 (apagar o motor antigo) também espera por ela.
 
-1. **Decisão do Gustavo:** o nome. Antes de aplicar, procure o escolhido na base de marcas do INPI e nas duas lojas de aplicativos, e mostre o que achou.
-2. Troque onde a pessoa vê: `index.html:11`; o manifesto (`vite.config.ts:52-53`, `name` e `short_name`); o título das páginas (`src/features/app/ui.tsx:284`); `src/features/termos/Termos.tsx:38`; `src/features/dados/Dados.tsx:93,272`; a mensagem e o nome do arquivo de cópia (`src/storage/arquivo.ts:19,23`); o assunto do e-mail (`src/domain/dados/index.ts:116`).
-3. **Não troque** o que identifica os dados guardados: `APP_ID` (`src/storage/arquivo.ts:4`) e as chaves de armazenamento. Uma cópia feita antes da troca tem de continuar entrando.
+**O ramo de partida.** Esta sessão começa do ramo `claude/tender-goldberg-3qv9z0`, que é a `main` de 19/11 mais os documentos da análise (`docs/revisoes/analise-critica/` e este arquivo). Nenhum código difere. Esses documentos vão para a `main` junto com o primeiro item, quando o Gustavo der o ok.
 
-**Aceite:** nenhuma tela, ícone, título ou arquivo novo mostra "treino-mvp"; um teste garante que uma cópia antiga é aceita.
+### M0. O nome (adiado)
+
+**Fora da fila por decisão do Gustavo de 21/11:** "o nome, na verdade, podemos manter do jeito que tá, acho que a gente pode deixar isso para depois". O app continua "treino-mvp". **Não troque** título, ícone, manifesto, textos nem o nome do arquivo de cópia. A abertura (M1) e o cartão da semana (M5) usam o que já existe. Os candidatos de nome ficam guardados no fim de `docs/revisoes/analise-critica/decisoes-e-plano.md`, para quando ele quiser.
 
 ### M1. A porta
 
@@ -59,7 +60,7 @@ O app se chama "treino-mvp" por decisão antiga ("a marca fica para depois da va
 1. **Kit típico nos dois atalhos.** O mecanismo existe: `padroes` (`src/domain/taxonomia/atalhos.ts:24-36`), hoje só em "Academia completa" (`:99`), aplicado por `aplicarAtalho` (`src/features/onboarding/inventarioForm.ts:352`). O tipo já aceita halteres e banco que declina; falta para anilhas, manoplas e elásticos. **O atalho de casa passa a supor halteres comuns**, não de montar. Os valores típicos são seus, marcados como "[opinião]", como já é feito no atalho da academia; escolha o lado conservador (menos carga, e "não" nos "sim ou não").
 2. **Corrigir depois.** Hoje o seletor de carga só lista o que o inventário tem (`src/features/treino/Treino.tsx:629,917`). Acrescente uma saída do tipo "não tenho esse peso", que pergunta uma vez o mais pesado, grava pelo caminho que "Meus locais" já usa (`src/features/locais/Locais.tsx:79-86`) e aproveita o aviso que já existe ("Versão nova do programa", `src/features/programa/Programa.tsx:87,174-179`). E uma linha no programa: "Montado para um kit típico. Ajustar".
 3. **"Nunca treinei".** Entra em `TEMPOS_DE_TREINO` (`src/domain/nivel/index.ts:7`). Não faz a pergunta da pausa e conta como zero semana parada, para a pessoa cair na fase de aprendizado, e não na volta de pausa (`src/domain/gerador/index.ts:2173`), que hoje lhe dá 1 série (`:2241`) e um texto sobre "a carga que você usava antes da pausa".
-4. **A abertura.** O diagnóstico do redesenho já pedia "uma frase, o Boneco em movimento (é o produto) e o 'Começar'" (`docs/revisoes/frontend-novo/diagnostico.md:63`). Volte a dizer o que a pessoa recebe, em uma frase, e mostre o Boneco. Não há componente pronto de Boneco animado pequeno (a `Miniatura` é parada; o animado sai de `pedirCiclo`, usado no guia e no palco do treino): decida entre parado e animado pelo peso medido. **O aviso de segurança continua inteiro e à vista.**
+4. **A abertura.** O diagnóstico do redesenho já pedia "uma frase, o Boneco em movimento (é o produto) e o 'Começar'" (`docs/revisoes/frontend-novo/diagnostico.md:63`). Volte a dizer o que a pessoa recebe, em uma frase, e mostre o Boneco. O nome do app não muda (ver o M0). Não há componente pronto de Boneco animado pequeno (a `Miniatura` é parada; o animado sai de `pedirCiclo`, usado no guia e no palco do treino): decida entre parado e animado pelo peso medido. **O aviso de segurança continua inteiro e à vista.**
 5. **Os erros.** Em `src/features/onboarding/Inventario.tsx:252-259`, o toque em "Gerar meu programa" marca todos os campos de uma vez, e a mensagem não some enquanto a pessoa preenche. O erro aparece no campo que ela mexeu ou tentou fechar, e some ao corrigir. "Manopla" ganha explicação ou outro nome.
 
 **Decisões do Gustavo, uma por vez, com imagem:** a frase da abertura; o texto de "Montado para um kit típico".
@@ -85,7 +86,7 @@ O app se chama "treino-mvp" por decisão antiga ("a marca fica para depois da va
 - A semana leve do começo não se anuncia: o programa mostra "1 ×" e menos minutos que o pedido, sem dizer por quê.
 
 1. **Quatro frases, a zero toque de onde a dúvida nasce:** a notação por extenso; a reserva em palavras ("sobrando 3 ou 4"); "semana leve: metade das séries" no programa; o motivo quando a carga muda. A decisão de 16/11 fica: nada de nível de evidência nem fonte na tela. Use o `PorQue` (`src/features/app/ui.tsx:79`) para o resto.
-2. **A regra de acerto da carga.** A tela e a regra têm de dizer a mesma coisa: ou a regra aceita a faixa mostrada, ou a tela mostra o alvo de verdade, ou o número preenchido sai do meio da faixa. É mudança de regra: selo, fonte e a regra escrita antes do código. A pesquisa do projeto admite que os números dessa regra "são do projeto" (`docs/pesquisa-v2/07-progressao-e-acompanhamento.md:126`). **Se o D1 já tratou disso, não refaça.**
+2. **A regra de acerto da carga.** A tela e a regra têm de dizer a mesma coisa: ou a regra aceita a faixa mostrada, ou a tela mostra o alvo de verdade, ou o número preenchido sai do meio da faixa. É mudança de regra: selo, fonte e a regra escrita antes do código. A pesquisa do projeto admite que os números dessa regra "são do projeto" (`docs/pesquisa-v2/07-progressao-e-acompanhamento.md:126`). **É o mesmo ponto do D1, feito aqui, uma vez só.**
 3. **"Calibrar" e "acerto da carga"** viram palavras que se entendem (já é o pedido 10 de `docs/revisoes/frontend-novo/pedidos-ao-dominio.md`).
 
 **Decisões do Gustavo:** as quatro frases; qual das três saídas do item 2.
@@ -118,7 +119,7 @@ O app se chama "treino-mvp" por decisão antiga ("a marca fica para depois da va
 2. **A recepção entre 3 e 13 dias,** no tom da que já existe.
 3. **A semana abre pelas semanas com treino,** visíveis; a tabela de músculos vai para uma gaveta.
 4. **"Quando é o próximo?"** cria um compromisso na agenda do celular (um arquivo de calendário). Quem lembra é a agenda. Sem servidor.
-5. **O cartão da semana:** uma imagem com os treinos da semana e as semanas seguidas, enviada pelo botão de compartilhar do celular, com a alternativa de salvar. O desenho está em `decisoes-e-plano.md`. O projeto já desenha em canvas (`src/lib/imagem.ts:37-41`). **Só frequência, nunca carga.** Isso muda, na letra, "sem recursos sociais" (`CLAUDE.md`, Escopo): proponha ao Gustavo a frase nova.
+5. **O cartão da semana:** uma imagem com os treinos da semana e as semanas seguidas, enviada pelo botão de compartilhar do celular, com a alternativa de salvar. O desenho está em `decisoes-e-plano.md`. O projeto já desenha em canvas (`src/lib/imagem.ts:37-41`). O cartão não precisa levar nome de app por enquanto (ver o M0). **Só frequência, nunca carga.** Isso muda, na letra, "sem recursos sociais" (`CLAUDE.md`, Escopo): proponha ao Gustavo a frase nova.
 
 **Decisões do Gustavo:** os textos do fim do treino e da recepção; o desenho do cartão; a frase do `CLAUDE.md`.
 
@@ -142,7 +143,9 @@ O app se chama "treino-mvp" por decisão antiga ("a marca fica para depois da va
 
 O Gustavo decidiu ver pessoas usando **só depois das melhorias**. Deixe pronto, em uma página, o roteiro: cinco pessoas que nunca viram o app, cada uma com o seu equipamento; o que observar (chega ao programa sem ajuda? em quanto tempo? onde para?); e o teste do cartão da semana no grupo da família, por 4 semanas. Nada disso coleta dado dentro do app.
 
-### Como conduzir cada lote
+### Como conduzir cada item
+
+Nos pacotes D, vale também o "Como conduzir cada pacote" de `docs/prompts/sessao-desenvolvimento-2.md`; onde os dois textos diferirem, vale o mais exigente.
 
 1. **Ramo:** trabalhe no ramo que a sessão recebeu ou num ramo novo a partir da `main` atualizada. Nunca direto na `main`.
 2. **Meça antes** o que o lote vai mudar (os toques, as telas, as personas, o peso) e guarde o antes. As medidas da análise estão em `diario-de-uso.md`; refaça-as no commit da hora.
@@ -167,4 +170,5 @@ O Gustavo decidiu ver pessoas usando **só depois das melhorias**. Deixe pronto,
 - Não mude o gerador nem a progressão sem o antes e o depois das personas, nem regrave snapshots ou linhas de base sem o ok.
 - Não proponha feed, seguidores, comentários nem placar por carga: a análise os descartou, com motivo.
 - Não proponha aplicativo de loja: não é gratuito.
+- Não troque o nome do app: o Gustavo adiou isso em 21/11.
 - Não afirme nada sobre treino ou sobre saúde sem selo e fonte.
