@@ -57,6 +57,10 @@ A máquina de glúteo de quatro apoios é peça nova (folha `folha-gluteo-maquin
 
 Não há correção registrada para este exercício em `correcoes-ja-feitas.md`. O backlog registra que o cartão de hoje "a máquina de glúteo é genérica" (`correcoes-ja-feitas.md`, desenhos pequenos ou genéricos): a peça nova tem a almofada dos joelhos, os apoios dos antebraços, o came no eixo, a plataforma do pé e a torre.
 
+## A decisão do Gustavo (21/11/2026)
+
+Na folha das duas máquinas (`../../animacoes-restantes/coice-maquina-as-duas.png`), o Gustavo escolheu a de quatro apoios: "pode ficar com a de quatro apoios e redesenhar o cartão". A animação foi aprovada (`aprovados.ts`) e entrou na linha de base do motor novo; o cartão de equipamento (`public/equipamento/gluteo_maquina.svg`, gerado por `scripts/desenhos-equipamento/realista/itens.mjs`) foi redesenhado com as medidas desta peça: a torre de 148 cm na frente, os apoios dos antebraços a 50 cm com os pegadores, a almofada só sob o joelho de apoio e a alavanca do lado de fora da perna, com o eixo a 74 cm e a plataforma a 66 cm dele. Antes e depois em `../../animacoes-restantes/cartao-gluteo-maquina.png`.
+
 ## O que não ficou bom
 
 - **A máquina não é a das fichas do plano nem a do cartão de equipamento de hoje** (os dois são de máquina em pé). A técnica manda a de quatro apoios; se a academia típica tiver a em pé, o cartão de equipamento e a animação vão mostrar máquinas diferentes. É decisão do Gustavo qual das duas o app mostra (ver o resumo do grupo).
