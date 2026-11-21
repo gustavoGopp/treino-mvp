@@ -27,7 +27,7 @@
 2. ~~**Panturrilha no leg press**~~: decidido em 21/11 ("pode aprovar a só na perna"). É a primeira animação com o quadro só na perna.
 3. ~~**O voador no pintor novo**~~: decidido em 21/11 ("pode seguir assim" e "pode aprovar esse e todos os restantes"). O ajuste do pintor vale só no voador e na hiperextensão, que entraram no pintor novo; as três aprovadas do lote 1 não mudam. O voador, que tinha a maior área pintada errada das 81, passou na conferência.
 4. ~~**O celular mais simples**~~: decidido em 21/11, pela recomendação: fica como está até alguém reclamar.
-5. ~~**Os desenhos de equipamento que mostram outra máquina**~~: decidido em 21/11, pela recomendação: refazer todos com as peças novas (o glúteo já foi; os outros 12 estão sendo refeitos). A de mergulho sentado como segundo equipamento ficou para o backlog.
+5. ~~**Os desenhos de equipamento que mostram outra máquina**~~: decidido em 21/11, pela recomendação: refazer todos com as peças novas (o glúteo e os outros 12 foram refeitos em 21/11: folhas `cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`). A de mergulho sentado como segundo equipamento ficou para o backlog.
 6. ~~**Os pedidos ao texto dos exercícios**~~: decididos em 21/11, pela recomendação. Os textos dos cartões foram corrigidos: as travas do supino no smith (logo abaixo do ponto mais baixo), as travas nas anilhas do supino com barra, as travas da remada invertida no smith, o "pise com o pé" que saiu dos três elásticos que não ficam sob o pé e os pés do afundo para trás. Os músculos secundários (a seção 2 dos pedidos) mudam o volume que o gerador conta e ficam para a sessão do gerador.
 
 ## O que ainda não está bom

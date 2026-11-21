@@ -2018,6 +2018,12 @@ O resto está no backlog, "Das animações restantes", e os pedidos ao conteúdo
 
 **Depois do fechamento (21/11).** O Gustavo decidiu as duas que esperavam por ele, cada uma numa folha com as duas opções: o coice na máquina fica com a máquina de quatro apoios, e o cartão de equipamento da máquina de glúteo foi redesenhado igual a ela (`revisoes/animacoes-restantes/coice-maquina-as-duas.png` e `cartao-gluteo-maquina.png`); a panturrilha no leg press fica com o quadro só na perna (`panturrilha-leg-press-as-duas.png`). Com isso as 81 estão aprovadas e a lista de revisão (`EM_REVISAO`) ficou vazia. A linha de base do motor novo ganhou as duas.
 
+Depois, com "pode seguir assim" e "pode aprovar esse e todos os restantes", o resto da lista de decisões, sempre pela recomendação:
+- **O ajuste do pintor por animação** (`AJUSTE_DO_PINTOR`, em `pintor-ligado.ts`): vale só no `voador` e na `hiperextensao`, que entraram no pintor novo (folhas `revisoes/animacao-nova/pintor-por-pares/ajuste-antes-e-depois.png` e `voador-de-frente.png`). As três aprovadas do lote 1 em que o ajuste mudava o desenho ficaram como estavam; na linha de base, só as duas mudaram. O `voador`, que tinha a maior área pintada errada das 81 (1.864 cm²), passa na conferência; a conferência das 81 cai para 44 com falha.
+- **Os textos dos cartões** (`pedidos-ao-conteudo.md`, seção 1): as travas do supino no smith logo abaixo do ponto mais baixo (a regra `seguranca.montagem`), as travas nas anilhas do supino com barra, as travas da remada invertida no smith, o "pise com o pé" fora dos três elásticos que não ficam sob o pé e os pés do afundo para trás na largura do quadril. O texto do guia acompanhou.
+- **Os 13 desenhos de equipamento** que mostravam outra máquina, refeitos com as medidas das peças do motor novo (`revisoes/animacoes-restantes/cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`, mais o glúteo). Pequenos, os de torre alta (cadeiras, mesa, panturrilha em pé) leem pior que antes, porque a torre tem a altura real; os de pilha pesam de 30 a 38 kB cada (eram de 8 a 15).
+- **Ficam como estão:** o celular de entrada (sem o plano B até alguém reclamar). **Ficam para a sessão do gerador:** os músculos secundários que a ficha propõe e a biblioteca não tem. **Backlog:** a máquina de tríceps de mergulho sentado como segundo equipamento.
+
 **Rascunho de post para o LinkedIn**
 
 > Terminei as animações do meu app de treino: os 171 exercícios agora têm o boneco que mostra como fazer. E nenhuma das 81 novas está no app ainda.

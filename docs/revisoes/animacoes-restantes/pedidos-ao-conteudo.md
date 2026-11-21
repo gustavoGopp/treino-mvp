@@ -56,7 +56,7 @@ O desenho que a pessoa marca na tela de equipamento (`public/equipamento/<cartã
 | Panturrilha em pé na máquina (`panturrilha_em_pe_maquina`) | as almofadas correm num carro na vertical | as almofadas num braço que gira, como nas fotos das fichas (HS-SC, Atlantis M118) | `../animacao-nova/lote-C3/resumo-panturrilhas.md`. **Feito em 21/11**: o cartão foi redesenhado com as medidas da peça da animação (`cartoes-pernas-rack-e-barra.png`) |
 | Cadeiras flexora e extensora, mesa flexora, panturrilha sentada | menores que as fichas: a cadeira flexora 26% a 41% mais estreita, a extensora 37% a 54%, a mesa 33% a 40% mais baixa, a panturrilha sentada 13% a 45% menor (nas cadeiras, a pilha atrás do assento) | a medida das fichas, a pilha ao lado | `plano.md`, seção 3; `../animacao-nova/lote-C1/resumo-cadeiras.md`. **Feito em 21/11**: o cartão foi redesenhado com as medidas da peça da animação (`cartoes-pernas-rack-e-barra.png`) |
 
-**Decidido em 21/11:** refazer todos (o glúteo em 21/11; os outros 12 em seguida, nas folhas `cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`). A de mergulho sentado como segundo equipamento ficou para o backlog.
+**Decidido em 21/11:** refazer todos (o glúteo em 21/11; os outros 12 também em 21/11, nas folhas `cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`). A de mergulho sentado como segundo equipamento ficou para o backlog.
 
 **Recomendação:** refazer os desenhos de equipamento com as peças novas (o gerador realista de `scripts/desenhos-equipamento/` e a folha de comparação já existem), começando pelos que mostram outra máquina (glúteo, tríceps, abdominal). No da máquina de tríceps, decidir antes se o app precisa de um segundo equipamento para a de mergulho.
 
