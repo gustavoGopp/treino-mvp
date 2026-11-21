@@ -403,7 +403,7 @@ Sobre ter chegado "sozinho": ver a ressalva no começo. Para cada nota digo se t
 
 Só as decisões que são suas e que mudam a ordem ou as propostas.
 
-**Respondidas em 19/11.** As respostas e o plano que saiu delas estão em [`decisoes-e-plano.md`](decisoes-e-plano.md).
+**Respondidas em 19/11 e em 21/11.** As respostas e o plano que saiu delas estão em [`decisoes-e-plano.md`](decisoes-e-plano.md). Em 21/11: o nome ficou para depois, a ordem recomendada foi confirmada, e a construção segue numa conversa paralela, uma só, em fila.
 
 1. **Para quem é o app agora?** O plano ainda diz "o público principal, por agora, é o Gustavo". Se continuar assim, os itens 1 e 3 perdem peso e o 2 e o 4 sobem. Este ranking supõe desconhecidos.
 2. **O app pode chutar o equipamento e corrigir depois?** É o que destrava o item 1. Contraria uma decisão registrada e um teste.

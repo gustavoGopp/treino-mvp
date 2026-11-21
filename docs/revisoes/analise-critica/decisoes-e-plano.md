@@ -1,6 +1,6 @@
 # Decisões do Gustavo e o plano de melhorias
 
-19/11/2026. Continuação de [`relatorio.md`](relatorio.md). Este arquivo registra o que o Gustavo respondeu depois de ler a análise e o que sai disso. **Nada no app foi alterado**: o plano é para uma sessão de construção, e o texto pronto para ela está em [`docs/prompts/sessao-melhorias-analise-critica.md`](../../prompts/sessao-melhorias-analise-critica.md).
+19/11/2026, atualizado em 21/11/2026. Continuação de [`relatorio.md`](relatorio.md). Este arquivo registra o que o Gustavo respondeu depois de ler a análise e o que sai disso. **Nada no app foi alterado**: o plano é para uma sessão de construção, e o texto pronto para ela está em [`docs/prompts/sessao-melhorias-analise-critica.md`](../../prompts/sessao-melhorias-analise-critica.md).
 
 ## As decisões
 
@@ -11,10 +11,12 @@
 | Servidor pequeno ou app de loja, para os avisos? | "O que você recomendar e for gratuito." Ele usa Android, a maioria dos amigos usa iPhone, e ele quer "que todos tivessem capacidade de fazer as mesmas coisas" | Lote M4, com um limite dito abaixo |
 | O ramo das animações entra antes? | "A sessão das animações ainda está em andamento e sendo finalizada" | O lote M2 separa o que espera do que não espera |
 | A triagem fica como está? | "Não acho que precise ficar assim"; e, sobre até onde mudar, "como você entender mais correto" | Lote M6, com a minha escolha explicada |
-| O app ganha um nome agora? | "Sim" | Lote M0 e os candidatos no fim deste arquivo |
+| O app ganha um nome agora? | Em 19/11, "sim". **Em 21/11, mudou:** "podemos manter do jeito que tá, acho que a gente pode deixar isso para depois" | O lote M0 sai da fila. Os candidatos ficam guardados no fim deste arquivo |
 | Parar uma semana para ver 5 pessoas usando? | "Só depois das melhorias" | Vira o fecho do plano |
 | Testar o cartão da semana? | Pediu a explicação (abaixo) | Entra no lote M5 |
 | O que esta sessão faz agora? | Escrever o plano e o prompt, sem mexer no código | Este arquivo e o prompt |
+| A ordem entre este plano e os pacotes D? (21/11) | "Eu quero que você faça a ordem recomendada" | A fila da seção "A ordem decidida" |
+| Como a construção começa? (21/11) | Uma conversa paralela, aberta pela sessão da análise; uma só, em fila | A conversa nova segue a fila, um item de cada vez. Esta sessão continua como crítica de fora |
 
 ## Duas explicações que ele pediu
 
@@ -89,10 +91,9 @@ O Gustavo deixou comigo. Escolho **perguntas de seguimento para o caso comum, ma
 
 **Ordem:** o que mais faz um desconhecido desistir vem primeiro, ajustado pelo que depende de outras sessões. Um lote de cada vez, parando para a revisão do Gustavo ao fim de cada um.
 
-### M0. O nome
-- **O que muda para quem usa:** o app deixa de se chamar "treino-mvp".
-- **Como saber se melhorou:** nenhuma tela, ícone ou arquivo mostra o nome antigo.
-- **Depende de:** o Gustavo escolher (candidatos no fim).
+### M0. O nome (adiado em 21/11)
+- O app continua "treino-mvp". Nada de trocar título, ícone ou arquivo por enquanto.
+- Quando o Gustavo quiser retomar: os candidatos estão no fim; o que trocar está no prompt.
 
 ### M1. A porta
 - **O que muda para quem usa:**
@@ -147,16 +148,34 @@ O Gustavo deixou comigo. Escolho **perguntas de seguimento para o caso comum, ma
 
 ## Onde este plano encontra as outras sessões
 
-| Outra sessão | Onde cruza | O que recomendo |
+| Outra sessão | Onde cruza | Como ficou |
 |---|---|---|
 | Animações (`claude/great-dirac-cabwvh`, em andamento) | M2, parte 3 | Não tocar em `src/engine/novo/` nem no catálogo até ela ir para a `main`. Combinar quem liga as 79 animações |
-| Desenvolvimento 2, pacote D1 (regras contra o código) | M3, a regra de acerto da carga | Fazer num lugar só. Se o D1 vier primeiro, o M3 leva só os textos |
-| Desenvolvimento 2, pacote D2 (nada se perde) | M6, a saída da triagem | O mesmo: um dos dois faz |
-| Desenvolvimento 2, D3 e D4 | Nada | Independentes |
+| Desenvolvimento 2, pacote D1 (regras contra o código) | M3, a regra de acerto da carga | Os dois são feitos juntos, e a regra é mexida uma vez só |
+| Desenvolvimento 2, pacote D2 (nada se perde) | M6, a saída da triagem | Fica no M6; o D2 pula esse ponto |
+| Desenvolvimento 2, D3 e D4 | Nada (o D4 espera as animações) | No fim da fila |
 
-**A ordem que recomendo entre os dois planos:** M0 e M1 primeiro, porque é onde um desconhecido desiste; depois D2 (perder dados é o pior que pode acontecer a quem já usa); depois M2, M3 e D1 juntos; M4; M5; M6; D3 e D4 quando couber. É a minha opinião: os pacotes D vêm de outra análise, com outro critério (o que engana ou perde dados), e a ordem final é do Gustavo.
+### A ordem decidida (21/11)
 
-## Candidatos de nome
+O Gustavo confirmou a ordem recomendada, numa conversa só:
+
+| Ordem | Item | Por quê |
+|---|---|---|
+| 1 | M1 A porta | É onde um desconhecido desiste |
+| 2 | D2 Nada se perde | Perder dados é o pior que pode acontecer a quem já usa |
+| 3 | M2 O guia chega | O que o app tem de seu chega pela metade |
+| 4 | M3 A primeira sessão, junto com D1 | Os dois mexem na mesma regra |
+| 5 | M4 O descanso avisa | Depende de teste em aparelho |
+| 6 | M5 Um motivo para voltar | |
+| 7 | M6 A triagem | Texto de segurança, com calma |
+| 8 | D3 Os ajustes do treino | |
+| 9 | D4 Mais leve | |
+
+Os pacotes D vêm de outra análise, com outro critério (o que engana ou perde dados). A fila é uma só para que ninguém mexa no mesmo arquivo ao mesmo tempo.
+
+## Candidatos de nome (guardados para depois)
+
+O nome foi adiado em 21/11. Fica aqui o que já foi pensado.
 
 Critérios: curto, em português, fácil de dizer em voz alta, e que diga algo do que o app tem de seu.
 
@@ -175,8 +194,8 @@ Critérios: curto, em português, fácil de dizer em voz alta, e que diga algo d
 
 ## O que o Gustavo precisa fazer
 
-1. Escolher o nome (ou pedir outros).
-2. Dizer se a ordem entre os lotes M e os pacotes D pode ser a recomendada.
-3. Colar o prompt numa sessão nova, quando quiser começar.
-4. No lote M4: fazer o teste do descanso no Android e pedir a um amigo o do iPhone.
-5. No fecho: achar as cinco pessoas.
+1. Revisar cada item quando a conversa de construção parar, e dar o ok antes de ele ir para a `main`.
+2. Responder às decisões que ela trouxer, uma de cada vez. A primeira deve ser a frase da abertura (M1).
+3. No item M4: fazer o teste do descanso no Android e pedir a um amigo o do iPhone.
+4. No fecho: achar as cinco pessoas.
+5. Quando quiser: escolher o nome.
