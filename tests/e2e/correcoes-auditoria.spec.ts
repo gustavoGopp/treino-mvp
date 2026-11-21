@@ -82,31 +82,33 @@ test('escolher um ajuste do programa mantém o objetivo da pessoa', async ({ pag
 // Auditoria de 12/11/2026: com um treino aberto, gerar o programa de novo ("algo a evitar", o equipamento, "Atualizar",
 // a semana com menos dias) trocava os exercícios do dia por baixo do treino. Agora a mudança fica guardada e o
 // programa só é gerado de novo depois do treino.
+// Pacote 2 (15/11/2026): o exercício aberto, e marcado em "algo a evitar", é o goblet, o 1º do Corpo todo A da Ana desde
+// então (antes, o búlgaro).
 test('com um treino aberto, o programa não é gerado de novo: a mudança espera o treino terminar', async ({ page }) => {
   await ana(page);
   await comecar(page);
   const titulo = page.locator('h1.titulo');
-  await expect(titulo).toHaveText('Agachamento búlgaro com apoio');
+  await expect(titulo).toHaveText('Agachamento goblet com calcanhar elevado');
   await page.getByRole('link', { name: /Voltar ao início/ }).click();
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await page.getByText('Exercícios a evitar', { exact: true }).click();
-  await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+  await page.getByLabel('Agachamento goblet com calcanhar elevado', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   // o programa salvo continua o mesmo, e a tela diz por quê; nada de "Atualizar" agora
   await expect(page.getByText('O programa será atualizado depois do treino em andamento.')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Atualizar', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(1);
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(1);
   // o treino segue no mesmo exercício, com a prescrição dele
   await page.getByRole('link', { name: /^Continuar o treino/ }).click();
-  await expect(titulo).toHaveText('Agachamento búlgaro com apoio');
+  await expect(titulo).toHaveText('Agachamento goblet com calcanhar elevado');
   // terminado o treino, a atualização é oferecida e tira o exercício
   await terminarTreino(page);
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
   await page.goto('/programa');
   await page.getByRole('button', { name: 'Atualizar', exact: true }).click();
-  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(0);
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(0);
 });
 
 // Auditoria de 12/11/2026: com todas as regiões excluídas pela dor, o programa saía "ok" com dias vazios e o texto

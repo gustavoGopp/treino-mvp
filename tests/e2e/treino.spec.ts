@@ -29,12 +29,13 @@ async function comecar(page: Page, dia = 'Corpo todo A') {
 test('sessão completa: registra as séries, descansa e recebe a sugestão para a próxima vez', async ({ page }) => {
   await ana(page);
   await comecar(page);
-  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  // Pacote 2 (15/11/2026): o 1º exercício do Corpo todo A da Ana é o goblet (a ordem de referência); era o búlgaro.
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
   // 1ª vez: a 1ª série calibra a carga (progressao.calibracao, R1b).
   await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
   // sessão de textos (16/11/2026): o motivo saiu da tela do treino e está em "Entenda o treino" → "Os exercícios"
   await expect(page.getByRole('button', { name: 'por quê?' })).toHaveCount(0);
-  await expect(await porQueDaSugestao(page, 'Agachamento búlgaro com apoio')).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
+  await expect(await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado')).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
   await page.goto('/treino');
   await expect(page.getByText('Aqueça antes: 1–2 séries leves, sem contar.')).toBeVisible();
 
@@ -53,19 +54,22 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await descanso.getByRole('button', { name: '+15 s' }).click();
   await expect(descanso.getByRole('timer')).toHaveText(/^(2:0\d|1:59)$/);
   await descanso.getByRole('button', { name: 'Pular' }).click();
-  // 8 kg × 9 com 2 de reserva, para a faixa 8–12 com RIR 3–4: pesada. A série fica como acerto da carga.
+  // 8 kg × 9 com 2 de reserva (11 até a falha), para a faixa 8–15 com RIR 3–4 do goblet (alvo da calibração: 15, o meio
+  // da faixa mais o meio do RIR): pesada. A série fica como acerto da carga.
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2 · acerto da carga');
 
-  // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 7 kg).
-  await expect(page.getByText('Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
-  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
+  // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 6 kg; eram 7 kg na faixa 8–12 do búlgaro,
+  // até o pacote 2, de 15/11/2026).
+  await expect(page.getByText('Ficou pesada: na próxima série, 6 kg.')).toBeVisible();
+  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('6');
   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
   await page.getByRole('radio', { name: '2', exact: true }).check();
   await feita.click();
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
-  // 7 kg × 11 com 2 de reserva: perto do alvo, vira a série de trabalho (sem a marca de acerto).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('7 kg × 11 · RIR 2');
+  // 6 kg × 11 com 2 de reserva: perto do alvo (13 até a falha, a 2 do alvo de 15), vira a série de trabalho (sem a marca
+  // de acerto).
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('6 kg × 11 · RIR 2');
   // frontend novo: o "Desfazer a última série" saiu do meio da tela e mora no "⋯" (Mais opções)
   await expect((await maisOpcoes(page)).getByRole('button', { name: 'Desfazer a última série' })).toBeVisible();
   await page.keyboard.press('Escape');
@@ -86,7 +90,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
   // sessão de textos (16/11/2026): o motivo da sugestão, com o selo, saiu do fim do treino e está em "Entenda o treino"
   await expect(page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' })).toHaveCount(0);
-  const motivo = await porQueDaSugestao(page, 'Agachamento búlgaro com apoio');
+  const motivo = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
   await expect(motivo.locator('.selo').first()).toBeVisible();
   await page.goto('/treino/fim');
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
@@ -100,7 +104,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   // Treino A de novo: agora a carga sugerida aparece.
   await comecar(page, 'Corpo todo A');
   await expect(page.getByText(/^Hoje:/)).toBeVisible();
-  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
+  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('6');
 });
 
 test('treino em andamento sobrevive a fechar o app', async ({ page }) => {
@@ -119,7 +123,8 @@ test('trocar pela alternativa vale só para esta sessão', async ({ page }) => {
   await ana(page);
   await comecar(page);
   await (await abrirTrocar(page)).getByRole('button').first().click();
-  await expect(page.getByText(/No lugar de agachamento búlgaro/)).toBeVisible();
+  // o exercício trocado é o 1º do dia: o goblet desde o pacote 2 (15/11/2026); antes, o búlgaro
+  await expect(page.getByText(/No lugar de agachamento goblet/)).toBeVisible();
 });
 
 test('dor acima de 5 encerra o exercício e oferece a alternativa', async ({ page }) => {
@@ -226,26 +231,54 @@ test('dormência entre as pernas ou descontrole da urina ou das fezes encerra o 
   await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
 });
 
-test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana da Ana (RIR 3–4), não a da referência', async ({ page }) => {
+// Pacote 2 (15/11/2026): o 1º exercício do Corpo todo A da Ana passou a ser o goblet (dois lados, 8–15); antes era o
+// búlgaro (um lado só, 8–12). O teste do guia aberto pelo treino segue no 1º exercício do dia, e o "cada lado" da
+// prescrição é conferido no teste seguinte, com o afundo do Corpo todo C.
+test('R1: aberto pelo treino, o guia do goblet mostra a prescrição da semana da Ana (RIR 3–4), não a da referência', async ({ page }) => {
   await ana(page);
   await comecar(page);
-  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+  // o goblet é de dois lados: a meta do treino não diz "cada lado"
   const meta = (await page.locator('p.meta').first().innerText()).trim();
-  const series = meta.match(/^(\d+) × 8–12/)![1]!;
+  const series = meta.match(/^(\d+) × 8–15$/)![1]!;
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
-  await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
+  await expect(page).toHaveURL(/\/guia\/goblet\?de=treino/);
   // sessão de textos (16/11/2026): a linha da prescrição saiu do guia (ela está na tela do treino, de onde a pessoa
   // veio); o que o guia ainda diz da prescrição é a carga da lista de conferência, com o RIR desta semana
   expect(Number(series)).toBeGreaterThan(0);
   await expect(page.getByTestId('prescricao')).toHaveCount(0);
   await page.locator('summary', { hasText: /^Conferir \(\d+\)$/ }).click();
-  // Nada da prescrição do programa de referência ("3 × 8–12 por perna · RIR 1–2 · 1,5 min").
+  // Nada da prescrição do programa de referência (para o goblet, "3 × 8–15 · RIR 1–2 · 2 min"; para os exercícios de
+  // um lado só, "por perna").
   await expect(page.locator('body')).not.toContainText('RIR 1–2');
   await expect(page.locator('body')).not.toContainText('por perna');
   // O checklist pede a carga para o RIR desta semana, e as abas são as do dia dela.
   await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Torso A' })).toHaveCount(0);
+  await page.getByRole('link', { name: 'Voltar ao treino' }).click();
+  await expect(page).toHaveURL(/\/treino$/);
+});
+
+// O exercício de um lado só: o afundo, 1º do Corpo todo C da Ana. Até o pacote 2 (15/11/2026) esta parte era conferida
+// no búlgaro, que saiu do programa dela.
+test('R1: no exercício de um lado só (o afundo), o treino e o guia dizem "cada lado" na prescrição da Ana, não "por perna"', async ({ page }) => {
+  await ana(page);
+  await comecar(page, 'Corpo todo C');
+  await expect(page.getByRole('heading', { name: 'Afundo estático com halteres' })).toBeVisible();
+  const meta = (await page.locator('p.meta').first().innerText()).trim();
+  const series = meta.match(/^(\d+) × 8–12 cada lado$/)![1]!;
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/afundo\?de=treino/);
+  // sessão de textos (16/11/2026): a linha da prescrição saiu do guia; o "cada lado" fica na tela do treino (acima)
+  expect(Number(series)).toBeGreaterThan(0);
+  await expect(page.getByTestId('prescricao')).toHaveCount(0);
+  await page.locator('summary', { hasText: /^Conferir \(\d+\)$/ }).click();
+  // Nada da prescrição do programa de referência ("2 × 8–12 por perna · RIR 1–2 · 1,5 min").
+  await expect(page.locator('body')).not.toContainText('RIR 1–2');
+  await expect(page.locator('body')).not.toContainText('por perna');
+  await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
   await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });
@@ -283,7 +316,8 @@ test('terminar no meio do treino pede confirmação; "Continuar treinando" volta
   await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
   await expect(confirma).toBeHidden();
   await expect(page).toHaveURL(/\/treino$/);
-  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  // o 1º exercício do dia (o goblet desde o pacote 2, de 15/11/2026; antes, o búlgaro)
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
   await terminarTreino(page);
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
 });

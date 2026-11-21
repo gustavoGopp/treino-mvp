@@ -1,0 +1,120 @@
+[
+ {
+  "id": "n1",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n2",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n3",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; quer peito e costas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [
+    "peito",
+    "costas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n4",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; quer pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [
+    "pernas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n5",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n6",
+  "descricao": "Iniciante; halteres de 1 a 12 kg e banco reto; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "halteres-banco",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n7",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "n8",
+  "descricao": "Iniciante; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 60 min; sem dor; quer braços.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [
+    "bracos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ }
+]

@@ -1,0 +1,224 @@
+[
+ {
+  "id": "k0",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k1",
+  "descricao": "Intermediária; treina em casa só com elásticos (3 intensidades); 3 dias de 45 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "elasticos",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k2",
+  "descricao": "Avançada; academia completa; 4 dias de 60 min; marcou dor no joelho, nota 7 hoje; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "4",
+   "min": 60,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k3",
+  "descricao": "Intermediário; em casa, só com uma estação de polia dupla (crossover, com polia alta e baixa, sem banco); 3 dias de 45 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "so:estacao_polia_dupla",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k4",
+  "descricao": "Iniciante; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 45 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k5",
+  "descricao": "Intermediário; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 4 dias de 60 min; marcou dor no joelho, nota 7 hoje; quer costas.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [
+    "costas"
+   ],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "k6",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; marcou dor no joelho, nota 4 hoje (leve); sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "joelho",
+     "nota": 4
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "o1",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; marcou dor no ombro, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "ombro",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "o2",
+  "descricao": "Intermediário; academia completa; 4 dias de 60 min; marcou dor no cotovelo, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "cotovelo",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "o3",
+  "descricao": "Intermediária; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 3 dias de 45 min; marcou dor no quadril, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "quadril",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "o4",
+  "descricao": "Avançado; academia completa; 5 dias de 75 min; marcou dor na lombar, nota 7 hoje; quer pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "5",
+   "min": 75,
+   "focos": [
+    "pernas"
+   ],
+   "dores": [
+    {
+     "articulacao": "lombar",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "o5",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 45 min; marcou dor no cotovelo, nota 7 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "cotovelo",
+     "nota": 7
+    }
+   ],
+   "semanasParado": 0
+  }
+ }
+]

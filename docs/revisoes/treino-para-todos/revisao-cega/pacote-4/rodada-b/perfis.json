@@ -1,0 +1,108 @@
+[
+ {
+  "id": "b1",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b2",
+  "descricao": "Iniciante; academia completa; 5 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "5",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b3",
+  "descricao": "Iniciante; academia completa; 3 dias de 75 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 75,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b4",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b5",
+  "descricao": "Iniciante; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 4 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "iniciante",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b6",
+  "descricao": "Iniciante; academia completa; 4 dias de 60 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "4",
+   "min": 60,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b7",
+  "descricao": "Iniciante; academia completa; 3 dias de 90 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 90,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "b8",
+  "descricao": "Iniciante; em casa, com halteres de 1 a 12 kg e banco reto; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "halteres-banco",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ }
+]

@@ -944,6 +944,8 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   .valor-grande{white-space:normal}
   .tctl{grid-template-columns:1fr 1fr}
   .tctl button:last-child{grid-column:1 / -1}
+  /* com zoom de 200%, o nome de uma fase curta ("subida", no goblet) não cabia no trecho dela na barra de tempo */
+  .tseg{font-size:.6875rem}
   .tctl.so-um{grid-template-columns:1fr}
   .marca{white-space:normal}
   .alerta-topo{white-space:normal;padding:0 var(--s8)}

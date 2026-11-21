@@ -510,9 +510,11 @@ export function divisaoEscolhida(
   metaMax: number,
   escolhida?: DivisaoId,
   semPuxar = false,
+  /** selecao.dia-sem-principal (15/11/2026): o gerador pode pedir o recuo de corpo todo (o 6x) quando a dor esvazia um dia. */
+  aceitaRecuo = false,
 ): { divisao: Divisao; escolhida: boolean; corpoTodoPorFaltaDePuxar: boolean } {
   const opcoes = opcoesDeDivisao(dias, metaMax);
-  const ok = escolhida && opcoes.some((o) => o.id === escolhida);
+  const ok = escolhida && (opcoes.some((o) => o.id === escolhida) || (aceitaRecuo && escolhida === CORPO_TODO_SEM_PUXAR[dias]));
   if (ok) return { divisao: DIVISOES[escolhida], escolhida: true, corpoTodoPorFaltaDePuxar: false };
   const corpoTodo = semPuxar ? (opcoes.find((o) => !temDiaDeTronco(DIVISOES[o.id]))?.id ?? CORPO_TODO_SEM_PUXAR[dias]) : undefined;
   const id = corpoTodo ?? opcoes[0]!.id;

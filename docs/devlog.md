@@ -1623,6 +1623,222 @@ A sessão que corrigiu, do mais grave ao menos grave, o que a auditoria geral ti
 > A regra que usei: primeiro um teste que mostra o erro, depois a correção. Foram 59 testes de regra e 12 de tela a mais, e a lista do que eu não corrigi fica escrita, com o motivo.
 
 
+## Treino para todos, etapa 1: pesquisa, retrato medido e proposta (12 e 13/11/2026)
+
+O Gustavo pediu levar o treino recomendado ao nível mais alto possível, para qualquer pessoa que o app possa atender, e não só para ele. Esta etapa só pesquisa, mede e propõe: **nada em `src/domain/` mudou**, e o app gera os mesmos programas de antes. Tudo está em `docs/revisoes/treino-para-todos/`; a parada é para a decisão dele (`proposta.md`, seção 10).
+
+**A pesquisa.** Nove temas novos em `docs/pesquisa-v2/` (18 a 26), começando pelo que os 17 anteriores não respondiam: volume pelo tempo e pelo nível; carga, falha e descanso; escolha, ordem e fadiga; progressão em meses; as pessoas diferentes e o que o cadastro não pergunta; dor, pressão alta e gestação; os outros objetivos e a adesão; como treinadores montam e o que os aplicativos fazem. 114 fontes novas em `fontes.md` e 116 relidas. Dois verificadores independentes conferiram 23 afirmações centrais na fonte, sem ver as conclusões: 16 confirmadas, 7 em parte, e as correções entraram no texto (tema 26).
+
+**O retrato.** A régua virou os "20 cuidados" de um bom treinador (`scripts/auditoria/cuidados.ts`), medidos em 680.625 programas fictícios (55 cenários de equipamento × 3 níveis × 2 a 6 dias × 5 durações × 11 focos × 15 situações de dor), em duas contas: a grade e a ponderada pelas combinações mais prováveis (os pesos são estimativa). O que apareceu:
+- sem foco, o nível e o tempo quase não mudam o treino: ~6 séries por músculo; 1 em cada 4 programas com o dia típico abaixo de 70% do tempo pedido (ponderada); um avançado com academia completa e 5 dias de 90 min recebe dias de 26 a 46 min;
+- quem tem 30 min é o pior grupo: 9 em cada 100 programas sem nenhum defeito (ponderada);
+- com dor forte no cotovelo, no quadril ou no ombro, 1 em cada 3 programas tem um dia de menos de 3 exercícios;
+- entre exercícios equivalentes, a escolha cai na animação (8 em cada 10 programas) e no alfabeto (9 em cada 10);
+- com dor forte no joelho, 43 em cada 100 programas ainda prescrevem um exercício ajoelhado (a biblioteca não dizia que eles carregam o joelho);
+- o aviso de "três sessões sem melhora" aparece em 24 a 41 de cada 48 sessões do praticante simulado.
+
+**A proposta, medida num protótipo** (`scripts/auditoria/prototipo/`, uma cópia do gerador, idêntica ao app com tudo desligado):
+
+| | Hoje | Proposta |
+|---|---:|---:|
+| Programas sem nenhum defeito da régua oficial (ponderada) | 79,0% | 96,2% |
+| Idem, na grade | 80,3% | 89,8% |
+| O pior grupo (dor forte no cotovelo) | 50,0% | 71,9% |
+| Dia típico abaixo de 70% do tempo, sem aviso (ponderada) | 15,2% | 0,0% |
+| Dia de 5 exercícios ou mais com 2 séries em todos (ponderada) | 21,8% | 11,3% |
+| Revisão cega, 2ª rodada: eficiente · adequada · agradável | 5,5 · 5,8 · 5,3 | 6,0 · 6,4 · 5,8 |
+
+As três mudanças que mais pesam: o tempo que sobra vira série em todos os dias, até o alvo do nível (reabre o E-c descartado em 07/11, agora com a régua, os pesos e a revisão cega); o desempate entre exercícios passa pelo exercício de referência e de dois lados antes da animação e do alfabeto; com dor forte, a semana é montada em corpo todo quando um dia ficaria quase vazio. Três ideias foram medidas e recusadas (limite de 6 exercícios para o iniciante com os dias de hoje; proibir o bi-set de exercícios grandes ao iniciante; trocar o agachamento comum por um de uma perna para quem é forte e não tem carga).
+
+**A revisão cega.** 18 pessoas fictícias, hoje × proposta, 36 páginas embaralhadas, 3 revisores no papel de treinadores, duas rodadas. A 1ª derrubou a 1ª versão da proposta para quem tem 4 focos (122 séries por semana) e apontou o exercício ajoelhado com dor no joelho; a 2ª, depois dos ajustes: 9 pessoas com nota melhor, 8 iguais, 1 pior (0,3 ponto numa nota). É opinião de treinador simulado, não evidência.
+
+**As doze pessoas.** `docs/revisoes/treino-para-todos/exemplos/`: as 6 personas do projeto e 6 novas (`tests/personas/todos.ts`: 67 anos começando, só elásticos, 2 dias de 30 min, avançada sem equipamento, dor no joelho, ficar mais forte), cada uma com a semana de hoje ao lado da proposta, o que mudou e por quê, e o que os revisores disseram.
+
+**O que a proposta não resolve:** 30 minutos continua o pior grupo; quem é forte e não tem equipamento recebe quase a mesma semana; sem nada para puxar, costas e bíceps continuam a zero; o iniciante continua com duplas de exercícios. E o protótipo ainda tem pioras de 0,1 a 0,6 ponto em dois defeitos de equilíbrio em alguns grupos: o critério de pronto da etapa 2 (nenhum defeito pior em nenhum grupo) ainda não fecha.
+
+**Rascunho de post.** "Medi 680 mil programas de treino que o meu app pode gerar, para gente fictícia do iniciante ao avançado, da academia completa à sala de casa. O defeito mais comum não era um exercício errado: era o app dar o mesmo treino curto a quem tinha 30 e a quem tinha 90 minutos. Antes de mexer, a proposta passou por uma revisão cega, e a 1ª versão dela piorou o treino de quem tinha 4 focos. Voltei, corrigi, medi de novo."
+
+## Treino para todos, etapa 2, pacote 1: o treino usa o tempo que sobra (13/11/2026)
+
+O Gustavo disse sim à decisão 1 da proposta. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. O relatório completo, com o antes e o depois, é `docs/revisoes/treino-para-todos/pacote-1.md`; a régua por grupo, `qa.md`.
+
+**O que mudou.** `tempo.sobra-series` ganhou um 2º passo: com o programa já montado, cortado e completado, o tempo que ainda sobra vira série em todos os dias, e não só nos que tinham vaga vazia por falta de equipamento. Os exercícios são os de antes; só as séries sobem. Sem foco, cada músculo sobe até o alvo do nível; com 1 ou 2 grupos de foco, o foco primeiro; com 3 ou mais, o foco fica na meta. Para o iniciante, só os exercícios grandes ganham série, e até 3. Quando o tempo ainda sobra, o app avisa a duração real. Nenhuma tela mudou (por isso não há imagem): mudam os números do programa e três textos do "por que este programa".
+
+**Em pessoas.** A Marina (intermediária, academia completa, 4 dias de 60 min, sem foco) recebia dias de 37 a 46 min com 2 séries de quase tudo, 60 séries na semana; recebe dias de 58 a 60 min, 83 séries, com os mesmos 26 exercícios. O Leandro (iniciante, 3 dias de 60 min) ganha uma série em 4 exercícios grandes e fica com dias de 54 a 57 min. O Bruno e a Carla ganham uma série cada. Oito das doze pessoas dos exemplos ficam iguais.
+
+**Medido em 680.625 programas fictícios:**
+
+| | Antes (main) | Agora (ramo) |
+|---|---:|---:|
+| Programas sem nenhum defeito na régua oficial (ponderada) | 79,0% | 94,4% |
+| Idem, na grade | 80,3% | 83,6% |
+| Dia típico abaixo de 70% do tempo, sem aviso (ponderada) | 15,2% | 0,0% |
+| Dia de 5 exercícios ou mais com 2 séries em todos (ponderada) | 21,8% | 15,1% |
+| Séries por músculo por semana (média ponderada) | 7,3 | 7,8 |
+| O pior grupo (dor forte no cotovelo), na grade | 50,0% | 50,0% |
+
+Nenhum dos 9 defeitos da régua sobe em nenhum grupo nem em nenhum recorte. O pior grupo e os treinos de 30 min não mudam (são dos pacotes seguintes). Para o iniciante, o ganho na régua vem quase todo do aviso novo, e não do tempo usado.
+
+**O que a medida mudou na regra.** A 1ª versão (a do protótipo da etapa 1) punha as séries no meio da montagem e, em treinos de 30 min, tirava o lugar de exercícios; a versão que entrou age no fim. E a 1ª versão dava séries ao iniciante em tudo, até encher a hora: na revisão cega, o Leandro piorou em duas rodadas seguidas. Numa 3ª rodada, com cinco iniciantes e três versões de cada, "só os exercícios grandes, até 3 séries" não baixou a nota de nenhum; "tudo até encher" baixou a de 2. Entrou a primeira; a segunda fica registrada no backlog como medida e recusada.
+
+**A revisão cega** (três revisores simulados, três rodadas, 65 páginas; opinião, não evidência): com as 18 pessoas de sempre, as médias foram de 5,5 · 5,6 · 5,2 para 5,8 · 5,8 · 5,4 (eficiente · adequada · agradável). A Marina sobe 5,3 e 3,3 pontos na soma das três notas, nas duas rodadas; o avançado de 5 dias de 90 min, 7,0 e 9,3.
+
+**Registros de teste.** Cinco registros mudaram (uma série a mais no Bruno e na Carla). Foram mostrados ao Gustavo e regravados com o ok dele em 13/11; `npm run check` passa inteiro (937 testes) e os 157 testes de ponta a ponta também.
+
+**Rascunho de post.** "A primeira mudança do 'treino para todos' entrou no ramo: o app deixa de dar 2 séries de tudo a quem tem uma hora e academia completa. Parece simples (sobrou tempo, mais séries), mas a medida mudou a regra duas vezes. Primeiro, as séries a mais estavam tomando o lugar de exercícios em treinos curtos; passaram a entrar só no fim. Depois, três treinadores simulados, sem saber qual versão liam, baixaram a nota do iniciante que ganhou séries em tudo: 8 exercícios com 3 ou 4 séries, no limite da hora, é demais para quem está aprendendo. Para ele, a série a mais agora vai só para os exercícios grandes. Regra que não melhora a medida não entra, mesmo quando parece certa."
+
+## Treino para todos, etapa 2, pacote 0: com dor forte no joelho, ninguém ajoelha (14/11/2026)
+
+O Gustavo aprovou o pacote 1 (regravou-se com o ok dele o que mudava nos registros de teste) e escolheu o pacote 0 como o seguinte. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. Relatório: `docs/revisoes/treino-para-todos/pacote-0.md`; régua por grupo: `qa.md`.
+
+**O que mudou.** Com dor acima de 5 no joelho, o app tirava o agachamento e o leg press e ainda mandava ajoelhar na puxada e no abdominal da polia. Duas regras: (1) o exercício cuja posição de base apoia o peso do corpo no joelho passa a carregar o joelho na biblioteca (8 exercícios, achados lendo os textos de execução do próprio app; a proposta falava de 3); (2) a vaga de um exercício grande que a dor esvazia recebe, no próprio lugar, outro exercício grande do mesmo músculo (a puxada ajoelhado vira uma remada), em vez de sumir. Nenhuma tela mudou.
+
+**Em pessoas.** O Leandro (iniciante, academia completa, 3 dias de 60 min, dor 7 no joelho) recebia a puxada unilateral ajoelhado, a puxada ajoelhado com barra reta, o coice na máquina e o abdominal ajoelhado na polia; passa a receber a puxada sentado no puxador, o hip thrust e o abdominal no banco declinado, com as mesmas séries por músculo. As outras onze pessoas dos exemplos não mudam.
+
+**Medido em 680.625 programas fictícios** (o "antes" é o gerador da `main`, medido com a régua de agora):
+
+| | Antes (main) | Agora (ramo) |
+|---|---:|---:|
+| Com dor 7 no joelho: programas com um exercício de joelho apoiado (grade) | 7.773 de 45.375 | 0 |
+| Idem, na conta ponderada | 47 em cada 100 | 0 |
+| Com dor 7 no joelho: programas sem nenhum defeito (ponderada) | 49,8% | 95,8% |
+| Todos os programas sem nenhum defeito (ponderada) | 78,1% | 94,4% |
+
+Nos totais nenhum defeito sobe, e em nenhum grupo sobe mais de 0,05 ponto; na contagem bruta, 28 pares de grupo e defeito sobem de 1 a 8 programas (a lista de exercícios encolheu e alguns programas cruzam um limite). Com a segunda regra, entre os programas com dor marcada, os que têm um dia fraco caem 139 e os que empurram muito mais do que puxam, 15.
+
+**O que a medida mudou na regra.** A primeira versão da troca valia para qualquer vaga: com dor no ombro, o tríceps entrava com 4 séries e estourava os treinos de 30 min (de 626 para 793 programas). Ficou só para a vaga de exercício grande, e só por outro exercício grande.
+
+**A revisão cega** (12 pessoas com dor, a `main` e a versão de agora, 24 páginas, três revisores simulados): médias de 5,2 · 5,9 · 5,2 para 6,0 · 6,2 · 5,5; nove sobem, uma fica igual e **duas caem** (−1,0 e −0,7): as duas em que a puxada ajoelhada era o único puxar vertical possível (só elásticos; só a estação de polia dupla), que ficam só com remadas. É a troca entre segurança e variedade; o remédio é uma versão sentada dessas puxadas, pedida à animação.
+
+**Conferências.** `npm run check` limpo (945 testes); nenhum registro de teste mudou.
+
+**Rascunho de post.** "Dois revisores apontaram: com dor forte no joelho, o app tirava o agachamento e mandava a pessoa ajoelhar para fazer a puxada. O dado estava errado na biblioteca, e não era só nos três exercícios que eles viram: lendo o texto de execução dos 171, achei oito em que a posição de base apoia o joelho. A correção custou alguma coisa, e está escrito quanto: quem só tem elásticos e marca dor forte no joelho fica sem a puxada, só com remadas, até existir a versão sentada. Segurança não se troca por variedade."
+
+## Treino para todos, etapa 2, pacote 3: a dor que não desmonta a semana (15/11/2026)
+
+O Gustavo aprovou o pacote 0 (manter a regra do joelho mesmo para quem só tem puxada ajoelhada; a lista de 8 exercícios) e escolheu o pacote 3. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. Relatório: `docs/revisoes/treino-para-todos/pacote-3.md`; régua por grupo: `qa.md`.
+
+**O que mudou.** Quatro regras, uma por vez: (1) com dor acima de 5, se um dia da divisão recomendada fica com menos de 3 exercícios ou sem exercício grande, a semana sai na outra divisão oferecida (quase sempre corpo todo), e o app diz por quê; (2) o mesmo exercício nunca em todos os dias, em todo caminho da escolha; (3) com 30 min, abdômen e panturrilha vão para dias diferentes; (4) os dois exercícios de uma dupla ficam juntos na lista. Nenhuma tela mudou.
+
+**Em pessoas.** O intermediário de academia com dor 7 no cotovelo, 4 dias de 60 min, recebia dias de 20, 36, 22 e 44 min (dois deles com três exercícios pequenos); recebe dias de 44, 58, 55 e 59 min, em corpo todo, com 81 séries em vez de 46. A avançada com halteres e dor no ombro tinha um dia de 3 minutos e outro de 8; passam a 31 e 34. O Jonas (2 dias de 30 min) tem o 1º dia de 38 min reduzido a 34.
+
+**Medido em 680.625 programas fictícios:**
+
+| | Antes (main) | Depois do pacote 0 | Agora |
+|---|---:|---:|---:|
+| Programas sem nenhum defeito (grade) | 79,4% | 83,6% | 90,6% |
+| Idem (ponderada) | 78,1% | 94,4% | 96,4% |
+| O pior grupo até aqui, dor 7 no cotovelo (grade) | 50,0% | 50,0% | 75,0% |
+| Programas com um dia de menos de 3 exercícios ou sem exercício grande | 71.999 | 71.860 | 29.159 |
+| Programas com o mesmo exercício em todos os dias, havendo outro | 2.646 | 2.646 | 0 |
+
+Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. É a primeira vez que o pior grupo melhora, e ele deixa de ser o pior (agora são os treinos de 30 min, com 72,9%). Os números já incluem a 5ª regra do pacote: com 6 dias, a semana remontada pode usar o Corpo todo 6x (decisão do Gustavo em 15/11, depois de ver a medida: mais 12 mil programas sem dia fraco).
+
+**O que a medida mudou.** A 1ª versão da regra da dor trocava a divisão sempre que diminuía os dias fracos: 301 de 35 mil programas ganhavam um músculo sem nenhuma série. A que entrou só troca quando a divisão nova não custa outra coisa. Três regras de dupla pedidas pelos revisores foram medidas e ficaram de fora, porque põem treinos curtos acima do tempo.
+
+**A revisão cega** (14 pessoas, 28 páginas, três revisores simulados): médias de 5,1 · 5,3 · 4,9 para 5,9 · 5,7 · 5,4; nove sobem, quatro iguais, uma cai (−3,3). A que cai não é mexida por este pacote: as mesmas duas páginas tinham tido +0,3 na revisão do pacote 0. É um aviso sobre o pacote 1 (dia cheio até o limite), anotado no backlog para medir uma folga.
+
+**Registros de teste.** Dois registros da Ana mudaram (só a ordem dos exercícios); foram mostrados ao Gustavo e regravados com o ok dele em 15/11. `npm run check` passa inteiro (953 testes) e os 157 testes de ponta a ponta também.
+
+**Rascunho de post.** "O pior caso do meu app de treino era quem marcava dor forte no cotovelo: metade dos programas saía com defeito, com dias de 20 minutos e três exercícios pequenos. A correção parecia óbvia (juntar tudo em treinos de corpo todo), e a primeira versão melhorou esse número e piorou outro: 301 pessoas fictícias ficaram com um músculo sem nenhuma série. A regra que entrou só troca a divisão quando a troca não custa nada. E os dois painéis de treinadores simulados deram +0,3 e −3,3 às mesmas duas páginas: nota de revisor é opinião, e a medida é que decide."
+
+## Sessão "treino para todos", etapa 2, pacote 2 (15/11/2026): a escolha entre exercícios equivalentes
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** Entre exercícios que servem para a mesma vaga, o app deixou de decidir pela ordem alfabética. Quatro regras, uma por vez: (1) no empate total, vale a ordem de referência da lista da função, que virou dado curado (a puxada pela frente antes da puxada com barra reta; o afundo antes do búlgaro; o abdominal no chão antes do da bola); (2) em máquina, polia e barra, o exercício de dois lados vem antes do de um lado só (a puxada pela frente no lugar da puxada unilateral ajoelhado; o hip thrust no lugar do coice na máquina); com halter e kettlebell nada muda, e a regra nunca age contra uma região com dor leve nem contra o "prefiro este"; (3) regra nova, `selecao.lombar-no-dia`: depois de um exercício que carrega a lombar sem apoio, entra o apoiado, havendo opção do mesmo nível; (4) nem o empurrar do foco sobe uma série se levar empurrar ÷ puxar acima de 1,5.
+
+**Medido em 680.625 programas (pacote 3 → pacote 2).** Régua sem defeito: 90,6% → 90,7% na grade e 96,4% → 96,8% na ponderada. Dias acima de 110% do tempo: 24.312 → 23.465. Empurrar ÷ puxar acima de 1,5: 3.491 → 3.340. Exercício escolhido pela ordem alfabética: 73,4% → 0% dos programas. Três exercícios ou mais no dia que carregam a lombar sem apoio: 4,0% → 0,7%. O que piora: o foco abaixo da meta "com tempo" sobe 44 programas (os dias ficaram mais curtos e a régua passou a contar o tempo), e quem treina 2 dias tem 65 programas a mais com empurrar ÷ puxar acima de 1,5.
+
+**O que a revisão cega mudou.** Na 1ª rodada, duas das doze pessoas pioraram com a regra dos dois lados: a pessoa com dor leve na lombar e o avançado com halteres de até 20 kg. A regra foi estreitada e a revisão refeita: as três notas médias sobem, seis pessoas sobem, quatro ficam iguais e duas caem 0,3.
+
+**O custo no guia.** Os exercícios de referência que entram são cartão de texto: os cartões por dia vão de 1,92 para 2,04 (ponderada). O pedido à animação foi atualizado: puxada pela frente (51% dos programas) e hip thrust (45%) em 1º e 2º.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "Quando dois exercícios servem para a mesma coisa, qual o app escolhe? Até ontem, o que tinha animação e, no empate, o primeiro do alfabeto. Resultado: na academia completa, a primeira puxada do programa era uma puxada de um braço só, ajoelhado na polia. Agora a ordem é a que um treinador usaria: o exercício mais comum primeiro, os dois lados antes de um lado só quando a carga é à vontade. Medi em 680 mil programas e passei por três revisores às cegas; a primeira versão piorava a vida de quem tem dor leve na lombar, e foi corrigida antes de entrar."
+
+## Sessão "treino para todos", etapa 2, pacote 4 (16/11/2026): o corte de tempo revisto e o iniciante
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** Três regras, uma por vez. (1) Quando o dia não cabe no tempo, antes de qualquer dupla ou corte, o exercício de um lado só dá lugar ao equivalente de dois lados (a panturrilha de um pé pela de dois; o stiff de um lado pelo de dois): nenhuma série sai da semana. (2) A dupla de dois exercícios que carregam a lombar (stiff com remada curvada) virou o último recurso do corte, em vez da primeira saída. (3) O iniciante repete o exercício que já está na semana quando a função se repete (a mesma puxada nos dois dias), nunca em todos os dias; e só se isso não custar tempo, dia fraco nem equilíbrio.
+
+**Medido em 680.625 programas (pacote 2 → pacote 4).** Régua sem defeito: 90,7% → 91,0% na grade e 96,8% → 97,1% na ponderada. Dias acima de 110% do tempo: 23.465 → 22.399. Dias fracos: 29.089 → 28.380. Empurrar ÷ puxar acima de 1,5: 3.340 → 3.090. Iniciantes com mais de 12 exercícios diferentes na semana: 19,3% → 12,7% dos programas (grade). Os cartões de texto por dia caem de 2,04 para 1,94 (ponderada). O que piora: 31 pares grupo × defeito sobem de 1 a 15 programas; 187 descem.
+
+**A revisão cega, com franqueza.** Em doze pessoas, uma sobe 5 pontos (o dia de pernas sem a pilha de drop sets), oito ficam iguais e três caem de 0,3 a 0,7: são as pessoas em que agiram a regra do iniciante e a da dupla de lombar. Os revisores veem a regra 1; as outras duas melhoram o que a régua conta, mas eles não as premiaram. Ficaram como decisão do Gustavo.
+
+**O que não entrou.** O limite de 6 exercícios por treino para o iniciante: testado com oito iniciantes, a nota de eficiência caiu (o tempo sobra para quem tem 75 ou 90 min ou treina 4 a 5 dias). Ajuda só o iniciante de 3 dias de 60 min; fica para um teste próprio.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "Quando o treino não cabe no tempo, o app tinha duas saídas: juntar exercícios em dupla ou cortar séries. Agora tem uma antes dessas: trocar o exercício de um lado só pelo de dois lados, que leva metade do tempo e rende o mesmo. Em 680 mil programas, mil deixaram de passar do tempo sem perder uma série. Também testei limitar o iniciante a 6 exercícios por treino, que era o pedido nº 1 dos revisores: na revisão às cegas a nota caiu, porque o tempo sobrava. Não entrou."
+
+## Sessão "treino para todos", etapa 2, pacote 5 (16/11/2026): o aviso de "sem melhora"
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** O aviso de "sem melhora" deixou de contar 3 sessões paradas para todo mundo: agora são 4 para o iniciante, 8 para o intermediário e 16 para o avançado. As sessões passam a ser comparadas pelas séries que têm em comum (o exercício com 3 séries num dia e 2 no outro fazia o aviso piscar). Para a regra saber o nível, o programa guardado passou a registrá-lo: é a versão 9 dos dados, com uma migração que só grava o nível quando o programa foi gerado com o cadastro de agora.
+
+**Medido no simulador de meses (48 sessões de um exercício, 15 casos).** O aviso aparecia em 24 sessões para o iniciante, 36 para o intermediário e 41 para o avançado; agora, em 17 nos três. A carga sobe as mesmas vezes. Os números 4, 8 e 16 são escolha do projeto, sem estudo que os defina.
+
+**O custo.** Quem está parado de verdade demora mais para ouvir (um avançado, até 16 semanas num exercício feito 1 vez por semana), e a semana leve por estagnação é sugerida mais tarde (o Bruno: fim da 4ª semana, em vez da 2ª).
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "O app avisava 'três sessões sem melhora' para todo mundo. Para um iniciante, três sessões paradas dizem alguma coisa. Para quem treina há anos, o ganho de uma sessão para a outra é pequeno demais para aparecer: no simulador, um avançado no ritmo normal lia o aviso em 41 de 48 treinos. Agora a paciência do app cresce com o nível: 4, 8 e 16 sessões. Esses números são aposta minha, e está escrito assim na regra."
+
+
+## Sessão "treino para todos", fechamento da etapa 2 (17/11/2026)
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** A etapa 2 está fechada no ramo: os pacotes 0 a 5 e, no último dia, uma correção de segurança. Na revisão cega final, os três revisores apontaram o agachamento com a barra nas costas para quem marcou dor forte no ombro; o defeito já existia na `main` (o dado do exercício não marcava o ombro). Com o ok do Gustavo, o agachamento livre com barra e o do Smith passaram a marcar o ombro, com um teste que confere o texto do exercício contra a marca.
+
+**Medido na população (680.625 programas fictícios), da `main` de antes ao ramo de agora.** Programas sem nenhum defeito da régua: de 79,4% para 91,0% (cada combinação uma vez) e de 78,1% para 97,1% (com os pesos, que são estimativa). "Tempo sobrando sem aviso", "o mesmo exercício em todos os dias" e "exercício em região com dor forte" foram a zero; "dia fraco" caiu de 71.999 para 28.380 programas. O pior grupo era o da dor forte no cotovelo (50,0% sem defeito); agora é o dos treinos de 30 minutos (73,8%).
+
+**Revisão cega final (18 pessoas fictícias, 3 revisores simulados).** Notas médias de 5,43 · 5,85 · 5,15 para 5,91 · 6,31 · 5,52. Nove pessoas melhoram, oito ficam iguais, uma cai 0,3 ponto em uma nota (o Bruno). A marca do ombro, numa mini-rodada: "adequada" de 3,7 para 5,0.
+
+**O que não fecha por inteiro.** 27 pares "grupo × defeito" acima da `main` na contagem bruta (o maior, 28 programas de 45.375); o Bruno com 0,3 ponto a menos em eficiência; e 4 programas (de 45.375 com dor forte no ombro) que ganham um dia longo demais com a marca do ombro: pessoas que só têm o Smith e passam a receber o treino de quem não tem equipamento. Em troca, 1.925 programas deixam de pôr a barra nas costas de quem tem dor forte no ombro.
+
+**A `main`.** Andou 280 commits (o frontend novo). O ensaio da junção deu 4 conflitos e mostrou que os testes de tela novos citam o búlgaro em 21 lugares. A junção fica para depois da decisão do Gustavo, em dois passos: trazer a `main` para o ramo e rodar tudo; só então juntar.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação. As doze pessoas, com a semana de antes ao lado da de agora, estão em `docs/revisoes/treino-para-todos/exemplos-finais/`.
+
+**Rascunho de post.** "Passei cinco dias fazendo o app montar um treino melhor para qualquer pessoa, não só para mim. A regra da casa: melhorar um perfil piorando outro não é melhoria. Medi 680 mil programas de pessoas inventadas antes e depois de cada mudança, e pedi a treinadores simulados que dessem nota sem saber qual versão estavam lendo. O que mais rendeu não foi nada esperto: o app deixava minutos sobrando no treino, e agora usa. O que eu não consegui resolver também está escrito: quem treina em casa sem equipamento continua sem exercício para as costas, e o iniciante ainda recebe exercícios em dupla para caber no tempo. No último dia, os revisores acharam um erro que estava lá desde o começo: agachamento com a barra nas costas para quem marcou dor forte no ombro. Corrigido no mesmo dia, com teste."
+
+## Sessão "treino para todos": a `main` dentro do ramo e o ramo na `main` (17/11/2026)
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`; a `main` não foi tocada).** Com o ok do Gustavo, a `main` foi trazida para dentro do ramo da sessão, em três junções no mesmo dia, porque ela andava enquanto o trabalho era feito: o frontend e a animação novos (280 commits), a sessão de textos (45) e o bloqueio depois do sinal de alerta do coração (2). Nove conflitos ao todo, resolvidos sem perder nada de nenhum lado.
+
+**O que apareceu.** A sessão de textos passou a exigir uma frase em linguagem simples para cada regra. Faltavam as das 2 regras novas da etapa 2, e 11 frases ainda diziam o que a regra dizia antes (por exemplo, "3 treinos seguidos" sem melhora, quando agora são 4, 8 ou 16). As 13 estão em `docs/revisoes/treino-para-todos/frases-das-regras.md`, antes e depois, para revisão. Nos testes de tela reescritos pela sessão de textos, ficou a estrutura da `main` com o exercício deste ramo (o goblet no lugar do búlgaro). A correção do zoom de 200% (15/11) deixou de ser necessária: o estilo novo resolve o caso de outro jeito.
+
+**Conferido no estado juntado.** `check` limpo (1.033 testes), testes de tela limpos (180), as duas conferências novas da `main` passam, a auditoria em duas rodadas fecha limpa (39 arquivos idênticos, nenhum relatório mudou) e a medida da população (680.625 programas) é idêntica à do fechamento, byte a byte: as junções não mudam nenhum programa.
+
+**A junção na `main`.** No mesmo dia, com o ok do Gustavo, o ramo foi juntado na `main`, sem forçar: um commit de junção cujo conteúdo é idêntico ao do ramo verificado. Os dados guardados passam da versão 8 para a 9 na primeira abertura do app.
+
+**Imagem.** Sem imagem: as telas e o motor são os da `main`.
+
+**Rascunho de post.** Sem post: é trabalho de bastidor.
+
+## O limite de 6 exercícios do iniciante (18/11/2026)
+
+**O que mudou (na `main` desde 18/11/2026, com o ok do Gustavo; a verificação do GitHub passou).** Quem está começando e treina 3 dias de até 60 minutos passa a ter até 6 exercícios por treino, e não os 8 que cabem em 60 minutos. Um exercício do foco, o abdômen ou a panturrilha podem ser o 7º. O limite só vale se não custar outra coisa (um dia longo demais, um dia fraco, empurrar muito mais que puxar, um músculo sem série ou com menos de 4). Com o limite, o lugar que a dor esvaziou vai primeiro para o músculo do foco que está abaixo da meta, e o porquê do programa diz o limite. Regra nova em `docs/pesquisa/regras.md` (`tempo.exercicios-do-iniciante`), com selo de consenso de treinadores.
+
+**Como chegou aqui.** O teste de 17/11 mostrou que os revisores preferem o limite, mas um defeito da régua piorava. Hoje, três consertos no protótipo: o primeiro (o foco em peito com dor forte no cotovelo) e o terceiro (o texto) resolveram; o segundo (os músculos pequenos com tempo sobrando) não tem saída por séries, e três versões foram medidas e recusadas. Com os consertos, nenhum defeito da régua piora em nenhum grupo. O Gustavo decidiu aceitar o custo que sobra.
+
+**Medido em 680.625 programas fictícios.** Nenhum par "grupo × defeito" pior que antes; 12 melhores. Os 20 cuidados, sem nenhum defeito: de 57,5% para 55,9% (conta com os pesos). O custo está nos músculos pequenos: em cerca de 1 de cada 7 iniciantes de 3 × 60, a panturrilha, o ombro de trás ou o ombro lateral ficam com um exercício só na semana, e com 4 séries. Na revisão cega de 8 iniciantes de 3 × 60, 7 receberam notas maiores e nenhum menor.
+
+**Imagem.** Sem imagem: nada mudou nas telas.
+
+**Rascunho de post.** "Ontem a minha régua barrou uma mudança que os treinadores simulados preferiam. Hoje fui atrás do porquê. O defeito estava num caso só: quem queria peito e tinha dor forte no cotovelo perdia o último crucifixo da semana. Consertei esse caso, e a régua passou. Sobrou um custo que não dá para consertar sem desfazer a ideia: com 6 exercícios por treino, a panturrilha e o ombro às vezes ficam com um exercício só. Escrevi o custo na regra e decidi pagar. Menos exercícios, mais bem aprendidos, é o que quem começa precisa."
+
+## Sessão "treino para todos": encerramento (17/11/2026)
+
+**O que mudou.** A etapa 2 está na `main`. Depois da junção, a verificação automática do GitHub falhou duas vezes, e as duas foram consertadas com o ok do Gustavo: um teste antigo do gerador estourava os 5 segundos com a medida de cobertura ligada (com dor forte, cada programa passou a levar cerca de 4 milésimos de segundo; antes eram 3), e no guia do goblet com zoom de 200% a palavra "subida" não cabia na barra de tempo (uma linha de estilo para telas de até 279 px). No fim, a verificação ficou verde.
+
+**O teste que faltava.** O limite de 6 exercícios por treino para o iniciante de 3 dias de até 60 minutos foi medido sozinho, como o Gustavo tinha pedido. Os revisores preferem a semana com o limite: em oito iniciantes, as notas médias sobem de 5,9 · 6,8 · 5,6 para 6,4 · 7,1 · 6,3, e nenhuma pessoa piora na soma. Mas um defeito da régua piora (o foco abaixo da meta aparece em 30 programas a mais), e pela regra da sessão isso basta para não entrar. Fica como a primeira proposta para a próxima sessão, com os três consertos anotados.
+
+**As frases das regras.** O Gustavo aprovou as 13 frases em linguagem simples que a etapa 2 criou ou mudou. Duas delas recuperaram os limites que tinham perdido para caber em 80 palavras.
+
+**A lição.** Antes de mandar qualquer coisa para a `main`, rodar o que a verificação automática roda (com a cobertura ligada e os testes de tela), e não só o `check`.
+
+**Imagem.** Sem imagem: nada mudou nas telas além de uma letra menor na barra de tempo em tela muito estreita.
+
+**Rascunho de post.** "Fechei a sessão com um resultado que eu não esperava. Testei dar ao iniciante menos exercícios por treino: 6 em vez de 8. Os treinadores simulados gostaram mais em sete de oito casos. A minha régua de defeitos disse não: em 30 programas, quem queria peito ficou abaixo da meta. Eu tinha combinado no começo que nenhuma mudança entra se piorar um defeito para alguém, então não entrou. Ficou escrito o que falta consertar. Gostar mais não é o mesmo que estar pronto."
+
 ## Frontend novo: o app refeito na direção "Placar" (12 e 13/11/2026)
 
 **Por quê.** O redesign de 05 a 08/11 arrumou a estrutura das telas, mas o app ainda não tinha acabamento de aplicativo profissional: 528 espaços, alturas e cantos fora de uma escala, emojis no lugar de ícones, caixa dentro de caixa, três cores disputando com o Boneco. O Gustavo pediu o frontend refeito por completo, em duas etapas: primeiro pesquisa e direção, depois a reconstrução.
@@ -1923,6 +2139,34 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 >
 > Texto difícil esconde erro. Enquanto a regra estava em jargão, ninguém lia; quando virou uma frase simples, bastou ler.
 
+## Verificação permanente (19/11/2026)
+
+**O pedido.** O Gustavo pediu para avaliar dois textos da Anthropic (o artigo sobre como a equipe do Claude Code verifica o próprio trabalho e a página do Code Mode) e aplicar no projeto, de forma permanente, o que fizesse sentido. A avaliação inteira está em `verificacao/README.md`.
+
+**O veredito.** O artigo faz sentido, e o projeto já fazia boa parte (testes de tela, de propriedade e diferenciais; gabaritos que só mudam com o ok do Gustavo). O que faltava era transformar as lições que estavam no backlog em coisas que rodam sozinhas: as duas falhas de 13 e 17/11 vieram de "passou aqui, quebrou no GitHub". O Code Mode fica de fora: não funciona nas sessões na nuvem, onde o projeto é feito, e é experimental.
+
+**O que mudou** (decidido pela sessão):
+- **`npm run verificar`:** um comando só, que o GitHub também chama. Roda lint, tipos, unitários com cobertura e telas, do mais barato ao mais caro. Um teste falha se os dois voltarem a ser diferentes.
+- **O roteiro `verificar`** (`.claude/skills/verificar/SKILL.md`): o passo a passo que o Claude segue antes de dizer "pronto", inclusive abrir as telas mudadas no app de verdade.
+- **A lista de conferência pelo diff** (`verificacao/lista.md`): 12 itens, cada um com o gatilho, a conferência e a falha que o criou.
+- **Três ganchos** (`.claude/settings.json`): ao parar, o `check` roda sozinho se a sessão mudou código (3 rodadas e para); antes de enviar, o portão confere se o conteúdo passou pelo `verificar` (por enquanto só observa e avisa); regravar um gabarito pede confirmação na tela.
+- **`CLAUDE.md`** ganhou a seção "Verificação".
+
+**O que a verificação achou no primeiro dia.** Rodando os testes de tela para medir o tempo, um teste falhou no código da `main`. Repetido sozinho, falhava 1 vez em 5. Pela regra nova, teste que falha às vezes é defeito a investigar, não azar: a causa era do app. Ao tocar "Tentar de novo" no cartão de texto que não baixou, o botão "Recarregar o app" piscava por um instante antes da nova tentativa terminar. O teste via o botão e esperava uma recarga que não vinha. O conserto foi de uma linha, e o teste passou 15 de 15 vezes.
+
+| | Antes | Depois |
+|---|---|---|
+| O que roda antes de enviar | `npm run check` (sem cobertura, sem telas) | `npm run verificar`, igual ao GitHub |
+| Lições de falhas passadas | no backlog, dependendo de alguém lembrar | `verificacao/lista.md`, lida pelo roteiro a cada mudança |
+| Regravar gabarito | regra escrita | regra escrita e confirmação na tela |
+| Teste do cartão de texto | falhava 1 vez em 5 | 15 de 15 |
+
+**Imagem.** Sem imagem: nada mudou nas telas (o botão que piscava durava um instante).
+
+**Na `main` (19/11/2026, com o ok do Gustavo).** Junção sem forçar (`b55a98b`; a mensagem dela diz 20/11 por engano). A verificação do GitHub rodou pela primeira vez com o comando novo e passou: o passo é um só, `npm run verificar`, e terminou com "tudo passou" (lint 10 s, tipos 17 s, unitários com cobertura 134 s, telas 551 s; 13 min no total, como antes). Lá a cobertura leva o dobro do tempo daqui (134 contra 68 s), o que confirma a lição de 17/11: medir os limites de tempo com a cobertura ligada.
+
+**Rascunho de post.** "Li como a equipe do Claude Code confere o trabalho que a IA faz. A ideia central: ninguém lê mais cada linha; a confiança vem de a IA provar que está certo antes de dizer 'pronto'. No meu app, as falhas que escaparam tinham a mesma cara: passou no meu computador, quebrou no servidor. A lição ficava anotada, e uma lição anotada depende de alguém lembrar. Agora o comando que eu rodo é o mesmo do servidor, e cada falha passada virou um item que dispara sozinho quando o arquivo dela muda. No primeiro dia, a verificação achou um teste que falhava 1 vez em 5. Não era azar: era um botão que piscava na tela por um instante."
+
 ## As 81 animações restantes, as auditorias e o pintor novo (17 a 20/11/2026)
 
 **Por quê.** Depois das 90 animações refeitas no motor novo, 81 dos 171 exercícios da biblioteca continuavam aparecendo no guia como um cartão de texto: quem tem uma cadeira flexora, um leg press ou uma barra com anilhas lia como fazer, mas não via. O Gustavo pediu em 17/11: "quero que você faça agora um prompt para fazer animação de todos os treinos restantes que faltam". O pedido (`prompts/sessao-animacoes-restantes.md`) manteve o padrão das 90: o mesmo motor, cada movimento numa ficha com números e fonte, a conferência automática quadro a quadro e o mesmo modo de aprovação ("pode continuar assim", 17/11).
@@ -2040,4 +2284,3 @@ Depois, com "pode seguir assim" e "pode aprovar esse e todos os restantes", o re
 > 2. Em vez de consertar cada desenho errado à mão, mudei a forma de decidir o que fica na frente. A área pintada errada caiu 97% no estudo. Está entrando aos poucos, com aprovação animação por animação.
 >
 > O que ainda não ficou bom está escrito, como sempre: 45 animações com falha na conferência nova, e o celular mais simples, em que a primeira volta das máquinas engasga.
-

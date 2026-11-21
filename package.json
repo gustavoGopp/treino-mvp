@@ -16,6 +16,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check": "npm run lint && npm run typecheck && npm run test",
+    "verificar": "node scripts/verificacao/verificar.mjs",
     "qa:motor": "node scripts/qa-motor.mjs",
     "auditoria": "npm run auditoria:estresse && npm run auditoria:progressao && npm run auditoria:base && npm run auditoria:anatomia && npm run auditoria:minimo && npm run auditoria:minimo-progressao && npm run auditoria:catalogo && npm run auditoria:qualidade && npm run auditoria:regua && npm run auditoria:avaliador",
     "auditoria:estresse": "vite-node scripts/auditoria/estresse.ts --",

@@ -24,12 +24,13 @@ describe('local.treino-do-dia: o Bruno faz o Superior A na academia do bairro', 
 
   it('cada exercício de polia troca pelo equivalente possível ali, com o motivo verdadeiro', () => {
     expect(trocas.map((t) => [t.vaga, t.entrou])).toEqual([
-      ['puxada-unilateral', 'barra-fixa'],
+      ['puxada-barra-reta', 'barra-fixa'],
+      ['remada-baixa', 'remada-apoiada'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
+      ['face-pull', 'crucifixo-inverso'],
     ]);
-    expect(trocas[0]!.motivo).toBe('aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa');
+    expect(trocas[0]!.motivo).toBe('aqui não tem polia alta: puxada ajoelhado na polia alta com barra reta → barra fixa');
     expect(trocas.every((t) => t.regraId === 'local.treino-do-dia')).toBe(true);
   });
 
@@ -97,21 +98,22 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
   });
   it('motivo verdadeiro: quando o único equivalente possível já está no treino de hoje, o aviso diz isso (auditoria, achado 10)', () => {
     // Sem a remada sem banco e a rosca martelo (catálogo completo, 04/11/2026), que dão outro equivalente só com halteres:
-    // assim o cenário do achado 10 continua o mesmo. Com elas, a remada sem banco entra no lugar da remada apoiada.
+    // assim o cenário do achado 10 continua o mesmo. Com elas, a remada sem banco entra no lugar da remada baixa (a remada
+    // do Superior A desde o pacote 2, 15/11/2026: a ordem de referência da função; antes, a remada apoiada).
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
     const base: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
     const supBase = ok(base, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     // (qual das duas remadas com halter entra depende do desempate: as duas têm animação desde 04/11/2026)
-    expect(['remada-unilateral-sem-banco', 'remada-curvada-halteres']).toContain(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou);
+    expect(['remada-unilateral-sem-banco', 'remada-curvada-halteres']).toContain(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-baixa')!.entrou);
     // Também sem a abertura em T e o crucifixo invertido sentado (R5-CL, 07/11/2026), outros equivalentes do ombro de trás.
     const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo', 'abertura-t-deitado', 'crucifixo-invertido-sentado'] };
     const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     const { trocas } = diaNoLocal(sup, perfil, soHalteres);
-    // A remada curvada entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.
-    const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;
+    // A remada curvada entra no lugar da puxada; a vaga da remada baixa não tem outra remada possível ali.
+    const remada = trocas.find((t) => t.vaga === 'remada-baixa')!;
     expect(remada.motivo).toContain('o único equivalente possível aqui (remada curvada com halteres) já está no treino de hoje');
     expect(remada.motivo).not.toContain('nenhum equivalente');
-    // Desde o R5-CL (07/11/2026), a vaga da remada apoiada recebe a rosca (com a rosca concentrada, o dia tem outra rosca
+    // Desde o R5-CL (07/11/2026), a vaga da remada (a apoiada até o pacote 2; hoje, a baixa) recebe a rosca (com a rosca concentrada, o dia tem outra rosca
     // possível), e o crucifixo invertido curvado fica livre para a vaga do ombro de trás (antes, ele entrava na da remada
     // e a do ombro de trás ficava de fora).
     const face = trocas.find((t) => t.vaga === 'crucifixo-invertido-polia' || t.vaga === 'face-pull')!;
@@ -132,17 +134,18 @@ describe('segurança e preferência nas trocas', () => {
       }
   });
 
-  it('Carla num local sem rack: sem preferência entra o hack (ordem alfabética); com "prefiro o leg press", o leg press', () => {
+  it('Carla num local sem rack: sem preferência entra o leg press (ordem de referência da função); com "prefiro o hack", o hack', () => {
     const semRack: Inventario = { ...carla.inventario };
     delete semRack.rack_de_agachamento;
     delete semRack.smith;
     const p = ok(carla.perfil, carla.inventario);
     const inferior = p.dias.find((d) => d.exercicios.some((x) => x.exId === 'agachamento-barra'))!;
     const sem = diaNoLocal(inferior, carla.perfil, semRack);
-    expect(sem.trocas.find((t) => t.vaga === 'agachamento-barra')).toMatchObject({ entrou: 'hack', motivo: expect.stringContaining('aqui não tem rack de agachamento') });
-    const com = diaNoLocal(inferior, { ...carla.perfil, preferidos: { agachar: 'leg-press' } }, semRack);
+    expect(sem.trocas.find((t) => t.vaga === 'agachamento-barra')).toMatchObject({ entrou: 'leg-press', motivo: expect.stringContaining('aqui não tem rack de agachamento') });
+    // Até o pacote 2 (15/11/2026), o empate era alfabético: entrava o hack, e a preferência do exemplo era o leg press.
+    const com = diaNoLocal(inferior, { ...carla.perfil, preferidos: { agachar: 'hack' } }, semRack);
     const x = com.dia.exercicios.find((y) => y.noLugarDe === 'agachamento-barra')!;
-    expect(x.exId).toBe('leg-press');
+    expect(x.exId).toBe('hack');
     expect(x.porque.some((q) => q.regraId === 'selecao.preferencia')).toBe(true);
   });
 
@@ -198,10 +201,11 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
       ['superior-a', 'local-2'],
     ]);
     expect(e2.historico[1]!.exercicios.filter((x) => x.noLugarDe).map((x) => [x.noLugarDe, x.exId])).toEqual([
-      ['puxada-unilateral', 'barra-fixa'],
+      ['puxada-barra-reta', 'barra-fixa'],
+      ['remada-baixa', 'remada-apoiada'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
+      ['face-pull', 'crucifixo-inverso'],
     ]);
     expect(e2.ultimoLocalId).toBe('local-2');
   });
@@ -216,7 +220,7 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
   it('a barra fixa, 1ª vez, começa pela calibração; o exercício da polia, de volta ao prédio, segue de onde parou', () => {
     const barra = diaDoTreino(e1, { id: T(9), inicio: T(9), diaId, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
     expect(sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { id: T(9), inicio: T(9), localId: 'local-2' })).acao).toBe('calibrar');
-    const puxada = e2.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-unilateral')!;
+    const puxada = e2.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-barra-reta')!;
     const s = sugestaoDoExercicio(e2.historico, puxada, bruno.inventario, opcoesDaCarga(e2, { id: T(16), inicio: T(16), localId: 'local-1' }));
     expect(s.acao).not.toBe('calibrar');
     expect(s.proxima ?? { tipo: 'placa', placa: 5 }).toMatchObject({ tipo: 'placa' });
@@ -224,20 +228,20 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
 
   it('máquina de outro local: a puxada feita no prédio, numa polia de outra academia, recomeça pela calibração', () => {
     const e = { ...e2, locais: [...e2.locais!, { id: 'local-3', nome: 'Academia', inventario: carla.inventario }] };
-    const puxada = e.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-unilateral')!;
+    const puxada = e.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-barra-reta')!;
     const s = sugestaoDoExercicio(e.historico, puxada, carla.inventario, opcoesDaCarga(e, { id: T(16), inicio: T(16), localId: 'local-3' }));
     expect(s.acao).toBe('calibrar');
     expect(s.motivo).toMatch(/1ª vez nesta máquina neste local/);
     expect(s.motivo).not.toMatch(/placa \d/);
     // O histórico do prédio continua inteiro.
-    expect(historicoDoExercicio(e.historico, 'puxada-unilateral')).toHaveLength(1);
-    expect(historicoDoExercicio(e.historico, 'puxada-unilateral', { localId: 'local-1', localPadrao: 'local-1' })).toHaveLength(1);
+    expect(historicoDoExercicio(e.historico, 'puxada-barra-reta')).toHaveLength(1);
+    expect(historicoDoExercicio(e.historico, 'puxada-barra-reta', { localId: 'local-1', localPadrao: 'local-1' })).toHaveLength(1);
   });
 
   it('a 1ª vez de um exercício equivalente diz qual a pessoa já faz, sem mostrar a carga dele', () => {
     const barra = diaDoTreino(e1, { id: T(9), inicio: T(9), diaId, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
     const s = sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { id: T(9), inicio: T(9), localId: 'local-2' }));
-    expect(s.motivo).toMatch(/^Você já faz puxada unilateral/);
+    expect(s.motivo).toMatch(/^Você já faz puxada ajoelhado na polia alta com barra reta/);
     expect(s.motivo).not.toMatch(/placa|kg/);
   });
 });

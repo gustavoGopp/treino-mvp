@@ -22,7 +22,9 @@ describe('repositório', () => {
     expect(tracked.filter((f) => /\.(jpe?g|heic)$/i.test(f) && !f.startsWith('public/'))).toEqual([]);
   });
 
-  it('não versiona e-mail pessoal em nenhum arquivo de texto (CLAUDE.md: nenhum dado pessoal vai para o repositório)', () => {
+  // Lê os ~2.200 arquivos de texto versionados: leva ~1 s sozinho, mas passou dos 5 s com os outros testes rodando ao
+  // mesmo tempo (17 e 18/11/2026). O limite de 30 s não muda o que o teste confere.
+  it('não versiona e-mail pessoal em nenhum arquivo de texto (CLAUDE.md: nenhum dado pessoal vai para o repositório)', { timeout: 30_000 }, () => {
     // Endereços públicos de terceiros que os documentos citam de propósito, e os de exemplo dos testes.
     const PERMITIDOS = [/^eparmedx@gmail\.com$/, /@example\.(com|org)$/, /^noreply@anthropic\.com$/, /@exemplo\./];
     const TEXTO = /\.(md|ts|tsx|mjs|cjs|js|json|html|css|yml|yaml|txt|py|sh|svg)$|(^|\/)\.env\.example$/;

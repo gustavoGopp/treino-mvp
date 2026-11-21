@@ -82,10 +82,11 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   ]);
   // lote 4 do redesign: a volta é o próprio cartão de hoje; a mensagem inteira, com o selo, fica no "por quê?".
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
-  // 9 de 15 desde o R5d (o abdominal saiu do A: com foco, os isoladores de quem não é foco entram depois);
+  // 9 de 17 desde o pacote 2, de 15/11/2026 (o goblet no lugar do búlgaro na vaga de agachar; o A com 17 séries);
+  // 9 de 15 desde o R5d até o pacote 2 (o abdominal saiu do A: com foco, os isoladores de quem não é foco entram depois);
   // 9 de 16 desde a sessão de qualidade dos treinos (o abdominal protegido no A; o búlgaro com 2 séries); 9 de 15 antes;
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
-  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
+  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 17/);
   await expect(volta).toContainText('3–4 repetições');
   // no dia da volta, ela é a única mensagem, e o "Começar" fica à vista sem rolar
   await expect(page.locator('.aviso-linha')).toHaveCount(0);
@@ -101,14 +102,15 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await page.goto('/programa');
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
-  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
   // lote 2 do redesign: a meta curta; a reserva-alvo marcada nos botões do RIR; o motivo no "por quê?"
-  // 2 séries desde o R5d: o búlgaro do programa volta a 4 (o abdominal saiu do A), e a semana 1 da volta tem cerca de
-  // metade. 1 série da sessão de qualidade dos treinos até o R5d (o abdominal protegido tirava 2; qualidade-treinos.md, F.5).
-  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–12 cada lado');
+  // 2 séries: o 1º exercício do programa tem 4, e a semana 1 da volta tem cerca de metade. Desde o pacote 2 (15/11/2026)
+  // é o goblet (dois lados, 8–15, sem "cada lado"); do R5d até lá, o búlgaro ("2 × 8–12 cada lado"). 1 série da sessão de
+  // qualidade dos treinos até o R5d (o abdominal protegido tirava 2; qualidade-treinos.md, F.5).
+  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–15');
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
-  const motivo = await porQueDaSugestao(page, 'Agachamento búlgaro com apoio');
+  const motivo = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
   await expect(motivo).toContainText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/);
   await page.goto('/treino');
   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('9');

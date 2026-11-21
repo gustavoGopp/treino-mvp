@@ -68,7 +68,9 @@ describe('R5a: ajustes do gerador', () => {
   it('selecao.funcao-da-vaga: um afundo por dia, havendo outra opção (o búlgaro na vaga de agachar não ganha um afundo ao lado)', () => {
     for (const x of AMOSTRA) for (const d of x.p.dias) expect(d.exercicios.filter((e) => AFUNDOS.has(e.exId)).length, `${nome(x)}: ${d.nome}`).toBeLessThanOrEqual(1);
     // O caso medido: condomínio, intermediário, Superior/Inferior: a extensora vazia recebia o afundo para trás.
-    const pf = perfil({ nivel: 'intermediario', divisao: 'si-2x', minutos: 60, prioridades: [], dores: [] });
+    // Desde o pacote 2 (15/11/2026), a vaga de agachar desse caso é do goblet (a ordem de referência da função), e o
+    // búlgaro só fica nela com "prefiro este": com ele ali, a extensora vazia continua com o goblet, sem afundo ao lado.
+    const pf: Perfil = { ...perfil({ nivel: 'intermediario', divisao: 'si-2x', minutos: 60, prioridades: [], dores: [] }), preferidos: { agachar: 'bulgaro' } };
     const r = gerarPrograma(pf, CENARIOS.find((c) => c.id === 'condominio')!.inventario);
     const inf = r.status === 'ok' ? r.programa.dias.find((d) => d.id === 'inferior-a')! : null;
     expect(inf!.exercicios.map((e) => e.exId)).toEqual(expect.arrayContaining(['bulgaro', 'goblet']));

@@ -27,6 +27,10 @@ export const VOLUME = {
   alvo: { iniciante: 10, intermediario: 12, avancado: 14 } as PorNivel<number>,
   // tempo.sobra-series: sem foco, até onde o tempo que sobra leva cada músculo (o alvo de antes do R5d; decisão de 06/11).
   sobraAte: { iniciante: 8, intermediario: 12, avancado: 14 } as PorNivel<number>,
+  // tempo.sobra-series, 2º passo (13/11/2026): até quantos grupos de foco o tempo que sobra leva o foco além da meta.
+  focosComSobra: 2,
+  // tempo.sobra-series, 2º passo, iniciante: fora do foco, só os multiarticulares sobem, até este número de séries.
+  sobraDoIniciante: 3,
   // iniciante.fase-aprendizado: a fração das séries nas semanas 1–2 (6 de 8, a mesma de antes do R5d).
   faseAprendizado: 6 / 8,
   maximo: { iniciante: 10, intermediario: 16, avancado: 20 } as PorNivel<number>,
@@ -77,6 +81,8 @@ export const TEMPO = {
   sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
   protegidoCurto: 30, // tempo.musculo-protegido: até 30 min, o protegido fica com 2 séries e troca por um isolador do dia
   extensaoPelaFaltaCurto: 45, // selecao.gluteo (R5a): até 45 min, a extensão de quadril que entra pela falta só sobe enquanto o dia couber
+  // tempo.exercicios-do-iniciante (18/11/2026): o iniciante de 3 dias de até 60 min fica com até 6 exercícios por treino
+  exerciciosDoIniciante: { maximo: 6, dias: 3, ateMinutos: 60 },
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */
@@ -119,6 +125,11 @@ export const PROGRESSAO = {
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
   folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
   reducaoEstagnacao: 0.1, // progressao.estagnacao: uma das saídas é reduzir 10% e reconstruir
+  // progressao.estagnacao (16/11/2026): sessões seguidas com a mesma carga sem ganhar repetição para o aviso de "sem
+  // melhora". Cresce com o nível (o ganho desacelera: steele2023); os números são escolha do projeto.
+  janelaEstagnacao: { iniciante: 4, intermediario: 8, avancado: 16 } as PorNivel<number>,
+  // O programa guardado antes da versão 9 não diz o nível: vale a janela de antes.
+  janelaEstagnacaoSemNivel: 3,
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 

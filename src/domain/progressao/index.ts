@@ -1,6 +1,6 @@
 import type { Exercicio } from '../biblioteca';
 import { numeroBr, porCento } from '../numero';
-import { DOR, PROGRESSAO, r, REDUCAO, RIR, SEMANA_LEVE } from '../regras';
+import { DOR, PROGRESSAO, r, REDUCAO, RIR, SEMANA_LEVE, type Nivel } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -203,8 +203,6 @@ const cargaEmTodas = (s: SessaoExercicio) => {
   return !!primeira && s.series.every((x) => x.carga.tipo === primeira.tipo && valor(x.carga) >= valor(primeira) - 1e-9);
 };
 const noTopo = (s: SessaoExercicio, a: Alvo) => repsNoTopo(s, a) && cargaEmTodas(s);
-const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
-
 /**
  * O que a nota de dor da última vez pede (seguranca.dor.escala; consenso): acima de 5, a alternativa; de 3 a 5, a
  * carga reduzida (quando há uma carga de onde reduzir). Abaixo de 3, nada: devolve undefined.
@@ -228,7 +226,7 @@ export function sugestaoPorDor(dor: number, carga: Carga | undefined, o: OpcoesC
   return undefined;
 }
 
-export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: OpcoesCarga): Sugestao {
+export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: OpcoesCarga, janela: number = PROGRESSAO.janelaEstagnacaoSemNivel): Sugestao {
   const ultima = historico.at(-1);
   if (!ultima || !ultima.series.length)
     return { acao: 'manter', motivo: 'Registre a primeira sessão para receber sugestões.', regraId: r('progressao.manter') };
@@ -341,22 +339,33 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
       regraId: r('progressao.subir'),
     };
 
-  // Estagnação: 3 sessões seguidas, mesma carga, sem melhora de repetições
-  const ult3 = historico.slice(-3);
+  // Estagnação (progressao.estagnacao): `janela` sessões seguidas, mesma carga, sem ganhar nenhuma repetição no total.
+  // A janela vem do nível (4, 8 ou 16); sem nível (programa guardado antes da versão 9), 3.
+  // As sessões são comparadas pelas séries que todas têm em comum: o mesmo exercício com 3 séries num dia e 2 no outro
+  // não "ganha" nem "perde" repetição só por causa disso (antes, o aviso piscava de um treino para o outro).
+  const ultimas = historico.slice(-janela);
+  const emComum = Math.min(...ultimas.map((s) => validas(s).length));
+  const repsEmComum = (s: SessaoExercicio) => validas(s).slice(0, emComum).reduce((t, x) => t + x.reps, 0);
   if (
-    ult3.length === 3 &&
-    ult3.every((s) => s.series[0] && igual(s.series[0].carga, carga)) &&
-    Math.max(totalReps(ult3[1]!), totalReps(ult3[2]!)) <= totalReps(ult3[0]!)
+    ultimas.length === janela &&
+    ultimas.every((s) => s.series[0] && igual(s.series[0].carga, carga)) &&
+    Math.max(...ultimas.slice(1).map(repsEmComum)) <= repsEmComum(ultimas[0]!)
   )
     return {
       acao: 'estagnado',
       // A saída "reduza 10%" só entra quando há uma carga menor para usar.
-      motivo: `Três sessões sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', `reduza ${porCento(PROGRESSAO.reducaoEstagnacao)}% e reconstrua`, 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
+      motivo: `${sessoesPorExtenso(janela)} sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', `reduza ${porCento(PROGRESSAO.reducaoEstagnacao)}% e reconstrua`, 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
       regraId: r('progressao.estagnacao'),
     };
 
   return { acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: r('progressao.manter') };
 }
+
+/** "Três sessões", "Quatro sessões", "Oito sessões", "Dezesseis sessões" (o começo do aviso de progressao.estagnacao). */
+const sessoesPorExtenso = (n: number) => `${({ 3: 'Três', 4: 'Quatro', 8: 'Oito', 16: 'Dezesseis' } as Record<number, string>)[n] ?? String(n)} sessões`;
+
+/** A janela do aviso de "sem melhora" para um nível (progressao.estagnacao); sem nível, a de antes. */
+export const janelaDeEstagnacao = (nivel?: Nivel) => (nivel ? PROGRESSAO.janelaEstagnacao[nivel] : PROGRESSAO.janelaEstagnacaoSemNivel);
 
 /**
  * Semana leve sugerida, manual e opcional (deload.semana-leve; pesquisa-v2/07, seção 6). Nunca é aplicada sozinha.
@@ -364,9 +373,9 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
  * exercício em 2 sessões seguidas. Sem o gatilho de "6–8 semanas": uma semana leve não mudou a hipertrofia (coleman2024,
  * pancar2026). Na carência (as 3 semanas depois de uma volta de pausa ou de uma semana leve), não sugere.
  */
-export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesadoNosUltimos3: number; dorQueSeRepete: number; carencia?: boolean }) {
+export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesadoNosUltimos3: number; dorQueSeRepete: number; carencia?: boolean; janela?: number }) {
   const motivos = [
-    sinais.exerciciosEstagnados >= SEMANA_LEVE.estagnados && `${sinais.exerciciosEstagnados} exercícios sem progresso em 3 treinos`,
+    sinais.exerciciosEstagnados >= SEMANA_LEVE.estagnados && `${sinais.exerciciosEstagnados} exercícios sem progresso em ${sinais.janela ?? PROGRESSAO.janelaEstagnacaoSemNivel} treinos`,
     sinais.pesadoNosUltimos3 >= SEMANA_LEVE.pesadoEm && `"pesado demais" em ${sinais.pesadoNosUltimos3} dos últimos ${SEMANA_LEVE.pesadoDe} treinos`,
     sinais.dorQueSeRepete > 0 && `dor de ${SEMANA_LEVE.dorMin} a ${SEMANA_LEVE.dorMax} no mesmo exercício em 2 treinos seguidos`,
   ].filter((m): m is string => !!m);
