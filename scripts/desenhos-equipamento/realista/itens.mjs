@@ -797,24 +797,38 @@ const abdominal_maquina = quadro(
   { yaw: 38, pitch: 12, s: 0.6 },
 );
 
-// glúteo na máquina (coice): apoio de peito e de antebraços na frente, a alavanca com a plataforma do pé atrás
+// glúteo na máquina (coice), de quatro apoios (decisão do Gustavo em 21/11/2026: a máquina da ficha da técnica e da
+// animação do coice-maquina). Medidas da peça do motor novo (src/engine/novo/dados/objetos/gluteo-maquina.json):
+// torre de 148 cm na frente, os apoios dos antebraços a 50 cm com os pegadores, a almofada só sob o joelho de apoio,
+// e a alavanca do lado de fora da perna que trabalha, girando num eixo a 74 cm (a linha do quadril), com a
+// plataforma do pé a 66 cm do eixo.
 const gluteo_maquina = quadro(
   (C) => {
-    base(C, -10, 150, 10, 70);
-    torre(C, [-12, 0, 24], X, Z, 30, 32, 150, 9);
-    tubo(C, [60, 4, 40], [60, 92, 40], 8);
-    C.estofado([66, 100, 40], norm([0.55, 1, 0]), norm([-1, 0.55, 0]), Z, 40, 9, 30);
-    C.estofado([44, 112, 40], X, Y, Z, 30, 7, 40);
-    for (const s of [-1, 1]) pega(C, [34, 120, 40 + s * 16], [34, 130, 40 + s * 16], 2.2);
-    tubo(C, [60, 92, 40], [36, 108, 40], 5);
-    // alavanca do pé: pivô atrás do apoio, braço desce e a chapa do pé
-    C.cilindro([96, 70, 56], [96, 70, 62], 7, M.metalClaro, { lados: 18 });
-    tubo(C, [96, 4, 60], [96, 64, 60], 6);
-    tubo(C, [96, 70, 58], [128, 40, 52], 5);
-    C.prisma(retArred(22, 3, 1), [132, 44, 46], norm([0.6, 0.8, 0]), norm([0.8, -0.6, 0]), [0, 0, 14], M.plataforma);
-    tubo(C, [128, 40, 52], [140, 30, 52], 3);
-    rolo(C, [140, 30, 52], Z, 14, 4.2);
-    C.sombra(70, 40, 84, 36, 0.2);
+    base(C, -34, 138, 10, 70);
+    torre(C, [-36, 0, 24], X, Z, 30, 32, 148, 10);
+    // apoios dos antebraços com os pegadores em pé na ponta da frente
+    tubo(C, [32, 4, 40], [32, 40, 40], 7);
+    tubo(C, [32, 40, 29], [32, 40, 51], 5);
+    for (const s of [-1, 1]) {
+      const z = 40 + s * 11;
+      C.estofado([32, 43, z], X, Y, Z, 34, 6.5, 11);
+      tubo(C, [14, 44, z], [14, 50, z], 3);
+      pega(C, [14, 50, z], [14, 63, z], 2.2);
+    }
+    // almofada dos joelhos, só do lado da perna de apoio
+    tubo(C, [90, 4, 31], [90, 21, 31], 7);
+    C.estofado([90, 21.2, 31], X, Y, Z, 36, 6.5, 18);
+    // coluna do eixo, o came e a alavanca, do lado de fora da perna que trabalha
+    tubo(C, [90, 4, 67], [90, 70, 67], 7);
+    C.cilindro([90, 74, 62], [90, 74, 72], 11, M.metalClaro, { lados: 20 });
+    const r = norm([Math.cos((50 * Math.PI) / 180), -Math.sin((50 * Math.PI) / 180), 0]);
+    const t = [-r[1], r[0], 0];
+    const fim = add([90, 74, 61], mul(r, 66));
+    tubo(C, [90, 74, 61], fim, 5);
+    tubo(C, fim, add(fim, [0, 0, -6]), 4);
+    // plataforma do pé (borracha), de frente para a sola
+    C.prisma(retArred(24, 3, 1), add(fim, [0, 0, -5]), r, t, [0, 0, -15], M.plataforma);
+    C.sombra(52, 40, 92, 34, 0.2);
   },
   { yaw: 30, pitch: 12, s: 0.6 },
 );

@@ -180,7 +180,7 @@ Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no do
 - **Desenhos do equipamento que se confundem no tamanho do cartão** (`scripts/design/redesign/desenhos-v2/`):
   - supino × desenvolvimento na máquina, extensora × flexora e smith × rack;
   - polia simples e puxador alto ficam pequenos;
-  - a máquina de glúteo é genérica, a corda parece um garfo e o hack não tem a versão pendular.
+  - a corda parece um garfo e o hack não tem a versão pendular. (A máquina de glúteo, que era genérica e em pé, foi redesenhada de quatro apoios em 21/11, como a animação do coice.)
 
   Refazer quando o Gustavo apontar quais incomodam no uso.
 - **O caminho "Item por item" do equipamento** ficou 2 toques mais longo para a Ana (abrir a lista, a categoria "Bancos", o "Pronto" dos halteres). Uma ideia: a categoria abrir pelo 1º item ainda não marcado. Medir com a cronometragem do Gustavo antes de mudar.
