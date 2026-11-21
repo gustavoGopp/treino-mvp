@@ -366,7 +366,7 @@ O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`,
 - ~~**O texto do guia de quatro exercícios do C3 não foi escrito**~~ feito em 20/11/2026: `abdominal-maquina`, `coice-polia`, `abducao-polia` e `remada-invertida` ganharam o texto em `revisoes/animacoes-restantes/textos/`, como os outros 77; `scripts/animacao-nova/conferir-textos-restantes.ts` confere os 81 (a lista `PARCIAIS` ficou vazia). Dois itens novos da remada invertida (a trava de segurança no smith e a altura da barra) estão em `revisoes/animacoes-restantes/pedidos-ao-conteudo.md`, seção 1.
 
 **O pintor por pares** (`revisoes/animacao-nova/estudo-do-pintor.md`, "Etapa 2"; a lista em `src/engine/novo/pintor-ligado.ts`)
-- **Ligado em 17 animações** (lote 1, 5; lote 2, 12), todas aprovadas pelo Gustavo pelas folhas; o `coice-maquina`, do lote 2, está em revisão por outro motivo (o tipo de máquina).
+- **Ligado em 17 animações** (lote 1, 5; lote 2, 12), todas aprovadas pelo Gustavo pelas folhas; o `coice-maquina`, do lote 2, ficou em revisão pelo tipo de máquina até 21/11, quando o Gustavo escolheu a de quatro apoios.
 - **Os lotes 3 a 6** (12, 13, 13 e 15 animações, na ordem da tabela do estudo): a folha e a folha-resumo de cada lote, a conferência de cada animação e o ok do Gustavo; meio dia por lote.
 - **O `voador`** (e a `hiperextensao`) só entram com o ajuste do pintor (`pecaComPeca: 'contorno'` e `contatoNoRemendo`, em `PADRAO`, desligados), que muda o desenho de três animações do lote 1 já aprovadas (`remada-unilateral`, até 0,71% da figura; `abdominal-declinado` e `triceps-testa-halteres`, até 0,08%). Falta a folha dessas três, o pintor de hoje × com o ajuste, para o Gustavo decidir.
 - **As 18 que esperam conserto** (por pares, ganham um achado novo, quase sempre de 1 a 3 cm², na linha em que o corpo encosta na peça): `crucifixo-inclinado-halteres`, `supino-inclinado-polia`, `hip-thrust`, `abducao-caneleira`, `flexao-elastico`, `ponte-kettlebell`, `remada-curvada-elastico`, `abdominal-maquina`, `remada-unilateral-elastico`, `panturrilha-em-pe-maquina`, `coice-caneleira`, `elevacao-halteres`, `stiff-elastico`, `elevacao-lateral`, `aducao-caneleira`, `puxada-frente`, `rosca-polia-costas`, `crucifixo-elastico`. O conserto é no exercício ou na forma 3D da peça, uma a uma (1 a 2 dias); o recorte pela grade de 1 cm e a grade de 0,5 cm no pintor foram medidos e não resolvem.
@@ -376,22 +376,22 @@ O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`,
 - **Tirar as correções que sobram** nas animações ligadas (os três `vies` da mão do lote 1), uma a uma, com a conferência.
 
 **Decisões do Gustavo em aberto** (uma por vez, com imagem)
-- **`coice-maquina`:** a máquina de quatro apoios (a do cartão do exercício e da ficha da técnica) ou a em pé (a do desenho de equipamento e das fichas da Life Fitness, da Hammer Strength e da Movement). Está em revisão (`EM_REVISAO`), fora do app.
-- **`panturrilha-leg-press`:** a primeira animação com o quadro só na perna (o corpo cortado; campo novo e opcional `enquadra`) e uma vista só, para o tornozelo se ler. Está em revisão.
+- **`coice-maquina`:** a máquina de quatro apoios (a do cartão do exercício e da ficha da técnica) ou a em pé (a do desenho de equipamento e das fichas da Life Fitness, da Hammer Strength e da Movement). **Decidido em 21/11:** a de quatro apoios ("pode ficar com a de quatro apoios e redesenhar o cartão"); aprovada, e o cartão foi redesenhado.
+- **`panturrilha-leg-press`:** a primeira animação com o quadro só na perna (o corpo cortado; campo novo e opcional `enquadra`) e uma vista só, para o tornozelo se ler. **Aprovada em 21/11** ("pode aprovar a só na perna").
 - **O ajuste do pintor** e **o plano B do celular de entrada** (acima).
 - **Os pedidos ao conteúdo** (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`): as travas do supino no smith e do supino com barra, o "pise com o pé" de três cartões de elástico, o músculo secundário que a ficha propõe e a biblioteca não tem, e os desenhos de equipamento.
 - **A junção com a `main`**: nada foi para a `main`.
 
 **Os cartões de equipamento que diferem das peças novas** (`public/equipamento/`, não mexidos; detalhes no pedido ao conteúdo, seção 3)
 - **Tríceps na máquina:** o cartão é a de mergulho sentado; a peça segue a ficha da técnica (braço apoiado à frente). Decidir se o cartão muda e se o app precisa de um segundo equipamento.
-- **Glúteo na máquina:** o cartão é em pé; a animação (em revisão) é de quatro apoios.
+- ~~**Glúteo na máquina:** o cartão é em pé; a animação é de quatro apoios.~~ Feito em 21/11: o cartão foi redesenhado de quatro apoios.
 - **Supino, desenvolvimento e remada articulada na máquina (anilha × pilha):** os cartões são de anilhas; as peças são de pilha, como as fichas e o texto do app.
 - **Barra hexagonal:** no cartão os cabos correm ao longo das mangas, a 24 cm; na peça (Rogue TB-1) atravessam o hexágono, a 63,5 cm.
 - **Suporte:** o cartão é uma gaiola; a peça é o suporte aberto que o Gustavo aprovou.
 - E ainda: o abdominal na máquina (no cartão, eixo alto e sem apoio da lombar), a panturrilha em pé (no cartão, um carro na vertical; na peça, um braço que gira) e as cadeiras, a mesa e a panturrilha sentada, menores que as fichas. Recomendação: refazer os cartões com as peças novas, no gerador realista (`scripts/desenhos-equipamento/`), com a folha de comparação.
 
 **Pontos fracos que não foram corrigidos**
-- **A conferência automática sai com falha em 45 das 81 novas** (medido em 20/11, todas de pintura; 44 delas aprovadas, mais o `coice-maquina`, em revisão), e por isso `npm run conferir:animacao` sai com erro. As 90 antigas não têm falha (38 com aviso de pintura, fio ou peso). O caminho: os lotes 3 a 6 do pintor por pares e o conserto uma a uma do que ele não resolve. Os 4 casos de fio e os 2 de peso dentro do corpo foram corrigidos no mesmo dia.
+- **A conferência automática sai com falha em 45 das 81 novas** (medido em 20/11, todas de pintura; todas aprovadas desde 21/11, quando o Gustavo aprovou o `coice-maquina`), e por isso `npm run conferir:animacao` sai com erro. As 90 antigas não têm falha (38 com aviso de pintura, fio ou peso). O caminho: os lotes 3 a 6 do pintor por pares e o conserto uma a uma do que ele não resolve. Os 4 casos de fio e os 2 de peso dentro do corpo foram corrigidos no mesmo dia.
 - **O laço do coice com elástico passa perto da sola do pé** (até 3,6 cm, perto da sola). A conferência de fios não conta o pé e aceita; a regra `cabos-fora-do-corpo-nos-erros` ficou desligada nesse exercício. Contornar o pé pelo tornozelo ou pela ponta piorou a pintura de trás, porque pé e perna são um item só.
 - **O cenário pintado atrás do corpo de propósito** (`cenario`): no smith e no glúteo na máquina, de lado, a parte de perto da máquina passa atrás do corpo; no `mergulho`, a estrutura das paralelas também. A conferência de pintura não conta esses casos (são escolha declarada) e o pintor por pares não os toca.
 - **A barra reta da polia, de 20 polegadas, é curta para a puxada** (`puxada-barra-reta`): as mãos ficam na ponta dela.

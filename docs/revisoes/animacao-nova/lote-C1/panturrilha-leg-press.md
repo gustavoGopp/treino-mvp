@@ -46,6 +46,10 @@ O resto: proporções exatas, ritmo suave (5,5% da velocidade de pico), simetria
 2. **A vista de três quartos escondia os pés atrás da chapa: saiu, e a animação fica com uma vista só.** Testei as outras com o mesmo corte: de frente e de cima, a chapa cobre os pés; de trás, o encosto cobre o corpo; de três quartos por trás, o carro e as anilhas ficam por cima das canelas e o pé se perde no canto. Nenhuma mostra o tornozelo melhor que de lado.
 3. **No modo Trajetória ficou só o calcanhar** ("chapa" andava quase junto com ele, uma linha sobre a outra).
 
+## A decisão do Gustavo (21/11/2026)
+
+Na folha das duas versões (`../../animacoes-restantes/panturrilha-leg-press-as-duas.png`: só a perna, a de hoje, e o corpo inteiro, a primeira de 18/11), o Gustavo aprovou a de só a perna: "pode aprovar a só na perna". A animação entrou em `APROVADOS` e na linha de base do motor novo.
+
 ## O que não ficou bom
 
 - **O calcanhar quase não passa do plano da chapa** (0,8 cm embaixo): o alongamento está no ângulo do tornozelo, igual ao da panturrilha aprovada. Para mostrar mais, o tornozelo teria de dobrar 25° a 37° com o joelho esticado, além da média da tabela.

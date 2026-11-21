@@ -2,7 +2,7 @@
 
 ## O que ficou pronto
 
-- **Os 81 exercícios que eram só texto agora têm o Boneco mostrando como fazer.** Com eles, os 171 exercícios do app têm animação. 80 estão aprovadas; 1 espera você (abaixo).
+- **Os 81 exercícios que eram só texto agora têm o Boneco mostrando como fazer.** Com eles, os 171 exercícios do app têm animação. As 81 estão aprovadas.
 - **28 aparelhos novos**, desenhados com a medida do fabricante: a barra com anilhas, o suporte, o smith, a barra W e a hexagonal, e as máquinas (cadeira flexora e extensora, mesa flexora, leg press, hack, abdutora e adutora, puxador, remadas, voador, graviton, rosca, tríceps, abdominal e panturrilha na máquina, os bancos). As máquinas funcionam: o braço gira no eixo e a pilha de pesos sobe.
 - **O texto do guia dos 81** (onde sentir, a respiração, o que conferir), tirado da ficha de cada exercício, com a fonte.
 - **Duas revisões do zero** depois que você achou o braço fora da almofada na rosca Scott. Elas acharam defeitos parecidos em 24 animações (peça desenhada por cima do corpo, a cabeça que some vista de cima, o cabo atravessando o corpo). Todas foram corrigidas e aprovadas de novo, e a conferência automática passou a medir esse tipo de erro sozinha, em todas.
@@ -17,13 +17,14 @@
 - Na anilha pequena (terra romeno, remada e hip thrust): "pode ser pequena".
 - Na rosca Scott corrigida: "aprovo".
 - No coice na máquina: "pode ficar com a de quatro apoios e redesenhar o cartão".
+- Na panturrilha no leg press: "pode aprovar a só na perna".
 - Nas correções das antigas e nos dois lotes do pintor: "pode aprovar as 11 da cabeça", "pode aprovar as três remadas", "pode aprovar as 10", "pode aprovar as 5", "pode aprovar as 11" e "Aprovo a mesa".
 - As outras 70 foram aprovadas por delegação, como você pediu, depois de conferidas quadro a quadro.
 
 ## O que espera você (uma por vez, com imagem)
 
 1. ~~**Coice na máquina**~~: decidido em 21/11 ("pode ficar com a de quatro apoios e redesenhar o cartão"). A animação foi aprovada e o desenho de equipamento foi refeito de quatro apoios.
-2. **Panturrilha no leg press:** pode ser a primeira animação com o quadro só na perna, para o tornozelo aparecer bem?
+2. ~~**Panturrilha no leg press**~~: decidido em 21/11 ("pode aprovar a só na perna"). É a primeira animação com o quadro só na perna.
 3. **O voador no pintor novo:** ele só entra com um ajuste que muda um pouquinho três animações que você já aprovou. Vou mostrar as três, antes e depois.
 4. **O celular mais simples:** nele, a primeira volta das máquinas trava por até meio segundo (da segunda volta em diante, não). Dá para resolver guardando a ordem pronta, ao custo de um arquivo maior por exercício. Minha recomendação: deixar como está até alguém reclamar.
 5. **Os desenhos de equipamento que mostram outra máquina** (tríceps, abdominal e as máquinas de anilha que viraram de pilha): refazer com as peças novas? Minha recomendação: sim, começando pelo tríceps (o glúteo já foi refeito).
