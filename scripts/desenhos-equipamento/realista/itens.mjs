@@ -952,22 +952,95 @@ const rosca_maquina = quadro(
   { yaw: 34, pitch: 12, s: 0.6 },
 );
 
-// máquina de tríceps (mergulho sentado): assento, encosto e pegadores verticais ao lado do quadril, presos a braços que vêm de trás
+// máquina de tríceps com o braço apoiado à frente (a extensão do cotovelo sentado, como a ficha da técnica e a animação
+// triceps-maquina: Hammer Strength HS-TE, Precor RSL0208), no lugar da de mergulho sentado (pegadores ao lado do
+// quadril) que o cartão mostrava. É a peça do motor novo (triceps-maquina.ts, a máquina de rosca com outro modelo), com
+// as medidas de src/engine/novo/dados/objetos/triceps-maquina.json: o tamanho e a torre de 148 cm da Precor RSL0208
+// (122 × 110 × 148 cm), o estofado de 6,5 cm; o apoio dos braços partido no meio, inclinado 40°, o eixo a 84 cm na linha
+// dos cotovelos, o came de 22 cm, os pegadores em pé numa barra atravessada e o apoio da lombar atrás do assento são de
+// desenho, com o motivo lá. O começo do movimento da animação: o assento a 47 cm, a mão a 33,7 cm do eixo, a alavanca
+// a 148° (para cima e para trás).
 const triceps_maquina = quadro(
   (C) => {
-    base(C, -40, 84, 0, 80);
-    torre(C, [-44, 0, 22], X, Z, 30, 36, 170, 10);
-    bancoMaquina(C, 30, 40, 46, 0.1);
-    tubo(C, [-8, 4, 40], [-8, 120, 40], 7);
-    for (const s of [-1, 1]) {
-      const z = 40 + s * 28;
-      C.cilindro([-8, 116, 40 + s * 4], [-8, 116, 40 + s * 10], 4.5, M.metalClaro, { lados: 16 });
-      tubo(C, [-8, 116, 40 + s * 10], [36, 72, z], 6);
-      pega(C, [36, 82, z], [36, 64, z], 2.5);
+    const esp = 6.5,
+      cA = 38,
+      larg = 40,
+      assento = 47;
+    // o apoio dos braços: desce 40° para a frente; o eixo 4 cm acima da face e 2 cm além da borda de baixo
+    const inc = 40 * RAD;
+    const sobe = [0, Math.sin(inc), -Math.cos(inc)],
+      normal = [0, Math.cos(inc), Math.sin(inc)];
+    const eixo = [0, 84, 14];
+    const bordaBaixo = add(add(eixo, mul(normal, -4)), mul(sobe, 2));
+    const meioFace = add(bordaBaixo, mul(sobe, 13));
+    const xMetade = 21,
+      meiaMetade = 7,
+      xAlavanca = 38,
+      xCame = 33,
+      xC = 30;
+    // a torre à esquerda de quem senta, ao lado e atrás do assento
+    const xT0 = xCame,
+      xT1 = xT0 + 34,
+      zTorre = -cA - 10;
+    const zTras = zTorre - 20,
+      zFrente = zTras + 122,
+      zB1 = eixo[2] + 4;
+    const atrasApoio = add(add(bordaBaixo, mul(normal, -esp - 3)), mul(sobe, 3));
+    // a base: dois trilhos ao longo de z e as travessas
+    for (const x of [-larg / 2 + 2, xC]) T(C, [x, 3.5, zTras], [x, 3.5, zB1]);
+    for (const z of [zTras + 4, zB1]) T(C, [-larg / 2 + 2, 3.5, z], [xT1, 3.5, z]);
+    T(C, [xT0, 3.5, zTorre - 16], [xT0, 3.5, zTorre + 16]);
+    assentoNumPe(C, { zP: -cA / 2, comp: cA, larg, y: assento, yMin: 40, esp, pino: -1 });
+    // o apoio da lombar: 22 × 30 cm, 6 cm acima do assento, 30 cm atrás da borda, inclinado 15°; sobe com o assento
+    const il = 15 * RAD;
+    const lSobe = [0, Math.cos(il), Math.sin(il)],
+      lFrente = [0, -Math.sin(il), Math.cos(il)];
+    const lMeio = [0, assento + 6 + 11, -30];
+    C.estofado(add(lMeio, mul(lFrente, -esp)), lSobe, lFrente, X, 22, esp, 30);
+    const lAtras = add(lMeio, mul(lFrente, -esp - 2));
+    T(C, [0, assento - esp - 4, -cA / 2], [0, assento - esp - 4, lAtras[2]], 5);
+    T(C, [0, assento - esp - 4, lAtras[2]], lAtras, 5);
+    // a coluna da esquerda até o apoio, com o mancal do eixo
+    T(C, [xC, 7, atrasApoio[2]], [xC, Math.max(atrasApoio[1], eixo[1]) + 3, atrasApoio[2]]);
+    T(C, [xC, eixo[1], atrasApoio[2]], [xC, eixo[1], eixo[2]], 6);
+    C.cilindro([xC, eixo[1], eixo[2]], [xCame - 3, eixo[1], eixo[2]], 3, M.cromo, { lados: 12 });
+    // as duas metades do apoio (o peito passa no vão de 28 cm), cada uma na sua chapa, e a travessa que as segura
+    for (const sx of [-1, 1]) {
+      const x = [sx * xMetade, 0, 0];
+      C.estofado(add(add(meioFace, mul(normal, -esp)), x), sobe, normal, X, 26, esp, 2 * meiaMetade);
+      const chapa = add(add(meioFace, mul(normal, -esp - 1)), x);
+      C.tubo(add(chapa, mul(sobe, -11)), add(chapa, mul(sobe, 9)), 2 * meiaMetade - 4, 2, M.metal, { up: normal });
+      T(C, add(atrasApoio, x), add(add(atrasApoio, x), mul(normal, 3)), 4);
     }
-    C.sombra(10, 40, 66, 48, 0.2);
+    T(C, [xC, atrasApoio[1], atrasApoio[2]], [-xMetade - 3, atrasApoio[1], atrasApoio[2]], 5);
+    // a torre, as polias do pé e o cabo, que desce do came
+    torreDaPilha(C, xT0, xT1, zTorre, 148);
+    const xc = (xT0 + xT1) / 2;
+    C.cilindro([xc - 1.5, 10, zTorre + 18], [xc + 1.5, 10, zTorre + 18], 4.5, M.metalClaro, { lados: 16 });
+    C.cilindro([xCame - 1.5, 10, eixo[2]], [xCame + 1.5, 10, eixo[2]], 4.5, M.metalClaro, { lados: 16 });
+    T(C, [xCame, 3.5, eixo[2]], [xCame, 3.5, zB1], 5);
+    C.linha([xCame, eixo[1] - 11, eixo[2]], [xCame, 5.5, eixo[2]], '#202327', 0.7);
+    C.linha([xCame, 5.5, eixo[2]], [xc, 5.5, zTorre + 18], '#202327', 0.7);
+    // o came, o eixo e a alavanca, do lado de fora, até a barra atravessada com os dois pegadores em pé
+    const cx = (x) => [x, eixo[1], eixo[2]];
+    C.cilindro(cx(xCame - 3), cx(xCame + 3), 11, M.metalClaro, { lados: 24 });
+    C.cilindro(cx(xCame + 3), cx(xAlavanca + 3), 3, M.cromo, { lados: 12 });
+    const dir = (graus) => [0, -Math.cos(graus * RAD), Math.sin(graus * RAD)];
+    const noPlano = add(eixo, mul(dir(148), 33.7));
+    const dirNeutro = dir(148 + 90);
+    const barra = add(noPlano, mul(dirNeutro, -(13 / 2 + 3)));
+    const ponta = [xAlavanca, barra[1], barra[2]];
+    C.tubo(cx(xAlavanca), ponta, 5, 5, M.metal, { up: X });
+    C.cilindro(add(ponta, [2.5, 0, 0]), [-21, barra[1], barra[2]], 1.5, M.cromo, { lados: 12 });
+    for (const s of [-1, 1]) {
+      const c = [s * 19, noPlano[1], noPlano[2]];
+      const pe = add(c, mul(dirNeutro, -6.5));
+      C.cilindro([c[0], barra[1], barra[2]], pe, 1.4, M.cromo, { lados: 10 });
+      C.cilindro(pe, add(c, mul(dirNeutro, 6.5)), 2, M.borracha, { lados: 14 });
+    }
+    C.sombra((xT1 - larg / 2) / 2, (zTras + zFrente) / 2, (xT1 + larg / 2) / 2 + 8, 61, 0.18);
   },
-  { yaw: 40, pitch: 12, s: 0.6 },
+  { yaw: 230, pitch: 12, s: 0.6 },
 );
 
 // máquina de abdominal: assento, almofadas que descem sobre o peito vindas de cima e rolos dos pés
