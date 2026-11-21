@@ -2024,6 +2024,8 @@ Depois, com "pode seguir assim" e "pode aprovar esse e todos os restantes", o re
 - **Os 13 desenhos de equipamento** que mostravam outra máquina, refeitos com as medidas das peças do motor novo (`revisoes/animacoes-restantes/cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`, mais o glúteo). Pequenos, os de torre alta (cadeiras, mesa, panturrilha em pé) leem pior que antes, porque a torre tem a altura real; os cinco de pilha pesam de 30 a 38 kB cada (eram de 17 a 26).
 - **Ficam como estão:** o celular de entrada (sem o plano B até alguém reclamar). **Ficam para a sessão do gerador:** os músculos secundários que a ficha propõe e a biblioteca não tem. **Backlog:** a máquina de tríceps de mergulho sentado como segundo equipamento.
 
+**Verificação de 21/11:** `npm run check` com 932 testes, todos passando; `npm run test:e2e` com 178 de 179, e o que falhou (o cartão de texto que não baixou, no celular, por tempo) passa sozinho, com a máquina sem carga. Nada foi para a `main`.
+
 **Rascunho de post para o LinkedIn**
 
 > Terminei as animações do meu app de treino: os 171 exercícios agora têm o boneco que mostra como fazer. E nenhuma das 81 novas está no app ainda.
