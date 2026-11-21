@@ -472,29 +472,49 @@ const paralelas = quadro(
   { yaw: 30, pitch: 14, s: 0.6 },
 );
 
+// barra hexagonal (decisão do Gustavo em 21/11/2026: o cartão igual à peça da animação). Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/barra-hexagonal.json, a página da Rogue TB-1 Trap Bar 2.0, e pecas-de-cena/
+// barra-hexagonal.ts): 226,1 cm de ponta a ponta, 72,4 cm de largura, tubo quadrado de 3,81 cm, os cabos de 3,4 cm
+// atravessando o hexágono da frente para trás, a 63,5 cm um do outro, mangas de 4,85 cm com 40,6 cm carregáveis.
+// De desenho na peça: o hexágono de 128 cm de ponta a ponta, pontas de 120°, o batente de 7 × 2,5 cm. Toda preta,
+// como a Rogue (o metal grafite das máquinas). As anilhas (uma de 20 kg de cada lado, 45 cm) e a presilha são as da
+// barra longa (barra-longa.json). Como no cartão de antes, a barra no chão, apoiada nas anilhas. Escolha do cartão: a
+// câmera um pouco mais de frente que a de antes (com o comprimento real, a barra de lado ficava fina e miúda) e o
+// enquadramento pela barra e pelas anilhas (a sombra comprida pode sair do quadro).
 const barra_hexagonal = quadro(
   (C) => {
-    const y = 22.5, R = 34;
-    const hx = Array.from({ length: 6 }, (_, i) => {
-      const t = (Math.PI / 3) * i;
-      return [R * Math.sin(t) * 0.82, y, R * Math.cos(t)];
-    });
-    for (let i = 0; i < 6; i++) tubo(C, hx[i], hx[(i + 1) % 6], 3.2, M.cromo, { up: Y });
-    for (const s of [-1, 1]) {
-      tubo(C, [s * 12, y, -10], [s * 12, y, 10], 2.6, M.cromo, { up: Y });
-      pega(C, [s * 12, y + 0.4, -6], [s * 12, y + 0.4, 6], 2.2);
-      tubo(C, [s * 12, y, -10], hx[s < 0 ? 4 : 2], 2.4, M.cromo, { up: Y });
-      tubo(C, [s * 12, y, 10], hx[s < 0 ? 5 : 1], 2.4, M.cromo, { up: Y });
+    const rAn = 22.5, eAn = 5.4, y = rAn;
+    const tb = 3.81, rc = 3.4 / 2, rm = 4.85 / 2;
+    const ponta = 128 / 2, meia = 226.1 / 2, iniManga = meia - 40.6, iniBatente = iniManga - 2.5;
+    // os cantos do hexágono, a meio do tubo: [ao longo das mangas (z), ao longo dos cabos (x)]
+    const t = 72.4 / 2 - tb / 2, s0 = ponta - t / Math.tan(Math.PI / 3);
+    const Q = ([s, tt]) => [tt, y, s];
+    const cantos = [[ponta, 0], [s0, t], [-s0, t], [-ponta, 0], [-s0, -t], [s0, -t]].map(Q);
+    for (let i = 0; i < 6; i++) {
+      const a = cantos[i], b = cantos[(i + 1) % 6], d = norm(sub(b, a));
+      C.tubo(add(a, mul(d, -tb / 2)), add(b, mul(d, tb / 2)), tb, tb, M.metal, { up: Y });
     }
+    for (const q of cantos) C.tubo(add(q, [0, -tb / 2 - 0.05, 0]), add(q, [0, tb / 2 + 0.05, 0]), tb * 1.12, tb * 1.12, M.metal, { up: Z });
+    const zc = 72.4 / 2 - tb;
     for (const s of [-1, 1]) {
-      const z0 = s * R;
-      cil(C, [0, y, z0], [0, y, z0 + s * 30], 2.5, M.cromo, { lados: 14 });
-      disco(C, [0, y, z0 + s * 8], Z, 22.5, 4);
-      cil(C, [0, y, z0 + s * 11], [0, y, z0 + s * 13.5], 3.4, M.cromo, { lados: 12 });
+      // o cabo, de uma face de dentro da moldura à outra, com a recartilha onde a mão fecha
+      const z = (s * 63.5) / 2;
+      C.cilindro([-zc, y, z], [zc, y, z], rc, M.metal, { lados: 12, up: Y, dz: 6 });
+      C.linha([-6, y + rc + 0.02, z], [6, y + rc + 0.02, z], '#8C939D', 0.8);
+      // o pé da manga, o batente, a parte carregável, a anilha e a presilha
+      C.cilindro([0, y, s * ponta], [0, y, s * iniBatente], rm, M.metal, { lados: 14, up: Y });
+      C.cilindro([0, y, s * iniBatente], [0, y, s * iniManga], 7 / 2, M.metal, { lados: 14, up: Y });
+      C.cilindro([0, y, s * iniManga], [0, y, s * meia], rm, M.metal, { lados: 14, up: Y });
+      const a = [0, y, s * iniManga], b = [0, y, s * (iniManga + eAn)];
+      C.anilha(s < 0 ? b : a, s < 0 ? a : b, rAn, M.anilha, { up: Y });
+      const d0 = iniManga + eAn + 0.3;
+      C.cilindro([0, y, s * d0], [0, y, s * (d0 + 5)], rm + 0.7, M.metalClaro, { lados: 12, up: Y });
+      C.linha([0, y + rm + 0.5, s * (d0 + 2.5)], [0, y + 7, s * (d0 + 2.5)], M.metalClaro[3], 0.9);
     }
-    C.sombra(0, 0, 30, 60, 0.2);
+    C.sombra(0, 0, 30, 30 + meia, 0.2);
   },
-  { yaw: 52, pitch: 34, s: 0.6 },
+  { yaw: 38, pitch: 30, s: 0.6 },
+  [[-36.2, 0, -64], [36.2, 0, 64], ...[-1, 1].flatMap((s) => [[0, 0, s * 72.45], [0, 45, s * 72.45], [0, 22.5, s * 113.05]])],
 );
 
 // ================= máquinas =================
@@ -503,39 +523,67 @@ const hack = (id) => ILUSTRACOES.hack(id, { pessoa: false });
 const graviton = (id) => ILUSTRACOES.graviton(id, { pessoa: false });
 const cadeira_abdutora_adutora = (id) => ILUSTRACOES.cadeira_abdutora_adutora(id, { pessoa: false });
 
-// gaiola: 4 colunas com furos, travessas, ganchos J com a barra apoiada e as barras de segurança
+// suporte de agachamento, aberto (decisão do Gustavo em 18/11/2026, "aprovo", e em 21/11 para o cartão: o suporte das
+// fichas e da animação, no lugar da gaiola de quatro colunas). Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/suporte.json e pecas-de-cena/suporte.ts): montantes de 192 cm (Life Fitness LBR-OS),
+// quadro do chão de 150 cm (Hammer Strength OSR), 110 cm de vão entre os montantes e furos a cada 2,5 cm (IPF 2026),
+// pinos de segurança de 50 cm; de desenho na peça: o tubo de 7,5 cm, o gancho em J (9 × 13 cm, borda de 4 cm), o furo de
+// 1,6 cm e o pino de 5 cm. A regulagem é a do agachamento com barra na animação (o berço dos ganchos a 130 cm, o topo
+// dos pinos a 90 cm). A barra nos ganchos, como no cartão de antes, é a peça da barra longa (barra-longa.json, IWF:
+// 220 cm, 131 cm entre as mangas), com uma anilha de 20 kg de cada lado.
 const rack_de_agachamento = quadro(
   (C) => {
-    base(C, 0, 118, 0, 120, 7);
-    const xs = [8, 110], zs = [10, 110];
-    for (const x of xs) for (const z of zs) tubo(C, [x, 3, z], [x, 224, z], 7);
-    for (const z of zs) tubo(C, [xs[0], 224, z], [xs[1], 224, z], 6);
-    for (const x of xs) tubo(C, [x, 224, zs[0]], [x, 224, zs[1]], 6);
-    tubo(C, [xs[1], 210, zs[0] + 6], [xs[1], 210, zs[1] - 6], 3.6, M.cromo);
-    for (const z of zs) {
-      const cs = [];
-      for (let y = 30; y <= 200; y += 10) cs.push([xs[1] + 3.6, y, z]);
-      C.furos(cs, Z, Y, 0.9);
+    // P(l, y, d): l do meio para um montante, y de altura, d para o lado da pessoa (+x)
+    const P = (l, y, d) => [d, y, -l];
+    const f = X, lado = [0, 0, -1];
+    const t = 7.5, H = 192, meiaBase = 150 / 2, xm = 110 / 2 + t / 2, dP = t / 2, pl = 5, pc = 50;
+    const gancho = 130, pino = 90;
+    const altBase = t * 0.66;
+    // o quadro do chão: um trilho sob cada montante, na direção da pessoa, e uma travessa na ponta de trás
+    for (const sl of [-1, 1]) C.tubo(P(sl * xm, altBase / 2, -meiaBase), P(sl * xm, altBase / 2, meiaBase), t, altBase, M.metal, { up: Y });
+    C.tubo(P(-xm, altBase / 2, -meiaBase + t / 2), P(xm, altBase / 2, -meiaBase + t / 2), t, altBase, M.metal, { up: Y });
+    for (const sl of [-1, 1]) for (const d of [-meiaBase + 3, meiaBase - 3]) C.cilindro(P(sl * xm, 0, d), P(sl * xm, 1.2, d), 3.2, M.borracha, { lados: 10 });
+    // os montantes, com a tampa de borracha (sem travessa em cima)
+    for (const sl of [-1, 1]) {
+      C.tubo(P(sl * xm, altBase, 0), P(sl * xm, H - 0.8, 0), t, t, M.metal, { up: f });
+      C.tubo(P(sl * xm, H - 0.8, 0), P(sl * xm, H, 0), t + 0.5, t + 0.5, M.borracha, { up: f });
     }
-    // barras de segurança
-    for (const z of zs) tubo(C, [xs[0] - 8, 72, z], [xs[1] + 12, 72, z], 4.5, M.cromo);
-    // ganchos J e barra
-    for (const z of zs) {
-      C.caixa([xs[1] + 3, 128, z - 4], [xs[1] + 10, 140, z + 4], M.metalClaro);
-      C.caixa([xs[1] + 8, 140, z - 4], [xs[1] + 11, 145, z + 4], M.borracha);
+    // os furos de regulagem, na face virada para a pessoa, do pino mais baixo (50 cm) ao gancho mais alto (170 cm)
+    const furos = [];
+    for (const sl of [-1, 1]) for (let y = 50; y <= 170 + 1e-6; y += 2.5) furos.push(P(sl * xm, y, dP + 0.05));
+    C.furos(furos, lado, Y, 1.6 / 2);
+    // os pinos de segurança, com a tampa de borracha na ponta
+    for (const sl of [-1, 1]) {
+      const b = P(sl * xm, pino - pl / 2, dP + pc - 1);
+      C.tubo(P(sl * xm, pino - pl / 2, dP), b, pl, pl, M.cromo, { up: Y });
+      C.tubo(b, P(sl * xm, pino - pl / 2, dP + pc), pl + 0.4, pl + 0.4, M.borracha, { up: Y });
     }
-    const bx = xs[1] + 7, by = 143;
-    cil(C, [bx, by, -50], [bx, by, 170], 1.4, M.cromo, { lados: 10 });
-    for (const [z0, s] of [
-      [-6, -1],
-      [126, 1],
-    ]) {
-      cil(C, [bx, by, z0], [bx, by, z0 + s * 3], 3.2, M.cromo, { lados: 14 });
-      cil(C, [bx, by, z0 + s * 3], [bx, by, z0 + s * 44], 2.5, M.cromo, { lados: 14 });
-      disco(C, [bx, by, z0 + s * 8], Z, 22.5, 4);
-      disco(C, [bx, by, z0 + s * 12.5], Z, 22.5, 4);
+    C.sombra(0, 0, xm + 12, meiaBase + 6, 0.16);
+    // os ganchos em J: a chapa contra o montante, o berço com a borracha e a borda da ponta
+    const ga = 13, gp = 9, gb = 4, gl = t - 1;
+    for (const sl of [-1, 1]) {
+      const x = sl * xm, y0 = gancho;
+      C.tubo(P(x, y0 - ga + gb, dP + 0.8), P(x, y0 + gb, dP + 0.8), gl, 1.6, M.metalClaro, { up: f });
+      C.tubo(P(x, y0 - 1.6, dP + 1.6), P(x, y0 - 1.6, dP + gp), gl, 1.2, M.metalClaro, { up: Y });
+      C.tubo(P(x, y0 - 0.5, dP + 1.6), P(x, y0 - 0.5, dP + gp - 1.2), gl - 0.6, 1, M.borracha, { up: Y });
+      C.tubo(P(x, y0 - 2.2, dP + gp - 0.6), P(x, y0 + gb - 1, dP + gp - 0.6), gl, 1.2, M.metalClaro, { up: f });
     }
-    C.sombra(60, 60, 75, 75, 0.2);
+    // a barra longa no berço dos ganchos: a pegada, a recartilha, os rebordos, as mangas, as anilhas e as presilhas
+    const centro = P(0, gancho + 2.8 / 2, t / 2 + (gp - 1.2) / 2);
+    const B = (d) => add(centro, mul(lado, d));
+    const entre = 131 / 2, esp = 2.5, meia = 220 / 2, eAn = 5.4;
+    cil(C, B(-entre), B(entre), 2.8 / 2, M.cromo, { lados: 14, dz: 6 });
+    for (const s of [-1, 1]) {
+      C.linha(add(B(s * (81 / 2 - 18)), [0, 1.42, 0]), add(B(s * (81 / 2 + 10)), [0, 1.42, 0]), '#7A818A', 0.9);
+      cil(C, B(s * entre), B(s * (entre + esp)), 7.6 / 2, M.cromo);
+      cil(C, B(s * (entre + esp)), B(s * meia), 5 / 2, M.cromo);
+      const a = B(s * (entre + esp)), b = B(s * (entre + esp + eAn));
+      C.anilha(s < 0 ? b : a, s < 0 ? a : b, 45 / 2, M.anilha);
+      const d0 = entre + esp + eAn + 0.3;
+      cil(C, B(s * d0), B(s * (d0 + 5)), 5 / 2 + 0.7, M.metalClaro, { lados: 12 });
+      const c = B(s * (d0 + 2.5));
+      C.linha(add(c, [0, 5 / 2 + 0.5, 0]), add(c, [0, 7, 0]), M.metalClaro[3], 0.9);
+    }
   },
   { yaw: 28, pitch: 10, s: 0.6 },
 );
@@ -578,76 +626,201 @@ function bancoMaquina(C, x, z, ySeat = 46, inclina = 0.12) {
   C.estofado(add([x - 18, ySeat + 34, z], mul(nn, -4.5)), ao, nn, Z, 64, 9, 34);
   tubo(C, [x - 4, ySeat - 6, z], [x - 22, ySeat + 8, z], 6);
 }
-// pegadores laterais do assento
-function pegadoresAssento(C, x, z, y = 50, larg = 24) {
+// As cadeiras extensora e flexora (decisão do Gustavo em 21/11/2026: os cartões com a medida das fichas, como as peças
+// da animação). Os dois cartões de antes eram 26% a 54% mais estreitos que as fichas, com a pilha atrás do assento; aqui
+// a pilha fica ao lado do assento, que é como a largura das fichas fecha. O desenho é o da peça do motor novo
+// (src/engine/novo/pecas-de-cena/cadeira-flexora.ts, que desenha as duas), com as medidas de
+// src/engine/novo/dados/objetos/cadeira-flexora.json e cadeira-extensora.json; a máquina parada, na posição inicial
+// (as placas embaixo). Eixos da peça: quem senta olha para +z, o assento no meio (x = 0) com a borda da frente em z = 0,
+// o came, a alavanca e a torre à esquerda de quem senta (+x). A câmera é a das folhas das peças (de três quartos, pela
+// frente e pelo lado direito de quem senta), que mostra o assento, o rolo e a pilha.
+function cadeiraDeJoelho(C, g, m) {
+  const rad = Math.PI / 180;
+  const esp = g.estofadoEsp, meiaLarg = g.assentoLarg / 2, tb = g.tubo;
+  // o assento (o meio do topo na altura da tabela, a borda da frente em z = 0), o eixo e o lado do came
+  const inc = g.assentoInclina * rad;
+  const ao = [0, Math.sin(inc), Math.cos(inc)], normal = [0, Math.cos(inc), -Math.sin(inc)];
+  const meioTopo = [0, g.assentoAltura, -(g.assentoComp / 2) * Math.cos(inc)];
+  const frenteTopo = add(meioTopo, mul(ao, g.assentoComp / 2)), fundoTopo = add(meioTopo, mul(ao, -g.assentoComp / 2));
+  const eixo = add(frenteTopo, [0, g.eixoAcima, g.eixoFrente]);
+  const xC = meiaLarg + 7;
+  // o encosto (na regulagem do exemplo das folhas: 8 cm à frente do mais recuado)
+  const ie = g.encostoInclina * rad;
+  const sobe = [0, Math.cos(ie), -Math.sin(ie)], frente = [0, Math.sin(ie), Math.cos(ie)];
+  const baseE = add(fundoTopo, [0, 0, m.encosto - g.encostoCurso / 2]);
+  // a alavanca e o rolo
+  const dAl = [0, -Math.cos(m.alavanca * rad), Math.sin(m.alavanca * rad)];
+  const centroRolo = add(eixo, mul(dAl, m.rolo)), rRolo = g.roloDiam / 2;
+  // a torre da pilha, ao lado do assento
+  const zTorre = fundoTopo[2] + 6;
+  const xT1 = g.larg - meiaLarg - 8, xT0 = xT1 - 34;
+  const zT0 = zTorre - 16, zT1 = zTorre + 16, H = g.alturaTorre;
+  const zTras = baseE[2] - Math.sin(ie) * g.encostoComp - 12, zFrente = zTras + g.comp;
+  const T = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal);
+  // a base no chão, o pé do assento e o do eixo
+  for (const x of [-meiaLarg + 4, xC + 2]) T([x, tb / 2, zTras], [x, tb / 2, eixo[2] + 6]);
+  for (const z of [zTras + 4, eixo[2] + 2]) T([-meiaLarg + 4, tb / 2, z], [xT1, tb / 2, z]);
+  T([xT0, tb / 2, zT0], [xT0, tb / 2, zT1]);
+  T([xT1, tb / 2, zT0], [xT1, tb / 2, zT1]);
+  T([0, tb, meioTopo[2]], [0, meioTopo[1] - esp - 2, meioTopo[2]]);
+  T([-meiaLarg + 4, tb / 2, meioTopo[2]], [xC + 2, tb / 2, meioTopo[2]]);
+  T([xC + 2, tb, eixo[2]], [xC + 2, eixo[1] - 6, eixo[2]]);
+  // o trilho do encosto, o encosto e o assento
+  T([0, fundoTopo[1] - esp - 6, fundoTopo[2] - g.encostoCurso / 2 - 6], [0, fundoTopo[1] - esp - 6, meioTopo[2] + 6], 5);
+  C.estofado(add(add(baseE, mul(sobe, g.encostoComp / 2)), mul(frente, -esp)), sobe, frente, X, g.encostoComp, esp, g.assentoLarg - 4);
+  T(add(baseE, [0, -esp - 4, -2]), add(add(baseE, mul(sobe, g.encostoComp * 0.45)), mul(frente, -esp - 2)), 5);
+  C.estofado(add(meioTopo, mul(normal, -esp)), ao, normal, X, g.assentoComp, esp, g.assentoLarg);
+  // os pegadores ao lado do assento
   for (const s of [-1, 1]) {
-    tubo(C, [x - 4, y - 14, z + s * (larg - 6)], [x + 4, y, z + s * larg], 3);
-    pega(C, [x + 4, y, z + s * larg], [x + 16, y + 2, z + s * larg], 2);
+    const x = s * (meiaLarg + 4), a = g.alcaAFrente;
+    C.tubo([x * 0.85, meioTopo[1] - esp - 4, meioTopo[2] - 10 + a], [x, meioTopo[1] - 2, meioTopo[2] + a], 3, 3, M.metal);
+    C.cilindro([x, meioTopo[1] - 2, meioTopo[2] + a], [x, meioTopo[1] - 2, meioTopo[2] + 12 + a], 2, M.borracha, { lados: 12 });
   }
+  // a trava das coxas (só na flexora): a almofada sobre as coxas, num braço que desce do lado esquerdo
+  if (g.travaComp) {
+    const zTrava = frenteTopo[2] - g.travaComp / 2 - 4;
+    C.estofado([0, m.trava, zTrava], Z, Y, X, g.travaComp, esp, g.travaLarg);
+    T([xC + 2, eixo[1] + 4, zTrava - 2], [xC + 2, m.trava + esp + 8, zTrava - 2], 5);
+    T([xC + 2, m.trava + esp + 8, zTrava - 2], [g.travaLarg / 2 - 4, m.trava + esp + 3, zTrava - 2], 4.5);
+  }
+  // a torre: quatro montantes, a tampa, as guias e a polia do pé
+  for (const [x, z] of [[xT0, zT0], [xT1, zT0], [xT0, zT1], [xT1, zT1]]) T([x, tb, z], [x, H, z], 4.5);
+  for (const z of [zT0, zT1]) T([xT0, H, z], [xT1, H, z], 4.5);
+  for (const x of [xT0, xT1]) T([x, H, zT0], [x, H, zT1], 4.5);
+  const xM = (xT0 + xT1) / 2;
+  for (const dz of [-6, 6]) C.cilindro([xM, tb, zTorre + dz], [xM, H - 6, zTorre + dz], 0.8, M.cromo, { lados: 8 });
+  C.cilindro([xM - 1.5, 10, zT1 + 2], [xM + 1.5, 10, zT1 + 2], 4.5, M.metalClaro, { lados: 16 });
+  C.sombra((xT1 - meiaLarg) / 2, (zTras + zFrente) / 2, (xT1 + meiaLarg) / 2 + 6, g.comp / 2, 0.18);
+  // as placas (5 no pino, paradas embaixo) e a haste
+  const n = 15, k = 5, hp = 75 / n, xP = xM - 26 / 2, zP = zTorre + 12 / 2;
+  C.pilha([xP, tb + 2, zP], X, [0, 0, -1], 26, hp * (n - k), 12, n - k);
+  const yDo = tb + 2 + hp * (n - k);
+  C.pilha([xP, yDo, zP], X, [0, 0, -1], 26, hp * k, 12, k);
+  C.cilindro([xM, yDo + hp * k, zTorre], [xM, yDo + hp * k + 10, zTorre], 1.2, M.cromo, { lados: 8 });
+  // o cabo, do came até a polia do pé da torre
+  const rC = g.cameDiam / 2;
+  const saida = add(eixo, [xC - 1, -rC, 0]);
+  C.linha(saida, [saida[0], 10 - 4.5, saida[2]], '#202327', 0.7);
+  C.linha([saida[0], 10 - 4.5, saida[2]], [xM, 10 - 4.5, zT1 + 2], '#202327', 0.7);
+  // o came, o eixo, a alavanca, a luva do rolo, a haste e o rolo
+  const cx = (x) => [x, eixo[1], eixo[2]];
+  C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24 });
+  C.cilindro(cx(xC + 3), cx(xC + 6), 3, M.cromo, { lados: 12 });
+  const lado = (v, x) => [x, v[1], v[2]];
+  C.tubo(lado(eixo, xC), lado(add(eixo, mul(dAl, g.alavancaMax)), xC), 5, 5, M.metal, { up: X });
+  C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: X });
+  C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g.roloComp / 2), 1.6, M.cromo, { lados: 10 });
+  C.cilindro(add(centroRolo, [-g.roloComp / 2, 0, 0]), add(centroRolo, [g.roloComp / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
 }
+// a parte comum das duas (as medidas que as duas tabelas dão iguais)
+const JOELHO = { estofadoEsp: 6.5, assentoComp: 44, assentoLarg: 40, encostoComp: 62, encostoInclina: 20, encostoCurso: 16, eixoAcima: 9, eixoFrente: 5, cameDiam: 22, roloDiam: 11, roloComp: 44, alturaTorre: 148, tubo: 7 };
 
-// cadeira extensora: assento, encosto, rolo na frente da canela (alavanca para baixo) e came no joelho
+// cadeira extensora: 167 × 106 cm (Life Fitness SS-LE), torre de 148 cm (Precor RSL0605); de desenho na peça: o assento
+// reto a 56 cm, a alavanca de até 48 cm, as alças 8 cm atrás do meio do assento, sem a trava das coxas. A alavanca
+// apontando para baixo (0°), com o rolo a 38 cm do eixo, na frente da canela.
 const cadeira_extensora = quadro(
-  (C) => {
-    base(C, -40, 118, 6, 70);
-    torre(C, [-40, 0, 18], X, Z, 32, 30, 160, 9);
-    bancoMaquina(C, 40, 38);
-    pegadoresAssento(C, 46, 38, 50, 26);
-    // came e alavanca: pivô ao lado do joelho, braço desce até o rolo da canela
-    C.cilindro([80, 46, 8], [80, 46, 13], 9, M.metalClaro, { lados: 22 });
-    tubo(C, [80, 4, 10], [80, 40, 10], 6);
-    tubo(C, [80, 46, 13], [92, 14, 13], 5);
-    tubo(C, [92, 14, 13], [92, 14, 54], 3.2, M.cromo);
-    rolo(C, [94, 14, 40], Z, 26, 5.4);
-    C.sombra(40, 38, 82, 40, 0.2);
-  },
-  { yaw: 38, pitch: 12, s: 0.6 },
+  (C) => cadeiraDeJoelho(C, { ...JOELHO, comp: 167, larg: 106, assentoInclina: 0, assentoAltura: 56, alavancaMax: 48, alcaAFrente: -8 }, { alavanca: 0, rolo: 38, encosto: 8 }),
+  { yaw: 250, pitch: 12, s: 0.6 },
 );
 
-// cadeira flexora: assento, encosto, apoio que trava as coxas por cima e rolo atrás da panturrilha (alavanca para a frente)
+// cadeira flexora: 156 × 102 cm (Life Fitness SS-SLC), torre de 148 cm e o assento inclinado 15° (Precor RSL0619); de
+// desenho na peça: o assento a 50 cm, a alavanca de até 52 cm, as alças 6 cm à frente do meio do assento, a trava das
+// coxas de 22 × 40 cm. A alavanca à frente (95°), com o rolo a 40 cm do eixo, atrás da panturrilha; a trava a 70 cm.
 const cadeira_flexora = quadro(
-  (C) => {
-    base(C, -40, 130, 6, 70);
-    torre(C, [-40, 0, 18], X, Z, 32, 30, 160, 9);
-    bancoMaquina(C, 40, 38, 46, 0.3);
-    pegadoresAssento(C, 46, 38, 50, 26);
-    // trava das coxas: almofada horizontal sobre a frente do assento
-    tubo(C, [74, 4, 8], [74, 70, 8], 5);
-    tubo(C, [74, 70, 8], [70, 66, 38], 4.5);
-    C.estofado([66, 62, 38], X, Y, Z, 22, 8, 34);
-    // came no joelho e alavanca para a frente, com o rolo da panturrilha
-    C.cilindro([84, 50, 8], [84, 50, 13], 9, M.metalClaro, { lados: 22 });
-    tubo(C, [84, 50, 13], [124, 44, 13], 5);
-    tubo(C, [124, 44, 13], [124, 44, 54], 3.2, M.cromo);
-    rolo(C, [126, 44, 40], Z, 26, 5.4);
-    C.sombra(44, 38, 90, 40, 0.2);
-  },
-  { yaw: 38, pitch: 12, s: 0.6 },
+  (C) =>
+    cadeiraDeJoelho(C, { ...JOELHO, comp: 156, larg: 102, assentoInclina: 15, assentoAltura: 50, alavancaMax: 52, alcaAFrente: 6, travaComp: 22, travaLarg: 40 }, { alavanca: 95, rolo: 40, encosto: 8, trava: 70 }),
+  { yaw: 250, pitch: 12, s: 0.6 },
 );
 
-// mesa flexora: banco deitado com a dobra no quadril, pegadores na frente e o rolo dos tornozelos atrás
+// mesa flexora (decisão do Gustavo em 21/11/2026: o cartão com a medida das fichas, como a peça da animação). O cartão
+// de antes era 33% a 40% mais baixo que as fichas e não tinha pilha (um pino de anilha na alavanca). Medidas da peça
+// do motor novo (src/engine/novo/dados/objetos/mesa-flexora.json e pecas-de-cena/mesa-flexora.ts): 159 × 106 cm (Life
+// Fitness SS-LC), torre de 148 cm e estofados de 6,5 cm (Precor RSL0606), a torre ao lado do estofado do peito; de
+// desenho na peça: o eixo a 64 cm, a dobra no quadril (as coxas sobem 20°, o peito desce 10°), os estofados de 34 e
+// 48 × 32 cm, os pegadores 22 cm abaixo da ponta do peito; o came, a alavanca (até 52 cm), o rolo e a pilha são os da
+// cadeira flexora. A máquina parada na posição inicial (a alavanca a −8°, o rolo a 44 cm do eixo, as placas embaixo).
+// Eixos da peça: quem deita fica de bruços com a cabeça para +z, o eixo em z = 0, a torre à esquerda de quem deita (+x).
 const mesa_flexora = quadro(
   (C) => {
-    base(C, -10, 150, 10, 60);
-    for (const x of [0, 70]) tubo(C, [x, 4, 35], [x, 66, 35], 7);
-    C.estofado([28, 68, 35], norm([1, 0.18, 0]), norm([-0.18, 1, 0]), Z, 62, 9, 34);
-    C.estofado([90, 74, 35], norm([1, -0.12, 0]), norm([0.12, 1, 0]), Z, 56, 9, 34);
-    tubo(C, [100, 4, 35], [100, 70, 35], 7);
+    const rad = Math.PI / 180;
+    const tb = 7, esp = 6.5, meiaLarg = 32 / 2, xC = meiaLarg + 7, rRolo = 11 / 2, roloComp = 44;
+    const eixo = [0, 64, 0];
+    const ci = 20 * rad, pi = 10 * rad;
+    const coxa = { ponta: [0, 64 - 6.5, 5], ao: [0, Math.sin(ci), Math.cos(ci)], normal: [0, Math.cos(ci), -Math.sin(ci)], comp: 34 };
+    const dobra = add(coxa.ponta, mul(coxa.ao, coxa.comp));
+    const peito = { ponta: dobra, ao: [0, -Math.sin(pi), Math.cos(pi)], normal: [0, Math.cos(pi), Math.sin(pi)], comp: 48 };
+    const pontaDoPeito = add(dobra, mul(peito.ao, peito.comp));
+    const meioDoTopo = (p) => add(p.ponta, mul(p.ao, p.comp / 2));
+    const alavanca = -8, rolo = 44;
+    const dAl = [0, Math.sin(alavanca * rad), -Math.cos(alavanca * rad)];
+    const centroRolo = add(eixo, mul(dAl, rolo));
+    const zTras = -52 - rRolo - 4, zFrente = zTras + 159;
+    const zTorre = zFrente - 13, xT1 = 106 - meiaLarg - 8, xT0 = xT1 - 34, zT0 = zTorre - 13, zT1 = zTorre + 13, H = 148, yPolia = 10;
+    const T = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal);
+    // a base no chão
+    for (const x of [-meiaLarg + 4, xC + 2]) T([x, tb / 2, zTras], [x, tb / 2, zFrente]);
+    for (const z of [zTras + 4, zFrente - 4]) T([-meiaLarg + 4, tb / 2, z], [xC + 2, tb / 2, z]);
+    T([xC + 2, tb / 2, zT0 + 4], [xT1, tb / 2, zT0 + 4]);
+    T([xC + 2, tb / 2, zT1 - 4], [xT1, tb / 2, zT1 - 4]);
+    // os estofados, a viga e os pés embaixo deles vão na profundidade do canto deles mais longe de quem olha (como na peça)
+    let fundo = -1e9;
+    for (const p of [coxa, peito])
+      for (const s of [0, p.comp])
+        for (const x of [-meiaLarg, meiaLarg]) for (const n of [0, -esp - 10]) fundo = Math.max(fundo, C.P(add(add(add(p.ponta, mul(p.ao, s)), [x, 0, 0]), mul(p.normal, n)))[2]);
+    const atras = (centro) => ({ dz: fundo - C.P(centro)[2] + 1 });
+    const Tf = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal, atras(mul(add(a, b), 0.5)));
+    const sob = (p, n) => add(p, mul(n, -esp - 4));
+    const a0 = sob(coxa.ponta, coxa.normal), a1 = sob(dobra, Y), a2 = sob(pontaDoPeito, peito.normal);
+    Tf(a0, a1, 6);
+    Tf(a1, a2, 6);
+    Tf([0, tb, a0[2] + 6], add(a0, [0, 0, 6]));
+    Tf([0, tb, a1[2]], a1);
+    Tf([0, tb, a2[2] - 4], add(a2, [0, 0, -4]));
+    for (const z of [a0[2] + 6, a1[2], a2[2] - 4]) T([-meiaLarg + 4, tb / 2, z], [xC + 2, tb / 2, z]);
+    for (const p of [coxa, peito]) C.estofado(add(meioDoTopo(p), mul(p.normal, -esp)), p.ao, p.normal, X, p.comp, esp, 32, M.estofado, atras(add(meioDoTopo(p), mul(p.normal, -esp / 2))));
+    // os pegadores: um braço sai da viga, à frente, e a manopla sobe inclinada
+    const dir = [0, Math.cos(25 * rad), Math.sin(25 * rad)];
     for (const s of [-1, 1]) {
-      tubo(C, [6, 60, 35 + s * 14], [-6, 70, 35 + s * 22], 3);
-      pega(C, [-6, 70, 35 + s * 22], [-6, 84, 35 + s * 22], 2);
+      const centro = [s * 24, pontaDoPeito[1] - 22, pontaDoPeito[2] + 4];
+      const pe = add(centro, mul(dir, -6 - 3));
+      T(add(a2, [0, -2, -2]), pe, 4.5);
+      C.cilindro(pe, add(centro, mul(dir, -6)), 1.8, M.metal, { lados: 10 });
+      C.cilindro(add(centro, mul(dir, -6)), add(centro, mul(dir, 6)), 2, M.borracha, { lados: 12 });
     }
-    // pivô no joelho e a alavanca com os rolos (em cima do tornozelo)
-    C.cilindro([122, 74, 6], [122, 74, 11], 8, M.metalClaro, { lados: 20 });
-    tubo(C, [122, 4, 8], [122, 68, 8], 6);
-    tubo(C, [122, 74, 11], [146, 88, 11], 5);
-    tubo(C, [146, 88, 11], [146, 88, 58], 3.2, M.cromo);
-    rolo(C, [148, 90, 36], Z, 30, 5.2);
-    chifre(C, [136, 54, 11], [0, 0, -1], 18, [17]);
-    tubo(C, [128, 64, 11], [136, 54, 11], 4);
-    C.sombra(70, 35, 85, 34, 0.2);
+    // o pé do eixo
+    T([xC + 2, tb, 0], [xC + 2, eixo[1] - 6, 0]);
+    T([xC + 2, eixo[1] - 6, 0], [xC + 2, a0[1], a0[2] + 6], 5);
+    // a torre, as guias e as polias do cabo
+    for (const [x, z] of [[xT0, zT0], [xT1, zT0], [xT0, zT1], [xT1, zT1]]) T([x, tb, z], [x, H, z], 4.5);
+    for (const z of [zT0, zT1]) T([xT0, H, z], [xT1, H, z], 4.5);
+    for (const x of [xT0, xT1]) T([x, H, zT0], [x, H, zT1], 4.5);
+    const xM = (xT0 + xT1) / 2;
+    for (const dz of [-6, 6]) C.cilindro([xM, tb, zTorre + dz], [xM, H - 6, zTorre + dz], 0.8, M.cromo, { lados: 8 });
+    C.cilindro([xC - 1.5, yPolia, 0], [xC + 1.5, yPolia, 0], 4.5, M.metalClaro, { lados: 16 });
+    C.cilindro([xM - 1.5, yPolia, zT0 - 2], [xM + 1.5, yPolia, zT0 - 2], 4.5, M.metalClaro, { lados: 16 });
+    C.sombra((xT1 - meiaLarg) / 2, (zTras + zFrente) / 2, (xT1 + meiaLarg) / 2 + 6, 159 / 2, 0.18);
+    // as placas (5 no pino, paradas embaixo) e a haste
+    const n = 15, k = 5, hp = 75 / n, xP = xM - 26 / 2, zP = zTorre - 12 / 2;
+    C.pilha([xP, tb + 2, zP], X, Z, 26, hp * (n - k), 12, n - k);
+    const yDo = tb + 2 + hp * (n - k);
+    C.pilha([xP, yDo, zP], X, Z, 26, hp * k, 12, k);
+    C.cilindro([xM, yDo + hp * k, zTorre], [xM, yDo + hp * k + 10, zTorre], 1.2, M.cromo, { lados: 8 });
+    // o cabo: do came até a polia sob o eixo, no chão até o pé da torre
+    const rC = 22 / 2;
+    C.linha(add(eixo, [xC, -rC, 0]), [xC, yPolia - 4.5, 0], '#202327', 0.7);
+    C.linha([xC, yPolia - 4.5, 0], [xC, yPolia - 4.5, zT0 - 2], '#202327', 0.7);
+    C.linha([xC, yPolia - 4.5, zT0 - 2], [xM, yPolia - 4.5, zT0 - 2], '#202327', 0.7);
+    // o came, o eixo, a alavanca, a luva do rolo, a haste e o rolo
+    const cx = (x) => [x, eixo[1], eixo[2]];
+    C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24 });
+    C.cilindro(cx(xC + 3), cx(xC + 6), 3, M.cromo, { lados: 12 });
+    const lado = (v, x) => [x, v[1], v[2]];
+    C.tubo(lado(eixo, xC), lado(add(eixo, mul(dAl, 52)), xC), 5, 5, M.metal, { up: X });
+    C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: X });
+    C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -roloComp / 2), 1.6, M.cromo, { lados: 10 });
+    C.cilindro(add(centroRolo, [-roloComp / 2, 0, 0]), add(centroRolo, [roloComp / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
   },
-  { yaw: 30, pitch: 14, s: 0.6 },
+  { yaw: -60, pitch: 14, s: 0.6 },
 );
 
 // ---------- as máquinas de pilha do motor novo ----------
@@ -1149,49 +1322,145 @@ const gluteo_maquina = quadro(
   { yaw: 30, pitch: 12, s: 0.6 },
 );
 
-// panturrilha em pé: apoios grandes para os ombros num carrinho que sobe, degrau para a ponta dos pés embaixo, torre atrás
+// uma caixa alinhada aos eixos, de a (o canto de menor x, y e z) a b, como as peças das panturrilhas a desenham
+const caixaXY = (C, a, b, mat) => C.prisma([[a[0], a[1]], [b[0], a[1]], [b[0], b[1]], [a[0], b[1]]], [0, 0, a[2]], X, Y, [0, 0, b[2] - a[2]], mat);
+
+// panturrilha em pé (decisão do Gustavo em 21/11/2026: o cartão igual à peça da animação). No cartão de antes as
+// almofadas corriam num carro na vertical; nas fotos das duas fichas (Hammer Strength HS-SC, Atlantis M118) elas ficam
+// num braço que gira num eixo no alto dos montantes, e é assim na peça. Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/panturrilha-em-pe.json e pecas-de-cena/panturrilha-em-pe.ts): 148 × 114 × 183 cm
+// (HS-SC); do corpo da tabela, o eixo a 169 cm e 70 cm à frente da borda do degrau, as almofadas a 34 cm uma da outra;
+// de desenho na peça: o degrau de 16 × 36 × 56 cm, as almofadas de 30 × 14 × 10 cm, o braço de 72 cm, a travessa com
+// os pegadores 28 cm à frente e 16 cm abaixo do meio das almofadas, a torre de 34 × 36 cm, o came de 22 cm. Sem
+// ninguém, o braço descansa no batente de baixo (−7,9°, a posição inicial da animação). Eixos da peça: quem treina
+// olha para +z, para os montantes e a torre; a borda de trás do degrau em z = 0. Escolha do cartão: a câmera pela frente
+// e pela esquerda de quem treina (o degrau na frente), que mostra as duas almofadas e o braço; do ângulo da folha da
+// peça, as almofadas ficavam pequenas na frente da torre.
 const panturrilha_em_pe_maquina = quadro(
   (C) => {
-    base(C, -44, 64, 0, 80);
-    torre(C, [-44, 0, 22], X, Z, 30, 36, 180, 10);
-    for (const z of [12, 68]) tubo(C, [-4, 4, z], [-4, 196, z], 7);
-    tubo(C, [-4, 196, 12], [-4, 196, 68], 6);
-    C.caixa([-10, 134, 10], [2, 154, 70], M.metalClaro);
-    for (const z of [25, 55]) {
-      tubo(C, [2, 146, z], [14, 146, z], 6);
-      C.estofado([32, 146, z], X, mul(Y, -1), Z, 36, 12, 20);
+    const rad = Math.PI / 180;
+    const tb = 7, braco = -7.9;
+    const P = [0, 169, 70];
+    const d = [0, Math.sin(braco * rad), -Math.cos(braco * rad)], n = [0, Math.cos(braco * rad), Math.sin(braco * rad)];
+    const noBraco = (dd) => add(P, mul(d, dd));
+    const R = 72, meia = 34 / 2;
+    const centroDaAlmofada = (s) => add(noBraco(R), [s * meia, 0, 0]);
+    const zFrente = 70 + 8 + 36 + 2, zTras = zFrente - 148;
+    const hP = 16, pP = 36, lP = 56;
+    const zT0 = P[2] + 8, zT1 = zT0 + 36, xT = 34 / 2, H = 183, xM = 24 / 2;
+    const T = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal);
+    // a base no chão
+    const xB = 114 / 2 - tb / 2;
+    for (const s of [-1, 1]) T([s * (lP / 2 - 2), tb / 2, zTras + tb], [s * (lP / 2 - 2), tb / 2, zT1]);
+    T([-xB, tb / 2, zTras + tb / 2], [xB, tb / 2, zTras + tb / 2]);
+    T([-xB, tb / 2, zFrente - tb / 2], [xB, tb / 2, zFrente - tb / 2]);
+    T([-lP / 2 + 2, tb / 2, P[2]], [lP / 2 - 2, tb / 2, P[2]]);
+    // o degrau: o bloco de aço e a chapa de cima, ranhurada de um lado ao outro
+    caixaXY(C, [-lP / 2, tb, 0.5], [lP / 2, hP - 2.5, pP - 0.5], M.metal);
+    C.prisma(retArred(pP, 2.5, 0.8), [-lP / 2, hP - 1.25, pP / 2], Z, Y, [lP, 0, 0], M.plataforma);
+    for (let i = 1; i < 7; i++) C.linha([-lP / 2 + 1.5, hP + 0.05, (pP * i) / 7], [lP / 2 - 1.5, hP + 0.05, (pP * i) / 7], '#5E646C', 0.45);
+    T([0, tb, pP - 2], [0, tb, P[2] - 4], 6);
+    // os dois montantes do eixo, a tampa e o eixo
+    for (const s of [-1, 1]) T([s * xM, tb, P[2]], [s * xM, P[1] + 8, P[2]]);
+    T([-xM, P[1] + 8, P[2]], [xM, P[1] + 8, P[2]], 6);
+    C.cilindro([-xM, P[1], P[2]], [xM, P[1], P[2]], 2.4, M.cromo, { lados: 12 });
+    // a torre: quatro montantes, a tampa, as guias e a polia do pé
+    for (const [x, z] of [[-xT, zT0], [xT, zT0], [-xT, zT1], [xT, zT1]]) T([x, tb, z], [x, H, z], 4.5);
+    for (const z of [zT0, zT1]) T([-xT, H, z], [xT, H, z], 4.5);
+    for (const x of [-xT, xT]) T([x, H, zT0], [x, H, zT1], 4.5);
+    const zP = (zT0 + zT1) / 2;
+    for (const dx of [-7, 7]) C.cilindro([dx, tb, zP], [dx, H - 6, zP], 0.8, M.cromo, { lados: 8 });
+    C.cilindro([-1.5, 10, zT0 - 2], [1.5, 10, zT0 - 2], 4.5, M.metalClaro, { lados: 16 });
+    C.sombra(0, (zTras + zFrente) / 2, 114 / 2, 148 / 2, 0.18);
+    // as placas (8 no pino, paradas embaixo) e a haste
+    const nPl = 18, k = 8, hp = 90 / nPl, zPl = zP + 12 / 2;
+    C.pilha([-13, tb + 2, zPl], X, [0, 0, -1], 26, hp * (nPl - k), 12, nPl - k);
+    const yDo = tb + 2 + hp * (nPl - k);
+    C.pilha([-13, yDo, zPl], X, [0, 0, -1], 26, hp * k, 12, k);
+    C.cilindro([0, yDo + hp * k, zP], [0, yDo + hp * k + 10, zP], 1.2, M.cromo, { lados: 8 });
+    // o came no eixo e o cabo até a polia do pé da torre
+    const rC = 22 / 2, xC = 6;
+    C.cilindro([xC - 2.5, P[1], P[2]], [xC + 2.5, P[1], P[2]], rC, M.metalClaro, { lados: 24 });
+    C.linha([xC, P[1] - rC, P[2] + 1], [xC, 10 - 4.5, P[2] + 1], '#202327', 0.7);
+    C.linha([xC, 10 - 4.5, P[2] + 1], [0, 10 - 4.5, zT0 - 2], '#202327', 0.7);
+    // o braço, do eixo até a travessa na frente do pescoço
+    const cTr = add(noBraco(R - 28), mul(n, -16));
+    C.tubo(P, cTr, 6, 6, M.metal, { up: X });
+    C.cilindro([-4, P[1], P[2]], [4, P[1], P[2]], 4, M.metal, { lados: 14 });
+    // a travessa com os pegadores nas pontas, as barras até as almofadas e as almofadas
+    const dentro = meia + 3;
+    C.tubo(add(cTr, [-dentro, 0, 0]), add(cTr, [dentro, 0, 0]), 5, 5, M.metal, { up: n });
+    for (const s of [-1, 1]) {
+      C.cilindro(add(cTr, [s * dentro, 0, 0]), add(cTr, [s * (dentro + 11), 0, 0]), 3.4 / 2, M.borracha, { lados: 12 });
+      const frente = add(add(centroDaAlmofada(s), mul(d, -30 / 2 + 3)), mul(n, -10 / 2 + 1.5));
+      C.tubo(add(cTr, [s * meia, 0, 0]), frente, 4.5, 4.5, M.metal, { up: n });
+      C.estofado(add(centroDaAlmofada(s), mul(n, -10 / 2)), mul(d, -1), n, X, 30, 10, 14);
     }
-    for (const s of [-1, 1]) pega(C, [14, 156, 40 + s * 31], [24, 164, 40 + s * 31], 2.2);
-    for (const s of [-1, 1]) tubo(C, [2, 150, 40 + s * 24], [14, 156, 40 + s * 31], 3);
-    // degrau alto com borda e ranhuras
-    C.caixa([14, 0, 12], [50, 16, 68], M.metal);
-    C.prisma(retArred(36, 3, 1), [32, 16, 12], X, Y, [0, 0, 56], M.plataforma, { decalSempre: (P) => `<path d="${[0, 1, 2, 3, 4, 5].map((i) => { const a = P([17 + i * 6, 17.6, 14]), b = P([17 + i * 6, 17.6, 66]); return `M${f1(a[0])} ${f1(a[1])}L${f1(b[0])} ${f1(b[1])}`; }).join('')}" stroke="#5E646C" stroke-width="0.45"/>` });
-    C.sombra(4, 40, 62, 50, 0.2);
   },
-  { yaw: 46, pitch: 10, s: 0.6 },
+  { yaw: 36, pitch: 12, s: 0.6 },
 );
 
-// panturrilha sentada: assento baixo, almofada sobre os joelhos numa alavanca, apoio dos pés e pino de anilhas
+// panturrilha sentada (decisão do Gustavo em 21/11/2026: o cartão com a medida das fichas, como a peça da animação). O
+// cartão de antes era 13% a 45% menor que as fichas, com o eixo numa coluna à frente dos pés; na peça o eixo fica ao
+// lado do quadril, como na foto da Atlantis M219. Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/panturrilha-sentada.json e pecas-de-cena/panturrilha-sentada.ts): 155 × 74 × 107 cm
+// (Life Fitness SPLCALF); do corpo da tabela, o assento a 58 cm, o eixo a 66,7 cm, na linha do quadril, e a almofada a
+// 32 cm dele; de desenho na peça: o apoio dos pés de 20 × 18 × 36 cm, o assento de 36 × 34 cm, a almofada de 16 × 40 cm,
+// o pino das anilhas a 80 cm do eixo (com uma anilha de 20 kg, a da animação), o batente a 50 cm. Sem ninguém, a
+// alavanca descansa no batente (−7°, o da animação), com a almofada na regulagem da animação (6,7 cm acima da
+// alavanca). Eixos da peça: quem senta olha para +z; a borda de trás do apoio dos pés em z = 0; a alavanca, o pino e as
+// anilhas à esquerda de quem senta (+x). Escolha do cartão: a câmera pela frente e pela direita de quem senta, que
+// mostra o assento, a almofada e a anilha; pelo lado da alavanca (o da folha da peça), o pé do eixo cobre o assento.
 const panturrilha_sentada_maquina = quadro(
   (C) => {
-    tubo(C, [0, 6, 30], [110, 6, 30], 8);
-    tubo(C, [0, 3, 10], [0, 3, 50], 6);
-    tubo(C, [108, 3, 10], [108, 3, 50], 6);
-    tubo(C, [20, 6, 30], [20, 40, 30], 7);
-    C.estofado([18, 40, 30], X, Y, Z, 36, 9, 34);
-    // apoio dos pés (bloco com ranhura) e coluna da alavanca
-    C.caixa([62, 6, 12], [80, 20, 48], M.plataforma);
-    tubo(C, [96, 6, 30], [96, 46, 30], 8);
-    C.cilindro([96, 46, 24], [96, 46, 36], 4.5, M.metalClaro, { lados: 16 });
-    tubo(C, [96, 46, 30], [50, 58, 30], 6);
-    C.estofado([52, 58, 30], X, Y, Z, 28, 8, 40);
-    chifre(C, [86, 49, 30], [0, 0, -1], 30, [16, 16]);
-    pega(C, [62, 66, 12], [62, 66, 48], 2);
-    tubo(C, [64, 58, 14], [62, 66, 14], 3);
-    tubo(C, [64, 58, 46], [62, 66, 46], 3);
-    C.sombra(54, 30, 64, 32, 0.2);
+    const rad = Math.PI / 180;
+    const tb = 7, alavanca = -7, acima = 6.7;
+    const P = [0, 66.7, -54.7], xL = 27;
+    const naAlavanca = (graus, dd, h = 0) => add(add(P, mul([0, Math.sin(graus * rad), Math.cos(graus * rad)], dd)), mul([0, Math.cos(graus * rad), -Math.sin(graus * rad)], h));
+    const d = [0, Math.sin(alavanca * rad), Math.cos(alavanca * rad)], n = [0, Math.cos(alavanca * rad), -Math.sin(alavanca * rad)];
+    const zFrente = P[2] + 80 + 26, zTras = zFrente - 155;
+    const hA = 20, pA = 18, lA = 36;
+    const hS = 58, eS = 9, cS = 36, lS = 34, zS1 = -40, zS0 = zS1 - cS;
+    const eA = 8, cA = 16, lAl = 40;
+    const T = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal);
+    const lado = (v, x) => [x, v[1], v[2]];
+    // a base no chão
+    T([0, tb / 2, zTras + tb], [0, tb / 2, zFrente - tb]);
+    T([xL, tb / 2, P[2] - 8], [xL, tb / 2, zFrente - tb]);
+    for (const z of [zTras + tb / 2, zFrente - tb / 2]) T([-74 / 2 + 22, tb / 2, z], [74 / 2 - 10, tb / 2, z]);
+    T([0, tb / 2, P[2]], [xL, tb / 2, P[2]]);
+    // o assento num pé
+    T([0, tb, (zS0 + zS1) / 2], [0, hS - eS - 1, (zS0 + zS1) / 2], 8);
+    caixaXY(C, [-lS / 2 + 3, hS - eS - 3, zS0 + 4], [lS / 2 - 3, hS - eS, zS1 - 4], M.metal);
+    C.estofado([0, hS - eS, (zS0 + zS1) / 2], Z, Y, X, cS, eS, lS);
+    // o pé do eixo e o eixo
+    T([xL, tb, P[2]], [xL, P[1] - 5, P[2]], 8);
+    C.cilindro([xL - 6, P[1], P[2]], [xL + 6, P[1], P[2]], 4.2, M.metalClaro, { lados: 16 });
+    // o apoio dos pés: o bloco e a chapa de borracha ranhurada
+    caixaXY(C, [-lA / 2, tb, 0.5], [lA / 2, hA - 2.5, pA - 0.5], M.metal);
+    C.prisma(retArred(pA, 2.5, 0.8), [-lA / 2, hA - 1.25, pA / 2], Z, Y, [lA, 0, 0], M.plataforma);
+    for (let i = 1; i < 5; i++) C.linha([-lA / 2 + 1.5, hA + 0.05, (pA * i) / 5], [lA / 2 - 1.5, hA + 0.05, (pA * i) / 5], '#5E646C', 0.45);
+    // o batente de baixo da alavanca, com a borracha em cima (a alavanca descansa nele)
+    const topoDoBatente = add(naAlavanca(alavanca, 50, -tb / 2), [xL, 0, 0]);
+    T([xL, tb, topoDoBatente[2]], [xL, topoDoBatente[1] - 3, topoDoBatente[2]], 6);
+    C.cilindro([xL, topoDoBatente[1] - 3, topoDoBatente[2]], [xL, topoDoBatente[1], topoDoBatente[2]], 3.6, M.borracha, { lados: 14 });
+    C.sombra(10, (zTras + zFrente) / 2, 74 / 2, 155 / 2, 0.18);
+    // a alavanca, do eixo até o pino, o pino das anilhas e a anilha de 20 kg
+    C.tubo(lado(P, xL), lado(naAlavanca(alavanca, 80 + 6), xL), 6, 6, M.metal, { up: X });
+    const pino = lado(naAlavanca(alavanca, 80), xL);
+    C.cilindro(add(pino, [3, 0, 0]), add(pino, [3 + 22, 0, 0]), 5 / 2, M.cromo, { lados: 14 });
+    C.anilha([xL + 4, pino[1], pino[2]], [xL + 4 + 5.4, pino[1], pino[2]], 45 / 2, M.anilha);
+    // o pino que regula a almofada, o braço que a segura por cima, a almofada e o pegador na frente dela
+    const base = lado(naAlavanca(alavanca, 32), xL);
+    const topo = add(base, mul(n, acima + eA + 3));
+    C.tubo(base, topo, 5, 5, M.metalClaro, { up: d });
+    C.tubo(topo, add(topo, [-xL - lAl / 2 + 4, 0, 0]), 4.5, 4.5, M.metal, { up: n });
+    C.estofado(naAlavanca(alavanca, 32, acima), d, n, X, cA, eA, lAl);
+    const pg = naAlavanca(alavanca, 32 + cA / 2 + 2, acima + eA + 5);
+    C.tubo(add(topo, mul(d, 2)), [xL, pg[1], pg[2]], 3.5, 3.5, M.metal, { up: n });
+    C.cilindro([xL, pg[1], pg[2]], [-44 / 2, pg[1], pg[2]], 3.4 / 2, M.borracha, { lados: 12 });
   },
-  { yaw: 32, pitch: 12, s: 0.6 },
+  { yaw: 236, pitch: 14, s: 0.6 },
 );
 
 // ================= outros acessórios (desenhos 2D com volume, direto no viewBox) =================

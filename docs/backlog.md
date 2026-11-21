@@ -387,9 +387,9 @@ O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`,
 - **Tríceps na máquina:** o cartão é a de mergulho sentado; a peça segue a ficha da técnica (braço apoiado à frente). Decidir se o cartão muda e se o app precisa de um segundo equipamento.
 - ~~**Glúteo na máquina:** o cartão é em pé; a animação é de quatro apoios.~~ Feito em 21/11: o cartão foi redesenhado de quatro apoios.
 - **Supino, desenvolvimento e remada articulada na máquina (anilha × pilha):** os cartões são de anilhas; as peças são de pilha, como as fichas e o texto do app.
-- **Barra hexagonal:** no cartão os cabos correm ao longo das mangas, a 24 cm; na peça (Rogue TB-1) atravessam o hexágono, a 63,5 cm.
-- **Suporte:** o cartão é uma gaiola; a peça é o suporte aberto que o Gustavo aprovou.
-- E ainda: o abdominal na máquina (no cartão, eixo alto e sem apoio da lombar), a panturrilha em pé (no cartão, um carro na vertical; na peça, um braço que gira) e as cadeiras, a mesa e a panturrilha sentada, menores que as fichas. Recomendação: refazer os cartões com as peças novas, no gerador realista (`scripts/desenhos-equipamento/`), com a folha de comparação.
+- ~~**Barra hexagonal:** no cartão os cabos correm ao longo das mangas, a 24 cm; na peça (Rogue TB-1) atravessam o hexágono, a 63,5 cm.~~ Feito em 21/11: o cartão foi redesenhado com a peça.
+- ~~**Suporte:** o cartão é uma gaiola; a peça é o suporte aberto que o Gustavo aprovou.~~ Feito em 21/11: o cartão é o suporte aberto.
+- E ainda: o abdominal na máquina (no cartão, eixo alto e sem apoio da lombar), a panturrilha em pé (no cartão, um carro na vertical; na peça, um braço que gira) e as cadeiras, a mesa e a panturrilha sentada, menores que as fichas (a panturrilha em pé, as cadeiras, a mesa e a panturrilha sentada foram redesenhadas com as peças em 21/11, `revisoes/animacoes-restantes/cartoes-pernas-rack-e-barra.png`). Recomendação: refazer os cartões com as peças novas, no gerador realista (`scripts/desenhos-equipamento/`), com a folha de comparação.
 
 **Pontos fracos que não foram corrigidos**
 - **A conferência automática sai com falha em 45 das 81 novas** (medido em 20/11, todas de pintura; todas aprovadas desde 21/11, quando o Gustavo aprovou o `coice-maquina`), e por isso `npm run conferir:animacao` sai com erro. As 90 antigas não têm falha (38 com aviso de pintura, fio ou peso). O caminho: os lotes 3 a 6 do pintor por pares e o conserto uma a uma do que ele não resolve. Os 4 casos de fio e os 2 de peso dentro do corpo foram corrigidos no mesmo dia.
