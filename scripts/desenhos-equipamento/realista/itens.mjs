@@ -472,29 +472,49 @@ const paralelas = quadro(
   { yaw: 30, pitch: 14, s: 0.6 },
 );
 
+// barra hexagonal (decisão do Gustavo em 21/11/2026: o cartão igual à peça da animação). Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/barra-hexagonal.json, a página da Rogue TB-1 Trap Bar 2.0, e pecas-de-cena/
+// barra-hexagonal.ts): 226,1 cm de ponta a ponta, 72,4 cm de largura, tubo quadrado de 3,81 cm, os cabos de 3,4 cm
+// atravessando o hexágono da frente para trás, a 63,5 cm um do outro, mangas de 4,85 cm com 40,6 cm carregáveis.
+// De desenho na peça: o hexágono de 128 cm de ponta a ponta, pontas de 120°, o batente de 7 × 2,5 cm. Toda preta,
+// como a Rogue (o metal grafite das máquinas). As anilhas (uma de 20 kg de cada lado, 45 cm) e a presilha são as da
+// barra longa (barra-longa.json). Como no cartão de antes, a barra no chão, apoiada nas anilhas. Escolha do cartão: a
+// câmera um pouco mais de frente que a de antes (com o comprimento real, a barra de lado ficava fina e miúda) e o
+// enquadramento pela barra e pelas anilhas (a sombra comprida pode sair do quadro).
 const barra_hexagonal = quadro(
   (C) => {
-    const y = 22.5, R = 34;
-    const hx = Array.from({ length: 6 }, (_, i) => {
-      const t = (Math.PI / 3) * i;
-      return [R * Math.sin(t) * 0.82, y, R * Math.cos(t)];
-    });
-    for (let i = 0; i < 6; i++) tubo(C, hx[i], hx[(i + 1) % 6], 3.2, M.cromo, { up: Y });
-    for (const s of [-1, 1]) {
-      tubo(C, [s * 12, y, -10], [s * 12, y, 10], 2.6, M.cromo, { up: Y });
-      pega(C, [s * 12, y + 0.4, -6], [s * 12, y + 0.4, 6], 2.2);
-      tubo(C, [s * 12, y, -10], hx[s < 0 ? 4 : 2], 2.4, M.cromo, { up: Y });
-      tubo(C, [s * 12, y, 10], hx[s < 0 ? 5 : 1], 2.4, M.cromo, { up: Y });
+    const rAn = 22.5, eAn = 5.4, y = rAn;
+    const tb = 3.81, rc = 3.4 / 2, rm = 4.85 / 2;
+    const ponta = 128 / 2, meia = 226.1 / 2, iniManga = meia - 40.6, iniBatente = iniManga - 2.5;
+    // os cantos do hexágono, a meio do tubo: [ao longo das mangas (z), ao longo dos cabos (x)]
+    const t = 72.4 / 2 - tb / 2, s0 = ponta - t / Math.tan(Math.PI / 3);
+    const Q = ([s, tt]) => [tt, y, s];
+    const cantos = [[ponta, 0], [s0, t], [-s0, t], [-ponta, 0], [-s0, -t], [s0, -t]].map(Q);
+    for (let i = 0; i < 6; i++) {
+      const a = cantos[i], b = cantos[(i + 1) % 6], d = norm(sub(b, a));
+      C.tubo(add(a, mul(d, -tb / 2)), add(b, mul(d, tb / 2)), tb, tb, M.metal, { up: Y });
     }
+    for (const q of cantos) C.tubo(add(q, [0, -tb / 2 - 0.05, 0]), add(q, [0, tb / 2 + 0.05, 0]), tb * 1.12, tb * 1.12, M.metal, { up: Z });
+    const zc = 72.4 / 2 - tb;
     for (const s of [-1, 1]) {
-      const z0 = s * R;
-      cil(C, [0, y, z0], [0, y, z0 + s * 30], 2.5, M.cromo, { lados: 14 });
-      disco(C, [0, y, z0 + s * 8], Z, 22.5, 4);
-      cil(C, [0, y, z0 + s * 11], [0, y, z0 + s * 13.5], 3.4, M.cromo, { lados: 12 });
+      // o cabo, de uma face de dentro da moldura à outra, com a recartilha onde a mão fecha
+      const z = (s * 63.5) / 2;
+      C.cilindro([-zc, y, z], [zc, y, z], rc, M.metal, { lados: 12, up: Y, dz: 6 });
+      C.linha([-6, y + rc + 0.02, z], [6, y + rc + 0.02, z], '#8C939D', 0.8);
+      // o pé da manga, o batente, a parte carregável, a anilha e a presilha
+      C.cilindro([0, y, s * ponta], [0, y, s * iniBatente], rm, M.metal, { lados: 14, up: Y });
+      C.cilindro([0, y, s * iniBatente], [0, y, s * iniManga], 7 / 2, M.metal, { lados: 14, up: Y });
+      C.cilindro([0, y, s * iniManga], [0, y, s * meia], rm, M.metal, { lados: 14, up: Y });
+      const a = [0, y, s * iniManga], b = [0, y, s * (iniManga + eAn)];
+      C.anilha(s < 0 ? b : a, s < 0 ? a : b, rAn, M.anilha, { up: Y });
+      const d0 = iniManga + eAn + 0.3;
+      C.cilindro([0, y, s * d0], [0, y, s * (d0 + 5)], rm + 0.7, M.metalClaro, { lados: 12, up: Y });
+      C.linha([0, y + rm + 0.5, s * (d0 + 2.5)], [0, y + 7, s * (d0 + 2.5)], M.metalClaro[3], 0.9);
     }
-    C.sombra(0, 0, 30, 60, 0.2);
+    C.sombra(0, 0, 30, 30 + meia, 0.2);
   },
-  { yaw: 52, pitch: 34, s: 0.6 },
+  { yaw: 38, pitch: 30, s: 0.6 },
+  [[-36.2, 0, -64], [36.2, 0, 64], ...[-1, 1].flatMap((s) => [[0, 0, s * 72.45], [0, 45, s * 72.45], [0, 22.5, s * 113.05]])],
 );
 
 // ================= máquinas =================
