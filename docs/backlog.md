@@ -378,8 +378,9 @@ O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`,
 **Decisões do Gustavo em aberto** (uma por vez, com imagem)
 - **`coice-maquina`:** a máquina de quatro apoios (a do cartão do exercício e da ficha da técnica) ou a em pé (a do desenho de equipamento e das fichas da Life Fitness, da Hammer Strength e da Movement). **Decidido em 21/11:** a de quatro apoios ("pode ficar com a de quatro apoios e redesenhar o cartão"); aprovada, e o cartão foi redesenhado.
 - **`panturrilha-leg-press`:** a primeira animação com o quadro só na perna (o corpo cortado; campo novo e opcional `enquadra`) e uma vista só, para o tornozelo se ler. **Aprovada em 21/11** ("pode aprovar a só na perna").
-- **O ajuste do pintor** e **o plano B do celular de entrada** (acima).
-- **Os pedidos ao conteúdo** (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`): as travas do supino no smith e do supino com barra, o "pise com o pé" de três cartões de elástico, o músculo secundário que a ficha propõe e a biblioteca não tem, e os desenhos de equipamento.
+- **O ajuste do pintor** e **o plano B do celular de entrada** (acima). **Decidido em 21/11** ("pode seguir assim", "pode aprovar esse e todos os restantes"): o ajuste vale só por animação (`AJUSTE_DO_PINTOR`, em `pintor-ligado.ts`), no `voador` e na `hiperextensao`, que entraram no pintor novo e passam na conferência; o plano B não é feito até alguém reclamar.
+- **Os pedidos ao conteúdo** (`revisoes/animacoes-restantes/pedidos-ao-conteudo.md`): **decididos em 21/11, pela recomendação.** Os textos dos cartões foram corrigidos (as travas, o "pise com o pé", os pés do afundo) e os desenhos de equipamento, refeitos. **Fica para a sessão do gerador:** o músculo secundário que a ficha propõe e a biblioteca não tem (seção 2), porque muda o volume semanal contado.
+- **A máquina de tríceps de mergulho sentado** como um segundo equipamento (o cartão de hoje era ela; a animação e o cartão novo são a de braço apoiado à frente). Decidir se o cadastro ganha os dois.
 - **A junção com a `main`**: nada foi para a `main`.
 
 **Os cartões de equipamento que diferem das peças novas** (`public/equipamento/`, não mexidos; detalhes no pedido ao conteúdo, seção 3)

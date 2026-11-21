@@ -19,7 +19,9 @@ O texto do guia animado copiou os campos do cartão como estão (a conferência 
 | `remada-invertida` | `montagem`, 2º item | "No smith, barra travada nos ganchos" não pede as travas de segurança, e a regra pede no smith as travas logo abaixo do ponto mais baixo. A animação (feita no smith) as pôs 6 cm abaixo da barra. | regra `seguranca.montagem` ("smith e hack: travas logo abaixo do ponto mais baixo"; `docs/pesquisa/regras.md`); `../animacao-nova/lote-C3/remada-invertida.md` (tabela, 1ª linha) | a nota seguiu o cartão, sem as travas de segurança (20/11) |
 | `remada-invertida` | `setupEq` | "Barra firme na altura da cintura": no smith, a animação pôs a barra no pino mais perto que deixa o corpo deitado, 9,9 cm abaixo da cintura (o pino de cima, a 110 cm, deixava o corpo a 45° da vertical). Mesmo assim o corpo fica entre 55° e 73° da vertical, mais em pé que a remada invertida comum, quase deitada. Não parece erro do cartão; fica anotado porque o guia mostra a barra um pouco abaixo do que o texto diz. | o próprio cartão; ficha, linha Preparo (`nsca2021`, não verificado); `../animacao-nova/lote-C3/remada-invertida.md` ("Qual barra" e o risco) | nada: o texto segue o cartão ("na altura da cintura") e mantém as três barras (rack, smith, barra de praça) no `vary` (20/11) |
 
-**Recomendação:** os três do smith e do supino com barra (com a trava da remada invertida) são de segurança e vêm primeiro (a regra já diz o certo); os três "pise com o pé" são o aviso comum copiado para onde não serve; o do afundo é uma palavra.
+**Feito em 21/11/2026** (o Gustavo: "pode aprovar esse e todos os restantes", pela recomendação): os oito itens acima, menos a altura da barra da remada invertida, que não era erro, foram corrigidos no cartão (`src/conteudo/exercicios/`) e no texto do guia (`textos/`). A animação do supino no smith já punha as travas abaixo do ponto mais baixo; só o texto da ficha do movimento mudou.
+
+**Recomendação (de 20/11):** os três do smith e do supino com barra (com a trava da remada invertida) são de segurança e vêm primeiro (a regra já diz o certo); os três "pise com o pé" são o aviso comum copiado para onde não serve; o do afundo é uma palavra.
 
 ## 2. Os músculos: a ficha da técnica e a biblioteca não dizem o mesmo
 
@@ -34,6 +36,8 @@ A conferência automática falha se a animação realça um músculo que a bibli
 | `coice-polia` | secundário: posteriores | sem secundário | ficha (`docs/pesquisa/animacoes/coice-polia.md`, Músculos); `../animacao-nova/lote-C3/pedidos-avulsos.md`, item 1. Se os posteriores entrarem na biblioteca, basta pôr `'posteriores:R': 's'` em `papeis` (`src/engine/novo/exercicios/coice-polia.ts`) |
 | `voador-invertido` | secundário: costas (meio do trapézio) | sem secundário | ficha, seção Músculos; `textos/pedidos.md`, fase C |
 | `hiperextensao` | secundário: lombar (eretores, fora dos 12 músculos) | sem secundário | ficha, seção Músculos; `textos/pedidos.md`, fase C. **Não parece erro**: a lombar não é um dos 12 músculos do app |
+
+**Em 21/11:** fica para a sessão do gerador, porque muda o volume semanal contado (`docs/backlog.md`).
 
 **Recomendação:** decidir de uma vez a regra para o secundário que a ficha propõe e a biblioteca não tem (soma ou não soma), e aplicar nos seis primeiros juntos; mudar a biblioteca muda o volume semanal contado pelo gerador, e por isso é decisão do domínio, com o efeito medido.
 
@@ -51,6 +55,8 @@ O desenho que a pessoa marca na tela de equipamento (`public/equipamento/<cartã
 | Barra hexagonal (`barra_hexagonal`) | os cabos deitados ao longo das mangas, a 24 cm um do outro | os cabos atravessam o hexágono, a 63,5 cm (Rogue TB-1) | `../animacao-nova/lote-B1/resumo-barras-especiais.md` |
 | Panturrilha em pé na máquina (`panturrilha_em_pe_maquina`) | as almofadas correm num carro na vertical | as almofadas num braço que gira, como nas fotos das fichas (HS-SC, Atlantis M118) | `../animacao-nova/lote-C3/resumo-panturrilhas.md` |
 | Cadeiras flexora e extensora, mesa flexora, panturrilha sentada | menores que as fichas: a cadeira flexora 26% a 41% mais estreita, a extensora 37% a 54%, a mesa 33% a 40% mais baixa, a panturrilha sentada 13% a 45% menor (nas cadeiras, a pilha atrás do assento) | a medida das fichas, a pilha ao lado | `plano.md`, seção 3; `../animacao-nova/lote-C1/resumo-cadeiras.md` |
+
+**Decidido em 21/11:** refazer todos (o glúteo em 21/11; os outros 12 em seguida, nas folhas `cartoes-bracos-e-peito.png` e `cartoes-pernas-rack-e-barra.png`). A de mergulho sentado como segundo equipamento ficou para o backlog.
 
 **Recomendação:** refazer os desenhos de equipamento com as peças novas (o gerador realista de `scripts/desenhos-equipamento/` e a folha de comparação já existem), começando pelos que mostram outra máquina (glúteo, tríceps, abdominal). No da máquina de tríceps, decidir antes se o app precisa de um segundo equipamento para a de mergulho.
 
@@ -75,6 +81,6 @@ Não é pedido de mudança no texto: é para o conteúdo saber que, nesses 19, o
 
 ## 6. O que a ligação ainda precisa decidir no texto
 
-- **"Como registrar e subir a carga"** (`carga`, em todos os cartões) não tem lugar no texto do guia animado. Ou o guia ganha esse campo (uma mudança pequena na tela), ou a informação sai (a progressão já vem do programa). O texto do guia dos 81 guarda o campo, para não perder nada. Recomendação: manter, com o campo novo (`plano.md`, seção 6).
+- **"Como registrar e subir a carga"** (`carga`, em todos os cartões) não tem lugar no texto do guia animado. Ou o guia ganha esse campo (uma mudança pequena na tela), ou a informação sai (a progressão já vem do programa). O texto do guia dos 81 guarda o campo, para não perder nada. Recomendação: manter, com o campo novo (`plano.md`, seção 6). **Decidido em 21/11, pela recomendação**; entra na ligação.
 - **Os quatro últimos do lote C3** (`abdominal-maquina`, `coice-polia`, `abducao-polia` e `remada-invertida`) ganharam o texto do guia em 20/11, do cartão e da ficha, como os outros 77; `conferir-textos-restantes.ts` confere agora os 81 (o lote C3 inteiro; `PARCIAIS` ficou vazio). O que faltou na ficha de cada um está na seção "Texto do guia (20/11/2026)" dela.
-- **O caminho do cartão de texto** (`CartaoTexto`): com as 171 animadas, nenhum exercício terá cartão; ele continua servindo quando a animação não carrega. Recomendação: mantê-lo, com um teste que force a falha de carga (`plano.md`, seção 8).
+- **O caminho do cartão de texto** (`CartaoTexto`): com as 171 animadas, nenhum exercício terá cartão; ele continua servindo quando a animação não carrega. Recomendação: mantê-lo, com um teste que force a falha de carga (`plano.md`, seção 8). **Decidido em 21/11, pela recomendação**; entra na ligação.

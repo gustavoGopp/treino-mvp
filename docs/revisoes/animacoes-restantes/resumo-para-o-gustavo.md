@@ -25,10 +25,10 @@
 
 1. ~~**Coice na máquina**~~: decidido em 21/11 ("pode ficar com a de quatro apoios e redesenhar o cartão"). A animação foi aprovada e o desenho de equipamento foi refeito de quatro apoios.
 2. ~~**Panturrilha no leg press**~~: decidido em 21/11 ("pode aprovar a só na perna"). É a primeira animação com o quadro só na perna.
-3. **O voador no pintor novo:** ele só entra com um ajuste que muda um pouquinho três animações que você já aprovou. Vou mostrar as três, antes e depois.
-4. **O celular mais simples:** nele, a primeira volta das máquinas trava por até meio segundo (da segunda volta em diante, não). Dá para resolver guardando a ordem pronta, ao custo de um arquivo maior por exercício. Minha recomendação: deixar como está até alguém reclamar.
-5. **Os desenhos de equipamento que mostram outra máquina** (tríceps, abdominal e as máquinas de anilha que viraram de pilha): refazer com as peças novas? Minha recomendação: sim, começando pelo tríceps (o glúteo já foi refeito).
-6. **Os pedidos ao texto dos exercícios**, a começar pelas travas do supino no smith, que o texto manda pôr acima do peito e a regra de segurança manda pôr abaixo.
+3. ~~**O voador no pintor novo**~~: decidido em 21/11 ("pode seguir assim" e "pode aprovar esse e todos os restantes"). O ajuste do pintor vale só no voador e na hiperextensão, que entraram no pintor novo; as três aprovadas do lote 1 não mudam. O voador, que tinha a maior área pintada errada das 81, passou na conferência.
+4. ~~**O celular mais simples**~~: decidido em 21/11, pela recomendação: fica como está até alguém reclamar.
+5. ~~**Os desenhos de equipamento que mostram outra máquina**~~: decidido em 21/11, pela recomendação: refazer todos com as peças novas (o glúteo já foi; os outros 12 estão sendo refeitos). A de mergulho sentado como segundo equipamento ficou para o backlog.
+6. ~~**Os pedidos ao texto dos exercícios**~~: decididos em 21/11, pela recomendação. Os textos dos cartões foram corrigidos: as travas do supino no smith (logo abaixo do ponto mais baixo), as travas nas anilhas do supino com barra, as travas da remada invertida no smith, o "pise com o pé" que saiu dos três elásticos que não ficam sob o pé e os pés do afundo para trás. Os músculos secundários (a seção 2 dos pedidos) mudam o volume que o gerador conta e ficam para a sessão do gerador.
 
 ## O que ainda não está bom
 
