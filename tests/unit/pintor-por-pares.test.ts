@@ -3,7 +3,7 @@ import type { Anel } from '../../src/engine/novo/corpo3d';
 import { pintar, VISTAS } from '../../src/engine/novo/desenho';
 import type { Item, P2 } from '../../src/engine/novo/desenho';
 import type { Esq } from '../../src/engine/novo/esqueleto';
-import { FOLGA_DO_RECORTE, ordenarPorPares, PADRAO, pintarPorPares, remendoDe, ULTIMA } from '../../src/engine/novo/pintor-por-pares';
+import { FOLGA_DO_RECORTE, opcoesDe, ordenarPorPares, PADRAO, pintarPorPares, remendoDe, ULTIMA } from '../../src/engine/novo/pintor-por-pares';
 import type { V3 } from '../../src/engine/novo/vec';
 
 // O pintor por pares (src/engine/novo/pintor-por-pares.ts; docs/revisoes/animacao-nova/estudo-do-pintor.md), em casos
@@ -192,5 +192,13 @@ describe('o pintor por pares', () => {
     expect(pintarPorPares(itens)).toBe(pintar(itens));
     // sem corpo, nada a ordenar
     expect(ordenarPorPares([g, b, e])).toEqual(hoje([g, b, e]));
+  });
+});
+
+// O ajuste do ciclo por animação (21/11/2026): vale só nas de AJUSTE_DO_PINTOR (src/engine/novo/pintor-ligado.ts).
+describe('opções por animação', () => {
+  it('o ajuste do ciclo só no voador e na hiperextensão; nas outras, o padrão', () => {
+    for (const id of ['voador', 'hiperextensao']) expect(opcoesDe(id)).toEqual({ ...PADRAO, pecaComPeca: 'contorno', contatoNoRemendo: true });
+    for (const id of ['remada-unilateral', 'triceps-testa-halteres', 'abdominal-declinado', 'puxada-barra-reta']) expect(opcoesDe(id)).toBe(PADRAO);
   });
 });

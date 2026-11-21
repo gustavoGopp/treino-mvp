@@ -23,7 +23,7 @@ const CPU = Number(cpuArg ?? 1) || 1;
 const VOLTAS = Number(voltasArg ?? 3) || 3;
 
 const pacote = await motorNovoTexto(
-  `export * from './src/engine/novo/app.ts'; export * from './src/engine/novo/ponte.ts'; export { pintarPorPares } from './src/engine/novo/pintor-por-pares.ts'; export { PINTOR_POR_PARES_LIGADO } from './src/engine/novo/pintor-ligado.ts'; export { APROVADOS, ESPERAM_A_LIGACAO, EM_REVISAO } from './src/engine/novo/aprovados.ts';`,
+  `export * from './src/engine/novo/app.ts'; export * from './src/engine/novo/ponte.ts'; export { opcoesDe, pintarPorPares } from './src/engine/novo/pintor-por-pares.ts'; export { PINTOR_POR_PARES_LIGADO } from './src/engine/novo/pintor-ligado.ts'; export { APROVADOS, ESPERAM_A_LIGACAO, EM_REVISAO } from './src/engine/novo/aprovados.ts';`,
 );
 const caminho = '/opt/pw-browsers/chromium';
 const navegador = await chromium.launch({ ...(existsSync(caminho) ? { executablePath: caminho } : {}), args: ['--no-sandbox'] });
@@ -79,7 +79,7 @@ for (const id of alvo) {
           const ex = m.EXERCICIOS[id];
           const a = performance.now();
           // como o Worker: o pintor por pares só é entregue ao motor numa animação em que ele está ligado
-          if (m.PINTOR_POR_PARES_LIGADO.has(id)) m.registrarPintorPorPares((itens) => m.pintarPorPares(itens));
+          if (m.PINTOR_POR_PARES_LIGADO.has(id)) m.registrarPintorPorPares((itens, id) => m.pintarPorPares(itens, m.opcoesDe(id)));
           if (tipo === 'guia') {
             const f = m.fichaDoMotorNovo(ex);
             const q = m.quadroDoMotorNovo(ex, f.vistaMovimento, 'tec', 0, -1, '', 'claro', 'cinza');

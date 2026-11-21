@@ -422,8 +422,9 @@ export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, 
  * quando abre uma animação em que ele está ligado: src/features/programa/trabalhoBoneco.ts o carrega junto com ela e o
  * entrega aqui); os scripts o recebem pelo ./index.ts.
  */
-let PINTOR_POR_PARES: ((itens: Item[]) => string) | null = null;
-export function registrarPintorPorPares(pintor: (itens: Item[]) => string): void {
+let PINTOR_POR_PARES: ((itens: Item[], id: string) => string) | null = null;
+/** `id`: a animação, para o pintor usar as opções dela (o ajuste do ciclo, em ./pintor-ligado.ts). */
+export function registrarPintorPorPares(pintor: (itens: Item[], id: string) => string): void {
   PINTOR_POR_PARES = pintor;
 }
 /**
@@ -445,7 +446,7 @@ function pintadoPorPares(ex: Exercicio, u: number, o: OpcoesCena): string {
   if (!p) {
     // sem o pintor carregado, um erro, e não o desenho de hoje no lugar do aprovado
     if (!PINTOR_POR_PARES) throw new Error(`o pintor por pares não foi carregado (registrarPintorPorPares), e ${ex.ficha.id} o pede`);
-    const corpo = PINTOR_POR_PARES(itensEmU(ex, u, o));
+    const corpo = PINTOR_POR_PARES(itensEmU(ex, u, o), ex.ficha.id);
     PINTADOS.quadros.set(k, (p = { corpo, defs: DEFS }));
   }
   DEFS = p.defs;

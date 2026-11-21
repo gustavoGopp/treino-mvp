@@ -46,10 +46,11 @@ const arqMotor = `${TMP}/motor-${process.pid}.mjs`;
 (await import('node:fs')).writeFileSync(arqMotor, outputFiles[0].text);
 const m = await import(pathToFileURL(resolve(arqMotor)).href);
 const corpo = m.CORPOS.homem;
-const PINTOR = { ordenar: (it) => m.PP.ordenarPorPares(it), remendoDe: m.PP.remendoDe };
+// o pintor por pares com as opções de cada animação (o ajuste do ciclo só nas de AJUSTE_DO_PINTOR, 21/11/2026)
+const pintorDe = (id) => ({ ordenar: (it) => m.PP.ordenarPorPares(it, m.PP.opcoesDe(id)), remendoDe: m.PP.remendoDe });
 
 /** Os achados da conferência num quadro e numa vista, hoje e por pares (fora o que vai para trás de propósito). */
-const achados = (q, vista, onde, id, pares) => m.pinturaDoQuadro(q, vista, onde, `folha-${id}-`, false, pares ? PINTOR : undefined).filter((a) => !a.deProposito);
+const achados = (q, vista, onde, id, pares) => m.pinturaDoQuadro(q, vista, onde, `folha-${id}-`, false, pares ? pintorDe(id) : undefined).filter((a) => !a.deProposito);
 /** O instante t do ciclo em que o quadro u aparece no app. */
 function tempoDe(ex, u) {
   const T = m.duracao(ex.ficha.fases);

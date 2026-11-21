@@ -30,3 +30,13 @@ export const PINTOR_POR_PARES_LIGADO: ReadonlySet<string> = new Set<string>([
   'rosca-scott',
   'coice-maquina',
 ]);
+
+/**
+ * As animações em que o pintor por pares usa o ajuste do ciclo (`pecaComPeca: 'contorno'` e `contatoNoRemendo`, em
+ * ./pintor-por-pares.ts: `opcoesDe`). Decisão do Gustavo em 21/11/2026 ("pode seguir assim"): o ajuste vale só onde ele
+ * conserta um achado (o `voador` e a `hiperextensao`), e não nas três aprovadas do lote 1 em que ele muda o desenho
+ * sem ganho que se veja (a remada unilateral perderia a mão atrás do halter; folha em
+ * docs/revisoes/animacao-nova/pintor-por-pares/ajuste-antes-e-depois.png). Só vale numa animação que também está em
+ * PINTOR_POR_PARES_LIGADO.
+ */
+export const AJUSTE_DO_PINTOR: ReadonlySet<string> = new Set<string>(['voador', 'hiperextensao']);

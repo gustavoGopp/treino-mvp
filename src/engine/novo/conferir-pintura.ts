@@ -33,7 +33,7 @@ import { duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Peca } from './pecas';
 import { PINTOR_POR_PARES_LIGADO } from './pintor-ligado';
-import { ordenarPorPares, remendoDe } from './pintor-por-pares';
+import { opcoesDe, ordenarPorPares, remendoDe } from './pintor-por-pares';
 import { MAT } from './realista/base.mjs';
 import type { Geometria3d } from './realista/base.mjs';
 import type { Corpo } from './tabelas';
@@ -977,13 +977,15 @@ export interface PinturaEFios {
 }
 /** O pintor por pares, como o app o usa (./pintor-por-pares.ts), para a conferência medir a pintura com ele. */
 export const PINTOR_POR_PARES: PintorDeEstudo = { ordenar: (itens) => ordenarPorPares(itens), remendoDe };
+/** O pintor por pares com as opções de uma animação (o ajuste do ciclo, em ./pintor-ligado.ts). */
+export const pintorPorParesDe = (id: string): PintorDeEstudo => ({ ordenar: (itens) => ordenarPorPares(itens, opcoesDe(id)), remendoDe });
 /**
  * As duas conferências numa animação. A pintura é medida como o app pinta: com o pintor por pares nas animações em que
  * ele está ligado (./pintor-ligado.ts; etapa 2, 19/11/2026), e com o de hoje nas outras.
  */
 export function medirPinturaEFios(ex: Exercicio, quadros: QuadroMedido[], pontos = false): PinturaEFios {
   const prefixo = `pintura-${ex.ficha.id}-`;
-  const pintor = PINTOR_POR_PARES_LIGADO.has(ex.ficha.id) ? PINTOR_POR_PARES : undefined;
+  const pintor = PINTOR_POR_PARES_LIGADO.has(ex.ficha.id) ? pintorPorParesDe(ex.ficha.id) : undefined;
   const pintura: AchadoDePintura[] = [];
   const fios: AchadoDeFio[] = [];
   const pesos: AchadoDePeso[] = [];

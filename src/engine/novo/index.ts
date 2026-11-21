@@ -18,5 +18,5 @@ export * from './equipamento';
 // o pintor por pares fica fora do pacote do app até ser pedido (./cena.ts); quem usa o motor por aqui (os scripts e a
 // conferência) já o tem carregado
 import { registrarPintorPorPares } from './cena';
-import { pintarPorPares } from './pintor-por-pares';
-registrarPintorPorPares((itens) => pintarPorPares(itens));
+import { opcoesDe, pintarPorPares } from './pintor-por-pares';
+registrarPintorPorPares((itens, id) => pintarPorPares(itens, opcoesDe(id)));

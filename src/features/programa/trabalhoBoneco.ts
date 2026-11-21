@@ -31,7 +31,7 @@ export function animacao(animacaoId: string): Promise<Exercicio | undefined> {
     );
     // o pintor por pares (src/engine/novo/pintor-por-pares.ts) só vem com uma animação em que ele está ligado
     const pintor = PINTOR_POR_PARES_LIGADO.has(animacaoId)
-      ? Promise.all([import('../../engine/novo/pintor-por-pares'), aPonte()]).then(([p, c]) => c.registrarPintorPorPares((itens) => p.pintarPorPares(itens)))
+      ? Promise.all([import('../../engine/novo/pintor-por-pares'), aPonte()]).then(([p, c]) => c.registrarPintorPorPares((itens, id) => p.pintarPorPares(itens, p.opcoesDe(id))))
       : undefined;
     carregados.set(
       animacaoId,

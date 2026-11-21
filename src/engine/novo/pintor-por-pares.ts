@@ -28,6 +28,7 @@
 // diz de que peça é cada item (no protótipo, isso era achado comparando o texto dos caminhos e desenhando cada peça
 // sozinha). Sem Math.random e sem relógio: a mesma entrada dá o mesmo SVG (o nome de cada recorte sai do conteúdo).
 import type { Anel } from './corpo3d';
+import { AJUSTE_DO_PINTOR } from './pintor-ligado';
 import { casco, pintar } from './desenho';
 import type { Camera, Item, MarcaDoPintor, P2, ParteDoItem } from './desenho';
 import type { Lado } from './esqueleto';
@@ -61,6 +62,10 @@ export interface OpcoesDoPintor {
   contatoNoRemendo: boolean;
 }
 export const PADRAO: OpcoesDoPintor = { passo: 1, tolerancia: 1, areaMinima: 1, remendos: true, contato: true, pecaComPeca: 'caixa', contatoNoRemendo: false };
+/** As opções de uma animação: o PADRAO, com o ajuste do ciclo nas de AJUSTE_DO_PINTOR (./pintor-ligado.ts; 21/11/2026). */
+export function opcoesDe(id: string): OpcoesDoPintor {
+  return AJUSTE_DO_PINTOR.has(id) ? { ...PADRAO, pecaComPeca: 'contorno', contatoNoRemendo: true } : PADRAO;
+}
 /** Folga (cm) para os contornos de duas peças se cruzarem na tela: o traço de cada uma passa um pouco da forma. */
 const FOLGA_ENTRE_PECAS = 1;
 /** Folga do recorte em volta de cada trecho do corpo (cm): o traço do contorno do Boneco cabe dentro dela. */
