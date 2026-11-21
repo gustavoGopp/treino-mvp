@@ -29,6 +29,11 @@ export const PINTOR_POR_PARES_LIGADO: ReadonlySet<string> = new Set<string>([
   'hack',
   'rosca-scott',
   'coice-maquina',
+  // o ajuste (21/11/2026): o `voador` e a `hiperextensao`, com o ajuste do ciclo (AJUSTE_DO_PINTOR, abaixo), aprovados
+  // pelo Gustavo nas folhas (pintor-por-pares/voador-de-frente.png, voador.png, hiperextensao.png e
+  // ajuste-antes-e-depois.png): "pode aprovar esse e todos os restantes".
+  'voador',
+  'hiperextensao',
 ]);
 
 /**
