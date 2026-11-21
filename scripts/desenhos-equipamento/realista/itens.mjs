@@ -1043,28 +1043,74 @@ const triceps_maquina = quadro(
   { yaw: 230, pitch: 12, s: 0.6 },
 );
 
-// máquina de abdominal: assento, almofadas que descem sobre o peito vindas de cima e rolos dos pés
+// máquina de abdominal com o eixo baixo, ao lado da lombar, e o apoio da lombar (o manual público da Life Fitness,
+// Insignia SS-AB, p. 8), no lugar do braço que girava num eixo alto, atrás da cabeça. É a peça do motor novo
+// (abdominal-maquina.ts), com as medidas de src/engine/novo/dados/objetos/abdominal-maquina.json: o tamanho e a torre
+// de 148 cm da Life Fitness SS-AB (133 × 117 × 148 cm), o estofado de 6,5 cm (Precor); as almofadas do peito (16 × 9
+// cm), os pegadores, os rolos dos pés, o came e as hastes 7 cm por fora dos ombros são de desenho, com o motivo lá. O
+// que sai do corpo da tabela é o que a animação calcula no começo do movimento (o tronco reto), arredondado: o assento a
+// 40,3 cm, o apoio da lombar a 63,2 cm, o eixo a 75,4 cm do chão e 25,6 cm atrás da borda do assento, as almofadas
+// sobre o peito, os pegadores logo abaixo delas e os rolos sobre o peito do pé.
 const abdominal_maquina = quadro(
   (C) => {
-    base(C, -40, 104, 0, 80);
-    torre(C, [-44, 0, 22], X, Z, 30, 36, 170, 10);
-    bancoMaquina(C, 30, 40, 46, 0.12);
-    tubo(C, [-6, 4, 40], [-6, 150, 40], 7);
-    C.cilindro([-6, 146, 36], [-6, 146, 44], 6, M.metalClaro, { lados: 18 });
-    tubo(C, [-6, 146, 40], [30, 132, 40], 6);
+    const esp = 6.5,
+      assento = 40.3;
+    const eixo = [0, 75.4, -25.6],
+      lombar = [0, 63.2, -32.3],
+      rolos = [0, 11.9, 27.3];
+    const xb = 44.8,
+      zTras = eixo[2] - 30,
+      zFrente = zTras + 133;
+    // a torre à esquerda de quem senta, atrás do eixo, com a frente virada para o assento
+    const xT0 = 117 - 20 - 8 - 34,
+      xT1 = xT0 + 34,
+      zTorre = zTras + 22,
+      xC = xb + 6;
+    // a base: um trilho sob cada montante, as travessas até a torre e o pé dela
+    for (const x of [-xb, xb]) T(C, [x, 3.5, zTras], [x, 3.5, rolos[2] + 6]);
+    for (const z of [zTras + 4, eixo[2]]) T(C, [-xb, 3.5, z], [xT1, 3.5, z]);
+    for (const x of [xT0, xT1]) T(C, [x, 3.5, zTorre - 16], [x, 3.5, zTorre + 16]);
+    // o pé do assento e o assento (40 × 40 cm)
+    T(C, [0, 7, -20], [0, assento - esp - 2, -20]);
+    T(C, [-xb, 3.5, -20], [xb, 3.5, -20]);
+    C.estofado([0, assento - esp, -20], Z, Y, X, 40, esp, 40);
+    // os dois montantes do eixo, dos lados, e o apoio da lombar (20 × 30 cm) numa travessa entre eles
+    for (const x of [-xb - 4, xb + 4]) T(C, [x, 7, eixo[2]], [x, eixo[1] + 4, eixo[2]], 6);
+    const lt = [0, lombar[1], lombar[2] - esp - 3];
+    T(C, [-xb - 4, lt[1], lt[2]], [xb + 4, lt[1], lt[2]], 5);
+    for (const x of [-xb - 4, xb + 4]) T(C, [x, lt[1], lt[2]], [x, lt[1], eixo[2]], 5);
+    C.estofado([0, lombar[1], lombar[2] - esp], Y, Z, X, 20, esp, 30);
+    // os rolos dos pés (Ø 10 × 14 cm): a haste que sai da frente da base e os dois rolos
+    T(C, [0, 3.5, -20], [0, 3.5, rolos[2]], 5);
+    T(C, [0, 3.5, rolos[2]], rolos, 4.5);
+    for (const s of [-1, 1]) C.cilindro(add(rolos, [s * 1.5, 0, 0]), add(rolos, [s * 15.5, 0, 0]), 5, M.estofado, { lados: 18 });
+    C.cilindro(add(rolos, [-15.5, 0, 0]), add(rolos, [15.5, 0, 0]), 1.2, M.cromo, { lados: 10 });
+    // a torre, a polia do pé e o cabo, que desce do came (Ø 20 cm)
+    torreDaPilha(C, xT0, xT1, zTorre, 148);
+    const xc = (xT0 + xT1) / 2;
+    C.cilindro([xc - 1.5, 10, zTorre + 18], [xc + 1.5, 10, zTorre + 18], 4.5, M.metalClaro, { lados: 16 });
+    C.linha([xC + 1, eixo[1] - 10, eixo[2]], [xC + 1, 5.5, eixo[2]], '#202327', 0.7);
+    C.linha([xC + 1, 5.5, eixo[2]], [xc, 5.5, zTorre + 18], '#202327', 0.7);
+    const cx = (x) => [x, eixo[1], eixo[2]];
+    C.cilindro(cx(xC - 3), cx(xC + 3), 10, M.metalClaro, { lados: 24 });
+    C.cilindro(cx(-xb - 7), cx(xC + 5), 2.4, M.cromo, { lados: 12 });
+    // o braço: cada haste sobe do eixo pelo lado do corpo até a altura das almofadas, vem para a frente por fora do braço
+    // de quem treina e volta até a borda de fora da almofada; a almofada (16 × 9 cm) e o pegador logo abaixo dela
     for (const s of [-1, 1]) {
-      const z = 40 + s * 11;
-      tubo(C, [30, 132, 40], [40, 122, z], 4.5);
-      C.estofado([40, 108, z], norm([0.25, -1, 0]), norm([1, 0.25, 0]).map((v) => -v), Z, 30, 7, 10);
-      pega(C, [40, 124, z + s * 3], [48, 128, z + s * 8], 2);
+      const alm = [s * 7.5, 92, -8.5];
+      const borda = [s * 12, 92, alm[2] + esp / 2];
+      const pts = [[s * xb, eixo[1], eixo[2]], [s * xb, 92, eixo[2]], [s * xb, 92, borda[2]], borda];
+      for (let i = 0; i + 1 < pts.length; i++) C.tubo(pts[i], pts[i + 1], 5, 5, M.metal, { up: Z });
+      C.estofado(alm, Y, Z, X, 16, esp, 9);
+      const peg = [s * 13, 82.8, 5.7],
+        e = norm([0, 0.7, 0.71]);
+      C.tubo(add(alm, [0, -6, esp]), add(peg, mul(e, -10)), 3.5, 3.5, M.metal);
+      C.cilindro(add(peg, mul(e, -10)), add(peg, mul(e, -7)), 1.6, M.metal, { lados: 10 });
+      C.cilindro(add(peg, mul(e, -7)), add(peg, mul(e, 7)), 1.6, M.borracha, { lados: 12 });
     }
-    tubo(C, [56, 4, 40], [64, 22, 40], 5);
-    for (const z of [32, 48]) rolo(C, [66, 24, z], Z, 14, 4.6);
-    for (const z of [32, 48]) rolo(C, [74, 12, z], Z, 14, 4.6);
-    tubo(C, [64, 22, 40], [74, 12, 40], 3);
-    C.sombra(16, 40, 72, 46, 0.2);
+    C.sombra((xT1 - xb) / 2, (zTras + zFrente) / 2, (xT1 + xb) / 2 + 8, 66.5, 0.18);
   },
-  { yaw: 38, pitch: 12, s: 0.6 },
+  { yaw: 230, pitch: 12, s: 0.6 },
 );
 
 // glúteo na máquina (coice), de quatro apoios (decisão do Gustavo em 21/11/2026: a máquina da ficha da técnica e da
