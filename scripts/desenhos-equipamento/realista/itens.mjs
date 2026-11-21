@@ -503,39 +503,67 @@ const hack = (id) => ILUSTRACOES.hack(id, { pessoa: false });
 const graviton = (id) => ILUSTRACOES.graviton(id, { pessoa: false });
 const cadeira_abdutora_adutora = (id) => ILUSTRACOES.cadeira_abdutora_adutora(id, { pessoa: false });
 
-// gaiola: 4 colunas com furos, travessas, ganchos J com a barra apoiada e as barras de segurança
+// suporte de agachamento, aberto (decisão do Gustavo em 18/11/2026, "aprovo", e em 21/11 para o cartão: o suporte das
+// fichas e da animação, no lugar da gaiola de quatro colunas). Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/suporte.json e pecas-de-cena/suporte.ts): montantes de 192 cm (Life Fitness LBR-OS),
+// quadro do chão de 150 cm (Hammer Strength OSR), 110 cm de vão entre os montantes e furos a cada 2,5 cm (IPF 2026),
+// pinos de segurança de 50 cm; de desenho na peça: o tubo de 7,5 cm, o gancho em J (9 × 13 cm, borda de 4 cm), o furo de
+// 1,6 cm e o pino de 5 cm. A regulagem é a do agachamento com barra na animação (o berço dos ganchos a 130 cm, o topo
+// dos pinos a 90 cm). A barra nos ganchos, como no cartão de antes, é a peça da barra longa (barra-longa.json, IWF:
+// 220 cm, 131 cm entre as mangas), com uma anilha de 20 kg de cada lado.
 const rack_de_agachamento = quadro(
   (C) => {
-    base(C, 0, 118, 0, 120, 7);
-    const xs = [8, 110], zs = [10, 110];
-    for (const x of xs) for (const z of zs) tubo(C, [x, 3, z], [x, 224, z], 7);
-    for (const z of zs) tubo(C, [xs[0], 224, z], [xs[1], 224, z], 6);
-    for (const x of xs) tubo(C, [x, 224, zs[0]], [x, 224, zs[1]], 6);
-    tubo(C, [xs[1], 210, zs[0] + 6], [xs[1], 210, zs[1] - 6], 3.6, M.cromo);
-    for (const z of zs) {
-      const cs = [];
-      for (let y = 30; y <= 200; y += 10) cs.push([xs[1] + 3.6, y, z]);
-      C.furos(cs, Z, Y, 0.9);
+    // P(l, y, d): l do meio para um montante, y de altura, d para o lado da pessoa (+x)
+    const P = (l, y, d) => [d, y, -l];
+    const f = X, lado = [0, 0, -1];
+    const t = 7.5, H = 192, meiaBase = 150 / 2, xm = 110 / 2 + t / 2, dP = t / 2, pl = 5, pc = 50;
+    const gancho = 130, pino = 90;
+    const altBase = t * 0.66;
+    // o quadro do chão: um trilho sob cada montante, na direção da pessoa, e uma travessa na ponta de trás
+    for (const sl of [-1, 1]) C.tubo(P(sl * xm, altBase / 2, -meiaBase), P(sl * xm, altBase / 2, meiaBase), t, altBase, M.metal, { up: Y });
+    C.tubo(P(-xm, altBase / 2, -meiaBase + t / 2), P(xm, altBase / 2, -meiaBase + t / 2), t, altBase, M.metal, { up: Y });
+    for (const sl of [-1, 1]) for (const d of [-meiaBase + 3, meiaBase - 3]) C.cilindro(P(sl * xm, 0, d), P(sl * xm, 1.2, d), 3.2, M.borracha, { lados: 10 });
+    // os montantes, com a tampa de borracha (sem travessa em cima)
+    for (const sl of [-1, 1]) {
+      C.tubo(P(sl * xm, altBase, 0), P(sl * xm, H - 0.8, 0), t, t, M.metal, { up: f });
+      C.tubo(P(sl * xm, H - 0.8, 0), P(sl * xm, H, 0), t + 0.5, t + 0.5, M.borracha, { up: f });
     }
-    // barras de segurança
-    for (const z of zs) tubo(C, [xs[0] - 8, 72, z], [xs[1] + 12, 72, z], 4.5, M.cromo);
-    // ganchos J e barra
-    for (const z of zs) {
-      C.caixa([xs[1] + 3, 128, z - 4], [xs[1] + 10, 140, z + 4], M.metalClaro);
-      C.caixa([xs[1] + 8, 140, z - 4], [xs[1] + 11, 145, z + 4], M.borracha);
+    // os furos de regulagem, na face virada para a pessoa, do pino mais baixo (50 cm) ao gancho mais alto (170 cm)
+    const furos = [];
+    for (const sl of [-1, 1]) for (let y = 50; y <= 170 + 1e-6; y += 2.5) furos.push(P(sl * xm, y, dP + 0.05));
+    C.furos(furos, lado, Y, 1.6 / 2);
+    // os pinos de segurança, com a tampa de borracha na ponta
+    for (const sl of [-1, 1]) {
+      const b = P(sl * xm, pino - pl / 2, dP + pc - 1);
+      C.tubo(P(sl * xm, pino - pl / 2, dP), b, pl, pl, M.cromo, { up: Y });
+      C.tubo(b, P(sl * xm, pino - pl / 2, dP + pc), pl + 0.4, pl + 0.4, M.borracha, { up: Y });
     }
-    const bx = xs[1] + 7, by = 143;
-    cil(C, [bx, by, -50], [bx, by, 170], 1.4, M.cromo, { lados: 10 });
-    for (const [z0, s] of [
-      [-6, -1],
-      [126, 1],
-    ]) {
-      cil(C, [bx, by, z0], [bx, by, z0 + s * 3], 3.2, M.cromo, { lados: 14 });
-      cil(C, [bx, by, z0 + s * 3], [bx, by, z0 + s * 44], 2.5, M.cromo, { lados: 14 });
-      disco(C, [bx, by, z0 + s * 8], Z, 22.5, 4);
-      disco(C, [bx, by, z0 + s * 12.5], Z, 22.5, 4);
+    C.sombra(0, 0, xm + 12, meiaBase + 6, 0.16);
+    // os ganchos em J: a chapa contra o montante, o berço com a borracha e a borda da ponta
+    const ga = 13, gp = 9, gb = 4, gl = t - 1;
+    for (const sl of [-1, 1]) {
+      const x = sl * xm, y0 = gancho;
+      C.tubo(P(x, y0 - ga + gb, dP + 0.8), P(x, y0 + gb, dP + 0.8), gl, 1.6, M.metalClaro, { up: f });
+      C.tubo(P(x, y0 - 1.6, dP + 1.6), P(x, y0 - 1.6, dP + gp), gl, 1.2, M.metalClaro, { up: Y });
+      C.tubo(P(x, y0 - 0.5, dP + 1.6), P(x, y0 - 0.5, dP + gp - 1.2), gl - 0.6, 1, M.borracha, { up: Y });
+      C.tubo(P(x, y0 - 2.2, dP + gp - 0.6), P(x, y0 + gb - 1, dP + gp - 0.6), gl, 1.2, M.metalClaro, { up: f });
     }
-    C.sombra(60, 60, 75, 75, 0.2);
+    // a barra longa no berço dos ganchos: a pegada, a recartilha, os rebordos, as mangas, as anilhas e as presilhas
+    const centro = P(0, gancho + 2.8 / 2, t / 2 + (gp - 1.2) / 2);
+    const B = (d) => add(centro, mul(lado, d));
+    const entre = 131 / 2, esp = 2.5, meia = 220 / 2, eAn = 5.4;
+    cil(C, B(-entre), B(entre), 2.8 / 2, M.cromo, { lados: 14, dz: 6 });
+    for (const s of [-1, 1]) {
+      C.linha(add(B(s * (81 / 2 - 18)), [0, 1.42, 0]), add(B(s * (81 / 2 + 10)), [0, 1.42, 0]), '#7A818A', 0.9);
+      cil(C, B(s * entre), B(s * (entre + esp)), 7.6 / 2, M.cromo);
+      cil(C, B(s * (entre + esp)), B(s * meia), 5 / 2, M.cromo);
+      const a = B(s * (entre + esp)), b = B(s * (entre + esp + eAn));
+      C.anilha(s < 0 ? b : a, s < 0 ? a : b, 45 / 2, M.anilha);
+      const d0 = entre + esp + eAn + 0.3;
+      cil(C, B(s * d0), B(s * (d0 + 5)), 5 / 2 + 0.7, M.metalClaro, { lados: 12 });
+      const c = B(s * (d0 + 2.5));
+      C.linha(add(c, [0, 5 / 2 + 0.5, 0]), add(c, [0, 7, 0]), M.metalClaro[3], 0.9);
+    }
   },
   { yaw: 28, pitch: 10, s: 0.6 },
 );
