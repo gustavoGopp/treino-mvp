@@ -45,12 +45,6 @@ function torre(C, o, eL, eT, w, d, h, n = 10) {
   C.cilindro(Pt(w / 2, d * 0.18, h - 9), Pt(w / 2, d * 0.82, h - 9), 4.5, M.metalClaro, { lados: 16 });
   return Pt;
 }
-// pino de anilhas com 2 anilhas
-function chifre(C, a, eixo, comp = 22, r = [20, 16]) {
-  const e = norm(eixo);
-  cil(C, a, add(a, mul(e, comp)), 2.6, M.cromo);
-  r.forEach((rr, i) => disco(C, add(a, mul(e, 6 + i * 4.2)), e, rr, 3.6));
-}
 // mosquetão (oval de aço) e destorcedor no alto dos acessórios de polia
 function mosquetao(C, topo) {
   const pts = Array.from({ length: 14 }, (_, i) => {
