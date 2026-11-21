@@ -5,7 +5,7 @@
 import { MAT, V, camera, cena, f1, retArred, circulo } from '../../../src/engine/novo/realista/base.mjs';
 import { ILUSTRACOES } from './aparelhos.mjs';
 
-const { add, sub, mul, norm } = V;
+const { add, sub, mul, norm, cross, dot } = V;
 const M = {
   ...MAT,
   tecido: ['#25282D', '#3E434A', '#686E77', '#121417'],
@@ -650,27 +650,175 @@ const mesa_flexora = quadro(
   { yaw: 30, pitch: 14, s: 0.6 },
 );
 
-// supino articulado: encosto alto, braços que vêm de cima por trás e trazem as pegadas na altura do peito; pinos de anilha
-const supino_maquina = quadro(
-  (C) => {
-    base(C, -40, 104, 0, 80);
-    bancoMaquina(C, 40, 40, 46, 0.18);
-    tubo(C, [-30, 4, 40], [-30, 168, 40], 8);
-    tubo(C, [-30, 168, 40], [8, 168, 40], 7);
-    for (const s of [-1, 1]) {
-      const z = 40 + s * 30;
-      C.cilindro([8, 168, 40 + s * 4], [8, 168, 40 + s * 10], 4.5, M.metalClaro, { lados: 16 });
-      tubo(C, [8, 168, 40 + s * 10], [70, 118, z], 6);
-      tubo(C, [70, 118, z], [76, 106, z], 5);
-      pega(C, [76, 106, z], [76, 94, z], 2.4);
-      tubo(C, [76, 112, z], [88, 112, 40 + s * 18], 3.4);
-      pega(C, [88, 112, 40 + s * 18], [88, 112, 40 + s * 8], 2.2);
-      chifre(C, [30, 152, z], [0, 0, s], 18, [20]);
-    }
-    C.sombra(30, 40, 80, 48, 0.2);
-  },
-  { yaw: 40, pitch: 12, s: 0.6 },
-);
+// ---------- as máquinas de pilha do motor novo ----------
+// Supino, desenvolvimento, remada articulada, tríceps e abdominal na máquina (redesenhados em 21/11/2026, aprovado pelo
+// Gustavo: o cartão tem de ser a máquina da animação). Cada um é a peça do motor novo (src/engine/novo/pecas-de-cena/)
+// só com o aparelho, nos eixos da peça, para as medidas baterem uma a uma: quem senta olha para +z, a borda da frente
+// do assento fica em z = 0 e a esquerda de quem senta é +x. As medidas são as de src/engine/novo/dados/objetos/<peça>.json
+// (lá, cada uma com a fonte e o tipo: medida de ficha ou de desenho); a regulagem (a altura do assento, a posição dos
+// braços) é a do começo do movimento na animação, com o corpo da tabela. As placas ficam em repouso.
+const RAD = Math.PI / 180;
+/** Gira o vetor p em volta do eixo unitário k, em graus (a fórmula de Rodrigues, como `girar` de src/engine/novo/vec.ts). */
+const girar = (p, k, graus) => {
+  const c = Math.cos(graus * RAD),
+    s = Math.sin(graus * RAD);
+  return add(add(mul(p, c), mul(cross(k, p), s)), mul(k, dot(k, p) * (1 - c)));
+};
+/** Tubo quadrado da estrutura (7 cm, o `tubo` de todas as peças). */
+const T = (C, a, b, w = 7) => C.tubo(a, b, w, w, M.metal);
+/** A torre da pilha: quatro montantes de 34 × 32 cm, a tampa, as duas guias, as placas em repouso e o pino no alto. */
+function torreDaPilha(C, x0, x1, zT, H, p = { placas: 15, altura: 75, larg: 26, prof: 12 }) {
+  const z0 = zT - 16,
+    z1 = zT + 16,
+    xc = (x0 + x1) / 2;
+  for (const [x, z] of [
+    [x0, z0],
+    [x1, z0],
+    [x0, z1],
+    [x1, z1],
+  ])
+    T(C, [x, 7, z], [x, H, z], 4.5);
+  for (const z of [z0, z1]) T(C, [x0, H, z], [x1, H, z], 4.5);
+  for (const x of [x0, x1]) T(C, [x, H, z0], [x, H, z1], 4.5);
+  for (const dz of [-6, 6]) C.cilindro([xc, 7, zT + dz], [xc, H - 6, zT + dz], 0.8, M.cromo, { lados: 8 });
+  C.pilha([xc - p.larg / 2, 9, zT + p.prof / 2], X, [0, 0, -1], p.larg, p.altura, p.prof, p.placas);
+  C.cilindro([xc, 9 + p.altura, zT], [xc, 19 + p.altura, zT], 1.2, M.cromo, { lados: 8 });
+}
+/**
+ * O assento num pé só, que sobe e desce: a luva parada, o tubo de dentro com o pino de regular (para a frente, pino = 1,
+ * ou para trás, −1), a chapa e o estofado. zP: o meio do assento; y: o topo do estofado; yMin: o topo no mais baixo.
+ */
+function assentoNumPe(C, { zP, comp, larg, y, yMin, esp = 6.5, pino = 1, folga = 4 }) {
+  T(C, [0, 7, zP], [0, yMin - esp - 6, zP], 9);
+  T(C, [0, yMin - esp - 12, zP], [0, y - esp - 1, zP], 5.5);
+  const zp = zP + (pino * 9) / 2;
+  C.cilindro([0, yMin - esp - 12, zp], [0, yMin - esp - 12, zp + pino * 5], 1.6, M.cromo, { lados: 10 });
+  C.cilindro([0, yMin - esp - 12, zp + pino * 5], [0, yMin - esp - 12, zp + pino * 7], 2.6, M.borracha, { lados: 12 });
+  C.tubo([0, y - esp - 1.5, zP - comp / 2 + folga], [0, y - esp - 1.5, zP + comp / 2 - folga], (larg / 2) * 1.2, 2, M.metal);
+  C.estofado([0, y - esp, zP], Z, Y, X, comp, esp, larg);
+}
+
+// As máquinas de empurrar e a de puxar sentado (src/engine/novo/pecas-de-cena/maquina-de-empurrar.ts e
+// remada-articulada.ts): dois braços independentes, cada um girando no seu eixo, inclinado `converge` graus para o
+// caminho dos pegadores convergir (ou abrir, na remada); o came no eixo do braço da esquerda e a torre ao lado.
+// mod: eixo 'acima' (supino: o braço pende do alto), 'atras' (desenvolvimento: vai de trás para a frente) ou 'frente'
+// (remada: pende do alto, à frente, e se puxa); `vertical`: o pegador de pé (a remada).
+const ladoX = (k) => (k === 'R' ? -1 : 1);
+const bracoX = (g, mod) => (mod.vertical ? g.pegadaMeia + g.bracoFora : g.pegadaMeia + g.pegadorComp / 2 + g.bracoFora);
+function bracoDaMaquina(g, mod, k, graus) {
+  const s = ladoX(k);
+  const meio = g.bracoMeio * RAD;
+  const b = mod.puxa ? [1, 0, 0] : [-1, 0, 0];
+  const r = [0, -Math.cos(meio), (mod.puxa ? -1 : 1) * Math.sin(meio)];
+  const dirEixo = norm(add(b, mul(norm(cross(b, r)), -s * Math.tan(g.converge * RAD))));
+  const eixo = [s * bracoX(g, mod), g.eixoAltura, g.eixoAFrente];
+  const ponta = add(eixo, girar(mul(r, g.bracoComp), dirEixo, graus - g.bracoMeio));
+  const dirPegador = norm(girar([-s, 0, 0], dirEixo, graus - g.bracoMeio));
+  if (!mod.vertical) return { eixo, dirEixo, ponta, dirPegador, centro: add(ponta, mul(dirPegador, g.bracoFora + g.pegadorComp / 2)) };
+  const i = g.pegadorInclina * RAD;
+  const dirBorracha = norm(add(mul(norm(sub(eixo, ponta)), Math.cos(i)), mul(dirPegador, Math.sin(i))));
+  return { eixo, dirEixo, ponta, dirPegador, dirBorracha, centro: add(ponta, mul(dirPegador, g.bracoFora)) };
+}
+/** O mancal do braço no eixo e a ponta do eixo, cromada. */
+function mancal(C, b, s) {
+  C.cilindro(add(b.eixo, mul(b.dirEixo, -s * 4)), add(b.eixo, mul(b.dirEixo, s * 4)), 5.5, M.metalClaro, { lados: 20 });
+  C.cilindro(add(b.eixo, mul(b.dirEixo, s * 4)), add(b.eixo, mul(b.dirEixo, s * 6)), 2.5, M.cromo, { lados: 12 });
+}
+/** O came no eixo do braço da esquerda (xCame) e o eixo dele. */
+function cameNoEixo(C, xCame, yE, zE, r) {
+  C.cilindro([xCame - 2.5, yE, zE], [xCame + 2.5, yE, zE], r, M.metalClaro, { lados: 24 });
+  C.cilindro([xCame - 4, yE, zE], [xCame + 4, yE, zE], 2.5, M.cromo, { lados: 12 });
+}
+/** O cabo que sai por cima do came e passa pela roldana no alto da torre até o pino das placas. */
+function caboPeloAlto(C, xCame, yE, zE, rCame, x0, x1, zT, H, altPilha) {
+  const xc = (x0 + x1) / 2;
+  C.linha([xCame, yE + rCame, zE], [xc, H + 10.5, zT], '#202327', 0.7);
+  C.linha([xc, H + 1.5, zT], [xc, 19 + altPilha, zT], '#202327', 0.7);
+  C.cilindro([xc, H + 6, zT - 1.5], [xc, H + 6, zT + 1.5], 4.5, M.metalClaro, { lados: 16 });
+  T(C, [x0, H, zT], [x0, H + 6, zT], 4);
+  T(C, [x0, H + 6, zT], [xc - 3, H + 6, zT], 3);
+}
+
+/**
+ * Supino e desenvolvimento na máquina (maquina-de-empurrar.ts): o assento num pé, o encosto parado preso na coluna de
+ * trás, a travessa dos eixos, os dois braços com o pegador atravessado e a torre à esquerda, atrás do assento.
+ */
+function maquinaDeEmpurrar(C, g, mod, reg) {
+  const esp = g.estofadoEsp,
+    cA = g.assentoComp,
+    meiaLarg = g.assentoLarg / 2;
+  const inc = g.encostoInclina * RAD;
+  const sobe = [0, Math.cos(inc), -Math.sin(inc)],
+    frente = [0, Math.sin(inc), Math.cos(inc)];
+  const baseEnc = [0, g.encostoBaixo, -g.encostoAtras];
+  const xB = bracoX(g, mod),
+    yE = g.eixoAltura,
+    zE = g.eixoAFrente;
+  const atras = mod.eixo === 'atras';
+  const zColuna = atras ? zE : Math.min(baseEnc[2], add(baseEnc, mul(sobe, g.encostoComp))[2]) - esp - 8;
+  const yTopo = atras ? yE + 10 : yE + 4;
+  const xT0 = xB + 16,
+    xT1 = xT0 + 34,
+    zTorre = atras ? -70 : -60;
+  const zTras = Math.min(zColuna, zTorre - 16) - 6,
+    zFrente = zTras + g.comp;
+  // a base no chão: dois trilhos ao longo de z, as travessas e o pé da torre
+  const zB1 = Math.max(4, baseEnc[2] + cA * 0.25);
+  for (const x of [-meiaLarg + 2, xT1]) T(C, [x, 3.5, zTras], [x, 3.5, zB1]);
+  for (const z of [zTras + 4, zB1]) T(C, [-meiaLarg + 2, 3.5, z], [xT1, 3.5, z]);
+  T(C, [xT0, 3.5, zTorre - 16], [xT0, 3.5, zTorre + 16]);
+  assentoNumPe(C, { zP: -cA / 2, comp: cA, larg: g.assentoLarg, y: reg.assento, yMin: g.assentoMin, esp });
+  // a coluna de trás e o encosto preso nela
+  T(C, [0, 7, zColuna], [0, yTopo, zColuna], 8);
+  const meioEnc = add(baseEnc, mul(sobe, g.encostoComp / 2));
+  C.estofado(add(meioEnc, mul(frente, -esp)), sobe, frente, X, g.encostoComp, esp, g.assentoLarg - 4);
+  const atrasEnc = add(meioEnc, mul(frente, -esp - 2));
+  C.tubo(add(atrasEnc, mul(sobe, -g.encostoComp * 0.35)), add(atrasEnc, mul(sobe, g.encostoComp * 0.35)), 12, 2, M.metal, { up: frente });
+  for (const t of [-0.25, 0.25]) {
+    const p = add(atrasEnc, mul(sobe, g.encostoComp * t));
+    T(C, p, [0, p[1], zColuna], 5);
+  }
+  // o alto: a travessa dos eixos e o que a segura
+  if (!atras) T(C, [0, yTopo, zColuna], [0, yTopo, zE]);
+  T(C, [-(xB - 6), yE, zE], [xB - 6, yE, zE]);
+  T(C, [0, yTopo, zE], [0, yE, zE]);
+  // os dois braços, do eixo à ponta, com o pegador atravessado (a borracha)
+  for (const k of ['R', 'L']) {
+    const b = bracoDaMaquina(g, mod, k, reg.braco);
+    mancal(C, b, ladoX(k));
+    C.tubo(b.eixo, b.ponta, 6, 6, M.metal, { up: b.dirEixo });
+    C.cilindro(add(b.ponta, mul(b.dirPegador, -2)), add(b.ponta, mul(b.dirPegador, g.bracoFora)), 2, M.cromo, { lados: 12 });
+    const ini = add(b.ponta, mul(b.dirPegador, g.bracoFora));
+    C.cilindro(ini, add(ini, mul(b.dirPegador, g.pegadorComp)), g.pegadorDiam / 2, M.borracha, { lados: 14 });
+    C.cilindro(add(ini, mul(b.dirPegador, g.pegadorComp)), add(ini, mul(b.dirPegador, g.pegadorComp + 1.2)), g.pegadorDiam / 2 + 0.5, M.borracha, { lados: 14 });
+  }
+  // a torre, o came e o cabo: pelo alto (supino) ou pelo pé da torre (desenvolvimento)
+  torreDaPilha(C, xT0, xT1, zTorre, g.alturaTorre);
+  const xCame = xB + 9,
+    rCame = g.cameDiam / 2;
+  cameNoEixo(C, xCame, yE, zE, rCame);
+  const xc = (xT0 + xT1) / 2;
+  C.cilindro([xc - 1.5, 10, zTorre + 18], [xc + 1.5, 10, zTorre + 18], 4.5, M.metalClaro, { lados: 16 });
+  if (!atras) caboPeloAlto(C, xCame, yE, zE, rCame, xT0, xT1, zTorre, g.alturaTorre, 75);
+  else {
+    C.linha([xCame, yE - rCame, zE], [xCame, 5.5, zE], '#202327', 0.7);
+    C.linha([xCame, 5.5, zE], [xc, 5.5, zTorre + 18], '#202327', 0.7);
+    C.cilindro([xCame - 1.5, 10, zE], [xCame + 1.5, 10, zE], 4.5, M.metalClaro, { lados: 16 });
+    T(C, [xCame, 3.5, zE], [xT0, 3.5, zE], 5);
+  }
+  C.sombra((xT1 - xB) / 2, (zTras + zFrente) / 2, (xT1 + xB) / 2 + 6, g.comp / 2, 0.18);
+}
+// medidas de src/engine/novo/dados/objetos/supino-maquina.json: o tamanho das fichas (Life Fitness SS-CP 144 × 144,
+// Precor RSL0414: a torre de 148 cm, o estofado de 6,5 cm, o caminho que converge); o eixo, o braço e o encosto são de
+// desenho, com o motivo lá
+const SUPINO = {
+  comp: 144, alturaTorre: 148, estofadoEsp: 6.5, converge: 8, assentoComp: 40, assentoLarg: 40, assentoMin: 36,
+  encostoInclina: 15, encostoBaixo: 60, encostoComp: 64, encostoAtras: 36, eixoAltura: 145, eixoAFrente: -12,
+  bracoComp: 54, bracoMeio: 12, pegadaMeia: 30, pegadorComp: 13, pegadorDiam: 3.4, bracoFora: 3, cameDiam: 26,
+};
+// supino na máquina, de pilha (era de anilhas): o eixo dos braços no alto, um pouco à frente do peito, e cada braço
+// pende dele com o pegador na altura do peito (o começo do movimento: os braços a 7°, o assento a 46 cm)
+const supino_maquina = quadro((C) => maquinaDeEmpurrar(C, SUPINO, { eixo: 'acima' }, { assento: 46, braco: 7 }), { yaw: 150, pitch: 12, s: 0.6 });
 
 // voador: assento, encosto alto e as duas "asas" com almofadas verticais abertas para os lados (vista mais de frente)
 const voador = quadro(
@@ -692,48 +840,97 @@ const voador = quadro(
   { yaw: 62, pitch: 10, s: 0.6 },
 );
 
-// desenvolvimento: encosto em pé e pegadas acima dos ombros, braços que sobem por trás
-const desenvolvimento_maquina = quadro(
-  (C) => {
-    base(C, -40, 80, 0, 80);
-    bancoMaquina(C, 30, 40, 46, 0.06);
-    tubo(C, [-26, 4, 40], [-26, 104, 40], 8);
-    for (const s of [-1, 1]) {
-      const z = 40 + s * 26;
-      C.cilindro([-26, 104, 40 + s * 4], [-26, 104, 40 + s * 10], 4.5, M.metalClaro, { lados: 16 });
-      tubo(C, [-26, 104, 40 + s * 10], [8, 150, z], 6);
-      tubo(C, [8, 150, z], [16, 156, z], 5);
-      pega(C, [16, 150, z], [16, 164, z], 2.4);
-      tubo(C, [8, 150, z], [8, 150, z - s * 12], 3.2);
-      pega(C, [8, 150, z - s * 12], [14, 150, z - s * 12], 2.2);
-      chifre(C, [-14, 120, z], [0, 0, s], 18, [20]);
-    }
-    C.sombra(10, 40, 66, 48, 0.2);
-  },
-  { yaw: 44, pitch: 10, s: 0.6 },
-);
+// medidas de src/engine/novo/dados/objetos/desenvolvimento-maquina.json: o tamanho das fichas (Life Fitness SS-SP
+// 164 × 145, Precor RSL0515: o "overhead pivot", a torre de 148 cm, o estofado de 6,5 cm); o eixo, o braço e o encosto
+// são de desenho, com o motivo lá
+const DESENVOLVIMENTO = {
+  comp: 164, alturaTorre: 148, estofadoEsp: 6.5, converge: 8, assentoComp: 40, assentoLarg: 40, assentoMin: 36,
+  encostoInclina: 12, encostoBaixo: 60, encostoComp: 72, encostoAtras: 36, eixoAltura: 123, eixoAFrente: -95,
+  bracoComp: 72, bracoMeio: 90, pegadaMeia: 28, pegadorComp: 13, pegadorDiam: 3.4, bracoFora: 3, cameDiam: 32,
+};
+// desenvolvimento na máquina, de pilha (era de anilhas): o eixo atrás do encosto, alto, e cada braço vem dele para a
+// frente, ao lado da cabeça, com o pegador acima do ombro (o começo do movimento: os braços a 82°, o assento a 47 cm)
+const desenvolvimento_maquina = quadro((C) => maquinaDeEmpurrar(C, DESENVOLVIMENTO, { eixo: 'atras' }, { assento: 47, braco: 82 }), { yaw: 210, pitch: 12, s: 0.6 });
 
-// remada articulada: apoio de peito na frente, assento baixo, pegadores à frente e embaixo, pinos de anilha
+// medidas de src/engine/novo/dados/objetos/remada-articulada.json: o tamanho das fichas (Life Fitness SS-RW 124 × 140,
+// Precor RSL0310: a torre de 148 cm, o estofado de 6,5 cm, o caminho que se abre); o assento (38,1 × 22,9 cm), o apoio
+// do peito (25,4 × 19,4 cm) e o pegador (3,2 cm), da lista de peças da Life Fitness SS-RW; o eixo, a coluna e o braço
+// dobrado são de desenho, com o motivo lá
+const REMADA = {
+  alturaTorre: 148, estofadoEsp: 6.5, assentoComp: 22.9, assentoLarg: 38.1, apoioComp: 25.4, apoioLarg: 19.4,
+  pegadorDiam: 3.2, converge: 2, assentoMin: 36, apoioInclina: 10, apoioBaixo: 82, eixoAltura: 168, eixoAFrente: 36,
+  colunaAvanca: 40, bracoComp: 76, bracoDobra: 20, bracoDobraEm: 50, bracoMeio: 0, pegadaMeia: 21, pegadorComp: 14,
+  pegadorInclina: 20, bracoFora: 9, cameDiam: 26,
+};
+// remada articulada, de pilha (era de anilhas; remada-articulada.ts): o assento baixo num pé, o apoio do peito na frente
+// (corre num tubo que sai da coluna, com o botão de regular), a coluna reta na frente e a viga que volta até o eixo no
+// alto, os braços dobrados que pendem dele com os pegadores de pé, e a torre à esquerda, depois da coluna. O começo do
+// movimento da animação: os braços a −18,5°, o assento a 48,6 cm, o apoio do peito a 8,7 cm da borda do assento.
 const remada_articulada = quadro(
   (C) => {
-    base(C, -10, 130, 0, 80);
-    tubo(C, [20, 4, 40], [20, 40, 40], 7);
-    C.estofado([16, 40, 40], X, Y, Z, 34, 9, 34);
-    tubo(C, [56, 4, 40], [56, 104, 40], 8);
-    C.estofado([52, 102, 40], norm([0.28, 1, 0]), norm([-1, 0.28, 0]), Z, 46, 9, 30);
-    tubo(C, [56, 120, 40], [90, 150, 40], 7);
-    for (const s of [-1, 1]) {
-      const z = 40 + s * 30;
-      C.cilindro([90, 150, 40 + s * 4], [90, 150, 40 + s * 10], 4.5, M.metalClaro, { lados: 16 });
-      tubo(C, [90, 150, 40 + s * 10], [84, 96, z], 6);
-      tubo(C, [84, 96, z], [76, 92, z], 4);
-      pega(C, [76, 98, z], [76, 86, z], 2.4);
-      chifre(C, [94, 110, z], [0, 0, s], 18, [20]);
+    const g = REMADA,
+      mod = { eixo: 'frente', puxa: true, vertical: true };
+    const reg = { assento: 48.6, apoio: 8.7, braco: -18.5 };
+    const esp = g.estofadoEsp,
+      cA = g.assentoComp,
+      zP = -cA / 2;
+    const xB = bracoX(g, mod),
+      yE = g.eixoAltura,
+      zE = g.eixoAFrente;
+    const pe = [0, 3.5, zE + g.colunaAvanca],
+      topo = [0, yE + 10, zE + g.colunaAvanca],
+      viga = [0, yE + 10, zE];
+    const xT0 = xB + 16,
+      xT1 = xT0 + 34,
+      zTorre = pe[2] + 24;
+    const zTras = zP - cA / 2 - 8,
+      zFrente = zTorre + 22;
+    // a base: a espinha ao longo de z, a travessa de trás do assento, a do pé da coluna e as da torre
+    T(C, [0, 3.5, zTras + 4], [0, 3.5, zTorre + 16]);
+    T(C, [-g.assentoLarg / 2 + 4, 3.5, zTras + 4], [g.assentoLarg / 2 - 4, 3.5, zTras + 4]);
+    T(C, [-(xB + 6), 3.5, pe[2]], [xT1, 3.5, pe[2]]);
+    for (const z of [zTorre - 12, zTorre + 12]) T(C, [0, 3.5, z], [xT1, 3.5, z]);
+    assentoNumPe(C, { zP, comp: cA, larg: g.assentoLarg, y: reg.assento, yMin: g.assentoMin, esp, pino: -1, folga: 3 });
+    // a coluna da frente, a viga que volta até em cima do eixo e a travessa do eixo
+    T(C, pe, add(topo, [0, 3.5, 0]), 8);
+    T(C, add(topo, [0, 0, 3.5]), add(viga, [0, 0, -3.5]));
+    T(C, viga, [0, yE, zE]);
+    T(C, [-(xB - 6), yE, zE], [xB + 13, yE, zE]);
+    // o apoio do peito: o estofado (o alto inclinado 10° à frente), a chapa, o tubo que corre na luva e o botão
+    const inc = g.apoioInclina * RAD;
+    const sobe = [0, Math.cos(inc), Math.sin(inc)],
+      tras = [0, Math.sin(inc), -Math.cos(inc)];
+    const meioApoio = add([0, g.apoioBaixo, reg.apoio], mul(sobe, g.apoioComp / 2));
+    C.estofado(add(meioApoio, mul(tras, -esp)), sobe, tras, X, g.apoioComp, esp, g.apoioLarg);
+    const atrasApoio = add(meioApoio, mul(tras, -esp - 1.5));
+    C.tubo(add(atrasApoio, mul(sobe, -g.apoioComp * 0.32)), add(atrasApoio, mul(sobe, g.apoioComp * 0.32)), 10, 2, M.metal, { up: mul(tras, -1) });
+    const yA = meioApoio[1],
+      zLuva = pe[2] - 4.5;
+    T(C, [0, yA, atrasApoio[2]], [0, yA, zLuva + 6], 4.5);
+    T(C, [0, yA, zLuva - 9], [0, yA, zLuva + 2], 6.5);
+    C.cilindro([0, yA + 3.2, zLuva - 6], [0, yA + 7, zLuva - 6], 1.4, M.cromo, { lados: 10 });
+    C.cilindro([0, yA + 7, zLuva - 6], [0, yA + 9.5, zLuva - 6], 2.6, M.borracha, { lados: 12 });
+    // os braços: o tubo dobrado (sai do eixo 20° à frente e dobra a 50 cm dele), o toco e o pegador de pé
+    for (const k of ['R', 'L']) {
+      const b = bracoDaMaquina(g, mod, k, reg.braco);
+      mancal(C, b, ladoX(k));
+      const K = add(b.eixo, mul(girar(norm(sub(b.ponta, b.eixo)), b.dirEixo, -g.bracoDobra), g.bracoDobraEm));
+      C.tubo(b.eixo, K, 6, 6, M.metal, { up: b.dirEixo });
+      C.cilindro(add(K, mul(b.dirEixo, -3)), add(K, mul(b.dirEixo, 3)), 3, M.metal, { lados: 14 });
+      C.tubo(K, add(b.ponta, mul(b.dirBorracha, -3)), 6, 6, M.metal, { up: b.dirEixo });
+      C.cilindro(add(b.ponta, mul(b.dirPegador, -2)), b.centro, 2, M.cromo, { lados: 12 });
+      const m = g.pegadorComp / 2,
+        r = g.pegadorDiam / 2;
+      C.cilindro(add(b.centro, mul(b.dirBorracha, -m)), add(b.centro, mul(b.dirBorracha, m)), r, M.borracha, { lados: 14 });
+      for (const sx of [-1, 1]) C.cilindro(add(b.centro, mul(b.dirBorracha, sx * m)), add(b.centro, mul(b.dirBorracha, sx * (m + 1.2))), r + 0.5, M.borracha, { lados: 14 });
     }
-    tubo(C, [90, 150, 40], [120, 4, 40], 7);
-    C.sombra(60, 40, 80, 48, 0.2);
+    // a torre à esquerda, depois da coluna; o came no eixo do braço da esquerda e o cabo pelo alto
+    torreDaPilha(C, xT0, xT1, zTorre, g.alturaTorre);
+    cameNoEixo(C, xB + 9, yE, zE, g.cameDiam / 2);
+    caboPeloAlto(C, xB + 9, yE, zE, g.cameDiam / 2, xT0, xT1, zTorre, g.alturaTorre, 75);
+    C.sombra((xT1 - xB) / 2, (zTras + zFrente) / 2, (xT1 + xB) / 2 + 6, (zFrente - zTras) / 2, 0.18);
   },
-  { yaw: -38, pitch: 12, s: 0.6 },
+  { yaw: 230, pitch: 12, s: 0.6 },
 );
 
 // máquina de rosca: assento, apoio inclinado dos braços e a alavanca com came e pegador; torre ao lado
