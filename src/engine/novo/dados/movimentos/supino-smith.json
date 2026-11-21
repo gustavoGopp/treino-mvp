@@ -21,7 +21,7 @@
   "pes.meiaDistancia": { "v": 22, "un": "cm", "selo": "consenso", "fonte": "aprovado", "o": "pés no chão, um pouco mais abertos que o quadril, como no supino com halteres aprovado" },
   "cabeca.folgaNoBanco": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "do topo da cabeça à ponta do banco: a cabeça apoiada no banco, como no supino com halteres aprovado (pedido do Gustavo de 15/11/2026)" },
   "anilhas": { "v": 10, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 10 kg de cada lado (com a barra de 9 kg, 29 kg); o cartão manda registrar os kg de anilha de cada lado" },
-  "trava.abaixo": { "v": 1.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as travas 'logo acima do peito': o carro para na trava com a barra 1,5 cm abaixo de onde ela encosta no peito, ou seja, antes de afundar nele; no movimento certo a barra não chega nelas" },
+  "trava.abaixo": { "v": 1.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as travas logo abaixo do ponto mais baixo da descida (o cartão corrigido em 21/11 e a regra seguranca.montagem; antes, o cartão dizia 'logo acima do peito'): o carro para na trava com a barra 1,5 cm abaixo de onde ela encosta no peito, ou seja, antes de afundar nele; no movimento certo a barra não chega nelas" },
   "erro.banco.desloca": { "v": 14, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o banco (e quem deita nele) fica 14 cm mais para a cabeça; a barra, que só anda na guia, desce na barriga, abaixo do peito (o cartão: 'A barra desce no pescoço ou na barriga')" },
   "erro.T.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: cotovelos a ~90° do tronco (o cartão: 'Cotovelos a 90° do tronco')" },
   "quadro.ate": { "v": 135, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra o smith até 135 cm (acima da barra em cima, a 112 cm, e das anilhas); o resto da máquina, que tem 237 cm, fica cortado pela borda, para o corpo ocupar o quadro" }
@@ -40,7 +40,7 @@
   { "id": "antebracos-quase-verticais-embaixo", "pede": "embaixo, antebraços quase verticais", "selo": "consenso", "fonte": "ficha" },
   { "id": "pegada-ate-1-5-ombro", "pede": "pegada um pouco mais aberta que os ombros (até ~1,5 vez)", "selo": "consenso", "fonte": "ficha" },
   { "id": "cotovelos-sem-travar-em-cima", "pede": "em cima, cotovelos quase estendidos, sem travar", "selo": "consenso", "fonte": "ficha" },
-  { "id": "travas-logo-abaixo-do-fundo", "pede": "as travas de segurança logo acima do peito (a barra não chega nelas no movimento certo)", "selo": "consenso", "fonte": "ficha" }
+  { "id": "travas-logo-abaixo-do-fundo", "pede": "as travas de segurança logo abaixo do ponto mais baixo da descida (a barra não chega nelas no movimento certo)", "selo": "consenso", "fonte": "ficha" }
  ],
  "erros": [
   { "id": "banco", "instante": 1, "titulo": "Banco fora do lugar", "vista": "lateral", "oQueMuda": "o banco fica mais para a cabeça: a barra, presa na guia, desce na barriga e não no meio do peito", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho" },
