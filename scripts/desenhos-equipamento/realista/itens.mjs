@@ -881,26 +881,82 @@ const gluteo_maquina = quadro(
   { yaw: 30, pitch: 12, s: 0.6 },
 );
 
-// panturrilha em pé: apoios grandes para os ombros num carrinho que sobe, degrau para a ponta dos pés embaixo, torre atrás
+// uma caixa alinhada aos eixos, de a (o canto de menor x, y e z) a b, como as peças das panturrilhas a desenham
+const caixaXY = (C, a, b, mat) => C.prisma([[a[0], a[1]], [b[0], a[1]], [b[0], b[1]], [a[0], b[1]]], [0, 0, a[2]], X, Y, [0, 0, b[2] - a[2]], mat);
+
+// panturrilha em pé (decisão do Gustavo em 21/11/2026: o cartão igual à peça da animação). No cartão de antes as
+// almofadas corriam num carro na vertical; nas fotos das duas fichas (Hammer Strength HS-SC, Atlantis M118) elas ficam
+// num braço que gira num eixo no alto dos montantes, e é assim na peça. Medidas da peça do motor novo
+// (src/engine/novo/dados/objetos/panturrilha-em-pe.json e pecas-de-cena/panturrilha-em-pe.ts): 148 × 114 × 183 cm
+// (HS-SC); do corpo da tabela, o eixo a 169 cm e 70 cm à frente da borda do degrau, as almofadas a 34 cm uma da outra;
+// de desenho na peça: o degrau de 16 × 36 × 56 cm, as almofadas de 30 × 14 × 10 cm, o braço de 72 cm, a travessa com
+// os pegadores 28 cm à frente e 16 cm abaixo do meio das almofadas, a torre de 34 × 36 cm, o came de 22 cm. Sem
+// ninguém, o braço descansa no batente de baixo (−7,9°, a posição inicial da animação). Eixos da peça: quem treina
+// olha para +z, para os montantes e a torre; a borda de trás do degrau em z = 0. Escolha do cartão: a câmera pela frente
+// e pela esquerda de quem treina (o degrau na frente), que mostra as duas almofadas e o braço; do ângulo da folha da
+// peça, as almofadas ficavam pequenas na frente da torre.
 const panturrilha_em_pe_maquina = quadro(
   (C) => {
-    base(C, -44, 64, 0, 80);
-    torre(C, [-44, 0, 22], X, Z, 30, 36, 180, 10);
-    for (const z of [12, 68]) tubo(C, [-4, 4, z], [-4, 196, z], 7);
-    tubo(C, [-4, 196, 12], [-4, 196, 68], 6);
-    C.caixa([-10, 134, 10], [2, 154, 70], M.metalClaro);
-    for (const z of [25, 55]) {
-      tubo(C, [2, 146, z], [14, 146, z], 6);
-      C.estofado([32, 146, z], X, mul(Y, -1), Z, 36, 12, 20);
+    const rad = Math.PI / 180;
+    const tb = 7, braco = -7.9;
+    const P = [0, 169, 70];
+    const d = [0, Math.sin(braco * rad), -Math.cos(braco * rad)], n = [0, Math.cos(braco * rad), Math.sin(braco * rad)];
+    const noBraco = (dd) => add(P, mul(d, dd));
+    const R = 72, meia = 34 / 2;
+    const centroDaAlmofada = (s) => add(noBraco(R), [s * meia, 0, 0]);
+    const zFrente = 70 + 8 + 36 + 2, zTras = zFrente - 148;
+    const hP = 16, pP = 36, lP = 56;
+    const zT0 = P[2] + 8, zT1 = zT0 + 36, xT = 34 / 2, H = 183, xM = 24 / 2;
+    const T = (a, b, w = tb) => C.tubo(a, b, w, w, M.metal);
+    // a base no chão
+    const xB = 114 / 2 - tb / 2;
+    for (const s of [-1, 1]) T([s * (lP / 2 - 2), tb / 2, zTras + tb], [s * (lP / 2 - 2), tb / 2, zT1]);
+    T([-xB, tb / 2, zTras + tb / 2], [xB, tb / 2, zTras + tb / 2]);
+    T([-xB, tb / 2, zFrente - tb / 2], [xB, tb / 2, zFrente - tb / 2]);
+    T([-lP / 2 + 2, tb / 2, P[2]], [lP / 2 - 2, tb / 2, P[2]]);
+    // o degrau: o bloco de aço e a chapa de cima, ranhurada de um lado ao outro
+    caixaXY(C, [-lP / 2, tb, 0.5], [lP / 2, hP - 2.5, pP - 0.5], M.metal);
+    C.prisma(retArred(pP, 2.5, 0.8), [-lP / 2, hP - 1.25, pP / 2], Z, Y, [lP, 0, 0], M.plataforma);
+    for (let i = 1; i < 7; i++) C.linha([-lP / 2 + 1.5, hP + 0.05, (pP * i) / 7], [lP / 2 - 1.5, hP + 0.05, (pP * i) / 7], '#5E646C', 0.45);
+    T([0, tb, pP - 2], [0, tb, P[2] - 4], 6);
+    // os dois montantes do eixo, a tampa e o eixo
+    for (const s of [-1, 1]) T([s * xM, tb, P[2]], [s * xM, P[1] + 8, P[2]]);
+    T([-xM, P[1] + 8, P[2]], [xM, P[1] + 8, P[2]], 6);
+    C.cilindro([-xM, P[1], P[2]], [xM, P[1], P[2]], 2.4, M.cromo, { lados: 12 });
+    // a torre: quatro montantes, a tampa, as guias e a polia do pé
+    for (const [x, z] of [[-xT, zT0], [xT, zT0], [-xT, zT1], [xT, zT1]]) T([x, tb, z], [x, H, z], 4.5);
+    for (const z of [zT0, zT1]) T([-xT, H, z], [xT, H, z], 4.5);
+    for (const x of [-xT, xT]) T([x, H, zT0], [x, H, zT1], 4.5);
+    const zP = (zT0 + zT1) / 2;
+    for (const dx of [-7, 7]) C.cilindro([dx, tb, zP], [dx, H - 6, zP], 0.8, M.cromo, { lados: 8 });
+    C.cilindro([-1.5, 10, zT0 - 2], [1.5, 10, zT0 - 2], 4.5, M.metalClaro, { lados: 16 });
+    C.sombra(0, (zTras + zFrente) / 2, 114 / 2, 148 / 2, 0.18);
+    // as placas (8 no pino, paradas embaixo) e a haste
+    const nPl = 18, k = 8, hp = 90 / nPl, zPl = zP + 12 / 2;
+    C.pilha([-13, tb + 2, zPl], X, [0, 0, -1], 26, hp * (nPl - k), 12, nPl - k);
+    const yDo = tb + 2 + hp * (nPl - k);
+    C.pilha([-13, yDo, zPl], X, [0, 0, -1], 26, hp * k, 12, k);
+    C.cilindro([0, yDo + hp * k, zP], [0, yDo + hp * k + 10, zP], 1.2, M.cromo, { lados: 8 });
+    // o came no eixo e o cabo até a polia do pé da torre
+    const rC = 22 / 2, xC = 6;
+    C.cilindro([xC - 2.5, P[1], P[2]], [xC + 2.5, P[1], P[2]], rC, M.metalClaro, { lados: 24 });
+    C.linha([xC, P[1] - rC, P[2] + 1], [xC, 10 - 4.5, P[2] + 1], '#202327', 0.7);
+    C.linha([xC, 10 - 4.5, P[2] + 1], [0, 10 - 4.5, zT0 - 2], '#202327', 0.7);
+    // o braço, do eixo até a travessa na frente do pescoço
+    const cTr = add(noBraco(R - 28), mul(n, -16));
+    C.tubo(P, cTr, 6, 6, M.metal, { up: X });
+    C.cilindro([-4, P[1], P[2]], [4, P[1], P[2]], 4, M.metal, { lados: 14 });
+    // a travessa com os pegadores nas pontas, as barras até as almofadas e as almofadas
+    const dentro = meia + 3;
+    C.tubo(add(cTr, [-dentro, 0, 0]), add(cTr, [dentro, 0, 0]), 5, 5, M.metal, { up: n });
+    for (const s of [-1, 1]) {
+      C.cilindro(add(cTr, [s * dentro, 0, 0]), add(cTr, [s * (dentro + 11), 0, 0]), 3.4 / 2, M.borracha, { lados: 12 });
+      const frente = add(add(centroDaAlmofada(s), mul(d, -30 / 2 + 3)), mul(n, -10 / 2 + 1.5));
+      C.tubo(add(cTr, [s * meia, 0, 0]), frente, 4.5, 4.5, M.metal, { up: n });
+      C.estofado(add(centroDaAlmofada(s), mul(n, -10 / 2)), mul(d, -1), n, X, 30, 10, 14);
     }
-    for (const s of [-1, 1]) pega(C, [14, 156, 40 + s * 31], [24, 164, 40 + s * 31], 2.2);
-    for (const s of [-1, 1]) tubo(C, [2, 150, 40 + s * 24], [14, 156, 40 + s * 31], 3);
-    // degrau alto com borda e ranhuras
-    C.caixa([14, 0, 12], [50, 16, 68], M.metal);
-    C.prisma(retArred(36, 3, 1), [32, 16, 12], X, Y, [0, 0, 56], M.plataforma, { decalSempre: (P) => `<path d="${[0, 1, 2, 3, 4, 5].map((i) => { const a = P([17 + i * 6, 17.6, 14]), b = P([17 + i * 6, 17.6, 66]); return `M${f1(a[0])} ${f1(a[1])}L${f1(b[0])} ${f1(b[1])}`; }).join('')}" stroke="#5E646C" stroke-width="0.45"/>` });
-    C.sombra(4, 40, 62, 50, 0.2);
   },
-  { yaw: 46, pitch: 10, s: 0.6 },
+  { yaw: 36, pitch: 12, s: 0.6 },
 );
 
 // panturrilha sentada: assento baixo, almofada sobre os joelhos numa alavanca, apoio dos pés e pino de anilhas
