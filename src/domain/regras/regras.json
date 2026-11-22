@@ -2114,7 +2114,7 @@
   },
   {
     "id": "seguranca.triagem",
-    "regra": "Triagem no estilo PAR-Q+, com gravidez e doença aguda como perguntas à parte",
+    "regra": "Triagem no estilo PAR-Q+, com gravidez e doença aguda como perguntas à parte. **Desde o lote M6 (22/11/2026; decisão do Gustavo de 19/11): a pressão alta tem pergunta própria e perguntas de seguimento (`seguranca.triagem.pressao`); os outros \"sim\" seguem esta regra. Quem ainda não foi avaliado pode guardar as respostas e voltar depois (\"Vou procurar avaliação e volto depois\"): o programa fica pausado até a confirmação**",
     "valores": {
       "iniciante": "qualquer \"sim\" suspende a geração automática; recomenda médico ou profissional de Educação Física; segue só depois de a pessoa confirmar a liberação",
       "intermediario": "qualquer \"sim\" suspende a geração automática; recomenda médico ou profissional de Educação Física; segue só depois de a pessoa confirmar a liberação",
@@ -2148,9 +2148,9 @@
     "id": "seguranca.triagem.nenhuma",
     "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2; uma pergunta geral desde o redesign)",
     "valores": {
-      "iniciante": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
-      "intermediario": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
-      "avancado": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)"
+      "iniciante": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 10 condições em poucas palavras, com as 10 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 10 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes; as não marcadas viram \"não\", sem uma segunda confirmação (a folha \"Você não marcou estas\" saiu no lote M6, 22/11/2026: era a terceira passada pelas mesmas perguntas, que continuam inteiras na tela de marcar) (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
+      "intermediario": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 10 condições em poucas palavras, com as 10 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 10 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes; as não marcadas viram \"não\", sem uma segunda confirmação (a folha \"Você não marcou estas\" saiu no lote M6, 22/11/2026: era a terceira passada pelas mesmas perguntas, que continuam inteiras na tela de marcar) (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
+      "avancado": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 10 condições em poucas palavras, com as 10 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 10 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes; as não marcadas viram \"não\", sem uma segunda confirmação (a folha \"Você não marcou estas\" saiu no lote M6, 22/11/2026: era a terceira passada pelas mesmas perguntas, que continuam inteiras na tela de marcar) (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)"
     },
     "selo": "consenso",
     "fontes": [
@@ -2167,6 +2167,21 @@
     },
     "selo": "consenso",
     "fontes": [
+      "parq2025"
+    ]
+  },
+  {
+    "id": "seguranca.triagem.pressao",
+    "regra": "Pressão alta controlada: perguntas de seguimento (lote M6, 22/11/2026; decisão do Gustavo de 19/11/2026; base: `docs/pesquisa-v2/23-dor-pressao-alta-e-gestacao.md`, P8). **Sem revisão de profissional de saúde: espera essa revisão.** O limite 160 por 90 é o do PAR-Q+ 2025; os cuidados são consenso (a AHA fala em intensidade baixa a moderada e respiração adequada); o texto do PAR-Q+ não é copiado",
+    "valores": {
+      "iniciante": "quem marca \"pressão alta\" responde, com texto próprio do app: \"A sua pressão está controlada?\" (sim, não, não sei; controlada = o médico disse que está, ou as medidas recentes ficam abaixo de 160 por 90) e \"Algum médico pediu para você evitar ou limitar exercício?\"; quem também marca o remédio contínuo responde \"O remédio é só o da pressão?\". Controlada, sem restrição, remédio só o da pressão e nenhum outro \"sim\": o programa é liberado com cuidados à vista (esforço moderado, com pelo menos 2 repetições sobrando; respirar sem prender o ar; parar com tontura, dor no peito, falta de ar fora do normal ou palpitação; refazer a triagem se a pressão sair do controle). Qualquer outra resposta, inclusive \"não sei\", segue `seguranca.triagem` e pausa o programa. O programa em si não muda: os cuidados são orientação. No dado antigo, o \"sim\" em \"coração ou pressão alta\" continua valendo como coração",
+      "intermediario": "quem marca \"pressão alta\" responde, com texto próprio do app: \"A sua pressão está controlada?\" (sim, não, não sei; controlada = o médico disse que está, ou as medidas recentes ficam abaixo de 160 por 90) e \"Algum médico pediu para você evitar ou limitar exercício?\"; quem também marca o remédio contínuo responde \"O remédio é só o da pressão?\". Controlada, sem restrição, remédio só o da pressão e nenhum outro \"sim\": o programa é liberado com cuidados à vista (esforço moderado, com pelo menos 2 repetições sobrando; respirar sem prender o ar; parar com tontura, dor no peito, falta de ar fora do normal ou palpitação; refazer a triagem se a pressão sair do controle). Qualquer outra resposta, inclusive \"não sei\", segue `seguranca.triagem` e pausa o programa. O programa em si não muda: os cuidados são orientação. No dado antigo, o \"sim\" em \"coração ou pressão alta\" continua valendo como coração",
+      "avancado": "quem marca \"pressão alta\" responde, com texto próprio do app: \"A sua pressão está controlada?\" (sim, não, não sei; controlada = o médico disse que está, ou as medidas recentes ficam abaixo de 160 por 90) e \"Algum médico pediu para você evitar ou limitar exercício?\"; quem também marca o remédio contínuo responde \"O remédio é só o da pressão?\". Controlada, sem restrição, remédio só o da pressão e nenhum outro \"sim\": o programa é liberado com cuidados à vista (esforço moderado, com pelo menos 2 repetições sobrando; respirar sem prender o ar; parar com tontura, dor no peito, falta de ar fora do normal ou palpitação; refazer a triagem se a pressão sair do controle). Qualquer outra resposta, inclusive \"não sei\", segue `seguranca.triagem` e pausa o programa. O programa em si não muda: os cuidados são orientação. No dado antigo, o \"sim\" em \"coração ou pressão alta\" continua valendo como coração"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "paluch2024",
+      "barroso2020",
       "parq2025"
     ]
   },

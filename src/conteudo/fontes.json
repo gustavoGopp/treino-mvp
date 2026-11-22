@@ -64,6 +64,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/32252103/",
   "leitura": "resumo"
  },
+ "barroso2020": {
+  "citacao": "Barroso WKS, Rodrigues CIS, Bortolotto LA, et al. (2021). Brazilian Guidelines of Hypertension - 2020. Arq Bras Cardiol 116(3):516-658.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/33909761/",
+  "leitura": "texto-completo"
+ },
  "bazvalle2019": {
   "citacao": "Baz-Valle E, Schoenfeld BJ, Torres-Unda J, Santos-Concejero J, Balsalobre-Fernández C (2019). The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men. PLoS One 14(12):e0226989.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/31881066/",
@@ -662,6 +667,11 @@
  "pallares2021": {
   "citacao": "Pallarés JG, Hernández-Belmonte A, Martínez-Cava A, Vetrovsky T, Steffl M, Courel-Ibáñez J (2021). Effects of range of motion on resistance training adaptations: A systematic review and meta-analysis. Scand J Med Sci Sports 31(10):1866–1881.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/34170576/",
+  "leitura": "busca"
+ },
+ "paluch2024": {
+  "citacao": "Paluch AE, Boyer WR, Franklin BA, et al. (2024). Resistance Exercise Training in Individuals With and Without Cardiovascular Disease: 2023 Update: A Scientific Statement From the American Heart Association. Circulation 149(3):e217–e231.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/38059362/",
   "leitura": "busca"
  },
  "pancar2026": {
