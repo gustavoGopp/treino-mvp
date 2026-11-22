@@ -573,7 +573,11 @@
   },
   "seguranca.triagem.nenhuma": {
     "titulo": "Atalho para quem não tem nenhuma condição",
-    "frase": "A triagem abre com uma pergunta, “Alguma destas vale para você?”, e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque. “Não, nenhuma” responde “não” às 9 e segue. “Sim, alguma (ou não tenho certeza)” leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje, e pede a confirmação das não marcadas, que viram “não”."
+    "frase": "A triagem abre com uma pergunta, “Alguma destas vale para você?”, e as 10 condições em poucas palavras, com as 10 perguntas inteiras a um toque. “Não, nenhuma” responde “não” às 10 e segue. “Sim, alguma (ou não tenho certeza)” leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje. As não marcadas viram “não”."
+  },
+  "seguranca.triagem.pressao": {
+    "titulo": "Pressão alta controlada",
+    "frase": "Quem marca pressão alta responde se ela está controlada e se algum médico pediu para limitar exercício. Com a pressão controlada, sem restrição e sem outro “sim”, o programa é liberado com cuidados: esforço moderado, respirar sem prender o ar e parar se vier tontura, dor no peito, falta de ar fora do normal ou palpitação. Qualquer outra resposta pausa o programa. Nenhum profissional de saúde revisou esta regra."
   },
   "seguranca.triagem.texto": {
     "titulo": "De onde vêm as perguntas de saúde",

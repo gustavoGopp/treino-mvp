@@ -36,7 +36,7 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 - **Não fazer agora:**
   - foto do corpo e biotipo (sem evidência de benefício e com dado sensível);
   - idade, peso corporal, sexo e altura no perfil (nenhuma regra os usa).
-- **De lado por decisão do Gustavo:** revisão por profissional de Educação Física e triagem com perguntas de acompanhamento.
+- **De lado por decisão do Gustavo:** revisão por profissional de Educação Física. (A triagem com perguntas de acompanhamento saiu desta lista em 19/11/2026 e foi feita no lote M6, só para a pressão alta.)
 - **Depois do uso real (R5):**
   - as animações que faltam, por frequência; 14 delas nunca aparecem em programa nenhum;
   - desenhos novos de equipamento;
@@ -610,7 +610,7 @@ O que foi feito está no devlog. Ficou para depois:
 - **O "Desfazer" do programa vale só enquanto a pessoa está na tela.** Sair ou fechar o app perde a volta. Guardar o programa anterior nos dados resolveria, com uma versão nova do estado.
 - **A volta do alerta vale por 15 minutos.** Depois disso, o toque errado só se resolve marcando "fui avaliado". Vale ouvir quem usa antes de mexer no prazo.
 - **O guia completo ainda baixa os textos de todos os exercícios num pedaço só.** A falha deixou de derrubar o app; repartir o pedaço fica para o pacote D4 (peso).
-- **A saída da triagem para quem ainda não foi avaliado** (pedido 11) está no lote M6.
+- **A saída da triagem para quem ainda não foi avaliado** (pedido 11): feita no lote M6.
 - **O histórico não diz em que local cada treino foi feito** depois que o local é apagado: a sessão guarda o código do local, e o nome some com ele.
 
 
@@ -655,3 +655,15 @@ A tabela inteira está em `revisoes/regras-x-codigo.md`. Ficou para depois:
 - `selecao.item-sozinho-ampliado`: o guia da extensão de joelho com mini-band não diz que a evidência com elástico é fraca.
 - De carona do D1, não feito: "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e o comentário em `Entenda.tsx` diz o contrário.
 - O pedido 8 de `revisoes/frontend-novo/pedidos-ao-dominio.md` (a fonte "título não conferido" aparece para a pessoa?) segue para o Gustavo.
+
+## Do lote M6, a triagem (22/11/2026)
+
+O que foi feito está no devlog e em `revisoes/melhorias/m6/README.md`. Ficou para depois:
+- **Revisão por profissional de saúde** da regra `seguranca.triagem.pressao` e dos textos (as perguntas e os 4 cuidados). Não houve.
+- **O programa não muda para quem tem pressão alta.** Os cuidados são orientação ("pelo menos 2 repetições sobrando, mesmo que o treino peça menos"). Fazer o gerador prescrever assim (reserva mínima de 2, sem séries até a falha) mexe no gerador e pede personas e régua antes e depois.
+- **Os cuidados não aparecem dentro do treino.** Ficam antes de seguir, no 1º aviso do programa até o 1º treino e em "Entenda o treino".
+- **Outras doenças crônicas controladas** (diabetes, por exemplo) e a gestação continuam pausando. A pesquisa (`pesquisa-v2/23-dor-pressao-alta-e-gestacao.md`) tem a base para perguntas de seguimento parecidas; só com profissional.
+- **Pressão controlada mais dor em osso ou articulação** pausa, embora cada uma sozinha libere. É o lado conservador; rever com profissional.
+- **Quem já usava o app e tinha marcado "coração ou pressão alta"** continua com o "sim" em coração. Para cair na regra nova, refaz a triagem. O app não avisa disso.
+- **O inventário de textos** (`scripts/textos/`) ainda cita a folha "Você não marcou estas" e as "9 perguntas".
+- **O texto do bloqueio** (item F.1, acima) perdeu o motivo para a pressão alta; vale para os outros "sim".

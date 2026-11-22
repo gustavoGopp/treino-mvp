@@ -9,6 +9,7 @@ import { carregarFrasesDasRegras, type FraseDaRegra } from '../../conteudo/frase
 import { carregarRegras } from '../../domain/regras/carregar';
 import { RIR, VOLUME, type Regra } from '../../domain/regras';
 import { sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
+import { avaliarTriagem, CUIDADOS_PRESSAO } from '../../domain/triagem';
 import { inventarioPrincipal, perfilDe, primeiroPassoPendente } from '../../storage/esquema';
 import { semanaDoEstado, semanaLeveDoEstado } from '../acompanhamento/acoes';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
@@ -319,6 +320,17 @@ export function Entenda() {
               <Frase regra="seguranca.triagem">
                 Treinar é seguro para a maioria das pessoas. As perguntas de saúde veem se vale falar com um profissional antes. Um “sim” não impede
                 o treino; pede uma avaliação antes do programa automático.
+              </Frase>
+              <Frase regra="seguranca.triagem.pressao">
+                Quem tem pressão alta controlada, sem restrição do médico, treina com cuidados. Qualquer outra resposta sobre a pressão pede a
+                avaliação antes.
+                {perfil && avaliarTriagem(perfil.triagem).cuidadosPressao && (
+                  <ul className="lista" aria-label="Os seus cuidados com a pressão">
+                    {CUIDADOS_PRESSAO.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                )}
               </Frase>
               <Frase regra="nivel.classificacao">O nível sai do tempo de treino, das pausas e da confiança na técnica. Na dúvida, o app classifica para baixo.</Frase>
               <Frase regra="divisao.seis-dias">Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana.</Frase>

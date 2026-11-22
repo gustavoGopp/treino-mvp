@@ -69,6 +69,12 @@ describe('esquema do estado', () => {
     expect(primeiroPassoPendente(e)).toBeNull();
     // lote 3 do redesign: o equipamento é o último passo; o "Tudo certo?" saiu
     expect(primeiroPassoPendente({ ...e, locais: undefined })?.id).toBe('inventario');
+    // M6 (pedido 11): no 1º cadastro, respostas guardadas que pausam o programa deixam a triagem pendente; com o
+    // cadastro feito, não (a pausa aparece na tela do programa); a liberação antiga continua valendo.
+    const comSim = { respostas: { ...e.triagem!.respostas, peito: true } };
+    expect(primeiroPassoPendente({ ...e, triagem: comSim, nivel: undefined })?.id).toBe('triagem');
+    expect(primeiroPassoPendente({ ...e, triagem: { ...comSim, liberacaoConfirmada: true }, nivel: undefined })?.id).toBe('nivel');
+    expect(primeiroPassoPendente({ ...e, triagem: comSim })).toBeNull();
   });
 
   it('pedido 5 do redesign: sem "algo a evitar", o perfil sai com as listas vazias, sem versão nova do estado', () => {
@@ -442,7 +448,7 @@ describe('versão 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gu
       const { v8, gerado, base } = estadoV8(persona);
       const r = migrar(v8);
       if (!r.ok) throw new Error(r.erro);
-      expect(r.estado.versao).toBe(9);
+      expect(r.estado.versao).toBe(VERSAO_ESTADO);
       expect(r.estado.programa!.programa.nivel).toBe(base.nivel!.escolhido);
       // igual ao programa de hoje: ninguém vê "há uma versão nova" só por causa do campo novo
       expect(r.estado.programa!.programa).toEqual(gerado);
@@ -459,7 +465,7 @@ describe('versão 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gu
     const outroNivel = base.nivel!.escolhido === 'avancado' ? 'intermediario' : 'avancado';
     const r = migrar({ ...v8, nivel: { ...base.nivel!, escolhido: outroNivel } });
     if (!r.ok) throw new Error(r.erro);
-    expect(r.estado.versao).toBe(9);
+    expect(r.estado.versao).toBe(VERSAO_ESTADO);
     expect(r.estado.programa!.programa.nivel).toBeUndefined();
     // também quando muda a rotina (os minutos), e não o nível
     const s = migrar({ ...v8, rotina: { ...base.rotina!, minutosSessao: base.rotina!.minutosSessao === 60 ? 45 : 60 } });
@@ -473,7 +479,7 @@ describe('versão 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gu
     void _p;
     const r = migrar(semPrograma);
     if (!r.ok) throw new Error(r.erro);
-    expect(r.estado.versao).toBe(9);
+    expect(r.estado.versao).toBe(VERSAO_ESTADO);
     expect(r.estado.programa).toBeUndefined();
     const comNivel = migrar({ ...v8, programa: { ...(v8.programa as object), programa: { ...gerado, nivel: 'iniciante' } } });
     if (!comNivel.ok) throw new Error(comNivel.erro);
@@ -485,5 +491,45 @@ describe('versão 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gu
     expect(migrar({ ...v8, versao: 9 }, MIGRACOES, 8)).toEqual({ ok: false, erro: expect.stringMatching(/versão mais nova/) });
     const invalido = migrar({ ...v8, versao: 9, programa: { ...(v8.programa as object), programa: { ...gerado, nivel: 'mestre' } } });
     expect(invalido.ok).toBe(false);
+  });
+});
+
+describe('versão 9 → 10 (lote M6, a triagem; ok do Gustavo em 22/11/2026)', () => {
+  // Um estado da versão 9 como o app o gravava: as 9 respostas de sempre, sem o seguimento da pressão.
+  const v9 = (triagem: Record<string, unknown>) => ({ ...estadoDe(PERSONAS.ana), versao: 9, triagem }) as Record<string, unknown>;
+  const nao = PERSONAS.ana.perfil.triagem.respostas;
+
+  it('nada muda além da versão: as respostas, a liberação antiga por caixinha e o programa ficam como estavam', () => {
+    const antigo = v9({ respostas: { ...nao, coracao: true }, liberacaoConfirmada: true, liberacaoConfirmadaEm: DATA });
+    const r = migrar(antigo);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado).toEqual({ ...antigo, versao: 10 });
+    // o "sim" antigo em "coração ou pressão alta" segue como coração, e a liberação de quem já a tinha continua valendo
+    expect(avaliarTriagem(perfilDe(r.estado)!.triagem)).toMatchObject({ bloqueado: false, motivos: ['coracao'], cuidadosPressao: false });
+    // sem a liberação, continua bloqueando
+    const sem = migrar(v9({ respostas: { ...nao, coracao: true } }));
+    if (!sem.ok) throw new Error(sem.erro);
+    expect(avaliarTriagem(perfilDe(sem.estado)!.triagem).bloqueado).toBe(true);
+  });
+
+  it('quem não tem pressão alta fica com o mesmo resumo das entradas: ninguém vê "versão nova" por causa do M6', () => {
+    const r = migrar(v9({ respostas: nao }));
+    if (!r.ok) throw new Error(r.erro);
+    expect(perfilDe(r.estado)).toEqual(PERSONAS.ana.perfil);
+    expect(Object.keys(r.estado.triagem!.respostas)).not.toContain('pressao');
+  });
+
+  it('um app da versão 9 recusa o estado da versão 10, em vez de jogar fora o "sim" da pressão', () => {
+    const novo = { ...estadoDe(PERSONAS.ana), triagem: { respostas: nao, pressao: { controlada: 'nao', restricao: false } } };
+    expect(estadoSchema.safeParse(novo).success).toBe(true);
+    expect(migrar(novo as Record<string, unknown>, MIGRACOES, 9)).toEqual({ ok: false, erro: expect.stringMatching(/versão mais nova/) });
+  });
+
+  it('o seguimento da pressão é guardado e chega ao perfil; resposta fora das opções é recusada', () => {
+    const pressao = { controlada: 'sim' as const, restricao: false, soRemedioDaPressao: true };
+    const e = { ...estadoDe(PERSONAS.ana), triagem: { respostas: { ...nao, medicamento: true }, pressao } };
+    expect(estadoSchema.parse(e).triagem?.pressao).toEqual(pressao);
+    expect(perfilDe(e)!.triagem.pressao).toEqual(pressao);
+    expect(estadoSchema.safeParse({ ...e, triagem: { respostas: nao, pressao: { controlada: 'talvez', restricao: false } } }).success).toBe(false);
   });
 });

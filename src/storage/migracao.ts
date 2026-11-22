@@ -78,6 +78,12 @@ export const MIGRACOES: Record<number, Migracao> = {
   // de agora (o hash das entradas bate). Se a pessoa mudou o cadastro e ainda não atualizou o programa, ele fica sem
   // nível, vale a janela de antes (3 sessões), e a tela do programa já oferece a versão nova.
   8: (anterior) => comNivelDoPrograma(anterior),
+  // 9 → 10 (lote M6, a triagem; ok do Gustavo em 22/11/2026): a pressão alta ganha pergunta própria e seguimento
+  // (`triagem.pressao`; seguranca.triagem.pressao). O campo é opcional e nasce ausente. Nada é inventado: o "sim" antigo
+  // em "coração ou pressão alta" continua como "sim" em coração (segue bloqueando, e a liberação por caixinha de quem já
+  // a tinha continua valendo); quem tem só pressão alta refaz a triagem quando quiser. A versão sobe para um app da
+  // versão 9 recusar o dado novo, em vez de jogar fora o "sim" da pressão e liberar o programa sem as perguntas.
+  9: (anterior) => ({ ...anterior }),
 };
 
 /** 8 → 9: grava no programa salvo o nível do cadastro, quando o programa foi gerado com o cadastro de agora. */

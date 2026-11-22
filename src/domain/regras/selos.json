@@ -144,6 +144,7 @@
  "seguranca.triagem.osteoarticular": "consenso",
  "seguranca.triagem.nenhuma": "consenso",
  "seguranca.triagem.texto": "consenso",
+ "seguranca.triagem.pressao": "consenso",
  "seguranca.alerta.cardiovascular": "consenso",
  "seguranca.alerta.musculoesqueletico": "consenso",
  "seguranca.dor.escala": "consenso",

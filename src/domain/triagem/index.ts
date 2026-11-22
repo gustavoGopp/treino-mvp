@@ -8,11 +8,12 @@ import { DOR, r } from '../regras';
 // O app não diagnostica (seguranca.sem-diagnostico).
 
 /**
- * As 9 perguntas. `curta` é o texto da pergunta geral da triagem (lote 3 do redesign; seguranca.triagem.nenhuma): a
+ * As 10 perguntas (desde o lote M6, 22/11/2026: coração e pressão alta são duas; seguranca.triagem.pressao). `curta` é o texto da pergunta geral da triagem (lote 3 do redesign; seguranca.triagem.nenhuma): a
  * condição em poucas palavras, sem mudar o conteúdo; a pergunta inteira fica a um toque e reaparece na tela do "sim".
  */
 export const PERGUNTAS = [
-  { id: 'coracao', curta: 'Problema no coração ou pressão alta', texto: 'Algum médico já disse que você tem problema no coração ou pressão alta?' },
+  { id: 'coracao', curta: 'Problema no coração', texto: 'Algum médico já disse que você tem problema no coração?' },
+  { id: 'pressao', curta: 'Pressão alta', texto: 'Algum médico já disse que você tem pressão alta?' },
   { id: 'peito', curta: 'Dor no peito', texto: 'Você sente dor no peito em repouso, no dia a dia ou quando faz esforço?' },
   { id: 'tontura', curta: 'Perdeu o equilíbrio por tontura, ou desmaiou, no último ano', texto: 'Nos últimos 12 meses, você perdeu o equilíbrio por tontura ou desmaiou?' },
   { id: 'doenca-cronica', curta: 'Outra doença crônica', texto: 'Você tem alguma doença crônica diagnosticada além de problema no coração ou pressão alta?' },
@@ -28,10 +29,39 @@ export const PERGUNTAS = [
 ] as const;
 
 export type PerguntaId = (typeof PERGUNTAS)[number]['id'];
-export type Respostas = Record<PerguntaId, boolean>;
+/**
+ * As respostas "sim ou não" guardadas são as 9 de sempre. A pressão alta não entra aqui: o "sim" dela é a presença do
+ * seguimento (`Triagem.pressao`). Assim o cadastro de quem não tem pressão alta fica idêntico ao de antes do M6 (o mesmo
+ * resumo das entradas, o mesmo programa), e o "sim" antigo em "coração ou pressão alta" continua valendo como coração.
+ */
+export type RespostaId = Exclude<PerguntaId, 'pressao'>;
+export const RESPOSTA_IDS = PERGUNTAS.map((p) => p.id).filter((id): id is RespostaId => id !== 'pressao');
+export type Respostas = Record<RespostaId, boolean>;
 
-/** "Nenhuma se aplica a mim" (seguranca.triagem.nenhuma): "não" em todas; a pessoa ainda vê e confirma. */
-export const respostasNenhuma = (): Respostas => Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas;
+/** "Não, nenhuma" (seguranca.triagem.nenhuma): "não" em todas. */
+export const respostasNenhuma = (): Respostas => Object.fromEntries(RESPOSTA_IDS.map((id) => [id, false])) as Respostas;
+
+/**
+ * O seguimento de quem marcou pressão alta (seguranca.triagem.pressao; consenso, sem revisão de profissional de saúde).
+ * Perguntas próprias do app. `soRemedioDaPressao` só é perguntado a quem também marcou o remédio contínuo.
+ */
+export type Pressao = { controlada: 'sim' | 'nao' | 'nao-sei'; restricao: boolean; soRemedioDaPressao?: boolean };
+
+/** Textos do seguimento da pressão. TEXTO DE SEGURANÇA: só muda com a revisão do Gustavo. */
+export const SEGUIMENTO_PRESSAO = {
+  controlada: 'A sua pressão está controlada?',
+  controladaAjuda: 'Controlada: o médico disse que está, ou as medidas recentes ficam abaixo de 160 por 90 (16 por 9).',
+  restricao: 'Algum médico pediu para você evitar ou limitar exercício?',
+  remedio: 'O remédio é só o da pressão?',
+} as const;
+
+/** Os cuidados de quem treina com a pressão alta controlada (seguranca.triagem.pressao). TEXTO DE SEGURANÇA. */
+export const CUIDADOS_PRESSAO = [
+  'Fique no esforço moderado: termine cada série com pelo menos 2 repetições sobrando, mesmo que o treino peça menos.',
+  'Respire o tempo todo. Não prenda o ar para fazer força.',
+  'Pare o treino se vier tontura, dor no peito, falta de ar fora do normal ou palpitação. Se não passar em poucos minutos, ligue para o SAMU (192).',
+  'Se a pressão sair do controle ou o médico mudar a orientação, refaça a triagem.',
+] as const;
 
 /**
  * Região marcada na pergunta osteoarticular, com a nota da dor de hoje (0 a 10). É o único lugar onde a dor
@@ -43,6 +73,8 @@ export type Triagem = {
   respostas: Respostas;
   /** Regiões marcadas, com a dor de hoje (seguranca.dor.programa). */
   dores?: DorRegiao[];
+  /** Presente = "sim" em pressão alta, com as respostas do seguimento (seguranca.triagem.pressao). */
+  pressao?: Pressao;
   /** A pessoa confirmou que foi avaliada e liberada por um profissional. */
   liberacaoConfirmada?: boolean;
 };
@@ -56,6 +88,8 @@ export type ResultadoTriagem = {
   regioesDorLeve: Articulacao[];
   /** Todas as regiões marcadas, com a nota (para o lembrete e para o motivo dos avisos). */
   dores: DorRegiao[];
+  /** Pressão alta marcada e programa liberado: os cuidados ficam à vista (seguranca.triagem.pressao). */
+  cuidadosPressao: boolean;
   mensagem: string;
   regraId: string;
 };
@@ -76,22 +110,37 @@ function porDor(dores: DorRegiao[] | undefined) {
 }
 
 export function avaliarTriagem(t: Triagem): ResultadoTriagem {
-  const sins = PERGUNTAS.map((p) => p.id).filter((id) => t.respostas[id]);
+  const sins = PERGUNTAS.map((p) => p.id).filter((id) => (id === 'pressao' ? !!t.pressao : t.respostas[id]));
+  const cuidadosPressao = !!t.pressao;
   const soOsteo = sins.length === 1 && sins[0] === 'osteoarticular';
   const dor = porDor(t.dores);
 
   // Sem "sim": nada a excluir, salvo dores que vieram de um estado antigo (migração 4 → 5), que continuam valendo.
   if (sins.length === 0)
-    return { bloqueado: false, motivos: [], ...dor, mensagem: 'Tudo certo para começar.', regraId: r('seguranca.triagem') };
+    return { bloqueado: false, motivos: [], ...dor, cuidadosPressao: false, mensagem: 'Tudo certo para começar.', regraId: r('seguranca.triagem') };
 
   if (soOsteo && dor.dores.length)
     return {
       bloqueado: false,
       motivos: sins,
       ...dor,
+      cuidadosPressao: false,
       mensagem:
         'Vamos montar o programa pela dor de hoje: acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o app prefere outros. Se a dor aparecer ou piorar, procure avaliação profissional.',
       regraId: r('seguranca.triagem.osteoarticular'),
+    };
+
+  // Pressão alta controlada, sem restrição do médico, e nenhum outro "sim" além do remédio da própria pressão: libera
+  // com cuidados (seguranca.triagem.pressao). Qualquer outra resposta, inclusive "não sei", cai no bloqueio de sempre.
+  const soPressao = !!t.pressao && sins.every((id) => id === 'pressao' || id === 'medicamento');
+  if (soPressao && t.pressao!.controlada === 'sim' && !t.pressao!.restricao && (!t.respostas.medicamento || t.pressao!.soRemedioDaPressao === true))
+    return {
+      bloqueado: false,
+      motivos: sins,
+      ...dor,
+      cuidadosPressao: true,
+      mensagem: 'Pode seguir, com cuidados: esforço moderado, respirar sem prender o ar e parar ao primeiro sinal.',
+      regraId: r('seguranca.triagem.pressao'),
     };
 
   if (t.liberacaoConfirmada)
@@ -99,6 +148,7 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
       bloqueado: false,
       motivos: sins,
       ...dor,
+      cuidadosPressao,
       mensagem: 'Liberação confirmada. Siga as orientações do profissional que te avaliou.',
       regraId: r('seguranca.triagem'),
     };
@@ -109,6 +159,7 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
     regioesExcluidas: [],
     regioesDorLeve: [],
     dores: dor.dores,
+    cuidadosPressao: false,
     mensagem:
       'Antes de começar, procure um médico ou profissional de Educação Física. O programa automático fica disponível quando você confirmar que foi avaliado e liberado.',
     regraId: r('seguranca.triagem'),

@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ARTICULACOES, type Articulacao } from '../../domain/biblioteca';
-import { avaliarTriagem, PERGUNTAS, respostasNenhuma, type DorRegiao, type PerguntaId, type Respostas } from '../../domain/triagem';
+import {
+  avaliarTriagem,
+  CUIDADOS_PRESSAO,
+  PERGUNTAS,
+  RESPOSTA_IDS,
+  respostasNenhuma,
+  SEGUIMENTO_PRESSAO,
+  type DorRegiao,
+  type PerguntaId,
+  type Pressao,
+  type Respostas,
+} from '../../domain/triagem';
 import { agoraIso, useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Passo } from '../app/ui';
 import { Folha } from '../app/Folha';
@@ -11,38 +22,69 @@ import { Folha } from '../app/Folha';
 // abre a escolha de regiões e a nota da dor de hoje, de 0 a 10 (seguranca.triagem.osteoarticular). É o único lugar
 // do cadastro onde a dor é perguntada (seguranca.dor.programa). Desde o lote 3 do redesign, uma pergunta geral com as 9
 // condições em poucas palavras: "Não, nenhuma" marca "não" em todas; "Sim, alguma (ou não tenho certeza)" leva a marcar
-// só as que valem, com a pergunta inteira, e a confirmar as não marcadas (seguranca.triagem.nenhuma).
+// só as que valem, com a pergunta inteira (seguranca.triagem.nenhuma). Desde o lote M6 (22/11/2026): coração e pressão
+// alta são duas perguntas; a pressão alta abre o seguimento e, controlada e sem restrição, libera com cuidados
+// (seguranca.triagem.pressao); a folha de confirmação das não marcadas saiu (era a 3ª passada pelas mesmas perguntas);
+// e a pausa tem a saída para quem ainda não foi avaliado (pedido 11).
 
 export { NOME_ARTICULACAO } from './articulacoes';
 import { NOME_ARTICULACAO } from './articulacoes';
 
+// M6, pedido 11 (22/11/2026). TEXTO DE SEGURANÇA: só muda com a revisão do Gustavo.
+export const SAIDA_SEM_AVALIACAO = 'Vou procurar avaliação e volto depois';
+export const RESPOSTAS_GUARDADAS = 'Respostas guardadas neste aparelho. Quando tiver a liberação, abra o app e confirme aqui.';
+
+const SIM_NAO = [
+  { id: 'sim', texto: 'Sim' },
+  { id: 'nao', texto: 'Não' },
+] as const;
+const SIM_NAO_NAO_SEI = [...SIM_NAO, { id: 'nao-sei', texto: 'Não sei' }] as const;
+type SimNao = (typeof SIM_NAO)[number]['id'];
+const simNao = (v: boolean | undefined): SimNao | undefined => (v === undefined ? undefined : v ? 'sim' : 'nao');
+
 const NOTAS = Array.from({ length: 11 }, (_, i) => ({ id: i, texto: String(i) }));
 const artigo = (a: Articulacao) => (a === 'lombar' ? 'na' : 'no');
+
+type Resposta = { respostas: Respostas; dores: DorRegiao[]; pressao?: Pressao };
+/** O que vai para o estado guardado: sem lista vazia de dores e sem a pressão de quem não a marcou. */
+const paraGuardar = (r: Resposta) => ({ respostas: r.respostas, ...(r.dores.length ? { dores: r.dores } : {}), ...(r.pressao ? { pressao: r.pressao } : {}) });
 
 export function Triagem() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const salva = estado.triagem;
   // As que valem (marcadas na tela do "sim"); as outras viram "não" depois da confirmação.
-  const [marcadas, setMarcadas] = useState<PerguntaId[]>(() => PERGUNTAS.filter((p) => salva?.respostas[p.id]).map((p) => p.id));
+  const [marcadas, setMarcadas] = useState<PerguntaId[]>(() =>
+    PERGUNTAS.filter((p) => (p.id === 'pressao' ? !!salva?.pressao : salva?.respostas[p.id])).map((p) => p.id),
+  );
+  // O seguimento da pressão alta (seguranca.triagem.pressao): cada resposta fica vazia até a pessoa escolher.
+  const [pressao, setPressao] = useState<Partial<Pressao>>(() => salva?.pressao ?? {});
   // Região marcada → nota de hoje (undefined = ainda sem nota, por exemplo num estado antigo).
   const [dores, setDores] = useState<Partial<Record<Articulacao, number | undefined>>>(() =>
     Object.fromEntries((salva?.dores ?? []).map((d) => [d.articulacao, d.nota])),
   );
   const [erros, setErros] = useState<string[]>([]);
   const [tentou, setTentou] = useState(false);
-  const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; dores: DorRegiao[] } | null>(null);
+  // M6 (pedido 11): quem guardou respostas que pausam o programa volta direto para a tela da pausa, sem refazer as perguntas.
+  const [bloqueio, setBloqueio] = useState<Resposta | null>(() =>
+    salva && avaliarTriagem(salva).bloqueado ? { respostas: salva.respostas, dores: salva.dores ?? [], ...(salva.pressao ? { pressao: salva.pressao } : {}) } : null,
+  );
   const [liberado, setLiberado] = useState(false);
+  const [guardado, setGuardado] = useState(false);
   // Lote 3 do redesign (seguranca.triagem.nenhuma): uma pergunta geral com as 9 condições em poucas palavras; quem
   // tem alguma marca só as que valem, com a pergunta inteira embaixo, e confirma as que ficaram sem marcar.
-  const [geral, setGeral] = useState(() => !salva || PERGUNTAS.every((p) => salva.respostas[p.id] === false));
+  const [geral, setGeral] = useState(() => !salva || (!salva.pressao && RESPOSTA_IDS.every((id) => salva.respostas[id] === false)));
   const [completas, setCompletas] = useState(false);
-  const [confirmar, setConfirmar] = useState(false);
+  // A tela dos cuidados, antes de seguir (seguranca.triagem.pressao).
+  const [cuidados, setCuidados] = useState<Resposta | null>(null);
 
   const osteo = marcadas.includes('osteoarticular');
   const regioes = ARTICULACOES.filter((a) => a in dores);
   const semNota = regioes.filter((a) => dores[a] === undefined);
-  const naoMarcadas = PERGUNTAS.filter((p) => !marcadas.includes(p.id));
+  const comPressao = marcadas.includes('pressao');
+  const comRemedio = marcadas.includes('medicamento');
+  const faltaPressao = comPressao && (pressao.controlada === undefined || pressao.restricao === undefined);
+  const faltaRemedio = comPressao && comRemedio && pressao.soRemedioDaPressao === undefined;
   const marcar = (id: PerguntaId, v: boolean) => setMarcadas((m) => (v ? [...m, id] : m.filter((x) => x !== id)));
 
   const nenhuma = () => {
@@ -58,28 +100,39 @@ export function Triagem() {
     if (!marcadas.length) lista.push('Nenhuma marcada. Se nenhuma vale, volte e toque em “Não, nenhuma”.');
     if (osteo && !regioes.length) lista.push('Marque pelo menos uma região com problema.');
     if (osteo && semNota.length) lista.push(semNota.length === 1 ? 'Dê a nota da dor de hoje na região marcada.' : 'Dê a nota da dor de hoje em cada região marcada.');
+    if (faltaPressao || faltaRemedio) lista.push('Responda às perguntas sobre a pressão.');
     setErros(lista);
     if (lista.length) return;
-    if (naoMarcadas.length) setConfirmar(true);
-    else concluir();
+    concluir();
   };
 
-  /** Depois da confirmação: as marcadas são "sim", as outras "não"; o resto (bloqueio, liberação, dor) como sempre. */
+  /** As marcadas são "sim", as outras "não"; o resto (bloqueio, liberação, dor, pressão) segue as regras. */
   const concluir = () => {
-    setConfirmar(false);
-    const respostas = Object.fromEntries(PERGUNTAS.map((p) => [p.id, marcadas.includes(p.id)])) as Respostas;
+    const respostas = Object.fromEntries(RESPOSTA_IDS.map((id) => [id, marcadas.includes(id)])) as Respostas;
     const ds: DorRegiao[] = osteo ? regioes.map((a) => ({ articulacao: a, nota: dores[a]! })) : [];
-    const r = avaliarTriagem({ respostas, dores: ds });
+    const p: Pressao | undefined = comPressao
+      ? { controlada: pressao.controlada!, restricao: pressao.restricao!, ...(comRemedio ? { soRemedioDaPressao: pressao.soRemedioDaPressao! } : {}) }
+      : undefined;
+    const resposta: Resposta = { respostas, dores: ds, ...(p ? { pressao: p } : {}) };
+    const r = avaliarTriagem(resposta);
     if (r.bloqueado) {
-      setBloqueio({ respostas, dores: ds });
+      setBloqueio(resposta);
       setLiberado(false);
       // Ao refazer a triagem com um programa já montado, as respostas antigas (sem "sim") continuavam salvas, e bastava
       // sair desta tela para o programa seguir como se nada tivesse mudado. As novas ficam salvas, sem a liberação, e o
       // programa aparece pausado até a pessoa confirmar. No 1º cadastro nada é salvo, como antes.
-      atualizar((s) => (s.triagem ? { ...s, triagem: { respostas, ...(ds.length ? { dores: ds } : {}) } } : s));
+      atualizar((s) => (s.triagem ? { ...s, triagem: paraGuardar(resposta) } : s));
       return;
     }
-    atualizar((s) => ({ ...s, triagem: { respostas, ...(ds.length ? { dores: ds } : {}) } }));
+    // Liberado com cuidados: a pessoa lê os cuidados antes de seguir; as respostas só são guardadas no "Entendi".
+    if (r.cuidadosPressao) return setCuidados(resposta);
+    atualizar((s) => ({ ...s, triagem: paraGuardar(resposta) }));
+    navigate('/comecar/nivel');
+  };
+
+  const seguirComCuidados = () => {
+    if (!cuidados) return;
+    atualizar((s) => ({ ...s, triagem: paraGuardar(cuidados) }));
     navigate('/comecar/nivel');
   };
 
@@ -88,8 +141,7 @@ export function Triagem() {
     atualizar((s) => ({
       ...s,
       triagem: {
-        respostas: bloqueio.respostas,
-        ...(bloqueio.dores.length ? { dores: bloqueio.dores } : {}),
+        ...paraGuardar(bloqueio),
         liberacaoConfirmada: true,
         liberacaoConfirmadaEm: agoraIso(),
       },
@@ -97,8 +149,32 @@ export function Triagem() {
     navigate('/comecar/nivel');
   };
 
+  /** A 3ª saída da pausa (pedido 11): guarda as respostas, sem a liberação, para a pessoa voltar depois da avaliação. */
+  const voltarDepois = () => {
+    if (!bloqueio) return;
+    atualizar((s) => ({ ...s, triagem: paraGuardar(bloqueio) }));
+    if (estado.nivel) navigate('/programa');
+    else setGuardado(true);
+  };
+
+  if (cuidados)
+    return (
+      <Passo id="triagem" titulo="Pode seguir, com estes cuidados" aoVoltar={() => setCuidados(null)}>
+        <p className="lede">Pressão alta controlada e sem restrição do médico.</p>
+        <ul className="lista cuidados-pressao">
+          {CUIDADOS_PRESSAO.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
+        <p className="ajuda">Depois, os cuidados ficam em “Entenda o treino”, em Meus dados.</p>
+        <button type="button" className="btn" onClick={seguirComCuidados}>
+          Entendi, continuar
+        </button>
+      </Passo>
+    );
+
   if (bloqueio) {
-    const r = avaliarTriagem({ respostas: bloqueio.respostas, dores: bloqueio.dores });
+    const r = avaliarTriagem(bloqueio);
     return (
       <Passo id="triagem" titulo="Vamos pausar o programa automático">
         <div className="warnbox seguranca">
@@ -112,14 +188,22 @@ export function Triagem() {
         <p>
           {r.mensagem}
         </p>
-        <p className="ajuda">O app guarda só a data da confirmação, neste aparelho.</p>
+        <p className="ajuda">As respostas e a data da confirmação ficam só neste aparelho.</p>
         <Marcar marcado={liberado} aoMudar={setLiberado}>
           Confirmo que fui avaliado e liberado por um médico ou profissional de Educação Física
         </Marcar>
         <button type="button" className="btn" disabled={!liberado} onClick={confirmarLiberacao}>
           Continuar com a liberação
         </button>
-        <button type="button" className="btn sec" onClick={() => setBloqueio(null)}>
+        <button type="button" className="btn sec" onClick={voltarDepois}>
+          {SAIDA_SEM_AVALIACAO}
+        </button>
+        {guardado && (
+          <p role="status" className="ajuda">
+            {RESPOSTAS_GUARDADAS}
+          </p>
+        )}
+        <button type="button" className="btn sec" onClick={() => { setBloqueio(null); setGuardado(false); setGeral(false); }}>
           Revisar respostas
         </button>
       </Passo>
@@ -132,7 +216,7 @@ export function Triagem() {
         <p className="ajuda">
           Hoje, ou algo que um médico já disse.
         </p>
-        <ul className="condicoes" aria-label="As 9 condições">
+        <ul className="condicoes" aria-label="As 10 condições">
           {PERGUNTAS.map((p) => (
             <li key={p.id}>{p.curta}</li>
           ))}
@@ -143,7 +227,7 @@ export function Triagem() {
           </button>
         </p>
         {completas && (
-          <Folha titulo="As 9 perguntas completas" aoFechar={() => setCompletas(false)}>
+          <Folha titulo="As 10 perguntas completas" aoFechar={() => setCompletas(false)}>
             <ol className="lista">
               {PERGUNTAS.map((p) => (
                 <li key={p.id}>{p.texto}</li>
@@ -152,7 +236,7 @@ export function Triagem() {
             <p className="ajuda">São perguntas próprias do app, no estilo do PAR-Q+; não é o questionário oficial.</p>
           </Folha>
         )}
-        {/* Os botões ficam no fim da lista, não grudados embaixo: a pessoa passa pelas 9 antes de responder. */}
+        {/* Os botões ficam no fim da lista, não grudados embaixo: a pessoa passa pelas 10 antes de responder. */}
         <div className="pilha">
           <button type="button" className="btn" onClick={nenhuma}>
             Não, nenhuma
@@ -176,6 +260,41 @@ export function Triagem() {
                 <span className="curta">{p.curta}</span>
                 <span className="longa">{p.texto}</span>
               </Marcar>
+              {p.id === 'pressao' && comPressao && (
+                <fieldset className={`campo sub${tentou && faltaPressao ? ' com-erro' : ''}`}>
+                  <legend>Sobre a pressão</legend>
+                  <Escolha
+                    nome="pressao-controlada"
+                    legenda={SEGUIMENTO_PRESSAO.controlada}
+                    ajuda={SEGUIMENTO_PRESSAO.controladaAjuda}
+                    opcoes={SIM_NAO_NAO_SEI}
+                    valor={pressao.controlada}
+                    aoMudar={(v) => setPressao((x) => ({ ...x, controlada: v }))}
+                    erro={tentou && pressao.controlada === undefined ? 'Escolha uma resposta.' : undefined}
+                  />
+                  <Escolha
+                    nome="pressao-restricao"
+                    legenda={SEGUIMENTO_PRESSAO.restricao}
+                    opcoes={SIM_NAO}
+                    valor={simNao(pressao.restricao)}
+                    aoMudar={(v) => setPressao((x) => ({ ...x, restricao: v === 'sim' }))}
+                    erro={tentou && pressao.restricao === undefined ? 'Escolha uma resposta.' : undefined}
+                  />
+                </fieldset>
+              )}
+              {p.id === 'medicamento' && comRemedio && comPressao && (
+                <fieldset className={`campo sub${tentou && faltaRemedio ? ' com-erro' : ''}`}>
+                  <legend>Sobre o remédio</legend>
+                  <Escolha
+                    nome="pressao-remedio"
+                    legenda={SEGUIMENTO_PRESSAO.remedio}
+                    opcoes={SIM_NAO}
+                    valor={simNao(pressao.soRemedioDaPressao)}
+                    aoMudar={(v) => setPressao((x) => ({ ...x, soRemedioDaPressao: v === 'sim' }))}
+                    erro={tentou && faltaRemedio ? 'Escolha uma resposta.' : undefined}
+                  />
+                </fieldset>
+              )}
               {p.id === 'osteoarticular' && osteo && (
                 <fieldset className={`campo sub${tentou && (!regioes.length || semNota.length) ? ' com-erro' : ''}`}>
                   <legend>Quais regiões?</legend>
@@ -223,24 +342,6 @@ export function Triagem() {
           Continuar
         </button>
       </form>
-      {confirmar && (
-        <Folha titulo="Nenhuma destas vale para você?" aoFechar={() => setConfirmar(false)}>
-          <p>{naoMarcadas.length === 1 ? 'Você não marcou esta:' : `Você não marcou estas ${naoMarcadas.length}:`}</p>
-          <ul className="lista nao-marcadas">
-            {naoMarcadas.map((p) => (
-              <li key={p.id}>{p.texto}</li>
-            ))}
-          </ul>
-          <div className="pilha">
-            <button type="button" className="btn" onClick={concluir}>
-              Isso, nenhuma destas
-            </button>
-            <button type="button" className="btn sec" onClick={() => setConfirmar(false)}>
-              Voltar e marcar
-            </button>
-          </div>
-        </Folha>
-      )}
     </Passo>
   );
 }

@@ -2487,3 +2487,36 @@ Imagens em `revisoes/melhorias/m3/`. A sigla RIR ficou só em "Entenda o treino"
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Pedi a sete revisores independentes que comparassem as 166 regras do meu app de treino com o código. 93 batiam. Nas outras, quase sempre era o texto que tinha ficado para trás, mas sete eram defeito de verdade: o app mandava subir a carga numa série com dor, por exemplo. O mais curioso foi o que os usuários já tinham sentido: a tela pedia de 8 a 15 repetições, e quem fazia 8 via a carga cair."
+
+## A triagem deixa de barrar quem tem pressão alta controlada (22/11/2026)
+
+**De onde veio.** O lote M6 da análise crítica: qualquer "sim" pausava o programa, e a pausa abria com uma caixinha. Quem tem pressão alta controlada, que é comum depois dos 50, batia num muro por responder a verdade. Fora da `main`, no ramo `claude/m6-a-triagem`, à espera do ok do Gustavo.
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Pressão alta controlada, com remédio, sem restrição do médico | 5 toques e para em "Vamos pausar o programa automático" | 8 toques e segue, com 4 cuidados à vista |
+| A pergunta | "Problema no coração ou pressão alta" | duas: "Problema no coração" e "Pressão alta" |
+| Quem marca pressão alta | nada era perguntado | "A sua pressão está controlada?", "Algum médico pediu para você evitar ou limitar exercício?" e, com remédio, "O remédio é só o da pressão?" |
+| "Não sei", não controlada, restrição do médico, ou outro "sim" junto | pausa | pausa |
+| Cada um dos outros "sim" | pausa | pausa |
+| As mesmas perguntas na tela | 3 vezes | 2 (saiu a folha "Você não marcou estas") |
+| Quem ainda não foi avaliado | marcar a caixinha ou mudar as respostas | "Vou procurar avaliação e volto depois": as respostas ficam guardadas, e a volta cai na pausa |
+
+Imagens do antes e do depois em `revisoes/melhorias/m6/`.
+
+**O que precisa ficar dito.** Nenhum profissional de saúde revisou a regra nem os textos. A regra `seguranca.triagem.pressao` entrou com o selo "consenso" e três fontes (a declaração da AHA de 2023, a diretriz brasileira de hipertensão de 2020 e o PAR-Q+ 2025, cujo texto não é copiado). O app não diagnostica. O programa em si não muda: os cuidados são orientação.
+
+**Decisões técnicas da sessão, com o motivo**
+- **O estado guardado foi para a versão 10** (ok do Gustavo em 22/11): um app antigo recusa o dado novo, em vez de jogar fora o "sim" da pressão e liberar o programa.
+- **O "sim" da pressão fica fora das 9 respostas guardadas.** Quem não tem pressão alta fica com o cadastro idêntico: nenhum programa muda e ninguém vê "Versão nova do programa".
+- **O "sim" antigo em "coração ou pressão alta" segue como coração.** O dado não diz qual dos dois era. A liberação por caixinha de quem já a tinha continua valendo.
+- **Pressão controlada mais qualquer outro "sim" pausa,** inclusive dor em osso e articulação.
+- O resto está em `revisoes/melhorias/m6/README.md`.
+
+**Antes de ir para a `main`.** O Gustavo lê os textos de segurança (estão numa tabela só, no registro do lote) e guarda uma cópia dos dados em "Meus dados": a versão 10 não volta atrás.
+
+**Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão. As telas foram vistas num navegador de teste, não num celular.
+
+**Rascunho de post.** "Meu app de treino perguntava: 'você tem problema no coração ou pressão alta?'. Quem respondia a verdade era barrado, e quem marcava uma caixinha passava. Separei as duas perguntas. Agora quem tem pressão alta responde se ela está controlada e se o médico limitou exercício. Se está tudo certo, treina, com quatro cuidados na tela. Não sou da área de saúde, e o app diz isso."
