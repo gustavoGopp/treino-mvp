@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
-import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, porQueDaSugestao, pronto, sobreOPrograma, triagem, verAvisos } from './jornada';
+import { expect, test, type Page } from '@playwright/test';
+import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, minutosPorTreino, porQueDaSugestao, pronto, sobreOPrograma, triagem, triagemNenhuma, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -148,25 +148,75 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
   await expect(page.getByText(/Procure avaliação profissional\. Quando a dor baixar/)).toBeVisible();
 });
 
-test('cadastro sem nenhuma condição: 0 caractere digitado e até 11 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
+// Critério 1, refeito no lote M1 da análise crítica (19/11/2026). Antes, o teste conferia "até 11 toques" e pulava a tela
+// de equipamento, que é justamente onde a porta emperrava: 13 toques na academia completa, 21 no condomínio e 24 em casa
+// (docs/revisoes/analise-critica/relatorio.md). Agora a conta inclui essa tela, nos quatro atalhos, e a meta é 15.
+const contarToques = async (page: Page) => {
   await page.addInitScript(() => {
     const w = window as unknown as { __toques: number; __caracteres: number };
     w.__toques = 0;
     w.__caracteres = 0;
-    addEventListener('pointerdown', () => location.pathname !== '/comecar/inventario' && w.__toques++, true);
+    addEventListener('pointerdown', () => w.__toques++, true);
     addEventListener('beforeinput', (e) => (w.__caracteres += ((e as InputEvent).data ?? '').length), true);
     addEventListener('keydown', (e) => e.key.length === 1 && w.__caracteres++, true);
   });
-  await ana(page);
-  const { toques, caracteres } = await page.evaluate(() => {
+  return () => page.evaluate(() => {
     const w = window as unknown as { __toques: number; __caracteres: number };
     return { toques: w.__toques, caracteres: w.__caracteres };
   });
-  expect(caracteres).toBe(0);
-  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15. Lote 3 do redesign: o "Tudo certo?"
-  // saiu e o "Gerar" fica no equipamento (Ana: Começar, Não nenhuma, 3 no nível, Continuar, 3 dias, 45 min, Pernas,
-  // Glúteos, Continuar); a meta do agente 2 era 11 contando o "Gerar".
-  expect(toques).toBeLessThanOrEqual(11);
+};
+/** Da abertura até a tela de equipamento, sem nenhuma condição de saúde: 3 dias de 45 min, com dois grupos de foco. */
+const ateOEquipamento = async (page: Page, experiencia: 'treina' | 'nunca') => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
+  await triagemNenhuma(page);
+  const grupo = (nome: RegExp) => page.getByRole('group', { name: nome });
+  if (experiencia === 'nunca') await grupo(/sem parar/).getByLabel('Nunca treinei').check();
+  else {
+    await grupo(/sem parar/).getByLabel('Menos de 6 meses').check();
+    await grupo(/treinando agora/).getByLabel(/^Estou treinando/).check();
+    await grupo(/confiança na técnica/).getByLabel(/^Sim/).check();
+  }
+  await expect(page.getByRole('heading', { name: 'Seu nível: Iniciante' })).toBeVisible();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await grupo(/Quantos dias/).getByLabel('3 dias').check();
+  await minutosPorTreino(page, '45');
+  await page.getByLabel('Pernas', { exact: true }).check();
+  await page.getByLabel('Glúteos', { exact: true }).check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+};
+
+for (const lugar of ['Academia completa', 'Condomínio com multifuncional', 'Casa com halteres e elásticos', 'Corpo livre'])
+  test(`da abertura ao programa em até 15 toques e 0 caractere, contando a tela de equipamento: ${lugar} (critério 1)`, async ({ page }) => {
+    const contagem = await contarToques(page);
+    await ateOEquipamento(page, 'treina');
+    await page.getByRole('button', { name: lugar }).click();
+    await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+    // o programa sai na hora: nenhuma folha de detalhe, nenhum "falta pouco"
+    await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+    const { toques, caracteres } = await contagem();
+    expect(caracteres).toBe(0);
+    // Começar, "Não, nenhuma", 3 no nível, Continuar, 3 dias, 45 min, Pernas, Glúteos, Continuar, o lugar e "Gerar": 13
+    expect(toques).toBeLessThanOrEqual(15);
+  });
+
+test('"Nunca treinei" não pergunta da pausa nem da técnica, chega ao programa em menos toques e cai no aprendizado, não na volta de pausa', async ({ page }) => {
+  const contagem = await contarToques(page);
+  await ateOEquipamento(page, 'nunca');
+  await page.getByRole('button', { name: 'Condomínio com multifuncional' }).click();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  expect((await contagem()).toques).toBeLessThanOrEqual(11);
+  // nenhum exercício com 1 série (a volta de pausa dava "1 ×" a quem nunca tinha treinado)
+  const series = await page.locator('.treino-lista li, [role="tabpanel"] li').allTextContents();
+  expect(series.length).toBeGreaterThan(0);
+  for (const t of series) expect(t).not.toMatch(/(^|\D)1\s*×/);
+  // na volta ao cadastro, a resposta está lá e as duas perguntas continuam fora
+  await page.goto('/comecar/nivel');
+  await expect(page.getByRole('group', { name: /sem parar/ }).getByLabel('Nunca treinei')).toBeChecked();
+  await expect(page.getByRole('group', { name: /treinando agora/ })).toHaveCount(0);
+  await expect(page.getByRole('group', { name: /confiança na técnica/ })).toHaveCount(0);
 });
 
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {
@@ -221,6 +271,36 @@ test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe q
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('dialog', { name: 'Polia simples' })).toBeVisible();
   await expect(page.getByRole('region', { name: /^Marcados/ }).getByText('falta completar')).toBeVisible();
+  // lote M1: ela já tinha fechado esta folha sem responder, então o campo diz o que falta
+  await expect(page.getByRole('dialog', { name: 'Polia simples' }).locator('.erro')).toHaveText('Diga onde fica a polia (no alto, embaixo ou regulável).');
+});
+
+// Lote M1 da análise crítica (19/11/2026): antes, o toque em "Gerar meu programa" pintava de vermelho, de uma vez,
+// campos que a pessoa nunca tinha visto, e a mensagem não saía enquanto ela preenchia.
+test('o erro do detalhe só aparece no campo que a pessoa mexeu ou tentou fechar, e some ao corrigir', async ({ page }) => {
+  await ana(page);
+  await page.goto('/comecar/inventario');
+  await page.getByRole('button', { name: 'Casa com halteres e elásticos' }).click();
+  await page.getByRole('group', { name: /Às vezes tem/ }).getByLabel('Kettlebell', { exact: true }).check();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  // a folha do que falta abre sozinha, e a tela diz quanto falta; o campo, que ela ainda não viu, não vem em vermelho
+  const folha = page.getByRole('dialog', { name: 'Kettlebell' });
+  await expect(folha).toBeVisible();
+  await folhaPronta(page);
+  await expect(page.getByRole('alert')).toContainText('Há 1 detalhe para completar.');
+  await expect(folha.locator('.erro')).toHaveCount(0);
+  // "Pronto" sem responder: a folha fica e diz o que falta
+  await folha.getByRole('button', { name: 'Pronto' }).click();
+  await expect(folha.locator('.erro')).toHaveText('Marque pelo menos um peso de kettlebell.');
+  // corrigiu: o erro do campo e o aviso da tela somem na hora, sem novo toque em "Gerar"
+  await folha.getByLabel('8 kg', { exact: true }).check();
+  await expect(folha.locator('.erro')).toHaveCount(0);
+  await expect(page.getByRole('alert')).toHaveCount(0);
+  await folha.getByRole('button', { name: 'Pronto' }).click();
+  await expect(folha).toHaveCount(0);
+  await expect(page.getByRole('region', { name: /^Marcados/ }).getByText('falta completar')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
@@ -323,9 +403,11 @@ test('importar um arquivo inválido não altera os dados', async ({ page }) => {
 test('equipamento por toque: anilhas com contador e valor fora da lista em "Outro"', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
-  await marcarItem(page, 'Anilhas e manoplas');
-  const detalhes = page.getByRole('region', { name: 'Detalhes: Anilhas e manoplas' });
-  await detalhes.getByRole('group', { name: 'Quantas manoplas?' }).getByLabel('2').check();
+  // lote M1 da análise crítica: "manopla" não é palavra de quem começa; o cartão diz "Halteres de montar" e a folha explica
+  await marcarItem(page, 'Halteres de montar');
+  const detalhes = page.getByRole('region', { name: 'Detalhes: Halteres de montar' });
+  await expect(detalhes).toContainText('A manopla é a barrinha curta do halter de montar');
+  await detalhes.getByRole('group', { name: 'Quantas manoplas (as barrinhas)?' }).getByLabel('2').check();
   await detalhes.getByRole('group', { name: 'Peso de cada manopla' }).getByLabel('Outro').check();
   await detalhes.getByLabel('Peso de cada manopla: outro valor').fill('1.8');
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
@@ -335,7 +417,7 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   await page.goto('/comecar/inventario');
-  await detalhesDo(page, 'Anilhas e manoplas');
+  await detalhesDo(page, 'Halteres de montar');
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
 });

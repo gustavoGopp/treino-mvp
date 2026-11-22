@@ -236,7 +236,10 @@ export function FormularioInventario({
   perguntaNoTitulo?: boolean;
 }) {
   const [f, setF] = useState<FormInventario>(() => paraForm(inicial));
-  const [erros, setErros] = useState<Record<string, string>>({});
+  // Os erros (lote M1 da análise crítica): saem sempre do formulário como ele está agora, então somem na hora em que a
+  // pessoa corrige. E só aparecem no campo que ela já mexeu ou cuja folha tentou fechar (`tocados`): antes, o toque em
+  // "Gerar meu programa" pintava de vermelho, de uma vez, campos que ela ainda não tinha visto.
+  const [tocados, setTocados] = useState<ReadonlySet<string>>(new Set());
   const [tentou, setTentou] = useState(false);
   // Último atalho tocado (só na tela): mostra os "às vezes tem" logo abaixo. Nenhum vem selecionado.
   const [atalho, setAtalho] = useState<Atalho['id'] | undefined>();
@@ -249,16 +252,22 @@ export function FormularioInventario({
   const [categoria, setCategoria] = useState<(typeof CATEGORIAS)[number]['id']>('halter');
 
   const marcar = (id: ItemId, v: boolean) => setF((x) => ({ ...x, marcados: v ? [...x.marcados, id] : x.marcados.filter((m) => m !== id) }));
-  const set = <K extends keyof FormInventario>(k: K, v: Partial<FormInventario[K]>) => setF((x) => ({ ...x, [k]: { ...(x[k] as object), ...v } }));
-  const e = (k: string) => (tentou ? erros[k] : undefined);
+  const tocar = (chaves: string[]) => chaves.length && setTocados((t) => new Set([...t, ...chaves]));
+  const set = <K extends keyof FormInventario>(k: K, v: Partial<FormInventario[K]>) => {
+    setF((x) => ({ ...x, [k]: { ...(x[k] as object), ...v } }));
+    // mexeu no campo: ele passa a mostrar o erro dele. Campo esvaziado (o toque em "Outro", antes de digitar) ainda não.
+    tocar(Object.entries(v).filter(([, valor]) => valor !== '' && valor !== undefined).map(([campo]) => `${k}.${campo}`));
+  };
+  const { inventario: pronto, erros } = deForm(f);
+  // a quantidade e o peso de cada linha de anilha ("anilhas.0.kg") respondem pelo campo das linhas
+  const tocado = (k: string) => tocados.has(k) || (/^anilhas\.\d+\./.test(k) && tocados.has('anilhas.linhas'));
+  const e = (k: string) => (tocado(k) ? erros[k] : undefined);
 
   const enviar = (ev: React.FormEvent) => {
     ev.preventDefault();
     setTentou(true);
-    const r = deForm(f);
-    setErros(r.erros);
-    if (!r.inventario) return;
-    aoSalvar(r.inventario);
+    if (!pronto) return;
+    aoSalvar(pronto);
   };
 
   // Anilhas: um contador por peso comum (de 2 em 2, porque vêm em pares) + pesos que a pessoa já tinha informado.
@@ -284,10 +293,11 @@ export function FormularioInventario({
         );
       case 'anilhas_e_manoplas':
         return (
-          <Detalhes titulo="Anilhas e manoplas">
+          <Detalhes titulo="Halteres de montar">
+            <p className="ajuda">A manopla é a barrinha curta do halter de montar: as anilhas são presas nas pontas dela.</p>
             <Escolha
               nome="manoplas"
-              legenda="Quantas manoplas?"
+              legenda="Quantas manoplas (as barrinhas)?"
               opcoes={[1, 2, 3, 4].map((n) => ({ id: String(n), texto: String(n) }))}
               valor={f.anilhas.manoplas || undefined}
               aoMudar={(v) => set('anilhas', { manoplas: v })}
@@ -465,14 +475,24 @@ export function FormularioInventario({
   // Qual item cada erro pede para completar (para a linha do item dizer "falta completar" e abrir os detalhes).
   const itemDoErro = (k: string): ItemId | undefined => ITEM_DO_CAMPO[k.split('.')[0]!];
   const comErro = new Set(Object.keys(tentou ? erros : {}).map(itemDoErro).filter((x): x is ItemId => !!x));
+  const errosDoItem = (id: ItemId) => Object.keys(erros).filter((k) => itemDoErro(k) === id);
   const enviarComFolha = (ev: React.FormEvent) => {
     enviar(ev);
-    const r = deForm(f);
-    const primeiro = Object.keys(r.erros).map(itemDoErro).find((x) => x && f.marcados.includes(x));
+    const primeiro = Object.keys(erros).map(itemDoErro).find((x) => x && f.marcados.includes(x));
     if (primeiro) {
       setLista(true);
       setAberto(primeiro);
     }
+  };
+  // Tentar fechar a folha de um item é o momento de dizer o que falta nele: os campos sem resposta passam a mostrar o
+  // erro. "Pronto" com algo faltando fica na folha (a 1ª vez mostra o que falta); "Fechar" e a tecla Esc sempre fecham.
+  const fecharFolha = () => {
+    if (aberto) tocar(errosDoItem(aberto));
+    setAberto(undefined);
+  };
+  const prontoNaFolha = () => {
+    if (aberto && errosDoItem(aberto).some((k) => !tocado(k))) tocar(errosDoItem(aberto));
+    else setAberto(undefined);
   };
   const marcarNaLista = (id: ItemId, v: boolean) => {
     marcar(id, v);
@@ -627,9 +647,9 @@ export function FormularioInventario({
       )}
 
       {aberto && f.marcados.includes(aberto) && (
-        <Folha titulo={NOME_CURTO[aberto]} aoFechar={() => setAberto(undefined)}>
+        <Folha titulo={NOME_CURTO[aberto]} aoFechar={fecharFolha}>
           {detalhes(aberto)}
-          <button type="button" className="btn" onClick={() => setAberto(undefined)}>
+          <button type="button" className="btn" onClick={prontoNaFolha}>
             Pronto
           </button>
         </Folha>
@@ -644,7 +664,10 @@ export function FormularioInventario({
             legenda="Qual a menor anilha?"
             valores={VALORES.menorAnilhaKg}
             valor={f.menorAnilha}
-            aoMudar={(v) => setF((x) => ({ ...x, menorAnilha: v }))}
+            aoMudar={(v) => {
+              setF((x) => ({ ...x, menorAnilha: v }));
+              if (v !== '') tocar(['menorAnilha']);
+            }}
             erro={e('menorAnilha')}
           />
         </Detalhes>

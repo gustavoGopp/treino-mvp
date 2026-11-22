@@ -74,7 +74,8 @@ export const NOME_CURTO: Record<ItemId, string> = {
   banco_regulavel: 'Banco regulável',
   banco_reto: 'Banco reto',
   halteres_fixos: 'Halteres fixos',
-  anilhas_e_manoplas: 'Anilhas e manoplas',
+  // "Manopla" não é palavra de quem começa (análise crítica, lote M1): o cartão diz o que é, e a folha explica o termo.
+  anilhas_e_manoplas: 'Halteres de montar',
   barra_longa: 'Barra longa',
   barra_w: 'Barra W',
   rack_de_agachamento: 'Rack de agachamento',
