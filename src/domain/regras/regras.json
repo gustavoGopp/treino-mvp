@@ -714,11 +714,11 @@
   },
   {
     "id": "equipamento.fim-da-escada",
-    "regra": "Fim da escada: no último degrau, com a série no topo, o app avisa de forma sutil, na própria sugestão, que dali em diante é buscar repetições até ~30 e que, acima disso, o peso do corpo rende menos; nunca avisa de antemão pelo nível, e nunca sugere compra (decisão do Gustavo, 03/11/2026)",
+    "regra": "Fim da escada: no último degrau, com a série no topo, o app avisa de forma sutil, no motivo da sugestão (desde a sessão de textos de 16/11/2026, o motivo aparece em \"Entenda o treino\", e não na tela do treino), que dali em diante é buscar repetições até ~30 e que, acima disso, o peso do corpo rende menos; nunca avisa de antemão pelo nível, e nunca sugere compra (decisão do Gustavo, 03/11/2026)",
     "valores": {
-      "iniciante": "texto na sugestão do exercício",
-      "intermediario": "texto na sugestão do exercício",
-      "avancado": "texto na sugestão do exercício"
+      "iniciante": "texto no motivo da sugestão do exercício",
+      "intermediario": "texto no motivo da sugestão do exercício",
+      "avancado": "texto no motivo da sugestão do exercício"
     },
     "selo": "consenso",
     "fontes": [
@@ -968,9 +968,9 @@
     "id": "acompanhamento.evolucao",
     "regra": "Evolução por exercício (R2; pesquisa-v2/07, seção 5): a melhor série de cada sessão, sem carga máxima estimada (as fórmulas divergem 15 a 52 pontos de % acima de 12 repetições)",
     "valores": {
-      "iniciante": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
-      "intermediario": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
-      "avancado": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução"
+      "iniciante": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "intermediario": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "avancado": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução"
     },
     "selo": "consenso",
     "fontes": [
@@ -1542,7 +1542,7 @@
   },
   {
     "id": "avaliador.gravidade",
-    "regra": "O avaliador de programas (R5b, 09/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`) mede qualquer programa (o gerado, ou um digitado com exercícios da biblioteca) pelas mesmas regras e pela mesma tabela de funções (`FUNCAO`) do gerador, e dá a cada achado a regra, o selo e o próximo passo. Só a segurança bloqueia (princípio do projeto): a triagem com um \"sim\" sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível. O resto só orienta: \"ajustar\" quando há como mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); \"limite\" quando o equipamento, a dor ou o tempo não deixam, e então o texto diz que não precisa fazer nada; \"informação\" para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. \"Está bom\" = nenhum de segurança, alerta ou ajustar",
+    "regra": "O avaliador de programas (R5b, 09/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`) mede o programa da pessoa (a conta aceita também um programa digitado com exercícios da biblioteca, mas o app ainda não tem tela para digitar um; conferência de 22/11/2026) pelas mesmas regras e pela mesma tabela de funções (`FUNCAO`) do gerador, e dá a cada achado a regra, o selo e o próximo passo. Só a segurança bloqueia (princípio do projeto): a triagem com um \"sim\" sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível. O resto só orienta: \"ajustar\" quando há como mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); \"limite\" quando o equipamento, a dor ou o tempo não deixam, e então o texto diz que não precisa fazer nada; \"informação\" para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. \"Está bom\" = nenhum de segurança, alerta ou ajustar",
     "valores": {
       "iniciante": "idem",
       "intermediario": "idem",
@@ -1661,11 +1661,11 @@
   },
   {
     "id": "equipamento.roda-abdominal",
-    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar (a lombar está nas articulações do exercício); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
+    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar acima de 5 (a lombar está nas articulações do exercício; de 3 a 5 só perde no desempate, pela regra geral da dor); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
     "valores": {
       "iniciante": "não entra",
-      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar",
-      "avancado": "alternativa na vaga de abdômen; sai com dor lombar"
+      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar acima de 5",
+      "avancado": "alternativa na vaga de abdômen; sai com dor lombar acima de 5"
     },
     "selo": "consenso",
     "fontes": [
@@ -1702,9 +1702,9 @@
     "id": "equipamento.sem-puxada-vertical",
     "regra": "Sem barra fixa nem polia alta. O aviso diz o que o programa tem de fato (R5-CL, 07/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 4): com a puxada de elástico no programa, diz que a puxada é só com o elástico, e não que as costas treinam \"só com remadas\"",
     "valores": {
-      "iniciante": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
-      "intermediario": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
-      "avancado": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna"
+      "iniciante": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna",
+      "intermediario": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna",
+      "avancado": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna"
     },
     "selo": "consenso",
     "fontes": [
@@ -1713,7 +1713,7 @@
   },
   {
     "id": "equipamento.sem-ancoragem",
-    "regra": "Sem nada para puxar (nenhum exercício possível de puxar vertical nem horizontal): o app não inventa exercício de costas nem sugere compra; um aviso da vaga diz que costas, bíceps e ombro de trás ficam sem exercício e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram (decisão do Gustavo, 03/11/2026)",
+    "regra": "Sem nada para puxar (nenhum exercício possível de puxar vertical nem horizontal): o app não inventa exercício de costas nem sugere compra; um aviso da vaga diz quais músculos ficam sem exercício (no corpo livre, costas, bíceps e ombro lateral; o ombro de trás tem a abertura em T desde 07/11/2026) e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram (decisão do Gustavo, 03/11/2026)",
     "valores": {
       "iniciante": "aviso da vaga, sem sugestão de compra",
       "intermediario": "aviso da vaga, sem sugestão de compra",
@@ -1890,11 +1890,11 @@
   },
   {
     "id": "equipamento.flexao-por-supino",
-    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); quem não chega ao mínimo da faixa no chão faz a inclinada, como diz o cartão",
+    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); para quem não chega ao mínimo da faixa no chão, a flexão inclinada (mãos numa cadeira ou bancada) seria o degrau mais fácil, mas ainda não está no app: a sugestão é fazer menos repetições ou usar a alternativa (texto acertado ao que o app faz na conferência regra por regra de 22/11/2026)",
     "valores": {
-      "iniciante": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
-      "intermediario": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
-      "avancado": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)"
+      "iniciante": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app",
+      "intermediario": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app",
+      "avancado": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app"
     },
     "selo": "um estudo",
     "fontes": [
@@ -2342,9 +2342,9 @@
     "id": "dados.copia",
     "regra": "Lembrete de cópia dos dados (R5c, 07/11/2026). Os dados moram só no aparelho, e o navegador pode apagá-los: o Safari, depois de 7 dias de uso do Safari sem visita ao site (quando o app não está instalado na tela de início); qualquer navegador, por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente. Os números 3 e 7 são escolha do projeto",
     "valores": {
-      "iniciante": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
-      "intermediario": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
-      "avancado": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre"
+      "iniciante": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre",
+      "intermediario": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre",
+      "avancado": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre"
     },
     "selo": "consenso",
     "fontes": [
@@ -2385,9 +2385,9 @@
     "id": "treino.leitura",
     "regra": "\"Como ler o seu treino\" (R5c, B2, 07/11/2026): o vocabulário do programa em 5 linhas, para quem nunca treinou. Série é um bloco de repetições seguidas; repetição é um movimento completo; carga é o peso usado; descanso é a pausa entre as séries; o RIR segue `rir.leitura`. São termos de uso corrente no treino de força, sem estudo que teste a explicação; não há estudo achado sobre o efeito de explicar os termos na adesão",
     "valores": {
-      "iniciante": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
-      "intermediario": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
-      "avancado": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)"
+      "iniciante": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "intermediario": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "avancado": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)"
     },
     "selo": "consenso",
     "fontes": [

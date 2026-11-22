@@ -197,7 +197,7 @@
   },
   "equipamento.fim-da-escada": {
     "titulo": "Quando a escada de dificuldade acaba",
-    "frase": "No último degrau, com a série no topo da faixa, a sugestão avisa com discrição: dali em diante é buscar até cerca de 30 repetições; acima disso, o peso do corpo rende menos. O app nunca avisa de antemão pelo seu nível nem sugere compra."
+    "frase": "No último degrau, com a série no topo da faixa, o motivo da sugestão, em “Entenda o treino”, diz que dali em diante é buscar até cerca de 30 repetições; acima disso, o peso do corpo rende menos. O app nunca avisa de antemão pelo seu nível nem sugere compra."
   },
   "progressao.salto-grande": {
     "titulo": "Quando o próximo peso é um salto grande",
@@ -261,7 +261,7 @@
   },
   "acompanhamento.evolucao": {
     "titulo": "Evolução de cada exercício",
-    "frase": "Mostra a melhor série de cada treino (carga, repetições e reserva), com as marcas “subiu a carga” e “recorde” (mais repetições com a mesma carga, ou mais carga com as repetições dentro da faixa). Séries de acerto da carga e de amplitude encurtada não contam como recorde. Não estima carga máxima: acima de 12 repetições, as fórmulas divergem de 15 a 52 pontos percentuais. Nas máquinas, é separada por local. A alternativa tem evolução própria."
+    "frase": "Mostra a melhor série de cada treino (carga, repetições e reserva), com as marcas “subiu a carga” (mais carga que no treino anterior) e “recorde” (mais repetições do que nunca com aquela carga ou com uma mais pesada). Séries de acerto da carga e de amplitude encurtada não contam como recorde. Não estima carga máxima: acima de 12 repetições, as fórmulas divergem de 15 a 52 pontos percentuais. Nas máquinas, é separada por local. A alternativa tem evolução própria."
   },
   "selecao.equivalencia-equipamento": {
     "titulo": "Máquina, peso livre, polia ou halter",
@@ -409,7 +409,7 @@
   },
   "avaliador.gravidade": {
     "titulo": "Como o avaliador classifica cada achado",
-    "frase": "O avaliador mede qualquer programa, o gerado pelo app ou um digitado com exercícios da biblioteca, pelas mesmas regras do gerador, e dá a cada achado a regra, o nível de evidência e o próximo passo. Só a segurança bloqueia: um “sim” na triagem sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que você pediu para evitar, complexidade acima do seu nível. O resto só orienta: “ajustar”, quando dá para mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); “limite”, quando o equipamento, a dor ou o tempo não deixam, e aí o texto diz que você não precisa fazer nada; “informação”, para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. “Está bom” quer dizer nenhum achado de segurança, de alerta ou de ajustar."
+    "frase": "O avaliador mede o seu programa pelas mesmas regras do gerador, e dá a cada achado a regra, o nível de evidência e o próximo passo. Só a segurança bloqueia: um “sim” na triagem sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que você pediu para evitar, complexidade acima do seu nível. O resto só orienta: “ajustar”, quando dá para mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); “limite”, quando o equipamento, a dor ou o tempo não deixam, e aí o texto diz que você não precisa fazer nada; “informação”, para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. “Está bom” quer dizer nenhum achado de segurança, de alerta ou de ajustar."
   },
   "avaliador.empurrar-puxar": {
     "titulo": "Equilíbrio entre empurrar e puxar",
@@ -421,7 +421,7 @@
   },
   "equipamento.escada-carga-leve": {
     "titulo": "Quando o halter ficou leve",
-    "frase": "A ordem é fixa: 1) mais repetições, até cerca de 30; 2) um lado de cada vez ou uma variação mais difícil; 3) descida de 3 a 4 segundos, com até 8 segundos por repetição; 4) pausa no alongamento ou 1,5 repetição; 5) aviso discreto de que a escada acabou. O app não sugere comprar nada."
+    "frase": "A sugestão resume, em “Entenda o treino”, esta ordem: 1) mais repetições, até cerca de 30; 2) um lado de cada vez ou uma variação mais difícil; 3) descida de 3 a 4 segundos, com até 8 segundos por repetição; 4) pausa no alongamento ou 1,5 repetição; 5) no peso do corpo, o aviso de que a escada acabou. O app não sugere comprar nada."
   },
   "equipamento.bfr": {
     "titulo": "Treino com restrição de fluxo sanguíneo",
@@ -441,7 +441,7 @@
   },
   "equipamento.roda-abdominal": {
     "titulo": "Roda abdominal",
-    "frase": "Não entra no programa do iniciante, porque a lombar arqueia quando o abdômen cede. No intermediário e no avançado, é uma alternativa de exercício de abdômen, sem tirar as opções que já existem, e sai do programa se você tem dor lombar."
+    "frase": "Não entra no programa do iniciante, porque a lombar arqueia quando o abdômen cede. No intermediário e no avançado, é uma alternativa de exercício de abdômen, sem tirar as opções que já existem, e sai do programa com dor lombar acima de 5."
   },
   "equipamento.atalhos": {
     "titulo": "Atalhos na tela de equipamento",
@@ -453,11 +453,11 @@
   },
   "equipamento.sem-puxada-vertical": {
     "titulo": "Sem barra fixa nem polia alta",
-    "frase": "As séries de costas se mantêm com remadas, nesta preferência: invertida, unilateral com halter, puxada com elástico preso no alto. O pullover é só acessório. Um aviso diz o que falta e o que o programa tem de fato."
+    "frase": "As séries de costas se mantêm com remadas (invertida ou com halter, a que deixa pôr mais carga) e, sem elas, com a puxada com elástico preso no alto. Um aviso diz o que falta e o que o programa tem de fato."
   },
   "equipamento.sem-ancoragem": {
     "titulo": "Sem nada para puxar",
-    "frase": "Sem exercício possível de puxar, o app não inventa exercício de costas nem sugere compra. Um aviso diz que costas, bíceps e ombro de trás ficam sem exercício e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram."
+    "frase": "Sem exercício possível de puxar, o app não inventa exercício de costas nem sugere compra. Um aviso diz quais músculos ficam sem exercício (em geral costas, bíceps e ombro lateral) e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram."
   },
   "divisao.sem-puxar": {
     "titulo": "Divisão quando não dá para puxar",
@@ -505,7 +505,7 @@
   },
   "equipamento.flexao-por-supino": {
     "titulo": "Sem banco ou supino",
-    "frase": "Entra a flexão de braço, que fica mais difícil nesta ordem, até a série chegar perto da falha dentro da faixa: 1) no chão; 2) descida de 3 segundos; 3) pés elevados; 4) pés elevados com descida de 3 segundos; 5) mãos em dois apoios ou pausa de 2 segundos embaixo. Quem não chega ao mínimo da faixa no chão faz a inclinada, com as mãos numa cadeira ou bancada."
+    "frase": "Entra a flexão de braço, que fica mais difícil nesta ordem, até a série chegar perto da falha dentro da faixa: 1) no chão; 2) descida de 3 segundos; 3) pés elevados; 4) pés elevados com descida de 3 segundos; 5) mãos em dois apoios ou pausa de 2 segundos embaixo. Quem não chega ao mínimo da faixa no chão faz menos repetições ou usa a alternativa: a flexão inclinada ainda não está no app."
   },
   "tempo.serie": {
     "titulo": "Quanto tempo leva uma série",
@@ -629,7 +629,7 @@
   },
   "dados.copia": {
     "titulo": "Lembrete de exportar uma cópia",
-    "frase": "Os seus dados ficam só no aparelho, e o navegador pode apagá-los. O Safari apaga depois de 7 dias de uso do Safari sem visita ao site, quando o app não está instalado na tela de início. Qualquer navegador pode apagar por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente (os que o navegador aceitou não apagar). “Meus dados” mostra a data da última cópia exportada (“há N dias”) ou “nenhuma cópia”. A tela de início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo, se nunca houve cópia) e a última cópia tem mais de 7 dias (ou nunca houve). “Agora não” esconde o lembrete por 7 dias. O lembrete fica abaixo de “Começar o treino” e nunca cobre esse botão. Os números 3 e 7 do lembrete são escolha do projeto."
+    "frase": "Os seus dados ficam só no aparelho, e o navegador pode apagá-los. O Safari apaga depois de 7 dias de uso do Safari sem visita ao site, quando o app não está instalado na tela de início. Qualquer navegador pode apagar por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente (os que o navegador aceitou não apagar). “Meus dados” mostra a data da última cópia exportada (“há N dias”) ou “nenhuma cópia”. A tela de início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo, se nunca houve cópia) e a última cópia tem mais de 7 dias (ou nunca houve). “Agora não” esconde o lembrete por 7 dias. O lembrete fica depois dos exercícios, acima de “Começar o treino”, e nunca cobre esse botão. Os números 3 e 7 do lembrete são escolha do projeto."
   },
   "dados.instalar-iphone": {
     "titulo": "Aviso de instalar no iPhone e no iPad",
@@ -641,7 +641,7 @@
   },
   "treino.leitura": {
     "titulo": "Como ler o seu treino",
-    "frase": "As 5 linhas explicam série (um bloco de repetições seguidas), repetição (um movimento completo), carga (o peso usado), descanso (a pausa entre séries) e repetições de reserva. No iniciante, uma 6ª traz a fase de aprendizado. Fica aberto até o 1º treino terminado, depois recolhido."
+    "frase": "As 5 linhas explicam série (um bloco de repetições seguidas), repetição (um movimento completo), carga (o peso usado), descanso (a pausa entre séries) e repetições de reserva. No iniciante, uma 6ª traz a fase de aprendizado. Ficam em “Entenda o treino”, num bloco que você abre."
   },
   "nivel.classificacao": {
     "titulo": "Como o app define o seu nível",

@@ -149,38 +149,38 @@
 | `tecnica.barra-fixa.pegada` | bate | [tempo](regras-x-codigo/tempo.md) | — |
 | `tecnica.supino-inclinado.angulo` | o código diverge | [tempo](regras-x-codigo/tempo.md) | a conferir |
 | `tecnica.supino-halteres.cotovelos` | o código diverge | [tempo](regras-x-codigo/tempo.md) | a conferir |
-| `equipamento.fim-da-escada` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
+| `equipamento.fim-da-escada` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; regra e frase acertadas: o aviso está no motivo da sugestão, que desde 16/11 aparece em "Entenda o treino". Voltar o aviso à tela do treino fica no backlog |
 | `local.treino-do-dia` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
-| `equipamento.escada-carga-leve` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
-| `equipamento.bfr` | não está no app | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
+| `equipamento.escada-carga-leve` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; frase acertada: a ordem é resumida no motivo da sugestão, e o aviso de fim da escada vale no peso do corpo |
+| `equipamento.bfr` | não está no app | [equipamento](regras-x-codigo/equipamento.md) | confirmado; nada a fazer: a regra é cumprida por ausência e a frase diz isso |
 | `equipamento.capacidades` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
 | `equipamento.caneleira` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
 | `equipamento.mini-band` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
-| `equipamento.roda-abdominal` | a frase diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
+| `equipamento.roda-abdominal` | a frase diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; frase e regra acertadas: sai com dor lombar acima de 5 |
 | `equipamento.atalhos` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
-| `equipamento.menor-anilha` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
-| `equipamento.sem-puxada-vertical` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
-| `equipamento.sem-ancoragem` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
-| `equipamento.flexao-por-supino` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
+| `equipamento.menor-anilha` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; **consertado com teste**: o menos e o mais da barra andam no passo do local (`kgNoPasso`) |
+| `equipamento.sem-puxada-vertical` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; regra e frase acertadas ao desempate do gerador; o pullover saiu (não está na biblioteca) |
+| `equipamento.sem-ancoragem` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; regra e frase acertadas: o aviso lista os músculos que de fato ficam sem exercício |
+| `equipamento.flexao-por-supino` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; regra e frase acertadas (a flexão inclinada ainda não está no app, e está no backlog); a linha do guia que contradizia a escada foi reescrita |
 | `visao.desambiguacao` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
 | `privacidade.foto` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
-| `dados.copia` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | a conferir |
+| `dados.copia` | o código diverge | [equipamento](regras-x-codigo/equipamento.md) | confirmado; regra e frase acertadas: o lembrete fica acima do botão |
 | `dados.instalar-iphone` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
 | `dados.persistente` | bate | [equipamento](regras-x-codigo/equipamento.md) | — |
-| `acompanhamento.semana` | o código diverge (borda) | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
+| `acompanhamento.semana` | o código diverge (borda) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; consertado: "mantendo" só a partir de 1 série (`16c936ca`), com teste |
 | `acompanhamento.mensagens` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
-| `acompanhamento.evolucao` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
-| `avaliador.gravidade` | a frase diverge | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
+| `acompanhamento.evolucao` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; a regra e a frase ficaram para trás: acertadas ao que o app faz (carga maior é "subiu a carga"; "recorde" é mais repetições com aquela carga ou com uma mais pesada). O teste E1 já fixava esse comportamento |
+| `avaliador.gravidade` | a frase diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; frase e regra acertadas: o app mede o programa da pessoa, e não há tela para digitar um |
 | `avaliador.empurrar-puxar` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.triagem` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.triagem.osteoarticular` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.triagem.nenhuma` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.triagem.texto` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.alerta.cardiovascular` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
-| `seguranca.alerta.musculoesqueletico` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
-| `seguranca.dor.escala` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
+| `seguranca.alerta.musculoesqueletico` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): "Senti algo" não tem "estalo com dor" nem "dor que se espalha" |
+| `seguranca.dor.escala` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo**: a regra promete a pergunta de dor em cada série e o aviso quando a dor piora; o app só tem a nota em "Senti algo" e o aviso com nota 3 ou mais em 2 treinos seguidos |
 | `seguranca.dor.programa` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
-| `seguranca.sem-diagnostico` | o código diverge (leve) | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
-| `seguranca.estalo-sem-dor` | não está no app | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
-| `seguranca.montagem` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
-| `treino.leitura` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | a conferir |
+| `seguranca.sem-diagnostico` | o código diverge (leve) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): a regra diz "profissional com CREF", as telas dizem "médico ou profissional de Educação Física" |
+| `seguranca.estalo-sem-dor` | não está no app | [seguranca](regras-x-codigo/seguranca.md) | confirmado; segue a decisão do "estalo com dor" (acima) |
+| `seguranca.montagem` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): 6 exercícios com barra sem a marca de montagem, a rosca Scott sem nota de travas, e 3 de barra fixa sem nota |
+| `treino.leitura` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; regra e frase acertadas à decisão de 16/11 (as definições ficam em "Entenda o treino") |

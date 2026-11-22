@@ -50,6 +50,18 @@ export type OpcoesCarga = {
 
 /** Barra (ou carga em kg sem lista): degraus de `passoKg` a partir de `baseKg`; sem eles, 2,5 kg a partir de 0. */
 const passoDe = (o: OpcoesCarga) => o.passoKg ?? 2.5;
+
+/**
+ * O "menos" e o "mais" da carga em kg sem lista (barra): andam no passo do local (2 × a menor anilha), a partir do peso
+ * da barra quando informado (equipamento.menor-anilha). Sem valor ainda, o "mais" começa na barra (ou em 1 passo).
+ * Antes de 22/11/2026 a tela andava de 2,5 em 2,5 kg fixos, e o "+" dava uma carga que as anilhas do local não montam.
+ */
+export function kgNoPasso(atual: number | undefined, dir: 1 | -1, o: Pick<OpcoesCarga, 'passoKg' | 'baseKg'>): number {
+  const passo = o.passoKg ?? 2.5;
+  const base = o.baseKg ?? 0;
+  if (atual === undefined) return dir > 0 ? (base > 0 ? base : passo) : base;
+  return Math.max(base, Math.round((atual + dir * passo) * 10) / 10);
+}
 const baseDe = (o: OpcoesCarga) => o.baseKg ?? 0;
 /** A maior carga do passo até x. */
 export const noPassoAbaixo = (x: number, o: OpcoesCarga) => {

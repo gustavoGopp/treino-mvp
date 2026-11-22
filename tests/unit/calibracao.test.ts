@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { calibrar, emCalibracao, faixaDoPerto, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
 import { calibracaoNaSessao, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
-import { sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
+import { kgNoPasso, sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
 import { cargasHalter } from '../../src/domain/taxonomia/equipamentos';
 import { ana, bruno, PERSONAS } from '../personas';
 import { PERSONAS_NOVAS } from '../personas/todos';
@@ -174,5 +174,26 @@ describe('progressao.calibracao: dentro da meta mostrada, o app mantém a carga'
   it('a faixa do perto nunca é mais estreita que A ± 2', () => {
     expect(faixaDoPerto({ reps: [8, 15], rir: [3, 4] })).toEqual([11, 19]);
     expect(faixaDoPerto({ reps: [10, 10], rir: [2, 2] })).toEqual([10, 14]);
+  });
+});
+
+// equipamento.menor-anilha (conferência regra por regra, D1, 22/11/2026): na barra, o menos e o mais da tela andam no
+// passo do local (2 × a menor anilha), a partir do peso da barra. Antes, andavam de 2,5 em 2,5 kg fixos.
+describe('equipamento.menor-anilha: o menos e o mais da barra andam no passo do local', () => {
+  it('barra de 20 kg com anilha de 2 kg: 20 → 24 → 28, e de volta; nunca abaixo da barra', () => {
+    const o = { passoKg: 4, baseKg: 20 };
+    expect(kgNoPasso(undefined, 1, o)).toBe(20);
+    expect(kgNoPasso(20, 1, o)).toBe(24);
+    expect(kgNoPasso(24, 1, o)).toBe(28);
+    expect(kgNoPasso(24, -1, o)).toBe(20);
+    expect(kgNoPasso(20, -1, o)).toBe(20);
+  });
+  it('com a menor anilha de 5 kg, o passo é de 10 kg', () => {
+    expect(kgNoPasso(20, 1, { passoKg: 10, baseKg: 20 })).toBe(30);
+  });
+  it('sem passo nem barra informados, continua de 2,5 em 2,5 a partir de zero', () => {
+    expect(kgNoPasso(undefined, 1, {})).toBe(2.5);
+    expect(kgNoPasso(2.5, 1, {})).toBe(5);
+    expect(kgNoPasso(2.5, -1, {})).toBe(0);
   });
 });
