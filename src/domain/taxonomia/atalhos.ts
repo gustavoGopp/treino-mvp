@@ -1,4 +1,4 @@
-import type { EstacaoMultifuncional, ItemId } from './equipamentos';
+import { ESTACOES_MULTIFUNCIONAL, type EstacaoMultifuncional, type Inventario, type ItemId } from './equipamentos';
 
 // Atalhos de cenário na tela de equipamento (equipamento.atalhos; pesquisa-v2/08, seção 3). Nenhum vem
 // selecionado (decisão 7 do M3): o toque marca o conjunto típico, sem desmarcar nada, e os "às vezes tem"
@@ -132,3 +132,39 @@ export const SO_NA_FOTO: ItemId[] = ['esteira'];
 
 /** Os atalhos que trazem um kit típico (todos menos "Corpo livre", que não tem equipamento). */
 export const ATALHOS_COM_KIT = ATALHOS.filter((a) => a.padroes).map((a) => a.id);
+
+/**
+ * O inventário que um atalho gera sozinho, sem nenhum toque a mais: o kit típico daquele lugar. É o mesmo que o
+ * formulário da tela de equipamento produz (`aplicarAtalho` e `deForm`; tests/unit/inventario-form.test.ts confere que os
+ * dois batem). Fica aqui, sem o formulário, para a tela do programa reconhecer o kit sem baixar o código do cadastro
+ * (22/11/2026: com o formulário junto, a tela do programa passava do limite de peso).
+ */
+export function inventarioDoKit(id: Atalho['id']): Inventario {
+  const a = ATALHO[id];
+  const p = a.padroes ?? {};
+  const inv: Record<string, object> = {};
+  for (const item of a.marca) {
+    if (item === 'halteres_fixos') inv[item] = { ...p.halteres };
+    else if (item === 'elasticos') inv[item] = { ...p.elasticos };
+    else if (item === 'banco_regulavel') inv[item] = { declina: p.bancoDeclina };
+    else if (item === 'polia_simples') inv[item] = { altura: p.alturaPolia };
+    else if (item === 'voador') inv[item] = { invertido: p.voadorInvertido };
+    else if (item === 'triceps_maquina') inv[item] = { acimaDaCabeca: p.tricepsAcimaDaCabeca };
+    else if (item === 'multifuncional') inv[item] = Object.fromEntries(ESTACOES_MULTIFUNCIONAL.map((e) => [e, (a.estacoes ?? []).includes(e)]));
+    else inv[item] = {};
+  }
+  return inv as Inventario;
+}
+
+const canonico = (v: unknown): unknown =>
+  Array.isArray(v) ? v.map(canonico) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canonico((v as Record<string, unknown>)[k])])) : v;
+
+/**
+ * O inventário é, sem tirar nem pôr, o kit típico de um atalho? Serve para o programa dizer "montado para um kit
+ * típico" enquanto a pessoa não ajustou nada. Nada é guardado: sai da comparação, e some no primeiro ajuste.
+ */
+export function kitTipicoDe(inv: Inventario | undefined): Atalho['id'] | undefined {
+  if (!inv) return undefined;
+  const alvo = JSON.stringify(canonico(inv));
+  return ATALHOS_COM_KIT.find((id) => JSON.stringify(canonico(inventarioDoKit(id))) === alvo);
+}

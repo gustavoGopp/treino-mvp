@@ -596,7 +596,7 @@ O que foi feito está no devlog ("A porta"). Ficou para depois:
 ## Da tela do treino, 1ª parte do M2 (22/11/2026)
 
 O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
-- **O peso da tela do programa está a 0,4 kB do limite** (289,6 de 290 kB, medido em 22/11 depois da junção com a `main` das animações). Qualquer coisa nova no pacote inicial estoura. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
+- **O peso da tela do programa tem 3 kB de folga** (287,0 de 290 kB, medido em 22/11 no pacote D2). Estava a 0,4 kB depois da junção com a `main` das animações e passou do limite no D2; a folga veio de tirar do pacote inicial o formulário de equipamento, que tinha entrado com a linha do kit típico. Qualquer coisa nova no pacote inicial come essa folga. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
 - **O Boneco de repouso continua com 13% a 18% da tela.** A ideia B (o guia grande abre sozinho na 1ª vez de cada exercício) foi feita em 22/11. A ideia A (o menos e o mais ao lado do número, que daria uns 22%) não foi pedida.
 - **O "já vi" da 1ª vez fica na memória da aba,** não nos dados: fechar o app no meio do 1º exercício e abrir de novo mostra o guia outra vez. Guardar isso de vez pediria um campo novo no estado.
 - **A 320 × 568, na folha da 1ª vez,** "Lento" e os ângulos ficam atrás do "Entendi" até rolar.

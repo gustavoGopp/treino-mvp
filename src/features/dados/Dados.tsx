@@ -299,7 +299,7 @@ export function Dados() {
                 if (await importar()) setFolha(null);
               }}
             >
-              {temDados ? 'Substituir pelos dados do arquivo' : 'Importar dados'}
+              Importar dados
             </button>
             {!nomeArquivo && (
               <p className="falta" id="falta-arquivo">

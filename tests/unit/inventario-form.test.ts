@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, inventarioDoKit, itensDaCategoria, kitTipicoDe, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
-import { ATALHO, ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
+import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, inventarioDoKitPeloFormulario, itensDaCategoria, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
+import { ATALHO, ATALHOS, inventarioDoKit, ITENS_DE_ANILHA, kitTipicoDe } from '../../src/domain/taxonomia/atalhos';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { cargasHalter, comHalterMaisPesado, HALTER, inventarioSchema, ITEM_IDS, sanarInventario, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { migrar } from '../../src/storage/migracao';
@@ -231,6 +231,9 @@ describe('atalhos de cenário (equipamento.atalhos)', () => {
     expect(ATALHO.casa.asVezes).toContain('anilhas_e_manoplas');
     const { erros } = deForm({ ...f, marcados: [...f.marcados, 'anilhas_e_manoplas'] });
     expect(Object.keys(erros)).toEqual(expect.arrayContaining(['anilhas.manoplas', 'anilhas.manoplaKg', 'anilhas.linhas']));
+  });
+  it('o kit do domínio é exatamente o que o formulário gera com o atalho e nenhum toque a mais', () => {
+    for (const id of ['casa', 'condominio', 'academia', 'corpo'] as const) expect(inventarioDoKit(id)).toEqual(inventarioDoKitPeloFormulario(id));
   });
   it('kitTipicoDe reconhece o inventário que saiu de um atalho sem ajuste, e só ele', () => {
     for (const id of ['casa', 'condominio', 'academia'] as const) expect(kitTipicoDe(inventarioDoKit(id)!)).toBe(id);

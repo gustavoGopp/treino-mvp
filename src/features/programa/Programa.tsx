@@ -10,7 +10,7 @@ import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoPrograma, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
-import { kitTipicoDe } from '../onboarding/inventarioForm';
+import { kitTipicoDe } from '../../domain/taxonomia/atalhos';
 import { alternarPreferencia, confirmarAvaliacaoDoAlerta, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { alertaPendente } from '../../domain/sessao';
 import { Preferencias } from './Prefiro';

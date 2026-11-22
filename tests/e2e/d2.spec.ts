@@ -12,7 +12,7 @@ test('trazer uma cópia: oferece guardar antes os dados de hoje e não age sem a
   const folha = page.getByRole('dialog', { name: 'Trazer uma cópia' });
   await folhaPronta(page);
   // sem arquivo, o botão que substitui está apagado e diz o que falta
-  const substituir = folha.getByRole('button', { name: 'Substituir pelos dados do arquivo' });
+  const substituir = folha.getByRole('button', { name: 'Importar dados' });
   await expect(substituir).toBeDisabled();
   await expect(folha).toContainText('Falta escolher o arquivo.');
   // guardar antes baixa a cópia do que há hoje, e a folha continua aberta

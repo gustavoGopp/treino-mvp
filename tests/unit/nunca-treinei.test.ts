@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { gerarPrograma, prescricaoDaSemana } from '../../src/domain/gerador';
 import { classificarNivel, PAUSAS, RESPOSTAS_DE_QUEM_NUNCA_TREINOU } from '../../src/domain/nivel';
-import { inventarioDoKit } from '../../src/features/onboarding/inventarioForm';
+import { inventarioDoKit } from '../../src/domain/taxonomia/atalhos';
 import { inventarioDe, perfilDe, type Pedido } from '../../scripts/auditoria/ver-lib';
 
 // "Nunca treinei" (lote M1 da análise crítica, 19/11/2026). Antes, quem nunca treinou marcava "parei há mais de 6 meses"
