@@ -12,8 +12,8 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   const painel = page.getByRole('tabpanel');
   // Pacote 2 (15/11/2026): o 1º do Corpo todo A é o goblet (dois lados, 8–15); antes era o búlgaro ("8–12 cada lado").
   // O "cada lado" segue conferido no exercício de um lado só do dia, a remada unilateral.
-  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–15$/);
-  await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d × 8–12 cada lado$/);
+  await expect(painel.locator('.series').first()).toHaveText(/^\d séries? de 8 a 15$/);
+  await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d séries? de 8 a 12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   // Desde 22/11/2026 todo exercício tem animação aprovada: nenhum dia tem miniatura vazia.
@@ -21,7 +21,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // Semana 1 (fase de aprendizado da iniciante): RIR 3–4. Sessão de textos (16/11/2026): o porquê do exercício, com o
   // selo de evidência, saiu da folha e está em "Entenda o treino" → "Os exercícios" (conferido no fim deste teste).
   let folha = await abrirExercicio(page, /Agachamento goblet/);
-  await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
+  await expect(folha.locator('.sub-rx')).toContainText('Pare com 3 ou 4 sobrando');
   await expect(folha.locator('.selo, .porque')).toHaveCount(0);
   await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.

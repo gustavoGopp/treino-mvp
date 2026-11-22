@@ -8,6 +8,18 @@ export const numeroBr = (n: number): string => String(Math.round(n * 100) / 100)
 /** Faixa em texto: "8–12" ou, com os dois iguais, "8". */
 export const faixaTexto = ([a, b]: readonly [number, number]): string => (a === b ? `${a}` : `${a}–${b}`);
 
+// Lote M3 da análise crítica (22/11/2026): a notação por extenso, para quem nunca treinou. "2 × 8–15" não se explica
+// sozinho; "2 séries de 8 a 15" sim. A reserva (RIR) vira o que a pessoa faz: parar com tantas sobrando.
+/** Faixa por extenso: [8, 15] → "8 a 15"; [10, 10] → "10". */
+export const faixaPorExtenso = ([a, b]: readonly [number, number]): string => (a === b ? `${a}` : `${a} a ${b}`);
+/** A prescrição por extenso: (2, [8, 15]) → "2 séries de 8 a 15"; (1, [6, 10]) → "1 série de 6 a 10". */
+export const seriesPorExtenso = (series: number, reps: readonly [number, number]): string => `${series} ${series === 1 ? 'série' : 'séries'} de ${faixaPorExtenso(reps)}`;
+/** A meta de reserva, curta: [3, 4] → "3 ou 4"; [2, 4] → "2 a 4"; [2, 2] → "2". */
+export const metaPorExtenso = ([a, b]: readonly [number, number]): string => (a === b ? `${a}` : b === a + 1 ? `${a} ou ${b}` : `${a} a ${b}`);
+/** A reserva pedida, em palavras: [3, 4] → "Pare com 3 ou 4 sobrando"; [0, 1] → "Pare com 1 sobrando, ou nenhuma". */
+export const reservaPorExtenso = ([a, b]: readonly [number, number]): string =>
+  b === 0 ? 'Vá até não sobrar nenhuma' : a === b ? `Pare com ${a} sobrando` : a === 0 && b === 1 ? 'Pare com 1 sobrando, ou nenhuma' : b === a + 1 ? `Pare com ${a} ou ${b} sobrando` : `Pare com ${a} a ${b} sobrando`;
+
 /** Fração em porcentagem inteira: 0,15 → "15". */
 export const porCento = (fracao: number): string => String(Math.round(fracao * 100));
 

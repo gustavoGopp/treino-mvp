@@ -41,7 +41,7 @@ export function Evolucao() {
                   <span className="pe-serie">
                     {textoCarga(p.carga, exId)} × {p.reps}
                     <small>
-                      <span className="pe-ponto"> · </span>RIR {textoDoRir(p.rir, RIR.registroMax)}
+                      <span className="pe-ponto"> · </span>sobrando {textoDoRir(p.rir, RIR.registroMax)}
                     </small>
                   </span>
                   <span className="pe-marcas">

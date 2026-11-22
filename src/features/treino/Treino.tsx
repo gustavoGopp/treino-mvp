@@ -4,7 +4,7 @@ import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
-import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
+import { faixaPorExtenso, metaPorExtenso, numeroBr, seriesPorExtenso, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
 import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { cargasHalter, comHalterMaisPesado, MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
@@ -171,7 +171,7 @@ export function Treino() {
     <ol className="series-feitas" aria-label="Séries feitas">
       {feito.series.map((s, n) => (
         <li key={n}>
-          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
+          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · sobrando {textoDoRir(s.rir, RIR.registroMax)}
           {s.calibracao ? ' · acerto da carga' : ''}
           {s.dor ? ` · dor ${s.dor}` : ''}
           {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
@@ -295,7 +295,7 @@ export function Treino() {
                       </span>
                       <b>
                         {rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : 'Falta escolher a carga'}
-                        {rascunho?.pronto && <small> · RIR {textoDoRir(rascunho.serie().rir, RIR.registroMax)}</small>}
+                        {rascunho?.pronto && <small> · sobrando {textoDoRir(rascunho.serie().rir, RIR.registroMax)}</small>}
                       </b>
                       <span className="apoio">{x.nome}</span>
                     </>
@@ -371,7 +371,7 @@ export function Treino() {
           <div className="ex-sessao">
             <Titulo key={x.exId}>{x.nome}</Titulo>
             <p className={x.dropSet ? 'meta' : 'meta sr'}>
-              {x.series} × {faixa(x.reps)}
+              {seriesPorExtenso(x.series, x.reps)}
               {x.unilateral ? ' cada lado' : ''}
               {x.dropSet && (
                 <>
@@ -777,7 +777,7 @@ function RegistroSerie({
         <h2>
           <span className="nw">Série {numero} de {x.series}</span> ·{' '}
           <span className="nw">
-            {faixa(x.reps)}
+            {faixaPorExtenso(x.reps)}
             {x.unilateral && <span> cada lado</span>}
           </span>
         </h2>
@@ -802,7 +802,7 @@ function RegistroSerie({
             Quantas ainda conseguiria?
           </span>
           <span className="rir-meta" id={`rir-meta-${numero}`}>
-            meta<span className="sr"> de hoje:</span> {faixa(x.rir)}
+            meta<span className="sr"> de hoje:</span> {metaPorExtenso(x.rir)}
           </span>
         </div>
         <div className="chips-valor">

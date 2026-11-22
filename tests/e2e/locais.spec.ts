@@ -70,7 +70,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
 
   // 16 kg de anilhas (8 por lado) × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('16 kg de anilhas × 20 · RIR 4+ · acerto da carga');
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('16 kg de anilhas × 20 · sobrando 4+ · acerto da carga');
   await expect(page.getByText('Ficou leve: na próxima série, 24 kg de anilhas.')).toBeVisible();
   await expect(page.getByRole('group', { name: 'Anilhas (total)' })).toContainText('24 kg');
   await print(page, 'calibracao');
