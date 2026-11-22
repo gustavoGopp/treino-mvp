@@ -97,3 +97,34 @@ describe('objetivo', () => {
     expect(rotinaSchema.safeParse({ diasSemana: 3, minutosSessao: 60, prioridades: [], objetivo: 'emagrecer' }).success).toBe(false);
   });
 });
+
+// objetivo.forca.faixa-compostos e .descanso (conferência regra por regra, D1, 22/11/2026): a troca "dois lados no lugar de
+// um lado só" do corte de tempo prescrevia o exercício de novo, sem a faixa de força. Medido numa grade de 288 programas
+// (4 lugares × 2 níveis × 2 a 5 dias × 30, 45 e 60 min × 3 focos): 60 tinham algum dia com menos exercícios de força do
+// que o dia permite; depois do conserto, nenhum.
+describe('objetivo "ficar mais forte": a troca do corte de tempo mantém a faixa de força', { timeout: 30_000 }, () => {
+  it('na grade de treinos, todo dia tem os exercícios de força que o dia permite (até 2 grandes com carga), com 5 a 8 repetições e o descanso longo', async () => {
+    const { inventarioDe, perfilDe: perfilDoPedido } = await import('../../scripts/auditoria/ver-lib');
+    let n = 0;
+    let trocados = 0;
+    for (const cenario of ['academia', 'condominio', 'halteres', 'casa+'])
+      for (const nivel of ['intermediario', 'avancado'] as const)
+        for (const dias of ['2', '3', '4', '5'])
+          for (const min of [30, 45, 60])
+            for (const focos of [[], ['pernas'], ['peito', 'costas']]) {
+              const pd = { nivel, dias, min, focos, dores: [], semanasParado: 0, cenario } as unknown as Parameters<typeof perfilDoPedido>[0];
+              const r = gerarPrograma({ ...perfilDoPedido(pd), objetivo: 'forca' }, inventarioDe(cenario));
+              if (r.status !== 'ok') continue;
+              n++;
+              for (const d of r.programa.dias) {
+                const deForca = d.exercicios.filter((x) => x.porque.some((q) => q.regraId === 'objetivo.forca.faixa-compostos'));
+                const candidatos = d.exercicios.filter((x) => x.tipo === 'composto' && !['peso-corpo', 'elastico', 'assistida'].includes(POR_ID[x.exId]!.carga));
+                expect(deForca.length, `${cenario}, ${nivel}, ${dias} × ${min}, ${focos.join('+')}: ${d.nome}`).toBe(Math.min(OBJETIVO_FORCA.compostosPorTreino, candidatos.length));
+                for (const x of deForca) expect([x.reps, x.descansoSeg], x.exId).toEqual([OBJETIVO_FORCA.reps, OBJETIVO_FORCA.descansoSeg]);
+                trocados += d.exercicios.filter((x) => x.porque.some((q) => q.regraId === 'tempo.corte' && /^Entrou no lugar/.test(q.texto))).length;
+              }
+            }
+    expect(n).toBeGreaterThan(250);
+    expect(trocados).toBeGreaterThan(0);
+  });
+});

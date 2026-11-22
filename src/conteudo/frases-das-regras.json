@@ -281,11 +281,11 @@
   },
   "selecao.variacao": {
     "titulo": "Quando variar os exercícios",
-    "frase": "Os exercícios ficam os mesmos durante o bloco, de 4 a 8 semanas. A variação é planejada, dentro da mesma função (por exemplo, entre a rosca inclinada e a rosca Scott), nunca por sorteio."
+    "frase": "Os exercícios ficam os mesmos até você pedir um programa novo; vale mantê-los de 4 a 8 semanas. Quando variar, que seja dentro da mesma função (por exemplo, entre a rosca inclinada e a rosca Scott), nunca por sorteio. O app ainda não planeja essa troca."
   },
   "selecao.variacoes-equivalentes": {
     "titulo": "Variar entre exercícios equivalentes",
-    "frase": "Com mais de uma opção equivalente no mesmo nível da função, o exercício muda de um dia para o outro e você ganha alternativas para trocar no dia. Variar não muda o ganho de músculo e melhora um pouco o prazer e a motivação. Com 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último na escolha: entra um equivalente; sem equivalente, desce um nível da mesma função; sem nada abaixo, repete."
+    "frase": "Com mais de uma opção equivalente no mesmo nível, o exercício muda de um dia para o outro (o iniciante repete o mesmo, para praticar) e você ganha alternativas no dia. Variar não muda o ganho de músculo e melhora um pouco a motivação. Com 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último na escolha: entra um equivalente; sem equivalente, desce um nível da mesma função; sem nada abaixo, repete."
   },
   "selecao.corpo-livre-ampliado": {
     "titulo": "Exercícios sem carga, só com apoio",
@@ -313,7 +313,7 @@
   },
   "selecao.complementos": {
     "titulo": "Dois exercícios para quatro músculos",
-    "frase": "Quadríceps, posteriores da coxa (isquiotibiais), tríceps e peitoral recebem, cada um, 2 exercícios por semana que se complementam, quando o equipamento permite."
+    "frase": "Quadríceps, posteriores da coxa (isquiotibiais) e peitoral recebem, cada um, 2 exercícios por semana que se complementam, quando o equipamento e o tempo permitem. O tríceps recebe o 2º quando o dia tem lugar para o complemento."
   },
   "selecao.peitoral-inclinado": {
     "titulo": "Exercício inclinado para o peito",
@@ -321,7 +321,7 @@
   },
   "selecao.triceps-acima-cabeca": {
     "titulo": "Tríceps com o braço acima da cabeça",
-    "frase": "A semana tem ao menos 1 exercício de tríceps com o braço acima da cabeça. Sem carga, a 2ª opção é a extensão na suspensão (ombro a 90–120°). Sem suspensão, a 3ª é a extensão com o peso do corpo, mãos num apoio fixo."
+    "frase": "A semana tem ao menos 1 exercício de tríceps com o braço acima da cabeça, quando ele cabe no tempo (nos treinos mais curtos pode não caber). Sem carga, a 2ª opção é a extensão na suspensão (ombro a 90–120°). Sem suspensão, a 3ª é a extensão com o peso do corpo, mãos num apoio fixo."
   },
   "selecao.flexora-sentada": {
     "titulo": "Flexão de joelho sentada ou deitada",
@@ -337,7 +337,7 @@
   },
   "selecao.funcao-da-vaga": {
     "titulo": "Como o app escolhe cada exercício",
-    "frase": "Cada lugar do treino pede uma função (um padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento, que só diz o que é possível. No empate no mesmo nível da função, ganha, nesta ordem, o que: 1) poupa a região com dor de 3 a 5; 2) é mais estável (só iniciante); 3) permite mais carga; 4) trabalha os dois lados de uma vez, em máquina, polia ou barra; 5) varia entre os dias; 6) você prefere; 7) tem animação aprovada; 8) é o mais comum e mais simples de montar. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o exercício de um lado só continua valendo. Ele também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando você marcou “prefiro este”. O motivo dos dois lados é o tempo: a série de um lado só leva o dobro, e a pesquisa não achou diferença de resultado. Havendo outra opção, o dia tem só um afundo."
+    "frase": "Cada lugar do treino pede uma função (um padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento, que só diz o que é possível. No empate no mesmo nível da função, ganha, nesta ordem, o que: 1) poupa a região com dor de 3 a 5; 2) é mais estável (só iniciante); 3) permite mais carga; 4) trabalha os dois lados de uma vez, em máquina, polia ou barra; 5) varia entre os dias (para o iniciante, o que repete); 6) você prefere; 7) tem animação aprovada; 8) é o mais comum e mais simples de montar. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o exercício de um lado só continua valendo. Ele também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando você marcou “prefiro este”. O motivo dos dois lados é o tempo: a série de um lado só leva o dobro, e a pesquisa não achou diferença de resultado. Havendo outra opção, o dia tem só um afundo."
   },
   "selecao.lombar-no-dia": {
     "titulo": "Poupar a lombar dentro do treino",
@@ -345,11 +345,11 @@
   },
   "selecao.pratica-do-iniciante": {
     "titulo": "Iniciante repete os mesmos exercícios na semana",
-    "frase": "Quando o mesmo tipo de movimento aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de receber outro equivalente: a mesma puxada nos dois dias em que puxa de cima. Nunca em todos os dias, havendo outro. Só vale se não deixar um dia longo demais, um dia fraco nem empurrar muito mais que puxar. Variar o exercício não rende mais músculo, e quem começa ganha mais repetindo o gesto."
+    "frase": "Quando o mesmo tipo de movimento aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de outro equivalente: a mesma puxada nos dois dias em que puxa de cima. Com 3 dias ou mais, nunca em todos os dias, havendo outro. Só vale sem deixar um dia longo demais, um dia fraco nem empurrar bem mais que puxar. Variar não rende mais músculo, e quem começa ganha mais repetindo o gesto."
   },
   "selecao.dia-sem-principal": {
     "titulo": "Dia que perdeu exercícios pela dor",
-    "frase": "O lugar de um exercício multiarticular que a dor esvaziou recebe primeiro outro exercício do mesmo músculo: a puxada ajoelhado sai com dor no joelho e o lugar fica com uma remada. Os lugares que continuam vazios recebem exercícios possíveis dos outros músculos previstos para aquele dia (fora o abdômen), um por músculo que o dia ainda não tem, sem passar do máximo de séries por músculo na semana. O dia que ficaria só com abdominal recebe ao menos um, do músculo mais abaixo da meta. Se nenhum for possível, o aviso diz o motivo. Quando o que entrou não é músculo do dia, o aviso diz “de outros músculos”. Lugar vazio pela dor não vira aviso de falta de equipamento. Se a dor acima de 5 deixa algum dia com menos de 3 exercícios ou sem multiarticular, e você não escolheu a divisão, a semana sai na divisão do mesmo número de dias que tem menos dias assim, quase sempre a de corpo todo. O app diz por que a divisão mudou, e nada do que a dor tirou volta. A troca só vale se não custar outra coisa: um músculo sem nenhuma série, a coxa ou o empurrar e puxar fora de equilíbrio, um dia longo demais ou o foco com menos séries."
+    "frase": "O lugar de um exercício multiarticular que a dor esvaziou recebe primeiro outro exercício do mesmo músculo: a puxada ajoelhado sai com dor no joelho e o lugar fica com uma remada. Os lugares que continuam vazios recebem exercícios possíveis dos outros músculos previstos para aquele dia (fora o abdômen), um por músculo que o dia ainda não tem, sem passar do máximo de séries por músculo na semana. O dia que ficaria só com abdominal recebe ao menos um, do músculo mais abaixo da meta. Se nenhum for possível, o aviso diz o motivo. Quando o que entrou não é músculo do dia, o aviso diz “de outros músculos”. Lugar vazio pela dor não vira aviso de falta de equipamento. Se a dor acima de 5 deixa algum dia com menos de 3 exercícios ou sem multiarticular, e você não escolheu a divisão, a semana sai na divisão do mesmo número de dias que tem menos dias assim, quase sempre a de corpo todo. O app diz por que a divisão mudou, e nada do que a dor tirou volta. A troca só vale se não custar outra coisa: um músculo sem nenhuma série, a coxa ou o empurrar e puxar fora de equilíbrio, um dia longo demais ou o foco abaixo da meta que tinha alcançado."
   },
   "selecao.vaga-sem-equipamento": {
     "titulo": "Quando falta equipamento para um exercício",
@@ -357,7 +357,7 @@
   },
   "selecao.preferencia": {
     "titulo": "O botão “Prefiro este”",
-    "frase": "Entre equivalentes da mesma função, você pode tocar em “Prefiro este”. A preferência entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética. Vale nos próximos programas e nas trocas entre locais. Nada vem preferido, e um toque desfaz. A dor acima de 5 tira o exercício preferido do mesmo jeito."
+    "frase": "Entre equivalentes da mesma função, você pode tocar em “Prefiro este”. A preferência entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem de referência da função. Vale nos próximos programas e nas trocas entre locais. Nada vem preferido, e um toque desfaz. A dor acima de 5 tira o exercício preferido do mesmo jeito."
   },
   "local.treino-do-dia": {
     "titulo": "Treino do dia em outro local",
@@ -369,7 +369,7 @@
   },
   "selecao.exercicios-por-musculo": {
     "titulo": "Quantos exercícios por músculo na semana",
-    "frase": "Músculos grandes (peito, costas, quadríceps, posteriores e glúteos) recebem 2 exercícios diferentes por semana, de funções que se complementam. Os pequenos recebem 1, ou 2 se forem prioridade. Funções diferentes fazem crescer regiões diferentes do músculo."
+    "frase": "Músculos grandes (peito, costas, quadríceps, posteriores e glúteos) recebem 2 exercícios diferentes por semana, de funções que se complementam, quando o equipamento e o tempo permitem. Os pequenos recebem pelo menos 1. Funções diferentes fazem crescer regiões diferentes do músculo."
   },
   "selecao.isolador-obrigatorio": {
     "titulo": "Isoladores que não saem do treino",
@@ -381,7 +381,7 @@
   },
   "selecao.manter-no-bloco": {
     "titulo": "Por quanto tempo manter os exercícios",
-    "frase": "Os exercícios ficam os mesmos por 4–8 semanas, e o programa só muda quando você pede. Na troca de bloco, a variação fica dentro da mesma função."
+    "frase": "O programa só muda quando você pede: os exercícios ficam os mesmos, e vale mantê-los por 4–8 semanas. O app ainda não propõe trocar de bloco."
   },
   "selecao.gluteo": {
     "titulo": "Ordem dos exercícios para glúteos",
@@ -393,11 +393,11 @@
   },
   "selecao.mergulho": {
     "titulo": "Mergulho nas paralelas",
-    "frase": "O mergulho fica fora do treino do iniciante, por ser mais complexo que o nível dele. Para intermediário e avançado, só entra com o ombro sem restrição, como 2º nível do empurrar horizontal, atrás dos supinos, e como 2º nível do complemento de tríceps."
+    "frase": "O mergulho fica fora do treino do iniciante, por ser mais complexo que o nível dele. Para intermediário e avançado, sai com dor acima de 5 no ombro ou no cotovelo, e entra como 2º nível do empurrar horizontal, atrás dos supinos, e como 2º nível do complemento de tríceps."
   },
   "selecao.aducao-complemento": {
     "titulo": "Adução no dia de pernas",
-    "frase": "A adução é um complemento opcional do dia de pernas: na máquina, com caneleira deitado de lado ou, sem nada, deitado de lado sem carga. Só entra quando pernas ou glúteos são prioridade e há tempo, sai primeiro nos cortes e nunca gera aviso."
+    "frase": "A adução é um complemento opcional do dia de pernas: na máquina, com caneleira deitado de lado ou, sem nada, deitado de lado sem carga. Só entra quando pernas ou glúteos são prioridade e há tempo, e nunca gera aviso."
   },
   "selecao.abdomen-prioridade": {
     "titulo": "Abdômen como prioridade",
@@ -405,7 +405,7 @@
   },
   "selecao.complexidade-nivel": {
     "titulo": "Complexidade dos exercícios por nível",
-    "frase": "Cada exercício tem complexidade de 1 a 3. O iniciante vai até 2; o intermediário e o avançado, até 3. Ficam fora do iniciante o mergulho nas paralelas (ombro), o nórdico (dor forte na 1ª sessão) e a roda abdominal (lombar)."
+    "frase": "Cada exercício tem complexidade de 1 a 3. O iniciante vai até 2; o intermediário e o avançado, até 3. Ficam fora do iniciante, por exemplo, o mergulho nas paralelas (ombro), o nórdico (dor forte na 1ª sessão), a roda abdominal (lombar) e os exercícios com barra livre, como o agachamento e o supino."
   },
   "avaliador.gravidade": {
     "titulo": "Como o avaliador classifica cada achado",
