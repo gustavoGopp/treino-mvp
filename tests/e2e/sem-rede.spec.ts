@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana } from './jornada';
 
 // Lote técnico do redesign (06/11/2026): com cada tela num pedaço próprio do JavaScript, o uso sem rede depende de o

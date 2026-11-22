@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { classificarNivel, niveisPermitidos, PAUSAS, pausaDe, SEMANAS_PARADO_INICIANTE, type RespostasNivel } from '../../src/domain/nivel';
+import { classificarNivel, niveisPermitidos, PAUSAS, pausaDe, RESPOSTAS_DE_QUEM_NUNCA_TREINOU, SEMANAS_PARADO_INICIANTE, TEMPOS_DE_TREINO, type RespostasNivel } from '../../src/domain/nivel';
 import { READAPTACAO } from '../../src/domain/regras';
 
 const base: RespostasNivel = { tempoContinuo: '6-24m', semanasParado: 0, tecnica: 'sim' };
@@ -19,6 +19,15 @@ describe('classificarNivel (nivel.classificacao)', () => {
   it('mais de ~6 meses parado volta para iniciante; até lá mantém o nível', () => {
     expect(classificarNivel({ ...base, tempoContinuo: 'mais-24m', semanasParado: SEMANAS_PARADO_INICIANTE }).nivel).toBe('avancado');
     expect(classificarNivel({ ...base, tempoContinuo: 'mais-24m', semanasParado: SEMANAS_PARADO_INICIANTE + 1 }).nivel).toBe('iniciante');
+  });
+
+  it('"Nunca treinei" é a 1ª resposta, dá iniciante com qualquer outra resposta, e não conta como pausa (lote M1, 19/11/2026)', () => {
+    expect(TEMPOS_DE_TREINO[0]).toEqual({ id: 'nunca', texto: 'Nunca treinei' });
+    expect(classificarNivel(RESPOSTAS_DE_QUEM_NUNCA_TREINOU).nivel).toBe('iniciante');
+    expect(classificarNivel({ tempoContinuo: 'nunca', semanasParado: 0, tecnica: 'sim' }).nivel).toBe('iniciante');
+    // zero semana parada: fica abaixo do gatilho da volta de pausa (readaptacao.gatilho)
+    expect(RESPOSTAS_DE_QUEM_NUNCA_TREINOU.semanasParado).toBeLessThan(READAPTACAO.semanasNormal);
+    expect(classificarNivel(RESPOSTAS_DE_QUEM_NUNCA_TREINOU).motivo).not.toMatch(/parad|pausa/i);
   });
 
   it('sempre cita a regra e explica o motivo', () => {

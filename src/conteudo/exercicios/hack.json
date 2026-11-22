@@ -52,7 +52,7 @@
       "desc": "Esticar com força no topo."
     }
   ],
-  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
+  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
   "montagem": [
     "Solte a trava de segurança antes da 1ª repetição e trave de novo ao terminar."
   ]

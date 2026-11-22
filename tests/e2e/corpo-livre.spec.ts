@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { marcarItem, minutosPorTreino, sobreOPrograma, triagemNenhuma } from './jornada';
 
 // Sessão de equipamento mínimo: o caminho de quem não tem nada, do cadastro ao 1º treino. Persona fictícia Elisa

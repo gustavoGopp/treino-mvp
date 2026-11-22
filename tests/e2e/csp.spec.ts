@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { ana } from './jornada';
 
 // Content-Security-Policy (vercel.json): a prévia local serve os mesmos cabeçalhos da produção (vite.config.ts), então

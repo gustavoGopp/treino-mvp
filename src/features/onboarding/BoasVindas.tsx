@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
@@ -7,12 +7,21 @@ import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
 import { PorQue, Titulo, Topo } from '../app/ui';
-import { IconeLugar } from './lugares';
+
+// O Boneco da abertura é baixado à parte, depois que a tela aparece: fora do pacote inicial, que a tela do programa
+// também baixa (tests/e2e/orcamento.spec.ts; medido em 22/11/2026, com ele dentro o programa passava do limite por 9 bytes).
+const BonecoAbertura = lazy(() => import('./BonecoAbertura').then((m) => ({ default: m.BonecoAbertura })));
+/** No celular mais baixo o Boneco não aparece (styles.css, max-height: 600px): aí nem o arquivo dele é pedido. */
+const cabeOBoneco = () => typeof window === 'undefined' || !window.matchMedia?.('(max-height: 600px)').matches;
 
 // A apresentação (redesign, lote 3; a proposta B, "o seu lugar", escolhida pelo Gustavo em 06/11/2026;
-// docs/revisoes/redesign/agente-7-apresentacao.md). Os 4 lugares no topo, uma frase sobre o benefício, o aviso inteiro
-// numa nota calma antes do botão (seguranca.sem-diagnostico, texto intacto) e a privacidade a um toque. Sem promessa de
-// resultado, sem prova social, sem contagem regressiva. Se já existe programa, abre direto nele.
+// docs/revisoes/redesign/agente-7-apresentacao.md). Desde o lote M1 da análise crítica (19/11/2026): o Boneco em
+// movimento ao lado do título (no lugar dos 4 ícones de lugar), uma frase que diz o que a pessoa recebe, o aviso inteiro
+// numa nota calma antes do botão (seguranca.sem-diagnostico, texto intacto, à vista em qualquer celular) e a privacidade
+// a um toque. Sem promessa de resultado, sem prova social, sem contagem regressiva. Se já existe programa, abre direto nele.
+/** O que a pessoa recebe, em uma frase (lote M1 da análise crítica). Texto escolhido pelo Gustavo em 22/11/2026. */
+export const O_QUE_RECEBE = 'Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento.';
+
 export function BoasVindas() {
   const { estado, carregado, erroCarga, atualizar } = useApp();
   const navigate = useNavigate();
@@ -29,13 +38,16 @@ export function BoasVindas() {
     <div className="wrap app">
       <Topo direita={<Link to="/dados">Meus dados</Link>} />
       <main className="conteudo boas">
-        <div className="lugares" aria-hidden="true">
-          <IconeLugar lugar="academia" />
-          <IconeLugar lugar="condominio" />
-          <IconeLugar lugar="casa" />
-          <IconeLugar lugar="corpo" />
+        {/* o Boneco ao lado do título: ele é alto e estreito, e assim não tira altura do aviso, que fica inteiro à vista */}
+        <div className="boas-topo">
+          {cabeOBoneco() && (
+            <Suspense fallback={<div className="boneco-abertura stage esperando" />}>
+              <BonecoAbertura />
+            </Suspense>
+          )}
+          <Titulo>Treine onde estiver, com o que tiver</Titulo>
         </div>
-        <Titulo>Treine onde estiver, com o que tiver</Titulo>
+        <p className="lede">{O_QUE_RECEBE}</p>
         {erroCarga && (
           <div className="caixa-erro" role="alert">
             {erroCarga} Em <Link to="/dados">Meus dados</Link> você pode importar um backup.

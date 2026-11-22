@@ -59,7 +59,7 @@
       "desc": "Falha de montagem."
     }
   ],
-  "carga": "Com barra: kg total (barra + anilhas), com o menor par de anilhas para progredir. No smith: kg de anilhas por lado.",
+  "carga": "Com barra: kg total (barra + anilhas), com o menor par de anilhas para progredir. No smith: o total de kg em anilhas, sem contar a barra.",
   "montagem": [
     "Encoste ou trave o banco antes de começar, para ele não deslizar.",
     "Use a almofada na barra e as travas nas anilhas."

@@ -87,7 +87,9 @@ const valor = (c: Carga) => {
 };
 const arred = (x: number) => Math.round(x * 100) / 100;
 /**
- * O texto de uma carga, num lugar só: "10 kg", "placa 9", "20 kg por lado", "contrapeso 3". O degrau (peso do corpo,
+ * O texto de uma carga, num lugar só: "10 kg", "placa 9", "40 kg de anilhas", "contrapeso 3". A máquina de anilhas é
+ * guardada por lado (`kgPorLado`, como sempre) e mostrada pelo total, que é o número que a pessoa soma de cabeça
+ * (decisão do Gustavo de 22/11/2026: "em vez de botar só o número total. Qual o sentido disso?"). O degrau (peso do corpo,
  * elástico) não tem texto aqui: o nome dele depende do exercício (sessao/textoCarga). Antes havia três formatadores,
  * dois deles com `toLocaleString`.
  */
@@ -98,7 +100,7 @@ export function textoDaCargaSimples(c: Carga): string | undefined {
     case 'placa':
       return `placa ${c.placa}`;
     case 'anilha':
-      return `${numeroBr(c.kgPorLado)} kg por lado`;
+      return `${numeroBr(arred(2 * c.kgPorLado))} kg de anilhas`;
     case 'contrapeso':
       return `contrapeso ${c.placa}`;
     case 'degrau':

@@ -165,7 +165,7 @@
   },
   "progressao.incremento.maquina-anilha": {
     "titulo": "Carga nas máquinas de anilha",
-    "frase": "Leg press, hack, smith e panturrilha sentada: o peso do trenó ou da barra é desconhecido; registre os quilos de anilhas por lado. A carga sobe com o menor par de anilhas, uma de cada lado (de 2 kg cada, até você informar a sua menor anilha). Sem o peso do trenó, o acerto da carga vai por passos, sem conta."
+    "frase": "Leg press, hack, smith e panturrilha sentada: o peso do trenó ou da barra é desconhecido; registre o total de quilos em anilhas, somando os dois lados. A carga sobe com o menor par de anilhas, uma de cada lado (de 2 kg cada, até você informar a sua menor anilha). Sem o peso do trenó, o acerto da carga vai por passos, sem conta."
   },
   "progressao.incremento.assistido": {
     "titulo": "Progressão no graviton",
@@ -445,11 +445,11 @@
   },
   "equipamento.atalhos": {
     "titulo": "Atalhos na tela de equipamento",
-    "frase": "Nenhum atalho vem selecionado. “Casa com halteres e elásticos”, “Condomínio com multifuncional” e “Academia completa” marcam o conjunto típico sem desmarcar o que você marcou; “Corpo livre” desmarca tudo. Os detalhes que mudam o programa continuam sendo perguntados, menos em “Academia completa”, que preenche o que falta com valores típicos (halteres de 2 a 40 kg, de 2 em 2) e, nos aparelhos, a opção mais conservadora, editáveis em “Meus locais”. A 1ª série de cada exercício acerta a carga."
+    "frase": "Nenhum atalho vem selecionado. “Casa”, “Condomínio” e “Academia completa” marcam o conjunto típico, sem desmarcar o que você marcou, e supõem um kit típico para o programa sair na hora: halteres de 2 a 10 kg e 3 elásticos em casa; de 2 a 12 kg no condomínio; de 2 a 40 kg na academia. São palpites do app, do lado mais leve: corrija em “Meus locais” ou ao anotar a carga (“Meus pesos são outros”). “Corpo livre” desmarca tudo."
   },
   "equipamento.menor-anilha": {
     "titulo": "Menor anilha das máquinas e barras",
-    "frase": "O app pergunta uma vez só qual é a menor anilha, e a resposta vale para leg press, hack, smith, panturrilha sentada, barra longa e barra hexagonal. Sem resposta, vale o padrão de 2 kg."
+    "frase": "A menor anilha é o passo das sugestões de carga no leg press, hack, smith, panturrilha sentada, barra longa e barra hexagonal. O app usa 2 kg sem perguntar no cadastro; dá para mudar em “Meus locais”, numa pergunta só. No treino, você anota a carga que usou, qualquer que seja: toque no número para digitar."
   },
   "equipamento.sem-puxada-vertical": {
     "titulo": "Sem barra fixa nem polia alta",
@@ -645,7 +645,7 @@
   },
   "nivel.classificacao": {
     "titulo": "Como o app define o seu nível",
-    "frase": "Tempo de treino contínuo: iniciante, menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
+    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
   },
   "tecnica.remada-baixa.polia": {
     "titulo": "Altura da polia na remada baixa",

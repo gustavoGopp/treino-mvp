@@ -7,7 +7,9 @@ import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } fro
 import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
 import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
-import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
+import { cargasHalter, comHalterMaisPesado, MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
+import { Numero, numeroOu } from '../app/ui';
+import { ValorPorToque } from '../onboarding/Inventario';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
 import {
   avaliarSerieDeCalibracao,
@@ -30,7 +32,7 @@ import { Icone } from '../app/icones';
 import { Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, corrigirHalterMaisPesado, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PalcoTreino } from './PalcoTreino';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
@@ -98,6 +100,11 @@ export function Treino() {
   // para os números da série sem parar o relógio. O que está preenchido para a próxima série (o rascunho) vale nas duas
   // vistas: "Série N feita" na tela do descanso registra o mesmo que "Série feita" no registro.
   const [verSerie, setVerSerie] = useState(false);
+  // o Boneco ampliado, por cima do treino (um toque no palco abre; lote M2, adiantado em 22/11/2026)
+  const [guiaAmpliado, setGuiaAmpliado] = useState(false);
+  // Aberto sozinho, na 1ª vez da pessoa naquele exercício (ideia B do estudo da tela do treino, escolhida pelo Gustavo
+  // em 22/11/2026): a folha ganha o botão "Entendi", que leva ao registro.
+  const [guiaDaPrimeiraVez, setGuiaDaPrimeiraVez] = useState(false);
   const [rascunho, setRascunho] = useState<Rascunho | null>(null);
   // logo depois de salvar, "Série N feita" aparece no lugar exato de "Série feita": por 1 s o botão não responde,
   // para um toque duplo não registrar a série seguinte (revisão do bloco 2, item 2)
@@ -132,7 +139,14 @@ export function Treino() {
   // a calibração da série que vem (progressao.calibracao), mostrada acima do painel
   const calNaSessao = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
 
+  const fecharGuia = () => {
+    setGuiaAmpliado(false);
+    setGuiaDaPrimeiraVez(false);
+  };
+  // A 1ª vez da pessoa neste exercício: nunca fez uma série dele, em nenhum treino guardado nem neste.
+  const nuncaFez = !feito.series.length && !estado.historico.some((s) => s.exercicios.some((e) => e.exId === x.exId && e.series.length > 0));
   const irPara = (n: number) => {
+    fecharGuia();
     setIndice(n);
     setVerSerie(true);
     setRascunho(null);
@@ -246,7 +260,9 @@ export function Treino() {
           >
             <div className="tabela-descanso">
               <div className="aseguir">
-                <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)?.animacaoId ?? null} temTexto={temCartao((completo ? itens[i + 1]?.x : x)?.exId ?? '')} />
+                {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: sem animação, a caixa "guia em texto" guardava o lugar de um
+                    desenho que não existe; no descanso fica só o que vem a seguir */}
+                {(completo ? itens[i + 1]?.x : x)?.animacaoId && <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)!.animacaoId} />}
                 <div className="txt">
                   {completo ? (
                     <>
@@ -305,7 +321,11 @@ export function Treino() {
               </button>
             </div>
           )}
-          {x.animacaoId ? <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} /> : <CartaoTexto exId={x.exId} />}
+          {x.animacaoId ? (
+            <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} />
+          ) : (
+            <CartaoTexto exId={x.exId} />
+          )}
           {!x.animacaoId && !temCartao(x.exId) && (
             <p className="ajuda">Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício".</p>
           )}
@@ -345,7 +365,9 @@ export function Treino() {
               {feito.series.length === 0 && (
                 <div className="dicas-serie">
                   <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
-                  {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                  {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: o lembrete do aquecimento aparece uma vez, no 1º exercício do treino, e
+                      não em cada exercício que abre um grupo (tempo.aquecimento; a regra inteira está em "Entenda o treino") */}
+                  {i === 0 && precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
                     <p className="dica">
                       Aqueça antes: 1–2 séries leves, sem contar.
                     </p>
@@ -367,6 +389,7 @@ export function Treino() {
                 estado={estado}
                 inventario={inventario}
                 opcoes={opcoesCargaHoje}
+                aoPesosOutros={(maxKg) => atualizar((s) => corrigirHalterMaisPesado(s, s.sessaoAtual, maxKg))}
               />
             </>
           ) : (
@@ -450,6 +473,25 @@ export function Treino() {
             />
           </Folha>
         )}
+
+        {guiaAmpliado && x.animacaoId && painel === 'nenhum' && (
+          <Folha titulo="Como fazer" aoFechar={fecharGuia} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
+            <PalcoTreino key={`grande-${x.animacaoId}`} animacaoId={x.animacaoId} ampliado />
+            {guiaDaPrimeiraVez && (
+              <button type="button" className="btn entendi" onClick={fecharGuia}>
+                Entendi
+              </button>
+            )}
+          </Folha>
+        )}
+        <PrimeiraVez
+          chave={`${sessao.id}:${x.exId}`}
+          quando={!!x.animacaoId && nuncaFez && !feito.interrompido && !noRelogio && painel === 'nenhum'}
+          abrir={() => {
+            setGuiaDaPrimeiraVez(true);
+            setGuiaAmpliado(true);
+          }}
+        />
 
         {painel === 'mais' && (
           <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
@@ -579,6 +621,29 @@ function usePainelPreso(chave: string) {
   return { ref, solto };
 }
 
+/**
+ * Na 1ª vez da pessoa num exercício, o guia grande abre sozinho, uma vez (ideia B do estudo da tela do treino,
+ * escolhida pelo Gustavo em 22/11/2026): quem nunca fez o movimento vê primeiro o Boneco, e "Entendi" leva ao registro.
+ * "Uma vez" vale por treino e por exercício, e fica na memória da aba (sessionStorage): voltar do guia completo ou
+ * recarregar a página não abre de novo. Não é dado de treino e não entra na cópia de segurança.
+ */
+function PrimeiraVez({ chave, quando, abrir }: { chave: string; quando: boolean; abrir: () => void }) {
+  const aoAbrir = useRef(abrir);
+  aoAbrir.current = abrir;
+  useEffect(() => {
+    if (!quando) return;
+    const k = `treino-mvp:guia-visto:${chave}`;
+    try {
+      if (sessionStorage.getItem(k)) return;
+      sessionStorage.setItem(k, '1');
+    } catch {
+      // sem a memória da aba (modo restrito): abre a cada chegada ao exercício, que é o lado seguro
+    }
+    aoAbrir.current();
+  }, [chave, quando]);
+  return null;
+}
+
 /** Menos e mais, lado a lado, embaixo do número: os dois alvos grandes da série. */
 function MenosMais({
   rotuloMenos,
@@ -616,6 +681,7 @@ function RegistroSerie({
   estado,
   inventario,
   opcoes,
+  aoPesosOutros,
 }: {
   x: ExercicioPrescrito;
   numero: number;
@@ -625,6 +691,8 @@ function RegistroSerie({
   estado: Estado;
   inventario: Inventario;
   opcoes: OpcoesSugestao;
+  /** "Meus pesos são outros": grava no local o halter mais pesado que a pessoa disse ter. */
+  aoPesosOutros?: (maxKg: number) => void;
 }) {
   const op = opcoesCarga(x.exId, inventario);
   const cal = calibracaoNaSessao(estado.historico, x, inventario, anteriores, opcoes);
@@ -649,6 +717,21 @@ function RegistroSerie({
   // a reserva-alvo de hoje marcada nos próprios botões (no lugar de uma frase); 4 vale "4 ou mais"
   const naMeta = (n: number) => n >= x.rir[0] && (n <= x.rir[1] || (n === 4 && x.rir[1] >= 4));
   const uid = useId();
+  // "Meus pesos são outros" (lote M1 da análise crítica): só onde a lista vem de halteres fixos, que podem ter vindo do
+  // kit típico de um atalho. Halter de montar, kettlebell e caneleira saem do que a própria pessoa contou.
+  const halterFixo = op.tipo === 'halter' && inventario.halteres_fixos && !inventario.anilhas_e_manoplas ? inventario.halteres_fixos : undefined;
+  const pesosOutros =
+    halterFixo && aoPesosOutros
+      ? {
+          maxAtualKg: halterFixo.maxKg,
+          gravar: (maxKg: number) => {
+            aoPesosOutros(maxKg);
+            // a carga escolhida que saiu da lista volta a "escolha": o app não adivinha a nova
+            const nova = cargasHalter(comHalterMaisPesado(inventario, maxKg));
+            if (carga?.tipo === 'kg' && !nova.some((v) => Math.abs(v - carga.kg) < 1e-9)) setCarga(undefined);
+          },
+        }
+      : undefined;
 
   // o que está preenchido sobe para a tela do treino, que o usa no botão "Série N feita" do descanso
   const montar = useRef<() => SerieRegistrada>(() => ({ carga: carga!, reps, rir: rir! }));
@@ -670,14 +753,10 @@ function RegistroSerie({
             {x.unilateral && <span> cada lado</span>}
           </span>
         </h2>
-        <ol className="pips" aria-hidden="true">
-          {Array.from({ length: x.series }, (_, n) => (
-            <li key={n} className={n < anteriores.length ? 'feita' : n === anteriores.length ? 'atual' : undefined} />
-          ))}
-        </ol>
+        {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: os quadradinhos repetiam "Série N de M", que está escrito ao lado */}
       </div>
       <div className="colunas">
-        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
+        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} pesosOutros={pesosOutros} />
         <div className="coluna" role="group" aria-labelledby={`${uid}-reps`}>
           <span className="rotulo-curto" id={`${uid}-reps`}>
             Repetições
@@ -700,7 +779,7 @@ function RegistroSerie({
         </div>
         <div className="chips-valor">
           {RIRS.map((n) => (
-            <label key={n} className={`chip-valor${naMeta(n) ? ' na-meta' : ''}`}>
+            <label key={n} className="chip-valor">
               <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
               <span>
                 {n === RIR.registroMax ? (
@@ -766,6 +845,11 @@ function RegistroSerie({
   );
 }
 
+/** O valor da opção "Meus pesos são outros…" na lista de cargas (não é uma carga). */
+const OUTROS_PESOS = 'outros';
+/** [opinião] Os pesos comuns de um halter mais pesado, de casa à academia; qualquer outro vai em "Outro". */
+const HALTER_MAIS_PESADO = [4, 5, 6, 8, 10, 12, 14, 16, 20, 30] as const;
+
 const nomeDoDegrau = (t: string) => (t ? t[0]!.toUpperCase() + t.slice(1) : t);
 
 /** A carga: o número grande com a unidade pequena, e menos e mais embaixo. O tipo de registro vem do equipamento. */
@@ -777,7 +861,10 @@ function ControleCarga({
   degraus,
   valor,
   aoMudar,
+  pesosOutros,
 }: {
+  /** A saída "Meus pesos são outros" da lista de halteres: o mais pesado suposto hoje e como gravar o certo. */
+  pesosOutros?: { maxAtualKg: number; gravar: (maxKg: number) => void };
   registro: Carga['tipo'];
   cargas?: number[];
   placasMax?: number;
@@ -792,6 +879,50 @@ function ControleCarga({
   const uid = useId();
   const idRotulo = `${uid}-rotulo`;
   const idCarga = `${uid}-carga`;
+  const [corrigindo, setCorrigindo] = useState(false);
+  const [maisPesado, setMaisPesado] = useState('');
+  // Carga livre (decisão do Gustavo de 22/11/2026): onde não há lista (anilhas, barra), tocar no número abre
+  // um campo para digitar a carga usada, qualquer que seja; o menos e o mais continuam para o ajuste de um toque.
+  const [digitando, setDigitando] = useState(false);
+  const [digitado, setDigitado] = useState('');
+  const numeroLivre = (k: number | undefined, rotulo: string, campo: string, gravar: (n: number) => void, id?: string) => (
+    <>
+      <button
+        type="button"
+        className="valor-grande valor-livre"
+        aria-label={rotulo}
+        aria-haspopup="dialog"
+        onClick={() => {
+          setDigitado(k === undefined ? '' : String(k));
+          setDigitando(true);
+        }}
+      >
+        <output id={id} className="carga-valor" aria-live="polite">
+          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
+        </output>
+      </button>
+      {digitando && (
+        <Folha titulo="Carga" aoFechar={() => setDigitando(false)}>
+          <form
+            className="form"
+            onSubmit={(ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              const n = numeroOu(digitado);
+              if (n === undefined || n < 0 || n > 1000) return;
+              gravar(Math.round(n * 100) / 100);
+              setDigitando(false);
+            }}
+          >
+            <Numero rotulo={campo} valor={digitado} aoMudar={setDigitado} min={0} sufixo="kg" />
+            <button type="submit" className="btn" disabled={numeroOu(digitado) === undefined}>
+              Pronto
+            </button>
+          </form>
+        </Folha>
+      )}
+    </>
+  );
   const numero = (n: number | string | undefined, unidade?: string) =>
     n === undefined ? (
       '—'
@@ -802,20 +933,19 @@ function ControleCarga({
       </>
     );
   if (registro === 'anilha') {
-    // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
-    const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
+    // progressao.incremento.maquina-anilha: a carga é guardada em kg de anilhas de cada lado e mostrada pelo total dos
+    // dois lados (decisão do Gustavo de 22/11/2026); o menos e o mais andam de par em par da menor anilha.
+    const porLado = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
+    const k = porLado === undefined ? undefined : Math.round(2 * porLado * 100) / 100;
     const passo = menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
-    const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
+    const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((porLado ?? 0) + dir * passo) * 100) / 100) });
     return (
       <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
-          Anilhas por lado
+          Anilhas (total)
         </span>
-        <output className="valor-grande carga-valor" aria-live="polite">
-          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
-        </output>
-        <MenosMais rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
-        <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
+        {numeroLivre(k, 'Digitar o total de anilhas', 'Total de anilhas, somando os dois lados', (n) => aoMudar({ tipo: 'anilha', kgPorLado: Math.round((n / 2) * 100) / 100 }))}
+        <MenosMais rotuloMenos="Menos um par de anilhas" rotuloMais="Mais um par de anilhas" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
       </div>
     );
   }
@@ -914,7 +1044,17 @@ function ControleCarga({
           )}
           {/* a seta diz que o número abre a lista das cargas */}
           <Icone nome="chevron-down" className="abre-lista" />
-          <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
+          <select
+            id={idCarga}
+            className="carga-valor"
+            value={k ?? ''}
+            onChange={(e) => {
+              if (e.target.value === OUTROS_PESOS) {
+                setMaisPesado('');
+                setCorrigindo(true);
+              } else aoMudar({ tipo: 'kg', kg: Number(e.target.value) });
+            }}
+          >
             <option value="" disabled>
               Escolha
             </option>
@@ -923,14 +1063,35 @@ function ControleCarga({
                 {numeroBr(v)} kg
               </option>
             ))}
+            {pesosOutros && <option value={OUTROS_PESOS}>Meus pesos são outros…</option>}
           </select>
         </span>
       ) : (
-        <output id={idCarga} className="valor-grande carga-valor" aria-live="polite">
-          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
-        </output>
+        numeroLivre(k, 'Digitar a carga', 'Carga usada', (n) => aoMudar({ tipo: 'kg', kg: n }), idCarga)
       )}
       <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} />
+      {corrigindo && pesosOutros && (
+        <Folha titulo="Seus halteres" aoFechar={() => setCorrigindo(false)}>
+          <p>
+            O app supôs halteres até {numeroBr(pesosOutros.maxAtualKg)} kg. Diga o seu mais pesado, e a lista de cargas se ajusta.
+          </p>
+          <ValorPorToque legenda="Qual é o seu halter mais pesado?" valores={HALTER_MAIS_PESADO} valor={maisPesado} aoMudar={setMaisPesado} />
+          <button
+            type="button"
+            className="btn"
+            disabled={!((numeroOu(maisPesado) ?? 0) > 0)}
+            onClick={() => {
+              pesosOutros.gravar(numeroOu(maisPesado)!);
+              setCorrigindo(false);
+            }}
+          >
+            Guardar
+          </button>
+          <p className="ajuda">
+            Para dizer peso por peso, ou mudar outro equipamento, use “Meus locais”, em Meus dados. Se o programa mudar por causa disso, ele avisa depois do treino.
+          </p>
+        </Folha>
+      )}
     </div>
   );
 }

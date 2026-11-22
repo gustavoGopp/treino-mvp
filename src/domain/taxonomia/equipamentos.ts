@@ -328,6 +328,22 @@ export function cargasHalter(inv: Inventario): number[] {
 
 export const cargaMaxHalter = (inv: Inventario) => cargasHalter(inv).at(-1) ?? 0;
 
+/**
+ * "Meus pesos são outros" (lote M1 da análise crítica, 19/11/2026): a pessoa diz, uma vez, qual é o halter mais pesado
+ * que tem, e os halteres fixos do local passam a terminar nele. O passo fica como estava; o mais leve é realinhado para
+ * a escada de cargas terminar exatamente no peso dito (com 2 a 10 kg de 2 em 2 e a resposta "5 kg", fica 3 e 5: sem
+ * isso o 5, que é o único peso que a pessoa garantiu ter, ficaria fora da lista). Quem quer dizer peso por peso usa
+ * "Meus locais". Sem halteres fixos no inventário, nada muda.
+ */
+export function comHalterMaisPesado(inv: Inventario, maxKg: number): Inventario {
+  const h = inv.halteres_fixos;
+  if (!h || !Number.isFinite(maxKg) || maxKg <= 0) return inv;
+  const max = Math.min(arred(maxKg), HALTER.maxKg);
+  const degraus = max > h.minKg ? Math.floor((max - h.minKg + 1e-9) / h.passoKg) : 0;
+  const minKg = arred(max - degraus * h.passoKg);
+  return sanarInventario({ ...inv, halteres_fixos: { ...h, minKg, maxKg: max } });
+}
+
 /** Pesos de kettlebell (kg), em ordem crescente e sem repetição (progressao.incremento.halteres). */
 export const cargasKettlebell = (inv: Inventario): number[] => [...new Set((inv.kettlebell?.pesosKg ?? []).map(arred))].sort((a, b) => a - b);
 

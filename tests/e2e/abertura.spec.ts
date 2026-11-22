@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { semContrasteBaixo } from './contraste';
 import { ana, entenda, folhaPronta } from './jornada';
 import { semToquePequeno } from './toque';
@@ -97,6 +97,48 @@ test('boas-vindas: o texto da foto diz para onde ela vai e há link para os term
 // Estudo dos textos (13/11/2026, decisão do Gustavo): o vocabulário fica fechado, a um toque (antes abria sozinho até o
 // 1º treino). O que o teste confere continua: antes do 1º treino, as definições estão ali, com a linha da iniciante.
 // Sessão de textos (16/11/2026, decisão do Gustavo): "Como ler o seu treino" saiu do início e está em "Entenda o treino".
+// Lote M1 da análise crítica (19/11/2026): a abertura diz o que a pessoa recebe e mostra o Boneco em movimento, sem tirar
+// do lugar o aviso de segurança. Antes do lote, o aviso ficava inteiro acima do "Começar" em todos estes tamanhos.
+test('boas-vindas: diz o que a pessoa recebe e mostra o Boneco em movimento', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Treine onde estiver, com o que tiver' })).toBeVisible();
+  await expect(page.getByText('Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento.')).toBeVisible();
+  const boneco = page.getByRole('img', { name: 'O Boneco do app fazendo um agachamento' });
+  await expect.poll(() => boneco.evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+  // em movimento: o desenho muda sozinho; e sem as legendas miúdas do guia
+  const quadro = await boneco.innerHTML();
+  await expect.poll(() => boneco.innerHTML()).not.toBe(quadro);
+  await expect(boneco.locator('.n-rot-t').first()).toBeHidden();
+  for (const tema of ['light', 'dark'] as const) {
+    await page.emulateMedia({ colorScheme: tema });
+    await conferir(page);
+  }
+});
+
+test('boas-vindas com movimento reduzido: o Boneco aparece parado', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const boneco = page.getByRole('img', { name: 'O Boneco do app fazendo um agachamento' });
+  await expect.poll(() => boneco.evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+  const quadro = await boneco.innerHTML();
+  await page.evaluate(() => new Promise((ok) => setTimeout(ok, 700)));
+  expect(await boneco.innerHTML()).toBe(quadro);
+});
+
+for (const [largura, altura] of [[320, 568], [360, 640], [375, 667], [390, 664], [360, 740], [412, 839]] as const)
+  test(`boas-vindas a ${largura} × ${altura}: o aviso de segurança fica inteiro à vista, acima do "Começar", sem rolar`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: altura });
+    await page.goto('/');
+    const aviso = page.getByRole('region', { name: 'O app orienta, não diagnostica' });
+    await expect(aviso).toContainText('Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.');
+    await expect(aviso).toBeInViewport({ ratio: 1 });
+    const [fimDoAviso, topoDaAcao] = await page.evaluate(() => [document.querySelector('.nota-aviso')!.getBoundingClientRect().bottom, document.querySelector('.acao-boas')!.getBoundingClientRect().top]);
+    expect(fimDoAviso).toBeLessThanOrEqual(topoDaAcao);
+    // a frase do que a pessoa recebe também está à vista, e nada passa para o lado
+    await expect(page.locator('.boas .lede')).toBeInViewport({ ratio: 1 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  });
+
 test('as definições do treino ficam em "Entenda o treino", fora do início', async ({ page }) => {
   await ana(page);
   await expect(page.getByText('Como ler o seu treino')).toHaveCount(0);

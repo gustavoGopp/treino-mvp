@@ -2286,3 +2286,87 @@ Depois, com "pode seguir assim" e "pode aprovar esse e todos os restantes", o re
 > 2. Em vez de consertar cada desenho errado à mão, mudei a forma de decidir o que fica na frente. A área pintada errada caiu 97% no estudo. Está entrando aos poucos, com aprovação animação por animação.
 >
 > O que ainda não ficou bom está escrito, como sempre: 45 animações com falha na conferência nova, e o celular mais simples, em que a primeira volta das máquinas engasga.
+
+
+## A porta: o programa sai na hora, em qualquer lugar (21 e 22/11/2026)
+
+**De onde veio.** É o lote M1 das melhorias da análise crítica (`revisoes/analise-critica/relatorio.md`, principal 1; as decisões do Gustavo estão em `revisoes/analise-critica/decisoes-e-plano.md`). A análise mediu que um desconhecido que treina no prédio ou em casa precisava de 21 ou 24 toques para ver o programa, contra 13 na academia completa, porque o app pedia um inventário (halter mais pesado, manoplas, anilhas) depois do toque em "Gerar meu programa". O Gustavo decidiu, em 19/11: **"programa na hora"**. Isso revoga a decisão de 03/11, "os detalhes que mudam o programa continuam sendo perguntados".
+
+**O que mudou para quem usa**
+
+1. **"Condomínio" e "Casa" geram o programa na hora,** com um kit típico, como a "Academia completa" já fazia. O atalho de casa passa a supor halteres comuns, não de montar.
+2. **O programa diz que supôs,** numa linha: "Montado para um kit típico de casa. Ajustar". Ela fica até o primeiro treino, ou até a pessoa ajustar o equipamento.
+3. **O palpite errado se corrige no treino.** Na lista de cargas dos halteres entrou "Meus pesos são outros…": o app pergunta uma vez qual é o halter mais pesado, e a lista se ajusta ali mesmo.
+4. **Entrou "Nunca treinei"** na pergunta de experiência. Quem escolhe não responde a pergunta da pausa nem a da técnica, e entra na fase de aprendizado. Antes, a pessoa marcava "parei há mais de 6 meses" e recebia o programa de quem volta de uma pausa: exercícios com 1 série e um texto sobre "a carga que você usava antes da pausa".
+5. **A abertura diz o que a pessoa recebe e mostra o Boneco se mexendo,** ao lado do título. O aviso de segurança continua com o mesmo texto e inteiro à vista.
+6. **Os erros da tela de equipamento** só aparecem no campo que a pessoa mexeu, ou cuja folha tentou fechar, e somem na hora em que ela corrige. Antes, o toque em "Gerar meu programa" pintava de vermelho campos que ela ainda não tinha visto. "Anilhas e manoplas" virou "Halteres de montar", e a folha explica o que é manopla.
+
+![A abertura, antes e depois](revisoes/melhorias/m1/abertura-antes-e-depois.png)
+
+![Casa, depois do toque em "Gerar meu programa": antes e depois](revisoes/melhorias/m1/casa-antes-e-depois.png)
+
+![A correção dos halteres na hora de anotar a carga](revisoes/melhorias/m1/seus-halteres.png)
+
+**O antes e o depois, medidos** (`node scripts/design/medir-porta.mjs`, no build de produção, tela de 412 × 839)
+
+| Da abertura ao programa | Antes | Depois |
+|---|---|---|
+| Academia completa | 13 toques | 13 |
+| Condomínio | 13 toques e parava em "Há 4 detalhes para completar" (21 até o fim, pela análise) | 13 |
+| Casa | 13 toques e parava em "Há 4 detalhes para completar" (24 até o fim, pela análise) | 13 |
+| Corpo livre | 13 | 13 |
+| Com "Nunca treinei" | não existia | 11, nos quatro |
+| Caracteres digitados | 0 | 0 |
+
+O teste automático conferia "até 11 toques" pulando a tela de equipamento. Agora conta essa tela, nos quatro atalhos, com a meta de 15 (`tests/e2e/onboarding.spec.ts`), e o critério 1 do `PLANO-MVP.md` foi reescrito do mesmo jeito.
+
+**A qualidade dos programas, antes e depois** (as duas réguas do projeto, com os cenários "casa" e "condomínio" já usando o kit novo; o gerador não mudou)
+
+| | Antes | Depois |
+|---|---|---|
+| Programas sem dor e sem nenhum defeito (36.300) | 33.532 (92,4%) | 33.532 (92,4%) |
+| Programas com dor e sem nenhum defeito (72.600) | 66.338 | 66.335 |
+| Dias com 3 ou mais exercícios sem animação | 4.370 (12,0%) | 4.610 (12,7%) |
+| Na grade grande (911.625 programas), os 11 tipos de suspeito | | de −6 a +13 programas cada |
+
+Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco é a parcela de dias com 3 ou mais exercícios **sem animação** nos atalhos: com halteres mais leves, o gerador escolhe mais vezes exercícios que ainda estão em cartão de texto. É o problema que o lote M2 ataca (ligar as animações que já estão aprovadas). As réguas regravadas estão em `revisoes/qualidade/` (`grade` e `regua`); a linha de base (`regua-linha-de-base.json`) e os snapshots das personas não mudaram.
+
+**Decisões técnicas da sessão, com o motivo** (o Gustavo pediu para não decidir estas)
+
+- **Os valores do kit: o lado conservador, e são opinião.** Casa: halteres de 2 a 10 kg, de 2 em 2, e 3 elásticos. Condomínio: halteres de 2 a 12 kg, de 2 em 2, e banco que não declina. Não há fonte sobre o que as pessoas têm (`pesquisa-v2/08`, seção 3, já dizia). Escolhi menos carga porque o erro para baixo custa pouco: o app monta o treino para pesos leves, e ele funciona também com pesos maiores. O erro para cima montaria um treino que depende de um peso que a pessoa não tem. A regra `equipamento.atalhos` foi reescrita (selo "consenso", como antes) e aparece em "Entenda o treino".
+- **A auditoria passou a medir o kit do próprio atalho** (`scripts/auditoria/cenarios.ts`): antes, os cenários "casa" e "condomínio" usavam valores fictícios próprios (halteres de montar até 18 kg; halteres até 20 kg). Agora medem o inventário que a pessoa recebe ao tocar.
+- **Nada novo no estado guardado.** "É kit típico?" sai da comparação do equipamento do local com o kit do atalho (`kitTipicoDe`), sem campo novo: a versão do estado continua a 9 e ninguém precisa guardar cópia antes desta mudança.
+- **"Meus pesos são outros" pergunta só o mais pesado.** A lista passa a terminar exatamente no peso dito, com o mesmo passo (com o kit de casa e a resposta "5 kg", fica 3 e 5 kg). Para dizer peso por peso, continua "Meus locais". A correção vale só para halteres fixos: é a única lista que pode ter vindo de um palpite.
+- **"Nunca treinei" também pula a pergunta da técnica.** Quem nunca treinou não tem técnica em que confiar; o app grava "não", que é o lado de baixo da regra. Um teste varre 200 programas (5 lugares, 2 a 6 dias, 30 a 90 min, com e sem foco): nenhum exercício com 1 série, em nenhuma das três primeiras semanas.
+- **Boneco animado, e não parado, na abertura.** Medido: o pacote que a tela espera para aparecer continua em 162,5 kB; o motor do Boneco (77 kB) chega por fora, depois que a tela já apareceu. O "Começar" fica visível em 98 ms, como antes, e o Boneco aparece em 188 ms (376 ms num processador 4 vezes mais lento). Um Boneco parado desenhado pelo mesmo motor pesaria os mesmos 77 kB, então o parado não economizava nada. É o mesmo motor que a tela do programa pede um minuto depois. O teste do peso (`tests/e2e/orcamento.spec.ts`) guardava "o motor fica fora da abertura": passou a guardar "o pacote inicial abaixo de 175 kB e o total abaixo de 250", com essa medida no comentário.
+- **O Boneco ao lado do título, sem as legendas miúdas.** Na primeira tentativa, o Boneco em cima e a frase nova empurravam o aviso de segurança para trás do botão nas telas pequenas (antes do lote, o aviso ficava inteiro à vista em todas). Como o Boneco é alto e estreito, foi para o lado do título e não gasta altura. Em celular baixo ele encolhe; no mais baixo (320 × 568) ele sai e o motor nem é baixado. Seis testes de tela, de 320 × 568 a 412 × 839, conferem que o aviso está inteiro acima do "Começar".
+- **Não toquei em `src/engine/novo/`** nem no campo `animacaoId`: a abertura só usa o motor, pelo mesmo caminho do treino.
+
+**Decisões do Gustavo na revisão (22/11/2026)**
+
+1. **A frase da abertura:** ficou a mais curta, "Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento." (a imagem acima já é com ela).
+2. **O cadastro não pergunta mais os pesos das anilhas da academia.** Nas palavras dele: "não precisa perguntar quais pesos de anilha a academia da pessoa tem e deixar preencher de maneira livre". A pergunta "Qual a menor anilha?" saiu do cadastro (era a única que restava depois do toque em "Academia completa") e continua em "Meus locais", para quem quiser. E, no treino, onde a carga não vem de uma lista (anilhas por lado, barra), **tocar no número abre um campo para digitar qualquer valor**; o menos e o mais continuam para o ajuste de um toque.
+
+   ![A carga por anilha: o número é tocável e aceita qualquer valor](revisoes/melhorias/m1/carga-digitada.png)
+
+   Um reparo ao motivo, para ficar registrado: o app não sugere carga na 1ª vez ("comece leve"), mas sugere a partir da 2ª, e a menor anilha é o passo dessas sugestões. Sem a pergunta, o passo é de 2 kg por lado, o padrão de sempre (a pergunta já era opcional). Quem tem anilhas de 1 kg vê sugestões de 2 em 2 e anota o que usou de verdade, digitando. A regra `equipamento.menor-anilha` foi reescrita assim.
+
+3. **"Cara de IA".** Na mesma revisão, o Gustavo achou o app com frases e quadrinhos demais e pediu pesquisa e critério. Saiu um levantamento de 17 telas, uma régua permanente (`.claude/skills/cara-humana/`) e a primeira mudança: as máquinas de anilha mostram e pedem **o total das anilhas**, não mais "por lado". Depois, com o ok dele, quatro cortes: os quadradinhos que repetiam "série 1 de 2" e "1 de 3", os traços sob a meta, o "· excêntrica" do rótulo da fase, a caixa "guia em texto" do descanso, a frase "Com aquecimento e descansos." e o lembrete do aquecimento repetido (fica só no 1º exercício). A tela do treino foi de 95 para 83 palavras. Ele também deu o ok aos dois gabaritos regravados. Está em `revisoes/melhorias/cara-humana/README.md`, com as imagens de antes e depois.
+
+   ![O treino, antes e depois dos cortes](revisoes/melhorias/cara-humana/treino-antes-e-depois.png)
+
+4. **A tela do treino "mais o personagem".** Ele pediu um estudo da proporção e que o toque no Boneco já abrisse a animação, com a velocidade e o ângulo. Medido em sete tamanhos de celular: o registro leva de 61% a 95% da altura, o Boneco ficava com 13% a 18%, e a 390 × 664 ele sumia e deixava um vazio. Agora um toque no Boneco abre o guia grande por cima do treino (o Boneco com cerca de um terço da tela), com "Lento", os ângulos, as quatro abas e a pausa; e o vazio acabou. É a primeira parte do lote M2, adiantada. Das duas ideias do estudo, ele escolheu a B: **na 1ª vez de cada exercício, o guia grande abre sozinho**, com o botão "Entendi" (um toque a mais, uma vez por exercício novo). O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
+
+   ![O toque no Boneco abre o guia grande](revisoes/melhorias/m2/toque-amplia.png)
+
+5. **A `main` nova entrou no ramo** (22/11): a sessão das animações foi para a `main`, e o ramo deste lote já a traz.
+
+6. **Os textos do kit** ("Montado para um kit típico de casa. Ajustar" e "Meus pesos são outros…"): ficam como estão (22/11).
+
+**Esperando o Gustavo**
+
+- O ok para levar tudo isto à `main`.
+
+**Verificação.** `npm run verificar`: tudo passou no fechamento e de novo depois das decisões de 22/11 (os números da última rodada estão no relato da sessão). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
+
+**Rascunho de post.** "Meu app de treino prometia 'treine onde estiver, com o que tiver'. Aí uma análise contou os toques: 13 para quem treina numa academia completa, 24 para quem treina em casa, porque o app pedia um inventário de anilhas antes de mostrar qualquer coisa. Quem mais precisava da promessa era quem mais esperava. Agora o app chuta um kit típico, mostra o programa em 13 toques para todo mundo, diz que chutou, e deixa corrigir na hora de anotar a primeira carga, que é quando a pessoa está diante dos pesos e sabe responder. O teste que media os toques pulava justamente a tela que emperrava. O que não é medido não é cobrado."

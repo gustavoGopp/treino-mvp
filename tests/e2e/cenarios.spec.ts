@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { criterios } from './criterios';
 import { abrirExercicio, abrirTrocar, ana, detalhesDo, entenda, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 

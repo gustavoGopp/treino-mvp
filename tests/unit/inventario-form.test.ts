@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, itensDaCategoria, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
-import { ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
+import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, inventarioDoKit, itensDaCategoria, kitTipicoDe, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
+import { ATALHO, ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
 import { gerarPrograma } from '../../src/domain/gerador';
-import { cargasHalter, HALTER, inventarioSchema, ITEM_IDS, sanarInventario, type Inventario } from '../../src/domain/taxonomia/equipamentos';
+import { cargasHalter, comHalterMaisPesado, HALTER, inventarioSchema, ITEM_IDS, sanarInventario, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { migrar } from '../../src/storage/migracao';
 import { carla, PERSONAS } from '../personas';
 
@@ -202,9 +202,48 @@ describe('atalhos de cenário (equipamento.atalhos)', () => {
     expect(f.halteres).toEqual({ min: '1', max: '12', passo: '1' });
     expect(f.voador.invertido).toBe(true);
   });
-  it('nos outros atalhos, os detalhes continuam sendo perguntados', () => {
-    const { erros } = deForm(aplicarAtalho(formVazio(), 'condominio'));
-    expect(Object.keys(erros)).toEqual(expect.arrayContaining(['halteres.min', 'bancoRegulavel.declina']));
+  // Lote M1 da análise crítica (decisão do Gustavo de 19/11/2026, "programa na hora"): revoga "nos outros atalhos, os
+  // detalhes continuam sendo perguntados". Os três atalhos com equipamento trazem um kit típico e passam sem pergunta.
+  it('condomínio vem com o kit típico e passa sem pergunta nenhuma', () => {
+    const f = aplicarAtalho(formVazio(), 'condominio');
+    const { inventario, erros } = deForm(f);
+    expect(erros).toEqual({});
+    expect(f.halteres).toEqual({ min: '2', max: '12', passo: '2' });
+    // o lado conservador no "sim ou não"
+    expect(f.bancoRegulavel.declina).toBe(false);
+    expect(inventario!.multifuncional).toMatchObject({ puxador: true, remadaBaixa: true, extensora: false });
+    expect(gerarPrograma(carla.perfil, inventario!).status).toBe('ok');
+  });
+  it('casa vem com o kit típico (halteres comuns, não de montar, e elásticos) e passa sem pergunta nenhuma', () => {
+    const f = aplicarAtalho(formVazio(), 'casa');
+    const { inventario, erros } = deForm(f);
+    expect(erros).toEqual({});
+    expect(inventario).toEqual({ halteres_fixos: { minKg: 2, maxKg: 10, passoKg: 2 }, elasticos: { intensidades: 3 } });
+    expect(gerarPrograma(carla.perfil, inventario!).status).toBe('ok');
+  });
+  it('o kit de casa e o do condomínio não passam por cima do que a pessoa já respondeu', () => {
+    const ja: FormInventario = { ...formVazio(), halteres: { min: '1', max: '6', passo: '1' }, elasticos: { intensidades: '5' }, bancoRegulavel: { declina: true } };
+    expect(aplicarAtalho(ja, 'casa')).toMatchObject({ halteres: ja.halteres, elasticos: ja.elasticos });
+    expect(aplicarAtalho(ja, 'condominio')).toMatchObject({ halteres: ja.halteres, bancoRegulavel: { declina: true } });
+  });
+  it('quem monta os próprios halteres marca "Anilhas e manoplas", e aí os detalhes são perguntados', () => {
+    const f = aplicarAtalho(formVazio(), 'casa');
+    expect(ATALHO.casa.asVezes).toContain('anilhas_e_manoplas');
+    const { erros } = deForm({ ...f, marcados: [...f.marcados, 'anilhas_e_manoplas'] });
+    expect(Object.keys(erros)).toEqual(expect.arrayContaining(['anilhas.manoplas', 'anilhas.manoplaKg', 'anilhas.linhas']));
+  });
+  it('kitTipicoDe reconhece o inventário que saiu de um atalho sem ajuste, e só ele', () => {
+    for (const id of ['casa', 'condominio', 'academia'] as const) expect(kitTipicoDe(inventarioDoKit(id)!)).toBe(id);
+    // "Corpo livre" não tem kit; o inventário vazio não é kit de ninguém
+    expect(kitTipicoDe(inventarioDoKit('corpo')!)).toBeUndefined();
+    expect(kitTipicoDe(undefined)).toBeUndefined();
+    // qualquer ajuste desfaz: outro peso, um item a mais, um item a menos
+    const casa = inventarioDoKit('casa')!;
+    expect(kitTipicoDe({ ...casa, halteres_fixos: { minKg: 2, maxKg: 8, passoKg: 2 } })).toBeUndefined();
+    expect(kitTipicoDe({ ...casa, banco_reto: {} })).toBeUndefined();
+    expect(kitTipicoDe({ halteres_fixos: casa.halteres_fixos })).toBeUndefined();
+    // a ordem das chaves não importa
+    expect(kitTipicoDe({ elasticos: { intensidades: 3 }, halteres_fixos: { passoKg: 2, maxKg: 10, minKg: 2 } })).toBe('casa');
   });
   it('academia completa com os detalhes mínimos gera o programa', () => {
     const f = aplicarAtalho(formVazio(), 'academia');
@@ -302,5 +341,35 @@ describe('halteres e anilhas: o que o formulário, o esquema e a migração acei
     if (!r.ok) throw new Error(r.erro);
     expect(r.estado.locais![0]!.inventario.halteres_fixos).toEqual({ minKg: 2, maxKg: 20, passoKg: 2 });
     expect(r.estado.locais![1]!.inventario).toEqual({ barra_fixa: {} });
+  });
+});
+
+// Lote M1 da análise crítica (19/11/2026): o kit típico pode errar os pesos; a pessoa corrige, uma vez, na hora de
+// anotar a carga ("Meus pesos são outros"), dizendo só o halter mais pesado.
+describe('"Meus pesos são outros": o halter mais pesado corrige o kit típico', () => {
+  const casa = inventarioDoKit('casa')!;
+  it('mais pesado que o suposto: a lista cresce até ele, com o mesmo passo', () => {
+    expect(cargasHalter(comHalterMaisPesado(casa, 16))).toEqual([2, 4, 6, 8, 10, 12, 14, 16]);
+  });
+  it('mais leve que o suposto: a lista encolhe, e nenhuma carga acima do que a pessoa tem sobra', () => {
+    expect(cargasHalter(comHalterMaisPesado(casa, 6))).toEqual([2, 4, 6]);
+  });
+  it('o peso dito sempre está na lista, mesmo fora do passo (um par de 5 kg, um de 7,5 kg)', () => {
+    expect(cargasHalter(comHalterMaisPesado(casa, 5))).toEqual([3, 5]);
+    expect(cargasHalter(comHalterMaisPesado(casa, 7.5))).toEqual([3.5, 5.5, 7.5]);
+    expect(cargasHalter(comHalterMaisPesado(casa, 1))).toEqual([1]);
+  });
+  it('o resultado passa no esquema, deixa de ser o kit típico e não mexe no resto do local', () => {
+    for (const max of [1, 5, 6, 7.5, 16, 40, 500]) {
+      const inv = comHalterMaisPesado(casa, max);
+      expect(inventarioSchema.safeParse(inv).success).toBe(true);
+      expect(inv.elasticos).toEqual(casa.elasticos);
+      expect(cargasHalter(inv).at(-1)).toBe(Math.min(max, HALTER.maxKg));
+      expect(kitTipicoDe(inv)).toBeUndefined();
+    }
+  });
+  it('sem halteres fixos, ou com um peso que não é peso, nada muda', () => {
+    expect(comHalterMaisPesado({ elasticos: { intensidades: 3 } }, 10)).toEqual({ elasticos: { intensidades: 3 } });
+    for (const ruim of [0, -2, Number.NaN]) expect(comHalterMaisPesado(casa, ruim)).toBe(casa);
   });
 });

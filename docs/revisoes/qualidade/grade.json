@@ -6,14 +6,14 @@
   "academia|ajustar": 780,
   "academia|bom": 6051,
   "academia|limite": 9744,
-  "ajustar": 65323,
+  "ajustar": 65322,
   "bairro|ajustar": 1015,
   "bairro|bom": 6022,
   "bairro|limite": 9538,
   "banco+halteres-leves|ajustar": 1376,
   "banco+halteres-leves|bom": 6139,
   "banco+halteres-leves|limite": 9060,
-  "bom": 104267,
+  "bom": 104306,
   "bruno|ajustar": 1236,
   "bruno|bom": 5950,
   "bruno|limite": 9389,
@@ -23,12 +23,12 @@
   "casa|ajustar": 1251,
   "casa|bom": 5742,
   "casa|limite": 9582,
-  "condominio+|ajustar": 902,
-  "condominio+|bom": 6000,
-  "condominio+|limite": 9673,
-  "condominio|ajustar": 1371,
-  "condominio|bom": 6107,
-  "condominio|limite": 9097,
+  "condominio+|ajustar": 903,
+  "condominio+|bom": 6011,
+  "condominio+|limite": 9661,
+  "condominio|ajustar": 1369,
+  "condominio|bom": 6135,
+  "condominio|limite": 9071,
   "diego|ajustar": 1337,
   "diego|bom": 4989,
   "diego|limite": 10249,
@@ -44,7 +44,7 @@
   "halteres|ajustar": 1244,
   "halteres|bom": 6072,
   "halteres|limite": 9259,
-  "limite": 742035,
+  "limite": 741997,
   "so:abdominal_maquina|ajustar": 973,
   "so:abdominal_maquina|limite": 15602,
   "so:anilhas_e_manoplas|ajustar": 1244,
@@ -134,17 +134,17 @@
  },
  "avisos": {
   "divisao.sem-puxar": 744,
-  "equipamento.escada-carga-leve": 762450,
+  "equipamento.escada-carga-leve": 795600,
   "equipamento.sem-ancoragem": 419900,
   "equipamento.sem-puxada-vertical": 240175,
   "seguranca.dor.programa": 375375,
   "selecao.alongado": 153000,
-  "selecao.dia-sem-principal": 265750,
+  "selecao.dia-sem-principal": 265749,
   "selecao.isolador-obrigatorio": 679575,
-  "tempo.corte": 327081,
-  "tempo.sobra": 336442,
-  "volume.prioridade.competicao": 142229,
-  "volume.semanal.alvo": 613001
+  "tempo.corte": 327033,
+  "tempo.sobra": 336618,
+  "volume.prioridade.competicao": 142159,
+  "volume.semanal.alvo": 612984
  },
  "avisosPorCenario": {
   "academia+|seguranca.dor.programa": 6825,
@@ -195,19 +195,21 @@
   "casa|tempo.sobra": 4430,
   "casa|volume.prioridade.competicao": 3180,
   "casa|volume.semanal.alvo": 10668,
+  "condominio+|equipamento.escada-carga-leve": 16575,
   "condominio+|seguranca.dor.programa": 6825,
-  "condominio+|selecao.dia-sem-principal": 3974,
-  "condominio+|tempo.corte": 7096,
-  "condominio+|tempo.sobra": 4725,
-  "condominio+|volume.prioridade.competicao": 2856,
-  "condominio+|volume.semanal.alvo": 10521,
+  "condominio+|selecao.dia-sem-principal": 3972,
+  "condominio+|tempo.corte": 7063,
+  "condominio+|tempo.sobra": 4893,
+  "condominio+|volume.prioridade.competicao": 2826,
+  "condominio+|volume.semanal.alvo": 10512,
+  "condominio|equipamento.escada-carga-leve": 16575,
   "condominio|seguranca.dor.programa": 6825,
-  "condominio|selecao.dia-sem-principal": 4137,
+  "condominio|selecao.dia-sem-principal": 4138,
   "condominio|selecao.isolador-obrigatorio": 16575,
-  "condominio|tempo.corte": 7142,
-  "condominio|tempo.sobra": 5051,
-  "condominio|volume.prioridade.competicao": 3036,
-  "condominio|volume.semanal.alvo": 10162,
+  "condominio|tempo.corte": 7127,
+  "condominio|tempo.sobra": 5059,
+  "condominio|volume.prioridade.competicao": 2996,
+  "condominio|volume.semanal.alvo": 10154,
   "diego|equipamento.escada-carga-leve": 16575,
   "diego|seguranca.dor.programa": 6825,
   "diego|selecao.alongado": 3825,
@@ -677,18 +679,18 @@
    "n": 23375
   },
   "avancado|bracos": {
-   "abaixo": 18461,
-   "competem": 10161,
+   "abaixo": 18448,
+   "competem": 10148,
    "n": 23375
   },
   "avancado|costas": {
-   "abaixo": 17367,
+   "abaixo": 17318,
    "competem": 0,
    "n": 23375
   },
   "avancado|costas+ombros": {
-   "abaixo": 19919,
-   "competem": 3094,
+   "abaixo": 19909,
+   "competem": 3084,
    "n": 23375
   },
   "avancado|gluteos": {
@@ -702,23 +704,23 @@
    "n": 23375
   },
   "avancado|peito": {
-   "abaixo": 9744,
+   "abaixo": 9743,
    "competem": 0,
    "n": 23375
   },
   "avancado|peito+bracos": {
-   "abaixo": 19220,
-   "competem": 11589,
+   "abaixo": 19222,
+   "competem": 11591,
    "n": 23375
   },
   "avancado|peito+costas": {
-   "abaixo": 18256,
-   "competem": 9435,
+   "abaixo": 18209,
+   "competem": 9390,
    "n": 23375
   },
   "avancado|pernas": {
-   "abaixo": 15086,
-   "competem": 6565,
+   "abaixo": 15085,
+   "competem": 6575,
    "n": 23375
   },
   "avancado|pernas+gluteos": {
@@ -752,7 +754,7 @@
    "n": 23375
   },
   "iniciante|gluteos": {
-   "abaixo": 4974,
+   "abaixo": 4975,
    "competem": 0,
    "n": 23375
   },
@@ -772,7 +774,7 @@
    "n": 23375
   },
   "iniciante|peito+costas": {
-   "abaixo": 15794,
+   "abaixo": 15804,
    "competem": 8424,
    "n": 23375
   },
@@ -783,12 +785,12 @@
   },
   "iniciante|pernas+gluteos": {
    "abaixo": 14452,
-   "competem": 11120,
+   "competem": 11121,
    "n": 23375
   },
   "iniciante|pernas+gluteos+abdomen": {
    "abaixo": 15760,
-   "competem": 12579,
+   "competem": 12570,
    "n": 23375
   },
   "intermediario|abdomen": {
@@ -807,8 +809,8 @@
    "n": 23375
   },
   "intermediario|costas+ombros": {
-   "abaixo": 18964,
-   "competem": 4375,
+   "abaixo": 18941,
+   "competem": 4352,
    "n": 23375
   },
   "intermediario|gluteos": {
@@ -822,18 +824,18 @@
    "n": 23375
   },
   "intermediario|peito": {
-   "abaixo": 6543,
+   "abaixo": 6542,
    "competem": 0,
    "n": 23375
   },
   "intermediario|peito+bracos": {
-   "abaixo": 18036,
-   "competem": 12670,
+   "abaixo": 18035,
+   "competem": 12669,
    "n": 23375
   },
   "intermediario|peito+costas": {
-   "abaixo": 16107,
-   "competem": 10139,
+   "abaixo": 16106,
+   "competem": 10138,
    "n": 23375
   },
   "intermediario|pernas": {
@@ -853,17 +855,17 @@
   }
  },
  "contagem": {
-  "avaliador.ajustar-sem-aviso": 228,
+  "avaliador.ajustar-sem-aviso": 229,
   "dia.poucos-exercicios": 273845,
   "monotonia.todos-os-dias": 176086,
   "prioridade.abaixo-com-tempo": 24067,
-  "regua.A2": 40414,
-  "regua.A3": 35335,
-  "regua.C1": 15624,
-  "regua.D1": 4857,
+  "regua.A2": 40418,
+  "regua.A3": 35333,
+  "regua.C1": 15630,
+  "regua.D1": 4851,
   "regua.D3": 1376,
   "regua.E1": 6,
-  "tempo.uso-baixo": 157671
+  "tempo.uso-baixo": 157684
  },
  "distintos": {
   "academia": {
@@ -1078,60 +1080,55 @@
   "condominio": {
    "7": 17,
    "8": 205,
-   "9": 524,
-   "10": 651,
-   "11": 518,
-   "12": 636,
-   "13": 633,
-   "14": 877,
-   "15": 1247,
-   "16": 900,
-   "17": 1484,
-   "18": 1593,
-   "19": 1134,
-   "20": 1168,
-   "21": 616,
-   "22": 510,
-   "23": 689,
-   "24": 579,
-   "25": 772,
-   "26": 479,
-   "27": 772,
-   "28": 297,
-   "29": 149,
-   "30": 87,
-   "31": 34,
-   "32": 4
+   "9": 531,
+   "10": 674,
+   "11": 520,
+   "12": 734,
+   "13": 681,
+   "14": 716,
+   "15": 1350,
+   "16": 980,
+   "17": 1584,
+   "18": 1500,
+   "19": 1166,
+   "20": 1081,
+   "21": 675,
+   "22": 820,
+   "23": 650,
+   "24": 762,
+   "25": 487,
+   "26": 848,
+   "27": 299,
+   "28": 152,
+   "29": 101,
+   "30": 38,
+   "31": 4
   },
   "condominio+": {
    "7": 17,
-   "8": 142,
-   "9": 449,
-   "10": 370,
-   "11": 620,
-   "12": 273,
-   "13": 845,
-   "14": 615,
-   "15": 962,
-   "16": 1144,
-   "17": 991,
-   "18": 1328,
-   "19": 1444,
-   "20": 996,
-   "21": 982,
-   "22": 565,
-   "23": 450,
-   "24": 553,
-   "25": 743,
-   "26": 506,
-   "27": 574,
-   "28": 489,
-   "29": 923,
-   "30": 322,
-   "31": 158,
-   "32": 60,
-   "33": 36,
-   "34": 18
+   "8": 177,
+   "9": 483,
+   "10": 638,
+   "11": 344,
+   "12": 281,
+   "13": 995,
+   "14": 753,
+   "15": 931,
+   "16": 1158,
+   "17": 1169,
+   "18": 1570,
+   "19": 1495,
+   "20": 1179,
+   "21": 803,
+   "22": 1140,
+   "23": 1018,
+   "24": 613,
+   "25": 1095,
+   "26": 317,
+   "27": 265,
+   "28": 72,
+   "29": 38,
+   "30": 24
   },
   "diego": {
    "7": 52,
@@ -2011,10 +2008,10 @@
     "reproducao": "gerarPrograma({\"nivel\":\"intermediario\",\"semanasParado\":0,\"diasSemana\":3,\"minutosSessao\":30,\"prioridades\":[\"abdomen\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"quadril\",\"nota\":7}]}}, CEN_55['casa+'].inventario)"
    },
    {
-    "caso": "elasticos · iniciante · 3 dias · 60 min · prioridade peito+costas · joelho 7",
-    "problema": "funcoes: Um movimento só para o músculo: glúteos só com extensão de quadril. → Acrescente abdução de quadril em pé com elástico preso sob o outro pé (2 séries) no treino Corpo todo C. Movimentos diferentes crescem partes diferentes do músculo.",
-    "programa": "Corpo todo A (45 min): flexao 2, remada-elastico 3, stiff-elastico 3, crucifixo-elastico 2, triceps-elastico-acima 2, elevacao-lateral-elastico 3 | Corpo todo B (48 min): flexao 2, remada-elastico 3, stiff-elastico 3, rosca-elastico 2, panturrilha-degrau 4, face-pull-elastico 2 | Corpo todo C (51 min): flexao-elastico 2, remada-curvada-elastico 3, flexao-fechada 2, ponte-gluteo 3, elevacao-lateral-elastico 3, abdominal-chao 4",
-    "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":3,\"minutosSessao\":60,\"prioridades\":[\"peito\",\"costas\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"joelho\",\"nota\":7}]}}, CEN_55['elasticos'].inventario)"
+    "caso": "condominio+ · avancado · 4 dias · 45 min · prioridade abdomen · joelho 7",
+    "problema": "funcoes: Um movimento só para o músculo: glúteos só com extensão de quadril. → Troque stiff unilateral com halter por abdução de quadril deitado de lado com caneleira no treino Inferior B. Movimentos diferentes crescem partes diferentes do músculo.",
+    "programa": "Superior A (45 min): supino-maquina 4, puxada-frente 2, remada-baixa-estacao 2, triceps-frances-halter 3, crucifixo-inverso 2, abdominal-chao 4 | Inferior A (45 min): terra-romeno-barra 2, stiff 2, hip-thrust 2, panturrilha 3, aducao-caneleira 2, abdominal-bola 4 | Superior B (45 min): supino-inclinado 3, remada-baixa-estacao 2, puxada-frente 2, elevacao-halteres 4, crucifixo-invertido-sentado 2, abdominal-invertido 4 | Inferior B (44 min): hip-thrust 2, terra-romeno-barra 2, stiff-unilateral 2, panturrilha-bilateral-step 3, elevacao-lateral-unilateral 3, elevacao-joelhos 3",
+    "reproducao": "gerarPrograma({\"nivel\":\"avancado\",\"semanasParado\":0,\"diasSemana\":4,\"minutosSessao\":45,\"prioridades\":[\"abdomen\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"joelho\",\"nota\":7}]}}, CEN_55['condominio+'].inventario)"
    }
   ],
   "dia.poucos-exercicios": [
@@ -2033,7 +2030,7 @@
    {
     "caso": "condominio · iniciante · 4 dias · 45 min · prioridade pernas+gluteos+abdomen · quadril 7",
     "problema": "Inferior A com 4 exercícios em 45 min (cabem ~6)",
-    "programa": "Superior A (40 min): supino-reto 3, puxada-frente 2, remada-apoiada 2, triceps-frances-halter 3, crucifixo-inverso 2, abdominal-chao 3 | Inferior A (29 min): flexao-bola 3, flexao-joelho-deslizante 3, panturrilha-degrau 4, abdominal-chao 3 | Superior B (38 min): supino-inclinado 3, remada-apoiada 2, puxada-frente 2, elevacao-halteres 3, crucifixo-inverso 2, abdominal-chao 2 | Inferior B (35 min): flexao-bola 2, panturrilha-degrau 3, flexao-joelho-deslizante 2, panturrilha-sentada-halter 3, elevacao-halteres 3, abdominal-bola 2",
+    "programa": "Superior A (40 min): supino-reto 3, puxada-frente 2, remada-baixa-estacao 2, triceps-frances-halter 3, crucifixo-inverso 2, abdominal-chao 3 | Inferior A (29 min): flexao-bola 3, flexao-joelho-deslizante 3, panturrilha-degrau 4, abdominal-chao 3 | Superior B (38 min): supino-inclinado 3, remada-baixa-estacao 2, puxada-frente 2, elevacao-halteres 3, crucifixo-inverso 2, abdominal-chao 2 | Inferior B (35 min): flexao-bola 2, panturrilha-degrau 3, flexao-joelho-deslizante 2, panturrilha-sentada-halter 3, elevacao-halteres 3, abdominal-bola 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":4,\"minutosSessao\":45,\"prioridades\":[\"pernas\",\"gluteos\",\"abdomen\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"quadril\",\"nota\":7}]}}, CEN_55['condominio'].inventario)"
    }
   ],
@@ -2053,7 +2050,7 @@
    {
     "caso": "condominio+ · iniciante · 3 dias · 60 min · prioridade bracos · ombro 7",
     "problema": "triceps-elastico-alto em todos os 3 dias",
-    "programa": "Corpo todo A (44 min): goblet 2, hip-thrust 2, rosca-scott-banco-inclinado 4, triceps-elastico-alto 4, cadeira-flexora 2, abdominal-chao 2 | Corpo todo B (49 min): stiff 2, ponte-gluteo-halter 2, rosca-scott-banco-inclinado 3, triceps-elastico-alto 2, cadeira-extensora 2, panturrilha 4, abdominal-chao 2 | Corpo todo C (41 min): afundo 2, hip-thrust 2, triceps-elastico-alto 4, rosca-alternada 3, cadeira-flexora 2, abdominal-bola 2",
+    "programa": "Corpo todo A (44 min): goblet 2, hip-thrust 2, rosca-scott-banco-inclinado 4, triceps-elastico-alto 4, cadeira-flexora 2, abdominal-chao 2 | Corpo todo B (50 min): stiff 2, rosca-scott-banco-inclinado 3, triceps-elastico-alto 2, cadeira-extensora 2, panturrilha 4, abducao-caneleira 2, abdominal-chao 2 | Corpo todo C (41 min): afundo 2, hip-thrust 2, triceps-elastico-alto 4, rosca-barra-w 3, cadeira-flexora 2, abdominal-bola 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":3,\"minutosSessao\":60,\"prioridades\":[\"bracos\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"ombro\",\"nota\":7}]}}, CEN_55['condominio+'].inventario)"
    }
   ],
@@ -2067,7 +2064,7 @@
    {
     "caso": "condominio · avancado · 2 dias · 90 min · prioridade peito · sem dor",
     "problema": "peito (prioridade) com 12 de 14 séries e o dia mais longo em 74 de 90 min",
-    "programa": "Corpo todo A (74 min): supino-reto 4, goblet 2, puxada-frente 3, stiff 3, crucifixo-halteres 4, triceps-frances-halter 2, elevacao-halteres 3, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (68 min): supino-inclinado 4, afundo 2, remada-apoiada 3, agachamento-halteres 2, flexao-bola 3, rosca-inclinada 3, crucifixo-inverso 3, elevacao-halteres 3, abdominal-bola 2",
+    "programa": "Corpo todo A (74 min): supino-reto 4, goblet 2, puxada-frente 3, stiff 3, crucifixo-halteres 4, triceps-frances-halter 2, elevacao-halteres 3, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (68 min): supino-inclinado 4, afundo 2, remada-baixa-estacao 3, agachamento-halteres 2, flexao-bola 3, rosca-inclinada 3, crucifixo-inverso 3, elevacao-halteres 3, abdominal-bola 2",
     "reproducao": "gerarPrograma({\"nivel\":\"avancado\",\"semanasParado\":0,\"diasSemana\":2,\"minutosSessao\":90,\"prioridades\":[\"peito\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":false,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false}}}, CEN_55['condominio'].inventario)"
    },
    {
@@ -2113,7 +2110,7 @@
    {
     "caso": "condominio · iniciante · 2 dias · 30 min · prioridade peito · sem dor",
     "problema": "dia mais longo acima de 110% dos minutos: dia de 38 min em 30",
-    "programa": "Corpo todo A (38 min): supino-reto 4, goblet 2, puxada-frente 2, stiff 3, panturrilha-degrau 2 | Corpo todo B (33 min): supino-inclinado 4, afundo 3, remada-apoiada 2, abdominal-chao 2",
+    "programa": "Corpo todo A (38 min): supino-reto 4, goblet 2, puxada-frente 2, stiff 3, panturrilha-degrau 2 | Corpo todo B (33 min): supino-inclinado 4, afundo 3, remada-baixa-estacao 2, abdominal-chao 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":2,\"minutosSessao\":30,\"prioridades\":[\"peito\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":false,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false}}}, CEN_55['condominio'].inventario)"
    }
   ],
@@ -2153,7 +2150,7 @@
    {
     "caso": "condominio · iniciante · 2 dias · 30 min · prioridade peito · sem dor",
     "problema": "empurrar ÷ puxar acima de 1,5 havendo como puxar: empurrar 8 ÷ puxar 4 séries",
-    "programa": "Corpo todo A (38 min): supino-reto 4, goblet 2, puxada-frente 2, stiff 3, panturrilha-degrau 2 | Corpo todo B (33 min): supino-inclinado 4, afundo 3, remada-apoiada 2, abdominal-chao 2",
+    "programa": "Corpo todo A (38 min): supino-reto 4, goblet 2, puxada-frente 2, stiff 3, panturrilha-degrau 2 | Corpo todo B (33 min): supino-inclinado 4, afundo 3, remada-baixa-estacao 2, abdominal-chao 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":2,\"minutosSessao\":30,\"prioridades\":[\"peito\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":false,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false}}}, CEN_55['condominio'].inventario)"
    }
   ],
@@ -2173,7 +2170,7 @@
    {
     "caso": "condominio+ · iniciante · 2 dias · 30 min · prioridade nenhuma · quadril 7",
     "problema": "quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto): quadríceps 0 ÷ posteriores 3",
-    "programa": "Corpo todo A (28 min): supino-reto 3, puxada-frente 3, elevacao-halteres 4, panturrilha-bilateral-step 2 | Corpo todo B (30 min): supino-inclinado 3, remada-apoiada 3, cadeira-flexora 3, abdominal-chao 2",
+    "programa": "Corpo todo A (29 min): supino-maquina 3, puxada-frente 3, elevacao-halteres 4, panturrilha-bilateral-step 2 | Corpo todo B (30 min): supino-inclinado 3, remada-baixa-estacao 3, cadeira-flexora 3, abdominal-chao 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":2,\"minutosSessao\":30,\"prioridades\":[],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"quadril\",\"nota\":7}]}}, CEN_55['condominio+'].inventario)"
    }
   ],
@@ -2187,7 +2184,7 @@
    {
     "caso": "condominio · iniciante · 6 dias · 30 min · prioridade peito+bracos · quadril 7",
     "problema": "não prioritário com 1 a 3 séries havendo exercício e tempo: ombro_lateral com 1 séries e o dia mais longo em 25 de 30 min",
-    "programa": "Empurrar A (25 min): supino-reto 2, supino-inclinado 2, desenvolvimento 2, triceps-frances-halter 3 | Puxar A (21 min): puxada-frente 2, remada-apoiada 2, rosca-inclinada 2, abdominal-chao 2 | Pernas A (20 min): flexao-bola 2, flexao-joelho-deslizante 2, panturrilha-degrau 3, abdominal-chao 2 | Empurrar B (20 min): supino-inclinado 2, supino-reto 2, triceps-frances-halter 2, crucifixo-halteres 2 | Puxar B (22 min): remada-apoiada 2, puxada-frente 2, rosca-inclinada 2, rosca-scott-banco-inclinado 2 | Pernas B (15 min): flexao-bola 2, panturrilha-degrau 3, flexao-joelho-deslizante 2",
+    "programa": "Empurrar A (25 min): supino-reto 2, supino-inclinado 2, desenvolvimento 2, triceps-frances-halter 3 | Puxar A (21 min): puxada-frente 2, remada-baixa-estacao 2, rosca-inclinada 2, abdominal-chao 2 | Pernas A (20 min): flexao-bola 2, flexao-joelho-deslizante 2, panturrilha-degrau 3, abdominal-chao 2 | Empurrar B (20 min): supino-inclinado 2, supino-reto 2, triceps-frances-halter 2, crucifixo-halteres 2 | Puxar B (22 min): remada-baixa-estacao 2, puxada-frente 2, rosca-inclinada 2, rosca-scott-banco-inclinado 2 | Pernas B (15 min): flexao-bola 2, panturrilha-degrau 3, flexao-joelho-deslizante 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":6,\"minutosSessao\":30,\"prioridades\":[\"peito\",\"bracos\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":true,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false},\"dores\":[{\"articulacao\":\"quadril\",\"nota\":7}]}}, CEN_55['condominio'].inventario)"
    },
    {
@@ -2284,10 +2281,10 @@
    "6": 33
   },
   "30|condominio+": {
-   "1": 15,
-   "2": 88,
-   "3": 421,
-   "4": 11169,
+   "1": 17,
+   "2": 87,
+   "3": 428,
+   "4": 11161,
    "5": 1523,
    "6": 44
   },
@@ -3059,10 +3056,10 @@
   "60|condominio+": {
    "3": 60,
    "4": 13,
-   "5": 1243,
-   "6": 3919,
-   "7": 2415,
-   "8": 5610
+   "5": 1245,
+   "6": 3917,
+   "7": 2402,
+   "8": 5623
   },
   "60|diego": {
    "2": 13,
@@ -3548,18 +3545,18 @@
    "6": 3149,
    "7": 1867,
    "8": 2780,
-   "9": 2353,
-   "10": 824
+   "9": 2352,
+   "10": 825
   },
   "75|condominio+": {
    "3": 65,
    "4": 12,
-   "5": 1232,
-   "6": 3502,
-   "7": 2141,
-   "8": 2841,
-   "9": 2294,
-   "10": 1173
+   "5": 1234,
+   "6": 3503,
+   "7": 2143,
+   "8": 2843,
+   "9": 2291,
+   "10": 1169
   },
   "75|diego": {
    "2": 12,
@@ -4134,21 +4131,21 @@
    "7": 1862,
    "8": 2759,
    "9": 1749,
-   "10": 1039,
-   "11": 335,
+   "10": 1031,
+   "11": 343,
    "12": 80
   },
   "90|condominio+": {
    "3": 60,
    "4": 12,
-   "5": 1232,
-   "6": 3504,
-   "7": 2137,
+   "5": 1234,
+   "6": 3505,
+   "7": 2139,
    "8": 2819,
-   "9": 1943,
-   "10": 1083,
-   "11": 338,
-   "12": 132
+   "9": 1937,
+   "10": 1084,
+   "11": 337,
+   "12": 133
   },
   "90|diego": {
    "2": 11,
@@ -5435,8 +5432,8 @@
    "10": 34
   },
   "dias|2|75|condominio+": {
-   "9": 36,
-   "10": 42
+   "9": 37,
+   "10": 41
   },
   "dias|2|75|diego": {
    "8": 2,
@@ -5740,8 +5737,8 @@
   },
   "dias|2|90|condominio": {
    "9": 21,
-   "10": 35,
-   "11": 16,
+   "10": 34,
+   "11": 17,
    "12": 6
   },
   "dias|2|90|condominio+": {
@@ -8073,8 +8070,8 @@
   },
   "dias|4|60|condominio+": {
    "6": 28,
-   "7": 39,
-   "8": 89
+   "7": 38,
+   "8": 90
   },
   "dias|4|60|diego": {
    "6": 30,
@@ -13358,8 +13355,8 @@
   "limpo|60|condominio+": {
    "5": 81,
    "6": 242,
-   "7": 123,
-   "8": 334
+   "7": 122,
+   "8": 335
   },
   "limpo|60|diego": {
    "5": 136,
@@ -13753,8 +13750,8 @@
    "6": 219,
    "7": 104,
    "8": 167,
-   "9": 132,
-   "10": 77
+   "9": 133,
+   "10": 76
   },
   "limpo|75|diego": {
    "5": 135,
@@ -14229,8 +14226,8 @@
    "7": 93,
    "8": 155,
    "9": 105,
-   "10": 73,
-   "11": 23,
+   "10": 72,
+   "11": 24,
    "12": 6
   },
   "limpo|90|condominio+": {
@@ -14776,7 +14773,7 @@
    "programas": 5100
   },
   "cenario|condominio+|3": {
-   "mediaPct": 52.8,
+   "mediaPct": 52.9,
    "programas": 1275
   },
   "cenario|condominio|1": {
@@ -16119,7 +16116,7 @@
    {
     "caso": "condominio · iniciante · 6 dias · 90 min · prioridade ombros · sem dor",
     "detalhe": "37 de 90 min",
-    "programa": "Empurrar A (37 min): supino-reto 2, desenvolvimento 2, supino-inclinado 2, elevacao-halteres 2, triceps-frances-halter 2, crucifixo-halteres 2, triceps-testa-halteres 2 | Puxar A (31 min): puxada-frente 2, remada-apoiada 2, elevacao-halteres 2, rosca-inclinada 2, crucifixo-inverso 2, abdominal-chao 2 | Pernas A (37 min): goblet 2, stiff 2, afundo 2, flexao-bola 2, panturrilha-degrau 3, abdominal-chao 2 | Empurrar B (37 min): supino-inclinado 2, supino-reto 2, desenvolvimento 2, elevacao-halteres 2, triceps-frances-halter 2, crucifixo-halteres 2, triceps-testa-halteres 2 | Puxar B (31 min): remada-apoiada 2, puxada-frente 2, elevacao-halteres 2, crucifixo-inverso 2, rosca-inclinada 2, abdominal-chao 2 | Pernas B (34 min): afundo 2, stiff 2, ponte-gluteo-halter 2, panturrilha-degrau 3, flexao-bola 2",
+    "programa": "Empurrar A (37 min): supino-reto 2, desenvolvimento 2, supino-inclinado 2, elevacao-halteres 2, triceps-frances-halter 2, crucifixo-halteres 2, triceps-testa-halteres 2 | Puxar A (31 min): puxada-frente 2, remada-baixa-estacao 2, elevacao-halteres 2, rosca-inclinada 2, crucifixo-inverso 2, abdominal-chao 2 | Pernas A (37 min): goblet 2, stiff 2, afundo 2, flexao-bola 2, panturrilha-degrau 3, abdominal-chao 2 | Empurrar B (37 min): supino-inclinado 2, supino-reto 2, desenvolvimento 2, elevacao-halteres 2, triceps-frances-halter 2, crucifixo-halteres 2, triceps-testa-halteres 2 | Puxar B (31 min): remada-baixa-estacao 2, puxada-frente 2, elevacao-halteres 2, crucifixo-inverso 2, rosca-inclinada 2, abdominal-chao 2 | Pernas B (34 min): afundo 2, stiff 2, ponte-gluteo-halter 2, panturrilha-degrau 3, flexao-bola 2",
     "reproducao": "gerarPrograma({\"nivel\":\"iniciante\",\"semanasParado\":0,\"diasSemana\":6,\"minutosSessao\":90,\"prioridades\":[\"ombros\"],\"evitarExercicios\":[],\"evitarEquipamentos\":[],\"triagem\":{\"respostas\":{\"coracao\":false,\"peito\":false,\"tontura\":false,\"doenca-cronica\":false,\"medicamento\":false,\"osteoarticular\":false,\"supervisao\":false,\"gravidez\":false,\"doenca-aguda\":false}}}, CEN_55['condominio'].inventario)",
     "valor": 41
    }
@@ -16398,9 +16395,9 @@
    "100": 1428,
    "105": 752,
    "110": 53,
-   "115": 156,
+   "115": 155,
    "120": 35,
-   "125": 150,
+   "125": 151,
    "130": 63,
    "135": 82,
    "140": 63,
@@ -16409,19 +16406,19 @@
   "30|condominio+": {
    "85": 7,
    "90": 17,
-   "95": 442,
-   "100": 1807,
-   "105": 474,
-   "110": 68,
-   "115": 72,
-   "120": 7,
-   "125": 134,
-   "130": 31,
-   "135": 119,
+   "95": 641,
+   "100": 1771,
+   "105": 300,
+   "110": 80,
+   "115": 71,
+   "120": 6,
+   "125": 135,
+   "130": 33,
+   "135": 117,
    "140": 54,
    "145": 15,
-   "150": 22,
-   "155": 46
+   "150": 46,
+   "155": 22
   },
   "30|diego": {
    "85": 1,
@@ -17315,11 +17312,11 @@
   "45|condominio": {
    "75": 3,
    "80": 174,
-   "85": 71,
-   "90": 130,
-   "95": 364,
-   "100": 2439,
-   "105": 46,
+   "85": 73,
+   "90": 128,
+   "95": 365,
+   "100": 2437,
+   "105": 47,
    "110": 37,
    "115": 3,
    "120": 40,
@@ -17327,14 +17324,13 @@
    "130": 1
   },
   "45|condominio+": {
-   "75": 1,
-   "80": 40,
-   "85": 65,
-   "90": 288,
-   "95": 258,
-   "100": 2422,
-   "105": 68,
-   "110": 30,
+   "80": 42,
+   "85": 64,
+   "90": 270,
+   "95": 296,
+   "100": 2401,
+   "105": 70,
+   "110": 29,
    "115": 93,
    "120": 49,
    "130": 1
@@ -18139,26 +18135,26 @@
    "60": 36,
    "65": 76,
    "70": 5,
-   "75": 176,
-   "80": 250,
-   "85": 142,
-   "90": 315,
-   "95": 498,
-   "100": 1788,
-   "105": 14,
-   "110": 2,
+   "75": 178,
+   "80": 261,
+   "85": 133,
+   "90": 336,
+   "95": 465,
+   "100": 1796,
+   "105": 13,
+   "110": 3,
    "115": 12,
    "120": 1
   },
   "60|condominio+": {
    "65": 100,
-   "70": 40,
-   "75": 161,
-   "80": 157,
-   "85": 331,
-   "90": 233,
-   "95": 476,
-   "100": 1805,
+   "70": 42,
+   "75": 141,
+   "80": 247,
+   "85": 267,
+   "90": 235,
+   "95": 454,
+   "100": 1817,
    "105": 12
   },
   "60|diego": {
@@ -18966,28 +18962,28 @@
   "75|condominio": {
    "50": 101,
    "55": 15,
-   "60": 116,
-   "65": 243,
-   "70": 217,
-   "75": 341,
-   "80": 179,
-   "85": 227,
-   "90": 302,
-   "95": 467,
-   "100": 1107
+   "60": 118,
+   "65": 241,
+   "70": 219,
+   "75": 340,
+   "80": 183,
+   "85": 244,
+   "90": 303,
+   "95": 436,
+   "100": 1115
   },
   "75|condominio+": {
    "50": 23,
-   "55": 112,
-   "60": 96,
-   "65": 257,
-   "70": 232,
-   "75": 304,
-   "80": 210,
-   "85": 265,
-   "90": 217,
-   "95": 344,
-   "100": 1255
+   "55": 119,
+   "60": 71,
+   "65": 285,
+   "70": 238,
+   "75": 336,
+   "80": 218,
+   "85": 251,
+   "90": 204,
+   "95": 304,
+   "100": 1266
   },
   "75|diego": {
    "50": 8,
@@ -19762,32 +19758,32 @@
   "90|condominio": {
    "40": 39,
    "45": 76,
-   "50": 142,
-   "55": 303,
-   "60": 349,
+   "50": 144,
+   "55": 300,
+   "60": 350,
    "65": 204,
-   "70": 326,
-   "75": 286,
-   "80": 356,
-   "85": 123,
-   "90": 191,
-   "95": 330,
-   "100": 590
+   "70": 348,
+   "75": 287,
+   "80": 336,
+   "85": 121,
+   "90": 202,
+   "95": 326,
+   "100": 582
   },
   "90|condominio+": {
-   "40": 10,
-   "45": 111,
-   "50": 145,
-   "55": 311,
-   "60": 269,
+   "40": 16,
+   "45": 105,
+   "50": 149,
+   "55": 291,
+   "60": 333,
    "65": 344,
-   "70": 309,
-   "75": 211,
-   "80": 307,
-   "85": 157,
-   "90": 318,
-   "95": 216,
-   "100": 607
+   "70": 303,
+   "75": 200,
+   "80": 310,
+   "85": 202,
+   "90": 267,
+   "95": 213,
+   "100": 582
   },
   "90|diego": {
    "40": 8,
@@ -22205,15 +22201,15 @@
    "equipamento": 0
   },
   "condominio+|avancado|afundo": {
-   "dor": 817,
+   "dor": 808,
    "equipamento": 0
   },
   "condominio+|avancado|agachar": {
-   "dor": 735,
+   "dor": 733,
    "equipamento": 0
   },
   "condominio+|avancado|biceps": {
-   "dor": 654,
+   "dor": 653,
    "equipamento": 0
   },
   "condominio+|avancado|crucifixo": {
@@ -22221,7 +22217,7 @@
    "equipamento": 0
   },
   "condominio+|avancado|elevacao-lateral": {
-   "dor": 1008,
+   "dor": 1007,
    "equipamento": 0
   },
   "condominio+|avancado|empurrar-horizontal": {
@@ -22229,15 +22225,15 @@
    "equipamento": 0
   },
   "condominio+|avancado|empurrar-inclinado": {
-   "dor": 563,
+   "dor": 564,
    "equipamento": 0
   },
   "condominio+|avancado|empurrar-vertical": {
-   "dor": 448,
+   "dor": 450,
    "equipamento": 0
   },
   "condominio+|avancado|extensao-quadril": {
-   "dor": 393,
+   "dor": 384,
    "equipamento": 0
   },
   "condominio+|avancado|extensora": {
@@ -22245,7 +22241,7 @@
    "equipamento": 0
   },
   "condominio+|avancado|ombro-posterior": {
-   "dor": 524,
+   "dor": 523,
    "equipamento": 0
   },
   "condominio+|avancado|panturrilha-em-pe": {
@@ -22257,11 +22253,11 @@
    "equipamento": 0
   },
   "condominio+|avancado|puxar-horizontal": {
-   "dor": 1072,
+   "dor": 1070,
    "equipamento": 0
   },
   "condominio+|avancado|puxar-vertical": {
-   "dor": 1470,
+   "dor": 1468,
    "equipamento": 0
   },
   "condominio+|avancado|triceps-acima-cabeca": {
@@ -22269,7 +22265,7 @@
    "equipamento": 0
   },
   "condominio+|avancado|triceps-complemento": {
-   "dor": 297,
+   "dor": 298,
    "equipamento": 0
   },
   "condominio+|iniciante|abdomen": {
@@ -22365,11 +22361,11 @@
    "equipamento": 0
   },
   "condominio+|intermediario|afundo": {
-   "dor": 813,
+   "dor": 814,
    "equipamento": 0
   },
   "condominio+|intermediario|agachar": {
-   "dor": 727,
+   "dor": 728,
    "equipamento": 0
   },
   "condominio+|intermediario|biceps": {
@@ -22397,7 +22393,7 @@
    "equipamento": 0
   },
   "condominio+|intermediario|extensao-quadril": {
-   "dor": 385,
+   "dor": 386,
    "equipamento": 0
   },
   "condominio+|intermediario|extensora": {
@@ -22605,7 +22601,7 @@
    "equipamento": 0
   },
   "condominio|intermediario|afundo": {
-   "dor": 888,
+   "dor": 889,
    "equipamento": 0
   },
   "condominio|intermediario|agachar": {
@@ -34686,25 +34682,25 @@
    "vagas": 167760
   },
   "condominio+|avancado": {
-   "comExercicio": 154357,
+   "comExercicio": 154288,
    "dias": 22100,
-   "foraPorMinutos": 19418,
+   "foraPorMinutos": 19402,
    "programas": 5525,
-   "vagas": 167273
+   "vagas": 167181
   },
   "condominio+|iniciante": {
    "comExercicio": 154629,
    "dias": 22100,
-   "foraPorMinutos": 19875,
+   "foraPorMinutos": 19882,
    "programas": 5525,
    "vagas": 167660
   },
   "condominio+|intermediario": {
-   "comExercicio": 154646,
+   "comExercicio": 154653,
    "dias": 22100,
-   "foraPorMinutos": 19263,
+   "foraPorMinutos": 19255,
    "programas": 5525,
-   "vagas": 167677
+   "vagas": 167687
   },
   "condominio|avancado": {
    "comExercicio": 146103,
@@ -34716,16 +34712,16 @@
   "condominio|iniciante": {
    "comExercicio": 146916,
    "dias": 22100,
-   "foraPorMinutos": 17991,
+   "foraPorMinutos": 17992,
    "programas": 5525,
    "vagas": 168924
   },
   "condominio|intermediario": {
-   "comExercicio": 146536,
+   "comExercicio": 146539,
    "dias": 22100,
-   "foraPorMinutos": 17627,
+   "foraPorMinutos": 17630,
    "programas": 5525,
-   "vagas": 168410
+   "vagas": 168414
   },
   "diego|avancado": {
    "comExercicio": 151766,
@@ -36393,124 +36389,124 @@
    "abaixoPiso": 642,
    "n": 5525,
    "prio": 850,
-   "soma": 30205,
+   "soma": 30194,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|biceps": {
-   "abaixoMeta": 313,
+   "abaixoMeta": 314,
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 48245,
+   "soma": 48540,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|costas": {
-   "abaixoMeta": 575,
+   "abaixoMeta": 525,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 46750,
+   "soma": 46996,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|gluteos": {
    "abaixoMeta": 623,
-   "abaixoPiso": 546,
+   "abaixoPiso": 537,
    "n": 5525,
    "prio": 1275,
-   "soma": 49154.5,
+   "soma": 49358,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|ombro_lateral": {
-   "abaixoMeta": 377,
+   "abaixoMeta": 375,
    "abaixoPiso": 1028,
    "n": 5525,
    "prio": 850,
-   "soma": 35877,
+   "soma": 36052,
    "zero": 1104,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|ombro_posterior": {
    "abaixoMeta": 0,
-   "abaixoPiso": 943,
+   "abaixoPiso": 944,
    "n": 5525,
    "prio": 0,
-   "soma": 41227,
+   "soma": 41417,
    "zero": 354,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|panturrilha": {
-   "abaixoMeta": 979,
+   "abaixoMeta": 977,
    "abaixoPiso": 929,
    "n": 5525,
    "prio": 1275,
-   "soma": 34269,
+   "soma": 34540,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|peito": {
-   "abaixoMeta": 464,
+   "abaixoMeta": 463,
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 51386,
+   "soma": 51589,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|posteriores": {
-   "abaixoMeta": 678,
+   "abaixoMeta": 676,
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 50237,
+   "soma": 50463,
    "zero": 0,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|quadriceps": {
-   "abaixoMeta": 682,
+   "abaixoMeta": 671,
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 49815,
+   "soma": 50013,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "avancado|condominio+|triceps": {
-   "abaixoMeta": 423,
-   "abaixoPiso": 595,
+   "abaixoMeta": 410,
+   "abaixoPiso": 598,
    "n": 5525,
    "prio": 850,
-   "soma": 48080,
+   "soma": 48346.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
   "avancado|condominio|abdomen": {
-   "abaixoMeta": 363,
+   "abaixoMeta": 362,
    "abaixoPiso": 639,
    "n": 5525,
    "prio": 850,
-   "soma": 30709,
+   "soma": 30731,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio|biceps": {
-   "abaixoMeta": 302,
+   "abaixoMeta": 303,
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 49033,
+   "soma": 49175,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio|costas": {
-   "abaixoMeta": 563,
+   "abaixoMeta": 516,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 47060,
+   "soma": 47248,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36519,16 +36515,16 @@
    "abaixoPiso": 76,
    "n": 5525,
    "prio": 1275,
-   "soma": 62554,
+   "soma": 62579,
    "zero": 0,
    "zeroSemAviso": 0
   },
   "avancado|condominio|ombro_lateral": {
-   "abaixoMeta": 371,
+   "abaixoMeta": 363,
    "abaixoPiso": 1005,
    "n": 5525,
    "prio": 850,
-   "soma": 36367,
+   "soma": 36432,
    "zero": 1083,
    "zeroSemAviso": 0
   },
@@ -36537,7 +36533,7 @@
    "abaixoPiso": 767,
    "n": 5525,
    "prio": 0,
-   "soma": 41993,
+   "soma": 42105,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -36551,20 +36547,20 @@
    "zeroSemAviso": 0
   },
   "avancado|condominio|peito": {
-   "abaixoMeta": 460,
+   "abaixoMeta": 459,
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 51792,
+   "soma": 51853,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|condominio|posteriores": {
    "abaixoMeta": 830,
-   "abaixoPiso": 244,
+   "abaixoPiso": 243,
    "n": 5525,
    "prio": 1275,
-   "soma": 49716,
+   "soma": 49751,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -36573,7 +36569,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 41000,
+   "soma": 41015,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36582,7 +36578,7 @@
    "abaixoPiso": 859,
    "n": 5525,
    "prio": 850,
-   "soma": 45952,
+   "soma": 46018.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -41838,7 +41834,7 @@
    "abaixoPiso": 640,
    "n": 5525,
    "prio": 850,
-   "soma": 27792,
+   "soma": 27785,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41847,16 +41843,16 @@
    "abaixoPiso": 547,
    "n": 5525,
    "prio": 850,
-   "soma": 37791,
+   "soma": 37732,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|condominio+|costas": {
-   "abaixoMeta": 345,
+   "abaixoMeta": 355,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 37886,
+   "soma": 37864,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -41865,7 +41861,7 @@
    "abaixoPiso": 499,
    "n": 5525,
    "prio": 1275,
-   "soma": 39556,
+   "soma": 39580,
    "zero": 77,
    "zeroSemAviso": 0
   },
@@ -41874,7 +41870,7 @@
    "abaixoPiso": 1026,
    "n": 5525,
    "prio": 850,
-   "soma": 28287,
+   "soma": 28277,
    "zero": 1106,
    "zeroSemAviso": 0
   },
@@ -41883,7 +41879,7 @@
    "abaixoPiso": 957,
    "n": 5525,
    "prio": 0,
-   "soma": 33423,
+   "soma": 33412,
    "zero": 354,
    "zeroSemAviso": 0
   },
@@ -41892,34 +41888,34 @@
    "abaixoPiso": 928,
    "n": 5525,
    "prio": 1275,
-   "soma": 28554,
+   "soma": 28536,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|condominio+|peito": {
-   "abaixoMeta": 277,
+   "abaixoMeta": 287,
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 42727,
+   "soma": 42692,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|condominio+|posteriores": {
-   "abaixoMeta": 465,
+   "abaixoMeta": 463,
    "abaixoPiso": 254,
    "n": 5525,
    "prio": 1275,
-   "soma": 39773,
+   "soma": 39774,
    "zero": 0,
    "zeroSemAviso": 0
   },
   "iniciante|condominio+|quadriceps": {
-   "abaixoMeta": 346,
+   "abaixoMeta": 355,
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40655,
+   "soma": 40646,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -41928,7 +41924,7 @@
    "abaixoPiso": 595,
    "n": 5525,
    "prio": 850,
-   "soma": 40785.5,
+   "soma": 40777,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -41946,7 +41942,7 @@
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 38888,
+   "soma": 38885.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41955,16 +41951,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 37888,
+   "soma": 37887,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "iniciante|condominio|gluteos": {
-   "abaixoMeta": 286,
+   "abaixoMeta": 287,
    "abaixoPiso": 81,
    "n": 5525,
    "prio": 1275,
-   "soma": 53928,
+   "soma": 53927.5,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -41982,7 +41978,7 @@
    "abaixoPiso": 770,
    "n": 5525,
    "prio": 0,
-   "soma": 34576,
+   "soma": 34575.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -42000,7 +41996,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 43046,
+   "soma": 43045,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -42009,7 +42005,7 @@
    "abaixoPiso": 243,
    "n": 5525,
    "prio": 1275,
-   "soma": 40393,
+   "soma": 40392,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -42027,7 +42023,7 @@
    "abaixoPiso": 857,
    "n": 5525,
    "prio": 850,
-   "soma": 39075.5,
+   "soma": 39075,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47283,7 +47279,7 @@
    "abaixoPiso": 640,
    "n": 5525,
    "prio": 850,
-   "soma": 29363,
+   "soma": 29386,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47292,35 +47288,35 @@
    "abaixoPiso": 547,
    "n": 5525,
    "prio": 850,
-   "soma": 44485,
+   "soma": 44689.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|costas": {
-   "abaixoMeta": 395,
+   "abaixoMeta": 383,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43708,
+   "soma": 43823,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|gluteos": {
    "abaixoMeta": 485,
-   "abaixoPiso": 521,
+   "abaixoPiso": 522,
    "n": 5525,
    "prio": 1275,
-   "soma": 46472.5,
+   "soma": 46497,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|ombro_lateral": {
-   "abaixoMeta": 298,
-   "abaixoPiso": 1028,
+   "abaixoMeta": 297,
+   "abaixoPiso": 1017,
    "n": 5525,
    "prio": 850,
-   "soma": 34077,
-   "zero": 1107,
+   "soma": 34221,
+   "zero": 1096,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|ombro_posterior": {
@@ -47328,34 +47324,34 @@
    "abaixoPiso": 942,
    "n": 5525,
    "prio": 0,
-   "soma": 38523,
+   "soma": 38589.5,
    "zero": 354,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|panturrilha": {
-   "abaixoMeta": 693,
+   "abaixoMeta": 694,
    "abaixoPiso": 929,
    "n": 5525,
    "prio": 1275,
-   "soma": 33090,
+   "soma": 33291,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|peito": {
-   "abaixoMeta": 314,
+   "abaixoMeta": 313,
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 48537,
+   "soma": 48688,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|posteriores": {
-   "abaixoMeta": 494,
+   "abaixoMeta": 493,
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 46605,
+   "soma": 46776,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47364,16 +47360,16 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 46229,
+   "soma": 46354,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "intermediario|condominio+|triceps": {
-   "abaixoMeta": 330,
-   "abaixoPiso": 593,
+   "abaixoMeta": 329,
+   "abaixoPiso": 606,
    "n": 5525,
    "prio": 850,
-   "soma": 45774,
+   "soma": 45886.5,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -47382,7 +47378,7 @@
    "abaixoPiso": 636,
    "n": 5525,
    "prio": 850,
-   "soma": 29859,
+   "soma": 29869,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47391,35 +47387,35 @@
    "abaixoPiso": 504,
    "n": 5525,
    "prio": 850,
-   "soma": 45550.5,
+   "soma": 45652,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|condominio|costas": {
-   "abaixoMeta": 391,
+   "abaixoMeta": 381,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 44035,
+   "soma": 44148,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|condominio|gluteos": {
    "abaixoMeta": 435,
-   "abaixoPiso": 68,
+   "abaixoPiso": 69,
    "n": 5525,
    "prio": 1275,
-   "soma": 59201.5,
+   "soma": 59219,
    "zero": 0,
    "zeroSemAviso": 0
   },
   "intermediario|condominio|ombro_lateral": {
    "abaixoMeta": 294,
-   "abaixoPiso": 1017,
+   "abaixoPiso": 1016,
    "n": 5525,
    "prio": 850,
-   "soma": 34633,
-   "zero": 1098,
+   "soma": 34680,
+   "zero": 1097,
    "zeroSemAviso": 0
   },
   "intermediario|condominio|ombro_posterior": {
@@ -47427,7 +47423,7 @@
    "abaixoPiso": 769,
    "n": 5525,
    "prio": 0,
-   "soma": 39386.5,
+   "soma": 39454,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -47436,16 +47432,16 @@
    "abaixoPiso": 534,
    "n": 5525,
    "prio": 1275,
-   "soma": 34511,
+   "soma": 34529,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|condominio|peito": {
-   "abaixoMeta": 310,
+   "abaixoMeta": 309,
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 48891,
+   "soma": 48937,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47454,7 +47450,7 @@
    "abaixoPiso": 243,
    "n": 5525,
    "prio": 1275,
-   "soma": 45860,
+   "soma": 45865,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47463,7 +47459,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 38729,
+   "soma": 38759,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47472,7 +47468,7 @@
    "abaixoPiso": 855,
    "n": 5525,
    "prio": 850,
-   "soma": 43655,
+   "soma": 43722.5,
    "zero": 650,
    "zeroSemAviso": 0
   },

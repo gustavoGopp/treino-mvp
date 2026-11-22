@@ -481,8 +481,19 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .volta-passo{display:inline-flex;align-items:center;gap:var(--s4);min-height:var(--h48);padding:0 var(--s16) 0 0;border:0;background:none;color:inherit;font:inherit;font-weight:600;font-size:var(--t-apoio);text-decoration:none;cursor:pointer}
 /* a boas-vindas */
 .boas{gap:var(--s24)}
-.lugares{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s8);padding:var(--s24) var(--s16);border-radius:var(--r8);background:var(--superficie-2);color:var(--texto)}
-.lugares svg{width:100%;height:auto;aspect-ratio:4/3;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+/* o Boneco da abertura (lote M1 da análise crítica): o desenho do motor, em movimento, no lugar dos 4 ícones de lugar;
+   ocupa o que sobra da tela acima do título, entre um mínimo e um máximo, sem empurrar o "Começar" para fora */
+.boas-topo{display:grid;grid-template-columns:minmax(5.5rem,30%) 1fr;gap:var(--s16);align-items:center}
+.boas-topo .titulo{margin:0}
+.boneco-abertura{aspect-ratio:5/8;width:100%;border-radius:var(--r8);overflow:hidden}
+/* as legendas do modo Técnica são do guia, onde há espaço para lê-las; aqui o Boneco só se mostra */
+.boneco-abertura :is(.n-rot-fio,.n-rot-p,.n-rot-t){display:none}
+/* em celular baixo é o Boneco que encolhe, e no mais baixo (320 × 568) ele sai: o aviso de segurança fica inteiro à
+   vista acima do "Começar" em qualquer tela (tests/e2e/abertura.spec.ts) */
+@media (max-height:700px){.boas-topo{grid-template-columns:auto 1fr}.boneco-abertura{width:auto;height:7rem}}
+@media (max-height:600px){.boas-topo{display:block}.boneco-abertura{display:none}}
+.boneco-abertura.esperando{animation:espera 1.2s ease-in-out infinite alternate}
+@media (prefers-reduced-motion: reduce){.boneco-abertura.esperando{animation:none}}
 .boas .titulo{font-size:var(--t-destaque);line-height:1}
 .boas .lede{margin:0}
 .nota-aviso{display:flex;gap:var(--s16);align-items:flex-start;margin:0;padding:var(--s16) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
@@ -497,7 +508,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
 @media (max-width:279px),(max-height:479px){.acao-fixa.acao-boas{position:static;border-top:0}}
 .termos-linha a{display:inline-block;padding:var(--s16) 0;margin:calc(-1 * var(--s16)) 0}
-@media (max-height:800px){.boas{gap:var(--s16)}.lugares{padding:var(--s16)}.boas .titulo{font-size:var(--t-titulo)}}
+@media (max-height:800px){.boas{gap:var(--s16)}.boas .titulo{font-size:var(--t-titulo)}}
 /* a saúde em uma pergunta */
 .condicoes{list-style:disc;padding-left:var(--s24);border-top:0}
 .condicoes > li{border-bottom:0;padding:var(--s4) 0;font-size:var(--t-corpo);font-weight:400}
@@ -692,7 +703,8 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .presa .guia-do-treino:not(:has(.palco-treino)) > :first-child{margin-top:auto}
 @container palco (max-height:15rem){.presa .legenda-do-modo{display:none}}
 @container palco (max-height:10rem){.presa .modos-treino{display:none}}
-@container palco (max-height:5rem){.presa .palco-btn{display:none}}
+/* com o toque que amplia, o Boneco pequeno ainda serve de porta para o grande: só some abaixo de 3,5rem */
+@container palco (max-height:3.5rem){.presa .palco-btn{display:none}}
 /* quando o registro não cabe na tela (letra grande, zoom, celular muito pequeno), a página rola: o palco fica sozinho
    em cima, sem as abas e a legenda (que seguem no guia completo), para o registro não ir longe demais */
 .treino-tela:not(.presa) .modos-treino,.treino-tela:not(.presa) .legenda-do-modo{display:none}
@@ -726,6 +738,28 @@ body:has(.invertida){background:var(--inv-fundo)}
 .palco-btn .fase-do-movimento{position:absolute;top:var(--s8);left:var(--s8);z-index:1;padding:var(--s4) var(--s8);background:var(--stage);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--st-muted);text-align:left}
 .palco-btn .fase-do-movimento:empty{display:none}
 .palco-btn .toca{position:absolute;top:var(--s8);right:var(--s16);width:1.25rem;color:var(--st-muted)}
+/* o Boneco ampliado, numa folha por cima do treino: o desenho com 55% da altura da tela, a pausa num botão próprio */
+/* na folha o palco tem a altura do que mostra (não encolhe por cima do que vem depois); se a folha não couber, ela rola,
+   e o "Entendi" da 1ª vez fica preso embaixo, sempre ao alcance */
+.palco-ampliado{flex:none;margin:0 calc(-1 * var(--s16))}
+.folha .entendi{position:sticky;bottom:0;flex:none;box-shadow:0 0 0 var(--s16) var(--fundo)}
+/* na 1ª vez, com o "Entendi" preso embaixo, o desenho cede um pouco de altura para a velocidade e o ângulo ficarem à vista */
+/* o que recebe o foco do teclado rola para cima do "Entendi" preso, nunca fica atrás dele (WCAG 2.4.11) */
+.folha:has(.entendi){scroll-padding-bottom:calc(var(--h64) + var(--s48))}
+.folha:has(.entendi) .palco-ampliado .palco-grande{height:42dvh}
+/* em tela muito baixa (zoom de 200%, celular deitado) o botão preso tomaria a tela: ele segue o fluxo da folha */
+@media (max-height:480px){.folha .entendi{position:static;box-shadow:none}.folha:has(.entendi){scroll-padding-bottom:var(--s16)}}
+@media (max-height:700px){.folha:has(.entendi) .palco-ampliado .palco-grande{height:35dvh}}
+.palco-ampliado .palco-grande{flex:none;height:55dvh;min-height:0;max-height:none;cursor:default}
+.pausa-do-guia{position:absolute;top:var(--s8);right:var(--s8);z-index:1;width:var(--h48);height:var(--h48);display:grid;place-items:center;border:0;border-radius:var(--r8);background:var(--stage);color:var(--st-ink);cursor:pointer}
+.pausa-do-guia .icone{width:1.5rem}
+.palco-ampliado .legenda-do-modo{min-height:4.5em}
+/* a velocidade e o ângulo, logo abaixo do desenho ampliado: uma linha que passa para baixo se faltar largura */
+.controles-do-guia,.controles-do-guia .angulos{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8)}
+.controles-do-guia{padding:var(--s8) var(--s16) 0}
+.controles-do-guia .chip{display:inline-flex;align-items:center;gap:var(--s4)}
+.controles-do-guia .chip .icone{width:1.25rem}
+.palco-ampliado .palco-grande{height:50dvh}
 .legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2)}
 .legenda-do-modo b{color:var(--texto);font-weight:600}
 .palco-falhou{gap:var(--s8);padding:var(--s16);margin:0;container-type:normal}
@@ -748,10 +782,6 @@ body:has(.invertida){background:var(--inv-fundo)}
 .registro{display:flex;flex-direction:column;gap:var(--s16)}
 .serie-tit{display:flex;justify-content:space-between;align-items:center;gap:var(--s16)}
 .registro h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
-.pips{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex:none}
-.pips li{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
-.pips li.feita{background:var(--texto);box-shadow:none}
-.pips li.atual{box-shadow:inset 0 0 0 2px var(--texto)}
 /* carga e repetições: os maiores números da tela, cada um com menos e mais embaixo */
 .colunas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);align-items:start}
 .coluna{display:flex;flex-direction:column;gap:var(--s8);min-width:0}
@@ -763,6 +793,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .com-lista{position:relative}
 .valor-grande .abre-lista{display:inline-block;vertical-align:baseline;width:1.25rem;margin-left:var(--s4);color:var(--texto-2)}
 .valor-grande.vazio{color:var(--texto-2)}
+/* a carga sem lista (anilhas, barra): o número é um botão que abre o campo para digitar */
+button.valor-livre{min-height:var(--h48);padding:0;border:0;background:none;color:inherit;font-family:inherit;text-align:left;cursor:pointer;text-decoration:underline dotted var(--texto-2);text-underline-offset:var(--s8);text-decoration-thickness:2px}
 .com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
 .com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
 /* a dificuldade do exercício com o peso do corpo: o texto inteiro, que pode quebrar a linha, num bloco tocável */
@@ -779,7 +811,6 @@ body:has(.invertida){background:var(--inv-fundo)}
 .rir-meta{font-size:var(--t-apoio);color:var(--texto-2);margin-right:auto}
 .registro .chips-valor{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s8)}
 .registro .chip-valor{padding:0;min-width:0}
-.chip-valor.na-meta::after{content:"";position:absolute;left:30%;right:30%;bottom:var(--s8);height:2px;background:currentColor}
 .registro .salvar,.descanso .salvar{min-height:var(--h64)}
 .queda{display:flex;flex-direction:column;gap:var(--s8);padding:var(--s16) 0 0;border-top:1px solid var(--linha)}
 .queda .valor-grande{font-size:var(--t-titulo)}
@@ -855,9 +886,6 @@ a.faixa-descanso{text-decoration:none}
 .barra-volta{flex:1;height:var(--s8);background:var(--superficie-2);overflow:hidden;max-width:10rem}
 .barra-volta i{display:block;height:100%;background:var(--texto)}
 /* os treinos da semana: blocos; o feito é cheio */
-.pontos{display:flex;gap:var(--s4)}
-.pontos i{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
-.pontos i.on{background:var(--texto);box-shadow:none}
 .numero-grande{display:flex;align-items:baseline;gap:var(--s16);font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;margin:0}
 .numero-grande small{font-size:var(--t-pergunta);color:var(--texto-2);font-weight:500;letter-spacing:0}
 .musculos{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}

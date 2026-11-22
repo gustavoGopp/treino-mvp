@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 
 // Redesign (06/11/2026): a letra vem do próprio app, sem pedido a outro endereço (docs/revisoes/redesign/agente-5-cor.md).
 // Antes eram 3 pedidos ao Google Fonts por visita (docs/revisoes/redesign/medidas.md).

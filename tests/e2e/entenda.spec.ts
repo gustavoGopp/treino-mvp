@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana, entenda, porQueDaSugestao, sobreOPrograma } from './jornada';
 
 // Sessão de textos (16/11/2026, decisão do Gustavo: "quero bem menos que isso"). A explicação saiu das telas: o selo
