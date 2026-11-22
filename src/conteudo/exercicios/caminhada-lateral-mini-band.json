@@ -3,6 +3,8 @@
   "name": "Caminhada lateral com mini-band",
   "short": "Caminhada lateral",
   "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril (glúteo médio).",
+  "feelNote": "Se os joelhos caírem para dentro, empurre-os para fora. Com a mini-band frouxa, o glúteo descansa.",
   "setupEq": [
     "Uma mini-band e 3 a 4 m de espaço livre."
   ],
@@ -31,10 +33,23 @@
     "Pés afastados além do quadril no passo.",
     "A mini-band nunca fica frouxa."
   ],
+  "breath": "Solte o ar no passo, inspire trazendo o outro pé, sem prender o ar a série inteira.",
   "cues": [
     "Meio agachado.",
     "Dedos para a frente.",
     "Mini-band sempre esticada."
+  ],
+  "check": [
+    "3 a 4 m livres",
+    "Mini-band acima dos joelhos",
+    "Meio agachado",
+    "Dedos para a frente"
+  ],
+  "vary": "A mini-band nos tornozelos deixa mais difícil. O que não muda: meio agachado, dedos para a frente e a mini-band sempre esticada. As repetições contam os passos para cada lado.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se a mini-band tem rachaduras ou está ressecada.",
+  "extLabels": [
+    "pés na largura do quadril",
+    "afastado"
   ],
   "errors": [
     {
@@ -52,9 +67,6 @@
       "title": "Deixar a mini-band frouxa",
       "desc": "Os pés se juntam demais e o glúteo descansa. Mantenha a tensão."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se a mini-band tem rachaduras ou está ressecada."
   ],
   "carga": "Registre a intensidade da mini-band. Ela sobe pelas intensidades da sua mini-band; em cada uma, primeiro mais esticada e depois com descida de 3 s."
 }

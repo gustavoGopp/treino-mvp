@@ -3,6 +3,8 @@
   "name": "Tríceps testa com halteres, deitado",
   "short": "Tríceps testa",
   "target": "Tríceps (atrás do braço)",
+  "feel": "Parte de trás do braço (tríceps).",
+  "feelNote": "Se sentir o ombro, os braços estão subindo e descendo como num supino: só o cotovelo dobra.",
   "setupEq": [
     "Um par de halteres leves. O chão (com colchonete) ou um banco."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: halteres ao lado da cabeça, cotovelos bem dobrados.",
     "Em cima: braços estendidos."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Pegada neutra.",
     "Cotovelos para o teto.",
     "Pare a 1 ou 2 repetições da falha."
+  ],
+  "check": [
+    "Halteres leves",
+    "Pegada neutra",
+    "Braços um pouco para trás",
+    "Cotovelos para o teto"
+  ],
+  "vary": "Pode ser no chão, com colchonete, ou num banco. O que não muda: a pegada neutra, só o cotovelo dobrando e parar a 1 ou 2 repetições da falha, porque o halter passa perto do rosto.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

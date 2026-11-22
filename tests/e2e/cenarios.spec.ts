@@ -138,9 +138,10 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // série 2
     for (let i = 0; i < 3; i++) await proximoExercicio(page);
     await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
-    await criterios(page); // exercício sem animação, cartão fechado
-    await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
-    await criterios(page); // cartão aberto
+    await criterios(page); // exercício com montagem segura (até 22/11/2026, o cartão de texto do exercício sem animação)
+    await page.getByRole('button', { name: /^Montagem segura/ }).click();
+    await expect(page.getByRole('dialog', { name: 'Como fazer' }).locator('.nota-guia')).toBeVisible();
+    await criterios(page); // o guia ampliado, com a nota de montagem
   },
   // lote 2
   guia: async (page) => {

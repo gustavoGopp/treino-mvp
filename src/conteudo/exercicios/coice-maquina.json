@@ -3,6 +3,8 @@
   "name": "Coice na máquina de glúteo",
   "short": "Coice na máquina",
   "target": "Glúteos",
+  "feel": "Glúteo da perna que empurra.",
+  "feelNote": "Se sentir a lombar, ela está arqueando para a perna subir mais: pare com a coxa na linha do tronco.",
   "setupEq": [
     "Um pé na plataforma ou na alavanca; o outro joelho apoiado."
   ],
@@ -25,10 +27,22 @@
     "Início: quadril dobrado ~90°.",
     "Fim: coxa alinhada com o tronco, sem arquear a lombar."
   ],
+  "breath": "Solte o ar empurrando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "O movimento é do quadril.",
     "Lombar parada.",
     "Volta controlando."
+  ],
+  "check": [
+    "Um pé na plataforma ou na alavanca",
+    "O outro joelho apoiado",
+    "Tronco apoiado (peito ou antebraços na almofada)",
+    "Lombar parada"
+  ],
+  "vary": "O tronco apoia pelo peito ou pelos antebraços, e o pé vai na plataforma ou na alavanca. O que não muda: o movimento só do quadril, sem girar para o lado, a coxa até a linha do tronco, sem arquear a lombar, e a volta controlando até o quadril dobrar ~90°.",
+  "extLabels": [
+    "quadril dobrado",
+    "coxa na linha do tronco"
   ],
   "errors": [
     {
@@ -47,5 +61,5 @@
       "desc": "A volta sem controle."
     }
   ],
-  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, o total de kg em anilhas."
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
 }

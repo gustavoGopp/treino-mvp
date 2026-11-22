@@ -3,6 +3,8 @@
   "name": "Mergulho assistido no graviton",
   "short": "Mergulho no graviton",
   "target": "Peito e tríceps",
+  "feel": "Peito e parte de trás do braço (tríceps). A frente do ombro ajuda.",
+  "feelNote": "Se sentir o ombro, desça menos: só até o braço ficar quase paralelo ao chão, sem dor no ombro.",
   "setupEq": [
     "Escolha o contrapeso: mais placa = mais ajuda."
   ],
@@ -25,10 +27,23 @@
     "Embaixo: braço quase paralelo ao chão, sem dor no ombro.",
     "Em cima: cotovelos estendidos."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Ombros longe das orelhas.",
     "Tronco um pouco à frente.",
     "Sem dor no ombro."
+  ],
+  "check": [
+    "Contrapeso escolhido: mais placa = mais ajuda",
+    "Joelhos na plataforma",
+    "Mãos nas barras, braços estendidos",
+    "Ombros longe das orelhas",
+    "Tronco um pouco à frente"
+  ],
+  "vary": "A ajuda muda com o número de placas. O que não muda: o tronco um pouco à frente, os ombros longe das orelhas, a descida só até o braço ficar quase paralelo ao chão, sem dor no ombro, e a subida sem travar os cotovelos.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

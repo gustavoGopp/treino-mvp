@@ -3,6 +3,8 @@
   "name": "Crucifixo invertido curvado com halteres",
   "short": "Crucifixo invertido curvado",
   "target": "Ombro (posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se sentir a lombar, as costas estão arredondando ou o tronco está subindo: costas retas e tronco parado. Se sentir o alto dos ombros (trapézio), os ombros estão subindo.",
   "setupEq": [
     "Um par de halteres leves."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: braços pendurados.",
     "Em cima: braços perto da linha dos ombros."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Costas retas.",
     "Tronco parado.",
     "Abre para os lados."
+  ],
+  "check": [
+    "Halteres leves",
+    "Joelhos levemente dobrados",
+    "Tronco bem inclinado, costas retas",
+    "Palmas uma para a outra"
+  ],
+  "vary": "O tronco fica bem inclinado, perto de 45° ou mais. O que não muda: as costas retas, o tronco parado e os cotovelos fixos.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

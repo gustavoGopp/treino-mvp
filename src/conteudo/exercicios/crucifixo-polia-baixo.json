@@ -3,6 +3,8 @@
   "name": "Crucifixo na polia de baixo para cima",
   "short": "Crucifixo de baixo para cima",
   "target": "Peito (parte de cima)",
+  "feel": "Parte de cima do peito. A frente do ombro ajuda.",
+  "feelNote": "Se sentir o alto dos ombros (trapézio), os ombros estão subindo junto. Cotovelos que dobram e esticam viram um empurrar.",
   "setupEq": [
     "As duas polias embaixo, um estribo em cada."
   ],
@@ -26,10 +28,22 @@
     "Início: braços abertos e baixos, peito alongado.",
     "Fim: mãos juntas à frente, na altura do peito ou do queixo."
   ],
+  "breath": "Solte o ar subindo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo no mesmo ângulo.",
     "Sobe em arco.",
     "Volta devagar."
+  ],
+  "check": [
+    "Polias embaixo",
+    "Um pé à frente",
+    "Tronco reto",
+    "Cotovelos levemente dobrados"
+  ],
+  "vary": "As mãos se encontram na altura do peito ou do queixo. O que não muda: o cotovelo no mesmo ângulo e o tronco parado.",
+  "extLabels": [
+    "embaixo",
+    "mãos juntas"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Elevação lateral unilateral com halter, segurando num apoio",
   "short": "Elevação lateral unilateral",
   "target": "Lateral do ombro (deltoide lateral)",
+  "feel": "Lateral do ombro.",
+  "feelNote": "Se sentir o alto do ombro e o pescoço (trapézio), o ombro está subindo ou o braço passou da altura do ombro.",
   "setupEq": [
     "Um halter e um apoio firme para a mão livre (parede, batente ou móvel pesado), só para equilibrar."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: halter ao lado da coxa.",
     "Em cima: braço na altura do ombro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo lidera.",
     "Ombro longe da orelha.",
     "A mão livre só equilibra."
+  ],
+  "check": [
+    "Apoio firme para a mão livre",
+    "Tronco inclinado 10 a 20°",
+    "Cotovelo levemente dobrado",
+    "A mão livre só equilibra"
+  ],
+  "vary": "O tronco inclina de 10 a 20° para longe do apoio; mais inclinado, mais amplitude. O que não muda: o braço sobe só até a altura do ombro, e o peso do corpo não fica pendurado no apoio.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

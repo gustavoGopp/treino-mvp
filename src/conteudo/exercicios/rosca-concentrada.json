@@ -3,6 +3,8 @@
   "name": "Rosca concentrada sentado, com halter",
   "short": "Rosca concentrada",
   "target": "Bíceps (frente do braço)",
+  "feel": "Frente do braço (bíceps).",
+  "feelNote": "Se sentir o ombro, o braço está saindo da coxa: mantenha-o apoiado.",
   "setupEq": [
     "Um halter e uma cadeira firme ou um banco."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: braço quase estendido.",
     "Em cima: halter perto do ombro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Braço apoiado na coxa.",
     "Só o cotovelo mexe.",
     "Desça até quase estender."
+  ],
+  "check": [
+    "Sentado na ponta da cadeira",
+    "Braço por dentro da coxa, perto do joelho",
+    "Palma para cima",
+    "A outra mão na outra coxa"
+  ],
+  "vary": "Serve uma cadeira firme ou um banco. O que não muda: o braço apoiado na coxa, só o cotovelo mexendo, e a descida até quase estender.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

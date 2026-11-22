@@ -3,6 +3,8 @@
   "name": "Desenvolvimento em pé com dois halteres",
   "short": "Desenvolvimento em pé",
   "target": "Frente do ombro; ajudam a lateral do ombro e o tríceps",
+  "feel": "Frente do ombro. A lateral do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está inclinando para trás: abdômen e glúteos firmes; se não der, o peso está alto.",
   "setupEq": [
     "Um par de halteres."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: halteres na altura dos ombros.",
     "Em cima: braços quase estendidos acima da cabeça."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Costelas para baixo.",
     "Sem arquear a lombar.",
     "Sobe na linha dos ombros."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Joelhos levemente soltos",
+    "Cotovelos um pouco à frente do corpo",
+    "Abdômen e glúteos firmes"
+  ],
+  "vary": "Palmas para a frente ou uma para a outra. O que não muda: as pernas paradas, a lombar sem arquear e a descida até a altura dos ombros.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

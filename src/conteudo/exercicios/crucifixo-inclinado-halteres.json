@@ -3,6 +3,8 @@
   "name": "Crucifixo inclinado com halteres",
   "short": "Crucifixo inclinado",
   "target": "Peito (a parte de cima); ajuda a frente do ombro",
+  "feel": "Parte de cima do peito. A frente do ombro ajuda.",
+  "feelNote": "Se sentir o ombro, não desça além do alongamento confortável e mantenha as escápulas juntas e para baixo.",
   "setupEq": [
     "Um par de halteres e um banco que inclina, a ~30°."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: halteres perto da altura do peito, peito alongado.",
     "Em cima: halteres acima do peito, sem bater."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Arco, não supino.",
     "Cotovelos levemente dobrados.",
     "Escápulas para baixo."
+  ],
+  "check": [
+    "Banco a ~30°",
+    "Pés firmes no chão",
+    "Cotovelos levemente dobrados",
+    "Escápulas juntas e para baixo"
+  ],
+  "vary": "A profundidade vai até o alongamento confortável do seu ombro. O que não muda: o arco com o cotovelo no mesmo ângulo, sem virar supino.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

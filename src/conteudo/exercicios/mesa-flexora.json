@@ -3,6 +3,8 @@
   "name": "Mesa flexora (deitado)",
   "short": "Mesa flexora",
   "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa (posteriores).",
+  "feelNote": "Se sentir a lombar, o quadril está subindo para ajudar e a lombar arqueia: quadril no apoio.",
   "setupEq": [
     "Rolo ajustado logo acima do calcanhar; o joelho alinhado com o eixo da máquina."
   ],
@@ -26,10 +28,22 @@
     "Início: pernas quase estendidas.",
     "Fim: rolo perto do glúteo."
   ],
+  "breath": "Solte o ar dobrando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Quadril no apoio.",
     "Dobra até o fim.",
     "Volta devagar."
+  ],
+  "check": [
+    "Rolo logo acima do calcanhar",
+    "Joelho alinhado com o eixo",
+    "Deitado de bruços, quadril apoiado",
+    "Mãos nos pegadores"
+  ],
+  "vary": "O que não muda: o quadril no apoio, o rolo logo acima do calcanhar, a dobra até o rolo chegar perto do glúteo e a volta em ~2–3 s até as pernas quase estenderem, sem deixar a placa cair.",
+  "extLabels": [
+    "pernas quase estendidas",
+    "rolo perto do glúteo"
   ],
   "errors": [
     {
@@ -48,5 +62,5 @@
       "desc": "Rolo na panturrilha ou no pé muda o braço de alavanca."
     }
   ],
-  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, o total de kg em anilhas."
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
 }

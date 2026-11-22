@@ -3,6 +3,8 @@
   "name": "Adução na cadeira adutora",
   "short": "Adução na máquina",
   "target": "Adutores (parte de dentro da coxa)",
+  "feel": "Parte de dentro da coxa (adutores).",
+  "feelNote": "Se sentir a virilha forçar, as pernas estão abrindo demais: abra só até um alongamento confortável.",
   "setupEq": [
     "Almofadas do lado de dentro dos joelhos."
   ],
@@ -25,10 +27,21 @@
     "Início: pernas abertas até um alongamento confortável.",
     "Fim: almofadas quase se tocando."
   ],
+  "breath": "Solte o ar fechando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Abre só até o confortável.",
     "Volta controlando.",
     "Placas sem bater."
+  ],
+  "check": [
+    "Almofadas do lado de dentro dos joelhos",
+    "Sentado, costas no encosto",
+    "Pernas abertas só até um alongamento confortável"
+  ],
+  "vary": "A abertura vai só até um alongamento confortável, sem forçar. O que não muda: as costas no encosto, o fechar até as almofadas quase se tocarem e a volta controlando, sem bater as placas.",
+  "extLabels": [
+    "pernas abertas",
+    "pernas fechadas"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Agachamento goblet com kettlebell",
   "short": "Goblet com kettlebell",
   "target": "Quadríceps",
+  "feel": "Frente da coxa. Os glúteos e a parte de dentro da coxa (adutores) ajudam.",
+  "feelNote": "Desça só até onde não há dor. Se o calcanhar sair do chão, o peso foi para a ponta dos pés.",
   "setupEq": [
     "Kettlebell junto ao peito, mãos nas laterais da alça, base para baixo."
   ],
@@ -26,10 +28,22 @@
     "Embaixo: o mais fundo possível sem dor, cotovelos entre os joelhos.",
     "Em cima: em pé, sem travar os joelhos."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Peito alto.",
     "Desce fundo.",
     "Calcanhar no chão."
+  ],
+  "check": [
+    "Kettlebell junto ao peito",
+    "Mãos nas laterais da alça, base para baixo",
+    "Pés um pouco mais abertos que o quadril",
+    "Calcanhares no chão"
+  ],
+  "vary": "A profundidade: o mais fundo possível sem dor. O que não muda: o tronco ereto, os cotovelos entre os joelhos no fundo e os calcanhares no chão.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {

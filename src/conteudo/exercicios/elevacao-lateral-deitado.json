@@ -3,6 +3,8 @@
   "name": "Elevação lateral deitado de lado com halter",
   "short": "Elevação lateral deitado",
   "target": "Lateral do ombro (deltoide lateral)",
+  "feel": "Lateral do ombro.",
+  "feelNote": "Se o cotovelo dobrar demais, o braço encurta e o ombro trabalha menos. O corpo não gira para ajudar.",
   "setupEq": [
     "Um halter leve. O chão (com colchonete) ou um banco."
   ],
@@ -31,10 +33,22 @@
     "Embaixo: halter perto da coxa.",
     "Em cima: braço quase na vertical."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Corpo de lado, parado.",
     "Arco, cotovelo levemente dobrado.",
     "Desça devagar."
+  ],
+  "check": [
+    "Halter leve",
+    "Cabeça no braço de baixo",
+    "Joelhos dobrados",
+    "Cotovelo levemente dobrado"
+  ],
+  "vary": "No chão, com colchonete, ou num banco. O que não muda: o corpo de lado e parado, e o braço em arco até quase a vertical.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Rosca na máquina",
   "short": "Rosca na máquina",
   "target": "Bíceps",
+  "feel": "Frente do braço (bíceps).",
+  "feelNote": "O braço fica na almofada do começo ao fim, com o cotovelo no eixo da máquina: só o antebraço se mexe.",
   "setupEq": [
     "Assento na altura em que o cotovelo fica alinhado com o eixo da máquina."
   ],
@@ -25,10 +27,21 @@
     "Embaixo: cotovelo quase estendido.",
     "Em cima: fim do movimento."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo no eixo.",
     "Braço no apoio.",
     "Desce até quase esticar."
+  ],
+  "check": [
+    "Assento na altura em que o cotovelo fica alinhado com o eixo",
+    "Braços apoiados na almofada",
+    "Cotovelo no eixo do começo ao fim"
+  ],
+  "vary": "O que não muda: o braço no apoio, o cotovelo no eixo, a subida até o fim e a descida controlando até o cotovelo quase estender.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

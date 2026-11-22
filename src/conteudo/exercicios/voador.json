@@ -3,6 +3,8 @@
   "name": "Voador (peck deck)",
   "short": "Voador",
   "target": "Peito",
+  "feel": "Peito. A frente do ombro ajuda.",
+  "feelNote": "O alongamento é no peito: se os braços passarem da linha do ombro, abriu demais. Se os cotovelos dobrarem e esticarem, o movimento vira um supino: cotovelos fixos.",
   "setupEq": [
     "Banco na altura em que os pegadores (ou as almofadas dos antebraços) ficam na linha do meio do peito."
   ],
@@ -26,10 +28,21 @@
     "Aberto: peito alongado, braços na linha do ombro.",
     "Fechado: mãos à frente do peito."
   ],
+  "breath": "Solte o ar fechando, inspire abrindo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos fixos.",
     "Costas no encosto.",
     "Abre até alongar."
+  ],
+  "check": [
+    "Banco na altura dos pegadores (ou das almofadas) na linha do meio do peito",
+    "Costas no encosto, escápulas juntas",
+    "Cotovelos levemente dobrados e fixos"
+  ],
+  "vary": "A máquina pode ter pegadores ou almofadas para os antebraços. O que não muda: os cotovelos fixos, as costas no encosto e a abertura só até o peito alongar, sem levar os braços para trás da linha do ombro.",
+  "extLabels": [
+    "fechado",
+    "aberto"
   ],
   "errors": [
     {

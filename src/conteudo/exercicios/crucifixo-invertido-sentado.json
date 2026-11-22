@@ -3,6 +3,8 @@
   "name": "Crucifixo invertido sentado, com o peito nas coxas, com halteres",
   "short": "Crucifixo invertido sentado",
   "target": "Ombro de trás (deltoide posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se sentir o alto dos ombros (trapézio), os ombros estão subindo: deixe-os baixos, sem juntar as escápulas. Cotovelos que dobram e puxam viram uma remada.",
   "setupEq": [
     "Um par de halteres leves e uma cadeira firme ou um banco."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: halteres pendurados.",
     "Em cima: braços na altura dos ombros."
   ],
+  "breath": "Solte o ar abrindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Peito nas coxas.",
     "Abra para os lados.",
     "Ombros longe das orelhas."
+  ],
+  "check": [
+    "Cadeira firme ou banco",
+    "Peito nas coxas",
+    "Palmas uma para a outra",
+    "Cotovelos levemente dobrados"
+  ],
+  "vary": "Serve uma cadeira firme ou um banco. O que não muda: o peito nas coxas e os braços abrindo para os lados, com os cotovelos quase retos.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

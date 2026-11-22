@@ -3,6 +3,8 @@
   "name": "Hip thrust",
   "short": "Hip thrust",
   "target": "Glúteos",
+  "feel": "Glúteos.",
+  "feelNote": "Se sentir a lombar, ela está arqueando no topo em vez de o quadril estender: costelas para baixo, queixo levemente recolhido, e pare quando o quadril alinhar com o tronco e as coxas.",
   "setupEq": [
     "Banco encostado na parede ou travado para não deslizar.",
     "Almofada de espuma na barra, sobre o quadril; travas nas anilhas (ou o smith com as travas)."
@@ -32,10 +34,23 @@
     "Embaixo: quadril perto do chão.",
     "Em cima: quadril alinhado com o tronco e as coxas, sem arquear a lombar."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Empurra pelos calcanhares.",
     "Costelas para baixo.",
     "Pausa no topo."
+  ],
+  "check": [
+    "Banco encostado na parede ou travado",
+    "Almofada na barra e travas nas anilhas",
+    "Borda do banco logo abaixo das escápulas",
+    "Pés na largura do quadril"
+  ],
+  "vary": "Com a barra ou no smith, sempre com as travas. O que não muda: o banco que não desliza, o empurrão pelos calcanhares e a pausa de ~1 s no topo, sem arquear a lombar.",
+  "note": "<b>Montagem segura:</b> encoste ou trave o banco antes de começar, para ele não deslizar, e use a almofada na barra e as travas nas anilhas.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {
@@ -59,9 +74,5 @@
       "desc": "Falha de montagem."
     }
   ],
-  "carga": "Com barra: kg total (barra + anilhas), com o menor par de anilhas para progredir. No smith: o total de kg em anilhas, sem contar a barra.",
-  "montagem": [
-    "Encoste ou trave o banco antes de começar, para ele não deslizar.",
-    "Use a almofada na barra e as travas nas anilhas."
-  ]
+  "carga": "Com barra: kg total (barra + anilhas), com o menor par de anilhas para progredir. No smith: kg de anilhas por lado."
 }

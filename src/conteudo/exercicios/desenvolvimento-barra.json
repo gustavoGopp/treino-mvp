@@ -3,6 +3,8 @@
   "name": "Desenvolvimento em pé com barra",
   "short": "Desenvolvimento com barra",
   "target": "Frente do ombro; ajudam a lateral do ombro e o tríceps",
+  "feel": "Frente do ombro. A lateral do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está inclinando para trás para subir a carga: abdômen e glúteos firmes; se não der, diminua a carga.",
   "setupEq": [
     "Barra no rack na altura do peito, anilhas iguais dos dois lados."
   ],
@@ -26,10 +28,24 @@
     "Início: barra na parte de cima do peito.",
     "Fim: braços quase estendidos, barra sobre os ombros."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Abdômen firme.",
     "Barra rente ao rosto.",
     "Sem jogar o tronco."
+  ],
+  "check": [
+    "Travas nas anilhas, anilhas iguais dos dois lados",
+    "Barra tirada do rack na altura do peito",
+    "Pés na largura do quadril",
+    "Abdômen e glúteos firmes",
+    "Cotovelos um pouco à frente da barra"
+  ],
+  "vary": "O que não muda: a barra que sai e volta ao rack, rente ao rosto, as pernas paradas, a lombar sem arquear e a descida até a parte de cima do peito.",
+  "note": "<b>Montagem segura:</b> travas nas anilhas; tire e devolva a barra no rack, e nunca a levante do chão até os ombros com carga pesada.",
+  "extLabels": [
+    "barra no peito",
+    "em cima"
   ],
   "errors": [
     {
@@ -47,10 +63,6 @@
       "title": "Descida curta",
       "desc": "Parar na altura da testa deixa de fora metade do movimento."
     }
-  ],
-  "montagem": [
-    "Travas nas anilhas.",
-    "Tire e devolva a barra no rack; nunca a levante do chão até os ombros com carga pesada."
   ],
   "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
 }

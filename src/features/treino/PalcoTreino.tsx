@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { NotaDoGuia } from '../guia/NotaDoGuia';
+import { carregarTexto } from '../guia/textoDoExercicio';
 import type { ConteudoExercicio } from '../../conteudo/schema';
 import { NOME_DA_VISTA } from '../../engine/novo/vistas';
 import { useEstiloBoneco } from '../app/estiloBoneco';
@@ -18,10 +20,8 @@ const MODOS: [ModoDoGuia, string][] = [
   ['traj', 'Trajetória'],
 ];
 
-// O texto do guia do exercício da vez (dicas, 1º erro, onde sentir), baixado só quando a tela precisa dele. A tela do
-// treino não carrega os textos de todos os exercícios: se um arquivo falhar, o palco avisa e o registro segue de pé.
-const TEXTOS = import.meta.glob<{ default: ConteudoExercicio }>('../../conteudo/exercicios/*.json');
-const carregarTexto = (id: string) => TEXTOS[`../../conteudo/exercicios/${id}.json`]?.().then((m) => m.default) ?? Promise.reject(new Error(`sem texto para ${id}`));
+// O texto do guia do exercício da vez é baixado só quando a tela precisa dele (textoDoExercicio.ts): se o arquivo
+// falhar, o palco avisa e o registro segue de pé.
 
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -41,8 +41,20 @@ function vistaDo(modo: ModoDoGuia, ficha: Ficha): string {
  *   legenda e a pausa num botão próprio. O treino (e o descanso, se houver) segue por baixo.
  * Só um dos dois desenha por vez (o Worker calcula uma volta de cada vez): o de repouso fica `parado` enquanto o
  * ampliado está aberto.
+ * A nota do exercício (montagem segura ou segurança) aparece no palco ampliado, abaixo da legenda: desde a ligação das
+ * 81 animações (22/11/2026), a montagem segura dos exercícios que eram cartão de texto é a nota do guia.
  */
-export function PalcoTreino({ animacaoId, ampliado = false, aoAmpliar, parado = false }: { animacaoId: string; ampliado?: boolean; aoAmpliar?: () => void; parado?: boolean }) {
+export function PalcoTreino({
+  animacaoId,
+  ampliado = false,
+  aoAmpliar,
+  parado = false,
+}: {
+  animacaoId: string;
+  ampliado?: boolean;
+  aoAmpliar?: () => void;
+  parado?: boolean;
+}) {
   const estilo = useEstiloBoneco();
   const [txt, setTxt] = useState<ConteudoExercicio | null>(null);
   const [ficha, setFicha] = useState<Ficha | null>(null);
@@ -213,6 +225,8 @@ export function PalcoTreino({ animacaoId, ampliado = false, aoAmpliar, parado = 
           <Icone nome="maximize-2" className="toca" />
         </button>
       )}
+      {/* a nota (montagem segura ou segurança) vem logo abaixo do desenho: é lida antes do "Entendi" */}
+      {ampliado && txt?.note && <NotaDoGuia nota={txt.note} />}
       {ampliado && ficha && (
         <div className="controles-do-guia">
           <button type="button" className="chip" aria-pressed={lento} onClick={() => setLento((v) => !v)}>

@@ -3,6 +3,8 @@
   "name": "Remada curvada em pé com elástico, pisando no meio",
   "short": "Remada curvada elástico",
   "target": "Costas; ajudam o bíceps e o ombro de trás",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, as costas estão arredondando ou o tronco está subindo: costas retas e tronco parado.",
   "setupEq": [
     "Um elástico longo, sem ponto de ancoragem."
   ],
@@ -32,10 +34,23 @@
     "Início: braços estendidos.",
     "Fim: cotovelos atrás do tronco."
   ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Costas retas.",
     "Cotovelos para trás.",
     "Pés inteiros no elástico."
+  ],
+  "check": [
+    "Pés inteiros no meio do elástico",
+    "Pés na largura do quadril",
+    "Tronco bem inclinado, costas retas",
+    "Joelhos levemente dobrados"
+  ],
+  "vary": "O que não muda: as costas retas e o tronco inclinado e parado; quem puxa são os cotovelos, perto do corpo.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado e pise com o pé inteiro sobre ele: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "braços estendidos",
+    "cotovelos atrás"
   ],
   "errors": [
     {
@@ -53,9 +68,6 @@
       "title": "Pisar só com a ponta do pé",
       "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
   ],
   "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
 }

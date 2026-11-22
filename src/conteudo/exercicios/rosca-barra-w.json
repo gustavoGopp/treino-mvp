@@ -3,6 +3,8 @@
   "name": "Rosca com barra W",
   "short": "Rosca com barra W",
   "target": "Bíceps",
+  "feel": "Frente do braço (bíceps).",
+  "feelNote": "Se a barra só sobe jogando o corpo para trás, ou se os cotovelos vão à frente no topo, o bíceps trabalha menos: tronco reto e cotovelos parados ao lado do corpo.",
   "setupEq": [
     "Barra W com anilhas iguais dos dois lados."
   ],
@@ -26,10 +28,23 @@
     "Início: braços quase estendidos.",
     "Fim: barra perto dos ombros."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos parados.",
     "Tronco reto.",
     "Desce devagar."
+  ],
+  "check": [
+    "Travas nas anilhas, anilhas iguais dos dois lados",
+    "Pés na largura do quadril, tronco reto",
+    "Pegada nas partes inclinadas, palmas para cima",
+    "Cotovelos ao lado do corpo"
+  ],
+  "vary": "O que não muda: os cotovelos parados ao lado do corpo, o tronco reto e a descida até os braços quase estenderem.",
+  "note": "<b>Montagem segura:</b> travas nas anilhas.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {
@@ -47,9 +62,6 @@
       "title": "Descida curta",
       "desc": "Não estender os braços deixa de fora a parte alongada."
     }
-  ],
-  "montagem": [
-    "Travas nas anilhas."
   ],
   "carga": "Registre os kg (barra W com anilhas). Para progredir, o menor par de anilhas."
 }

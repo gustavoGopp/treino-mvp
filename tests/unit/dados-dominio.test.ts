@@ -23,7 +23,7 @@ import {
   type Inventario,
 } from '../../src/domain/taxonomia/equipamentos';
 import { existsSync } from 'node:fs';
-import { EX } from '../../src/engine';
+import { APROVADOS } from '../../src/engine/novo/aprovados';
 
 describe('biblioteca de exercícios', () => {
   it('ids únicos', () => {
@@ -32,20 +32,22 @@ describe('biblioteca de exercícios', () => {
   });
 
   it('toda animação citada existe no motor, e toda animação do motor está na biblioteca', () => {
-    const animacoes = new Set(EX.map((e: { id: string }) => e.id));
+    // ligação das 81 animações (22/11/2026): o motor em uso é o novo, e a lista de animações é a das aprovadas (171)
+    const animacoes = new Set(Object.keys(APROVADOS));
     const usadas = BIBLIOTECA.map((e) => e.animacaoId).filter((a): a is string => !!a);
     for (const a of usadas) expect(animacoes, a).toContain(a);
     // Sem animação órfã: a cópia elevacao-lateral-b saiu na revisão de anatomia (02/11/2026, achado 9).
     expect(new Set(usadas)).toEqual(animacoes);
   });
 
-  it('os 28 exercícios novos do R0c (pesquisa-v2/08, seção 5) ainda sem animação (a remada na suspensão foi animada em 04/11/2026) estão na biblioteca, com ficha de técnica', () => {
+  it('os 28 exercícios novos do R0c (pesquisa-v2/08, seção 5) estão na biblioteca, com ficha de técnica e, desde 22/11/2026, com animação', () => {
     const NOVOS = ['hack', 'agachamento-smith', 'terra-hexagonal', 'goblet-kettlebell', 'supino-smith', 'supino-maquina', 'mergulho', 'mergulho-graviton', 'voador', 'puxada-frente', 'barra-fixa-graviton', 'remada-baixa-estacao', 'remada-articulada', 'desenvolvimento-maquina', 'voador-invertido', 'rosca-scott', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'hip-thrust', 'coice-maquina', 'coice-polia', 'abducao-maquina', 'abducao-polia', 'aducao-maquina', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'abdominal-maquina'];
     expect(NOVOS).toHaveLength(28);
     for (const id of NOVOS) {
       const e = BIBLIOTECA.find((x) => x.id === id);
       expect(e, id).toBeDefined();
-      expect(e!.animacaoId, id).toBeNull();
+      // ligação das 81 animações (22/11/2026): os 28 ganharam animação aprovada
+      expect(e!.animacaoId, id).toBe(id);
       expect(existsSync(`docs/pesquisa/animacoes/${id}.md`), id).toBe(true);
     }
   });

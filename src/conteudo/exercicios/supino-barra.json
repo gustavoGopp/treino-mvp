@@ -3,6 +3,8 @@
   "name": "Supino reto com barra",
   "short": "Supino com barra",
   "target": "Peito",
+  "feel": "Peito. A frente do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir mais o ombro, confira os cotovelos: a ~30–60° do tronco, não abertos a 90°.",
   "setupEq": [
     "Banco plano dentro do rack; a barra numa altura que você alcança com os cotovelos quase estendidos."
   ],
@@ -27,10 +29,24 @@
     "Início: braços quase estendidos, barra sobre os ombros.",
     "Fim: barra tocando de leve o meio do peito."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Escápulas no banco.",
     "Toca o peito, sem quicar.",
     "Pés firmes no chão."
+  ],
+  "check": [
+    "Travas do rack logo abaixo da altura do peito, ou alguém para ajudar",
+    "Anilhas iguais dos dois lados",
+    "Olhos embaixo da barra, pés firmes no chão",
+    "Escápulas juntas e para baixo, apoiadas no banco",
+    "Pegada um pouco mais aberta que os ombros, punhos retos"
+  ],
+  "vary": "A segurança pode ser a trava do rack ou alguém para ajudar; sem uma das duas, pare bem antes da falha. O que não muda: a barra que toca de leve o meio do peito, sem quicar, e o quadril no banco.",
+  "note": "<b>Montagem segura:</b> travas de segurança do rack logo abaixo da altura do peito, ou alguém para ajudar (sem uma das duas, pare bem antes da falha), e anilhas iguais dos dois lados, com as travas nas anilhas.",
+  "extLabels": [
+    "em cima",
+    "barra no peito"
   ],
   "errors": [
     {
@@ -48,10 +64,6 @@
       "title": "Tirar o quadril do banco",
       "desc": "Levantar o quadril encurta o movimento e tensiona a lombar."
     }
-  ],
-  "montagem": [
-    "Travas de segurança do rack logo abaixo da altura do peito, ou alguém para ajudar: sem uma das duas, pare bem antes da falha.",
-    "Anilhas iguais dos dois lados, com as travas nas anilhas."
   ],
   "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
 }

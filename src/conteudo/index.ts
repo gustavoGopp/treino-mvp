@@ -7,7 +7,7 @@ const arquivos = import.meta.glob<{ default: unknown }>('./exercicios/*.json', {
 // aprovada (com "carga"). Nenhum traz prescrição: ela vem do programa (R1). tests/unit/conteudo.test.ts confere.
 const lidos = Object.entries(arquivos).map(([caminho, m]) => {
   const bruto = m.default as Record<string, unknown>;
-  const c = 'carga' in bruto ? { tipo: 'cartao' as const, dado: cartaoTextoSchema.parse(bruto) } : { tipo: 'guia' as const, dado: conteudoExercicioSchema.parse(bruto) };
+  const c = 'feel' in bruto ? { tipo: 'guia' as const, dado: conteudoExercicioSchema.parse(bruto) } : { tipo: 'cartao' as const, dado: cartaoTextoSchema.parse(bruto) };
   if (!caminho.endsWith(`/${c.dado.id}.json`)) throw new Error(`id ${c.dado.id} não bate com o arquivo ${caminho}`);
   return c;
 });

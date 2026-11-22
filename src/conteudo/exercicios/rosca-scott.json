@@ -3,6 +3,8 @@
   "name": "Rosca Scott",
   "short": "Rosca Scott",
   "target": "Bíceps",
+  "feel": "Frente do braço: o bíceps, com o braquial e o braquiorradial.",
+  "feelNote": "Embaixo, o cotovelo fica quase estendido com o peso: desça controlando, sem soltar o peso no fim. O braço fica colado na almofada do começo ao fim.",
   "setupEq": [
     "Banco na altura em que o tronco fica reto; barra W ou halter."
   ],
@@ -25,10 +27,21 @@
     "Embaixo: cotovelo quase estendido, sem travar.",
     "Em cima: antebraço quase vertical."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Braço colado na almofada.",
     "Desce devagar.",
     "Sem soltar embaixo."
+  ],
+  "check": [
+    "Banco na altura em que o tronco fica reto",
+    "Parte de trás do braço inteira na almofada",
+    "Axilas encostadas na borda"
+  ],
+  "vary": "Dá para fazer com barra W ou com halter. O que não muda: o braço inteiro na almofada, a descida em ~2–3 s até o cotovelo quase estender, sem soltar o peso, e a subida até o antebraço ficar quase vertical.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

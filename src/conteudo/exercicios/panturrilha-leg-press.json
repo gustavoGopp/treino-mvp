@@ -3,6 +3,8 @@
   "name": "Panturrilha no leg press",
   "short": "Panturrilha no leg press",
   "target": "Panturrilha",
+  "feel": "Panturrilha.",
+  "feelNote": "Se sentir a coxa, os joelhos estão dobrando para empurrar a plataforma: joelhos estendidos, sem travar, e empurre só com a ponta dos pés.",
   "setupEq": [
     "Leg press com a trava de segurança fechada durante toda a série.",
     "Anilhas iguais dos dois lados."
@@ -32,10 +34,24 @@
     "Início: calcanhares abaixo da ponta dos pés, panturrilha alongada.",
     "Fim: na ponta dos pés."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Alonga embaixo.",
     "Joelhos estendidos.",
     "Sobe o máximo."
+  ],
+  "check": [
+    "Trava de segurança fechada",
+    "Anilhas iguais dos dois lados",
+    "Costas e quadril apoiados, joelhos estendidos sem travar",
+    "Só a ponta dos pés na borda de baixo da plataforma",
+    "Pés secos e tênis que não escorrega"
+  ],
+  "vary": "O que não muda: os joelhos estendidos, a descida em ~2 s até a panturrilha alongar bem, a pausa de 1 s embaixo, sem quicar, e a subida o máximo que conseguir na ponta dos pés.",
+  "note": "<b>Montagem segura:</b> mantenha a trava de segurança fechada durante toda a série: com só a ponta dos pés na plataforma, o pé pode escapar. Pés secos e tênis que não escorrega.",
+  "extLabels": [
+    "alongado",
+    "topo"
   ],
   "errors": [
     {
@@ -54,9 +70,5 @@
       "desc": "Bater e voltar sem a pausa tira o trabalho da parte alongada."
     }
   ],
-  "montagem": [
-    "Mantenha a trava de segurança fechada: com só a ponta dos pés na plataforma, o pé pode escapar.",
-    "Pés secos e tênis que não escorrega."
-  ],
-  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
 }

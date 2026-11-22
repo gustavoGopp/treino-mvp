@@ -3,6 +3,8 @@
   "name": "Elevação lateral unilateral com elástico preso sob o pé do outro lado",
   "short": "Elevação lateral unilateral elástico",
   "target": "Lateral do ombro (deltoide lateral)",
+  "feel": "Lateral do ombro.",
+  "feelNote": "Se sentir o alto do ombro e o pescoço (trapézio), o ombro está subindo para a orelha: deixe-o baixo.",
   "setupEq": [
     "Um elástico longo."
   ],
@@ -31,10 +33,23 @@
     "Embaixo: braço ao lado da coxa.",
     "Em cima: braço na altura do ombro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo lidera.",
     "Ombro longe da orelha.",
     "Pé inteiro no elástico."
+  ],
+  "check": [
+    "Pé inteiro no elástico",
+    "Elástico cruzando à frente do corpo",
+    "Cotovelo levemente dobrado",
+    "Ombro baixo"
+  ],
+  "vary": "O que não muda: o braço sobe só até a altura do ombro, com o cotovelo liderando, o ombro baixo e o tronco parado.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado e pise com o pé inteiro sobre ele: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {
@@ -52,9 +67,6 @@
       "title": "Pisar só com a ponta do pé",
       "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
   ],
   "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
 }

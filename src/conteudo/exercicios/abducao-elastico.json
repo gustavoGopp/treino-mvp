@@ -3,6 +3,8 @@
   "name": "Abdução de quadril em pé com elástico preso sob o outro pé",
   "short": "Abdução em pé elástico",
   "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo da perna que abre.",
+  "feelNote": "Se sentir a frente do quadril, o pé está girando para fora: dedos para a frente. Se o tronco inclinar, a perna sobe sem o glúteo.",
   "setupEq": [
     "Um elástico em laço, ou longo com um nó, e uma parede para a mão."
   ],
@@ -32,10 +34,23 @@
     "Início: pernas juntas.",
     "Fim: perna aberta para o lado, sem o tronco inclinar."
   ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Tronco reto.",
     "Dedos para a frente.",
     "A mão só equilibra."
+  ],
+  "check": [
+    "Elástico sob o pé inteiro",
+    "Mão de dentro na parede",
+    "Tronco reto",
+    "Dedos para a frente"
+  ],
+  "vary": "O elástico pode ser em laço ou longo, com um nó. O que não muda: o tronco reto, os dedos para a frente e a mão na parede só para equilibrar.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado e pise com o pé inteiro sobre ele: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "pernas juntas",
+    "aberto"
   ],
   "errors": [
     {
@@ -53,9 +68,6 @@
       "title": "Balançar a perna",
       "desc": "O embalo tira o trabalho do glúteo. Abra e volte devagar."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
   ],
   "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
 }

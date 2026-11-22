@@ -4,10 +4,15 @@ import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { carregarCartao, temCartao } from '../../src/conteudo/cartoes';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { EX } from '../../src/engine';
+import { APROVADOS } from '../../src/engine/novo/aprovados';
 
 describe('conteúdo dos exercícios', () => {
+  // ligação das 81 animações (22/11/2026): a lista de animações é a das aprovadas no motor novo (171); o motor de antes só tem as 90
+  // primeiras, e a ordem dos erros delas continua conferida contra ele, logo abaixo. A das 81 é conferida contra a ficha
+  // de movimento do motor novo por `scripts/animacao-nova/conferir-textos-restantes.ts`.
   it('todo exercício animado tem texto, e todo texto tem animação', () => {
-    expect(Object.keys(CONTEUDO).sort()).toEqual(EX.map((e) => e.id).sort());
+    expect(Object.keys(CONTEUDO).sort()).toEqual(Object.keys(APROVADOS).sort());
+    expect(Object.keys(CARTOES)).toEqual([]);
   });
 
   it.each(EX.map((e) => [e.id, e] as const))('%s: cada erro animado tem título e descrição, na mesma ordem', (id, ex) => {
@@ -44,10 +49,14 @@ describe('conteúdo dos exercícios', () => {
     }
   });
 
-  it('todo exercício com ficha de técnica e sem animação tem cartão de texto (os 29 do R0c e os da auditoria do treino)', () => {
-    const comFicha = BIBLIOTECA.filter((e) => existsSync(`docs/pesquisa/animacoes/${e.id}.md`) && e.animacaoId === null && e.id !== 'agachamento-barra');
-    expect(comFicha.length).toBeGreaterThanOrEqual(29);
-    for (const e of comFicha) expect(CARTOES[e.id], e.id).toBeDefined();
+  // ligação das 81 animações (22/11/2026): não sobra exercício sem animação. A regra continua valendo para o que vier: sem animação
+  // aprovada, o exercício só entra com cartão de texto (nunca animação improvisada).
+  it('todo exercício da biblioteca tem animação aprovada e texto do guia; se algum vier sem animação, tem de ter cartão de texto', () => {
+    for (const e of BIBLIOTECA) {
+      if (e.animacaoId === null) expect(CARTOES[e.id], e.id).toBeDefined();
+      else expect(CONTEUDO[e.animacaoId], e.id).toBeDefined();
+    }
+    expect(BIBLIOTECA.filter((e) => e.animacaoId === null)).toEqual([]);
   });
 
   it('auditoria do treino, lote 1: os 5 mais prescritos sem guia ganharam ficha de técnica e cartão de texto (ou, depois, a animação aprovada)', () => {
@@ -61,6 +70,9 @@ describe('conteúdo dos exercícios', () => {
   it('seguranca.montagem: exercício com travas ou ancoragem (tag "montagem") tem a montagem no cartão, se tiver cartão', () => {
     for (const e of BIBLIOTECA.filter((x) => x.tags.includes('montagem')))
       if (CARTOES[e.id]) expect(CARTOES[e.id]!.montagem, e.id).toBeDefined();
+    // ligação das 81 animações (22/11/2026): nos exercícios que eram cartão, a montagem segura virou a nota do guia, que fica à vista
+    // no guia e na tela do treino. A panturrilha no degrau já era animada e nunca teve cartão.
+    for (const e of BIBLIOTECA.filter((x) => x.tags.includes('montagem') && x.id !== 'panturrilha-degrau')) expect(CONTEUDO[e.animacaoId!]!.note, e.id).toBeTruthy();
   });
 
   // Lote técnico do redesign: o programa e o treino baixam o cartão sozinho (src/conteudo/cartoes.ts). Para todo

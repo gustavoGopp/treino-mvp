@@ -3,6 +3,8 @@
   "name": "Rosca Scott com halter, braço apoiado no encosto do banco inclinado",
   "short": "Scott no banco",
   "target": "Bíceps (frente do braço)",
+  "feel": "Frente do braço (bíceps), entre o ombro e o cotovelo.",
+  "feelNote": "Se sentir o ombro, o braço está saindo do encosto: ele fica apoiado do começo ao fim.",
   "setupEq": [
     "Um halter e um banco que inclina, com o encosto a ~45 a 60°."
   ],
@@ -31,10 +33,22 @@
     "Embaixo: braço quase estendido, sem travar.",
     "Em cima: halter perto do ombro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Braço colado no encosto.",
     "Desça devagar.",
     "Não trave embaixo."
+  ],
+  "check": [
+    "Encosto a ~45 a 60°",
+    "Axila no topo do encosto",
+    "Palma para cima",
+    "Braço apoiado do começo ao fim"
+  ],
+  "vary": "Dá para fazer de pé ou ajoelhado atrás do banco, com o encosto entre ~45 e 60°. O que não muda: o braço apoiado no encosto e a descida até quase estender, sem travar o cotovelo.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {

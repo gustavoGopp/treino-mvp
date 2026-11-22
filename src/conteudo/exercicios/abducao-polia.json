@@ -3,6 +3,8 @@
   "name": "Abdução na polia com tornozeleira",
   "short": "Abdução na polia",
   "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo da perna que abre.",
+  "feelNote": "Se o tronco cair para o lado oposto, é ele que está levantando a perna: tronco reto. Se o pé girar para fora, vira outro movimento: pé apontando para a frente.",
   "setupEq": [
     "Polia no ponto mais baixo; tornozeleira na perna mais longe da polia."
   ],
@@ -26,10 +28,23 @@
     "Início: perna cruzada à frente da outra.",
     "Fim: perna aberta para o lado, pé para a frente."
   ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Tronco reto.",
     "Pé para a frente.",
     "Sem embalar."
+  ],
+  "check": [
+    "Polia no ponto mais baixo",
+    "Tornozeleira na perna mais longe da polia",
+    "De lado para a torre, mão nela para equilíbrio",
+    "Tronco reto",
+    "Pé apontando para a frente"
+  ],
+  "vary": "O que não muda: o tronco reto, a mão na torre só para equilibrar, o joelho estendido com o pé para a frente, a perna sem embalo e a volta cruzando à frente da outra, controlando.",
+  "extLabels": [
+    "perna cruzada",
+    "perna aberta"
   ],
   "errors": [
     {

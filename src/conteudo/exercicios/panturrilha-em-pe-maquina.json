@@ -3,6 +3,8 @@
   "name": "Panturrilha em pé na máquina",
   "short": "Panturrilha em pé",
   "target": "Panturrilha",
+  "feel": "Panturrilha (gastrocnêmio e sóleo).",
+  "feelNote": "Com os joelhos estendidos, o gastrocnêmio trabalha alongado. Se os joelhos dobrarem, eles dão impulso: joelhos esticados, sem travar.",
   "setupEq": [
     "Ponta dos pés na borda da plataforma."
   ],
@@ -30,10 +32,21 @@
     "Embaixo: calcanhar bem abaixo da plataforma.",
     "Em cima: calcanhar o mais alto possível."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Pausa embaixo.",
     "Joelhos esticados.",
     "Sem quicar."
+  ],
+  "check": [
+    "Ombros sob as almofadas",
+    "Ponta dos pés na borda da plataforma",
+    "Joelhos estendidos, sem travar"
+  ],
+  "vary": "O que não muda: os joelhos esticados, o calcanhar bem abaixo da plataforma, com a pausa de ~1 s embaixo, sem quicar, e a subida o máximo possível.",
+  "extLabels": [
+    "alongado",
+    "topo"
   ],
   "errors": [
     {
@@ -52,5 +65,5 @@
       "desc": "Sem pausa embaixo."
     }
   ],
-  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, o total de kg em anilhas."
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
 }

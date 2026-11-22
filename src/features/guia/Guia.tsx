@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { NotaDoGuia } from './NotaDoGuia';
 import { faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
@@ -655,18 +656,5 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
         </div>
       </details>
     </section>
-  );
-}
-
-/**
- * A nota do exercício (montagem segura ou segurança), à vista em todos os modos, logo abaixo do palco (lote 2). Os
- * textos marcam o título com <b>…</b>: só essa marca vira negrito; todo o resto é texto, sem HTML livre.
- */
-function NotaDoGuia({ nota }: { nota: string }) {
-  const partes = nota.split(/<b>(.*?)<\/b>/);
-  return (
-    <div className="warnbox nota-guia">
-      {partes.map((p, i) => (i % 2 ? <b key={i}>{p}</b> : p))}
-    </div>
   );
 }

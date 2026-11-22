@@ -3,6 +3,8 @@
   "name": "Abdominal no banco declinado",
   "short": "Abdominal declinado",
   "target": "Abdômen",
+  "feel": "Abdômen.",
+  "feelNote": "Se sentir a frente do quadril, você está subindo com a coluna reta, como uma tábua: enrole a coluna, levando as costelas na direção do quadril. Se sentir o pescoço, as mãos estão puxando a cabeça.",
   "setupEq": [
     "Banco declinado, com os pés presos nos rolos."
   ],
@@ -26,10 +28,23 @@
     "Início: costas no banco.",
     "Fim: tronco enrolado, costas fora do banco."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Enrola a coluna.",
     "Sem puxar o pescoço.",
     "Desce devagar."
+  ],
+  "check": [
+    "Pés bem presos nos rolos",
+    "Joelhos dobrados",
+    "Mãos cruzadas no peito ou ao lado da cabeça",
+    "Pescoço sem puxar"
+  ],
+  "vary": "As mãos ficam cruzadas no peito ou ao lado da cabeça. O que não muda: a coluna que enrola, sem puxar o pescoço nem jogar os braços, e a descida em ~2–3 s, sem relaxar no fundo.",
+  "note": "<b>Montagem segura:</b> confira se os pés estão bem presos antes de deitar; para sair, segure no banco e sente primeiro.",
+  "extLabels": [
+    "costas no banco",
+    "tronco enrolado"
   ],
   "errors": [
     {
@@ -47,9 +62,6 @@
       "title": "Impulso",
       "desc": "Jogar os braços para ganhar embalo."
     }
-  ],
-  "montagem": [
-    "Confira se os pés estão bem presos antes de deitar; para sair, segure no banco e sente primeiro."
   ],
   "carga": "Peso do corpo: registre o degrau da escada de dificuldade (mais repetições, descida lenta, variação mais difícil, carga extra). Depois, segure uma anilha ou um halter junto ao peito, em kg."
 }

@@ -3,6 +3,8 @@
   "name": "Crucifixo com halteres no banco plano",
   "short": "Crucifixo com halteres",
   "target": "Peito",
+  "feel": "Peito, que alonga embaixo. A frente do ombro ajuda.",
+  "feelNote": "Se sentir mais o ombro que o peito, desça menos e mantenha as escápulas no banco. Cotovelos que dobram e esticam viram um supino.",
   "setupEq": [
     "Banco plano.",
     "Um par de halteres."
@@ -33,10 +35,22 @@
     "Embaixo: cotovelos na altura do tronco, peito alongado.",
     "Em cima: halteres acima do peito, sem encostar um no outro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos fixos.",
     "Abre em arco.",
     "Abraço na volta."
+  ],
+  "check": [
+    "Pés firmes no chão",
+    "Palmas uma para a outra",
+    "Cotovelos levemente dobrados",
+    "Escápulas no banco"
+  ],
+  "vary": "O quanto descer depende do conforto do seu ombro: pare antes de doer. O que não muda: os cotovelos no mesmo ângulo, do começo ao fim, e as escápulas no banco.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

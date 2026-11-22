@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { lazy, Suspense, useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito } from '../../domain/gerador';
@@ -24,6 +24,9 @@ import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, semanaLeveDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
+
+// A nota de montagem só baixa quando uma folha de exercício a pede: fora do pacote da tela do programa (limite de peso).
+const NotaDoExercicio = lazy(() => import('../guia/NotaDoGuia').then((m) => ({ default: m.NotaDoExercicio })));
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
@@ -637,6 +640,12 @@ function LinhaExercicio({
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
+          {/* a montagem segura dos exercícios com travas ou ancoragem fica à vista também aqui (seguranca.montagem) */}
+          {x.animacaoId && ex?.tags.includes('montagem') && (
+            <Suspense fallback={null}>
+              <NotaDoExercicio animacaoId={x.animacaoId} />
+            </Suspense>
+          )}
           {/* o que se faz na folha (trocar, preferir, ver a evolução) vem antes do que se lê (o porquê) */}
           {x.alternativas.length > 0 && (
             <details className="box dobra">

@@ -3,6 +3,8 @@
   "name": "Pull-through na polia baixa com corda",
   "short": "Pull-through",
   "target": "Glúteos e posteriores da coxa",
+  "feel": "Parte de trás da coxa, que alonga na descida, e glúteos.",
+  "feelNote": "Se sentir a lombar, a coluna está arredondando na descida ou você está inclinando para trás no topo. Se sentir os braços, eles estão puxando: só seguram a corda.",
   "setupEq": [
     "Polia embaixo, com a corda."
   ],
@@ -26,10 +28,22 @@
     "Início: quadril para trás, posteriores alongados.",
     "Fim: em pé, quadril estendido."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Quadril para trás.",
     "Braços só seguram.",
     "Aperta o glúteo em pé."
+  ],
+  "check": [
+    "Polia embaixo, com a corda",
+    "De costas para a torre, dois passos à frente",
+    "Pés um pouco mais abertos que o quadril",
+    "Joelhos um pouco dobrados"
+  ],
+  "vary": "O que não muda: a coluna reta, o quadril que vai para trás e volta, e os braços que só seguram a corda.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Tríceps na máquina",
   "short": "Tríceps na máquina",
   "target": "Tríceps",
+  "feel": "Parte de trás do braço (tríceps).",
+  "feelNote": "O braço fica na almofada do começo ao fim, com o cotovelo no eixo da máquina: só o antebraço se mexe.",
   "setupEq": [
     "Assento na altura em que o cotovelo fica alinhado com o eixo da máquina."
   ],
@@ -25,10 +27,21 @@
     "Início: cotovelo dobrado ~90° ou mais.",
     "Fim: cotovelos quase estendidos."
   ],
+  "breath": "Solte o ar estendendo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo no eixo.",
     "Braço no apoio.",
     "Estica até o fim."
+  ],
+  "check": [
+    "Assento na altura em que o cotovelo fica alinhado com o eixo",
+    "Braços apoiados na almofada",
+    "Cotovelo no eixo do começo ao fim"
+  ],
+  "vary": "Esta é a máquina com o braço apoiado à frente; há também máquinas de tríceps com o braço acima da cabeça. O que não muda: o braço no apoio, o cotovelo no eixo, a extensão até quase travar e a volta até o cotovelo dobrar ~90° ou mais.",
+  "extLabels": [
+    "cotovelo dobrado",
+    "quase estendido"
   ],
   "errors": [
     {

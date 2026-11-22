@@ -23,6 +23,11 @@ export const conteudoExercicioSchema = z
     check: z.array(texto).min(1),
     vary: texto,
     note: texto.optional(),
+    /**
+     * Como registrar e subir a carga (ligação das 81 animações, 22/11/2026): vinha no cartão de texto e continua no
+     * texto do guia dos exercícios que eram cartão. As 90 primeiras não têm (a progressão delas vem do programa).
+     */
+    carga: texto.optional(),
     extLabels: z.tuple([texto, texto]),
     errors: z.array(z.object({ id: texto, title: texto, desc: texto })).min(1),
   })

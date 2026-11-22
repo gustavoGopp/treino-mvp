@@ -322,7 +322,16 @@ export function Treino() {
             </div>
           )}
           {x.animacaoId ? (
-            <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} />
+            <>
+              <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} />
+              {/* seguranca.montagem: exercício com travas ou ancoragem. A nota inteira está no guia ampliado (que abre sozinho
+                  na 1ª vez); aqui fica o caminho de um toque, para o Boneco não perder o lugar (22/11/2026). */}
+              {POR_ID[x.exId]?.tags.includes('montagem') && (
+                <button type="button" className="ver-montagem" onClick={() => setGuiaAmpliado(true)}>
+                  <b>Montagem segura:</b> veja antes da série
+                </button>
+              )}
+            </>
           ) : (
             <CartaoTexto exId={x.exId} />
           )}
