@@ -2487,3 +2487,28 @@ Imagens em `revisoes/melhorias/m3/`. A sigla RIR ficou só em "Entenda o treino"
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Pedi a sete revisores independentes que comparassem as 166 regras do meu app de treino com o código. 93 batiam. Nas outras, quase sempre era o texto que tinha ficado para trás, mas sete eram defeito de verdade: o app mandava subir a carga numa série com dor, por exemplo. O mais curioso foi o que os usuários já tinham sentido: a tela pedia de 8 a 15 repetições, e quem fazia 8 via a carga cair."
+
+## O descanso avisa: feito nos ramos, à espera do teste nos aparelhos (22/11/2026)
+
+**De onde veio.** O lote M4 da análise crítica. **Nada disto está na `main`:** o passo 1 está no ramo `claude/m4-o-descanso-avisa` (PR 5, rascunho) e o passo 2 no ramo `claude/m4-passo-2-aviso`. O lote só fecha com a tabela medida num Android e num iPhone, os quatro textos decididos pelo Gustavo e o ok dele. O registro completo, com as fontes conferidas e as decisões técnicas, está em `revisoes/melhorias/m4/README.md`.
+
+**O que muda para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Som no fim do descanso | três bipes gerados pelo site, que o iPhone cala no silencioso | os mesmos três bipes num arquivo de som, que o iPhone não cala (a confirmar no aparelho) |
+| Hora do fim | não aparecia | "Descanso até 17:28" |
+| Quem sai do app ou bloqueia a tela no descanso | não era avisado | recebe "Hora da próxima série", se ligou o aviso |
+| O que sai do aparelho | só a foto, se usada | também, para quem liga o aviso e só ao sair do app no descanso: o endereço de aviso do celular e o tempo que falta |
+
+![A tela do descanso com a hora do fim](revisoes/melhorias/m4/descanso-ate.png)
+![O pedido de aviso](revisoes/melhorias/m4/pedido-de-aviso.png)
+
+**Feito pelo Gustavo em 22/11:** as três chaves na Vercel e a proteção por login dos endereços de teste desligada. Conferido no endereço de teste: a fila gratuita aceita marcar e desfazer.
+
+**O que escapou e virou item da lista.** A função do servidor quebrava ao iniciar na Vercel (o jeito de importar a biblioteca `web-push`), com tipos, testes e `npm run verificar` passando. Apareceu numa chamada ao endereço de teste. Agora há um teste que carrega cada função no Node, como a Vercel (item 15 de `verificacao/lista.md`).
+
+**O que ninguém mediu ainda.** Se o som novo toca num iPhone; se ele para a música de quem treina de fone; se o aviso chega com som e vibração em cada celular. É a tabela do README.
+
+**Rascunho de post.** Fica para o fechamento do lote, com a tabela medida.
+
