@@ -107,7 +107,7 @@ function MarcarVarios<T extends string | number>({
 }
 
 /** Valor escolhido por toque entre os comuns, ou digitado em "Outro". */
-function ValorPorToque({
+export function ValorPorToque({
   legenda,
   valores,
   valor,

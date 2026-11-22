@@ -1,8 +1,8 @@
 import { diaNoLocal, type DiaNoLocal } from '../../domain/locais';
 import type { SerieRegistrada } from '../../domain/progressao';
 import { alertaPendente, hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
-import type { Inventario } from '../../domain/taxonomia/equipamentos';
-import { localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
+import { comHalterMaisPesado, type Inventario } from '../../domain/taxonomia/equipamentos';
+import { comInventario, localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
 
 // Ações sobre o treino em andamento (estado → estado). Puras: quem chama passa a data de agora e o fuso do aparelho.
 
@@ -38,6 +38,12 @@ export function diaDoTreino(
 /** Inventário do local de um treino (o do programa, se a sessão não diz). */
 export const inventarioDoTreino = (e: Estado, s?: Pick<Sessao, 'localId'>): Inventario =>
   (localPorId(e, s?.localId) ?? localDoPrograma(e))?.inventario ?? {};
+
+/** "Meus pesos são outros": grava o halter mais pesado no local do treino (o do programa, se a sessão não diz). */
+export function corrigirHalterMaisPesado(e: Estado, s: Pick<Sessao, 'localId'> | undefined, maxKg: number): Estado {
+  const local = localPorId(e, s?.localId) ?? localDoPrograma(e);
+  return local ? comInventario(e, local.id, comHalterMaisPesado(local.inventario, maxKg)) : e;
+}
 
 /**
  * Como ler o histórico de carga num treino (progressao.troca-equivalente): nas máquinas, só o do local de hoje (as

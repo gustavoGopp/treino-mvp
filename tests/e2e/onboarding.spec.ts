@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, minutosPorTreino, porQueDaSugestao, pronto, sobreOPrograma, triagem, triagemNenhuma, verAvisos } from './jornada';
+import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, minutosPorTreino, porQueDaSugestao, pronto, sobreOPrograma, terminarTreino, triagem, triagemNenhuma, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -217,6 +217,40 @@ test('"Nunca treinei" não pergunta da pausa nem da técnica, chega ao programa 
   await expect(page.getByRole('group', { name: /sem parar/ }).getByLabel('Nunca treinei')).toBeChecked();
   await expect(page.getByRole('group', { name: /treinando agora/ })).toHaveCount(0);
   await expect(page.getByRole('group', { name: /confiança na técnica/ })).toHaveCount(0);
+});
+
+// Lote M1: o programa saiu de um kit que o app supôs. Ele diz isso, leva ao ajuste, e o erro do palpite se corrige na
+// hora de anotar a carga, com uma pergunta só.
+test('kit típico de casa: o programa diz que supôs o kit, e "Meus pesos são outros" corrige os halteres no treino', async ({ page }) => {
+  await ateOEquipamento(page, 'treina');
+  await page.getByRole('button', { name: 'Casa com halteres e elásticos' }).click();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  const linha = page.locator('.aviso-linha');
+  await expect(linha).toContainText('Montado para um kit típico de casa.');
+  await linha.getByRole('button', { name: 'Ajustar', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Editar: Meu local' })).toBeVisible();
+  await expect(page.getByRole('region', { name: /^Marcados \(2\)/ })).toContainText('Halteres fixos');
+  await page.goto('/programa');
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  // a lista de cargas é a do kit (2 a 10 kg, de 2 em 2), com a saída no fim
+  const carga = page.getByLabel('Carga', { exact: true });
+  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', 'Meus pesos são outros…']);
+  await carga.selectOption({ label: 'Meus pesos são outros…' });
+  const folha = page.getByRole('dialog', { name: 'Seus halteres' });
+  await folhaPronta(page);
+  await expect(folha).toContainText('O app supôs halteres até 10 kg.');
+  await expect(folha.getByRole('button', { name: 'Guardar' })).toBeDisabled();
+  await folha.getByLabel('16 kg', { exact: true }).check();
+  await folha.getByRole('button', { name: 'Guardar' }).click();
+  await expect(folha).toHaveCount(0);
+  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', '12 kg', '14 kg', '16 kg', 'Meus pesos são outros…']);
+  // a correção ficou no local: o programa deixa de dizer "kit típico", e a lista de cargas continua a nova depois de recarregar
+  await page.reload();
+  await expect(page.getByLabel('Carga', { exact: true }).locator('option')).toHaveCount(10);
+  await terminarTreino(page);
+  await page.goto('/programa');
+  await expect(page.getByText('Montado para um kit típico')).toHaveCount(0);
 });
 
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {

@@ -9,7 +9,8 @@ import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
-import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
+import { inventarioPrincipal, localDoPrograma, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
+import { kitTipicoDe } from '../onboarding/inventarioForm';
 import { alternarPreferencia, confirmarAvaliacaoDoAlerta, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { alertaPendente } from '../../domain/sessao';
 import { Preferencias } from './Prefiro';
@@ -26,6 +27,9 @@ import { CartaoTexto, temCartao } from './CartaoTexto';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
+
+/** O lugar de cada kit típico, para a linha "Montado para um kit típico de…" (o texto é decisão do Gustavo). */
+const NOME_DO_KIT: Record<string, string> = { casa: 'casa', condominio: 'condomínio', academia: 'academia' };
 
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');
 
@@ -182,6 +186,19 @@ export function Programa() {
           setAviso('Programa atualizado com as regras novas.');
         },
       },
+      bloco: null,
+    });
+  // "Montado para um kit típico" (lote M1 da análise crítica, 19/11/2026): o programa saiu na hora, de um atalho de
+  // lugar, com pesos que o app supôs. A linha diz isso e leva ao ajuste, enquanto o equipamento for exatamente o do kit
+  // e nenhum treino tiver sido feito; depois do 1º treino, a pessoa já esteve diante dos pesos e corrige por lá
+  // ("Meus pesos são outros"). Nada é guardado: sai da comparação com o kit (kitTipicoDe).
+  const localDoKit = localDoPrograma(estado);
+  const kit = estado.historico.some(treinoFeito) ? undefined : kitTipicoDe(localDoKit?.inventario);
+  if (kit && localDoKit && !estado.sessaoAtual)
+    fila.push({
+      id: 'kit',
+      linha: `Montado para um kit típico de ${NOME_DO_KIT[kit]}.`,
+      acao: { rotulo: 'Ajustar', fazer: () => navigate(`/locais/${localDoKit.id}`) },
       bloco: null,
     });
   if (!volta && !estado.sessaoAtual) {

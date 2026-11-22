@@ -7,7 +7,9 @@ import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } fro
 import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
 import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
-import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
+import { cargasHalter, comHalterMaisPesado, MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
+import { numeroOu } from '../app/ui';
+import { ValorPorToque } from '../onboarding/Inventario';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
 import {
   avaliarSerieDeCalibracao,
@@ -30,7 +32,7 @@ import { Icone } from '../app/icones';
 import { Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, corrigirHalterMaisPesado, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PalcoTreino } from './PalcoTreino';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
@@ -367,6 +369,7 @@ export function Treino() {
                 estado={estado}
                 inventario={inventario}
                 opcoes={opcoesCargaHoje}
+                aoPesosOutros={(maxKg) => atualizar((s) => corrigirHalterMaisPesado(s, s.sessaoAtual, maxKg))}
               />
             </>
           ) : (
@@ -616,6 +619,7 @@ function RegistroSerie({
   estado,
   inventario,
   opcoes,
+  aoPesosOutros,
 }: {
   x: ExercicioPrescrito;
   numero: number;
@@ -625,6 +629,8 @@ function RegistroSerie({
   estado: Estado;
   inventario: Inventario;
   opcoes: OpcoesSugestao;
+  /** "Meus pesos são outros": grava no local o halter mais pesado que a pessoa disse ter. */
+  aoPesosOutros?: (maxKg: number) => void;
 }) {
   const op = opcoesCarga(x.exId, inventario);
   const cal = calibracaoNaSessao(estado.historico, x, inventario, anteriores, opcoes);
@@ -649,6 +655,21 @@ function RegistroSerie({
   // a reserva-alvo de hoje marcada nos próprios botões (no lugar de uma frase); 4 vale "4 ou mais"
   const naMeta = (n: number) => n >= x.rir[0] && (n <= x.rir[1] || (n === 4 && x.rir[1] >= 4));
   const uid = useId();
+  // "Meus pesos são outros" (lote M1 da análise crítica): só onde a lista vem de halteres fixos, que podem ter vindo do
+  // kit típico de um atalho. Halter de montar, kettlebell e caneleira saem do que a própria pessoa contou.
+  const halterFixo = op.tipo === 'halter' && inventario.halteres_fixos && !inventario.anilhas_e_manoplas ? inventario.halteres_fixos : undefined;
+  const pesosOutros =
+    halterFixo && aoPesosOutros
+      ? {
+          maxAtualKg: halterFixo.maxKg,
+          gravar: (maxKg: number) => {
+            aoPesosOutros(maxKg);
+            // a carga escolhida que saiu da lista volta a "escolha": o app não adivinha a nova
+            const nova = cargasHalter(comHalterMaisPesado(inventario, maxKg));
+            if (carga?.tipo === 'kg' && !nova.some((v) => Math.abs(v - carga.kg) < 1e-9)) setCarga(undefined);
+          },
+        }
+      : undefined;
 
   // o que está preenchido sobe para a tela do treino, que o usa no botão "Série N feita" do descanso
   const montar = useRef<() => SerieRegistrada>(() => ({ carga: carga!, reps, rir: rir! }));
@@ -677,7 +698,7 @@ function RegistroSerie({
         </ol>
       </div>
       <div className="colunas">
-        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
+        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} pesosOutros={pesosOutros} />
         <div className="coluna" role="group" aria-labelledby={`${uid}-reps`}>
           <span className="rotulo-curto" id={`${uid}-reps`}>
             Repetições
@@ -766,6 +787,11 @@ function RegistroSerie({
   );
 }
 
+/** O valor da opção "Meus pesos são outros…" na lista de cargas (não é uma carga). */
+const OUTROS_PESOS = 'outros';
+/** [opinião] Os pesos comuns de um halter mais pesado, de casa à academia; qualquer outro vai em "Outro". */
+const HALTER_MAIS_PESADO = [4, 5, 6, 8, 10, 12, 14, 16, 20, 30] as const;
+
 const nomeDoDegrau = (t: string) => (t ? t[0]!.toUpperCase() + t.slice(1) : t);
 
 /** A carga: o número grande com a unidade pequena, e menos e mais embaixo. O tipo de registro vem do equipamento. */
@@ -777,7 +803,10 @@ function ControleCarga({
   degraus,
   valor,
   aoMudar,
+  pesosOutros,
 }: {
+  /** A saída "Meus pesos são outros" da lista de halteres: o mais pesado suposto hoje e como gravar o certo. */
+  pesosOutros?: { maxAtualKg: number; gravar: (maxKg: number) => void };
   registro: Carga['tipo'];
   cargas?: number[];
   placasMax?: number;
@@ -792,6 +821,8 @@ function ControleCarga({
   const uid = useId();
   const idRotulo = `${uid}-rotulo`;
   const idCarga = `${uid}-carga`;
+  const [corrigindo, setCorrigindo] = useState(false);
+  const [maisPesado, setMaisPesado] = useState('');
   const numero = (n: number | string | undefined, unidade?: string) =>
     n === undefined ? (
       '—'
@@ -914,7 +945,17 @@ function ControleCarga({
           )}
           {/* a seta diz que o número abre a lista das cargas */}
           <Icone nome="chevron-down" className="abre-lista" />
-          <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
+          <select
+            id={idCarga}
+            className="carga-valor"
+            value={k ?? ''}
+            onChange={(e) => {
+              if (e.target.value === OUTROS_PESOS) {
+                setMaisPesado('');
+                setCorrigindo(true);
+              } else aoMudar({ tipo: 'kg', kg: Number(e.target.value) });
+            }}
+          >
             <option value="" disabled>
               Escolha
             </option>
@@ -923,6 +964,7 @@ function ControleCarga({
                 {numeroBr(v)} kg
               </option>
             ))}
+            {pesosOutros && <option value={OUTROS_PESOS}>Meus pesos são outros…</option>}
           </select>
         </span>
       ) : (
@@ -931,6 +973,28 @@ function ControleCarga({
         </output>
       )}
       <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} />
+      {corrigindo && pesosOutros && (
+        <Folha titulo="Seus halteres" aoFechar={() => setCorrigindo(false)}>
+          <p>
+            O app supôs halteres até {numeroBr(pesosOutros.maxAtualKg)} kg. Diga o seu mais pesado, e a lista de cargas se ajusta.
+          </p>
+          <ValorPorToque legenda="Qual é o seu halter mais pesado?" valores={HALTER_MAIS_PESADO} valor={maisPesado} aoMudar={setMaisPesado} />
+          <button
+            type="button"
+            className="btn"
+            disabled={!((numeroOu(maisPesado) ?? 0) > 0)}
+            onClick={() => {
+              pesosOutros.gravar(numeroOu(maisPesado)!);
+              setCorrigindo(false);
+            }}
+          >
+            Guardar
+          </button>
+          <p className="ajuda">
+            Para dizer peso por peso, ou mudar outro equipamento, use “Meus locais”, em Meus dados. Se o programa mudar por causa disso, ele avisa depois do treino.
+          </p>
+        </Folha>
+      )}
     </div>
   );
 }
