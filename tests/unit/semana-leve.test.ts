@@ -5,7 +5,7 @@ import type { Estado } from '../../src/storage/esquema';
 import { aceitarSemanaLeve, encerrarSemanaLeve, marcarHojeFoi, recusarSemanaLeve, semanaLeveDoEstado } from '../../src/features/acompanhamento/acoes';
 import { anotarDor, iniciarSessao, interromperExercicio, registrarSerie, terminarSessao } from '../../src/features/treino/acoes';
 import { bruno } from '../personas';
-import { dia, estadoDe, POR_ID, serieTipica, treinar } from './apoio-treino';
+import { dia, estadoDe, POR_ID, programaDe, serieTipica, treinar } from './apoio-treino';
 
 // Semana leve sugerida (deload.semana-leve; pesquisa-v2/07, seção 6): os casos S1 a S5 do T6, o toque "hoje foi" e o
 // aviso de dor, que soma à semana leve e nunca é substituído por ela.
@@ -257,3 +257,22 @@ describe('R5a: a fase de aprendizado e o exercício feito na vaga (deload.semana
   });
 });
 
+
+// deload.semana-leve, a carência depois da volta de pausa (conferência regra por regra, D1, 22/11/2026): a volta declarada
+// no cadastro (o programa nasce com as fases da readaptação) também conta. Antes, só a pausa detectada no uso contava, e a
+// semana leve podia ser sugerida já na semana 1 da volta.
+describe('a carência vale também para a volta de pausa declarada no cadastro', () => {
+  const comDor = (exId: string) => ({ ...serieTipica(exId), reps: 9, ...(exId === 'supino-reto' ? { dor: 4 } : {}) });
+  const doisTreinosComDor = (e: Estado) => treinar(treinar(e, 0, 'superior-a', 'local-1', comDor), 3, 'superior-a', 'local-1', comDor);
+  it('sem pausa no cadastro, a dor que se repete sugere a semana leve; com 12 semanas paradas no cadastro, não nas 3 primeiras semanas', () => {
+    expect(sugestao(doisTreinosComDor(estadoDe(bruno)), 4).sugerir).toBe(true);
+    const base = estadoDe(bruno);
+    const voltando: Estado = { ...base, programa: { ...base.programa!, programa: programaDe({ ...bruno.perfil, semanasParado: 12 }, bruno.inventario) } };
+    expect(voltando.programa!.programa.fases.some((f) => f.regraId === 'readaptacao.semana1')).toBe(true);
+    const s = sugestao(doisTreinosComDor(voltando), 4);
+    expect(s.carencia).toBe(true);
+    expect(s.sugerir).toBe(false);
+    // o aviso de dor continua valendo: ele soma à semana leve, nunca depende dela
+    expect(s.dor).toMatchObject({ exIds: ['supino-reto'] });
+  });
+});

@@ -357,7 +357,7 @@
   },
   {
     "id": "reps.faixa.por-tipo",
-    "regra": "Faixa de repetições padrão por tipo de exercício",
+    "regra": "Faixa de repetições padrão por tipo de exercício. A faixa de cada exercício fica na biblioteca, e 27 dos 108 exercícios com carga saem do padrão (conferência regra por regra de 22/11/2026): por exemplo, as roscas em 8–12 e o leg press e o hack em 8–15",
     "valores": {
       "iniciante": "composto 6–10 ou 8–12; isolador 10–20",
       "intermediario": "composto 6–10 ou 8–12; isolador 10–20",
@@ -371,7 +371,7 @@
   },
   {
     "id": "reps.faixa.degrau",
-    "regra": "Faixas dos exercícios de peso do corpo e de elástico: 5 a 8 repetições de largura, topo até 20 (antes, 12 a 15 de largura, com que a escada quase não andava). Qualquer faixa de ~6 a ~30 perto da falha cresce o músculo; a largura é escolha do projeto",
+    "regra": "Faixas dos exercícios de peso do corpo e de elástico: 5 a 8 repetições de largura, topo até 20 (antes, 12 a 15 de largura, com que a escada quase não andava). Qualquer faixa de ~6 a ~30 perto da falha cresce o músculo; a largura é escolha do projeto. Alguns exercícios saem disso (conferência regra por regra de 22/11/2026): barra fixa só na descida 3–6, nórdico 6–10, abdução e adução deitado 15–30",
     "valores": {
       "iniciante": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
       "intermediario": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
@@ -430,7 +430,7 @@
   },
   {
     "id": "rir.serie-efetiva",
-    "regra": "Série que conta como efetiva no volume",
+    "regra": "Série que conta como efetiva no volume. No registro, a última opção é \"4 ou mais\", guardada como 4: a série com 5 ou mais de reserva que a pessoa marca ali conta como efetiva (conferência regra por regra de 22/11/2026; separar o \"5 ou mais\" está no backlog)",
     "valores": {
       "iniciante": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
       "intermediario": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
@@ -443,7 +443,7 @@
   },
   {
     "id": "rir.carga-baixa",
-    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais. Aplicada no gerador desde a auditoria do treino (02/11/2026): vale quando o meio da faixa do exercício é 15 ou mais",
+    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais. Aplicada no gerador desde a auditoria do treino (02/11/2026): vale quando o meio da faixa do exercício é 15 ou mais. Só muda o composto do iniciante (de 2–3 para 1–2): intermediário e avançado já ficam em até 2, com 1–2 nos compostos e 0–1 nos isoladores (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "RIR 1–2 a partir da 3ª semana (nas semanas 1–2, vale a fase de aprendizado, RIR 3–4)",
       "intermediario": "RIR 0–2",
@@ -457,7 +457,7 @@
   },
   {
     "id": "rir.leitura",
-    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição; o erro é maior acima de ~12 repetições e longe da falha, e a experiência não o diminui (revista no R2)",
+    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição; o erro é maior acima de ~12 repetições e longe da falha, e a experiência não o diminui (revista no R2). O app usa o número informado, sem corrigir; da regra, o que roda é o limite de 12 repetições no acerto da carga (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
       "intermediario": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
@@ -556,7 +556,7 @@
   },
   {
     "id": "progressao.reduzir",
-    "regra": "Dupla progressão: quando reduzir. A redução por dor é a de `seguranca.dor.escala` (corrigido em 17/11/2026: a linha dizia −5 a −10% também para a dor, e o app sempre reduziu 10–20%)",
+    "regra": "Dupla progressão: quando reduzir. A conta mira −7,5% e fica com a carga disponível logo abaixo; com poucos halteres ou em placa, contrapeso e degrau, é 1 passo, que pode passar de 10% (conferência regra por regra de 22/11/2026). A redução por dor é a de `seguranca.dor.escala` (corrigido em 17/11/2026: a linha dizia −5 a −10% também para a dor, e o app sempre reduziu 10–20%)",
     "valores": {
       "iniciante": "abaixo do mínimo da faixa em 2 sessões seguidas → −5 a −10%; com dor, vale `seguranca.dor.escala` (3–5: −10 a −20%; > 5: encerra o exercício)",
       "intermediario": "abaixo do mínimo da faixa em 2 sessões seguidas → −5 a −10%; com dor, vale `seguranca.dor.escala` (3–5: −10 a −20%; > 5: encerra o exercício)",
@@ -797,7 +797,7 @@
   },
   {
     "id": "progressao.criterios-invalidos",
-    "regra": "O que nunca conta para progredir",
+    "regra": "O que nunca conta para progredir. A amplitude encurtada é orientação: o domínio sabe ignorar a série marcada assim, mas nenhuma tela pergunta pela amplitude (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",
       "intermediario": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",

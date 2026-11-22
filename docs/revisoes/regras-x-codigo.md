@@ -57,19 +57,19 @@
 | `selecao.flexao-joelho-sem-maquina` | bate | [selecao-2](regras-x-codigo/selecao-2.md) | — |
 | `selecao.nordico` | o código diverge | [selecao-2](regras-x-codigo/selecao-2.md) | a conferir |
 | `reps.equivalencia-cargas` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `reps.faixa.por-tipo` | o código diverge | [progressao](regras-x-codigo/progressao.md) | a conferir |
-| `reps.faixa.degrau` | o código diverge | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `reps.faixa.por-tipo` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: cada exercício tem a sua faixa na biblioteca, e 27 saem do padrão |
+| `reps.faixa.degrau` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas, com os exercícios que saem da faixa |
 | `reps.teto.carga-limitada` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `rir.falha.nao-necessaria` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `rir.alvo` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `rir.serie-efetiva` | o código diverge | [progressao](regras-x-codigo/progressao.md) | a conferir |
-| `rir.carga-baixa` | o código diverge (leve) | [progressao](regras-x-codigo/progressao.md) | a conferir |
-| `rir.leitura` | não está no app (a frase dá a entender que está) | [progressao](regras-x-codigo/progressao.md) | a conferir |
-| `rir.calibracao` | não está no app (a frase deixa claro) | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `rir.serie-efetiva` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase dizem agora que "4 ou mais" conta como 4. Separar o "5 ou mais" no registro muda o dado guardado: backlog |
+| `rir.carga-baixa` | o código diverge (leve) | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: só muda o composto do iniciante; os outros níveis já ficam em até 2 |
+| `rir.leitura` | não está no app (a frase dá a entender que está) | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: o app usa o número informado, sem corrigir |
+| `rir.calibracao` | não está no app (a frase deixa claro) | [progressao](regras-x-codigo/progressao.md) | confirmado; nada a fazer: a frase diz que ainda não está no app |
 | `cadencia.repeticao` | bate (com ressalva) | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.subir` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.manter` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `progressao.reduzir` | o código diverge (arredondamento) | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `progressao.reduzir` | o código diverge (arredondamento) | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: a redução fica com a carga disponível logo abaixo, que pode passar de 10% |
 | `progressao.incremento.halteres` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.incremento.polia` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.incremento.maquina-anilha` | bate | [progressao](regras-x-codigo/progressao.md) | — |
@@ -82,11 +82,11 @@
 | `progressao.criterio-degrau` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.salto-grande` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `progressao.carga-leve` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `progressao.calibracao` | o código diverge (e a frase tem um número a mais) | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `progressao.calibracao` | o código diverge (e a frase tem um número a mais) | [progressao](regras-x-codigo/progressao.md) | confirmado; **consertado com teste**: com dor de 3 ou mais na série, o acerto não sugere carga. A frase ganhou o "no mínimo 1 passo". (A faixa do "perto" mudou no lote M3, por decisão do Gustavo.) |
 | `progressao.troca-equivalente` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `progressao.criterios-invalidos` | não está no app (a frase não deixa claro) | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `progressao.criterios-invalidos` | não está no app (a frase não deixa claro) | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: a amplitude é orientação, e nenhuma tela pergunta por ela |
 | `progressao.estagnacao` | bate | [progressao](regras-x-codigo/progressao.md) | — |
-| `deload.semana-leve` | o código diverge | [progressao](regras-x-codigo/progressao.md) | a conferir |
+| `deload.semana-leve` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; **consertado com teste**: a volta de pausa declarada no cadastro também tem as 3 semanas de carência |
 | `registro.treino-feito` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `volume.semanal.dose-resposta` | não está no app | [volume](regras-x-codigo/volume.md) | a conferir |
 | `volume.semanal.minimo` | o código diverge | [volume](regras-x-codigo/volume.md) | a conferir |

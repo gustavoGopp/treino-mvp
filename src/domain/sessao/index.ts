@@ -421,6 +421,10 @@ export function calibracaoNaSessao(
   }
   const s = seriesDaSessao.at(-1);
   if (!calibrando || !s) return { calibrando };
+  // A dor manda (progressao.calibracao: "dor ≥ 3 manda"; seguranca.dor.escala): com nota de 3 ou mais na série, o acerto
+  // não sugere carga nenhuma, e quem orienta é a regra da dor. Antes (conferência de 22/11/2026), uma série leve com dor 4
+  // ainda devolvia "Ficou leve: na próxima série, 8 kg", já preenchido, ao lado do aviso de dor.
+  if ((s.dor ?? 0) >= DOR.ajustarDe) return { calibrando };
   return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes) };
 }
 

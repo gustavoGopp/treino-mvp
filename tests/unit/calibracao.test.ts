@@ -197,3 +197,15 @@ describe('equipamento.menor-anilha: o menos e o mais da barra andam no passo do 
     expect(kgNoPasso(2.5, -1, {})).toBe(0);
   });
 });
+
+// progressao.calibracao, "dor ≥ 3 manda" (conferência regra por regra, D1, 22/11/2026): com nota de dor de 3 ou mais na
+// série, o acerto da carga não sugere nada; quem orienta é a regra da dor.
+describe('progressao.calibracao: com dor de 3 ou mais na série, o acerto não sugere carga', () => {
+  const x = { exId: 'goblet', reps: [8, 15] as [number, number], rir: [3, 4] as [number, number] };
+  const leve = { carga: kg(4), reps: 20, rir: 4, calibracao: true };
+  it('a mesma série leve: sem dor, sobe; com dor 4, nenhuma sugestão do acerto', () => {
+    expect(calibracaoNaSessao([], x, ana.inventario, [leve]).ultima?.acao).toBe('subir');
+    expect(calibracaoNaSessao([], x, ana.inventario, [{ ...leve, dor: 4 }])).toEqual({ calibrando: true });
+    expect(calibracaoNaSessao([], x, ana.inventario, [{ ...leve, dor: 2 }]).ultima?.acao).toBe('subir');
+  });
+});
