@@ -2482,7 +2482,7 @@ Imagens em `revisoes/melhorias/m3/`. A sigla RIR ficou só em "Entenda o treino"
 - **Regra que o app deixou de cumprir por decisão posterior do Gustavo** (por exemplo, os motivos que saíram das telas em 16/11) teve o texto acertado, e não o código.
 - **O que muda programas ficou para o D3,** que mede personas e régua antes e depois; nada disso foi mexido aqui.
 
-**GitHub.** A `main` ficou vermelha duas vezes neste dia, por testes e não pelo app: a rodada 521 (um teste de tela abria o app antes de a gravação de preparo fechar; consertado) e a 522 (um teste de regra do motor passou de 5 s numa máquina 2,5 vezes mais lenta; ganhou o limite de 30 s, com a medida). A rodada 520, da ligação das 81 animações, passou.
+**GitHub.** A `main` ficou vermelha duas vezes neste dia, por testes e não pelo app: a rodada 521 (um teste de tela abria o app antes de a gravação de preparo fechar; consertado) e a 522 (um teste de regra do motor passou de 5 s numa máquina 2,5 vezes mais lenta; ganhou o limite de 30 s, com a medida). A rodada 520, da ligação das 81 animações, passou. Com os dois consertos de teste na `main`, a rodada 523 passou: a `main` voltou ao verde.
 
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
