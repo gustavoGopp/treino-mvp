@@ -5,7 +5,7 @@ import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito 
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { diaEMes as dataCurta, faixaPorExtenso, reservaPorExtenso, seriesPorExtenso, tempoNoRelogio as tempo } from '../../domain/numero';
-import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
+import { avaliarTriagem, CUIDADOS_PRESSAO, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
@@ -189,6 +189,23 @@ export function Programa() {
               Para dar a nota de hoje, volte à <Link to="/comecar/triagem">triagem</Link>.
             </p>
           )}
+        </section>
+      ),
+    });
+  // Os cuidados de quem tem pressão alta controlada (seguranca.triagem.pressao; lote M6): como a dor, o 1º aviso do
+  // programa novo, até o 1º treino. Depois ficam em "Entenda o treino".
+  if (triagem.cuidadosPressao && !estado.historico.some(treinoFeito))
+    fila.push({
+      id: 'pressao',
+      linha: 'Pressão alta: treine com estes cuidados.',
+      bloco: (
+        <section className="box" aria-labelledby="cuidados-pressao">
+          <h2 id="cuidados-pressao">Pressão alta: os cuidados</h2>
+          <ul className="lista">
+            {CUIDADOS_PRESSAO.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
         </section>
       ),
     });

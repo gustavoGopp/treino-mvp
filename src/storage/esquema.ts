@@ -5,12 +5,12 @@ import { DIVISAO_IDS } from '../domain/gerador/divisoes';
 import { CONFIANCA_TECNICA, TEMPOS_DE_TREINO } from '../domain/nivel';
 import { NIVEIS } from '../domain/regras';
 import { ITEM_IDS, inventarioSchema, type ItemId } from '../domain/taxonomia/equipamentos';
-import { avaliarTriagem, PERGUNTAS, type PerguntaId } from '../domain/triagem';
+import { avaliarTriagem, RESPOSTA_IDS, type RespostaId } from '../domain/triagem';
 
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 9;
+export const VERSAO_ESTADO = 10;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -25,7 +25,15 @@ const exercicioId = z.string().refine((id) => BIBLIOTECA.some((e) => e.id === id
 const faixa = z.tuple([z.number(), z.number()]);
 
 export const triagemSchema = z.object({
-  respostas: z.object(Object.fromEntries(PERGUNTAS.map((p) => [p.id, z.boolean()])) as Record<PerguntaId, z.ZodBoolean>),
+  respostas: z.object(Object.fromEntries(RESPOSTA_IDS.map((id) => [id, z.boolean()])) as Record<RespostaId, z.ZodBoolean>),
+  /**
+   * Desde a versão 10 (lote M6): presente = "sim" em pressão alta, com o seguimento (seguranca.triagem.pressao).
+   * Um app da versão 9 jogaria este campo fora e liberaria o programa sem as perguntas: por isso a versão subiu.
+   */
+  pressao: z
+    .object({ controlada: z.enum(['sim', 'nao', 'nao-sei']), restricao: z.boolean(), soRemedioDaPressao: z.boolean().optional() })
+    .strict()
+    .optional(),
   /**
    * Regiões marcadas e a dor de hoje, de 0 a 10 (seguranca.dor.programa). Desde a versão 5, é o único lugar
    * da dor no cadastro. Sem nota = região de um estado antigo, que segue excluída até a pessoa dar a nota.
@@ -291,6 +299,7 @@ export function perfilDe(e: Estado): Perfil | null {
     triagem: {
       respostas: e.triagem.respostas,
       ...(e.triagem.dores?.length ? { dores: e.triagem.dores } : {}),
+      ...(e.triagem.pressao ? { pressao: e.triagem.pressao } : {}),
       ...(e.triagem.liberacaoConfirmada ? { liberacaoConfirmada: true } : {}),
     },
   };

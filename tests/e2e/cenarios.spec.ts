@@ -58,14 +58,27 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // triagem em lista
     await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
     await folhaPronta(page);
-    await criterios(page); // as 9 perguntas inteiras
+    await criterios(page); // as 10 perguntas inteiras
     await page.keyboard.press('Escape');
     await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
     await criterios(page); // a tela do "sim"
+    // M6: o seguimento da pressão alta, os cuidados e a pausa com a saída para quem ainda não foi avaliado
+    await page.locator('label.opcao', { hasText: 'Pressão alta' }).first().getByRole('checkbox').check();
+    await page.locator('label.opcao', { hasText: 'Remédio para doença crônica' }).getByRole('checkbox').check();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await criterios(page); // o seguimento com erro
+    await page.getByRole('group', { name: 'A sua pressão está controlada?' }).getByLabel('Sim', { exact: true }).check();
+    await page.getByRole('group', { name: 'Algum médico pediu para você evitar ou limitar exercício?' }).getByLabel('Não', { exact: true }).check();
+    await page.getByRole('group', { name: 'O remédio é só o da pressão?' }).getByLabel('Sim', { exact: true }).check();
+    await criterios(page); // o seguimento respondido
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await expect(page.getByRole('heading', { name: 'Pode seguir, com estes cuidados' })).toBeVisible();
+    await criterios(page); // os cuidados
+    await page.getByRole('button', { name: 'Voltar' }).click();
     await page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox').check();
     await page.getByRole('button', { name: 'Continuar' }).click();
-    await folhaPronta(page);
-    await criterios(page); // a confirmação das não marcadas
+    await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
+    await criterios(page); // a pausa, com as três saídas
     await page.goto('/comecar/triagem');
     await page.getByRole('button', { name: 'Não, nenhuma' }).click();
     await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();

@@ -10,8 +10,8 @@ const grupo = (page: Page | Locator, nome: string | RegExp) => page.getByRole('g
 
 /**
  * Triagem com alguma condição (lote 3 do redesign): "Sim, alguma (ou não tenho certeza)", marca as que valem (pelo texto
- * da condição ou da pergunta inteira) e toca em "Continuar". Se a tela pedir a confirmação das não marcadas, confirma;
- * se aparecer um erro (por exemplo, falta a região), para ali para o teste seguir.
+ * da condição ou da pergunta inteira) e toca em "Continuar". Desde o lote M6 não há mais a folha de confirmação das não
+ * marcadas; se aparecer um erro (por exemplo, falta a região), para ali para o teste seguir.
  */
 export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}) {
   await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
@@ -22,23 +22,13 @@ export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}
     if (pausa) await page.waitForTimeout(pausa / 3);
   }
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await confirmarNaoMarcadas(page);
+  await expect(page.getByRole('alert').or(page.getByRole('heading', { name: /Vamos pausar|Sua experiência|Pode seguir/ })).first()).toBeVisible();
 }
 
-/** Na tela do "sim": confirma que as não marcadas não valem, se o diálogo abrir (sem erro na tela). */
-export async function confirmarNaoMarcadas(page: Page) {
-  const dialogo = page.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
-  await expect(dialogo.or(page.getByRole('alert')).or(page.getByRole('heading', { name: /Vamos pausar|Sua experiência/ })).first()).toBeVisible();
-  if (await dialogo.isVisible()) {
-    await folhaPronta(page);
-    await dialogo.getByRole('button', { name: 'Isso, nenhuma destas' }).click();
-  }
-}
-
-/** Triagem de quem não tem nenhuma condição: as 9 à vista numa lista, e um toque em "Não, nenhuma". */
+/** Triagem de quem não tem nenhuma condição: as 10 à vista numa lista, e um toque em "Não, nenhuma". */
 export async function triagemNenhuma(page: Page) {
   await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
-  await expect(page.getByRole('list', { name: 'As 9 condições' }).getByRole('listitem')).toHaveCount(9);
+  await expect(page.getByRole('list', { name: 'As 10 condições' }).getByRole('listitem')).toHaveCount(10);
   await page.getByRole('button', { name: 'Não, nenhuma' }).click();
 }
 

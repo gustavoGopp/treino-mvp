@@ -9,8 +9,8 @@ test('o "sim" da triagem refeita fica guardado mesmo se a página recarrega no m
   await page.goto('/comecar/triagem');
   await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
   await page.locator('label.opcao', { hasText: 'coração' }).first().getByRole('checkbox').check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  const confirma = page.getByRole('dialog', { name: 'Nenhuma destas vale para você?' }).getByRole('button', { name: 'Isso, nenhuma destas' });
+  // desde o lote M6 não há a folha de confirmação: o toque que conclui a triagem é o "Continuar"
+  const confirma = page.getByRole('button', { name: 'Continuar' });
   await expect(confirma).toBeVisible();
   // o toque e a saída da página na mesma tarefa: a gravação assíncrona não tem tempo de terminar
   await confirma.evaluate((b: HTMLButtonElement) => {

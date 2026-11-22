@@ -1,5 +1,5 @@
 import { expect, test, type Page } from './base';
-import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, minutosPorTreino, porQueDaSugestao, pronto, sobreOPrograma, terminarTreino, triagem, triagemNenhuma, verAvisos } from './jornada';
+import { abrirExercicio, abrirLista, ana, detalhesDo, folhaPronta, marcarItem, minutosPorTreino, porQueDaSugestao, pronto, sobreOPrograma, terminarTreino, triagem, triagemNenhuma, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -115,6 +115,52 @@ test('M6: quem ainda não foi avaliado guarda as respostas, e ao voltar cai na p
   await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
 });
 
+// M6 (seguranca.triagem.pressao): a persona fictícia de 55 anos, com a pressão alta controlada por remédio e sem
+// restrição do médico, responde a verdade e chega ao programa, com os cuidados à vista. Antes, parava na pausa.
+test('M6: quem tem pressão alta controlada responde a verdade e chega ao programa, com os cuidados', async ({ page }) => {
+  await ana(page, {
+    passarTriagem: async (p) => {
+      await triagem(p, { simEm: ['Pressão alta', 'Remédio para doença crônica'] });
+      // sem as respostas do seguimento, não segue
+      await expect(p.getByRole('alert')).toContainText('Responda às perguntas sobre a pressão.');
+      await p.getByRole('group', { name: 'A sua pressão está controlada?' }).getByLabel('Sim', { exact: true }).check();
+      await p.getByRole('group', { name: 'Algum médico pediu para você evitar ou limitar exercício?' }).getByLabel('Não', { exact: true }).check();
+      await p.getByRole('group', { name: 'O remédio é só o da pressão?' }).getByLabel('Sim', { exact: true }).check();
+      await p.getByRole('button', { name: 'Continuar' }).click();
+      await expect(p.getByRole('heading', { name: 'Pode seguir, com estes cuidados' })).toBeVisible();
+      await expect(p.locator('.cuidados-pressao').getByRole('listitem')).toHaveCount(4);
+      await expect(p.locator('.cuidados-pressao')).toContainText('Não prenda o ar para fazer força.');
+      await p.getByRole('button', { name: 'Entendi, continuar' }).click();
+      await expect(p.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+    },
+  });
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
+  // os cuidados são o 1º aviso do programa novo, e ficam em "Entenda o treino"
+  await expect(page.locator('.aviso-linha')).toContainText('Pressão alta: treine com estes cuidados.');
+  const avisos = await verAvisos(page);
+  await expect(avisos.getByRole('region', { name: 'Pressão alta: os cuidados' }).getByRole('listitem')).toHaveCount(4);
+  await page.goto('/entenda');
+  await page.locator('main > details > summary', { hasText: 'Por que o app pergunta e sugere' }).click();
+  await expect(page.getByRole('list', { name: 'Os seus cuidados com a pressão' }).getByRole('listitem')).toHaveCount(4);
+});
+
+test('M6: pressão alta não controlada, "não sei" ou com restrição do médico continua pausando o programa', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
+  await triagem(page, { simEm: ['Pressão alta'] });
+  const controlada = page.getByRole('group', { name: 'A sua pressão está controlada?' });
+  const restricao = page.getByRole('group', { name: 'Algum médico pediu para você evitar ou limitar exercício?' });
+  const pausa = page.getByRole('heading', { name: 'Vamos pausar o programa automático' });
+  for (const [c, r] of [['Não sei', 'Não'], ['Não', 'Não'], ['Sim', 'Sim']] as const) {
+    await controlada.getByLabel(c, { exact: true }).check();
+    await restricao.getByLabel(r, { exact: true }).check();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await expect(pausa).toBeVisible();
+    await expect(page.locator('.warnbox')).toContainText('Algum médico já disse que você tem pressão alta?');
+    await page.getByRole('button', { name: 'Revisar respostas' }).click();
+  }
+});
+
 test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
@@ -122,20 +168,23 @@ test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, 
   // treino" → "Por que o app pergunta e sugere" (tests/e2e/entenda.spec.ts)
   await expect(page.getByRole('button', { name: 'por que perguntamos' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
-  const completas = page.getByRole('dialog', { name: 'As 9 perguntas completas' });
-  await expect(completas.getByRole('listitem')).toHaveCount(9);
+  const completas = page.getByRole('dialog', { name: 'As 10 perguntas completas' });
+  await expect(completas.getByRole('listitem')).toHaveCount(10);
+  // M6: coração e pressão alta são duas perguntas
+  await expect(completas).toContainText('Algum médico já disse que você tem problema no coração?');
+  await expect(completas).toContainText('Algum médico já disse que você tem pressão alta?');
   await expect(completas).toContainText('Você está grávida ou teve bebê nos últimos 6 meses?');
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(page.getByRole('alert')).toContainText('Nenhuma marcada. Se nenhuma vale, volte e toque em “Não, nenhuma”.');
-  // marcar uma e voltar no diálogo mantém a marca; nada é salvo antes de confirmar
+  // M6: a folha "Você não marcou estas" saiu (era a 3ª passada pelas mesmas perguntas); marcar uma e continuar leva
+  // direto à pausa; "Revisar respostas" volta com a marca; nada é salvo no 1º cadastro
   await page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox').check();
   await page.getByRole('button', { name: 'Continuar' }).click();
-  const dialogo = page.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
-  await expect(dialogo.getByRole('listitem')).toHaveCount(8);
-  await folhaPronta(page);
-  await dialogo.getByRole('button', { name: 'Voltar e marcar' }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
+  await page.getByRole('button', { name: 'Revisar respostas' }).click();
   await expect(page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox')).toBeChecked();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
@@ -151,11 +200,6 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
       await expect(p.getByText('Dê a nota da dor de hoje na região marcada.')).toBeVisible();
       await p.getByRole('group', { name: /E hoje, dói no ombro/ }).getByLabel('7', { exact: true }).check();
       await p.getByRole('button', { name: 'Continuar' }).click();
-      // lote 3 do redesign: as não marcadas são confirmadas, uma a uma, com a pergunta inteira
-      const dialogo = p.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
-      await expect(dialogo).toContainText('Você não marcou estas 8:');
-      await expect(dialogo).toContainText('Algum médico já disse que você tem problema no coração ou pressão alta?');
-      await confirmarNaoMarcadas(p);
       await expect(p.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
     },
   });

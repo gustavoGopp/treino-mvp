@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { avaliarDor, avaliarSinal, avaliarTriagem, efeitoDaDor, PERGUNTAS, respostasNenhuma, type Respostas } from '../../src/domain/triagem';
+import { avaliarDor, avaliarSinal, avaliarTriagem, CUIDADOS_PRESSAO, efeitoDaDor, PERGUNTAS, RESPOSTA_IDS, respostasNenhuma, SEGUIMENTO_PRESSAO, type Pressao, type Respostas } from '../../src/domain/triagem';
 
-const nao = Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas;
+const nao = Object.fromEntries(RESPOSTA_IDS.map((id) => [id, false])) as Respostas;
 
 describe('triagem', () => {
   it('sem "sim": libera', () => expect(avaliarTriagem({ respostas: nao }).bloqueado).toBe(false));
   // M6 (22/11/2026): um teste por pergunta. O que a triagem vier a liberar com perguntas de seguimento sai desta lista
   // de propósito, à vista; os outros "sim" continuam bloqueando, sozinhos e sem a liberação.
-  it.each(PERGUNTAS.filter((p) => p.id !== 'osteoarticular').map((p) => [p.id, p.curta] as const))('"sim" só em %s (%s) bloqueia', (id) => {
+  it.each(PERGUNTAS.filter((p) => p.id !== 'osteoarticular' && p.id !== 'pressao').map((p) => [p.id, p.curta] as const))('"sim" só em %s (%s) bloqueia', (id) => {
     const r = avaliarTriagem({ respostas: { ...nao, [id]: true } });
     expect(r).toMatchObject({ bloqueado: true, motivos: [id], regraId: 'seguranca.triagem' });
     expect(r.mensagem).toContain('procure um médico ou profissional de Educação Física');
@@ -37,7 +37,7 @@ describe('triagem', () => {
   });
   it('"Nenhuma se aplica a mim" responde "não" a todas (seguranca.triagem.nenhuma)', () => {
     const r = respostasNenhuma();
-    expect(Object.keys(r).sort()).toEqual(PERGUNTAS.map((p) => p.id).sort());
+    expect(Object.keys(r).sort()).toEqual(PERGUNTAS.map((p) => p.id).filter((id) => id !== 'pressao').sort());
     expect(Object.values(r).every((v) => v === false)).toBe(true);
     expect(avaliarTriagem({ respostas: r }).bloqueado).toBe(false);
   });
@@ -74,13 +74,60 @@ describe('dor e sinais de alerta', () => {
 });
 
 describe('a pergunta geral (lote 3 do redesign; seguranca.triagem.nenhuma)', () => {
-  it('as 9 perguntas, na mesma ordem, cada uma com a condição em poucas palavras e a pergunta inteira de sempre', () => {
-    expect(PERGUNTAS.map((p) => p.id)).toEqual(['coracao', 'peito', 'tontura', 'doenca-cronica', 'medicamento', 'osteoarticular', 'supervisao', 'gravidez', 'doenca-aguda']);
+  it('as 10 perguntas, na mesma ordem, cada uma com a condição em poucas palavras e a pergunta inteira de sempre', () => {
+    expect(PERGUNTAS.map((p) => p.id)).toEqual(['coracao', 'pressao', 'peito', 'tontura', 'doenca-cronica', 'medicamento', 'osteoarticular', 'supervisao', 'gravidez', 'doenca-aguda']);
     for (const p of PERGUNTAS) {
       expect(p.curta.length).toBeGreaterThan(5);
       expect(p.curta.length).toBeLessThan(p.texto.length);
       expect(p.texto).toMatch(/\?$/);
     }
-    expect(PERGUNTAS.find((p) => p.id === 'coracao')!.texto).toBe('Algum médico já disse que você tem problema no coração ou pressão alta?');
+    // M6: coração e pressão alta são duas perguntas
+    expect(PERGUNTAS.find((p) => p.id === 'coracao')!.texto).toBe('Algum médico já disse que você tem problema no coração?');
+    expect(PERGUNTAS.find((p) => p.id === 'pressao')!.texto).toBe('Algum médico já disse que você tem pressão alta?');
+  });
+});
+
+describe('pressão alta: o seguimento (M6; seguranca.triagem.pressao)', () => {
+  const controlada: Pressao = { controlada: 'sim', restricao: false };
+
+  it('controlada, sem restrição e sem outro "sim": libera com cuidados', () => {
+    expect(avaliarTriagem({ respostas: nao, pressao: controlada })).toMatchObject({
+      bloqueado: false,
+      motivos: ['pressao'],
+      cuidadosPressao: true,
+      regraId: 'seguranca.triagem.pressao',
+    });
+  });
+  it('com o remédio contínuo, libera só se o remédio for só o da pressão', () => {
+    const comRemedio = { ...nao, medicamento: true };
+    expect(avaliarTriagem({ respostas: comRemedio, pressao: { ...controlada, soRemedioDaPressao: true } })).toMatchObject({ bloqueado: false, cuidadosPressao: true, motivos: ['pressao', 'medicamento'] });
+    expect(avaliarTriagem({ respostas: comRemedio, pressao: { ...controlada, soRemedioDaPressao: false } }).bloqueado).toBe(true);
+    // sem a resposta sobre o remédio (não deveria acontecer pela tela): bloqueia
+    expect(avaliarTriagem({ respostas: comRemedio, pressao: controlada }).bloqueado).toBe(true);
+  });
+  it.each([
+    ['não controlada', { controlada: 'nao', restricao: false }],
+    ['não sabe se está controlada', { controlada: 'nao-sei', restricao: false }],
+    ['o médico pediu para limitar exercício', { controlada: 'sim', restricao: true }],
+  ] as [string, Pressao][])('%s: bloqueia, com a mensagem de sempre', (_nome, pressao) => {
+    const r = avaliarTriagem({ respostas: nao, pressao });
+    expect(r).toMatchObject({ bloqueado: true, motivos: ['pressao'], cuidadosPressao: false, regraId: 'seguranca.triagem' });
+    expect(r.mensagem).toContain('procure um médico ou profissional de Educação Física');
+  });
+  it.each(RESPOSTA_IDS.filter((id) => id !== 'medicamento'))('pressão controlada mais "sim" em %s: bloqueia', (id) => {
+    const dores = id === 'osteoarticular' ? [{ articulacao: 'ombro' as const, nota: 2 }] : undefined;
+    expect(avaliarTriagem({ respostas: { ...nao, [id]: true }, pressao: controlada, ...(dores ? { dores } : {}) }).bloqueado).toBe(true);
+  });
+  it('a liberação por caixinha continua valendo, e os cuidados aparecem para quem marcou pressão alta', () => {
+    expect(avaliarTriagem({ respostas: { ...nao, peito: true }, pressao: controlada, liberacaoConfirmada: true })).toMatchObject({ bloqueado: false, cuidadosPressao: true });
+    expect(avaliarTriagem({ respostas: nao, pressao: { controlada: 'nao', restricao: false }, liberacaoConfirmada: true })).toMatchObject({ bloqueado: false, cuidadosPressao: true });
+    expect(avaliarTriagem({ respostas: { ...nao, coracao: true }, liberacaoConfirmada: true }).cuidadosPressao).toBe(false);
+  });
+  it('os textos são próprios do app, e os cuidados dizem o que fazer e quando parar', () => {
+    expect(SEGUIMENTO_PRESSAO.controlada).toBe('A sua pressão está controlada?');
+    expect(SEGUIMENTO_PRESSAO.restricao).toBe('Algum médico pediu para você evitar ou limitar exercício?');
+    expect(SEGUIMENTO_PRESSAO.remedio).toBe('O remédio é só o da pressão?');
+    expect(CUIDADOS_PRESSAO).toHaveLength(4);
+    expect(CUIDADOS_PRESSAO.join(' ')).toMatch(/pelo menos 2 repetições sobrando.*Não prenda o ar.*tontura, dor no peito.*192.*refaça a triagem/);
   });
 });
