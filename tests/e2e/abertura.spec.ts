@@ -102,7 +102,7 @@ test('boas-vindas: o texto da foto diz para onde ela vai e há link para os term
 test('boas-vindas: diz o que a pessoa recebe e mostra o Boneco em movimento', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Treine onde estiver, com o que tiver' })).toBeVisible();
-  await expect(page.getByText('Um programa de musculação montado para o seu equipamento, com um boneco que mostra cada movimento e o relógio do descanso.')).toBeVisible();
+  await expect(page.getByText('Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento.')).toBeVisible();
   const boneco = page.getByRole('img', { name: 'O Boneco do app fazendo um agachamento' });
   await expect.poll(() => boneco.evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
   // em movimento: o desenho muda sozinho; e sem as legendas miúdas do guia

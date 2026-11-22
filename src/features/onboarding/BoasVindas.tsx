@@ -14,11 +14,8 @@ import { BonecoAbertura } from './BonecoAbertura';
 // movimento ao lado do título (no lugar dos 4 ícones de lugar), uma frase que diz o que a pessoa recebe, o aviso inteiro
 // numa nota calma antes do botão (seguranca.sem-diagnostico, texto intacto, à vista em qualquer celular) e a privacidade
 // a um toque. Sem promessa de resultado, sem prova social, sem contagem regressiva. Se já existe programa, abre direto nele.
-/**
- * O que a pessoa recebe, em uma frase (lote M1 da análise crítica). O texto é decisão do Gustavo: esta é a proposta
- * da sessão, à espera do ok dele.
- */
-export const O_QUE_RECEBE = 'Um programa de musculação montado para o seu equipamento, com um boneco que mostra cada movimento e o relógio do descanso.';
+/** O que a pessoa recebe, em uma frase (lote M1 da análise crítica). Texto escolhido pelo Gustavo em 22/11/2026. */
+export const O_QUE_RECEBE = 'Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento.';
 
 export function BoasVindas() {
   const { estado, carregado, erroCarga, atualizar } = useApp();
