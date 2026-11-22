@@ -502,6 +502,57 @@ for (const [largura, altura] of [[360, 640], [375, 667], [390, 664], [412, 839]]
     await expect.poll(() => pequeno.getByRole('img').innerHTML()).not.toBe(repouso);
   });
 
+// Lote M2, item 2 ("a cabeça"): o rótulo da fase não cobre o desenho do Boneco em nenhum dos cinco tamanhos do aceite.
+// A medida é a do estudo (scripts/design/medir-treino.mjs): nenhum traço do desenho (fora rótulos, chão e trajetória)
+// encosta na caixa do rótulo, ao longo de uma volta do movimento. Onde o palco não cabe (celular muito baixo), o Boneco
+// de repouso some inteiro e o rótulo some junto: nada é coberto.
+for (const [largura, altura] of [[320, 568], [360, 640], [375, 667], [390, 664], [412, 839]] as const)
+  test(`o rótulo da fase não cobre o Boneco a ${largura} × ${altura}`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: altura });
+    await ana(page);
+    await comecar(page);
+    await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+    const cobre = () =>
+      page.evaluate(() => {
+        const palco = document.querySelector('.palco-btn:not(.palco-grande)');
+        const rot = palco?.querySelector('.fase-do-movimento')?.getBoundingClientRect();
+        if (!palco || !rot || rot.height === 0) return false;
+        return Array.from(palco.querySelectorAll('svg path')).some((e) => {
+          if (/n-rot|n-chao|n-traj/.test(e.getAttribute('class') ?? '')) return false;
+          const r = e.getBoundingClientRect();
+          return r.height > 0 && r.left < rot.right && r.right > rot.left && r.top < rot.bottom && r.bottom > rot.top;
+        });
+      });
+    // uma volta do movimento, em 12 instantes
+    for (let i = 0; i < 12; i++) {
+      expect(await cobre(), `instante ${i}`).toBe(false);
+      await page.evaluate(() => new Promise((ok) => setTimeout(ok, 300)));
+    }
+  });
+
+// Lote M2, item 3 ("o descanso como hora de aprender"): no descanso, um toque no Boneco do "a seguir" abre o guia
+// ampliado, e o relógio continua correndo por baixo.
+test('no descanso, o Boneco do "a seguir" abre o guia ampliado e o relógio segue correndo', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption({ index: 2 });
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const descanso = page.getByRole('region', { name: 'Descanso' });
+  await expect(descanso).toBeVisible();
+  const relogio = descanso.getByRole('timer');
+  const antes = await relogio.innerText();
+  await descanso.getByRole('button', { name: /^Ver o movimento de agachamento goblet/ }).click();
+  const folha = page.getByRole('dialog', { name: 'Como fazer' });
+  await folhaPronta(page);
+  await expect.poll(() => folha.getByRole('img', { name: /^O Boneco fazendo/ }).evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+  await semToquePequeno(page);
+  await folha.getByRole('button', { name: 'Fechar' }).click();
+  await expect(folha).toHaveCount(0);
+  await expect(descanso).toBeVisible();
+  await expect.poll(() => relogio.innerText()).not.toBe(antes);
+});
+
 // Ideia B do estudo da tela do treino (docs/revisoes/melhorias/m2/), escolhida pelo Gustavo em 22/11/2026: na 1ª vez da
 // pessoa num exercício, o guia grande abre sozinho; "Entendi" leva ao registro. Da 2ª vez em diante, não abre.
 test('na 1ª vez de um exercício o guia grande abre sozinho, uma vez; depois de feito, não abre mais', async ({ page }) => {

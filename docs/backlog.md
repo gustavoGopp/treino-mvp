@@ -623,5 +623,6 @@ O que foi feito está no devlog. Ficou para depois:
 - **Músculos secundários de 6 exercícios** (goblet com kettlebell, agachamento no smith, hip thrust, coice na máquina, coice na polia, voador invertido): pedido aberto em `revisoes/animacoes-restantes/pedidos-ao-conteudo.md`, seção 2. É decisão à parte.
 - **Só com halteres, a vaga do ombro de trás pode ficar de fora** quando o único equivalente já entrou no lugar da remada (cenário do achado 10, `tests/unit/locais.test.ts`). O aviso diz a verdade; vale olhar a ordem das trocas.
 - **A tela da série a 360 × 640, em exercício de peso do corpo com montagem,** fica sem o Boneco em repouso (o registro ocupa a tela); o guia ampliado continua a um toque.
-- **Faltam no M2:** o descanso mostrar o movimento da próxima série e juntar os três palcos (treino, guia, abertura) num só.
+- **Juntar os três palcos (treino, guia, abertura) num componente só.** Não muda nada para quem usa e mexe em três telas já conferidas: fica para o pacote D4, junto com repartir os textos do guia.
+- **No descanso, o Boneco do "a seguir" some em celular baixo (até 700 px de altura),** como já sumia: ali não há o toque para o guia ampliado.
 - **O peso da tela do programa está a 2,2 kB do limite.**
