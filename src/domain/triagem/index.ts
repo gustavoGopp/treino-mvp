@@ -141,7 +141,7 @@ export function avaliarDor(nota: number, aguda = false, haCargaMenor = true): Ac
   return { acao: 'seguir', mensagem: 'Pode seguir.', regraId };
 }
 
-export type Sinal = 'peito' | 'falta-de-ar' | 'tontura' | 'palpitacao' | 'cauda-equina' | 'dor-articular-aguda' | 'formigamento' | 'perda-de-forca';
+export type Sinal = 'peito' | 'falta-de-ar' | 'tontura' | 'palpitacao' | 'cauda-equina' | 'dor-articular-aguda' | 'estalo-com-dor' | 'dor-irradiada' | 'formigamento' | 'perda-de-forca';
 
 /** Sinais de alerta durante o treino (seguranca.alerta.*). */
 export function avaliarSinal(s: Sinal): { acao: 'encerrar-sessao' | 'encerrar-exercicio'; mensagem: string; regraId: string } {

@@ -1179,6 +1179,10 @@ const SINAIS: { id: Sinal; texto: string }[] = [
   { id: 'palpitacao', texto: 'Coração batendo muito irregular' },
   { id: 'cauda-equina', texto: 'Dormência entre as pernas ou descontrole da urina ou das fezes' },
   { id: 'dor-articular-aguda', texto: 'Dor aguda ou em pontada numa articulação' },
+  // seguranca.alerta.musculoesqueletico (conferência regra por regra, 22/11/2026): a regra lista estes dois sinais, e a
+  // folha não tinha. Encerram o exercício, como a dor aguda. Texto decidido pela sessão, por delegação do Gustavo.
+  { id: 'estalo-com-dor', texto: 'Estalo com dor' },
+  { id: 'dor-irradiada', texto: 'Dor que se espalha pelo braço ou pela perna' },
   { id: 'formigamento', texto: 'Formigamento ou dormência' },
   { id: 'perda-de-forca', texto: 'Perda de força estranha' },
 ];

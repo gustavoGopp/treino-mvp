@@ -473,7 +473,7 @@
   },
   "selecao.nordico": {
     "titulo": "Como o nórdico entra no treino",
-    "frase": "O nórdico não entra para o iniciante. Para o intermediário e o avançado: calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo, de 6 a 10 descidas. A 1ª semana tem 2 séries, o mínimo do programa. Começa com poucas séries porque a 1ª sessão dá dor forte por alguns dias, e aumentar as séries rápido dói mais."
+    "frase": "O nórdico não entra para o iniciante. Para o intermediário e o avançado: calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo, de 6 a 10 descidas. Comece com poucas descidas: a 1ª sessão dá dor forte por alguns dias, e aumentar as séries rápido dói mais. O app ainda não limita as séries na 1ª semana (o plano é 2)."
   },
   "objetivo.pergunta": {
     "titulo": "A pergunta sobre o seu objetivo",
@@ -589,7 +589,7 @@
   },
   "seguranca.dor.escala": {
     "titulo": "Nota de dor de 0 a 10",
-    "frase": "A pergunta da dor em cada série é opcional, de 0 a 10. De 0 a 2, o treino segue. De 3 a 5: reduzir a carga em 10 a 20%, encurtar a amplitude ou ir mais devagar, e trocar o exercício se a dor não cair; sem carga menor (na placa 1, no halter mais leve e no 1º degrau), o app não manda reduzir. Acima de 5, ou dor aguda: o exercício é encerrado. Se a dor piora no treino seguinte ou dura mais de 1 a 2 semanas, o app recomenda avaliação. A nota fica na série: no próximo treino, a 1ª sugestão do exercício reduz a carga (nota de 3 a 5) ou indica a alternativa (acima de 5). Nota de 3 ou mais no mesmo exercício em 2 treinos seguidos traz um aviso de dor e de avaliação; se alguma passou de 5, o aviso indica a alternativa. A nota dada em “Senti algo” fica na última série feita ou, sem série, no próprio exercício, e passa para a série seguinte; se a dor encerra o exercício antes da 1ª série, a nota fica nele e vale como a de uma série."
+    "frase": "A nota de dor, de 0 a 10, é dada em “Senti algo”, a qualquer momento do treino; o app não pergunta em cada série. De 0 a 2, o treino segue. De 3 a 5: reduzir a carga em 10 a 20%, encurtar a amplitude ou ir mais devagar, e trocar o exercício se a dor não cair; sem carga menor (na placa 1, no halter mais leve e no 1º degrau), o app não manda reduzir. Acima de 5, ou dor aguda: o exercício é encerrado. Se a dor piora ou dura mais de 1 a 2 semanas, procure avaliação: o app não mede isso sozinho. A nota fica na série: no próximo treino, a 1ª sugestão do exercício reduz a carga (nota de 3 a 5) ou indica a alternativa (acima de 5). Nota de 3 ou mais no mesmo exercício em 2 treinos seguidos traz um aviso de dor e de avaliação; se alguma passou de 5, o aviso indica a alternativa. A nota dada em “Senti algo” fica na última série feita ou, sem série, no próprio exercício, e passa para a série seguinte; se a dor encerra o exercício antes da 1ª série, a nota fica nele e vale como a de uma série."
   },
   "seguranca.dor.programa": {
     "titulo": "Dor de hoje ao montar o programa",
@@ -609,7 +609,7 @@
   },
   "seguranca.sem-diagnostico": {
     "titulo": "O app não dá diagnóstico",
-    "frase": "O app não diagnostica: é uma ferramenta para você mesmo conduzir o seu treino. Ele nunca dá nome a uma lesão, nunca promete cura e nunca diz “pode treinar com dor 5/10”. A diferença entre a dor muscular tardia (a dor normal dos dias seguintes ao treino) e uma lesão aparece só como regra prática, e o app recomenda um profissional de Educação Física com registro no CREF."
+    "frase": "O app não diagnostica: é uma ferramenta para você mesmo conduzir o seu treino. Ele nunca dá nome a uma lesão, nunca promete cura e nunca diz “pode treinar com dor 5/10”. A diferença entre a dor muscular tardia (a dor normal dos dias seguintes ao treino) e uma lesão aparece só como regra prática, e o app recomenda avaliação por um médico ou profissional de Educação Física."
   },
   "seguranca.estalo-sem-dor": {
     "titulo": "Estalo no ombro sem dor",

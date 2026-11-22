@@ -22,7 +22,7 @@ Dos 73 apontamentos que não eram "bate":
 - **Textos do app acertados à regra (4):** o texto da dieta, o da saúde e os ângulos dos dois guias de supino.
 - **Regras e frases que ficaram para trás, acertadas ao que o app faz:** a maior parte. Cada uma está na tabela.
 - **Para o pacote D3 (mudam programas; pedem personas e régua antes e depois):** 15 apontamentos do gerador, listados em `docs/backlog.md`. A sessão não reproduziu esses; os conferentes rodaram o gerador e deram o exemplo.
-- **Decisão do Gustavo (6):** quatro de texto de segurança (`seguranca.alerta.musculoesqueletico`, `seguranca.dor.escala`, `seguranca.sem-diagnostico`, `seguranca.montagem`), o guia dos exercícios com elástico (`selecao.elastico-ampliado`) e as 2 séries do nórdico na 1ª semana (`selecao.nordico`).
+- **Decididos pela sessão, por delegação do Gustavo em 22/11/2026 (6):** "Senti algo" ganhou dois sinais; 9 exercícios ganharam a marca de montagem e 4 a nota; 6 guias de elástico ganharam o aviso; as regras da dor e do "não diagnostica" foram acertadas ao que o app faz; o limite do nórdico foi para o D3. Cada um está na tabela, para a revisão dele.
 - **Nada a fazer:** as regras de referência e as que a frase já diz que não estão no app.
 
 ## As 166 regras
@@ -37,7 +37,7 @@ Dos 73 apontamentos que não eram "bate":
 | `selecao.variacoes-equivalentes` | a frase diverge | [selecao-1](regras-x-codigo/selecao-1.md) | conferido no código; frase e regra acertadas: o iniciante repete o exercício |
 | `selecao.corpo-livre-ampliado` | bate | [selecao-1](regras-x-codigo/selecao-1.md) | — |
 | `selecao.halteres-ampliado` | bate | [selecao-1](regras-x-codigo/selecao-1.md) | — |
-| `selecao.elastico-ampliado` | o código diverge | [selecao-1](regras-x-codigo/selecao-1.md) | apontado: 1 dos 25 guias com elástico não fala em rachaduras e 5 não pedem o pé inteiro. **Decisão do Gustavo** (texto de segurança) |
+| `selecao.elastico-ampliado` | o código diverge | [selecao-1](regras-x-codigo/selecao-1.md) | conferido nos guias; **decidido pela sessão, por delegação: consertado.** Os 5 em que se pisa no elástico pedem o pé inteiro, e a extensão de joelho com elástico pede conferir rachaduras |
 | `selecao.barra-negativa` | bate | [selecao-1](regras-x-codigo/selecao-1.md) | — |
 | `selecao.barra-negativa-iniciante` | bate | [selecao-1](regras-x-codigo/selecao-1.md) | — |
 | `selecao.item-sozinho-ampliado` | o código diverge (leve) | [selecao-1](regras-x-codigo/selecao-1.md) | conferido no código; **consertado**: o porquê da extensão de joelho com mini-band dizia "abdução". A nota de evidência fraca no guia fica no backlog |
@@ -66,7 +66,7 @@ Dos 73 apontamentos que não eram "bate":
 | `selecao.complexidade-nivel` | a frase diverge | [selecao-2](regras-x-codigo/selecao-2.md) | conferido no código; frase e regra acertadas, com os exercícios de barra livre |
 | `selecao.dobrar-quadril` | bate | [selecao-2](regras-x-codigo/selecao-2.md) | — |
 | `selecao.flexao-joelho-sem-maquina` | bate | [selecao-2](regras-x-codigo/selecao-2.md) | — |
-| `selecao.nordico` | o código diverge | [selecao-2](regras-x-codigo/selecao-2.md) | apontado com exemplo rodado: o nórdico sai com 4 séries já na 1ª semana, e a regra promete 2. **Decisão do Gustavo** |
+| `selecao.nordico` | o código diverge | [selecao-2](regras-x-codigo/selecao-2.md) | **decidido pela sessão, por delegação:** a frase diz que o app ainda não limita as séries na 1ª semana; o limite de 2 séries vai para o pacote D3 (muda programas) |
 | `reps.equivalencia-cargas` | bate | [progressao](regras-x-codigo/progressao.md) | — |
 | `reps.faixa.por-tipo` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas: cada exercício tem a sua faixa na biblioteca, e 27 saem do padrão |
 | `reps.faixa.degrau` | o código diverge | [progressao](regras-x-codigo/progressao.md) | confirmado; regra e frase acertadas, com os exercícios que saem da faixa |
@@ -188,10 +188,10 @@ Dos 73 apontamentos que não eram "bate":
 | `seguranca.triagem.nenhuma` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.triagem.texto` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
 | `seguranca.alerta.cardiovascular` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
-| `seguranca.alerta.musculoesqueletico` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): "Senti algo" não tem "estalo com dor" nem "dor que se espalha" |
-| `seguranca.dor.escala` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo**: a regra promete a pergunta de dor em cada série e o aviso quando a dor piora; o app só tem a nota em "Senti algo" e o aviso com nota 3 ou mais em 2 treinos seguidos |
+| `seguranca.alerta.musculoesqueletico` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decidido pela sessão, por delegação do Gustavo (22/11): consertado.** "Senti algo" ganhou "Estalo com dor" e "Dor que se espalha pelo braço ou pela perna", que encerram o exercício; com teste |
+| `seguranca.dor.escala` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decidido pela sessão, por delegação:** a regra e a frase passam a dizer o que o app faz (a nota é dada em "Senti algo"; o aviso sai com nota de 3 ou mais em 2 treinos seguidos). Não entra pergunta nova em cada série |
 | `seguranca.dor.programa` | bate | [seguranca](regras-x-codigo/seguranca.md) | — |
-| `seguranca.sem-diagnostico` | o código diverge (leve) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): a regra diz "profissional com CREF", as telas dizem "médico ou profissional de Educação Física" |
-| `seguranca.estalo-sem-dor` | não está no app | [seguranca](regras-x-codigo/seguranca.md) | confirmado; segue a decisão do "estalo com dor" (acima) |
-| `seguranca.montagem` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decisão do Gustavo** (texto de segurança): 6 exercícios com barra sem a marca de montagem, a rosca Scott sem nota de travas, e 3 de barra fixa sem nota |
+| `seguranca.sem-diagnostico` | o código diverge (leve) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decidido pela sessão, por delegação:** regra e frase dizem "médico ou profissional de Educação Física", como as telas |
+| `seguranca.estalo-sem-dor` | não está no app | [seguranca](regras-x-codigo/seguranca.md) | resolvido com o "estalo com dor" em "Senti algo" |
+| `seguranca.montagem` | o código diverge (parcial) | [seguranca](regras-x-codigo/seguranca.md) | confirmado; **decidido pela sessão, por delegação: consertado.** 9 exercícios ganharam a marca de montagem; a rosca Scott e os 3 de barra fixa ganharam a nota, com frases já aprovadas em outros guias |
 | `treino.leitura` | o código diverge | [seguranca](regras-x-codigo/seguranca.md) | confirmado; regra e frase acertadas à decisão de 16/11 (as definições ficam em "Entenda o treino") |
