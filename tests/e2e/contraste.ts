@@ -32,7 +32,7 @@ export async function semContrasteBaixo(page: Page) {
     };
     const out: string[] = [];
     for (const e of Array.from(document.body.querySelectorAll<HTMLElement>('*'))) {
-      if (e.closest('svg, .stage, .miniatura, button:disabled')) continue;
+      if (e.closest('svg, .stage, .miniatura, button:disabled, button[aria-disabled="true"]')) continue;
       if (!Array.from(e.childNodes).some((n) => n.nodeType === 3 && n.textContent!.trim())) continue;
       const r = e.getBoundingClientRect();
       const s = getComputedStyle(e);

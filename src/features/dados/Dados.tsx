@@ -112,7 +112,8 @@ export function Dados() {
     apagarTodosLocais();
     apagarEstiloBoneco();
     setFolha(null);
-    navigate('/');
+    // a abertura diz que apagou (pacote D2): antes a pessoa caía nela sem nenhuma palavra sobre o que aconteceu
+    navigate('/', { state: { apagou: true } });
   };
 
   const r = estado.rotina;
@@ -257,6 +258,18 @@ export function Dados() {
         {folha === 'trazer' && (
           <Folha titulo="Trazer uma cópia" aoFechar={() => setFolha(null)}>
             <p>Importar substitui os dados deste aparelho pelos do arquivo.</p>
+            {/* pacote D2 (22/11/2026): o que está no aparelho vai ser substituído; antes de escolher o arquivo, a tela
+                oferece guardar o que há hoje */}
+            {temDados && (
+              <button type="button" className="btn sec" onClick={exportar}>
+                Guardar antes os dados de hoje
+              </button>
+            )}
+            {msg && (
+              <p className="status" role="status">
+                {msg}
+              </p>
+            )}
             {erro && (
               <div className="caixa-erro" role="alert">
                 {erro}
@@ -286,7 +299,7 @@ export function Dados() {
                 if (await importar()) setFolha(null);
               }}
             >
-              Importar dados
+              {temDados ? 'Substituir pelos dados do arquivo' : 'Importar dados'}
             </button>
             {!nomeArquivo && (
               <p className="falta" id="falta-arquivo">
@@ -318,10 +331,17 @@ export function Dados() {
         )}
         {folha === 'apagar' && (
           <Folha titulo="Apagar todos os dados?" aoFechar={() => setFolha(null)} rotuloFechar="Voltar">
-            <p>O perfil, o programa e os treinos saem deste aparelho e não voltam. Se quiser, guarde uma cópia antes.</p>
+            <p>O perfil, o programa e os treinos saem deste aparelho e não voltam.</p>
+            {/* pacote D2 (22/11/2026): duas saídas (apagar ou "Voltar", no alto); eram três, com um "Cancelar" a mais.
+                "Guardar uma cópia antes" deixou de ser só uma frase: é um botão, e a folha continua aberta */}
+            {msg && (
+              <p className="status" role="status">
+                {msg}
+              </p>
+            )}
             <div className="pilha">
-              <button type="button" className="btn sec" onClick={() => setFolha(null)}>
-                Cancelar
+              <button type="button" className="btn sec" onClick={exportar}>
+                Guardar uma cópia antes
               </button>
               <button type="button" className="btn perigo" onClick={apagar}>
                 Apagar tudo

@@ -6,7 +6,7 @@ import type { SerieRegistrada } from '../../src/domain/progressao';
 import { historicoDoExercicio, sugestaoDoExercicio } from '../../src/domain/sessao';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { diaDoTreino, iniciarSessao, opcoesDaCarga, registrarSerie, terminarSessao } from '../../src/features/treino/acoes';
-import { VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
+import { estadoSchema, estadoVazio, porQueNaoApagarLocal, semLocal, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { bruno, brunoAcademiaDoBairro, carla, LOCAIS_DO_BRUNO, PERSONAS } from '../personas';
 
 // local.treino-do-dia, progressao.troca-equivalente e selecao.preferencia nas trocas (R1b; pesquisa-v2/09).
@@ -294,5 +294,43 @@ describe('propriedades (R1b)', () => {
       if (maquina) expect(porLocal.reduce((a, b) => a + b, 0)).toBe(n);
       else expect(porLocal).toEqual([n, n]);
     }
+  });
+});
+
+// Pacote D2 (22/11/2026): não havia como apagar um local.
+describe('apagar um local (porQueNaoApagarLocal, semLocal)', () => {
+  const base = (): Estado => ({
+    ...estadoVazio(),
+    locais: [
+      { id: 'local-1', nome: 'Casa', inventario: {} },
+      { id: 'local-2', nome: 'Trabalho', inventario: { banco_reto: {} } },
+    ],
+  });
+  it('o único local e o principal não se apagam', () => {
+    expect(porQueNaoApagarLocal({ ...base(), locais: [base().locais![0]!] }, 'local-1')).toMatch(/único local/);
+    expect(porQueNaoApagarLocal(base(), 'local-1')).toMatch(/principal/);
+    expect(porQueNaoApagarLocal({ ...base(), localPrincipalId: 'local-2' }, 'local-2')).toMatch(/principal/);
+    expect(semLocal(base(), 'local-1')).toEqual(base());
+  });
+  it('o outro local apaga, e o último local lembrado deixa de apontar para ele', () => {
+    const e = { ...base(), ultimoLocalId: 'local-2' };
+    expect(porQueNaoApagarLocal(e, 'local-2')).toBeNull();
+    const depois = semLocal(e, 'local-2');
+    expect(depois.locais!.map((l) => l.id)).toEqual(['local-1']);
+    expect(depois.ultimoLocalId).toBeUndefined();
+    expect(estadoSchema.safeParse(depois).success).toBe(true);
+    // o lembrado que não é o apagado fica
+    expect(semLocal({ ...base(), ultimoLocalId: 'local-1' }, 'local-2').ultimoLocalId).toBe('local-1');
+  });
+  it('o local do treino aberto e o local para o qual o programa foi montado não se apagam', () => {
+    const sessao = { id: 's1', diaId: 'a', semana: 1, inicio: '2026-11-01T10:00:00.000Z', localId: 'local-2', exercicios: [] };
+    expect(porQueNaoApagarLocal({ ...base(), sessaoAtual: sessao }, 'local-2')).toMatch(/treino aberto/);
+    // o programa foi montado para o local-2, e depois o principal passou a ser o local-1
+    const comPrograma = { ...base(), localPrincipalId: 'local-1', programa: { localId: 'local-2' } } as unknown as Estado;
+    expect(porQueNaoApagarLocal(comPrograma, 'local-2')).toMatch(/montado para este local/);
+  });
+  it('um local que não existe não muda nada', () => {
+    expect(porQueNaoApagarLocal(base(), 'local-9')).toMatch(/não existe/);
+    expect(semLocal(base(), 'local-9')).toEqual(base());
   });
 });

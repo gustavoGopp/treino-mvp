@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
@@ -26,6 +26,8 @@ export function BoasVindas() {
   const { estado, carregado, erroCarga, atualizar } = useApp();
   const navigate = useNavigate();
   const [privacidade, setPrivacidade] = useState(false);
+  // quem acabou de apagar tudo em "Meus dados" chega aqui: a tela diz que apagou (pacote D2, 22/11/2026)
+  const apagou = !!(useLocation().state as { apagou?: boolean } | null)?.apagou;
   if (!carregado) return null;
   if (estado.programa && !primeiroPassoPendente(estado)) return <Navigate to="/programa" replace />;
 
@@ -54,6 +56,11 @@ export function BoasVindas() {
           </div>
         )}
         <AvisoSalvar />
+        {apagou && (
+          <p className="status" role="status">
+            Dados apagados deste aparelho.
+          </p>
+        )}
         <section className="nota-aviso" aria-labelledby="nao-faz">
           <Icone nome="info" />
           <div>

@@ -832,7 +832,9 @@ function RegistroSerie({
           ))}
         </fieldset>
       )}
-      <button type="button" className="btn salvar" disabled={!pronto} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
+      {/* pacote D2 (22/11/2026): apagado por `aria-disabled`, não por `disabled`: o botão continua na ordem do foco, e o
+          leitor de tela chega nele e ouve o que falta */}
+      <button type="button" className="btn salvar" aria-disabled={!pronto || undefined} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
         {/* sessão de textos (16/11/2026): o tempo do descanso saiu do botão; o relógio o mostra logo depois do toque */}
         Série feita
       </button>
@@ -1149,6 +1151,19 @@ const SINAIS: { id: Sinal; texto: string }[] = [
 function Sentir({ aoDor, aoSinal }: { aoDor: (nota: number) => void; aoSinal: (s: Sinal) => void }) {
   return (
     <section className="sentir" aria-label="Senti algo">
+      {/* pacote D2 (22/11/2026): a nota de dor é o uso mais comum da folha e ficava abaixo da dobra (a 390 × 844 era
+          preciso rolar; a 320, vinha depois das 7 opções). Agora vem primeiro; os sinais que encerram vêm em seguida,
+          com os mesmos textos. A ordem é texto de segurança: revisão do Gustavo. */}
+      <fieldset className="campo">
+        <legend>Dê uma nota para a dor (0 a 10)</legend>
+        <div className="chips-valor">
+          {Array.from({ length: 11 }, (_, n) => (
+            <button key={n} type="button" className="chip-valor" onClick={() => aoDor(n)}>
+              {n}
+            </button>
+          ))}
+        </div>
+      </fieldset>
       {(['encerrar-sessao', 'encerrar-exercicio'] as const).map((acao) => {
         const sinais = SINAIS.filter((s) => (avaliarSinal(s.id).acao === 'encerrar-sessao') === (acao === 'encerrar-sessao'));
         if (!sinais.length) return null;
@@ -1167,16 +1182,6 @@ function Sentir({ aoDor, aoSinal }: { aoDor: (nota: number) => void; aoSinal: (s
           </div>
         );
       })}
-      <fieldset className="campo">
-        <legend>Ou dê uma nota para a dor (0 a 10)</legend>
-        <div className="chips-valor">
-          {Array.from({ length: 11 }, (_, n) => (
-            <button key={n} type="button" className="chip-valor" onClick={() => aoDor(n)}>
-              {n}
-            </button>
-          ))}
-        </div>
-      </fieldset>
       <p className="ajuda">
         O app não diagnostica.
       </p>

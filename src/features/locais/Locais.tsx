@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { comInventario, localPorId, localPrincipal, novoLocalId, primeiroPassoPendente } from '../../storage/esquema';
+import { comInventario, localPorId, localPrincipal, novoLocalId, porQueNaoApagarLocal, primeiroPassoPendente, semLocal } from '../../storage/esquema';
+import { Folha } from '../app/Folha';
 import { useApp } from '../app/estado';
 import { NavInferior, Titulo, Topo } from '../app/ui';
 import { FormularioInventario } from '../onboarding/Inventario';
@@ -14,6 +15,7 @@ const NOMES = ['Prédio', 'Academia', 'Casa', 'Trabalho'];
 export function Locais() {
   const { estado, atualizar } = useApp();
   const [aviso, setAviso] = useState('');
+  const [apagando, setApagando] = useState<string | undefined>();
   const pendente = primeiroPassoPendente(estado);
   if (pendente) return <Navigate to={pendente.rota} replace />;
   const principal = localPrincipal(estado);
@@ -50,6 +52,12 @@ export function Locais() {
                     Tornar principal
                   </button>
                 )}
+                {/* pacote D2 (22/11/2026): não havia como apagar um local */}
+                {!porQueNaoApagarLocal(estado, l.id) && (
+                  <button type="button" className="btn sec pequeno perigo-sec" aria-haspopup="dialog" aria-label={`Apagar ${l.nome}`} onClick={() => setApagando(l.id)}>
+                    Apagar
+                  </button>
+                )}
               </div>
             </li>
           ))}
@@ -57,6 +65,23 @@ export function Locais() {
         <Link className="btn" to="/locais/novo">
           Novo local
         </Link>
+        {apagando && localPorId(estado, apagando) && (
+          <Folha titulo={`Apagar ${localPorId(estado, apagando)!.nome}?`} aoFechar={() => setApagando(undefined)} rotuloFechar="Voltar">
+            <p>O local e o equipamento dele saem deste aparelho. Os treinos feitos nele continuam no histórico, e o programa não muda.</p>
+            <button
+              type="button"
+              className="btn perigo"
+              onClick={() => {
+                const nome = localPorId(estado, apagando)!.nome;
+                atualizar((s) => semLocal(s, apagando));
+                setApagando(undefined);
+                setAviso(`${nome} apagado.`);
+              }}
+            >
+              Apagar o local
+            </button>
+          </Folha>
+        )}
       </main>
       <NavInferior atual="dados" />
     </div>
