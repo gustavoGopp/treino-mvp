@@ -94,6 +94,27 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
 });
 
+// M6, pedido 11: antes, quem tinha um "sim" e ainda não tinha a liberação só podia marcar a caixinha ou mudar as respostas.
+test('M6: quem ainda não foi avaliado guarda as respostas, e ao voltar cai na pausa, sem refazer as perguntas', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
+  await triagem(page, { simEm: ['Dor no peito'] });
+  await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
+  await page.getByRole('button', { name: 'Vou procurar avaliação e volto depois' }).click();
+  await expect(page.getByRole('status')).toContainText('Respostas guardadas neste aparelho.');
+  // o programa continua pausado: nada adiante abre, e a volta ao app cai na mesma tela, com o "sim" à vista
+  await page.goto('/comecar/nivel');
+  await expect(page).toHaveURL(/\/comecar\/triagem$/);
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
+  await expect(page.locator('.warnbox')).toContainText('Você sente dor no peito');
+  // com a liberação, segue como sempre
+  await page.getByLabel('Confirmo que fui avaliado e liberado').check();
+  await page.getByRole('button', { name: 'Continuar com a liberação' }).click();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+});
+
 test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();

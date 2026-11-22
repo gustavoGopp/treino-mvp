@@ -5,7 +5,7 @@ import { DIVISAO_IDS } from '../domain/gerador/divisoes';
 import { CONFIANCA_TECNICA, TEMPOS_DE_TREINO } from '../domain/nivel';
 import { NIVEIS } from '../domain/regras';
 import { ITEM_IDS, inventarioSchema, type ItemId } from '../domain/taxonomia/equipamentos';
-import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
+import { avaliarTriagem, PERGUNTAS, type PerguntaId } from '../domain/triagem';
 
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
@@ -314,7 +314,10 @@ export function passoCompleto(e: Estado, id: PassoId): boolean {
     case 'aviso':
       return !!e.avisoAceitoEm;
     case 'triagem':
-      return !!e.triagem;
+      // M6 (pedido 11): no 1º cadastro, quem guardou as respostas e ainda espera a avaliação ("Vou procurar avaliação
+      // e volto depois") volta para a tela da pausa, e não para as perguntas seguintes. Com o cadastro já feito, a
+      // pausa aparece na tela do programa ("Programa pausado"), que tem a saída para "Meus dados".
+      return !!e.triagem && !(avaliarTriagem(e.triagem).bloqueado && !e.nivel);
     case 'nivel':
       return !!e.nivel;
     case 'rotina':

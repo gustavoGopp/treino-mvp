@@ -69,6 +69,12 @@ describe('esquema do estado', () => {
     expect(primeiroPassoPendente(e)).toBeNull();
     // lote 3 do redesign: o equipamento é o último passo; o "Tudo certo?" saiu
     expect(primeiroPassoPendente({ ...e, locais: undefined })?.id).toBe('inventario');
+    // M6 (pedido 11): no 1º cadastro, respostas guardadas que pausam o programa deixam a triagem pendente; com o
+    // cadastro feito, não (a pausa aparece na tela do programa); a liberação antiga continua valendo.
+    const comSim = { respostas: { ...e.triagem!.respostas, peito: true } };
+    expect(primeiroPassoPendente({ ...e, triagem: comSim, nivel: undefined })?.id).toBe('triagem');
+    expect(primeiroPassoPendente({ ...e, triagem: { ...comSim, liberacaoConfirmada: true }, nivel: undefined })?.id).toBe('nivel');
+    expect(primeiroPassoPendente({ ...e, triagem: comSim })).toBeNull();
   });
 
   it('pedido 5 do redesign: sem "algo a evitar", o perfil sai com as listas vazias, sem versão nova do estado', () => {

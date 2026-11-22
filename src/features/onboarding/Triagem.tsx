@@ -16,6 +16,10 @@ import { Folha } from '../app/Folha';
 export { NOME_ARTICULACAO } from './articulacoes';
 import { NOME_ARTICULACAO } from './articulacoes';
 
+// M6, pedido 11 (22/11/2026). TEXTO DE SEGURANÇA PROPOSTO, AINDA SEM A REVISÃO DO GUSTAVO: não vai à main assim.
+export const SAIDA_SEM_AVALIACAO = 'Vou procurar avaliação e volto depois';
+export const RESPOSTAS_GUARDADAS = 'Respostas guardadas neste aparelho. Quando tiver a liberação, abra o app e confirme aqui.';
+
 const NOTAS = Array.from({ length: 11 }, (_, i) => ({ id: i, texto: String(i) }));
 const artigo = (a: Articulacao) => (a === 'lombar' ? 'na' : 'no');
 
@@ -31,8 +35,12 @@ export function Triagem() {
   );
   const [erros, setErros] = useState<string[]>([]);
   const [tentou, setTentou] = useState(false);
-  const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; dores: DorRegiao[] } | null>(null);
+  // M6 (pedido 11): quem guardou respostas que pausam o programa volta direto para a tela da pausa, sem refazer as perguntas.
+  const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; dores: DorRegiao[] } | null>(() =>
+    salva && avaliarTriagem(salva).bloqueado ? { respostas: salva.respostas, dores: salva.dores ?? [] } : null,
+  );
   const [liberado, setLiberado] = useState(false);
+  const [guardado, setGuardado] = useState(false);
   // Lote 3 do redesign (seguranca.triagem.nenhuma): uma pergunta geral com as 9 condições em poucas palavras; quem
   // tem alguma marca só as que valem, com a pergunta inteira embaixo, e confirma as que ficaram sem marcar.
   const [geral, setGeral] = useState(() => !salva || PERGUNTAS.every((p) => salva.respostas[p.id] === false));
@@ -97,6 +105,14 @@ export function Triagem() {
     navigate('/comecar/nivel');
   };
 
+  /** A 3ª saída da pausa (pedido 11): guarda as respostas, sem a liberação, para a pessoa voltar depois da avaliação. */
+  const voltarDepois = () => {
+    if (!bloqueio) return;
+    atualizar((s) => ({ ...s, triagem: { respostas: bloqueio.respostas, ...(bloqueio.dores.length ? { dores: bloqueio.dores } : {}) } }));
+    if (estado.nivel) navigate('/programa');
+    else setGuardado(true);
+  };
+
   if (bloqueio) {
     const r = avaliarTriagem({ respostas: bloqueio.respostas, dores: bloqueio.dores });
     return (
@@ -119,7 +135,15 @@ export function Triagem() {
         <button type="button" className="btn" disabled={!liberado} onClick={confirmarLiberacao}>
           Continuar com a liberação
         </button>
-        <button type="button" className="btn sec" onClick={() => setBloqueio(null)}>
+        <button type="button" className="btn sec" onClick={voltarDepois}>
+          {SAIDA_SEM_AVALIACAO}
+        </button>
+        {guardado && (
+          <p role="status" className="ajuda">
+            {RESPOSTAS_GUARDADAS}
+          </p>
+        )}
+        <button type="button" className="btn sec" onClick={() => { setBloqueio(null); setGuardado(false); setGeral(false); }}>
           Revisar respostas
         </button>
       </Passo>
