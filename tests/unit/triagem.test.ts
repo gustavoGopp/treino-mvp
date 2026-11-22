@@ -5,9 +5,12 @@ const nao = Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas
 
 describe('triagem', () => {
   it('sem "sim": libera', () => expect(avaliarTriagem({ respostas: nao }).bloqueado).toBe(false));
-  it('qualquer "sim" bloqueia, inclusive gravidez e doença aguda', () => {
-    for (const p of PERGUNTAS.filter((p) => p.id !== 'osteoarticular'))
-      expect(avaliarTriagem({ respostas: { ...nao, [p.id]: true } }).bloqueado, p.id).toBe(true);
+  // M6 (22/11/2026): um teste por pergunta. O que a triagem vier a liberar com perguntas de seguimento sai desta lista
+  // de propósito, à vista; os outros "sim" continuam bloqueando, sozinhos e sem a liberação.
+  it.each(PERGUNTAS.filter((p) => p.id !== 'osteoarticular').map((p) => [p.id, p.curta] as const))('"sim" só em %s (%s) bloqueia', (id) => {
+    const r = avaliarTriagem({ respostas: { ...nao, [id]: true } });
+    expect(r).toMatchObject({ bloqueado: true, motivos: [id], regraId: 'seguranca.triagem' });
+    expect(r.mensagem).toContain('procure um médico ou profissional de Educação Física');
   });
   it('osteoarticular sem região marcada também bloqueia; com região, segue a dor de hoje (seguranca.dor.programa)', () => {
     const osteo = { ...nao, osteoarticular: true };
