@@ -2363,9 +2363,7 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 
 6. **Os textos do kit** ("Montado para um kit típico de casa. Ajustar" e "Meus pesos são outros…"): ficam como estão (22/11).
 
-**Esperando o Gustavo**
-
-- O ok para levar tudo isto à `main`.
+**Na `main` (22/11/2026, com o ok do Gustavo: "pode levar tudo para a main").** Junção sem forçar (`8fe2414`), com o lote M1, a régua de cara humana, o total das anilhas, a 1ª parte do M2 (o Boneco ampliado e a 1ª vez) e os documentos da análise crítica. O conteúdo passou pelo `npm run verificar` antes de ir: 1.080 testes unitários e 201 de tela. A versão do estado guardado não mudou: ninguém precisa guardar cópia antes de atualizar.
 
 **Verificação.** `npm run verificar`: tudo passou no fechamento e de novo depois das decisões de 22/11 (os números da última rodada estão no relato da sessão). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
 
