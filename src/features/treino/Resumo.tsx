@@ -6,7 +6,7 @@ import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sess
 import { localDaSessao } from '../../storage/esquema';
 import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
-import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
+import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga, podeVoltarDoAlerta, voltarDoAlerta } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
@@ -83,6 +83,20 @@ export function Resumo() {
               Ligar para o SAMU: 192
             </a>
           </div>
+        )}
+        {/* pacote D2 (22/11/2026, decisão do Gustavo): o toque errado num sinal de alerta se desfaz aqui, depois da
+            orientação de segurança, por 15 minutos */}
+        {podeVoltarDoAlerta(estado, s.id, agoraIso()) && (
+          <button
+            type="button"
+            className="link-botao"
+            onClick={() => {
+              atualizar((e) => voltarDoAlerta(e, s.id, agoraIso()));
+              navigate('/treino', { replace: true });
+            }}
+          >
+            Toquei sem querer. Voltar ao treino
+          </button>
         )}
         {/* o placar do treino: os números de hoje são o maior elemento da tela */}
         <div className={`numeros num${s.encerradaPorAlerta ? '' : ' placar'}`}>

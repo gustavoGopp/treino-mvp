@@ -581,7 +581,7 @@
   },
   "seguranca.alerta.cardiovascular": {
     "titulo": "Sinais de alerta do coração",
-    "frase": "Os sinais: dor, pressão ou aperto no peito, ou que se espalha a partir dele (irradiado), falta de ar fora do normal, tontura ou quase desmaio, coração batendo muito irregular. O app encerra o treino, orienta ligar para o SAMU (192) se o sintoma não passar ou for intenso, e bloqueia novos treinos até você confirmar que passou por avaliação."
+    "frase": "Os sinais: dor, pressão ou aperto no peito, ou que se espalha a partir dele (irradiado), falta de ar fora do normal, tontura ou quase desmaio, coração batendo muito irregular. O app encerra o treino, orienta ligar para o SAMU (192) se o sintoma não passar ou for intenso, e bloqueia novos treinos até você confirmar que passou por avaliação. Se o toque foi sem querer, a tela do encerramento deixa voltar ao treino por 15 minutos."
   },
   "seguranca.alerta.musculoesqueletico": {
     "titulo": "Sinais de alerta em músculos e articulações",

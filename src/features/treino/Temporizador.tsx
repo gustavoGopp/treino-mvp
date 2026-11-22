@@ -187,10 +187,19 @@ export function useDescanso(treino = '') {
  * o aviso não depende de cor nem só do som. `children` é o que vem a seguir; `acao`, o botão principal, que fica por último, perto do polegar.
  */
 export function PainelDescanso({ d, children, acao }: { d: ReturnType<typeof useDescanso>; children?: ReactNode; acao?: ReactNode }) {
-  if (!d.ativo) return null;
+  return d.ativo ? <Painel d={d} children={children} acao={acao} /> : null;
+}
+
+function Painel({ d, children, acao }: { d: ReturnType<typeof useDescanso>; children?: ReactNode; acao?: ReactNode }) {
+  // Pacote D2 (22/11/2026): depois de salvar a série, o foco caía no corpo da página (o botão tocado some). Agora vai
+  // para o descanso, que é o que tomou a tela: o leitor de tela anuncia "Descanso", e a tecla Tab segue dali.
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    ref.current?.focus({ preventScroll: true });
+  }, []);
   const acabou = d.resta <= 0;
   return (
-    <section className={`descanso${acabou ? ' acabou' : ''}`} aria-label="Descanso">
+    <section ref={ref} tabIndex={-1} className={`descanso${acabou ? ' acabou' : ''}`} aria-label="Descanso">
       <div className="descanso-topo">
         <span>{acabou ? 'Hora da próxima série' : 'Descanso'}</span>
         <span className="tclock-mini" role="timer" aria-live="off">

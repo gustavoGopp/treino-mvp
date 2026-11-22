@@ -90,6 +90,10 @@ export function Guia() {
 
 function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   const txt = CONTEUDO[ex.id]!;
+  const titulo = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    titulo.current?.focus({ preventScroll: true });
+  }, [ex.id]);
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const app = useApp();
@@ -421,7 +425,11 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
             </div>
           </div>
           <div>
-            <h1>{txt.name}</h1>
+            {/* pacote D2 (22/11/2026): ao abrir o guia, ou trocar de exercício, o foco vai para o nome dele (antes, nada
+                recebia o foco: o leitor de tela ficava sem saber que a tela mudou) */}
+            <h1 ref={titulo} tabIndex={-1}>
+              {txt.name}
+            </h1>
             {/* sessão de textos (16/11/2026): a prescrição, o "por quê?" dela e o alvo saíram do guia. A prescrição está na
                 tela do treino e na folha do exercício; o alvo, no modo Músculos; a explicação, em "Entenda o treino". */}
           </div>

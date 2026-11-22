@@ -1,5 +1,6 @@
 import { lazy, Suspense, type ComponentType } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { LimiteDoGuia } from './features/guia/LimiteDoGuia';
 import { EstadoProvider } from './features/app/estado';
 import { LimiteDeErro, ProvaDeErro } from './features/app/TelaDeErro';
 import { BoasVindas } from './features/onboarding/BoasVindas';
@@ -33,6 +34,16 @@ const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/Gerad
 // Laboratório do boneco (R4): em desenvolvimento e nas prévias da Vercel; fora do bundle de produção.
 const LabBoneco = __LAB__ ? lazy(() => import('./features/dev/LabBoneco').then((m) => ({ default: m.LabBoneco }))) : null;
 
+/** O guia com a sua própria saída quando o pedaço dele não baixa (pacote D2): não derruba o app no meio do treino. */
+function GuiaComLimite() {
+  const { key, search } = useLocation();
+  return (
+    <LimiteDoGuia key={key} emTreino={/[?&]de=treino\b/.test(search)}>
+      <Guia />
+    </LimiteDoGuia>
+  );
+}
+
 export function App() {
   // A tela de erro fica em volta de tudo: um erro em qualquer tela (ou na carga do estado) mostra a saída com "Exportar".
   return (
@@ -57,7 +68,7 @@ export function App() {
             <Route path="/evolucao/:exId" element={<Evolucao />} />
             <Route path="/dados" element={<Dados />} />
             <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
-            <Route path="/guia/:id" element={<Guia />} />
+            <Route path="/guia/:id" element={<GuiaComLimite />} />
             <Route path="/termos" element={<Termos />} />
             <Route path="/entenda" element={<Entenda />} />
             {GeradorDev && (

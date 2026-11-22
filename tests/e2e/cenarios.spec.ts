@@ -1,4 +1,4 @@
-import { expect, test, type Page } from './base';
+import { botaoEntendi, expect, test, tocarEmEntendi, type Page } from './base';
 import { criterios } from './criterios';
 import { abrirExercicio, abrirTrocar, ana, detalhesDo, entenda, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
@@ -111,7 +111,16 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
   },
   // lote 2
   treino: async (page) => {
+    // A 1ª vez no exercício abre o guia grande sozinho (22/11/2026). Aqui a folha é conferida de propósito, parada: sem
+    // isto, a conferência da série 1 às vezes começava com a folha ainda subindo e via os controles de trás "cobertos".
+    await page.removeLocatorHandler(botaoEntendi(page));
     await comecar(page, { barraFixa: true });
+    await expect(botaoEntendi(page)).toBeVisible();
+    await folhaPronta(page);
+    await criterios(page); // o guia grande da 1ª vez
+    await botaoEntendi(page).click();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    await tocarEmEntendi(page);
     await criterios(page); // série 1
     await page.getByRole('button', { name: 'Senti algo' }).click();
     await criterios(page);

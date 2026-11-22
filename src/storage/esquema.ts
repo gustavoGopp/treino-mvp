@@ -245,6 +245,25 @@ export function comInventario(e: Estado, id: string | undefined, inventario: Loc
     return { ...e, locais: locais.map((l) => (l.id === alvo ? { ...l, inventario, ...(nome ? { nome } : {}) } : l)) };
   return { ...e, locais: [...locais, { id: alvo ?? novoLocalId(e), nome: nome ?? NOME_LOCAL_PADRAO, inventario }] };
 }
+/**
+ * Por que um local não pode ser apagado agora, ou null se pode (pacote D2, 22/11/2026). O programa tem de seguir
+ * válido: fica o único local, o principal, o local para o qual o programa guardado foi montado e o do treino aberto.
+ */
+export function porQueNaoApagarLocal(e: Estado, id: string): string | null {
+  const locais = e.locais ?? [];
+  if (!locais.some((l) => l.id === id)) return 'Este local não existe mais.';
+  if (locais.length < 2) return 'É o único local: o programa precisa de um.';
+  if (localPrincipal(e)?.id === id) return 'É o local principal. Torne outro o principal antes de apagar este.';
+  if (localDoPrograma(e)?.id === id) return 'O programa de hoje foi montado para este local. Atualize o programa no início e apague depois.';
+  if (e.sessaoAtual && (e.sessaoAtual.localId ?? locais[0]?.id) === id) return 'Há um treino aberto neste local. Termine o treino antes.';
+  return null;
+}
+/** Apaga um local (se `porQueNaoApagarLocal` deixar). Os treinos feitos nele continuam no histórico. */
+export function semLocal(e: Estado, id: string): Estado {
+  if (porQueNaoApagarLocal(e, id)) return e;
+  const { ultimoLocalId, ...resto } = e;
+  return { ...resto, ...(ultimoLocalId && ultimoLocalId !== id ? { ultimoLocalId } : {}), locais: (e.locais ?? []).filter((l) => l.id !== id) };
+}
 /** Todos os itens de todos os locais (para a lista de "o que evitar", que vale em qualquer local). */
 export const inventarioDeTodos = (e: Estado): Local['inventario'] =>
   Object.assign({}, ...[...(e.locais ?? [])].reverse().map((l) => l.inventario)) as Local['inventario'];

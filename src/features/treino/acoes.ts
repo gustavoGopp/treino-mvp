@@ -145,6 +145,30 @@ export function terminarSessao(e: Estado, agora: string, porAlerta = false, aler
   return { ...resto, historico: [...e.historico, feita] };
 }
 
+/** Por quanto tempo depois do encerramento por um sinal de alerta a tela oferece "Toquei sem querer" ([opinião] do projeto). */
+export const MINUTOS_PARA_VOLTAR_DO_ALERTA = 15;
+
+/**
+ * "Toquei sem querer. Voltar ao treino" (pacote D2; decisão do Gustavo de 22/11/2026, a saída C do pedido 7): o sinal de
+ * alerta continua encerrando o treino com um toque, e a orientação de segurança aparece primeiro; nessa tela, por 15
+ * minutos, a pessoa pode desfazer um toque errado. O treino volta a ficar aberto, com as séries que já tinha, e o
+ * encerramento por alerta sai do histórico (não bloqueia o próximo treino).
+ */
+export function podeVoltarDoAlerta(e: Estado, sessaoId: string, agora: string): boolean {
+  const ult = e.historico.at(-1);
+  if (e.sessaoAtual || !ult || ult.id !== sessaoId || !ult.encerradaPorAlerta || !ult.fim) return false;
+  const minutos = (Date.parse(agora) - Date.parse(ult.fim)) / 60000;
+  return minutos >= 0 && minutos <= MINUTOS_PARA_VOLTAR_DO_ALERTA;
+}
+export function voltarDoAlerta(e: Estado, sessaoId: string, agora: string): Estado {
+  if (!podeVoltarDoAlerta(e, sessaoId, agora)) return e;
+  const { fim, encerradaPorAlerta, alerta, ...aberta } = e.historico.at(-1)!;
+  void fim;
+  void encerradaPorAlerta;
+  void alerta;
+  return { ...e, historico: e.historico.slice(0, -1), sessaoAtual: aberta };
+}
+
 /** O treino em andamento ainda não tem nenhuma série (registro.treino-feito): "Terminar" oferece descartar. */
 export const semSerie = (e: Estado) => !!e.sessaoAtual && !e.sessaoAtual.exercicios.some((x) => x.series.length > 0);
 

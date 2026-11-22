@@ -596,11 +596,20 @@ O que foi feito está no devlog ("A porta"). Ficou para depois:
 ## Da tela do treino, 1ª parte do M2 (22/11/2026)
 
 O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
-- **O peso da tela do programa está a 0,4 kB do limite** (289,6 de 290 kB, medido em 22/11 depois da junção com a `main` das animações). Qualquer coisa nova no pacote inicial estoura. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
+- **O peso da tela do programa tem 3 kB de folga** (287,0 de 290 kB, medido em 22/11 no pacote D2). Estava a 0,4 kB depois da junção com a `main` das animações e passou do limite no D2; a folga veio de tirar do pacote inicial o formulário de equipamento, que tinha entrado com a linha do kit típico. Qualquer coisa nova no pacote inicial come essa folga. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
 - **O Boneco de repouso continua com 13% a 18% da tela.** A ideia B (o guia grande abre sozinho na 1ª vez de cada exercício) foi feita em 22/11. A ideia A (o menos e o mais ao lado do número, que daria uns 22%) não foi pedida.
 - **O "já vi" da 1ª vez fica na memória da aba,** não nos dados: fechar o app no meio do 1º exercício e abrir de novo mostra o guia outra vez. Guardar isso de vez pediria um campo novo no estado.
 - **A 320 × 568, na folha da 1ª vez,** "Lento" e os ângulos ficam atrás do "Entendi" até rolar.
 - **No palco pequeno, as legendas do desenho ficam ilegíveis** (letra de poucos pontos). Com o toque que amplia, elas poderiam sair do repouso e ficar só no grande; mexe no desenho do motor.
 - **O ampliado não tem o "voltar ao começo"** nem os erros um a um, que continuam no guia completo (o livro do cabeçalho).
 - **Exercícios deitados** (supino, prancha) não foram medidos no estudo: ocupam a largura, não a altura.
+
+## Do pacote D2, nada se perde no meio do caminho (22/11/2026)
+
+O que foi feito está no devlog. Ficou para depois:
+- **O "Desfazer" do programa vale só enquanto a pessoa está na tela.** Sair ou fechar o app perde a volta. Guardar o programa anterior nos dados resolveria, com uma versão nova do estado.
+- **A volta do alerta vale por 15 minutos.** Depois disso, o toque errado só se resolve marcando "fui avaliado". Vale ouvir quem usa antes de mexer no prazo.
+- **O guia completo ainda baixa os textos de todos os exercícios num pedaço só.** A falha deixou de derrubar o app; repartir o pedaço fica para o pacote D4 (peso).
+- **A saída da triagem para quem ainda não foi avaliado** (pedido 11) está no lote M6.
+- **O histórico não diz em que local cada treino foi feito** depois que o local é apagado: a sessão guarda o código do local, e o nome some com ele.
 
