@@ -4,7 +4,11 @@ import { NIVEIS, r, type Nivel } from '../regras';
 // errar para baixo custa pouco (a progressão corrige), errar para cima expõe a volume e complexidade maiores.
 // Decisão e fontes: docs/pesquisa/09-decisoes-m3.md, seção 2.
 
+// "Nunca treinei" (lote M1 da análise crítica, 19/11/2026): antes, quem nunca treinou marcava "parei há mais de 6
+// meses" e caía na volta de pausa (readaptacao.semana1: metade das séries, 2 viravam 1, e um texto sobre "a carga que
+// você usava antes da pausa"). Agora é uma resposta própria: iniciante, zero semana parada, fase de aprendizado.
 export const TEMPOS_DE_TREINO = [
+  { id: 'nunca', texto: 'Nunca treinei' },
   { id: 'menos-6m', texto: 'Menos de 6 meses' },
   { id: '6-24m', texto: 'De 6 meses a 2 anos' },
   { id: 'mais-24m', texto: 'Mais de 2 anos' },
@@ -25,6 +29,12 @@ export type RespostasNivel = {
   semanasParado: number;
   tecnica: ConfiancaTecnica;
 };
+
+/**
+ * Quem nunca treinou não responde a pausa nem a técnica: não há pausa de algo que não começou, nem técnica para
+ * confiar. Vale zero semana parada (não é volta de pausa) e técnica "não" (o lado de baixo da regra).
+ */
+export const RESPOSTAS_DE_QUEM_NUNCA_TREINOU: RespostasNivel = { tempoContinuo: 'nunca', semanasParado: 0, tecnica: 'nao' };
 
 /** Pausa a partir da qual a pessoa volta como iniciante (~6 meses parado). */
 export const SEMANAS_PARADO_INICIANTE = 26;
@@ -54,6 +64,7 @@ export type Classificacao = { nivel: Nivel; motivo: string; regraId: string };
 
 export function classificarNivel(r0: RespostasNivel): Classificacao {
   const regraId = r('nivel.classificacao');
+  if (r0.tempoContinuo === 'nunca') return { nivel: 'iniciante', motivo: 'Nunca treinou: começamos pelo aprendizado.', regraId };
   if (r0.tecnica !== 'sim')
     return { nivel: 'iniciante', motivo: 'Sem confiança total na técnica básica: começamos pelo aprendizado.', regraId };
   if (r0.semanasParado > SEMANAS_PARADO_INICIANTE)

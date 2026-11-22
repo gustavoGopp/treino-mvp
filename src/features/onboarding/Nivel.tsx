@@ -7,6 +7,7 @@ import {
   NOME_NIVEL,
   PAUSAS,
   pausaDe,
+  RESPOSTAS_DE_QUEM_NUNCA_TREINOU,
   TEMPOS_DE_TREINO,
   type ConfiancaTecnica,
   type PausaId,
@@ -30,14 +31,17 @@ export function Nivel() {
   const [escolhido, setEscolhido] = useState<TipoNivel | undefined>(deVolta ? undefined : salvo?.escolhido);
   const [tentou, setTentou] = useState(false);
 
-  const semanas = PAUSAS.find((p) => p.id === pausa)?.semanas;
+  // "Nunca treinei" (lote M1 da análise crítica): não há pausa nem técnica a perguntar; as duas perguntas não aparecem.
+  const nunca = tempo === 'nunca';
+  const semanas = nunca ? RESPOSTAS_DE_QUEM_NUNCA_TREINOU.semanasParado : PAUSAS.find((p) => p.id === pausa)?.semanas;
   const semanasOk = semanas !== undefined;
+  const tecnicaFinal = nunca ? RESPOSTAS_DE_QUEM_NUNCA_TREINOU.tecnica : tecnica;
   const sugestao =
-    tempo && tecnica && semanasOk
+    tempo && tecnicaFinal && semanasOk
       ? classificarNivel({
           tempoContinuo: tempo,
           semanasParado: semanas!,
-          tecnica,
+          tecnica: tecnicaFinal,
         })
       : null;
   const permitidos = sugestao ? niveisPermitidos(sugestao.nivel) : [];
@@ -46,7 +50,7 @@ export function Nivel() {
   const erros = [
     !tempo && 'Diga há quanto tempo você treina sem parar.',
     !semanasOk && 'Diga se está treinando ou há quanto tempo parou.',
-    !tecnica && 'Diga se tem confiança na técnica básica.',
+    !tecnicaFinal && 'Diga se tem confiança na técnica básica.',
   ].filter((x): x is string => !!x);
 
   const enviar = (e: React.FormEvent) => {
@@ -59,7 +63,7 @@ export function Nivel() {
         respostas: {
           tempoContinuo: tempo!,
           semanasParado: semanas!,
-          tecnica: tecnica!,
+          tecnica: tecnicaFinal!,
         },
         escolhido: nivelFinal,
       },
@@ -80,7 +84,7 @@ export function Nivel() {
           erro={tentou && !tempo ? 'Escolha uma opção.' : undefined}
         />
         {/* Uma pergunta por vez: a seguinte aparece depois da resposta (design v2, item B) */}
-        {tempo && (
+        {tempo && !nunca && (
           <Revelar>
             <Escolha
               nome="pausa"
@@ -92,7 +96,7 @@ export function Nivel() {
             />
           </Revelar>
         )}
-        {tempo && semanasOk && (
+        {tempo && !nunca && semanasOk && (
           <Revelar>
             <Escolha
               nome="tecnica"

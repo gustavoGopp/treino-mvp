@@ -645,7 +645,7 @@
   },
   "nivel.classificacao": {
     "titulo": "Como o app define o seu nível",
-    "frase": "Tempo de treino contínuo: iniciante, menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
+    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
   },
   "tecnica.remada-baixa.polia": {
     "titulo": "Altura da polia na remada baixa",

@@ -2399,7 +2399,7 @@
     "id": "nivel.classificacao",
     "regra": "Classificação de nível no onboarding; na dúvida, classificar para baixo",
     "valores": {
-      "iniciante": "< ~6 meses de treino contínuo, ou > ~6 meses parado, ou sem confiança na técnica básica",
+      "iniciante": "nunca treinou (resposta própria desde 19/11/2026: sem a pergunta da pausa nem a da técnica, zero semana parada, entra na fase de aprendizado e não na volta de pausa), ou < ~6 meses de treino contínuo, ou > ~6 meses parado, ou sem confiança na técnica básica",
       "intermediario": "~6–24 meses de treino contínuo com técnica estável",
       "avancado": "> ~2 anos de treino contínuo com progresso lento"
     },
