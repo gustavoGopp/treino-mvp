@@ -8,7 +8,7 @@ import { gravarLocal, lerLocal, LOCAL } from './local';
 // Avisos que protegem os dados (R5c): instalar no iPhone (dados.instalar-iphone) e o lembrete de cópia (dados.copia).
 
 /** Aberto pela tela de início (iOS: navigator.standalone; os outros: display-mode standalone). */
-function estaInstalado(): boolean {
+export function estaInstalado(): boolean {
   const nav = navigator as Navigator & { standalone?: boolean };
   return nav.standalone === true || !!window.matchMedia?.('(display-mode: standalone)').matches;
 }

@@ -72,7 +72,9 @@ export default defineConfig(({ mode }) => ({
         // o wav é o som do fim do descanso (lote M4): tem de tocar sem rede
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,wav}'],
         // lote 5: os 49 desenhos do equipamento (cerca de 860 kB) ficam fora da instalação; são guardados quando aparecem
-        globIgnores: ['equipamento/**'],
+        // o trecho que recebe o aviso de fim do descanso (lote M4, passo 2): public/sw-descanso.js
+        importScripts: ['sw-descanso.js'],
+        globIgnores: ['equipamento/**', 'sw-descanso.js'],
         runtimeCaching: [{ urlPattern: /\/equipamento\/[a-z_]+\.svg$/, handler: 'CacheFirst', options: { cacheName: 'equipamento' } }],
       },
       manifest: {

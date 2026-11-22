@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { desmarcarAviso, estadoDoAviso, ligarAviso, marcarAviso, prepararAviso, recusarAviso } from './aviso';
 
 // Temporizador de descanso, portado do guia original (referencia/guia-execucao-fase1.html):
 // três bipes (desde o lote M4, um som de arquivo), vibração e ±15 s. A tela ligada vale para o treino todo (useTelaAcesa, abaixo).
@@ -148,6 +149,19 @@ export function useDescanso(treino = '') {
     const id = setInterval(() => setAgora(Date.now()), 250);
     return () => clearInterval(id);
   }, [estado]);
+  // Lote M4, passo 2: quem sai do app (outro app, tela bloqueada) no meio do descanso é avisado pelo servidor, se ligou
+  // o aviso. O pedido só é feito ao sair, e é desfeito ao voltar ou quando o descanso muda (aviso.ts).
+  const fim = estado?.fim;
+  useEffect(() => {
+    if (fim === undefined) return;
+    prepararAviso();
+    const ver = () => (document.visibilityState === 'hidden' ? marcarAviso(fim) : desmarcarAviso());
+    document.addEventListener('visibilitychange', ver);
+    return () => {
+      document.removeEventListener('visibilitychange', ver);
+      desmarcarAviso();
+    };
+  }, [fim]);
   // Descanso que veio guardado (a pessoa voltou do guia): o som é marcado de novo para o tempo que falta.
   useEffect(() => {
     const guardado = lerDescanso(treino);
@@ -219,11 +233,62 @@ function Painel({ d, children, acao }: { d: ReturnType<typeof useDescanso>; chil
         </button>
       </div>
       {acao}
+      {/* Depois da ação principal: medido em 22/11/2026, acima dela o pedido empurrava o "Série N feita" para fora da tela
+          em celular baixo (a 360 × 640, 100 px mais para baixo). Aqui o botão nunca desce (tests/e2e/aviso-descanso.spec.ts). */}
+      {!acabou && <PedidoDeAviso />}
       {acabou && (
         <p className="sr" role="status">
           Descanso terminado.
         </p>
       )}
     </section>
+  );
+}
+
+/**
+ * O pedido de permissão do aviso (lote M4, passo 2), na hora em que ele faz sentido: no descanso. Aparece até a pessoa
+ * responder, e nunca mais. A permissão do navegador só é pedida depois do toque em "Avisar". No iPhone pelo Safari, onde
+ * o aviso só existe com o app na tela de início, a tela diz isso (uma vez). Recusar não muda nada no resto do app.
+ */
+function PedidoDeAviso() {
+  const [aviso, setAviso] = useState(estadoDoAviso);
+  const [ocupado, setOcupado] = useState(false);
+  if (aviso !== 'perguntar' && aviso !== 'instalar') return null;
+  const nao = () => {
+    recusarAviso();
+    setAviso('nao');
+  };
+  if (aviso === 'instalar')
+    return (
+      <div className="pedido-aviso" role="group" aria-label="Aviso do descanso">
+        <p>No iPhone, o aviso com a tela bloqueada só funciona com o app na tela de início.</p>
+        <button type="button" className="link-botao" onClick={nao}>
+          Entendi
+        </button>
+      </div>
+    );
+  return (
+    <div className="pedido-aviso" role="group" aria-label="Aviso do descanso">
+      <p>Quer um aviso quando o descanso acabar, mesmo com a tela bloqueada?</p>
+      <div className="pedido-aviso-botoes">
+        <button
+          type="button"
+          className="btn sec pequeno"
+          disabled={ocupado}
+          onClick={() => {
+            setOcupado(true);
+            void ligarAviso().then((e) => {
+              setAviso(e);
+              setOcupado(false);
+            });
+          }}
+        >
+          Avisar
+        </button>
+        <button type="button" className="link-botao" onClick={nao}>
+          Agora não
+        </button>
+      </div>
+    </div>
   );
 }

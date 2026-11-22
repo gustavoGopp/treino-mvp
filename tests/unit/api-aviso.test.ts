@@ -6,7 +6,8 @@ import { Limite } from '../../api/_lib/pedido';
 const AGORA = Date.UTC(2026, 10, 22, 18, 0, 0);
 const ctx: Contexto = { ip: '1.2.3.4', hoje: '2026-11-22', agora: AGORA, configurado: true, segredo: 'segredo-de-teste' };
 const assinatura: Assinatura = { endpoint: 'https://fcm.googleapis.com/fcm/send/abc123', keys: { p256dh: 'B'.repeat(87), auth: 'a'.repeat(22) } };
-const marcar = { acao: 'marcar', assinatura, fim: AGORA + 90_000, id: 'descanso-0001' };
+const marcar = { acao: 'marcar', assinatura, falta: 90_000, id: 'descanso-0001' };
+const FIM = AGORA + 90_000;
 
 function redeFalsa() {
   const fila: { corpo: string; atraso: number }[] = [];
@@ -30,7 +31,7 @@ describe('aviso do descanso: marcar', () => {
     expect(r.fila[0]!.corpo).not.toContain(assinatura.keys.auth);
     const { acao, cifra } = JSON.parse(r.fila[0]!.corpo) as { acao: string; cifra: string };
     expect(acao).toBe('avisar');
-    expect(desembaralhar(cifra, ctx.segredo)).toEqual({ assinatura, id: 'descanso-0001', fim: marcar.fim });
+    expect(desembaralhar(cifra, ctx.segredo)).toEqual({ assinatura, id: 'descanso-0001', fim: FIM });
   });
 
   it('sem as chaves configuradas, responde "desligado" e não chama a fila', async () => {
@@ -45,7 +46,7 @@ describe('aviso do descanso: marcar', () => {
     ['endereço sem https', { ...marcar, assinatura: { ...assinatura, endpoint: 'http://fcm.googleapis.com/x' } }],
     ['sem as chaves do aparelho', { ...marcar, assinatura: { endpoint: assinatura.endpoint } }],
     ['sem o número do descanso', { ...marcar, id: undefined }],
-    ['hora que não é número', { ...marcar, fim: 'já' }],
+    ['tempo que não é número', { ...marcar, falta: 'já' }],
   ])('recusa: %s', async (_nome, pedido) => {
     const r = redeFalsa();
     expect((await processarAviso(pedido, ctx, new Limite(), r.rede)).status).toBe(400);
@@ -58,10 +59,10 @@ describe('aviso do descanso: marcar', () => {
     expect((await processarAviso(pedido, ctx, new Limite(), r.rede)).status).toBe(200);
   });
 
-  it('recusa hora no passado, cedo demais ou além de 15 min', async () => {
+  it('recusa tempo negativo, curto demais ou além de 15 min', async () => {
     const r = redeFalsa();
-    for (const fim of [AGORA - 1000, AGORA + 2000, AGORA + (ATRASO_MAX_SEG + 1) * 1000])
-      expect(await processarAviso({ ...marcar, fim }, ctx, new Limite(), r.rede)).toEqual({ status: 400, corpo: { codigo: 'hora' } });
+    for (const falta of [-1000, 2000, (ATRASO_MAX_SEG + 1) * 1000])
+      expect(await processarAviso({ ...marcar, falta }, ctx, new Limite(), r.rede)).toEqual({ status: 400, corpo: { codigo: 'hora' } });
     expect(r.fila).toHaveLength(0);
   });
 
@@ -90,19 +91,21 @@ describe('aviso do descanso: desmarcar e avisar', () => {
     expect((await processarAviso({ acao: 'desmarcar', mensagem: '../x' }, ctx, new Limite(), r.rede)).status).toBe(400);
   });
 
-  it('avisar manda ao aparelho só o número do descanso e a hora do fim', async () => {
+  it('avisar manda ao aparelho só o número do descanso', async () => {
     const r = redeFalsa();
     await processarAviso(marcar, ctx, new Limite(), r.rede);
-    const resp = await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: marcar.fim + 500 }, new Limite(), r.rede);
+    const resp = await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: FIM + 500 }, new Limite(), r.rede);
     expect(resp).toEqual({ status: 200, corpo: {} });
-    expect(r.enviados).toEqual([{ assinatura, texto: JSON.stringify({ id: 'descanso-0001', fim: marcar.fim }) }]);
+    expect(r.enviados).toEqual([{ assinatura, texto: JSON.stringify({ id: 'descanso-0001' }) }]);
   });
 
   it('avisar recusa texto que esta função não embaralhou (outro segredo, ou mexido)', async () => {
     const r = redeFalsa();
-    const recado = { assinatura, id: 'descanso-0001', fim: marcar.fim };
+    const recado = { assinatura, id: 'descanso-0001', fim: FIM };
     const deOutro = embaralhar(recado, 'outro-segredo');
-    const mexido = embaralhar(recado, ctx.segredo).replace(/.$/, (c) => (c === 'A' ? 'B' : 'A'));
+    // troca uma letra do meio (a última letra do base64 pode não mudar nenhum byte)
+    const bom = embaralhar(recado, ctx.segredo);
+    const mexido = bom.slice(0, 40) + (bom[40] === 'A' ? 'B' : 'A') + bom.slice(41);
     for (const cifra of [deOutro, mexido, 'qualquer-coisa', 42]) expect((await processarAviso({ acao: 'avisar', cifra }, ctx, new Limite(), r.rede)).status).toBe(400);
     expect(r.enviados).toHaveLength(0);
   });
@@ -110,7 +113,7 @@ describe('aviso do descanso: desmarcar e avisar', () => {
   it('aviso que a fila entregou com mais de 1 min de atraso não é mandado', async () => {
     const r = redeFalsa();
     await processarAviso(marcar, ctx, new Limite(), r.rede);
-    const resp = await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: marcar.fim + 61_000 }, new Limite(), r.rede);
+    const resp = await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: FIM + 61_000 }, new Limite(), r.rede);
     expect(resp).toEqual({ status: 200, corpo: { codigo: 'atrasado' } });
     expect(r.enviados).toHaveLength(0);
   });
@@ -121,7 +124,7 @@ describe('aviso do descanso: desmarcar e avisar', () => {
     r.rede.enviar = async () => {
       throw Object.assign(new Error('gone'), { statusCode: 410 });
     };
-    expect(await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: marcar.fim }, new Limite(), r.rede)).toEqual({ status: 200, corpo: { codigo: 'nao-entregue' } });
+    expect(await processarAviso(JSON.parse(r.fila[0]!.corpo), { ...ctx, agora: FIM }, new Limite(), r.rede)).toEqual({ status: 200, corpo: { codigo: 'nao-entregue' } });
   });
 
   it('ação desconhecida é recusada', async () => {

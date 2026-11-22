@@ -3,11 +3,12 @@ import type { Contador } from './pedido.js';
 
 // Lote M4, passo 2 (22/11/2026): o aviso de fim do descanso com a tela bloqueada. Um site não consegue marcar um aviso
 // para daqui a 90 s sozinho (docs/revisoes/analise-critica/mercado.md); quem manda é um servidor. O caminho:
-//   1. "marcar": o aparelho manda o endereço de aviso dele e a hora do fim. Esta função embaralha os dois (AES-256-GCM)
+//   1. "marcar": o aparelho manda o endereço de aviso dele e quanto falta para o fim (assim o relógio errado de um
+//      celular não muda a hora do aviso). Esta função embaralha os dois (AES-256-GCM)
 //      e pede à fila (QStash, do Upstash, plano gratuito) que chame de volta nessa hora.
 //   2. "avisar": a fila chama de volta; a função desembaralha e manda o aviso ao serviço do navegador (Web Push).
 //   3. "desmarcar": a pessoa voltou ao app antes do fim; o pedido sai da fila.
-// Nada é guardado aqui e nada de treino ou de saúde passa por aqui: só o endereço de aviso, a hora e um número sorteado
+// Nada é guardado aqui e nada de treino ou de saúde passa por aqui: só o endereço de aviso, o tempo que falta e um número sorteado
 // no aparelho. A fila guarda o texto embaralhado até a hora do aviso; os logs não levam o endereço.
 // As chamadas de rede são injetadas (testes sem rede), como em pedido.ts.
 
@@ -73,15 +74,15 @@ const erro = (status: number, codigo: string): Resposta => ({ status, corpo: { c
 export async function processarAviso(p: unknown, ctx: Contexto, limite: Contador, rede: Rede): Promise<Resposta> {
   if (!ctx.configurado) return erro(503, 'desligado');
   if (!p || typeof p !== 'object') return erro(400, 'pedido');
-  const { acao, assinatura, fim, id, mensagem, cifra } = p as Record<string, unknown>;
+  const { acao, assinatura, falta, id, mensagem, cifra } = p as Record<string, unknown>;
 
   if (acao === 'marcar') {
-    if (!assinaturaValida(assinatura) || typeof fim !== 'number' || !Number.isFinite(fim) || !b64url(id, 8, 64)) return erro(400, 'pedido');
-    const atraso = Math.round((fim - ctx.agora) / 1000);
+    if (!assinaturaValida(assinatura) || typeof falta !== 'number' || !Number.isFinite(falta) || !b64url(id, 8, 64)) return erro(400, 'pedido');
+    const atraso = Math.round(falta / 1000);
     if (atraso < ATRASO_MIN_SEG || atraso > ATRASO_MAX_SEG) return erro(400, 'hora');
     if (!(await limite.usarTodos([{ chave: `av:${ctx.ip}:${ctx.hoje}`, max: LIMITE_AVISOS_IP }], 1))) return erro(429, 'limite');
     try {
-      const recado: Recado = { assinatura: { endpoint: assinatura.endpoint, keys: { p256dh: assinatura.keys.p256dh, auth: assinatura.keys.auth } }, id, fim };
+      const recado: Recado = { assinatura: { endpoint: assinatura.endpoint, keys: { p256dh: assinatura.keys.p256dh, auth: assinatura.keys.auth } }, id, fim: ctx.agora + atraso * 1000 };
       return { status: 200, corpo: { mensagem: await rede.publicar(JSON.stringify({ acao: 'avisar', cifra: embaralhar(recado, ctx.segredo) }), atraso) } };
     } catch {
       return erro(502, 'fila');
@@ -105,7 +106,7 @@ export async function processarAviso(p: unknown, ctx: Contexto, limite: Contador
     // Aviso muito atrasado não avisa nada: a fila demorou, e a pessoa já voltou a treinar.
     if (ctx.agora - r.fim > 60_000) return { status: 200, corpo: { codigo: 'atrasado' } };
     try {
-      await rede.enviar(r.assinatura, JSON.stringify({ id: r.id, fim: r.fim }));
+      await rede.enviar(r.assinatura, JSON.stringify({ id: r.id }));
     } catch {
       // Endereço vencido ou serviço fora do ar: tentar de novo depois não adianta, o descanso já acabou.
       return { status: 200, corpo: { codigo: 'nao-entregue' } };
