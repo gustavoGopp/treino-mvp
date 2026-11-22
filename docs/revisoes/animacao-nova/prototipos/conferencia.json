@@ -14208,7 +14208,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "143,8°",
+    "medido": "143,4°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -14236,7 +14236,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "32,3°",
+    "medido": "32,2°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -14264,7 +14264,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "supinação do antebraço",
-    "medido": "25,4°",
+    "medido": "26,7°",
     "limite": "média 87,5°, máximo observado 131° (cdc)",
     "nivel": "ok"
    },
@@ -14369,21 +14369,21 @@
    {
     "grupo": "Ficha",
     "oQue": "a barra só anda na guia do smith: o centro dela fica na linha da guia, a 7° da vertical (consenso)",
-    "medido": "o centro da barra fica a no máximo 0 cm da linha da guia; de cima até embaixo ela anda 47,5 cm, a 7° da vertical, sem andar de lado (0 cm)",
+    "medido": "o centro da barra fica a no máximo 0 cm da linha da guia; de cima até embaixo ela anda 47,3 cm, a 7° da vertical, sem andar de lado (0 cm)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "a barra apoiada no alto das costas (no trapézio, abaixo de C7), sem sair dela no movimento (consenso)",
-    "medido": "a barra fica de 4 a 4 cm abaixo de C7–T1, com a superfície dela de -0,5 a -0,5 cm da pele das costas (negativo: afunda)",
+    "medido": "a barra fica de 4 a 4 cm abaixo de C7–T1, com a superfície dela de 0 a 0 cm da pele das costas (negativo: afunda)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "os pés um pouco à frente da linha da barra (consenso)",
-    "medido": "o meio do pé fica 6,1 cm à frente da barra em cima e 11,9 cm embaixo (a barra desce para trás, na guia)",
+    "medido": "o meio do pé fica 6,6 cm à frente da barra em cima e 12,4 cm embaixo (a barra desce para trás, na guia)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -14395,9 +14395,16 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "a barra apoia no alto das costas sem entrar no corpo (até 0,5 cm, o amassado da pele), em nenhum quadro do ciclo nem dos erros (consenso)",
+    "medido": "em 193 quadros (ciclo e erros), o peso não entra no corpo",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "tronco.baixo, barra.amassa, pegada.meia, anilhas, quadro.ate",
+    "medido": "tronco.baixo, barra.folga, pegada.meia, anilhas, quadro.ate, quadro.pesAFrente",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -14418,9 +14425,9 @@
    {
     "grupo": "Pesos",
     "oQue": "halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros)",
-    "medido": "barra do smith entra 1,4 cm em tronco (pior em técnica, t = 3,87 s (u = 0,69); em 12 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 12 quadros",
     "limite": "o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Músculos",
@@ -14439,39 +14446,39 @@
   ],
   "angulos": {
    "joelho": [
-    7.999999999999569,
-    118.00000000000001
+    8.000000000000071,
+    118.00000000000004
    ],
    "cotovelo": [
-    143.74171470315065,
-    143.82060288351673
+    143.37211780359686,
+    143.44396272344596
    ],
    "quadril": [
-    6.373427328484508,
-    109.29256822449
+    6.370979018478917,
+    109.30669687300313
    ],
    "ombro": [
-    30.56005912061097,
-    32.28188185912433
+    30.622297407646702,
+    32.1545457954772
    ],
    "dorsiflexao": [
-    2.368896525976197,
-    29.374957147527155
+    2.371231578740435,
+    29.369604617812094
    ],
    "punho": [
-    -0.0000014787793334710982,
-    0.0000014787793334710982
+    -0.0000017075472925031877,
+    0.0000017075472925031877
    ],
    "pronacao": [
-    -25.39274666862046,
-    -20.923026773624457
+    -26.736666541294873,
+    -22.288192552126546
    ],
    "clavicula": [
-    11.483650518685716,
-    11.563898540119627
+    11.486526828330629,
+    11.557973993520115
    ]
   },
-  "falhas": 1,
+  "falhas": 0,
   "avisos": 3,
   "pinturaEFios": {
    "pintura": [
@@ -14481,8 +14488,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 122.75,
-     "frente": 71.77135311943053,
+     "area": 114.5,
+     "frente": 71.95857799223647,
      "deProposito": "cenário"
     },
     {
@@ -14491,8 +14498,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 101.5,
-     "frente": 71.91838924231116,
+     "area": 102.25,
+     "frente": 71.97375025902657,
      "deProposito": "cenário"
     },
     {
@@ -14501,8 +14508,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 166.5,
-     "frente": 71.79204865778163,
+     "area": 162.5,
+     "frente": 71.51629759738785,
      "deProposito": "cenário"
     },
     {
@@ -14511,8 +14518,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 38,
-     "frente": 36.837408739186586,
+     "area": 37.75,
+     "frente": 36.773594212367136,
      "deProposito": "cenário"
     },
     {
@@ -14521,18 +14528,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "polegar direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 1.25,
-     "frente": 41.332075439403255,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "cintura",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9,
-     "frente": 66.50248861229599,
+     "area": 1.75,
+     "frente": 41.301575997996125,
      "deProposito": "cenário"
     },
     {
@@ -14541,48 +14538,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 18.25,
-     "frente": 74.02474468003354,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "braço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 164.5,
-     "frente": 53.53659891296762,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "antebraço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90.25,
-     "frente": 38.74283082169891,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "antebraço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 49,
-     "frente": 31.956793450358326,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "braço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 5.75,
-     "frente": 31.11402272327045,
+     "area": 18.5,
+     "frente": 73.81340625118358,
      "deProposito": "cenário"
     },
     {
@@ -14590,9 +14547,49 @@
      "vista": "lateral",
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "cintura",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 9.25,
+     "frente": 66.39221324274158,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "braço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 170,
+     "frente": 53.33115342631104,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "antebraço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 90,
+     "frente": 38.901088437869134,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 1,
-     "frente": 62.03162457348398,
+     "area": 49.25,
+     "frente": 31.79649923284841,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "braço direito",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 7,
+     "frente": 30.453863588544195,
      "deProposito": "cenário"
     },
     {
@@ -14601,8 +14598,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 10.5,
-     "frente": 62.608100724325844,
+     "area": 6,
+     "frente": 61.9840218414639,
      "deProposito": "cenário"
     },
     {
@@ -14611,8 +14608,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 2.25,
-     "frente": 63.98309619460068,
+     "area": 2,
+     "frente": 62.852783139824965,
      "deProposito": "cenário"
     },
     {
@@ -14621,18 +14618,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 8,
-     "frente": 52.293196236599684,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metal)",
-     "area": 1.75,
-     "frente": 62.664351747108206,
+     "area": 7,
+     "frente": 48.4703986254881,
      "deProposito": "cenário"
     },
     {
@@ -14642,7 +14629,7 @@
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
      "area": 3,
-     "frente": 50.42040533265093,
+     "frente": 50.47039315236067,
      "deProposito": "cenário"
     },
     {
@@ -14651,8 +14638,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 164.75,
-     "frente": 54.21748317505657,
+     "area": 164,
+     "frente": 54.501395325436434,
      "deProposito": "cenário"
     },
     {
@@ -14661,8 +14648,8 @@
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 6.75,
-     "frente": 50.93138602409076,
+     "area": 6.5,
+     "frente": 50.57837648235448,
      "deProposito": "cenário"
     },
     {
@@ -14671,8 +14658,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 123,
-     "frente": 71.80054195705006,
+     "area": 115,
+     "frente": 71.96044174371414,
      "deProposito": "cenário"
     },
     {
@@ -14681,8 +14668,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 102.5,
-     "frente": 71.96398863686898,
+     "area": 102,
+     "frente": 71.85851933031985,
      "deProposito": "cenário"
     },
     {
@@ -14691,8 +14678,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 166.25,
-     "frente": 71.77239462397354,
+     "area": 162.75,
+     "frente": 71.93676068768438,
      "deProposito": "cenário"
     },
     {
@@ -14702,7 +14689,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 37.25,
-     "frente": 36.61722430847302,
+     "frente": 36.65850984493442,
      "deProposito": "cenário"
     },
     {
@@ -14711,18 +14698,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "polegar direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 1.5,
-     "frente": 41.75492130767272,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "cintura",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9.25,
-     "frente": 66.34539259897235,
+     "area": 1.75,
+     "frente": 41.20146512374272,
      "deProposito": "cenário"
     },
     {
@@ -14731,48 +14708,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 18.75,
-     "frente": 74.24459752015049,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "braço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 164,
-     "frente": 53.4844213266512,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "antebraço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90.5,
-     "frente": 38.88719708550062,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "antebraço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 49.25,
-     "frente": 32.03145749103851,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "braço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 5.75,
-     "frente": 31.152471314899923,
+     "area": 19,
+     "frente": 74.05136740568003,
      "deProposito": "cenário"
     },
     {
@@ -14780,9 +14717,49 @@
      "vista": "lateral",
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "cintura",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 9.5,
+     "frente": 66.26840296576344,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,77 s (u = 0,01)",
+     "parte": "braço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 170,
+     "frente": 53.275664660598665,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,77 s (u = 0,01)",
+     "parte": "antebraço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 89.75,
+     "frente": 38.88618059144984,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,77 s (u = 0,01)",
+     "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 1.25,
-     "frente": 61.353052390196574,
+     "area": 49.5,
+     "frente": 31.996612485635467,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,77 s (u = 0,01)",
+     "parte": "braço direito",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 7,
+     "frente": 30.473434403899176,
      "deProposito": "cenário"
     },
     {
@@ -14791,8 +14768,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 12,
-     "frente": 62.68432412207408,
+     "area": 7,
+     "frente": 62.30382887330961,
      "deProposito": "cenário"
     },
     {
@@ -14802,7 +14779,7 @@
      "parte": "bacia",
      "peca": "smith (o lado de perto) (borracha)",
      "area": 2.25,
-     "frente": 62.92855806267883,
+     "frente": 62.85875847782501,
      "deProposito": "cenário"
     },
     {
@@ -14811,18 +14788,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 7.75,
-     "frente": 52.02371958025945,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metal)",
-     "area": 2.25,
-     "frente": 63.71354594284763,
+     "area": 6,
+     "frente": 48.39697141079998,
      "deProposito": "cenário"
     },
     {
@@ -14831,8 +14798,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 4.5,
-     "frente": 51.44867035945951,
+     "area": 3.25,
+     "frente": 51.22438818454731,
      "deProposito": "cenário"
     },
     {
@@ -14841,8 +14808,8 @@
      "onde": "técnica, t = 0,77 s (u = 0,01)",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 165.25,
-     "frente": 54.165678628504246,
+     "area": 165.75,
+     "frente": 54.479832806752626,
      "deProposito": "cenário"
     },
     {
@@ -14852,7 +14819,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 6,
-     "frente": 50.59950142901411,
+     "frente": 50.63538634070967,
      "deProposito": "cenário"
     },
     {
@@ -14861,7 +14828,7 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 117,
+     "area": 109.25,
      "frente": 71.92865857823926,
      "deProposito": "cenário"
     },
@@ -14881,8 +14848,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 37.25,
-     "frente": 36.678101528045296,
+     "area": 36.75,
+     "frente": 36.328444673538236,
      "deProposito": "cenário"
     },
     {
@@ -14891,18 +14858,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 159,
-     "frente": 71.91819420780223,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 1,55 s (u = 0,38)",
-     "parte": "mão direita",
-     "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 19,
-     "frente": 73.37196786585989,
+     "area": 155.5,
+     "frente": 71.9181942078022,
      "deProposito": "cenário"
     },
     {
@@ -14911,8 +14868,18 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "polegar direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 1,
-     "frente": 41.10057839387837,
+     "area": 1.5,
+     "frente": 41.37021095782921,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 1,55 s (u = 0,38)",
+     "parte": "mão direita",
+     "peca": "barra do smith (o lado de perto) (cromo)",
+     "area": 18.5,
+     "frente": 73.86212076637516,
      "deProposito": "cenário"
     },
     {
@@ -14921,8 +14888,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9,
-     "frente": 65.89483595963468,
+     "area": 9.25,
+     "frente": 65.89493831890846,
      "deProposito": "cenário"
     },
     {
@@ -14931,8 +14898,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 153.5,
-     "frente": 54.179868238370936,
+     "area": 160.75,
+     "frente": 53.97619252225407,
      "deProposito": "cenário"
     },
     {
@@ -14942,7 +14909,7 @@
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 90.25,
-     "frente": 39.21842621899867,
+     "frente": 38.84773147181172,
      "deProposito": "cenário"
     },
     {
@@ -14951,8 +14918,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 47,
-     "frente": 31.070457280673654,
+     "area": 47.5,
+     "frente": 31.16591289860191,
      "deProposito": "cenário"
     },
     {
@@ -14961,8 +14928,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 3,
-     "frente": 31.23393481617957,
+     "area": 4.5,
+     "frente": 30.363811028546028,
      "deProposito": "cenário"
     },
     {
@@ -14971,8 +14938,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 21.5,
-     "frente": 62.0795732755606,
+     "area": 19,
+     "frente": 62.625468809902415,
      "deProposito": "cenário"
     },
     {
@@ -14981,8 +14948,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 23,
-     "frente": 62.2452194349298,
+     "area": 24.75,
+     "frente": 62.4600123678359,
      "deProposito": "cenário"
     },
     {
@@ -14991,8 +14958,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 17.75,
-     "frente": 55.498776185469424,
+     "area": 17.5,
+     "frente": 59.070611788688694,
      "deProposito": "cenário"
     },
     {
@@ -15001,8 +14968,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 20,
-     "frente": 54.500031696468795,
+     "area": 20.75,
+     "frente": 55.65346745471918,
      "deProposito": "cenário"
     },
     {
@@ -15011,8 +14978,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 16,
-     "frente": 53.26666805005225,
+     "area": 14.75,
+     "frente": 53.70423039983149,
      "deProposito": "cenário"
     },
     {
@@ -15021,8 +14988,8 @@
      "onde": "técnica, t = 1,55 s (u = 0,38)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 22.25,
-     "frente": 53.23902021974801,
+     "area": 19.5,
+     "frente": 53.24206706712824,
      "deProposito": "cenário"
     },
     {
@@ -15032,7 +14999,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 165.5,
-     "frente": 53.77325059069926,
+     "frente": 53.768854639749904,
      "deProposito": "cenário"
     },
     {
@@ -15042,7 +15009,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 6.25,
-     "frente": 50.5696719973974,
+     "frente": 50.56625675757,
      "deProposito": "cenário"
     },
     {
@@ -15051,7 +15018,7 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 113.75,
+     "area": 106,
      "frente": 71.93665120983505,
      "deProposito": "cenário"
     },
@@ -15071,8 +15038,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 37.5,
-     "frente": 36.20167108639484,
+     "area": 36.75,
+     "frente": 36.12358172847095,
      "deProposito": "cenário"
     },
     {
@@ -15081,7 +15048,7 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 151,
+     "area": 148,
      "frente": 71.91993868169301,
      "deProposito": "cenário"
     },
@@ -15091,18 +15058,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 17.75,
-     "frente": 72.92243022416112,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 2,32 s (u = 0,90)",
-     "parte": "polegar direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 1,
-     "frente": 41.48669698938632,
+     "area": 19,
+     "frente": 74.49183441795455,
      "deProposito": "cenário"
     },
     {
@@ -15111,8 +15068,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9,
-     "frente": 65.79822672759036,
+     "area": 9.25,
+     "frente": 65.79791892196631,
      "deProposito": "cenário"
     },
     {
@@ -15121,8 +15078,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 138.5,
-     "frente": 53.19771786516821,
+     "area": 145.75,
+     "frente": 54.03205228682147,
      "deProposito": "cenário"
     },
     {
@@ -15131,8 +15088,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90,
-     "frente": 37.44670949331779,
+     "area": 90.5,
+     "frente": 37.919748632989354,
      "deProposito": "cenário"
     },
     {
@@ -15141,8 +15098,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 24.25,
-     "frente": 30.051461520870397,
+     "area": 26,
+     "frente": 30.200737054437894,
      "deProposito": "cenário"
     },
     {
@@ -15151,18 +15108,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 10.5,
-     "frente": 34.079915165292036,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 2,32 s (u = 0,90)",
-     "parte": "braço direito",
-     "peca": "smith (o lado de perto) (borracha)",
-     "area": 1,
-     "frente": 32.96650046280601,
+     "area": 10,
+     "frente": 33.2335279575272,
      "deProposito": "cenário"
     },
     {
@@ -15172,7 +15119,7 @@
      "parte": "tronco",
      "peca": "smith (o lado de perto) (borracha)",
      "area": 7,
-     "frente": 49.708187339397995,
+     "frente": 49.50378078066158,
      "deProposito": "cenário"
     },
     {
@@ -15182,7 +15129,7 @@
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
      "area": 6.25,
-     "frente": 34.65773574741836,
+     "frente": 35.07798927271532,
      "deProposito": "cenário"
     },
     {
@@ -15191,8 +15138,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 32.5,
-     "frente": 59.053914921710515,
+     "area": 26.25,
+     "frente": 61.22553410554814,
      "deProposito": "cenário"
     },
     {
@@ -15201,18 +15148,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 15.75,
-     "frente": 29.438720125958667,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 2,32 s (u = 0,90)",
-     "parte": "antebraço direito",
-     "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 2,
-     "frente": 23.271503346931276,
+     "area": 19.75,
+     "frente": 29.33964741968847,
      "deProposito": "cenário"
     },
     {
@@ -15221,8 +15158,18 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 35,
-     "frente": 53.902499444843016,
+     "area": 34.75,
+     "frente": 55.07338281478572,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 2,32 s (u = 0,90)",
+     "parte": "bacia",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 26.5,
+     "frente": 57.22131942527015,
      "deProposito": "cenário"
     },
     {
@@ -15231,18 +15178,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 4.75,
-     "frente": 56.08165235651941,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 2,32 s (u = 0,90)",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 23,
-     "frente": 56.83421896054314,
+     "area": 3,
+     "frente": 56.44220527137542,
      "deProposito": "cenário"
     },
     {
@@ -15251,8 +15188,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 19.25,
-     "frente": 54.59099127621016,
+     "area": 20.75,
+     "frente": 55.51497130732659,
      "deProposito": "cenário"
     },
     {
@@ -15261,8 +15198,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 49.75,
-     "frente": 52.79187489781521,
+     "area": 47.25,
+     "frente": 52.93781408132823,
      "deProposito": "cenário"
     },
     {
@@ -15271,8 +15208,8 @@
      "onde": "técnica, t = 2,32 s (u = 0,90)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 7.25,
-     "frente": 45.891378999688705,
+     "area": 5.25,
+     "frente": 46.29181252175398,
      "deProposito": "cenário"
     },
     {
@@ -15282,7 +15219,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 160.25,
-     "frente": 53.88934170308272,
+     "frente": 53.90381708461905,
      "deProposito": "cenário"
     },
     {
@@ -15292,7 +15229,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 7.5,
-     "frente": 50.798605926330616,
+     "frente": 50.804622078508885,
      "deProposito": "cenário"
     },
     {
@@ -15301,7 +15238,7 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 112.25,
+     "area": 105,
      "frente": 71.96492140592666,
      "deProposito": "cenário"
     },
@@ -15321,8 +15258,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 36.5,
-     "frente": 37.129509831525915,
+     "area": 36.75,
+     "frente": 36.221479032571146,
      "deProposito": "cenário"
     },
     {
@@ -15331,7 +15268,7 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 149.25,
+     "area": 146,
      "frente": 71.9593266507134,
      "deProposito": "cenário"
     },
@@ -15342,7 +15279,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
      "area": 18.75,
-     "frente": 73.40947408980092,
+     "frente": 74.08797596355234,
      "deProposito": "cenário"
     },
     {
@@ -15352,7 +15289,7 @@
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 9.25,
-     "frente": 66.3093991528417,
+     "frente": 66.30948304965625,
      "deProposito": "cenário"
     },
     {
@@ -15361,8 +15298,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 135.5,
-     "frente": 54.059581239600675,
+     "area": 142.75,
+     "frente": 54.318404985808016,
      "deProposito": "cenário"
     },
     {
@@ -15371,8 +15308,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 89.25,
-     "frente": 37.25191199296108,
+     "area": 89.5,
+     "frente": 38.17509296512635,
      "deProposito": "cenário"
     },
     {
@@ -15381,8 +15318,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 31.5,
-     "frente": 29.319590640909247,
+     "area": 34.75,
+     "frente": 29.392760642668073,
      "deProposito": "cenário"
     },
     {
@@ -15391,8 +15328,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 9.75,
-     "frente": 31.879290618339496,
+     "area": 8.75,
+     "frente": 31.148313492865515,
      "deProposito": "cenário"
     },
     {
@@ -15401,8 +15338,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 3.25,
-     "frente": 22.718800576573948,
+     "area": 1.5,
+     "frente": 23.160176891754396,
      "deProposito": "cenário"
     },
     {
@@ -15411,8 +15348,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 32.75,
-     "frente": 53.83824715091786,
+     "area": 29.25,
+     "frente": 56.92229959852004,
      "deProposito": "cenário"
     },
     {
@@ -15421,18 +15358,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 33.75,
-     "frente": 51.410144598736565,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 3,10 s (u = 1,00)",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 13.5,
-     "frente": 55.59185896428749,
+     "area": 34.75,
+     "frente": 52.67804671524963,
      "deProposito": "cenário"
     },
     {
@@ -15441,8 +15368,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 6.5,
-     "frente": 54.893825219798444,
+     "area": 6,
+     "frente": 55.92079872982175,
      "deProposito": "cenário"
     },
     {
@@ -15451,8 +15378,18 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
+     "area": 18,
+     "frente": 57.55414703367656,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 3,10 s (u = 1,00)",
+     "parte": "bacia",
+     "peca": "smith (o lado de perto) (metalClaro)",
      "area": 15.25,
-     "frente": 58.62628737991294,
+     "frente": 56.33396432446237,
      "deProposito": "cenário"
     },
     {
@@ -15461,8 +15398,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 56.75,
-     "frente": 51.290172279650484,
+     "area": 54,
+     "frente": 51.32990923516192,
      "deProposito": "cenário"
     },
     {
@@ -15471,8 +15408,8 @@
      "onde": "técnica, t = 3,10 s (u = 1,00)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 14.25,
-     "frente": 44.2195553111375,
+     "area": 12,
+     "frente": 44.4178697728689,
      "deProposito": "cenário"
     },
     {
@@ -15482,7 +15419,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 162.25,
-     "frente": 53.82603034749221,
+     "frente": 53.83695961565796,
      "deProposito": "cenário"
     },
     {
@@ -15492,7 +15429,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 7,
-     "frente": 50.77635267504313,
+     "frente": 50.78525542800519,
      "deProposito": "cenário"
     },
     {
@@ -15501,7 +15438,7 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 114.5,
+     "area": 106.75,
      "frente": 71.98105956966785,
      "deProposito": "cenário"
     },
@@ -15512,7 +15449,7 @@
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 105,
-     "frente": 71.83092842144117,
+     "frente": 71.83092842144116,
      "deProposito": "cenário"
     },
     {
@@ -15521,8 +15458,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 37.25,
-     "frente": 37.14912306611736,
+     "area": 37,
+     "frente": 36.16951893549833,
      "deProposito": "cenário"
     },
     {
@@ -15531,8 +15468,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 154.5,
-     "frente": 71.9360437474143,
+     "area": 151.5,
+     "frente": 71.93604374741426,
      "deProposito": "cenário"
     },
     {
@@ -15541,8 +15478,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 19,
-     "frente": 73.46384276318261,
+     "area": 18.75,
+     "frente": 73.95694338454638,
      "deProposito": "cenário"
     },
     {
@@ -15552,7 +15489,7 @@
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 10,
-     "frente": 65.56396734232261,
+     "frente": 65.56375360422409,
      "deProposito": "cenário"
     },
     {
@@ -15561,8 +15498,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 145,
-     "frente": 53.46848959213767,
+     "area": 150,
+     "frente": 53.40622719867832,
      "deProposito": "cenário"
     },
     {
@@ -15571,8 +15508,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90.25,
-     "frente": 38.20342864081097,
+     "area": 89.5,
+     "frente": 38.713019501849885,
      "deProposito": "cenário"
     },
     {
@@ -15581,8 +15518,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 39.25,
-     "frente": 30.281541114717584,
+     "area": 44.75,
+     "frente": 29.78961194126245,
      "deProposito": "cenário"
     },
     {
@@ -15591,8 +15528,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 6,
-     "frente": 31.26686467171124,
+     "area": 4,
+     "frente": 31.086769827786938,
      "deProposito": "cenário"
     },
     {
@@ -15601,8 +15538,18 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 11.5,
-     "frente": 62.686658689054106,
+     "area": 8.5,
+     "frente": 62.54058134357213,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 3,87 s (u = 0,69)",
+     "parte": "antebraço direito",
+     "peca": "smith (o lado de perto) (borracha)",
+     "area": 1,
+     "frente": 31.393858794675957,
      "deProposito": "cenário"
     },
     {
@@ -15611,8 +15558,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 12.75,
-     "frente": 63.250915253204454,
+     "area": 11.75,
+     "frente": 63.14574284893658,
      "deProposito": "cenário"
     },
     {
@@ -15621,8 +15568,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 8,
-     "frente": 62.71907486830648,
+     "area": 7,
+     "frente": 62.78481288146091,
      "deProposito": "cenário"
     },
     {
@@ -15631,8 +15578,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 19.25,
-     "frente": 63.13244947128381,
+     "area": 17.25,
+     "frente": 63.56720650370248,
      "deProposito": "cenário"
     },
     {
@@ -15641,8 +15588,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 19.75,
-     "frente": 53.86260315086164,
+     "area": 20.25,
+     "frente": 54.65299355091355,
      "deProposito": "cenário"
     },
     {
@@ -15651,8 +15598,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 34.75,
-     "frente": 56.47076293742496,
+     "area": 36,
+     "frente": 57.00603019255463,
      "deProposito": "cenário"
     },
     {
@@ -15661,8 +15608,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 10.5,
-     "frente": 56.36932392942602,
+     "area": 4.5,
+     "frente": 56.369323929426,
      "deProposito": "cenário"
     },
     {
@@ -15671,8 +15618,8 @@
      "onde": "técnica, t = 3,87 s (u = 0,69)",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 39.5,
-     "frente": 53.18927638597199,
+     "area": 38,
+     "frente": 53.33558082291774,
      "deProposito": "cenário"
     },
     {
@@ -15682,7 +15629,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 163.25,
-     "frente": 54.01257152572059,
+     "frente": 54.014465381844694,
      "deProposito": "cenário"
     },
     {
@@ -15692,7 +15639,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 6.75,
-     "frente": 50.58790106078152,
+     "frente": 50.58867587632328,
      "deProposito": "cenário"
     },
     {
@@ -15701,8 +15648,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 122.75,
-     "frente": 71.77135311943053,
+     "area": 114.5,
+     "frente": 71.95857799223647,
      "deProposito": "cenário"
     },
     {
@@ -15711,8 +15658,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 101.5,
-     "frente": 71.91838924231116,
+     "area": 102.25,
+     "frente": 71.97375025902657,
      "deProposito": "cenário"
     },
     {
@@ -15721,8 +15668,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 166.5,
-     "frente": 71.79204865778163,
+     "area": 162.5,
+     "frente": 71.51629759738785,
      "deProposito": "cenário"
     },
     {
@@ -15731,8 +15678,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 38,
-     "frente": 36.837408739186586,
+     "area": 37.75,
+     "frente": 36.773594212367136,
      "deProposito": "cenário"
     },
     {
@@ -15741,18 +15688,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "polegar direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 1.25,
-     "frente": 41.332075439403255,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "cintura",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9,
-     "frente": 66.50248861229599,
+     "area": 1.75,
+     "frente": 41.301575997996125,
      "deProposito": "cenário"
     },
     {
@@ -15761,48 +15698,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 18.25,
-     "frente": 74.02474468003354,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "braço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 164.5,
-     "frente": 53.53659891296762,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "antebraço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90.25,
-     "frente": 38.74283082169891,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "antebraço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 49,
-     "frente": 31.956793450358326,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "braço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 5.75,
-     "frente": 31.11402272327045,
+     "area": 18.5,
+     "frente": 73.81340625118358,
      "deProposito": "cenário"
     },
     {
@@ -15810,9 +15707,49 @@
      "vista": "lateral",
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "cintura",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 9.25,
+     "frente": 66.39221324274158,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 0,00",
+     "parte": "braço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 170,
+     "frente": 53.33115342631104,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 0,00",
+     "parte": "antebraço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 90,
+     "frente": 38.901088437869134,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 0,00",
+     "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 1,
-     "frente": 62.03162457348398,
+     "area": 49.25,
+     "frente": 31.79649923284841,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 0,00",
+     "parte": "braço direito",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 7,
+     "frente": 30.453863588544195,
      "deProposito": "cenário"
     },
     {
@@ -15821,8 +15758,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 10.5,
-     "frente": 62.608100724325844,
+     "area": 6,
+     "frente": 61.9840218414639,
      "deProposito": "cenário"
     },
     {
@@ -15831,8 +15768,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 2.25,
-     "frente": 63.98309619460068,
+     "area": 2,
+     "frente": 62.852783139824965,
      "deProposito": "cenário"
     },
     {
@@ -15841,18 +15778,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 8,
-     "frente": 52.293196236599684,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metal)",
-     "area": 1.75,
-     "frente": 62.664351747108206,
+     "area": 7,
+     "frente": 48.4703986254881,
      "deProposito": "cenário"
     },
     {
@@ -15862,7 +15789,7 @@
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
      "area": 3,
-     "frente": 50.42040533265093,
+     "frente": 50.47039315236067,
      "deProposito": "cenário"
     },
     {
@@ -15871,8 +15798,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 164.75,
-     "frente": 54.21748317505657,
+     "area": 164,
+     "frente": 54.501395325436434,
      "deProposito": "cenário"
     },
     {
@@ -15881,8 +15808,8 @@
      "onde": "erro \"Descer pouco\", u = 0,00",
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 6.75,
-     "frente": 50.93138602409076,
+     "area": 6.5,
+     "frente": 50.57837648235448,
      "deProposito": "cenário"
     },
     {
@@ -15891,7 +15818,7 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 117.25,
+     "area": 109.5,
      "frente": 71.94714344236631,
      "deProposito": "cenário"
     },
@@ -15902,7 +15829,7 @@
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 103.75,
-     "frente": 71.99479767834174,
+     "frente": 71.99479767834171,
      "deProposito": "cenário"
     },
     {
@@ -15912,7 +15839,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 37.25,
-     "frente": 36.72801842787019,
+     "frente": 36.79190596193847,
      "deProposito": "cenário"
     },
     {
@@ -15921,8 +15848,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 157.5,
-     "frente": 71.94122764390048,
+     "area": 154,
+     "frente": 71.94122764390052,
      "deProposito": "cenário"
     },
     {
@@ -15932,7 +15859,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
      "area": 18.75,
-     "frente": 74.14203032518029,
+     "frente": 73.63285918209766,
      "deProposito": "cenário"
     },
     {
@@ -15942,7 +15869,7 @@
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 8.5,
-     "frente": 64.20994165223321,
+     "frente": 64.2099443408473,
      "deProposito": "cenário"
     },
     {
@@ -15951,8 +15878,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 151,
-     "frente": 54.245668201589865,
+     "area": 158,
+     "frente": 54.01697249955326,
      "deProposito": "cenário"
     },
     {
@@ -15962,7 +15889,7 @@
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 89.75,
-     "frente": 37.94993588967514,
+     "frente": 37.831682157996276,
      "deProposito": "cenário"
     },
     {
@@ -15971,8 +15898,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 45,
-     "frente": 30.225512778298906,
+     "area": 48,
+     "frente": 30.9334674482401,
      "deProposito": "cenário"
     },
     {
@@ -15981,18 +15908,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 4,
-     "frente": 31.42292069568714,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 0,50",
-     "parte": "tronco",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 1,
-     "frente": 60.442994492817036,
+     "area": 3.5,
+     "frente": 30.90423300899568,
      "deProposito": "cenário"
     },
     {
@@ -16001,8 +15918,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 27,
-     "frente": 62.175915608252346,
+     "area": 24.75,
+     "frente": 62.029059471871534,
      "deProposito": "cenário"
     },
     {
@@ -16011,8 +15928,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 29.25,
-     "frente": 60.9453289392202,
+     "area": 29.75,
+     "frente": 61.28655283300312,
      "deProposito": "cenário"
     },
     {
@@ -16021,8 +15938,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 25.25,
-     "frente": 52.95865999047186,
+     "area": 23,
+     "frente": 52.385566030190056,
      "deProposito": "cenário"
     },
     {
@@ -16031,8 +15948,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 13.25,
-     "frente": 50.57848202332491,
+     "area": 13.75,
+     "frente": 51.99269209708527,
      "deProposito": "cenário"
     },
     {
@@ -16042,7 +15959,7 @@
      "parte": "bacia",
      "peca": "smith (o lado de perto) (borracha)",
      "area": 4.5,
-     "frente": 49.58767561538565,
+     "frente": 51.99891018911178,
      "deProposito": "cenário"
     },
     {
@@ -16051,8 +15968,8 @@
      "onde": "erro \"Descer pouco\", u = 0,50",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 35.75,
-     "frente": 51.79238986989403,
+     "area": 35.25,
+     "frente": 52.51313272599873,
      "deProposito": "cenário"
     },
     {
@@ -16062,7 +15979,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 164,
-     "frente": 53.96014706985184,
+     "frente": 53.95727415858515,
      "deProposito": "cenário"
     },
     {
@@ -16072,7 +15989,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 6.75,
-     "frente": 50.74258770877885,
+     "frente": 50.74045845220418,
      "deProposito": "cenário"
     },
     {
@@ -16081,7 +15998,7 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 112.25,
+     "area": 105,
      "frente": 71.96492140592666,
      "deProposito": "cenário"
     },
@@ -16101,8 +16018,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 36.5,
-     "frente": 37.12950983152546,
+     "area": 36.75,
+     "frente": 36.22147903257113,
      "deProposito": "cenário"
     },
     {
@@ -16111,7 +16028,7 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 149.25,
+     "area": 146,
      "frente": 71.95932665071335,
      "deProposito": "cenário"
     },
@@ -16122,7 +16039,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
      "area": 18.75,
-     "frente": 73.4094740898008,
+     "frente": 74.08797596355231,
      "deProposito": "cenário"
     },
     {
@@ -16132,7 +16049,7 @@
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 9.25,
-     "frente": 66.30939915284169,
+     "frente": 66.3094830496563,
      "deProposito": "cenário"
     },
     {
@@ -16141,8 +16058,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 135.5,
-     "frente": 54.05958123959989,
+     "area": 142.75,
+     "frente": 54.31840498580725,
      "deProposito": "cenário"
     },
     {
@@ -16151,8 +16068,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 89.25,
-     "frente": 37.25191199296073,
+     "area": 89.5,
+     "frente": 38.17509296512573,
      "deProposito": "cenário"
     },
     {
@@ -16161,8 +16078,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 31.5,
-     "frente": 29.319590640913106,
+     "area": 34.75,
+     "frente": 29.39276064263759,
      "deProposito": "cenário"
     },
     {
@@ -16171,8 +16088,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 9.75,
-     "frente": 31.879290618353657,
+     "area": 8.75,
+     "frente": 31.14831349297983,
      "deProposito": "cenário"
     },
     {
@@ -16181,8 +16098,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 3.25,
-     "frente": 22.718800576573926,
+     "area": 1.5,
+     "frente": 23.16017689175436,
      "deProposito": "cenário"
     },
     {
@@ -16191,8 +16108,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 32.75,
-     "frente": 53.83824715086529,
+     "area": 29.25,
+     "frente": 56.922299598405765,
      "deProposito": "cenário"
     },
     {
@@ -16201,8 +16118,18 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 21.5,
-     "frente": 51.41014459868401,
+     "area": 20.5,
+     "frente": 52.678046715218976,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 1,00",
+     "parte": "cintura",
+     "peca": "smith (o lado de perto) (metalClaro)",
+     "area": 6,
+     "frente": 55.920798729821655,
      "deProposito": "cenário"
     },
     {
@@ -16210,39 +16137,19 @@
      "vista": "lateral",
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "bacia",
-     "peca": "smith (o lado de perto) (metalClaro)",
+     "peca": "smith (o lado de perto) (borracha)",
+     "area": 5,
+     "frente": 49.83730870863914,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 1,00",
+     "parte": "cintura",
+     "peca": "smith (o lado de perto) (borracha)",
      "area": 12.5,
-     "frente": 55.591858964287425,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 1,00",
-     "parte": "cintura",
-     "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 6.5,
-     "frente": 54.89382521979848,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 1,00",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (borracha)",
-     "area": 4.5,
-     "frente": 49.80630434495973,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Descer pouco\", u = 1,00",
-     "parte": "cintura",
-     "peca": "smith (o lado de perto) (borracha)",
-     "area": 13.5,
-     "frente": 50.74309087049118,
+     "frente": 50.86574525102328,
      "deProposito": "cenário"
     },
     {
@@ -16251,8 +16158,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 25.75,
-     "frente": 49.12845295081562,
+     "area": 26,
+     "frente": 49.309231590376335,
      "deProposito": "cenário"
     },
     {
@@ -16261,8 +16168,18 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 9.75,
-     "frente": 48.91629265053547,
+     "area": 10,
+     "frente": 48.79363827000334,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Descer pouco\", u = 1,00",
+     "parte": "bacia",
+     "peca": "smith (o lado de perto) (metalClaro)",
+     "area": 13.25,
+     "frente": 56.33396432446241,
      "deProposito": "cenário"
     },
     {
@@ -16271,8 +16188,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 11.25,
-     "frente": 46.67314078392833,
+     "area": 14,
+     "frente": 46.527448174395474,
      "deProposito": "cenário"
     },
     {
@@ -16281,8 +16198,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 15.25,
-     "frente": 45.5649559979079,
+     "area": 14,
+     "frente": 46.03431729286748,
      "deProposito": "cenário"
     },
     {
@@ -16291,8 +16208,8 @@
      "onde": "erro \"Descer pouco\", u = 1,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 64.25,
-     "frente": 51.92539562971225,
+     "area": 60.25,
+     "frente": 51.79606937399322,
      "deProposito": "cenário"
     },
     {
@@ -16302,7 +16219,7 @@
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 161.25,
-     "frente": 53.85215346809234,
+     "frente": 53.874104202089846,
      "deProposito": "cenário"
     },
     {
@@ -16312,7 +16229,7 @@
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 7.5,
-     "frente": 50.660440399509255,
+     "frente": 50.66938585542952,
      "deProposito": "cenário"
     },
     {
@@ -16321,8 +16238,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 114.5,
-     "frente": 71.90378467469209,
+     "area": 106,
+     "frente": 71.99251891624513,
      "deProposito": "cenário"
     },
     {
@@ -16331,8 +16248,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 105.25,
-     "frente": 71.8344943738618,
+     "area": 105.5,
+     "frente": 71.90899359622135,
      "deProposito": "cenário"
     },
     {
@@ -16342,7 +16259,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 37.25,
-     "frente": 37.028021192225786,
+     "frente": 37.294178600740246,
      "deProposito": "cenário"
     },
     {
@@ -16351,8 +16268,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 152.75,
-     "frente": 71.76080012598675,
+     "area": 149.25,
+     "frente": 71.95825263565293,
      "deProposito": "cenário"
     },
     {
@@ -16361,8 +16278,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 18.75,
-     "frente": 73.45255040454688,
+     "area": 18.25,
+     "frente": 74.05415493096858,
      "deProposito": "cenário"
     },
     {
@@ -16371,8 +16288,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 8.75,
-     "frente": 66.35912860191365,
+     "area": 9.25,
+     "frente": 66.08495618146266,
      "deProposito": "cenário"
     },
     {
@@ -16381,8 +16298,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 142,
-     "frente": 54.28663436840465,
+     "area": 146.25,
+     "frente": 53.73087889429952,
      "deProposito": "cenário"
     },
     {
@@ -16391,8 +16308,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90,
-     "frente": 38.11517595261558,
+     "area": 90.25,
+     "frente": 37.94315245594349,
      "deProposito": "cenário"
     },
     {
@@ -16401,8 +16318,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 36.75,
-     "frente": 29.978891916242674,
+     "area": 39,
+     "frente": 29.725540414238473,
      "deProposito": "cenário"
     },
     {
@@ -16411,8 +16328,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 7.25,
-     "frente": 31.561954564081113,
+     "area": 6.25,
+     "frente": 31.195677163201886,
      "deProposito": "cenário"
     },
     {
@@ -16421,8 +16338,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 24.5,
-     "frente": 61.95808779572731,
+     "area": 24,
+     "frente": 61.23739518786527,
      "deProposito": "cenário"
     },
     {
@@ -16431,8 +16348,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 34.75,
-     "frente": 58.32577361498547,
+     "area": 34.5,
+     "frente": 56.200313486387024,
      "deProposito": "cenário"
     },
     {
@@ -16441,8 +16358,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 37.25,
-     "frente": 49.087258366347356,
+     "area": 36.5,
+     "frente": 48.917691100659,
      "deProposito": "cenário"
     },
     {
@@ -16451,8 +16368,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 1.25,
-     "frente": 55.740121804630796,
+     "area": 1.5,
+     "frente": 55.959382610099546,
      "deProposito": "cenário"
     },
     {
@@ -16461,8 +16378,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 16.75,
-     "frente": 56.24102296177129,
+     "area": 14.5,
+     "frente": 55.9152703906948,
      "deProposito": "cenário"
     },
     {
@@ -16471,8 +16388,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 7.25,
-     "frente": 47.48184617928258,
+     "area": 10.75,
+     "frente": 47.59166881823955,
      "deProposito": "cenário"
     },
     {
@@ -16481,8 +16398,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 92.25,
-     "frente": 48.92109500520442,
+     "area": 95,
+     "frente": 48.84633773878199,
      "deProposito": "cenário"
     },
     {
@@ -16491,8 +16408,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 18.5,
-     "frente": 47.622550058563384,
+     "area": 17.5,
+     "frente": 47.6201713177563,
      "deProposito": "cenário"
     },
     {
@@ -16502,7 +16419,7 @@
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metal)",
      "area": 35.5,
-     "frente": 47.1500914171567,
+     "frente": 47.14846409429185,
      "deProposito": "cenário"
     },
     {
@@ -16511,8 +16428,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 167,
-     "frente": 53.87419116912232,
+     "area": 165.5,
+     "frente": 53.939207790841046,
      "deProposito": "cenário"
     },
     {
@@ -16521,8 +16438,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,00",
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 6,
-     "frente": 50.88887641066479,
+     "area": 6.75,
+     "frente": 50.78817844441649,
      "deProposito": "cenário"
     },
     {
@@ -16531,8 +16448,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 112.25,
-     "frente": 71.9706198524959,
+     "area": 105.5,
+     "frente": 71.96313273116932,
      "deProposito": "cenário"
     },
     {
@@ -16541,8 +16458,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 107.25,
-     "frente": 71.99886010075372,
+     "area": 107,
+     "frente": 71.99259227678237,
      "deProposito": "cenário"
     },
     {
@@ -16551,8 +16468,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 37,
-     "frente": 37.168728469004215,
+     "area": 37.5,
+     "frente": 37.30027913350378,
      "deProposito": "cenário"
     },
     {
@@ -16561,8 +16478,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 150.75,
-     "frente": 71.98576477041871,
+     "area": 147.25,
+     "frente": 71.91392676099203,
      "deProposito": "cenário"
     },
     {
@@ -16571,8 +16488,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
-     "area": 19,
-     "frente": 73.64988209003778,
+     "area": 18.25,
+     "frente": 73.96634948540459,
      "deProposito": "cenário"
     },
     {
@@ -16581,48 +16498,48 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 9.25,
-     "frente": 66.60673835192453,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "braço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 138,
-     "frente": 53.97618578142901,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "antebraço direito",
-     "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 90.25,
-     "frente": 38.1803744078817,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "antebraço direito",
-     "peca": "smith (o lado de perto) (cromo)",
-     "area": 32.25,
-     "frente": 29.62304338875048,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "braço direito",
-     "peca": "smith (o lado de perto) (cromo)",
      "area": 9,
-     "frente": 31.65551968194766,
+     "frente": 66.52373898170171,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "braço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 142,
+     "frente": 54.371083724941755,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "antebraço direito",
+     "peca": "barra do smith (o lado de perto) (anilha)",
+     "area": 90.5,
+     "frente": 37.70131313549395,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "antebraço direito",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 34.75,
+     "frente": 29.111800836142493,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "braço direito",
+     "peca": "smith (o lado de perto) (cromo)",
+     "area": 8.75,
+     "frente": 31.41589065342891,
      "deProposito": "cenário"
     },
     {
@@ -16631,8 +16548,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 3,
-     "frente": 23.165917733498695,
+     "area": 1.75,
+     "frente": 23.39451679906444,
      "deProposito": "cenário"
     },
     {
@@ -16641,8 +16558,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 31.5,
-     "frente": 55.56813596348752,
+     "area": 29.25,
+     "frente": 56.90571592200314,
      "deProposito": "cenário"
     },
     {
@@ -16651,8 +16568,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 24.5,
-     "frente": 52.66763571137758,
+     "area": 23,
+     "frente": 52.606675620284,
      "deProposito": "cenário"
     },
     {
@@ -16661,8 +16578,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 5.25,
-     "frente": 55.70818211683156,
+     "area": 6,
+     "frente": 55.7159043866699,
      "deProposito": "cenário"
     },
     {
@@ -16671,8 +16588,18 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 13.25,
-     "frente": 47.98046917041776,
+     "area": 13,
+     "frente": 48.1974007063561,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "bacia",
+     "peca": "smith (o lado de perto) (borracha)",
+     "area": 3,
+     "frente": 49.61675321600012,
      "deProposito": "cenário"
     },
     {
@@ -16681,8 +16608,18 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (borracha)",
-     "area": 13.75,
-     "frente": 49.70390380450387,
+     "area": 13,
+     "frente": 49.619851274582864,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "cintura",
+     "peca": "smith (o lado de perto) (metal)",
+     "area": 20.75,
+     "frente": 48.665302940188155,
      "deProposito": "cenário"
     },
     {
@@ -16690,49 +16627,29 @@
      "vista": "lateral",
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "bacia",
+     "peca": "smith (o lado de perto) (metalClaro)",
+     "area": 12.25,
+     "frente": 53.263749636204494,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "bacia",
+     "peca": "smith (o lado de perto) (metal)",
+     "area": 14.75,
+     "frente": 48.18587054990695,
+     "deProposito": "cenário"
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
+     "parte": "tronco",
      "peca": "smith (o lado de perto) (borracha)",
      "area": 1.5,
-     "frente": 49.561137188967436,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 14.5,
-     "frente": 52.81872241990073,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "cintura",
-     "peca": "smith (o lado de perto) (metal)",
-     "area": 19,
-     "frente": 48.68487538436971,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "bacia",
-     "peca": "smith (o lado de perto) (metal)",
-     "area": 16.75,
-     "frente": 48.28208442940995,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "parte": "tronco",
-     "peca": "smith (o lado de perto) (borracha)",
-     "area": 3.25,
-     "frente": 48.991761708966436,
+     "frente": 48.53413335199694,
      "deProposito": "cenário"
     },
     {
@@ -16741,8 +16658,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 12.75,
-     "frente": 46.10311240075033,
+     "area": 15,
+     "frente": 46.913055542768184,
      "deProposito": "cenário"
     },
     {
@@ -16751,8 +16668,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 62.5,
-     "frente": 49.9352884826131,
+     "area": 64.5,
+     "frente": 49.518557864198215,
      "deProposito": "cenário"
     },
     {
@@ -16761,8 +16678,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 167.25,
-     "frente": 54.4869003458006,
+     "area": 165.5,
+     "frente": 53.83713775983786,
      "deProposito": "cenário"
     },
     {
@@ -16771,8 +16688,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 0,50",
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 5.25,
-     "frente": 50.27234618318925,
+     "area": 6,
+     "frente": 50.63012701800129,
      "deProposito": "cenário"
     },
     {
@@ -16781,8 +16698,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "cabeça",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 114.25,
-     "frente": 71.7782092374274,
+     "area": 106.75,
+     "frente": 71.83510902602254,
      "deProposito": "cenário"
     },
     {
@@ -16792,7 +16709,7 @@
      "parte": "pescoço",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 105.25,
-     "frente": 71.99852258939835,
+     "frente": 71.9935842346662,
      "deProposito": "cenário"
     },
     {
@@ -16802,7 +16719,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (anilha)",
      "area": 37,
-     "frente": 36.426828871092894,
+     "frente": 36.23429311421175,
      "deProposito": "cenário"
     },
     {
@@ -16811,8 +16728,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "tronco",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 155.25,
-     "frente": 71.96707672266162,
+     "area": 151.75,
+     "frente": 71.99506132503575,
      "deProposito": "cenário"
     },
     {
@@ -16822,7 +16739,7 @@
      "parte": "mão direita",
      "peca": "barra do smith (o lado de perto) (cromo)",
      "area": 18.75,
-     "frente": 73.81558674361796,
+     "frente": 74.03000644456588,
      "deProposito": "cenário"
     },
     {
@@ -16831,8 +16748,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "cintura",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 8.75,
-     "frente": 65.75460777167264,
+     "area": 10,
+     "frente": 65.53542314058517,
      "deProposito": "cenário"
     },
     {
@@ -16841,8 +16758,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "braço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 147,
-     "frente": 53.73830609979812,
+     "area": 150,
+     "frente": 53.35982120933259,
      "deProposito": "cenário"
     },
     {
@@ -16851,8 +16768,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "barra do smith (o lado de perto) (anilha)",
-     "area": 89.75,
-     "frente": 38.30413295960497,
+     "area": 89.5,
+     "frente": 38.493066733314194,
      "deProposito": "cenário"
     },
     {
@@ -16861,8 +16778,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 9.75,
-     "frente": 29.922055176149883,
+     "area": 9.5,
+     "frente": 29.199829634235478,
      "deProposito": "cenário"
     },
     {
@@ -16872,7 +16789,7 @@
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (metal)",
      "area": 3,
-     "frente": 32.54235723906932,
+     "frente": 32.30931789942415,
      "deProposito": "cenário"
     },
     {
@@ -16881,8 +16798,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 34.25,
-     "frente": 30.465839114716346,
+     "area": 38,
+     "frente": 29.764862746751767,
      "deProposito": "cenário"
     },
     {
@@ -16891,8 +16808,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "braço direito",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 4.75,
-     "frente": 31.534205296462467,
+     "area": 3.75,
+     "frente": 31.074074209956464,
      "deProposito": "cenário"
     },
     {
@@ -16901,8 +16818,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "tronco",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 11,
-     "frente": 62.54995340978187,
+     "area": 10.75,
+     "frente": 62.628202273350986,
      "deProposito": "cenário"
     },
     {
@@ -16911,8 +16828,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "cintura",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 32.5,
-     "frente": 62.00193891868208,
+     "area": 32.75,
+     "frente": 61.38626837685366,
      "deProposito": "cenário"
     },
     {
@@ -16921,8 +16838,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 40.5,
-     "frente": 58.43326843269158,
+     "area": 39.25,
+     "frente": 57.0174203397883,
      "deProposito": "cenário"
     },
     {
@@ -16931,8 +16848,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "bacia",
      "peca": "smith (o lado de perto) (metalClaro)",
-     "area": 1.5,
-     "frente": 56.46838032094923,
+     "area": 4.5,
+     "frente": 56.36799227903141,
      "deProposito": "cenário"
     },
     {
@@ -16941,8 +16858,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "coxa direita",
      "peca": "smith (o lado de perto) (cromo)",
-     "area": 33.25,
-     "frente": 52.83056551927078,
+     "area": 34.75,
+     "frente": 52.44571168568028,
      "deProposito": "cenário"
     },
     {
@@ -16951,8 +16868,8 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "pé direito",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 162.75,
-     "frente": 54.140548280786625,
+     "area": 168.5,
+     "frente": 53.99931620473679,
      "deProposito": "cenário"
     },
     {
@@ -16961,86 +16878,13 @@
      "onde": "erro \"Pés embaixo da barra\", u = 1,00",
      "parte": "canela direita",
      "peca": "smith (o lado de perto) (metal)",
-     "area": 7.5,
-     "frente": 50.62720270500745,
+     "area": 5.25,
+     "frente": 50.50011515323942,
      "deProposito": "cenário"
     }
    ],
    "fios": [],
-   "pesos": [
-    {
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.3272662929638526
-    },
-    {
-     "onde": "técnica, t = 0,77 s (u = 0,01)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.3302332730505053
-    },
-    {
-     "onde": "técnica, t = 1,55 s (u = 0,38)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4003991647970189
-    },
-    {
-     "onde": "técnica, t = 2,32 s (u = 0,90)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4046223047819475
-    },
-    {
-     "onde": "técnica, t = 3,10 s (u = 1,00)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.3940274270614683
-    },
-    {
-     "onde": "técnica, t = 3,87 s (u = 0,69)",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4152350665295108
-    },
-    {
-     "onde": "erro \"Descer pouco\", u = 0,00",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.3272662929638526
-    },
-    {
-     "onde": "erro \"Descer pouco\", u = 0,50",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4105641864602123
-    },
-    {
-     "onde": "erro \"Descer pouco\", u = 1,00",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.3940274271111093
-    },
-    {
-     "onde": "erro \"Pés embaixo da barra\", u = 0,00",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4114162548379918
-    },
-    {
-     "onde": "erro \"Pés embaixo da barra\", u = 0,50",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4002787184908991
-    },
-    {
-     "onde": "erro \"Pés embaixo da barra\", u = 1,00",
-     "peso": "barra do smith",
-     "parte": "tronco",
-     "entra": 1.4151177611344292
-    }
-   ]
+   "pesos": []
   }
  },
  "barra-fixa": {
@@ -24273,7 +24117,7 @@
    {
     "grupo": "Cabos",
     "oQue": "elástico: quanto estica no ciclo (1 = comprimento em repouso)",
-    "medido": "de 1,3 a 1,6 vezes (263,4 a 341,9 cm); em cima, 1,3 vezes",
+    "medido": "de 1,3 a 1,7 vezes (267,7 a 346 cm); em cima, 1,3 vezes",
     "limite": "nunca frouxo (1 ou mais), mais esticado em cima e nunca além de 2,5 vezes (o máximo do fabricante)",
     "nivel": "aviso"
    },
@@ -24294,7 +24138,7 @@
    {
     "grupo": "Ficha",
     "oQue": "as mãos, os joelhos, as canelas e os pés que apoiam ficam em cima do colchonete, dentro das bordas, e o pé de apoio no tampo; nenhum pé afunda; nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista; e o elástico é pintado atrás das partes do corpo que ficam na frente dele (as canelas de perto e de longe), e na frente das que ele cobre (desenho)",
-    "medido": "quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 30, a perna direita 30, a perna esquerda 21,6, o braço direito 46,2, o braço esquerdo 13,3; quinaTras: o tronco 68,2, a perna direita 68,2, a perna esquerda 63,2, o braço direito 62,6, o braço esquerdo 44,5; posterior: o tronco 49,3, a perna direita 49,3, a perna esquerda 49,3, o braço direito 42,2, o braço esquerdo 42,1; a menor folga da pele que encosta no tampo até a borda do colchonete (cm, positivo = dentro): mão direita 7,8, joelho direito 19,2, pé direito 19,5, mão esquerda 7,8, joelho esquerdo 18,7, canela esquerda 19,7, pé esquerdo 19,7; o ponto mais baixo do pé esquerdo (o de apoio) fica de 0,2 a 0,3 cm acima do que está embaixo dele (o tampo, ou o chão fora do colchonete), e o do pé direito, no mínimo a 0,6 cm; a folga de pintura de cada parte do corpo que se cruza com o elástico na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde o elástico, \"atrás\" = o elástico esconde a parte): lateral: a perna direita na frente 0,5, a perna direita atrás 11,5, a perna esquerda atrás 4,1, o braço direito na frente 0,5, o braço esquerdo atrás 0,3; quinaTras: a perna direita na frente 0,5, a perna direita atrás 45,2, a perna esquerda atrás 4,5, o braço direito na frente 0,5, o braço direito atrás 0,7, o braço esquerdo atrás 6,6; posterior: o tronco atrás 87,7, a perna direita na frente 0,5, a perna direita atrás 68,1, a perna esquerda na frente 8,8, o braço direito na frente 0,5, o braço direito atrás 6,6",
+    "medido": "quanto cada parte é pintada à frente do colchonete, no pior quadro (cm; negativo = o colchonete cobre a parte): lateral: o tronco 30, a perna direita 30, a perna esquerda 21,6, o braço direito 46,2, o braço esquerdo 13,3; quinaTras: o tronco 68,2, a perna direita 68,2, a perna esquerda 63,2, o braço direito 62,6, o braço esquerdo 44,5; posterior: o tronco 49,3, a perna direita 49,3, a perna esquerda 49,3, o braço direito 42,2, o braço esquerdo 42,1; a menor folga da pele que encosta no tampo até a borda do colchonete (cm, positivo = dentro): mão direita 7,8, joelho direito 19,2, pé direito 19,5, mão esquerda 7,8, joelho esquerdo 18,7, canela esquerda 19,7, pé esquerdo 19,7; o ponto mais baixo do pé esquerdo (o de apoio) fica de 0,2 a 0,3 cm acima do que está embaixo dele (o tampo, ou o chão fora do colchonete), e o do pé direito, no mínimo a 0,6 cm; a folga de pintura de cada parte do corpo que se cruza com o elástico na tela, no pior quadro (cm de profundidade; negativo = pintada na ordem errada; \"na frente\" = a parte esconde o elástico, \"atrás\" = o elástico esconde a parte): lateral: a perna direita na frente 0,5, a perna direita atrás 10,7, a perna esquerda atrás 4,7, o braço esquerdo atrás 4,2; quinaTras: a perna direita na frente 0,5, a perna direita atrás 39,9, a perna esquerda atrás 4,5, o braço esquerdo atrás 13,2; posterior: o tronco atrás 88,7, a perna direita na frente 0,5, a perna direita atrás 64,6, a perna esquerda na frente 8,8, o braço direito atrás 60",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -24322,30 +24166,30 @@
    {
     "grupo": "Ficha",
     "oQue": "o laço na sola do pé e as pontas presas sob as mãos; o elástico estica mais no alto (consenso)",
-    "medido": "o laço passa a 0,2 cm do meio da sola; as pontas ficam a 1,8 cm do centro da palma direita, sob a mão; ele vai de 1,3 vezes (embaixo) a 1,6 vezes (no alto)",
+    "medido": "o laço passa a 0,2 cm do meio da sola; as pontas ficam a 1,8 cm do centro da palma direita, sob a mão; ele vai de 1,3 vezes (embaixo) a 1,7 vezes (no alto)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "cotovelo, cervical, pe.flexaoPlantar.inicio, pe.flexaoPlantar, elastico.folga, elastico.paraDentro, colchonete.recua, colchonete.noQuadro",
+    "medido": "cotovelo, cervical, pe.flexaoPlantar.inicio, pe.flexaoPlantar, elastico.folga, elastico.saida.dentro, elastico.saida.atras, elastico.paraDentro, colchonete.recua, colchonete.noQuadro",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (13,8 cm², até 36,5 cm à frente; pior em erro \"Girar o quadril\", u = 0,50; em 2 quadro(s)); de trás: faixa (traço) pintado sobre canela direita (a parte do corpo está na frente) (9,5 cm², até 24,8 cm à frente; pior em erro \"Girar o quadril\", u = 1,00; em 1 quadro(s)); três quartos, de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (8 cm², até 15,2 cm à frente; pior em técnica, t = 0,67 s (u = 0,12); em 7 quadro(s)); de trás: faixa (traço) pintado sobre coxa direita (a parte do corpo está na frente) (6 cm², até 48,7 cm à frente; pior em erro \"Girar o quadril\", u = 1,00; em 2 quadro(s)); de trás: faixa (traço) pintado sobre canela esquerda (a parte do corpo está na frente) (5,5 cm², até 78,3 cm à frente; pior em erro \"Girar o quadril\", u = 0,50; em 3 quadro(s)); de lado: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (3,3 cm², até 5,8 cm à frente; pior em técnica, t = 0,67 s (u = 0,12); em 1 quadro(s)); e mais 5",
+    "medido": "de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (13,3 cm², até 23,5 cm à frente; pior em erro \"Girar o quadril\", u = 0,50; em 3 quadro(s)); de trás: faixa (traço) pintado sobre canela direita (a parte do corpo está na frente) (9,5 cm², até 21,3 cm à frente; pior em erro \"Girar o quadril\", u = 1,00; em 2 quadro(s)); três quartos, de trás: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (5,3 cm², até 17,1 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 7 quadro(s)); de trás: faixa (traço) pintado sobre canela esquerda (a parte do corpo está na frente) (5 cm², até 78,3 cm à frente; pior em erro \"Girar o quadril\", u = 0,00; em 3 quadro(s)); de trás: faixa (traço) pintado sobre coxa direita (a parte do corpo está na frente) (4,3 cm², até 27,4 cm à frente; pior em erro \"Girar o quadril\", u = 1,00; em 2 quadro(s)); de lado: faixa (traço) pintado sobre pé direito (a parte do corpo está na frente) (2,5 cm², até 8,7 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 3 quadro(s)); e mais 4",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
     "nivel": "falha"
    },
    {
     "grupo": "Fios",
     "oQue": "cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros)",
-    "medido": "fio \"fita\" da conferência e faixa (traço) entra 2,3 cm em antebraço direito (pior em erro \"Arquear a lombar no fim\", u = 1,00; em 12 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 12 quadros",
     "limite": "a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Pesos",
@@ -24403,36 +24247,36 @@
     13.303861809589431
    ]
   },
-  "falhas": 2,
+  "falhas": 1,
   "avisos": 4,
   "pinturaEFios": {
    "pintura": [
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "pé direito",
+     "peca": "faixa (traço)",
+     "area": 2.5,
+     "frente": 8.654120901312375
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "técnica, t = 0,00 s (u = 0,00)",
+     "parte": "canela direita",
+     "peca": "faixa (traço)",
+     "area": 1.75,
+     "frente": 8.545977722588445
+    },
     {
      "tipo": "peca-por-cima",
      "vista": "quinaTras",
      "onde": "técnica, t = 0,00 s (u = 0,00)",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 2.75,
-     "frente": 17.408443963909974
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,67 s (u = 0,12)",
-     "parte": "pé direito",
-     "peca": "faixa (traço)",
-     "area": 3.25,
-     "frente": 5.820692098653045
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "lateral",
-     "onde": "técnica, t = 0,67 s (u = 0,12)",
-     "parte": "canela direita",
-     "peca": "faixa (traço)",
-     "area": 3.25,
-     "frente": 7.983678978487424
+     "area": 5.25,
+     "frente": 17.14107977794623
     },
     {
      "tipo": "peca-por-cima",
@@ -24440,17 +24284,26 @@
      "onde": "técnica, t = 0,67 s (u = 0,12)",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 8,
-     "frente": 15.155058114803118
+     "area": 4.25,
+     "frente": 12.862162427259179
     },
     {
      "tipo": "peca-por-cima",
      "vista": "quinaTras",
      "onde": "técnica, t = 0,67 s (u = 0,12)",
-     "parte": "canela direita",
+     "parte": "coxa direita",
      "peca": "faixa (traço)",
      "area": 2.5,
-     "frente": 16.717056913860123
+     "frente": 28.70993600855062
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "quinaTras",
+     "onde": "técnica, t = 0,67 s (u = 0,12)",
+     "parte": "canela direita",
+     "peca": "faixa (traço)",
+     "area": 1,
+     "frente": 27.259250742556127
     },
     {
      "tipo": "peca-por-cima",
@@ -24458,8 +24311,8 @@
      "onde": "técnica, t = 3,33 s (u = 0,21)",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 4.25,
-     "frente": 12.725740968470483
+     "area": 4,
+     "frente": 12.455239654780137
     },
     {
      "tipo": "peca-por-cima",
@@ -24467,8 +24320,8 @@
      "onde": "técnica, t = 3,33 s (u = 0,21)",
      "parte": "coxa direita",
      "peca": "faixa (traço)",
-     "area": 3.25,
-     "frente": 30.27589418362418
+     "area": 1.5,
+     "frente": 20.886219709827948
     },
     {
      "tipo": "peca-por-cima",
@@ -24476,8 +24329,26 @@
      "onde": "técnica, t = 3,33 s (u = 0,21)",
      "parte": "canela direita",
      "peca": "faixa (traço)",
-     "area": 2.75,
-     "frente": 27.530377580569585
+     "area": 1.5,
+     "frente": 18.475391212120208
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Arquear a lombar no fim\", u = 0,00",
+     "parte": "pé direito",
+     "peca": "faixa (traço)",
+     "area": 2.5,
+     "frente": 8.654120901312375
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Arquear a lombar no fim\", u = 0,00",
+     "parte": "canela direita",
+     "peca": "faixa (traço)",
+     "area": 1.75,
+     "frente": 8.545977722588445
     },
     {
      "tipo": "peca-por-cima",
@@ -24485,8 +24356,26 @@
      "onde": "erro \"Arquear a lombar no fim\", u = 0,00",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 2.75,
-     "frente": 17.408443963909974
+     "area": 5.25,
+     "frente": 17.14107977794623
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Girar o quadril\", u = 0,00",
+     "parte": "pé direito",
+     "peca": "faixa (traço)",
+     "area": 2.5,
+     "frente": 8.654120901312375
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "lateral",
+     "onde": "erro \"Girar o quadril\", u = 0,00",
+     "parte": "canela direita",
+     "peca": "faixa (traço)",
+     "area": 1.75,
+     "frente": 8.545977722588445
     },
     {
      "tipo": "peca-por-cima",
@@ -24494,8 +24383,17 @@
      "onde": "erro \"Girar o quadril\", u = 0,00",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 2.75,
-     "frente": 17.408443963909974
+     "area": 5.25,
+     "frente": 17.14107977794623
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "posterior",
+     "onde": "erro \"Girar o quadril\", u = 0,00",
+     "parte": "pé direito",
+     "peca": "faixa (traço)",
+     "area": 2,
+     "frente": 41.534482013462885
     },
     {
      "tipo": "peca-por-cima",
@@ -24503,8 +24401,8 @@
      "onde": "erro \"Girar o quadril\", u = 0,00",
      "parte": "canela esquerda",
      "peca": "faixa (traço)",
-     "area": 3.25,
-     "frente": 65.69535572944277
+     "area": 5,
+     "frente": 78.33733255223086
     },
     {
      "tipo": "peca-por-cima",
@@ -24513,7 +24411,7 @@
      "parte": "pé direito",
      "peca": "faixa (traço)",
      "area": 4.25,
-     "frente": 15.71656399089558
+     "frente": 15.687283148307515
     },
     {
      "tipo": "peca-por-cima",
@@ -24521,8 +24419,17 @@
      "onde": "erro \"Girar o quadril\", u = 0,50",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 13.75,
-     "frente": 36.53744000309147
+     "area": 13.25,
+     "frente": 23.495945784130704
+    },
+    {
+     "tipo": "peca-por-cima",
+     "vista": "posterior",
+     "onde": "erro \"Girar o quadril\", u = 0,50",
+     "parte": "canela direita",
+     "peca": "faixa (traço)",
+     "area": 1.25,
+     "frente": 24.54865331028291
     },
     {
      "tipo": "peca-por-cima",
@@ -24530,8 +24437,8 @@
      "onde": "erro \"Girar o quadril\", u = 0,50",
      "parte": "coxa direita",
      "peca": "faixa (traço)",
-     "area": 1.5,
-     "frente": 9.703477605978925
+     "area": 2,
+     "frente": 11.974129378413533
     },
     {
      "tipo": "peca-por-cima",
@@ -24539,17 +24446,8 @@
      "onde": "erro \"Girar o quadril\", u = 0,50",
      "parte": "canela esquerda",
      "peca": "faixa (traço)",
-     "area": 5.5,
-     "frente": 78.3393142725032
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Girar o quadril\", u = 0,50",
-     "parte": "pé esquerdo",
-     "peca": "faixa (traço)",
-     "area": 2.5,
-     "frente": 85.08221224246564
+     "area": 2.75,
+     "frente": 48.50017519446804
     },
     {
      "tipo": "peca-por-cima",
@@ -24558,7 +24456,7 @@
      "parte": "pé direito",
      "peca": "faixa (traço)",
      "area": 1,
-     "frente": 14.914323965901815
+     "frente": 14.926516919205156
     },
     {
      "tipo": "peca-por-cima",
@@ -24566,8 +24464,8 @@
      "onde": "erro \"Girar o quadril\", u = 1,00",
      "parte": "pé direito",
      "peca": "faixa (traço)",
-     "area": 9.5,
-     "frente": 22.312030278087285
+     "area": 7.25,
+     "frente": 17.061651011060462
     },
     {
      "tipo": "peca-por-cima",
@@ -24576,7 +24474,7 @@
      "parte": "canela direita",
      "peca": "faixa (traço)",
      "area": 9.5,
-     "frente": 24.759945207814994
+     "frente": 21.326161211713
     },
     {
      "tipo": "peca-por-cima",
@@ -24584,8 +24482,8 @@
      "onde": "erro \"Girar o quadril\", u = 1,00",
      "parte": "coxa direita",
      "peca": "faixa (traço)",
-     "area": 6,
-     "frente": 48.6627682455065
+     "area": 4.25,
+     "frente": 27.36193311439211
     },
     {
      "tipo": "peca-por-cima",
@@ -24593,17 +24491,8 @@
      "onde": "erro \"Girar o quadril\", u = 1,00",
      "parte": "coxa esquerda",
      "peca": "faixa (traço)",
-     "area": 3,
-     "frente": 26.06064593893884
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Girar o quadril\", u = 1,00",
-     "parte": "pé esquerdo",
-     "peca": "faixa (traço)",
-     "area": 1.75,
-     "frente": 97.92868009691469
+     "area": 2.25,
+     "frente": 30.953595795335016
     },
     {
      "tipo": "peca-por-cima",
@@ -24611,138 +24500,11 @@
      "onde": "erro \"Girar o quadril\", u = 1,00",
      "parte": "canela esquerda",
      "peca": "faixa (traço)",
-     "area": 2.75,
-     "frente": 68.89567021916903
+     "area": 1.75,
+     "frente": 48.273447849207784
     }
    ],
-   "fios": [
-    {
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.0291108776288727
-    },
-    {
-     "onde": "técnica, t = 0,67 s (u = 0,12)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.070155276596758
-    },
-    {
-     "onde": "técnica, t = 0,67 s (u = 0,12)",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 1.070155276596758
-    },
-    {
-     "onde": "técnica, t = 1,33 s (u = 1,00)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 2.0395166563921934
-    },
-    {
-     "onde": "técnica, t = 1,33 s (u = 1,00)",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 2.096654745825505
-    },
-    {
-     "onde": "técnica, t = 2,00 s (u = 1,00)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 2.092700637809847
-    },
-    {
-     "onde": "técnica, t = 2,00 s (u = 1,00)",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 2.0927006378098456
-    },
-    {
-     "onde": "técnica, t = 2,67 s (u = 0,79)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.7454327297489567
-    },
-    {
-     "onde": "técnica, t = 2,67 s (u = 0,79)",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 2.078597098259958
-    },
-    {
-     "onde": "técnica, t = 3,33 s (u = 0,21)",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.2370943031667136
-    },
-    {
-     "onde": "técnica, t = 3,33 s (u = 0,21)",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 1.2370943031667136
-    },
-    {
-     "onde": "erro \"Arquear a lombar no fim\", u = 0,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.0291108776288727
-    },
-    {
-     "onde": "erro \"Arquear a lombar no fim\", u = 0,50",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 2.129317549545886
-    },
-    {
-     "onde": "erro \"Arquear a lombar no fim\", u = 0,50",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 1.955402252459683
-    },
-    {
-     "onde": "erro \"Arquear a lombar no fim\", u = 1,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 2.297891062856492
-    },
-    {
-     "onde": "erro \"Arquear a lombar no fim\", u = 1,00",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 2.2212775450887348
-    },
-    {
-     "onde": "erro \"Girar o quadril\", u = 0,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.0291108776288727
-    },
-    {
-     "onde": "erro \"Girar o quadril\", u = 0,50",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.6139897296262167
-    },
-    {
-     "onde": "erro \"Girar o quadril\", u = 0,50",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 1.5285471613938062
-    },
-    {
-     "onde": "erro \"Girar o quadril\", u = 1,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço direito",
-     "entra": 1.5029414809081825
-    },
-    {
-     "onde": "erro \"Girar o quadril\", u = 1,00",
-     "fio": "faixa (traço)",
-     "parte": "antebraço direito",
-     "entra": 1.4881832592026893
-    }
-   ],
+   "fios": [],
    "pesos": []
   }
  },
@@ -54675,9 +54437,9 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "três quartos: pé esquerdo pintado sobre banco-romano (metal) (a peça está na frente) (38 cm², até 17,1 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: coxa direita pintado sobre banco-romano (estofado) (a peça está na frente) (25,3 cm², até 16 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: canela esquerda pintado sobre banco-romano (metal) (a peça está na frente) (22,3 cm², até 11,9 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos: pé direito pintado sobre banco-romano (estofado) (a peça está na frente) (10,3 cm², até 18,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s))",
+    "medido": "nada em 12 quadros, 24 quadro-vistas",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Fios",
@@ -54742,443 +54504,10 @@
     11.449662465619266
    ]
   },
-  "falhas": 1,
+  "falhas": 0,
   "avisos": 1,
   "pinturaEFios": {
-   "pintura": [
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,68 s (u = 0,01)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,68 s (u = 0,01)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,68 s (u = 0,01)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 0,68 s (u = 0,01)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 1,37 s (u = 0,38)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 1,37 s (u = 0,38)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 1,37 s (u = 0,38)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 1,37 s (u = 0,38)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,05 s (u = 0,92)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,05 s (u = 0,92)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,05 s (u = 0,92)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,05 s (u = 0,92)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,73 s (u = 1,00)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,73 s (u = 1,00)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.891942778198748
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,73 s (u = 1,00)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.166205399911433
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 2,73 s (u = 1,00)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.08293217806386
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 3,42 s (u = 0,63)",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 3,42 s (u = 0,63)",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 3,42 s (u = 0,63)",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "técnica, t = 3,42 s (u = 0,63)",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,00",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,00",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,00",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,00",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,50",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,50",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,50",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 0,50",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 1,00",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 1,00",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.891942778198748
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 1,00",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.166205399911433
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arquear a lombar no topo\", u = 1,00",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.08293217806386
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,00",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,00",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,00",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,00",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,50",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,50",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,50",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 0,50",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 1,00",
-     "parte": "coxa direita",
-     "peca": "banco-romano (estofado)",
-     "area": 25.25,
-     "frente": 15.972925739864678
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 1,00",
-     "parte": "canela esquerda",
-     "peca": "banco-romano (metal)",
-     "area": 22.25,
-     "frente": 11.89194277819875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 1,00",
-     "parte": "pé direito",
-     "peca": "banco-romano (estofado)",
-     "area": 10.25,
-     "frente": 18.16620539991143
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quina",
-     "onde": "erro \"Arredondar as costas\", u = 1,00",
-     "parte": "pé esquerdo",
-     "peca": "banco-romano (metal)",
-     "area": 38,
-     "frente": 17.082932178063864
-    }
-   ],
+   "pintura": [],
    "fios": [],
    "pesos": []
   }
@@ -88228,6 +87557,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o cabo continua reto da roldana ao elo do estribo sem atravessar o corpo (no banco fora do meio, o cabo do lado mais perto passa por fora do antebraço) (desenho)",
+    "medido": "Banco fora do meio: passa a no mínimo 0,1 cm da pele (a fita do engate, ante:L); Tirar as costas do encosto: entra até 0,4 cm (a fita do engate, ante:R)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "pes.meiaDistancia, braco.baixo, pegada.giro, polia.meiaDistancia, pilha.folga",
@@ -88237,16 +87573,16 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "três quartos: banco-regulavel (metal) pintado sobre pé direito (a parte do corpo está na frente) (33,3 cm², até 21,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 12 quadro(s)); três quartos: banco-regulavel (metal) pintado sobre canela direita (a parte do corpo está na frente) (17 cm², até 20,6 cm à frente; pior em erro \"Tirar as costas do encosto\", u = 0,50; em 12 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (6,3 cm², até 6,4 cm à frente; pior em erro \"Tirar as costas do encosto\", u = 0,50; em 3 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (4 cm², até 7,6 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 6 quadro(s)); três quartos: banco-regulavel (borracha) pintado sobre pé direito (a parte do corpo está na frente) (3,8 cm², até 14,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 12 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (3,5 cm², até 11,3 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 5 quadro(s)); e mais 4",
+    "medido": "três quartos: banco-regulavel (metal) pintado sobre pé direito (a parte do corpo está na frente) (33,3 cm², até 21,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 12 quadro(s)); três quartos: banco-regulavel (metal) pintado sobre canela direita (a parte do corpo está na frente) (17 cm², até 20,6 cm à frente; pior em erro \"Tirar as costas do encosto\", u = 0,50; em 12 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço esquerdo (a parte do corpo está na frente) (6,3 cm², até 6,4 cm à frente; pior em erro \"Tirar as costas do encosto\", u = 0,50; em 3 quadro(s)); três quartos: banco-regulavel (borracha) pintado sobre pé direito (a parte do corpo está na frente) (3,8 cm², até 14,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 12 quadro(s)); três quartos: estribo (traço) pintado sobre antebraço direito (a parte do corpo está na frente) (3,8 cm², até 7,6 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 6 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (3,5 cm², até 11,3 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 5 quadro(s)); e mais 3",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
     "nivel": "falha"
    },
    {
     "grupo": "Fios",
     "oQue": "cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros)",
-    "medido": "fio \"fita\" da conferência e fio \"cabo\" da conferência e estribo (traço) e cabo (traço) entra 1,7 cm em antebraço esquerdo (pior em erro \"Banco fora do meio\", u = 1,00; em 1 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 12 quadros",
     "limite": "a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Pesos",
@@ -88304,7 +87640,7 @@
     11.516081194143965
    ]
   },
-  "falhas": 2,
+  "falhas": 1,
   "avisos": 2,
   "pinturaEFios": {
    "pintura": [
@@ -88606,22 +87942,13 @@
      "frente": 14.150926265427717
     },
     {
-     "tipo": "corpo-por-cima",
-     "vista": "cima",
-     "onde": "erro \"Banco fora do meio\", u = 0,00",
-     "parte": "antebraço esquerdo",
-     "peca": "estribo (cromo)",
-     "area": 1.25,
-     "frente": 12.898754171395225
-    },
-    {
      "tipo": "peca-por-cima",
      "vista": "quina",
      "onde": "erro \"Banco fora do meio\", u = 0,50",
      "parte": "antebraço esquerdo",
      "peca": "estribo (traço)",
-     "area": 1.5,
-     "frente": 4.759705035053621
+     "area": 1.25,
+     "frente": 3.913377314843828
     },
     {
      "tipo": "peca-por-cima",
@@ -88630,7 +87957,7 @@
      "parte": "canela direita",
      "peca": "banco-regulavel (metal)",
      "area": 15,
-     "frente": 20.25831622549495
+     "frente": 20.140578628704805
     },
     {
      "tipo": "peca-por-cima",
@@ -88638,8 +87965,8 @@
      "onde": "erro \"Banco fora do meio\", u = 0,50",
      "parte": "pé direito",
      "peca": "banco-regulavel (metal)",
-     "area": 32.75,
-     "frente": 21.784348483936164
+     "area": 33,
+     "frente": 21.83370113279464
     },
     {
      "tipo": "peca-por-cima",
@@ -88647,17 +87974,8 @@
      "onde": "erro \"Banco fora do meio\", u = 0,50",
      "parte": "pé direito",
      "peca": "banco-regulavel (borracha)",
-     "area": 3.5,
-     "frente": 14.201973780353784
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "cima",
-     "onde": "erro \"Banco fora do meio\", u = 0,50",
-     "parte": "antebraço esquerdo",
-     "peca": "cabo (traço)",
-     "area": 2,
-     "frente": 6.926846645188263
+     "area": 3.25,
+     "frente": 14.096292204560656
     },
     {
      "tipo": "peca-por-cima",
@@ -88665,8 +87983,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "antebraço direito",
      "peca": "estribo (traço)",
-     "area": 4,
-     "frente": 7.623677473915288
+     "area": 3.75,
+     "frente": 7.576469407445783
     },
     {
      "tipo": "peca-por-cima",
@@ -88674,8 +87992,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "canela direita",
      "peca": "banco-regulavel (metal)",
-     "area": 14.75,
-     "frente": 19.970289913649765
+     "area": 15.25,
+     "frente": 20.575695250867852
     },
     {
      "tipo": "peca-por-cima",
@@ -88683,8 +88001,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "pé direito",
      "peca": "banco-regulavel (metal)",
-     "area": 33.25,
-     "frente": 21.640050361154508
+     "area": 33,
+     "frente": 21.771544354679115
     },
     {
      "tipo": "peca-por-cima",
@@ -88692,8 +88010,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "pé direito",
      "peca": "banco-regulavel (borracha)",
-     "area": 2,
-     "frente": 13.964343504785035
+     "area": 3.25,
+     "frente": 14.122551311144592
     },
     {
      "tipo": "corpo-por-cima",
@@ -88717,10 +88035,19 @@
      "tipo": "corpo-por-cima",
      "vista": "cima",
      "onde": "erro \"Banco fora do meio\", u = 1,00",
+     "parte": "antebraço esquerdo",
+     "peca": "cabo (traço)",
+     "area": 2.5,
+     "frente": 8.190345205152155
+    },
+    {
+     "tipo": "corpo-por-cima",
+     "vista": "cima",
+     "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "braço esquerdo",
      "peca": "cabo (traço)",
      "area": 2.25,
-     "frente": 33.76058305402421
+     "frente": 33.61172541807316
     },
     {
      "tipo": "peca-por-cima",
@@ -88867,32 +88194,7 @@
      "frente": 37.08970236221769
     }
    ],
-   "fios": [
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço esquerdo",
-     "entra": 1.646133326405672
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "fio \"cabo\" da conferência",
-     "parte": "antebraço esquerdo",
-     "entra": 1.6698853575590178
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "estribo (traço)",
-     "parte": "antebraço esquerdo",
-     "entra": 1.646133326405672
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "cabo (traço)",
-     "parte": "antebraço esquerdo",
-     "entra": 1.6698853575590178
-    }
-   ],
+   "fios": [],
    "pesos": []
   }
  },
@@ -89491,6 +88793,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o cabo continua reto da roldana ao elo do estribo sem atravessar o corpo (no banco fora do meio, o cabo do lado mais perto passa por fora do antebraço) (desenho)",
+    "medido": "Banco fora do meio: passa a no mínimo 1,1 cm da pele (a fita do engate, ante:R); Cotovelos abertos a 90°: entra até 0,2 cm (a fita do engate, ante:R)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "reto.pelve.z, reto.pelve.altura, reto.lombar, reto.cervical, reto.cabeca, reto.cabeca.folgaNoBanco, reto.pes.alemDoJoelho, pes.meiaDistancia, braco.baixo, pegada.giro, polia.meiaDistancia, pilha.folga",
@@ -89500,16 +88809,16 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "três quartos, de trás: pé direito pintado sobre banco reto (metal) (a peça está na frente) (8,8 cm², até 17,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos, de trás: antebraço esquerdo pintado sobre estribo (traço) (a peça está na frente) (7,8 cm², até 5,9 cm à frente; pior em erro \"Cotovelos abertos a 90°\", u = 0,00; em 5 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (4 cm², até 11,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 6 quadro(s)); de cima: antebraço esquerdo pintado sobre cabo (traço) (a peça está na frente) (3,8 cm², até 12,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 7 quadro(s)); de cima: braço direito pintado sobre cabo (traço) (a peça está na frente) (2,5 cm², até 43,7 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 3 quadro(s)); de cima: braço esquerdo pintado sobre cabo (traço) (a peça está na frente) (2,3 cm², até 34,2 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 3 quadro(s))",
+    "medido": "três quartos, de trás: pé direito pintado sobre banco reto (metal) (a peça está na frente) (8,8 cm², até 17,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 12 quadro(s)); três quartos, de trás: antebraço esquerdo pintado sobre estribo (traço) (a peça está na frente) (7,8 cm², até 5,9 cm à frente; pior em erro \"Cotovelos abertos a 90°\", u = 0,00; em 5 quadro(s)); de cima: antebraço direito pintado sobre cabo (traço) (a peça está na frente) (4 cm², até 11,6 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 6 quadro(s)); de cima: antebraço esquerdo pintado sobre cabo (traço) (a peça está na frente) (3,8 cm², até 12,5 cm à frente; pior em técnica, t = 1,47 s (u = 0,93); em 6 quadro(s)); de cima: braço direito pintado sobre cabo (traço) (a peça está na frente) (2,5 cm², até 43,7 cm à frente; pior em erro \"Banco fora do meio\", u = 1,00; em 3 quadro(s)); de cima: braço esquerdo pintado sobre cabo (traço) (a peça está na frente) (2 cm², até 37,9 cm à frente; pior em técnica, t = 2,20 s (u = 1,00); em 3 quadro(s))",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
     "nivel": "falha"
    },
    {
     "grupo": "Fios",
     "oQue": "cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros)",
-    "medido": "fio \"fita\" da conferência e fio \"cabo\" da conferência e estribo (traço) e cabo (traço) entra 1,2 cm em antebraço esquerdo (pior em erro \"Banco fora do meio\", u = 1,00; em 1 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 12 quadros",
     "limite": "a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Pesos",
@@ -89567,7 +88876,7 @@
     10.009045239962003
    ]
   },
-  "falhas": 2,
+  "falhas": 1,
   "avisos": 2,
   "pinturaEFios": {
    "pintura": [
@@ -89728,19 +89037,19 @@
      "tipo": "corpo-por-cima",
      "vista": "quinaTras",
      "onde": "erro \"Banco fora do meio\", u = 0,00",
-     "parte": "antebraço esquerdo",
-     "peca": "estribo (traço)",
-     "area": 6.25,
-     "frente": 5.865078410474641
+     "parte": "pé direito",
+     "peca": "banco reto (metal)",
+     "area": 8.75,
+     "frente": 17.78148375306231
     },
     {
      "tipo": "corpo-por-cima",
      "vista": "quinaTras",
-     "onde": "erro \"Banco fora do meio\", u = 0,00",
-     "parte": "pé direito",
-     "peca": "banco reto (metal)",
-     "area": 8.75,
-     "frente": 17.773364788729072
+     "onde": "erro \"Banco fora do meio\", u = 0,50",
+     "parte": "antebraço esquerdo",
+     "peca": "estribo (traço)",
+     "area": 2.25,
+     "frente": 6.406652099179025
     },
     {
      "tipo": "corpo-por-cima",
@@ -89749,16 +89058,7 @@
      "parte": "pé direito",
      "peca": "banco reto (metal)",
      "area": 8.5,
-     "frente": 17.660348957047667
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "cima",
-     "onde": "erro \"Banco fora do meio\", u = 0,50",
-     "parte": "antebraço esquerdo",
-     "peca": "cabo (traço)",
-     "area": 1.5,
-     "frente": 12.995457186131219
+     "frente": 17.65973289930325
     },
     {
      "tipo": "corpo-por-cima",
@@ -89766,8 +89066,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "pé direito",
      "peca": "banco reto (metal)",
-     "area": 8.75,
-     "frente": 17.369687381964503
+     "area": 8.5,
+     "frente": 17.544619034393083
     },
     {
      "tipo": "corpo-por-cima",
@@ -89793,8 +89093,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "antebraço esquerdo",
      "peca": "cabo (traço)",
-     "area": 2,
-     "frente": 8.472623369227563
+     "area": 2.5,
+     "frente": 12.539730491586042
     },
     {
      "tipo": "corpo-por-cima",
@@ -89802,8 +89102,8 @@
      "onde": "erro \"Banco fora do meio\", u = 1,00",
      "parte": "braço esquerdo",
      "peca": "cabo (traço)",
-     "area": 2.25,
-     "frente": 34.213640222388335
+     "area": 2,
+     "frente": 37.594544334986566
     },
     {
      "tipo": "corpo-por-cima",
@@ -89896,32 +89196,7 @@
      "frente": 37.94951998518617
     }
    ],
-   "fios": [
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "fio \"fita\" da conferência",
-     "parte": "antebraço esquerdo",
-     "entra": 1.164114065282757
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "fio \"cabo\" da conferência",
-     "parte": "antebraço esquerdo",
-     "entra": 1.164114065282757
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "estribo (traço)",
-     "parte": "antebraço esquerdo",
-     "entra": 1.164114065282757
-    },
-    {
-     "onde": "erro \"Banco fora do meio\", u = 1,00",
-     "fio": "cabo (traço)",
-     "parte": "antebraço esquerdo",
-     "entra": 1.164114065282757
-    }
-   ],
+   "fios": [],
    "pesos": []
   }
  },
@@ -90454,7 +89729,7 @@
    },
    {
     "grupo": "Ficha",
-    "oQue": "as travas de segurança logo acima do peito (a barra não chega nelas no movimento certo) (consenso)",
+    "oQue": "as travas de segurança logo abaixo do ponto mais baixo da descida (a barra não chega nelas no movimento certo) (consenso)",
     "medido": "as travas param a barra 1,5 cm abaixo do ponto mais baixo dela",
     "limite": "como a ficha pede",
     "nivel": "ok"
@@ -93017,7 +92292,7 @@
    {
     "grupo": "Ficha",
     "oQue": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele) (desenho)",
-    "medido": "Abrir os cotovelos: passa a no mínimo 2,6 cm da pele (o cabo, cabeca); Usar o tronco: passa a no mínimo 0,6 cm da pele (o cabo, tronco); Volta curta: passa a no mínimo 2,6 cm da pele (o cabo, cabeca)",
+    "medido": "Abrir os cotovelos: passa a no mínimo 2,6 cm da pele (o cabo, cabeca); Usar o tronco: passa a no mínimo 4,5 cm da pele (a fita do engate, cabeca); Volta curta: passa a no mínimo 2,6 cm da pele (o cabo, cabeca)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -93031,7 +92306,7 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "de trás: barra-reta-polia (cromo) pintado sobre coxa direita (a parte do corpo está na frente) (1,5 cm², até 9,6 cm à frente; pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s)); de trás: barra-reta-polia (borracha) pintado sobre bacia (a parte do corpo está na frente) (1 cm², até 15,2 cm à frente; pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s)); de trás: barra-reta-polia (cromo) pintado sobre coxa esquerda (a parte do corpo está na frente) (1 cm², até 8,9 cm à frente; pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s))",
+    "medido": "de trás: barra-reta-polia (cromo) pintado sobre coxa direita (a parte do corpo está na frente) (3 cm², até 18,6 cm à frente; pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s)); de trás: barra-reta-polia (cromo) pintado sobre coxa esquerda (a parte do corpo está na frente) (2 cm², até 17,3 cm à frente; pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s))",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
     "nivel": "falha"
    },
@@ -93045,9 +92320,9 @@
    {
     "grupo": "Pesos",
     "oQue": "halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros)",
-    "medido": "barra-reta-polia entra 7,1 cm em coxa direita (pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s)); barra-reta-polia entra 7,1 cm em coxa esquerda (pior em erro \"Usar o tronco\", u = 1,00; em 1 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 15 quadros",
     "limite": "o volume do peso até 1 cm dentro da pele; fora a mão e o polegar (onde a mão segura)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Músculos",
@@ -93098,7 +92373,7 @@
     11
    ]
   },
-  "falhas": 2,
+  "falhas": 1,
   "avisos": 3,
   "pinturaEFios": {
    "pintura": [
@@ -93106,19 +92381,10 @@
      "tipo": "peca-por-cima",
      "vista": "posterior",
      "onde": "erro \"Usar o tronco\", u = 1,00",
-     "parte": "bacia",
-     "peca": "barra-reta-polia (borracha)",
-     "area": 1,
-     "frente": 15.231870339596709
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Usar o tronco\", u = 1,00",
      "parte": "coxa esquerda",
      "peca": "barra-reta-polia (cromo)",
-     "area": 1,
-     "frente": 8.945023505261727
+     "area": 2,
+     "frente": 17.262635806306815
     },
     {
      "tipo": "peca-por-cima",
@@ -93126,25 +92392,12 @@
      "onde": "erro \"Usar o tronco\", u = 1,00",
      "parte": "coxa direita",
      "peca": "barra-reta-polia (cromo)",
-     "area": 1.5,
-     "frente": 9.623478701520407
+     "area": 3,
+     "frente": 18.609724508054455
     }
    ],
    "fios": [],
-   "pesos": [
-    {
-     "onde": "erro \"Usar o tronco\", u = 1,00",
-     "peso": "barra-reta-polia",
-     "parte": "coxa direita",
-     "entra": 7.14675710270221
-    },
-    {
-     "onde": "erro \"Usar o tronco\", u = 1,00",
-     "peso": "barra-reta-polia",
-     "parte": "coxa esquerda",
-     "entra": 7.146757102702208
-    }
-   ]
+   "pesos": []
   }
  },
  "triceps-corda": {
@@ -94187,6 +93440,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Ficha",
+    "oQue": "nos erros, o elástico continua reto do pegador à âncora sem atravessar o corpo (desenho)",
+    "medido": "Cotovelos soltos: passa a no mínimo 3 cm da pele (a fita do engate, ante:R); Jogar o tronco: passa a no mínimo 2,4 cm da pele (a fita do engate, ante:L)",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
     "medido": "cervical, cabeca, braco.paraDentro, maos.pronacao, cabo.inclinacao, elastico.noQuadro",
@@ -94196,16 +93456,16 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "de trás: elástico (traço) pintado sobre tronco (a parte do corpo está na frente) (30,3 cm², até 22,6 cm à frente; pior em erro \"Jogar o tronco\", u = 1,00; em 1 quadro(s)); de trás: elástico (traço) pintado sobre cintura (a parte do corpo está na frente) (8,3 cm², até 23,2 cm à frente; pior em erro \"Jogar o tronco\", u = 1,00; em 1 quadro(s)); de trás: elástico (traço) pintado sobre bacia (a parte do corpo está na frente) (3,3 cm², até 22,1 cm à frente; pior em erro \"Jogar o tronco\", u = 1,00; em 1 quadro(s)) (fora 1 caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada)",
+    "medido": "nada em 12 quadros, 24 quadro-vistas",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Fios",
     "oQue": "cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros)",
-    "medido": "pegadorR (traço) entra 4,9 cm em coxa direita (pior em erro \"Jogar o tronco\", u = 1,00; em 1 quadro(s)); pegadorL (traço) entra 4,9 cm em coxa esquerda (pior em erro \"Jogar o tronco\", u = 1,00; em 1 quadro(s))",
+    "medido": "nenhum entra além da tolerância em 12 quadros",
     "limite": "a linha do meio do fio até 1 cm dentro da pele; fora a mão, o polegar, o pé e a canela até 12 cm do tornozelo (onde o fio se prende)",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Pesos",
@@ -94263,62 +93523,11 @@
     11
    ]
   },
-  "falhas": 2,
+  "falhas": 0,
   "avisos": 3,
   "pinturaEFios": {
-   "pintura": [
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "lateral",
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "parte": "cabeça",
-     "peca": "tubo-ate-a-porta (traço)",
-     "area": 18.25,
-     "frente": 8.646519231725438,
-     "deProposito": "cenário"
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "parte": "tronco",
-     "peca": "elástico (traço)",
-     "area": 30.25,
-     "frente": 22.561544999747454
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "parte": "cintura",
-     "peca": "elástico (traço)",
-     "area": 8.25,
-     "frente": 23.207493370457776
-    },
-    {
-     "tipo": "peca-por-cima",
-     "vista": "posterior",
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "parte": "bacia",
-     "peca": "elástico (traço)",
-     "area": 3.25,
-     "frente": 22.098887684370705
-    }
-   ],
-   "fios": [
-    {
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "fio": "pegadorR (traço)",
-     "parte": "coxa direita",
-     "entra": 4.866933522461267
-    },
-    {
-     "onde": "erro \"Jogar o tronco\", u = 1,00",
-     "fio": "pegadorL (traço)",
-     "parte": "coxa esquerda",
-     "entra": 4.866933522461267
-    }
-   ],
+   "pintura": [],
+   "fios": [],
    "pesos": []
   }
  },
@@ -97873,9 +97082,9 @@
    {
     "grupo": "Pintura",
     "oQue": "peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)",
-    "medido": "de frente: tronco pintado sobre braços do voador (metal) (a peça está na frente) (177,3 cm², até 67,2 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: tronco pintado sobre braços do voador (borracha) (a peça está na frente) (47,8 cm², até 53,5 cm à frente; pior em técnica, t = 0,82 s (u = 0,02); em 5 quadro(s)); de frente: antebraço esquerdo pintado sobre braços do voador (metal) (a peça está na frente) (43,5 cm², até 30,8 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); de frente: antebraço direito pintado sobre braços do voador (metal) (a peça está na frente) (43,3 cm², até 31,3 cm à frente; pior em técnica, t = 0,00 s (u = 0,00); em 5 quadro(s)); três quartos, de trás: pé direito pintado sobre voador (metal) (a peça está na frente) (41 cm², até 19 cm à frente; pior em erro \"Tirar as costas\", u = 0,50; em 3 quadro(s)); de frente: cintura pintado sobre braços do voador (metal) (a peça está na frente) (36 cm², até 61,4 cm à frente; pior em erro \"Dobrar e esticar os cotovelos\", u = 0,00; em 1 quadro(s)); e mais 2",
+    "medido": "nada em 15 quadros, 33 quadro-vistas",
     "limite": "uma parte com 1 cm² ou mais pintados do jeito errado (grade de 0,5 cm); contato: mais de 1 cm à frente ao longo do raio e mais de 1 cm fora da outra; a mão não conta contra a peça que segura (a 4 cm da pegada, e a mesma peça até 12 cm); peça de cenário ou empurrada 50 cm para trás não conta",
-    "nivel": "falha"
+    "nivel": "ok"
    },
    {
     "grupo": "Fios",
@@ -97940,317 +97149,10 @@
     10.948974768825904
    ]
   },
-  "falhas": 1,
+  "falhas": 0,
   "avisos": 1,
   "pinturaEFios": {
-   "pintura": [
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "tronco",
-     "peca": "braços do voador (metal)",
-     "area": 177.25,
-     "frente": 67.23884963567927
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "braço direito",
-     "peca": "braços do voador (metal)",
-     "area": 22.75,
-     "frente": 63.513259150495
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "braço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 21.75,
-     "frente": 63.335296724042664
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "tronco",
-     "peca": "braços do voador (borracha)",
-     "area": 47.25,
-     "frente": 52.41870762149277
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "antebraço direito",
-     "peca": "braços do voador (metal)",
-     "area": 43.25,
-     "frente": 31.31257721034094
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,00 s (u = 0,00)",
-     "parte": "antebraço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 43.5,
-     "frente": 30.802871574858024
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "tronco",
-     "peca": "braços do voador (metal)",
-     "area": 135.25,
-     "frente": 67.14970733281875
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "braço direito",
-     "peca": "braços do voador (metal)",
-     "area": 26,
-     "frente": 63.55822750209551
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "braço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 26.25,
-     "frente": 63.40939226659705
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "tronco",
-     "peca": "braços do voador (borracha)",
-     "area": 47.75,
-     "frente": 53.517069281570244
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "antebraço direito",
-     "peca": "braços do voador (metal)",
-     "area": 43,
-     "frente": 32.85896160780841
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "técnica, t = 0,82 s (u = 0,02)",
-     "parte": "antebraço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 42.75,
-     "frente": 32.23534049376357
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (metal)",
-     "area": 177.25,
-     "frente": 67.23884963567927
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "braço direito",
-     "peca": "braços do voador (metal)",
-     "area": 22.75,
-     "frente": 63.513259150495
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "braço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 21.75,
-     "frente": 63.335296724042664
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (borracha)",
-     "area": 47.25,
-     "frente": 52.41870762149277
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "antebraço direito",
-     "peca": "braços do voador (metal)",
-     "area": 43.25,
-     "frente": 31.31257721034094
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Abrir demais\", u = 0,00",
-     "parte": "antebraço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 43.5,
-     "frente": 30.802871574858024
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (metal)",
-     "area": 177.25,
-     "frente": 67.23884951766952
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "braço direito",
-     "peca": "braços do voador (metal)",
-     "area": 22.75,
-     "frente": 63.51325908977606
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "braço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 21.75,
-     "frente": 63.33529664616236
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (borracha)",
-     "area": 47.25,
-     "frente": 52.41870773321449
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "antebraço direito",
-     "peca": "braços do voador (metal)",
-     "area": 43.25,
-     "frente": 31.312579799761366
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "antebraço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 43.5,
-     "frente": 30.802873860956424
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quinaTras",
-     "onde": "erro \"Tirar as costas\", u = 0,00",
-     "parte": "pé direito",
-     "peca": "voador (metal)",
-     "area": 40,
-     "frente": 18.872892390126616
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quinaTras",
-     "onde": "erro \"Tirar as costas\", u = 0,50",
-     "parte": "pé direito",
-     "peca": "voador (metal)",
-     "area": 41,
-     "frente": 19.0202146337225
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "quinaTras",
-     "onde": "erro \"Tirar as costas\", u = 1,00",
-     "parte": "pé direito",
-     "peca": "voador (metal)",
-     "area": 39.75,
-     "frente": 18.40115578930081
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (metal)",
-     "area": 167,
-     "frente": 65.7093619837637
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "cintura",
-     "peca": "braços do voador (metal)",
-     "area": 36,
-     "frente": 61.439565358211674
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "braço direito",
-     "peca": "braços do voador (metal)",
-     "area": 19,
-     "frente": 58.020486951469174
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "braço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 20.25,
-     "frente": 58.00384401337062
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "tronco",
-     "peca": "braços do voador (borracha)",
-     "area": 46.25,
-     "frente": 52.42844407527939
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "antebraço direito",
-     "peca": "braços do voador (metal)",
-     "area": 35,
-     "frente": 22.141311131665617
-    },
-    {
-     "tipo": "corpo-por-cima",
-     "vista": "frontal",
-     "onde": "erro \"Dobrar e esticar os cotovelos\", u = 0,00",
-     "parte": "antebraço esquerdo",
-     "peca": "braços do voador (metal)",
-     "area": 35.75,
-     "frente": 22.053749566526996
-    }
-   ],
+   "pintura": [],
    "fios": [],
    "pesos": []
   }

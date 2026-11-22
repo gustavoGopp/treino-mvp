@@ -10,6 +10,7 @@ import { BIBLIOTECA, MUSCULOS, type Exercicio } from '../../src/domain/bibliotec
 import { NOME_MUSCULO } from '../../src/domain/gerador';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { EX } from '../../src/engine';
+const NO_MOTOR_DE_ANTES = new Set<string>(EX.map((x: { id: string }) => x.id));
 import { AJUDANTES, NAO_CONTADOS, NOME_FORMA, FORMA, doDesenho, doTexto, ehMusculo, type Marca } from './anatomia-regras';
 
 const est = JSON.parse(readFileSync('docs/revisoes/auditoria/estresse.json', 'utf8')) as {
@@ -47,7 +48,9 @@ for (const e of BIBLIOTECA) {
   const tT = doTexto(texto.target),
     tF = doTexto(feel),
     tTF = new Set([...tT, ...tF]);
-  const d = anim ? doDesenho(anim) : null;
+  // O desenho é lido do motor de antes, que só tem as 90 primeiras animações; nas 81 ligadas em 22/11/2026 (motor novo), a
+  // linha sai sem o desenho, como saía quando eram cartão de texto. Levar esta leitura ao motor novo está no backlog (D4).
+  const d = anim && NO_MOTOR_DE_ANTES.has(anim) ? doDesenho(anim) : null;
   const marcas: string[] = [];
 
   // principal: biblioteca × texto × desenho

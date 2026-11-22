@@ -58,7 +58,15 @@ for (const id of ids.filter((i) => esperados.includes(i))) {
   const t = texto.data;
   if (t.id !== id) problemas.push(`${id}: o id do arquivo é ${t.id}`);
 
-  const cartao = cartaoTextoSchema.parse(lerJson(`src/conteudo/exercicios/${id}.json`));
+  // Depois da ligação (22/11/2026), o arquivo do app deixou de ser cartão: é o próprio texto do guia, e tem de ser igual
+  // ao aprovado nesta pasta. As conferências contra o cartão (itens 2 do cabeçalho) valeram até a ligação.
+  const doApp = lerJson(`src/conteudo/exercicios/${id}.json`) as Record<string, unknown>;
+  if ('feel' in doApp) {
+    if (!igual(doApp, bruto)) problemas.push(`${id}: o texto do app difere do aprovado em ${PASTA}`);
+    conferirErros(id, t);
+    continue;
+  }
+  const cartao = cartaoTextoSchema.parse(doApp);
   for (const campo of CAMPOS_DO_CARTAO) if (!igual(t[campo], cartao[campo])) problemas.push(`${id}: o campo ${campo} difere do cartão`);
   // a ordem dos campos do cartão também é a mesma (a animação desenha os erros na ordem do texto)
   const ordem = Object.keys(bruto as object).filter((k) => (CAMPOS_DO_CARTAO as readonly string[]).includes(k));
@@ -69,6 +77,10 @@ for (const id of ids.filter((i) => esperados.includes(i))) {
     if (!t.note?.startsWith('<b>Montagem segura:</b> ')) problemas.push(`${id}: o cartão tem montagem e a nota não começa com "<b>Montagem segura:</b>"`);
   } else if (t.note) problemas.push(`${id}: o cartão não tem montagem e o texto tem nota`);
 
+  conferirErros(id, t);
+}
+
+function conferirErros(id: string, t: { errors: { title: string }[] }) {
   const movimento = lerJson(`src/engine/novo/dados/movimentos/${id}.json`) as { erros: { titulo: string }[] };
   const semDesenho = SEM_DESENHO[id] ?? [];
   const doTexto = t.errors.map((e) => e.title).filter((titulo) => !semDesenho.includes(titulo));
