@@ -6,7 +6,7 @@
   "feel": "Parte de cima do peito, perto da clavícula. Também um pouco na frente do ombro e no tríceps.",
   "feelNote": "Sentir mais o ombro nem sempre é erro: pode ser fadiga ou anatomia. Confira primeiro o encosto e a trajetória.",
   "setupEq": [
-    "Encosto a cerca de 30° (um terço do caminho entre deitado e sentado). Entre 30° e 45° funciona; acima disso o ombro assume mais o trabalho.",
+    "Encosto a cerca de 30° (um terço do caminho entre deitado e sentado). Entre 15° e 45° funciona; acima disso o ombro assume mais o trabalho.",
     "Assento plano, quadril encostado no fundo do banco.",
     "Aperte a rosca das manoplas antes de cada série."
   ],
@@ -57,7 +57,7 @@
     "Escápulas encaixadas",
     "Carga para o RIR do seu programa"
   ],
-  "vary": "O ângulo do cotovelo em relação ao tronco (algo entre ~30° e ~70°), a largura e a profundidade dependem do comprimento dos braços e da mobilidade do ombro. O que não muda: antebraço embaixo da carga, ombro estável e nenhuma dor articular.",
+  "vary": "O ângulo do cotovelo em relação ao tronco (algo entre ~30° e ~60°), a largura e a profundidade dependem do comprimento dos braços e da mobilidade do ombro. O que não muda: antebraço embaixo da carga, ombro estável e nenhuma dor articular.",
   "extLabels": [
     "embaixo",
     "topo"

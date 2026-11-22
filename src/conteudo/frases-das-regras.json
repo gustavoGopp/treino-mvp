@@ -5,7 +5,7 @@
   },
   "volume.semanal.minimo": {
     "titulo": "Mínimo de séries nos músculos em foco",
-    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado). Quando o treino não cabe no tempo, um músculo em foco não desce abaixo disso."
+    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado). Quando o treino não cabe no tempo, um músculo em foco que está acima disso não desce abaixo."
   },
   "volume.semanal.alvo": {
     "titulo": "Séries por semana nos músculos em foco",
@@ -17,11 +17,11 @@
   },
   "volume.prioridade.foco-primeiro": {
     "titulo": "Para onde vai o tempo que sobra",
-    "frase": "Se um grupo de foco tem exercício possível, o tempo que sobra vira séries primeiro nos músculos dele, até 10 por semana (iniciante), 16 (intermediário) ou 20 (avançado). Os outros sobem depois, até 6 séries abaixo do músculo em foco que tem menos e no máximo até 8, 12 ou 14. Há travas para não desequilibrar empurrar e puxar (razão até 1,5) nem quadríceps e posteriores (0,5 a 2). Sem foco possível, o tempo que sobra vai para todos."
+    "frase": "Com foco possível, o tempo que sobra vira séries primeiro nele, até 10 por semana (iniciante), 16 (intermediário) ou 20 (avançado). Os outros sobem depois, até 6 séries abaixo do músculo em foco que tem menos e no máximo até 8, 12 ou 14. Há travas de equilíbrio: empurrar e puxar (até 1,5), quadríceps e posteriores (0,5 a 2). Com 3 grupos de foco ou mais, o foco para na meta. Sem foco possível, a sobra vai para todos."
   },
   "volume.prioridade.segundo-exercicio": {
     "titulo": "Segundo exercício para o músculo em foco",
-    "frase": "O músculo em foco que fica abaixo da meta ganha 1 exercício a mais, de outra função do mesmo músculo (que o trabalha de outro jeito), se couber no tempo e nos limites de séries. Funções diferentes fazem crescer regiões diferentes do músculo."
+    "frase": "O músculo em foco que fica abaixo da meta ganha exercício a mais (até 2), de outra função do mesmo músculo quando ela existe, se couber no tempo e nos limites de séries. Funções diferentes fazem crescer regiões diferentes do músculo."
   },
   "volume.prioridade.ate-dois": {
     "titulo": "Quantos grupos de foco escolher",
@@ -29,11 +29,11 @@
   },
   "volume.semanal.maximo": {
     "titulo": "Máximo de séries por semana em cada músculo",
-    "frase": "O máximo padrão de séries por semana em cada músculo é 10 (iniciante), 16 (intermediário) ou 20 (avançado)."
+    "frase": "O máximo padrão de séries por semana em cada músculo é 10 (iniciante), 16 (intermediário) ou 20 (avançado). Ele vale para o tempo que sobra: as séries que os exercícios do programa já somam podem passar dele, sem nunca passar de 20."
   },
   "volume.semanal.teto-padrao": {
     "titulo": "Limite absoluto de séries por músculo na semana",
-    "frase": "Nenhum músculo passa de 20 séries por semana: acima de cerca de 20, o ganho a mais é pequeno e incerto. Para iniciante e intermediário, isso vale sempre. O avançado só passa se escolher isso de forma explícita."
+    "frase": "Nenhum músculo passa de 20 séries por semana: acima de cerca de 20, o ganho a mais é pequeno e incerto. Vale para todos os níveis: o app não oferece passar disso."
   },
   "volume.semanal.minimo-eficaz": {
     "titulo": "Mínimo de séries nos músculos sem foco",
@@ -245,7 +245,7 @@
   },
   "iniciante.fase-aprendizado": {
     "titulo": "Fase de aprendizado do iniciante",
-    "frase": "Só para o iniciante: 2 a 3 semanas de foco na técnica, com 3 a 4 repetições de reserva e 3/4 das séries do programa. A carga sobe quando a técnica estiver estável. Nessas semanas não há “estagnado” nem sugestão de semana leve."
+    "frase": "Só para o iniciante: 2 semanas de foco na técnica, com 3 a 4 repetições de reserva e 3/4 das séries do programa. A carga sobe quando a técnica estiver estável. Nessas semanas não há “estagnado” nem sugestão de semana leve."
   },
   "deload.semana-leve": {
     "titulo": "Semana leve",
@@ -497,7 +497,7 @@
   },
   "objetivo.forca.seguranca": {
     "titulo": "Segurança com peso livre e poucas repetições",
-    "frase": "Na faixa de poucas repetições do objetivo de força, o exercício multiarticular com peso livre (barra, halter, kettlebell) fica com 2 a 3 repetições de reserva, para intermediário e avançado. Nunca vá até a falha sem ajudante. Para o iniciante, a regra não se aplica."
+    "frase": "Na faixa de poucas repetições do objetivo de força, o exercício multiarticular com peso livre (barra, halter, kettlebell) ou em máquina de anilhas fica com 2 a 3 repetições de reserva, para intermediário e avançado. Nunca vá até a falha sem ajudante. Para o iniciante, a regra não se aplica."
   },
   "objetivo.saude.texto": {
     "titulo": "O que o treino cobre no objetivo saúde",
@@ -517,7 +517,7 @@
   },
   "tempo.aquecimento": {
     "titulo": "Aquecimento antes dos exercícios",
-    "frase": "Antes do 1º exercício multiarticular de cada região, você faz 1–2 séries leves do próprio exercício, cerca de 2–4 min. A última fica perto da carga do treino. O aquecimento geral não é exigido."
+    "frase": "Antes do 1º exercício multiarticular de cada região, você faz 1–2 séries leves do próprio exercício, cerca de 2–4 min. A última fica perto da carga do treino. O aquecimento geral não é exigido. O app lembra disso no 1º exercício do treino."
   },
   "tempo.colchao": {
     "titulo": "Margem para fila de equipamento",
@@ -553,15 +553,15 @@
   },
   "tempo.superserie": {
     "titulo": "Como funciona a supersérie",
-    "frase": "Junta músculos opostos ou que não competem, com cerca de 15 s entre os exercícios e descanso só entre rodadas; os dois ficam um depois do outro na lista do dia. Aumenta o esforço percebido e o dano muscular. Nunca 2 multiarticulares pesados de pernas nem o mesmo músculo. A dupla de dois exercícios que carregam a lombar sem apoio é o último recurso para o treino caber no tempo. Iniciante: só a partir da 3ª semana."
+    "frase": "Junta músculos opostos ou que não competem, com cerca de 15 s entre os exercícios e descanso só entre rodadas; os dois ficam seguidos na lista do dia. Aumenta o esforço e o dano muscular. Nunca 2 multiarticulares pesados de pernas nem o mesmo músculo. A dupla de dois exercícios que carregam a lombar sem apoio é o último recurso para caber no tempo. Iniciante: só a partir da 3ª semana. No treino, o app ainda não conduz a dupla."
   },
   "tempo.drop-set": {
     "titulo": "Como funciona o drop set",
-    "frase": "É 1 série mais 2 quedas de carga separadas por cerca de 10–15 s: vale 2–3 séries (o app conta 2). Só entra quando falta tempo e a carga pode ser reduzida (máquina, polia ou halter). Até 1 por exercício, nunca em multiarticular livre pesado."
+    "frase": "É 1 série mais 2 quedas de carga separadas por cerca de 10–15 s: vale 2–3 séries (o app conta 2). Só entra quando falta tempo e a carga pode ser reduzida (máquina, polia, halter, kettlebell ou caneleira). Até 1 por exercício, nunca em multiarticular livre pesado."
   },
   "tempo.outras-tecnicas": {
     "titulo": "Outras técnicas para encurtar o treino",
-    "frase": "O rest-pause (ou myo-reps) é permitido na última série de um exercício estável. Cluster sets e pré-exaustão não entram quando o treino precisa ser encurtado, porque não economizam tempo ou não trazem ganho."
+    "frase": "O rest-pause (ou myo-reps) é permitido na última série de um exercício estável. Cluster sets e pré-exaustão não entram quando o treino precisa ser encurtado, porque não economizam tempo ou não trazem ganho. É orientação: o app não prescreve nem registra essas técnicas."
   },
   "seguranca.triagem": {
     "titulo": "Perguntas de saúde antes do programa",
@@ -645,7 +645,7 @@
   },
   "nivel.classificacao": {
     "titulo": "Como o app define o seu nível",
-    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
+    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos (o app não pergunta pelo ritmo do progresso). Na dúvida, o mais baixo."
   },
   "tecnica.remada-baixa.polia": {
     "titulo": "Altura da polia na remada baixa",
