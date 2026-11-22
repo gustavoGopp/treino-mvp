@@ -1,4 +1,5 @@
 import { expect, test, type Page } from './base';
+import { tocarEmEntendi } from './base';
 import { ana, marcarItem, proximoExercicio, terminarTreino, triagem, verAvisos } from './jornada';
 
 // Três correções da auditoria de 12/11/2026, cada uma com o caso que falhava.
@@ -250,6 +251,7 @@ test('o cartão de texto que não baixou avisa, tenta de novo e, se o navegador 
   // sem o service worker, para o pedido do pedaço do cartão passar pela rede do teste
   const contexto = await browser.newContext({ serviceWorkers: 'block', baseURL: 'http://localhost:4173' });
   const page = await contexto.newPage();
+  await tocarEmEntendi(page);
   let falhar = true;
   await page.route(/\/assets\/barra-fixa-negativa-[\w-]+\.js$/, (rota) => (falhar ? rota.abort() : rota.fallback()));
   await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });

@@ -61,6 +61,20 @@ O rótulo da fase não cobre o desenho em nenhum dos sete tamanhos (medido).
 
 A minha recomendação é a B primeiro: ela põe o personagem no centro exatamente quando ele faz falta, e não mexe no que funciona.
 
+## A ideia B, escolhida pelo Gustavo e feita em 22/11
+
+Na 1ª vez da pessoa num exercício (nenhuma série dele em treino nenhum), o guia grande abre sozinho ao chegar ao exercício, com a velocidade e o ângulo à vista e o botão "Entendi" preso embaixo. "Entendi" leva ao registro.
+
+![A 1ª vez de um exercício](primeira-vez.png)
+
+- **Abre uma vez** por treino e por exercício: voltar do guia completo ou recarregar a página não abre de novo. Depois da 1ª série feita, nunca mais abre sozinho (o toque no Boneco continua abrindo).
+- **Não abre** nos exercícios sem animação (eles já mostram o cartão de texto) nem por cima do relógio do descanso.
+- **O desenho cede altura** nessa folha (42% da tela; 35% nos celulares baixos), para "Lento" e os ângulos caberem acima do "Entendi". Aberto pelo toque, continua com 50%.
+- **A folha se chama "Como fazer".** O nome do exercício já está na tela, logo atrás.
+- **Acessibilidade:** o que recebe o foco do teclado rola para cima do botão preso; com zoom de 200% o botão deixa de ficar preso. Os cenários de toque, contraste e foco coberto passam nos seis formatos.
+- **Custo medido:** um toque a mais por exercício novo. Para quem começa do zero num treino de 6 exercícios, são 6 toques no 1º treino de cada dia, e nenhum depois.
+- **No celular de 320 × 568,** "Lento" e os ângulos ficam atrás do "Entendi" até rolar a folha.
+
 ## O que falta do M2
 
 - Ligar as animações de barra e de máquina (a sessão das animações foi para a `main` em 22/11; o catálogo ainda liga 90 dos 171 exercícios).

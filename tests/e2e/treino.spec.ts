@@ -468,7 +468,7 @@ for (const [largura, altura] of [[360, 640], [375, 667], [390, 664], [412, 839]]
     await expect(pequeno).toBeVisible();
     await expect.poll(() => pequeno.getByRole('img').evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
     await pequeno.click();
-    const folha = page.getByRole('dialog', { name: 'Agachamento goblet com calcanhar elevado' });
+    const folha = page.getByRole('dialog', { name: 'Como fazer' });
     await folhaPronta(page);
     const grande = folha.getByRole('img', { name: /^O Boneco fazendo/ });
     await expect.poll(() => grande.evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
@@ -515,7 +515,7 @@ test('na 1ª vez de um exercício o guia grande abre sozinho, uma vez; depois de
   await page.removeLocatorHandler(botaoEntendi(page));
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
   await page.getByRole('button', { name: /^Começar/ }).click();
-  const folha = page.getByRole('dialog', { name: 'Agachamento goblet com calcanhar elevado' });
+  const folha = page.getByRole('dialog', { name: 'Como fazer' });
   await expect(folha).toBeVisible();
   await folhaPronta(page);
   await expect.poll(() => folha.getByRole('img', { name: /^O Boneco fazendo/ }).evaluate((e) => e.childElementCount)).toBeGreaterThan(0);

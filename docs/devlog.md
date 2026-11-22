@@ -2355,16 +2355,17 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 
    ![O treino, antes e depois dos cortes](revisoes/melhorias/cara-humana/treino-antes-e-depois.png)
 
-4. **A tela do treino "mais o personagem".** Ele pediu um estudo da proporção e que o toque no Boneco já abrisse a animação, com a velocidade e o ângulo. Medido em sete tamanhos de celular: o registro leva de 61% a 95% da altura, o Boneco ficava com 13% a 18%, e a 390 × 664 ele sumia e deixava um vazio. Agora um toque no Boneco abre o guia grande por cima do treino (o Boneco com cerca de um terço da tela), com "Lento", os ângulos, as quatro abas e a pausa; e o vazio acabou. É a primeira parte do lote M2, adiantada. O estudo, com duas ideias à espera da decisão dele, está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
+4. **A tela do treino "mais o personagem".** Ele pediu um estudo da proporção e que o toque no Boneco já abrisse a animação, com a velocidade e o ângulo. Medido em sete tamanhos de celular: o registro leva de 61% a 95% da altura, o Boneco ficava com 13% a 18%, e a 390 × 664 ele sumia e deixava um vazio. Agora um toque no Boneco abre o guia grande por cima do treino (o Boneco com cerca de um terço da tela), com "Lento", os ângulos, as quatro abas e a pausa; e o vazio acabou. É a primeira parte do lote M2, adiantada. Das duas ideias do estudo, ele escolheu a B: **na 1ª vez de cada exercício, o guia grande abre sozinho**, com o botão "Entendi" (um toque a mais, uma vez por exercício novo). O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
 
    ![O toque no Boneco abre o guia grande](revisoes/melhorias/m2/toque-amplia.png)
 
 5. **A `main` nova entrou no ramo** (22/11): a sessão das animações foi para a `main`, e o ramo deste lote já a traz.
 
+6. **Os textos do kit** ("Montado para um kit típico de casa. Ajustar" e "Meus pesos são outros…"): ficam como estão (22/11).
+
 **Esperando o Gustavo**
 
-- **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".
-- O ok para levar o lote à `main`.
+- O ok para levar tudo isto à `main`.
 
 **Verificação.** `npm run verificar`: tudo passou no fechamento e de novo depois das decisões de 22/11 (os números da última rodada estão no relato da sessão). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
 

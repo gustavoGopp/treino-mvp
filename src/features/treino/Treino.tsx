@@ -475,7 +475,7 @@ export function Treino() {
         )}
 
         {guiaAmpliado && x.animacaoId && painel === 'nenhum' && (
-          <Folha titulo={x.nome} aoFechar={fecharGuia} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
+          <Folha titulo="Como fazer" aoFechar={fecharGuia} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <PalcoTreino key={`grande-${x.animacaoId}`} animacaoId={x.animacaoId} ampliado />
             {guiaDaPrimeiraVez && (
               <button type="button" className="btn entendi" onClick={fecharGuia}>

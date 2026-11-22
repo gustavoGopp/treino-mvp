@@ -597,7 +597,9 @@ O que foi feito está no devlog ("A porta"). Ficou para depois:
 
 O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
 - **O peso da tela do programa está a 0,4 kB do limite** (289,6 de 290 kB, medido em 22/11 depois da junção com a `main` das animações). Qualquer coisa nova no pacote inicial estoura. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
-- **O Boneco de repouso continua com 13% a 18% da tela.** As duas ideias para mudar isso (o menos e o mais ao lado do número; o guia grande abrir sozinho na 1ª vez de cada exercício) esperam a decisão do Gustavo.
+- **O Boneco de repouso continua com 13% a 18% da tela.** A ideia B (o guia grande abre sozinho na 1ª vez de cada exercício) foi feita em 22/11. A ideia A (o menos e o mais ao lado do número, que daria uns 22%) não foi pedida.
+- **O "já vi" da 1ª vez fica na memória da aba,** não nos dados: fechar o app no meio do 1º exercício e abrir de novo mostra o guia outra vez. Guardar isso de vez pediria um campo novo no estado.
+- **A 320 × 568, na folha da 1ª vez,** "Lento" e os ângulos ficam atrás do "Entendi" até rolar.
 - **No palco pequeno, as legendas do desenho ficam ilegíveis** (letra de poucos pontos). Com o toque que amplia, elas poderiam sair do repouso e ficar só no grande; mexe no desenho do motor.
 - **O ampliado não tem o "voltar ao começo"** nem os erros um a um, que continuam no guia completo (o livro do cabeçalho).
 - **Exercícios deitados** (supino, prancha) não foram medidos no estudo: ocupam a largura, não a altura.
