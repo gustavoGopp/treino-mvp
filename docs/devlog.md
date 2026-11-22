@@ -2407,3 +2407,36 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 **Verificação.** Um teste de tela para cada item do aceite (`tests/e2e/d2.spec.ts`, 11 testes) e testes de regra para apagar um local e para a volta do alerta. O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Fiz a faxina dos lugares em que meu app de treino podia apagar coisa sem avisar. Trazer um backup substituía tudo sem oferecer guardar o que havia. Apagar os dados não dizia que tinha apagado. Um toque errado em 'tontura' encerrava o treino e travava o seguinte até a pessoa jurar que tinha ido ao médico. Nenhum desses era um defeito de programação: cada um funcionava como foi escrito. O defeito era não ter volta. A regra que ficou: toda ação que destrói alguma coisa oferece guardar antes ou desfazer depois, e a que protege a pessoa (o aviso de segurança) aparece primeiro."
+
+**GitHub.** A verificação do GitHub na `main` passou para a junção do D2 (rodada 519, 22/11/2026).
+
+## O guia chega: todo exercício com o Boneco (22/11/2026)
+
+**De onde veio.** É o resto do lote M2 da análise crítica. As 81 animações que a sessão das animações deixou aprovadas na `main` ainda não estavam ligadas aos exercícios: quem recebia um deles via um cartão de texto.
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Exercícios com o Boneco | 90 de 171 | 171 de 171 |
+| Dias de treino com algum exercício só em texto (régua, 36.300 programas) | 12,7% dos programas tinham algum | nenhum |
+| Montagem segura (travas, rack, ancoragem) | aberta no cartão de texto, no lugar do Boneco | uma linha na tela da série, a um toque; a nota inteira logo abaixo do Boneco no guia ampliado (que abre sozinho na 1ª vez), no guia completo e na folha do exercício no programa |
+
+Imagens: `revisoes/melhorias/m2/montagem-na-serie.png` e `revisoes/melhorias/m2/montagem-no-guia-ampliado.png`.
+
+**O que muda nos programas.** O desempate entre exercícios equivalentes não mudou (decisão do Gustavo: fica como está). Como "ter animação" era o penúltimo critério, e agora todos têm, a escolha cai na ordem de referência da função em mais casos: 29,6% de uma amostra de 3.751 programas trocam algum exercício. Nas personas: Ana, Diego, Elisa e Fábio não mudam; o Bruno troca o crucifixo invertido na polia pelo crucifixo inverso com halteres e o face pull muda de dia; a Carla troca vários (stiff por terra romeno com barra, desenvolvimento com kettlebell pela máquina, panturrilha no degrau pela máquina e pelo leg press, face pull pelo voador invertido, entre outros). Gabaritos regravados com o ok do Gustavo.
+
+**A régua ficou igual.** Programas sem defeito: 33.532 → 33.528 de 36.300. O defeito "dia acima de 110% do tempo" tem 2 casos a mais numa metade da grade e 3 a menos na outra. Um deles é a persona Íris: um dia de 50 min em 45 (o limite é 49,5). Está anotado no teste, com a medida, e no backlog.
+
+**Decisões técnicas da sessão, com o motivo**
+
+- **A nota de montagem não fica aberta na tela da série.** Aberta, ela tomava o lugar do Boneco (17 px de altura a 412 × 839, medido). Ficou uma linha de um toque ("Montagem segura: veja antes da série") que abre o guia ampliado, com a nota logo abaixo do desenho, antes do "Entendi".
+- **O texto "carga" dos 81 guias não aparece em tela nenhuma.** Ele explicava como anotar a carga, o que a tela da série já faz; e 6 deles ainda dizem "de cada lado", que o lote M1 trocou pelo total. Fica nos dados, fora do app.
+- **O cartão de texto continua no código,** sem nenhum exercício que o use: é a saída para o exercício que vier sem animação aprovada (princípio do projeto). O teste de tela do cartão que não baixava saiu, por não ter mais em que rodar.
+- **A conferência de anatomia do desenho** (`tests/unit/anatomia.test.ts`) lê o motor de antes, que só tem as 90 primeiras animações. Ficou valendo para essas 90; nas 81 novas, quem confere é `npm run conferir:animacao`. Levar a conferência para o motor novo está no D4.
+- **O peso:** a tela do programa foi a 289,4 kB (limite de 290) com a nota junto; a nota passou a baixar só quando a folha do exercício a pede, e a tela ficou em 287,8 kB.
+- **Exemplo do corte de tempo (degrau 1b):** o exemplo medido do teste era o da academia completa, que agora já cabe sem a troca; passou a ser o da casa com halteres, banco e elásticos (30, 34 e 33 min → 30, 33 e 33).
+
+**Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
+
+**Rascunho de post.** "Meu app de treino tinha 171 exercícios e só 90 com o boneco animado. Os outros 81 apareciam em texto. Hoje os 171 têm o boneco. O curioso foi o efeito colateral: o app preferia, no empate, o exercício que tinha animação. Com todos animados, quase um terço dos programas trocou algum exercício, e a régua de qualidade não se mexeu."

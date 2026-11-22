@@ -383,6 +383,9 @@ details.campo .opcoes{margin-top:var(--s8)}
 .exhead .nav{display:flex;gap:var(--s8);flex:none}
 .conteudo-guia{display:flex;flex-direction:column;gap:var(--s16)}
 .nota-guia{margin:0}
+/* o caminho de um toque para a montagem segura, na tela da série (a nota inteira fica no guia ampliado) */
+button.ver-montagem{display:block;width:100%;min-height:44px;padding:var(--s8) var(--s16);border:0;border-radius:var(--r8);background:var(--atencao-suave);color:var(--texto);font:inherit;font-size:var(--t-apoio);text-align:left}
+button.ver-montagem b{color:var(--atencao)}
 /* no catálogo, os dias e os exercícios rolam junto com a página; só o cabeçalho do treino fica preso */
 .guia header.top:not(:has(.cab-treino)){position:static}
 .stage{position:relative;background:var(--stage);aspect-ratio:4/3;width:100%}

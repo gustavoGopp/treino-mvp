@@ -613,3 +613,15 @@ O que foi feito está no devlog. Ficou para depois:
 - **A saída da triagem para quem ainda não foi avaliado** (pedido 11) está no lote M6.
 - **O histórico não diz em que local cada treino foi feito** depois que o local é apagado: a sessão guarda o código do local, e o nome some com ele.
 
+
+## Da ligação das 81 animações, resto do M2 (22/11/2026)
+
+O que foi feito está no devlog. Ficou para depois:
+- **A Íris tem um dia de 50 min em 45** (1 min acima do limite de 110%) desde que todo exercício tem animação. Na régua inteira o defeito ficou igual. O corte de tempo deixa passar esse caso: olhar no pacote D4.
+- **A conferência de anatomia do desenho só cobre as 90 animações do motor de antes.** Levar `scripts/auditoria/anatomia-regras.ts` para o motor novo (D4).
+- **O texto "carga" dos 81 guias está nos dados e não aparece no app;** 6 ainda dizem "de cada lado". Ou sai dos dados, ou é reescrito e ganha lugar no guia.
+- **Músculos secundários de 6 exercícios** (goblet com kettlebell, agachamento no smith, hip thrust, coice na máquina, coice na polia, voador invertido): pedido aberto em `revisoes/animacoes-restantes/pedidos-ao-conteudo.md`, seção 2. É decisão à parte.
+- **Só com halteres, a vaga do ombro de trás pode ficar de fora** quando o único equivalente já entrou no lugar da remada (cenário do achado 10, `tests/unit/locais.test.ts`). O aviso diz a verdade; vale olhar a ordem das trocas.
+- **A tela da série a 360 × 640, em exercício de peso do corpo com montagem,** fica sem o Boneco em repouso (o registro ocupa a tela); o guia ampliado continua a um toque.
+- **Faltam no M2:** o descanso mostrar o movimento da próxima série e juntar os três palcos (treino, guia, abertura) num só.
+- **O peso da tela do programa está a 2,2 kB do limite.**

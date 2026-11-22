@@ -25,7 +25,7 @@ for (const [largura, altura] of [
 
 // R5-anim, lote 2 (10/11/2026): a ponte com halter ganhou animação; o exercício sem animação com montagem segura do
 // dia A passa a ser a barra só na descida, que entra com uma barra fixa no equipamento da Ana.
-test('a folha do exercício sem animação traz a montagem segura aberta e as alternativas a um toque', async ({ page }) => {
+test('a folha do exercício com travas ou ancoragem traz a montagem segura aberta e as alternativas a um toque', async ({ page }) => {
   await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
   await page.getByRole('tabpanel').getByRole('button', { name: /Barra fixa só na descida/ }).click();
   const folha = page.getByRole('dialog', { name: /Barra fixa só na descida/ });

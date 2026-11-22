@@ -10,16 +10,16 @@
 
 | suspeito | ocorrências | % (dos dias ou dos programas) |
 | --- | ---: | ---: |
-| `dia.poucos-exercicios` | 273.845 | 7,5% dos dias |
-| `monotonia.todos-os-dias` | 176.086 | 19,3% dos programas |
-| `tempo.uso-baixo` | 157.684 | 17,3% dos programas |
-| `regua.A2` | 40.418 | 4,4% dos programas |
-| `regua.A3` | 35.333 | 3,9% dos programas |
-| `prioridade.abaixo-com-tempo` | 24.067 | 2,6% dos programas |
-| `regua.C1` | 15.630 | 1,7% dos programas |
-| `regua.D1` | 4.851 | 0,5% dos programas |
+| `dia.poucos-exercicios` | 273.876 | 7,5% dos dias |
+| `monotonia.todos-os-dias` | 176.082 | 19,3% dos programas |
+| `tempo.uso-baixo` | 158.106 | 17,3% dos programas |
+| `regua.A2` | 40.427 | 4,4% dos programas |
+| `regua.A3` | 35.365 | 3,9% dos programas |
+| `prioridade.abaixo-com-tempo` | 24.056 | 2,6% dos programas |
+| `regua.C1` | 15.671 | 1,7% dos programas |
+| `regua.D1` | 4.817 | 0,5% dos programas |
 | `regua.D3` | 1.376 | 0,2% dos programas |
-| `avaliador.ajustar-sem-aviso` | 229 | 0% dos programas |
+| `avaliador.ajustar-sem-aviso` | 237 | 0% dos programas |
 | `regua.E1` | 6 | 0% dos programas |
 
 ## Exercícios por dia
@@ -28,7 +28,7 @@ Faixas de exercícios por dia de treino (% dos dias), por duração escolhida. "
 
 | minutos | cabem | ≤ 3 | 4 | 5 a 7 | ≥ 8 | mediana |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 30 | 4 | 11,3% | 82,9% | 5,8% | 0% | 4 |
+| 30 | 4 | 11,3% | 83% | 5,8% | 0% | 4 |
 | 45 | 6 | 2,6% | 6,9% | 90,5% | 0% | 6 |
 | 60 | 8 | 2,6% | 6,7% | 72,1% | 18,6% | 6 |
 | 75 | 10 | 2,6% | 6,8% | 66,4% | 24,2% | 6 |
@@ -60,17 +60,17 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 
 | cenário | grupo | ≤ 3 | 4 | 5 a 7 | ≥ 8 | mediana | ≤ 3 (todos) | uso < 70% |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| academia | atalho | 0% | 0% | 64,8% | 35,2% | 6 | 0,4% | 13,8% |
-| academia+ | atalho | 0% | 0% | 64,8% | 35,2% | 6 | 0,4% | 13,7% |
+| academia | atalho | 0% | 0% | 64,8% | 35,2% | 6 | 0,4% | 14,7% |
+| academia+ | atalho | 0% | 0% | 64,8% | 35,2% | 6 | 0,4% | 14,6% |
 | bairro | persona | 0% | 0% | 65,1% | 34,9% | 6 | 0,4% | 14,7% |
 | banco+halteres-leves | par | 0% | 0% | 68,2% | 31,8% | 6 | 1% | 12% |
-| bruno | persona | 0% | 0% | 65,9% | 34,1% | 6 | 0,4% | 9,8% |
-| casa | atalho | 0% | 0% | 66,9% | 33,1% | 6 | 0,6% | 9,8% |
-| casa+ | atalho | 0% | 0% | 65,7% | 34,3% | 6 | 0,4% | 11,1% |
+| bruno | persona | 0% | 0% | 65,7% | 34,3% | 6 | 0,4% | 11% |
+| casa | atalho | 0% | 0% | 66,9% | 33,1% | 6 | 0,6% | 9,9% |
+| casa+ | atalho | 0% | 0% | 65,7% | 34,3% | 6 | 0,4% | 11,2% |
 | condominio | atalho | 0% | 0% | 67,6% | 32,4% | 6 | 0,6% | 12,8% |
-| condominio+ | atalho | 0% | 0% | 65,2% | 34,8% | 6 | 0,4% | 13,8% |
-| diego | persona | 0% | 0% | 67,5% | 32,5% | 6 | 0,7% | 9,5% |
-| elasticos | persona | 0% | 0% | 67,6% | 32,4% | 6 | 0,7% | 9,5% |
+| condominio+ | atalho | 0% | 0% | 65,2% | 34,8% | 6 | 0,4% | 13,9% |
+| diego | persona | 0% | 0% | 67,5% | 32,5% | 6 | 0,7% | 9,7% |
+| elasticos | persona | 0% | 0% | 67,6% | 32,4% | 6 | 0,7% | 9,6% |
 | halteres | persona | 0% | 1,8% | 67,5% | 30,7% | 6 | 0,3% | 11,4% |
 | halteres-banco | persona | 0% | 0% | 68,2% | 31,8% | 6 | 1% | 12% |
 | halteres+bola | par | 0% | 1,8% | 67,5% | 30,7% | 6 | 0,5% | 11,5% |
@@ -91,17 +91,17 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:estacao_puxada | item | 20,4% | 17,7% | 48,9% | 13% | 5 | 15,5% | 22,3% |
 | so:estacao_remada | item | 20,4% | 17,7% | 48,7% | 13,2% | 5 | 15,8% | 21,9% |
 | so:gluteo_maquina | item | 0% | 0,2% | 90,5% | 9,2% | 6 | 0,1% | 26,2% |
-| so:graviton | item | 20,3% | 16,6% | 49,4% | 13,7% | 5 | 15,5% | 22,6% |
+| so:graviton | item | 20,3% | 16,6% | 49,4% | 13,7% | 5 | 15,5% | 22,5% |
 | so:hack | item | 0% | 0,1% | 90,5% | 9,4% | 6 | 0,1% | 26,2% |
 | so:halteres_fixos | item | 0% | 1,8% | 67,8% | 30,4% | 6 | 0,3% | 11,4% |
 | so:kettlebell | item | 4,4% | 23,9% | 56,1% | 15,6% | 6 | 4,3% | 15,5% |
 | so:leg_press | item | 0% | 0,1% | 90,3% | 9,6% | 6 | 0,1% | 27,3% |
 | so:mesa_flexora | item | 0% | 0% | 90,6% | 9,4% | 6 | 0% | 22,9% |
-| so:mini_band | item | 0% | 0,1% | 88,6% | 11,3% | 6 | 0,4% | 22,7% |
+| so:mini_band | item | 0% | 0,1% | 88,6% | 11,3% | 6 | 0,4% | 22,9% |
 | so:multifuncional | item | 6,9% | 24,5% | 55,2% | 13,5% | 5 | 5,8% | 20,3% |
 | so:panturrilha_em_pe_maquina | item | 0% | 0,1% | 90,4% | 9,4% | 6 | 0,1% | 26,3% |
 | so:panturrilha_sentada_maquina | item | 0% | 0,2% | 89,5% | 10,3% | 6 | 0,1% | 26,1% |
-| so:paralelas | item | 0% | 0,1% | 90,7% | 9,2% | 6 | 0,1% | 25,6% |
+| so:paralelas | item | 0% | 0,1% | 90,7% | 9,2% | 6 | 0,1% | 25,4% |
 | so:rack_de_agachamento | item | 20,4% | 17,7% | 48,8% | 13,1% | 5 | 14,9% | 21,5% |
 | so:remada_articulada | item | 20,4% | 17,7% | 48,7% | 13,2% | 5 | 15,4% | 21,7% |
 | so:roda_abdominal | item | 0% | 0,1% | 90,6% | 9,2% | 6 | 0,1% | 25,7% |
@@ -113,7 +113,7 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:triceps_maquina | item | 0% | 0,1% | 90,4% | 9,5% | 6 | 0% | 24,3% |
 | so:voador | item | 0% | 0,1% | 87,6% | 12,2% | 6 | 0% | 23,5% |
 | step+elasticos | par | 0% | 0% | 67,6% | 32,4% | 6 | 0,7% | 9,1% |
-| suspensao+elasticos | par | 0% | 0% | 67,6% | 32,4% | 6 | 0,6% | 9,2% |
+| suspensao+elasticos | par | 0% | 0% | 67,6% | 32,4% | 6 | 0,6% | 9,3% |
 | vazio | vazio | 0% | 0,1% | 90,6% | 9,2% | 6 | 0,1% | 25,5% |
 
 ## Uso dos minutos
@@ -122,11 +122,11 @@ Minutos estimados do dia mais longo ÷ minutos escolhidos (% dos programas).
 
 | minutos | mediana do uso | < 50% | < 70% | ≥ 100% |
 | ---: | ---: | ---: | ---: | ---: |
-| 30 | 100% | 0% | 0% | 82,6% |
-| 45 | 100% | 0% | 0% | 77,5% |
-| 60 | 95% | 0% | 5,8% | 46,9% |
-| 75 | 85% | 1,2% | 24,2% | 25,2% |
-| 90 | 70% | 7,7% | 46,5% | 13,4% |
+| 30 | 100% | 0% | 0% | 82,4% |
+| 45 | 100% | 0% | 0% | 77,4% |
+| 60 | 95% | 0% | 5,8% | 46,6% |
+| 75 | 85% | 1,2% | 24,3% | 25% |
+| 90 | 70% | 7,7% | 46,7% | 13,3% |
 
 ## Séries por músculo
 
@@ -153,8 +153,8 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | músculo | média | prioritário abaixo da meta | demais abaixo de 4 | zero | zero sem aviso |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | peito | 8,9 | 28% | 13,6% | 13,6% | 0 |
-| costas | 4,2 | 65,4% | 52,8% | 52,1% | 0 |
-| ombro (lateral) | 2,7 | 76,8% | 70,4% | 53,6% | 0 |
+| costas | 4,2 | 65,5% | 52,8% | 52,3% | 0 |
+| ombro (lateral) | 2,6 | 76,8% | 70,4% | 53,6% | 0 |
 | ombro (posterior) | 6,3 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 3,9 | 70,8% | 52,3% | 47,1% | 0 |
 | tríceps | 8,7 | 36% | 17,1% | 13,8% | 0 |
@@ -169,8 +169,8 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | músculo | média | prioritário abaixo da meta | demais abaixo de 4 | zero | zero sem aviso |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | peito | 9,6 | 40,6% | 13,6% | 13,6% | 0 |
-| costas | 4,5 | 75,1% | 52,8% | 52,1% | 0 |
-| ombro (lateral) | 2,8 | 80,5% | 68% | 53,6% | 0 |
+| costas | 4,5 | 75,2% | 52,8% | 52,3% | 0 |
+| ombro (lateral) | 2,8 | 80,4% | 68% | 53,6% | 0 |
 | ombro (posterior) | 6,5 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 4,2 | 75,2% | 52,5% | 47,1% | 0 |
 | tríceps | 9,2 | 40,6% | 17,1% | 13,8% | 0 |
@@ -184,11 +184,11 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| academia | 5,9% | 8,2% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 5,9% | 5,9% | 5,9% |
-| academia+ | 5,9% | 8,2% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 5,9% | 5,9% | 5,9% |
+| academia | 5,9% | 9,4% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 5,9% | 5,9% | 5,9% |
+| academia+ | 5,9% | 11,5% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 5,9% | 5,9% | 5,9% |
 | bairro | 5,9% | 11,8% | 19,9% | 6,4% | 5,9% | 11,8% | 6,4% | 0% | 1,4% | 5,9% | 5,9% |
 | banco+halteres-leves | 5,9% | 17,6% | 18,9% | 6,6% | 6,2% | 11,8% | 11,8% | 0% | 0,2% | 5,9% | 5,9% |
-| bruno | 5,9% | 8,2% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 0,2% | 5,9% | 5,9% |
+| bruno | 5,9% | 9,4% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 0,2% | 5,9% | 5,9% |
 | casa | 6,4% | 11,8% | 20% | 6,1% | 5,9% | 6,2% | 6,4% | 0% | 1,4% | 5,9% | 5,9% |
 | casa+ | 5,9% | 11,8% | 19,9% | 6,4% | 5,9% | 6,2% | 6,4% | 0% | 0,2% | 5,9% | 5,9% |
 | condominio | 5,9% | 11,8% | 19,8% | 6,1% | 5,9% | 11,8% | 11,8% | 0% | 0% | 5,9% | 5,9% |
@@ -247,7 +247,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | nível | 1 prioridade | 2 prioridades | 3 prioridades |
 | --- | ---: | ---: | ---: |
 | iniciante | 15% | 26,8% | 57,6% |
-| intermediario | 16,5% | 28,9% | 59,4% |
+| intermediario | 16,5% | 28,8% | 59,4% |
 | avancado | 16,9% | 29,5% | 60,5% |
 
 | dias por semana | 1 prioridade | 2 prioridades | 3 prioridades |
@@ -256,14 +256,14 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | 3 | 17% | 30,2% | 61,8% |
 | 4 | 16,4% | 28,8% | 60,1% |
 | 5 | 16% | 28% | 58,6% |
-| 6 | 14,9% | 26,3% | 55,3% |
+| 6 | 14,9% | 26,3% | 55,4% |
 
 | minutos | 1 prioridade | 2 prioridades | 3 prioridades |
 | ---: | ---: | ---: | ---: |
 | 30 | 15,7% | 28,9% | 57,3% |
 | 45 | 16,1% | 28,1% | 60% |
 | 60 | 16,2% | 28,1% | 59,4% |
-| 75 | 16,3% | 28,3% | 59,6% |
+| 75 | 16,3% | 28,3% | 59,7% |
 | 90 | 16,4% | 28,4% | 59,5% |
 
 ### Por prioridade e nível (média %), e quando as prioridades competem
@@ -273,16 +273,16 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | prioridade | iniciante: fatia | abaixo | competem | intermediario: fatia | abaixo | competem | avancado: fatia | abaixo | competem |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | peito | 12% | 34,6% | — | 14,2% | 28% | — | 14,7% | 41,7% | — |
-| costas | 6% | 63,6% | — | 7% | 64,2% | — | 7,1% | 74,1% | — |
+| costas | 6% | 63,6% | — | 6,9% | 64,2% | — | 7,1% | 74,2% | — |
 | ombros | 4,8% | 74,7% | — | 5,2% | 76,3% | — | 5,2% | 79,5% | — |
 | bracos | 18,3% | 71,3% | — | 19,8% | 77,1% | — | 20% | 78,9% | — |
 | pernas | 32,8% | 56% | — | 36,4% | 55,2% | — | 37,6% | 64,5% | — |
-| gluteos | 18,2% | 21,3% | — | 17,8% | 26,8% | — | 18,4% | 31,9% | — |
+| gluteos | 18,2% | 21,3% | — | 17,8% | 26,7% | — | 18,4% | 31,9% | — |
 | abdomen | 13% | 24,3% | — | 15% | 27,3% | — | 15,4% | 32,1% | — |
-| peito+costas | 17,3% | 67,6% | 36% | 20% | 68,9% | 43,4% | 20,6% | 77,9% | 40,2% |
+| peito+costas | 17,3% | 67,6% | 36% | 20% | 69% | 43,5% | 20,6% | 77,9% | 40% |
 | pernas+gluteos | 49,3% | 61,8% | 47,6% | 51,3% | 67,7% | 43,7% | 52,5% | 87,4% | 56% |
-| peito+bracos | 30,2% | 75,1% | 52,6% | 32,7% | 77,2% | 54,2% | 33,3% | 82,2% | 49,6% |
-| costas+ombros | 10,3% | 78,9% | 17,6% | 11,3% | 81% | 18,6% | 11,5% | 85,2% | 13,2% |
+| peito+bracos | 30,2% | 75,1% | 52,5% | 32,7% | 77,1% | 54,2% | 33,3% | 82,2% | 49,6% |
+| costas+ombros | 10,3% | 78,9% | 17,6% | 11,3% | 81% | 18,6% | 11,5% | 85,1% | 13,1% |
 | pernas+gluteos+abdomen | 57,6% | 67,4% | 53,8% | 59,4% | 72,1% | 50,9% | 60,5% | 90,2% | 61,6% |
 
 ### Por cenário, com 1 prioridade (média %)
@@ -320,7 +320,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:estacao_puxada | 15,7% |
 | so:estacao_remada | 15,6% |
 | so:gluteo_maquina | 15,3% |
-| so:graviton | 15,7% |
+| so:graviton | 15,6% |
 | so:hack | 15,1% |
 | so:halteres_fixos | 17,3% |
 | so:kettlebell | 16,5% |
@@ -354,16 +354,16 @@ Mediana de exercícios distintos por programa; com 3 dias ou mais, % dos program
 | academia | 19 | 2,8% | 0% |
 | academia+ | 19 | 0% | 0% |
 | bairro | 19 | 2,4% | 0% |
-| banco+halteres-leves | 17 | 4,5% | 0% |
+| banco+halteres-leves | 17 | 4,4% | 0% |
 | bruno | 19 | 2,7% | 0% |
 | casa | 17 | 6,5% | 0% |
 | casa+ | 19 | 0,2% | 0% |
 | condominio | 18 | 0% | 0% |
 | condominio+ | 18 | 0,2% | 0% |
 | diego | 18 | 6,5% | 0% |
-| elasticos | 18 | 6,4% | 0% |
+| elasticos | 18 | 6,5% | 0% |
 | halteres | 17 | 4,1% | 0% |
-| halteres-banco | 17 | 4,5% | 0% |
+| halteres-banco | 17 | 4,4% | 0% |
 | halteres+bola | 17 | 2% | 0% |
 | so:abdominal_maquina | 12 | 36,3% | 0% |
 | so:anilhas_e_manoplas | 17 | 4,1% | 0% |
@@ -417,7 +417,7 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | academia | intermediario | 30,5 | 28,1 | 0 | 2,4 | 3,5 | — |
 | academia | avancado | 30,4 | 28 | 0 | 2,4 | 3,5 | — |
 | academia+ | iniciante | 30,5 | 28,1 | 0 | 2,4 | 3,6 | — |
-| academia+ | intermediario | 30,5 | 28,1 | 0 | 2,4 | 3,5 | — |
+| academia+ | intermediario | 30,4 | 28,1 | 0 | 2,4 | 3,5 | — |
 | academia+ | avancado | 30,4 | 28 | 0 | 2,4 | 3,5 | — |
 | bairro | iniciante | 30,4 | 27,9 | 0 | 2,4 | 3,6 | — |
 | bairro | intermediario | 30,4 | 27,9 | 0 | 2,4 | 3,5 | — |
@@ -441,10 +441,10 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | condominio+ | intermediario | 30,4 | 28 | 0 | 2,4 | 3,5 | — |
 | condominio+ | avancado | 30,3 | 27,9 | 0 | 2,3 | 3,5 | — |
 | diego | iniciante | 30,4 | 27,5 | 0,2 | 2,6 | 4 | panturrilha-sentada (0,2) |
-| diego | intermediario | 30,3 | 27,5 | 0,2 | 2,6 | 3,9 | panturrilha-sentada (0,2) |
+| diego | intermediario | 30,4 | 27,5 | 0,2 | 2,6 | 3,9 | panturrilha-sentada (0,2) |
 | diego | avancado | 30,3 | 27,5 | 0,2 | 2,5 | 4 | panturrilha-sentada (0,2) |
 | elasticos | iniciante | 30,4 | 27,4 | 0,2 | 2,7 | 4 | panturrilha-sentada (0,2) |
-| elasticos | intermediario | 30,3 | 27,4 | 0,2 | 2,7 | 3,9 | panturrilha-sentada (0,2) |
+| elasticos | intermediario | 30,4 | 27,4 | 0,2 | 2,7 | 3,9 | panturrilha-sentada (0,2) |
 | elasticos | avancado | 30,3 | 27,4 | 0,2 | 2,7 | 4 | panturrilha-sentada (0,2) |
 | halteres | iniciante | 30,7 | 25 | 3 | 2,7 | 2,9 | extensora (1,6), crucifixo (1,4) |
 | halteres | intermediario | 30,7 | 25 | 3,1 | 2,7 | 2,8 | extensora (1,6), crucifixo (1,4) |
@@ -573,7 +573,7 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | step+elasticos | intermediario | 30,4 | 27,4 | 0,2 | 2,7 | 3,9 | panturrilha-sentada (0,2) |
 | step+elasticos | avancado | 30,3 | 27,4 | 0,2 | 2,7 | 4 | panturrilha-sentada (0,2) |
 | suspensao+elasticos | iniciante | 30,4 | 27,5 | 0,2 | 2,6 | 4 | panturrilha-sentada (0,2) |
-| suspensao+elasticos | intermediario | 30,3 | 27,5 | 0,2 | 2,6 | 4 | panturrilha-sentada (0,2) |
+| suspensao+elasticos | intermediario | 30,4 | 27,5 | 0,2 | 2,6 | 4 | panturrilha-sentada (0,2) |
 | suspensao+elasticos | avancado | 30,3 | 27,5 | 0,2 | 2,5 | 4 | panturrilha-sentada (0,2) |
 | vazio | iniciante | 36,6 | 21,1 | 13 | 2,4 | 1,3 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), empurrar-horizontal (0,1), empurrar-inclinado (0,1), agachar (0,1) |
 | vazio | intermediario | 36,6 | 21,3 | 12,8 | 2,4 | 1,3 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
@@ -586,19 +586,19 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | cenário | bom | limite | ajustar | bloqueado | bom ou só limite |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | **todos** | 11,4% | 81,4% | 7,2% | 0% | 92,8% |
-| academia | 36,5% | 58,8% | 4,7% | 0% | 95,3% |
-| academia+ | 36,5% | 59% | 4,5% | 0% | 95,5% |
-| bairro | 36,3% | 57,5% | 6,1% | 0% | 93,9% |
-| banco+halteres-leves | 37% | 54,7% | 8,3% | 0% | 91,7% |
-| bruno | 35,9% | 56,6% | 7,5% | 0% | 92,5% |
+| academia | 36,6% | 58,5% | 4,9% | 0% | 95,1% |
+| academia+ | 36,6% | 58,5% | 4,9% | 0% | 95,1% |
+| bairro | 36,4% | 57,5% | 6,1% | 0% | 93,9% |
+| banco+halteres-leves | 37% | 54,6% | 8,3% | 0% | 91,7% |
+| bruno | 36% | 56,1% | 7,9% | 0% | 92,1% |
 | casa | 34,6% | 57,8% | 7,5% | 0% | 92,5% |
-| casa+ | 36,5% | 56% | 7,5% | 0% | 92,5% |
+| casa+ | 36,6% | 56% | 7,5% | 0% | 92,5% |
 | condominio | 37% | 54,7% | 8,3% | 0% | 91,7% |
 | condominio+ | 36,3% | 58,3% | 5,4% | 0% | 94,6% |
 | diego | 30,1% | 61,8% | 8,1% | 0% | 91,9% |
-| elasticos | 29,8% | 61,5% | 8,7% | 0% | 91,3% |
+| elasticos | 29,8% | 61,4% | 8,7% | 0% | 91,3% |
 | halteres | 36,6% | 55,9% | 7,5% | 0% | 92,5% |
-| halteres-banco | 37% | 54,7% | 8,3% | 0% | 91,7% |
+| halteres-banco | 37% | 54,6% | 8,3% | 0% | 91,7% |
 | halteres+bola | 36,2% | 55,8% | 8% | 0% | 92% |
 | so:abdominal_maquina | 0% | 94,1% | 5,9% | 0% | 94,1% |
 | so:anilhas_e_manoplas | 36,6% | 55,9% | 7,5% | 0% | 92,5% |
@@ -638,7 +638,7 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:suspensao | 0% | 91,6% | 8,4% | 0% | 91,6% |
 | so:triceps_maquina | 0% | 93,4% | 6,6% | 0% | 93,4% |
 | so:voador | 0% | 94,3% | 5,7% | 0% | 94,3% |
-| step+elasticos | 29,7% | 61,2% | 9,1% | 0% | 90,9% |
+| step+elasticos | 29,7% | 61,1% | 9,1% | 0% | 90,9% |
 | suspensao+elasticos | 29,9% | 60,8% | 9,3% | 0% | 90,7% |
 | vazio | 0% | 93,5% | 6,5% | 0% | 93,5% |
 
@@ -650,15 +650,15 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | --- | ---: | ---: |
 | `equipamento.escada-carga-leve` | 795.600 | 87,3% |
 | `selecao.isolador-obrigatorio` | 679.575 | 74,5% |
-| `volume.semanal.alvo` | 612.984 | 67,2% |
+| `volume.semanal.alvo` | 612.923 | 67,2% |
 | `equipamento.sem-ancoragem` | 419.900 | 46,1% |
 | `seguranca.dor.programa` | 375.375 | 41,2% |
-| `tempo.sobra` | 336.618 | 36,9% |
-| `tempo.corte` | 327.033 | 35,9% |
-| `selecao.dia-sem-principal` | 265.749 | 29,2% |
+| `tempo.sobra` | 336.986 | 37% |
+| `tempo.corte` | 326.248 | 35,8% |
+| `selecao.dia-sem-principal` | 265.754 | 29,2% |
 | `equipamento.sem-puxada-vertical` | 240.175 | 26,3% |
 | `selecao.alongado` | 153.000 | 16,8% |
-| `volume.prioridade.competicao` | 142.159 | 15,6% |
+| `volume.prioridade.competicao` | 142.129 | 15,6% |
 | `divisao.sem-puxar` | 744 | 0,1% |
 
 ## Piores casos
@@ -740,7 +740,7 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
   - Programa: Superior (3 min): rosca-alternada 2 | Inferior (44 min): goblet 4, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (43 min): afundo-tras 4, stiff 2, ponte-gluteo-halter 2, panturrilha-chao 3+drop, rosca-alternada 2 | Puxar (8 min): rosca-martelo 2, abdominal-invertido 2 | Pernas (42 min): afundo 4, stiff 2, ponte-gluteo-halter 2, panturrilha-degrau 4, nordico 2
   - Reproduzir: `gerarPrograma({"nivel":"intermediario","semanasParado":0,"diasSemana":5,"minutosSessao":45,"prioridades":["pernas","gluteos"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"ombro","nota":7}]}}, CEN_55['halteres'].inventario)`
 - **halteres-banco · intermediario · 5 dias · 45 min · prioridade pernas+gluteos · ombro 7**: dia com 1 exercício em 45 min.
-  - Programa: Superior (3 min): rosca-alternada 2 | Inferior (44 min): goblet 4, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (41 min): agachamento-halteres 4, stiff 2, ponte-gluteo-halter 2, panturrilha-chao 3+drop, rosca-alternada 2 | Puxar (8 min): rosca-martelo 2, abdominal-invertido 2 | Pernas (42 min): afundo 4, stiff 2, ponte-gluteo-halter 2, panturrilha-degrau 4, nordico 2
+  - Programa: Superior (3 min): rosca-alternada 2 | Inferior (44 min): goblet 4, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (43 min): afundo-tras 4, stiff 2, ponte-gluteo-halter 2, panturrilha-chao 3+drop, rosca-alternada 2 | Puxar (8 min): rosca-martelo 2, abdominal-invertido 2 | Pernas (42 min): afundo 4, stiff 2, ponte-gluteo-halter 2, panturrilha-degrau 4, nordico 2
   - Reproduzir: `gerarPrograma({"nivel":"intermediario","semanasParado":0,"diasSemana":5,"minutosSessao":45,"prioridades":["pernas","gluteos"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"ombro","nota":7}]}}, CEN_55['halteres-banco'].inventario)`
 - **so:barra_fixa · avancado · 4 dias · 75 min · prioridade pernas+gluteos · cotovelo 7**: dia com 1 exercício em 75 min.
   - Programa: Superior A (6 min): abertura-t-deitado 3 | Inferior A (74 min): agachamento-peso-corpo 4, ponte-gluteo 2, afundo-tras-peso-corpo 4, flexao-joelho-deslizante 4, panturrilha-degrau 4, nordico 4, abducao-deitado 2, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (67 min): afundo-peso-corpo 3, ponte-gluteo 2, agachamento-peso-corpo 3, flexao-joelho-deslizante 3, panturrilha-degrau 4, nordico 3, panturrilha-chao 4, abdominal-invertido 2
@@ -843,8 +843,8 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
 - **condominio · avancado · 2 dias · 90 min · prioridade peito · sem dor**: peito (prioridade) com 12 de 14 séries e o dia mais longo em 74 de 90 min.
   - Programa: Corpo todo A (74 min): supino-reto 4, goblet 2, puxada-frente 3, stiff 3, crucifixo-halteres 4, triceps-frances-halter 2, elevacao-halteres 3, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (68 min): supino-inclinado 4, afundo 2, remada-baixa-estacao 3, agachamento-halteres 2, flexao-bola 3, rosca-inclinada 3, crucifixo-inverso 3, elevacao-halteres 3, abdominal-bola 2
   - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":2,"minutosSessao":90,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['condominio'].inventario)`
-- **academia · avancado · 2 dias · 90 min · prioridade peito · sem dor**: peito (prioridade) com 12 de 14 séries e o dia mais longo em 75 de 90 min.
-  - Programa: Corpo todo A (73 min): supino-reto 4, agachamento-barra 2, puxada-frente 2, stiff 3, crucifixo-polia 4, triceps-frances 2, elevacao-halteres 3, panturrilha 4, abdominal-polia 2 | Corpo todo B (75 min): supino-inclinado 4, afundo 3, remada-baixa 3, cadeira-flexora 3, cadeira-extensora 2, rosca-inclinada 4, face-pull 4, elevacao-halteres 3, abdominal-maquina 2
+- **academia · avancado · 2 dias · 90 min · prioridade peito · sem dor**: peito (prioridade) com 12 de 14 séries e o dia mais longo em 72 de 90 min.
+  - Programa: Corpo todo A (72 min): supino-reto 4, agachamento-barra 2, puxada-frente 3, terra-romeno-barra 3, voador 4, triceps-frances 2, elevacao-halteres 3, panturrilha-em-pe-maquina 4, abdominal-polia 2 | Corpo todo B (71 min): supino-inclinado 4, afundo 3, remada-baixa 3, cadeira-flexora 3, cadeira-extensora 2, rosca-scott 3, crucifixo-inverso 3, elevacao-halteres 3, abdominal-maquina 2
   - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":2,"minutosSessao":90,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['academia'].inventario)`
 
 ### `regua.A2`
@@ -916,7 +916,7 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
   - Programa: Empurrar A (25 min): supino-reto 2, supino-inclinado 2, desenvolvimento 2, triceps-frances-halter 3 | Puxar A (21 min): puxada-frente 2, remada-baixa-estacao 2, rosca-inclinada 2, abdominal-chao 2 | Pernas A (20 min): flexao-bola 2, flexao-joelho-deslizante 2, panturrilha-degrau 3, abdominal-chao 2 | Empurrar B (20 min): supino-inclinado 2, supino-reto 2, triceps-frances-halter 2, crucifixo-halteres 2 | Puxar B (22 min): remada-baixa-estacao 2, puxada-frente 2, rosca-inclinada 2, rosca-scott-banco-inclinado 2 | Pernas B (15 min): flexao-bola 2, panturrilha-degrau 3, flexao-joelho-deslizante 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":6,"minutosSessao":30,"prioridades":["peito","bracos"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"quadril","nota":7}]}}, CEN_55['condominio'].inventario)`
 - **academia · iniciante · 6 dias · 30 min · prioridade peito+bracos · quadril 7**: não prioritário com 1 a 3 séries havendo exercício e tempo: ombro_lateral com 1 séries e o dia mais longo em 25 de 30 min.
-  - Programa: Empurrar A (25 min): supino-reto 2, supino-inclinado 2, desenvolvimento 2, triceps-frances 3 | Puxar A (25 min): puxada-frente 2, remada-baixa 2, rosca-inclinada 2, abdominal-maquina 4 | Pernas A (21 min): cadeira-flexora 2, mesa-flexora 2, cadeira-extensora 3, panturrilha-em-pe-maquina 3 | Empurrar B (20 min): supino-inclinado 2, supino-reto 2, triceps-frances 2, voador 2 | Puxar B (20 min): remada-baixa 2, puxada-frente 2, rosca-inclinada 2, rosca-scott 2 | Pernas B (21 min): cadeira-flexora 2, cadeira-extensora 3, panturrilha-em-pe-maquina 3, mesa-flexora 2
+  - Programa: Empurrar A (25 min): supino-reto 2, supino-inclinado 2, desenvolvimento 2, triceps-frances 3 | Puxar A (25 min): puxada-frente 2, remada-baixa 2, rosca-scott 2, abdominal-maquina 4 | Pernas A (21 min): cadeira-flexora 2, mesa-flexora 2, cadeira-extensora 3, panturrilha-em-pe-maquina 3 | Empurrar B (20 min): supino-inclinado 2, supino-reto 2, triceps-frances 2, voador 2 | Puxar B (20 min): remada-baixa 2, puxada-frente 2, rosca-scott 2, rosca-inclinada 2 | Pernas B (21 min): cadeira-flexora 2, cadeira-extensora 3, panturrilha-em-pe-maquina 3, mesa-flexora 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":6,"minutosSessao":30,"prioridades":["peito","bracos"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"quadril","nota":7}]}}, CEN_55['academia'].inventario)`
 
 ### `tempo.uso-baixo`

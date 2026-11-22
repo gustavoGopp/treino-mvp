@@ -346,23 +346,18 @@ test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o desca
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 8');
 });
 
-// Lote 2 do redesign (segurança): no exercício sem animação, a montagem segura vem aberta, com o selo, sem nenhum toque;
-// dicas e erros abrem numa folha.
-// R5-anim, lote 2 (10/11/2026): a ponte com halter ganhou animação; o exercício sem animação do dia A passa a ser a
-// barra só na descida (o 4º), que entra com uma barra fixa no equipamento da Ana.
-test('exercício sem animação: a montagem segura vem sempre aberta', async ({ page }) => {
+// seguranca.montagem: no exercício com travas ou ancoragem, a montagem segura fica a um toque na tela da série e abre o
+// guia ampliado, com a nota logo abaixo do Boneco. Até 22/11/2026 (ligação das 81 animações) estes exercícios eram cartão
+// de texto, com a montagem sempre aberta; na 1ª vez o guia ampliado abre sozinho, com a nota.
+test('exercício com montagem segura: a nota fica a um toque na tela da série, no guia ampliado', async ({ page }) => {
   await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
   await comecar(page);
   for (let i = 0; i < 3; i++) await proximoExercicio(page);
-  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
-  const montagem = page.getByRole('region', { name: /Montagem segura/ });
-  await expect(montagem).toBeVisible();
-  await expect(montagem.getByRole('listitem').first()).toBeVisible();
-  // sessão de textos (16/11/2026): o selo saiu da tela; a regra da montagem segura está em "Entenda o treino"
-  await expect(montagem.locator('button.selo')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
-  const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
-  await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/, level: 1 })).toBeVisible();
+  const folha = page.getByRole('dialog', { name: 'Como fazer' });
+  // (na 1ª vez a folha abre sozinha, e os testes a fecham em "Entendi": base.ts)
+  await page.getByRole('button', { name: /^Montagem segura/ }).click();
+  await expect(folha.locator('.nota-guia')).toContainText(/barra bem presa/);
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();

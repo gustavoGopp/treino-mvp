@@ -16,9 +16,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d × 8–12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  // Sem animação aprovada: "guia em texto", nunca uma animação improvisada. A flexão de joelho deslizante ganhou a
-  // animação em 04/11/2026 e a ponte com halter em 10/11/2026 (R5-anim, lote 2): o dia A não tem mais cartão; o B tem
-  // um (o crucifixo invertido sentado), conferido abaixo.
+  // Desde 22/11/2026 todo exercício tem animação aprovada: nenhum dia tem miniatura vazia.
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // Semana 1 (fase de aprendizado da iniciante): RIR 3–4. Sessão de textos (16/11/2026): o porquê do exercício, com o
   // selo de evidência, saiu da folha e está em "Entenda o treino" → "Os exercícios" (conferido no fim deste teste).
@@ -28,7 +26,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
-  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
   await expect(painel.getByRole('button', { name: /Stiff com halteres/ })).toBeVisible();
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
@@ -484,7 +482,7 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
 });
 
-test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncional e cartão de texto do exercício sem animação', async ({ page }) => {
+test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncional e a montagem segura na folha do exercício', async ({ page }) => {
   await ana(page, {
     equipamentoExtra: async (p) => {
       // Lote 5 do redesign: todo item tem o desenho realista dele (um SVG próprio), com o nome sempre escrito.
@@ -506,11 +504,11 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
     },
   });
   const painel = page.getByRole('tabpanel');
-  // A iniciante agacha no hack (estável), que ainda não tem animação: cartão de texto, nunca animação improvisada.
+  // A iniciante agacha no hack (estável), animado desde 22/11/2026: a folha traz a nota de montagem segura do guia.
   // lote 4 do redesign: a lista abre a folha do exercício; lote 2: a montagem segura vem sempre aberta.
   const cartao = await abrirExercicio(page, /Agachamento no hack/);
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
-  await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
+  await expect(cartao.getByText(/solte a trava de segurança/)).toBeVisible();
   // sessão de textos (16/11/2026): as alternativas ficam a um toque, todas de uma vez (antes: 3 à vista e "ver mais")
   await expect(cartao.locator('summary', { hasText: /^Alternativas \(\d+\)$/ })).toBeVisible();
   await expect(cartao.getByText(/^Ver mais \d+ opç/)).toHaveCount(0);
