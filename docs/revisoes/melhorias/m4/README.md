@@ -131,6 +131,8 @@ Três valores no painel da Vercel (projeto `treino-mvp`, Settings, Environment V
 
 Depois de salvar, publicar de novo.
 
+**Conferido no endereço de teste do ramo, em 22/11/2026:** o Gustavo pôs as três chaves na Vercel e desligou a proteção por login dos endereços de teste. A função carrega e responde; a chave pública chegou ao app publicado. Jeito de conferir sem ver segredo nenhum: `POST /api/descanso` com uma ação desconhecida responde `desligado` (503) se falta chave e `pedido` (400) se as três existem; `desmarcar` de um número que não existe responde 200 se a senha da fila vale e `fila` (502) se a fila recusou.
+
 ## 6. Decisões do Gustavo que o passo 2 pede
 
 Os textos abaixo estão no ramo como **proposta**. Só valem com o ok dele.
