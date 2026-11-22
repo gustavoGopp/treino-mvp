@@ -2270,6 +2270,8 @@ Depois, com "pode seguir assim" e "pode aprovar esse e todos os restantes", o re
 
 **Verificação de 21/11:** `npm run check` com 932 testes, todos passando; `npm run test:e2e` com 178 de 179, e o que falhou (o cartão de texto que não baixou, no celular, por tempo) passa sozinho, com a máquina sem carga. Nada foi para a `main`.
 
+**Na `main` (22/11/2026, com o ok do Gustavo: "pode juntar à main").** A `main` tinha 392 commits de outras sessões (a verificação permanente, a sessão de desenvolvimento 2); a junção teve conflito só no devlog e no backlog, resolvido mantendo as duas seções. Antes de enviar, `npm run verificar` passou inteiro na junção (lint, tipos, unitários com cobertura e as 180 telas, em 10 min; o teste do cartão de texto, consertado na `main`, passou), e a tela do cadastro com os desenhos novos de equipamento foi olhada no app (412 px e 206 px com a margem: sem erro no console e sem rolar para o lado). As 81 animações continuam fora do app, à espera da sessão do desempate.
+
 **Rascunho de post para o LinkedIn**
 
 > Terminei as animações do meu app de treino: os 171 exercícios agora têm o boneco que mostra como fazer. E nenhuma das 81 novas está no app ainda.
