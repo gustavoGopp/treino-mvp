@@ -2167,3 +2167,56 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 **Na `main` (19/11/2026, com o ok do Gustavo).** Junção sem forçar (`b55a98b`; a mensagem dela diz 20/11 por engano). A verificação do GitHub rodou pela primeira vez com o comando novo e passou: o passo é um só, `npm run verificar`, e terminou com "tudo passou" (lint 10 s, tipos 17 s, unitários com cobertura 134 s, telas 551 s; 13 min no total, como antes). Lá a cobertura leva o dobro do tempo daqui (134 contra 68 s), o que confirma a lição de 17/11: medir os limites de tempo com a cobertura ligada.
 
 **Rascunho de post.** "Li como a equipe do Claude Code confere o trabalho que a IA faz. A ideia central: ninguém lê mais cada linha; a confiança vem de a IA provar que está certo antes de dizer 'pronto'. No meu app, as falhas que escaparam tinham a mesma cara: passou no meu computador, quebrou no servidor. A lição ficava anotada, e uma lição anotada depende de alguém lembrar. Agora o comando que eu rodo é o mesmo do servidor, e cada falha passada virou um item que dispara sozinho quando o arquivo dela muda. No primeiro dia, a verificação achou um teste que falhava 1 vez em 5. Não era azar: era um botão que piscava na tela por um instante."
+
+
+## A porta: o programa sai na hora, em qualquer lugar (21 e 22/11/2026)
+
+**De onde veio.** É o lote M1 das melhorias da análise crítica (`revisoes/analise-critica/relatorio.md`, principal 1; as decisões do Gustavo estão em `revisoes/analise-critica/decisoes-e-plano.md`). A análise mediu que um desconhecido que treina no prédio ou em casa precisava de 21 ou 24 toques para ver o programa, contra 13 na academia completa, porque o app pedia um inventário (halter mais pesado, manoplas, anilhas) depois do toque em "Gerar meu programa". O Gustavo decidiu, em 19/11: **"programa na hora"**. Isso revoga a decisão de 03/11, "os detalhes que mudam o programa continuam sendo perguntados".
+
+**O que mudou para quem usa**
+
+1. **"Condomínio" e "Casa" geram o programa na hora,** com um kit típico, como a "Academia completa" já fazia. O atalho de casa passa a supor halteres comuns, não de montar.
+2. **O programa diz que supôs,** numa linha: "Montado para um kit típico de casa. Ajustar". Ela fica até o primeiro treino, ou até a pessoa ajustar o equipamento.
+3. **O palpite errado se corrige no treino.** Na lista de cargas dos halteres entrou "Meus pesos são outros…": o app pergunta uma vez qual é o halter mais pesado, e a lista se ajusta ali mesmo.
+4. **Entrou "Nunca treinei"** na pergunta de experiência. Quem escolhe não responde a pergunta da pausa nem a da técnica, e entra na fase de aprendizado. Antes, a pessoa marcava "parei há mais de 6 meses" e recebia o programa de quem volta de uma pausa: exercícios com 1 série e um texto sobre "a carga que você usava antes da pausa".
+5. **A abertura diz o que a pessoa recebe e mostra o Boneco se mexendo,** ao lado do título. O aviso de segurança continua com o mesmo texto e inteiro à vista.
+6. **Os erros da tela de equipamento** só aparecem no campo que a pessoa mexeu, ou cuja folha tentou fechar, e somem na hora em que ela corrige. Antes, o toque em "Gerar meu programa" pintava de vermelho campos que ela ainda não tinha visto. "Anilhas e manoplas" virou "Halteres de montar", e a folha explica o que é manopla.
+
+![A abertura, antes e depois](revisoes/melhorias/m1/abertura-antes-e-depois.png)
+
+![Casa, depois do toque em "Gerar meu programa": antes e depois](revisoes/melhorias/m1/casa-antes-e-depois.png)
+
+![A correção dos halteres na hora de anotar a carga](revisoes/melhorias/m1/seus-halteres.png)
+
+**O antes e o depois, medidos** (`node scripts/design/medir-porta.mjs`, no build de produção, tela de 412 × 839)
+
+| Da abertura ao programa | Antes | Depois |
+|---|---|---|
+| Academia completa | 13 toques | 13 |
+| Condomínio | 13 toques e parava em "Há 4 detalhes para completar" (21 até o fim, pela análise) | 13 |
+| Casa | 13 toques e parava em "Há 4 detalhes para completar" (24 até o fim, pela análise) | 13 |
+| Corpo livre | 13 | 13 |
+| Com "Nunca treinei" | não existia | 11, nos quatro |
+| Caracteres digitados | 0 | 0 |
+
+O teste automático conferia "até 11 toques" pulando a tela de equipamento. Agora conta essa tela, nos quatro atalhos, com a meta de 15 (`tests/e2e/onboarding.spec.ts`), e o critério 1 do `PLANO-MVP.md` foi reescrito do mesmo jeito.
+
+**Decisões técnicas da sessão, com o motivo** (o Gustavo pediu para não decidir estas)
+
+- **Os valores do kit: o lado conservador, e são opinião.** Casa: halteres de 2 a 10 kg, de 2 em 2, e 3 elásticos. Condomínio: halteres de 2 a 12 kg, de 2 em 2, e banco que não declina. Não há fonte sobre o que as pessoas têm (`pesquisa-v2/08`, seção 3, já dizia). Escolhi menos carga porque o erro para baixo custa pouco: o app monta o treino para pesos leves, e ele funciona também com pesos maiores. O erro para cima montaria um treino que depende de um peso que a pessoa não tem. A regra `equipamento.atalhos` foi reescrita (selo "consenso", como antes) e aparece em "Entenda o treino".
+- **A auditoria passou a medir o kit do próprio atalho** (`scripts/auditoria/cenarios.ts`): antes, os cenários "casa" e "condomínio" usavam valores fictícios próprios (halteres de montar até 18 kg; halteres até 20 kg). Agora medem o inventário que a pessoa recebe ao tocar.
+- **Nada novo no estado guardado.** "É kit típico?" sai da comparação do equipamento do local com o kit do atalho (`kitTipicoDe`), sem campo novo: a versão do estado continua a 9 e ninguém precisa guardar cópia antes desta mudança.
+- **"Meus pesos são outros" pergunta só o mais pesado.** A lista passa a terminar exatamente no peso dito, com o mesmo passo (com o kit de casa e a resposta "5 kg", fica 3 e 5 kg). Para dizer peso por peso, continua "Meus locais". A correção vale só para halteres fixos: é a única lista que pode ter vindo de um palpite.
+- **"Nunca treinei" também pula a pergunta da técnica.** Quem nunca treinou não tem técnica em que confiar; o app grava "não", que é o lado de baixo da regra. Um teste varre 200 programas (5 lugares, 2 a 6 dias, 30 a 90 min, com e sem foco): nenhum exercício com 1 série, em nenhuma das três primeiras semanas.
+- **Boneco animado, e não parado, na abertura.** Medido: o pacote que a tela espera para aparecer continua em 162,5 kB; o motor do Boneco (77 kB) chega por fora, depois que a tela já apareceu. O "Começar" fica visível em 98 ms, como antes, e o Boneco aparece em 188 ms (376 ms num processador 4 vezes mais lento). Um Boneco parado desenhado pelo mesmo motor pesaria os mesmos 77 kB, então o parado não economizava nada. É o mesmo motor que a tela do programa pede um minuto depois. O teste do peso (`tests/e2e/orcamento.spec.ts`) guardava "o motor fica fora da abertura": passou a guardar "o pacote inicial abaixo de 175 kB e o total abaixo de 250", com essa medida no comentário.
+- **O Boneco ao lado do título, sem as legendas miúdas.** Na primeira tentativa, o Boneco em cima e a frase nova empurravam o aviso de segurança para trás do botão nas telas pequenas (antes do lote, o aviso ficava inteiro à vista em todas). Como o Boneco é alto e estreito, foi para o lado do título e não gasta altura. Em celular baixo ele encolhe; no mais baixo (320 × 568) ele sai e o motor nem é baixado. Seis testes de tela, de 320 × 568 a 412 × 839, conferem que o aviso está inteiro acima do "Começar".
+- **Não toquei em `src/engine/novo/`** nem no campo `animacaoId`: a abertura só usa o motor, pelo mesmo caminho do treino.
+
+**Esperando o Gustavo** (decisões de produto, uma de cada vez)
+
+1. **A frase da abertura.** A proposta em uso: "Um programa de musculação montado para o seu equipamento, com um boneco que mostra cada movimento e o relógio do descanso."
+2. **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".
+
+**Verificação.** `npm run verificar`: tudo passou (1.063 testes unitários com cobertura em 54 s; 195 testes de tela em 5,7 min). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
+
+**Rascunho de post.** "Meu app de treino prometia 'treine onde estiver, com o que tiver'. Aí uma análise contou os toques: 13 para quem treina numa academia completa, 24 para quem treina em casa, porque o app pedia um inventário de anilhas antes de mostrar qualquer coisa. Quem mais precisava da promessa era quem mais esperava. Agora o app chuta um kit típico, mostra o programa em 13 toques para todo mundo, diz que chutou, e deixa corrigir na hora de anotar a primeira carga, que é quando a pessoa está diante dos pesos e sabe responder. O teste que media os toques pulava justamente a tela que emperrava. O que não é medido não é cobrado."
