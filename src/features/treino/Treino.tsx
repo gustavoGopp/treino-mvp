@@ -322,7 +322,7 @@ export function Treino() {
             </div>
           )}
           {x.animacaoId ? (
-            <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} />
+            <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} comNota={!!POR_ID[x.exId]?.tags.includes('montagem')} />
           ) : (
             <CartaoTexto exId={x.exId} />
           )}

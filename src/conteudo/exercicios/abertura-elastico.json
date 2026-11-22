@@ -3,6 +3,8 @@
   "name": "Abertura com o elástico entre as mãos, sem ponto de ancoragem",
   "short": "Abertura com elástico",
   "target": "Ombro de trás (deltoide posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se sentir o alto dos ombros (trapézio), os ombros estão subindo: deixe-os baixos. Cotovelos que dobram viram uma remada, e o ombro de trás trabalha menos.",
   "setupEq": [
     "Um elástico, segurado com as duas mãos; nada para prender."
   ],
@@ -31,10 +33,23 @@
     "Início: braços à frente, elástico pouco esticado.",
     "Fim: braços abertos, elástico perto do peito."
   ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Palmas para baixo.",
     "Diagonal para cima.",
     "Ombros longe das orelhas."
+  ],
+  "check": [
+    "Elástico seguro com a mão inteira",
+    "Braços na altura do peito",
+    "Palmas para baixo",
+    "Braços quase retos"
+  ],
+  "vary": "Segurar o elástico com as mãos mais perto uma da outra estica mais e pesa mais. O que não muda: as palmas para baixo, a abertura em diagonal, um pouco para cima, e os ombros baixos.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado; um elástico que escapa volta no rosto, então segure com a mão inteira e mantenha-o abaixo do rosto.",
+  "extLabels": [
+    "braços à frente",
+    "aberto"
   ],
   "errors": [
     {
@@ -52,9 +67,6 @@
       "title": "Soltar uma ponta",
       "desc": "O elástico volta no rosto. Segure com a mão inteira e mantenha-o abaixo do rosto."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se o elástico tem rachaduras ou está ressecado. Um elástico que escapa volta no rosto."
   ],
   "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
 }

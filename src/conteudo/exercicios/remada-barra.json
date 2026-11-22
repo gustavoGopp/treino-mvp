@@ -3,6 +3,8 @@
   "name": "Remada curvada com barra",
   "short": "Remada curvada",
   "target": "Costas",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, a coluna está perdendo a posição: coluna reta, e diminua a carga. Se a lombar cansar antes das costas, apoie o peito num banco inclinado ou use a remada apoiada.",
   "setupEq": [
     "Barra no chão ou num suporte baixo, com anilhas iguais dos dois lados."
   ],
@@ -27,10 +29,23 @@
     "Início: braços estendidos, costas alongadas.",
     "Fim: barra encostando na barriga."
   ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Coluna reta.",
     "Barra na barriga.",
     "Tronco parado."
+  ],
+  "check": [
+    "Travas nas anilhas, anilhas iguais dos dois lados",
+    "Pés na largura do quadril, joelhos um pouco dobrados",
+    "Tronco inclinado a ~45° ou mais, coluna reta",
+    "Pegada um pouco mais aberta que os ombros"
+  ],
+  "vary": "A barra sai do chão ou de um suporte baixo, e o tronco fica a ~45° ou mais. O que não muda: a coluna reta, o tronco parado e a barra que chega à barriga, com os cotovelos rente ao corpo.",
+  "note": "<b>Montagem segura:</b> travas nas anilhas; se a lombar cansar antes das costas, apoie o peito num banco inclinado ou use a remada apoiada.",
+  "extLabels": [
+    "braços estendidos",
+    "barra na barriga"
   ],
   "errors": [
     {
@@ -48,10 +63,6 @@
       "title": "Puxar para o peito",
       "desc": "Barra alta e cotovelos abertos tiram o trabalho do dorsal."
     }
-  ],
-  "montagem": [
-    "Travas nas anilhas.",
-    "Se a lombar cansar antes das costas, apoie o peito num banco inclinado ou use a remada apoiada."
   ],
   "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
 }

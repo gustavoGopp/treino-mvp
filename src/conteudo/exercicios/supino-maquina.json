@@ -3,6 +3,8 @@
   "name": "Supino sentado na máquina",
   "short": "Supino na máquina",
   "target": "Peito",
+  "feel": "Peito. A frente do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se o pegador ficar fora da linha do meio do peito, o banco está na altura errada: ajuste-o antes da série. Se as costas saírem do encosto, o corpo está ajudando a empurrar.",
   "setupEq": [
     "Banco na altura em que os pegadores ficam na linha do meio do peito."
   ],
@@ -25,10 +27,22 @@
     "Início: alongamento confortável do peito.",
     "Fim: cotovelos quase estendidos."
   ],
+  "breath": "Solte o ar empurrando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Pegador na linha do peito.",
     "Costas no encosto.",
     "Sem travar os cotovelos."
+  ],
+  "check": [
+    "Banco na altura dos pegadores na linha do meio do peito",
+    "Costas e escápulas apoiadas",
+    "Pés no chão",
+    "Cotovelos a ~30–60° do tronco"
+  ],
+  "vary": "Os cotovelos ficam entre ~30 e 60° do tronco. O que não muda: os pegadores na linha do meio do peito, as costas no encosto, a volta até um alongamento confortável do peito e o empurrar até quase estender os cotovelos, sem travar.",
+  "extLabels": [
+    "peito alongado",
+    "cotovelos quase estendidos"
   ],
   "errors": [
     {
@@ -47,5 +61,5 @@
       "desc": "Esticar com força no fim."
     }
   ],
-  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, o total de kg em anilhas."
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
 }

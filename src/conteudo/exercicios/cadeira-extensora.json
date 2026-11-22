@@ -3,6 +3,8 @@
   "name": "Cadeira extensora",
   "short": "Cadeira extensora",
   "target": "Quadríceps (frente da coxa)",
+  "feel": "Frente da coxa (quadríceps), sobretudo a parte que cruza o quadril (reto femoral).",
+  "feelNote": "Se o quadril sair do banco, o tronco está ajudando a subir: quadril encostado e mãos nas alças. Se as placas baterem embaixo, a descida está rápida.",
   "setupEq": [
     "Cadeira extensora (ou a estação do multifuncional)."
   ],
@@ -32,10 +34,22 @@
     "Embaixo: joelhos bem dobrados.",
     "Em cima: joelhos quase esticados."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Joelho no eixo.",
     "Sem tranco.",
     "Desce devagar."
+  ],
+  "check": [
+    "Encosto ajustado: joelho alinhado com o eixo",
+    "Rolo na frente da canela, logo acima do pé",
+    "Quadril encostado",
+    "Mãos nas alças"
+  ],
+  "vary": "Na cadeira extensora ou na estação do multifuncional. Se o encosto reclina, recline-o um pouco (quadril mais aberto). O que não muda: o joelho no eixo, a pausa de ~1 s em cima e a descida controlada até os joelhos dobrarem bem, sem bater as placas.",
+  "extLabels": [
+    "joelhos dobrados",
+    "joelhos quase esticados"
   ],
   "errors": [
     {

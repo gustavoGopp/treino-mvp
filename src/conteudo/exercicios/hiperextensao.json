@@ -3,6 +3,8 @@
   "name": "Hiperextensão no banco romano",
   "short": "Hiperextensão",
   "target": "Glúteos e posteriores da coxa (a lombar segura a coluna)",
+  "feel": "Glúteos e parte de trás da coxa (posteriores). A lombar segura a coluna.",
+  "feelNote": "Se sentir a lombar, confira o topo: o corpo para na linha reta, sem arquear. Embaixo, quem dobra é o quadril, com as costas sem curvar.",
   "setupEq": [
     "Almofada na altura do alto da coxa, abaixo do osso do quadril, para o quadril dobrar livre.",
     "Pés presos na trava."
@@ -26,10 +28,22 @@
     "Embaixo: alongamento confortável atrás da coxa.",
     "Em cima: corpo em linha reta, sem arquear a lombar."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Dobra o quadril.",
     "Para na linha reta.",
     "Coluna neutra."
+  ],
+  "check": [
+    "Almofada no alto da coxa, abaixo do osso do quadril",
+    "Pés presos na trava",
+    "Mãos no peito",
+    "Coluna neutra"
+  ],
+  "vary": "A descida vai até um alongamento confortável atrás da coxa. O que não muda: o quadril que dobra com a coluna neutra, a subida sem impulso e a parada na linha reta, sem arquear a lombar.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Flexão de joelho na cadeira flexora (sentado)",
   "short": "Flexora sentada",
   "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa (posteriores).",
+  "feelNote": "Se o quadril subir do banco, o rolo da coxa está solto: ajuste-o para travar a coxa logo acima do joelho. Inclinar um pouco o tronco à frente alonga mais a parte de trás da coxa.",
   "setupEq": [
     "Cadeira flexora (ou a estação do multifuncional)."
   ],
@@ -32,10 +34,22 @@
     "Início: joelhos quase esticados.",
     "Fim: joelhos bem dobrados."
   ],
+  "breath": "Solte o ar dobrando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Coxa travada.",
     "Joelho no eixo.",
     "Volta devagar."
+  ],
+  "check": [
+    "Encosto ajustado: joelho alinhado com o eixo",
+    "Rolo de cima travando a coxa logo acima do joelho",
+    "Rolo de baixo atrás do tornozelo",
+    "Sentado e encostado"
+  ],
+  "vary": "Na cadeira flexora ou na estação do multifuncional; o tronco pode inclinar um pouco à frente, o que alonga mais a parte de trás da coxa. O que não muda: o joelho no eixo, a coxa travada e a volta controlada até os joelhos quase esticarem, sem bater as placas.",
+  "extLabels": [
+    "joelhos quase esticados",
+    "joelhos dobrados"
   ],
   "errors": [
     {

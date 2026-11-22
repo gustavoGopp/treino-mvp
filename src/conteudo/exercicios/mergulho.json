@@ -3,6 +3,8 @@
   "name": "Mergulho nas paralelas",
   "short": "Mergulho",
   "target": "Peito e tríceps",
+  "feel": "Peito e parte de trás do braço (tríceps). A frente do ombro ajuda.",
+  "feelNote": "Se sentir a frente do ombro, desça menos: só até o braço ficar quase paralelo ao chão, sem dor no ombro.",
   "setupEq": [
     "Paralelas firmes, na largura do quadril ou um pouco mais."
   ],
@@ -25,10 +27,22 @@
     "Embaixo: braço quase paralelo ao chão, sem dor no ombro.",
     "Em cima: cotovelos estendidos."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Ombros longe das orelhas.",
     "Tronco um pouco à frente.",
     "Pernas paradas."
+  ],
+  "check": [
+    "Paralelas firmes",
+    "Ombros longe das orelhas",
+    "Tronco um pouco à frente",
+    "Pernas paradas"
+  ],
+  "vary": "As paralelas podem ficar na largura do quadril ou um pouco mais. O que não muda: descer só até o braço ficar quase paralelo ao chão, sem dor no ombro, e subir sem travar os cotovelos.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

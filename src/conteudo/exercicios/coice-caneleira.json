@@ -3,6 +3,8 @@
   "name": "Coice de glúteo em quatro apoios com caneleira",
   "short": "Coice com caneleira",
   "target": "Glúteos",
+  "feel": "Glúteo da perna que trabalha.",
+  "feelNote": "Se sentir a lombar, a perna está subindo acima do tronco: pare com a coxa na linha do tronco.",
   "setupEq": [
     "Uma caneleira bem presa no tornozelo e um colchonete."
   ],
@@ -31,10 +33,23 @@
     "Início: joelho sob o quadril.",
     "Fim: coxa na linha do tronco."
   ],
+  "breath": "Solte o ar no coice, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Coxa na linha do tronco.",
     "Lombar parada.",
     "Perto da falha."
+  ],
+  "check": [
+    "Caneleira bem presa no tornozelo",
+    "Mãos sob os ombros",
+    "Joelhos sob o quadril",
+    "Costas retas, abdômen firme"
+  ],
+  "vary": "O que não muda: o joelho dobrado, a coxa só até a linha do tronco e a série perto da falha, até faltar 1 ou 2 repetições.",
+  "note": "<b>Montagem segura:</b> fivela da caneleira bem fechada; colchonete num chão que não escorrega.",
+  "extLabels": [
+    "joelho sob o quadril",
+    "no alto"
   ],
   "errors": [
     {
@@ -52,9 +67,6 @@
       "title": "Parar longe da falha",
       "desc": "Com carga leve, a série só conta perto da falha. Vá até faltar 1 ou 2 repetições."
     }
-  ],
-  "montagem": [
-    "Fivela da caneleira bem fechada; colchonete num chão que não escorrega."
   ],
   "carga": "Registre o peso da caneleira. Quando todas as séries chegarem ao topo da faixa, use a próxima caneleira; sem uma mais pesada, mais repetições e descida de 3 s."
 }

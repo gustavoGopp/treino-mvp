@@ -3,6 +3,8 @@
   "name": "Agachamento com 2 halteres ao lado do corpo",
   "short": "Agachamento com halteres",
   "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir o joelho, confira o calcanhar: com o peso na ponta do pé, a carga vai para o joelho.",
   "setupEq": [
     "Dois halteres do mesmo peso."
   ],
@@ -26,10 +28,22 @@
     "Início: em pé.",
     "Fim: coxa na horizontal ou abaixo, calcanhares no chão."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Peito aberto.",
     "Joelhos na direção dos pés.",
     "Calcanhar no chão."
+  ],
+  "check": [
+    "Halteres do mesmo peso",
+    "Pés na largura dos ombros",
+    "Pontas um pouco para fora",
+    "Calcanhares no chão"
+  ],
+  "vary": "A profundidade vai até a coxa passar da horizontal ou até onde a coluna fica reta. O que não muda: os calcanhares no chão e os joelhos na direção dos pés.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {

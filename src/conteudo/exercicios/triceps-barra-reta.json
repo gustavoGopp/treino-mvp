@@ -3,6 +3,8 @@
   "name": "Tríceps na polia com barra reta",
   "short": "Tríceps com barra reta",
   "target": "Tríceps",
+  "feel": "Parte de trás do braço (tríceps).",
+  "feelNote": "Se sentir o peito, os cotovelos estão abrindo: deixe-os colados ao corpo.",
   "setupEq": [
     "Polia no alto, com a barra reta."
   ],
@@ -26,10 +28,22 @@
     "Início: cotovelos bem dobrados.",
     "Fim: braços estendidos."
   ],
+  "breath": "Solte o ar estendendo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos colados.",
     "Estende até o fim.",
     "Volta devagar."
+  ],
+  "check": [
+    "Polia no alto, com a barra reta",
+    "Tronco um pouco inclinado",
+    "Cotovelos junto ao corpo",
+    "Mãos na largura dos ombros"
+  ],
+  "vary": "O que não muda: os cotovelos parados, colados ao corpo, e o tronco sem debruçar sobre a barra.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {

@@ -3,6 +3,8 @@
   "name": "Rosca na polia baixa, de costas para a torre",
   "short": "Rosca de costas para a torre",
   "target": "Bíceps",
+  "feel": "Frente do braço (bíceps), que alonga embaixo, com o braço atrás do corpo.",
+  "feelNote": "Se o ombro for para a frente, a carga está alta. O cotovelo fica parado atrás do corpo.",
   "setupEq": [
     "Polia embaixo, com o estribo."
   ],
@@ -26,10 +28,22 @@
     "Início: braço quase estendido atrás do corpo, bíceps alongado.",
     "Fim: mão perto do ombro."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelo atrás do corpo.",
     "Tronco parado.",
     "Desce devagar."
+  ],
+  "check": [
+    "Polia embaixo, com o estribo",
+    "De costas para a torre, um passo à frente",
+    "Braço um pouco atrás do corpo",
+    "Palma para a frente"
+  ],
+  "vary": "O que não muda: o cotovelo parado atrás do corpo, o tronco parado e a descida até o braço quase estender.",
+  "extLabels": [
+    "alongado",
+    "topo"
   ],
   "errors": [
     {

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
+import { EX } from '../../src/engine';
 import { AJUDANTES, doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
 
 // Revisão de anatomia (docs/revisoes/anatomia.md, 02/11/2026): os músculos de cada exercício, decididos item a item
@@ -70,28 +71,34 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
 
   it('achado 10: o cartão da hiperextensão diz que a lombar trabalha (sem contar no volume)', () => {
     // Andersen 2021 (PMID 33948095, EMG): na hiperextensão a 45°, a lombar trabalhou tanto quanto no stiff.
-    expect(CARTOES.hiperextensao!.target).toMatch(/lombar/);
+    // (desde a ligação das 81 animações, em 22/11/2026, o texto é o do guia, com o mesmo alvo do cartão)
+    expect(CONTEUDO.hiperextensao!.target).toMatch(/lombar/);
     expect(BIBLIOTECA.find((e) => e.id === 'hiperextensao')!.musculos).toEqual({ primarios: ['gluteos', 'posteriores'], secundarios: [] });
   });
 });
 
 describe('desenho do boneco × biblioteca (revisão de anatomia)', () => {
+  // Esta conferência lê a lista de músculos do motor de antes (src/engine), que só tem as 90 primeiras animações. As 81
+  // ligadas em 22/11/2026 são do motor novo, e nelas quem confere "o desenho só realça músculo que a biblioteca lista" é
+  // `npm run conferir:animacao`. Levar esta auditoria para o motor novo está no pacote D4.
+  const NO_MOTOR_DE_ANTES = new Set<string>(EX.map((x: { id: string }) => x.id));
+  const DO_MOTOR_DE_ANTES = BIBLIOTECA.filter((x) => x.animacaoId && NO_MOTOR_DE_ANTES.has(x.animacaoId));
   it('achados 2 e 4: o principal do desenho é o principal da biblioteca, nem mais nem menos', () => {
-    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+    for (const e of DO_MOTOR_DE_ANTES) {
       const d = doDesenho(e.animacaoId!);
       expect([...d.p].filter(ehMusculo).sort(), e.id).toEqual([...e.musculos.primarios].sort());
     }
   });
 
   it('achado 6: todo secundário da biblioteca aparece no desenho', () => {
-    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+    for (const e of DO_MOTOR_DE_ANTES) {
       const d = doDesenho(e.animacaoId!);
       for (const m of e.musculos.secundarios) expect([...d.p, ...d.s], `${e.id}: ${m}`).toContain(m);
     }
   });
 
   it('achado 8: o desenho só mostra músculo contado que a biblioteca lista, ou um ajudante da lista', () => {
-    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+    for (const e of DO_MOTOR_DE_ANTES) {
       const d = doDesenho(e.animacaoId!);
       const conta = new Set<string>([...e.musculos.primarios, ...e.musculos.secundarios, ...(AJUDANTES[e.id] ?? [])]);
       for (const m of [...d.p, ...d.s].filter(ehMusculo)) expect(conta, `${e.id}: ${m}`).toContain(m);

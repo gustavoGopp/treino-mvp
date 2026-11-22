@@ -3,6 +3,8 @@
   "name": "Afundo para trás alternado",
   "short": "Afundo para trás",
   "target": "Quadríceps e glúteo da perna da frente",
+  "feel": "Frente da coxa e glúteo da perna da frente. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir mais a perna de trás, ela está empurrando: o peso fica na perna da frente.",
   "setupEq": [
     "Dois halteres do mesmo peso (ou sem peso, para aprender)."
   ],
@@ -26,10 +28,22 @@
     "Início: em pé, pés na largura do quadril.",
     "Fim: joelho de trás perto do chão, joelho da frente sobre o pé."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Peso na perna da frente.",
     "Tronco reto.",
     "Passo longo."
+  ],
+  "check": [
+    "Halteres do mesmo peso",
+    "Passo longo para trás",
+    "Peso na perna da frente",
+    "Joelho da frente sobre o pé"
+  ],
+  "vary": "Para aprender, sem peso. O que não muda: o passo longo, o peso na perna da frente e o joelho da frente na direção do pé.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {

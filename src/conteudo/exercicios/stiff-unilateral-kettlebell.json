@@ -3,6 +3,8 @@
   "name": "Stiff unilateral com kettlebell",
   "short": "Stiff unilateral kettlebell",
   "target": "Posteriores da coxa; ajuda o glúteo",
+  "feel": "Parte de trás da coxa da perna de apoio. O glúteo ajuda.",
+  "feelNote": "Se sentir a lombar, as costas estão arredondando: desça só até onde elas ficam retas. Se o joelho de apoio dobrar muito, vira um agachamento e a parte de trás da coxa trabalha menos.",
   "setupEq": [
     "Um kettlebell. Uma parede ou móvel firme ao lado, para a mão livre, se precisar."
   ],
@@ -31,10 +33,22 @@
     "Embaixo: tronco quase paralelo ao chão, ou até as costas começarem a arredondar.",
     "Em cima: em pé numa perna."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Quadril para trás.",
     "Costas retas.",
     "Quadril de frente para o chão."
+  ],
+  "check": [
+    "Joelho de apoio levemente solto",
+    "Kettlebell na mão oposta à perna de apoio",
+    "Costas retas",
+    "Quadril de frente para o chão"
+  ],
+  "vary": "A mão livre pode apoiar numa parede ou num móvel firme, se precisar. A profundidade vai até o tronco quase paralelo ao chão ou até as costas começarem a arredondar. O que não muda: as costas retas e o quadril de frente para o chão.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {

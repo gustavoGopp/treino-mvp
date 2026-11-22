@@ -50,8 +50,12 @@ describe('tempo.corte, degrau 1b: dois lados no lugar de um lado só quando o di
       ['2', '3', '4'].flatMap((dias) => [30, 45].flatMap((min) => ([[], ['pernas'], ['peito', 'costas']] as Pedido['focos'][]).map((focos) => pedido({ cenario, nivel, dias, min, focos })))),
     ),
   );
-  /** O exemplo medido: avançado, academia completa, 3 dias de 30 min, quer peito e costas. */
-  const EXEMPLO = pedido({ cenario: 'academia', nivel: 'avancado', dias: '3', min: 30, focos: ['peito', 'costas'] });
+  /**
+   * O exemplo medido: avançado, em casa com halteres, banco e elásticos, 3 dias de 30 min, quer peito e costas (30, 34 e
+   * 33 min sem a regra; 30, 33 e 33 com ela). Até a ligação das 81 animações (22/11/2026), o exemplo era o da academia
+   * completa: com todo exercício animado, a escolha lá mudou e o dia já cabe sem a troca (30, 32 e 33 min nos dois).
+   */
+  const EXEMPLO = pedido({ cenario: 'casa+', nivel: 'avancado', dias: '3', min: 30, focos: ['peito', 'costas'] });
   const pares = () =>
     GRADE.map((pd) => {
       const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];

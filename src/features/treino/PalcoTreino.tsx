@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { NotaDoGuia } from '../guia/NotaDoGuia';
 import type { ConteudoExercicio } from '../../conteudo/schema';
 import { NOME_DA_VISTA } from '../../engine/novo/vistas';
 import { useEstiloBoneco } from '../app/estiloBoneco';
@@ -41,8 +42,23 @@ function vistaDo(modo: ModoDoGuia, ficha: Ficha): string {
  *   legenda e a pausa num botão próprio. O treino (e o descanso, se houver) segue por baixo.
  * Só um dos dois desenha por vez (o Worker calcula uma volta de cada vez): o de repouso fica `parado` enquanto o
  * ampliado está aberto.
+ * A nota do exercício (`comNota`): desde a ligação das 81 animações (22/11/2026), a montagem segura dos exercícios que
+ * eram cartão de texto é a nota do guia. Ela aparece sempre no palco ampliado, e no de repouso quando a tela pede
+ * (exercício com travas ou ancoragem: seguranca.montagem, "antes da série").
  */
-export function PalcoTreino({ animacaoId, ampliado = false, aoAmpliar, parado = false }: { animacaoId: string; ampliado?: boolean; aoAmpliar?: () => void; parado?: boolean }) {
+export function PalcoTreino({
+  animacaoId,
+  ampliado = false,
+  aoAmpliar,
+  parado = false,
+  comNota = ampliado,
+}: {
+  animacaoId: string;
+  ampliado?: boolean;
+  aoAmpliar?: () => void;
+  parado?: boolean;
+  comNota?: boolean;
+}) {
   const estilo = useEstiloBoneco();
   const [txt, setTxt] = useState<ConteudoExercicio | null>(null);
   const [ficha, setFicha] = useState<Ficha | null>(null);
@@ -248,6 +264,7 @@ export function PalcoTreino({ animacaoId, ampliado = false, aoAmpliar, parado = 
         )}
         {modo === 'traj' && 'Trajetória da carga/mão (a seta mostra a fase concêntrica).'}
       </p>
+      {comNota && txt?.note && <NotaDoGuia nota={txt.note} />}
     </section>
   );
 }

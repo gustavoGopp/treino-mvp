@@ -3,6 +3,8 @@
   "name": "Rosca martelo com elástico",
   "short": "Rosca martelo elástico",
   "target": "Bíceps (frente do braço) e o braquial",
+  "feel": "Frente do braço (bíceps e braquial). O antebraço também trabalha.",
+  "feelNote": "Se sentir o ombro, os cotovelos estão indo para a frente: deixe-os colados ao corpo.",
   "setupEq": [
     "Um elástico longo."
   ],
@@ -31,10 +33,22 @@
     "Embaixo: braços quase estendidos.",
     "Em cima: mãos perto dos ombros."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Pegada neutra.",
     "Cotovelos colados.",
     "Pés inteiros no elástico."
+  ],
+  "check": [
+    "Pés inteiros no meio do elástico",
+    "Pegada neutra",
+    "Cotovelos colados ao corpo"
+  ],
+  "vary": "O que não muda: a pegada neutra, sem girar as mãos, e os cotovelos colados ao corpo; só eles dobram.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado e pise com o pé inteiro sobre ele: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {
@@ -52,9 +66,6 @@
       "title": "Pisar só com a ponta do pé",
       "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
   ],
   "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
 }

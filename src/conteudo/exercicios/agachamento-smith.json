@@ -3,6 +3,8 @@
   "name": "Agachamento no smith",
   "short": "Agachamento no smith",
   "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir o joelho, confira os pés: embaixo da barra, o tronco tomba para a frente e o joelho sobrecarrega. Leve-os um pouco à frente da linha da barra.",
   "setupEq": [
     "Travas de segurança logo abaixo do ponto mais baixo do agachamento.",
     "Barra no alto das costas; gire a barra para soltar e para travar."
@@ -27,10 +29,23 @@
     "Embaixo: coxa na horizontal ou abaixo.",
     "Em cima: em pé, sem travar os joelhos."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Pés à frente da barra.",
     "Desce fundo.",
     "Costas retas."
+  ],
+  "check": [
+    "Travas de segurança logo abaixo do ponto mais baixo",
+    "Barra no alto das costas",
+    "Pés um pouco à frente da linha da barra, na largura dos ombros",
+    "Costas retas"
+  ],
+  "vary": "A profundidade vai até a coxa chegar à horizontal ou abaixo, sem dor. O que não muda: as travas ajustadas antes de começar, os pés à frente da barra e as costas retas.",
+  "note": "<b>Montagem segura:</b> ajuste as travas de segurança logo abaixo do ponto mais baixo antes de começar; gire a barra para soltar e trave de novo ao terminar.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {
@@ -49,9 +64,5 @@
       "desc": "Começar ou terminar sem as travas de segurança."
     }
   ],
-  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
-  "montagem": [
-    "Ajuste as travas de segurança logo abaixo do ponto mais baixo antes de começar.",
-    "Gire a barra para soltar e trave de novo ao terminar."
-  ]
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
 }

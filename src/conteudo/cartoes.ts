@@ -19,6 +19,7 @@ export const carregarCartao: (exId: string) => Promise<CartaoTexto | null> = por
   if (!f) return Promise.resolve(null);
   return f().then((m) => {
     const bruto = m.default as Record<string, unknown>;
-    return 'carga' in bruto ? cartaoTextoSchema.parse(bruto) : null;
+    // o cartão não tem "onde sentir" (`feel`); o texto do guia animado tem
+    return 'feel' in bruto ? null : cartaoTextoSchema.parse(bruto);
   });
 });

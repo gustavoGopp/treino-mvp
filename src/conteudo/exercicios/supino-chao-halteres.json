@@ -3,6 +3,8 @@
   "name": "Supino no chão com halteres",
   "short": "Supino no chão",
   "target": "Peito",
+  "feel": "Peito. A frente do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se sentir mais o ombro, confira os cotovelos: a meio caminho do tronco, não abertos em \"T\".",
   "setupEq": [
     "Um par de halteres.",
     "Um colchonete, se tiver."
@@ -33,10 +35,23 @@
     "Embaixo: a parte de trás dos braços encosta de leve no chão.",
     "Em cima: braços estendidos acima do peito."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos a meio caminho.",
     "Encosta sem quicar.",
     "Quadril no chão."
+  ],
+  "check": [
+    "Joelhos dobrados, pés no chão",
+    "Halteres acima do peito",
+    "Cotovelos a meio caminho do tronco",
+    "Quadril no chão"
+  ],
+  "vary": "O colchonete é opcional. O que não muda: a descida controlada até a parte de trás dos braços encostar de leve no chão, sem quicar, e o quadril no chão.",
+  "note": "<b>Montagem segura:</b> apoie os halteres nas coxas e deite levando-os junto ao peito, e no fim faça o caminho inverso; nunca solte os halteres do alto: desça-os até o peito antes de sentar.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -60,9 +75,5 @@
       "desc": "O quadril sai do chão para ajudar."
     }
   ],
-  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa.",
-  "montagem": [
-    "Apoie os halteres nas coxas e deite levando-os junto ao peito; no fim, faça o caminho inverso.",
-    "Nunca solte os halteres do alto: desça-os até o peito antes de sentar."
-  ]
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
 }

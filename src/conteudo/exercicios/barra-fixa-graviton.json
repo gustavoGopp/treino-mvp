@@ -3,6 +3,8 @@
   "name": "Barra fixa assistida no graviton",
   "short": "Barra no graviton",
   "target": "Costas",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "O contrapeso ajuda a subir, e o movimento é o mesmo da barra fixa. Se o corpo balançar para subir, é o embalo que está ajudando: corpo parado.",
   "setupEq": [
     "Escolha o contrapeso: mais placa = mais ajuda."
   ],
@@ -26,10 +28,22 @@
     "Embaixo: braços estendidos.",
     "Em cima: queixo acima da barra."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Estica os braços embaixo.",
     "Corpo parado.",
     "Queixo acima da barra."
+  ],
+  "check": [
+    "Contrapeso escolhido: mais placa = mais ajuda",
+    "Joelhos (ou pés) na plataforma",
+    "Pegada pronada (palmas para a frente)",
+    "Mãos a ~1 a 1,5 vez a largura dos ombros"
+  ],
+  "vary": "Os joelhos ou os pés vão na plataforma, e a ajuda muda com o número de placas. O que não muda: o corpo parado, o queixo acima da barra em cima e a descida até os braços estenderem.",
+  "extLabels": [
+    "braços estendidos",
+    "queixo acima da barra"
   ],
   "errors": [
     {

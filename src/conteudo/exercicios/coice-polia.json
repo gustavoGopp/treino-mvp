@@ -3,6 +3,8 @@
   "name": "Coice na polia com tornozeleira",
   "short": "Coice na polia",
   "target": "Glúteos",
+  "feel": "Glúteo da perna que trabalha.",
+  "feelNote": "Se sentir a lombar, ela está arqueando para a perna ir mais longe: pare com a coxa um pouco atrás da linha do corpo. Se o joelho dobrar, o movimento vira uma flexora: joelho quase estendido.",
   "setupEq": [
     "Polia no ponto mais baixo, tornozeleira presa na perna que trabalha."
   ],
@@ -26,10 +28,23 @@
     "Início: perna à frente do corpo.",
     "Fim: coxa um pouco atrás da linha do corpo, sem arquear a lombar."
   ],
+  "breath": "Solte o ar levando a perna para trás, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Joelho quase estendido.",
     "Lombar parada.",
     "Tronco parado."
+  ],
+  "check": [
+    "Polia no ponto mais baixo",
+    "Tornozeleira presa na perna que trabalha",
+    "De frente para a torre, mãos apoiadas nela",
+    "Tronco levemente inclinado à frente",
+    "Joelho quase estendido"
+  ],
+  "vary": "O que não muda: o joelho quase estendido, a coxa só um pouco atrás da linha do corpo, sem arquear a lombar, o tronco parado, sem embalar, e a volta até a frente do corpo, controlando.",
+  "extLabels": [
+    "perna à frente",
+    "coxa atrás"
   ],
   "errors": [
     {

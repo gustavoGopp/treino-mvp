@@ -3,6 +3,8 @@
   "name": "Voador invertido",
   "short": "Voador invertido",
   "target": "Ombro (posterior)",
+  "feel": "Parte de trás do ombro.",
+  "feelNote": "Se os ombros subirem perto das orelhas, abaixe-os, sem juntar demais as escápulas no fim. Se o tronco for para trás, é o corpo que está ajudando: peito no encosto.",
   "setupEq": [
     "Pegadores na altura dos ombros."
   ],
@@ -25,10 +27,22 @@
     "Início: braços à frente.",
     "Fim: braços na linha do corpo."
   ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Ombros baixos.",
     "Peito no encosto.",
     "Abre até a linha do corpo."
+  ],
+  "check": [
+    "Pegadores na altura dos ombros",
+    "Sentado de frente para o encosto, peito apoiado",
+    "Cotovelos levemente dobrados",
+    "Ombros baixos"
+  ],
+  "vary": "O que não muda: o peito no encosto, os ombros baixos e a abertura até a linha do corpo, com os cotovelos levemente dobrados, e a volta controlando.",
+  "extLabels": [
+    "braços à frente",
+    "na linha do corpo"
   ],
   "errors": [
     {

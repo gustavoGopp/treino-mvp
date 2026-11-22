@@ -3,6 +3,8 @@
   "name": "Leg press",
   "short": "Leg press",
   "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir a lombar, o quadril está descolando do assento no fundo e a lombar arredonda: desça só até onde o quadril fica apoiado.",
   "setupEq": [
     "Encosto e assento ajustados para o quadril ficar apoiado no fundo do movimento.",
     "Anilhas iguais dos dois lados."
@@ -27,10 +29,24 @@
     "Início: joelhos quase estendidos.",
     "Fim: joelhos dobrados além de 90°, quadril apoiado."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Quadril no assento.",
     "Joelhos na direção dos pés.",
     "Sem travar no topo."
+  ],
+  "check": [
+    "Encosto e assento ajustados: quadril apoiado no fundo",
+    "Anilhas iguais dos dois lados",
+    "Costas e quadril apoiados",
+    "Pés no meio da plataforma",
+    "Mãos nos pegadores"
+  ],
+  "vary": "Os pés ficam na largura do quadril ou dos ombros. O que não muda: o quadril apoiado no assento, os joelhos na direção dos pés, a descida em ~2–3 s até os joelhos passarem de 90° e a subida sem travar.",
+  "note": "<b>Montagem segura:</b> ajuste o encosto e o assento para o quadril ficar apoiado no fundo do movimento. Solte a trava de segurança só com os pés firmes na plataforma e trave de novo antes de tirar os pés. Nunca ponha as mãos nos joelhos nem entre a plataforma e o batente.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -54,9 +70,5 @@
       "desc": "Fechar os joelhos na subida."
     }
   ],
-  "montagem": [
-    "Solte a trava de segurança só com os pés firmes na plataforma e trave de novo antes de tirar os pés.",
-    "Nunca ponha as mãos nos joelhos nem entre a plataforma e o batente."
-  ],
-  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
 }

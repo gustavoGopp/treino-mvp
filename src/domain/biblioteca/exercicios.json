@@ -72,7 +72,7 @@
    "plano"
   ],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "supino-barra"
  },
  {
   "id": "supino-reto",
@@ -146,7 +146,7 @@
    "polia"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "supino-inclinado-polia"
  },
  {
   "id": "supino-polia",
@@ -183,7 +183,7 @@
    "polia"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "supino-polia"
  },
  {
   "id": "flexao",
@@ -326,7 +326,7 @@
    "apoiado"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "crucifixo-halteres"
  },
  {
   "id": "crucifixo-polia-baixo",
@@ -360,7 +360,7 @@
    "polia"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "crucifixo-polia-baixo"
  },
  {
   "id": "crucifixo-elastico",
@@ -504,7 +504,7 @@
    "estavel"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "puxada-barra-reta"
  },
  {
   "id": "barra-fixa-supinada",
@@ -685,7 +685,7 @@
   ],
   "tags": [],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "remada-barra"
  },
  {
   "id": "remada-unilateral-halter",
@@ -758,7 +758,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "remada-invertida"
  },
  {
   "id": "remada-elastico",
@@ -865,7 +865,7 @@
   ],
   "tags": [],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "desenvolvimento-barra"
  },
  {
   "id": "desenvolvimento-unilateral",
@@ -901,7 +901,7 @@
    "unilateral"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "desenvolvimento-unilateral"
  },
  {
   "id": "desenvolvimento-elastico",
@@ -1098,7 +1098,7 @@
    "apoiado"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "crucifixo-inverso"
  },
  {
   "id": "face-pull-elastico",
@@ -1228,7 +1228,7 @@
   ],
   "tags": [],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "rosca-barra-w"
  },
  {
   "id": "rosca-alternada",
@@ -1293,7 +1293,7 @@
    "alongado"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "rosca-polia-costas"
  },
  {
   "id": "rosca-elastico",
@@ -1425,7 +1425,7 @@
    "estavel"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "triceps-barra-reta"
  },
  {
   "id": "triceps-frances-halter",
@@ -1530,7 +1530,7 @@
    "montagem"
   ],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "agachamento-barra"
  },
  {
   "id": "leg-press",
@@ -1566,7 +1566,7 @@
    "estavel"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "leg-press"
  },
  {
   "id": "goblet",
@@ -1636,7 +1636,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "agachamento-halteres"
  },
  {
   "id": "agachamento-elastico",
@@ -1814,7 +1814,7 @@
    "unilateral"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "afundo-tras"
  },
  {
   "id": "afundo-peso-corpo",
@@ -1920,7 +1920,7 @@
   ],
   "tags": [],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "terra-romeno-barra"
  },
  {
   "id": "stiff",
@@ -1990,7 +1990,7 @@
    "estavel"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "pull-through"
  },
  {
   "id": "stiff-unilateral",
@@ -2123,7 +2123,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "cadeira-flexora"
  },
  {
   "id": "mesa-flexora",
@@ -2155,7 +2155,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "mesa-flexora"
  },
  {
   "id": "flexao-bola",
@@ -2251,7 +2251,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "cadeira-extensora"
  },
  {
   "id": "panturrilha",
@@ -2347,7 +2347,7 @@
    "estavel"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "panturrilha-leg-press"
  },
  {
   "id": "panturrilha-chao",
@@ -2471,7 +2471,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abdominal-declinado"
  },
  {
   "id": "abdominal-chao",
@@ -2539,7 +2539,7 @@
    "montagem"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "hack"
  },
  {
   "id": "agachamento-smith",
@@ -2577,7 +2577,7 @@
    "montagem"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "agachamento-smith"
  },
  {
   "id": "terra-hexagonal",
@@ -2614,7 +2614,7 @@
    "montagem"
   ],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "terra-hexagonal"
  },
  {
   "id": "goblet-kettlebell",
@@ -2649,7 +2649,7 @@
    "kettlebell"
   ],
   "carga": "kettlebell",
-  "animacaoId": null
+  "animacaoId": "goblet-kettlebell"
  },
  {
   "id": "supino-smith",
@@ -2687,7 +2687,7 @@
    "montagem"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "supino-smith"
  },
  {
   "id": "supino-maquina",
@@ -2724,7 +2724,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "supino-maquina"
  },
  {
   "id": "mergulho",
@@ -2759,7 +2759,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "mergulho"
  },
  {
   "id": "mergulho-graviton",
@@ -2795,7 +2795,7 @@
    "estavel"
   ],
   "carga": "assistida",
-  "animacaoId": null
+  "animacaoId": "mergulho-graviton"
  },
  {
   "id": "voador",
@@ -2830,7 +2830,7 @@
    "alongado"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "voador"
  },
  {
   "id": "puxada-frente",
@@ -2866,7 +2866,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "puxada-frente"
  },
  {
   "id": "barra-fixa-graviton",
@@ -2902,7 +2902,7 @@
    "estavel"
   ],
   "carga": "assistida",
-  "animacaoId": null
+  "animacaoId": "barra-fixa-graviton"
  },
  {
   "id": "remada-baixa-estacao",
@@ -2940,7 +2940,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "remada-baixa-estacao"
  },
  {
   "id": "remada-articulada",
@@ -2977,7 +2977,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "remada-articulada"
  },
  {
   "id": "remada-suspensao",
@@ -3049,7 +3049,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "desenvolvimento-maquina"
  },
  {
   "id": "voador-invertido",
@@ -3081,7 +3081,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "voador-invertido"
  },
  {
   "id": "rosca-scott",
@@ -3118,7 +3118,7 @@
    "braco-a-frente"
   ],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "rosca-scott"
  },
  {
   "id": "rosca-maquina",
@@ -3151,7 +3151,7 @@
    "braco-a-frente"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "rosca-maquina"
  },
  {
   "id": "triceps-maquina",
@@ -3183,7 +3183,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "triceps-maquina"
  },
  {
   "id": "hiperextensao",
@@ -3217,7 +3217,7 @@
    "apoiado"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "hiperextensao"
  },
  {
   "id": "hip-thrust",
@@ -3254,7 +3254,7 @@
    "montagem"
   ],
   "carga": "barra",
-  "animacaoId": null
+  "animacaoId": "hip-thrust"
  },
  {
   "id": "coice-maquina",
@@ -3287,7 +3287,7 @@
    "unilateral"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "coice-maquina"
  },
  {
   "id": "coice-polia",
@@ -3320,7 +3320,7 @@
    "unilateral"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "coice-polia"
  },
  {
   "id": "abducao-maquina",
@@ -3352,7 +3352,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "abducao-maquina"
  },
  {
   "id": "abducao-polia",
@@ -3385,7 +3385,7 @@
    "unilateral"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "abducao-polia"
  },
  {
   "id": "aducao-maquina",
@@ -3417,7 +3417,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "aducao-maquina"
  },
  {
   "id": "panturrilha-em-pe-maquina",
@@ -3450,7 +3450,7 @@
    "alongado"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "panturrilha-em-pe-maquina"
  },
  {
   "id": "panturrilha-sentada",
@@ -3484,7 +3484,7 @@
    "montagem"
   ],
   "carga": "anilha",
-  "animacaoId": null
+  "animacaoId": "panturrilha-sentada"
  },
  {
   "id": "abdominal-maquina",
@@ -3516,7 +3516,7 @@
    "estavel"
   ],
   "carga": "maquina",
-  "animacaoId": null
+  "animacaoId": "abdominal-maquina"
  },
  {
   "id": "remada-curvada-halteres",
@@ -3584,7 +3584,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "crucifixo-invertido-curvado"
  },
  {
   "id": "ponte-gluteo-halter",
@@ -3653,7 +3653,7 @@
    "montagem"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "supino-chao-halteres"
  },
  {
   "id": "flexao-fechada",
@@ -4999,7 +4999,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "desenvolvimento-em-pe-halteres"
  },
  {
   "id": "elevacao-lateral-unilateral",
@@ -5031,7 +5031,7 @@
    "unilateral"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "elevacao-lateral-unilateral"
  },
  {
   "id": "triceps-frances-unilateral-halter",
@@ -5066,7 +5066,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "triceps-frances-unilateral-halter"
  },
  {
   "id": "triceps-testa-halteres",
@@ -5099,7 +5099,7 @@
    "deitado"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "triceps-testa-halteres"
  },
  {
   "id": "crucifixo-invertido-sentado",
@@ -5132,7 +5132,7 @@
    "apoiado"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "crucifixo-invertido-sentado"
  },
  {
   "id": "rosca-scott-banco-inclinado",
@@ -5167,7 +5167,7 @@
    "unilateral"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "rosca-scott-banco-inclinado"
  },
  {
   "id": "crucifixo-inclinado-halteres",
@@ -5203,7 +5203,7 @@
    "apoiado"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "crucifixo-inclinado-halteres"
  },
  {
   "id": "rosca-concentrada",
@@ -5236,7 +5236,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "rosca-concentrada"
  },
  {
   "id": "elevacao-lateral-deitado",
@@ -5269,7 +5269,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "elevacao-lateral-deitado"
  },
  {
   "id": "remada-curvada-elastico",
@@ -5305,7 +5305,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "remada-curvada-elastico"
  },
  {
   "id": "remada-unilateral-elastico",
@@ -5342,7 +5342,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "remada-unilateral-elastico"
  },
  {
   "id": "abertura-elastico",
@@ -5373,7 +5373,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "abertura-elastico"
  },
  {
   "id": "abducao-elastico",
@@ -5405,7 +5405,7 @@
    "unilateral"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "abducao-elastico"
  },
  {
   "id": "coice-elastico",
@@ -5437,7 +5437,7 @@
    "unilateral"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "coice-elastico"
  },
  {
   "id": "elevacao-lateral-unilateral-elastico",
@@ -5469,7 +5469,7 @@
    "unilateral"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "elevacao-lateral-unilateral-elastico"
  },
  {
   "id": "rosca-martelo-elastico",
@@ -5500,7 +5500,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "rosca-martelo-elastico"
  },
  {
   "id": "triceps-elastico-alto",
@@ -5532,7 +5532,7 @@
    "montagem"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "triceps-elastico-alto"
  },
  {
   "id": "barra-fixa-negativa",
@@ -5568,7 +5568,7 @@
    "montagem"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "barra-fixa-negativa"
  },
  {
   "id": "caminhada-lateral-mini-band",
@@ -5600,7 +5600,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "caminhada-lateral-mini-band"
  },
  {
   "id": "elevacao-lateral-caneleira",
@@ -5629,7 +5629,7 @@
   ],
   "tags": [],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "elevacao-lateral-caneleira"
  },
  {
   "id": "crucifixo-invertido-caneleira",
@@ -5661,7 +5661,7 @@
    "apoiado"
   ],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "crucifixo-invertido-caneleira"
  },
  {
   "id": "coice-caneleira",
@@ -5692,7 +5692,7 @@
    "unilateral"
   ],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "coice-caneleira"
  },
  {
   "id": "extensao-joelho-mini-band",
@@ -5723,7 +5723,7 @@
    "sentado"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "extensao-joelho-mini-band"
  },
  {
   "id": "abducao-deitado-mini-band",
@@ -5755,7 +5755,7 @@
    "unilateral"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "abducao-deitado-mini-band"
  },
  {
   "id": "stiff-unilateral-kettlebell",
@@ -5790,7 +5790,7 @@
    "kettlebell"
   ],
   "carga": "kettlebell",
-  "animacaoId": null
+  "animacaoId": "stiff-unilateral-kettlebell"
  },
  {
   "id": "face-pull-suspensao",
@@ -5825,6 +5825,6 @@
    "montagem"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "face-pull-suspensao"
  }
 ]

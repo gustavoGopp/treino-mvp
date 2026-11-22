@@ -3,6 +3,8 @@
   "name": "Puxada ajoelhado na polia alta com barra reta",
   "short": "Puxada ajoelhado",
   "target": "Costas",
+  "feel": "Costas. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir o ombro, confira se está puxando pela frente: atrás da cabeça força o ombro.",
   "setupEq": [
     "Polia no alto, com a barra reta."
   ],
@@ -26,10 +28,22 @@
     "Início: braços estendidos para cima, costas alongadas.",
     "Fim: barra na parte de cima do peito."
   ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
   "cues": [
     "Cotovelos para baixo.",
     "Peito aberto.",
     "Estende tudo na volta."
+  ],
+  "check": [
+    "Polia no alto, com a barra reta",
+    "Ajoelhado, braços estendidos para cima",
+    "Pegada um pouco mais aberta que os ombros",
+    "Tronco reto"
+  ],
+  "vary": "O que não muda: o tronco reto, a barra pela frente até a parte de cima do peito e a volta até os braços estenderem.",
+  "extLabels": [
+    "alongado",
+    "barra no peito"
   ],
   "errors": [
     {

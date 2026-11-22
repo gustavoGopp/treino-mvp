@@ -3,6 +3,8 @@
   "name": "Agachamento no hack",
   "short": "Hack",
   "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir a lombar, ela está saindo do encosto no fundo: desça só até onde a lombar fica colada no encosto.",
   "setupEq": [
     "Pés no meio da plataforma, na largura do quadril ou dos ombros."
   ],
@@ -25,10 +27,23 @@
     "Embaixo: joelho além de 90°, lombar colada no encosto.",
     "Em cima: joelhos quase estendidos, sem travar."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Desce fundo.",
     "Joelhos na direção dos pés.",
     "Lombar no encosto."
+  ],
+  "check": [
+    "Trava de segurança solta antes da 1ª repetição",
+    "Costas e ombros apoiados, ombros sob as almofadas",
+    "Pés no meio da plataforma",
+    "Joelhos na direção dos pés"
+  ],
+  "vary": "Os pés ficam na largura do quadril ou dos ombros. O que não muda: a lombar colada no encosto, os joelhos na direção dos pés, a descida até o joelho passar de 90° e a subida sem travar os joelhos.",
+  "note": "<b>Montagem segura:</b> solte a trava de segurança antes da 1ª repetição e trave de novo ao terminar.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -52,8 +67,5 @@
       "desc": "Esticar com força no topo."
     }
   ],
-  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
-  "montagem": [
-    "Solte a trava de segurança antes da 1ª repetição e trave de novo ao terminar."
-  ]
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
 }

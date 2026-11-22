@@ -3,6 +3,8 @@
   "name": "Abdução de quadril deitado de lado com mini-band",
   "short": "Abdução deitado mini-band",
   "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo da perna que sobe.",
+  "feelNote": "Se sentir a frente do quadril, o quadril está rolando para trás ou a perna está indo para a frente. Se sentir a cintura, está subindo alto demais.",
   "setupEq": [
     "Uma mini-band e um colchonete."
   ],
@@ -32,10 +34,23 @@
     "Embaixo: as pernas quase juntas.",
     "Em cima: até onde a perna sobe sem o quadril rolar."
   ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
   "cues": [
     "Quadril empilhado.",
     "Perna um pouco para trás.",
     "Dedos para a frente."
+  ],
+  "check": [
+    "Cabeça no braço de baixo",
+    "Perna de baixo dobrada",
+    "Mini-band nos tornozelos",
+    "Quadril empilhado"
+  ],
+  "vary": "A mini-band pode ir nos tornozelos ou, mais fácil, acima dos joelhos. O que não muda: o quadril empilhado, a perna um pouco para trás e os dedos para a frente.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se a mini-band tem rachaduras ou está ressecada.",
+  "extLabels": [
+    "embaixo",
+    "em cima"
   ],
   "errors": [
     {
@@ -53,9 +68,6 @@
       "title": "Subir alto demais com tranco",
       "desc": "A cintura dobra. Suba só até onde o quadril não mexe."
     }
-  ],
-  "montagem": [
-    "Antes da série, confira se a mini-band tem rachaduras ou está ressecada."
   ],
   "carga": "Registre a intensidade da mini-band. Ela sobe pelas intensidades da sua mini-band; em cada uma, primeiro mais esticada e depois com descida de 3 s."
 }

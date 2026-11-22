@@ -28,7 +28,8 @@ describe('local.treino-do-dia: o Bruno faz o Superior A na academia do bairro', 
       ['remada-baixa', 'remada-apoiada'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      // (até a ligação das 81 animações, em 22/11/2026, o dia terminava no face pull, que ali trocava pelo crucifixo inverso;
+      // hoje o programa já traz o crucifixo inverso, que dá para fazer nos dois lugares)
     ]);
     expect(trocas[0]!.motivo).toBe('aqui não tem polia alta: puxada ajoelhado na polia alta com barra reta → barra fixa');
     expect(trocas.every((t) => t.regraId === 'local.treino-do-dia')).toBe(true);
@@ -116,10 +117,15 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     // Desde o R5-CL (07/11/2026), a vaga da remada (a apoiada até o pacote 2; hoje, a baixa) recebe a rosca (com a rosca concentrada, o dia tem outra rosca
     // possível), e o crucifixo invertido curvado fica livre para a vaga do ombro de trás (antes, ele entrava na da remada
     // e a do ombro de trás ficava de fora).
-    const face = trocas.find((t) => t.vaga === 'crucifixo-invertido-polia' || t.vaga === 'face-pull')!;
-    expect(face.entrou).toBe('crucifixo-invertido-curvado');
+    // Desde a ligação das 81 animações (22/11/2026), o dia tem a rosca Scott, que ali troca pela rosca alternada, e o
+    // ombro de trás é o voador invertido. A vaga da remada recebe o crucifixo invertido curvado (outro músculo do dia), e
+    // a do voador invertido fica de fora, com o motivo verdadeiro: o único equivalente já entrou no treino de hoje.
+    expect(remada.entrou).toBe('crucifixo-invertido-curvado');
+    const ombroDeTras = trocas.find((t) => t.vaga === 'voador-invertido')!;
+    expect(ombroDeTras.entrou).toBeUndefined();
+    expect(ombroDeTras.motivo).toContain('o único equivalente possível aqui (crucifixo invertido curvado com halteres) já está no treino de hoje');
     // Sem equivalente nenhum ali, o texto antigo continua: nenhum crucifixo de peito é possível só com halteres.
-    expect(trocas.find((t) => t.vaga === 'crucifixo-polia')!.motivo).toContain('nenhum equivalente de crucifixo');
+    expect(trocas.find((t) => t.vaga === 'voador')!.motivo).toContain('nenhum equivalente de crucifixo');
   });
 });
 
@@ -205,7 +211,8 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
       ['remada-baixa', 'remada-apoiada'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      // (até a ligação das 81 animações, em 22/11/2026, o dia terminava no face pull, que ali trocava pelo crucifixo inverso;
+      // hoje o programa já traz o crucifixo inverso, que dá para fazer nos dois lugares)
     ]);
     expect(e2.ultimoLocalId).toBe('local-2');
   });
