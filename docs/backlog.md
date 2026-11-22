@@ -668,3 +668,4 @@ A tabela inteira está em `revisoes/regras-x-codigo.md`. Ficou para depois:
 - O limite de 300 pedidos de aviso por IP por dia é opinião; rever com o uso.
 - Se o som de arquivo parar a música no iPhone (linha E da tabela), medir a saída técnica `navigator.audioSession` antes de levar a escolha ao Gustavo.
 - Os textos de privacidade já aprovados que dizem que a foto é a única coisa que sai do aparelho (`privacidade.tsx`, a regra `privacidade.foto`, os termos) esperam a frase nova do Gustavo.
+- `api/descanso.ts`, `apagar`: desfazer um número que a fila não conhece volta como erro `fila` (502), porque a fila não responde 404 nesse caso. O app ignora a resposta; falta só o log dizer o código que a fila devolveu.

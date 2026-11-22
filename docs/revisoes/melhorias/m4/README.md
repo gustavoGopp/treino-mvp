@@ -131,7 +131,7 @@ Três valores no painel da Vercel (projeto `treino-mvp`, Settings, Environment V
 
 Depois de salvar, publicar de novo.
 
-**Conferido no endereço de teste do ramo, em 22/11/2026:** o Gustavo pôs as três chaves na Vercel e desligou a proteção por login dos endereços de teste. A função carrega e responde; a chave pública chegou ao app publicado. Jeito de conferir sem ver segredo nenhum: `POST /api/descanso` com uma ação desconhecida responde `desligado` (503) se falta chave e `pedido` (400) se as três existem; `desmarcar` de um número que não existe responde 200 se a senha da fila vale e `fila` (502) se a fila recusou.
+**Conferido no endereço de teste do ramo, em 22/11/2026:** o Gustavo pôs as três chaves na Vercel e desligou a proteção por login dos endereços de teste. A função carrega e responde; a chave pública chegou ao app publicado. Jeito de conferir sem ver segredo nenhum: `POST /api/descanso` com uma ação desconhecida responde `desligado` (503) se falta chave e `pedido` (400) se as três existem. Para a senha da fila: `marcar` com um endereço de aviso de mentira (do `fcm.googleapis.com`) e 10 min de prazo devolve o número do pedido, e `desmarcar` com esse número responde 200. Foi o que aconteceu: a fila aceitou marcar e desfazer. **Engano meu no caminho:** supus que desfazer um número inventado responderia "não achei" (404); a fila responde outro erro, a função devolve `fila` (502), e isso me fez achar por alguns minutos que a senha estava errada. Não muda nada para quem usa (o app ignora a resposta do desfazer).
 
 ## 6. Decisões do Gustavo que o passo 2 pede
 
