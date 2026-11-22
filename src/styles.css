@@ -831,6 +831,9 @@ button.valor-livre{min-height:var(--h48);padding:0;border:0;background:none;colo
 .tabela-descanso{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
 .aseguir{display:flex;align-items:center;gap:var(--s16);padding:var(--s16) 0}
 .aseguir .miniatura{width:5rem}
+/* o Boneco do "a seguir" é um botão: abre o guia ampliado, com o relógio correndo por baixo; em celular alto, maior */
+button.ver-movimento{flex:none;min-width:44px;min-height:44px;border:0;padding:0;background:none;cursor:pointer;border-radius:var(--r8)}
+@media (min-height:780px){.aseguir .miniatura{width:7.5rem}}
 .aseguir .txt{flex:1;display:flex;flex-direction:column;gap:var(--s4);min-width:0}
 .aseguir b{font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
 .feitas-linha{padding:var(--s16) 0;border-top:1px solid var(--linha)}
@@ -864,7 +867,7 @@ a.faixa-descanso{text-decoration:none}
 }
 @media (max-height:700px){.cartao-hoje .numeros{display:none}.acao-fixa{padding-top:var(--s8);padding-bottom:calc(var(--s8) + env(safe-area-inset-bottom,0px))}}
 /* celular muito baixo: o descanso larga o piso do relógio e a miniatura, para a ação principal caber na 1ª tela */
-@media (max-height:700px){.descanso-topo{min-height:0;gap:var(--s8)}.aseguir .miniatura{display:none}.descanso{gap:var(--s8)}}
+@media (max-height:700px){.descanso-topo{min-height:0;gap:var(--s8)}.aseguir .ver-movimento{display:none}.descanso{gap:var(--s8)}}
 
 /* ---------- o fim do treino ---------- */
 .mudou{display:flex;flex-direction:column;gap:var(--s8)}

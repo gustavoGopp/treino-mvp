@@ -2437,6 +2437,14 @@ Imagens: `revisoes/melhorias/m2/montagem-na-serie.png` e `revisoes/melhorias/m2/
 - **O peso:** a tela do programa foi a 289,4 kB (limite de 290) com a nota junto; a nota passou a baixar só quando a folha do exercício a pede, e a tela ficou em 287,8 kB.
 - **Exemplo do corte de tempo (degrau 1b):** o exemplo medido do teste era o da academia completa, que agora já cabe sem a troca; passou a ser o da casa com halteres, banco e elásticos (30, 34 e 33 min → 30, 33 e 33).
 
+**O resto do lote M2, no mesmo dia**
+
+- **O descanso como hora de aprender.** No descanso, o Boneco do "a seguir" virou um toque: abre o movimento grande (com "Lento", ângulos e as quatro abas), e o relógio segue correndo por baixo. Em celular alto (780 px ou mais) ele ficou maior (de 80 para 120 px de largura). O relógio, os botões e a ordem da tela não mudaram. Imagens: `revisoes/melhorias/m2/descanso-antes.png`, `descanso-depois.png` e `descanso-guia-ampliado.png`.
+- **A cabeça descoberta ganhou teste de tela** nos cinco tamanhos do aceite (320 × 568 a 412 × 839): nenhum traço do desenho encosta no rótulo da fase, ao longo de uma volta do movimento.
+- **Juntar os três palcos num componente só ficou para o D4** (decisão técnica): não muda nada para quem usa e mexe em três telas já conferidas.
+
+**GitHub.** A junção da ligação das 81 animações (`794c0f1f`) foi para a `main` com o ok do Gustavo em 22/11/2026.
+
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Meu app de treino tinha 171 exercícios e só 90 com o boneco animado. Os outros 81 apareciam em texto. Hoje os 171 têm o boneco. O curioso foi o efeito colateral: o app preferia, no empate, o exercício que tinha animação. Com todos animados, quase um terço dos programas trocou algum exercício, e a régua de qualidade não se mexeu."

@@ -102,6 +102,9 @@ export function Treino() {
   const [verSerie, setVerSerie] = useState(false);
   // o Boneco ampliado, por cima do treino (um toque no palco abre; lote M2, adiantado em 22/11/2026)
   const [guiaAmpliado, setGuiaAmpliado] = useState(false);
+  // Lote M2, item 3 ("o descanso como hora de aprender"): no descanso, um toque no Boneco do "a seguir" abre o guia
+  // ampliado desse exercício (o da próxima série, ou o próximo), com o relógio correndo por baixo.
+  const [guiaDoDescanso, setGuiaDoDescanso] = useState<string | null>(null);
   // Aberto sozinho, na 1ª vez da pessoa naquele exercício (ideia B do estudo da tela do treino, escolhida pelo Gustavo
   // em 22/11/2026): a folha ganha o botão "Entendi", que leva ao registro.
   const [guiaDaPrimeiraVez, setGuiaDaPrimeiraVez] = useState(false);
@@ -133,6 +136,8 @@ export function Treino() {
   const i = Math.min(indice, itens.length - 1);
   const { x, feito } = itens[i]!;
   const completo = feito.series.length >= x.series || !!feito.interrompido;
+  /** O que o descanso anuncia: a próxima série deste exercício ou, com ele completo, o próximo exercício. */
+  const aSeguir = completo ? itens[i + 1]?.x : x;
   const vaga = vagaDe(feito.noLugarDe ?? feito.exId);
   const trocaDoLocal = doTreino.trocas.find((t) => t.vaga === feito.noLugarDe && t.entrou === feito.exId);
   const ultimo = i === itens.length - 1;
@@ -140,6 +145,7 @@ export function Treino() {
   const calNaSessao = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
 
   const fecharGuia = () => {
+    setGuiaDoDescanso(null);
     setGuiaAmpliado(false);
     setGuiaDaPrimeiraVez(false);
   };
@@ -262,7 +268,20 @@ export function Treino() {
               <div className="aseguir">
                 {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: sem animação, a caixa "guia em texto" guardava o lugar de um
                     desenho que não existe; no descanso fica só o que vem a seguir */}
-                {(completo ? itens[i + 1]?.x : x)?.animacaoId && <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)!.animacaoId} />}
+                {aSeguir?.animacaoId && (
+                  <button
+                    type="button"
+                    className="ver-movimento"
+                    aria-label={`Ver o movimento de ${aSeguir.nome.toLowerCase()}`}
+                    aria-haspopup="dialog"
+                    onClick={() => {
+                      setGuiaDoDescanso(aSeguir.animacaoId);
+                      setGuiaAmpliado(true);
+                    }}
+                  >
+                    <Miniatura animacaoId={aSeguir.animacaoId} />
+                  </button>
+                )}
                 <div className="txt">
                   {completo ? (
                     <>
@@ -483,9 +502,9 @@ export function Treino() {
           </Folha>
         )}
 
-        {guiaAmpliado && x.animacaoId && painel === 'nenhum' && (
+        {guiaAmpliado && (guiaDoDescanso ?? x.animacaoId) && painel === 'nenhum' && (
           <Folha titulo="Como fazer" aoFechar={fecharGuia} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
-            <PalcoTreino key={`grande-${x.animacaoId}`} animacaoId={x.animacaoId} ampliado />
+            <PalcoTreino key={`grande-${guiaDoDescanso ?? x.animacaoId}`} animacaoId={(guiaDoDescanso ?? x.animacaoId)!} ampliado />
             {guiaDaPrimeiraVez && (
               <button type="button" className="btn entendi" onClick={fecharGuia}>
                 Entendi
