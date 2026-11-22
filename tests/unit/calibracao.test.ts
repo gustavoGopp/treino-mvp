@@ -112,7 +112,7 @@ describe('progressao.calibracao: a saída (R5a; d-longo-prazo.md, D1)', () => {
     const fim = fimDaCalibracao(series, alvo)!;
     // |24 − 17,5| = 6,5 e |12 − 17,5| = 5,5: fica o de 5 kg.
     expect(fim).toMatchObject({ proxima: kg(5), perto: true, regraId: 'progressao.calibracao' });
-    expect(fim.motivo).toMatch(/^Fim da calibração: 5 kg/);
+    expect(fim.motivo).toMatch(/^Peso acertado: 5 kg/);
   });
 
   it('no empate, fica a carga mais leve', () => {

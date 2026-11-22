@@ -13,6 +13,8 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // Pacote 2 (15/11/2026): o 1º do Corpo todo A é o goblet (dois lados, 8–15); antes era o búlgaro ("8–12 cada lado").
   // O "cada lado" segue conferido no exercício de um lado só do dia, a remada unilateral.
   await expect(painel.locator('.series').first()).toHaveText(/^\d séries? de 8 a 15$/);
+  // lote M3 (22/11/2026): a semana leve do começo se anuncia, a zero toque (a Ana é iniciante: fase de aprendizado)
+  await expect(page.getByText('Começo leve: menos séries nas 2 primeiras semanas.')).toBeVisible();
   await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d séries? de 8 a 12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();

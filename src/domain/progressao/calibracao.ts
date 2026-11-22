@@ -108,7 +108,7 @@ export function fimDaCalibracao(acertos: Pick<SerieRegistrada, 'carga' | 'reps' 
     acao: 'manter',
     proxima: melhor.carga,
     perto: true,
-    motivo: `Fim da calibração: ${texto(melhor.carga)} é a carga mais perto da sua faixa. Daqui em diante, as repetições sobem e depois a carga.`,
+    motivo: `Peso acertado: ${texto(melhor.carga)} é a carga mais perto da sua faixa. Daqui em diante, as repetições sobem e depois a carga.`,
     regraId: r('progressao.calibracao'),
   };
 }

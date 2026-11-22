@@ -45,7 +45,7 @@ export function Evolucao() {
                     </small>
                   </span>
                   <span className="pe-marcas">
-                    {p.acerto ? <span className="marca neutra">acerto da carga</span> : p.marcas.map((m) => <span key={m} className="marca">{TEXTO_MARCA[m]}</span>)}
+                    {p.acerto ? <span className="marca neutra">acertando o peso</span> : p.marcas.map((m) => <span key={m} className="marca">{TEXTO_MARCA[m]}</span>)}
                   </span>
                 </li>
               ))}

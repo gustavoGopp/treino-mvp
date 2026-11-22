@@ -58,7 +58,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   // 8 kg × 9 com 1 de reserva (10 até a falha), para a faixa 8 a 15 sobrando 3 ou 4 do goblet: abaixo do que a tela
   // mostra (de 11 a 19 até a falha), pesada. A série fica como acerto da carga. (Até 22/11/2026 o exemplo era com 2 de
   // reserva: hoje isso está dentro da meta mostrada, e a carga fica; lote M3, tests/unit/calibracao.test.ts.)
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · sobrando 1 · acerto da carga');
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · sobrando 1 · acertando o peso');
 
   // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 6 kg; eram 7 kg na faixa 8–12 do búlgaro,
   // até o pacote 2, de 15/11/2026).

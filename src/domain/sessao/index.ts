@@ -349,7 +349,7 @@ export function sugestaoDoExercicio(
     if (fim) return { acao: 'manter', proxima: noInventario(fim.proxima, op).carga, motivo: fim.motivo, regraId: fim.regraId };
     const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
     const prox = noInventario(c.proxima, op).carga;
-    return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
+    return { acao: 'calibrar', proxima: prox, motivo: `Ainda acertando o peso: comece por ${textoCarga(prox, x.exId)} e ajuste na 1ª série.`, regraId: r('progressao.calibracao') };
   }
   const bloco = opcoes.bloco;
   const noBloco = bloco ? hist({ desde: bloco.inicio }) : h;
@@ -366,7 +366,7 @@ export function sugestaoDoExercicio(
         if (s) {
           const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
           const prox = noInventario(c.proxima, op).carga;
-          return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
+          return { acao: 'calibrar', proxima: prox, motivo: `Ainda acertando o peso: comece por ${textoCarga(prox, x.exId)} e ajuste na 1ª série.`, regraId: r('progressao.calibracao') };
         }
         return {
           acao: 'calibrar',

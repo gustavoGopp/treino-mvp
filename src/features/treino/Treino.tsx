@@ -172,7 +172,7 @@ export function Treino() {
       {feito.series.map((s, n) => (
         <li key={n}>
           <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · sobrando {textoDoRir(s.rir, RIR.registroMax)}
-          {s.calibracao ? ' · acerto da carga' : ''}
+          {s.calibracao ? ' · acertando o peso' : ''}
           {s.dor ? ` · dor ${s.dor}` : ''}
           {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
         </li>

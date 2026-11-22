@@ -23,7 +23,7 @@ const ACAO: Record<string, string> = {
   estagnado: 'Estagnado',
   ajustar: 'Ajustar',
   interromper: 'Trocar',
-  calibrar: 'Calibrar',
+  calibrar: 'Acertar o peso', // lote M3: "Calibrar" não é palavra de quem começa
 };
 
 const HOJE_FOI = [

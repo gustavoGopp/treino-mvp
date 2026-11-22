@@ -268,6 +268,17 @@ export function Programa() {
     navigate('/treino');
   };
   const mostrarVolta = volta && !estado.sessaoAtual;
+  // Lote M3 da análise crítica (22/11/2026): a semana leve do começo se anuncia. O programa mostrava menos séries e
+  // menos minutos que o pedido sem dizer por quê; a explicação inteira continua em "Entenda o treino".
+  // (iniciante.fase-aprendizado, readaptacao.semana1 e readaptacao.semana2; a semana leve pedida tem a sua própria linha.)
+  const faseDeHoje = hoje.fase && hoje.fase.fatorSeries < 1 && !hoje.semanaLeve ? hoje.fase : undefined;
+  const comecoLeve = !faseDeHoje
+    ? null
+    : faseDeHoje.regraId === 'iniciante.fase-aprendizado'
+      ? 'Começo leve: menos séries nas 2 primeiras semanas.'
+      : faseDeHoje.fatorSeries <= 0.6
+        ? 'Volta leve: cerca de metade das séries nesta semana.'
+        : 'Volta leve: menos séries nesta semana.';
 
   return (
     <div className="wrap app com-nav">
@@ -344,6 +355,7 @@ export function Programa() {
                   <span className="rotulo">minutos</span>
                 </div>
               </div>
+              {comecoLeve && <p className="ajuda comeco-leve">{comecoLeve}</p>}
             </>
           )}
           {!estado.sessaoAtual && locais.length > 1 && (
