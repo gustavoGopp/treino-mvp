@@ -1035,6 +1035,24 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
   const comCarga = (e: Exercicio) => !['peso-corpo', 'elastico', 'assistida'].includes(e.carga);
   const pesoLivre = (e: Exercicio) => ['barra', 'halter', 'kettlebell', 'anilha'].includes(e.carga);
+  const ehDeForca = (x: ExercicioPrescrito) => x.porque.some((q) => q.regraId === r('objetivo.forca.faixa-compostos'));
+  /** A prescrição de força num exercício grande com carga (objetivo.forca.faixa-compostos, .descanso e .seguranca). */
+  const comForca = (x: ExercicioPrescrito): ExercicioPrescrito => {
+    const e = POR_ID[x.exId]!;
+    return {
+      ...x,
+      reps: OBJETIVO_FORCA.reps,
+      descansoSeg: OBJETIVO_FORCA.descansoSeg,
+      rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
+      porque: [
+        ...x.porque,
+        {
+          regraId: r('objetivo.forca.faixa-compostos'),
+          texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de ${tempoPorExtenso(OBJETIVO_FORCA.descansoSeg)} neste exercício grande.${pesoLivre(e) ? ` Com peso livre, termine com ${OBJETIVO_FORCA.rirPesoLivre[0]} a ${OBJETIVO_FORCA.rirPesoLivre[1]} repetições de reserva.` : ''}`,
+        },
+      ],
+    };
+  };
   const ajustarForca = (exs: ExercicioPrescrito[]): ExercicioPrescrito[] => {
     if (!forca) return exs;
     let k = 0;
@@ -1042,19 +1060,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const e = POR_ID[x.exId]!;
       if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
       k++;
-      return {
-        ...x,
-        reps: OBJETIVO_FORCA.reps,
-        descansoSeg: OBJETIVO_FORCA.descansoSeg,
-        rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
-        porque: [
-          ...x.porque,
-          {
-            regraId: r('objetivo.forca.faixa-compostos'),
-            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de ${tempoPorExtenso(OBJETIVO_FORCA.descansoSeg)} neste exercício grande.${pesoLivre(e) ? ` Com peso livre, termine com ${OBJETIVO_FORCA.rirPesoLivre[0]} a ${OBJETIVO_FORCA.rirPesoLivre[1]} repetições de reserva.` : ''}`,
-          },
-        ],
-      };
+      return comForca(x);
     });
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
@@ -1232,10 +1238,14 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     for (const z of todos) for (const id of new Set(z.exercicios.map((y) => y.exId))) usos.set(id, (usos.get(id) ?? 0) + 1);
     const c = ctx.doisLadosNoLugar(e, f, (id) => d.exercicios.some((y) => y.exId === id), usos, todos.length);
     if (!c) return null;
-    return prescrever(c, f, f.niveis.findIndex((ids) => ids.includes(ctx.noLugarDe(x.exId))), x.series, ctx, [
+    const novo = prescrever(c, f, f.niveis.findIndex((ids) => ids.includes(ctx.noLugarDe(x.exId))), x.series, ctx, [
       { regraId: r('tempo.corte'), texto: `Entrou no lugar de ${e.nome.toLowerCase()} para o treino caber no tempo: trabalha os dois lados de uma vez, e cada série leva metade do tempo.` },
       ...lembretesDeDor(c, triagem),
     ]);
+    // O exercício que sai tinha a prescrição de força (5 a 8 repetições, descanso longo): o que entra fica com ela, se
+    // também for grande e com carga. Antes (conferência regra por regra, 22/11/2026), a troca voltava à faixa comum, e
+    // o dia ficava com menos de 2 exercícios de força.
+    return ehDeForca(x) && novo.tipo === 'composto' && comCarga(c) ? comForca(novo) : novo;
   };
   // tempo.superserie (16/11/2026): a dupla de dois exercícios que carregam a lombar sem apoio é o último recurso. O corte é
   // feito sem ela; se isso custar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que o corte
@@ -1632,7 +1642,7 @@ export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): P
       },
       {
         regraId: r('objetivo.cutting.texto'),
-        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, é normal o músculo parar de crescer; a carga pode continuar subindo.',
+        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, o músculo tende a crescer pouco; a carga pode continuar subindo.',
       },
     ];
   if (objetivo === 'forca')
@@ -1649,7 +1659,7 @@ export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): P
     return [
       {
         regraId: r('objetivo.saude.texto'),
-        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), que o app não prescreve.',
+        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), ou 75 a 150 de vigorosa, que o app não prescreve.',
       },
     ];
   return [];
@@ -1783,7 +1793,7 @@ function porqueDoEquipamento(e: Exercicio): Porque | null {
           : 'As caneleiras abrem este complemento sem máquina. Com carga leve, a série só conta perto da falha.',
     };
   if (pede('mini_band'))
-    return { regraId: r('equipamento.mini-band'), texto: 'A mini-band abre a abdução sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.' };
+    return { regraId: r('equipamento.mini-band'), texto: `A mini-band abre ${e.padrao === 'isolador-quadriceps' ? 'a extensão de joelho' : 'a abdução'} sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.` };
   if (pede('roda_abdominal'))
     return {
       regraId: r('equipamento.roda-abdominal'),

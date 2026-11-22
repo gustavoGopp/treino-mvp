@@ -5,7 +5,7 @@
   },
   "volume.semanal.minimo": {
     "titulo": "Mínimo de séries nos músculos em foco",
-    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado). Quando o treino não cabe no tempo, um músculo em foco não desce abaixo disso."
+    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado). Quando o treino não cabe no tempo, um músculo em foco que está acima disso não desce abaixo."
   },
   "volume.semanal.alvo": {
     "titulo": "Séries por semana nos músculos em foco",
@@ -17,11 +17,11 @@
   },
   "volume.prioridade.foco-primeiro": {
     "titulo": "Para onde vai o tempo que sobra",
-    "frase": "Se um grupo de foco tem exercício possível, o tempo que sobra vira séries primeiro nos músculos dele, até 10 por semana (iniciante), 16 (intermediário) ou 20 (avançado). Os outros sobem depois, até 6 séries abaixo do músculo em foco que tem menos e no máximo até 8, 12 ou 14. Há travas para não desequilibrar empurrar e puxar (razão até 1,5) nem quadríceps e posteriores (0,5 a 2). Sem foco possível, o tempo que sobra vai para todos."
+    "frase": "Com foco possível, o tempo que sobra vira séries primeiro nele, até 10 por semana (iniciante), 16 (intermediário) ou 20 (avançado). Os outros sobem depois, até 6 séries abaixo do músculo em foco que tem menos e no máximo até 8, 12 ou 14. Há travas de equilíbrio: empurrar e puxar (até 1,5), quadríceps e posteriores (0,5 a 2). Com 3 grupos de foco ou mais, o foco para na meta. Sem foco possível, a sobra vai para todos."
   },
   "volume.prioridade.segundo-exercicio": {
     "titulo": "Segundo exercício para o músculo em foco",
-    "frase": "O músculo em foco que fica abaixo da meta ganha 1 exercício a mais, de outra função do mesmo músculo (que o trabalha de outro jeito), se couber no tempo e nos limites de séries. Funções diferentes fazem crescer regiões diferentes do músculo."
+    "frase": "O músculo em foco que fica abaixo da meta ganha exercício a mais (até 2), de outra função do mesmo músculo quando ela existe, se couber no tempo e nos limites de séries. Funções diferentes fazem crescer regiões diferentes do músculo."
   },
   "volume.prioridade.ate-dois": {
     "titulo": "Quantos grupos de foco escolher",
@@ -29,11 +29,11 @@
   },
   "volume.semanal.maximo": {
     "titulo": "Máximo de séries por semana em cada músculo",
-    "frase": "O máximo padrão de séries por semana em cada músculo é 10 (iniciante), 16 (intermediário) ou 20 (avançado)."
+    "frase": "O máximo padrão de séries por semana em cada músculo é 10 (iniciante), 16 (intermediário) ou 20 (avançado). Ele vale para o tempo que sobra: as séries que os exercícios do programa já somam podem passar dele, sem nunca passar de 20."
   },
   "volume.semanal.teto-padrao": {
     "titulo": "Limite absoluto de séries por músculo na semana",
-    "frase": "Nenhum músculo passa de 20 séries por semana: acima de cerca de 20, o ganho a mais é pequeno e incerto. Para iniciante e intermediário, isso vale sempre. O avançado só passa se escolher isso de forma explícita."
+    "frase": "Nenhum músculo passa de 20 séries por semana: acima de cerca de 20, o ganho a mais é pequeno e incerto. Vale para todos os níveis: o app não oferece passar disso."
   },
   "volume.semanal.minimo-eficaz": {
     "titulo": "Mínimo de séries nos músculos sem foco",
@@ -97,11 +97,11 @@
   },
   "reps.faixa.por-tipo": {
     "titulo": "Repetições por tipo de exercício",
-    "frase": "A faixa padrão é de 6–10 ou 8–12 repetições nos exercícios compostos e de 10–20 nos isoladores."
+    "frase": "A faixa padrão é de 6–10 ou 8–12 repetições nos exercícios compostos e de 10–20 nos isoladores. Cada exercício tem a sua faixa, e alguns saem do padrão: as roscas ficam em 8–12, e o leg press e o hack, em 8–15."
   },
   "reps.faixa.degrau": {
     "titulo": "Repetições com peso do corpo e elástico",
-    "frase": "Nos exercícios de peso do corpo e de elástico, as faixas têm de 5 a 8 repetições de largura e vão até 20: flexão 8–15, agachamento 12–20, afundo 10–16, búlgaro 8–15, ponte e abdominal 12–20, elásticos compostos 10–16, face pull 12–20, barra fixa 5–10."
+    "frase": "Nos exercícios de peso do corpo e de elástico, as faixas têm de 5 a 8 repetições de largura e vão até 20: flexão 8–15, agachamento 12–20, afundo 10–16, búlgaro 8–15, ponte e abdominal 12–20, elásticos compostos 10–16, face pull 12–20, barra fixa 5–10. Alguns saem disso: barra fixa só na descida 3–6, nórdico 6–10."
   },
   "reps.teto.carga-limitada": {
     "titulo": "Repetições quando a carga é limitada",
@@ -117,15 +117,15 @@
   },
   "rir.serie-efetiva": {
     "titulo": "Que série conta nas séries da semana",
-    "frase": "Nas séries por semana, conta a série feita com até 4 repetições de reserva. Não contam as séries com 5 ou mais repetições de reserva nem as de aquecimento."
+    "frase": "Nas séries por semana, conta a série feita com até 4 repetições de reserva. Não contam as séries com 5 ou mais repetições de reserva nem as de aquecimento. No registro, a última opção é “4 ou mais”, que conta como 4."
   },
   "rir.carga-baixa": {
     "titulo": "Repetições de reserva nas séries longas",
-    "frase": "Séries de 15 repetições ou mais pedem menos repetições de reserva, porque com carga baixa chegar perto da falha pesa mais. Vale nos exercícios em que o meio da faixa de repetições é 15 ou mais. Iniciante: 1–2 a partir da 3ª semana (nas semanas 1–2 vale a fase de aprendizado, com 3–4). Intermediário e avançado: 0–2."
+    "frase": "Séries de 15 repetições ou mais pedem menos repetições de reserva, porque com carga baixa chegar perto da falha pesa mais. Vale nos exercícios em que o meio da faixa de repetições é 15 ou mais. Iniciante: 1–2 a partir da 3ª semana (nas semanas 1–2 vale a fase de aprendizado, com 3–4). Intermediário e avançado já ficam em até 2: 1–2 nos compostos e 0–1 nos isoladores."
   },
   "rir.leitura": {
     "titulo": "Como o app lê as repetições de reserva",
-    "frase": "As pessoas informam cerca de 1 repetição de reserva a menos do que têm, e o app lê o número com essa margem (2 vale 2–3). Acima de cerca de 12 repetições e longe da falha, o erro é maior. A experiência não o diminui."
+    "frase": "As pessoas informam cerca de 1 repetição de reserva a menos do que têm, (2 costuma valer 2–3). O app usa o número que você informa, sem corrigir; a folga está na meta de reserva. Acima de cerca de 12 repetições e longe da falha, o erro é maior. A experiência não o diminui."
   },
   "rir.calibracao": {
     "titulo": "Teste das repetições de reserva",
@@ -153,7 +153,7 @@
   },
   "progressao.reduzir": {
     "titulo": "Quando reduzir a carga",
-    "frase": "A carga cai de 5 a 10% quando as repetições ficam abaixo do mínimo da faixa em 2 treinos seguidos. Com dor, vale a regra da nota de dor: redução de 10 a 20% com nota de 3 a 5, e o exercício é encerrado acima de 5."
+    "frase": "A carga cai de 5 a 10%, ou para a carga disponível logo abaixo (com poucos halteres, o salto pode ser maior), quando as repetições ficam abaixo do mínimo da faixa em 2 treinos seguidos. Com dor, vale a regra da nota de dor: redução de 10 a 20% com nota de 3 a 5, e o exercício é encerrado acima de 5."
   },
   "progressao.incremento.halteres": {
     "titulo": "Aumento de carga com halteres e kettlebell",
@@ -197,7 +197,7 @@
   },
   "equipamento.fim-da-escada": {
     "titulo": "Quando a escada de dificuldade acaba",
-    "frase": "No último degrau, com a série no topo da faixa, a sugestão avisa com discrição: dali em diante é buscar até cerca de 30 repetições; acima disso, o peso do corpo rende menos. O app nunca avisa de antemão pelo seu nível nem sugere compra."
+    "frase": "No último degrau, com a série no topo da faixa, o motivo da sugestão, em “Entenda o treino”, diz que dali em diante é buscar até cerca de 30 repetições; acima disso, o peso do corpo rende menos. O app nunca avisa de antemão pelo seu nível nem sugere compra."
   },
   "progressao.salto-grande": {
     "titulo": "Quando o próximo peso é um salto grande",
@@ -209,7 +209,7 @@
   },
   "progressao.calibracao": {
     "titulo": "Acerto da carga, série a série",
-    "frase": "Vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. A cada série, o app soma repetições e reserva e compara com o alvo (meio da faixa de repetições mais meio da reserva pedida): 1) até 2 de diferença, mantém; 2) pesada, desce; 3) leve, sobe, no máximo 25%. Na semana 1 da volta de pausa, a carga só desce. Após 3 séries sem chegar perto, fica a carga mais próxima do alvo (no empate, a mais leve). Com dor de nota 3 ou mais, quem manda é a regra da dor."
+    "frase": "Vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. A cada série, o app soma repetições e reserva: 1) dentro da faixa que a tela mostra (do mínimo de repetições com a menor reserva ao máximo com a maior), mantém; 2) abaixo dela, a carga está pesada e desce; 3) acima, está leve e sobe, no máximo 25% e no mínimo 1 passo. A conta mira o meio da faixa. Na semana 1 da volta de pausa, a carga só desce. Após 3 séries sem chegar perto, fica a carga mais próxima do alvo (no empate, a mais leve). Com dor de nota 3 ou mais, quem manda é a regra da dor."
   },
   "progressao.troca-equivalente": {
     "titulo": "Ao trocar por um exercício equivalente",
@@ -217,7 +217,7 @@
   },
   "progressao.criterios-invalidos": {
     "titulo": "O que não conta para progredir",
-    "frase": "Repetições com amplitude encurtada ou com embalo não contam. A dor muscular tardia, a que vem depois do treino, nunca entra na decisão de progredir."
+    "frase": "Repetições com amplitude encurtada ou com embalo não contam: é orientação para quem treina, porque o app ainda não pergunta pela amplitude. A dor muscular tardia, a que vem depois do treino, nunca entra na decisão de progredir."
   },
   "progressao.estagnacao": {
     "titulo": "Quando um exercício para de evoluir",
@@ -245,7 +245,7 @@
   },
   "iniciante.fase-aprendizado": {
     "titulo": "Fase de aprendizado do iniciante",
-    "frase": "Só para o iniciante: 2 a 3 semanas de foco na técnica, com 3 a 4 repetições de reserva e 3/4 das séries do programa. A carga sobe quando a técnica estiver estável. Nessas semanas não há “estagnado” nem sugestão de semana leve."
+    "frase": "Só para o iniciante: 2 semanas de foco na técnica, com 3 a 4 repetições de reserva e 3/4 das séries do programa. A carga sobe quando a técnica estiver estável. Nessas semanas não há “estagnado” nem sugestão de semana leve."
   },
   "deload.semana-leve": {
     "titulo": "Semana leve",
@@ -253,7 +253,7 @@
   },
   "acompanhamento.semana": {
     "titulo": "O resumo da sua semana",
-    "frase": "Mostra os treinos feitos e planejados (segunda a domingo, em qualquer local) e, por músculo, as séries que contam contra a meta. A série em que o músculo trabalha de forma indireta vale meia. Estados: na meta, crescendo (4 ou mais), mantendo (1 ou mais) ou ainda não treinou. Na volta de pausa, na fase de aprendizado e na semana leve, a meta é a daquela semana. E “X das últimas 8 semanas com treino”, nunca uma sequência que zera."
+    "frase": "Mostra os treinos feitos e planejados (segunda a domingo, em qualquer local) e, por músculo, as séries contra a meta. A série em que o músculo só ajuda vale meia. Estados: na meta, dá para crescer (4 ou mais), dá para manter (1 ou mais) ou ainda não treinou. Na volta de pausa, na fase de aprendizado e na semana leve, a meta é a daquela semana. E “X das últimas 8 semanas com treino”, nunca sequência que zera."
   },
   "acompanhamento.mensagens": {
     "titulo": "Mensagens sem culpa",
@@ -261,7 +261,7 @@
   },
   "acompanhamento.evolucao": {
     "titulo": "Evolução de cada exercício",
-    "frase": "Mostra a melhor série de cada treino (carga, repetições e reserva), com as marcas “subiu a carga” e “recorde” (mais repetições com a mesma carga, ou mais carga com as repetições dentro da faixa). Séries de acerto da carga e de amplitude encurtada não contam como recorde. Não estima carga máxima: acima de 12 repetições, as fórmulas divergem de 15 a 52 pontos percentuais. Nas máquinas, é separada por local. A alternativa tem evolução própria."
+    "frase": "Mostra a melhor série de cada treino (carga, repetições e reserva), com as marcas “subiu a carga” (mais carga que no treino anterior) e “recorde” (mais repetições do que nunca com aquela carga ou com uma mais pesada). Séries de acerto da carga e de amplitude encurtada não contam como recorde. Não estima carga máxima: acima de 12 repetições, as fórmulas divergem de 15 a 52 pontos percentuais. Nas máquinas, é separada por local. A alternativa tem evolução própria."
   },
   "selecao.equivalencia-equipamento": {
     "titulo": "Máquina, peso livre, polia ou halter",
@@ -281,11 +281,11 @@
   },
   "selecao.variacao": {
     "titulo": "Quando variar os exercícios",
-    "frase": "Os exercícios ficam os mesmos durante o bloco, de 4 a 8 semanas. A variação é planejada, dentro da mesma função (por exemplo, entre a rosca inclinada e a rosca Scott), nunca por sorteio."
+    "frase": "Os exercícios ficam os mesmos até você pedir um programa novo; vale mantê-los de 4 a 8 semanas. Quando variar, que seja dentro da mesma função (por exemplo, entre a rosca inclinada e a rosca Scott), nunca por sorteio. O app ainda não planeja essa troca."
   },
   "selecao.variacoes-equivalentes": {
     "titulo": "Variar entre exercícios equivalentes",
-    "frase": "Com mais de uma opção equivalente no mesmo nível da função, o exercício muda de um dia para o outro e você ganha alternativas para trocar no dia. Variar não muda o ganho de músculo e melhora um pouco o prazer e a motivação. Com 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último na escolha: entra um equivalente; sem equivalente, desce um nível da mesma função; sem nada abaixo, repete."
+    "frase": "Com mais de uma opção equivalente no mesmo nível, o exercício muda de um dia para o outro (o iniciante repete o mesmo, para praticar) e você ganha alternativas no dia. Variar não muda o ganho de músculo e melhora um pouco a motivação. Com 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último na escolha: entra um equivalente; sem equivalente, desce um nível da mesma função; sem nada abaixo, repete."
   },
   "selecao.corpo-livre-ampliado": {
     "titulo": "Exercícios sem carga, só com apoio",
@@ -313,7 +313,7 @@
   },
   "selecao.complementos": {
     "titulo": "Dois exercícios para quatro músculos",
-    "frase": "Quadríceps, posteriores da coxa (isquiotibiais), tríceps e peitoral recebem, cada um, 2 exercícios por semana que se complementam, quando o equipamento permite."
+    "frase": "Quadríceps, posteriores da coxa (isquiotibiais) e peitoral recebem, cada um, 2 exercícios por semana que se complementam, quando o equipamento e o tempo permitem. O tríceps recebe o 2º quando o dia tem lugar para o complemento."
   },
   "selecao.peitoral-inclinado": {
     "titulo": "Exercício inclinado para o peito",
@@ -321,7 +321,7 @@
   },
   "selecao.triceps-acima-cabeca": {
     "titulo": "Tríceps com o braço acima da cabeça",
-    "frase": "A semana tem ao menos 1 exercício de tríceps com o braço acima da cabeça. Sem carga, a 2ª opção é a extensão na suspensão (ombro a 90–120°). Sem suspensão, a 3ª é a extensão com o peso do corpo, mãos num apoio fixo."
+    "frase": "A semana tem ao menos 1 exercício de tríceps com o braço acima da cabeça, quando ele cabe no tempo (nos treinos mais curtos pode não caber). Sem carga, a 2ª opção é a extensão na suspensão (ombro a 90–120°). Sem suspensão, a 3ª é a extensão com o peso do corpo, mãos num apoio fixo."
   },
   "selecao.flexora-sentada": {
     "titulo": "Flexão de joelho sentada ou deitada",
@@ -337,7 +337,7 @@
   },
   "selecao.funcao-da-vaga": {
     "titulo": "Como o app escolhe cada exercício",
-    "frase": "Cada lugar do treino pede uma função (um padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento, que só diz o que é possível. No empate no mesmo nível da função, ganha, nesta ordem, o que: 1) poupa a região com dor de 3 a 5; 2) é mais estável (só iniciante); 3) permite mais carga; 4) trabalha os dois lados de uma vez, em máquina, polia ou barra; 5) varia entre os dias; 6) você prefere; 7) tem animação aprovada; 8) é o mais comum e mais simples de montar. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o exercício de um lado só continua valendo. Ele também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando você marcou “prefiro este”. O motivo dos dois lados é o tempo: a série de um lado só leva o dobro, e a pesquisa não achou diferença de resultado. Havendo outra opção, o dia tem só um afundo."
+    "frase": "Cada lugar do treino pede uma função (um padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento, que só diz o que é possível. No empate no mesmo nível da função, ganha, nesta ordem, o que: 1) poupa a região com dor de 3 a 5; 2) é mais estável (só iniciante); 3) permite mais carga; 4) trabalha os dois lados de uma vez, em máquina, polia ou barra; 5) varia entre os dias (para o iniciante, o que repete); 6) você prefere; 7) tem animação aprovada; 8) é o mais comum e mais simples de montar. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o exercício de um lado só continua valendo. Ele também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando você marcou “prefiro este”. O motivo dos dois lados é o tempo: a série de um lado só leva o dobro, e a pesquisa não achou diferença de resultado. Havendo outra opção, o dia tem só um afundo."
   },
   "selecao.lombar-no-dia": {
     "titulo": "Poupar a lombar dentro do treino",
@@ -345,11 +345,11 @@
   },
   "selecao.pratica-do-iniciante": {
     "titulo": "Iniciante repete os mesmos exercícios na semana",
-    "frase": "Quando o mesmo tipo de movimento aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de receber outro equivalente: a mesma puxada nos dois dias em que puxa de cima. Nunca em todos os dias, havendo outro. Só vale se não deixar um dia longo demais, um dia fraco nem empurrar muito mais que puxar. Variar o exercício não rende mais músculo, e quem começa ganha mais repetindo o gesto."
+    "frase": "Quando o mesmo tipo de movimento aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de outro equivalente: a mesma puxada nos dois dias em que puxa de cima. Com 3 dias ou mais, nunca em todos os dias, havendo outro. Só vale sem deixar um dia longo demais, um dia fraco nem empurrar bem mais que puxar. Variar não rende mais músculo, e quem começa ganha mais repetindo o gesto."
   },
   "selecao.dia-sem-principal": {
     "titulo": "Dia que perdeu exercícios pela dor",
-    "frase": "O lugar de um exercício multiarticular que a dor esvaziou recebe primeiro outro exercício do mesmo músculo: a puxada ajoelhado sai com dor no joelho e o lugar fica com uma remada. Os lugares que continuam vazios recebem exercícios possíveis dos outros músculos previstos para aquele dia (fora o abdômen), um por músculo que o dia ainda não tem, sem passar do máximo de séries por músculo na semana. O dia que ficaria só com abdominal recebe ao menos um, do músculo mais abaixo da meta. Se nenhum for possível, o aviso diz o motivo. Quando o que entrou não é músculo do dia, o aviso diz “de outros músculos”. Lugar vazio pela dor não vira aviso de falta de equipamento. Se a dor acima de 5 deixa algum dia com menos de 3 exercícios ou sem multiarticular, e você não escolheu a divisão, a semana sai na divisão do mesmo número de dias que tem menos dias assim, quase sempre a de corpo todo. O app diz por que a divisão mudou, e nada do que a dor tirou volta. A troca só vale se não custar outra coisa: um músculo sem nenhuma série, a coxa ou o empurrar e puxar fora de equilíbrio, um dia longo demais ou o foco com menos séries."
+    "frase": "O lugar de um exercício multiarticular que a dor esvaziou recebe primeiro outro exercício do mesmo músculo: a puxada ajoelhado sai com dor no joelho e o lugar fica com uma remada. Os lugares que continuam vazios recebem exercícios possíveis dos outros músculos previstos para aquele dia (fora o abdômen), um por músculo que o dia ainda não tem, sem passar do máximo de séries por músculo na semana. O dia que ficaria só com abdominal recebe ao menos um, do músculo mais abaixo da meta. Se nenhum for possível, o aviso diz o motivo. Quando o que entrou não é músculo do dia, o aviso diz “de outros músculos”. Lugar vazio pela dor não vira aviso de falta de equipamento. Se a dor acima de 5 deixa algum dia com menos de 3 exercícios ou sem multiarticular, e você não escolheu a divisão, a semana sai na divisão do mesmo número de dias que tem menos dias assim, quase sempre a de corpo todo. O app diz por que a divisão mudou, e nada do que a dor tirou volta. A troca só vale se não custar outra coisa: um músculo sem nenhuma série, a coxa ou o empurrar e puxar fora de equilíbrio, um dia longo demais ou o foco abaixo da meta que tinha alcançado."
   },
   "selecao.vaga-sem-equipamento": {
     "titulo": "Quando falta equipamento para um exercício",
@@ -357,7 +357,7 @@
   },
   "selecao.preferencia": {
     "titulo": "O botão “Prefiro este”",
-    "frase": "Entre equivalentes da mesma função, você pode tocar em “Prefiro este”. A preferência entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética. Vale nos próximos programas e nas trocas entre locais. Nada vem preferido, e um toque desfaz. A dor acima de 5 tira o exercício preferido do mesmo jeito."
+    "frase": "Entre equivalentes da mesma função, você pode tocar em “Prefiro este”. A preferência entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem de referência da função. Vale nos próximos programas e nas trocas entre locais. Nada vem preferido, e um toque desfaz. A dor acima de 5 tira o exercício preferido do mesmo jeito."
   },
   "local.treino-do-dia": {
     "titulo": "Treino do dia em outro local",
@@ -369,7 +369,7 @@
   },
   "selecao.exercicios-por-musculo": {
     "titulo": "Quantos exercícios por músculo na semana",
-    "frase": "Músculos grandes (peito, costas, quadríceps, posteriores e glúteos) recebem 2 exercícios diferentes por semana, de funções que se complementam. Os pequenos recebem 1, ou 2 se forem prioridade. Funções diferentes fazem crescer regiões diferentes do músculo."
+    "frase": "Músculos grandes (peito, costas, quadríceps, posteriores e glúteos) recebem 2 exercícios diferentes por semana, de funções que se complementam, quando o equipamento e o tempo permitem. Os pequenos recebem pelo menos 1. Funções diferentes fazem crescer regiões diferentes do músculo."
   },
   "selecao.isolador-obrigatorio": {
     "titulo": "Isoladores que não saem do treino",
@@ -381,7 +381,7 @@
   },
   "selecao.manter-no-bloco": {
     "titulo": "Por quanto tempo manter os exercícios",
-    "frase": "Os exercícios ficam os mesmos por 4–8 semanas, e o programa só muda quando você pede. Na troca de bloco, a variação fica dentro da mesma função."
+    "frase": "O programa só muda quando você pede: os exercícios ficam os mesmos, e vale mantê-los por 4–8 semanas. O app ainda não propõe trocar de bloco."
   },
   "selecao.gluteo": {
     "titulo": "Ordem dos exercícios para glúteos",
@@ -393,11 +393,11 @@
   },
   "selecao.mergulho": {
     "titulo": "Mergulho nas paralelas",
-    "frase": "O mergulho fica fora do treino do iniciante, por ser mais complexo que o nível dele. Para intermediário e avançado, só entra com o ombro sem restrição, como 2º nível do empurrar horizontal, atrás dos supinos, e como 2º nível do complemento de tríceps."
+    "frase": "O mergulho fica fora do treino do iniciante, por ser mais complexo que o nível dele. Para intermediário e avançado, sai com dor acima de 5 no ombro ou no cotovelo, e entra como 2º nível do empurrar horizontal, atrás dos supinos, e como 2º nível do complemento de tríceps."
   },
   "selecao.aducao-complemento": {
     "titulo": "Adução no dia de pernas",
-    "frase": "A adução é um complemento opcional do dia de pernas: na máquina, com caneleira deitado de lado ou, sem nada, deitado de lado sem carga. Só entra quando pernas ou glúteos são prioridade e há tempo, sai primeiro nos cortes e nunca gera aviso."
+    "frase": "A adução é um complemento opcional do dia de pernas: na máquina, com caneleira deitado de lado ou, sem nada, deitado de lado sem carga. Só entra quando pernas ou glúteos são prioridade e há tempo, e nunca gera aviso."
   },
   "selecao.abdomen-prioridade": {
     "titulo": "Abdômen como prioridade",
@@ -405,11 +405,11 @@
   },
   "selecao.complexidade-nivel": {
     "titulo": "Complexidade dos exercícios por nível",
-    "frase": "Cada exercício tem complexidade de 1 a 3. O iniciante vai até 2; o intermediário e o avançado, até 3. Ficam fora do iniciante o mergulho nas paralelas (ombro), o nórdico (dor forte na 1ª sessão) e a roda abdominal (lombar)."
+    "frase": "Cada exercício tem complexidade de 1 a 3. O iniciante vai até 2; o intermediário e o avançado, até 3. Ficam fora do iniciante, por exemplo, o mergulho nas paralelas (ombro), o nórdico (dor forte na 1ª sessão), a roda abdominal (lombar) e os exercícios com barra livre, como o agachamento e o supino."
   },
   "avaliador.gravidade": {
     "titulo": "Como o avaliador classifica cada achado",
-    "frase": "O avaliador mede qualquer programa, o gerado pelo app ou um digitado com exercícios da biblioteca, pelas mesmas regras do gerador, e dá a cada achado a regra, o nível de evidência e o próximo passo. Só a segurança bloqueia: um “sim” na triagem sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que você pediu para evitar, complexidade acima do seu nível. O resto só orienta: “ajustar”, quando dá para mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); “limite”, quando o equipamento, a dor ou o tempo não deixam, e aí o texto diz que você não precisa fazer nada; “informação”, para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. “Está bom” quer dizer nenhum achado de segurança, de alerta ou de ajustar."
+    "frase": "O avaliador mede o seu programa pelas mesmas regras do gerador, e dá a cada achado a regra, o nível de evidência e o próximo passo. Só a segurança bloqueia: um “sim” na triagem sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que você pediu para evitar, complexidade acima do seu nível. O resto só orienta: “ajustar”, quando dá para mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); “limite”, quando o equipamento, a dor ou o tempo não deixam, e aí o texto diz que você não precisa fazer nada; “informação”, para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. “Está bom” quer dizer nenhum achado de segurança, de alerta ou de ajustar."
   },
   "avaliador.empurrar-puxar": {
     "titulo": "Equilíbrio entre empurrar e puxar",
@@ -421,7 +421,7 @@
   },
   "equipamento.escada-carga-leve": {
     "titulo": "Quando o halter ficou leve",
-    "frase": "A ordem é fixa: 1) mais repetições, até cerca de 30; 2) um lado de cada vez ou uma variação mais difícil; 3) descida de 3 a 4 segundos, com até 8 segundos por repetição; 4) pausa no alongamento ou 1,5 repetição; 5) aviso discreto de que a escada acabou. O app não sugere comprar nada."
+    "frase": "A sugestão resume, em “Entenda o treino”, esta ordem: 1) mais repetições, até cerca de 30; 2) um lado de cada vez ou uma variação mais difícil; 3) descida de 3 a 4 segundos, com até 8 segundos por repetição; 4) pausa no alongamento ou 1,5 repetição; 5) no peso do corpo, o aviso de que a escada acabou. O app não sugere comprar nada."
   },
   "equipamento.bfr": {
     "titulo": "Treino com restrição de fluxo sanguíneo",
@@ -441,7 +441,7 @@
   },
   "equipamento.roda-abdominal": {
     "titulo": "Roda abdominal",
-    "frase": "Não entra no programa do iniciante, porque a lombar arqueia quando o abdômen cede. No intermediário e no avançado, é uma alternativa de exercício de abdômen, sem tirar as opções que já existem, e sai do programa se você tem dor lombar."
+    "frase": "Não entra no programa do iniciante, porque a lombar arqueia quando o abdômen cede. No intermediário e no avançado, é uma alternativa de exercício de abdômen, sem tirar as opções que já existem, e sai do programa com dor lombar acima de 5."
   },
   "equipamento.atalhos": {
     "titulo": "Atalhos na tela de equipamento",
@@ -453,11 +453,11 @@
   },
   "equipamento.sem-puxada-vertical": {
     "titulo": "Sem barra fixa nem polia alta",
-    "frase": "As séries de costas se mantêm com remadas, nesta preferência: invertida, unilateral com halter, puxada com elástico preso no alto. O pullover é só acessório. Um aviso diz o que falta e o que o programa tem de fato."
+    "frase": "As séries de costas se mantêm com remadas (invertida ou com halter, a que deixa pôr mais carga) e, sem elas, com a puxada com elástico preso no alto. Um aviso diz o que falta e o que o programa tem de fato."
   },
   "equipamento.sem-ancoragem": {
     "titulo": "Sem nada para puxar",
-    "frase": "Sem exercício possível de puxar, o app não inventa exercício de costas nem sugere compra. Um aviso diz que costas, bíceps e ombro de trás ficam sem exercício e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram."
+    "frase": "Sem exercício possível de puxar, o app não inventa exercício de costas nem sugere compra. Um aviso diz quais músculos ficam sem exercício (em geral costas, bíceps e ombro lateral) e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram."
   },
   "divisao.sem-puxar": {
     "titulo": "Divisão quando não dá para puxar",
@@ -473,7 +473,7 @@
   },
   "selecao.nordico": {
     "titulo": "Como o nórdico entra no treino",
-    "frase": "O nórdico não entra para o iniciante. Para o intermediário e o avançado: calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo, de 6 a 10 descidas. A 1ª semana tem 2 séries, o mínimo do programa. Começa com poucas séries porque a 1ª sessão dá dor forte por alguns dias, e aumentar as séries rápido dói mais."
+    "frase": "O nórdico não entra para o iniciante. Para o intermediário e o avançado: calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo, de 6 a 10 descidas. Comece com poucas descidas: a 1ª sessão dá dor forte por alguns dias, e aumentar as séries rápido dói mais. O app ainda não limita as séries na 1ª semana (o plano é 2)."
   },
   "objetivo.pergunta": {
     "titulo": "A pergunta sobre o seu objetivo",
@@ -497,7 +497,7 @@
   },
   "objetivo.forca.seguranca": {
     "titulo": "Segurança com peso livre e poucas repetições",
-    "frase": "Na faixa de poucas repetições do objetivo de força, o exercício multiarticular com peso livre (barra, halter, kettlebell) fica com 2 a 3 repetições de reserva, para intermediário e avançado. Nunca vá até a falha sem ajudante. Para o iniciante, a regra não se aplica."
+    "frase": "Na faixa de poucas repetições do objetivo de força, o exercício multiarticular com peso livre (barra, halter, kettlebell) ou em máquina de anilhas fica com 2 a 3 repetições de reserva, para intermediário e avançado. Nunca vá até a falha sem ajudante. Para o iniciante, a regra não se aplica."
   },
   "objetivo.saude.texto": {
     "titulo": "O que o treino cobre no objetivo saúde",
@@ -505,7 +505,7 @@
   },
   "equipamento.flexao-por-supino": {
     "titulo": "Sem banco ou supino",
-    "frase": "Entra a flexão de braço, que fica mais difícil nesta ordem, até a série chegar perto da falha dentro da faixa: 1) no chão; 2) descida de 3 segundos; 3) pés elevados; 4) pés elevados com descida de 3 segundos; 5) mãos em dois apoios ou pausa de 2 segundos embaixo. Quem não chega ao mínimo da faixa no chão faz a inclinada, com as mãos numa cadeira ou bancada."
+    "frase": "Entra a flexão de braço, que fica mais difícil nesta ordem, até a série chegar perto da falha dentro da faixa: 1) no chão; 2) descida de 3 segundos; 3) pés elevados; 4) pés elevados com descida de 3 segundos; 5) mãos em dois apoios ou pausa de 2 segundos embaixo. Quem não chega ao mínimo da faixa no chão faz menos repetições ou usa a alternativa: a flexão inclinada ainda não está no app."
   },
   "tempo.serie": {
     "titulo": "Quanto tempo leva uma série",
@@ -517,7 +517,7 @@
   },
   "tempo.aquecimento": {
     "titulo": "Aquecimento antes dos exercícios",
-    "frase": "Antes do 1º exercício multiarticular de cada região, você faz 1–2 séries leves do próprio exercício, cerca de 2–4 min. A última fica perto da carga do treino. O aquecimento geral não é exigido."
+    "frase": "Antes do 1º exercício multiarticular de cada região, você faz 1–2 séries leves do próprio exercício, cerca de 2–4 min. A última fica perto da carga do treino. O aquecimento geral não é exigido. O app lembra disso no 1º exercício do treino."
   },
   "tempo.colchao": {
     "titulo": "Margem para fila de equipamento",
@@ -553,15 +553,15 @@
   },
   "tempo.superserie": {
     "titulo": "Como funciona a supersérie",
-    "frase": "Junta músculos opostos ou que não competem, com cerca de 15 s entre os exercícios e descanso só entre rodadas; os dois ficam um depois do outro na lista do dia. Aumenta o esforço percebido e o dano muscular. Nunca 2 multiarticulares pesados de pernas nem o mesmo músculo. A dupla de dois exercícios que carregam a lombar sem apoio é o último recurso para o treino caber no tempo. Iniciante: só a partir da 3ª semana."
+    "frase": "Junta músculos opostos ou que não competem, com cerca de 15 s entre os exercícios e descanso só entre rodadas; os dois ficam seguidos na lista do dia. Aumenta o esforço e o dano muscular. Nunca 2 multiarticulares pesados de pernas nem o mesmo músculo. A dupla de dois exercícios que carregam a lombar sem apoio é o último recurso para caber no tempo. Iniciante: só a partir da 3ª semana. No treino, o app ainda não conduz a dupla."
   },
   "tempo.drop-set": {
     "titulo": "Como funciona o drop set",
-    "frase": "É 1 série mais 2 quedas de carga separadas por cerca de 10–15 s: vale 2–3 séries (o app conta 2). Só entra quando falta tempo e a carga pode ser reduzida (máquina, polia ou halter). Até 1 por exercício, nunca em multiarticular livre pesado."
+    "frase": "É 1 série mais 2 quedas de carga separadas por cerca de 10–15 s: vale 2–3 séries (o app conta 2). Só entra quando falta tempo e a carga pode ser reduzida (máquina, polia, halter, kettlebell ou caneleira). Até 1 por exercício, nunca em multiarticular livre pesado."
   },
   "tempo.outras-tecnicas": {
     "titulo": "Outras técnicas para encurtar o treino",
-    "frase": "O rest-pause (ou myo-reps) é permitido na última série de um exercício estável. Cluster sets e pré-exaustão não entram quando o treino precisa ser encurtado, porque não economizam tempo ou não trazem ganho."
+    "frase": "O rest-pause (ou myo-reps) é permitido na última série de um exercício estável. Cluster sets e pré-exaustão não entram quando o treino precisa ser encurtado, porque não economizam tempo ou não trazem ganho. É orientação: o app não prescreve nem registra essas técnicas."
   },
   "seguranca.triagem": {
     "titulo": "Perguntas de saúde antes do programa",
@@ -589,7 +589,7 @@
   },
   "seguranca.dor.escala": {
     "titulo": "Nota de dor de 0 a 10",
-    "frase": "A pergunta da dor em cada série é opcional, de 0 a 10. De 0 a 2, o treino segue. De 3 a 5: reduzir a carga em 10 a 20%, encurtar a amplitude ou ir mais devagar, e trocar o exercício se a dor não cair; sem carga menor (na placa 1, no halter mais leve e no 1º degrau), o app não manda reduzir. Acima de 5, ou dor aguda: o exercício é encerrado. Se a dor piora no treino seguinte ou dura mais de 1 a 2 semanas, o app recomenda avaliação. A nota fica na série: no próximo treino, a 1ª sugestão do exercício reduz a carga (nota de 3 a 5) ou indica a alternativa (acima de 5). Nota de 3 ou mais no mesmo exercício em 2 treinos seguidos traz um aviso de dor e de avaliação; se alguma passou de 5, o aviso indica a alternativa. A nota dada em “Senti algo” fica na última série feita ou, sem série, no próprio exercício, e passa para a série seguinte; se a dor encerra o exercício antes da 1ª série, a nota fica nele e vale como a de uma série."
+    "frase": "A nota de dor, de 0 a 10, é dada em “Senti algo”, a qualquer momento do treino; o app não pergunta em cada série. De 0 a 2, o treino segue. De 3 a 5: reduzir a carga em 10 a 20%, encurtar a amplitude ou ir mais devagar, e trocar o exercício se a dor não cair; sem carga menor (na placa 1, no halter mais leve e no 1º degrau), o app não manda reduzir. Acima de 5, ou dor aguda: o exercício é encerrado. Se a dor piora ou dura mais de 1 a 2 semanas, procure avaliação: o app não mede isso sozinho. A nota fica na série: no próximo treino, a 1ª sugestão do exercício reduz a carga (nota de 3 a 5) ou indica a alternativa (acima de 5). Nota de 3 ou mais no mesmo exercício em 2 treinos seguidos traz um aviso de dor e de avaliação; se alguma passou de 5, o aviso indica a alternativa. A nota dada em “Senti algo” fica na última série feita ou, sem série, no próprio exercício, e passa para a série seguinte; se a dor encerra o exercício antes da 1ª série, a nota fica nele e vale como a de uma série."
   },
   "seguranca.dor.programa": {
     "titulo": "Dor de hoje ao montar o programa",
@@ -609,7 +609,7 @@
   },
   "seguranca.sem-diagnostico": {
     "titulo": "O app não dá diagnóstico",
-    "frase": "O app não diagnostica: é uma ferramenta para você mesmo conduzir o seu treino. Ele nunca dá nome a uma lesão, nunca promete cura e nunca diz “pode treinar com dor 5/10”. A diferença entre a dor muscular tardia (a dor normal dos dias seguintes ao treino) e uma lesão aparece só como regra prática, e o app recomenda um profissional de Educação Física com registro no CREF."
+    "frase": "O app não diagnostica: é uma ferramenta para você mesmo conduzir o seu treino. Ele nunca dá nome a uma lesão, nunca promete cura e nunca diz “pode treinar com dor 5/10”. A diferença entre a dor muscular tardia (a dor normal dos dias seguintes ao treino) e uma lesão aparece só como regra prática, e o app recomenda avaliação por um médico ou profissional de Educação Física."
   },
   "seguranca.estalo-sem-dor": {
     "titulo": "Estalo no ombro sem dor",
@@ -629,7 +629,7 @@
   },
   "dados.copia": {
     "titulo": "Lembrete de exportar uma cópia",
-    "frase": "Os seus dados ficam só no aparelho, e o navegador pode apagá-los. O Safari apaga depois de 7 dias de uso do Safari sem visita ao site, quando o app não está instalado na tela de início. Qualquer navegador pode apagar por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente (os que o navegador aceitou não apagar). “Meus dados” mostra a data da última cópia exportada (“há N dias”) ou “nenhuma cópia”. A tela de início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo, se nunca houve cópia) e a última cópia tem mais de 7 dias (ou nunca houve). “Agora não” esconde o lembrete por 7 dias. O lembrete fica abaixo de “Começar o treino” e nunca cobre esse botão. Os números 3 e 7 do lembrete são escolha do projeto."
+    "frase": "Os seus dados ficam só no aparelho, e o navegador pode apagá-los. O Safari apaga depois de 7 dias de uso do Safari sem visita ao site, quando o app não está instalado na tela de início. Qualquer navegador pode apagar por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente (os que o navegador aceitou não apagar). “Meus dados” mostra a data da última cópia exportada (“há N dias”) ou “nenhuma cópia”. A tela de início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo, se nunca houve cópia) e a última cópia tem mais de 7 dias (ou nunca houve). “Agora não” esconde o lembrete por 7 dias. O lembrete fica depois dos exercícios, acima de “Começar o treino”, e nunca cobre esse botão. Os números 3 e 7 do lembrete são escolha do projeto."
   },
   "dados.instalar-iphone": {
     "titulo": "Aviso de instalar no iPhone e no iPad",
@@ -641,11 +641,11 @@
   },
   "treino.leitura": {
     "titulo": "Como ler o seu treino",
-    "frase": "As 5 linhas explicam série (um bloco de repetições seguidas), repetição (um movimento completo), carga (o peso usado), descanso (a pausa entre séries) e repetições de reserva. No iniciante, uma 6ª traz a fase de aprendizado. Fica aberto até o 1º treino terminado, depois recolhido."
+    "frase": "As 5 linhas explicam série (um bloco de repetições seguidas), repetição (um movimento completo), carga (o peso usado), descanso (a pausa entre séries) e repetições de reserva. No iniciante, uma 6ª traz a fase de aprendizado. Ficam em “Entenda o treino”, num bloco que você abre."
   },
   "nivel.classificacao": {
     "titulo": "Como o app define o seu nível",
-    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos, com progresso lento. Na dúvida, o mais baixo."
+    "frase": "Tempo de treino contínuo: iniciante, quem nunca treinou (que começa pela fase de aprendizado, sem as perguntas de pausa e de técnica), menos de uns 6 meses, mais de uns 6 meses parado ou sem confiança na técnica básica; intermediário, uns 6 a 24 meses, com técnica estável; avançado, mais de uns 2 anos (o app não pergunta pelo ritmo do progresso). Na dúvida, o mais baixo."
   },
   "tecnica.remada-baixa.polia": {
     "titulo": "Altura da polia na remada baixa",

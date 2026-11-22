@@ -59,6 +59,9 @@ describe('dor e sinais de alerta', () => {
     expect(s.acao).toBe('encerrar-sessao');
     expect(s.mensagem).toContain('192');
     expect(avaliarSinal('formigamento').acao).toBe('encerrar-exercicio');
+    // os dois sinais que a regra lista e a folha não tinha (conferência regra por regra, 22/11/2026)
+    expect(avaliarSinal('estalo-com-dor')).toMatchObject({ acao: 'encerrar-exercicio', regraId: 'seguranca.alerta.musculoesqueletico' });
+    expect(avaliarSinal('dor-irradiada')).toMatchObject({ acao: 'encerrar-exercicio', regraId: 'seguranca.alerta.musculoesqueletico' });
     // seguranca.alerta.musculoesqueletico: sinal de cauda equina pede atendimento urgente, e o treino acaba
     const urgente = avaliarSinal('cauda-equina');
     expect(urgente.acao).toBe('encerrar-sessao');

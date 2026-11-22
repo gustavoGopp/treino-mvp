@@ -1687,7 +1687,7 @@ export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): P
       },
       {
         regraId: r('objetivo.cutting.texto'),
-        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, é normal o músculo parar de crescer; a carga pode continuar subindo.',
+        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, o músculo tende a crescer pouco; a carga pode continuar subindo.',
       },
     ];
   if (objetivo === 'forca')
@@ -1704,7 +1704,7 @@ export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): P
     return [
       {
         regraId: r('objetivo.saude.texto'),
-        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), que o app não prescreve.',
+        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), ou 75 a 150 de vigorosa, que o app não prescreve.',
       },
     ];
   return [];
@@ -1836,7 +1836,7 @@ function porqueDoEquipamento(e: Exercicio): Porque | null {
           : 'As caneleiras abrem este complemento sem máquina. Com carga leve, a série só conta perto da falha.',
     };
   if (pede('mini_band'))
-    return { regraId: r('equipamento.mini-band'), texto: 'A mini-band abre a abdução sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.' };
+    return { regraId: r('equipamento.mini-band'), texto: `A mini-band abre ${e.padrao === 'isolador-quadriceps' ? 'a extensão de joelho' : 'a abdução'} sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.` };
   if (pede('roda_abdominal'))
     return {
       regraId: r('equipamento.roda-abdominal'),

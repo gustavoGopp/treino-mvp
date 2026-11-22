@@ -69,7 +69,8 @@
    "punho"
   ],
   "tags": [
-   "plano"
+   "plano",
+   "montagem"
   ],
   "carga": "barra",
   "animacaoId": "supino-barra"
@@ -425,7 +426,8 @@
    "cotovelo"
   ],
   "tags": [
-   "peso-corpo"
+   "peso-corpo",
+   "montagem"
   ],
   "carga": "peso-corpo",
   "animacaoId": "barra-fixa"
@@ -536,7 +538,8 @@
    "cotovelo"
   ],
   "tags": [
-   "peso-corpo"
+   "peso-corpo",
+   "montagem"
   ],
   "carga": "peso-corpo",
   "animacaoId": "barra-fixa-supinada"
@@ -683,7 +686,7 @@
    "cotovelo",
    "lombar"
   ],
-  "tags": [],
+  "tags": ["montagem"],
   "carga": "barra",
   "animacaoId": "remada-barra"
  },
@@ -863,7 +866,7 @@
    "cotovelo",
    "lombar"
   ],
-  "tags": [],
+  "tags": ["montagem"],
   "carga": "barra",
   "animacaoId": "desenvolvimento-barra"
  },
@@ -1226,7 +1229,7 @@
    "cotovelo",
    "punho"
   ],
-  "tags": [],
+  "tags": ["montagem"],
   "carga": "barra",
   "animacaoId": "rosca-barra-w"
  },
@@ -1918,7 +1921,7 @@
    "lombar",
    "quadril"
   ],
-  "tags": [],
+  "tags": ["montagem"],
   "carga": "barra",
   "animacaoId": "terra-romeno-barra"
  },
@@ -2437,7 +2440,8 @@
    "lombar"
   ],
   "tags": [
-   "peso-corpo"
+   "peso-corpo",
+   "montagem"
   ],
   "carga": "peso-corpo",
   "animacaoId": "elevacao-joelhos"
@@ -3115,7 +3119,8 @@
   ],
   "tags": [
    "apoiado",
-   "braco-a-frente"
+   "braco-a-frente",
+   "montagem"
   ],
   "carga": "barra",
   "animacaoId": "rosca-scott"

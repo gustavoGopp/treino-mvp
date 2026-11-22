@@ -4,7 +4,7 @@ import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
-import { diaEMes as dataCurta, faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
+import { diaEMes as dataCurta, faixaPorExtenso, reservaPorExtenso, seriesPorExtenso, tempoNoRelogio as tempo } from '../../domain/numero';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
@@ -268,6 +268,17 @@ export function Programa() {
     navigate('/treino');
   };
   const mostrarVolta = volta && !estado.sessaoAtual;
+  // Lote M3 da análise crítica (22/11/2026): a semana leve do começo se anuncia. O programa mostrava menos séries e
+  // menos minutos que o pedido sem dizer por quê; a explicação inteira continua em "Entenda o treino".
+  // (iniciante.fase-aprendizado, readaptacao.semana1 e readaptacao.semana2; a semana leve pedida tem a sua própria linha.)
+  const faseDeHoje = hoje.fase && hoje.fase.fatorSeries < 1 && !hoje.semanaLeve ? hoje.fase : undefined;
+  const comecoLeve = !faseDeHoje
+    ? null
+    : faseDeHoje.regraId === 'iniciante.fase-aprendizado'
+      ? 'Começo leve: menos séries nas 2 primeiras semanas.'
+      : faseDeHoje.fatorSeries <= 0.6
+        ? 'Volta leve: cerca de metade das séries nesta semana.'
+        : 'Volta leve: menos séries nesta semana.';
 
   return (
     <div className="wrap app com-nav">
@@ -344,6 +355,7 @@ export function Programa() {
                   <span className="rotulo">minutos</span>
                 </div>
               </div>
+              {comecoLeve && <p className="ajuda comeco-leve">{comecoLeve}</p>}
             </>
           )}
           {!estado.sessaoAtual && locais.length > 1 && (
@@ -370,7 +382,7 @@ export function Programa() {
                           <li key={t.vaga}>{t.motivo.charAt(0).toUpperCase() + t.motivo.slice(1)}.</li>
                         ))}
                       </ul>
-                      <p className="ajuda">Séries, RIR e descanso continuam os mesmos. Num aparelho novo, a 1ª série acerta a carga.</p>
+                      <p className="ajuda">Séries, reserva e descanso continuam os mesmos. Num aparelho novo, a 1ª série acerta a carga.</p>
                     </details>
                   )}
                 </div>
@@ -531,7 +543,7 @@ function Volta({
         </div>
         <div>
           <dt>Reserva</dt>
-          <dd>{faixa(rir)} repetições</dd>
+          <dd>{faixaPorExtenso(rir)} repetições</dd>
         </div>
       </dl>
       {m.refazerNivel && !respondida && (
@@ -597,7 +609,7 @@ function LinhaExercicio({
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const prescricao = (
     <>
-      {x.series} × {faixa(x.reps)}
+      {seriesPorExtenso(x.series, x.reps)}
       {x.unilateral && <small> cada lado</small>}
     </>
   );
@@ -620,7 +632,7 @@ function LinhaExercicio({
             <div>
               <p className="series">{prescricao}</p>
               <p className="sub-rx">
-                <span className="nw">RIR {faixa(x.rir)}</span> <span className="nw">· descanso {tempo(x.descansoSeg)}</span>
+                <span className="nw">{reservaPorExtenso(x.rir)}</span> <span className="nw">· descanso {tempo(x.descansoSeg)}</span>
                 {par && <span className="nw"> · bi-set</span>}
                 {x.dropSet && <span className="nw"> · última série em drop set</span>}
               </p>

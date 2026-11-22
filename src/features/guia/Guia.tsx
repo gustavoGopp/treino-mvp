@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { NotaDoGuia } from './NotaDoGuia';
-import { faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
+import { metaPorExtenso, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
@@ -55,12 +55,12 @@ function useDoBoneco<T>(pedido: Parameters<typeof pedirAoBoneco>[0] | null): T |
 }
 
 
-/** No checklist, o "RIR do seu programa" vira o RIR desta semana; sem esse item, ele entra no fim. */
+/** No checklist, o "RIR do seu programa" vira a reserva desta semana, em palavras (lote M3); sem esse item, ele entra no fim. */
 function checklistComRir(itens: string[], rir: string): string[] {
   const trocado = itens.map((i) =>
-    i === 'Carga para o RIR do seu programa' ? `Carga para RIR ${rir}` : i === 'Parar no RIR do seu programa' ? `Parar com RIR ${rir}` : i,
+    i === 'Carga para o RIR do seu programa' ? `Carga para parar com ${rir} sobrando` : i === 'Parar no RIR do seu programa' ? `Parar com ${rir} sobrando` : i,
   );
-  return trocado.some((i, k) => i !== itens[k]) ? trocado : [...itens, `Carga para RIR ${rir}`];
+  return trocado.some((i, k) => i !== itens[k]) ? trocado : [...itens, `Carga para parar com ${rir} sobrando`];
 }
 
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -447,7 +447,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
         </section>
 
-        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
+        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, metaPorExtenso(minha.x.rir)) : txt.check} id={ex.id} />
         <Detalhes txt={txt} />
       </main>
 

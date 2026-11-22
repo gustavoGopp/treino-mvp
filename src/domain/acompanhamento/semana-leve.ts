@@ -95,7 +95,11 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
 
   // Carência: as 3 semanas depois de uma volta de pausa, a semana leve em curso e as 3 semanas depois dela.
   const dias = SEMANA_LEVE.carenciaSemanas * 7;
-  const depoisDaVolta = hoje.bloco.pausaDias !== undefined && hoje.semana <= SEMANA_LEVE.carenciaSemanas;
+  // A volta pode ter sido detectada no uso (pausaDias) ou declarada no cadastro (o programa nasce com as fases da
+  // readaptação): nas duas, as 3 primeiras semanas são carência (deload.semana-leve; conferência de 22/11/2026: a
+  // declarada no cadastro ficava de fora, e a semana leve podia ser sugerida já na semana 1 da volta).
+  const voltaDoCadastro = programa.fases.some((f) => f.regraId === 'readaptacao.semana1');
+  const depoisDaVolta = (hoje.bloco.pausaDias !== undefined || voltaDoCadastro) && hoje.semana <= SEMANA_LEVE.carenciaSemanas;
   const depoisDaLeve = !!o.semanaLeve && diaLocal(hojeIso, fuso) - diaLocal(o.semanaLeve.inicio, fuso) < SEMANA_LEVE.dias + dias;
   // A fase de aprendizado do iniciante também é carência (iniciante.fase-aprendizado; R5a).
   const carencia = depoisDaVolta || depoisDaLeve || naFaseDeAprendizado(hoje);

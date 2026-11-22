@@ -45,7 +45,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(feita).toBeDisabled();
   await page.getByLabel('Carga', { exact: true }).selectOption('8');
   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
-  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('radio', { name: '1', exact: true }).check();
   await feita.click();
 
   // Descanso começa sozinho, com ±15 s.
@@ -55,9 +55,10 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await descanso.getByRole('button', { name: '+15 s' }).click();
   await expect(descanso.getByRole('timer')).toHaveText(/^(2:0\d|1:59)$/);
   await descanso.getByRole('button', { name: 'Pular' }).click();
-  // 8 kg × 9 com 2 de reserva (11 até a falha), para a faixa 8–15 com RIR 3–4 do goblet (alvo da calibração: 15, o meio
-  // da faixa mais o meio do RIR): pesada. A série fica como acerto da carga.
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2 · acerto da carga');
+  // 8 kg × 9 com 1 de reserva (10 até a falha), para a faixa 8 a 15 sobrando 3 ou 4 do goblet: abaixo do que a tela
+  // mostra (de 11 a 19 até a falha), pesada. A série fica como acerto da carga. (Até 22/11/2026 o exemplo era com 2 de
+  // reserva: hoje isso está dentro da meta mostrada, e a carga fica; lote M3, tests/unit/calibracao.test.ts.)
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · sobrando 1 · acertando o peso');
 
   // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 6 kg; eram 7 kg na faixa 8–12 do búlgaro,
   // até o pacote 2, de 15/11/2026).
@@ -68,9 +69,8 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await page.getByRole('radio', { name: '2', exact: true }).check();
   await feita.click();
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
-  // 6 kg × 11 com 2 de reserva: perto do alvo (13 até a falha, a 2 do alvo de 15), vira a série de trabalho (sem a marca
-  // de acerto).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('6 kg × 11 · RIR 2');
+  // 6 kg × 11 com 2 de reserva: dentro da meta mostrada (13 até a falha), vira a série de trabalho (sem a marca de acerto).
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('6 kg × 11 · sobrando 2');
   // frontend novo: o "Desfazer a última série" saiu do meio da tela e mora no "⋯" (Mais opções)
   await expect((await maisOpcoes(page)).getByRole('button', { name: 'Desfazer a última série' })).toBeVisible();
   await page.keyboard.press('Escape');
@@ -241,8 +241,8 @@ test('R1: aberto pelo treino, o guia do goblet mostra a prescrição da semana d
   await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
   // o goblet é de dois lados: a meta do treino não diz "cada lado"
   const meta = (await page.locator('p.meta').first().innerText()).trim();
-  const series = meta.match(/^(\d+) × 8–15$/)![1]!;
-  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
+  const series = meta.match(/^(\d+) séries? de 8 a 15$/)![1]!;
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3 ou 4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/goblet\?de=treino/);
   // sessão de textos (16/11/2026): a linha da prescrição saiu do guia (ela está na tela do treino, de onde a pessoa
@@ -255,7 +255,7 @@ test('R1: aberto pelo treino, o guia do goblet mostra a prescrição da semana d
   await expect(page.locator('body')).not.toContainText('RIR 1–2');
   await expect(page.locator('body')).not.toContainText('por perna');
   // O checklist pede a carga para o RIR desta semana, e as abas são as do dia dela.
-  await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
+  await expect(page.getByText('Carga para parar com 3 ou 4 sobrando')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Torso A' })).toHaveCount(0);
   await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
@@ -268,8 +268,8 @@ test('R1: no exercício de um lado só (o afundo), o treino e o guia dizem "cada
   await comecar(page, 'Corpo todo C');
   await expect(page.getByRole('heading', { name: 'Afundo estático com halteres', level: 1 })).toBeVisible();
   const meta = (await page.locator('p.meta').first().innerText()).trim();
-  const series = meta.match(/^(\d+) × 8–12 cada lado$/)![1]!;
-  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
+  const series = meta.match(/^(\d+) séries? de 8 a 12 cada lado$/)![1]!;
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3 ou 4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/afundo\?de=treino/);
   // sessão de textos (16/11/2026): a linha da prescrição saiu do guia; o "cada lado" fica na tela do treino (acima)
@@ -279,7 +279,7 @@ test('R1: no exercício de um lado só (o afundo), o treino e o guia dizem "cada
   // Nada da prescrição do programa de referência ("2 × 8–12 por perna · RIR 1–2 · 1,5 min").
   await expect(page.locator('body')).not.toContainText('RIR 1–2');
   await expect(page.locator('body')).not.toContainText('por perna');
-  await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
+  await expect(page.getByText('Carga para parar com 3 ou 4 sobrando')).toBeVisible();
   await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });

@@ -3,8 +3,8 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
-import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
-import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
+import { ESCADA_PESO_CORPO, haCargaMenor, kgNoPasso, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { faixaPorExtenso, metaPorExtenso, numeroBr, seriesPorExtenso, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
 import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { cargasHalter, comHalterMaisPesado, MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
@@ -171,8 +171,8 @@ export function Treino() {
     <ol className="series-feitas" aria-label="Séries feitas">
       {feito.series.map((s, n) => (
         <li key={n}>
-          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
-          {s.calibracao ? ' · acerto da carga' : ''}
+          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · sobrando {textoDoRir(s.rir, RIR.registroMax)}
+          {s.calibracao ? ' · acertando o peso' : ''}
           {s.dor ? ` · dor ${s.dor}` : ''}
           {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
         </li>
@@ -295,7 +295,7 @@ export function Treino() {
                       </span>
                       <b>
                         {rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : 'Falta escolher a carga'}
-                        {rascunho?.pronto && <small> · RIR {textoDoRir(rascunho.serie().rir, RIR.registroMax)}</small>}
+                        {rascunho?.pronto && <small> · sobrando {textoDoRir(rascunho.serie().rir, RIR.registroMax)}</small>}
                       </b>
                       <span className="apoio">{x.nome}</span>
                     </>
@@ -371,7 +371,7 @@ export function Treino() {
           <div className="ex-sessao">
             <Titulo key={x.exId}>{x.nome}</Titulo>
             <p className={x.dropSet ? 'meta' : 'meta sr'}>
-              {x.series} × {faixa(x.reps)}
+              {seriesPorExtenso(x.series, x.reps)}
               {x.unilateral ? ' cada lado' : ''}
               {x.dropSet && (
                 <>
@@ -777,14 +777,14 @@ function RegistroSerie({
         <h2>
           <span className="nw">Série {numero} de {x.series}</span> ·{' '}
           <span className="nw">
-            {faixa(x.reps)}
+            {faixaPorExtenso(x.reps)}
             {x.unilateral && <span> cada lado</span>}
           </span>
         </h2>
         {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: os quadradinhos repetiam "Série N de M", que está escrito ao lado */}
       </div>
       <div className="colunas">
-        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} pesosOutros={pesosOutros} />
+        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} passoKg={op.passoKg} baseKg={op.baseKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} pesosOutros={pesosOutros} />
         <div className="coluna" role="group" aria-labelledby={`${uid}-reps`}>
           <span className="rotulo-curto" id={`${uid}-reps`}>
             Repetições
@@ -802,7 +802,7 @@ function RegistroSerie({
             Quantas ainda conseguiria?
           </span>
           <span className="rir-meta" id={`rir-meta-${numero}`}>
-            meta<span className="sr"> de hoje:</span> {faixa(x.rir)}
+            meta<span className="sr"> de hoje:</span> {metaPorExtenso(x.rir)}
           </span>
         </div>
         <div className="chips-valor">
@@ -839,6 +839,8 @@ function RegistroSerie({
                   cargas={op.lista}
                   placasMax={op.placasMax}
                   menorAnilhaKg={op.menorAnilhaKg}
+                  passoKg={op.passoKg}
+                  baseKg={op.baseKg}
                   valor={q.carga}
                   aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
                 />
@@ -892,7 +894,12 @@ function ControleCarga({
   valor,
   aoMudar,
   pesosOutros,
+  passoKg,
+  baseKg,
 }: {
+  /** Barra: o passo do menos e do mais (2 × a menor anilha do local) e o peso da barra, quando informado. */
+  passoKg?: number;
+  baseKg?: number;
   /** A saída "Meus pesos são outros" da lista de halteres: o mais pesado suposto hoje e como gravar o certo. */
   pesosOutros?: { maxAtualKg: number; gravar: (maxKg: number) => void };
   registro: Carga['tipo'];
@@ -1046,7 +1053,7 @@ function ControleCarga({
       </div>
     );
   }
-  // kg: halter só com as cargas do inventário; barra e máquina, de 2,5 em 2,5.
+  // kg: halter só com as cargas do inventário; a barra anda no passo do local (equipamento.menor-anilha); sem passo, de 2,5 em 2,5.
   const k = valor?.tipo === 'kg' ? valor.kg : undefined;
   const lista = cargas?.length ? cargas : undefined;
   const passo = (dir: 1 | -1) => {
@@ -1054,7 +1061,7 @@ function ControleCarga({
       const pos = k === undefined ? (dir > 0 ? -1 : lista.length) : lista.findIndex((v) => Math.abs(v - k) < 1e-9);
       const n = lista[Math.max(0, Math.min(lista.length - 1, pos + dir))];
       if (n !== undefined) aoMudar({ tipo: 'kg', kg: n });
-    } else aoMudar({ tipo: 'kg', kg: Math.max(0, Math.round(((k ?? 0) + dir * 2.5) * 10) / 10) });
+    } else aoMudar({ tipo: 'kg', kg: kgNoPasso(k, dir, { ...(passoKg ? { passoKg } : {}), ...(baseKg ? { baseKg } : {}) }) });
   };
   return (
     <div className="coluna">
@@ -1172,6 +1179,10 @@ const SINAIS: { id: Sinal; texto: string }[] = [
   { id: 'palpitacao', texto: 'Coração batendo muito irregular' },
   { id: 'cauda-equina', texto: 'Dormência entre as pernas ou descontrole da urina ou das fezes' },
   { id: 'dor-articular-aguda', texto: 'Dor aguda ou em pontada numa articulação' },
+  // seguranca.alerta.musculoesqueletico (conferência regra por regra, 22/11/2026): a regra lista estes dois sinais, e a
+  // folha não tinha. Encerram o exercício, como a dor aguda. Texto decidido pela sessão, por delegação do Gustavo.
+  { id: 'estalo-com-dor', texto: 'Estalo com dor' },
+  { id: 'dor-irradiada', texto: 'Dor que se espalha pelo braço ou pela perna' },
   { id: 'formigamento', texto: 'Formigamento ou dormência' },
   { id: 'perda-de-forca', texto: 'Perda de força estranha' },
 ];

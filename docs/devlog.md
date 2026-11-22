@@ -2448,3 +2448,42 @@ Imagens: `revisoes/melhorias/m2/montagem-na-serie.png` e `revisoes/melhorias/m2/
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Meu app de treino tinha 171 exercícios e só 90 com o boneco animado. Os outros 81 apareciam em texto. Hoje os 171 têm o boneco. O curioso foi o efeito colateral: o app preferia, no empate, o exercício que tinha animação. Com todos animados, quase um terço dos programas trocou algum exercício, e a régua de qualidade não se mexeu."
+
+## A primeira sessão fala a língua de quem começa, e o app diz o que faz (22/11/2026)
+
+**De onde veio.** O lote M3 da análise crítica e o pacote D1 de `prompts/sessao-desenvolvimento-2.md`, feitos juntos porque os dois mexem no acerto da carga.
+
+**O que mudou para quem usa (M3)**
+
+| | Antes | Depois |
+|---|---|---|
+| Fez 8 repetições sobrando 3, na faixa de 8 a 15 sobrando 3 ou 4 | "Ficou pesada": a carga caía | a carga fica (decisão do Gustavo, saída A) |
+| Exercícios das personas em que o mínimo da faixa com a reserva pedida derrubava a carga | 235 de 246 | 0 |
+| Lista do programa | 3 × 8–15 | 3 séries de 8 a 15 |
+| Folha do exercício | RIR 3–4 | Pare com 3 ou 4 sobrando |
+| Série feita | 4 kg × 8 · RIR 3 · acerto da carga | 4 kg × 8 · sobrando 3 · acertando o peso |
+| Fim do treino | Calibrar | Acertar o peso |
+| Começo leve do iniciante e volta de pausa | menos séries, sem explicação | "Começo leve: menos séries nas 2 primeiras semanas." |
+| Tela da semana | mantendo, crescendo | dá para manter, dá para crescer (proposta à espera do ok do Gustavo) |
+
+Imagens em `revisoes/melhorias/m3/`. A sigla RIR ficou só em "Entenda o treino".
+
+**O que a conferência achou (D1).** Sete conferentes independentes compararam as 166 regras com o código e com a frase de "Entenda o treino": 93 batem, 53 com o código divergindo, 12 com a frase divergindo e 8 fora do app. A sessão conferiu os 73 apontamentos: 7 consertos no código com teste, 4 textos do app acertados à regra, as regras e as frases que ficaram para trás acertadas, 15 para o pacote D3 e 6 para a decisão do Gustavo. A tabela está em `revisoes/regras-x-codigo.md`.
+
+**Os consertos, em palavras simples**
+- Na barra, o "+" e o "−" andavam de 2,5 em 2,5 kg, e não no passo das anilhas do local.
+- Uma série leve com dor 4 ainda ganhava "Ficou leve: suba a carga".
+- A semana leve podia ser sugerida já na 1ª semana de quem declarou a pausa no cadastro.
+- No objetivo "ficar mais forte", um exercício trocado no corte de tempo perdia as 5 a 8 repetições (60 de 288 programas da grade; agora nenhum).
+- "Mantendo" aparecia com meia série.
+
+**Decisões técnicas da sessão, com o motivo**
+- **"Perto do alvo" é a faixa que a tela mostra, nunca mais estreita que o alvo ± 2.** Fora dela, a conta continua mirando o meio.
+- **Regra que o app deixou de cumprir por decisão posterior do Gustavo** (por exemplo, os motivos que saíram das telas em 16/11) teve o texto acertado, e não o código.
+- **O que muda programas ficou para o D3,** que mede personas e régua antes e depois; nada disso foi mexido aqui.
+
+**GitHub.** A `main` ficou vermelha duas vezes neste dia, por testes e não pelo app: a rodada 521 (um teste de tela abria o app antes de a gravação de preparo fechar; consertado) e a 522 (um teste de regra do motor passou de 5 s numa máquina 2,5 vezes mais lenta; ganhou o limite de 30 s, com a medida). A rodada 520, da ligação das 81 animações, passou. Com os dois consertos de teste na `main`, a rodada 523 passou: a `main` voltou ao verde.
+
+**Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
+
+**Rascunho de post.** "Pedi a sete revisores independentes que comparassem as 166 regras do meu app de treino com o código. 93 batiam. Nas outras, quase sempre era o texto que tinha ficado para trás, mas sete eram defeito de verdade: o app mandava subir a carga numa série com dor, por exemplo. O mais curioso foi o que os usuários já tinham sentido: a tela pedia de 8 a 15 repetições, e quem fazia 8 via a carga cair."

@@ -88,7 +88,7 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   // 9 de 16 desde a sessão de qualidade dos treinos (o abdominal protegido no A; o búlgaro com 2 séries); 9 de 15 antes;
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
   await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 17/);
-  await expect(volta).toContainText('3–4 repetições');
+  await expect(volta).toContainText('3 a 4 repetições');
   // no dia da volta, ela é a única mensagem, e o "Começar" fica à vista sem rolar
   await expect(page.locator('.aviso-linha')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo A' })).toBeInViewport({ ratio: 1 });
@@ -108,8 +108,8 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   // 2 séries: o 1º exercício do programa tem 4, e a semana 1 da volta tem cerca de metade. Desde o pacote 2 (15/11/2026)
   // é o goblet (dois lados, 8–15, sem "cada lado"); do R5d até lá, o búlgaro ("2 × 8–12 cada lado"). 1 série da sessão de
   // qualidade dos treinos até o R5d (o abdominal protegido tirava 2; qualidade-treinos.md, F.5).
-  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–15');
-  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
+  await expect(page.locator('p.meta').first()).toHaveText('2 séries de 8 a 15');
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3 ou 4');
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
   const motivo = await porQueDaSugestao(page, 'Agachamento goblet com calcanhar elevado');
   await expect(motivo).toContainText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/);
@@ -153,7 +153,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
   // Os 4 estados em palavras, nunca em vermelho.
-  await expect(musculos).toContainText(/na meta|crescendo|mantendo|ainda não treinou nesta semana/);
+  await expect(musculos).toContainText(/na meta|dá para crescer|dá para manter/);
   const cores = await musculos.locator('.m-barra i').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundColor));
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.

@@ -626,3 +626,32 @@ O que foi feito está no devlog. Ficou para depois:
 - **Juntar os três palcos (treino, guia, abertura) num componente só.** Não muda nada para quem usa e mexe em três telas já conferidas: fica para o pacote D4, junto com repartir os textos do guia.
 - **No descanso, o Boneco do "a seguir" some em celular baixo (até 700 px de altura),** como já sumia: ali não há o toque para o guia ampliado.
 - **O peso da tela do programa está a 2,2 kB do limite.**
+
+## Da conferência regra por regra, pacote D1 (22/11/2026)
+
+A tabela inteira está em `revisoes/regras-x-codigo.md`. Ficou para depois:
+
+**Para o pacote D3 (mudam programas: medir personas e régua antes e depois).** Apontados pelos conferentes com exemplo rodado; a sessão não reproduziu.
+- `selecao.peitoral-inclinado`: com 5 ou 6 dias de 30 min e sem banco inclinável, o dia de Empurrar sai com dois crucifixos e nenhum supino.
+- `selecao.triceps-acima-cabeca`: 717 de 6.840 programas (todos de 30 min) ficam sem o tríceps acima da cabeça.
+- `selecao.complementos`: o tríceps não está nas famílias de complementos (1 exercício onde a regra diz 2).
+- `selecao.estabilidade`: 13 dos 21 exercícios de polia não têm a marca "estável".
+- `selecao.panturrilha-alongada`: a panturrilha no chão entra com o degrau possível, com foco em pernas.
+- `selecao.dia-sem-principal`: o aviso culpa a dor por um dia fraco que já existia sem ela.
+- `selecao.aducao-complemento`: no corte de tempo sai o abdominal antes da adução.
+- `volume.semanal.minimo`: o foco que já está abaixo do mínimo perde mais séries no corte (1.814 de 10.920 programas com foco).
+- `volume.semanal.maximo`: o máximo do nível só vale no tempo que sobra (40% dos programas de iniciante têm músculo acima de 10).
+- `volume.equilibrio-coxa`: com divisão escolhida, 95 de 28.224 programas saem da razão.
+- `tempo.sobra-series`: a trava do iniciante só vale no 2º passo.
+- `tempo.superserie`: a tela do treino não conduz a dupla (cada série ganha o descanso inteiro, e o tempo estimado conta 15 s); o iniciante com pausa no cadastro recebe dupla nas semanas 1 e 2.
+- `iniciante.fase-aprendizado`: o iniciante que declara pausa fica sem a fase de aprendizado.
+- `readaptacao.gatilho`: a reserva a mais da pausa de 2 semanas volta quando a pessoa muda a rotina.
+- `divisao.sem-puxar`: sem equipamento de puxar, a tela da rotina marca como recomendada a divisão errada, e com 6 dias o aviso manda escolher uma opção que a tela não oferece.
+
+**Outros.**
+- `rir.serie-efetiva`: o registro vai até "4 ou mais", guardado como 4; separar o "5 ou mais" muda o dado guardado.
+- `equipamento.fim-da-escada` e `equipamento.escada-carga-leve`: o aviso de fim da escada e a ordem dos passos só aparecem em "Entenda o treino"; no treino é "Hoje: mesma carga".
+- `equipamento.flexao-por-supino`: a flexão com as mãos apoiadas mais alto (inclinada) não existe no app.
+- `selecao.item-sozinho-ampliado`: o guia da extensão de joelho com mini-band não diz que a evidência com elástico é fraca.
+- De carona do D1, não feito: "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e o comentário em `Entenda.tsx` diz o contrário.
+- O pedido 8 de `revisoes/frontend-novo/pedidos-ao-dominio.md` (a fonte "título não conferido" aparece para a pessoa?) segue para o Gustavo.

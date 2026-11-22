@@ -123,6 +123,8 @@ Até ~10–12 repetições, as fórmulas concordam (≤ 9 pontos). Acima disso, 
    - na semana 1 de uma volta de pausa, a calibração **só desce, nunca sobe**, porque a volta existe para evitar dano;
    - dor de 3 ou mais (`seguranca.dor.escala`) manda sempre.
 
+**Mudança de 22/11/2026 (decisão do Gustavo, lote M3 da análise crítica):** "perto do alvo" passou a ser a faixa que a tela mostra (do mínimo de repetições com a menor reserva pedida ao máximo com a maior), nunca mais estreita que A ± 2. Com A ± 2 só, quem fazia o mínimo de repetições com a reserva pedida via a carga cair (235 de 246 exercícios das personas). Fora da faixa, a conta continua mirando A. O número é do projeto, como os outros. **[opinião]**
+
 **Selo:** **consenso**. Ninguém testou uma regra de calibração assim. As peças têm apoio: o RIR relatado erra para o lado seguro (moderada); as fórmulas valem até ~10 repetições (um estudo cada, três na mesma direção); ajustar a carga pelo desempenho dá mais força (moderada, em atletas). Os números "±2", "+25%" e "12" são do projeto.
 
 **Casos de teste** **[medido com o inventário das personas]**:

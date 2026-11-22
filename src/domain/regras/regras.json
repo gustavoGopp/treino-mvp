@@ -17,7 +17,7 @@
   },
   {
     "id": "volume.semanal.minimo",
-    "regra": "Mínimo semanal da faixa do nível (músculos prioritários): nos cortes de tempo, um músculo em foco não desce abaixo dele",
+    "regra": "Mínimo semanal da faixa do nível (músculos prioritários): nos cortes de tempo, um músculo em foco não desce abaixo dele. **Conferência regra por regra de 22/11/2026:** no corte de tempo, o foco que já está abaixo do mínimo não trava o corte e pode perder mais séries (pacote D3)",
     "valores": {
       "iniciante": "6",
       "intermediario": "10",
@@ -64,7 +64,7 @@
   },
   {
     "id": "volume.prioridade.foco-primeiro",
-    "regra": "O foco usa o tempo primeiro (R5d, 08/11/2026; decisão do Gustavo em 07/11, `docs/revisoes/proximos-passos.md`, parte 3; régua da G5, nota C2): quando a pessoa tem um grupo de foco com exercício possível, o tempo que sobra (`tempo.sobra-series`) vai primeiro para os músculos do foco, até o máximo do nível (`volume.semanal.maximo`) e enquanto as séries diretas do foco (dos exercícios em que ele é o músculo principal) estiverem abaixo da meta (um glúteo do foco que chega à meta só com as séries indiretas do agachamento ainda recebe mais ponte; 2ª revisão cega do R5d), e só depois para os outros, que sobem no máximo até 6 séries abaixo do músculo do foco que tem menos (e nunca acima do alvo de antes, `tempo.sobra-series`). Com foco, a vaga-base de um isolador de quem não é foco (elevação lateral, bíceps, crucifixo, ombro de trás, abdução, abdômen) entra depois das vagas do foco, e o exercício protegido do foco (`tempo.musculo-protegido`) não fica preso em 2 séries com 30 min; se isso deixar um dia acima de 110% dos minutos que a montagem de antes não deixava, vale a de antes. Travas: enquanto empurrar ÷ puxar passar de 1,5, as costas e o ombro de trás sobem como antes, e nenhum empurrar de quem não é foco sobe se passar de 1,5 (`kolber2010`); **desde 15/11/2026 (pacote 2 da sessão \"treino para todos\"), nem o empurrar do foco sobe se passar de 1,5: quando mais uma série de empurrar passaria da razão, as costas e o ombro de trás sobem antes, e o foco de peito sobe junto com eles, e não sozinho** (a troca de um exercício de um lado só por um de dois lados abria tempo no dia, o supino do foco subia uma série e a razão passava de 1,5; medido em 680.625 programas: empurrar ÷ puxar acima de 1,5 cai 179 programas e os dias fracos caem 34, sem piora de nenhum defeito em nenhum grupo; o foco a menos de 1,3 vez a mediana dos outros, nota, vai de 16,3% para 16,4%); nenhuma série a mais tira quadríceps ÷ posteriores de 0,5–2 (`volume.equilibrio-coxa`); quem não é foco e está abaixo do piso de 4 sobe até ele também pelas séries indiretas. Sem foco possível (por exemplo, foco nas costas sem nada para puxar), o tempo que sobra vai para todos, como antes. Os outros continuam crescendo com 4 a 6 séries ou mais, mais devagar (moderada, `schoenfeld2017a`, `iversen2021`); a distância de 6 séries e o resto da escolha são do projeto. Medido (revisão cega do R5d): parar o foco na meta e deixar os outros na meta, sem usar o resto do tempo, encurtava os treinos de quem tem pouco equipamento (só barra fixa: de 51–59 para 33–37 min em 60) e a revisão os achou piores",
+    "regra": "O foco usa o tempo primeiro (R5d, 08/11/2026; decisão do Gustavo em 07/11, `docs/revisoes/proximos-passos.md`, parte 3; régua da G5, nota C2): quando a pessoa tem um grupo de foco com exercício possível, o tempo que sobra (`tempo.sobra-series`) vai primeiro para os músculos do foco, até o máximo do nível (`volume.semanal.maximo`) e enquanto as séries diretas do foco (dos exercícios em que ele é o músculo principal) estiverem abaixo da meta (um glúteo do foco que chega à meta só com as séries indiretas do agachamento ainda recebe mais ponte; 2ª revisão cega do R5d), e só depois para os outros, que sobem no máximo até 6 séries abaixo do músculo do foco que tem menos (e nunca acima do alvo de antes, `tempo.sobra-series`). Com foco, a vaga-base de um isolador de quem não é foco (elevação lateral, bíceps, crucifixo, ombro de trás, abdução, abdômen) entra depois das vagas do foco, e o exercício protegido do foco (`tempo.musculo-protegido`) não fica preso em 2 séries com 30 min; se isso deixar um dia acima de 110% dos minutos que a montagem de antes não deixava, vale a de antes. Travas: enquanto empurrar ÷ puxar passar de 1,5, as costas e o ombro de trás sobem como antes, e nenhum empurrar de quem não é foco sobe se passar de 1,5 (`kolber2010`); **desde 15/11/2026 (pacote 2 da sessão \"treino para todos\"), nem o empurrar do foco sobe se passar de 1,5: quando mais uma série de empurrar passaria da razão, as costas e o ombro de trás sobem antes, e o foco de peito sobe junto com eles, e não sozinho** (a troca de um exercício de um lado só por um de dois lados abria tempo no dia, o supino do foco subia uma série e a razão passava de 1,5; medido em 680.625 programas: empurrar ÷ puxar acima de 1,5 cai 179 programas e os dias fracos caem 34, sem piora de nenhum defeito em nenhum grupo; o foco a menos de 1,3 vez a mediana dos outros, nota, vai de 16,3% para 16,4%); nenhuma série a mais tira quadríceps ÷ posteriores de 0,5–2 (`volume.equilibrio-coxa`); quem não é foco e está abaixo do piso de 4 sobe até ele também pelas séries indiretas. Sem foco possível (por exemplo, foco nas costas sem nada para puxar), o tempo que sobra vai para todos, como antes. Os outros continuam crescendo com 4 a 6 séries ou mais, mais devagar (moderada, `schoenfeld2017a`, `iversen2021`); a distância de 6 séries e o resto da escolha são do projeto. Medido (revisão cega do R5d): parar o foco na meta e deixar os outros na meta, sem usar o resto do tempo, encurtava os treinos de quem tem pouco equipamento (só barra fixa: de 51–59 para 33–37 min em 60) e a revisão os achou piores. **Conferência regra por regra de 22/11/2026:** com 3 grupos de foco ou mais, o foco para na meta",
     "valores": {
       "iniciante": "sobra: o foco até 10; os outros até 6 abaixo do foco, no máximo 8",
       "intermediario": "sobra: o foco até 16; os outros até 6 abaixo do foco, no máximo 12",
@@ -82,7 +82,7 @@
   },
   {
     "id": "volume.prioridade.segundo-exercicio",
-    "regra": "O 2º exercício do foco (R5d, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, D-4c): o músculo do foco que, com as séries distribuídas (até 4 por exercício e 10 por sessão), fica abaixo da meta ganha 1 exercício de outra função do mesmo músculo (outra função que o dia não tem, e de preferência que o programa ainda não tem), num dia que treina esse músculo ou, sem isso, a mesma região (inferior ou superior; nunca panturrilha num dia de superiores), dentro dos exercícios que cabem nos minutos (`tempo.exercicios-por-sessao`), do teto da sessão e do teto semanal. Funções diferentes crescem regiões diferentes do músculo (moderada); o número e a escolha do dia são consenso, e o selo da linha é o deles (o mais fraco, `00-metodo.md`)",
+    "regra": "O 2º exercício do foco (R5d, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, D-4c): o músculo do foco que, com as séries distribuídas (até 4 por exercício e 10 por sessão), fica abaixo da meta ganha 1 exercício de outra função do mesmo músculo (outra função que o dia não tem, e de preferência que o programa ainda não tem), num dia que treina esse músculo ou, sem isso, a mesma região (inferior ou superior; nunca panturrilha num dia de superiores), dentro dos exercícios que cabem nos minutos (`tempo.exercicios-por-sessao`), do teto da sessão e do teto semanal. Funções diferentes crescem regiões diferentes do músculo (moderada); o número e a escolha do dia são consenso, e o selo da linha é o deles (o mais fraco, `00-metodo.md`). **Conferência regra por regra de 22/11/2026:** o código dá até 2 exercícios a mais por músculo e repete a função quando o músculo só tem uma",
     "valores": {
       "iniciante": "1 exercício a mais por músculo do foco abaixo da meta",
       "intermediario": "1 exercício a mais por músculo do foco abaixo da meta",
@@ -115,7 +115,7 @@
   },
   {
     "id": "volume.semanal.maximo",
-    "regra": "Máximo semanal padrão do nível",
+    "regra": "Máximo semanal padrão do nível. **Conferência regra por regra de 22/11/2026:** o máximo do nível só vale no tempo que sobra; a distribuição das séries confere só o teto de 20 (pacote D3)",
     "valores": {
       "iniciante": "10",
       "intermediario": "16",
@@ -130,7 +130,7 @@
   },
   {
     "id": "volume.semanal.teto-padrao",
-    "regra": "Teto absoluto; o ganho extra acima de ~20 é pequeno e incerto",
+    "regra": "Teto absoluto; o ganho extra acima de ~20 é pequeno e incerto. **Conferência regra por regra de 22/11/2026:** o app não oferece ao avançado passar de 20; o teto vale para todos",
     "valores": {
       "iniciante": "20; nunca acima",
       "intermediario": "20; nunca acima",
@@ -200,7 +200,7 @@
   },
   {
     "id": "volume.equilibrio-coxa",
-    "regra": "Equilíbrio da coxa (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 9; régua da G5, D3, em `docs/pesquisa-v2/17-biblioteca-ampliada.md`): quando quadríceps e posteriores têm exercício possível, as séries semanais de quadríceps ÷ posteriores ficam entre 0,5 e 2, com pelo menos 1 exercício direto de posteriores (flexão de joelho ou dobrar o quadril) na semana. Os cortes de tempo (`tempo.corte`) e o ajuste de 30 min (`tempo.musculo-protegido`) não tiram a razão da faixa, salvo se ela já estava fora. A faixa é consenso: a razão de força não prevê lesão (meta-análise), e o agachamento não cresce os posteriores (um estudo), por isso os dois precisam de trabalho direto. Medido no protótipo: o defeito da coxa sai de 1,6% dos programas sem dor para 0%",
+    "regra": "Equilíbrio da coxa (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 9; régua da G5, D3, em `docs/pesquisa-v2/17-biblioteca-ampliada.md`): quando quadríceps e posteriores têm exercício possível, as séries semanais de quadríceps ÷ posteriores ficam entre 0,5 e 2, com pelo menos 1 exercício direto de posteriores (flexão de joelho ou dobrar o quadril) na semana. Os cortes de tempo (`tempo.corte`) e o ajuste de 30 min (`tempo.musculo-protegido`) não tiram a razão da faixa, salvo se ela já estava fora. A faixa é consenso: a razão de força não prevê lesão (meta-análise), e o agachamento não cresce os posteriores (um estudo), por isso os dois precisam de trabalho direto. Medido no protótipo: o defeito da coxa sai de 1,6% dos programas sem dor para 0%. **Conferência regra por regra de 22/11/2026:** a distribuição das séries não confere a razão: com divisão escolhida, 95 de 28.224 programas saem fora dela (pacote D3)",
     "valores": {
       "iniciante": "0,5–2; ≥ 1 exercício direto de posteriores",
       "intermediario": "0,5–2; ≥ 1 exercício direto de posteriores",
@@ -357,7 +357,7 @@
   },
   {
     "id": "reps.faixa.por-tipo",
-    "regra": "Faixa de repetições padrão por tipo de exercício",
+    "regra": "Faixa de repetições padrão por tipo de exercício. A faixa de cada exercício fica na biblioteca, e 27 dos 108 exercícios com carga saem do padrão (conferência regra por regra de 22/11/2026): por exemplo, as roscas em 8–12 e o leg press e o hack em 8–15",
     "valores": {
       "iniciante": "composto 6–10 ou 8–12; isolador 10–20",
       "intermediario": "composto 6–10 ou 8–12; isolador 10–20",
@@ -371,7 +371,7 @@
   },
   {
     "id": "reps.faixa.degrau",
-    "regra": "Faixas dos exercícios de peso do corpo e de elástico: 5 a 8 repetições de largura, topo até 20 (antes, 12 a 15 de largura, com que a escada quase não andava). Qualquer faixa de ~6 a ~30 perto da falha cresce o músculo; a largura é escolha do projeto",
+    "regra": "Faixas dos exercícios de peso do corpo e de elástico: 5 a 8 repetições de largura, topo até 20 (antes, 12 a 15 de largura, com que a escada quase não andava). Qualquer faixa de ~6 a ~30 perto da falha cresce o músculo; a largura é escolha do projeto. Alguns exercícios saem disso (conferência regra por regra de 22/11/2026): barra fixa só na descida 3–6, nórdico 6–10, abdução e adução deitado 15–30",
     "valores": {
       "iniciante": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
       "intermediario": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
@@ -430,7 +430,7 @@
   },
   {
     "id": "rir.serie-efetiva",
-    "regra": "Série que conta como efetiva no volume",
+    "regra": "Série que conta como efetiva no volume. No registro, a última opção é \"4 ou mais\", guardada como 4: a série com 5 ou mais de reserva que a pessoa marca ali conta como efetiva (conferência regra por regra de 22/11/2026; separar o \"5 ou mais\" está no backlog)",
     "valores": {
       "iniciante": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
       "intermediario": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
@@ -443,7 +443,7 @@
   },
   {
     "id": "rir.carga-baixa",
-    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais. Aplicada no gerador desde a auditoria do treino (02/11/2026): vale quando o meio da faixa do exercício é 15 ou mais",
+    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais. Aplicada no gerador desde a auditoria do treino (02/11/2026): vale quando o meio da faixa do exercício é 15 ou mais. Só muda o composto do iniciante (de 2–3 para 1–2): intermediário e avançado já ficam em até 2, com 1–2 nos compostos e 0–1 nos isoladores (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "RIR 1–2 a partir da 3ª semana (nas semanas 1–2, vale a fase de aprendizado, RIR 3–4)",
       "intermediario": "RIR 0–2",
@@ -457,7 +457,7 @@
   },
   {
     "id": "rir.leitura",
-    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição; o erro é maior acima de ~12 repetições e longe da falha, e a experiência não o diminui (revista no R2)",
+    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição; o erro é maior acima de ~12 repetições e longe da falha, e a experiência não o diminui (revista no R2). O app usa o número informado, sem corrigir; da regra, o que roda é o limite de 12 repetições no acerto da carga (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
       "intermediario": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
@@ -556,7 +556,7 @@
   },
   {
     "id": "progressao.reduzir",
-    "regra": "Dupla progressão: quando reduzir. A redução por dor é a de `seguranca.dor.escala` (corrigido em 17/11/2026: a linha dizia −5 a −10% também para a dor, e o app sempre reduziu 10–20%)",
+    "regra": "Dupla progressão: quando reduzir. A conta mira −7,5% e fica com a carga disponível logo abaixo; com poucos halteres ou em placa, contrapeso e degrau, é 1 passo, que pode passar de 10% (conferência regra por regra de 22/11/2026). A redução por dor é a de `seguranca.dor.escala` (corrigido em 17/11/2026: a linha dizia −5 a −10% também para a dor, e o app sempre reduziu 10–20%)",
     "valores": {
       "iniciante": "abaixo do mínimo da faixa em 2 sessões seguidas → −5 a −10%; com dor, vale `seguranca.dor.escala` (3–5: −10 a −20%; > 5: encerra o exercício)",
       "intermediario": "abaixo do mínimo da faixa em 2 sessões seguidas → −5 a −10%; com dor, vale `seguranca.dor.escala` (3–5: −10 a −20%; > 5: encerra o exercício)",
@@ -714,11 +714,11 @@
   },
   {
     "id": "equipamento.fim-da-escada",
-    "regra": "Fim da escada: no último degrau, com a série no topo, o app avisa de forma sutil, na própria sugestão, que dali em diante é buscar repetições até ~30 e que, acima disso, o peso do corpo rende menos; nunca avisa de antemão pelo nível, e nunca sugere compra (decisão do Gustavo, 03/11/2026)",
+    "regra": "Fim da escada: no último degrau, com a série no topo, o app avisa de forma sutil, no motivo da sugestão (desde a sessão de textos de 16/11/2026, o motivo aparece em \"Entenda o treino\", e não na tela do treino), que dali em diante é buscar repetições até ~30 e que, acima disso, o peso do corpo rende menos; nunca avisa de antemão pelo nível, e nunca sugere compra (decisão do Gustavo, 03/11/2026)",
     "valores": {
-      "iniciante": "texto na sugestão do exercício",
-      "intermediario": "texto na sugestão do exercício",
-      "avancado": "texto na sugestão do exercício"
+      "iniciante": "texto no motivo da sugestão do exercício",
+      "intermediario": "texto no motivo da sugestão do exercício",
+      "avancado": "texto no motivo da sugestão do exercício"
     },
     "selo": "consenso",
     "fontes": [
@@ -758,11 +758,11 @@
   },
   {
     "id": "progressao.calibracao",
-    "regra": "Calibração da carga, série a série (R1b; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09): vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. Com saída (R5a; `d-longo-prazo.md`, opção 1a): com um salto grande entre os pesos, nenhuma carga caía em A ± 2 e a calibração não terminava",
+    "regra": "Calibração da carga, série a série (R1b; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09): vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. Com saída (R5a; `d-longo-prazo.md`, opção 1a): com um salto grande entre os pesos, nenhuma carga caía em A ± 2 e a calibração não terminava. **Desde 22/11/2026 (decisão do Gustavo, lote M3 da análise crítica), \"perto\" é a faixa que a tela mostra, e não só o meio dela:** antes, quem fazia o mínimo de repetições com a reserva pedida via a carga cair, série após série (medido nas personas: 235 de 246 exercícios). Fora da faixa, a conta continua mirando A. Os números são do projeto (consenso)",
     "valores": {
-      "iniciante": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair em A ± 2 (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
-      "intermediario": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair em A ± 2 (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
-      "avancado": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair em A ± 2 (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali"
+      "iniciante": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto mantém: R dentro da faixa que a tela mostra (do mínimo de repetições + a menor reserva pedida ao máximo de repetições + a maior reserva pedida) ou a até 2 de A; pesada (R abaixo do perto): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve (R acima do perto) com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair perto (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
+      "intermediario": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto mantém: R dentro da faixa que a tela mostra (do mínimo de repetições + a menor reserva pedida ao máximo de repetições + a maior reserva pedida) ou a até 2 de A; pesada (R abaixo do perto): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve (R acima do perto) com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair perto (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
+      "avancado": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto mantém: R dentro da faixa que a tela mostra (do mínimo de repetições + a menor reserva pedida ao máximo de repetições + a maior reserva pedida) ou a até 2 de A; pesada (R abaixo do perto): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve (R acima do perto) com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair perto (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali"
     },
     "selo": "consenso",
     "fontes": [
@@ -797,7 +797,7 @@
   },
   {
     "id": "progressao.criterios-invalidos",
-    "regra": "O que nunca conta para progredir",
+    "regra": "O que nunca conta para progredir. A amplitude encurtada é orientação: o domínio sabe ignorar a série marcada assim, mas nenhuma tela pergunta pela amplitude (conferência regra por regra de 22/11/2026)",
     "valores": {
       "iniciante": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",
       "intermediario": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",
@@ -827,7 +827,7 @@
   },
   {
     "id": "readaptacao.gatilho",
-    "regra": "Quando aplicar a readaptação após pausa sem treinar dita no cadastro (durante o uso, vale `readaptacao.durante-uso`); a volta gradual existe para evitar dano e dor",
+    "regra": "Quando aplicar a readaptação após pausa sem treinar dita no cadastro (durante o uso, vale `readaptacao.durante-uso`); a volta gradual existe para evitar dano e dor. **Conferência regra por regra de 22/11/2026:** a reserva a mais da pausa de 2 semanas volta a valer quando a pessoa muda a rotina (pacote D3)",
     "valores": {
       "iniciante": "< 2 semanas: retomar normal, com a mesma carga; 2 a < 3 semanas: 1ª sessão de cada dia com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
       "intermediario": "< 2 semanas: retomar normal, com a mesma carga; 2 a < 3 semanas: 1ª sessão de cada dia com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
@@ -861,7 +861,7 @@
   },
   {
     "id": "readaptacao.semana1",
-    "regra": "Semana 1 após pausa ≥ 3 semanas (revista no R2: o −15% de 8 a 26 semanas é o meio da faixa de 10–20% aprovada no T5)",
+    "regra": "Semana 1 após pausa ≥ 3 semanas (revista no R2: o −15% de 8 a 26 semanas é o meio da faixa de 10–20% aprovada no T5). **Conferência regra por regra de 22/11/2026:** na volta declarada no cadastro, sem histórico, o texto da fase diz \"10–20% abaixo da que você usava antes da pausa\"; os 10% ou 15% valem sobre a última carga do histórico",
     "valores": {
       "iniciante": "~50–60% das séries; RIR 3–4; carga −10% (pausa de 3 a 8 semanas) ou −15% (8 a 26 semanas) sobre a última carga do exercício no histórico (nas máquinas, a do local de hoje), arredondada para baixo no inventário; na placa, placas × (1 − redução) para baixo; no peso do corpo e no elástico, um degrau abaixo; no contrapeso, uma placa a mais; sem registro, a calibração na 1ª série, que só desce; pausa dita no cadastro, sem histórico: começar leve",
       "intermediario": "~50–60% das séries; RIR 3–4; carga −10% (pausa de 3 a 8 semanas) ou −15% (8 a 26 semanas) sobre a última carga do exercício no histórico (nas máquinas, a do local de hoje), arredondada para baixo no inventário; na placa, placas × (1 − redução) para baixo; no peso do corpo e no elástico, um degrau abaixo; no contrapeso, uma placa a mais; sem registro, a calibração na 1ª série, que só desce; pausa dita no cadastro, sem histórico: começar leve",
@@ -904,7 +904,7 @@
   },
   {
     "id": "iniciante.fase-aprendizado",
-    "regra": "Fase de aprendizado do iniciante",
+    "regra": "Fase de aprendizado do iniciante. **Conferência regra por regra de 22/11/2026:** o app faz sempre 2 semanas; o iniciante que declara pausa recebe a readaptação no lugar, ou nada com 2 semanas de pausa (pacote D3)",
     "valores": {
       "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa (3/4 das séries do programa: 6 de 8; com o foco a 10 desde o R5d, o foco fica com ~7,5) e foco técnico; carga sobe quando a técnica estiver estável; nessas semanas, nem \"estagnado\" nem semana leve sugerida (R5a)",
       "intermediario": "não se aplica (usa `readaptacao.*` se houver pausa)",
@@ -936,9 +936,9 @@
     "id": "acompanhamento.semana",
     "regra": "\"A sua semana\" (R2; pesquisa-v2/07, seção 4.3): registro + meta + retorno",
     "valores": {
-      "iniciante": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
-      "intermediario": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
-      "avancado": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera"
+      "iniciante": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (menos de 1; a meia série de quem só ajudou em outro exercício não muda o estado). Na tela, desde 22/11/2026 (lote M3), \"crescendo\" e \"mantendo\" aparecem como \"dá para crescer\" e \"dá para manter\"; \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
+      "intermediario": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (menos de 1; a meia série de quem só ajudou em outro exercício não muda o estado). Na tela, desde 22/11/2026 (lote M3), \"crescendo\" e \"mantendo\" aparecem como \"dá para crescer\" e \"dá para manter\"; \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
+      "avancado": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (menos de 1; a meia série de quem só ajudou em outro exercício não muda o estado). Na tela, desde 22/11/2026 (lote M3), \"crescendo\" e \"mantendo\" aparecem como \"dá para crescer\" e \"dá para manter\"; \"X das últimas 8 semanas com treino\", nunca uma sequência que zera"
     },
     "selo": "consenso",
     "fontes": [
@@ -968,9 +968,9 @@
     "id": "acompanhamento.evolucao",
     "regra": "Evolução por exercício (R2; pesquisa-v2/07, seção 5): a melhor série de cada sessão, sem carga máxima estimada (as fórmulas divergem 15 a 52 pontos de % acima de 12 repetições)",
     "valores": {
-      "iniciante": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
-      "intermediario": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
-      "avancado": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução"
+      "iniciante": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "intermediario": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "avancado": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" (carga maior que a do treino anterior) e \"recorde\" (mais repetições do que nunca com aquela carga ou com uma mais pesada; texto acertado ao que o app faz na conferência de 22/11/2026); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução"
     },
     "selo": "consenso",
     "fontes": [
@@ -1025,7 +1025,7 @@
   },
   {
     "id": "selecao.estabilidade",
-    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante",
+    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante. **Conferência regra por regra de 22/11/2026:** \"estável\" é a marca do exercício, e 13 dos 21 de polia não a têm (pacote D3)",
     "valores": {
       "iniciante": "desempate dentro do nível da função",
       "intermediario": "não se aplica",
@@ -1038,7 +1038,7 @@
   },
   {
     "id": "selecao.variacao",
-    "regra": "Manter os exercícios no bloco (4–8 semanas); a variação é sistemática, dentro da mesma função (ex.: rosca inclinada ↔ Scott), nunca por sorteio",
+    "regra": "Manter os exercícios no bloco (4–8 semanas); a variação é sistemática, dentro da mesma função (ex.: rosca inclinada ↔ Scott), nunca por sorteio. **Conferência regra por regra de 22/11/2026:** o app não planeja a variação nem conta o bloco; é orientação",
     "valores": {
       "iniciante": "manter no bloco; variar dentro da função",
       "intermediario": "manter no bloco; variar dentro da função",
@@ -1052,7 +1052,7 @@
   },
   {
     "id": "selecao.variacoes-equivalentes",
-    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7). Sem equivalente no mesmo nível, o último dia desce um nível da mesma função antes de repetir (o protótipo `m1` da frente A, `docs/revisoes/proximos-passos/a-qualidade.md`, 2.3, do pacote A do R5a; consenso); sem nada abaixo, repete. Medido na grade: o mesmo exercício em todos os dias sem alternativa, de 21,0% para 15,6% dos programas sem dor, sem mudar nenhum defeito **Desde 15/11/2026 (pacote 3): a regra de não repetir vale em todo caminho da escolha, e não só na vaga do último dia:** numa semana de 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último entre os do mesmo nível, também na vaga vazia, no dia refeito pela dor e no 2º exercício do foco. Medido em 680.625 programas: o mesmo exercício em todos os dias, havendo outro do mesmo nível, vai de 2.646 programas para 0",
+    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7). Sem equivalente no mesmo nível, o último dia desce um nível da mesma função antes de repetir (o protótipo `m1` da frente A, `docs/revisoes/proximos-passos/a-qualidade.md`, 2.3, do pacote A do R5a; consenso); sem nada abaixo, repete. Medido na grade: o mesmo exercício em todos os dias sem alternativa, de 21,0% para 15,6% dos programas sem dor, sem mudar nenhum defeito **Desde 15/11/2026 (pacote 3): a regra de não repetir vale em todo caminho da escolha, e não só na vaga do último dia:** numa semana de 3 dias ou mais, o exercício que já está em todos os dias menos um fica por último entre os do mesmo nível, também na vaga vazia, no dia refeito pela dor e no 2º exercício do foco. Medido em 680.625 programas: o mesmo exercício em todos os dias, havendo outro do mesmo nível, vai de 2.646 programas para 0. **Conferência regra por regra de 22/11/2026:** para o iniciante vale o contrário desde 16/11/2026: ele repete o exercício (selecao.pratica-do-iniciante)",
     "valores": {
       "iniciante": "variações no mesmo nível da função",
       "intermediario": "variações no mesmo nível da função",
@@ -1108,7 +1108,7 @@
   },
   {
     "id": "selecao.elastico-ampliado",
-    "regra": "Biblioteca ampliada, lote de elástico (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G3, lote 2, e G4): quase todos sem ponto de ancoragem. Remada curvada em pé e remada unilateral sob o pé da frente no nível da remada com elástico (moderada, a força com elástico = convencional: `lopes2019`; um estudo, EMG: `iversen2017`, `isiklar2026`); abertura com o elástico entre as mãos no nível do face pull com elástico (um estudo, EMG: `fukunaga2022`); abdução em pé com o elástico sob o outro pé no nível da abdução com caneleira (um estudo: `macadam2015`); coice em quatro apoios no nível da ponte (um estudo: `selkowitz2013`); elevação lateral unilateral cruzada e rosca martelo no nível dos exercícios com elástico da função (variações; um estudo, EMG: `andersen2010`); tríceps com o elástico preso no alto (só na âncora do fabricante ou na barra fixa, testada antes; consenso) no nível da flexão fechada. **Segurança:** numa série de 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa (`ng2022`, um estudo): todo cartão com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série",
+    "regra": "Biblioteca ampliada, lote de elástico (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G3, lote 2, e G4): quase todos sem ponto de ancoragem. Remada curvada em pé e remada unilateral sob o pé da frente no nível da remada com elástico (moderada, a força com elástico = convencional: `lopes2019`; um estudo, EMG: `iversen2017`, `isiklar2026`); abertura com o elástico entre as mãos no nível do face pull com elástico (um estudo, EMG: `fukunaga2022`); abdução em pé com o elástico sob o outro pé no nível da abdução com caneleira (um estudo: `macadam2015`); coice em quatro apoios no nível da ponte (um estudo: `selkowitz2013`); elevação lateral unilateral cruzada e rosca martelo no nível dos exercícios com elástico da função (variações; um estudo, EMG: `andersen2010`); tríceps com o elástico preso no alto (só na âncora do fabricante ou na barra fixa, testada antes; consenso) no nível da flexão fechada. **Segurança:** numa série de 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa (`ng2022`, um estudo): todo cartão com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série. **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** os 5 guias em que se pisa no elástico passaram a pedir o pé inteiro, e o da extensão de joelho com elástico, a conferir rachaduras",
     "valores": {
       "iniciante": "os 8",
       "intermediario": "os 8",
@@ -1182,7 +1182,7 @@
   },
   {
     "id": "selecao.complementos",
-    "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`)",
+    "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`). **Conferência regra por regra de 22/11/2026:** o tríceps não está nas famílias de complementos: com 2 dias de 60 min na academia completa sai 1 exercício de tríceps. Backlog, pacote D3",
     "valores": {
       "iniciante": "2 por músculo listado",
       "intermediario": "2 por músculo listado",
@@ -1198,7 +1198,7 @@
   },
   {
     "id": "selecao.peitoral-inclinado",
-    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória): a combinação reto + inclinado não cresceu mais que o reto sozinho no total; o inclinado sozinho cresceu mais a parte de cima (`chaves2020`, não treinados, 1 dia por semana). Sem banco inclinável, num dia que não tem outra vaga de empurrar horizontal, a vaga recebe um 2º empurrar (supino, flexão) antes do crucifixo, porque o isolador sozinho cresceu menos o peitoral que o multiarticular (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
+    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória): a combinação reto + inclinado não cresceu mais que o reto sozinho no total; o inclinado sozinho cresceu mais a parte de cima (`chaves2020`, não treinados, 1 dia por semana). Sem banco inclinável, num dia que não tem outra vaga de empurrar horizontal, a vaga recebe um 2º empurrar (supino, flexão) antes do crucifixo, porque o isolador sozinho cresceu menos o peitoral que o multiarticular (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). **Conferência regra por regra de 22/11/2026:** com 5 ou 6 dias de 30 min e sem banco inclinável, o dia de Empurrar pode sair sem supino (pacote D3)",
     "valores": {
       "iniciante": "se houver banco regulável; senão, 2º empurrar",
       "intermediario": "se houver banco regulável; senão, 2º empurrar",
@@ -1214,7 +1214,7 @@
   },
   {
     "id": "selecao.triceps-acima-cabeca",
-    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026). Sem suspensão, a extensão de tríceps com o peso do corpo (mãos num apoio fixo) cobre a vaga como 3º nível, com a mesma posição do ombro (R5-CL, `selecao.corpo-livre-ampliado`)",
+    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026). Sem suspensão, a extensão de tríceps com o peso do corpo (mãos num apoio fixo) cobre a vaga como 3º nível, com a mesma posição do ombro (R5-CL, `selecao.corpo-livre-ampliado`). **Conferência regra por regra de 22/11/2026:** com até 4 exercícios por treino a vaga entra na fila comum e pode não caber: 717 de 6.840 programas da grade, todos de 30 min, ficam sem ele. Backlog, pacote D3",
     "valores": {
       "iniciante": "≥ 1",
       "intermediario": "≥ 1",
@@ -1241,7 +1241,7 @@
   },
   {
     "id": "selecao.panturrilha-alongada",
-    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026). Desde o R5-CL (07/11/2026), sem máquina nem step, a panturrilha no degrau da escada vem antes da no chão: o calcanhar desce abaixo do apoio (`selecao.corpo-livre-ampliado`)",
+    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026). Desde o R5-CL (07/11/2026), sem máquina nem step, a panturrilha no degrau da escada vem antes da no chão: o calcanhar desce abaixo do apoio (`selecao.corpo-livre-ampliado`). **Conferência regra por regra de 22/11/2026:** com foco em pernas e sem máquina nem step, a panturrilha no chão pode entrar com o degrau possível (pacote D3)",
     "valores": {
       "iniciante": "ênfase no alongamento",
       "intermediario": "ênfase no alongamento",
@@ -1273,7 +1273,7 @@
   },
   {
     "id": "selecao.funcao-da-vaga",
-    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem de referência da lista da função. Um afundo por dia, havendo outra opção: o afundo (búlgaro, afundo) fica por último quando o dia já tem um (R5a; `b-monte-e-avaliador.md`, pedido 4). **Desde 15/11/2026 (pacote 2 da sessão \"treino para todos\"): no empate total, vale a ordem de referência, e não a alfabética.** A ordem dos exercícios dentro de cada nível de `funcoes.json` passa a ser dado curado: o exercício mais comum e mais simples de montar vem primeiro (a puxada pela frente antes da puxada com barra reta e das barras fixas; a flexão de braço antes do supino na polia e do mergulho; o afundo antes do afundo para trás e do búlgaro; o abdominal no chão antes do abdominal na bola). Quatro listas mudaram de ordem (puxar vertical, empurrar horizontal sem banco, afundo, abdômen); as outras já estavam nessa ordem. É costume de treinador (`pesquisa-v2/25-treinadores-e-aplicativos.md`; `pesquisa-v2/20-escolha-ordem-e-interferencia.md`, proposta 4), sem ensaio: a pesquisa não achou diferença de resultado entre exercícios equivalentes da mesma função (`haugen2023`). **Desde 15/11/2026 (pacote 2): com carga à vontade, o exercício de dois lados vem antes do de um lado só**, logo depois da carga possível e antes da variedade, da preferência e da animação: a puxada pela frente antes da puxada de um lado só ajoelhado, a elevação lateral com halteres antes da de um lado só na polia, o hip thrust antes do coice na máquina. \"Carga à vontade\" é máquina, polia ou barra. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o de um lado só continua valendo como degrau de carga e nada muda (o stiff de um lado só com halter, o búlgaro e a panturrilha de um pé ficam como estavam). O de um lado só também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando a pessoa marcou \"prefiro este\". As duas ressalvas vieram da revisão cega de 15/11: sem elas, a pessoa com dor leve na lombar recebia o terra romeno com barra no lugar do stiff de um lado só, e o avançado com halteres de até 20 kg perdia o exercício de um lado que fazia a carga render. O motivo é o tempo e a simplicidade, não o resultado: a meta-análise não achou diferença de hipertrofia entre treinar um lado e os dois (`kassiano2025`, 9 estudos, intervalo largo; lida do resumo), e a série de um lado só leva o dobro do tempo. A vaga de afundo não muda (todos os exercícios dela são de um lado só).",
+    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem de referência da lista da função. Um afundo por dia, havendo outra opção: o afundo (búlgaro, afundo) fica por último quando o dia já tem um (R5a; `b-monte-e-avaliador.md`, pedido 4). **Desde 15/11/2026 (pacote 2 da sessão \"treino para todos\"): no empate total, vale a ordem de referência, e não a alfabética.** A ordem dos exercícios dentro de cada nível de `funcoes.json` passa a ser dado curado: o exercício mais comum e mais simples de montar vem primeiro (a puxada pela frente antes da puxada com barra reta e das barras fixas; a flexão de braço antes do supino na polia e do mergulho; o afundo antes do afundo para trás e do búlgaro; o abdominal no chão antes do abdominal na bola). Quatro listas mudaram de ordem (puxar vertical, empurrar horizontal sem banco, afundo, abdômen); as outras já estavam nessa ordem. É costume de treinador (`pesquisa-v2/25-treinadores-e-aplicativos.md`; `pesquisa-v2/20-escolha-ordem-e-interferencia.md`, proposta 4), sem ensaio: a pesquisa não achou diferença de resultado entre exercícios equivalentes da mesma função (`haugen2023`). **Desde 15/11/2026 (pacote 2): com carga à vontade, o exercício de dois lados vem antes do de um lado só**, logo depois da carga possível e antes da variedade, da preferência e da animação: a puxada pela frente antes da puxada de um lado só ajoelhado, a elevação lateral com halteres antes da de um lado só na polia, o hip thrust antes do coice na máquina. \"Carga à vontade\" é máquina, polia ou barra. Com halter, kettlebell, caneleira, peso do corpo ou elástico, o de um lado só continua valendo como degrau de carga e nada muda (o stiff de um lado só com halter, o búlgaro e a panturrilha de um pé ficam como estavam). O de um lado só também não perde lugar quando carrega uma região com dor de 3 a 5 (leva metade da carga para a região), nem quando a pessoa marcou \"prefiro este\". As duas ressalvas vieram da revisão cega de 15/11: sem elas, a pessoa com dor leve na lombar recebia o terra romeno com barra no lugar do stiff de um lado só, e o avançado com halteres de até 20 kg perdia o exercício de um lado que fazia a carga render. O motivo é o tempo e a simplicidade, não o resultado: a meta-análise não achou diferença de hipertrofia entre treinar um lado e os dois (`kassiano2025`, 9 estudos, intervalo largo; lida do resumo), e a série de um lado só leva o dobro do tempo. A vaga de afundo não muda (todos os exercícios dela são de um lado só).. **Conferência regra por regra de 22/11/2026:** entre a carga possível e os dois lados entra ainda o critério da lombar no dia (selecao.lombar-no-dia); para o iniciante, \"varia entre os dias\" é a prática",
     "valores": {
       "iniciante": "por função; um afundo por dia, havendo outra opção",
       "intermediario": "por função; um afundo por dia, havendo outra opção",
@@ -1302,7 +1302,7 @@
   },
   {
     "id": "selecao.pratica-do-iniciante",
-    "regra": "Prática antes de variedade, para o iniciante (16/11/2026, pacote 4 da sessão \"treino para todos\"): quando a mesma função aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de receber outro equivalente (a mesma puxada nos dois dias em que puxa de cima); nunca em todos os dias havendo outro do mesmo nível (`selecao.variacoes-equivalentes`). Vale no lugar da variedade entre os dias do desempate (`selecao.funcao-da-vaga`), depois da dor de 3 a 5, da estabilidade, da lombar no dia, da carga possível e dos dois lados. Só vale se não custar outra coisa: o programa é montado também sem a regra e, se com ela houver um dia a mais acima de 110% do tempo, um dia fraco a mais ou empurrar ÷ puxar acima de 1,5 que sem ela não haveria, vale o programa sem ela. Variar o exercício não rende mais músculo (`kassiano2022`, moderada), e o iniciante ganha mais repetindo o gesto; o resto é costume de treinador (`pesquisa-v2/25-treinadores-e-aplicativos.md`). Na amostra de 23.470 programas: os iniciantes com mais de 12 exercícios diferentes na semana caem em 1.528 programas, os dias fracos em 17, e nenhum defeito da régua aparece",
+    "regra": "Prática antes de variedade, para o iniciante (16/11/2026, pacote 4 da sessão \"treino para todos\"): quando a mesma função aparece em mais de um dia, o iniciante repete o exercício que já está na semana, em vez de receber outro equivalente (a mesma puxada nos dois dias em que puxa de cima); nunca em todos os dias havendo outro do mesmo nível (`selecao.variacoes-equivalentes`). Vale no lugar da variedade entre os dias do desempate (`selecao.funcao-da-vaga`), depois da dor de 3 a 5, da estabilidade, da lombar no dia, da carga possível e dos dois lados. Só vale se não custar outra coisa: o programa é montado também sem a regra e, se com ela houver um dia a mais acima de 110% do tempo, um dia fraco a mais ou empurrar ÷ puxar acima de 1,5 que sem ela não haveria, vale o programa sem ela. Variar o exercício não rende mais músculo (`kassiano2022`, moderada), e o iniciante ganha mais repetindo o gesto; o resto é costume de treinador (`pesquisa-v2/25-treinadores-e-aplicativos.md`). Na amostra de 23.470 programas: os iniciantes com mais de 12 exercícios diferentes na semana caem em 1.528 programas, os dias fracos em 17, e nenhum defeito da régua aparece. **Conferência regra por regra de 22/11/2026:** a prática vale com 3 dias ou mais; com 2 dias, o iniciante repete o mesmo exercício nos dois",
     "valores": {
       "iniciante": "repete o exercício que já está na semana; nunca em todos os dias havendo outro; só se não custar tempo, dia fraco nem equilíbrio",
       "intermediario": "não se aplica",
@@ -1316,7 +1316,7 @@
   },
   {
     "id": "selecao.dia-sem-principal",
-    "regra": "Dia que perdeu vagas por causa da dor, ou que ficaria só com core (abdominal) (R1). **Desde 14/11/2026 (sessão \"treino para todos\", pacote 0): antes de contar como perdida, a vaga que a dor esvaziou recebe, no próprio lugar, outra função do mesmo músculo, também de multiarticular,** que tenha exercício possível, primeiro uma função que o dia ainda não tem: a puxada ajoelhado sai com dor no joelho e a vaga fica com uma remada. Antes, a vaga sumia, o dia enchia com as vagas seguintes e as costas ficavam com um exercício só na semana (empurrar ÷ puxar acima de 1,5). Vale só para a vaga de um multiarticular: na do isolador (o tríceps acima da cabeça, com dor no ombro) o substituto entrava com 4 séries e estourava os treinos de 30 min (medido e recusado em 14/11/2026). Medido em 680.625 programas: entre os que têm alguma dor marcada, os programas com um dia de menos de 3 exercícios ou sem multiarticular vão de 71.642 para 71.503, e os de empurrar ÷ puxar acima de 1,5, de 3.284 para 3.269 **Desde 15/11/2026 (pacote 3; decisão do Gustavo em 14/11): quando a dor acima de 5 deixa algum dia da divisão recomendada com menos de 3 exercícios ou sem multiarticular, e a pessoa não escolheu a divisão, a semana sai na divisão do mesmo número de dias com menos dias assim** (quase sempre a de corpo todo, que espalha pelos dias o que sobrou). **Com 6 dias, vale também o Corpo todo 6x (decisão do Gustavo em 15/11/2026, que amplia a de 06/11):** as duas divisões oferecidas para 6 dias têm dias só de tronco, e sem ele um iniciante com dor forte no ombro ficava com três dias de menos de 10 minutos; ele continua fora das opções que a pessoa escolhe. Medido em 680.625 programas: com ele, os programas com um dia fraco vão de 41.471 para 29.159, e os de 6 dias sem nenhum defeito, de 82,3% para 91,3% (grade). Nada do que a dor tirou volta, e o app diz por que a divisão mudou. A troca só vale se não custar outra coisa que a recomendada não tinha: um músculo sem nenhuma série, quadríceps ÷ posteriores fora da faixa, empurrar ÷ puxar acima de 1,5, um dia acima de 110% do tempo, ou o foco abaixo do que tinha (sem estas travas, medido em 15/11/2026: 301 de 35.292 programas com dor forte ganhavam um músculo esquecido). Com o mesmo volume, a divisão não muda o resultado (`divisao.equivalencia`, robusta); remontar a semana assim é consenso de treinadores. Medido em 680.625 programas fictícios (`docs/revisoes/treino-para-todos/qa.md`), com o Corpo todo 6x incluído: os programas com um dia de menos de 3 exercícios ou sem multiarticular vão de 71.860 para 29.159; com dor 7 no cotovelo, o pior grupo até aqui, os programas sem nenhum defeito vão de 50,0% para 75,0% (grade) e de 42,7% para 85,1% (ponderada); em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa",
+    "regra": "Dia que perdeu vagas por causa da dor, ou que ficaria só com core (abdominal) (R1). **Desde 14/11/2026 (sessão \"treino para todos\", pacote 0): antes de contar como perdida, a vaga que a dor esvaziou recebe, no próprio lugar, outra função do mesmo músculo, também de multiarticular,** que tenha exercício possível, primeiro uma função que o dia ainda não tem: a puxada ajoelhado sai com dor no joelho e a vaga fica com uma remada. Antes, a vaga sumia, o dia enchia com as vagas seguintes e as costas ficavam com um exercício só na semana (empurrar ÷ puxar acima de 1,5). Vale só para a vaga de um multiarticular: na do isolador (o tríceps acima da cabeça, com dor no ombro) o substituto entrava com 4 séries e estourava os treinos de 30 min (medido e recusado em 14/11/2026). Medido em 680.625 programas: entre os que têm alguma dor marcada, os programas com um dia de menos de 3 exercícios ou sem multiarticular vão de 71.642 para 71.503, e os de empurrar ÷ puxar acima de 1,5, de 3.284 para 3.269 **Desde 15/11/2026 (pacote 3; decisão do Gustavo em 14/11): quando a dor acima de 5 deixa algum dia da divisão recomendada com menos de 3 exercícios ou sem multiarticular, e a pessoa não escolheu a divisão, a semana sai na divisão do mesmo número de dias com menos dias assim** (quase sempre a de corpo todo, que espalha pelos dias o que sobrou). **Com 6 dias, vale também o Corpo todo 6x (decisão do Gustavo em 15/11/2026, que amplia a de 06/11):** as duas divisões oferecidas para 6 dias têm dias só de tronco, e sem ele um iniciante com dor forte no ombro ficava com três dias de menos de 10 minutos; ele continua fora das opções que a pessoa escolhe. Medido em 680.625 programas: com ele, os programas com um dia fraco vão de 41.471 para 29.159, e os de 6 dias sem nenhum defeito, de 82,3% para 91,3% (grade). Nada do que a dor tirou volta, e o app diz por que a divisão mudou. A troca só vale se não custar outra coisa que a recomendada não tinha: um músculo sem nenhuma série, quadríceps ÷ posteriores fora da faixa, empurrar ÷ puxar acima de 1,5, um dia acima de 110% do tempo, ou o foco abaixo do que tinha (sem estas travas, medido em 15/11/2026: 301 de 35.292 programas com dor forte ganhavam um músculo esquecido). Com o mesmo volume, a divisão não muda o resultado (`divisao.equivalencia`, robusta); remontar a semana assim é consenso de treinadores. Medido em 680.625 programas fictícios (`docs/revisoes/treino-para-todos/qa.md`), com o Corpo todo 6x incluído: os programas com um dia de menos de 3 exercícios ou sem multiarticular vão de 71.860 para 29.159; com dor 7 no cotovelo, o pior grupo até aqui, os programas sem nenhum defeito vão de 50,0% para 75,0% (grade) e de 42,7% para 85,1% (ponderada); em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. **Conferência regra por regra de 22/11/2026:** a troca de divisão não pode deixar o foco abaixo da meta que tinha alcançado (pode perder séries acima dela). O aviso culpa a dor mesmo quando o dia fraco já existia sem ela: está no backlog, para o pacote D3",
     "valores": {
       "iniciante": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; o aviso diz \"de outros músculos\" quando o que entrou não é músculo do dia (03/11/2026: um dia de \"Puxar\" com panturrilha não é \"dos músculos do dia\"); vaga vazia pela dor não vira aviso de falta de equipamento",
       "intermediario": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; o aviso diz \"de outros músculos\" quando o que entrou não é músculo do dia (03/11/2026: um dia de \"Puxar\" com panturrilha não é \"dos músculos do dia\"); vaga vazia pela dor não vira aviso de falta de equipamento",
@@ -1348,7 +1348,7 @@
   },
   {
     "id": "selecao.preferencia",
-    "regra": "\"Prefiro este\" entre equivalentes da mesma função (R1b; decisão do Gustavo no R0c)",
+    "regra": "\"Prefiro este\" entre equivalentes da mesma função (R1b; decisão do Gustavo no R0c). **Conferência regra por regra de 22/11/2026:** o último desempate é a ordem de referência da função, e não a alfabética (desde 15/11/2026)",
     "valores": {
       "iniciante": "entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética; vale nos próximos programas e nas trocas entre locais; nada vem preferido; desfaz com um toque; a dor acima de 5 tira o preferido igual",
       "intermediario": "entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética; vale nos próximos programas e nas trocas entre locais; nada vem preferido; desfaz com um toque; a dor acima de 5 tira o preferido igual",
@@ -1391,7 +1391,7 @@
   },
   {
     "id": "selecao.exercicios-por-musculo",
-    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso. **R5b (09/11/2026):** medido pela tabela de funções, em famílias (peito: reto, inclinado, crucifixo; costas: de cima, remada; quadríceps: agachar, afundo, extensora; posteriores: flexão de joelho, dobrar o quadril; glúteo: agachar ou afundo, extensão de quadril, abdução). Um exercício vale numa função no nível igual ou acima do melhor possível no equipamento; por isso a flexão (ou o supino reto) em duas vagas conta como 2 funções do peito só quando não há banco inclinável. Depois dos cortes de tempo, o gerador troca a vaga repetida pela família que falta ou a acrescenta num dia da mesma região com lugar, sem passar dos minutos nem dos pisos",
+    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso. **R5b (09/11/2026):** medido pela tabela de funções, em famílias (peito: reto, inclinado, crucifixo; costas: de cima, remada; quadríceps: agachar, afundo, extensora; posteriores: flexão de joelho, dobrar o quadril; glúteo: agachar ou afundo, extensão de quadril, abdução). Um exercício vale numa função no nível igual ou acima do melhor possível no equipamento; por isso a flexão (ou o supino reto) em duas vagas conta como 2 funções do peito só quando não há banco inclinável. Depois dos cortes de tempo, o gerador troca a vaga repetida pela família que falta ou a acrescenta num dia da mesma região com lugar, sem passar dos minutos nem dos pisos. **Conferência regra por regra de 22/11/2026:** os músculos pequenos recebem pelo menos 1 exercício; a variedade entre os dias pode dar 2 sem prioridade",
     "valores": {
       "iniciante": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
       "intermediario": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
@@ -1443,7 +1443,7 @@
   },
   {
     "id": "selecao.manter-no-bloco",
-    "regra": "Mantém os exercícios por 4–8 semanas (o programa só muda quando a pessoa pede); ao trocar de bloco, varia dentro da mesma função",
+    "regra": "Mantém os exercícios por 4–8 semanas (o programa só muda quando a pessoa pede); ao trocar de bloco, varia dentro da mesma função. **Conferência regra por regra de 22/11/2026:** o app não conta as semanas do bloco nem propõe a troca; o programa só muda quando a pessoa pede",
     "valores": {
       "iniciante": "4–8 semanas",
       "intermediario": "4–8 semanas",
@@ -1486,7 +1486,7 @@
   },
   {
     "id": "selecao.mergulho",
-    "regra": "Mergulho nas paralelas: complexidade 3 e articulação ombro (a triagem exclui); fica no nível 2 do empurrar horizontal, atrás dos supinos, e no nível 2 do complemento de tríceps",
+    "regra": "Mergulho nas paralelas: complexidade 3 e articulação ombro (a triagem exclui); fica no nível 2 do empurrar horizontal, atrás dos supinos, e no nível 2 do complemento de tríceps. **Conferência regra por regra de 22/11/2026:** \"sem restrição\" no app é sem dor acima de 5 no ombro ou no cotovelo; com dor de 3 a 5, o mergulho só perde no desempate",
     "valores": {
       "iniciante": "fora (complexidade acima do nível)",
       "intermediario": "nível 2; só com o ombro sem restrição",
@@ -1499,7 +1499,7 @@
   },
   {
     "id": "selecao.aducao-complemento",
-    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas",
+    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas. **Conferência regra por regra de 22/11/2026:** no corte de tempo a adução não sai primeiro: sai o último isolador sem foco do dia, que costuma ser o abdominal. Trocar a ordem muda programas: backlog, pacote D3",
     "valores": {
       "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
       "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
@@ -1526,7 +1526,7 @@
   },
   {
     "id": "selecao.complexidade-nivel",
-    "regra": "Complexidade do exercício até o nível (R5b, 09/11/2026: o filtro `NIVEL_COMPLEXIDADE_MAX` do gerador ganha `regraId`). Cada exercício da biblioteca tem complexidade de 1 a 3; o iniciante fica até 2 (o mergulho nas paralelas, o nórdico e a roda abdominal ficam de fora: ombro, dor forte na 1ª sessão, lombar). Máquinas e apoiados crescem igual e são mais fáceis de aprender. No avaliador, um exercício acima do nível é alerta forte, sem bloquear",
+    "regra": "Complexidade do exercício até o nível (R5b, 09/11/2026: o filtro `NIVEL_COMPLEXIDADE_MAX` do gerador ganha `regraId`). Cada exercício da biblioteca tem complexidade de 1 a 3; o iniciante fica até 2 (o mergulho nas paralelas, o nórdico e a roda abdominal ficam de fora: ombro, dor forte na 1ª sessão, lombar). Máquinas e apoiados crescem igual e são mais fáceis de aprender. No avaliador, um exercício acima do nível é alerta forte, sem bloquear. **Conferência regra por regra de 22/11/2026:** a biblioteca tem 10 exercícios de complexidade 3, entre eles os de barra livre (agachamento, supino, remada, desenvolvimento e terra romeno)",
     "valores": {
       "iniciante": "até 2",
       "intermediario": "até 3",
@@ -1542,7 +1542,7 @@
   },
   {
     "id": "avaliador.gravidade",
-    "regra": "O avaliador de programas (R5b, 09/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`) mede qualquer programa (o gerado, ou um digitado com exercícios da biblioteca) pelas mesmas regras e pela mesma tabela de funções (`FUNCAO`) do gerador, e dá a cada achado a regra, o selo e o próximo passo. Só a segurança bloqueia (princípio do projeto): a triagem com um \"sim\" sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível. O resto só orienta: \"ajustar\" quando há como mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); \"limite\" quando o equipamento, a dor ou o tempo não deixam, e então o texto diz que não precisa fazer nada; \"informação\" para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. \"Está bom\" = nenhum de segurança, alerta ou ajustar",
+    "regra": "O avaliador de programas (R5b, 09/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`) mede o programa da pessoa (a conta aceita também um programa digitado com exercícios da biblioteca, mas o app ainda não tem tela para digitar um; conferência de 22/11/2026) pelas mesmas regras e pela mesma tabela de funções (`FUNCAO`) do gerador, e dá a cada achado a regra, o selo e o próximo passo. Só a segurança bloqueia (princípio do projeto): a triagem com um \"sim\" sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível. O resto só orienta: \"ajustar\" quando há como mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); \"limite\" quando o equipamento, a dor ou o tempo não deixam, e então o texto diz que não precisa fazer nada; \"informação\" para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. \"Está bom\" = nenhum de segurança, alerta ou ajustar",
     "valores": {
       "iniciante": "idem",
       "intermediario": "idem",
@@ -1661,11 +1661,11 @@
   },
   {
     "id": "equipamento.roda-abdominal",
-    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar (a lombar está nas articulações do exercício); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
+    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar acima de 5 (a lombar está nas articulações do exercício; de 3 a 5 só perde no desempate, pela regra geral da dor); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
     "valores": {
       "iniciante": "não entra",
-      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar",
-      "avancado": "alternativa na vaga de abdômen; sai com dor lombar"
+      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar acima de 5",
+      "avancado": "alternativa na vaga de abdômen; sai com dor lombar acima de 5"
     },
     "selo": "consenso",
     "fontes": [
@@ -1702,9 +1702,9 @@
     "id": "equipamento.sem-puxada-vertical",
     "regra": "Sem barra fixa nem polia alta. O aviso diz o que o programa tem de fato (R5-CL, 07/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 4): com a puxada de elástico no programa, diz que a puxada é só com o elástico, e não que as costas treinam \"só com remadas\"",
     "valores": {
-      "iniciante": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
-      "intermediario": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
-      "avancado": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna"
+      "iniciante": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna",
+      "intermediario": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna",
+      "avancado": "manter o volume de costas com remadas (a invertida e as com halter no mesmo nível, com o desempate do gerador: a que deixa pôr mais carga; abaixo delas, a puxada com elástico ancorado alto); o pullover não está na biblioteca; mostrar aviso de lacuna"
     },
     "selo": "consenso",
     "fontes": [
@@ -1713,7 +1713,7 @@
   },
   {
     "id": "equipamento.sem-ancoragem",
-    "regra": "Sem nada para puxar (nenhum exercício possível de puxar vertical nem horizontal): o app não inventa exercício de costas nem sugere compra; um aviso da vaga diz que costas, bíceps e ombro de trás ficam sem exercício e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram (decisão do Gustavo, 03/11/2026)",
+    "regra": "Sem nada para puxar (nenhum exercício possível de puxar vertical nem horizontal): o app não inventa exercício de costas nem sugere compra; um aviso da vaga diz quais músculos ficam sem exercício (no corpo livre, costas, bíceps e ombro lateral; o ombro de trás tem a abertura em T desde 07/11/2026) e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram (decisão do Gustavo, 03/11/2026)",
     "valores": {
       "iniciante": "aviso da vaga, sem sugestão de compra",
       "intermediario": "aviso da vaga, sem sugestão de compra",
@@ -1727,7 +1727,7 @@
   },
   {
     "id": "divisao.sem-puxar",
-    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso e, desde 15/11/2026, quando a dor esvazia um dia (`selecao.dia-sem-principal`) (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo. No Corpo todo 6x, os dias A, C e E têm um complemento de empurrar vertical (o pike, sem nada), sem depender do foco: sem nada, é o que dá séries ao ombro lateral (R5a; `a-qualidade.md`, pacote A)",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso e, desde 15/11/2026, quando a dor esvazia um dia (`selecao.dia-sem-principal`) (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo. No Corpo todo 6x, os dias A, C e E têm um complemento de empurrar vertical (o pike, sem nada), sem depender do foco: sem nada, é o que dá séries ao ombro lateral (R5a; `a-qualidade.md`, pacote A). **Conferência regra por regra de 22/11/2026:** a tela da rotina ainda marca \"Recomendada\" na divisão de sempre, e com 6 dias o aviso manda escolher \"Corpo todo\", que a tela não oferece (pacote D3)",
     "valores": {
       "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
       "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
@@ -1773,7 +1773,7 @@
   },
   {
     "id": "selecao.nordico",
-    "regra": "Nórdico: complexidade 3 (só intermediário e avançado), calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo; começa com poucas séries, porque a 1ª sessão dá dor forte por alguns dias e subir o volume rápido dói mais",
+    "regra": "Nórdico: complexidade 3 (só intermediário e avançado), calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo; começa com poucas séries, porque a 1ª sessão dá dor forte por alguns dias e subir o volume rápido dói mais. **Conferência regra por regra de 22/11/2026:** o gerador não tem a trava de 2 séries na 1ª semana: o nórdico recebe séries como os outros (até 4). Decisão do Gustavo pendente. **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** o limite de 2 séries na 1ª semana vai para o pacote D3 (muda programas); até lá a frase diz que o app ainda não limita, e o guia manda começar com poucas descidas",
     "valores": {
       "iniciante": "não entra",
       "intermediario": "faixa de 6 a 10 descidas (era 4 a 8 até 06/11/2026: o volume baixo não cresceu a espessura, `cholp2025`; o ensaio que cresceu foi até 10, `maeo2024`); a 1ª semana com 2 séries (o mínimo do programa)",
@@ -1862,7 +1862,7 @@
   },
   {
     "id": "objetivo.forca.seguranca",
-    "regra": "Na faixa baixa, multiarticular com peso livre (barra, halter, kettlebell) fica com 2 a 3 repetições de reserva; nunca até a falha sem ajudante",
+    "regra": "Na faixa baixa, multiarticular com peso livre (barra, halter, kettlebell) fica com 2 a 3 repetições de reserva; nunca até a falha sem ajudante. **Conferência regra por regra de 22/11/2026:** a lista de peso livre do código inclui as máquinas de anilha (leg press, hack, smith)",
     "valores": {
       "iniciante": "—",
       "intermediario": "RIR 2–3",
@@ -1890,11 +1890,11 @@
   },
   {
     "id": "equipamento.flexao-por-supino",
-    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); quem não chega ao mínimo da faixa no chão faz a inclinada, como diz o cartão",
+    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); para quem não chega ao mínimo da faixa no chão, a flexão inclinada (mãos numa cadeira ou bancada) seria o degrau mais fácil, mas ainda não está no app: a sugestão é fazer menos repetições ou usar a alternativa (texto acertado ao que o app faz na conferência regra por regra de 22/11/2026)",
     "valores": {
-      "iniciante": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
-      "intermediario": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
-      "avancado": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)"
+      "iniciante": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app",
+      "intermediario": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app",
+      "avancado": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada), ainda fora do app"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1930,7 +1930,7 @@
   },
   {
     "id": "tempo.aquecimento",
-    "regra": "Aquecimento específico antes do 1º multiarticular de cada região (o geral não é exigido); a última série de aproximação fica perto da carga de trabalho",
+    "regra": "Aquecimento específico antes do 1º multiarticular de cada região (o geral não é exigido); a última série de aproximação fica perto da carga de trabalho. **Conferência regra por regra de 22/11/2026:** o lembrete aparece só no 1º exercício do treino (corte aprovado pelo Gustavo em 22/11/2026); o modelo de tempo soma 90 s de aquecimento curto em cada multiarticular seguinte de músculo novo",
     "valores": {
       "iniciante": "1–2 séries leves, ~2–4 min; a última perto da carga do treino",
       "intermediario": "1–2 séries leves, ~2–4 min; a última perto da carga do treino",
@@ -2034,7 +2034,7 @@
   },
   {
     "id": "tempo.sobra-series",
-    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). Desde o R5d (08/11/2026; `volume.prioridade.foco-primeiro`), com um grupo de foco possível, o foco sobe primeiro, até o máximo do nível, e os outros só depois, até 6 séries abaixo do foco mais fraco; sem foco, todos sobem como antes. **Desde 13/11/2026 (sessão \"treino para todos\", pacote 1; decisão do Gustavo em 13/11, que reabre a de 07/11, `docs/revisoes/treino-para-todos/proposta.md`), o tempo que sobra vira série em todos os dias, e não só nos que têm vaga vazia.** É um segundo passo, com o programa já montado, cortado e completado: os exercícios são os mesmos e só as séries sobem, uma por vez, primeiro o foco, depois o músculo mais longe do alvo, no exercício com menos séries e no dia que usa menos tempo, enquanto o dia couber nos minutos. Sem foco, cada músculo sobe até o alvo do nível (8, 12, 14); com 1 ou 2 grupos de foco (`volume.prioridade.ate-dois`), o foco sobe até o máximo do nível e os outros até 6 abaixo dele; com 3 grupos ou mais, o foco fica na meta e só os outros sobem. Travas do segundo passo: nenhum músculo passa do máximo do nível, nem o foco; o dia que precisou de bi-set ou drop set para caber fica como está; nenhuma série de empurrar entra se levar empurrar ÷ puxar acima de 1,5 (as costas e o ombro de trás sobem antes, até o alvo); as de sempre (4 por exercício, 10 por músculo na sessão, quadríceps ÷ posteriores na faixa). **Para o iniciante, fora do foco, só os multiarticulares sobem, e até 3 séries (decisão do Gustavo em 13/11/2026):** subir tudo até o alvo de 8 foi medido e recusado (revisão cega de 13/11/2026, `docs/revisoes/treino-para-todos/pacote-1.md`: com o dia no limite do tempo e 3 a 4 séries nos exercícios pequenos, a nota caiu em 2 de 5 iniciantes; só os exercícios grandes, até 3 séries, não baixou a de nenhum e subiu a de 4). O que há de novo desde 07/11: 6 séries ficam entre a dose mínima detectável (~4) e o que as diretrizes recomendam (10 ou mais), e a curva não mostra platô claro até onde há dados (`pesquisa-v2/18`); na população medida, 15 em cada 100 programas usavam menos de 70% do tempo pedido sem aviso; e a regra do foco primeiro, que não existia em 07/11, segura a diluição do foco. Medido em 680.625 programas fictícios (`docs/revisoes/treino-para-todos/qa.md`): os programas sem defeito na régua vão de 80,3% para 83,6% na grade e de 79,0% para 94,4% na conta ponderada; o dia típico abaixo de 70% do tempo, sem aviso, vai de 15,2% para 0 (ponderada); as séries por músculo por semana, de 7,3 para 7,8 (média ponderada); nenhum defeito sobe em nenhum grupo. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; os alvos por nível, a ordem e as travas são escolha do projeto",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). Desde o R5d (08/11/2026; `volume.prioridade.foco-primeiro`), com um grupo de foco possível, o foco sobe primeiro, até o máximo do nível, e os outros só depois, até 6 séries abaixo do foco mais fraco; sem foco, todos sobem como antes. **Desde 13/11/2026 (sessão \"treino para todos\", pacote 1; decisão do Gustavo em 13/11, que reabre a de 07/11, `docs/revisoes/treino-para-todos/proposta.md`), o tempo que sobra vira série em todos os dias, e não só nos que têm vaga vazia.** É um segundo passo, com o programa já montado, cortado e completado: os exercícios são os mesmos e só as séries sobem, uma por vez, primeiro o foco, depois o músculo mais longe do alvo, no exercício com menos séries e no dia que usa menos tempo, enquanto o dia couber nos minutos. Sem foco, cada músculo sobe até o alvo do nível (8, 12, 14); com 1 ou 2 grupos de foco (`volume.prioridade.ate-dois`), o foco sobe até o máximo do nível e os outros até 6 abaixo dele; com 3 grupos ou mais, o foco fica na meta e só os outros sobem. Travas do segundo passo: nenhum músculo passa do máximo do nível, nem o foco; o dia que precisou de bi-set ou drop set para caber fica como está; nenhuma série de empurrar entra se levar empurrar ÷ puxar acima de 1,5 (as costas e o ombro de trás sobem antes, até o alvo); as de sempre (4 por exercício, 10 por músculo na sessão, quadríceps ÷ posteriores na faixa). **Para o iniciante, fora do foco, só os multiarticulares sobem, e até 3 séries (decisão do Gustavo em 13/11/2026):** subir tudo até o alvo de 8 foi medido e recusado (revisão cega de 13/11/2026, `docs/revisoes/treino-para-todos/pacote-1.md`: com o dia no limite do tempo e 3 a 4 séries nos exercícios pequenos, a nota caiu em 2 de 5 iniciantes; só os exercícios grandes, até 3 séries, não baixou a de nenhum e subiu a de 4). O que há de novo desde 07/11: 6 séries ficam entre a dose mínima detectável (~4) e o que as diretrizes recomendam (10 ou mais), e a curva não mostra platô claro até onde há dados (`pesquisa-v2/18`); na população medida, 15 em cada 100 programas usavam menos de 70% do tempo pedido sem aviso; e a regra do foco primeiro, que não existia em 07/11, segura a diluição do foco. Medido em 680.625 programas fictícios (`docs/revisoes/treino-para-todos/qa.md`): os programas sem defeito na régua vão de 80,3% para 83,6% na grade e de 79,0% para 94,4% na conta ponderada; o dia típico abaixo de 70% do tempo, sem aviso, vai de 15,2% para 0 (ponderada); as séries por músculo por semana, de 7,3 para 7,8 (média ponderada); nenhum defeito sobe em nenhum grupo. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; os alvos por nível, a ordem e as travas são escolha do projeto. **Conferência regra por regra de 22/11/2026:** a trava do iniciante (só multiarticulares, até 3 séries) vale no 2º passo; nos dias com vaga vazia, isoladores do iniciante sobem até 4 (pacote D3)",
     "valores": {
       "iniciante": "sem foco, até 8 por músculo; com foco, o foco até 10 e os outros até 6 abaixo dele",
       "intermediario": "sem foco, até 12 por músculo; com foco, o foco até 16 e os outros até 6 abaixo dele",
@@ -2066,7 +2066,7 @@
   },
   {
     "id": "tempo.superserie",
-    "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas; aumenta o esforço percebido e o dano muscular **Desde 15/11/2026 (pacote 3): os dois exercícios de uma dupla ficam um depois do outro na lista do dia** (antes, o par do 1º exercício podia aparecer em 3º; achado da revisão cega). Medido e recusado no mesmo dia, por pôr treinos curtos acima do tempo: proibir a dupla com exercício livre com barra, proibir a dupla de dois exercícios que carregam a lombar sem apoio e tirar o drop set do iniciante (`docs/revisoes/treino-para-todos/pacote-3.md`). **Desde 16/11/2026 (pacote 4): a dupla de dois exercícios que carregam a lombar sem apoio (stiff com remada curvada, agachamento com barra com desenvolvimento em pé) passa a ser o último recurso, em vez de ser proibida:** o corte de tempo é feito sem ela; só se isso deixar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que o corte com ela não deixaria é que vale o corte com ela. É costume de treinador, sem ensaio (`pesquisa-v2/20-escolha-ordem-e-interferencia.md`, seção da lombar). As outras duas (a dupla com exercício livre com barra e o drop set do iniciante) foram medidas de novo como último recurso e continuam recusadas (`docs/revisoes/treino-para-todos/pacote-4.md`).",
+    "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas; aumenta o esforço percebido e o dano muscular **Desde 15/11/2026 (pacote 3): os dois exercícios de uma dupla ficam um depois do outro na lista do dia** (antes, o par do 1º exercício podia aparecer em 3º; achado da revisão cega). Medido e recusado no mesmo dia, por pôr treinos curtos acima do tempo: proibir a dupla com exercício livre com barra, proibir a dupla de dois exercícios que carregam a lombar sem apoio e tirar o drop set do iniciante (`docs/revisoes/treino-para-todos/pacote-3.md`). **Desde 16/11/2026 (pacote 4): a dupla de dois exercícios que carregam a lombar sem apoio (stiff com remada curvada, agachamento com barra com desenvolvimento em pé) passa a ser o último recurso, em vez de ser proibida:** o corte de tempo é feito sem ela; só se isso deixar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que o corte com ela não deixaria é que vale o corte com ela. É costume de treinador, sem ensaio (`pesquisa-v2/20-escolha-ordem-e-interferencia.md`, seção da lombar). As outras duas (a dupla com exercício livre com barra e o drop set do iniciante) foram medidas de novo como último recurso e continuam recusadas (`docs/revisoes/treino-para-todos/pacote-4.md`).. **Conferência regra por regra de 22/11/2026:** a tela do treino não conduz a dupla (cada série ganha o descanso inteiro), embora o tempo estimado conte os 15 s; o iniciante com pausa no cadastro recebe dupla nas semanas 1 e 2 (pacote D3)",
     "valores": {
       "iniciante": "só a partir da 3ª semana; nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
       "intermediario": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
@@ -2081,7 +2081,7 @@
   },
   {
     "id": "tempo.drop-set",
-    "regra": "Drop set: 1 série + 2 quedas com ~10–15 s ≈ 2–3 séries (o gerador conta 2, o mínimo da faixa); prescrito pela escada `tempo.corte`, só onde a carga pode ser reduzida (máquina, polia ou halter)",
+    "regra": "Drop set: 1 série + 2 quedas com ~10–15 s ≈ 2–3 séries (o gerador conta 2, o mínimo da faixa); prescrito pela escada `tempo.corte`, só onde a carga pode ser reduzida (máquina, polia ou halter). **Conferência regra por regra de 22/11/2026:** o drop set também entra em isolador de kettlebell e de caneleira",
     "valores": {
       "iniciante": "≤ 1 por exercício; nunca em multiarticular livre pesado",
       "intermediario": "≤ 1 por exercício; nunca em multiarticular livre pesado",
@@ -2097,7 +2097,7 @@
   },
   {
     "id": "tempo.outras-tecnicas",
-    "regra": "Rest-pause (ou myo-reps) permitido na última série de exercício estável; cluster sets e pré-exaustão não entram no modo curto (não economizam tempo ou não trazem ganho)",
+    "regra": "Rest-pause (ou myo-reps) permitido na última série de exercício estável; cluster sets e pré-exaustão não entram no modo curto (não economizam tempo ou não trazem ganho). **Conferência regra por regra de 22/11/2026:** é orientação: o app não prescreve nem registra",
     "valores": {
       "iniciante": "rest-pause sim; cluster e pré-exaustão não",
       "intermediario": "rest-pause sim; cluster e pré-exaustão não",
@@ -2186,7 +2186,7 @@
   },
   {
     "id": "seguranca.alerta.musculoesqueletico",
-    "regra": "Dor articular aguda ou pontual, estalo com dor, formigamento, dormência ou dor irradiada, perda de força incomum; sinais de cauda equina (dormência na região que encosta num selim, retenção ou perda de controle da urina ou das fezes, perda de força progressiva nas pernas, ciática aguda nas duas pernas; tabela 2 de `aafp2015`) pedem atendimento urgente. Desde 17/11/2026 o \"Senti algo\" tem o sinal \"Dormência entre as pernas ou descontrole da urina ou das fezes\"",
+    "regra": "Dor articular aguda ou pontual, estalo com dor, formigamento, dormência ou dor irradiada, perda de força incomum; sinais de cauda equina (dormência na região que encosta num selim, retenção ou perda de controle da urina ou das fezes, perda de força progressiva nas pernas, ciática aguda nas duas pernas; tabela 2 de `aafp2015`) pedem atendimento urgente. Desde 17/11/2026 o \"Senti algo\" tem o sinal \"Dormência entre as pernas ou descontrole da urina ou das fezes\". **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** \"Senti algo\" ganhou as opções \"Estalo com dor\" e \"Dor que se espalha pelo braço ou pela perna\", que encerram o exercício como a dor aguda",
     "valores": {
       "iniciante": "encerra o exercício; oferece alternativa; recomenda avaliação se persistir; sinal de cauda equina: encerra a sessão e orienta procurar um pronto-socorro",
       "intermediario": "encerra o exercício; oferece alternativa; recomenda avaliação se persistir; sinal de cauda equina: encerra a sessão e orienta procurar um pronto-socorro",
@@ -2201,7 +2201,7 @@
   },
   {
     "id": "seguranca.dor.escala",
-    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota do \"Senti algo\" fica na última série feita do exercício ou, sem série, no próprio exercício, de onde passa para a próxima série; se a dor encerra o exercício antes da 1ª série, a nota continua nele e vale como a de uma série (R5a; `c-fluxo.md`, C-1; auditoria de 12/11/2026)",
+    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota do \"Senti algo\" fica na última série feita do exercício ou, sem série, no próprio exercício, de onde passa para a próxima série; se a dor encerra o exercício antes da 1ª série, a nota continua nele e vale como a de uma série (R5a; `c-fluxo.md`, C-1; auditoria de 12/11/2026). **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** o app não pergunta a dor em cada série (a nota é dada em \"Senti algo\") e não mede sozinho a piora nem a duração; o aviso de avaliação sai com nota de 3 ou mais em 2 treinos seguidos. A regra fica assim: menos pergunta a cada série, e o caminho da dor sempre à mão",
     "valores": {
       "iniciante": "0–2: segue; 3–5: reduzir carga 10–20% (se houver uma menor: na placa 1, no halter mais leve e no 1º degrau, o app não manda reduzir), encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5); nota de 3 ou mais no mesmo exercício em 2 sessões seguidas: aviso de dor e de avaliação (com alguma nota > 5, o aviso indica a alternativa)",
       "intermediario": "0–2: segue; 3–5: reduzir carga 10–20% (se houver uma menor: na placa 1, no halter mais leve e no 1º degrau, o app não manda reduzir), encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5); nota de 3 ou mais no mesmo exercício em 2 sessões seguidas: aviso de dor e de avaliação (com alguma nota > 5, o aviso indica a alternativa)",
@@ -2270,7 +2270,7 @@
   },
   {
     "id": "seguranca.sem-diagnostico",
-    "regra": "O app não diagnostica e se posiciona como ferramenta de autogestão",
+    "regra": "O app não diagnostica e se posiciona como ferramenta de autogestão. **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** os textos do app dizem \"médico ou profissional de Educação Física\", sem exigir o registro; a regra passa a dizer o mesmo",
     "valores": {
       "iniciante": "nunca nomeia lesão, promete cura ou diz \"pode treinar com dor 5/10\"; DOMS × lesão aparece como heurística; recomenda profissional com CREF",
       "intermediario": "nunca nomeia lesão, promete cura ou diz \"pode treinar com dor 5/10\"; DOMS × lesão aparece como heurística; recomenda profissional com CREF",
@@ -2297,7 +2297,7 @@
   },
   {
     "id": "seguranca.montagem",
-    "regra": "Montagem segura no cartão e no guia dos exercícios com travas, apoios ou ancoragem; os acidentes (peso que cai, queda, pancada) são a maior causa de atendimento em pronto-socorro",
+    "regra": "Montagem segura no cartão e no guia dos exercícios com travas, apoios ou ancoragem; os acidentes (peso que cai, queda, pancada) são a maior causa de atendimento em pronto-socorro. **Conferência regra por regra de 22/11/2026, decidido pela sessão por delegação do Gustavo:** ganharam a marca de montagem (e com ela a linha \"Montagem segura\" no treino e a nota na folha do programa) os 6 exercícios com barra que não tinham (supino, remada, desenvolvimento, rosca com barra W, terra romeno e rosca Scott) e os 3 de barra fixa; a rosca Scott e os 3 de barra fixa ganharam a nota, com frases já aprovadas em outros guias",
     "valores": {
       "iniciante": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas; em casa (03/11/2026): móvel testado antes da 1ª série, cadeira firme sem rodinhas encostada na parede, calcanhares do nórdico presos sob um móvel pesado ou por alguém, chão liso sem tapete solto na flexão deslizante",
       "intermediario": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas; em casa (03/11/2026): móvel testado antes da 1ª série, cadeira firme sem rodinhas encostada na parede, calcanhares do nórdico presos sob um móvel pesado ou por alguém, chão liso sem tapete solto na flexão deslizante",
@@ -2342,9 +2342,9 @@
     "id": "dados.copia",
     "regra": "Lembrete de cópia dos dados (R5c, 07/11/2026). Os dados moram só no aparelho, e o navegador pode apagá-los: o Safari, depois de 7 dias de uso do Safari sem visita ao site (quando o app não está instalado na tela de início); qualquer navegador, por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente. Os números 3 e 7 são escolha do projeto",
     "valores": {
-      "iniciante": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
-      "intermediario": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
-      "avancado": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre"
+      "iniciante": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre",
+      "intermediario": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre",
+      "avancado": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica depois dos exercícios, acima de \"Começar o treino\" (que fica preso embaixo), e nunca o cobre"
     },
     "selo": "consenso",
     "fontes": [
@@ -2385,9 +2385,9 @@
     "id": "treino.leitura",
     "regra": "\"Como ler o seu treino\" (R5c, B2, 07/11/2026): o vocabulário do programa em 5 linhas, para quem nunca treinou. Série é um bloco de repetições seguidas; repetição é um movimento completo; carga é o peso usado; descanso é a pausa entre as séries; o RIR segue `rir.leitura`. São termos de uso corrente no treino de força, sem estudo que teste a explicação; não há estudo achado sobre o efeito de explicar os termos na adesão",
     "valores": {
-      "iniciante": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
-      "intermediario": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
-      "avancado": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)"
+      "iniciante": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "intermediario": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "avancado": "em \"Entenda o treino\", num bloco que a pessoa abre (decisão do Gustavo de 16/11/2026; antes, aberto no programa até o 1º treino terminado); no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)"
     },
     "selo": "consenso",
     "fontes": [
@@ -2397,7 +2397,7 @@
   },
   {
     "id": "nivel.classificacao",
-    "regra": "Classificação de nível no onboarding; na dúvida, classificar para baixo",
+    "regra": "Classificação de nível no onboarding; na dúvida, classificar para baixo. **Conferência regra por regra de 22/11/2026:** o \"progresso lento\" do avançado não é perguntado",
     "valores": {
       "iniciante": "nunca treinou (resposta própria desde 19/11/2026: sem a pergunta da pausa nem a da técnica, zero semana parada, entra na fase de aprendizado e não na volta de pausa), ou < ~6 meses de treino contínuo, ou > ~6 meses parado, ou sem confiança na técnica básica",
       "intermediario": "~6–24 meses de treino contínuo com técnica estável",

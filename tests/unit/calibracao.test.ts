@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
+import { calibrar, emCalibracao, faixaDoPerto, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
 import { calibracaoNaSessao, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
-import { sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
+import { kgNoPasso, sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
 import { cargasHalter } from '../../src/domain/taxonomia/equipamentos';
-import { ana, bruno } from '../personas';
+import { ana, bruno, PERSONAS } from '../personas';
+import { PERSONAS_NOVAS } from '../personas/todos';
+import { gerarPrograma } from '../../src/domain/gerador';
 
 // progressao.calibracao: os casos C1 a C7 do T6 (pesquisa-v2/07, seção 2.3), agora no R1b (pesquisa-v2/09).
 const halterAna: OpcoesCarga = { tipo: 'halter', lista: cargasHalter(ana.inventario) };
@@ -72,8 +74,10 @@ describe('progressao.calibracao: os 5 tipos de carga (pesquisa-v2/08, tabela 1.1
     expect(calibrar({ carga: { tipo: 'placa', placa: 1 }, reps: 4, rir: 1 }, alvo, { tipo: 'polia' }).acao).toBe('manter');
   });
   it('kg conhecido com até 12 repetições somadas: a fórmula para cima, para baixo no inventário', () => {
-    // faixa 6–10, RIR 1–2 → A = 9,5; 10 kg × 10 + 2 = 12 → 10 × 27,5 / 25 = 11 kg
-    expect(calibrar({ carga: kg(10), reps: 10, rir: 2 }, { reps: [6, 10], rir: [1, 2] }, halterAna).proxima).toEqual(kg(11));
+    // faixa 5–8, RIR 1–2 → A = 8; a tela mostra de 6 a 10; 10 kg × 8 + 3 = 11 (acima) → 10 × 29 / 26 = 11,2 → 11 kg
+    // (até 22/11/2026 o exemplo era 6–10 com 10 + 2 = 12: hoje isso é o topo da faixa mostrada, e a carga fica)
+    expect(calibrar({ carga: kg(10), reps: 8, rir: 3 }, { reps: [5, 8], rir: [1, 2] }, halterAna).proxima).toEqual(kg(11));
+    expect(calibrar({ carga: kg(10), reps: 10, rir: 2 }, { reps: [6, 10], rir: [1, 2] }, halterAna).acao).toBe('manter');
   });
 });
 
@@ -108,7 +112,7 @@ describe('progressao.calibracao: a saída (R5a; d-longo-prazo.md, D1)', () => {
     const fim = fimDaCalibracao(series, alvo)!;
     // |24 − 17,5| = 6,5 e |12 − 17,5| = 5,5: fica o de 5 kg.
     expect(fim).toMatchObject({ proxima: kg(5), perto: true, regraId: 'progressao.calibracao' });
-    expect(fim.motivo).toMatch(/^Fim da calibração: 5 kg/);
+    expect(fim.motivo).toMatch(/^Peso acertado: 5 kg/);
   });
 
   it('no empate, fica a carga mais leve', () => {
@@ -138,3 +142,70 @@ describe('progressao.calibracao: a saída (R5a; d-longo-prazo.md, D1)', () => {
   });
 });
 
+
+// Lote M3 da análise crítica (decisão do Gustavo em 22/11/2026): a tela e a regra dizem a mesma coisa. Quem fica dentro
+// da meta que a tela mostra (as repetições da faixa, com a reserva pedida) mantém a carga. Antes, a regra só aceitava
+// o meio da faixa (A ± 2), e 8 repetições sobrando 3 numa faixa de 8 a 15, sobrando 3 ou 4, baixavam a carga.
+describe('progressao.calibracao: dentro da meta mostrada, o app mantém a carga', () => {
+  const todas = Object.values({ ...PERSONAS, ...PERSONAS_NOVAS });
+  it('em todo exercício de toda persona, qualquer repetição da faixa com qualquer reserva pedida mantém a carga', () => {
+    let n = 0;
+    for (const p of todas) {
+      const r = gerarPrograma(p.perfil, p.inventario);
+      if (r.status !== 'ok') continue;
+      for (const x of r.programa.dias.flatMap((d) => d.exercicios))
+        for (let reps = x.reps[0]; reps <= x.reps[1]; reps++)
+          for (let rir = x.rir[0]; rir <= x.rir[1]; rir++) {
+            n++;
+            const res = calibrar({ carga: kg(10), reps, rir }, { reps: x.reps, rir: x.rir }, halterAna);
+            expect([res.acao, res.perto], `${p.nome}: ${x.exId} ${reps} × RIR ${rir}`).toEqual(['manter', true]);
+          }
+    }
+    expect(n).toBeGreaterThan(1000);
+  });
+  it('o exemplo da análise: 8 repetições sobrando 3, na faixa de 8 a 15 sobrando 3 ou 4, mantém (antes, descia)', () => {
+    expect(calibrar({ carga: kg(4), reps: 8, rir: 3 }, { reps: [8, 15], rir: [3, 4] }, halterAna).acao).toBe('manter');
+  });
+  it('fora da meta mostrada, a carga continua mudando: abaixo desce, acima sobe', () => {
+    const alvo = { reps: [8, 15] as [number, number], rir: [3, 4] as [number, number] };
+    expect(calibrar({ carga: kg(6), reps: 6, rir: 1 }, alvo, halterAna).acao).toBe('descer');
+    expect(calibrar({ carga: kg(6), reps: 20, rir: 3 }, alvo, halterAna).acao).toBe('subir');
+  });
+  it('a faixa do perto nunca é mais estreita que A ± 2', () => {
+    expect(faixaDoPerto({ reps: [8, 15], rir: [3, 4] })).toEqual([11, 19]);
+    expect(faixaDoPerto({ reps: [10, 10], rir: [2, 2] })).toEqual([10, 14]);
+  });
+});
+
+// equipamento.menor-anilha (conferência regra por regra, D1, 22/11/2026): na barra, o menos e o mais da tela andam no
+// passo do local (2 × a menor anilha), a partir do peso da barra. Antes, andavam de 2,5 em 2,5 kg fixos.
+describe('equipamento.menor-anilha: o menos e o mais da barra andam no passo do local', () => {
+  it('barra de 20 kg com anilha de 2 kg: 20 → 24 → 28, e de volta; nunca abaixo da barra', () => {
+    const o = { passoKg: 4, baseKg: 20 };
+    expect(kgNoPasso(undefined, 1, o)).toBe(20);
+    expect(kgNoPasso(20, 1, o)).toBe(24);
+    expect(kgNoPasso(24, 1, o)).toBe(28);
+    expect(kgNoPasso(24, -1, o)).toBe(20);
+    expect(kgNoPasso(20, -1, o)).toBe(20);
+  });
+  it('com a menor anilha de 5 kg, o passo é de 10 kg', () => {
+    expect(kgNoPasso(20, 1, { passoKg: 10, baseKg: 20 })).toBe(30);
+  });
+  it('sem passo nem barra informados, continua de 2,5 em 2,5 a partir de zero', () => {
+    expect(kgNoPasso(undefined, 1, {})).toBe(2.5);
+    expect(kgNoPasso(2.5, 1, {})).toBe(5);
+    expect(kgNoPasso(2.5, -1, {})).toBe(0);
+  });
+});
+
+// progressao.calibracao, "dor ≥ 3 manda" (conferência regra por regra, D1, 22/11/2026): com nota de dor de 3 ou mais na
+// série, o acerto da carga não sugere nada; quem orienta é a regra da dor.
+describe('progressao.calibracao: com dor de 3 ou mais na série, o acerto não sugere carga', () => {
+  const x = { exId: 'goblet', reps: [8, 15] as [number, number], rir: [3, 4] as [number, number] };
+  const leve = { carga: kg(4), reps: 20, rir: 4, calibracao: true };
+  it('a mesma série leve: sem dor, sobe; com dor 4, nenhuma sugestão do acerto', () => {
+    expect(calibracaoNaSessao([], x, ana.inventario, [leve]).ultima?.acao).toBe('subir');
+    expect(calibracaoNaSessao([], x, ana.inventario, [{ ...leve, dor: 4 }])).toEqual({ calibrando: true });
+    expect(calibracaoNaSessao([], x, ana.inventario, [{ ...leve, dor: 2 }]).ultima?.acao).toBe('subir');
+  });
+});
