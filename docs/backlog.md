@@ -655,3 +655,16 @@ A tabela inteira está em `revisoes/regras-x-codigo.md`. Ficou para depois:
 - `selecao.item-sozinho-ampliado`: o guia da extensão de joelho com mini-band não diz que a evidência com elástico é fraca.
 - De carona do D1, não feito: "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e o comentário em `Entenda.tsx` diz o contrário.
 - O pedido 8 de `revisoes/frontend-novo/pedidos-ao-dominio.md` (a fonte "título não conferido" aparece para a pessoa?) segue para o Gustavo.
+
+## Do M4, o descanso avisa (22/11/2026)
+
+**O que só um aplicativo de loja resolveria** (fora do escopo: não é gratuito; `revisoes/analise-critica/decisoes-e-plano.md`, "Avisos do descanso"):
+- O descanso visível na tela de bloqueio, contando o tempo (o que o Hevy e o Strong fazem). Não há equivalente para um site.
+- A vibração no iPhone. Um site não vibra no iPhone.
+- O som do aviso no iPhone com garantia. Há relato de aviso de site que chega sem som (fórum da Apple, 728022); só o aparelho diz.
+
+**Do passo 2, por fazer ou por medir:**
+- A entrega do aviso num Android e num iPhone de verdade (a linha C da tabela de `revisoes/melhorias/m4/README.md`).
+- O limite de 300 pedidos de aviso por IP por dia é opinião; rever com o uso.
+- Se o som de arquivo parar a música no iPhone (linha E da tabela), medir a saída técnica `navigator.audioSession` antes de levar a escolha ao Gustavo.
+- Os textos de privacidade já aprovados que dizem que a foto é a única coisa que sai do aparelho (`privacidade.tsx`, a regra `privacidade.foto`, os termos) esperam a frase nova do Gustavo.

@@ -1,4 +1,6 @@
-import webpush from 'web-push';
+// A web-push 4 é um módulo ES sem exportação padrão: `import webpush from` passa nos tipos e quebra ao iniciar na Vercel
+// (22/11/2026). O teste tests/unit/api-descanso.test.ts carrega este arquivo de verdade.
+import { sendNotification } from 'web-push';
 import { processarAviso } from './_lib/aviso.js';
 import { criarLimite } from './_lib/limite.js';
 
@@ -51,7 +53,7 @@ export async function POST(req: Request): Promise<Response> {
         if (!resp.ok && resp.status !== 404) throw new Error('fila');
       },
       async enviar(assinatura, texto) {
-        await webpush.sendNotification(assinatura, texto, {
+        await sendNotification(assinatura, texto, {
           TTL: 60, // o serviço do navegador guarda por 1 min; depois disso o aviso não faz mais sentido
           urgency: 'high',
           vapidDetails: { subject: process.env.AVISO_CONTATO || origem, publicKey: publica, privateKey: privada },

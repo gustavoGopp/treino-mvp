@@ -113,6 +113,8 @@ No iPhone pelo Safari, sem instalar, a tela diz o que aquele celular consegue:
 
 **O que não dá para conferir daqui:** se o aviso chega de fato num Android e num iPhone, com som e com vibração. O navegador de teste não tem serviço de avisos (a permissão é sempre "negada"; medido). Os testes simulam a permissão e o endereço; a entrega de verdade é a linha C da tabela, depois do item 5.
 
+**Um defeito que escapou da verificação e foi pego no endereço de teste (22/11/2026):** a função quebrava ao iniciar na Vercel, por causa do jeito de importar a biblioteca `web-push` (a versão 4 não tem exportação padrão). Os tipos, os testes e o `npm run verificar` passavam. Consertado; `tests/repo/api-carrega.test.ts` agora carrega cada função no Node, como a Vercel, e a conferência virou o item 15 de `docs/verificacao/lista.md`.
+
 **Limite conhecido:** nos endereços de teste da Vercel (protegidos por login), a fila não consegue chamar a função de volta. O aviso só funciona de ponta a ponta no endereço de produção, ou com a proteção desligada.
 
 **Testes:** `tests/unit/api-aviso.test.ts` (18, as regras do servidor) e `tests/e2e/aviso-descanso.spec.ts` (8: permissão recusada, "Agora não", o botão que não sai do lugar em três tamanhos, o que sai do aparelho e quando, o service worker, o iPhone sem instalar).
@@ -144,5 +146,4 @@ Ainda por ajustar junto com essas decisões, porque são textos de privacidade j
 
 - As tabelas medidas (item 1), antes e depois de cada passo.
 - As chaves (item 5) e as quatro decisões (item 6).
-- Registrar no backlog o que só um aplicativo de loja resolveria (o descanso visível na tela de bloqueio; a vibração no iPhone).
 - Fechamento: devlog, backlog, plano e a frase do `CLAUDE.md`, com o ok do Gustavo.
