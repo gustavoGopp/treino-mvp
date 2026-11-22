@@ -28,7 +28,8 @@ async function estadoGuardado(page: Page, mudar?: Record<string, unknown>): Prom
     const novo = { ...atual, rotina: { ...atual.rotina, ...m } };
     await new Promise<void>((ok) => {
       const r = loja('readwrite').put(novo, 'estado');
-      r.onsuccess = () => ok();
+      // espera a transação fechar, não só o pedido: navegar antes disso podia perder a gravação (falha vista no GitHub em 22/11/2026)
+      r.transaction!.oncomplete = () => ok();
     });
     return novo;
   }, mudar);
@@ -131,7 +132,8 @@ test('com dor acima de 5 em todas as regiões, a tela não oferece um treino vaz
     const triagem = { respostas: { ...atual.triagem.respostas, osteoarticular: true }, dores: regioes.map((articulacao) => ({ articulacao, nota: 7 })), liberacaoConfirmada: true };
     await new Promise<void>((ok) => {
       const r = loja('readwrite').put({ ...atual, triagem }, 'estado');
-      r.onsuccess = () => ok();
+      // espera a transação fechar, não só o pedido: navegar antes disso podia perder a gravação (falha vista no GitHub em 22/11/2026)
+      r.transaction!.oncomplete = () => ok();
     });
   });
   await page.reload();
@@ -181,7 +183,8 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
     dia.exercicios.unshift({ ...x, series: 1, dropSet: true });
     await new Promise<void>((ok) => {
       const r = loja('readwrite').put(atual, 'estado');
-      r.onsuccess = () => ok();
+      // espera a transação fechar, não só o pedido: navegar antes disso podia perder a gravação (falha vista no GitHub em 22/11/2026)
+      r.transaction!.oncomplete = () => ok();
     });
   });
   await page.reload();
