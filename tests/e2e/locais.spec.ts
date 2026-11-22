@@ -60,18 +60,19 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   // treino"); a regra da calibração num aparelho novo continua conferida em tests/unit/calibracao.test.ts
   await print(page, 'troca-explicada');
 
-  const mais = page.getByRole('button', { name: 'Mais anilha de cada lado' });
+  // 22/11/2026: a tela mostra o total das anilhas (os dois lados); cada toque põe um par da menor anilha (2 + 2 kg)
+  const mais = page.getByRole('button', { name: 'Mais um par de anilhas' });
   for (let n = 0; n < 4; n++) await mais.click();
-  await expect(page.getByRole('group', { name: 'Anilhas por lado' })).toContainText('8 kg');
+  await expect(page.getByRole('group', { name: 'Anilhas (total)' })).toContainText('16 kg');
   for (let n = 0; n < 12; n++) await page.getByRole('button', { name: 'Mais uma repetição' }).click();
   await page.getByRole('radio', { name: '4 ou mais' }).check();
   await page.getByRole('button', { name: /^Série feita/ }).click();
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
 
-  // 8 kg por lado × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg por lado × 20 · RIR 4+ · acerto da carga');
-  await expect(page.getByText('Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
-  await expect(page.getByRole('group', { name: 'Anilhas por lado' })).toContainText('12 kg');
+  // 16 kg de anilhas (8 por lado) × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('16 kg de anilhas × 20 · RIR 4+ · acerto da carga');
+  await expect(page.getByText('Ficou leve: na próxima série, 24 kg de anilhas.')).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Anilhas (total)' })).toContainText('24 kg');
   await print(page, 'calibracao');
 
   // 5. O local fica lembrado para a próxima vez, e a escolha continua visível.

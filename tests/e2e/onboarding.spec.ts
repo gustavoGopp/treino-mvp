@@ -300,22 +300,22 @@ test('academia completa: a menor anilha fica em "Meus locais", e no treino a car
   const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
   await expect(anilha).toBeVisible();
   for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
-  // no treino: o 1º exercício do dia A é o leg press, de anilha por lado; digita uma carga fora do passo de 2 kg
+  // no treino: o 1º exercício do dia A é o leg press; a carga é o total das anilhas, e dá para digitar um valor fora do passo
   await page.goto('/programa');
   await page.getByRole('button', { name: /^Começar/ }).click();
   await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
-  const livre = page.getByRole('button', { name: 'Digitar as anilhas por lado' });
+  const livre = page.getByRole('button', { name: 'Digitar o total de anilhas' });
   await expect(livre).toContainText('—');
   await livre.click();
   const folha = page.getByRole('dialog', { name: 'Carga' });
   await folhaPronta(page);
-  await folha.getByLabel('Anilhas de cada lado').fill('7.5');
+  await folha.getByLabel('Total de anilhas, somando os dois lados').fill('15');
   await folha.getByRole('button', { name: 'Pronto' }).click();
   await expect(folha).toHaveCount(0);
-  await expect(livre).toContainText('7,5 kg');
-  // o menos e o mais continuam andando no passo de 2 kg
-  await page.getByRole('button', { name: 'Mais anilha de cada lado' }).click();
-  await expect(livre).toContainText('9,5 kg');
+  await expect(livre).toContainText('15 kg');
+  // o mais põe um par da menor anilha (2 kg de cada lado)
+  await page.getByRole('button', { name: 'Mais um par de anilhas' }).click();
+  await expect(livre).toContainText('19 kg');
 });
 
 test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {

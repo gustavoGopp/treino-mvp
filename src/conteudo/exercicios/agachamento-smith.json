@@ -49,7 +49,7 @@
       "desc": "Começar ou terminar sem as travas de segurança."
     }
   ],
-  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
+  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
   "montagem": [
     "Ajuste as travas de segurança logo abaixo do ponto mais baixo antes de começar.",
     "Gire a barra para soltar e trave de novo ao terminar."

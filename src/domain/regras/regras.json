@@ -596,11 +596,11 @@
   },
   {
     "id": "progressao.incremento.maquina-anilha",
-    "regra": "Máquinas de anilha (leg press, hack, smith, panturrilha sentada): o peso do trenó ou da barra é desconhecido, então se registra o kg de anilhas por lado",
+    "regra": "Máquinas de anilha (leg press, hack, smith, panturrilha sentada): o peso do trenó ou da barra é desconhecido, então se registra só o kg de anilhas (guardado por lado; desde 22/11/2026, decisão do Gustavo, a tela mostra e pede o total dos dois lados)",
     "valores": {
-      "iniciante": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
-      "intermediario": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
-      "avancado": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado"
+      "iniciante": "total de anilhas; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
+      "intermediario": "total de anilhas; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
+      "avancado": "total de anilhas; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado"
     },
     "selo": "consenso",
     "fontes": [

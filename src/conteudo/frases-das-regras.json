@@ -165,7 +165,7 @@
   },
   "progressao.incremento.maquina-anilha": {
     "titulo": "Carga nas máquinas de anilha",
-    "frase": "Leg press, hack, smith e panturrilha sentada: o peso do trenó ou da barra é desconhecido; registre os quilos de anilhas por lado. A carga sobe com o menor par de anilhas, uma de cada lado (de 2 kg cada, até você informar a sua menor anilha). Sem o peso do trenó, o acerto da carga vai por passos, sem conta."
+    "frase": "Leg press, hack, smith e panturrilha sentada: o peso do trenó ou da barra é desconhecido; registre o total de quilos em anilhas, somando os dois lados. A carga sobe com o menor par de anilhas, uma de cada lado (de 2 kg cada, até você informar a sua menor anilha). Sem o peso do trenó, o acerto da carga vai por passos, sem conta."
   },
   "progressao.incremento.assistido": {
     "titulo": "Progressão no graviton",

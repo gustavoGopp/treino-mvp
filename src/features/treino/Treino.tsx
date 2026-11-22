@@ -823,7 +823,7 @@ function ControleCarga({
   const idCarga = `${uid}-carga`;
   const [corrigindo, setCorrigindo] = useState(false);
   const [maisPesado, setMaisPesado] = useState('');
-  // Carga livre (decisão do Gustavo de 22/11/2026): onde não há lista (anilhas por lado, barra), tocar no número abre
+  // Carga livre (decisão do Gustavo de 22/11/2026): onde não há lista (anilhas, barra), tocar no número abre
   // um campo para digitar a carga usada, qualquer que seja; o menos e o mais continuam para o ajuste de um toque.
   const [digitando, setDigitando] = useState(false);
   const [digitado, setDigitado] = useState('');
@@ -875,18 +875,19 @@ function ControleCarga({
       </>
     );
   if (registro === 'anilha') {
-    // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
-    const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
+    // progressao.incremento.maquina-anilha: a carga é guardada em kg de anilhas de cada lado e mostrada pelo total dos
+    // dois lados (decisão do Gustavo de 22/11/2026); o menos e o mais andam de par em par da menor anilha.
+    const porLado = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
+    const k = porLado === undefined ? undefined : Math.round(2 * porLado * 100) / 100;
     const passo = menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
-    const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
+    const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((porLado ?? 0) + dir * passo) * 100) / 100) });
     return (
       <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
-          Anilhas por lado
+          Anilhas (total)
         </span>
-        {numeroLivre(k, 'Digitar as anilhas por lado', 'Anilhas de cada lado', (n) => aoMudar({ tipo: 'anilha', kgPorLado: n }))}
-        <MenosMais rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
-        <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
+        {numeroLivre(k, 'Digitar o total de anilhas', 'Total de anilhas, somando os dois lados', (n) => aoMudar({ tipo: 'anilha', kgPorLado: Math.round((n / 2) * 100) / 100 }))}
+        <MenosMais rotuloMenos="Menos um par de anilhas" rotuloMais="Mais um par de anilhas" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
       </div>
     );
   }

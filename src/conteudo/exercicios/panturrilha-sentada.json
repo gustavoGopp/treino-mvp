@@ -47,7 +47,7 @@
       "desc": "O tronco levanta para ajudar."
     }
   ],
-  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas. Em algumas máquinas, placa da torre.",
+  "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas. Em algumas máquinas, placa da torre.",
   "montagem": [
     "Solte a trava antes da 1ª repetição e trave de novo ao terminar a série."
   ]

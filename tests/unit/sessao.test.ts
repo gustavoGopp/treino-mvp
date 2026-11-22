@@ -110,7 +110,8 @@ describe('carga conforme o equipamento', () => {
     expect(textoCarga({ tipo: 'degrau', degrau: 1 })).toBe('peso do corpo · descida de 3 s ou pausa embaixo');
     expect(textoCarga({ tipo: 'degrau', degrau: 0 }, 'rosca-elastico')).toBe('elástico');
     expect(textoCarga({ tipo: 'degrau', degrau: 9 })).toBe('peso do corpo · degrau 10');
-    expect(textoCarga({ tipo: 'anilha', kgPorLado: 12.5 })).toBe('12,5 kg por lado');
+    // guardada por lado, mostrada pelo total (decisão do Gustavo de 22/11/2026)
+    expect(textoCarga({ tipo: 'anilha', kgPorLado: 12.5 })).toBe('25 kg de anilhas');
     expect(textoCarga({ tipo: 'contrapeso', placa: 6 })).toBe('contrapeso 6');
   });
 
