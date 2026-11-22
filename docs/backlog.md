@@ -593,3 +593,12 @@ O que foi feito está no devlog ("A porta"). Ficou para depois:
 - **Carga digitada (22/11):** o campo abre numa folha e a pessoa ainda precisa tocar nele para o teclado subir; pôr o cursor direto no campo economiza um toque. As listas (halteres, kettlebell, caneleira) e as placas não aceitam digitação: seguem pela lista e pelo menos e mais.
 - **Halteres de montar ainda pedem a contagem das anilhas** (quem marca o item fora do atalho). A decisão de 22/11 falava das anilhas da academia; se for para valer também aqui, a lista de cargas dos halteres de montar passa a ser livre.
 
+## Da tela do treino, 1ª parte do M2 (22/11/2026)
+
+O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
+- **O peso da tela do programa está a 0,4 kB do limite** (289,6 de 290 kB, medido em 22/11 depois da junção com a `main` das animações). Qualquer coisa nova no pacote inicial estoura. Vale achar o que pode sair dele (os textos das regras já estão no backlog) antes do próximo lote que mexer em telas.
+- **O Boneco de repouso continua com 13% a 18% da tela.** As duas ideias para mudar isso (o menos e o mais ao lado do número; o guia grande abrir sozinho na 1ª vez de cada exercício) esperam a decisão do Gustavo.
+- **No palco pequeno, as legendas do desenho ficam ilegíveis** (letra de poucos pontos). Com o toque que amplia, elas poderiam sair do repouso e ficar só no grande; mexe no desenho do motor.
+- **O ampliado não tem o "voltar ao começo"** nem os erros um a um, que continuam no guia completo (o livro do cabeçalho).
+- **Exercícios deitados** (supino, prancha) não foram medidos no estudo: ocupam a largura, não a altura.
+

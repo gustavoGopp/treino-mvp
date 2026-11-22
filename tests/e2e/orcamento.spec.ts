@@ -36,6 +36,8 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
 // 4 vezes mais lento). Total medido: 239,8 kB; o limite do total fica em 250. É o mesmo motor que a tela do programa
 // pede um minuto depois (aí ele já está guardado). Um Boneco parado desenhado pelo motor custaria os mesmos 77 kB; a
 // alternativa sem peso seria uma imagem pronta, que deixa de ser o desenho do motor.
+// 22/11/2026, depois da junção com a main das animações (o motor cresceu cerca de 6 kB): total medido de 246,7 kB em 18
+// arquivos, ainda abaixo de 250; o componente do Boneco da abertura saiu do pacote inicial (162,2 kB) para um arquivo à parte.
 test('a boas-vindas espera só o pacote inicial, de menos de 175 kB comprimidos; o motor do Boneco chega depois, e o total fica abaixo de 250 kB', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
   const inicial = arquivos.filter((f) => /^assets\/index-/.test(f));

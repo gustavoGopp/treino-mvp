@@ -100,6 +100,8 @@ export function Treino() {
   // para os números da série sem parar o relógio. O que está preenchido para a próxima série (o rascunho) vale nas duas
   // vistas: "Série N feita" na tela do descanso registra o mesmo que "Série feita" no registro.
   const [verSerie, setVerSerie] = useState(false);
+  // o Boneco ampliado, por cima do treino (um toque no palco abre; lote M2, adiantado em 22/11/2026)
+  const [guiaAmpliado, setGuiaAmpliado] = useState(false);
   const [rascunho, setRascunho] = useState<Rascunho | null>(null);
   // logo depois de salvar, "Série N feita" aparece no lugar exato de "Série feita": por 1 s o botão não responde,
   // para um toque duplo não registrar a série seguinte (revisão do bloco 2, item 2)
@@ -135,6 +137,7 @@ export function Treino() {
   const calNaSessao = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
 
   const irPara = (n: number) => {
+    setGuiaAmpliado(false);
     setIndice(n);
     setVerSerie(true);
     setRascunho(null);
@@ -309,7 +312,11 @@ export function Treino() {
               </button>
             </div>
           )}
-          {x.animacaoId ? <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} /> : <CartaoTexto exId={x.exId} />}
+          {x.animacaoId ? (
+            <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} aoAmpliar={() => setGuiaAmpliado(true)} parado={guiaAmpliado} />
+          ) : (
+            <CartaoTexto exId={x.exId} />
+          )}
           {!x.animacaoId && !temCartao(x.exId) && (
             <p className="ajuda">Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício".</p>
           )}
@@ -455,6 +462,12 @@ export function Treino() {
                 setPainel('trocar');
               }}
             />
+          </Folha>
+        )}
+
+        {guiaAmpliado && x.animacaoId && painel === 'nenhum' && (
+          <Folha titulo={x.nome} aoFechar={() => setGuiaAmpliado(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
+            <PalcoTreino key={`grande-${x.animacaoId}`} animacaoId={x.animacaoId} ampliado />
           </Folha>
         )}
 

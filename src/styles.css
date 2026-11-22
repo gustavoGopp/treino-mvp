@@ -703,7 +703,8 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .presa .guia-do-treino:not(:has(.palco-treino)) > :first-child{margin-top:auto}
 @container palco (max-height:15rem){.presa .legenda-do-modo{display:none}}
 @container palco (max-height:10rem){.presa .modos-treino{display:none}}
-@container palco (max-height:5rem){.presa .palco-btn{display:none}}
+/* com o toque que amplia, o Boneco pequeno ainda serve de porta para o grande: só some abaixo de 3,5rem */
+@container palco (max-height:3.5rem){.presa .palco-btn{display:none}}
 /* quando o registro não cabe na tela (letra grande, zoom, celular muito pequeno), a página rola: o palco fica sozinho
    em cima, sem as abas e a legenda (que seguem no guia completo), para o registro não ir longe demais */
 .treino-tela:not(.presa) .modos-treino,.treino-tela:not(.presa) .legenda-do-modo{display:none}
@@ -737,6 +738,18 @@ body:has(.invertida){background:var(--inv-fundo)}
 .palco-btn .fase-do-movimento{position:absolute;top:var(--s8);left:var(--s8);z-index:1;padding:var(--s4) var(--s8);background:var(--stage);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--st-muted);text-align:left}
 .palco-btn .fase-do-movimento:empty{display:none}
 .palco-btn .toca{position:absolute;top:var(--s8);right:var(--s16);width:1.25rem;color:var(--st-muted)}
+/* o Boneco ampliado, numa folha por cima do treino: o desenho com 55% da altura da tela, a pausa num botão próprio */
+.palco-ampliado{margin:0 calc(-1 * var(--s16))}
+.palco-ampliado .palco-grande{flex:none;height:55dvh;min-height:0;max-height:none;cursor:default}
+.pausa-do-guia{position:absolute;top:var(--s8);right:var(--s8);z-index:1;width:var(--h48);height:var(--h48);display:grid;place-items:center;border:0;border-radius:var(--r8);background:var(--stage);color:var(--st-ink);cursor:pointer}
+.pausa-do-guia .icone{width:1.5rem}
+.palco-ampliado .legenda-do-modo{min-height:4.5em}
+/* a velocidade e o ângulo, logo abaixo do desenho ampliado: uma linha que passa para baixo se faltar largura */
+.controles-do-guia,.controles-do-guia .angulos{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8)}
+.controles-do-guia{padding:var(--s8) var(--s16) 0}
+.controles-do-guia .chip{display:inline-flex;align-items:center;gap:var(--s4)}
+.controles-do-guia .chip .icone{width:1.25rem}
+.palco-ampliado .palco-grande{height:50dvh}
 .legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2)}
 .legenda-do-modo b{color:var(--texto);font-weight:600}
 .palco-falhou{gap:var(--s8);padding:var(--s16);margin:0;container-type:normal}

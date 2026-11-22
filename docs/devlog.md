@@ -2355,6 +2355,12 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 
    ![O treino, antes e depois dos cortes](revisoes/melhorias/cara-humana/treino-antes-e-depois.png)
 
+4. **A tela do treino "mais o personagem".** Ele pediu um estudo da proporção e que o toque no Boneco já abrisse a animação, com a velocidade e o ângulo. Medido em sete tamanhos de celular: o registro leva de 61% a 95% da altura, o Boneco ficava com 13% a 18%, e a 390 × 664 ele sumia e deixava um vazio. Agora um toque no Boneco abre o guia grande por cima do treino (o Boneco com cerca de um terço da tela), com "Lento", os ângulos, as quatro abas e a pausa; e o vazio acabou. É a primeira parte do lote M2, adiantada. O estudo, com duas ideias à espera da decisão dele, está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
+
+   ![O toque no Boneco abre o guia grande](revisoes/melhorias/m2/toque-amplia.png)
+
+5. **A `main` nova entrou no ramo** (22/11): a sessão das animações foi para a `main`, e o ramo deste lote já a traz.
+
 **Esperando o Gustavo**
 
 - **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".

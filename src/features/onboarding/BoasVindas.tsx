@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
@@ -7,7 +7,12 @@ import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
 import { PorQue, Titulo, Topo } from '../app/ui';
-import { BonecoAbertura } from './BonecoAbertura';
+
+// O Boneco da abertura é baixado à parte, depois que a tela aparece: fora do pacote inicial, que a tela do programa
+// também baixa (tests/e2e/orcamento.spec.ts; medido em 22/11/2026, com ele dentro o programa passava do limite por 9 bytes).
+const BonecoAbertura = lazy(() => import('./BonecoAbertura').then((m) => ({ default: m.BonecoAbertura })));
+/** No celular mais baixo o Boneco não aparece (styles.css, max-height: 600px): aí nem o arquivo dele é pedido. */
+const cabeOBoneco = () => typeof window === 'undefined' || !window.matchMedia?.('(max-height: 600px)').matches;
 
 // A apresentação (redesign, lote 3; a proposta B, "o seu lugar", escolhida pelo Gustavo em 06/11/2026;
 // docs/revisoes/redesign/agente-7-apresentacao.md). Desde o lote M1 da análise crítica (19/11/2026): o Boneco em
@@ -35,7 +40,11 @@ export function BoasVindas() {
       <main className="conteudo boas">
         {/* o Boneco ao lado do título: ele é alto e estreito, e assim não tira altura do aviso, que fica inteiro à vista */}
         <div className="boas-topo">
-          <BonecoAbertura />
+          {cabeOBoneco() && (
+            <Suspense fallback={<div className="boneco-abertura stage esperando" />}>
+              <BonecoAbertura />
+            </Suspense>
+          )}
           <Titulo>Treine onde estiver, com o que tiver</Titulo>
         </div>
         <p className="lede">{O_QUE_RECEBE}</p>

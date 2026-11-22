@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ConteudoExercicio } from '../../conteudo/schema';
+import { NOME_DA_VISTA } from '../../engine/novo/vistas';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { Icone } from '../app/icones';
 import { largarCiclo, pedirAoBoneco, pedirCiclo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
@@ -31,7 +32,17 @@ function vistaDo(modo: ModoDoGuia, ficha: Ficha): string {
   return ficha.vistaMovimento;
 }
 
-export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
+/**
+ * O palco tem dois tamanhos (lote M2 da análise crítica, adiantado a pedido do Gustavo em 22/11/2026: "quando clicar
+ * você consegue entrar já na animação"):
+ * - **de repouso**, na tela da série: o Boneco no que sobra da tela, e um toque nele o amplia (`aoAmpliar`). Antes, o
+ *   toque só pausava, e para ver grande a pessoa saía do treino;
+ * - **ampliado** (`ampliado`), numa folha por cima do treino: o desenho com metade da tela ou mais, as quatro abas, a
+ *   legenda e a pausa num botão próprio. O treino (e o descanso, se houver) segue por baixo.
+ * Só um dos dois desenha por vez (o Worker calcula uma volta de cada vez): o de repouso fica `parado` enquanto o
+ * ampliado está aberto.
+ */
+export function PalcoTreino({ animacaoId, ampliado = false, aoAmpliar, parado = false }: { animacaoId: string; ampliado?: boolean; aoAmpliar?: () => void; parado?: boolean }) {
   const estilo = useEstiloBoneco();
   const [txt, setTxt] = useState<ConteudoExercicio | null>(null);
   const [ficha, setFicha] = useState<Ficha | null>(null);
@@ -41,6 +52,10 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
   const [modo, setModo] = useState<ModoDoGuia>('tec');
   const [tocando, setTocando] = useState(() => !reduzMovimento());
   const [desenhou, setDesenhou] = useState(false);
+  // Só no ampliado (pedido do Gustavo em 22/11/2026: "que apareça aquelas opções tanto de velocidade quanto de ângulo
+  // para entender melhor"): a câmera lenta e o ângulo, como no guia completo. Sem escolha, o ângulo é o de cada aba.
+  const [lento, setLento] = useState(false);
+  const [vistaEscolhida, setVistaEscolhida] = useState<string | null>(null);
 
   useEffect(() => {
     let vivo = true;
@@ -63,13 +78,13 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
   const svg = useRef<SVGSVGElement>(null);
   const fase = useRef<HTMLSpanElement>(null);
   const t = useRef(0);
-  const estado = useRef({ modo, tocando });
-  estado.current = { modo, tocando };
+  const estado = useRef({ modo, tocando, lento, vistaEscolhida });
+  estado.current = { modo, tocando, lento, vistaEscolhida };
 
   // O laço da animação: o mesmo desenho da tela do guia. Tocando, a volta inteira chega do Worker quadro a quadro
   // (30 por segundo de animação); pausado, só o quadro do instante exato; fora da tela, nada é desenhado.
   useEffect(() => {
-    if (!ficha || !txt) return;
+    if (!ficha || !txt || parado) return;
     let raf = 0;
     let ultimo = performance.now();
     let chaveAnterior = '';
@@ -101,10 +116,11 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
       const s = estado.current;
       const dt = Math.min(0.05, (agora - ultimo) / 1000);
       ultimo = agora;
-      if (s.tocando) t.current += dt;
+      // a câmera lenta anda a 35% da velocidade, como no guia completo
+      if (s.tocando) t.current += dt * (s.lento ? 0.35 : 1);
       const el = svg.current;
       if (!el || !visivel || document.hidden || !largura) return;
-      const vista = vistaDo(s.modo, ficha);
+      const vista = s.vistaEscolhida ?? vistaDo(s.modo, ficha);
       const ciclo = ((t.current % ficha.T) + ficha.T) % ficha.T;
       const c = `${vista}|${s.modo}|${estilo}|${largura}`;
       if (c !== combinacao) {
@@ -144,7 +160,7 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
       io?.disconnect();
       largarCiclo();
     };
-  }, [ficha, txt, estilo]);
+  }, [ficha, txt, estilo, parado]);
 
   // Movimento reduzido ligado depois de abrir: a animação para.
   useEffect(() => {
@@ -168,19 +184,49 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
     );
   const trocarModo = (m: ModoDoGuia) => {
     setModo(m);
+    // cada aba abre no ângulo dela; a escolha de ângulo vale até trocar de aba
+    setVistaEscolhida(null);
     // o modo Erros abre no instante em que o certo e o errado mais se afastam, como na tela do guia
     if (m === 'err' && ficha) t.current = ficha.instantesErro[0] ?? 0;
   };
 
+  const desenho = (
+    <>
+      <span className={`stage${desenhou ? '' : ' esperando'}`}>
+        <svg ref={svg} role="img" aria-label={txt ? `O Boneco fazendo ${txt.name.toLowerCase()}` : 'O Boneco fazendo o exercício'} />
+      </span>
+      <span className="fase-do-movimento" ref={fase} aria-hidden="true" />
+    </>
+  );
   return (
-    <section className="palco-treino" aria-label="Guia de execução" aria-busy={!desenhou}>
-      <button type="button" className="palco-btn" aria-label={tocando ? 'Pausar o guia' : 'Tocar o guia'} onClick={() => setTocando((v) => !v)}>
-        <span className={`stage${desenhou ? '' : ' esperando'}`}>
-          <svg ref={svg} role="img" aria-label={txt ? `O Boneco fazendo ${txt.name.toLowerCase()}` : 'O Boneco fazendo o exercício'} />
-        </span>
-        <span className="fase-do-movimento" ref={fase} aria-hidden="true" />
-        <Icone nome={tocando ? 'pause' : 'play'} className="toca" />
-      </button>
+    <section className={`palco-treino${ampliado ? ' palco-ampliado' : ''}`} aria-label={ampliado ? 'Guia de execução, ampliado' : 'Guia de execução'} aria-busy={!desenhou}>
+      {ampliado ? (
+        <div className="palco-btn palco-grande">
+          {desenho}
+          <button type="button" className="pausa-do-guia" aria-label={tocando ? 'Pausar o guia' : 'Tocar o guia'} onClick={() => setTocando((v) => !v)}>
+            <Icone nome={tocando ? 'pause' : 'play'} />
+          </button>
+        </div>
+      ) : (
+        <button type="button" className="palco-btn" aria-label="Ampliar o guia" aria-haspopup="dialog" onClick={aoAmpliar}>
+          {desenho}
+          <Icone nome="maximize-2" className="toca" />
+        </button>
+      )}
+      {ampliado && ficha && (
+        <div className="controles-do-guia">
+          <button type="button" className="chip" aria-pressed={lento} onClick={() => setLento((v) => !v)}>
+            <Icone nome="turtle" /> Lento
+          </button>
+          <div className="angulos" role="group" aria-label="Ângulo">
+            {[...new Set([...ficha.views, vistaEscolhida ?? vistaDo(modo, ficha)])].map((v) => (
+              <button key={v} type="button" className="chip" aria-pressed={v === (vistaEscolhida ?? vistaDo(modo, ficha))} onClick={() => setVistaEscolhida(v)}>
+                {NOME_DA_VISTA[v] ?? v}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="modos-treino" role="group" aria-label="O que o guia mostra">
         {MODOS.map(([m, rotulo]) => (
           <button key={m} type="button" aria-pressed={modo === m} onClick={() => trocarModo(m)}>

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, abrirTrocar, maisOpcoes, marcarItem, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
+import { ana, abrirTrocar, folhaPronta, maisOpcoes, marcarItem, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
 import { semToquePequeno } from './toque';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
@@ -454,3 +454,55 @@ test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipe
   await expect(page.getByRole('region', { name: /^Série 2/ })).toBeVisible();
   await expect(descanso).toHaveCount(0);
 });
+
+// Lote M2 da análise crítica, adiantado a pedido do Gustavo em 22/11/2026 ("quando clicar você consegue entrar já na
+// animação"). Antes, o toque no Boneco só pausava, e para ver grande a pessoa saía do treino pelo livro do cabeçalho.
+for (const [largura, altura] of [[360, 640], [375, 667], [390, 664], [412, 839]] as const)
+  test(`um toque no Boneco amplia o guia por cima do treino, com metade da tela ou mais, a ${largura} × ${altura}`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: altura });
+    await ana(page);
+    await comecar(page);
+    // de repouso, o Boneco está sempre lá (a 390 × 664 ele sumia e ficava um vazio no lugar)
+    const pequeno = page.getByRole('button', { name: 'Ampliar o guia' });
+    await expect(pequeno).toBeVisible();
+    await expect.poll(() => pequeno.getByRole('img').evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+    await pequeno.click();
+    const folha = page.getByRole('dialog', { name: 'Agachamento goblet com calcanhar elevado' });
+    await folhaPronta(page);
+    const grande = folha.getByRole('img', { name: /^O Boneco fazendo/ });
+    await expect.poll(() => grande.evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+    // o desenho ocupa metade da tela ou mais, e o Boneco fica pelo menos duas vezes mais alto que no repouso
+    const palco = await folha.locator('.palco-grande').boundingBox();
+    expect(palco!.height).toBeGreaterThanOrEqual(altura * 0.5);
+    // as abas e a legenda vêm junto; a pausa é um botão próprio, de 44 px ou mais
+    await expect(folha.getByRole('group', { name: 'O que o guia mostra' }).getByRole('button', { name: 'Erros' })).toBeVisible();
+    const pausa = folha.getByRole('button', { name: 'Pausar o guia' });
+    expect((await pausa.boundingBox())!.width).toBeGreaterThanOrEqual(44);
+    await pausa.click();
+    const quadro = await grande.innerHTML();
+    await page.evaluate(() => new Promise((ok) => setTimeout(ok, 500)));
+    expect(await grande.innerHTML()).toBe(quadro);
+    await folha.getByRole('button', { name: 'Tocar o guia' }).click();
+    await expect.poll(() => grande.innerHTML()).not.toBe(quadro);
+    // a velocidade e o ângulo, como no guia completo: "Lento" liga a câmera lenta, e outro ângulo troca o desenho
+    const lento = folha.getByRole('button', { name: 'Lento' });
+    await lento.click();
+    await expect(lento).toHaveAttribute('aria-pressed', 'true');
+    const angulos = folha.getByRole('group', { name: 'Ângulo' }).getByRole('button');
+    expect(await angulos.count()).toBeGreaterThanOrEqual(2);
+    const nomeDoOutro = (await folha.getByRole('group', { name: 'Ângulo' }).locator('button[aria-pressed="false"]').first().innerText()).trim();
+    const outro = folha.getByRole('group', { name: 'Ângulo' }).getByRole('button', { name: nomeDoOutro, exact: true });
+    const antesDoAngulo = await grande.getAttribute('viewBox');
+    const htmlAntes = await grande.innerHTML();
+    await outro.click();
+    await expect(outro).toHaveAttribute('aria-pressed', 'true');
+    await expect.poll(async () => (await grande.getAttribute('viewBox')) !== antesDoAngulo || (await grande.innerHTML()) !== htmlAntes).toBe(true);
+    await semToquePequeno(page);
+    // fechar volta ao treino, no mesmo exercício, com o Boneco de repouso se mexendo de novo
+    await folha.getByRole('button', { name: 'Fechar' }).click();
+    await expect(folha).toHaveCount(0);
+    await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+    const repouso = await pequeno.getByRole('img').innerHTML();
+    await expect.poll(() => pequeno.getByRole('img').innerHTML()).not.toBe(repouso);
+  });
+
