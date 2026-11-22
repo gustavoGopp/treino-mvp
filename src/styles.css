@@ -481,8 +481,19 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .volta-passo{display:inline-flex;align-items:center;gap:var(--s4);min-height:var(--h48);padding:0 var(--s16) 0 0;border:0;background:none;color:inherit;font:inherit;font-weight:600;font-size:var(--t-apoio);text-decoration:none;cursor:pointer}
 /* a boas-vindas */
 .boas{gap:var(--s24)}
-.lugares{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s8);padding:var(--s24) var(--s16);border-radius:var(--r8);background:var(--superficie-2);color:var(--texto)}
-.lugares svg{width:100%;height:auto;aspect-ratio:4/3;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+/* o Boneco da abertura (lote M1 da análise crítica): o desenho do motor, em movimento, no lugar dos 4 ícones de lugar;
+   ocupa o que sobra da tela acima do título, entre um mínimo e um máximo, sem empurrar o "Começar" para fora */
+.boas-topo{display:grid;grid-template-columns:minmax(5.5rem,30%) 1fr;gap:var(--s16);align-items:center}
+.boas-topo .titulo{margin:0}
+.boneco-abertura{aspect-ratio:5/8;width:100%;border-radius:var(--r8);overflow:hidden}
+/* as legendas do modo Técnica são do guia, onde há espaço para lê-las; aqui o Boneco só se mostra */
+.boneco-abertura :is(.n-rot-fio,.n-rot-p,.n-rot-t){display:none}
+/* em celular baixo é o Boneco que encolhe, e no mais baixo (320 × 568) ele sai: o aviso de segurança fica inteiro à
+   vista acima do "Começar" em qualquer tela (tests/e2e/abertura.spec.ts) */
+@media (max-height:700px){.boas-topo{grid-template-columns:auto 1fr}.boneco-abertura{width:auto;height:7rem}}
+@media (max-height:600px){.boas-topo{display:block}.boneco-abertura{display:none}}
+.boneco-abertura.esperando{animation:espera 1.2s ease-in-out infinite alternate}
+@media (prefers-reduced-motion: reduce){.boneco-abertura.esperando{animation:none}}
 .boas .titulo{font-size:var(--t-destaque);line-height:1}
 .boas .lede{margin:0}
 .nota-aviso{display:flex;gap:var(--s16);align-items:flex-start;margin:0;padding:var(--s16) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
@@ -497,7 +508,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
 @media (max-width:279px),(max-height:479px){.acao-fixa.acao-boas{position:static;border-top:0}}
 .termos-linha a{display:inline-block;padding:var(--s16) 0;margin:calc(-1 * var(--s16)) 0}
-@media (max-height:800px){.boas{gap:var(--s16)}.lugares{padding:var(--s16)}.boas .titulo{font-size:var(--t-titulo)}}
+@media (max-height:800px){.boas{gap:var(--s16)}.boas .titulo{font-size:var(--t-titulo)}}
 /* a saúde em uma pergunta */
 .condicoes{list-style:disc;padding-left:var(--s24);border-top:0}
 .condicoes > li{border-bottom:0;padding:var(--s4) 0;font-size:var(--t-corpo);font-weight:400}

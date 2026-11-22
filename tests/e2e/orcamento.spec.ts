@@ -28,10 +28,29 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
 // main (08/11/2026), o R5-CL (32 exercícios e as regras deles, +8 kB só no regras.json) e o R5c (tela de erro, avisos,
 // termos) somaram cerca de 20 kB ao pacote inicial; o desempenho medido segue de 90 a 100 (revisoes/redesign/medidas.md).
 // Os limites passaram a 175 e 220 kB; voltar abaixo de 150 está no backlog (separar os textos das regras do pacote).
-test('a boas-vindas baixa menos de 175 kB de JavaScript comprimido', async ({ page }) => {
+//
+// Lote M1 da análise crítica (21/11/2026): a abertura passou a mostrar o Boneco em movimento ("é o produto"), e para isso
+// baixa o motor. Medido: o pacote inicial, o único que a tela espera para aparecer, segue em 162,5 kB (o limite de 175
+// não muda); o motor e o agachamento goblet somam 77,3 kB em 11 arquivos, baixados pelo Worker do Boneco depois que a
+// tela já apareceu (o "Começar" fica visível em 98 ms, como antes; o 1º desenho, em 188 ms, e em 376 ms num processador
+// 4 vezes mais lento). Total medido: 239,8 kB; o limite do total fica em 250. É o mesmo motor que a tela do programa
+// pede um minuto depois (aí ele já está guardado). Um Boneco parado desenhado pelo motor custaria os mesmos 77 kB; a
+// alternativa sem peso seria uma imagem pronta, que deixa de ser o desenho do motor.
+test('a boas-vindas espera só o pacote inicial, de menos de 175 kB comprimidos; o motor do Boneco chega depois, e o total fica abaixo de 250 kB', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
-  expect(arquivos.some((f) => /trabalhoBoneco|boneco\.worker|ponte|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
-  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(175);
+  const inicial = arquivos.filter((f) => /^assets\/index-/.test(f));
+  expect(inicial, 'o pacote inicial é um arquivo só').toHaveLength(1);
+  expect(gzipSync(readFileSync(`dist/${inicial[0]}`)).length / 1000, 'o pacote inicial').toBeLessThan(175);
+  // o motor não entra no pacote inicial, e as outras telas e os textos do guia não vêm junto
+  expect(readFileSync('dist/index.html', 'utf8')).not.toMatch(/boneco|ponte|movimento/);
+  expect(arquivos.some((f) => /\/(Guia|Treino|Inventario|Dados|Programa)-/.test('/' + f)), arquivos.join(', ')).toBe(false);
+  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(250);
+});
+
+test('no celular mais baixo (320 × 568) a boas-vindas não mostra o Boneco e não baixa o motor', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  const { arquivos } = await jsDaTela(page, () => page.goto('/'));
+  expect(arquivos, arquivos.join(', ')).toHaveLength(1);
 });
 
 // 16/11/2026, com o motor novo como único motor do app: o limite do programa passou de 220 para 285 kB. O motor novo
