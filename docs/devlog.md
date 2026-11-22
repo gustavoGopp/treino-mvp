@@ -2232,7 +2232,9 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 
    Um reparo ao motivo, para ficar registrado: o app não sugere carga na 1ª vez ("comece leve"), mas sugere a partir da 2ª, e a menor anilha é o passo dessas sugestões. Sem a pergunta, o passo é de 2 kg por lado, o padrão de sempre (a pergunta já era opcional). Quem tem anilhas de 1 kg vê sugestões de 2 em 2 e anota o que usou de verdade, digitando. A regra `equipamento.menor-anilha` foi reescrita assim.
 
-3. **"Cara de IA".** Na mesma revisão, o Gustavo achou o app com frases e quadrinhos demais e pediu pesquisa e critério. Saiu um levantamento de 17 telas, uma régua permanente (`.claude/skills/cara-humana/`) e a primeira mudança: as máquinas de anilha mostram e pedem **o total das anilhas**, não mais "por lado". Está em `revisoes/melhorias/cara-humana/README.md`, com as imagens e os cortes propostos.
+3. **"Cara de IA".** Na mesma revisão, o Gustavo achou o app com frases e quadrinhos demais e pediu pesquisa e critério. Saiu um levantamento de 17 telas, uma régua permanente (`.claude/skills/cara-humana/`) e a primeira mudança: as máquinas de anilha mostram e pedem **o total das anilhas**, não mais "por lado". Depois, com o ok dele, quatro cortes: os quadradinhos que repetiam "série 1 de 2" e "1 de 3", os traços sob a meta, o "· excêntrica" do rótulo da fase, a caixa "guia em texto" do descanso, a frase "Com aquecimento e descansos." e o lembrete do aquecimento repetido (fica só no 1º exercício). A tela do treino foi de 95 para 83 palavras. Ele também deu o ok aos dois gabaritos regravados. Está em `revisoes/melhorias/cara-humana/README.md`, com as imagens de antes e depois.
+
+   ![O treino, antes e depois dos cortes](revisoes/melhorias/cara-humana/treino-antes-e-depois.png)
 
 **Esperando o Gustavo**
 

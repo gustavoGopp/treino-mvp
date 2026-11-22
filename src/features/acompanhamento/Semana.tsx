@@ -17,15 +17,12 @@ import { SemanaLeve } from './SemanaLeve';
 const num = numeroBr;
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
 
-/** Os treinos da semana como quadradinhos: cheio = feito. O nome de cada um vai no texto para leitores de tela. */
+/**
+ * Os treinos da semana, um a um ("Corpo todo A: feito; …"), só para leitores de tela. Na tela eram quadradinhos, que
+ * repetiam o "X de Y" escrito ao lado (régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026).
+ */
 export function Pontos({ r }: { r: ResumoDaSemana }) {
-  return (
-    <span className="pontos" role="img" aria-label={r.treinos.map((t) => `${t.nome}: ${t.feito ? 'feito' : 'a fazer'}`).join('; ')}>
-      {r.treinos.map((t, i) => (
-        <i key={i} className={t.feito ? 'on' : ''} title={t.nome} />
-      ))}
-    </span>
-  );
+  return <span className="sr">{r.treinos.map((t) => `${t.nome}: ${t.feito ? 'feito' : 'a fazer'}`).join('; ')}</span>;
 }
 
 /** A faixa curta no "Seu treino", em 1 linha: as bolinhas e "X de Y"; um toque abre a tela completa (lote 4). */

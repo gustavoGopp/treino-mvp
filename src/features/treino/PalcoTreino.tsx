@@ -133,7 +133,8 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
       el.innerHTML = q.html;
       if (fase.current && q.fase.label !== faseAnterior) {
         faseAnterior = q.fase.label;
-        fase.current.textContent = q.fase.label;
+        // régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: "Descida", sem o termo técnico ("· excêntrica"), que continua no guia completo
+        fase.current.textContent = q.fase.label.split(' · ')[0];
       }
     };
     raf = requestAnimationFrame(desenhar);

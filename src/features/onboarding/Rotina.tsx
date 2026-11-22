@@ -109,7 +109,6 @@ export function Rotina() {
             <Escolha
               nome="minutos"
               legenda="Quantos minutos por treino?"
-              ajuda="Com aquecimento e descansos."
               opcoes={[
                 ...MINUTOS.map((m) => ({
                   id: m as OpcaoMinutos,

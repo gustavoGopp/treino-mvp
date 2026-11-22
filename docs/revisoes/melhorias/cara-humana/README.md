@@ -52,26 +52,36 @@ Roteiro de fotos na versão de 22/11, tela de 390 × 780. "Frases de apoio" são
 
 ![O leg press, antes e depois](leg-press-antes-e-depois.png)
 
-![O treino hoje e a proposta](treino-hoje-e-proposta.png)
+![O treino, antes e depois dos cortes](treino-antes-e-depois.png)
 
-![O descanso hoje e a proposta](descanso-hoje-e-proposta.png)
+![O descanso, antes e depois](descanso-antes-e-depois.png)
 
-Nas duas últimas imagens, o lado direito é uma **simulação feita só na foto**: nada disso está no código ainda. No treino, ao tirar os quadradinhos e a frase do aquecimento, sobrou altura e as dicas do movimento ("Escápulas no banco…") voltaram a caber.
+![O fim do treino, antes e depois](fim-antes-e-depois.png)
+
+No treino, sem os quadradinhos e sem a frase do aquecimento, sobrou altura e as dicas do movimento ("Escápulas no banco…") voltaram a caber.
 
 ## O que já foi feito (22/11)
 
-- **O total das anilhas.** O leg press, o hack, o smith e a panturrilha sentada mostram e pedem o total das anilhas, somando os dois lados. Por dentro o app continua guardando por lado (nada muda nos dados de quem já usa). O menos e o mais põem ou tiram um par. Os textos do guia e a regra `progressao.incremento.maquina-anilha` dizem a mesma coisa. Dois gabaritos das personas foram regravados: muda só a frase ("20 kg por lado" virou "40 kg de anilhas").
+- **O total das anilhas.** O leg press, o hack, o smith e a panturrilha sentada mostram e pedem o total das anilhas, somando os dois lados. Por dentro o app continua guardando por lado (nada muda nos dados de quem já usa). O menos e o mais põem ou tiram um par. Os textos do guia e a regra `progressao.incremento.maquina-anilha` dizem a mesma coisa. Dois gabaritos das personas foram regravados, com o ok do Gustavo em 22/11: muda só a frase ("20 kg por lado" virou "40 kg de anilhas").
 - **A régua** (`.claude/skills/cara-humana/SKILL.md`) e um item novo na lista de conferência (`docs/verificacao/lista.md`, item 13).
 
-## O que proponho, à espera do Gustavo
+## Os quatro cortes, aprovados pelo Gustavo e feitos em 22/11
 
-Um corte de cada vez, com a imagem:
+1. **Treino:** saíram os quadradinhos da série e os traços sob a meta; o rótulo da fase diz "Descida", sem "· excêntrica" (o termo continua no guia completo); "Aqueça antes…" aparece só no 1º exercício do treino.
+2. **Descanso:** saiu a caixa "guia em texto" dos exercícios sem animação.
+3. **Fim do treino, programa e semana:** saíram os quadradinhos que repetiam "1 de 3". O leitor de tela continua ouvindo cada treino ("Corpo todo A: feito; …").
+4. **Rotina:** saiu "Com aquecimento e descansos."
 
-1. **Treino:** tirar os quadradinhos da série, os traços sob a meta e o "· excêntrica"; o aquecimento só no 1º exercício.
-2. **Descanso:** tirar a caixa "guia em texto" (ela guarda o lugar de um desenho que não existe).
-3. **Fim do treino e semana:** tirar os quadradinhos que repetem "1 de 3" (o resto dessas telas é do M5).
-4. **Rotina:** tirar "Com aquecimento e descansos."
-5. **Daqui para a frente:** cada item da fila (M2 a M6) passa pela régua antes de chegar à revisão, com a contagem de palavras e de caixas, antes e depois.
+| Tela | Palavras antes | Depois | Frases de apoio antes | Depois |
+|---|---:|---:|---:|---:|
+| Treino, leg press (1ª série) | 95 | 83 | 1 | 0 |
+| Treino, 2ª série | 105 | 93 | 1 | 0 |
+| Descanso | 51 | 48 | 0 | 0 |
+| Rotina | 34 | 34 | 2 | 1 |
+
+(Na tela do supino as palavras foram de 54 para 57: os cortes abriram espaço e as três dicas do movimento, que estavam escondidas por falta de altura, voltaram a aparecer.)
+
+**Daqui para a frente:** cada item da fila (M2 a M6) passa pela régua antes de chegar à revisão, com esta contagem.
 
 ## O que achei no caminho e não é de cara
 

@@ -248,7 +248,9 @@ export function Treino() {
           >
             <div className="tabela-descanso">
               <div className="aseguir">
-                <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)?.animacaoId ?? null} temTexto={temCartao((completo ? itens[i + 1]?.x : x)?.exId ?? '')} />
+                {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: sem animação, a caixa "guia em texto" guardava o lugar de um
+                    desenho que não existe; no descanso fica só o que vem a seguir */}
+                {(completo ? itens[i + 1]?.x : x)?.animacaoId && <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)!.animacaoId} />}
                 <div className="txt">
                   {completo ? (
                     <>
@@ -347,7 +349,9 @@ export function Treino() {
               {feito.series.length === 0 && (
                 <div className="dicas-serie">
                   <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
-                  {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                  {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: o lembrete do aquecimento aparece uma vez, no 1º exercício do treino, e
+                      não em cada exercício que abre um grupo (tempo.aquecimento; a regra inteira está em "Entenda o treino") */}
+                  {i === 0 && precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
                     <p className="dica">
                       Aqueça antes: 1–2 séries leves, sem contar.
                     </p>
@@ -691,11 +695,7 @@ function RegistroSerie({
             {x.unilateral && <span> cada lado</span>}
           </span>
         </h2>
-        <ol className="pips" aria-hidden="true">
-          {Array.from({ length: x.series }, (_, n) => (
-            <li key={n} className={n < anteriores.length ? 'feita' : n === anteriores.length ? 'atual' : undefined} />
-          ))}
-        </ol>
+        {/* régua cara-humana, cortes aprovados pelo Gustavo em 22/11/2026: os quadradinhos repetiam "Série N de M", que está escrito ao lado */}
       </div>
       <div className="colunas">
         <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} pesosOutros={pesosOutros} />
@@ -721,7 +721,7 @@ function RegistroSerie({
         </div>
         <div className="chips-valor">
           {RIRS.map((n) => (
-            <label key={n} className={`chip-valor${naMeta(n) ? ' na-meta' : ''}`}>
+            <label key={n} className="chip-valor">
               <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
               <span>
                 {n === RIR.registroMax ? (

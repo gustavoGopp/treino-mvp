@@ -759,10 +759,6 @@ body:has(.invertida){background:var(--inv-fundo)}
 .registro{display:flex;flex-direction:column;gap:var(--s16)}
 .serie-tit{display:flex;justify-content:space-between;align-items:center;gap:var(--s16)}
 .registro h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
-.pips{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex:none}
-.pips li{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
-.pips li.feita{background:var(--texto);box-shadow:none}
-.pips li.atual{box-shadow:inset 0 0 0 2px var(--texto)}
 /* carga e repetições: os maiores números da tela, cada um com menos e mais embaixo */
 .colunas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);align-items:start}
 .coluna{display:flex;flex-direction:column;gap:var(--s8);min-width:0}
@@ -792,7 +788,6 @@ button.valor-livre{min-height:var(--h48);padding:0;border:0;background:none;colo
 .rir-meta{font-size:var(--t-apoio);color:var(--texto-2);margin-right:auto}
 .registro .chips-valor{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s8)}
 .registro .chip-valor{padding:0;min-width:0}
-.chip-valor.na-meta::after{content:"";position:absolute;left:30%;right:30%;bottom:var(--s8);height:2px;background:currentColor}
 .registro .salvar,.descanso .salvar{min-height:var(--h64)}
 .queda{display:flex;flex-direction:column;gap:var(--s8);padding:var(--s16) 0 0;border-top:1px solid var(--linha)}
 .queda .valor-grande{font-size:var(--t-titulo)}
@@ -868,9 +863,6 @@ a.faixa-descanso{text-decoration:none}
 .barra-volta{flex:1;height:var(--s8);background:var(--superficie-2);overflow:hidden;max-width:10rem}
 .barra-volta i{display:block;height:100%;background:var(--texto)}
 /* os treinos da semana: blocos; o feito é cheio */
-.pontos{display:flex;gap:var(--s4)}
-.pontos i{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
-.pontos i.on{background:var(--texto);box-shadow:none}
 .numero-grande{display:flex;align-items:baseline;gap:var(--s16);font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;margin:0}
 .numero-grande small{font-size:var(--t-pergunta);color:var(--texto-2);font-weight:500;letter-spacing:0}
 .musculos{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
