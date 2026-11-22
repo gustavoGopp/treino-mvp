@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { diasParaRecepcao, mensagemDeVolta, recepcaoCurta, tempoDaPausa } from '../../src/domain/acompanhamento/volta';
+import { compromissoDoTreino, proximaDataSugerida } from '../../src/domain/acompanhamento/agenda';
 import { oQueMelhorouEmPalavras } from '../../src/domain/acompanhamento/evolucao';
-import { estadoDoMusculo, resumoDaSemana, seriesEfetivas, TEXTO_ESTADO, treinoNaSemanaEmPalavras, type ResumoDaSemana } from '../../src/domain/acompanhamento/semana';
+import { estadoDoMusculo, resumoDaSemana, seriesEfetivas, TEXTO_ESTADO, cartaoDaSemana, semanasSeguidas, treinoNaSemanaEmPalavras, type ResumoDaSemana } from '../../src/domain/acompanhamento/semana';
 import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
 import type { Estado } from '../../src/storage/esquema';
 import { hojeDoEstado } from '../../src/features/treino/acoes';
@@ -237,6 +238,61 @@ describe('estados e mensagens sem culpa (acompanhamento.mensagens)', () => {
     expect(r(5, 2)).toBeNull();
     expect(r(6, 2)).not.toBeNull();
     for (const d of [5, 6, 9, 13]) expect(r(d)!).not.toMatch(SEM_CULPA);
+    // a fase que corta séries (começo leve, semana leve) já tem a sua linha na tela; a fase sem corte não cala a recepção
+    const comFase = (fatorSeries: number) => recepcaoCurta({ diasSemTreino: 9, faixa: 'normal', fase: { fatorSeries } as never }, 3);
+    expect(comFase(0.5)).toBeNull();
+    expect(comFase(1)).not.toBeNull();
+  });
+
+  it('semanas seguidas com treino: conta para trás, e a semana de hoje sem treino não derruba o número', () => {
+    // dia(0) é uma segunda; um treino por semana nas semanas 0, 1 e 2, nada na 3, treino na 4
+    const h = [0, 8, 15, 29].map((n) => sessao(n, [series('supino-reto', 2)]));
+    expect(semanasSeguidas(h.slice(0, 3), dia(16))).toBe(3);
+    expect(semanasSeguidas(h.slice(0, 3), dia(22))).toBe(3); // a semana 3 ainda sem treino: vale a passada
+    expect(semanasSeguidas(h, dia(30))).toBe(1); // depois de uma semana sem treino, a conta recomeça
+    expect(semanasSeguidas([], dia(3))).toBe(0);
+  });
+
+  it('o cartão da semana só leva frequência; sem treino na semana, não há cartão', () => {
+    const r = { feitos: 2, planejados: 3, semanas: [true, false, true, true], comTreino: 3 };
+    expect(cartaoDaSemana(r, 2)).toEqual({ feitos: 2, planejados: 3, linha: '2ª semana seguida', semanas: r.semanas });
+    expect(cartaoDaSemana(r, 1)!.linha).toBe('3 de 4 semanas com treino');
+    expect(cartaoDaSemana({ ...r, semanas: [true], comTreino: 1 }, 1)!.linha).toBe('');
+    expect(cartaoDaSemana({ ...r, feitos: 0 }, 5)).toBeNull();
+    expect(Object.keys(cartaoDaSemana(r, 2)!).sort()).toEqual(['feitos', 'linha', 'planejados', 'semanas']);
+  });
+
+  it('"quando é o próximo?": a sugestão segue o intervalo da rotina, na mesma hora', () => {
+    expect(proximaDataSugerida('2026-11-23T18:30', 3)).toBe('2026-11-26T18:30');
+    expect(proximaDataSugerida('2026-11-23T18:30', 2)).toBe('2026-11-27T18:30');
+    expect(proximaDataSugerida('2026-11-23T07:05', 5)).toBe('2026-11-25T07:05');
+    expect(proximaDataSugerida('2026-12-30T20:00', 3)).toBe('2027-01-02T20:00'); // vira o mês e o ano
+    expect(proximaDataSugerida('ontem', 3)).toBe('');
+  });
+
+  it('o compromisso da agenda: só o nome do treino, a hora local e o lembrete', () => {
+    const ics = compromissoDoTreino({ nome: 'Corpo todo B; pernas, costas', inicioLocal: '2026-11-26T23:30', minutos: 45, criadoEm: '2026-11-23T21:40:12.345Z' });
+    expect(ics.split('\r\n')).toEqual([
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//treino-mvp//pt-BR',
+      'BEGIN:VEVENT',
+      'UID:treino-20261126T233000@treino-mvp',
+      'DTSTAMP:20261123T214012Z',
+      'DTSTART:20261126T233000',
+      'DTEND:20261127T001500', // passa da meia-noite
+      'SUMMARY:Treino: Corpo todo B\\; pernas\\, costas',
+      'BEGIN:VALARM',
+      'ACTION:DISPLAY',
+      'DESCRIPTION:Treino: Corpo todo B\\; pernas\\, costas',
+      'TRIGGER:-PT30M',
+      'END:VALARM',
+      'END:VEVENT',
+      'END:VCALENDAR',
+      '',
+    ]);
+    expect(compromissoDoTreino({ nome: 'A', inicioLocal: 'amanhã', minutos: 45, criadoEm: '2026-11-23T21:40:12.345Z' })).toBe('');
+    expect(compromissoDoTreino({ nome: 'A', inicioLocal: '2026-11-26T18:00', minutos: 0, criadoEm: '2026-11-23T21:40:12.345Z' })).toBe('');
   });
 
   it('nenhuma mensagem da semana tem culpa, em qualquer quantidade de treinos', () => {

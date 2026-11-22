@@ -873,6 +873,8 @@ a.faixa-descanso{text-decoration:none}
 .mudou{display:flex;flex-direction:column;gap:var(--s8)}
 .mudou h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .mudou p{margin:0}
+/* lote M5: o próximo treino na agenda; o campo de data e hora com o toque de 48 px e a letra do app */
+.quando-proximo input{min-height:var(--h48);width:100%;border:1px solid var(--borda);border-radius:var(--r8);background:var(--superficie);color:var(--texto);font:inherit;padding:0 var(--s16)}
 .mudou-semana{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8) var(--s16)}
 .marcas-hoje{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s8)}
 .marca{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto);white-space:nowrap}

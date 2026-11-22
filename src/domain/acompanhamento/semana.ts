@@ -65,6 +65,36 @@ export function treinoNaSemanaEmPalavras(r: Pick<ResumoDaSemana, 'feitos' | 'pla
   return falta === 0 ? `${n} Semana completa.` : n;
 }
 
+/**
+ * Semanas seguidas com treino, contando para trás a partir desta (ou da passada, se esta ainda não tem treino: o número
+ * não cai no meio da semana). Só o cartão da semana usa (lote M5). Nas telas do app continua valendo "X das últimas 8
+ * semanas com treino", que não zera.
+ */
+export function semanasSeguidas(historico: Sessao[], hojeIso: string, fusoMin = 0): number {
+  const comTreino = new Set(historico.filter(treinoFeito).map((s) => semanaLocal(diaLocal(s.inicio, fusoMin))));
+  let w = semanaLocal(diaLocal(hojeIso, fusoMin));
+  if (!comTreino.has(w)) w--;
+  let n = 0;
+  while (comTreino.has(w)) {
+    n++;
+    w--;
+  }
+  return n;
+}
+
+export type CartaoDaSemana = { feitos: number; planejados: number; linha: string; semanas: boolean[] };
+
+/**
+ * O que o cartão da semana mostra (lote M5): só frequência, nunca carga, nem nome de exercício, nem dado de saúde.
+ * A segunda linha é a sequência de semanas quando ela existe (2 ou mais); senão, as semanas com treino da janela.
+ * Sem treino nesta semana, não há cartão (null): o cartão reconhece o que foi feito, não lembra o que faltou.
+ */
+export function cartaoDaSemana(r: Pick<ResumoDaSemana, 'feitos' | 'planejados' | 'semanas' | 'comTreino'>, seguidas: number): CartaoDaSemana | null {
+  if (r.feitos <= 0) return null;
+  const linha = seguidas >= 2 ? `${seguidas}ª semana seguida` : r.semanas.length > 1 ? `${r.comTreino} de ${r.semanas.length} semanas com treino` : '';
+  return { feitos: r.feitos, planejados: r.planejados, linha, semanas: r.semanas };
+}
+
 const dataLocal = (dia: number) => new Date(dia * 86_400_000).toISOString().slice(0, 10);
 
 /** Séries efetivas por músculo de um conjunto de sessões: só as efetivas, a indireta vale 0,5, o drop set conta 2. */

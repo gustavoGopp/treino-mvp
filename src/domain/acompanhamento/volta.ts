@@ -62,6 +62,7 @@ export function diasParaRecepcao(planejados: number): number {
  */
 export function recepcaoCurta(hoje: Pick<Hoje, 'diasSemTreino' | 'faixa' | 'fase'>, planejados: number): string | null {
   const d = hoje.diasSemTreino;
-  if (d === undefined || hoje.faixa !== 'normal' || hoje.fase || d < diasParaRecepcao(planejados)) return null;
+  // a fase que corta séries (começo leve, volta gradual, semana leve) já tem a sua linha na tela
+  if (d === undefined || hoje.faixa !== 'normal' || (hoje.fase && hoje.fase.fatorSeries < 1) || d < diasParaRecepcao(planejados)) return null;
   return `Bom te ver de novo. Faz ${tempoDaPausa(d)} do último treino, e a carga é a mesma.`;
 }
