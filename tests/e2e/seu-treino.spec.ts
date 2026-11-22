@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana, marcarItem, verAvisos } from './jornada';
 
 // Redesign, lote 4 (07/11/2026): o "Seu treino" com uma coisa principal. O "Começar" fica à vista sem rolar e no máximo

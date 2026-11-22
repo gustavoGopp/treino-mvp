@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { temExif } from '../../src/lib/imagem';
 import { semContrasteBaixo } from './contraste';
 import { ana, detalhesDo, folhaPronta } from './jornada';

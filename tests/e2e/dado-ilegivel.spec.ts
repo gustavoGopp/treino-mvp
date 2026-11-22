@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 
 // Dado guardado que o app não consegue ler (formato inválido): o app abre vazio e avisa. Antes, o primeiro toque que
 // salvava algo trocava o dado antigo pelo estado vazio, e o histórico sumia. Agora o dado antigo é guardado à parte

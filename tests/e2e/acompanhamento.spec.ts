@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { ana, entenda, porQueDaSugestao, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 import { semToquePequeno } from './toque';
 

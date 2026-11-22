@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { execFileSync } from 'node:child_process';
 import type { Estado } from '../../src/storage/esquema';
 import { ana, maisOpcoes, porQueDaSugestao } from './jornada';

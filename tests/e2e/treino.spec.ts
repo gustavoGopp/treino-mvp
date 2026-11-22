@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
+import { botaoEntendi } from './base';
 import { ana, abrirTrocar, folhaPronta, maisOpcoes, marcarItem, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
 import { semToquePequeno } from './toque';
 
@@ -265,7 +266,7 @@ test('R1: aberto pelo treino, o guia do goblet mostra a prescrição da semana d
 test('R1: no exercício de um lado só (o afundo), o treino e o guia dizem "cada lado" na prescrição da Ana, não "por perna"', async ({ page }) => {
   await ana(page);
   await comecar(page, 'Corpo todo C');
-  await expect(page.getByRole('heading', { name: 'Afundo estático com halteres' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Afundo estático com halteres', level: 1 })).toBeVisible();
   const meta = (await page.locator('p.meta').first().innerText()).trim();
   const series = meta.match(/^(\d+) × 8–12 cada lado$/)![1]!;
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
@@ -505,4 +506,43 @@ for (const [largura, altura] of [[360, 640], [375, 667], [390, 664], [412, 839]]
     const repouso = await pequeno.getByRole('img').innerHTML();
     await expect.poll(() => pequeno.getByRole('img').innerHTML()).not.toBe(repouso);
   });
+
+// Ideia B do estudo da tela do treino (docs/revisoes/melhorias/m2/), escolhida pelo Gustavo em 22/11/2026: na 1ª vez da
+// pessoa num exercício, o guia grande abre sozinho; "Entendi" leva ao registro. Da 2ª vez em diante, não abre.
+test('na 1ª vez de um exercício o guia grande abre sozinho, uma vez; depois de feito, não abre mais', async ({ page }) => {
+  await ana(page);
+  // este teste confere a própria folha: desliga o toque automático em "Entendi" dos outros testes
+  await page.removeLocatorHandler(botaoEntendi(page));
+  await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  const folha = page.getByRole('dialog', { name: 'Agachamento goblet com calcanhar elevado' });
+  await expect(folha).toBeVisible();
+  await folhaPronta(page);
+  await expect.poll(() => folha.getByRole('img', { name: /^O Boneco fazendo/ }).evaluate((e) => e.childElementCount)).toBeGreaterThan(0);
+  await expect(folha.getByRole('button', { name: 'Lento' })).toBeVisible();
+  await semToquePequeno(page);
+  await botaoEntendi(page).click();
+  await expect(folha).toHaveCount(0);
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  // recarregar a página no mesmo exercício não abre de novo
+  await page.reload();
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ampliar o guia' })).toBeVisible();
+  await expect(folha).toHaveCount(0);
+  // aberto pelo toque, o guia não tem "Entendi": fecha pelo "Fechar"
+  await page.getByRole('button', { name: 'Ampliar o guia' }).click();
+  await expect(folha).toBeVisible();
+  await expect(botaoEntendi(page)).toHaveCount(0);
+  await folhaPronta(page);
+  await folha.getByRole('button', { name: 'Fechar' }).click();
+  // faz o exercício e termina o treino; no treino seguinte do mesmo dia, o goblet já não é novidade
+  await fazerExercicio(page);
+  await terminarTreino(page);
+  await page.goto('/programa');
+  await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
 

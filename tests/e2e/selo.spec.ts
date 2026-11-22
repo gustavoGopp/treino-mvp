@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana, sobreOPrograma } from './jornada';
 import { semContrasteBaixo } from './contraste';
 import { semToquePequeno } from './toque';

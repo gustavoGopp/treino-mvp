@@ -739,7 +739,17 @@ body:has(.invertida){background:var(--inv-fundo)}
 .palco-btn .fase-do-movimento:empty{display:none}
 .palco-btn .toca{position:absolute;top:var(--s8);right:var(--s16);width:1.25rem;color:var(--st-muted)}
 /* o Boneco ampliado, numa folha por cima do treino: o desenho com 55% da altura da tela, a pausa num botão próprio */
-.palco-ampliado{margin:0 calc(-1 * var(--s16))}
+/* na folha o palco tem a altura do que mostra (não encolhe por cima do que vem depois); se a folha não couber, ela rola,
+   e o "Entendi" da 1ª vez fica preso embaixo, sempre ao alcance */
+.palco-ampliado{flex:none;margin:0 calc(-1 * var(--s16))}
+.folha .entendi{position:sticky;bottom:0;flex:none;box-shadow:0 0 0 var(--s16) var(--fundo)}
+/* na 1ª vez, com o "Entendi" preso embaixo, o desenho cede um pouco de altura para a velocidade e o ângulo ficarem à vista */
+/* o que recebe o foco do teclado rola para cima do "Entendi" preso, nunca fica atrás dele (WCAG 2.4.11) */
+.folha:has(.entendi){scroll-padding-bottom:calc(var(--h64) + var(--s48))}
+.folha:has(.entendi) .palco-ampliado .palco-grande{height:42dvh}
+/* em tela muito baixa (zoom de 200%, celular deitado) o botão preso tomaria a tela: ele segue o fluxo da folha */
+@media (max-height:480px){.folha .entendi{position:static;box-shadow:none}.folha:has(.entendi){scroll-padding-bottom:var(--s16)}}
+@media (max-height:700px){.folha:has(.entendi) .palco-ampliado .palco-grande{height:35dvh}}
 .palco-ampliado .palco-grande{flex:none;height:55dvh;min-height:0;max-height:none;cursor:default}
 .pausa-do-guia{position:absolute;top:var(--s8);right:var(--s8);z-index:1;width:var(--h48);height:var(--h48);display:grid;place-items:center;border:0;border-radius:var(--r8);background:var(--stage);color:var(--st-ink);cursor:pointer}
 .pausa-do-guia .icone{width:1.5rem}

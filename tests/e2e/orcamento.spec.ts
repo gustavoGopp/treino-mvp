@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { ana } from './jornada';
 
 // Lote técnico do redesign (06/11/2026): orçamento do JavaScript que a 1ª tela baixa, medido no build de produção

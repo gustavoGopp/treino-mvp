@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 
 // R4: o laboratório do boneco só existe em desenvolvimento e nas prévias da Vercel. No build de produção
 // (o mesmo que este teste usa), a rota não existe e cai na tela inicial, como qualquer endereço desconhecido.

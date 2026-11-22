@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 
 test('a página inicial abre em português, com o aviso, e é instalável', async ({ page }) => {
   await page.goto('/');

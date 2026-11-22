@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { ana, marcarItem, proximoExercicio, terminarTreino, triagem, verAvisos } from './jornada';
 
 // Três correções da auditoria de 12/11/2026, cada uma com o caso que falhava.

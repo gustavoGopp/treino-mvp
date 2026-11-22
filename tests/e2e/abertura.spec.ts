@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './base';
 import { semContrasteBaixo } from './contraste';
 import { ana, entenda, folhaPronta } from './jornada';
 import { semToquePequeno } from './toque';

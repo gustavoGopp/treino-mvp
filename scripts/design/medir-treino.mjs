@@ -29,6 +29,9 @@ for (const [w, h] of TAMANHOS) {
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await page.getByRole('heading', { name: 'Seu treino', exact: true }).waitFor();
   await page.getByRole('button', { name: /^Começar/ }).click();
+  // na 1ª vez de cada exercício o guia grande abre sozinho: a medida de repouso é depois do "Entendi"
+  await page.getByRole('button', { name: 'Entendi', exact: true }).click({ timeout: 5000 }).catch(() => {});
+  await page.waitForTimeout(400);
   await page.locator('.palco-treino svg > *').first().waitFor({ timeout: 15000 }).catch(() => {});
   await page.waitForTimeout(1200);
   const medir = () => page.evaluate(() => {

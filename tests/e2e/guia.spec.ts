@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana } from './jornada';
 
 test('do início ao guia: troca de exercício, modo e vista', async ({ page }) => {

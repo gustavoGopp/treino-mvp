@@ -102,6 +102,9 @@ export function Treino() {
   const [verSerie, setVerSerie] = useState(false);
   // o Boneco ampliado, por cima do treino (um toque no palco abre; lote M2, adiantado em 22/11/2026)
   const [guiaAmpliado, setGuiaAmpliado] = useState(false);
+  // Aberto sozinho, na 1ª vez da pessoa naquele exercício (ideia B do estudo da tela do treino, escolhida pelo Gustavo
+  // em 22/11/2026): a folha ganha o botão "Entendi", que leva ao registro.
+  const [guiaDaPrimeiraVez, setGuiaDaPrimeiraVez] = useState(false);
   const [rascunho, setRascunho] = useState<Rascunho | null>(null);
   // logo depois de salvar, "Série N feita" aparece no lugar exato de "Série feita": por 1 s o botão não responde,
   // para um toque duplo não registrar a série seguinte (revisão do bloco 2, item 2)
@@ -136,8 +139,14 @@ export function Treino() {
   // a calibração da série que vem (progressao.calibracao), mostrada acima do painel
   const calNaSessao = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
 
-  const irPara = (n: number) => {
+  const fecharGuia = () => {
     setGuiaAmpliado(false);
+    setGuiaDaPrimeiraVez(false);
+  };
+  // A 1ª vez da pessoa neste exercício: nunca fez uma série dele, em nenhum treino guardado nem neste.
+  const nuncaFez = !feito.series.length && !estado.historico.some((s) => s.exercicios.some((e) => e.exId === x.exId && e.series.length > 0));
+  const irPara = (n: number) => {
+    fecharGuia();
     setIndice(n);
     setVerSerie(true);
     setRascunho(null);
@@ -466,10 +475,23 @@ export function Treino() {
         )}
 
         {guiaAmpliado && x.animacaoId && painel === 'nenhum' && (
-          <Folha titulo={x.nome} aoFechar={() => setGuiaAmpliado(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
+          <Folha titulo={x.nome} aoFechar={fecharGuia} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <PalcoTreino key={`grande-${x.animacaoId}`} animacaoId={x.animacaoId} ampliado />
+            {guiaDaPrimeiraVez && (
+              <button type="button" className="btn entendi" onClick={fecharGuia}>
+                Entendi
+              </button>
+            )}
           </Folha>
         )}
+        <PrimeiraVez
+          chave={`${sessao.id}:${x.exId}`}
+          quando={!!x.animacaoId && nuncaFez && !feito.interrompido && !noRelogio && painel === 'nenhum'}
+          abrir={() => {
+            setGuiaDaPrimeiraVez(true);
+            setGuiaAmpliado(true);
+          }}
+        />
 
         {painel === 'mais' && (
           <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
@@ -597,6 +619,29 @@ function usePainelPreso(chave: string) {
     };
   }, [chave]);
   return { ref, solto };
+}
+
+/**
+ * Na 1ª vez da pessoa num exercício, o guia grande abre sozinho, uma vez (ideia B do estudo da tela do treino,
+ * escolhida pelo Gustavo em 22/11/2026): quem nunca fez o movimento vê primeiro o Boneco, e "Entendi" leva ao registro.
+ * "Uma vez" vale por treino e por exercício, e fica na memória da aba (sessionStorage): voltar do guia completo ou
+ * recarregar a página não abre de novo. Não é dado de treino e não entra na cópia de segurança.
+ */
+function PrimeiraVez({ chave, quando, abrir }: { chave: string; quando: boolean; abrir: () => void }) {
+  const aoAbrir = useRef(abrir);
+  aoAbrir.current = abrir;
+  useEffect(() => {
+    if (!quando) return;
+    const k = `treino-mvp:guia-visto:${chave}`;
+    try {
+      if (sessionStorage.getItem(k)) return;
+      sessionStorage.setItem(k, '1');
+    } catch {
+      // sem a memória da aba (modo restrito): abre a cada chegada ao exercício, que é o lado seguro
+    }
+    aoAbrir.current();
+  }, [chave, quando]);
+  return null;
 }
 
 /** Menos e mais, lado a lado, embaixo do número: os dois alvos grandes da série. */

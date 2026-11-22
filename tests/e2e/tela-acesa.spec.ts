@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana, terminarTreino } from './jornada';
 
 // Lote 2 do redesign (06/11/2026): a tela fica acesa durante o treino todo, e não só no descanso. O Wake Lock é

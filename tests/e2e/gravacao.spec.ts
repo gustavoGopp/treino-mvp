@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './base';
 import { ana, terminarTreino } from './jornada';
 
 // A gravação no IndexedDB é assíncrona. Antes, quem saía da página logo depois do toque (recarregar, fechar a aba)
