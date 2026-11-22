@@ -153,7 +153,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
   // Os 4 estados em palavras, nunca em vermelho.
-  await expect(musculos).toContainText(/na meta|crescendo|mantendo|ainda não treinou nesta semana/);
+  await expect(musculos).toContainText(/na meta|dá para crescer|dá para manter/);
   const cores = await musculos.locator('.m-barra i').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundColor));
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.

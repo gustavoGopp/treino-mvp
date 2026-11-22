@@ -253,7 +253,7 @@
   },
   "acompanhamento.semana": {
     "titulo": "O resumo da sua semana",
-    "frase": "Mostra os treinos feitos e planejados (segunda a domingo, em qualquer local) e, por músculo, as séries que contam contra a meta. A série em que o músculo trabalha de forma indireta vale meia. Estados: na meta, crescendo (4 ou mais), mantendo (1 ou mais) ou ainda não treinou. Na volta de pausa, na fase de aprendizado e na semana leve, a meta é a daquela semana. E “X das últimas 8 semanas com treino”, nunca uma sequência que zera."
+    "frase": "Mostra os treinos feitos e planejados (segunda a domingo, em qualquer local) e, por músculo, as séries contra a meta. A série em que o músculo só ajuda vale meia. Estados: na meta, dá para crescer (4 ou mais), dá para manter (1 ou mais) ou ainda não treinou. Na volta de pausa, na fase de aprendizado e na semana leve, a meta é a daquela semana. E “X das últimas 8 semanas com treino”, nunca sequência que zera."
   },
   "acompanhamento.mensagens": {
     "titulo": "Mensagens sem culpa",

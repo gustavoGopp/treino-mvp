@@ -12,8 +12,9 @@ import { diaLocal, hojeNoPrograma, proximoDia, segundaDaSemana, semanaLocal, tre
 export type EstadoMusculo = 'na-meta' | 'crescendo' | 'mantendo' | 'sem-treino';
 export const TEXTO_ESTADO: Record<EstadoMusculo, string> = {
   'na-meta': 'na meta',
-  crescendo: 'crescendo',
-  mantendo: 'mantendo',
+  // lote M3 (22/11/2026): "crescendo" e "mantendo" não diziam o quê; a frase diz o que aquelas séries dão
+  crescendo: 'dá para crescer',
+  mantendo: 'dá para manter',
   'sem-treino': 'ainda não treinou nesta semana',
 };
 
@@ -72,7 +73,9 @@ export function estadoDoMusculo(feitas: number, meta: number): EstadoMusculo {
   if (feitas <= 0) return 'sem-treino';
   if (feitas >= meta) return 'na-meta';
   if (feitas >= VOLUME.minimoEficazPiso) return 'crescendo';
-  return 'mantendo';
+  // acompanhamento.semana: "mantendo" vale de 1 série em diante. Abaixo disso (meia série, de um músculo que só ajudou
+  // em outro exercício), o músculo ainda não treinou nesta semana (conferência regra por regra, D1, 22/11/2026).
+  return feitas >= 1 ? 'mantendo' : 'sem-treino';
 }
 
 const juntar = (xs: string[]) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} e ${xs.at(-1)}`);

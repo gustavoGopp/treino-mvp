@@ -110,7 +110,7 @@ export function Semana() {
 
         <section aria-labelledby="musculos" className="pilha">
           <h2 id="musculos" className="secao">
-            Séries por músculo
+            Séries por músculo nesta semana
           </h2>
           <ul className="musculos" aria-label="Séries efetivas por músculo nesta semana">
             {r.musculos.map((m) => (
@@ -123,7 +123,7 @@ export function Semana() {
                 <span className="m-num">
                   {num(m.feitas)} de {num(m.meta)}
                 </span>
-                {m.feitas > 0 && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
+                {m.estado !== 'sem-treino' && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
               </li>
             ))}
           </ul>

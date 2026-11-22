@@ -178,6 +178,8 @@ describe('a semana em vários locais', () => {
 describe('estados e mensagens sem culpa (acompanhamento.mensagens)', () => {
   it('os 4 estados', () => {
     expect(estadoDoMusculo(0, 12)).toBe('sem-treino');
+    // meia série (o músculo só ajudou em outro exercício) ainda não é "mantendo": a regra diz 1 ou mais (D1, 22/11/2026)
+    expect(estadoDoMusculo(0.5, 12)).toBe('sem-treino');
     expect(estadoDoMusculo(1, 12)).toBe('mantendo');
     expect(estadoDoMusculo(3.5, 12)).toBe('mantendo');
     expect(estadoDoMusculo(4, 12)).toBe('crescendo');
