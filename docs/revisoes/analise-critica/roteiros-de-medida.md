@@ -371,3 +371,20 @@ rodar(async () => {
 });
 
 ```
+
+## Ajustes feitos na conferência do M1 (22/11/2026)
+
+O lote M1 mudou textos e o caminho do cadastro. Para medir a versão nova, o `onb.cjs` precisou de três mudanças pequenas:
+
+- a pergunta "Você está treinando agora?" passou a ser opcional no roteiro (quem escolhe "Nunca treinei" não a recebe): `if (r.agora) await tap(...)`;
+- a resposta de tempo é procurada pelo texto exato (`{ exact: true }`), para "Nunca treinei" não se confundir com outra;
+- um prefixo nos nomes das capturas e dos estados salvos (`PRE=m1-`), para não escrever por cima das de 19/11.
+
+Chamadas novas:
+
+```bash
+BASE=http://localhost:4175 PRE=m1- node onb.cjs p1 pixel7 '{"tempo":"Nunca treinei","dias":"3 dias","min":"45 min","local":"Condomínio com multifuncional"}'
+BASE=http://localhost:4175 PRE=m1- node onb.cjs p5 m375 '{"tempo":"Nunca treinei","dias":"3 dias","min":"30 min","local":"Corpo livre"}'
+```
+
+E um tamanho de tela a mais no `lib.cjs`: `m375`, de 375 × 667. O resultado está em [`conferencia-m1.md`](conferencia-m1.md).
