@@ -2174,9 +2174,9 @@
     "id": "seguranca.alerta.cardiovascular",
     "regra": "Dor, pressão ou aperto no peito (ou irradiado), falta de ar desproporcional, tontura ou quase desmaio, batimento muito irregular",
     "valores": {
-      "iniciante": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação",
-      "intermediario": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação",
-      "avancado": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação"
+      "iniciante": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação; por 15 minutos, a tela do encerramento oferece \"Toquei sem querer. Voltar ao treino\", depois da orientação, para desfazer um toque errado (decisão do Gustavo de 22/11/2026; os 15 minutos são [opinião] do projeto)",
+      "intermediario": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação; por 15 minutos, a tela do encerramento oferece \"Toquei sem querer. Voltar ao treino\", depois da orientação, para desfazer um toque errado (decisão do Gustavo de 22/11/2026; os 15 minutos são [opinião] do projeto)",
+      "avancado": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação; por 15 minutos, a tela do encerramento oferece \"Toquei sem querer. Voltar ao treino\", depois da orientação, para desfazer um toque errado (decisão do Gustavo de 22/11/2026; os 15 minutos são [opinião] do projeto)"
     },
     "selo": "consenso",
     "fontes": [

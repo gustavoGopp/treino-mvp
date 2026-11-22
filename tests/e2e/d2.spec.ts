@@ -140,3 +140,42 @@ test('ao abrir o guia, o foco vai para o nome do exercício', async ({ page }) =
   await expect(nome).toBeVisible();
   await expect(nome).toBeFocused();
 });
+
+// Decisão do Gustavo de 22/11/2026 (pedido 7, a saída C): o sinal de alerta continua encerrando o treino com um toque;
+// a orientação de segurança aparece primeiro, e nessa tela o toque errado se desfaz.
+test('sinal de alerta tocado sem querer: a orientação aparece, "Toquei sem querer" volta ao treino e nada fica bloqueado', async ({ page }) => {
+  await ana(page);
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  const registro = page.getByRole('region', { name: /^Série 1/ });
+  await page.getByLabel('Carga', { exact: true }).selectOption({ index: 3 });
+  await registro.getByRole('radio', { name: '3', exact: true }).check();
+  await registro.getByRole('button', { name: /^Série feita/ }).click();
+  await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await folhaPronta(page);
+  await page.getByRole('dialog', { name: 'O que você sentiu?' }).getByRole('button', { name: 'Tontura ou quase desmaio' }).click();
+  // encerrou com um toque, e a orientação de segurança vem primeiro, inteira
+  await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('Pare o treino agora e descanse.');
+  await expect(page.getByRole('link', { name: 'Ligar para o SAMU: 192' })).toBeVisible();
+  await semToquePequeno(page);
+  await page.getByRole('button', { name: 'Toquei sem querer. Voltar ao treino' }).click();
+  // de volta ao treino, com a série que já estava feita
+  await expect(page.getByRole('region', { name: /^Série 2/ })).toBeVisible();
+  await expect(page.getByRole('list', { name: 'Séries feitas' }).getByRole('listitem')).toHaveCount(1);
+  // e o programa não ficou bloqueado pela "avaliação"
+  await page.goto('/programa');
+  await expect(page.getByRole('heading', { name: 'Treino pausado por segurança' })).toHaveCount(0);
+});
+
+test('sem o "Toquei sem querer", o treino encerrado por alerta continua bloqueando o próximo até a confirmação', async ({ page }) => {
+  await ana(page);
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await folhaPronta(page);
+  await page.getByRole('dialog', { name: 'O que você sentiu?' }).getByRole('button', { name: 'Dor, pressão ou aperto no peito' }).click();
+  await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
+  await page.goto('/programa');
+  await expect(page.getByRole('heading', { name: 'Treino pausado por segurança' })).toBeVisible();
+});

@@ -5,7 +5,7 @@ import { diaNoLocal, possivelNoLocal } from '../../src/domain/locais';
 import type { SerieRegistrada } from '../../src/domain/progressao';
 import { historicoDoExercicio, sugestaoDoExercicio } from '../../src/domain/sessao';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { diaDoTreino, iniciarSessao, opcoesDaCarga, registrarSerie, terminarSessao } from '../../src/features/treino/acoes';
+import { diaDoTreino, iniciarSessao, opcoesDaCarga, podeVoltarDoAlerta, registrarSerie, terminarSessao, voltarDoAlerta } from '../../src/features/treino/acoes';
 import { estadoSchema, estadoVazio, porQueNaoApagarLocal, semLocal, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { bruno, brunoAcademiaDoBairro, carla, LOCAIS_DO_BRUNO, PERSONAS } from '../personas';
 
@@ -332,5 +332,33 @@ describe('apagar um local (porQueNaoApagarLocal, semLocal)', () => {
   it('um local que não existe não muda nada', () => {
     expect(porQueNaoApagarLocal(base(), 'local-9')).toMatch(/não existe/);
     expect(semLocal(base(), 'local-9')).toEqual(base());
+  });
+});
+
+// Pacote D2 (22/11/2026; decisão do Gustavo, a saída C do pedido 7): o toque errado num sinal de alerta se desfaz.
+describe('"Toquei sem querer": voltar ao treino encerrado por um sinal de alerta', () => {
+  const aberto = (): Estado => ({
+    ...estadoVazio(),
+    sessaoAtual: { id: 's1', diaId: 'a', semana: 1, inicio: '2026-11-22T10:00:00.000Z', exercicios: [{ exId: 'goblet', series: [{ carga: { tipo: 'kg', kg: 6 }, reps: 10, rir: 3 }] }] },
+  });
+  const fim = '2026-11-22T10:20:00.000Z';
+  const encerrado = terminarSessao(aberto(), fim, true);
+  it('dentro de 15 minutos, o treino volta a ficar aberto, com as séries, e o encerramento sai do histórico', () => {
+    expect(podeVoltarDoAlerta(encerrado, 's1', '2026-11-22T10:21:00.000Z')).toBe(true);
+    const depois = voltarDoAlerta(encerrado, 's1', '2026-11-22T10:35:00.000Z');
+    expect(depois).toEqual(aberto());
+    expect(estadoSchema.safeParse(depois).success).toBe(true);
+  });
+  it('depois de 15 minutos, com outro treino no meio ou num treino que não foi encerrado por alerta, nada muda', () => {
+    expect(voltarDoAlerta(encerrado, 's1', '2026-11-22T10:35:01.000Z')).toBe(encerrado);
+    expect(voltarDoAlerta(encerrado, 'outro', '2026-11-22T10:21:00.000Z')).toBe(encerrado);
+    const normal = terminarSessao(aberto(), fim);
+    expect(podeVoltarDoAlerta(normal, 's1', '2026-11-22T10:21:00.000Z')).toBe(false);
+    const comOutroAberto = { ...encerrado, sessaoAtual: { ...aberto().sessaoAtual!, id: 's2' } };
+    expect(podeVoltarDoAlerta(comOutroAberto, 's1', '2026-11-22T10:21:00.000Z')).toBe(false);
+  });
+  it('o sinal de atendimento urgente também se desfaz, e a marca dele não fica no treino reaberto', () => {
+    const urgente = terminarSessao(aberto(), fim, true, 'cauda-equina');
+    expect(voltarDoAlerta(urgente, 's1', '2026-11-22T10:25:00.000Z').sessaoAtual).toEqual(aberto().sessaoAtual);
   });
 });
