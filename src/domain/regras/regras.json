@@ -1689,9 +1689,9 @@
     "id": "equipamento.menor-anilha",
     "regra": "Menor anilha das máquinas de anilha e das barras (leg press, hack, smith, panturrilha sentada, barra longa, barra hexagonal)",
     "valores": {
-      "iniciante": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)",
-      "intermediario": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)",
-      "avancado": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)"
+      "iniciante": "é o passo das sugestões de carga, gravado em cada item de anilha; vale o padrão de 2 kg (opinião do projeto, a confirmar no T8); desde 22/11/2026 (decisão do Gustavo) o cadastro não faz a pergunta: ela fica em \"Meus locais\", pergunta única, para quem quiser mudar o passo; no treino, a carga destas máquinas e barras é anotada livremente (o número aceita qualquer valor digitado, e o menos e o mais andam no passo)",
+      "intermediario": "é o passo das sugestões de carga, gravado em cada item de anilha; vale o padrão de 2 kg (opinião do projeto, a confirmar no T8); desde 22/11/2026 (decisão do Gustavo) o cadastro não faz a pergunta: ela fica em \"Meus locais\", pergunta única, para quem quiser mudar o passo; no treino, a carga destas máquinas e barras é anotada livremente (o número aceita qualquer valor digitado, e o menos e o mais andam no passo)",
+      "avancado": "é o passo das sugestões de carga, gravado em cada item de anilha; vale o padrão de 2 kg (opinião do projeto, a confirmar no T8); desde 22/11/2026 (decisão do Gustavo) o cadastro não faz a pergunta: ela fica em \"Meus locais\", pergunta única, para quem quiser mudar o passo; no treino, a carga destas máquinas e barras é anotada livremente (o número aceita qualquer valor digitado, e o menos e o mais andam no passo)"
     },
     "selo": "consenso",
     "fontes": [

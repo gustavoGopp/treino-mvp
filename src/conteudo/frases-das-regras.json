@@ -449,7 +449,7 @@
   },
   "equipamento.menor-anilha": {
     "titulo": "Menor anilha das máquinas e barras",
-    "frase": "O app pergunta uma vez só qual é a menor anilha, e a resposta vale para leg press, hack, smith, panturrilha sentada, barra longa e barra hexagonal. Sem resposta, vale o padrão de 2 kg."
+    "frase": "A menor anilha é o passo das sugestões de carga no leg press, hack, smith, panturrilha sentada, barra longa e barra hexagonal. O app usa 2 kg sem perguntar no cadastro; dá para mudar em “Meus locais”, numa pergunta só. No treino, você anota a carga que usou, qualquer que seja: toque no número para digitar."
   },
   "equipamento.sem-puxada-vertical": {
     "titulo": "Sem barra fixa nem polia alta",

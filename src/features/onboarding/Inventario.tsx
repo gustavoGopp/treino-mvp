@@ -212,6 +212,9 @@ export function Inventario() {
         inicial={localPrincipal(estado)?.inventario}
         textoBotao="Gerar meu programa"
         perguntaNoTitulo
+        // decisão do Gustavo de 22/11/2026: o cadastro não pergunta os pesos das anilhas da academia; a carga se anota
+        // livremente no treino. A pergunta continua em "Meus locais", para quem quiser afinar o passo das sugestões.
+        semMenorAnilha
         aoSalvar={(inv) => {
           // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento é o último passo e gera o programa
           atualizar((s) => ({ ...comProgramaNovo(comInventario(s, localPrincipal(s)?.id, inv), agoraIso(), true), ajustes: undefined }));
@@ -228,7 +231,10 @@ export function FormularioInventario({
   aoSalvar,
   textoBotao = 'Continuar',
   perguntaNoTitulo = false,
+  semMenorAnilha = false,
 }: {
+  /** No cadastro, a pergunta "Qual a menor anilha?" não aparece (equipamento.menor-anilha); vale o padrão de 2 kg. */
+  semMenorAnilha?: boolean;
   inicial?: InventarioDados;
   aoSalvar: (inv: InventarioDados) => void;
   textoBotao?: string;
@@ -655,7 +661,7 @@ export function FormularioInventario({
         </Folha>
       )}
 
-      {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
+      {!semMenorAnilha && f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
         <Detalhes titulo="Anilhas das máquinas e barras">
           <p className="ajuda">
             Não sabe? O app usa 2 kg.

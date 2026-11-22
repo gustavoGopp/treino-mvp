@@ -272,10 +272,9 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await expect(marcados).toContainText('Halteres fixos');
   const asVezes = page.getByRole('group', { name: /Às vezes tem/ });
   for (const x of ['Kettlebell', 'Elásticos', 'Bola suíça', 'Suspensão (TRX) ou argolas']) await expect(asVezes.getByLabel(x, { exact: true })).not.toBeChecked();
-  // A pergunta única da menor anilha aparece (leg press, hack, smith…), sem resposta marcada.
-  const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
-  for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
-  await anilha.getByLabel('1,25 kg', { exact: true }).check();
+  // Decisão do Gustavo de 22/11/2026: o cadastro não pergunta a menor anilha (leg press, hack, smith…); vale o padrão
+  // de 2 kg, a carga se anota livremente no treino, e a pergunta fica em "Meus locais" (ver o teste seguinte).
+  await expect(page.getByRole('group', { name: 'Qual a menor anilha?' })).toHaveCount(0);
   // Design v2 (item D): os detalhes vêm com valores típicos, editáveis; o lado conservador nos "sim ou não".
   await expect((await detalhesDo(page, 'Polia simples')).getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável')).toBeChecked();
   await pronto(page);
@@ -288,6 +287,35 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await expect(marcados).not.toContainText('Leg press');
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+});
+
+test('academia completa: a menor anilha fica em "Meus locais", e no treino a carga por anilha aceita qualquer valor digitado', async ({ page }) => {
+  await ateOEquipamento(page, 'treina');
+  await page.getByRole('button', { name: 'Academia completa' }).click();
+  await expect(page.getByRole('group', { name: 'Qual a menor anilha?' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  // em "Meus locais" a pergunta continua, sem resposta marcada
+  await page.goto('/locais/local-1');
+  const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
+  await expect(anilha).toBeVisible();
+  for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
+  // no treino: o 1º exercício do dia A é o leg press, de anilha por lado; digita uma carga fora do passo de 2 kg
+  await page.goto('/programa');
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
+  const livre = page.getByRole('button', { name: 'Digitar as anilhas por lado' });
+  await expect(livre).toContainText('—');
+  await livre.click();
+  const folha = page.getByRole('dialog', { name: 'Carga' });
+  await folhaPronta(page);
+  await folha.getByLabel('Anilhas de cada lado').fill('7.5');
+  await folha.getByRole('button', { name: 'Pronto' }).click();
+  await expect(folha).toHaveCount(0);
+  await expect(livre).toContainText('7,5 kg');
+  // o menos e o mais continuam andando no passo de 2 kg
+  await page.getByRole('button', { name: 'Mais anilha de cada lado' }).click();
+  await expect(livre).toContainText('9,5 kg');
 });
 
 test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {

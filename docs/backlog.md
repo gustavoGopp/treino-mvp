@@ -529,4 +529,6 @@ O que foi feito está no devlog ("A porta"). Ficou para depois:
 - **O M2 pede um palco do Boneco que sirva ao treino e ao guia;** o Boneco da abertura (`BonecoAbertura.tsx`) é um terceiro uso do mesmo laço de quadros e deve entrar nessa junção.
 - **Os roteiros de fotos de `scripts/textos/`** citam linhas de `Inventario.tsx` e o nome antigo "Anilhas e manoplas": não rodam na verificação e não foram atualizados.
 - **Um padrão para as anilhas e as manoplas** não foi criado: o atalho de casa deixou de supor halteres de montar, e quem os tem responde os detalhes (com a explicação de "manopla").
+- **Carga digitada (22/11):** o campo abre numa folha e a pessoa ainda precisa tocar nele para o teclado subir; pôr o cursor direto no campo economiza um toque. As listas (halteres, kettlebell, caneleira) e as placas não aceitam digitação: seguem pela lista e pelo menos e mais.
+- **Halteres de montar ainda pedem a contagem das anilhas** (quem marca o item fora do atalho). A decisão de 22/11 falava das anilhas da academia; se for para valer também aqui, a lista de cargas dos halteres de montar passa a ser livre.
 

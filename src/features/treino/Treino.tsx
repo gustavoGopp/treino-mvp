@@ -8,7 +8,7 @@ import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } fr
 import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { cargasHalter, comHalterMaisPesado, MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
-import { numeroOu } from '../app/ui';
+import { Numero, numeroOu } from '../app/ui';
 import { ValorPorToque } from '../onboarding/Inventario';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
 import {
@@ -823,6 +823,48 @@ function ControleCarga({
   const idCarga = `${uid}-carga`;
   const [corrigindo, setCorrigindo] = useState(false);
   const [maisPesado, setMaisPesado] = useState('');
+  // Carga livre (decisão do Gustavo de 22/11/2026): onde não há lista (anilhas por lado, barra), tocar no número abre
+  // um campo para digitar a carga usada, qualquer que seja; o menos e o mais continuam para o ajuste de um toque.
+  const [digitando, setDigitando] = useState(false);
+  const [digitado, setDigitado] = useState('');
+  const numeroLivre = (k: number | undefined, rotulo: string, campo: string, gravar: (n: number) => void, id?: string) => (
+    <>
+      <button
+        type="button"
+        className="valor-grande valor-livre"
+        aria-label={rotulo}
+        aria-haspopup="dialog"
+        onClick={() => {
+          setDigitado(k === undefined ? '' : String(k));
+          setDigitando(true);
+        }}
+      >
+        <output id={id} className="carga-valor" aria-live="polite">
+          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
+        </output>
+      </button>
+      {digitando && (
+        <Folha titulo="Carga" aoFechar={() => setDigitando(false)}>
+          <form
+            className="form"
+            onSubmit={(ev) => {
+              ev.preventDefault();
+              ev.stopPropagation();
+              const n = numeroOu(digitado);
+              if (n === undefined || n < 0 || n > 1000) return;
+              gravar(Math.round(n * 100) / 100);
+              setDigitando(false);
+            }}
+          >
+            <Numero rotulo={campo} valor={digitado} aoMudar={setDigitado} min={0} sufixo="kg" />
+            <button type="submit" className="btn" disabled={numeroOu(digitado) === undefined}>
+              Pronto
+            </button>
+          </form>
+        </Folha>
+      )}
+    </>
+  );
   const numero = (n: number | string | undefined, unidade?: string) =>
     n === undefined ? (
       '—'
@@ -842,9 +884,7 @@ function ControleCarga({
         <span className="rotulo-curto" id={idRotulo}>
           Anilhas por lado
         </span>
-        <output className="valor-grande carga-valor" aria-live="polite">
-          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
-        </output>
+        {numeroLivre(k, 'Digitar as anilhas por lado', 'Anilhas de cada lado', (n) => aoMudar({ tipo: 'anilha', kgPorLado: n }))}
         <MenosMais rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
         <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
       </div>
@@ -968,9 +1008,7 @@ function ControleCarga({
           </select>
         </span>
       ) : (
-        <output id={idCarga} className="valor-grande carga-valor" aria-live="polite">
-          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
-        </output>
+        numeroLivre(k, 'Digitar a carga', 'Carga usada', (n) => aoMudar({ tipo: 'kg', kg: n }), idCarga)
       )}
       <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} />
       {corrigindo && pesosOutros && (

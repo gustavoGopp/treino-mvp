@@ -331,7 +331,7 @@ export function Entenda() {
               </Frase>
               <Frase regra="divisao.equivalencia">Com o mesmo volume, as divisões rendem o mesmo crescimento. Se você não escolher, o app usa a recomendada.</Frase>
               <Frase regra="equipamento.atalhos">Escolher o lugar marca os itens típicos dele; a 1ª série de cada exercício acerta a carga.</Frase>
-              <Frase regra="equipamento.menor-anilha">A menor anilha é o passo para subir a carga nas máquinas e nas barras. Sem resposta, o app usa 2 kg.</Frase>
+              <Frase regra="equipamento.menor-anilha">A menor anilha é o passo das sugestões de carga nas máquinas e nas barras. O app usa 2 kg; dá para mudar em “Meus locais”. No treino, você anota a carga que usou, qualquer que seja.</Frase>
             </ul>
             <h3>No treino</h3>
             <ul className="lista">

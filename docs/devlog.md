@@ -2223,11 +2223,20 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 - **O Boneco ao lado do título, sem as legendas miúdas.** Na primeira tentativa, o Boneco em cima e a frase nova empurravam o aviso de segurança para trás do botão nas telas pequenas (antes do lote, o aviso ficava inteiro à vista em todas). Como o Boneco é alto e estreito, foi para o lado do título e não gasta altura. Em celular baixo ele encolhe; no mais baixo (320 × 568) ele sai e o motor nem é baixado. Seis testes de tela, de 320 × 568 a 412 × 839, conferem que o aviso está inteiro acima do "Começar".
 - **Não toquei em `src/engine/novo/`** nem no campo `animacaoId`: a abertura só usa o motor, pelo mesmo caminho do treino.
 
-**Esperando o Gustavo** (decisões de produto, uma de cada vez)
+**Decisões do Gustavo na revisão (22/11/2026)**
 
-1. **A frase da abertura.** A proposta em uso: "Um programa de musculação montado para o seu equipamento, com um boneco que mostra cada movimento e o relógio do descanso."
-2. **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".
+1. **A frase da abertura:** ficou a mais curta, "Um programa de musculação para o seu equipamento, com um boneco que mostra cada movimento." (a imagem acima já é com ela).
+2. **O cadastro não pergunta mais os pesos das anilhas da academia.** Nas palavras dele: "não precisa perguntar quais pesos de anilha a academia da pessoa tem e deixar preencher de maneira livre". A pergunta "Qual a menor anilha?" saiu do cadastro (era a única que restava depois do toque em "Academia completa") e continua em "Meus locais", para quem quiser. E, no treino, onde a carga não vem de uma lista (anilhas por lado, barra), **tocar no número abre um campo para digitar qualquer valor**; o menos e o mais continuam para o ajuste de um toque.
 
-**Verificação.** `npm run verificar`: tudo passou (1.063 testes unitários com cobertura em 54 s; 195 testes de tela em 5,7 min). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
+   ![A carga por anilha: o número é tocável e aceita qualquer valor](revisoes/melhorias/m1/carga-digitada.png)
+
+   Um reparo ao motivo, para ficar registrado: o app não sugere carga na 1ª vez ("comece leve"), mas sugere a partir da 2ª, e a menor anilha é o passo dessas sugestões. Sem a pergunta, o passo é de 2 kg por lado, o padrão de sempre (a pergunta já era opcional). Quem tem anilhas de 1 kg vê sugestões de 2 em 2 e anota o que usou de verdade, digitando. A regra `equipamento.menor-anilha` foi reescrita assim.
+
+**Esperando o Gustavo**
+
+- **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".
+- O ok para levar o lote à `main`.
+
+**Verificação.** `npm run verificar`: tudo passou no fechamento e de novo depois das decisões de 22/11 (os números da última rodada estão no relato da sessão). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
 
 **Rascunho de post.** "Meu app de treino prometia 'treine onde estiver, com o que tiver'. Aí uma análise contou os toques: 13 para quem treina numa academia completa, 24 para quem treina em casa, porque o app pedia um inventário de anilhas antes de mostrar qualquer coisa. Quem mais precisava da promessa era quem mais esperava. Agora o app chuta um kit típico, mostra o programa em 13 toques para todo mundo, diz que chutou, e deixa corrigir na hora de anotar a primeira carga, que é quando a pessoa está diante dos pesos e sabe responder. O teste que media os toques pulava justamente a tela que emperrava. O que não é medido não é cobrado."
