@@ -24,7 +24,8 @@ async function semear(page: Page, estado: Estado) {
     });
     await new Promise<void>((ok) => {
       const r = db.transaction('keyval', 'readwrite').objectStore('keyval').put(e, 'estado');
-      r.onsuccess = () => ok();
+      // espera a transação fechar, não só o pedido: navegar antes disso podia perder a gravação (falha vista no GitHub em 22/11/2026)
+      r.transaction!.oncomplete = () => ok();
     });
   }, estado);
   await page.goto('/programa');
