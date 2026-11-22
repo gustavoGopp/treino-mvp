@@ -52,6 +52,19 @@ export type ResumoDaSemana = {
   regraId: string;
 };
 
+/**
+ * O treino de hoje dentro da semana, em palavras (lote M5, 22/11/2026): "2º treino da semana. Falta 1." É o que o fim do
+ * treino diz primeiro. Reconhece o que foi feito e diz o que falta, sem cobrar: quem passa do planejado só vê a conta.
+ */
+export function treinoNaSemanaEmPalavras(r: Pick<ResumoDaSemana, 'feitos' | 'planejados'>): string {
+  if (r.feitos <= 0) return '';
+  const n = `${r.feitos}º treino da semana.`;
+  const falta = r.planejados - r.feitos;
+  if (falta > 1) return `${n} Faltam ${falta}.`;
+  if (falta === 1) return `${n} Falta 1.`;
+  return falta === 0 ? `${n} Semana completa.` : n;
+}
+
 const dataLocal = (dia: number) => new Date(dia * 86_400_000).toISOString().slice(0, 10);
 
 /** Séries efetivas por músculo de um conjunto de sessões: só as efetivas, a indireta vale 0,5, o drop set conta 2. */

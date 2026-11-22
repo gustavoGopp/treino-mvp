@@ -149,7 +149,10 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(page.getByRole('heading', { name: /2 de 3 treinos/ })).toBeVisible();
   // sessão de textos (16/11/2026): a frase da semana saiu da tela e fica em "Entenda o treino"
   await expect(page.getByText(/Se der, o Corpo todo C/)).toHaveCount(0);
+  // lote M5 (22/11/2026): a tabela de músculos foi para uma gaveta; a tela abre pelos treinos e pelas semanas
   const musculos = page.getByRole('list', { name: 'Séries efetivas por músculo nesta semana' });
+  await expect(musculos).toBeHidden();
+  await page.locator('summary', { hasText: 'Séries por músculo nesta semana' }).click();
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
   // Os 4 estados em palavras, nunca em vermelho.
@@ -157,8 +160,8 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   const cores = await musculos.locator('.m-barra i').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundColor));
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
-  await expect(page.getByRole('heading', { name: 'Últimas 3 semanas' })).toBeVisible();
-  // a contagem em palavras fica no nome acessível dos quadradinhos
+  // lote M5: a contagem em palavras é o título da faixa, à vista (antes, só no nome acessível dos quadradinhos)
+  await expect(page.getByRole('heading', { name: '2 de 3 semanas com treino' })).toBeVisible();
   await expect(page.getByRole('img', { name: '2 de 3 semanas com treino' })).toBeVisible();
   await print(page, 'semana');
   await semToquePequeno(page);
@@ -204,7 +207,9 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "Subiu nest
   // o fim do treino mostra a última sessão
   await page.goto('/treino/fim');
   const mudou = page.getByRole('region', { name: 'O que mudou hoje' });
-  await expect(mudou).toContainText('2 de 3');
+  // lote M5: o treino na semana e o que melhorou, em palavras
+  await expect(mudou.getByRole('link', { name: '2º treino da semana. Falta 1.' })).toBeVisible();
+  await expect(mudou).toContainText('Você bateu 1 recorde.');
   await expect(mudou.getByRole('list', { name: 'Recordes de hoje' })).toContainText(/recorde\s*Supino reto com halteres:\s*8 kg × 12/);
   await semToquePequeno(page);
 

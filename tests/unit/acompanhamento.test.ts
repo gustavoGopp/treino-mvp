@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { mensagemDeVolta, tempoDaPausa } from '../../src/domain/acompanhamento/volta';
-import { estadoDoMusculo, resumoDaSemana, seriesEfetivas, TEXTO_ESTADO, type ResumoDaSemana } from '../../src/domain/acompanhamento/semana';
+import { diasParaRecepcao, mensagemDeVolta, recepcaoCurta, tempoDaPausa } from '../../src/domain/acompanhamento/volta';
+import { oQueMelhorouEmPalavras } from '../../src/domain/acompanhamento/evolucao';
+import { estadoDoMusculo, resumoDaSemana, seriesEfetivas, TEXTO_ESTADO, treinoNaSemanaEmPalavras, type ResumoDaSemana } from '../../src/domain/acompanhamento/semana';
 import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
 import type { Estado } from '../../src/storage/esquema';
 import { hojeDoEstado } from '../../src/features/treino/acoes';
@@ -200,6 +201,42 @@ describe('estados e mensagens sem culpa (acompanhamento.mensagens)', () => {
     expect(m(200)!.texto).toMatch(/^Faz 6 meses do último treino\. .*Quer refazer o nível\? Leva 1 minuto\.$/);
     for (const d of [14, 16, 20, 21, 22, 30, 56, 57, 70, 182, 183, 200, 400, 900]) expect(m(d)!.texto).not.toMatch(SEM_CULPA);
     expect(tempoDaPausa(800)).toBe('2 anos');
+  });
+
+  // Lote M5 da análise crítica (22/11/2026): um motivo para voltar.
+  it('o treino de hoje dentro da semana, em palavras', () => {
+    const t = (feitos: number, planejados: number) => treinoNaSemanaEmPalavras({ feitos, planejados });
+    expect(t(1, 3)).toBe('1º treino da semana. Faltam 2.');
+    expect(t(2, 3)).toBe('2º treino da semana. Falta 1.');
+    expect(t(3, 3)).toBe('3º treino da semana. Semana completa.');
+    expect(t(4, 3)).toBe('4º treino da semana.');
+    expect(t(0, 3)).toBe('');
+    for (let f = 0; f <= 7; f++) for (let p = 2; p <= 6; p++) expect(t(f, p)).not.toMatch(SEM_CULPA);
+  });
+
+  it('o que melhorou no treino, em uma frase; sem marca, nenhuma frase', () => {
+    const m = (...xs: ('subiu-a-carga' | 'recorde')[][]) => oQueMelhorouEmPalavras(xs.map((marcas) => ({ marcas })));
+    expect(m()).toBe('');
+    expect(m(['recorde'])).toBe('Você bateu 1 recorde.');
+    expect(m(['subiu-a-carga'], ['subiu-a-carga', 'recorde'])).toBe('Você subiu a carga em 2 exercícios e bateu 1 recorde.');
+    expect(m(['subiu-a-carga'])).toBe('Você subiu a carga em 1 exercício.');
+  });
+
+  it('a recepção de quem volta depois de alguns dias: só além do intervalo da rotina, e antes de a pausa mudar o treino', () => {
+    expect([1, 2, 3, 4, 5, 6].map(diasParaRecepcao)).toEqual([9, 6, 5, 4, 4, 4]);
+    let e = estadoDe(bruno);
+    [0, 1, 3, 4].forEach((n, i) => (e = treinar(e, n, DIAS[i]!)));
+    const r = (d: number, planejados = 3) => recepcaoCurta(hojeNoPrograma(e.programa!.programa, e.historico, dia(4 + d)), planejados);
+    // 3 treinos por semana: 2, 3 e 4 dias são o intervalo de sempre
+    for (const d of [0, 1, 2, 3, 4]) expect(r(d)).toBeNull();
+    expect(r(5)).toBe('Bom te ver de novo. Faz 5 dias do último treino, e a carga é a mesma.');
+    expect(r(9)).toBe('Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma.');
+    expect(r(13)).not.toBeNull();
+    // de 14 dias em diante quem fala é a mensagem de volta, que muda o treino
+    for (const d of [14, 20, 21, 60, 200]) expect(r(d)).toBeNull();
+    expect(r(5, 2)).toBeNull();
+    expect(r(6, 2)).not.toBeNull();
+    for (const d of [5, 6, 9, 13]) expect(r(d)!).not.toMatch(SEM_CULPA);
   });
 
   it('nenhuma mensagem da semana tem culpa, em qualquer quantidade de treinos', () => {

@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID } from '../../domain/biblioteca';
-import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
+import { marcasDaSessao, oQueMelhorouEmPalavras, type Marca } from '../../domain/acompanhamento/evolucao';
+import { treinoNaSemanaEmPalavras } from '../../domain/acompanhamento/semana';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
 import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga, podeVoltarDoAlerta, voltarDoAlerta } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
-import { FaixaSemana } from '../acompanhamento/Semana';
+import { Icone } from '../app/icones';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { Titulo } from '../app/ui';
 
@@ -118,7 +119,17 @@ export function Resumo() {
         {(semana || marcas.length > 0) && (
           <section className="mudou" aria-labelledby="mudou">
             <h2 id="mudou" className="sr">O que mudou hoje</h2>
-            {semana && <FaixaSemana r={semana} />}
+            {/* lote M5: o treino de hoje dentro da semana, em palavras ("2º treino da semana. Falta 1."); antes, "A sua
+                semana · 2 de 3". O toque continua levando à semana. */}
+            {semana && semana.feitos > 0 && (
+              <Link className="faixa-semana" to="/semana">
+                <b>{treinoNaSemanaEmPalavras(semana)}</b>
+                <span className="seta" aria-hidden="true">
+                  <Icone nome="chevron-right" />
+                </span>
+              </Link>
+            )}
+            {marcas.length > 0 && <p className="melhorou">{oQueMelhorouEmPalavras(marcas)}</p>}
             {marcas.length > 0 && (
               <ul className="marcas-hoje" aria-label="Recordes de hoje">
                 {marcas.map((m) => (

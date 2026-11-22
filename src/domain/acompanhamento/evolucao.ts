@@ -93,6 +93,20 @@ export function marcasDaSessao(historico: Sessao[], sessaoId: string, localDe: (
 }
 
 /**
+ * O que melhorou no treino, em uma frase (lote M5): "Você subiu a carga em 2 exercícios e bateu 1 recorde." Vazio sem
+ * marca nenhuma: treino sem recorde não ganha frase de consolo.
+ */
+export function oQueMelhorouEmPalavras(marcas: Pick<MarcaDoExercicio, 'marcas'>[]): string {
+  const subiu = marcas.filter((m) => m.marcas.includes('subiu-a-carga')).length;
+  const recordes = marcas.filter((m) => m.marcas.includes('recorde')).length;
+  const partes = [
+    ...(subiu ? [`subiu a carga em ${subiu} ${subiu === 1 ? 'exercício' : 'exercícios'}`] : []),
+    ...(recordes ? [`bateu ${recordes} ${recordes === 1 ? 'recorde' : 'recordes'}`] : []),
+  ];
+  return partes.length ? `Você ${partes.join(' e ')}.` : '';
+}
+
+/**
  * As marcas da semana do calendário de `hojeIso` (segunda a domingo, no fuso da pessoa): por exercício (e por local,
  * nas máquinas), a marca mais recente da semana. Do exercício feito mais recentemente ao mais antigo.
  */
