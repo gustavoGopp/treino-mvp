@@ -2487,3 +2487,30 @@ Imagens em `revisoes/melhorias/m3/`. A sigla RIR ficou só em "Entenda o treino"
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão.
 
 **Rascunho de post.** "Pedi a sete revisores independentes que comparassem as 166 regras do meu app de treino com o código. 93 batiam. Nas outras, quase sempre era o texto que tinha ficado para trás, mas sete eram defeito de verdade: o app mandava subir a carga numa série com dor, por exemplo. O mais curioso foi o que os usuários já tinham sentido: a tela pedia de 8 a 15 repetições, e quem fazia 8 via a carga cair."
+
+## Um motivo para voltar: feito no ramo, à espera das decisões do Gustavo (22/11/2026)
+
+**De onde veio.** O lote M5 da análise crítica: nada trazia a pessoa de volta na primeira e na segunda semana. Feito no ramo `claude/m5-um-motivo-para-voltar`, a pedido do Gustavo, com o M4 ainda à espera do teste nos aparelhos. **Nada disto está na `main`.** O registro completo está em `revisoes/melhorias/m5/README.md`.
+
+**O que muda para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Fim do treino | "A sua semana · 1 de 3" | "1º treino da semana. Faltam 2." e, com recorde, "Você subiu a carga em 2 exercícios e bateu 1 recorde." |
+| Quem volta depois de alguns dias | nada, até os 14 dias | "Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma." |
+| Tela da semana | abria com a tabela de músculos | abre pelos treinos e pelas semanas com treino; a tabela foi para uma gaveta |
+| O próximo treino | nada | "Quando é o próximo?" cria um compromisso na agenda do celular |
+| Mostrar a semana | nada | "Mandar a minha semana": uma imagem só com a frequência, pelo compartilhar do celular |
+
+![O fim do treino, depois](revisoes/melhorias/m5/fim-depois.png)
+![O cartão da semana](revisoes/melhorias/m5/cartao-da-semana.png)
+
+**Decisões técnicas, com o motivo**
+- **A recepção conta a partir de 2 dias além do intervalo da rotina** (6 dias com 2 treinos por semana, 5 com 3, 4 com 4 ou mais), e não a partir de 3 para todos: com 3 treinos por semana, 3 dias é o intervalo de sempre.
+- **"Semana seguida" só no cartão, e só da 2ª em diante.** No app continua "X das últimas 8 semanas com treino", que não zera.
+- **Sem servidor:** o compromisso é um arquivo de calendário, e o cartão é desenhado no aparelho.
+
+**À espera do Gustavo:** os textos do fim do treino e da recepção, o desenho do cartão, os textos da agenda e a frase do `CLAUDE.md` sobre recursos sociais. **Sem medida em aparelho:** o arquivo da agenda no iPhone e o compartilhar de verdade.
+
+**Rascunho de post.** Fica para o fechamento do lote.
+

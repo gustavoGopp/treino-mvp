@@ -655,3 +655,12 @@ A tabela inteira está em `revisoes/regras-x-codigo.md`. Ficou para depois:
 - `selecao.item-sozinho-ampliado`: o guia da extensão de joelho com mini-band não diz que a evidência com elástico é fraca.
 - De carona do D1, não feito: "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e o comentário em `Entenda.tsx` diz o contrário.
 - O pedido 8 de `revisoes/frontend-novo/pedidos-ao-dominio.md` (a fonte "título não conferido" aparece para a pessoa?) segue para o Gustavo.
+
+## Do M5, um motivo para voltar (22/11/2026)
+
+- Medir num Android e num iPhone: o arquivo da agenda (.ics) abre a agenda? E com o app instalado na tela de início? O compartilhar mostra o WhatsApp e manda a imagem?
+- A tela da semana na 1ª semana fica quase vazia (o número de treinos e duas gavetas). Vale pensar no que mostrar ali antes de haver semanas para contar.
+- O cartão da semana não leva o nome do app (adiado em 21/11/2026). Quando houver nome, entra no alto do cartão.
+- O limite de dias da recepção e os 30 min do lembrete da agenda são opinião; rever com o uso.
+- O roteiro de gente de verdade pede o teste do cartão no grupo da família por 4 semanas (`prompts/sessao-melhorias-analise-critica.md`, "Depois dos lotes").
+
