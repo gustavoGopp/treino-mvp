@@ -27,7 +27,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 - **Sessão de desenvolvimento 2:** colar `prompts/sessao-desenvolvimento-2.md` numa sessão nova (a 1ª, `prompts/sessao-desenvolvimento.md`, conduziu os marcos do R5, todos feitos). Ela conduz os pacotes D1 (o app diz o que faz), D2 (nada se perde), D3 (os ajustes do treino com medida) e D4 (mais leve, sem o motor antigo), um de cada vez, parando ao fim de cada um para a sua revisão. A ordem é a recomendada em 19/11; dá para mudar antes de colar.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
-- **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
+- **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma, desde 21/11/2026 contando a tela de equipamento, nos quatro atalhos (lote M1); falta a sua medição de tempo no celular, uma vez (meta: até 1 min).
 - **Confirmar a menor anilha da sua academia (T8).** Sem resposta, o app usa 2 kg (opinião).
 - **Criar o banco do limite compartilhado** (opcional): na Vercel, Marketplace → Upstash for Redis (plano grátis), ligado ao projeto `treino-mvp`. Ele cria `KV_REST_API_URL` e `KV_REST_API_TOKEN`, e o código do R5c (`api/_lib/limite.ts`) passa a usar o banco sozinho. Sem o banco, vale o contador em memória por instância.
 
@@ -516,4 +516,17 @@ O porquê e a manutenção estão em `verificacao/README.md`.
 - **A margem de 206 px como teste de verdade** (item 5 da lista): hoje é uma conferência do roteiro com `MARGEM=1`; vale uma folga mínima de alguns pixels nos cenários de zoom de 200%, para não depender de alguém olhar.
 - **Se o `verificar` passar de 10 min:** separar os testes de tela por área, para o roteiro rodar só os que o diff aciona antes do commit (o `verificar` inteiro continua antes de enviar).
 - **Fora por agora, com o motivo:** o Code Mode (não funciona nas sessões na nuvem; experimental); uma biblioteca de testes de propriedade (os daqui varrem todas as combinações, o que é mais forte que sortear); o `REVIEW.md` (só o serviço de revisão de pull requests do GitHub o lê; o que importa ficou no `CLAUDE.md`).
+
+## Das melhorias da análise crítica, lote M1, a porta (21/11/2026)
+
+O que foi feito está no devlog ("A porta"). Ficou para depois:
+- **Os valores do kit típico são opinião, sem fonte** (casa: halteres de 2 a 10 kg e 3 elásticos; condomínio: halteres de 2 a 12 kg, banco sem declinar). O teste com cinco pessoas (o fecho do plano de melhorias) é a hora de conferir: anotar o que cada uma tem de verdade e quantas usam "Meus pesos são outros".
+- **"Meus pesos são outros" só pergunta o halter mais pesado.** Quem tem um par só, ou pesos salteados, ainda precisa de "Meus locais" para dizer peso por peso. Se o teste com gente mostrar que isso é comum, a folha ganha "tenho só este par".
+- **A saída só existe na lista dos halteres fixos.** Placas de máquina, anilhas e elásticos não têm lista (sobem de degrau em degrau), então não precisam; o kettlebell e a caneleira saem do que a própria pessoa marcou.
+- **A linha "Montado para um kit típico" some depois do 1º treino,** mesmo que a pessoa não tenha ajustado nada. Não guarda nada no estado (sai da comparação do equipamento com o kit), e por isso não distingue "conferi e está certo" de "ainda não olhei".
+- **No celular de 320 × 568 a abertura fica sem o Boneco,** para o aviso de segurança caber inteiro. Vale rever se o M2 criar um Boneco menor que ainda ensine.
+- **O Boneco da abertura mostra sempre o agachamento goblet.** Trocar de exercício a cada visita, ou mostrar um do lugar da pessoa, fica como ideia.
+- **O M2 pede um palco do Boneco que sirva ao treino e ao guia;** o Boneco da abertura (`BonecoAbertura.tsx`) é um terceiro uso do mesmo laço de quadros e deve entrar nessa junção.
+- **Os roteiros de fotos de `scripts/textos/`** citam linhas de `Inventario.tsx` e o nome antigo "Anilhas e manoplas": não rodam na verificação e não foram atualizados.
+- **Um padrão para as anilhas e as manoplas** não foi criado: o atalho de casa deixou de supor halteres de montar, e quem os tem responde os detalhes (com a explicação de "manopla").
 
