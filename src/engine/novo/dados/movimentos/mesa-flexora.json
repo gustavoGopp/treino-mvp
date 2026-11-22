@@ -1,0 +1,50 @@
+{
+ "id": "mesa-flexora",
+ "nome": "Mesa flexora (deitado)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/mesa-flexora.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/mesa-flexora.md): rolo logo acima do calcanhar e o joelho alinhado com o eixo; deitado de bruços, quadril apoiado, mãos nos pegadores, pés relaxados, pernas quase estendidas; dobra os joelhos até o rolo chegar perto do glúteo, sem levantar o quadril; volta em ~2–3 s até as pernas quase estenderem (consenso, nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/mesa-flexora.json): o mesmo da ficha; 'Quadril no apoio'; 'Dobra até o fim'; 'Volta devagar'; erros 'Levantar o quadril' (o quadril sobe para ajudar e a lombar arqueia), 'Volta solta' (deixar a placa cair perde a parte alongada), 'Rolo no lugar errado' (rolo na panturrilha ou no pé muda o braço de alavanca)",
+  "aprovada": "Animação da flexão de joelho com elástico, aprovada (exercicios/flexao-joelho-elastico.ts, dados/movimentos/flexao-joelho-elastico.json): deitado de bruços, a mesma técnica da mesa flexora, o mesmo ritmo e o mesmo erro do quadril",
+  "objetos": "src/engine/novo/dados/objetos/mesa-flexora.json: a mesa flexora (Life Fitness SS-LC, Hammer Strength HS-LC, Movement Next, Precor RSL0606; o que funciona dentro da máquina é de desenho)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.inicio": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: pernas quase estendidas (a ficha); o joelho dobrado 12° (o da flexão de joelho com elástico)" },
+  "joelho.fim": { "v": 125, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: o rolo perto do glúteo (a ficha não dá o ângulo): o joelho dobra 125° (a média de referência da flexão do joelho é 140°), um pouco mais que na flexão de joelho com elástico (115°): a máquina leva o rolo até perto do glúteo" },
+  "tornozelo.flexaoPlantar": { "v": 30, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pés relaxados (a ficha): o pé um pouco esticado, 30° além do ângulo reto com a canela; a ponta do pé não toca o chão" },
+  "lombar": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "deitado de bruços, a lombar 10° menos curva que em pé (a da flexão de joelho com elástico); a dobra do estofado no quadril ajuda a não arquear" },
+  "cervical": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça fora do estofado, o pescoço na linha das costas e o olhar no chão, um pouco à frente: o pescoço dobra 25°" },
+  "estofado.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto a coxa, o peito e a barriga afundam no estofado (a conferência aceita até 2,5 cm)" },
+  "rolo.acimaDoTornozelo": { "v": 3, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o rolo logo acima do calcanhar (a ficha): o centro do contato 3 cm acima do centro do tornozelo, atrás da perna, no tendão" },
+  "quadro.ate": { "v": 112, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a máquina do chão até 112 cm (o calcanhar no fim do movimento); o alto da torre (148 cm) é cortado pela borda, como o da torre da polia" },
+  "rolo.amassa": { "v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto o rolo afunda na pele atrás do tornozelo (o rolo é estofado)" },
+  "placas": { "v": 5, "un": "placas", "selo": "desenho", "fonte": "objetos", "o": "quantas placas estão no pino (a ficha não dá a carga)" },
+  "erro.quadril.sobe": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o quadril sobe do estofado (o cartão): 9 cm, com o joelho no eixo e o peito no estofado; a bacia vira para a frente e a lombar arqueia" },
+  "erro.rolo.naCanela": { "v": 0.55, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: o rolo na panturrilha (o cartão): o rolo regulado a 55% da canela a partir do joelho, no meio da panturrilha, e não logo acima do calcanhar" }
+ },
+ "fases": [
+  { "nome": "Pernas quase estendidas", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "quadril no apoio", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Dobrar · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovada" },
+  { "nome": "Rolo perto do glúteo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pelve", "joelho.R", "joelho.L", "mao.R", "mao.L"],
+ "regras": [
+  { "id": "mesa-flexora-deitado-no-estofado", "pede": "deitado de bruços, o quadril e o peito no estofado, sem levantar o quadril; as mãos nos pegadores", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mesa-flexora-joelho-no-eixo", "pede": "o joelho alinhado com o eixo da máquina, o ciclo todo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mesa-flexora-rolo-acima-do-calcanhar", "pede": "o rolo logo acima do calcanhar, atrás da perna, acompanhando a canela sem atravessá-la nem descolar dela", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mesa-flexora-amplitude", "pede": "começa com as pernas quase estendidas e dobra até o rolo chegar perto do glúteo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "mesa-flexora-pilha-sobe-com-a-alavanca", "pede": "a alavanca gira com a canela e as placas sobem o arco do came (raio × ângulo)", "selo": "consenso", "fonte": "objetos" },
+  { "id": "mesa-flexora-pes-por-cima-do-rolo", "pede": "em cada vista e em cada erro, nas duas pernas: o rolo não é pintado por cima dos pés e das canelas onde eles ficam na frente dele (de cima, no fim, os calcanhares), e o que fica atrás dele não aparece por cima dele, nem por um furo do recorte (de cima, no começo, os pés)", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "quadril", "instante": 1, "titulo": "Levantar o quadril", "vista": "lateral", "oQueMuda": "o quadril sobe 9 cm do estofado e a lombar arqueia; o joelho fica no eixo e o peito no estofado", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve" },
+  { "id": "rolo", "instante": 1, "titulo": "Rolo no lugar errado", "vista": "lateral", "oQueMuda": "o rolo regulado no meio da panturrilha, e não logo acima do calcanhar (o movimento do corpo é o certo)", "destaca": [], "linha": ["joelho", "tornozelo"], "foco": "tornozelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "quadril no apoio", "ponto": "pelve", "selo": "consenso", "fonte": "app" },
+  { "vista": "lateral", "texto": "dobra até o fim", "ponto": "calcanhar", "selo": "consenso", "fonte": "app" }
+ ]
+}

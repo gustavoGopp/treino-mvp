@@ -30,3 +30,16 @@ Halter: o próximo peso da lista.
 ## Fontes
 - `bazvalle2019` (`docs/pesquisa/fontes.md`).
 - `kassiano2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-concentrada.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps, sem secundário) e a biblioteca; a nota, do erro "Tirar o braço da coxa" do cartão | consenso | Jeremy Ethier (vídeo, `17`, G2) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a linha Posição da tabela | consenso | Jeremy Ethier (vídeo, `17`, G2) |
+| Variações (`vary`) | o equipamento do cartão e a linha Movimento | consenso | Jeremy Ethier (vídeo, `17`, G2) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-concentrada.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha entre cadeira e banco do cartão.

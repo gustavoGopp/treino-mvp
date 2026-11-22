@@ -1,0 +1,26 @@
+{
+ "fontes": {
+  "rogue-tb1": "Rogue Fitness. Rogue TB-1 Trap Bar 2.0; https://www.roguefitness.com/rogue-tb-1-trap-bar-2-0 (lida em 12/11/2026, docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.3, e de novo em 18/11/2026): 'Length 89\"', 'Width 28.5\"', 'Height 3\"', 'Neutral Grip Handles, Spaced 25” on center [...], 1.34\" diameter', 'Olympic Sleeves [...] 1.91” diameter', '16\" Loadable sleeve space', '1.5\" x 1.5\" Square Tube', '60LB (+/- 2LB)', 'Finish: Signature black powder coat' (a barra toda preta: o desenho usa o metal grafite das máquinas)",
+  "desenho-barra-hexagonal": "Escolha de desenho da moldura da barra hexagonal: a página da Rogue dá o tamanho total, a largura, o tubo, os cabos e as mangas, mas não o comprimento de cada lado do hexágono nem o ângulo das pontas"
+ },
+ "objetos": {
+  "barraHexagonal": {
+   "nome": "Barra hexagonal (trap bar), com dois cabos neutros e as mangas",
+   "medidas": {
+    "comp": { "v": 226.1, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'Length 89\"' (226,1 cm), de uma ponta da manga à outra" },
+    "larg": { "v": 72.4, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'Width 28.5\"' (72,4 cm): a moldura, de fora a fora, na direção dos cabos" },
+    "alt": { "v": 7.6, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'Height 3\"' (7,6 cm): a altura total da barra; a página não diz como ela se forma, e o desenho põe a moldura, os cabos e as mangas no mesmo plano (o tubo tem 3,8 cm)" },
+    "tubo": { "v": 3.81, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'1.5\" x 1.5\" Square Tube': a moldura em tubo quadrado de 3,81 cm" },
+    "caboDiam": { "v": 3.4, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "cabos de '1.34\" diameter' (3,40 cm), com recartilha" },
+    "caboEntre": { "v": 63.5, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'Spaced 25” on center' (63,5 cm de centro a centro): cada cabo a 31,75 cm do meio, atravessando o hexágono da frente para trás" },
+    "mangaDiam": { "v": 4.85, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "mangas de '1.91” diameter' (4,85 cm)" },
+    "mangaComp": { "v": 40.6, "un": "cm", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'16\" Loadable sleeve space' (40,6 cm)" },
+    "massa": { "v": 27.2, "un": "kg", "tipo": "medida", "fonte": "rogue-tb1", "onde": "'60LB (+/- 2LB) (unloaded)' (27,2 kg)" },
+    "hexComp": { "v": 128, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-hexagonal", "onde": "o hexágono de ponta a ponta, ao longo das mangas: o que sobra dos 226,1 cm tirando as duas mangas (40,6 cm carregáveis, o batente e o pé da manga, 8,4 cm)" },
+    "anguloDaPonta": { "v": 120, "un": "graus", "tipo": "desenho", "fonte": "desenho-barra-hexagonal", "onde": "o ângulo de cada ponta do hexágono, onde a manga sai: o de um hexágono regular; com os 72,4 cm de largura, os lados da frente e de trás ficam com 88,4 cm de centro a centro dos cantos (os cabos, a 63,5 cm, cabem dentro deles)" },
+    "batenteEsp": { "v": 2.5, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-hexagonal", "onde": "o batente onde a anilha encosta, no começo da parte carregável da manga (a página não dá)" },
+    "batenteDiam": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-barra-hexagonal", "onde": "o diâmetro do batente (a página não dá)" }
+   }
+  }
+ }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "face-pull-suspensao",
+  "name": "Remada alta na suspensão, com os cotovelos abertos",
+  "short": "Remada alta na suspensão",
+  "target": "Ombro de trás (deltoide posterior); ajuda o meio das costas",
+  "feel": "Parte de trás do ombro. O meio das costas ajuda, porque as escápulas se juntam no fim.",
+  "feelNote": "Se os cotovelos baixarem, vira uma remada comum e as costas assumem: cotovelos na altura dos ombros.",
+  "setupEq": [
+    "A fita de suspensão presa num ponto alto e firme, as alças na altura do peito."
+  ],
+  "setupBody": [
+    "De frente para a ancoragem, uma alça em cada mão, palmas para baixo.",
+    "Pés à frente, corpo inclinado para trás e reto, braços estendidos."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxada",
+      "~1 s. Puxe com os cotovelos altos e abertos, levando as mãos ao lado das orelhas."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Pausa curta, juntando as escápulas."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até os braços estenderem, o corpo reto."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, corpo inclinado.",
+    "Fim: mãos ao lado das orelhas, cotovelos na altura dos ombros."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Cotovelos altos e abertos.",
+    "Corpo em prancha.",
+    "Mãos às orelhas."
+  ],
+  "check": [
+    "Ancoragem firme, testada",
+    "Alças na altura do peito",
+    "Palmas para baixo",
+    "Corpo reto, em prancha"
+  ],
+  "vary": "Pés mais à frente, com o corpo mais deitado, deixam mais difícil. O que não muda: o corpo reto e os cotovelos altos e abertos.",
+  "note": "<b>Montagem segura:</b> ancoragem firme num ponto alto (barra fixa, viga, ou porta só com a âncora do fabricante, fechada do lado oposto), testada com o peso do corpo antes da 1ª série.",
+  "extLabels": [
+    "braços estendidos",
+    "mãos às orelhas"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril caído",
+      "desc": "O corpo dobra e a série fica mais fácil. Corpo reto."
+    },
+    {
+      "id": "cotovelos",
+      "title": "Cotovelos baixos",
+      "desc": "Vira uma remada comum e as costas assumem. Cotovelos na altura dos ombros."
+    },
+    {
+      "id": "embalo",
+      "title": "Dar impulso",
+      "desc": "O corpo joga para trás. Volte devagar."
+    }
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Mais difícil: pés mais à frente, corpo mais deitado."
+}

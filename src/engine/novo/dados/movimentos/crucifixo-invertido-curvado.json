@@ -1,0 +1,70 @@
+{
+ "id": "crucifixo-invertido-curvado",
+ "nome": "Crucifixo invertido curvado com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-invertido-curvado.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-invertido-curvado.md): em pé, pés na largura do quadril, joelhos levemente dobrados; dobra o quadril até o tronco ficar bem inclinado (perto de 45° ou mais), costas retas; halteres pendurados; abre os braços para os lados, cotovelos levemente dobrados e fixos, até perto da linha dos ombros; o tronco fica parado, sem subir a cada repetição; descida controlada; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/crucifixo-invertido-curvado.json): 'Um par de halteres leves', 'Halteres pendurados, palmas uma para a outra', 'Pausa curta, tronco parado', as dicas ('Costas retas.', 'Tronco parado.', 'Abre para os lados.') e os erros",
+  "anatomia": "Revisão de anatomia, achado 5 (docs/revisoes/anatomia.md; docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linha 189): nos crucifixos invertidos, quem trabalha é o ombro de trás, sem secundário; as escápulas não se juntam com força",
+  "remada": "A remada curvada com halteres, aprovada (src/engine/novo/dados/movimentos/remada-curvada-halteres.json): a mesma postura curvada sem apoio (pés, joelhos, tronco a 62°, pescoço) pelo núcleo do stiff (src/engine/novo/exercicios/dobrar-o-quadril.ts), e os erros de arredondar as costas e de subir o tronco",
+  "inverso": "O crucifixo inverso com halteres no banco inclinado, aprovado por delegação em 17/11 (src/engine/novo/dados/movimentos/crucifixo-inverso.json): o arco dos braços (o começo, o fim, o cotovelo e para onde ele aponta), as escápulas, os halteres leves e os erros de encolher e de dobrar os cotovelos; que, por sua vez, tiram os números do crucifixo invertido na polia aprovado",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé, como a remada curvada aprovada",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json (o halter sextavado de 10 lb)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 20, "un": "graus", "selo": "consenso", "fonte": "remada", "o": "joelhos 'levemente dobrados': 20°, parados (o da remada curvada aprovada; a ficha não dá número)"},
+  "tronco.inclinacao": {"v": 62, "un": "graus", "selo": "consenso", "fonte": "remada", "o": "tronco 'bem inclinado (perto de 45° ou mais)': o peito a 62° da vertical, parado a série toda, como na remada curvada aprovada (com o tronco mais perto da horizontal, abrir os braços para os lados trabalha mais o ombro de trás)"},
+  "cervical": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente (o da remada curvada aprovada)"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "cabeça na linha do pescoço"},
+  "inicio.fora": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "inverso", "o": "começo: os braços pendem quase na vertical, a linha do ombro à mão 8° para fora (o do crucifixo inverso no banco; assim o halter passa ao lado do joelho)"},
+  "fim.abaixo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: 'até perto da linha dos ombros': a linha do ombro à mão fica 5° abaixo da horizontal, para o lado (a ficha não dá número; o mesmo do crucifixo inverso no banco)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cotovelos levemente dobrados e fixos: 15° a série toda (a ficha não dá número; o mesmo do crucifixo inverso no banco)"},
+  "cotovelo.paraTras": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "inverso", "o": "para onde o cotovelo aponta: para fora, no sentido em que o braço abre, e um pouco para trás (0,4 da direção para trás); o antebraço dobra para dentro e para a frente"},
+  "escapula.prot.inicio": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "inverso", "o": "começo: com os braços pendurados, a escápula vai um pouco à frente (a clavícula 4° além do ritmo)"},
+  "escapula.retr.fim": {"v": 2, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "fim: a escápula só acompanha o braço, sem se juntar com força (a clavícula 2° para trás do ritmo; na remada, que junta as escápulas, são 10°)"},
+  "escapula.elev": {"v": -2, "un": "graus", "selo": "consenso", "fonte": "inverso", "o": "ombros longe das orelhas: a clavícula 2° abaixo do ritmo, a série toda"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "'um par de halteres leves': o sextavado de 10 lb (dados/objetos/halter-leve.json), um em cada mão; entram no equilíbrio"},
+  "erro.arredondar.lombar": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: a lombar curva 22° além da curva de repouso (o da remada curvada aprovada)"},
+  "erro.arredondar.toracica": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: a parte de cima das costas curva 22° (o da remada curvada aprovada)"},
+  "erro.arredondar.cervical": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: o pescoço estende para o olhar não ir ao peito"},
+  "erro.subir.tronco": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: o tronco sobe 25° enquanto os braços abrem, para dar embalo (o da remada curvada aprovada)"},
+  "erro.encolher.elev": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "inverso", "o": "erro: no fim, a clavícula sobe 16° além do ritmo (os ombros vão em direção às orelhas), como no crucifixo inverso e no crucifixo invertido na polia"},
+  "erro.cotovelo.dobra": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "inverso", "o": "erro: os cotovelos dobram até 85° e o antebraço fica pendurado embaixo do cotovelo: vira uma remada com os cotovelos abertos (no crucifixo inverso, também 85°)"},
+  "erro.cotovelo.abaixo": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "inverso", "o": "erro: no fim, o braço (do ombro ao cotovelo) sobe até 5° abaixo da horizontal, como o certo; quem fica embaixo é a mão"}
+ },
+ "fases": [
+  {"nome": "Braços pendurados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "desenho", "fonte": "desenho"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "abre para os lados", "selo": "desenho", "fonte": "desenho"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "controlada", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "tronco-bem-inclinado", "pede": "o tronco bem inclinado (perto de 45° ou mais)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "costas retas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-parado-na-remada", "pede": "o tronco fica parado: sem subir a cada repetição para dar embalo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "em pé, o peso (corpo + halteres) sobre o meio dos pés, com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "crucifixo-inverso-bracos-pendurados-no-comeco", "pede": "começo: halteres pendurados, os braços quase na vertical", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-cotovelos-fixos", "pede": "cotovelos levemente dobrados e fixos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-abre-para-os-lados", "pede": "abre os braços para os lados (a mão sobe para o lado, sem ir para a frente nem para trás)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-ate-a-linha-dos-ombros", "pede": "fim: os braços perto da linha dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-escapulas-sem-encolher-nem-juntar", "pede": "sem encolher os ombros nem juntar as escápulas com força", "selo": "consenso", "fonte": "anatomia"},
+  {"id": "crucifixo-inverso-palmas-uma-para-a-outra", "pede": "palmas uma para a outra (embaixo); a mão não gira", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-livre-do-corpo-e-do-banco", "pede": "os halteres pendem sem bater nas pernas nem no tronco", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 0, "titulo": "Arredondar as costas", "vista": "lateral", "oQueMuda": "a lombar perde a posição: a lombar e a parte de cima das costas curvam, a série toda", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "e2", "instante": 1, "titulo": "Subir o tronco", "vista": "quinaTras", "oQueMuda": "o tronco levanta enquanto os braços abrem: o embalo a cada repetição", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},
+  {"id": "e3", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "no fim, os ombros sobem em direção às orelhas: o trapézio assume", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "e4", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "posterior", "oQueMuda": "os cotovelos dobram e a mão fica embaixo do cotovelo: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "posterior", "texto": "abre para os lados", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "costas retas", "ponto": "c7", "selo": "consenso", "fonte": "app", "guia": ["pelve", "c7"]},
+  {"vista": "quinaTras", "texto": "abre para os lados", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

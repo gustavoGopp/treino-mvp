@@ -51,3 +51,64 @@ Conferência automática: **0 falha, 2 avisos**: as linhas de desenho da ficha d
 - **A cabeça de dentro do halter passa por cima da outra coxa.** Com os pés na largura do quadril, as coxas ficam quase encostadas, e o halter de 33 cm atravessado numa coxa só apoia também na outra (a altura dele é calculada pela coxa mais alta debaixo dele). É o que acontece na vida real com esse halter; não mudei a largura dos pés, que a ficha pede.
 - **A pronação da mão esquerda passa da média** (93,6°): ver acima.
 - **O corpo fica menor no quadro de lado** que nas panturrilhas em pé (sentado, com o banco e o degrau dos dois lados). Só a ponta do banco conta no enquadramento (25 cm).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **no erro "Halter escorregando"** (da metade em diante), o halter ia sempre a 22 cm do joelho, e a cabeça de dentro, que passa por cima da outra coxa, **entrava 10,3 cm na barriga** (12,2 cm pela checagem da pintura). O ciclo e os outros erros não tinham peso dentro do corpo.
+
+**A mudança.**
+
+- No erro, o halter escorrega pela coxa, para o quadril (a coxa fica inclinada para lá), **até a cabeça de dentro encostar na barriga, e para ali**: o maior escorregão em que ela não entra na barriga, menos meio centímetro (`erro.halter.encosto` e `erro.halter.recuo`; o halter desenhado já entrava 1,1 cm no primeiro toque do prisma da regra), e não mais que os 22 cm de antes. Calibrado no fim da subida e guardado no preparo (`panturrilha-sentada-halter:halter-escorregado`): no corpo do app, 10,2 cm do joelho.
+- O ciclo e os outros dois erros não mudam.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no corpo (erro "Halter escorregando") | 10,3 cm (barriga) | 0 cm |
+| onde o halter para no erro | 22 cm do joelho | 10,2 cm do joelho (8 no certo) |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (10,3 cm, no tronco, no erro "Halter escorregando"); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/panturrilha-sentada-halter-peso.png`; os quadros grandes foram regravados (`quadros/panturrilha-sentada-halter.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 3 avisos** (antes: 0 falhas e 4 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- **O escorregão ficou curto** (2,2 cm além do lugar certo) e o erro se lê menos que antes: com o halter de 33 cm atravessado na coxa, a cabeça de dentro passa por cima da outra coxa e chega à barriga logo. É o que acontece nesse corpo; para o erro se ler mais, ele teria de ser outro (o halter escorregando para fora da coxa, com a mão esquerda solta, como diz o cartão: "uma mão solta e o halter desliza da coxa"). Não fiz, porque muda o erro aprovado; fica para o Gustavo decidir.
+
+## Erro novo de 19/11 (o halter desliza da coxa)
+
+O Gustavo decidiu, em 19/11: "pode mudar o erro, como diz o cartão". O cartão diz, para "Halter escorregando": "Uma mão solta e o halter desliza da coxa. As duas mãos nele, a série inteira." O erro da correção da manhã (o halter escorregando pela coxa até a barriga) ficava só 2,2 cm além do lugar certo e quase não se lia.
+
+**O que o erro mostra agora (de frente).**
+
+- **A mão esquerda solta** a cabeça de dentro no primeiro quarto do erro: sobe 4 cm, aberta, e vai só um pedaço do caminho atrás do halter (`erro.halter.maoSoltaAte`, `erro.halter.maoSobe`, `erro.halter.maoSegue`), sem tocá-lo.
+- **O halter desliza para fora da coxa direita**, ao longo do cabo (24 cm, `erro.halter.saiDeLado`, nos primeiros 70% do erro): passa da beirada da toalha, que fica parada na coxa.
+- **E gira e desce pela lateral da coxa** (65° em volta do eixo da coxa, a partir de 30% do erro, `erro.halter.gira`): a cabeça de fora desce ao lado da coxa e a de dentro fica apoiada na beirada da toalha. O quanto ele desce não é escolhido: em 9 instantes do erro, o halter desce até o primeiro toque na toalha ou nas coxas e para 0,3 cm acima (`erro.halter.folga`); entre os instantes, a reta. A conta fica guardada no preparo (`panturrilha-sentada-halter:halter-de-lado`).
+- **A mão direita continua segurando** a cabeça de fora e vai com o halter.
+- **A vista do erro passou de lado para de frente.** De lado, o halter sai na direção de quem olha e quase não anda no desenho. De frente, o deslize para fora e o giro se leem de relance. Testei as outras: de três quartos pela frente (`quina`), o halter termina em pé ao lado da coxa, parte atrás do braço direito, e o deslize vem na direção de quem olha; de cima, o braço direito tapa a cabeça de fora. A linha do erro passou para o braço esquerdo (a mão que solta), com o fantasma tracejado do lugar certo dela.
+- O ciclo, os outros dois erros, a pose e as peças (o banco, o step, a toalha, o halter) não mudam.
+
+| medido (homem, no erro "Halter escorregando") | antes (de manhã) | agora |
+|---|---|---|
+| a mão esquerda | no halter (andava com ele) | solta: sai 12,4 cm do lugar na cabeça de dentro; fica de 3,1 a 8,8 cm do halter depois de soltar; entra 0 cm nele |
+| a mão direita (o centro dela ao centro da cabeça de fora) | 8,6 cm | 8,6 cm o erro inteiro (segura) |
+| onde o halter vai | pela coxa, para o quadril: 10,2 cm do joelho (2,2 cm além do certo) | para fora: o centro dele termina 18,1 cm por fora da lateral da coxa direita |
+| a cabeça de fora | — | desce 19,6 cm (termina na altura da parte de baixo da coxa, ao lado dela) |
+| o giro do halter | 0° | 65° |
+| o halter dentro do corpo (regra `peso-fora-do-corpo`, ciclo e erros, 207 quadros) | 0 cm | 0 cm |
+| a menor folga do halter ao corpo, fora a mão direita que segura (17 instantes do erro) | — | 1,3 cm (antebraço direito, que segura); 1,9 cm da coxa direita, quando ele passa por cima da toalha; 2,7 cm da mão esquerda depois de soltar; no fim, mais de 10 cm da coxa |
+| o halter dentro da toalha (33 instantes do erro) | — | 0 cm |
+
+**Regras.** A ficha liga duas regras novas (`regras/panturrilhas.ts`), além de `peso-fora-do-corpo`:
+
+- `panturrilha-sentada-maos-no-halter`: no ciclo, as duas mãos ficam paradas no halter (o centro de cada mão ao centro da cabeça que ela segura não muda: 8,6 e 9,2 cm); no erro, a direita continua parada no halter (8,6 cm o erro inteiro) e a esquerda solta: sai pelo menos 4 cm do lugar, não entra no halter (medido pela superfície, com a mão contando como corpo) e fica de 0,5 a 12 cm dele depois de soltar.
+- `panturrilha-sentada-halter-sai-de-lado`: no fim do erro, o centro do halter fica por fora da lateral da coxa e a cabeça de fora desceu; em 33 instantes, o halter não entra na toalha.
+
+Para medir a mão que soltou, a medida comum `pesoNoCorpo` (`regras/peso-fora-do-corpo.ts`) ganhou um segundo argumento opcional (`partes`: só as partes que ele aceita; `maosSoltas`: as mãos que contam mesmo perto do peso). Sem ele, a medida é a mesma de antes: nenhuma outra animação muda (o preparo das outras 170 não mudou).
+
+Conferência automática: **0 falhas e 3 avisos** (os mesmos três de antes: a pronação da mão esquerda, as linhas de desenho e a pintura). O aviso de pintura ganhou dois achados de frente, porque a vista de frente passou a ser conferida: a toalha pintada por cima do alto das duas coxas, junto dos joelhos, no fim da subida (2 e 1,8 cm², em 1 quadro; ver abaixo).
+
+Os quadros grandes (`quadros/panturrilha-sentada-halter.png`) foram regravados com o erro de frente no começo, no meio e no fim, de três quartos, de cima, com a cor de pele e no tema escuro; olhei o erro de frente, de três quartos, de cima e de lado, no começo, em três instantes do meio e no fim, nos dois lados do corpo (e medi 17 a 33 instantes). O antes e depois (o erro da correção de 19/11 de manhã, de lado, e o novo, de frente, no começo, no meio e no fim) está em `correcao-das-antigas/panturrilha-sentada-halter-peso.png`.
+
+**O que ainda não ficou bom.**
+
+- **O halter termina longe da coxa** (o centro a 18 cm da lateral dela), e não encostado nela. A toalha é desenhada como uma placa reta de 37 cm, que passa 13 cm da lateral da coxa; para descer, o halter precisa passar da beirada dela. Não mudei a toalha (ela faz parte da pose do ciclo).
+- **A pintura da toalha de frente:** no fim da subida, a borda da toalha fica pintada por cima do alto dos joelhos (2 cm², poucos traços). É da toalha de sempre, vista de frente pela primeira vez; não mudei a ordem de pintura dela, que mudaria as outras vistas.
+- **A mão esquerda, de frente, fica na frente do peito,** perto do braço direito: lê-se como a mão que soltou, mas os dedos apontam para quem olha e a mão fica curta no desenho.
+- **O meio do erro é pouco físico:** o halter passa da beirada da toalha ainda deitado, com a cabeça de fora no ar, antes de girar; quem o sustenta é a mão direita.

@@ -1,0 +1,67 @@
+{
+  "id": "terra-hexagonal",
+  "name": "Levantamento terra com barra hexagonal",
+  "short": "Terra hexagonal",
+  "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de trás da coxa e a parte de dentro da coxa (adutores) ajudam.",
+  "feelNote": "Se sentir a lombar, confira a saída do chão: a coluna neutra, sem curvar, e o peito e o quadril subindo juntos.",
+  "setupEq": [
+    "Anilhas iguais dos dois lados, com travas."
+  ],
+  "setupBody": [
+    "Em pé dentro da barra, pés na largura do quadril.",
+    "Pegadores neutros (palmas para dentro); quadril mais baixo que no terra comum."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Coluna neutra: empurra o chão e estende joelhos e quadril juntos."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até as anilhas tocarem o chão de leve."
+    ]
+  ],
+  "range": [
+    "Embaixo: anilhas no chão, coluna neutra.",
+    "Em cima: em pé, quadril e joelhos estendidos."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Coluna neutra.",
+    "Empurra o chão.",
+    "Peito e quadril sobem juntos."
+  ],
+  "check": [
+    "Anilhas iguais dos dois lados, com travas",
+    "Em pé dentro da barra, pés na largura do quadril",
+    "Pegadores neutros, palmas para dentro",
+    "Coluna neutra, quadril mais baixo que no terra comum"
+  ],
+  "vary": "O que não muda: a coluna neutra, o peito e o quadril subindo juntos e a descida controlada até as anilhas tocarem o chão de leve, sem soltar a barra.",
+  "note": "<b>Montagem segura:</b> anilhas iguais dos dois lados, com travas.",
+  "extLabels": [
+    "embaixo",
+    "em pé"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar a lombar",
+      "desc": "A lombar curva na saída do chão."
+    },
+    {
+      "id": "e2",
+      "title": "Quadril sobe antes",
+      "desc": "O quadril sobe antes do peito."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a barra",
+      "desc": "Deixar a barra cair na descida."
+    }
+  ],
+  "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
+}

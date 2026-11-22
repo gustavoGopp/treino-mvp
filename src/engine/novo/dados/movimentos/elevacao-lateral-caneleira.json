@@ -1,0 +1,64 @@
+{
+ "id": "elevacao-lateral-caneleira",
+ "nome": "Elevação lateral com caneleira presa no punho",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-lateral-caneleira.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/elevacao-lateral-caneleira.md): caneleira no antebraço, acima do punho, velcro firme (consenso, 17, G3); braços para os lados até a altura dos ombros (consenso, coratella2020)",
+  "app": "Texto do app (src/conteudo/exercicios/elevacao-lateral-caneleira.json): um par de caneleiras, presas no antebraço, logo acima do punho; em pé, pés na largura do quadril, braços ao lado do corpo, cotovelos levemente dobrados; subida ~1 s até a altura dos ombros; pausa curta, ombros baixos; descida ~2 s até os braços voltarem ao lado do corpo; 'Cotovelo lidera'; 'Ombros longe das orelhas'; erros 'Encolher os ombros' (o trapézio de cima assume), 'Balançar o corpo' (o embalo tira o trabalho do ombro; tronco parado), 'Parar longe da falha'",
+  "halteres": "Ficha de movimento da elevação lateral com halteres aprovada (src/engine/novo/dados/movimentos/elevacao-halteres.json) e da elevação com elástico aprovada (elevacao-lateral-elastico.json): a mesma postura e o mesmo caminho dos braços (o núcleo exercicios/elevar-o-braco.ts)",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + caneleiras) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé",
+  "objetos": "src/engine/novo/dados/objetos/caneleira.json (a caneleira de 2 lb, 'Wrist and Ankle Weight': 30,5 × 10,8 × 1,27 cm, 0,91 kg)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "app", "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "joelhos destravados (a ficha não dá número; o das elevações aprovadas)"},
+  "tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "o tronco parado, levemente inclinado à frente: a bacia inclina 12° com a coluna neutra (a ficha não dá número; o das elevações aprovadas)"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "cabeça na linha do pescoço"},
+  "plano.baixo": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, os braços ao lado do corpo (o cartão): o braço pende no mesmo plano da subida, 30° à frente do plano do corpo, com a mão e a caneleira ao lado da coxa; a elevação embaixo sai da folga (como na elevação com elástico aprovada)"},
+  "plano.transicao": {"v": 0.5, "un": "fração", "selo": "desenho", "fonte": "halteres", "o": "o braço já está no plano da subida embaixo (plano de baixo e da subida iguais): este número não muda nada aqui; o núcleo das elevações o lê"},
+  "plano": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "os braços sobem para os lados e um pouco à frente do corpo: 30° à frente do plano do corpo (o das elevações aprovadas; a ficha diz só 'para os lados')"},
+  "braco.topo": {"v": 96, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os braços na altura dos ombros (a ficha): o mesmo número das elevações aprovadas, com o cotovelo na altura do centro do ombro"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos levemente dobrados (o cartão), o mesmo ângulo o movimento todo (15°, como nas elevações aprovadas)"},
+  "cotovelo.giro": {"v": 50, "un": "graus", "selo": "consenso", "fonte": "app", "o": "'cotovelo lidera' (o cartão): no alto, o úmero gira 50° para dentro e o cotovelo fica um pouco acima da mão (o das elevações aprovadas)"},
+  "polegar.paraCima": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a mão relaxada, sem girar o polegar para cima (a mão não segura nada; nas elevações aprovadas, com o halter, 15°)"},
+  "mao.raio": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão relaxada, como uma esfera de 4 cm de raio, na conta da folga até a coxa"},
+  "caneleira.acimaDoPunho": {"v": 2, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a caneleira presa no antebraço, logo acima do punho (o cartão): a borda de baixo da faixa 2 cm acima do centro do punho (a mesma distância da caneleira no tornozelo, dados/objetos/caneleira.json)"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "halteres", "o": "embaixo, a mão e a caneleira perto da coxa, sem encostar: a folga até a pele da coxa (a das elevações aprovadas). A elevação do braço embaixo sai desta folga"},
+  "carga": {"v": 0.91, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma caneleira de 2 lb em cada antebraço (a ficha não dá a carga; é a da tabela); entram no equilíbrio, no centro da faixa"},
+  "erro.encolher.elev": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro; o das elevações aprovadas)"},
+  "erro.balanco.frente": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: o tronco começa mais inclinado à frente (30°) para pegar impulso (o das elevações aprovadas)"},
+  "erro.balanco.tras": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: no alto, o tronco foi jogado para trás, com a lombar arqueada (o das elevações aprovadas)"},
+  "erro.balanco.lombar": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: a lombar arqueia 12° no alto (o das elevações aprovadas)"},
+  "erro.balanco.joelho": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: os joelhos dobram 24° embaixo e estendem para dar o impulso (o das elevações aprovadas)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços ao lado do corpo", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Altura dos ombros", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta, ombros baixos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "tronco-levemente-a-frente", "pede": "o tronco parado, levemente inclinado à frente (o das elevações aprovadas)", "selo": "desenho", "fonte": "halteres"},
+  {"id": "braco-no-plano-da-escapula", "pede": "os braços sobem para os lados, um pouco à frente do corpo (de ~20° a ~40°)", "selo": "desenho", "fonte": "halteres"},
+  {"id": "braco-na-linha-do-ombro", "pede": "em cima, os braços na altura dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-acima-da-mao", "pede": "cotovelos levemente dobrados; o cotovelo lidera e fica um pouco acima da mão", "selo": "consenso", "fonte": "app"},
+  {"id": "ombro-sem-encolher", "pede": "os ombros não sobem junto com os braços (ombros longe das orelhas)", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, as mãos e as caneleiras ao lado das coxas, sem atravessá-las", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "app"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + caneleiras) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "elevacao-caneleira-presa-no-antebraco", "pede": "a caneleira presa no antebraço, logo acima do punho, sem escorregar; a mão relaxada (não segura a caneleira)", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: os ombros vão em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o corpo", "vista": "lateral", "oQueMuda": "o tronco começa mais inclinado e é jogado para trás para dar o impulso, com a lombar arqueada e os joelhos estendendo", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "frontal", "texto": "cotovelo lidera", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app", "acima": true}
+ ]
+}

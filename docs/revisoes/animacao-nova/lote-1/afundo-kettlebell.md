@@ -44,3 +44,23 @@ Amplitudes (conferência automática, 0 falha): um aviso, a dorsiflexão do torn
 - A alça é desenhada com três cilindros retos (duas hastes e a barra de cima), com as quinas vivas; a do cartão do app é curva.
 - De lado, o antebraço e a mão de perto escondem metade da bola.
 - O kettlebell não tem a etiqueta do peso que o cartão do app tem.
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **a bola do kettlebell entrava 3,8 cm no peito** no ciclo e nos erros: o kettlebell ficava num ponto do tórax estimado pela profundidade do peito (68% dela, a partir do eixo da coluna, mais 0,8 cm de folga), e não medido na pele.
+
+**A mudança.**
+
+- Acréscimo no núcleo `exercicios/afundo-estatico.ts`, ligado só quando a ficha tem `kettlebell.encostoNoPeito` (aditivo; o afundo com halteres e o com o peso do corpo não mudam): o kettlebell vai para a frente do tórax até a bola entrar no máximo 0,3 cm no corpo, calibrado em pé e guardado no preparo (`afundo-kettlebell:bola-no-peito`): no corpo do app, 4,1 cm. As mãos vão junto (nas hastes da alça).
+- **No erro "Tronco cai para a frente", o tronco cai 30°, e não 36°** (`erro.tronco`). Com a bola encostada no peito, e não dentro dele, embaixo o kettlebell, que pende na vertical, chegava à coxa da frente e entrava 2,4 cm nela; com 30°, a bola encosta na coxa (0,2 cm). O erro continua se lendo de lado.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a bola entra no corpo (ciclo) | 3,8 cm (peito) | 0 cm |
+| erro "Tronco cai para a frente", embaixo | 1,2 cm na coxa da frente (2,4 cm com a bola no lugar novo) | 0,2 cm (encosta) |
+| inclinação do tronco no erro | 36° | 30° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (3,8 cm, no tronco, no ciclo); no de agora, passa (0,2 cm, na coxa da frente, no erro "Tronco cai para a frente"). O antes e depois está em `correcao-das-antigas/afundo-kettlebell-peso.png`; os quadros grandes foram regravados (`quadros/afundo-kettlebell.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 4 avisos** (antes: 0 falhas e 5 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- O kettlebell ficou um pouco mais longe do corpo, de lado (é a frente do peito medida na pele); as mãos e os cotovelos vêm junto.

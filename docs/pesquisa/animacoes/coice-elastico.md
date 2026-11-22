@@ -31,3 +31,17 @@ Elástico: pelas intensidades que a pessoa tem.
 - `selkowitz2013` (`docs/pesquisa/fontes.md`).
 - `attarieh2026` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/coice-elastico.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (glúteos, sem secundário) e a biblioteca; a nota, da seção Segurança (a lombar arqueia se a perna subir demais) e do erro 1 | um estudo | `attarieh2026`; `selkowitz2013` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a linha Posição da tabela de técnica | consenso | `17`, G3 |
+| Variações (`vary`) | a linha Movimento da tabela de técnica e o erro "Girar o quadril" | consenso | `selkowitz2013` |
+| Nota (`note`) | a montagem do cartão; sai "pise com o pé inteiro sobre ele", que não vale aqui (o laço vai na sola do pé e as pontas, sob as mãos; ver `pedidos.md`) | um estudo | `ng2022` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/coice-elastico.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda. A montagem do cartão traz "pise com o pé inteiro sobre ele", que não serve a este exercício: ficou fora da nota e foi para `pedidos.md`.

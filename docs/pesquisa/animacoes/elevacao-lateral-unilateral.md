@@ -31,3 +31,16 @@ Halter: o próximo peso da lista; inclinar um pouco mais o tronco aumenta a ampl
 - `larsen2025` (`docs/pesquisa/fontes.md`).
 - `coratella2020` (`docs/pesquisa/fontes.md`).
 - `kassiano2025` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/elevacao-lateral-unilateral.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro lateral, sem secundário) e a biblioteca; a nota, dos erros "Encolher o ombro" e "Subir acima do ombro" | um estudo | `larsen2025`; `coratella2020` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica e a montagem do cartão | consenso | "leaning lateral raise" ([mercado], `17`, G3) |
+| Variações (`vary`) | linha Posição (10–20°), "Como a carga sobe" (inclinar mais aumenta a amplitude) e a seção Segurança (não pendurar o peso do corpo) | consenso | `17`, G3; decisão do Gustavo (segurança) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/elevacao-lateral-unilateral.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** nada de essencial.

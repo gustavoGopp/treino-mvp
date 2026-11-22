@@ -1,0 +1,48 @@
+{
+ "fontes": {
+  "hs24-hsq": "Hammer Strength, catálogo 2024, tabela Plate-Loaded, p. 61: Hack Squat PL-HSQ, 85 x 61 x 59 pol (216 x 155 x 153 cm), C x L x A; 504 lb (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.2)",
+  "hs-hsq2": "Hammer Strength, Plate Loaded Hack Squat PL-HSQ2, página do produto no distribuidor oficial da Life Fitness na Austrália; https://www.lifefitness.com.au/commercial/hammer-strength-plate-loaded-hack-squat-pl-hsq2 (lida em 18/11/2026): \"with a 45-degree pressing angle\", \"Its adjustable foot platform shifts 8 degrees, giving athletes the equivalent of both a 3° and 10° heel wedge\", \"Flip-in, flip-out racking handles\", \"two different racking positions\", \"Dimensions (L x W x H): 85\\\" x 61\\\" x 59\\\" (216 cm x 155 cm x 153 cm)\", \"Starting Resistance: 125 lbs (57 kg)\", \"Plate Capacity: 8 x 45 lbs (8 x 20kg) plates per arm\", \"Standard Weight Horns: 4\". A página da Life Fitness dos Estados Unidos (https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/hack-squat, lida em 18/11/2026) dá o mesmo ângulo: \"a 45-degree pressing angle\"",
+  "cartao-hack": "Cartão de equipamento de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, hack; public/equipamento/hack.svg): o encosto e as almofadas dos ombros azuis no carro, os pegadores ao lado das almofadas, as guias cromadas, a chapa dos pés inclinada (a ponta do pé 15° acima do calcanhar), os pinos de anilha no pé do carro, 64 cm de chapa",
+  "barra-longa-hack": "src/engine/novo/dados/objetos/barra-longa.json (IWF e IPF): a manga de 5 cm da barra olímpica, que recebe as anilhas olímpicas",
+  "corpo-hack": "Derivada do corpo da tabela (src/engine/novo/dados/corpo-homem.json) e da ficha da técnica do hack (docs/pesquisa/animacoes/hack.md): a medida que nenhuma ficha lida dá sai de onde o corpo precisa que ela esteja, com o motivo em cada linha",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "hack": {
+   "nome": "Hack (agachamento articulado de anilhas): o carro com o encosto, as almofadas dos ombros e os pegadores, que corre em duas guias a 45°, a chapa dos pés fixa, os pinos de anilha no carro, as alavancas da trava e os pinos de guardar anilhas",
+   "medidas": {
+    "comp": { "v": 216, "un": "cm", "tipo": "medida", "fonte": "hs24-hsq", "onde": "comprimento total da Hammer Strength PL-HSQ (a PL-HSQ2 tem as mesmas medidas); é a única ficha de hack lida" },
+    "larg": { "v": 155, "un": "cm", "tipo": "medida", "fonte": "hs24-hsq", "onde": "largura total, de uma anilha à outra" },
+    "altura": { "v": 153, "un": "cm", "tipo": "medida", "fonte": "hs24-hsq", "onde": "altura total, no alto das guias" },
+    "trilhoInclina": { "v": 45, "un": "graus", "tipo": "medida", "fonte": "hs-hsq2", "onde": "\"a 45-degree pressing angle\": o carro corre a 45° do chão (o cartão de hoje tinha 47°)" },
+    "massaDoCarro": { "v": 57, "un": "kg", "tipo": "medida", "fonte": "hs-hsq2", "onde": "\"Starting Resistance: 125 lbs (57 kg)\": o carro vazio; o cartão manda registrar só as anilhas" },
+    "pinosDeGuardar": { "v": 4, "un": "pinos", "tipo": "medida", "fonte": "hs-hsq2", "onde": "\"Standard Weight Horns: 4\"" },
+    "chapaCunhaMin": { "v": 3, "un": "graus", "tipo": "medida", "fonte": "hs-hsq2", "onde": "a chapa regula em 8° (\"the equivalent of both a 3° and 10° heel wedge\"); fica de registro: a página não diz o ângulo da chapa em relação ao chão, só o quanto ela muda" },
+    "chapaInclina": { "v": 15, "un": "graus", "tipo": "desenho", "fonte": "cartao-hack", "onde": "a chapa dos pés sobe 15° para a frente (a ponta do pé acima do calcanhar), como no cartão de hoje: com o corpo deitado a 45° no encosto, a chapa no chão deixaria o tornozelo esticado demais em cima. A Hammer Strength diz que ela muda 8°, sem dar o ângulo" },
+    "chapaAltura": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do chão ao centro da face da chapa dos pés" },
+    "chapaLarg": { "v": 64, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "largura da chapa dos pés, como no cartão de hoje" },
+    "chapaComp": { "v": 54, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da chapa dos pés (de trás para a frente)" },
+    "encostoAtrasDaChapa": { "v": 45, "un": "cm", "tipo": "derivada", "fonte": "corpo-hack", "onde": "a face do encosto corre numa linha a 45° que passa, na altura do centro da chapa, 45 cm atrás dele: é a que deixa o tornozelo do corpo da tabela 20 cm à frente da linha do quadril (o corpo deita no encosto e os pés ficam um pouco à frente, como na ficha: 'pés no meio da plataforma'); as fichas não dão" },
+    "encostoComp": { "v": 78, "un": "cm", "tipo": "derivada", "fonte": "corpo-hack", "onde": "comprimento do encosto, das almofadas dos ombros para baixo: as costas do corpo da tabela inteiras, dos ombros ao glúteo" },
+    "encostoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "largura do encosto, como no cartão de hoje" },
+    "estofadoEsp": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "espessura dos estofados" },
+    "ombreiraComp": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "comprimento de cada almofada dos ombros, como no cartão de hoje" },
+    "ombreiraLarg": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "largura de cada almofada dos ombros, como no cartão de hoje" },
+    "ombreirasEntre": { "v": 27, "un": "cm", "tipo": "derivada", "fonte": "corpo-hack", "onde": "de centro a centro das duas almofadas dos ombros: sobre o meio de cada ombro do corpo da tabela (o cartão de hoje tem 27)" },
+    "trilhoAtras": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "as guias correm 16 cm atrás da face do encosto (o carro fica entre elas e o encosto)" },
+    "guiasEntre": { "v": 70, "un": "cm", "tipo": "derivada", "fonte": "hs24-hsq", "onde": "de centro a centro das duas guias: com os pinos de anilha, fecha a largura total da ficha (155 cm); o cartão de hoje tinha 48" },
+    "guiaDiam": { "v": 6.5, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "a guia cromada, como no cartão de hoje (a ficha fala em \"ultra-smooth linear bearings\", sem medida)" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "cartao-hack", "onde": "tubo da estrutura, como no cartão de hoje" },
+    "trilhoFimAltura": { "v": 128, "un": "cm", "tipo": "derivada", "fonte": "hs24-hsq", "onde": "a ponta de cima das guias fica a 128 cm do chão: é a que fecha o comprimento total da ficha (216 cm); o montante de trás sobe até os 153 cm da ficha" },
+    "trilhoInicio": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da ponta de baixo das guias (do chão)" },
+    "carroComp": { "v": 64, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do carro ao longo da guia, com um rolamento em cada ponta" },
+    "pinoAnilhaComp": { "v": 38, "un": "cm", "tipo": "derivada", "fonte": "hs-hsq2", "onde": "comprimento de cada pino de carregar anilha: cabem as 8 anilhas de 20 kg por lado da página (\"Plate Capacity: 8 x 45 lbs (8 x 20kg) plates per arm\"), e com ele a máquina tem a largura total da ficha (155 cm)" },
+    "pinoAnilhaDiam": { "v": 5, "un": "cm", "tipo": "derivada", "fonte": "barra-longa-hack", "onde": "o pino recebe as anilhas olímpicas: o diâmetro da manga da barra olímpica" },
+    "pegadorDiam": { "v": 3.8, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro dos pegadores ao lado das almofadas dos ombros (o mesmo do leg press da Gym Gear)" },
+    "travaComp": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da alavanca da trava, do eixo no carro ao gancho (\"flip-in, flip-out racking handles\")" },
+    "travaAbre": { "v": 70, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "quanto a alavanca gira para soltar o carro (\"flip-out\")" },
+    "travaPosicoes": { "v": 2, "un": "posições", "tipo": "medida", "fonte": "hs-hsq2", "onde": "\"two different racking positions\": dois suportes de cada lado da estrutura, onde o gancho da trava fechada apoia" }
+   }
+  }
+ }
+}

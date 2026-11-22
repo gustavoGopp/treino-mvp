@@ -1,0 +1,68 @@
+{
+  "id": "supino-smith",
+  "name": "Supino reto no smith",
+  "short": "Supino no smith",
+  "target": "Peito",
+  "feel": "Peito. A frente do ombro e a parte de trás do braço (tríceps) ajudam.",
+  "feelNote": "Se a barra descer no pescoço ou na barriga, o banco está fora do lugar: centre-o para ela descer na linha do meio do peito.",
+  "setupEq": [
+    "Banco reto centrado sob a barra: ela deve descer na linha do meio do peito.",
+    "Travas de segurança logo abaixo do ponto mais baixo da descida, um pouco abaixo do peito."
+  ],
+  "setupBody": [
+    "Pegada um pouco mais aberta que os ombros (até ~1,5 vez).",
+    "Escápulas juntas e para baixo."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce até encostar de leve no peito ou até um alongamento confortável, com os cotovelos a ~30–60° do tronco."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra sem travar os cotovelos no topo."
+    ]
+  ],
+  "range": [
+    "Embaixo: barra encosta de leve no peito, antebraços quase verticais.",
+    "Em cima: cotovelos quase estendidos."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Barra no meio do peito.",
+    "Cotovelos em seta, não em T.",
+    "Sem quicar."
+  ],
+  "check": [
+    "Banco centrado sob a barra, na linha do meio do peito",
+    "Travas logo abaixo do ponto mais baixo",
+    "Pegada um pouco mais aberta que os ombros",
+    "Escápulas juntas e para baixo"
+  ],
+  "vary": "A pegada vai de um pouco mais aberta que os ombros até ~1,5 vez, e a descida, até encostar de leve no peito ou até um alongamento confortável. O que não muda: a barra na linha do meio do peito, os cotovelos em seta e a subida sem travar os cotovelos.",
+  "note": "<b>Montagem segura:</b> centre o banco sob a barra e ajuste as travas logo abaixo do ponto mais baixo da descida antes de começar.",
+  "extLabels": [
+    "em cima",
+    "barra no peito"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Banco fora do lugar",
+      "desc": "A barra desce no pescoço ou na barriga."
+    },
+    {
+      "id": "e2",
+      "title": "Cotovelos em T",
+      "desc": "Cotovelos a 90° do tronco."
+    },
+    {
+      "id": "e3",
+      "title": "Quicar a barra",
+      "desc": "A barra bate no peito para ganhar impulso."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+}

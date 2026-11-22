@@ -1,0 +1,64 @@
+{
+ "id": "triceps-maquina",
+ "nome": "Tríceps na máquina (braço apoiado à frente)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-maquina.md): assento na altura em que o cotovelo fica alinhado com o eixo da máquina, braços apoiados na almofada; estende os cotovelos até quase travar e volta até o cotovelo dobrar ~90° ou mais; erros 'tirar o braço da almofada' e 'amplitude curta em cima' (consenso; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/triceps-maquina.json): 'Braços apoiados na almofada'; 'Início: cotovelo dobrado ~90° ou mais', 'Fim: cotovelos quase estendidos'; as dicas 'Cotovelo no eixo.', 'Braço no apoio.', 'Estica até o fim.'; os erros 'Tirar o braço da almofada' ('O braço sai do apoio') e 'Amplitude curta em cima' ('Não estende até o fim')",
+  "manual": "Manual da Hammer Strength Select (Triceps Extension HS-TE, p. 60; https://kb.cybexintl.com/Owners_Manuals/Strength/Hammer_Select_9510901.pdf, lido em 18/11/2026): 'Adjust the seat height so backs of arms rest fully on arm pad, aligning the elbows with the machines pivot', 'Rotate the handle back and grip firmly', 'Position the body with the hips in contact with the lower back pad, leaning forward and keeping the back straight', 'extend the handles out until the arms are fully extended, then return the handles to the start position without letting the resistance rest on the stack'",
+  "rosca": "A rosca na máquina (src/engine/novo/dados/movimentos/rosca-maquina.json), a mesma máquina: o braço deitado no apoio, que amassa 1 cm, o tronco 15° à frente, os pés no chão",
+  "cadeiras": "As máquinas sentadas aprovadas (src/engine/novo/dados/movimentos/supino-maquina.json e cadeira-extensora.json): o glúteo e as costas que afundam 1 cm no estofado, os pés chapados no chão com o joelho em ângulo reto, cinco placas no pino, o cotovelo 'quase estendido' a 12°",
+  "triceps": "Os tríceps aprovados (src/engine/novo/dados/movimentos/triceps-corda.json e triceps-barra-reta.json): a pegada neutra na corda, o fim quase estendido, os tempos das fases",
+  "objetos": "src/engine/novo/dados/objetos/triceps-maquina.json (a máquina de tríceps: o apoio a 40°, o eixo 4 cm acima da face e 2 cm além da borda de baixo, os pegadores em pé, o apoio da lombar)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "o glúteo afunda 1 cm no assento, como nas máquinas sentadas aprovadas"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "rosca", "o": "o braço apoiado ('backs of arms rest fully on arm pad'): o estofado amassa 1 cm sob o tríceps, como na rosca na máquina"},
+  "tronco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "manual", "o": "'leaning forward and keeping the back straight': a bacia inclina 15° à frente (a ficha não dá número), como na rosca na máquina"},
+  "lombar.sentado": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "sentado, a lombar fica 3° menos curva que em pé, sem arredondar ('keeping the back straight')"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço um pouco estendido, o olhar à frente"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço"},
+  "pes.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés no chão, na largura do quadril: o centro da bola do pé a 16 cm do meio (a Hammer Strength põe os pés sob uma barra; a Precor, que é a ficha do tamanho, não tem barra dos pés)"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "cadeiras", "o": "os pés chapados no chão com o joelho em ângulo reto, como no supino na máquina aprovado"},
+  "escapula.prot": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os ombros no lugar: a escápula sem ir à frente além do ritmo do braço"},
+  "escapula.elev": {"v": -3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "e um pouco para baixo, sem encolher"},
+  "maos.supinacao": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "triceps", "o": "a pegada neutra nos pegadores em pé: a palma virada para dentro, o polegar para o lado do rosto, como na corda dos tríceps aprovados"},
+  "cotovelo.inicio": {"v": 100, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no começo, 'o cotovelo dobrado ~90° ou mais': 100°; a posição inicial da alavanca sai daí"},
+  "cotovelo.fim": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no fim, 'estende os cotovelos até quase travar': dobrados 8° (mais esticado que o 'quase estender' de 12° das máquinas aprovadas, porque a ficha pede 'até quase travar')"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "cadeiras", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.tira.braco": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "erro: no fim da extensão, o braço sai da almofada: gira 20° no ombro, para fora da face; a mão continua no pegador, que segue no arco dele, e o cotovelo, fora do eixo, dobra um pouco mais. No fim da extensão, o cotovelo pode sair do apoio para cima sem a mão sair do arco do pegador (na rosca, em cima, não: lá o tronco também vai para trás)"},
+  "erro.curta.cotovelo": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a extensão para com o cotovelo dobrado 45° ('não estende até o fim')"}
+ },
+ "fases": [
+  {"nome": "Início · cotovelo dobrado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cotovelo a ~90° ou mais", "selo": "consenso", "fonte": "app"},
+  {"nome": "Estender · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "triceps"},
+  {"nome": "Fim · quase travado", "tipo": "pausa", "dur": 0.3, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos quase estendidos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 a 3 s, controlada", "selo": "consenso", "fonte": "triceps"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "maquina-de-braco-cotovelo-no-eixo", "pede": "assento na altura em que o cotovelo fica alinhado com o eixo da máquina, do começo ao fim", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-de-braco-braco-no-apoio", "pede": "braços apoiados na almofada: o tríceps encosta no estofado sem atravessá-lo", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-sentado", "pede": "sentado: o glúteo no assento, parado", "selo": "consenso", "fonte": "manual"},
+  {"id": "triceps-maquina-quadril-no-apoio-da-lombar", "pede": "a bacia encosta no apoio da lombar", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-maos-nos-pegadores", "pede": "as mãos presas nos pegadores o movimento todo", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-pegador-no-arco", "pede": "os pegadores andam num arco em volta do eixo, e as mãos com eles", "selo": "desenho", "fonte": "objetos"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com a alavanca e apoiam no começo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "triceps-maquina-volta-ate-90", "pede": "no começo, o cotovelo dobrado ~90° ou mais", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-maquina-estende-ate-quase-travar", "pede": "estende os cotovelos até quase travar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-uma-para-a-outra-na-rosca", "pede": "a pegada neutra nos pegadores em pé, sem girar o antebraço", "selo": "desenho", "fonte": "triceps"},
+  {"id": "tronco-quase-parado", "pede": "o corpo fica parado: só os antebraços se mexem", "selo": "consenso", "fonte": "app"},
+  {"id": "lombar-neutra", "pede": "costas retas ('keeping the back straight')", "selo": "consenso", "fonte": "manual"},
+  {"id": "maquina-de-braco-barra-livre-do-corpo", "pede": "os pegadores não encostam no rosto nem no peito", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "tira", "instante": 1, "titulo": "Tirar o braço da almofada", "vista": "lateral", "oQueMuda": "no fim da extensão, o braço sai do apoio: o tronco vai à frente e o cotovelo descola do estofado e sai do eixo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 1, "titulo": "Amplitude curta em cima", "vista": "lateral", "oQueMuda": "a extensão para no meio: o cotovelo não chega a quase estender", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo no eixo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "estica até o fim", "ponto": "punho", "selo": "consenso", "fonte": "app"}
+ ]
+}

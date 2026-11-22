@@ -1,0 +1,280 @@
+{
+ "id": "extensao-joelho-mini-band",
+ "nome": "Extensão de joelho sentado, com mini-band nos tornozelos",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/extensao-joelho-mini-band.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/extensao-joelho-mini-band.md): sentado, mini-band nos tornozelos, a perna parada segura; estende o joelho até a perna ficar reta; consenso (de mercado: Physitrack, The Prehab Guys, só na busca)",
+  "app": "Texto do app (src/conteudo/exercicios/extensao-joelho-mini-band.json): uma mini-band e uma cadeira firme; sentado, costas apoiadas, a mini-band em volta dos dois tornozelos; um pé fica no chão, segurando a mini-band, a outra perna faz o movimento; extensão ~1 s até a perna ficar reta, pausa curta, volta ~2 s até o pé voltar perto do outro; erros 'Levantar o quadril da cadeira' (costas e quadril apoiados), 'Não estender até o fim', 'Parar longe da falha'",
+  "aprovada": "A extensão de joelho com caneleira aprovada (dados/movimentos/extensao-joelho-caneleira.json; exercicios/extensao-joelho-caneleira.ts) e o núcleo sentado na cadeira (exercicios/quadril-sentado-na-cadeira.ts): a mesma cadeira, as mãos nas bordas do assento, o pé parado chapado no chão com o joelho a 90°, a coxa que trabalha parada no assento",
+  "objetos": "src/engine/novo/dados/objetos/mini-band.json (a mini band de 12 pol: o laço de 61 cm em repouso, 5,1 cm de largura, estica até 2,5 vezes) e dados/objetos/cadeira.json (a cadeira firme da IKEA: assento a 45,1 cm e 37,1 cm de fundo; o encosto inclinado para trás até a profundidade total de 48,9 cm)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "quadrilABorda": {
+   "v": 29,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "sentado no fundo do assento, para as costas apoiarem no encosto (o cartão): o centro do quadril a 29 cm da borda da frente (o glúteo chega ao fundo do assento, a ~39 cm da borda); na caneleira aprovada, sem apoiar as costas, 24 cm. Daí, o peito fica deitado 13° para trás, perto da inclinação do encosto da cadeira (10,5°)"
+  },
+  "pes.meiaDistancia": {
+   "v": 10,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o pé que fica no chão 10 cm para o lado do meio (os pés na largura do quadril), como na caneleira aprovada"
+  },
+  "joelho": {
+   "v": 90,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o joelho que fica parado a 90° com o pé chapado no chão; a coxa que trabalha fica na mesma direção, deitada no assento"
+  },
+  "assento.amassa": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o glúteo e a coxa afundam 1 cm no assento"
+  },
+  "maos.aFrente": {
+   "v": 4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "as mãos nas bordas dos lados do assento, 4 cm à frente do centro do quadril (o cartão não diz onde ficam as mãos; é a pose da caneleira aprovada)"
+  },
+  "lombar.sentado": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "sentado e encostado, a bacia enrola um pouco e a lombar fica 10° menos curva que em pé: é ela que encosta na tábua do encosto (com a curva de quem está em pé, o tronco precisava deitar 23° para trás para a lombar chegar à tábua)"
+  },
+  "costas.noEncosto": {
+   "v": 0,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "costas apoiadas (o cartão): o tronco inclina para trás até a pele das costas, na altura da tábua do encosto, encostar nela (0 cm de folga); a inclinação sai daí, e não de um número escolhido"
+  },
+  "pescoco.compensa": {
+   "v": 0.7,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "com o peito deitado para trás, o pescoço dobra 70% dessa inclinação para a frente: a cabeça fica quase de pé e o olhar quase na horizontal (sem isso, ele ia para o teto)"
+  },
+  "faixa.acimaDoTornozelo": {
+   "v": 7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "a mini-band em volta dos dois tornozelos: o meio dela a 7 cm do centro do tornozelo, ao longo da canela (a borda de baixo fica ~4,5 cm acima dele, acima dos maléolos; o cartão não dá número)"
+  },
+  "joelho.embaixo": {
+   "v": 85,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "no começo, o joelho dobrado e o pé perto do outro (o cartão): a canela quase na vertical, ao lado da outra, com o pé um pouco acima do chão"
+  },
+  "joelho.emCima": {
+   "v": 2,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "em cima, a perna reta (a ficha: 'até a perna ficar reta'): o joelho a 2° de flexão"
+  },
+  "pe.flexaoPlantar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "o pé que sobe em ângulo reto com a canela, como na caneleira aprovada"
+  },
+  "erro.quadril.sobe": {
+   "v": 6,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o quadril sobe 6 cm do assento, empurrado pelo pé do chão (o cartão: 'o corpo ajuda'); o cartão não dá número"
+  },
+  "erro.quadril.aFrente": {
+   "v": 4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o quadril vai 4 cm para a frente, e as costas escorregam no encosto"
+  },
+  "erro.quadril.inclina": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o tronco deita mais 8° para trás, ainda apoiado no alto do encosto"
+  },
+  "erro.curta.joelho": {
+   "v": 40,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a perna para com o joelho ainda dobrado 40°, longe de ficar reta"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Joelho dobrado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pé perto do outro",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Extensão · concêntrica",
+   "tipo": "conc",
+   "dur": 1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "No alto · segura",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pelve",
+  "pe.L",
+  "joelho.R"
+ ],
+ "regras": [
+  {
+   "id": "extensao-mini-band-costas-no-encosto",
+   "pede": "sentado, costas e quadril apoiados: o glúteo no assento e as costas no encosto, parados",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "extensao-joelho-caneleira-coxa-parada",
+   "pede": "a coxa não sai do assento: só a canela sobe",
+   "selo": "consenso",
+   "fonte": "aprovada"
+  },
+  {
+   "id": "extensao-mini-band-ate-reta",
+   "pede": "estende até a perna ficar reta; no começo, o joelho dobrado e o pé perto do outro",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "extensao-mini-band-pe-parado-segura",
+   "pede": "um pé fica no chão, segurando a mini-band",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "mini-band-nos-tornozelos",
+   "pede": "a mini-band em volta dos dois tornozelos, sem escorregar, esticada do começo ao fim e mais esticada em cima",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "rotulos-sem-linhas-cruzadas",
+   "pede": "em cada vista, a linha de cada rótulo vai ao ponto dele sem cruzar a do outro",
+   "selo": "desenho",
+   "fonte": "desenho"
+  }
+ ],
+ "erros": [
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Levantar o quadril da cadeira",
+   "vista": "lateral",
+   "oQueMuda": "o quadril sobe do assento e vai para a frente; as costas escorregam no encosto",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "c7",
+    "pelve",
+    "joelho:R"
+   ],
+   "foco": "pelve"
+  },
+  {
+   "id": "curta",
+   "instante": 1,
+   "titulo": "Não estender até o fim",
+   "vista": "lateral",
+   "oQueMuda": "a perna para com o joelho ainda dobrado",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "joelho:R",
+    "tornozelo:R"
+   ],
+   "foco": "tornozelo:R"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "a perna parada segura",
+   "ponto": "ponta:L",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "estique até o fim",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "a perna parada segura",
+   "ponto": "ponta:L",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "estique até o fim",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

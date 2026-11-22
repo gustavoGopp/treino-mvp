@@ -30,3 +30,17 @@ Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas.
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase B, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/supino-barra.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; ombro anterior e tríceps) e a biblioteca; a nota, do erro "Cotovelos abertos a 90°" | consenso | `nsca2021` (não verificado); `tecnica.supino-halteres.cotovelos` (por analogia, como a ficha diz) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Montagem segura e Posição da tabela de técnica | consenso | `seguranca.montagem`; `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Montagem segura (a trava do rack ou alguém para ajudar) e linha Descida; os erros "Quicar a barra no peito" e "Tirar o quadril do banco" | consenso | `seguranca.montagem`; `nsca2021` (não verificado) |
+| Nota (`note`) | a montagem do cartão, num texto só | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/supino-barra.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a montagem não fala das travas nas anilhas, que a regra `seguranca.montagem` pede para as barras e os outros cartões com barra trazem; a nota seguiu o cartão (anotado em `pedidos.md`). A ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha entre a trava e a ajuda.

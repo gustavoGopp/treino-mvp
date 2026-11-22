@@ -1,0 +1,62 @@
+{
+ "id": "rosca-scott",
+ "nome": "Rosca Scott com barra W, no banco Scott",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-scott.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-scott.md): parte de trás do braço inteira apoiada na almofada, axilas encostadas na borda, banco na altura em que o tronco fica reto; desce até o cotovelo quase estender, controlando (~2–3 s), sem soltar o peso no fim; sobe sem tirar o braço da almofada até o antebraço ficar quase vertical; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-scott.json): 'Banco na altura em que o tronco fica reto; barra W ou halter'; 'Parte de trás do braço inteira apoiada na almofada, axilas encostadas na borda'; 'Embaixo: cotovelo quase estendido, sem travar'; 'Em cima: antebraço quase vertical'; as dicas e os três erros",
+  "aprovado": "A rosca Scott no banco inclinado aprovada pelo Gustavo (dados/movimentos/rosca-scott-banco-inclinado.json: o braço deitado no estofado com a axila no topo, o ombro 8 cm além da ponta, o estofado amassando 1 cm, o cotovelo de 14° a 125°, o olhar à frente e os três erros) e a rosca com barra W aprovada (dados/movimentos/rosca-barra-w.json: a barra com uma anilha de 5 kg de cada lado e a pegada nas partes inclinadas)",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/banco-scott.json (o banco Scott: a almofada a 45° e as faixas de regulagem, da Deltech DF308) e barra-w.json (a barra W)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "assento": {"v": 50, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "o assento regulado a 50 cm do chão (o banco regula de 47 a 62 cm): sentado com os pés inteiros no chão, as coxas quase na horizontal; a almofada sai na altura que a axila pede"},
+  "tronco.frente": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "'o tronco fica reto': a bacia só 4° à frente, com o peito encostado na borda da almofada; com 8°, o peito entrava 2,5 cm na almofada (medido) (a ficha não dá número)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o braço apoiado: quanto a almofada amassa sob o tríceps, como na Scott aprovada; o glúteo amassa o mesmo no assento"},
+  "ombro.alemDaPonta": {"v": 8, "un": "cm", "selo": "consenso", "fonte": "aprovado", "o": "'axilas encostadas na borda': o centro do ombro fica 8 cm além da borda de cima da almofada, na linha do braço, como na Scott aprovada"},
+  "braco.inclina": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "o braço deita paralelo à face da almofada, do alto até o cotovelo ('parte de trás do braço inteira apoiada'), como na Scott aprovada"},
+  "cervical": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "o pescoço um pouco estendido, o olhar à frente, como na Scott aprovada (com o olhar no peso, a cabeça entra no caminho da barra em cima)"},
+  "cabeca": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "a cabeça quase na linha do pescoço, como na Scott aprovada"},
+  "joelho": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "sentado com os pés inteiros no chão, o joelho dobrado 85° (a ficha não dá número)"},
+  "pes.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada bola do pé a 16 cm do meio: os pés ficam dos dois lados do poste da almofada"},
+  "anilhas": {"v": 5, "un": "kg", "selo": "desenho", "fonte": "aprovado", "o": "uma anilha de 5 kg de cada lado, como na rosca com barra W aprovada (22 kg com a barra)"},
+  "cotovelo.baixo": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "embaixo: 'cotovelo quase estendido, sem travar': o cotovelo para dobrado 14°, como na Scott aprovada"},
+  "cotovelo.cima": {"v": 125, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima: 'antebraço quase vertical': o cotovelo dobra 125° (com a almofada a 45°, o antebraço fica 10° antes da vertical e o peso continua no bíceps), como na Scott aprovada"},
+  "erro.trava.cotovelo": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro 'soltar o peso embaixo': o cotovelo estica de vez, até 0° ('o cotovelo trava de uma vez', no cartão)"},
+  "erro.tira.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: na subida, os braços saem da almofada: giram 30° no ombro, para cima, e os cotovelos descolam (o ombro ajuda), como na Scott aprovada"},
+  "erro.tira.cotovelo": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: com os braços fora da almofada, o cotovelo dobra só 100° em cima, como na Scott aprovada"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: embaixo, a volta para com o cotovelo dobrado 55°, como na Scott aprovada"}
+ },
+ "fases": [
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço quase estendido", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovado"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovado"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.6, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 a 3 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "banco-scott-bracos-na-almofada", "pede": "a parte de trás dos braços apoiada na almofada do começo ao fim: o tríceps encosta sem atravessar, e só o antebraço gira", "selo": "consenso", "fonte": "app"},
+  {"id": "banco-scott-axilas-na-borda", "pede": "axilas encostadas na borda de cima da almofada; o peito encosta nela sem atravessar", "selo": "consenso", "fonte": "app"},
+  {"id": "banco-scott-sentado-de-tronco-reto", "pede": "sentado no assento, o tronco reto, com os pés no chão; o assento e a almofada dentro da regulagem do banco", "selo": "consenso", "fonte": "app"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o cotovelo quase estendido", "selo": "consenso", "fonte": "app"},
+  {"id": "banco-scott-sem-travar-embaixo", "pede": "sem travar o cotovelo embaixo", "selo": "consenso", "fonte": "app"},
+  {"id": "banco-scott-antebraco-quase-vertical", "pede": "em cima, o antebraço quase vertical", "selo": "consenso", "fonte": "app"},
+  {"id": "barra-w-pegada-nas-partes-inclinadas", "pede": "pegada nas partes inclinadas da barra W, palmas para cima", "selo": "consenso", "fonte": "aprovado"},
+  {"id": "barra-rigida-nas-duas-maos", "pede": "a barra é uma só: as duas mãos ficam sempre à mesma distância uma da outra", "selo": "consenso", "fonte": "objetos"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palmas para cima (inclinadas pela curva da barra)", "selo": "consenso", "fonte": "aprovado"},
+  {"id": "barra-w-fora-do-corpo", "pede": "a barra não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
+  {"id": "banco-scott-barra-fora-do-banco", "pede": "a barra não atravessa a almofada nem os ganchos do suporte", "selo": "consenso", "fonte": "desenho"},
+  {"id": "tronco-quase-parado", "pede": "o corpo fica parado: só os antebraços se mexem", "selo": "consenso", "fonte": "app"},
+  {"id": "lombar-neutra", "pede": "costas sem arredondar", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "tira", "instante": 1, "titulo": "Tirar o braço da almofada", "vista": "lateral", "oQueMuda": "os braços saem da almofada na subida: o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "trava", "instante": 0, "titulo": "Soltar o peso embaixo", "vista": "lateral", "oQueMuda": "embaixo, o cotovelo estica de vez e trava", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a volta para no meio: o braço não chega a quase estender", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "braço colado na almofada", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "sem soltar embaixo", "ponto": "punho", "selo": "consenso", "fonte": "app"}
+ ]
+}

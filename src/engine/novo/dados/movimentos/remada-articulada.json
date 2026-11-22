@@ -1,0 +1,73 @@
+{
+ "id": "remada-articulada",
+ "nome": "Remada articulada",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-articulada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-articulada.md): assento na altura em que os pegadores ficam na linha do peito com os braços estendidos; peito apoiado na almofada durante toda a série; puxa levando os cotovelos para trás, rentes ao corpo; volta até alongar as escápulas para a frente; consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/remada-articulada.json): 'Início: braços estendidos, escápulas à frente', 'Fim: cotovelos para trás, rentes ao corpo'; dicas 'Peito na almofada.', 'Ombros baixos.', 'Estica os braços na volta.'; erros 'Tirar o peito da almofada' (o corpo ajuda a puxar), 'Encolher os ombros' (os ombros sobem), 'Não estender os braços' (a volta para no meio)",
+  "apoiada": "A remada com o peito apoiado no banco inclinado aprovada (src/engine/novo/dados/movimentos/remada-apoiada.json): os tempos das fases, as escápulas que se juntam no fim (−10), o braço além da linha das costas no fim (26°), os erros do peito que sai do apoio, dos ombros que sobem (+8) e da volta que para em 45%",
+  "cadeiras": "As máquinas sentadas aprovadas (src/engine/novo/dados/movimentos/supino-maquina.json e cadeira-extensora.json): o glúteo e o peito que afundam 1 cm no estofado, o pescoço que compensa a inclinação do peito, os pés no chão com o joelho a 90°",
+  "objetos": "src/engine/novo/dados/objetos/remada-articulada.json (a remada articulada: o eixo no alto e à frente, o braço de 76 cm, os pegadores de pé a 22 cm do meio, o caminho que se abre 5°, o apoio do peito a 10°)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "o glúteo afunda 1 cm no assento, como nas máquinas sentadas aprovadas"},
+  "peito.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "o peito afunda 1 cm no apoio, como as costas no encosto das máquinas aprovadas"},
+  "bacia.noAssento": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o ponto mais baixo do glúteo fica 2 cm à frente do meio do assento (o assento tem 23 cm de fundo): a pessoa senta no meio dele, e o apoio do peito vem até ela"},
+  "tronco.aFrente": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o peito inclina 10° à frente, como o apoio (a ficha só diz 'peito apoiado na almofada'): sentado, sem encosto atrás, o tronco se apoia no peito"},
+  "lombar.sentado": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "cadeiras", "o": "sentado, sem encosto atrás, a bacia enrola um pouco e a lombar fica 5° menos curva que em pé (nas máquinas com encosto, 10°)"},
+  "pescoco.compensa": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "cadeiras", "o": "com o peito inclinado à frente, o pescoço devolve 70% dessa inclinação: o olhar fica quase na horizontal, por cima do apoio"},
+  "pes.meiaDistancia": {"v": 18, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "os pés no chão, na largura do quadril, dos dois lados da base (a ficha não fala dos pés)"},
+  "joelho": {"v": 75, "un": "graus", "selo": "desenho", "fonte": "cadeiras", "o": "os pés chapados no chão um pouco à frente dos joelhos (o joelho dobra 75°): com o assento alto da remada, a coxa desce para o joelho, e com 90° (o das máquinas sentadas aprovadas) o pé ficaria atrás do joelho"},
+  "pegador.naLinhaDoPeito": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o assento regulado para o centro da mão ficar na linha do meio do peito com os braços estendidos (a ficha: 'pegadores na linha do peito com os braços estendidos'); a altura do assento sai daí"},
+  "cotovelo.inicio": {"v": 6, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "começo: 'braços estendidos' (a ficha), sem travar: o cotovelo dobra 6°; a posição inicial dos braços da máquina sai daí"},
+  "escapula.prot.inicio": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "começo: 'escápulas à frente' (a ficha: 'volta até alongar as escápulas para a frente'): a clavícula vai 10° à frente"},
+  "escapula.retr.fim": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "apoiada", "o": "fim: as escápulas se juntam (−10, como na remada apoiada aprovada)"},
+  "escapula.elev.inicio": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "começo: o ombro solto, sem subir ('ombros baixos', a dica do app; na remada apoiada aprovada, +1, que aqui passaria do ritmo do ombro com o braço à frente)"},
+  "escapula.elev.fim": {"v": -1, "un": "graus", "selo": "consenso", "fonte": "app", "o": "fim: 'ombros baixos' (a dica do app; −1, como na remada apoiada aprovada)"},
+  "braco.fim.alemDasCostas": {"v": 20, "un": "graus", "selo": "consenso", "fonte": "apoiada", "o": "fim: 'cotovelos para trás' (a ficha): o braço fica 22° além da linha do tronco, visto de lado (na remada apoiada, 26°: aqui a mão presa no pegador, que vem num arco, para ao lado do peito); a posição final dos braços da máquina sai daí"},
+  "cotovelo.fora": {"v": 0, "un": "fração", "selo": "consenso", "fonte": "ficha", "o": "o cotovelo não aponta para fora ('rentes ao corpo', a ficha): com a mão presa no pegador, que se abre, ele já sai 24° do lado do tronco no fim (com 0,2 para fora, saía 32°, além dos 30° das remadas)"},
+  "cotovelo.desce": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "no começo, para baixo (com o braço estendido à frente, o cotovelo aponta para o chão)"},
+  "cotovelo.atras": {"v": 1, "un": "fração", "selo": "consenso", "fonte": "ficha", "o": "no fim, para trás ('cotovelos para trás', a ficha); de um ao outro, aos poucos, com a puxada"},
+  "cotovelo.pouco": {"v": 0.15, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o tanto que o cotovelo aponta para trás no começo e para baixo no fim"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.peito.inclina": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "apoiada", "o": "erro 'Tirar o peito da almofada': na puxada, o tronco vai 16° para trás e o peito sai do apoio (o corpo ajuda a puxar); na remada apoiada aprovada, 18°"},
+  "erro.encolher.elev": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "apoiada", "o": "erro: os ombros sobem no fim (+8 na clavícula, como na remada apoiada aprovada)"},
+  "erro.curta.fracao": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "apoiada", "o": "erro: a volta para em 45% do caminho, sem estender os braços nem levar as escápulas à frente (como na remada apoiada aprovada)"}
+ },
+ "fases": [
+  {"nome": "Alongado · escápulas à frente", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "apoiada"},
+  {"nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "apoiada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "apoiada"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "remada-articulada-pegador-na-linha-do-peito", "pede": "assento na altura em que os pegadores ficam na linha do peito com os braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-articulada-rotulo-do-peito-no-apoio", "pede": "o rótulo \"peito na almofada\" aponta para o peito, onde ele encosta no apoio", "selo": "desenho", "fonte": "desenho"},
+  {"id": "remada-articulada-sentado-com-o-peito-no-apoio", "pede": "peito apoiado na almofada durante toda a série, sentado no assento", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-maos-nos-pegadores", "pede": "as mãos presas nos pegadores o movimento todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "remada-articulada-pegador-no-arco", "pede": "o pegador anda num arco em volta do eixo do braço da máquina, e a mão com ele", "selo": "desenho", "fonte": "objetos"},
+  {"id": "remada-articulada-pegadores-se-afastam", "pede": "os pegadores se afastam enquanto vêm para trás (o caminho que se abre)", "selo": "desenho", "fonte": "objetos"},
+  {"id": "braco-estendido-no-comeco", "pede": "começo: braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-passa-as-costas", "pede": "fim: cotovelos para trás", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-rente-na-remada", "pede": "cotovelos rentes ao corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "escapulas-se-juntam", "pede": "volta com as escápulas à frente; no fim elas se juntam", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ombro-sem-encolher", "pede": "ombros baixos", "selo": "consenso", "fonte": "app"},
+  {"id": "palmas-uma-para-a-outra", "pede": "pegada neutra nos pegadores de pé (palmas uma para a outra)", "selo": "desenho", "fonte": "objetos"},
+  {"id": "lombar-neutra", "pede": "costas retas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-parado-na-remada", "pede": "o tronco não se mexe (o peito fica no apoio)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "peito", "instante": 1, "titulo": "Tirar o peito da almofada", "vista": "lateral", "oQueMuda": "na puxada, o tronco vai para trás e o peito sai do apoio: o corpo ajuda a puxar", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "os ombros sobem no fim", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender os braços", "vista": "lateral", "oQueMuda": "a volta para no meio, sem os braços estenderem nem as escápulas irem à frente", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "peito na almofada", "ponto": "marca:peitoNaAlmofada", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "ombros baixos", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "estica os braços na volta", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

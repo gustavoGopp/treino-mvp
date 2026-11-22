@@ -13,6 +13,7 @@ import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
 import { enquadramentoGuardado } from './preparo';
+import { PINTOR_POR_PARES_LIGADO } from './pintor-ligado';
 
 export type Modo = 'tec' | 'mus' | 'traj' | 'err';
 export interface OpcoesCena {
@@ -28,6 +29,12 @@ export interface OpcoesCena {
   equipamento?: 'realista' | 'simples';
   /** O tema decide os tons do equipamento realista (as cores do corpo vêm do CSS). */
   tema?: Tema;
+  /**
+   * A ordem de pintura do corpo e do equipamento: 'hoje' (`pintar`, por uma profundidade só por item) ou 'pares' (o
+   * pintor por pares, ./pintor-por-pares.ts). Sem ela, vale a lista de ./pintor-ligado.ts (etapa 1: vazia). Só os
+   * scripts que comparam os dois pintores a passam.
+   */
+  pintor?: 'hoje' | 'pares';
 }
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
@@ -78,7 +85,19 @@ const viesDoQuadro = (q: Quadro, vista: IdVista): Record<string, number> | undef
 /* ============================== pontos do corpo pelo nome ============================== */
 type EsqQ = Quadro['esq'];
 const DO_MEIO: Record<string, (e: EsqQ) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
-/** Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada, quadril, joelho, tornozelo, calcanhar, ponta). */
+/**
+ * Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada,
+ * quadril, joelho, tornozelo, calcanhar, ponta). Acréscimo de 18/11: `marca:<nome>` é um ponto que o quadro dá nas
+ * marcas (ex.: onde o peito encosta no apoio, que o esqueleto sozinho não sabe), para os rótulos de técnica.
+ */
+export function pontoDoRotulo(e: EsqQ, nome: string, k: 'R' | 'L', marcas?: Quadro['marcas']): V3 {
+  if (nome.startsWith('marca:')) {
+    const p = marcas?.[nome.slice(6)];
+    if (!p) throw new Error(`marca desconhecida no quadro: "${nome}"`);
+    return p;
+  }
+  return ponto(e, nome, k);
+}
 function ponto(e: EsqQ, nome: string, k: 'R' | 'L'): V3 {
   // 'ombro:L' = o ponto de um lado certo, qualquer que seja o lado pedido (a linha que liga os dois ombros)
   const [base, lado] = nome.split(':') as [string, 'R' | 'L' | undefined];
@@ -212,6 +231,24 @@ export function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>
   }
   const T = duracao(ex.ficha.fases);
   c = [1e9, 1e9, -1e9, -1e9];
+  // o exercício pode pedir, numa vista, só alguns pontos no quadro (Exercicio.enquadra): o resto é cortado pela borda
+  const so = ex.enquadra?.[o.vista];
+  if (so) {
+    const cam = VISTAS[o.vista];
+    const ponha = (q: Quadro) => {
+      for (const p of so(q)) {
+        const t = naTela(cam, p);
+        c![0] = Math.min(c![0], t[0]);
+        c![1] = Math.min(c![1], t[1]);
+        c![2] = Math.max(c![2], t[0]);
+        c![3] = Math.max(c![3], t[1]);
+      }
+    };
+    for (let i = 0; i < 12; i++) ponha(quadroDe(ex, o.corpo, instante(ex.ficha.fases, (i / 12) * T).u));
+    for (const e of ex.ficha.erros) if (e.vista === o.vista) for (let i = 0; i < 6; i++) ponha(quadroDe(ex, o.corpo, instante(ex.ficha.fases, (i / 6) * T).u, e.id));
+    m.set(chave, c);
+    return c;
+  }
   const junta = (itens: Item[]) => {
     const k = caixaDosItens(itens.filter((it) => it.camada >= 1));
     c![0] = Math.min(c![0], k[0]);
@@ -234,9 +271,9 @@ function alvoMedio(ex: Exercicio, o: Omit<OpcoesCena, 'modo'>, nome: string): P2
     y = 0,
     n = 0;
   for (let i = 0; i <= 8; i++) {
-    const e = quadroDe(ex, o.corpo, i / 8, o.erro).esq;
+    const q = quadroDe(ex, o.corpo, i / 8, o.erro);
     for (const k of ladosNaVista(ex, cam)) {
-      const p = naTela(cam, ponto(e, nome, k));
+      const p = naTela(cam, pontoDoRotulo(q.esq, nome, k, q.marcas));
       x += p[0];
       y += p[1];
       n++;
@@ -333,9 +370,9 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
   const lados = ladosNaVista(ex, cam);
   const xy = (p: P2) => `${f1(p[0])}" y1="${f1(p[1])}`;
   /** O ponto do corpo (do lado mais perto do texto) e o fio do texto até ele. */
-  const fio = (r: RotuloPosto, e: EsqQ, nome: string, t: number, classe: string) => {
+  const fio = (r: RotuloPosto, e: EsqQ, nome: string, t: number, classe: string, marcas?: Quadro['marcas']) => {
     const de = saidaDoFio(r, t);
-    const alvos = lados.map((k) => naTela(cam, ponto(e, nome, k)));
+    const alvos = lados.map((k) => naTela(cam, pontoDoRotulo(e, nome, k, marcas)));
     const a = alvos.reduce((m, p) => (Math.hypot(p[0] - de[0], p[1] - de[1]) < Math.hypot(m[0] - de[0], m[1] - de[1]) ? p : m));
     return { a, s: `<line class="${classe}" x1="${xy(de)}" x2="${f1(a[0])}" y2="${f1(a[1])}"/>` };
   };
@@ -347,7 +384,8 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
     const t = tam * TAM_DO_ERRO;
     return fio(r, quadroDe(ex, o.corpo, u, o.erro).esq, def.foco, t, 'n-err-fio').s + textoDoRotulo(r, t, 'n-err-t');
   }
-  const e = quadroDe(ex, o.corpo, u).esq;
+  const qu = quadroDe(ex, o.corpo, u),
+    e = qu.esq;
   ex.ficha.rotulos
     .filter((x) => x.vista === o.vista)
     .forEach((x, i) => {
@@ -370,7 +408,7 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
       if (x.guia) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts(x.guia.map((nome) => naTela(cam, ponto(e, nome, k))))}"/>`;
       const r = postos[i];
       if (!r) return;
-      const f = fio(r, e, x.ponto, tam, 'n-rot-fio');
+      const f = fio(r, e, x.ponto, tam, 'n-rot-fio', qu.marcas);
       s += `${f.s}<circle class="n-rot-p" cx="${f1(f.a[0])}" cy="${f1(f.a[1])}" r="${f1(tam * 0.22)}"/>${textoDoRotulo(r, tam, 'n-rot-t')}`;
     });
   return s;
@@ -379,11 +417,46 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
 export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
   return svgEmU(ex, instante(ex.ficha.fases, t).u, o, vb, tema);
 }
+/**
+ * O pintor por pares (./pintor-por-pares.ts), quando carregado. Ele fica fora do pacote do motor (o app só o baixa
+ * quando abre uma animação em que ele está ligado: src/features/programa/trabalhoBoneco.ts o carrega junto com ela e o
+ * entrega aqui); os scripts o recebem pelo ./index.ts.
+ */
+let PINTOR_POR_PARES: ((itens: Item[], id: string) => string) | null = null;
+/** `id`: a animação, para o pintor usar as opções dela (o ajuste do ciclo, em ./pintor-ligado.ts). */
+export function registrarPintorPorPares(pintor: (itens: Item[], id: string) => string): void {
+  PINTOR_POR_PARES = pintor;
+}
+/**
+ * O corpo e o equipamento pintados por pares (./pintor-por-pares.ts) num ponto do movimento, guardados: a ordem por pares
+ * custa várias vezes a de hoje, e o mesmo ponto do movimento volta muitas vezes na volta da animação (nas pausas, e no
+ * começo e no fim do ciclo: um terço dos quadros, ou mais). O quadro do movimento é o mesmo para o mesmo u arredondado
+ * a 1/400 (quadroDe), e o desenho também. Só a animação que está na tela fica guardada (como em svgAnimado).
+ */
+const PINTADOS = { ex: null as Exercicio | null, chave: '', quadros: new Map<number, { corpo: string; defs: string }>() };
+function pintadoPorPares(ex: Exercicio, u: number, o: OpcoesCena): string {
+  const chave = [o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', o.tema ?? ''].join('|');
+  if (PINTADOS.ex !== ex || PINTADOS.chave !== chave) {
+    PINTADOS.ex = ex;
+    PINTADOS.chave = chave;
+    PINTADOS.quadros.clear();
+  }
+  const k = Math.round(u * 400);
+  let p = PINTADOS.quadros.get(k);
+  if (!p) {
+    // sem o pintor carregado, um erro, e não o desenho de hoje no lugar do aprovado
+    if (!PINTOR_POR_PARES) throw new Error(`o pintor por pares não foi carregado (registrarPintorPorPares), e ${ex.ficha.id} o pede`);
+    const corpo = PINTOR_POR_PARES(itensEmU(ex, u, o), ex.ficha.id);
+    PINTADOS.quadros.set(k, (p = { corpo, defs: DEFS }));
+  }
+  DEFS = p.defs;
+  return p.corpo;
+}
 function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema): string {
   // a linha do chão (y = 0), nas vistas em que o chão fica de perfil
   const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
   DEFS = '';
-  const corpo = pintar(itensEmU(ex, u, { ...o, tema }));
+  const corpo = (o.pintor ?? (PINTOR_POR_PARES_LIGADO.has(ex.ficha.id) ? 'pares' : 'hoje')) === 'pares' ? pintadoPorPares(ex, u, { ...o, tema }) : pintar(itensEmU(ex, u, { ...o, tema }));
   return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}${camadaDeRotulos(ex, u, o, vb)}</svg>`;
 }
 /**
@@ -395,7 +468,7 @@ function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, nu
 const PASSOS_GUARDADOS = 240;
 const PRONTOS = { chave: '', quadros: new Map<number, string>() };
 export function svgAnimado(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
-  const chave = [ex.ficha.id, o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', tema, vb.join(',')].join('|');
+  const chave = [ex.ficha.id, o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', o.pintor ?? '', tema, vb.join(',')].join('|');
   if (chave !== PRONTOS.chave) {
     PRONTOS.chave = chave;
     PRONTOS.quadros.clear();

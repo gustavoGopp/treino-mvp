@@ -1,0 +1,57 @@
+{
+ "fontes": {
+  "lf-hs26-pd": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Pulldown SS-PD, 56,9 x 55,6 x 76,2 pol (145 x 142 x 194 cm), C x L x A (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24-pd": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Pulldown HS-PD, 54 x 33 x 89 pol (138 x 84 x 227 cm) (pesquisa/04-objetos.md, seção 13.1)",
+  "mv-next-pd": "Movement (Brasil), apresentação Next Selectorized 2025, p. 18: puxada alta 152,8 x 137,5 x 194,8 cm (pesquisa/04-objetos.md, seção 13.1)",
+  "spirit-latp": "Spirit Fitness, ficha CSS-LATP Lat Pulldown (REV 04.28.2025); https://content.abt.com/documents/174577/spirit-fitness-lat-pulldown-machine-CSS-LATP-spec-sheet.pdf (lida em 18/11/2026): \"Setup Dimensions: 58\" x 47.8\" x 91\"\" (147 x 121 x 231 cm), \"Pulley Ratio 1\", \"250 LB Weight Stack\", \"10 lb Top Plate / 8 x 10 lb Plates / 8 x 20 lb Plates\", \"Adjustable thigh pads secure lower body for heavy weight pulls\"",
+  "titan-lat": "Titan Fitness, 48 in. Stainless Steel Lat Bar, página do produto; https://titan.fitness/products/48-in-stainless-steel-lat-bar (lida em 18/11/2026): \"Overall Width: 48-in.\", \"Bar Diameter: 28mm\", \"4\" wide to 30\" horizontal grip spread\", \"32\" wide to 48\" angled grip spread\", \"Product Weight: 13 LB\", \"Includes carabiner\"",
+  "gg-lat": "Gym Gear, 48\" Standard Grip Lat Pulldown Bar (Wide), ficha; https://gymgear.com/cdn/shop/files/48_Standard_Grip_Lat_Pulldown_Bar_Wide.pdf: 48 pol, cromada, com empunhaduras de borracha (pesquisa/04-objetos.md, seção 8)",
+  "estacoes-torre-polia": "src/engine/novo/dados/objetos.json, coluna de polia (`torre`): a roldana de 110 mm (Body-Solid) e a espessura provisória das placas da pilha (2,5 cm)",
+  "estacoes-barra-reta": "src/engine/novo/dados/objetos/polia-braco-barra-reta.json: a aba giratória e o mosquetão da barra reta curta (provisórios, a página da Rogue não dá)",
+  "estacoes-corpo": "A tabela do corpo (src/engine/novo/dados/corpo-homem.json): a medida que a máquina tem de servir a quem senta nela",
+  "estacoes-desenho": "Escolha de desenho, sem medida de fabricante: o motivo vai em cada linha"
+ },
+ "objetos": {
+  "estacaoPuxada": {
+   "nome": "Estação de puxada (puxador alto): o assento, o rolo das coxas, a torre com a pilha e o braço de cima com a roldana",
+   "medidas": {
+    "comp": { "v": 145, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-pd", "onde": "comprimento total da Life Fitness SS-PD (Hammer Strength 138; Movement 152,8; Spirit 147)" },
+    "larg": { "v": 142, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-pd", "onde": "largura total da Life Fitness SS-PD, com a barra (Hammer Strength 84; Movement 137,5; Spirit 121)" },
+    "alturaFicha": { "v": 194, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-pd", "onde": "altura total da Life Fitness SS-PD (Movement 194,8; Hammer Strength 227; Spirit 231)" },
+    "altura": { "v": 212, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "altura desenhada, entre a Life Fitness (194) e a Hammer Strength (227): com 194, o centro da roldana de cima (183 cm) ficaria na altura do mosquetão da barra (182 cm) com os braços estendidos de quem senta (o corpo da tabela), sem lugar para o cabo" },
+    "relacao": { "v": 1, "un": "razão", "tipo": "medida", "fonte": "spirit-latp", "onde": "relação do cabo 1:1 (\"Pulley Ratio 1\"): a pilha sobe o mesmo que o cabo anda" },
+    "pilhaPlacas": { "v": 17, "un": "placas", "tipo": "medida", "fonte": "spirit-latp", "onde": "a pilha de 250 lb: uma placa de cima, 8 de 10 lb e 8 de 20 lb (17 placas)" },
+    "placaEsp": { "v": 2.5, "un": "cm", "tipo": "provisoria", "fonte": "estacoes-torre-polia", "onde": "espessura de cada placa: a da coluna de polia, provisória (nenhuma ficha lida informa)" },
+    "pilhaLarg": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura das placas: nenhuma ficha lida informa; a da coluna de polia é 22 (provisória)" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "fundo das placas, como na cadeira flexora" },
+    "roldanaDiam": { "v": 11, "un": "cm", "tipo": "derivada", "fonte": "estacoes-torre-polia", "onde": "diâmetro das roldanas: a da coluna de polia (110 mm)" },
+    "torreLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura da torre da pilha (entre os montantes): as fichas só dão a largura total; o cartão de hoje tem 34" },
+    "torreProf": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "fundo da torre da pilha, como no cartão de hoje" },
+    "torreFrente": { "v": 90, "un": "cm", "tipo": "derivada", "fonte": "lf-hs26-pd", "onde": "da metade do assento à frente da torre: com o assento de 40 cm e a torre de 30, o comprimento total fecha os 145 cm da Life Fitness" },
+    "tubo": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "tubo da estrutura, como no cartão de hoje" },
+    "assentoAltura": { "v": 45, "un": "cm", "tipo": "desenho", "fonte": "estacoes-corpo", "onde": "do chão ao topo do assento: as fichas não dão; com os pés no chão, a coxa do corpo da tabela fica quase na horizontal e o joelho dobra perto de 90°" },
+    "assentoComp": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "comprimento do assento (de trás para a frente): as fichas não dão; o cartão de hoje tem 38" },
+    "assentoLarg": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "largura do assento, como no cartão de hoje" },
+    "estofadoEsp": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "espessura do estofado do assento (o cartão de hoje tem 9)" },
+    "roloDiam": { "v": 10.4, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "diâmetro de cada rolo das coxas, como no cartão de hoje" },
+    "roloComp": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "comprimento de cada rolo, um sobre cada coxa, como no cartão de hoje" },
+    "roloFrente": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "estacoes-corpo", "onde": "do meio do assento ao eixo dos rolos: a posição do rolo não consta em nenhuma ficha lida; logo atrás do joelho de quem senta (o corpo da tabela)" },
+    "poliaFrente": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "estacoes-corpo", "onde": "do meio do assento ao centro da roldana de cima: as fichas não dão; em cima da parte de cima do peito de quem senta (o corpo da tabela), para o cabo descer quase na vertical até ali" },
+    "poliaAbaixoDoTopo": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "do alto do braço de cima ao centro da roldana, que fica pendurada embaixo dele" }
+   }
+  },
+  "barraPuxada": {
+   "nome": "Barra longa de puxada (48 pol), reta no meio e com as pontas caídas, com a aba giratória e o mosquetão no meio",
+   "medidas": {
+    "comp": { "v": 121.9, "un": "cm", "tipo": "medida", "fonte": "titan-lat", "onde": "largura total da barra: 48 pol (a Gym Gear e a REP também têm 48)" },
+    "diam": { "v": 2.8, "un": "cm", "tipo": "medida", "fonte": "titan-lat", "onde": "diâmetro da barra: 28 mm" },
+    "retaComp": { "v": 76.2, "un": "cm", "tipo": "medida", "fonte": "titan-lat", "onde": "o trecho reto do meio: a pegada reta vai até 30 pol (76,2 cm) de largura; de 32 a 48 pol, a pegada é nas pontas inclinadas" },
+    "pontaQueda": { "v": 25, "un": "graus", "tipo": "desenho", "fonte": "estacoes-desenho", "onde": "quanto as pontas caem abaixo da linha do meio: nenhuma ficha lida dá o ângulo; o cartão de hoje tem cerca de 40°" },
+    "pegadorComp": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "gg-lat", "onde": "a borracha de cada ponta (a Gym Gear diz que tem empunhaduras de borracha, sem medida)" },
+    "massa": { "v": 5.9, "un": "kg", "tipo": "derivada", "fonte": "titan-lat", "onde": "peso: 13 lb = 5,9 kg" },
+    "abaAltura": { "v": 5, "un": "cm", "tipo": "provisoria", "fonte": "estacoes-barra-reta", "onde": "da barra ao furo da aba giratória: a da barra reta curta (provisória)" },
+    "mosquetao": { "v": 8, "un": "cm", "tipo": "provisoria", "fonte": "estacoes-barra-reta", "onde": "comprimento do mosquetão: o da barra reta curta (provisório)" }
+   }
+  }
+ }
+}

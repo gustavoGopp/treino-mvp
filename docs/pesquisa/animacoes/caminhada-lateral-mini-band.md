@@ -30,3 +30,17 @@ Mini-band: pelas intensidades da mini-band (`equipamento.mini-band`); a faixa no
 ## Fontes
 - `youdas2013` (`docs/pesquisa/fontes.md`).
 - `distefano2009` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/caminhada-lateral-mini-band.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (glúteo médio, sem secundário) e a biblioteca; a nota, dos erros "Joelhos para dentro" e "Deixar a mini-band frouxa" | um estudo (EMG) | `youdas2013` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | equipamento e posição do cartão; a tabela de técnica | consenso | Squat University (vídeo, `17`, G2) |
+| Variações (`vary`) | a seção "Como a carga sobe" (nos tornozelos é mais difícil), a tabela de técnica e "as repetições contam passos" (Por que assim) | consenso; a contagem é **[opinião]** | `equipamento.mini-band`; Squat University (vídeo, `17`, G2) |
+| Nota (`note`) | a montagem do cartão | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/caminhada-lateral-mini-band.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** nada de essencial. O movimento não tem um começo e um fim únicos (são passos); os rótulos usam a posição de partida e o pé afastado, da ficha de movimento.

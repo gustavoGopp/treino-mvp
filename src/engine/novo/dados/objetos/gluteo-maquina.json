@@ -1,0 +1,38 @@
+{
+ "fontes": {
+  "precor-gsl0617": "Precor, Glutebuilder Selectorised Pendulum Kickback GSL0617, folha do produto: https://static.precor.com/sell-sheet/all/GSL/GSL0617-Pendulum-Kickback-ENG.pdf (lida em 18/11/2026): \"Dimensions (L x W x H): 127 x 132 x 145 cm\", \"Weight stack tower height: 148 cm\", \"Weight stack: 127 kg\", \"The kneeling exercise position with a double knee pad, chest pad and hand grips creates the necessary support\", \"isolating movement at the hip joint for more focused glute activation\"",
+  "atlantis-c122": "Atlantis Strength, Glute C-122: https://atlantisstrength.com/gym-equipment/c122 (lida em 18/11/2026): largura 111,4 cm, altura 159,9 cm, comprimento 168,8 cm, pilha de 93 kg; \"Kneeling position provides optimal isolation of glute muscles\", \"Combination of rubber footplates and roller pads\", \"Angled handles and forearm pads offer greater comfort and stability\"",
+  "gluteo-precor-resolute": "Precor, Resolute Prone Leg Curl RSL0606; https://www.precor.com/en-GB/products/RSL0606 (lida em 18/11/2026): \"Upholstery total thickness is 2.5 inches (65 mm)\", \"Weight stack tower height: 148 cm\"",
+  "gluteo-como-a-cadeira": "A cadeira flexora aprovada (dados/objetos/cadeira-flexora.json): o came, a pilha e o tubo da estrutura têm as mesmas medidas de desenho",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "gluteoMaquina": {
+   "nome": "Glúteo na máquina, de quatro apoios (coice): a almofada dos joelhos, os apoios dos antebraços com os pegadores, a alavanca com a plataforma do pé, girando num eixo na linha do quadril, e a pilha de placas",
+   "medidas": {
+    "comp": { "v": 127, "un": "cm", "tipo": "medida", "fonte": "precor-gsl0617", "onde": "comprimento total da Precor GSL0617 (de quatro apoios; a Atlantis C-122, também de quatro apoios, tem 168,8). As fichas da Life Fitness SS-GL (186 cm), da Hammer Strength HS-HG (166 cm) e da Movement Next Glute (102 cm) são de máquinas em pé, outro tipo: não servem de medida" },
+    "larg": { "v": 132, "un": "cm", "tipo": "medida", "fonte": "precor-gsl0617", "onde": "largura total, com a pilha ao lado (Atlantis C-122: 111,4)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-gsl0617", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight stack tower height\"); a Atlantis tem 159,9 cm de altura total" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "desenho", "fonte": "gluteo-precor-resolute", "onde": "espessura dos estofados: a folha da GSL0617 não dá; é a da linha Resolute da mesma Precor (2,5 pol, 65 mm)" },
+    "eixoAltura": { "v": 74, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do eixo da alavanca: as fichas não dão; a Precor diz que o movimento fica no quadril (\"isolating movement at the hip joint\"): o eixo fica na linha do quadril de quem ajoelha, e a almofada dos joelhos regula na altura para o quadril cair nele" },
+    "eixoFora": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a alavanca corre do lado de fora da perna que trabalha, a 24 cm do meio do corpo (a coxa passa por dentro dela)" },
+    "joelheiraComp": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da almofada dos joelhos (o joelho e a canela da perna de apoio)" },
+    "joelheiraLarg": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura da almofada dos joelhos: ela fica só sob o joelho de apoio, do meio do corpo para o lado dele, e o joelho da perna que trabalha passa ao lado dela até ficar sob o peito (o quadril dobra ~90° no começo, como pede a ficha da técnica). A Precor tem \"double knee pad\", sem dar a medida" },
+    "joelheiraCurso": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto a almofada dos joelhos sobe e desce (a Precor diz que tem pontos de regulagem, sem dar o curso)" },
+    "antebracoAltura": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do topo dos apoios dos antebraços (a Atlantis tem \"forearm pads\"; a ficha não dá a altura): as costas ficam um pouco mais altas nos ombros que no quadril" },
+    "antebracoComp": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento de cada apoio de antebraço, do cotovelo ao pegador" },
+    "antebracoLarg": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura de cada apoio de antebraço" },
+    "pegadorComp": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do pegador de borracha, em pé na ponta do apoio (a Atlantis tem \"angled handles\")" },
+    "plataformaComp": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da plataforma do pé (a Atlantis tem \"rubber footplates\"; a ficha não dá a medida)" },
+    "plataformaLarg": { "v": 15, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura da plataforma do pé" },
+    "plataformaEsp": { "v": 3, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "espessura da plataforma do pé, com a borracha" },
+    "cameDiam": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "diâmetro do came no eixo (a peça redonda que enrola o cabo), o da cadeira flexora" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "número de placas desenhadas (a Precor tem 127 kg de pilha, sem dizer em quantas placas), o da cadeira flexora" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "altura da pilha em repouso, a da cadeira flexora" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "largura das placas, a da cadeira flexora" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "fundo das placas, o da cadeira flexora" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "gluteo-como-a-cadeira", "onde": "tubo da estrutura, o da cadeira flexora e do cartão de hoje" }
+   }
+  }
+ }
+}

@@ -68,11 +68,11 @@
    "o": "pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril"
   },
   "apoio.cotovelo": {
-   "v": 12,
+   "v": 40,
    "un": "graus",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia"
+   "o": "o braço de apoio firme na coxa, com o cotovelo um pouco dobrado; daí sai o ponto da coxa em que a mão apoia. Correção de 19/11/2026 (como na remada unilateral com elástico): com a mão pousada na pele da coxa (e não dentro dela, como até a auditoria das aprovadas antigas), o braço quase estendido (12°) levava o meio da mão além do joelho"
   },
   "braco.inicio.atras": {
    "v": 3,
@@ -101,6 +101,20 @@
    "selo": "consenso",
    "fonte": "unilateral",
    "o": "fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril"
+  },
+  "pintura.quina.atras": {
+   "v": 25,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "de três quartos, o corpo, as pernas e o braço de apoio vão 25 cm para trás na pintura: o kettlebell fica na frente da perna de perto, mas era pintado atrás dela (o item do corpo vai pela profundidade média do tronco, que de três quartos fica mais perto de quem olha), e parecia entrar na coxa (correção de 19/11/2026; a regra remada-carga-pintada-no-lugar mede a folga de pintura)"
+  },
+  "braco.fim.recuo": {
+   "v": 20,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "ficha",
+   "o": "fim: o antebraço inclina 20° para trás, em direção ao quadril (de 0 no começo, num arco): a mão termina ao lado do quadril, 1,6 cm atrás do centro dele, e não embaixo da barriga ('cotovelo para trás e em direção ao quadril; o kettlebell termina ao lado do quadril'). Correção de 19/11/2026 (o aviso do Gustavo: 'o kettlebell tá puxando pra dentro do próprio corpo'): com o antebraço na vertical até o fim, o cotovelo já estava no limite de trás e a mão terminava 9,9 cm à frente do quadril e 7,2 cm abaixo dele; de lado e de três quartos, a carga ficava na frente da virilha e da coxa. O kettlebell gira com a mão (a pegada neutra não muda). Mais que 25° afasta o braço do corpo (a folga da carga) e dá tranco no ritmo"
   },
   "escapula.prot.inicio": {
    "v": 6,
@@ -308,6 +322,30 @@
    "pede": "pegada neutra (palma virada para o corpo)",
    "selo": "consenso",
    "fonte": "ficha"
+  },
+  {
+   "id": "remada-elastico-mao-de-apoio-sobre-a-coxa",
+   "pede": "a mão livre pousada sobre a coxa da frente, entre o quadril e o joelho, sem entrar nela (no ciclo e nos erros)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "peso-fora-do-corpo",
+   "pede": "a bola do kettlebell não entra no corpo (tronco, bacia, coxas, braço de apoio), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "remada-sem-banco-carga-ao-lado-do-quadril",
+   "pede": "fim: o kettlebell ao lado do quadril, e não embaixo da barriga (o centro da pegada a até 5 cm do quadril, de frente para trás, e a até 10 cm na altura)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "remada-carga-pintada-no-lugar",
+   "pede": "em cada vista do guia, o kettlebell é pintado na frente das partes do corpo que ele esconde, e atrás das que o escondem",
+   "selo": "consenso",
+   "fonte": "desenho"
   }
  ],
  "erros": [

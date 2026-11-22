@@ -19,11 +19,13 @@
   "maos.aberturaDaConcha": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "quanto cada mão abre para fora, a partir da vertical do halter, para a cabeça de cima apoiar na palma; a ficha pede as mãos em concha embaixo da anilha de cima e não dá número" },
   "maos.giroParaFrente": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "quanto a mão fica girada para a frente em volta do halter (o polegar do lado do peito)" },
   "maos.meiaEspessuraDaPalma": { "v": 1.6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "do meio da mão até a pele da palma, onde a cabeça do halter apoia" },
+  "halter.encostoNoPeito": { "v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a cabeça de cima do halter encosta no esterno sem entrar nele: no máximo 0,3 cm na pele (o amassado), fora as mãos. Correção de 19/11/2026: o halter entrava 8,3 cm no peito (a frente do peito estava estimada pela profundidade do peito, e não medida na pele); agora ele vai para a frente do tórax até as cabeças encostarem, calibrado em pé (regra peso-fora-do-corpo)" },
+  "anilha.bordaAFrenteDoCalcanhar": { "v": 2.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a borda da frente da anilha fica 2,5 cm à frente do ponto do calcanhar, embaixo da frente do calcanhar; o resto da anilha fica para trás. O pé é rígido e inclinado: à frente dessa borda a sola desce abaixo do alto da anilha. Correção de 19/11/2026: o centro da anilha ficava 3 cm à frente do calcanhar e ela passava sob o meio do pé, atravessando a sola" },
   "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb); entra no equilíbrio" },
   "erro.raso.joelho": { "v": 72, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: parar alto" },
   "erro.lombar.tronco": { "v": 45, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o peito cai (inclinação do peito embaixo; no certo são 27)" },
   "erro.lombar.lombar": { "v": 35, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arredonda: a bacia gira 17 graus para trás em relação ao certo e a lombar dobra o que falta até o peito" },
-  "erro.valgo.joelho": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto cada joelho cai para dentro da linha do pé" }
+  "erro.valgo.joelho": { "v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto cada joelho cai para dentro da linha do pé. Correção de 19/11/2026: eram 9 cm; com o halter encostado no peito (e não dentro dele), embaixo a cabeça de baixo fica entre os joelhos, e com 9 cm os joelhos entravam 4,1 cm nela. Com 4 cm, embaixo os joelhos encostam no halter sem entrar nele, como na academia (o halter e os cotovelos seguram os joelhos)" }
  },
  "fases": [
   { "nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire e firme o abdômen", "selo": "consenso", "fonte": "guia" },
@@ -36,7 +38,8 @@
   { "id": "quadril-na-altura-do-joelho", "pede": "embaixo, o quadril fica na altura do joelho ou abaixo", "selo": "consenso", "fonte": "guia" },
   { "id": "joelho-na-direcao-do-pe", "pede": "o joelho segue a direção da ponta do pé", "selo": "consenso", "fonte": "guia" },
   { "id": "peso-no-meio-do-pe", "pede": "o peso fica no meio do pé, com o calcanhar apoiado", "selo": "consenso", "fonte": "guia" },
-  { "id": "lombar-neutra", "pede": "a lombar não arredonda", "selo": "consenso", "fonte": "guia" }
+  { "id": "lombar-neutra", "pede": "a lombar não arredonda", "selo": "consenso", "fonte": "guia" },
+  { "id": "peso-fora-do-corpo", "pede": "o halter encostado no peito, sem entrar nele, e a anilha sob o calcanhar, sem atravessar o pé, em todos os quadros do ciclo e dos erros (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
   { "id": "valgo", "instante": 1, "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "os joelhos saem da linha dos pés, para dentro", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },

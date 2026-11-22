@@ -1,0 +1,67 @@
+{
+  "id": "abducao-polia",
+  "name": "Abdução na polia com tornozeleira",
+  "short": "Abdução na polia",
+  "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo da perna que abre.",
+  "feelNote": "Se o tronco cair para o lado oposto, é ele que está levantando a perna: tronco reto. Se o pé girar para fora, vira outro movimento: pé apontando para a frente.",
+  "setupEq": [
+    "Polia no ponto mais baixo; tornozeleira na perna mais longe da polia."
+  ],
+  "setupBody": [
+    "Em pé, de lado para a torre, mão na torre para equilíbrio.",
+    "Tronco reto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Levar para o lado",
+      "Leva a perna para o lado, com o joelho estendido e o pé apontando para a frente."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta cruzando à frente da outra perna, controlando."
+    ]
+  ],
+  "range": [
+    "Início: perna cruzada à frente da outra.",
+    "Fim: perna aberta para o lado, pé para a frente."
+  ],
+  "breath": "Solte o ar abrindo, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Tronco reto.",
+    "Pé para a frente.",
+    "Sem embalar."
+  ],
+  "check": [
+    "Polia no ponto mais baixo",
+    "Tornozeleira na perna mais longe da polia",
+    "De lado para a torre, mão nela para equilíbrio",
+    "Tronco reto",
+    "Pé apontando para a frente"
+  ],
+  "vary": "O que não muda: o tronco reto, a mão na torre só para equilibrar, o joelho estendido com o pé para a frente, a perna sem embalo e a volta cruzando à frente da outra, controlando.",
+  "extLabels": [
+    "perna cruzada",
+    "perna aberta"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Inclinar o tronco",
+      "desc": "O tronco cai para o lado oposto."
+    },
+    {
+      "id": "e2",
+      "title": "Girar o pé para fora",
+      "desc": "Vira outro movimento."
+    },
+    {
+      "id": "e3",
+      "title": "Embalar a perna",
+      "desc": "A perna vai com impulso."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

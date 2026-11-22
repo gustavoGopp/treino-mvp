@@ -1,0 +1,272 @@
+{
+ "id": "coice-elastico",
+ "nome": "Coice de glúteo em quatro apoios com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/coice-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/coice-elastico.md): quatro apoios, laço na sola do pé, pontas sob as mãos (consenso, 17, G3); estender o quadril até a coxa ficar na linha do tronco, sem arquear a lombar (consenso, selkowitz2013); a lombar arqueia no fim se a perna subir demais; punhos e joelhos no chão (colchonete)",
+  "app": "Texto do app (src/conteudo/exercicios/coice-elastico.json): um elástico e um colchonete; em quatro apoios, mãos sob os ombros, joelhos sob o quadril; o laço do elástico na sola de um pé, as pontas presas sob as mãos; costas retas, abdômen firme; coice ~1 s, empurrando o pé para trás e para cima até a coxa ficar na linha do tronco; pausa curta no alto; volta ~2 s até o joelho voltar para baixo do quadril; erros 'Arquear a lombar no fim' (a perna sobe acima do tronco e a lombar dobra), 'Girar o quadril' (o quadril abre para o lado), 'Chutar com embalo'",
+  "aprovada": "Animações aprovadas parecidas: a flexão (exercicios/flexionar.ts: as mãos espalmadas, os dedos para a frente, a cabeça na linha das costas), a roda abdominal (exercicios/roda-abdominal.ts: o joelho no colchonete, a canela deitada para trás, o peito do pé no colchonete) e o tríceps acima da cabeça com elástico (exercicios/triceps-elastico-acima.ts: o elástico longo em laço quando o tubo não alcança)",
+  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json (o elástico longo em laço de 41 pol: a volta de 208 cm em repouso, estica até 2,5 vezes) e dados/objetos/colchonete-comprido.json (o colchonete comprido, desde 19/11: 182,9 × 59,9 × 1 cm, medidas do fabricante; o da tabela, dados/objetos.json, tem 100 × 50 × 1,5 cm provisórios e era curto para o corpo de quatro apoios)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "maos.meiaDistancia": {
+   "v": 17,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "as mãos sob os ombros: o centro da palma a 17 cm do meio do corpo (o centro do ombro, na tabela do corpo, fica a ~17 cm)"
+  },
+  "cotovelo": {
+   "v": 5,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aprovada",
+   "o": "os braços estendidos, sem travar o cotovelo: 5° de flexão; a inclinação das costas sai daí (a mão chega ao colchonete sob o ombro)"
+  },
+  "lombar": {
+   "v": 6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "costas retas, abdômen firme: a lombar 6° menos curva que em pé (a ficha não dá número; como a roda abdominal aprovada, que pede o mesmo, com 4°)"
+  },
+  "cervical": {
+   "v": -4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a cabeça na linha das costas, o olhar no colchonete um pouco à frente das mãos: o pescoço estende 4°, como na flexão aprovada (com ele reto ou dobrado, a cabeça pendia para as mãos)"
+  },
+  "coxa.inicio": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "no começo, o joelho sob o quadril (o cartão), sem apoiar: a coxa 12° atrás da vertical, e o joelho fica ~1 cm acima do colchonete (com a coxa na vertical, ele estaria apoiado)"
+  },
+  "joelho": {
+   "v": 90,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "o joelho dobrado a 90° o tempo todo (a ficha: com o joelho dobrado; o cartão: empurre o pé para trás e para cima)"
+  },
+  "pe.flexaoPlantar.inicio": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "no começo, o tornozelo solto: o pé vai 15° além do ângulo reto com a canela, e volta ao ângulo reto no alto (acréscimo de 19/11). Com o pé em ângulo reto já no começo, a ponta dele entrava 0,8 cm no chão (e, com o colchonete comprido embaixo dela, 2,3 cm no colchonete); com 15°, ela fica 0,6 cm acima do tampo"
+  },
+  "pe.flexaoPlantar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé em ângulo reto com a canela: no alto, a sola para o teto, segurando o laço"
+  },
+  "elastico.folga": {
+   "v": 0.5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o elástico passa por baixo da coxa, do joelho e da canela, por cima da pele (a metade da espessura mais a roupa)"
+  },
+  "elastico.saida.dentro": {"v": 4.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada trecho do elástico sai de baixo da mão pela beira de dentro do calcanhar dela, rente ao colchonete: 4,5 cm para dentro do centro da palma (ali a mão tem 3,5 cm de meia largura). Desde 20/11/2026: saindo do centro da palma, o trecho subia rumo ao pé por dentro do punho (até 2,3 cm), que fica a 1 ou 2 cm do colchonete"},
+  "elastico.saida.atras": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "...e 3 cm para trás do centro da palma, no calcanhar da mão, à frente do punho"},
+  "elastico.paraDentro": {
+   "v": 0.7,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o trecho da mão esquerda cruza por baixo do corpo, entre as coxas, e contorna a coxa de apoio pelo lado de dentro: a direção em que ele se afasta do corpo é para baixo e 0,7 disso para dentro (sem isso, ele atravessava a coxa de apoio)"
+  },
+  "colchonete.recua": {
+   "v": -25,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o meio do colchonete 25 cm atrás do meio entre as mãos e os joelhos, sob o meio do corpo: o colchonete comprido (182,9 cm, medido; desde 19/11) cabe o corpo de quatro apoios inteiro, das pontas dos dedos das mãos às pontas dos pés de apoio, com ~28 cm de sobra em cada ponta (com o de 100 cm da tabela, a −11 cm, o pé de apoio ficava além da ponta de trás)"
+  },
+  "colchonete.noQuadro": {
+   "v": 140,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "do colchonete comprido, só os 140 cm do meio contam para o enquadramento (desde 19/11): das pontas dos dedos às pontas dos pés de apoio são ~126 cm, e sobram 7 cm de cada lado; as pontas que passam disso podem ser cortadas pela borda do quadro. Com o colchonete inteiro, de três quartos o corpo ficava 10% menor no quadro"
+  },
+  "erro.lombar.acima": {
+   "v": 20,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a perna sobe acima do tronco (o cartão): a coxa passa 20° da linha do tronco"
+  },
+  "erro.lombar.bacia": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: a lombar dobra (o cartão): a bacia vira 14° para a frente e a lombar arqueia o mesmo tanto, com o peito parado"
+  },
+  "erro.gira.rola": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "app",
+   "o": "erro: o quadril abre para o lado (o cartão): a bacia rola 16° para o lado da perna que trabalha, em volta do quadril de apoio"
+  },
+  "erro.gira.abre": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: com a bacia rolada, a coxa sobe abrindo 22° para fora, e o pé vai para o lado"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Joelho sob o quadril",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "costas retas",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Coice · concêntrica",
+   "tipo": "conc",
+   "dur": 1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "No alto · aperta o glúteo",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "mao.R",
+  "mao.L",
+  "joelho.L",
+  "pe.L",
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "coice-elastico-colchonete-embaixo",
+   "pede": "as mãos, os joelhos, as canelas e os pés que apoiam ficam em cima do colchonete, dentro das bordas, e o pé de apoio no tampo; nenhum pé afunda; nenhuma parte do corpo (dos dois lados) fica coberta por ele em nenhuma vista; e o elástico é pintado atrás das partes do corpo que ficam na frente dele (as canelas de perto e de longe), e na frente das que ele cobre",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "id": "quatro-apoios-maos-e-joelhos",
+   "pede": "em quatro apoios: mãos sob os ombros, joelhos sob o quadril, costas retas, no colchonete",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "coice-coxa-na-linha-do-tronco",
+   "pede": "estende o quadril até a coxa ficar na linha do tronco, sem arquear a lombar, com o joelho dobrado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "coice-quadril-nao-gira",
+   "pede": "o quadril de frente para o chão, sem girar",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "coice-laco-na-sola-e-sob-as-maos",
+   "pede": "o laço na sola do pé e as pontas presas sob as mãos; o elástico estica mais no alto",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "lombar",
+   "instante": 1,
+   "titulo": "Arquear a lombar no fim",
+   "vista": "lateral",
+   "oQueMuda": "a perna sobe acima do tronco e a lombar dobra",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "c7",
+    "pelve",
+    "joelho:R"
+   ],
+   "foco": "pelve"
+  },
+  {
+   "id": "gira",
+   "instante": 1,
+   "titulo": "Girar o quadril",
+   "vista": "posterior",
+   "oQueMuda": "a bacia rola para o lado da perna que trabalha e a coxa abre para fora",
+   "destaca": [
+    "corpo",
+    "pernas"
+   ],
+   "linha": [
+    "quadril:L",
+    "quadril:R"
+   ],
+   "foco": "quadril:R"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "coxa na linha do tronco",
+   "ponto": "joelho:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "lombar parada",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quinaTras",
+   "texto": "aperte o glúteo",
+   "ponto": "quadril:R",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

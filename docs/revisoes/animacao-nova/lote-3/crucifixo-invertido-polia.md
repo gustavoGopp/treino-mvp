@@ -57,3 +57,17 @@ A primeira é a **de cima** (correção de 05/11: abre de cima; mostra o arco, o
 - **De lado, no erro "Jogar o tronco para trás", o cabo da mão direita passa na frente do rosto** (quadro `lateral:err:f1:balanco`). Em 3D ele fica a mais de 40 cm do rosto (vai da mão, ao lado do corpo, para a coluna da esquerda, à frente); de perfil a linha cruza a cabeça. Testei as vistas de três quartos para esse erro: a coluna da frente cobre o corpo e o corpo encolhe no quadro; ficou a de lado.
 - **De cima, o corpo fica na parte de cima do quadro**, com os cabos compridos até as colunas, 125 cm à frente. As colunas mais perto deixavam os cabos cruzados passarem pelas mãos no meio da abertura (medido: 0,1 cm). O corpo de cima é menor que de trás.
 - A altura da mão no começo não é igual nos dois braços (+9,5 e −3,8 cm do ombro): é o desnível para os antebraços não se atravessarem.
+
+
+## Correção de 19/11 (cabeça de cima; auditoria das aprovadas antigas)
+
+O Gustavo autorizou em 19/11 corrigir as aprovadas antigas com o defeito achado nas auditorias das fases A e B: de cima, a cabeça fica dentro da silhueta dos ombros, e o contorno único do Boneco (um só, por fora) não a desenhava; sobrava o calombo do rosto. A vista de cima é uma das duas do exercício (`vistas`).
+
+**A mudança.** O quadro liga, só na vista de cima (`viesNaVista: { cima: { cabeca: 1 } }`), a opção `cabeca` do Boneco (acréscimo de 18/11, desligada por padrão; a mesma das elevações corrigidas e do quadril na máquina): a cabeça é pintada de novo por cima do corpo, com o contorno próprio. A pose, o movimento, as peças, os rótulos e as outras vistas não mudam; o núcleo comum, quando há, também não (o exercício embrulha o quadro dele). A ficha liga a regra comum `cabeca-aparece-em-cada-vista` (`src/engine/novo/regras/vistas-do-guia.ts`).
+
+| vista de cima | antes (`72d00fc`) | depois |
+|---|---|---|
+| quadros em que a cabeça sumiria / com contorno próprio | 8 / **0** | 8 / 8 |
+| eixo do tórax e quem olha (mínimo); contorno da cabeça dentro da silhueta (máximo); a cabeça à frente do tronco (máximo) | 3,0°; 78,2%; 12,8 cm | iguais (a pose não mudou) |
+
+No estado de antes, com a regra na ficha, a conferência dá 1 falha (esta regra). No estado novo: 0 falhas e os mesmos avisos de antes. O antes e depois está em `correcao-das-antigas/crucifixo-invertido-polia.png`; os quadros grandes foram regravados (`quadros/crucifixo-invertido-polia.png`).

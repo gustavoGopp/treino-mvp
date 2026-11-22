@@ -68,7 +68,7 @@ const maisFundo = (e: Esq, partes: Set<string>, no: (p: V3) => number, perto = I
 /** O assento apoia a nádega e o alto da coxa (com as pernas curtas, a coxa desce para o joelho e passa da borda). */
 const NADEGA = 18;
 
-interface Sentado {
+export interface Sentado {
   t: Tronco;
   pernas: Record<Lado, PosePerna>;
   pelve: V3;
@@ -97,7 +97,12 @@ function apoiar(corpo: Corpo, frente: number): V3 {
   }
   return pelve;
 }
-function sentar(corpo: Corpo): Sentado {
+/**
+ * O corpo sentado no banco a 30°, apoiado. Exportado para o crucifixo inclinado (./crucifixo-inclinado-halteres.ts),
+ * que usa a mesma pessoa no mesmo banco: ele chama esta função (e não `sentado`, que guarda o resultado aqui), para a
+ * calibração ser pedida também por este exercício e ficar no arquivo de preparo dele.
+ */
+export function sentar(corpo: Corpo): Sentado {
   const amassa = f('apoio.amassa');
   // a conta demorada (milhares de poses) vem guardada para o corpo do app: ../calibragens.ts
   const { pelve, frente, cervical } = calibragem(corpo, `${F.id}:sentado`, () => {

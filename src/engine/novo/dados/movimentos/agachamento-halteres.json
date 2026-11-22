@@ -1,0 +1,55 @@
+{
+ "id": "agachamento-halteres",
+ "nome": "Agachamento com 2 halteres ao lado do corpo",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/agachamento-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/agachamento-halteres.md) e cartão do app (src/conteudo/exercicios/agachamento-halteres.json): consenso de treinadores (nsca2021, não verificado); a técnica segue, por analogia, o goblet aprovado",
+  "aprovado": "Animações aprovadas de agachamento no motor novo (dados/movimentos/goblet.json e agachamento-peso-corpo.json): a amplitude, a abertura das pontas dos pés e os erros desenhados. Este exercício nunca teve animação",
+  "amplitude": "Amplitude completa: pallares2021 e kassiano2023a (moderada: amplitude completa igual ou melhor que a parcial na hipertrofia); kubo2019 (um estudo: agachar fundo cresceu mais glúteo e adutores), como na ficha do agachamento com o peso do corpo aprovado",
+  "corpo": "Tabela do corpo (src/engine/novo/dados/corpo-homem.json): largura biacromial de 40,8 cm (ANSUR II)",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); o cartão pede o calcanhar no chão",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.cima": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: joelhos quase estendidos, sem travar (o cartão: 'sem travar os joelhos no topo')"},
+  "joelho.baixo": {"v": 126, "un": "graus", "selo": "moderada", "fonte": "amplitude", "o": "embaixo: a coxa passa da horizontal (o quadril abaixo da altura do joelho), o mesmo dos agachamentos aprovados"},
+  "tronco.cima": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em pé"},
+  "tronco.baixo": {"v": 33, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "inclinação do peito embaixo, com o peito aberto e a lombar neutra: a mesma do agachamento com o peso do corpo aprovado; a ficha não dá número"},
+  "pes.meiaDistancia": {"v": 20.4, "un": "cm", "selo": "consenso", "fonte": "corpo", "o": "pés na largura dos ombros: o centro de cada pé a meia largura biacromial (40,8 / 2) do meio"},
+  "pes.paraFora": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "pontas um pouco para fora (15°, como nos agachamentos aprovados)"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "braços estendidos, sem travar o cotovelo"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o halter ao lado do corpo: a folga entre a cabeça do halter e a pele da coxa ou da canela; o braço abre só o que precisa para o halter passar por fora da perna"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb); os dois entram no equilíbrio"},
+  "erro.calcanhar.sobe": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: quanto o pé gira na bola, tirando o calcanhar do chão (como no agachamento com o peso do corpo aprovado)"},
+  "erro.tronco.tronco": {"v": 52, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o peito cai para a frente (inclinação do peito embaixo; no certo são 33)"},
+  "erro.tronco.lombar": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a coluna dobra para alcançar o fundo (flexão da lombar além da curva de repouso, embaixo)"},
+  "erro.valgo.joelho": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "erro: quanto cada joelho cai para dentro da linha do pé (como nos agachamentos aprovados)"}
+ },
+ "fases": [
+  {"nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire e firme o abdômen", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "quadril-na-altura-do-joelho", "pede": "embaixo, a coxa passa da horizontal: o quadril abaixo da altura do joelho", "selo": "moderada", "fonte": "amplitude"},
+  {"id": "joelho-na-direcao-do-pe", "pede": "os joelhos seguem a direção dos pés", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-no-meio-do-pe", "pede": "o calcanhar fica no chão: o peso no meio do pé", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "a coluna fica reta (a lombar não arredonda)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "halteres-ao-lado-do-corpo", "pede": "um halter em cada mão, ao lado do corpo, braços estendidos: o halter pende na vertical por fora da perna, sem encostar nela", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-nao-encosta-nos-pes", "pede": "embaixo, o halter passa ao lado do pé sem encostar nele", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "calcanhar", "instante": 1, "titulo": "Calcanhar sai do chão", "vista": "lateral", "oQueMuda": "o pé gira na bola e o peso vai para a ponta do pé e o joelho", "destaca": ["pernas"], "linha": ["joelho", "tornozelo", "calcanhar"], "foco": "calcanhar"},
+  {"id": "tronco", "instante": 1, "titulo": "Tronco cai para a frente", "vista": "lateral", "oQueMuda": "o peito cai para a frente e a coluna dobra para alcançar o fundo", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "valgo", "instante": 1, "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "os joelhos saem da linha dos pés, para dentro", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "peito aberto", "ponto": "c7", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "lateral", "texto": "calcanhar no chão", "ponto": "calcanhar", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "frontal", "texto": "joelhos na direção dos pés", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "prumo": {"de": "ponta", "alt": 60}}
+ ]
+}

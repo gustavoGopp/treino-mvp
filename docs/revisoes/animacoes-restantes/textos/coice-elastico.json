@@ -1,0 +1,73 @@
+{
+  "id": "coice-elastico",
+  "name": "Coice de glúteo em quatro apoios com elástico",
+  "short": "Coice com elástico",
+  "target": "Glúteos",
+  "feel": "Glúteo da perna que trabalha.",
+  "feelNote": "Se sentir a lombar, a perna está subindo acima do tronco: pare com a coxa na linha do tronco.",
+  "setupEq": [
+    "Um elástico e um colchonete."
+  ],
+  "setupBody": [
+    "Em quatro apoios: mãos sob os ombros, joelhos sob o quadril.",
+    "O laço do elástico na sola de um pé; as pontas presas sob as mãos.",
+    "Costas retas, abdômen firme."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Coice",
+      "~1 s. Empurre o pé para trás e para cima, esticando o quadril, até a coxa ficar na linha do tronco."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, apertando o glúteo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até o joelho voltar para baixo do quadril. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Início: joelho sob o quadril.",
+    "Fim: coxa na linha do tronco, sem arquear a lombar."
+  ],
+  "breath": "Solte o ar no coice, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Coxa na linha do tronco.",
+    "Lombar parada.",
+    "Aperte o glúteo."
+  ],
+  "check": [
+    "Mãos sob os ombros",
+    "Joelhos sob o quadril",
+    "Laço na sola do pé, pontas sob as mãos",
+    "Costas retas, abdômen firme"
+  ],
+  "vary": "O que não muda: a coxa para na linha do tronco, sem arquear a lombar, e o quadril fica de frente para o chão.",
+  "note": "<b>Montagem segura:</b> antes da série, confira se o elástico tem rachaduras ou está ressecado: um elástico que escapa volta no rosto.",
+  "extLabels": [
+    "joelho sob o quadril",
+    "no alto"
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar no fim",
+      "desc": "A perna sobe acima do tronco e a lombar dobra. Pare com a coxa na linha do tronco."
+    },
+    {
+      "id": "gira",
+      "title": "Girar o quadril",
+      "desc": "O quadril abre para o lado. Quadril de frente para o chão."
+    },
+    {
+      "id": "embalo",
+      "title": "Chutar com embalo",
+      "desc": "O embalo tira o trabalho do glúteo. Suba e desça devagar."
+    }
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

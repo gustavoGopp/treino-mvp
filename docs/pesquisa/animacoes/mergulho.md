@@ -30,3 +30,16 @@ Peso do corpo: escada de degraus (`progressao.incremento.peso-corporal`) e depoi
 ## Fontes
 - `mckenzie2022`: McKenzie A, Crowley-McHattan Z, Meir R et al. Bench, Bar, and Ring Dips: Do Kinematics and Muscle Activity Differ? Int J Environ Res Public Health 2022;19(20):13211. PMID 36293792. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/mergulho.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito e tríceps; ombro anterior) e a biblioteca; a nota, da linha Descida da tabela e do erro "Descer demais" (o ombro rola para a frente) | consenso; a atenção ao ombro vem de um estudo (EMG) | `nsca2021` (não verificado); `mckenzie2022` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | equipamento e posição do cartão; as linhas Posição e Descida da tabela | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | o equipamento do cartão (largura das paralelas) e as linhas Descida e Subida | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/mergulho.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a largura das paralelas do cartão.

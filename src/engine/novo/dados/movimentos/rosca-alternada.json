@@ -13,7 +13,7 @@
  "param": {
   "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
   "joelho": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé, joelhos estendidos sem travar (a ficha não dá número)"},
-  "braco.paraFora": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço ao lado do tronco, aberto 6° (como na rosca martelo e nos braços pendurados do desenho aprovado do Boneco); com o halter de 10 lb a cabeça de dentro não entra na coxa; a ficha diz 'cotovelo ao lado do tronco' e não dá número"},
+  "braco.paraFora": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço ao lado do tronco, aberto 10°, o bastante para a cabeça de dentro do halter de 10 lb encostar na coxa sem entrar nela; a ficha diz 'cotovelo ao lado do tronco' e não dá número. Correção de 19/11/2026: eram 6° (como na rosca martelo e nos braços pendurados do desenho aprovado do Boneco), e a regra peso-fora-do-corpo, que mede a superfície do halter contra a pele, achou a cabeça de dentro 3,4 cm dentro da coxa com o braço embaixo (a regra de antes, carga-fora-do-corpo-na-rosca, tomava a cabeça por um cilindro e não via); com 9° ainda entrava 0,7 cm"},
   "braco.aFrente": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço 5° à frente da linha do tronco, ainda ao lado dele (a regra aceita até 10°): na vertical, com a palma para a frente, a cabeça de dentro do halter raspa a frente da coxa no começo da subida (−0,3 cm medido)"},
   "cotovelo.baixo": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço estendido, sem travar o cotovelo (12°: com 8°, a cabeça de dentro do halter fica 0,1 cm dentro da coxa no começo da subida)"},
   "cotovelo.cima": {"v": 132, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima, o halter perto do ombro (a ficha não dá número; a regra mede a distância da mão ao ombro); a flexão média do cotovelo é 148° (cdc)"},
@@ -42,6 +42,7 @@
   {"id": "carga-perto-do-ombro-no-topo", "pede": "em cima, o halter perto do ombro, com o cotovelo ainda ao lado do tronco", "selo": "consenso", "fonte": "app"},
   {"id": "palma-para-a-frente-na-rosca", "pede": "palmas para a frente", "selo": "consenso", "fonte": "ficha"},
   {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa a coxa, o tronco nem o braço", "selo": "consenso", "fonte": "desenho"},
+  {"id": "peso-fora-do-corpo", "pede": "nenhuma cabeça de halter entra no corpo (coxas, tronco, braços), em nenhum quadro do ciclo nem dos erros; com o braço embaixo, a cabeça de dentro encosta na coxa sem entrar (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "desenho"},
   {"id": "um-braco-de-cada-vez", "pede": "um braço de cada vez: o outro espera embaixo", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [

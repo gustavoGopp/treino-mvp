@@ -1,0 +1,70 @@
+{
+ "id": "elevacao-lateral-unilateral",
+ "nome": "Elevação lateral unilateral com halter, segurando num apoio",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-lateral-unilateral.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/elevacao-lateral-unilateral.md, tabela Técnica): de lado para um apoio, tronco inclinado 10–20°, a mão livre só equilibra (consenso, 'leaning lateral raise', docs/pesquisa-v2/17-biblioteca-ampliada.md, G3); braço para o lado até a altura do ombro, cotovelo na frente da mão (coratella2020). Segurança: não pendurar o peso do corpo em porta ou batente (decisão do Gustavo)",
+  "app": "Cartão do app (src/conteudo/exercicios/elevacao-lateral-unilateral.json): 'Um halter e um apoio firme para a mão livre (parede, batente ou móvel pesado), só para equilibrar'; em pé, de lado para o apoio, a mão livre nele; 'Tronco levemente inclinado para longe do apoio (10 a 20°)'; halter ao lado da coxa, cotovelo levemente dobrado; ~1 s subindo até a altura do ombro, pausa curta sem encolher o ombro, ~2 s descendo; as dicas ('Cotovelo lidera.', 'Ombro longe da orelha.', 'A mão livre só equilibra.') e os erros",
+  "halteres": "Elevação lateral com halteres aprovada (src/engine/novo/dados/movimentos/elevacao-halteres.json): a mesma postura das pernas e da bacia (pés, joelhos, bacia inclinada à frente, pescoço), o mesmo caminho do braço (o plano, o cotovelo e o giro dele, a pegada, a folga embaixo), o halter leve e o erro de encolher",
+  "polia": "Elevação lateral unilateral na polia aprovada (src/engine/novo/dados/movimentos/elevacao-lateral.json): um braço só, o direito, de lado para o apoio (a coluna da polia, à esquerda), com a mão esquerda nele",
+  "parede": "Abdução em pé com elástico, aprovada por delegação (src/engine/novo/dados/movimentos/abducao-elastico.json): de lado para a parede, a mão de dentro espalmada nela, os dedos para cima, só para equilibrar (que vem da panturrilha em pé no chão aprovada)",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); como a mão livre só equilibra (o cartão), o desenho põe o centro de massa entre os dois pés, de lado, e sobre o meio do pé, de frente para trás, com o braço no meio do caminho",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json (o halter sextavado de 10 lb, o das elevações laterais aprovadas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "halteres", "o": "em pé, os pés na largura do quadril, apontando para a frente (os da elevação com halteres aprovada)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "joelhos destravados: a média dos dois joelhos dobrada 10° (o da elevação com halteres aprovada; com o tronco inclinado, um joelho dobra um pouco mais que o outro)"},
+  "tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "a bacia inclina 12° à frente com a coluna neutra, como na elevação com halteres aprovada"},
+  "tronco.lado": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "'tronco levemente inclinado para longe do apoio (10 a 20°)': o tronco inclina 15° para o lado do braço que trabalha, o meio da faixa do cartão, parado a série toda"},
+  "tronco.lado.naBacia": {"v": 0, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "de onde vem a inclinação: a bacia fica nivelada e vai um pouco para o lado da parede (o centro de massa fica entre os pés), e a inclinação vem da lombar e das costas de cima, meio a meio. Medido: com 0,2 da inclinação na bacia, os pés no chão já pedem um joelho dobrado 17° e o outro 3°; com 0,4, a perna do lado da parede não alcança o chão"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "cabeça na linha do pescoço"},
+  "plano.baixo": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, o braço ao lado da coxa ('halter ao lado da coxa', o cartão), no mesmo plano da subida; a elevação embaixo sai da folga"},
+  "plano": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "halteres", "o": "o braço sobe para o lado e um pouco à frente do corpo: 30° à frente do plano do corpo (o da elevação com halteres aprovada)"},
+  "braco.topo.acimaDoOmbro": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "em cima, 'braço para o lado até a altura do ombro': o cotovelo na altura do centro do ombro. Com o tronco inclinado para o lado do braço, a elevação do braço no tronco que dá essa altura é maior que a da elevação com halteres (sai desta linha)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "cotovelo levemente dobrado (o cartão), o mesmo ângulo o movimento todo"},
+  "cotovelo.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "'cotovelo lidera' / 'cotovelo na frente da mão': no alto, o úmero gira 50° para dentro e o cotovelo fica um pouco acima da mão"},
+  "polegar.paraCima": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "halteres", "o": "no alto, o polegar fica 15° acima da pegada neutra"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "halteres", "o": "embaixo, o halter ao lado da coxa: a folga entre a cabeça do halter e a pele da coxa (a elevação do braço embaixo sai daqui)"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter sextavado de 10 lb (dados/objetos/halter-leve.json), o das elevações laterais aprovadas (o cartão diz só 'um halter'); entra no equilíbrio"},
+  "parede.cotovelo": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "parede", "o": "a mão livre espalmada na parede, os dedos para cima: o cotovelo dobrado 60°, apontando para baixo, o antebraço subindo até a parede. É daí que sai a distância da parede (a mão só equilibra); menos dobrado que na abdução (80°), porque o tronco se afasta da parede"},
+  "parede.mao.acimaDoOmbro": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "parede", "o": "o punho da mão livre na altura do centro do ombro de dentro (na abdução, 5 cm acima)"},
+  "parede.mao.aFrente": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "parede", "o": "a mão livre na parede 5 cm à frente do ombro (a da abdução)"},
+  "erro.encolher.elev": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "halteres", "o": "erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro; o da elevação com halteres aprovada)"},
+  "erro.embalo.inicio": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'jogar o tronco': embaixo, o tronco cai mais para o lado do halter (24°, em vez de 15°) para pegar impulso"},
+  "erro.embalo.fim": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'jogar o tronco': na subida, o tronco é jogado em direção ao apoio até ficar reto (0°): o corpo balança para levar o halter"},
+  "erro.alto.mais": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'subir acima do ombro': o braço sobe 30° além do certo, e o cotovelo passa bem acima do ombro"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "ombro baixo", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.3, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "sem encolher", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "mao.L", "pelve"],
+ "regras": [
+  {"id": "elevacao-unilateral-tronco-inclinado-para-longe-do-apoio", "pede": "tronco levemente inclinado para longe do apoio (10 a 20°)", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "app"},
+  {"id": "abducao-em-pe-mao-na-parede", "pede": "a mão livre espalmada no apoio (a parede)", "selo": "consenso", "fonte": "app"},
+  {"id": "elevacao-unilateral-peso-entre-os-pes", "pede": "a mão livre só equilibra: o peso (corpo + halter) fica entre os pés e perto do meio deles, com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "de frente para trás, o peso perto do meio do pé", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "braco-no-plano-da-escapula", "pede": "o braço sobe para o lado e um pouco à frente do corpo", "selo": "consenso", "fonte": "halteres"},
+  {"id": "braco-na-linha-do-ombro", "pede": "braço para o lado até a altura do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-acima-da-mao", "pede": "cotovelo levemente dobrado; o cotovelo lidera", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ombro-sem-encolher", "pede": "ombro baixo, longe da orelha", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, o halter ao lado da coxa, sem atravessá-la", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "encolher", "instante": 1, "titulo": "Encolher o ombro", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: o ombro vai em direção à orelha e o trapézio de cima assume", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "embalo", "instante": 1, "titulo": "Jogar o tronco", "vista": "frontal", "oQueMuda": "o tronco cai mais para o lado do halter embaixo e é jogado em direção ao apoio na subida: o corpo balança para subir o halter", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "cabeca"},
+  {"id": "alto", "instante": 1, "titulo": "Subir acima do ombro", "vista": "frontal", "oQueMuda": "o braço passa da altura do ombro: o cotovelo fica bem acima dele", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "ombro longe da orelha", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app", "acima": true},
+  {"vista": "frontal", "texto": "a mão livre só equilibra", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "cotovelo lidera", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "id": "rosca-scott-banco-inclinado",
+ "nome": "Rosca Scott com halter, braço apoiado no encosto do banco inclinado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-scott-banco-inclinado.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-scott-banco-inclinado.md): braço apoiado no encosto do banco inclinado, axila no topo (consenso, 17, G3); descida até quase estender, sem travar o cotovelo (opinião de 17)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-scott-banco-inclinado.json): 'encosto a ~45 a 60°'; 'De pé ou ajoelhado atrás do banco, o braço de trabalho apoiado no encosto, a axila no topo dele'; 'Halter na mão, palma para cima, braço quase estendido'; subida em ~1 s; pausa curta no alto, 'o braço continua no encosto'; descida em ~2 a 3 s; 'Em cima: halter perto do ombro'; as dicas e os erros",
+  "roscas": "As roscas aprovadas do motor novo (dados/movimentos/rosca-inclinada.json e rosca-alternada.json): o cotovelo quase estendido embaixo (8°) e dobrado ~130° em cima, a palma para a frente (o polegar 85° da posição neutra, a supinação média do CDC é 87,5°) e o erro 'descer pouco' (o cotovelo para em 55°)",
+  "objetos": "src/engine/novo/dados/objetos.json: o banco regulável (Rogue AB-3: estofado de 132 cm, 28,6 cm de largura, 44,5 cm de altura) e o halter de 25 lb",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "encosto": {"v": 60, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o encosto a 60° do chão, a ponta mais em pé da faixa do app (45–60°): o alto do encosto fica a 126 cm do chão e a axila (133 cm em pé) chega a ele de pé, com o tronco um pouco inclinado; a 45°, o alto do encosto fica a 112 cm e a pessoa teria de se curvar 20 cm (medido na tabela do corpo e do banco)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o braço apoiado: quanto o estofado amassa sob o tríceps (e sob o peito, encostado no alto do encosto)"},
+  "tronco.frente": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o tronco inclinado 25° à frente, debruçado sobre o alto do encosto (a ficha não dá número)"},
+  "cervical": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço um pouco estendido, o olhar à frente: com o pescoço dobrado para olhar o halter, a cabeça entrava no caminho dele no alto da subida (medido: com 8° de flexão, o halter entrava 1,6 cm na cabeça; com 0°, 0,6 cm)"},
+  "cabeca": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça quase na linha do pescoço"},
+  "pes.meiaDistancia": {"v": 13, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés na largura do quadril: cada bola do pé a 13 cm do meio da pelve, dos dois lados da viga do banco"},
+  "pes.aFrente": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé 4 cm à frente do meio da pelve (a ficha não dá número)"},
+  "braco.x": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o braço deita no encosto a 9 cm do meio dele, para o lado do corpo (o estofado tem 28,6 cm de largura): assim a axila e o lado do peito passam além da borda; com o braço no meio, o lado do peito, junto da axila, entrava 3 cm no estofado (medido)"},
+  "ombro.alemDaPonta": {"v": 8, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'a axila no topo': o centro do ombro fica 8 cm além da ponta do encosto, na linha do braço, e o braço deita no estofado desde a ponta (a ficha não dá número)"},
+  "braco.inclina": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço passa por cima da ponta do encosto e desce até o estofado: do ombro ao cotovelo, ele fica paralelo à face (0°): o tríceps apoia do alto do encosto até o cotovelo"},
+  "cotovelo.baixo": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: 'até quase estender, sem travar o cotovelo': o cotovelo para dobrado 14° (a ficha não dá número; a rosca inclinada aprovada para em 8°; aqui, com o braço no encosto, o halter encosta no estofado com o cotovelo a 6°, e 14° deixa a diferença entre o certo e o travado visível)"},
+  "cotovelo.cima": {"v": 125, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima: 'halter perto do ombro': o cotovelo dobra 125° (a rosca inclinada aprovada: 132°): o halter fica a 30 cm do centro do ombro e 3 cm do rosto; com 130°, ele chegava a 0,5 cm do rosto (medido). O antebraço não chega à vertical, e o peso continua no bíceps"},
+  "maos.supinacao": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "palma para cima: o polegar gira 85° da posição neutra para fora, como nas roscas aprovadas"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb), na mão direita"},
+  "erro.trava.cotovelo": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o cotovelo estica de vez, até 0°, ou até o halter bater no estofado antes disso ('soltando o peso', como diz o cartão: o peso fica apoiado no encosto)"},
+  "erro.tira.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: na subida, o braço sai do encosto: gira 30° no ombro, para cima, e o cotovelo descola do estofado (o ombro ajuda)"},
+  "erro.tira.cotovelo": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: com o braço fora do encosto, o cotovelo dobra só 100° em cima (o ombro faz parte da subida)"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: embaixo, a volta para com o cotovelo dobrado 55°, como o 'não estender embaixo' da rosca inclinada aprovada"}
+ },
+ "fases": [
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço quase estendido", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.6, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 a 3 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "rosca-scott-braco-no-encosto", "pede": "o braço colado no encosto do começo ao fim: o tríceps encosta no estofado sem atravessá-lo, e só o antebraço gira", "selo": "consenso", "fonte": "app"},
+  {"id": "rosca-scott-axila-no-topo", "pede": "a axila no topo do encosto", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o braço quase estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-scott-sem-travar-embaixo", "pede": "sem travar o cotovelo embaixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-scott-halter-perto-do-ombro", "pede": "em cima, o halter perto do ombro", "selo": "consenso", "fonte": "app"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palma para cima (a mão supinada)", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "o corpo fica parado: só o antebraço se mexe", "selo": "consenso", "fonte": "app"},
+  {"id": "lombar-neutra", "pede": "costas sem arredondar", "selo": "consenso", "fonte": "desenho"},
+  {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
+  {"id": "halter-fora-do-banco", "pede": "o halter não atravessa o banco nem o chão", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "trava", "instante": 0, "titulo": "Travar o cotovelo embaixo", "vista": "lateral", "oQueMuda": "embaixo, o cotovelo estica de vez e trava", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "tira", "instante": 1, "titulo": "Tirar o braço do encosto", "vista": "lateral", "oQueMuda": "o braço sai do encosto na subida: o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a volta para no meio: o braço não chega a quase estender", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "braço colado no encosto", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "não trave embaixo", "ponto": "punho", "selo": "consenso", "fonte": "app"}
+ ]
+}

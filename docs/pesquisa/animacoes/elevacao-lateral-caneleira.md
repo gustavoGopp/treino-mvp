@@ -31,3 +31,17 @@ Caneleira: a próxima da lista; sem uma mais pesada, mais repetições (`equipam
 - `schoenfeld2017b` (`docs/pesquisa/fontes.md`).
 - `svensen2025` (`docs/pesquisa/fontes.md`).
 - `coratella2020` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/elevacao-lateral-caneleira.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro lateral, sem secundário) e a biblioteca; a nota, do erro "Encolher os ombros" do cartão | consenso | `coratella2020` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Montagem da tabela e a posição do cartão | consenso | `17`, G3 |
+| Variações (`vary`) | a linha Movimento e Por que assim (carga baixa perto da falha) | robusta (o princípio); um estudo, contra, sem ir à falha | `schoenfeld2017b`; `svensen2025` |
+| Nota (`note`) | a montagem do cartão e a seção Segurança da ficha | consenso | `17`, G3 |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/elevacao-lateral-caneleira.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda.

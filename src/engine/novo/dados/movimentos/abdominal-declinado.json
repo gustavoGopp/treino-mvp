@@ -1,0 +1,62 @@
+{
+ "id": "abdominal-declinado",
+ "nome": "Abdominal no banco declinado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-declinado.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-declinado.md): banco declinado com os pés presos nos rolos; deitado, joelhos dobrados, mãos cruzadas no peito ou ao lado da cabeça, sem puxar o pescoço; enrola a coluna levando as costelas na direção do quadril até as costas saírem do banco; desce em ~2–3 s, desenrolando até as costas encostarem, sem relaxar no fundo; consenso de treinadores (nsca2021, não verificado). A técnica segue, por analogia, o abdominal no chão",
+  "app": "Texto do app (src/conteudo/exercicios/abdominal-declinado.json): 'Banco declinado, com os pés presos nos rolos'; 'Início: costas no banco'; 'Fim: tronco enrolado, costas fora do banco'; as dicas ('Enrola a coluna', 'Sem puxar o pescoço', 'Desce devagar') e os três erros",
+  "aprovado": "O abdominal no chão aprovado (dados/movimentos/abdominal-chao.json): a lombar firme deitado, o pescoço que acompanha o tronco, as mãos cruzadas no peito, o erro de puxar o pescoço e o de subir com o quadril; e as regras dos abdominais (regras/abdominais.ts)",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/banco-declinado.json (o banco declinado: os ângulos do encosto da Life Fitness LBR-DB)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "declina": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "objetos", "o": "o encosto a −20°, o do meio dos três ângulos de declínio do banco (−10°, −20° e −30°); a ficha não diz qual"},
+  "lombar.base": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "deitado, a lombar firme: a curva da lombar achata 15° além da de repouso, como no abdominal no chão aprovado"},
+  "ombro.z": {"v": -50, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "onde ficam os ombros, deitado (só posiciona o corpo, antes de ir para o banco), como no abdominal aprovado"},
+  "ponta.alemDoQuadril": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a ponta de cima do encosto fica 4 cm além do centro do quadril, ao longo do banco: o glúteo inteiro apoiado e a coxa saindo do encosto"},
+  "coxa.angulo": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a coxa sobe 60° acima da linha do encosto até os rolos dos joelhos (a ficha não dá número)"},
+  "joelho": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "'joelhos dobrados': o joelho dobra 100°, por cima dos rolos de trás do joelho (a ficha não dá número; no abdominal no chão aprovado, 90°)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto os rolos amassam a perna atrás dos joelhos e na frente dos tornozelos"},
+  "toracica.topo": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "no topo, a parte de cima da coluna enrola 45°, como no abdominal no chão aprovado"},
+  "lombar.topo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no topo, a lombar enrola 15° (no chão, 5°): 'até as costas saírem do banco' (a ficha não dá número); a bacia continua apoiada"},
+  "cervical.topo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "no topo, o pescoço acompanha o tronco: 8° de flexão a partir do pescoço reto, como no abdominal aprovado"},
+  "cabeca.topo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "no topo, a cabeça dobra 5° sobre o pescoço, como no abdominal aprovado"},
+  "maos.x": {"v": -1, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "mãos cruzadas no peito, como no abdominal aprovado"},
+  "maos.y": {"v": -25, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o punho direito 25 cm abaixo da base do pescoço, ao longo do tórax, como no abdominal aprovado"},
+  "maos.abaixo": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o punho esquerdo 3 cm abaixo do direito, como no abdominal aprovado"},
+  "maos.acima": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "o antebraço esquerdo passa por cima do direito, como no abdominal aprovado"},
+  "maos.poloFora": {"v": 1.5, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para fora, como no abdominal aprovado"},
+  "maos.poloPes": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para os pés, como no abdominal aprovado"},
+  "maos.poloTras": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "para onde o cotovelo aponta: o peso da direção para as costas, como no abdominal aprovado"},
+  "erro.pescoco.toracica": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "aprovado", "o": "erro 'puxar o pescoço': as costas mal saem do banco (a coluna enrola 30% do certo), como no abdominal aprovado"},
+  "erro.pescoco.cervical": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: o pescoço dobra 30° a partir do pescoço reto, como no abdominal aprovado"},
+  "erro.pescoco.cabeca": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: a cabeça dobra mais 20°: o queixo vai ao peito, como no abdominal aprovado"},
+  "erro.reta.quadril": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'subir com a coluna reta': o tronco sobe como uma tábua, o quadril dobrando 35° (os flexores do quadril fazem o trabalho), sem a coluna enrolar"},
+  "erro.impulso.braco": {"v": 150, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'impulso': os braços estendidos são jogados de trás da cabeça (ao longo do tronco) para a frente, girando 150° no ombro na subida"}
+ },
+ "fases": [
+  {"nome": "Deitado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "costas no banco, sem relaxar", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovado"},
+  {"nome": "Topo · contrai", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovado"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "abdominal-declinado-costas-saem-do-banco", "pede": "enrola a coluna até as costas saírem do banco; embaixo, as costas encostam", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-declinado-bacia-no-banco", "pede": "a bacia continua apoiada no banco: quem sobe é a coluna, enrolando", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-declinado-pernas-presas", "pede": "os pés presos nos rolos: os rolos atrás dos joelhos e na frente dos tornozelos, encostados nas pernas", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-declinado-corpo-por-cima-do-banco", "pede": "o corpo deitado no encosto aparece por cima dele onde está na frente dele, nos dois lados e em todas as vistas; nos rolos, a cabeça, o tronco e os braços", "selo": "desenho", "fonte": "desenho"},
+  {"id": "abdominal-pescoco-acompanha", "pede": "sem puxar o pescoço: ele acompanha o tronco", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-maos-no-peito", "pede": "mãos cruzadas no peito, sem puxar a cabeça", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "pescoco", "instante": 1, "titulo": "Puxar o pescoço", "vista": "lateral", "oQueMuda": "o queixo vai ao peito e as costas mal saem do banco", "destaca": ["corpo"], "linha": ["lombar", "c7", "cabeca"], "foco": "cabeca"},
+  {"id": "reta", "instante": 1, "titulo": "Subir com a coluna reta", "vista": "lateral", "oQueMuda": "o tronco sobe como uma tábua: dobra o quadril em vez de enrolar a coluna", "destaca": ["corpo"], "linha": ["joelho", "pelve", "lombar", "c7"], "foco": "lombar"},
+  {"id": "impulso", "instante": 1, "titulo": "Impulso", "vista": "lateral", "oQueMuda": "os braços são jogados de trás da cabeça para a frente, para ganhar embalo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "quina", "texto": "enrola a coluna", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "sem puxar o pescoço", "ponto": "cabeca", "selo": "consenso", "fonte": "app"}
+ ]
+}

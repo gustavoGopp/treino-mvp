@@ -55,7 +55,8 @@
   {"id": "polia-braco-polias-na-altura-do-ombro", "pede": "os dois carros na altura do ombro", "selo": "consenso", "fonte": "app"},
   {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "guia"},
   {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
-  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: quem fecha são os braços", "selo": "consenso", "fonte": "guia"}
+  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: quem fecha são os braços", "selo": "consenso", "fonte": "guia"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "supino", "instante": 0, "titulo": "Transformar em supino", "vista": "cima", "oQueMuda": "no alongado, os cotovelos dobram e as mãos vêm para o lado do peito; ao fechar, os cotovelos esticam, como num supino", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},

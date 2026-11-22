@@ -52,3 +52,21 @@ Os halteres não atravessam as pernas nos erros (no `e2`, o mais perto: 0,5 cm d
 ## O que não ficou bom
 
 - Nada que eu tenha visto nos quadros grandes. No erro "encolher os ombros" de trás, os braços puxados aparecem quase na vertical (o braço vai para trás, na direção de quem olha); o que se lê é a linha dos ombros subindo, que é o erro.
+
+## Correção de 19/11 (halter dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), medi todas as aprovadas com peso livre com a regra nova `peso-fora-do-corpo` (as cabeças do halter contra a superfície do corpo, no ciclo e em cada erro em 9 instantes). Nesta, **no erro "Puxar só com os braços"** (no fim), o antebraço dobra 75° para a frente, como numa rosca, mas o halter ficava sempre deitado: a cabeça de trás entrava **2,2 cm no antebraço direito**. A regra de antes (`carga-livre-do-corpo-e-do-banco`) não via, porque mede só o ciclo.
+
+**A mudança.** Opção nova do núcleo `exercicios/remada.ts`, `halterGiraComAMao` (aditiva; desligada, nada muda): no erro "só com os braços", o halter gira com a mão, com o cabo atravessado na palma, como numa rosca martelo. O ciclo e os outros três erros não mudam (medido: 0 cm de diferença na mão, no cotovelo e nas cabeças do halter, em 21 instantes); o preparo muda só no enquadramento de lado, que conta a pose do erro.
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no corpo (ciclo e erros) | 2,2 cm (antebraço direito, erro "Puxar só com os braços", fim) | 0 cm |
+| pintura de lado, braço direito × halter, no mesmo erro | −2,8 cm (ordem errada) | não se cruzam mais |
+
+A conferência automática dá **0 falhas e 1 aviso** (o de antes). A ficha liga `peso-fora-do-corpo`. O antes e depois está em `correcao-das-antigas/remada-curvada-halteres-halter.png`; os quadros grandes foram regravados (`quadros/remada-curvada-halteres.png`).
+
+**O que ainda não ficou bom.**
+- De três quartos de trás, a perna esquerda esconde um pedaço do halter esquerdo e é pintada antes dele (folga de pintura de −2,1 cm, medida pela regra `remada-carga-pintada-no-lugar`, que não liguei nesta ficha). Já era assim; não corrigi, porque não é o peso dentro do corpo.
+- No erro, o halter fica quase em pé ao lado do punho (o antebraço quase deitado): é o que uma rosca martelo faz, mas lê-se diferente do quadro de antes, e o rótulo do erro fica perto da cabeça de cima do halter.
+- A mão termina 13,1 cm à frente do centro do quadril e 8,6 cm abaixo dele (80,6% do caminho do ombro ao quadril). É a remada com o tronco a 63°, em que a ficha pede "perto do quadril"; não mudei.

@@ -1,0 +1,25 @@
+{
+ "fontes": {
+  "lf-lbr-db": "Life Fitness, Adjustable Decline Bench LBR-DB; https://lifefitness.com/en-eu/catalog/strength-training/benches/life-fitness-adjustable-decline-bench (lido em 18/11/2026): \"Back Adjustments: +10°, 0°, -10°, -20°, -30°\", \"Size: 73” x 29” x 41” (185 x 73 x 104 cm)\"; e a folha de especificações da mesma (https://lifefitnessindia.com/wp-content/uploads/2024/11/Life-Fitness-Adjustable-Decline-Bench-Spec-Sheet.pdf, lida em 18/11/2026): \"designed for performing core and decline exercises\", \"a pivot point positioned near the center of gravity\", \"Placed in the center of the thigh pads, the assist handle facilitates easy entry and exit\"",
+  "hs-fw-db": "Hammer Strength, Decline Abdominal Bench FW-DB; https://www.lifefitness.com.au/commercial/decline-abdominal-bench-fwdb (lido em 18/11/2026): \"Back pad dimensions: 25\\\" x 11.5\\\" (63.5 cm x 29.2 cm)\", \"Dimensions (L x W x H): 63\\\" x 24\\\" x 35\\\"\"",
+  "desenho-declinado": "Escolha de desenho, sem medida de fabricante: o que a ficha não dá, com o motivo; o estofado, os tubos e os pés de borracha seguem o banco regulável aprovado (pecas-de-cena/banco-regulavel.ts) e o cartão de hoje dele"
+ },
+ "objetos": {
+  "bancoDeclinado": {
+   "nome": "Banco declinado (abdominal): o encosto que declina num pivô, com os rolos dos joelhos e dos tornozelos na ponta de cima",
+   "medidas": {
+    "comp": { "v": 185, "un": "cm", "tipo": "medida", "fonte": "lf-lbr-db", "onde": "comprimento total da Life Fitness LBR-DB (a Hammer Strength FW-DB tem 160)" },
+    "larg": { "v": 73, "un": "cm", "tipo": "medida", "fonte": "lf-lbr-db", "onde": "largura total (a Hammer Strength tem 61)" },
+    "altura": { "v": 104, "un": "cm", "tipo": "medida", "fonte": "lf-lbr-db", "onde": "altura total (a Hammer Strength tem 89)" },
+    "declinaAte": { "v": 30, "un": "graus", "tipo": "medida", "fonte": "lf-lbr-db", "onde": "o encosto declina em −10°, −20° e −30° (e fica em 0° e +10°)" },
+    "encostoLarg": { "v": 29.2, "un": "cm", "tipo": "medida", "fonte": "hs-fw-db", "onde": "largura do encosto (11,5 pol)" },
+    "encostoComp": { "v": 100, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "comprimento do encosto, do glúteo à cabeça do corpo da tabela deitado (o da Hammer Strength tem 63,5 cm e para nas costas; a Life Fitness, com 185 cm de banco, não dá o do encosto)" },
+    "encostoEsp": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "espessura do estofado (a do banco regulável aprovado tem 7)" },
+    "pontaAltura": { "v": 62, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "altura da face do encosto na ponta de cima (a dos pés): com o encosto a −20°, a ponta da cabeça fica a 28 cm do chão" },
+    "roloDiam": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "diâmetro dos rolos dos joelhos e dos tornozelos, como os rolos do banco romano" },
+    "roloComp": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "comprimento de cada rolo (um de cada lado do poste)" },
+    "tubo": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "desenho-declinado", "onde": "tubo da estrutura, como o do banco regulável" }
+   }
+  }
+ }
+}

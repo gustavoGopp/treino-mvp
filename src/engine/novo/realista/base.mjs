@@ -195,7 +195,7 @@ export function cena(id, cam) {
       svg += `<polygon points="${pts2(H)}" fill="none" stroke="${mat[3]}" stroke-width="${o.traco ?? 0.55}" stroke-linejoin="round"/>`;
     }
     const z = o.z ?? P(cen)[2];
-    itens.push({ z: z + (o.dz ?? 0), svg: `<g>${svg}</g>` });
+    itens.push({ z: z + (o.dz ?? 0), svg: `<g>${svg}</g>`, g3: { faces } });
     return { cen, vis };
   }
 
@@ -262,7 +262,7 @@ export function cena(id, cam) {
       svg += `<polygon points="${pts2(H)}" fill="none" stroke="${mat[3]}" stroke-width="${o.traco ?? 0.55}"/>`;
     }
     const z = o.z ?? P(cen)[2];
-    itens.push({ z: z + (o.dz ?? 0), svg: `<g stroke-width="0.3">${svg}</g>` });
+    itens.push({ z: z + (o.dz ?? 0), svg: `<g stroke-width="0.3">${svg}</g>`, g3: { frente, tras } });
     return { cen, vis };
   }
   // eixos perpendiculares a uma direção
@@ -385,12 +385,12 @@ export function cena(id, cam) {
   // segmento simples (cabo de aço, linha de detalhe)
   function linha(a, b, cor = '#202327', w = 0.45, o = {}) {
     const A = P(a), B = P(b);
-    itens.push({ z: o.z ?? (A[2] + B[2]) / 2 + (o.dz ?? 0), svg: `<path d="M${f1(A[0])} ${f1(A[1])}L${f1(B[0])} ${f1(B[1])}" stroke="${cor}" stroke-width="${w}" stroke-linecap="round" fill="none"/>` });
+    itens.push({ z: o.z ?? (A[2] + B[2]) / 2 + (o.dz ?? 0), svg: `<path d="M${f1(A[0])} ${f1(A[1])}L${f1(B[0])} ${f1(B[1])}" stroke="${cor}" stroke-width="${w}" stroke-linecap="round" fill="none"/>`, g3: { fio: [a, b], w } });
   }
   function polilinha(pts3, cor, w, o = {}) {
     const Q = pts3.map(P);
     const z = o.z ?? Q.reduce((s, q) => s + q[2], 0) / Q.length;
-    itens.push({ z: z + (o.dz ?? 0), svg: `<path d="M${Q.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L')}" stroke="${cor}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>` });
+    itens.push({ z: z + (o.dz ?? 0), svg: `<path d="M${Q.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L')}" stroke="${cor}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`, g3: { fio: pts3, w } });
   }
   // sombra macia no chão (elipse em y = 0)
   function sombra(cx, cz, rx, rz, opac = 0.22) {
@@ -404,6 +404,13 @@ export function cena(id, cam) {
   }
   function bruto(z, svg) {
     itens.push({ z, svg });
+  }
+  // A forma 3D do último item desenhado, só para a conferência da pintura e dos fios (acréscimo de 19/11/2026): os
+  // sólidos, prismas e linhas já a guardam em `g3`; uma peça desenhada à mão (`bruto`: a bola, o kettlebell, a faixa
+  // elástica) diz a sua aqui, e um sólido que é corda ou fita acrescenta a linha do meio (`fio`). Não muda o desenho.
+  function geo(g3) {
+    const it = itens[itens.length - 1];
+    if (it) it.g3 = { ...it.g3, ...g3 };
   }
   // enquadra: escala e centraliza tudo no viewBox (w × h) com margem; "chao" alinha a base embaixo
   // enquadra: escala e centraliza no viewBox (w × h) com margem. "foco" = pontos 3D que devem caber (o resto pode
@@ -436,5 +443,5 @@ export function cena(id, cam) {
       .replace(/stroke-width="([\d.]+)"/g, (_, v) => `stroke-width="${(parseFloat(v) / k).toFixed(3)}"`);
     return (defs.length ? `<defs>${defs.join('')}</defs>` : '') + `<g transform="matrix(${k.toFixed(4)} 0 0 ${k.toFixed(4)} ${f1(tx)} ${f1(ty)})">${corpo}</g>`;
   }
-  return { P, rot, s: cam.s, uid, defs, itens, solido, prisma, caixa, tubo, cilindro, estofado, anilha, pilha, furos, linha, polilinha, sombra, bruto, svg, eixos, visivel };
+  return { P, rot, s: cam.s, uid, defs, itens, solido, prisma, caixa, tubo, cilindro, estofado, anilha, pilha, furos, linha, polilinha, sombra, bruto, geo, svg, eixos, visivel };
 }

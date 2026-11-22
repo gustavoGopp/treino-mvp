@@ -1,0 +1,40 @@
+{
+ "fontes": {
+  "lf-hs26-le": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Leg Extension SS-LE, 65,7 x 41,5 x 58,1 pol (167 x 106 x 148 cm), C x L x A; a altura é a da pilha; pilha de 305 lb (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24-le": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Leg Extension HS-LE, 47 x 41 x 64 pol (120 x 105 x 163 cm) (pesquisa/04-objetos.md, seção 13.1)",
+  "mv-next-le": "Movement, apresentação Next Selectorized (2025), p. 16: cadeira extensora, 137 x 110,2 x 145,8 cm, carga máxima 120,6 kg (pesquisa/04-objetos.md, seção 13.1)",
+  "precor-rsl0605": "Precor, Resolute Leg Extension RSL0605; https://www.precor.com/en-GB/products/RSL0605 e a ficha em PDF da mesma linha (lidos em 18/11/2026): \"61 x 50 x 58 in / 155 x 127 x 148 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"Weight Stack: 240 lb / 109 kg\", \"Upholstery total thickness is 2.5 inches (65 mm)\", \"The start position, roller pad, and gas-assisted back pad [...] all adjust easily from the seated position\"",
+  "cartao-extensora": "Cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `cadeira_extensora`): o assento reto, o encosto que deita um pouco, o came redondo no joelho, a alavanca que desce até o rolo na frente da canela, a torre com a pilha",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "cadeiraExtensora": {
+   "nome": "Cadeira extensora (extensão de joelho sentado): assento, encosto que regula, alavanca com o rolo na frente da canela, girando num eixo ao lado do joelho, e a pilha de placas",
+   "medidas": {
+    "comp": { "v": 167, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-le", "onde": "comprimento total da Life Fitness SS-LE (a Hammer Strength tem 120; a Movement, 137; a Precor, 155)" },
+    "larg": { "v": 106, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-le", "onde": "largura total, com a pilha ao lado do assento (Hammer Strength 105; Movement 110; Precor 127)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0605", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight Stack Tower Height\"); a Life Fitness dá 58,1 pol (148 cm) de altura total" },
+    "assentoInclina": { "v": 0, "un": "graus", "tipo": "desenho", "fonte": "cartao-extensora", "onde": "o assento fica reto, como no cartão de hoje; nenhuma ficha lida dá a inclinação (a de 15° da Precor é da flexora sentada)" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0605", "onde": "espessura total dos estofados: 2,5 pol (65 mm)" },
+    "assentoComp": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento: as fichas não dão; o mesmo da cadeira flexora (cabe a coxa da tabela do corpo até 6 cm antes do joelho)" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do assento: as fichas não dão; a mesma da cadeira flexora" },
+    "assentoAltura": { "v": 56, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do chão ao meio do topo do assento: as fichas não dão; com o joelho bem dobrado embaixo, o pé fica fora do chão e o rolo passa por baixo da canela sem tocar o chão" },
+    "encostoComp": { "v": 62, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do encosto, do assento até acima dos ombros de quem senta (o da cadeira flexora)" },
+    "encostoInclina": { "v": 20, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "o encosto deita 20° para trás da vertical (o cartão do app: \"se o encosto reclina, recline-o um pouco\"); as fichas não dão o ângulo" },
+    "encostoCurso": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o quanto o encosto anda para a frente e para trás, para o joelho de cada pessoa cair no eixo (a Precor diz que ele regula, sem dar o curso)" },
+    "eixoAcima": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do eixo acima da borda da frente do assento: o centro do joelho de quem senta (o da cadeira flexora)" },
+    "eixoFrente": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto o eixo fica à frente da borda do assento: o joelho sai inteiro do assento" },
+    "cameDiam": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "cartao-extensora", "onde": "diâmetro do came no eixo (a peça redonda que enrola o cabo); como no cartão de hoje" },
+    "alavancaMax": { "v": 48, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o rolo da canela corre na alavanca até 48 cm do eixo (a canela da tabela do corpo tem 43 cm até o tornozelo); mais curta que a da flexora, para a ponta não chegar ao chão embaixo" },
+    "roloDiam": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "cartao-extensora", "onde": "diâmetro do rolo da canela, como no cartão de hoje" },
+    "roloComp": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o rolo passa na frente das duas canelas" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas; a Precor tem 109 kg de pilha e a Life Fitness 305 lb, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso (a da cadeira flexora)" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "fundo das placas" },
+    "alcaAFrente": { "v": -8, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a borracha das alças começa 8 cm atrás do meio do assento, ao lado do quadril (na flexora, 6 cm à frente): com o assento reto e o tronco encostado, as mãos chegam a elas; as fichas não dão" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "cartao-extensora", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

@@ -1,0 +1,54 @@
+{
+ "id": "supino-chao-halteres",
+ "nome": "Supino no chão com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-chao-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/supino-chao-halteres.md, tabela Técnica): consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "tecnica08": "docs/pesquisa/08-tecnica-guia.md, conclusão 4 (tecnica.supino-halteres.cotovelos), citada na ficha da técnica para a descida: consenso com apoio biomecânico",
+  "app": "Cartão do app (src/conteudo/exercicios/supino-chao-halteres.json): as dicas, a amplitude e os erros comuns, que seguem a ficha da técnica",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "lombar.base": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "deitado de costas, a lombar com a curva de repouso; a bacia inclina até o glúteo e a parte de cima das costas encostarem juntos no colchonete (a ficha pede só deitado, joelhos dobrados, pés no chão). Com a lombar achatada do abdominal no chão aprovado (15°), o pescoço precisava dobrar 13° a mais para trás para a cabeça apoiar" },
+  "joelho": { "v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos dobrados, pés no chão (a ficha não dá o ângulo): o pé fica onde o joelho dobra 90°, como no abdominal no chão aprovado" },
+  "ombro.z": { "v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena, deitado (só posiciona a cena), como no abdominal no chão aprovado" },
+  "colchonete.alemDaCabeca": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o colchonete (\"um colchonete, se tiver\", no cartão) vai de 3 cm além do topo da cabeça até o glúteo; os pés ficam no chão, fora dele (o colchonete da tabela tem 100 cm)" },
+  "cotovelos.doTronco": { "v": 45, "un": "graus", "selo": "consenso", "fonte": "tecnica08", "o": "cotovelos a meio caminho do tronco (30–60°): o braço desce num plano a 45° do tronco, visto de cima" },
+  "braco.cima": { "v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima: braços estendidos acima do peito, o halter sobre o ombro (braço a 80° acima da horizontal, como no supino reto aprovado)" },
+  "braco.encosta": { "v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "embaixo: o braço desce até a parte de trás dele encostar de leve no chão (a pele a 0 cm do chão); o ângulo do braço sai daí, medido na superfície do Boneco" },
+  "pegada.giro": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pegada levemente neutra, palmas giradas 25° uma para a outra, como no supino reto aprovado (a ficha não fala da pegada)" },
+  "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb), o mesmo do supino reto aprovado" },
+  "erro.quique.amassa": { "v": -1.2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o braço bate no chão e amassa 1,2 cm (o certo encosta de leve, a 0 cm)" },
+  "erro.quique.antebraco": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no rebote o halter tomba para fora e o antebraço sai 18° da vertical (a carga sai do controle)" },
+  "erro.cotovelos.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: cotovelos abertos em \"T\", a ~90° do tronco (o cartão diz 90°)" },
+  "erro.controle.antebraco": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em cima, os halteres balançam e o antebraço sai 18° da vertical, para o lado do rosto" },
+  "erro.quadril.sobe": { "v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o glúteo sai 12 cm do colchonete para ajudar a empurrar; as costas e a cabeça ficam apoiadas" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.3, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "controlada", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Embaixo · encosta sem quicar", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "encosta de leve", "selo": "consenso", "fonte": "app" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "empurra até estender", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "antebraco-na-vertical", "pede": "antebraço na vertical durante todo o movimento", "selo": "desenho", "fonte": "desenho" },
+  { "id": "cotovelos-a-meio-caminho", "pede": "cotovelos a meio caminho do tronco (30–60°)", "selo": "consenso", "fonte": "tecnica08" },
+  { "id": "halter-sobre-o-ombro-no-topo", "pede": "em cima, os halteres ficam acima do peito, sobre os ombros", "selo": "consenso", "fonte": "ficha" },
+  { "id": "braco-encosta-de-leve-no-chao", "pede": "embaixo, a parte de trás do braço encosta de leve no chão, sem atravessá-lo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "costas-e-quadril-no-colchonete", "pede": "deitado, as costas, a cabeça e o glúteo apoiados no colchonete", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "quique", "instante": 1, "titulo": "Quicar o cotovelo", "vista": "frontal", "oQueMuda": "o braço bate no chão e o halter tomba para fora", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "cotovelos", "instante": 1, "titulo": "Cotovelos em \"T\"", "vista": "cima", "oQueMuda": "o braço fica a 90° do tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "controle", "instante": 0, "titulo": "Perder o controle em cima", "vista": "lateral", "oQueMuda": "os halteres balançam para o lado do rosto", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" },
+  { "id": "quadril", "instante": 1, "titulo": "Levantar o quadril", "vista": "lateral", "oQueMuda": "o glúteo sai do colchonete", "destaca": ["corpo"], "linha": ["ombro", "quadril", "joelho"], "foco": "quadril" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "encosta sem quicar", "ponto": "cotovelo", "selo": "consenso", "fonte": "app" },
+  { "vista": "lateral", "texto": "quadril no chão", "ponto": "pelve", "selo": "consenso", "fonte": "app" },
+  { "vista": "cima", "texto": "cotovelos a meio caminho", "ponto": "cotovelo", "selo": "consenso", "fonte": "tecnica08" }
+ ]
+}

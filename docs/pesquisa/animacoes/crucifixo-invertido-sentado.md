@@ -32,3 +32,16 @@ Halter: o próximo peso da lista; pausa de 2 s no alto. **Consenso**.
 - `schoenfeld2013` (`docs/pesquisa/fontes.md`).
 - `franke2015` (`docs/pesquisa/fontes.md`).
 - `fenwick2009` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/crucifixo-invertido-sentado.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro posterior, sem secundário) e a biblioteca; a nota, dos erros "Encolher os ombros" e "Virar remada" e da pausa do cartão ("sem juntar as escápulas") | um estudo | `zhu2025` (modelagem); `schoenfeld2013` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | equipamento e posição do cartão; a linha Posição da tabela | consenso | `17`, G3 |
+| Variações (`vary`) | o equipamento do cartão e a linha Movimento da tabela | um estudo (modelagem) e consenso | `zhu2025`; `17`, G3 |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/crucifixo-invertido-sentado.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha entre cadeira e banco do cartão.

@@ -3,13 +3,15 @@
 // a flexão do joelho pedida e o centro de massa (corpo + halter) sobre o meio do pé. A dorsiflexão do tornozelo
 // é consequência, e a conferência a compara com a amplitude normal.
 import ficha from '../dados/movimentos/goblet.json';
+import { calibragem } from '../calibragens';
 import { sinal } from '../esqueleto';
 import type { Lado, PoseBraco } from '../esqueleto';
-import { daFicha, fichaSchema } from '../movimento';
+import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { anilhaNoChao, chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
+import { pesoNoCorpo } from '../regras/peso-fora-do-corpo';
 import { obj } from '../tabelas';
 import { add, dirRef, mix, mul, noRef, norm, sub } from '../vec';
 import type { V3 } from '../vec';
@@ -18,7 +20,32 @@ import { agachar } from './agachar';
 const F = fichaSchema.parse(ficha);
 const f = daFicha(F);
 
+/**
+ * Correção de 19/11/2026 (o halter entrava 8,3 cm no peito): quanto o halter vai para a frente do tórax, além da posição
+ * de antes, para a cabeça de cima encostar no esterno sem entrar nele. Calibrado em pé (u = 0): a forma do peito em
+ * volta do halter só depende do tórax, e o halter acompanha o tórax em todos os quadros. É a menor distância em que as
+ * duas cabeças entram no máximo `halter.encostoNoPeito` cm no corpo (o amassado da pele), fora as mãos que seguram.
+ */
+function frenteDoHalter(corpo: Corpo): number {
+  return calibragem(corpo, 'goblet:halter-no-peito', () =>
+    resolver1(
+      (d) => {
+        const q = montar(corpo, 0, undefined, d);
+        // só as cabeças do halter (a anilha sob o calcanhar é medida à parte)
+        return pesoNoCorpo({ ...q, prims: q.prims.filter((p) => p.t === 'prisma') }).cm - f('halter.encostoNoPeito');
+      },
+      0,
+      15,
+      24,
+    ),
+  );
+}
+
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
+  return montar(corpo, u, erro, frenteDoHalter(corpo));
+}
+
+function montar(corpo: Corpo, u: number, erro: string | undefined, frente: number): Quadro {
   const m = (id: string) => corpo.m(id);
   // pés: a bola do pé no chão e o calcanhar sobre a anilha (o pé gira na bola até o calcanhar chegar à altura dela)
   const dBola = m('pe.calcanharABola');
@@ -42,10 +69,11 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     pesMeiaDistancia: f('pes.meiaDistancia'),
     pesParaFora: f('pes.paraFora'),
     bracos(t) {
-      // o halter fica na vertical do tronco, com a cabeça de cima encostada no alto do peito
+      // o halter fica na vertical do tronco, com a cabeça de cima encostada no alto do peito (`frente`: o quanto ele
+      // vai para a frente para encostar no esterno sem entrar nele; correção de 19/11/2026)
       const T = t.torax;
-      const frenteAlto = m('prof.peito') * 0.42,
-        frenteBaixo = m('prof.peito') * 0.68;
+      const frenteAlto = m('prof.peito') * 0.42 + frente,
+        frenteBaixo = m('prof.peito') * 0.68 + frente;
       const topo = noRef(T, [0, -10, frenteAlto + rb + 0.8]),
         baixo = noRef(T, [0, -10 - (comp - cabeca), frenteBaixo + rb + 0.8]);
       eixo = norm(sub(topo, baixo));
@@ -74,11 +102,17 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   });
   const prims = [chao(-70, 70, -70, 80), ...halter(centro, eixo, 0.4)];
   const pecas: Peca[] = [{ t: 'halter', centro, eixo }];
+  // A anilha fica sob o calcanhar, com a borda da frente embaixo da frente do calcanhar (`anilha.bordaAFrenteDoCalcanhar`
+  // cm à frente do ponto do calcanhar, na direção do pé); o resto dela fica para trás. O pé é rígido e inclinado: à frente
+  // dessa borda a sola desce abaixo do alto da anilha. Correção de 19/11/2026: o centro da anilha ficava 3 cm à frente do
+  // calcanhar, e ela passava por baixo do meio do pé até perto da bola, atravessando a sola.
+  const rAnilha = obj('anilhaCalcanhar', 'diam') / 2;
   for (const s of [-1, 1]) {
-    const b = r.bola(s),
-      d = r.dirPe(s);
-    prims.push(...anilhaNoChao(b[0] - d[0] * (dBola - 3), b[2] - d[2] * (dBola - 3)));
-    pecas.push({ t: 'anilha', x: b[0] - d[0] * (dBola - 3), z: b[2] - d[2] * (dBola - 3) });
+    const c = r.e.lado[s < 0 ? 'R' : 'L'].calcanhar,
+      d = r.dirPe(s),
+      a = f('anilha.bordaAFrenteDoCalcanhar') - rAnilha;
+    prims.push(...anilhaNoChao(c[0] + d[0] * a, c[2] + d[2] * a));
+    pecas.push({ t: 'anilha', x: c[0] + d[0] * a, z: c[2] + d[2] * a });
   }
   return { esq: r.e, prims, pecas, fios: [], cargas: [{ massa, pos: centro }], marcas: { halter: centro } };
 }

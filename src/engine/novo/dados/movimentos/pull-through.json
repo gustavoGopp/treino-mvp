@@ -1,0 +1,67 @@
+{
+ "id": "pull-through",
+ "nome": "Pull-through na polia baixa com corda",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/pull-through.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/pull-through.md): polia embaixo, com a corda; de costas para a torre, a corda passando entre as pernas, segura com as duas mãos; dois passos à frente, pés um pouco mais abertos que o quadril, joelhos um pouco dobrados; descida (~2 s): empurra o quadril para trás, deixando as mãos passarem entre as pernas, com a coluna reta; subida: leva o quadril para a frente até ficar em pé, apertando os glúteos; os braços só seguram a corda; consenso de treinadores (nsca2021, não verificado). A técnica segue, por analogia, o stiff com halteres",
+  "app": "Cartão do app (src/conteudo/exercicios/pull-through.json, só leitura): as dicas ('quadril para trás', 'braços só seguram', 'aperta o glúteo em pé') e os erros",
+  "stiff": "A ficha de movimento do stiff com halteres aprovado (src/engine/novo/dados/movimentos/stiff.json) e o núcleo de dobrar o quadril (src/engine/novo/exercicios/dobrar-o-quadril.ts): os joelhos quase no mesmo ângulo, o pescoço na linha do tronco, os braços quase estendidos, os tempos e o erro da coluna arredondada; selo desenho onde lá era desenho",
+  "puxada": "A ficha de movimento da puxada unilateral aprovada (src/engine/novo/dados/movimentos/puxada-unilateral.json): 'um passo' de um homem de 1,76 m tem perto de 70 a 75 cm",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica); como no stiff, o desenho põe no meio do pé, e o cabo não entra na conta (como nas outras animações na polia)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia) e src/engine/novo/dados/objetos/corda-triceps.json (a corda)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 21, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'pés um pouco mais abertos que o quadril': a bola de cada pé a 21 cm do meio (42 cm entre elas; o quadril tem 32,4 cm de largura). É o que abre espaço para as mãos e a corda passarem entre as coxas sem encostar (a conferência mede)"},
+  "joelho.cima": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em pé: 'joelhos um pouco dobrados' (a ficha não dá número)"},
+  "joelho.baixo": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "embaixo: o joelho dobra quase o mesmo (quem dobra é o quadril), como no stiff"},
+  "tronco.cima": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em pé: 'até ficar em pé', o quadril estendido, sem passar"},
+  "tronco.baixo": {"v": 62, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "embaixo: o quadril vai para trás até o peito ficar 62° à frente da vertical, com a coluna reta (a ficha não dá número; com o cabo puxando as mãos para trás, as mãos passam entre os joelhos)"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "stiff", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "stiff", "o": "cabeça na linha do pescoço"},
+  "cotovelo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'os braços só seguram a corda': quase estendidos, sem travar (como no stiff), o ciclo todo"},
+  "braco.cima": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé, o braço 10° à frente da vertical: as mãos na frente da virilha, sem encostar nas coxas"},
+  "braco.baixo": {"v": -30, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, 'deixando as mãos passarem entre as pernas': o cabo puxa as mãos para trás e o braço fica 30° atrás da vertical, com as mãos entre os joelhos"},
+  "maos.folga": {"v": 0.4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as duas mãos lado a lado, cada uma num ramo da corda: os centros a meia largura da mão mais 0,4 cm do meio"},
+  "polia.atras": {"v": 140, "un": "cm", "selo": "consenso", "fonte": "puxada", "o": "'dois passos à frente' da torre: a roldana de baixo 140 cm atrás do meio da pelve em pé (dois passos de 70 cm)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado em pé: a pilha já sai 2 cm do repouso"},
+  "erro.bracos.cotovelo": {"v": 75, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em pé, os cotovelos dobram 75° e as mãos sobem a corda (os braços levantam no lugar do quadril)"},
+  "erro.bracos.tronco": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em pé, o quadril ainda está dobrado (o peito 22° à frente da vertical): quem subiu a corda foram os braços"},
+  "erro.arred.lombar": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a lombar arredonda (flexão além da curva de repouso, embaixo), como no stiff"},
+  "erro.arred.toracica": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: as costas de cima também curvam um pouco"},
+  "erro.arred.bacia": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "stiff", "o": "erro: a bacia inclina menos que no certo (quem dobra é a lombar)"},
+  "erro.topo.tronco": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em pé, o peito vai 12° para trás da vertical (passa da posição em pé)"},
+  "erro.topo.lombar": {"v": -16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: em pé, a lombar arqueia 16° além da curva de repouso"}
+ },
+ "fases": [
+  {"nome": "Em pé", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "aperta o glúteo", "selo": "consenso", "fonte": "stiff"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "stiff"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "stiff"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "lombar-neutra", "pede": "a coluna reta na descida", "selo": "consenso", "fonte": "ficha"},
+  {"id": "dobra-no-quadril", "pede": "empurra o quadril para trás: quem dobra é o quadril, os joelhos um pouco dobrados quase no mesmo ângulo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "em-pe-sem-jogar-o-tronco-para-tras", "pede": "em pé, o quadril estendido, sem passar da posição em pé", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-no-meio-do-pe", "pede": "o centro de massa fica sobre o meio do pé", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "pull-through-bracos-so-seguram", "pede": "os braços só seguram a corda: quase estendidos o ciclo todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pull-through-maos-entre-as-pernas", "pede": "embaixo, as mãos passam entre as pernas, sem encostar nelas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pull-through-polia-atras", "pede": "polia embaixo, de costas para a torre, dois passos à frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-frances-corda-na-mao", "pede": "cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha", "selo": "desenho", "fonte": "objetos"},
+  {"id": "triceps-frances-corda-livre-da-cabeca", "pede": "a corda e o cabo passam entre as pernas sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
+  {"id": "pull-through-corda-pintada-no-lugar", "pede": "a corda passa entre as pernas até o cabo atrás: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ela e quem olha a esconde, e a que fica atrás dela é escondida por ela", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "bracos", "instante": 0, "titulo": "Puxar com os braços", "vista": "lateral", "oQueMuda": "em pé, os cotovelos dobram e as mãos sobem a corda, com o quadril ainda dobrado: os braços levantaram no lugar do quadril", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "arred", "instante": 1, "titulo": "Arredondar a lombar", "vista": "lateral", "oQueMuda": "a bacia para de inclinar e a lombar arredonda para descer mais", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "topo", "instante": 0, "titulo": "Inclinar para trás no topo", "vista": "lateral", "oQueMuda": "em pé, o tronco passa da vertical e vai para trás, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "quadril para trás", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "braços só seguram", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "aperta o glúteo em pé", "ponto": "pelve", "selo": "consenso", "fonte": "app"}
+ ]
+}

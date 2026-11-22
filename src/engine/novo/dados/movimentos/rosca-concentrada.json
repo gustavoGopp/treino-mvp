@@ -1,0 +1,71 @@
+{
+ "id": "rosca-concentrada",
+ "nome": "Rosca concentrada sentado, com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-concentrada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-concentrada.md): sentado, braço apoiado por dentro da coxa; só o cotovelo dobra, até o halter chegar perto do ombro (consenso; vídeo de Jeremy Ethier listado em 17, G2)",
+  "app": "Cartão do app (src/conteudo/exercicios/rosca-concentrada.json): 'Um halter e uma cadeira firme'; 'Sentado na ponta da cadeira, pernas afastadas'; 'O braço de trabalho apoiado por dentro da coxa, perto do joelho; halter na mão, palma para cima, braço quase estendido'; 'A outra mão na outra coxa'; subida em ~1 s, pausa curta no alto, descida em ~2 s 'até o braço quase estender'; as dicas ('Braço apoiado na coxa.', 'Só o cotovelo mexe.', 'Desça até quase estender.') e os erros",
+  "roscas": "As roscas aprovadas do motor novo (dados/movimentos/rosca-alternada.json, rosca-inclinada.json e rosca-scott-banco-inclinado.json): o cotovelo quase estendido embaixo e dobrado ~125–130° em cima, a palma para cima (o polegar 85° da posição neutra), o braço apoiado num estofado amassando 1 cm, os erros 'descer pouco' (o cotovelo para em 55°) e 'tirar o braço' (o braço gira 30° no ombro e o cotovelo dobra só 100°)",
+  "cadeira": "A cadeira firme da extensão de joelho com caneleira, aprovada (src/engine/novo/dados/movimentos/extensao-joelho-caneleira.json, dados/objetos/cadeira.json: assento a 45,1 cm): o glúteo afunda 1 cm no assento",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json (o halter sextavado de 10 lb, o da rosca alternada e da rosca martelo aprovadas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "quadrilABorda": {"v": 12, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'sentado na ponta da cadeira': o centro do quadril a 12 cm da borda da frente do assento"},
+  "pes.meiaDistancia": {"v": 36, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'pernas afastadas': a bola de cada pé a 36 cm do meio: o braço que trabalha pende do ombro por dentro da coxa direita e o halter passa entre as pernas (a ficha não dá número)"},
+  "pes.abrem": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "as pontas dos pés viradas 15° para fora, na direção dos joelhos"},
+  "joelho": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os joelhos dobrados 85°, os pés chapados no chão quase embaixo deles"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeira", "o": "o glúteo e a coxa afundam 1 cm no assento (o da extensão de joelho com caneleira aprovada)"},
+  "lombar": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a lombar dobra 5° além da curva de repouso: o tronco inclina à frente quase todo pelo quadril"},
+  "toracica": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a parte de cima das costas dobra 20° além da curva de repouso, debruçada sobre o braço (com 10°, a bacia precisava inclinar mais e o quadril dobrava 145°; medido)"},
+  "cervical": {"v": -25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço estende 25° a partir da curva de repouso: com o tronco debruçado, o olhar vai ao chão à frente e o rosto sai do caminho do halter (com o pescoço na curva de repouso, o halter entrava 3,6 cm no rosto no alto; medido)"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha do pescoço"},
+  "apoio.naCoxa": {"v": 0.8, "un": "fração", "selo": "consenso", "fonte": "app", "o": "'por dentro da coxa, perto do joelho': o cotovelo apoia na pele de dentro da coxa a 0,8 do caminho do quadril ao joelho (a 8 cm do centro do joelho); a inclinação do tronco sai daí: é a que deixa o ombro a um braço desse ponto"},
+  "apoio.acima": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o ponto de apoio na coxa: na face de dentro, na horizontal (o tríceps encosta de lado na coxa, por dentro)"},
+  "apoio.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "roscas", "o": "o braço apoiado: quanto a pele da coxa amassa sob o tríceps (o mesmo do estofado da rosca Scott aprovada)"},
+  "rosca.plano": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o plano em que o antebraço sobe: o lado do bíceps virado para dentro (para a outra perna) e girado 60° para a frente; o halter sobe de entre os pés, passa à frente do joelho esquerdo e chega à frente do ombro direito (com o bíceps virado só para dentro, o halter batia na perna esquerda no meio da subida; medido)"},
+  "cotovelo.baixo": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo: 'braço quase estendido': o cotovelo dobrado 10° (a rosca alternada aprovada para em 8°)"},
+  "cotovelo.cima": {"v": 125, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima: 'halter perto do ombro': o cotovelo dobra 125° e o centro da pegada fica a 30 cm do centro do ombro (a rosca Scott aprovada também para em 125°; com 130°, o halter chegava ao rosto)"},
+  "maos.supinacao": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "palma para cima: o polegar gira 85° da posição neutra para fora, como nas roscas aprovadas"},
+  "maoL.naCoxa": {"v": 0.75, "un": "fração", "selo": "consenso", "fonte": "app", "o": "'a outra mão na outra coxa': a mão esquerda espalmada em cima da coxa esquerda, a 0,75 do caminho do quadril ao joelho, os dedos para o joelho"},
+  "maoL.paraDentro": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a palma apoia na coxa esquerda por cima e por dentro (60° em volta da coxa, a partir do alto): com a palma bem em cima, o antebraço girava além da média da tabela (pronação de 105° a 125°; com 60°, 77°; medido)"},
+  "maoL.poloDesce": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo esquerdo aponta para fora e para baixo (0,6 da direção para baixo): o braço descansa ao lado da coxa, sem a asa aberta, e o punho dobra pouco"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "'um halter': o sextavado de 10 lb, o das roscas alternada e martelo aprovadas, na mão direita"},
+  "erro.tronco.sobe": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia endireita 20° enquanto o halter sobe; o braço vai junto com o tronco e o cotovelo sai da coxa"},
+  "erro.tronco.folgaDoRosto": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: com o tronco endireitando, em cima o cotovelo dobra até o halter chegar a 1 cm do rosto, e não mais que os 125° do movimento certo. Correção de 19/11/2026: com os 125°, a cabeça do halter entrava 1,1 cm no rosto (regra peso-fora-do-corpo)"},
+  "erro.tira.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: na subida, o braço sai da coxa: gira 30° no ombro, para a frente e para cima (o da rosca Scott aprovada)"},
+  "erro.tira.cotovelo": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: com o braço fora da coxa, o cotovelo dobra só 100° em cima (o ombro faz parte da subida)"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "roscas", "o": "erro: embaixo, a volta para com o cotovelo dobrado 55°, como o 'descer pouco' das roscas aprovadas"}
+ },
+ "fases": [
+  {"nome": "Embaixo · alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço quase estendido", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L", "mao.L"],
+ "regras": [
+  {"id": "sentado-na-ponta-da-cadeira", "pede": "sentado na ponta da cadeira, os pés no chão", "selo": "consenso", "fonte": "app"},
+  {"id": "rosca-concentrada-braco-na-coxa", "pede": "o braço apoiado por dentro da coxa, perto do joelho, do começo ao fim: só o antebraço gira", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o braço quase estendido", "selo": "consenso", "fonte": "app"},
+  {"id": "rosca-concentrada-halter-perto-do-ombro", "pede": "em cima, o halter perto do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palma para cima (a mão supinada)", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "o tronco não balança", "selo": "consenso", "fonte": "app"},
+  {"id": "rosca-concentrada-mao-na-outra-coxa", "pede": "a outra mão na outra coxa", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa o corpo", "selo": "consenso", "fonte": "desenho"},
+  {"id": "halter-fora-do-banco", "pede": "o halter não atravessa a cadeira nem o chão", "selo": "consenso", "fonte": "desenho"},
+  {"id": "rosca-concentrada-halter-pintado-no-lugar", "pede": "o halter pende entre as pernas e sobe por dentro da coxa: em todas as vistas, a parte do corpo (dos dois lados) que fica entre ele e quem olha o esconde, e a que fica atrás dele é escondida por ele", "selo": "desenho", "fonte": "desenho"},
+  {"id": "peso-fora-do-corpo", "pede": "a cabeça do halter não entra no corpo (coxas, tronco, cabeça), em nenhum quadro do ciclo nem dos erros; no erro \"Balançar o tronco\", em cima, o halter fica a 1 cm do rosto (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "tronco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco sobe para ajudar a levantar o halter, e o braço sai da coxa com ele", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},
+  {"id": "tira", "instante": 1, "titulo": "Tirar o braço da coxa", "vista": "lateral", "oQueMuda": "o braço sai da coxa na subida: o cotovelo vai à frente e o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "frontal", "oQueMuda": "a volta para no meio: o braço não chega a quase estender", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "punho"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "braço apoiado na coxa", "ponto": "cotovelo", "selo": "consenso", "fonte": "app", "acima": true},
+  {"vista": "lateral", "texto": "só o cotovelo mexe", "ponto": "punho", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "desça até quase estender", "ponto": "punho", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -31,3 +31,17 @@ Elástico: pelas intensidades que a pessoa tem; pegada mais fechada estica mais.
 - `fukunaga2022` (`docs/pesquisa/fontes.md`).
 - `bergquist2018` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/abertura-elastico.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro posterior, sem secundário) e a biblioteca; a nota, dos erros "Encolher os ombros" e "Dobrar os cotovelos" do cartão | um estudo | `fukunaga2022` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão, a tabela de técnica e a seção Segurança (mão inteira) | um estudo (EMG) e consenso | `fukunaga2022`; `ng2022` |
+| Variações (`vary`) | a seção "Como a carga sobe" ("pegada mais fechada estica mais") e a tabela de técnica | um estudo (EMG) e consenso | `fukunaga2022` |
+| Nota (`note`) | a montagem do cartão, com o fim do erro "Soltar uma ponta"; sai "pise com o pé inteiro sobre ele", que não vale aqui (o elástico fica entre as mãos; ver `pedidos.md`) | um estudo | `ng2022` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/abertura-elastico.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa além da largura da pegada. A montagem do cartão traz "pise com o pé inteiro sobre ele", que não serve a este exercício: ficou fora da nota e foi para `pedidos.md`.

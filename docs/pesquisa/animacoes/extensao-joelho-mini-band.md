@@ -30,3 +30,17 @@ Mini-band: pelas intensidades da mini-band; descida de 3 s.
 ## Fontes
 - `kinoshita2026` (`docs/pesquisa/fontes.md`).
 - `yasuda2016` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/extensao-joelho-mini-band.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (quadríceps, sem secundário) e a biblioteca; a nota, da posição do cartão e do erro "Levantar o quadril da cadeira" | moderada (extensora em máquina); um estudo, contra, com elástico | `kinoshita2026`; `yasuda2016` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a linha Posição da tabela de técnica | consenso ([mercado]) | Physitrack; The Prehab Guys (`17`, G3) |
+| Variações (`vary`) | a linha Movimento da tabela de técnica e o erro "Parar longe da falha" do cartão | consenso | Physitrack; The Prehab Guys (`17`, G3) |
+| Nota (`note`) | a montagem do cartão | consenso | `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/extensao-joelho-mini-band.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda. A ficha também não dá fonte para "perto da falha" com a mini-band (o cartão pede; as caneleiras usam `schoenfeld2017b`).

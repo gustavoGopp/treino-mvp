@@ -34,3 +34,17 @@ Peso do corpo, pela escada própria: descida de 5 s → pausa em cima e descida 
 - `vigouroux2024` (`docs/pesquisa/fontes.md`).
 - `johnson2009` (`docs/pesquisa/fontes.md`).
 - `shabbir2026` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/barra-fixa-negativa.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (costas; bíceps e ombro posterior) e a biblioteca; a nota, do erro "Soltar o corpo" do cartão e da seção Segurança (dor tardia na 1ª semana) | consenso; a dor tardia é **[opinião]** | `17`, G4 |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | montagem e posição do cartão; as linhas Montagem e Pegada da tabela | um estudo (quedas) e consenso | `shabbir2026`; `tecnica.barra-fixa.pegada` |
+| Variações (`vary`) | o equipamento do cartão (banco, degrau ou caixa) e as linhas Montagem e Descida | um estudo (quedas) e consenso | `shabbir2026`; `17`, G4 |
+| Nota (`note`) | a montagem do cartão, num texto só | um estudo | `shabbir2026`; `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/barra-fixa-negativa.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` usa a escolha do apoio do cartão. A respiração segue as fases da ficha de movimento (inspira em cima, expira na descida), porque aqui não há subida pela barra; a ficha não fala de respiração, e o texto não acrescenta nada além da regra comum.

@@ -1,0 +1,54 @@
+{
+ "id": "panturrilha-leg-press",
+ "nome": "Panturrilha no leg press",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-leg-press.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-leg-press.md) e cartão do app (src/conteudo/exercicios/panturrilha-leg-press.json): consenso de treinadores (nsca2021, não verificado; seguranca.montagem)",
+  "regra": "Regra selecao.panturrilha-alongada (selo: um estudo; docs/pesquisa/regras.md): panturrilha com ênfase no alongamento, o calcanhar abaixo do apoio e a pausa embaixo",
+  "aprovado": "Animações aprovadas do motor novo: a panturrilha no step (dados/movimentos/panturrilha-b.json: o calcanhar de 6,4 cm abaixo a 13,9 cm acima do apoio, o ritmo, o erro do joelho que dobra 25°) e o leg press (dados/movimentos/leg-press.json: o corpo no assento)",
+  "objetos": "src/engine/novo/dados/objetos/leg-press.json (o leg press 45°) e dados/objetos/barra-longa.json (as anilhas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho": { "v": 6, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'joelhos estendidos, sem travar': 6° (a ficha não dá número), parados na série" },
+  "lombar": { "v": 15, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "as costas e o quadril apoiados, como no leg press: a lombar achata 15° contra o encosto" },
+  "cervical": { "v": 4, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "o pescoço quase neutro, a cabeça apoiada no encosto (como no leg press)" },
+  "cabeca": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "o queixo um pouco para o peito, olhando para os pés (como no leg press)" },
+  "amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "quanto o glúteo e as costas afundam nos estofados (como no leg press)" },
+  "pes.meia": { "v": 10, "un": "cm", "selo": "desenho", "fonte": "aprovado", "o": "pés na largura do quadril, paralelos (o meio de cada pé a 10 cm do meio; o quadril fica a 8,35 cm); a ficha não diz a largura" },
+  "pes.paraFora": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "pés paralelos, apontando para cima da chapa (como na panturrilha no step aprovada)" },
+  "bola.daBorda": { "v": 2.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'só a ponta dos pés na borda de baixo da plataforma, calcanhares para fora': a bola do pé apoia 2,5 cm para dentro da borda de baixo da chapa" },
+  "tornozelo.embaixo": { "v": 18.8, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "alongado ('deixa os calcanhares descerem até a panturrilha alongar bem'): o tornozelo dobra 18,8° para cima, o mesmo da panturrilha no step aprovada (o calcanhar 6,4 cm abaixo do step, com a canela em pé). Aqui a perna chega à chapa inclinada: com o pé chapado o tornozelo já dobra 18°, e o calcanhar passa pouco do plano da chapa" },
+  "tornozelo.topo": { "v": 44.3, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "em cima ('empurra com a ponta dos pés o máximo que conseguir'): o tornozelo estica 44,3°, o mesmo da panturrilha no step aprovada (o calcanhar 13,9 cm acima do step)" },
+  "anilhas": { "v": 20, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 20 kg de cada lado ('anilhas iguais dos dois lados')" },
+  "quadro.chapa": { "v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "da chapa, o quadro mostra a borda de baixo (onde a ponta do pé apoia) e 16 cm acima dela (os dedos); o resto da chapa e o alto da máquina são cortados pela borda" },
+  "quadro.coxa": { "v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a perna do pé ao joelho e 40% da coxa: o que mexe é o pé, e a máquina é grande; o tronco é cortado pela borda do quadro (seção 7 do guia)" },
+  "erro.curta.embaixo": { "v": -4.3, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: embaixo o tornozelo não dobra para cima (fica esticado 4,3°, como o calcanhar 1,5 cm acima do step no erro da panturrilha no step aprovada): a panturrilha não alonga" },
+  "erro.curta.topo": { "v": 17.5, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: em cima o tornozelo estica só 17,5° ('subir e descer só um pouco'; no certo, 44,3°)" },
+  "erro.joelho.flexao": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "erro: embaixo os joelhos dobram 22° e esticam na subida, empurrando o carro com as coxas (na panturrilha no step aprovada, 25°)" }
+ },
+ "fases": [
+  { "nome": "Alongado · pausa", "tipo": "pausa", "dur": 1, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "segura 1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Topo", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "o máximo que conseguir", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pelve"],
+ "regras": [
+  { "id": "joelhos-estendidos-na-panturrilha", "pede": "os joelhos estendidos, sem travar, e parados", "selo": "consenso", "fonte": "ficha" },
+  { "id": "ponta-do-pe-na-borda-da-chapa", "pede": "só a ponta dos pés na borda de baixo da chapa, presa nela; o carro só anda na guia", "selo": "consenso", "fonte": "ficha" },
+  { "id": "tornozelo-alonga-embaixo-na-chapa", "pede": "embaixo, o calcanhar desce e o tornozelo dobra para cima: a panturrilha alonga", "selo": "um estudo", "fonte": "regra" },
+  { "id": "calcanhar-sobe-o-maximo-na-chapa", "pede": "em cima, o máximo na ponta dos pés", "selo": "consenso", "fonte": "ficha" },
+  { "id": "quadril-apoiado-no-assento-do-leg-press", "pede": "costas e quadril apoiados, sem a lombar arredondar", "selo": "consenso", "fonte": "ficha" },
+  { "id": "maos-paradas-nos-pegadores-do-trilho", "pede": "as mãos nos pegadores, paradas", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carro-acima-da-trava-fechada", "pede": "a trava de segurança fechada na série inteira: o carro anda acima dos suportes dela", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "curta", "instante": 0, "titulo": "Movimento curto", "vista": "lateral", "oQueMuda": "embaixo o tornozelo não dobra para cima e em cima estica só 17,5° (no certo, de 18,8° para cima a 44,3° esticado)", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R" },
+  { "id": "joelho", "instante": 0, "titulo": "Dobrar os joelhos", "vista": "lateral", "oQueMuda": "embaixo os joelhos dobram 22° e esticam na subida, empurrando o carro com as coxas", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "joelhos estendidos", "ponto": "joelho:R", "selo": "consenso", "fonte": "ficha", "acima": true }
+ ]
+}

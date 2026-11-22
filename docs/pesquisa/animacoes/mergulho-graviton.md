@@ -29,3 +29,16 @@ Placa de contrapeso ao contrário, como na barra assistida (`progressao.incremen
 ## Fontes
 - `mckenzie2022`: McKenzie A, Crowley-McHattan Z, Meir R et al. Bench, Bar, and Ring Dips: Do Kinematics and Muscle Activity Differ? Int J Environ Res Public Health 2022;19(20):13211. PMID 36293792. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/mergulho-graviton.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito e tríceps; ombro anterior; igual à biblioteca); a nota, da linha Descida ("sem dor no ombro") e do erro "Descer demais" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica, o contrapeso do cartão e as dicas do cartão (ombros, tronco) | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Descida e Subida e o contrapeso do cartão | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/mergulho-graviton.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não acha estudo com a versão assistida e diz isso. Não diz a altura das barras do aparelho (na animação, 118 cm, de desenho, 10 cm abaixo do desenho do equipamento) e não tem linha para o contrapeso (ele vem do cartão e de "Como a carga sobe"). A seção Músculos ainda fala de "Proposta". O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

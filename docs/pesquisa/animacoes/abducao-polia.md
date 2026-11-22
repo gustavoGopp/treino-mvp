@@ -30,3 +30,16 @@ Placa da torre (número).
 ## Fontes
 - `attarieh2026`: Attarieh P, Nunes JP, Khani S et al. Regional Hypertrophy of the Gluteal Muscles Is Task-Specific: Differential Responses to 10 Weeks of Hip Extension Versus Hip Abduction Training. J Strength Cond Res 2026 (publicado on-line antes da versão impressa). PMID 42842490. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (20/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/abducao-polia.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (glúteos; igual à biblioteca), o alvo do cartão ("médio e parte de cima") e "Por que assim" (cresceu a parte de cima do glúteo máximo); a nota, dos erros "Inclinar o tronco" e "Girar o pé para fora" (vira outro movimento) e da linha Tronco | um estudo (a parte de cima do glúteo); consenso (a nota) | `attarieh2026`; `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Posição, Tronco e Movimento (o pé apontando para a frente) da tabela de técnica | consenso; o pé para a frente, um estudo | `nsca2021` (não verificado); `attarieh2026` |
+| Variações (`vary`) | linhas Posição (a mão na torre para equilíbrio), Movimento e Tronco e o erro "Embalar" (a ficha não traz variação: o `vary` só diz o que não muda) | consenso; o movimento, um estudo | `nsca2021` (não verificado); `attarieh2026` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/abducao-polia.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não dá número para a abertura nem para o quanto a perna cruza na volta (a animação vai de 7,6° cruzada a 30° aberta, de desenho) e não diz onde fica a outra mão (a animação a pôs na cintura; o texto não fala dela). A ficha não traz variação. O cartão não tem montagem. O erro "Embalar a perna" não tem desenho (está em `SEM_DESENHO`): o texto o mantém. O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

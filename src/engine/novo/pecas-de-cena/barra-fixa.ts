@@ -22,10 +22,11 @@ const caixa = (o: V3, meias: V3, cls: string, vies: number): Prim => ({ t: 'caix
 
 /**
  * A estação com a barra em z = zBarra. `maos`: o x do centro de cada mão, para o trecho emborrachado ficar debaixo
- * dela e ser pintado um pouco atrás (a mão fecha por cima).
+ * dela e ser pintado um pouco atrás (a mão fecha por cima). `altura`: o centro da barra numa regulagem mais baixa da
+ * torre (por omissão, a mais alta, a da tabela).
  */
-export function estacaoDeBarra(zBarra: number, maos: number[]): { prims: Prim[]; barra: PecaPropria; estrutura: PecaPropria } {
-  const H = g('altura'),
+export function estacaoDeBarra(zBarra: number, maos: number[], altura = g('altura')): { prims: Prim[]; barra: PecaPropria; estrutura: PecaPropria } {
+  const H = altura,
     r = g('diam') / 2,
     L = g('larg'),
     tl = g('tuboLarg'),
@@ -41,7 +42,8 @@ export function estacaoDeBarra(zBarra: number, maos: number[]): { prims: Prim[];
   const barra: PecaPropria = {
     t: 'propria',
     nome: 'barra fixa',
-    fixa: [zBarra, maos],
+    // a regulagem só entra na chave do desenho quando não é a da tabela (o desenho das aprovadas não muda)
+    fixa: altura === g('altura') ? [zBarra, maos] : [zBarra, maos, altura],
     desenhar(C, M) {
       // a barra, de um braço da estrutura ao outro, em trechos: os emborrachados debaixo das mãos vão um pouco para
       // trás na pintura (a mão fecha por cima deles)
@@ -65,7 +67,7 @@ export function estacaoDeBarra(zBarra: number, maos: number[]): { prims: Prim[];
     t: 'propria',
     nome: 'estrutura da barra fixa',
     cenario: true,
-    fixa: [zBarra],
+    fixa: altura === g('altura') ? [zBarra] : [zBarra, altura],
     desenhar(C, M, o) {
       // de perfil (olhando ao longo da barra), o braço da estrutura cai bem onde a cabeça passa no topo e o montante
       // corta o corpo ao meio: como a coluna de polia que é cenário, a estrutura não aparece de perfil

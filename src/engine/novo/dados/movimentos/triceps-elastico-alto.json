@@ -1,0 +1,59 @@
+{
+ "id": "triceps-elastico-alto",
+ "nome": "Tríceps com elástico preso no alto, como na polia",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-elastico-alto.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-elastico-alto.md, tabela Técnica): de frente para o ponto alto, cotovelos colados ao corpo; estender os cotovelos até os braços ficarem retos; consenso de treinadores (17, G3). Segurança: só a âncora de porta do fabricante ou a barra fixa (ng2022)",
+  "app": "Cartão do app (src/conteudo/exercicios/triceps-elastico-alto.json): uma ponta do elástico em cada mão; cotovelos colados, dobrados, mãos na altura do peito; tronco levemente inclinado à frente; ~1 s empurrando as mãos para baixo até os braços estenderem, pausa curta embaixo, ~2 s de volta; a âncora de porta com a porta fechada; as dicas e os erros",
+  "corda": "Tríceps na polia com corda aprovado (src/engine/novo/dados/movimentos/triceps-corda.json): o mesmo corpo em pé (pés, joelhos, tronco, pescoço), o mesmo braço colado ao lado do tronco, os mesmos ângulos do cotovelo em cima e embaixo, a mesma inclinação do cabo em cima e os mesmos dois erros. Não há animação de hoje deste exercício",
+  "puxada": "Puxada com elástico aprovada (src/engine/novo/exercicios/puxada-elastico.ts e dados/movimentos/puxada-elastico.json): o tubo com pegadores preso pelo meio na âncora de porta no topo da porta fechada, e o trecho do tubo longe do corpo desenhado como cenário",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol, que estica até 3 vezes) e src/engine/novo/dados/objetos/porta.json (porta e âncora de porta)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "corda", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio (o do tríceps na polia aprovado; o cartão não fala dos pés)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "corda", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "tronco levemente inclinado à frente: o peito 15° à frente da vertical (o número do tríceps na polia aprovado)"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "o pescoço estende um pouco a partir da linha do tronco inclinado: o olhar à frente"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "a cabeça acompanha o pescoço: o olhar à frente, não para o chão"},
+  "braco.frente": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "corda", "o": "cotovelos colados ao corpo: o braço 15° à frente do eixo do tronco inclinado, ou seja, na vertical, ao lado das costelas (o do tríceps na polia aprovado)"},
+  "braco.paraDentro": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "o braço vai um pouco para o meio, até o cotovelo encostar ao lado das costelas"},
+  "cotovelo.alto": {"v": 112, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em cima: cotovelos dobrados, mãos na altura do peito (o número do tríceps na polia aprovado; a conferência mede a altura das mãos)"},
+  "cotovelo.baixo": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: os braços retos, o cotovelo estendido. Desde 20/11/2026, no fim do erro \"Jogar o tronco\" o cotovelo para antes: com o peito a 34° e o quadril parado, os braços vão com o tronco e, estendidos, os pegadores entravam 4,9 cm nas coxas; nesse erro, embaixo, o cotovelo dobra o que os pegadores precisam para ficar à mesma folga das coxas que no movimento certo (18,9°, calibrado)"},
+  "maos.pronacao": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a pegada no pegador: palmas para baixo em cima e para trás embaixo (o antebraço 70° pronado a partir da pegada neutra; a média do corpo é 80°). O cartão não diz a pegada; com a pegada de lado a lado, a fita em triângulo sobe pelos dois lados do punho até o tubo"},
+  "cabo.inclinacao": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, o elástico sobe das mãos até a âncora a 28° da vertical: de frente para a porta, a cerca de meio passo, com as mãos a uns 45 cm da porta (com os 20° do cabo do tríceps na polia aprovado, as mãos ficavam quase encostadas na porta, porque a âncora fica no topo dela, mais baixa que a roldana da polia). A distância até a porta sai daqui"},
+  "elastico.noQuadro": {"v": 45, "un": "cm", "selo": "desenho", "fonte": "puxada", "o": "quanto do tubo, a partir da ponta junto do pegador, é desenhado como parte do exercício; dali até a porta ele é cenário e sai pela borda do quadro (como na puxada com elástico aprovada)"},
+  "erro.cotovelo.frente": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: em cima, o braço sobe à frente e sai do lado do tronco; ao empurrar, o ombro traz o braço de volta (o do tríceps na polia aprovado)"},
+  "erro.cotovelo.cotovelo": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: em cima, com o braço à frente, o cotovelo dobra mais e as mãos sobem acima do peito"},
+  "erro.tronco.inclinacao": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: o tronco dobra à frente sobre as mãos enquanto elas descem (o peito vai a 34° da vertical)"},
+  "erro.tronco.toracica": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "corda", "o": "erro: as costas arredondam um pouco ao dobrar"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cotovelos colados", "selo": "consenso", "fonte": "corda"},
+  {"nome": "Extensão · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos parados", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "triceps-elastico-ancora-no-alto-a-frente", "pede": "de frente para o ponto alto: a âncora acima da cabeça e à frente do corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-cotovelo-parado", "pede": "só o cotovelo mexe: o cotovelo parado de cima a embaixo", "selo": "consenso", "fonte": "app"},
+  {"id": "triceps-corda-cotovelos-colados", "pede": "cotovelos colados ao corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-maos-no-peito", "pede": "em cima, cotovelos dobrados, mãos na altura do peito", "selo": "consenso", "fonte": "app"},
+  {"id": "triceps-corda-estende-embaixo", "pede": "estender os cotovelos até os braços ficarem retos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-corda-tronco-parado", "pede": "tronco levemente inclinado à frente e parado", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-nas-maos", "pede": "uma ponta do elástico em cada mão", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-livre-do-corpo", "pede": "o elástico vai das mãos à âncora sem encostar no corpo nem no rosto", "selo": "desenho", "fonte": "objetos"},
+  {"id": "elastico-bracos-juntos", "pede": "os dois braços estendem juntos", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o elástico continua reto do pegador à âncora sem atravessar o corpo", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "cotovelos", "instante": 0, "titulo": "Cotovelos soltos", "vista": "lateral", "oQueMuda": "em cima, os cotovelos vão para a frente e saem do lado do tronco; ao empurrar, o ombro ajuda", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "tronco", "instante": 1, "titulo": "Jogar o tronco", "vista": "lateral", "oQueMuda": "o corpo dobra à frente para empurrar as mãos para baixo", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "só o cotovelo mexe", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "cotovelos colados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

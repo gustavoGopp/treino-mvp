@@ -1,0 +1,65 @@
+{
+ "id": "rosca-polia-costas",
+ "nome": "Rosca na polia baixa, de costas para a torre",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-polia-costas.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-polia-costas.md): polia embaixo, com o estribo; de costas para a torre, um passo à frente, com o estribo numa mão; o braço fica um pouco atrás do corpo, palma para a frente; dobra o cotovelo até a mão chegar perto do ombro, com o cotovelo parado atrás do corpo; desce (~2 s) até o braço quase estender, atrás do corpo; consenso de treinadores (nsca2021, não verificado). A técnica segue, por analogia, a rosca na polia",
+  "app": "Cartão do app (src/conteudo/exercicios/rosca-polia-costas.json, só leitura): as dicas ('cotovelo atrás do corpo', 'tronco parado', 'desce devagar') e os erros, com a descrição de cada um ('Carga demais': 'se o ombro for para a frente, a carga está alta')",
+  "rosca": "A ficha de movimento da rosca na polia aprovada (src/engine/novo/dados/movimentos/rosca-polia.json): os pés na largura do quadril, os joelhos destravados, o tronco reto, o pescoço e a cabeça, o cotovelo embaixo e em cima, o ângulo de carregamento, a supinação, os tempos e o erro do cotovelo; selo desenho onde lá era desenho",
+  "puxada": "A ficha de movimento da puxada unilateral aprovada (src/engine/novo/dados/movimentos/puxada-unilateral.json): 'um passo' de um homem de 1,76 m tem perto de 70 a 75 cm",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica); como na rosca na polia, o desenho põe no meio do pé e não conta a força do cabo",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, estribo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "rosca", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio (como na rosca na polia)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "rosca", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "'tronco parado': o peito na vertical, parado"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "cabeça na linha do pescoço"},
+  "braco.atras": {"v": 22, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'o braço fica um pouco atrás do corpo' e o cotovelo 'parado atrás do corpo': o braço 22° atrás da linha do tronco, a série toda"},
+  "braco.paraFora": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço abre 8° para o lado: o cabo, que sai da mão para trás e para baixo, passa por fora do quadril e do glúteo"},
+  "antebraco.paraFora": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "o antebraço abre 2° para fora do plano do braço (o ângulo de carregamento do cotovelo, como na rosca na polia)"},
+  "maos.supinacao": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'palma para a frente': o polegar para fora (90° a partir da pegada neutra)"},
+  "cotovelo.baixo": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: 'até o braço quase estender' (o cotovelo dobra 12°)"},
+  "cotovelo.cima": {"v": 142, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: 'até a mão chegar perto do ombro'; com o braço 22° atrás do tronco, o antebraço passa da horizontal e a mão chega à frente do ombro (a regra mede a distância da mão ao ombro)"},
+  "polia.atras": {"v": 72, "un": "cm", "selo": "consenso", "fonte": "puxada", "o": "'de costas para a torre, um passo à frente': a roldana de baixo 72 cm atrás do meio da pelve (um passo de um homem de 1,76 m)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo esticado embaixo: a pilha já sai 2 cm do repouso"},
+  "outro.braco": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a mão livre pende solta ao lado do corpo, o braço 4° aberto para o lado"},
+  "erro.cotovelo.braco": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "rosca", "o": "erro: no fim, o braço vai 30° à frente da linha do tronco (sai 52° da posição atrás do corpo), como o erro do cotovelo da rosca na polia"},
+  "erro.cotovelo.maoFora": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: com o cotovelo à frente, o braço gira para fora e a mão abre para o lado do antebraço, e o cabo, que sai da mão para trás e para baixo, passa por fora do braço (correção de 19/11/2026: com a mão no plano do braço, o cabo atravessava o braço)"},
+  "erro.giro": {"v": 26, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o tronco gira 26° (metade na lombar, metade na torácica), o ombro do braço que trabalha vai à frente; a bacia e os pés ficam parados"},
+  "erro.carga.prot": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro 'carga demais': 'o ombro vai para a frente': a clavícula 30° mais à frente que o ritmo normal, a série toda"},
+  "erro.carga.elev": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'carga demais': o ombro também sobe um pouco (8°)"},
+  "erro.carga.toracica": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro 'carga demais': as costas de cima arredondam um pouco (8°) com o ombro à frente"}
+ },
+ "fases": [
+  {"nome": "Alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço atrás", "selo": "consenso", "fonte": "rosca"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "rosca"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "contrai", "selo": "consenso", "fonte": "rosca"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "rosca-costas-cotovelo-parado-atras", "pede": "dobra o cotovelo com o cotovelo parado atrás do corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, o braço quase estendido", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-costas-mao-perto-do-ombro", "pede": "em cima, a mão perto do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "palma para a frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "rosca-costas-polia-embaixo-atras", "pede": "polia embaixo, de costas para a torre, um passo à frente", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana ao estribo, saindo de trás do corpo, sem encostar nele", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o curso do cabo dividido pela relação da máquina", "selo": "desenho", "fonte": "objetos"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana à mão sem atravessar o corpo (a pose errada desvia dele)", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 1, "titulo": "Trazer o cotovelo para a frente", "vista": "lateral", "oQueMuda": "o braço sai de trás do corpo e vai à frente enquanto a mão sobe: perde a posição alongada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "giro", "instante": 1, "titulo": "Girar o tronco", "vista": "quina", "oQueMuda": "o tronco gira e leva o ombro do braço que trabalha para a frente, para ajudar a subir", "destaca": ["corpo"], "linha": ["ombro:L", "c7", "ombro:R"], "foco": "ombro"},
+  {"id": "carga", "instante": 0, "titulo": "Carga demais", "vista": "lateral", "oQueMuda": "o ombro vai para a frente (e sobe um pouco), com as costas de cima arredondando: a carga está alta", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo atrás do corpo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "cotovelo atrás do corpo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

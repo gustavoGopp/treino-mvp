@@ -1,0 +1,70 @@
+{
+ "id": "coice-polia",
+ "nome": "Coice na polia com tornozeleira",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/coice-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/coice-polia.md): de frente para a torre, mãos apoiadas nela, tornozeleira presa na perna que trabalha, polia no ponto mais baixo (consenso, nsca2021, não verificado); leva a perna para trás com o joelho quase estendido até a coxa passar um pouco da linha do corpo e volta até a frente do corpo (um estudo: é o exercício do ensaio, attarieh2026); tronco levemente inclinado à frente, sem arquear a lombar no fim (consenso)",
+  "app": "Cartão do app (src/conteudo/exercicios/coice-polia.json): o começo (perna à frente do corpo) e o fim (coxa um pouco atrás da linha do corpo, sem arquear a lombar), as dicas e os erros",
+  "aprovada": "A abdução em pé com elástico aprovada (src/engine/novo/dados/movimentos/abducao-elastico.json): o pé de apoio, o joelho de apoio, o tronco e o pescoço; e o coice com caneleira aprovado (src/engine/novo/dados/movimentos/coice-caneleira.json): o erro de arquear a lombar",
+  "aaos": "Tabela de amplitudes do motor (src/engine/novo/dados/amplitudes.json): a extensão do quadril; o tornozelo, 14,8° para cima e 56,7° esticado, em média (cdc)",
+  "equilibrio": "Em pé numa perna, parado, a projeção do centro de massa cai sobre o pé de apoio (mecânica); as mãos na torre só apoiam",
+  "objetos": "src/engine/novo/dados/objetos.json (a coluna de polia aprovada: a roldana mais baixa a 17,8 cm, a relação 2:1, os montantes da coluna de 30 cm) e src/engine/novo/dados/objetos/tornozeleira.json (a tornozeleira)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pe.apoio.paraFora": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o pé de apoio embaixo do quadril dele, 1 cm para fora (como na abdução com elástico)"},
+  "joelho.apoio": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o joelho de apoio quase estendido, sem travar (3°); daí sai a altura do quadril"},
+  "joelho.livre": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o joelho da perna que trabalha quase estendido, o ciclo todo: dobra 8°, ou o pouco a mais (até `joelho.maximo`) que o pé precisa para passar embaixo do quadril sem raspar o chão (calibrado)"},
+  "joelho.maximo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "\"quase estendido\": o joelho que trabalha não passa de 15° em nenhum quadro"},
+  "bacia.sobe": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em pé num pé só, a bacia sobe 4° do lado que trabalha (em volta do quadril de apoio, parada o ciclo todo) e a coluna devolve a inclinação: o tórax fica reto. Com a bacia nivelada, a perna livre estendida é ~1 cm mais comprida que a distância do quadril ao chão, e o pé só passaria embaixo do quadril com o joelho dobrado ~30°; 4° levantam o quadril que trabalha 1,2 cm"},
+  "pe.livre.acimaDoChao": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o pé da perna que trabalha passa no mínimo 1 cm acima do chão"},
+  "pe.livre.flexaoPlantar": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé da perna que trabalha com a sola na horizontal: o tornozelo estica o que a canela vai à frente da vertical e dobra para cima o que ela vai para trás (como no passo, para a ponta do pé não raspar o chão)"},
+  "pe.livre.dorsiflexaoMax": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "aaos", "o": "o tornozelo dobra para cima no máximo 14° (abaixo da média de 14,8° da tabela de amplitudes)"},
+  "pe.livre.flexaoPlantarMax": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "aaos", "o": "o tornozelo estica no máximo 25° (abaixo da média de 56,7° da tabela de amplitudes)"},
+  "tronco.inclina": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "tronco levemente inclinado à frente: a bacia gira 12° à frente sobre o quadril de apoio, com a coluna neutra"},
+  "coxa.abre": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a perna que trabalha 5° aberta para o lado: em pé num pé só, a bacia vai para cima do pé de apoio, e sem isso o pé que passa encostaria no outro"},
+  "coxa.inicio": {"v": 34, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: a perna à frente do corpo, a coxa 34° à frente da bacia, que está inclinada 12° à frente: 22° à frente da vertical; a ficha não dá número"},
+  "coxa.fim": {"v": -6, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "fim: a coxa 6° atrás da bacia, que está inclinada 12° à frente: 18° atrás da vertical, passando um pouco (~5°) da linha do corpo, que desce dos ombros ao quadril ~13° atrás da vertical; sem arquear a lombar"},
+  "cervical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "a cabeça na linha do pescoço"},
+  "torre.mao.altura": {"v": 112, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos fecham nos montantes da frente da torre a 112 cm do chão, um pouco abaixo do peito"},
+  "torre.cotovelo": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os cotovelos dobrados 20° no começo: é daí que sai a distância da torre (as mãos só apoiam)"},
+  "torre.montanteDiam": {"v": 4.5, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "as mãos fecham nos montantes da coluna, os tubos de 4,5 cm (como a peça desenha)"},
+  "pilha.folga": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o cabo já sai tenso: a pilha está 0,5 cm acima das placas de baixo no começo"},
+  "quadro.torreAte": {"v": 140, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a coluna até 140 cm (acima das mãos); o resto dos 239 cm fica cortado pela borda, como nas polias baixas aprovadas"},
+  "erro.lombar.lombar": {"v": -16, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: a lombar arqueia 16° no fim para a perna ir mais longe"},
+  "erro.lombar.coxa": {"v": -24, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: com a lombar arqueada, a coxa vai a 24° atrás da bacia (36° atrás da vertical): a perna sobe mais"},
+  "erro.joelho.joelho": {"v": 75, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o joelho dobra até 75° no fim, e o movimento vira uma flexora"},
+  "erro.embalar.tronco": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o tronco balança e cai 16° à frente enquanto a perna vai para trás (o embalo que leva a perna)"}
+ },
+ "fases": [
+  {"nome": "Perna à frente", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Levar para trás · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Atrás · segura", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, controlando", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.L"],
+ "regras": [
+  {"id": "coice-polia-coxa-passa-a-linha-do-corpo", "pede": "a perna vai de à frente do corpo até a coxa passar um pouco da linha do corpo", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "coice-polia-joelho-quase-estendido", "pede": "o joelho quase estendido (até 15°) o ciclo todo", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "coice-polia-tronco-parado-a-frente", "pede": "o tronco levemente inclinado à frente e parado, sem arquear a lombar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "coice-polia-bacia-nao-gira", "pede": "a bacia não gira nem rola no ciclo, o tórax fica reto e a coxa não abre para o lado", "selo": "consenso", "fonte": "desenho"},
+  {"id": "abducao-em-pe-peso-no-pe-de-apoio", "pede": "o peso fica sobre o pé de apoio (as mãos só apoiam)", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "coice-polia-maos-na-torre", "pede": "as mãos apoiadas na torre, paradas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-tornozelo-tornozeleira-no-tornozelo", "pede": "a tornozeleira presa logo acima do tornozelo da perna que trabalha", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-tornozelo-polia-embaixo", "pede": "a polia no ponto mais baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à tornozeleira sem encostar no corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "a pilha sobe o que o cabo anda dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia no fim para levar a perna mais longe", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho:R"], "foco": "pelve"},
+  {"id": "joelho", "instante": 1, "titulo": "Dobrar o joelho", "vista": "lateral", "oQueMuda": "o joelho dobra no fim e o movimento vira uma flexora", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "embalar", "instante": 1, "titulo": "Embalar", "vista": "lateral", "oQueMuda": "o tronco balança: cai à frente enquanto a perna vai para trás", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "joelho quase estendido", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "lombar parada", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+ ]
+}

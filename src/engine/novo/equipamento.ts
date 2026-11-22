@@ -4,7 +4,7 @@
 // cena, e devolvida como itens de pintura, para se misturar com o Boneco na ordem certa de profundidade.
 import type { Camera, Item } from './desenho';
 import type { Peca, Torre } from './pecas';
-import { centroDaRoldana } from './pecas';
+import { centroDaRoldana, medidasDoColchonete } from './pecas';
 import { MAT, cena as cenaRealista, mix, retArred } from './realista/base.mjs';
 import type { CenaRealista } from './realista/base.mjs';
 import { obj } from './tabelas';
@@ -44,20 +44,31 @@ function bancoReto(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'bancoR
     tubo = g('tubo'),
     baseL = g('baseLarg') / 2;
   const yBaixo = alt - est;
-  C.estofado([p.x0, yBaixo, p.z0], [0, 0, 1], Y, [1, 0, 0], comp, est, g('larg'));
-  C.tubo([p.x0, yBaixo - tubo / 2, p.z0 - comp / 2 + 6], [p.x0, yBaixo - tubo / 2, p.z0 + comp / 2 - 6], tubo, tubo, M.metal);
+  // `atras`: o estofado e a estrutura vão para trás na pintura (no gerador, dz positivo = mais longe)
+  const oE = p.atras ? { dz: p.atras.estofado } : undefined,
+    oS = p.atras ? { dz: p.atras.estrutura } : undefined;
+  C.estofado([p.x0, yBaixo, p.z0], [0, 0, 1], Y, [1, 0, 0], comp, est, g('larg'), undefined, oE);
+  C.tubo([p.x0, yBaixo - tubo / 2, p.z0 - comp / 2 + 6], [p.x0, yBaixo - tubo / 2, p.z0 + comp / 2 - 6], tubo, tubo, M.metal, oS);
   for (const s of [-1, 1]) {
     const z = p.z0 + s * (comp / 2 - 16);
-    C.tubo([p.x0, tubo, z], [p.x0, yBaixo - tubo, z], tubo, tubo, M.metal);
-    C.tubo([p.x0 - baseL, tubo / 2, z], [p.x0 + baseL, tubo / 2, z], tubo, tubo, M.metal);
-    for (const sx of [-1, 1]) C.cilindro([p.x0 + sx * (baseL - 2), 0, z], [p.x0 + sx * (baseL - 2), 1.2, z], 3.2, M.borracha, { lados: 10 });
+    C.tubo([p.x0, tubo, z], [p.x0, yBaixo - tubo, z], tubo, tubo, M.metal, oS);
+    C.tubo([p.x0 - baseL, tubo / 2, z], [p.x0 + baseL, tubo / 2, z], tubo, tubo, M.metal, oS);
+    for (const sx of [-1, 1]) C.cilindro([p.x0 + sx * (baseL - 2), 0, z], [p.x0 + sx * (baseL - 2), 1.2, z], 3.2, M.borracha, { lados: 10, ...oS });
   }
   if (comSombra) C.sombra(p.x0, p.z0, baseL, comp / 2 + 8, 0.18);
 }
 function colchonete(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'colchonete' }>): void {
-  const comp = obj('colchonete', 'comp'),
-    larg = obj('colchonete', 'larg');
-  C.prisma(retArred(larg, comp, 3, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, obj('colchonete', 'esp'), 0], M.plataforma);
+  // `comprido` (acréscimo de 19/11): as medidas do colchonete medido, em vez das da tabela
+  const { comp, larg, esp } = medidasDoColchonete(p),
+    r = 3;
+  if (!p.noFundo) return C.prisma(retArred(larg, comp, r, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, esp, 0], M.plataforma);
+  // `noFundo`: na profundidade do canto mais longe de quem olha (no gerador, o maior z: o centro do arredondado mais
+  // longe, mais o raio dele), e não na do meio. Os pontos medidos ficam dentro do colchonete: não mexem na caixa dele
+  // na tela (o enquadramento)
+  let fundo = -1e9;
+  for (const x of [-1, 1]) for (const z of [-1, 1]) for (const y of [0, esp]) fundo = Math.max(fundo, C.P([p.x0 + x * (larg / 2 - r), y, p.z0 + z * (comp / 2 - r)])[2] + r);
+  const meio = C.P([p.x0, esp / 2, p.z0])[2];
+  C.prisma(retArred(larg, comp, r, 3), [p.x0, 0, p.z0], [1, 0, 0], [0, 0, 1], [0, esp, 0], M.plataforma, { dz: fundo - meio });
 }
 /** A parte fixa da coluna de polia: base, estrutura, guias, trilho com furos e a viga de cima. */
 function torreFixa(C: CenaRealista, M: typeof MAT, t: Torre, comSombra: boolean): void {
@@ -162,6 +173,8 @@ function kettlebell(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'kettl
     c[2],
     `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(K.R)} ${f1(K.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${borda}" stroke-width="${escuro ? 0.8 : 0.5}"/></g><ellipse cx="${f1(c[0] - K.R * 0.42)}" cy="${f1(c[1] - K.R * 0.44)}" rx="${f1(K.R * 0.22)}" ry="${f1(K.R * 0.13)}" transform="rotate(-35 ${f1(c[0] - K.R * 0.42)} ${f1(c[1] - K.R * 0.44)})" fill="#fff" opacity="0.26"/>`,
   );
+  // a bola, para a conferência da pintura (não muda o desenho)
+  C.geo({ esfera: P(K.centro), r: K.R });
   // a alça: duas hastes que saem da bola e a barra de cima (um pouco para trás na pintura: as mãos ficam por cima)
   const alto = K.altura - K.rAlca;
   const pe = K.centro + Math.sqrt(Math.max(0, K.R * K.R - K.meiaAlca * K.meiaAlca)) - 1;
@@ -215,13 +228,18 @@ function desenhar(chave: string | null, cam: Camera, id: string, monta: (C: Cena
   });
   monta(C);
   // a sombra (profundidade enorme no gerador) vai para a camada do chão; a caixa da peça entra no primeiro item
-  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}) }));
+  const itens = C.itens.map((it, i): Item => ({ d: -it.z, camada: it.z > 1e8 ? 0 : 1, s: it.svg, ...(i === 0 ? { cx } : {}), ...(it.g3 ? { g3: it.g3 } : {}), ...(it.fora ? { fora: it.fora } : {}) }));
   const out = { itens, defs: C.defs.join('') };
   if (chave) GUARDADO.set(chave, out);
   return out;
 }
 
 /** O equipamento de um quadro, no desenho dos cartões do app. `id` distingue os filtros de sombra de cada <svg>. */
+/** Se a coluna aparece nesta vista: a de cenário não aparece de perfil, salvo com `deLado` (acréscimo de 19/11/2026). */
+export function torreNaVista(p: Extract<Peca, { t: 'torre' }>, cam: Camera): boolean {
+  const dePerfil = Math.abs(cam.para[0]) > 0.95;
+  return !(p.cenario && dePerfil && !p.deLado);
+}
 export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: string): { itens: Item[]; defs: string } {
   const M = MATERIAIS[tema];
   // a sombra no chão só aparece nas vistas inclinadas: de perfil o chão é uma linha, e de cima, a pino, a sombra
@@ -229,11 +247,14 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
   const comSombra = Math.abs(cam.para[1]) > 0.1 && Math.abs(cam.para[1]) < 0.9;
   const itens: Item[] = [];
   let defs = '';
+  // cada item leva o índice da peça (para o pintor por pares, ./pintor-por-pares.ts; não entra no desenho)
+  let peca = 0;
   const junta = (r: { itens: Item[]; defs: string }) => {
-    itens.push(...r.itens);
+    for (const it of r.itens) itens.push({ ...it, pp: { k: 'peca', peca } });
     defs += r.defs;
   };
   pecas.forEach((p, i) => {
+    peca = i;
     const pid = `${id}${i}`;
     const fixa = (nome: string, dados: unknown) => `${nome}|${cam.nome}|${tema}|${pid}|${JSON.stringify(dados)}`;
     if (p.t === 'halter') junta(desenhar(null, cam, pid, (C) => halter(C, M, p)));
@@ -258,15 +279,37 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
       const primeiro = r.itens.findIndex((it) => it.camada >= 1);
       junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
     }
-    else if (p.t === 'colchonete') junta(desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p)));
+    else if (p.t === 'colchonete') {
+      const r = desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p));
+      if (p.noQuadro === undefined) return junta(r);
+      // `noQuadro` (acréscimo de 19/11): só o trecho do meio, com esse comprimento, conta para o enquadramento; as
+      // pontas do colchonete comprido podem ser cortadas pela borda do quadro
+      const { larg, esp } = medidasDoColchonete(p);
+      const cx: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+      for (const x of [-1, 1])
+        for (const y of [0, esp])
+          for (const z of [-1, 1]) {
+            const q: V3 = [p.x0 + (x * larg) / 2, y, p.z0 + (z * p.noQuadro) / 2];
+            const tx = dot(q, cam.dir),
+              ty = -dot(q, cam.cima);
+            cx[0] = Math.min(cx[0], tx);
+            cx[1] = Math.min(cx[1], ty);
+            cx[2] = Math.max(cx[2], tx);
+            cx[3] = Math.max(cx[3], ty);
+          }
+      const primeiro = r.itens.findIndex((it) => it.camada >= 1);
+      junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
+    }
     else if (p.t === 'torre') {
-      const dePerfil = Math.abs(cam.para[0]) > 0.95;
-      if (p.cenario && dePerfil) return;
+      if (!torreNaVista(p, cam)) return;
       const a = desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)),
         b = desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida));
-      // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento
-      const fundo = (r: { itens: Item[]; defs: string }) => (p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
-      if (p.cortadaEmCima === undefined || p.cenario) {
+      // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento.
+      // A de cenário com `deLado`, de perfil, é desenhada como equipamento (na ordem certa e, com `cortadaEmCima`, no
+      // enquadramento até essa altura): os textos não ficam por cima dela (acréscimo de 19/11/2026)
+      const cenario = p.cenario && !(p.deLado && Math.abs(cam.para[0]) > 0.95);
+      const fundo = (r: { itens: Item[]; defs: string }) => (cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
+      if (p.cortadaEmCima === undefined || cenario) {
         junta(fundo(a));
         junta(fundo(b));
       } else {

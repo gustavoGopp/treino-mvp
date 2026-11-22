@@ -121,7 +121,20 @@ export type Peca =
    * `pontaNoQuadro`: quando só a ponta do banco importa (o pé de trás do búlgaro apoia nela), quantos centímetros
    * dessa ponta (a de +z) o enquadramento precisa mostrar; o resto do banco pode ser cortado pela borda do quadro.
    */
-  | { t: 'bancoReto'; x0: number; z0: number; pontaNoQuadro?: number }
+  | {
+      t: 'bancoReto';
+      x0: number;
+      z0: number;
+      pontaNoQuadro?: number;
+      /**
+       * `atras` (acréscimo de 19/11, desligado por padrão): quanto o estofado e a estrutura (a viga, os pés, as travessas
+       * e as sapatas) vão para trás na pintura, em cm de profundidade. Cada parte é pintada pela profundidade do meio
+       * dela; com o corpo deitado em cima e as pernas passando na frente do pé do banco, a perna de perto (pintada no
+       * item do corpo, pela média do tronco) ficava atrás do pé e da travessa (o crucifixo com halteres, na auditoria das
+       * fases A e B). Quem usa mede a ordem com uma regra de pintura.
+       */
+      atras?: { estofado: number; estrutura: number };
+    }
   /**
    * `cenario`: a coluna só serve de apoio para a mão (não é o equipamento do exercício). Ela é pintada atrás do corpo,
    * não entra no enquadramento (o quadro a corta em cima) e não aparece de perfil, onde ficaria atrás do tronco.
@@ -137,10 +150,41 @@ export type Peca =
        * exercícios na polia baixa: sem isso, a coluna de 2,39 m deixava o corpo pequeno no quadro.
        */
       cortadaEmCima?: number;
+      /**
+       * `deLado` (acréscimo de 19/11/2026, desligado por padrão): a coluna de cenário que fica do lado de longe é
+       * desenhada também de perfil, como equipamento (na ordem certa, atrás do corpo, e no enquadramento até
+       * `cortadaEmCima`), e o cabo termina na roldana dela. Sem isso, de perfil o cabo terminava no ar (o crucifixo na
+       * polia baixa). Nas outras vistas ela segue como cenário. A coluna do lado de perto continua de fora de perfil
+       * (ficaria na frente do corpo); ela cai no mesmo lugar da tela que a de longe.
+       */
+      deLado?: boolean;
     }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
-  | { t: 'colchonete'; x0: number; z0: number }
+  /**
+   * `noFundo` (acréscimo de 19/11, desligado por padrão): o colchonete é pintado na profundidade do canto dele mais
+   * longe de quem olha, e não na do meio. Ele fica no chão, embaixo de tudo o que apoia nele; pintado pelo meio, de
+   * três quartos o meio ficava mais perto de quem olha que o corpo de quatro apoios, e o colchonete cobria os joelhos,
+   * as canelas, os pés e as mãos que estão em cima dele (o coice, na auditoria das fases A e B).
+   */
+  | {
+      t: 'colchonete';
+      x0: number;
+      z0: number;
+      noFundo?: boolean;
+      /**
+       * `comprido` (acréscimo de 19/11, desligado por padrão): o colchonete de exercício medido
+       * (./dados/objetos/colchonete-comprido.json: comprimento, largura e espessura do mesmo modelo), e não o da tabela
+       * (100 × 50 × 1,5 cm, provisório), curto para o corpo de quatro apoios (no coice, o pé de apoio ficava fora).
+       */
+      comprido?: boolean;
+      /**
+       * `noQuadro` (acréscimo de 19/11, desligado por padrão): o comprimento (cm), em volta do meio do colchonete, que
+       * conta para o enquadramento. O colchonete comprido passa do corpo nas duas pontas, e de três quartos ele
+       * deixava o corpo pequeno no quadro; as pontas que sobram podem ser cortadas pela borda do quadro.
+       */
+      noQuadro?: number;
+    }
   /** Kettlebell: o centro da base, o eixo que vai da base à alça e o eixo que atravessa a alça (de uma haste à outra). */
   | { t: 'kettlebell'; base: V3; cima: V3; lado: V3 }
   /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */
@@ -248,10 +292,16 @@ export function estribo(pegada: V3, eixo: V3, paraOCabo: V3): { prims: Prim[]; e
   };
 }
 
-export function colchonete(x0: number, z0: number): Prim[] {
-  const c = obj('colchonete', 'comp') / 2,
-    l = obj('colchonete', 'larg') / 2,
-    e = obj('colchonete', 'esp') / 2;
+/** As medidas do colchonete (cm): o da tabela ou, com `comprido` (acréscimo de 19/11), o medido. */
+export function medidasDoColchonete(o: { comprido?: boolean } = {}): { comp: number; larg: number; esp: number } {
+  const id = o.comprido ? 'colchoneteComprido' : 'colchonete';
+  return { comp: obj(id, 'comp'), larg: obj(id, 'larg'), esp: obj(id, 'esp') };
+}
+export function colchonete(x0: number, z0: number, comprido = false): Prim[] {
+  const m = medidasDoColchonete({ comprido });
+  const c = m.comp / 2,
+    l = m.larg / 2,
+    e = m.esp / 2;
   return [caixaReta([x0, e, z0], [l, e, c], 'tapete', -50)];
 }
 export const chao = (x0: number, x1: number, z0: number, z1: number): Prim => ({ t: 'chao', y: 0, x0, x1, z0, z1, cls: 'chao' });

@@ -30,3 +30,17 @@ Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máqui
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/leg-press.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (na biblioteca: quadríceps; glúteos e adutores) e o alvo do cartão; a nota, do erro "Quadril descola no fundo" | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Preparo e Posição da tabela | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Posição (os pés na largura do quadril ou dos ombros), linhas Descida e Subida e o erro "Joelhos para dentro" (as dicas do cartão) | consenso | `nsca2021` (não verificado) |
+| Nota (`note`) | a regulagem da linha Preparo (encosto e assento para o quadril ficar apoiado no fundo) e a montagem do cartão, num texto só | consenso | `nsca2021` (não verificado); `seguranca.montagem` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/leg-press.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha (escrita em 12/11 para tirar o "Sem guia ainda") não dá o ângulo do encosto nem da chapa (na animação, o encosto a 40° é derivado do corpo e a chapa 10° mais em pé vem do desenho do equipamento) e não cita estudo. A seção Músculos só repete os ids da biblioteca, sem selo próprio.

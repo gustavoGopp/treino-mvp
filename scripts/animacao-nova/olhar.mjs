@@ -8,8 +8,13 @@ import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
 
 const [saida, ...pedidos] = process.argv.slice(2);
-// BONECO=aprovado desenha com as formas aprovadas, sem as correções anatômicas (para comparar)
-const { modulo: m } = await motorNovo(`export * from './src/engine/novo/app.ts';`, { aprovado: process.env.BONECO === 'aprovado' });
+// BONECO=aprovado desenha com as formas aprovadas, sem as correções anatômicas (para comparar). O pintor por pares vai
+// junto, como o Worker do app o entrega ao motor (src/engine/novo/pintor-ligado.ts): sem ele, uma animação em que ele
+// está ligado dava erro (acréscimo de 19/11/2026)
+const { modulo: m } = await motorNovo(
+  `export * from './src/engine/novo/app.ts'; import { registrarPintorPorPares } from './src/engine/novo/cena.ts'; import { pintarPorPares } from './src/engine/novo/pintor-por-pares.ts'; registrarPintorPorPares((itens) => pintarPorPares(itens));`,
+  { aprovado: process.env.BONECO === 'aprovado' },
+);
 const corpo = m.CORPOS.homem;
 const css = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBoneco();
 const LARG = Number(process.env.LARG ?? 560);

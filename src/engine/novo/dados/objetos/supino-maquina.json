@@ -1,0 +1,43 @@
+{
+ "fontes": {
+  "lf-hs26-cp": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Chest Press SS-CP, 56,3 x 56,6 x 58,1 pol (144 x 144 x 148 cm), C x L x A; a altura é a da pilha (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24-cp": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Chest Press HS-CP, 41 x 57 x 64 pol (105 x 145 x 163 cm) (pesquisa/04-objetos.md, seção 13.1). A Movement Next tem 124 x 138 x 146 cm (MV-NEXT, p. 13) e a Technogym MK70, 1409 x 1427 x 1673 mm (TG-HOME, p. 85)",
+  "precor-rsl0414": "Precor, Resolute Converging Chest Press RSL0414; https://www.precor.com/en-US/products/RSL0414 (lido em 18/11/2026): \"73 x 50 x 73 in / 185 x 127 x 185 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"Weight Stack: 240 lb / 109 kg\", \"Total thickness is 2.5 inches (65 mm)\", \"features independent moving arms and a natural, converging motion path\", \"The movement arm handles [...] can be angled to keep wrists in correct alignment\"",
+  "desenho-supino-maquina": "Escolha de desenho, sem medida de fabricante: as fichas dão o tamanho total, a pilha e o estofado; onde fica o eixo, o comprimento do braço, a altura do assento e do encosto não aparecem em nenhuma ficha lida"
+ },
+ "objetos": {
+  "supinoMaquina": {
+   "nome": "Supino na máquina (chest press de pilha): assento que sobe e desce, encosto parado, dois braços independentes que pendem de um eixo acima da cabeça e trazem os pegadores na frente do peito, com o caminho que converge, e a pilha de placas ao lado",
+   "medidas": {
+    "comp": { "v": 144, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-cp", "onde": "comprimento total da Life Fitness SS-CP (Hammer Strength 105; Movement 124; Technogym 141; Precor 185)" },
+    "larg": { "v": 144, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-cp", "onde": "largura total, com a pilha ao lado do assento (Hammer Strength 145; Movement 138; Technogym 143; Precor 127)" },
+    "altura": { "v": 163, "un": "cm", "tipo": "medida", "fonte": "hs24-cp", "onde": "altura total da Hammer Strength HS-CP (a Technogym tem 167; a Precor, 185; os 148 cm da Life Fitness são a altura da pilha); a peça desenhada fica em ~152 cm, com o eixo dos braços a 145, logo acima da cabeça" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0414", "onde": "\"Weight Stack Tower Height: 58 in / 148 cm\" (a Life Fitness dá os mesmos 148 cm)" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0414", "onde": "\"Total thickness is 2.5 inches (65 mm)\"" },
+    "converge": { "v": 8, "un": "graus", "tipo": "desenho", "fonte": "precor-rsl0414", "onde": "o eixo de cada braço gira 8° para dentro, e os pegadores se aproximam enquanto vão à frente (a Precor: \"converging motion path\", sem dar o ângulo)" },
+    "assentoComp": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "comprimento do assento: as fichas não dão; cabe o glúteo e a metade da coxa" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "largura do assento: a mesma da cadeira flexora" },
+    "assentoMin": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "o assento mais baixo (do chão ao topo do estofado): as fichas não dão o curso" },
+    "assentoMax": { "v": 56, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "o assento mais alto" },
+    "encostoInclina": { "v": 15, "un": "graus", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "o encosto deita 15° para trás da vertical; as fichas não dão o ângulo" },
+    "encostoBaixo": { "v": 60, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "altura da borda de baixo do encosto: ele começa na altura da lombar de quem senta com o assento no meio do curso" },
+    "encostoComp": { "v": 64, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "comprimento do encosto, da lombar até acima dos ombros" },
+    "encostoAtras": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "quanto a face do encosto, na borda de baixo, fica atrás da borda da frente do assento" },
+    "eixoAltura": { "v": 145, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "altura do eixo dos braços: logo acima da cabeça de quem senta (o topo da cabeça fica a ~138 cm com o assento regulado), abaixo da altura total da Hammer Strength (163); com o braço de 54 cm, o pegador começa na linha do meio do peito com o assento a ~46 cm" },
+    "eixoAFrente": { "v": -12, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "quanto o eixo fica à frente da borda da frente do assento: perto da vertical do meio do caminho dos pegadores, para eles andarem quase na horizontal" },
+    "bracoComp": { "v": 54, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "do eixo ao fim do braço (onde o pegador começa)" },
+    "bracoMeio": { "v": 12, "un": "graus", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "o ângulo do braço (0 = pendurado, 90 = para a frente) em que o pegador fica na largura da tabela; daí a convergência aproxima ou afasta" },
+    "pegadaMeia": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "do meio da máquina ao centro da borracha de cada pegador: um pouco mais aberto que os ombros, a pegada do supino com barra aprovado" },
+    "pegadorComp": { "v": 13, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "comprimento da borracha do pegador (atravessado, para a palma virada para a frente)" },
+    "pegadorDiam": { "v": 3.4, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "diâmetro da borracha do pegador" },
+    "bracoFora": { "v": 3, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "do fim da borracha ao tubo do braço" },
+    "cameDiam": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "diâmetro do came no eixo do braço da esquerda (a peça redonda que enrola o cabo)" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "número de placas desenhadas; a Precor tem 109 kg de pilha, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "altura da pilha em repouso (a da cadeira flexora)" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-supino-maquina", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

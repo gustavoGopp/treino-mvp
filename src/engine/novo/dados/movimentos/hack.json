@@ -1,0 +1,59 @@
+{
+ "id": "hack",
+ "nome": "Agachamento no hack",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/hack.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/hack.md) e cartão do app (src/conteudo/exercicios/hack.json): consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "amplitude": "Profundidade: o joelho passa de 90° (kubo2019, um estudo, por analogia com o agachamento completo; inferência da ficha)",
+  "cadencia": "Cadência da ficha (cadencia.repeticao, moderada): ~2–3 s descendo; sobe sem travar",
+  "aprovado": "Animações aprovadas do motor novo: o agachamento no smith (dados/movimentos/agachamento-smith.json: o ritmo, a abertura das pontas dos pés) e os deitados no chão (dados/movimentos/abdominal-chao.json: a lombar firme achata além da curva de repouso)",
+  "objetos": "src/engine/novo/dados/objetos/hack.json (o hack da Hammer Strength, carro de 57 kg) e dados/objetos/barra-longa.json (as anilhas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.cima": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: 'joelhos quase estendidos, sem travar'; a ficha não dá número: 12°" },
+  "joelho.baixo": { "v": 105, "un": "graus", "selo": "um estudo", "fonte": "amplitude", "o": "embaixo: 'desce até o joelho passar de 90°, sem a lombar descolar do encosto'" },
+  "lombar": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "costas apoiadas e 'lombar colada no encosto': a lombar achata 10° além da curva de repouso; a bacia inclina até as escápulas e o glúteo encostarem juntos no encosto" },
+  "cervical": { "v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço quase neutro, olhando para a frente e um pouco para baixo" },
+  "cabeca": { "v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o queixo um pouco para o peito" },
+  "amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto as costas afundam no encosto e os ombros nas almofadas (o corpo apoia, não flutua)" },
+  "pes.meia": { "v": 15, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés 'na largura do quadril ou dos ombros': o meio de cada pé a 15 cm do meio, entre o quadril (8,35) e os ombros (20,4)" },
+  "pes.paraFora": { "v": 15, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "as pontas dos pés um pouco para fora (15°, como no agachamento no smith aprovado), e os joelhos na direção delas" },
+  "pes.noMeio": { "v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'pés no meio da plataforma': o meio do pé (entre o calcanhar e a bola) no centro da chapa" },
+  "anilhas": { "v": 20, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 20 kg de cada lado; com o carro de 57 kg, 97 kg" },
+  "trava.acima": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "ficha", "o": "o suporte de cima da trava fica 3 cm abaixo do ponto mais alto do carro (a regulagem de quem treina): 'solta a trava antes da 1ª repetição e trava de novo ao terminar'; na série a trava fica solta" },
+  "erro.pouco.joelho": { "v": 60, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: a descida para com o joelho a 60° (no certo, 105°): 'amplitude curta'" },
+  "erro.lombar.joelho": { "v": 115, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: desce até o joelho a 115°, além do que a bacia aguenta encostada" },
+  "erro.lombar.rola": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no fundo, a bacia gira 22° para trás e a lombar arredonda o mesmo tanto: 'a lombar sai do encosto' (os ombros ficam nas almofadas)" },
+  "erro.travar.joelho": { "v": 1, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: em cima, o joelho estica até o fim (1°): 'esticar com força no topo'" },
+  "erro.dentro.graus": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no meio do caminho, os joelhos giram 16° para dentro, em volta da linha do quadril ao tornozelo ('os joelhos fecham em vez de seguir a linha dos pés')" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "trava solta", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "moderada", "fonte": "cadencia" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s, sem travar", "selo": "consenso", "fonte": "aprovado" }
+ ],
+ "contatos": ["pe.R", "pe.L", "costas"],
+ "regras": [
+  { "id": "joelho-passa-de-90-no-trilho", "pede": "embaixo, o joelho passa de 90°", "selo": "um estudo", "fonte": "amplitude" },
+  { "id": "joelhos-sem-travar-no-trilho", "pede": "em cima, os joelhos quase estendidos, sem travar (entre 5° e 20°)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "costas-e-ombros-no-encosto-do-hack", "pede": "costas e ombros apoiados no encosto, ombros sob as almofadas, a lombar colada (sem arredondar)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carro-do-hack-so-anda-na-guia", "pede": "o carro (o encosto, as almofadas e os pegadores) só anda na guia, a 45°, e a trava fica solta", "selo": "consenso", "fonte": "objetos" },
+  { "id": "joelhos-na-linha-dos-pes-no-trilho", "pede": "os joelhos na direção dos pés, sem fechar para dentro", "selo": "consenso", "fonte": "ficha" },
+  { "id": "maos-nos-pegadores-do-hack", "pede": "as mãos nos pegadores do carro", "selo": "consenso", "fonte": "ficha" },
+  { "id": "hack-pele-nos-estofados", "pede": "medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, nas almofadas dos ombros ou na chapa mais que 2,5 cm (o que o estofado amassa)", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "pouco", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a descida para no meio: o joelho dobra só 60° (no certo, 105°)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },
+  { "id": "lombar", "instante": 1, "titulo": "Lombar descola", "vista": "lateral", "oQueMuda": "no fundo, a bacia gira 22° para trás, a lombar arredonda e sai do encosto", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve"], "foco": "lombar" },
+  { "id": "dentro", "instante": 0.5, "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "no meio do caminho, os joelhos fecham para dentro, fora da linha dos pés", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R" },
+  { "id": "travar", "instante": 0, "titulo": "Travar os joelhos", "vista": "lateral", "oQueMuda": "em cima, os joelhos esticam até o fim", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "lombar no encosto", "ponto": "lombar", "selo": "consenso", "fonte": "ficha", "acima": true },
+  { "vista": "lateral", "texto": "desce fundo", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "acima": true },
+  { "vista": "frontal", "texto": "joelhos na direção dos pés", "ponto": "joelho:R", "selo": "consenso", "fonte": "ficha" }
+ ]
+}

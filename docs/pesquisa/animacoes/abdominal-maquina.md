@@ -29,3 +29,16 @@ Placa da torre (número).
 ## Fontes
 - `escamilla2006`: Escamilla RF, McTaggart MSC, Fricklas EJ et al. An electromyographic analysis of commercial and common abdominal exercises: implications for rehabilitation and training. J Orthop Sports Phys Ther 2006;36(2):45-57. PMID 16494072. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (20/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/abdominal-maquina.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (abdômen; igual à biblioteca, sem secundário); a nota, do erro "Só dobrar o quadril" e de "Por que assim" (em alguns aparelhos do estudo de EMG, o flexor do quadril trabalhou mais que o abdômen), do erro "Puxar com os braços" e da dica "Braços só seguram" do cartão | consenso; um estudo (o flexor do quadril, com ligação fraca: os aparelhos do estudo não são as máquinas de academia) | `nsca2021` (não verificado); `escamilla2006` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linhas Posição e Movimento (o quadril dobra pouco) da tabela de técnica e a dica "Braços só seguram" do cartão | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linha Posição (o peito ou os ombros nas almofadas), linhas Movimento e Volta e o erro "Puxar com os braços" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/abdominal-maquina.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz como regular o assento nem onde ficam as mãos; a animação seguiu o manual público da Life Fitness (o apoio da lombar, os pegadores à frente do peito, logo abaixo das almofadas, e o eixo baixo, ao lado da lombar; `docs/revisoes/animacao-nova/lote-C3/abdominal-maquina.md`), e o texto não fala disso, porque nem a ficha nem o cartão falam (o cartão não tem montagem). A ficha não dá o tempo da volta nem a pausa no fim (a animação usou os do abdominal na polia aprovado). O desenho do equipamento (`public/equipamento/abdominal_maquina.svg`) é de outra máquina (já em `docs/revisoes/animacoes-restantes/pedidos-ao-conteudo.md`, seção 3). O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor.

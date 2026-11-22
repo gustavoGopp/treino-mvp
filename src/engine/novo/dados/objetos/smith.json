@@ -1,0 +1,35 @@
+{
+ "fontes": {
+  "lf-ssm": "Life Fitness, Smith Machine SSM (Signature Series), página do produto no distribuidor oficial da Life Fitness na Austrália; https://www.lifefitness.com.au/commercial/smith-machine-ssm (lida em 18/11/2026): \"7-degree bar angle follows the natural free weight path of movement for pressing or squatting\", \"Fully enclosed linear bearings with unsupported guide rods\", \"Counter weight inside the D-tube eliminates shrouds\", \"Start resistance of 20 lb (9 kg)\", \"Dimensions (L x W x H): 87'' x 49'' x 93'' (221 cm x 125 cm x 237 cm)\", \"Vertical Height Between Bar Supports: 6\\\" (16 cm)\", \"Bar Weight: 20 lbs (9 kg)\", \"Weight Horns: 8\". O catálogo Life Fitness e Hammer Strength 2026 (p. 216) dá as mesmas 87 x 49 x 93 pol (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.2)",
+  "hs-hssmv": "Hammer Strength, Plate-Loaded Vertical Smith Machine HSSMV; https://www.lifefitness.com.au/commercial/vertical-smith-machine-hssmv (lida em 18/11/2026): \"Offers a zero-degree bar travel for those who prefer vertical over angled lifts\", \"11 bar racking positions\", \"50'' x 91'' x 92'' (127 cm x 229 cm x 234 cm)\". Serve de comparação: o desenho segue a Life Fitness SSM, que tem a guia inclinada",
+  "barra-longa-smith": "src/engine/novo/dados/objetos/barra-longa.json (IWF e IPF): a pegada de 2,8 cm e a manga de 5 cm da barra olímpica, que recebe as anilhas olímpicas",
+  "desenho-smith": "Escolha de desenho do smith, sem medida de fabricante: a ficha da Life Fitness dá o tamanho total, a inclinação da guia, o passo dos ganchos, o peso da barra e o número de pinos de anilha; as medidas de dentro da máquina (onde fica a guia, o carro, a régua dos ganchos, a trava) não aparecem em nenhuma ficha lida"
+ },
+ "objetos": {
+  "smith": {
+   "nome": "Smith (a barra presa a duas guias, com ganchos e travas de segurança): duas guias cromadas inclinadas 7°, a barra que corre nelas sobre rolamentos lineares, os ganchos que prendem a barra nos pinos da régua ao girar a barra, as travas que param a barra numa altura escolhida e os pinos de guardar anilhas",
+   "medidas": {
+    "larg": { "v": 221, "un": "cm", "tipo": "medida", "fonte": "lf-ssm", "onde": "\"Dimensions (L x W x H): 87'' x 49'' x 93'' (221 cm x 125 cm x 237 cm)\": a maior medida, ao longo da barra (o catálogo de 2026 traz os cm com C e L trocados); a Hammer Strength HSSMV tem 229" },
+    "prof": { "v": 125, "un": "cm", "tipo": "medida", "fonte": "lf-ssm", "onde": "49 pol (125 cm), da frente ao fundo; a HSSMV tem 127" },
+    "altura": { "v": 237, "un": "cm", "tipo": "medida", "fonte": "lf-ssm", "onde": "93 pol (237 cm); a HSSMV tem 234" },
+    "guiaInclina": { "v": 7, "un": "graus", "tipo": "medida", "fonte": "lf-ssm", "onde": "\"7-degree bar angle\": a guia (e o caminho da barra) inclina 7° da vertical. Para que lado ela inclina em relação a quem treina, a ficha não diz: o desenho põe o alto da guia para o lado da cabeça no supino (a barra sobe para cima dos ombros) e, no agachamento, a barra desce um pouco para trás (para o lado dos calcanhares)" },
+    "ganchosEntre": { "v": 16, "un": "cm", "tipo": "medida", "fonte": "lf-ssm", "onde": "\"Vertical Height Between Bar Supports: 6\\\" (16 cm)\": a distância entre dois pinos da régua onde o gancho prende a barra" },
+    "barraMassa": { "v": 9, "un": "kg", "tipo": "medida", "fonte": "lf-ssm", "onde": "\"Bar Weight: 20 lbs (9 kg)\" e \"Start resistance of 20 lb (9 kg)\" (a barra tem contrapeso dentro do montante)" },
+    "pinosDeAnilha": { "v": 8, "un": "pinos", "tipo": "medida", "fonte": "lf-ssm", "onde": "\"Weight Horns: 8\": quatro de cada lado, atrás" },
+    "guiasEntre": { "v": 122, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "de centro a centro das duas guias: a ficha não dá; cabe a pegada do supino a 1,5 vez a largura dos ombros e a barra nas costas com as mãos fora dos ombros" },
+    "guiaDiam": { "v": 4, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "diâmetro da guia cromada (\"unsupported guide rods\": presa só em cima e embaixo); a ficha não dá" },
+    "carroAlt": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "altura do carro do rolamento linear (\"fully enclosed linear bearings\") que corre na guia e prende a ponta da barra" },
+    "carroLarg": { "v": 10, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "largura e fundo do carro" },
+    "pegadaDiam": { "v": 2.8, "un": "cm", "tipo": "desenho", "fonte": "barra-longa-smith", "onde": "diâmetro da barra entre os carros: a ficha não dá; o da pegada da barra olímpica" },
+    "mangaDiam": { "v": 5, "un": "cm", "tipo": "derivada", "fonte": "barra-longa-smith", "onde": "a manga de fora de cada carro recebe as anilhas olímpicas: o diâmetro da manga da barra olímpica" },
+    "montante": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "lado do tubo dos montantes (\"D-tube\", com o contrapeso dentro) e das travessas" },
+    "montanteFora": { "v": 8, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "quanto o plano dos montantes fica por fora da guia, de cada lado: a anilha passa por fora dele" },
+    "reguaAtras": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "a régua dos pinos dos ganchos corre paralela à guia, atrás dela (do lado do pé da guia), ao alcance do gancho" },
+    "ganchoComp": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "do eixo da barra à ponta do gancho, que gira com a barra" },
+    "pinoMin": { "v": 30, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "altura do pino mais baixo da régua; daí para cima, um a cada 16 cm (a HSSMV tem 11 posições)" },
+    "travaAlt": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "altura do batente de segurança que corre na guia e para o carro (a trava), com o pino de regular" },
+    "pinoAnilhaComp": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "desenho-smith", "onde": "comprimento de cada pino de guardar anilha" }
+   }
+  }
+ }
+}

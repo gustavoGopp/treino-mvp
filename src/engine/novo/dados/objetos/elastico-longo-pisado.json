@@ -1,0 +1,27 @@
+{
+ "fontes": {
+  "rubberbanditz-41": "RubberBanditz, 41\" Resistance Band; https://www.rubberbanditz.com/41-in-resistance-band/ (lida em 15/11/2026 por resumo automático da página: tabela de tamanhos \"Lay Flat Length\" 41\" em todas as faixas; \"Each band is 41\" [104 cm] in length\"; \"Medium [...] 1/2\" wide band\"; \"Each band is can stretch 2.5 times its resting length\")",
+  "desenho-abducao-elastico": "Escolha de desenho da abdução em pé com elástico (src/engine/novo/exercicios/abducao-elastico.ts): o pé que pisa prende a faixa, e só o trecho entre ele e o tornozelo de fora estica"
+ },
+ "objetos": {
+  "elasticoLongoPisado": {
+   "nome": "Elástico longo em laço (41 pol), pisado: o trecho entre o pé que pisa e o tornozelo de fora",
+   "medidas": {
+    "comp": {
+     "v": 47,
+     "un": "cm",
+     "tipo": "desenho",
+     "fonte": "desenho-abducao-elastico",
+     "onde": "a volta do trecho que estica (das duas camadas, do lado de dentro do pé que pisa até o tornozelo de fora e de volta), em repouso: quem pisa escolhe onde pisar; o desenho pisa no ponto em que a faixa já fica esticada com as pernas juntas. O resto do laço (2 × 41 pol = 208,3 cm, ./elastico-longo.json) fica sob o pé e deitado no chão, sem esticar"
+    },
+    "esticaAte": {
+     "v": 2.5,
+     "un": "vezes",
+     "tipo": "medida",
+     "fonte": "rubberbanditz-41",
+     "onde": "a faixa estica até 2,5 vezes o comprimento em repouso (vale para qualquer trecho dela)"
+    }
+   }
+  }
+ }
+}

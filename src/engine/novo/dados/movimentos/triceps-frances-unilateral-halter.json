@@ -1,0 +1,66 @@
+{
+ "id": "triceps-frances-unilateral-halter",
+ "nome": "Tríceps francês unilateral com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-frances-unilateral-halter.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-unilateral-halter.md): um halter (cadeira ou banco opcionais); braço acima da cabeça, apontado para o alto (maeo2023, um estudo); só o cotovelo dobra, até bem dobrado, e estende (consenso); o mesmo movimento do tríceps francês com halter, com um braço",
+  "app": "Cartão do app (src/conteudo/exercicios/triceps-frances-unilateral-halter.json): sentado ou em pé, tronco reto, abdômen firme; o halter numa mão, a outra mão segura o cotovelo de trabalho, se quiser (opcional: a animação põe a outra mão na cintura); ~2 a 3 s descendo até o cotovelo ficar bem dobrado, o braço apontado para o alto; as dicas e os erros",
+  "polia": "Ficha de movimento do tríceps francês unilateral na polia aprovado (src/engine/novo/dados/movimentos/triceps-frances-polia-unilateral.json): a outra mão na cintura (o cartão deste exercício diz que segurar o cotovelo é opcional, 'se quiser')",
+  "frances": "Fichas de movimento dos tríceps franceses aprovados (src/engine/novo/dados/movimentos/triceps-frances-halter.json e triceps-frances-polia-unilateral.json): o braço acima da cabeça, o quanto o cotovelo dobra, o tempo das fases e os erros",
+  "emPe": "Fichas de movimento dos desenvolvimentos em pé aprovados (src/engine/novo/dados/movimentos/desenvolvimento-unilateral-kettlebell.json): pés na largura do quadril, joelhos destravados",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json (o halter sextavado de 25 lb)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "emPe", "o": "em pé, pés na largura do quadril (o cartão não diz; os desenvolvimentos em pé aprovados)"},
+  "pe.frente.z": {"v": 15, "un": "cm", "selo": "desenho", "fonte": "emPe", "o": "os dois pés lado a lado: a bola do pé direito à frente do meio do corpo"},
+  "pe.tras.z": {"v": 15, "un": "cm", "selo": "desenho", "fonte": "emPe", "o": "a bola do pé esquerdo na mesma linha da do direito (sem passo)"},
+  "pe.tras.calcanhar": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "emPe", "o": "os dois pés inteiros no chão"},
+  "pelve.z": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "equilibrio", "o": "o meio da pelve sobre os pés: o centro de massa (corpo + halter) fica sobre o meio do pé (medido)"},
+  "joelho.frente": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "emPe", "o": "joelhos destravados (a ficha não dá número; os 8° dos desenvolvimentos em pé aprovados): a altura da pelve sai daqui"},
+  "tronco.inclinacao": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "tronco reto: o eixo do tórax na vertical"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "frances", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "frances", "o": "cabeça na linha do pescoço, olhando à frente"},
+  "braco.elevacao": {"v": 165, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "braço acima da cabeça, apontado para o alto, ao lado da orelha: a 165° do braço pendurado, no referencial do tronco (o do tríceps francês com halter aprovado, abaixo da elevação média de 170°)"},
+  "braco.paraDentro": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "frances", "o": "o braço vai um pouco para o meio: o cotovelo à frente, perto da cabeça, sem abrir (o do unilateral na polia aprovado)"},
+  "cotovelo.alongado": {"v": 135, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: o halter atrás da cabeça, o cotovelo bem dobrado (a ficha não dá número; o do unilateral na polia aprovado, abaixo da flexão máxima média de 148°)"},
+  "cotovelo.estendido": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: o braço reto acima da cabeça, sem travar"},
+  "maos.meiaDistancia": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "frances", "o": "embaixo, a mão atrás da cabeça, um pouco para o lado do braço que trabalha (o centro da mão a 5 cm do meio do tronco, como no unilateral na polia aprovado)"},
+  "maoNaCintura.x": {"v": 15.5, "un": "cm", "selo": "desenho", "fonte": "polia", "o": "a outra mão na cintura: o punho ao lado da crista do quadril, a esta distância do meio da pelve (o do unilateral na polia aprovado)"},
+  "maoNaCintura.acima": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "polia", "o": "o punho um pouco acima da crista do quadril"},
+  "maoNaCintura.z": {"v": -3, "un": "cm", "selo": "desenho", "fonte": "polia", "o": "o punho um pouco atrás do meio da pelve (os dedos vão para a frente)"},
+  "erro.abre.fora": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "frances", "o": "erro: o cotovelo abre para o lado (no alongado; o do unilateral na polia aprovado)"},
+  "erro.abre.volta": {"v": 1, "un": "fração", "selo": "desenho", "fonte": "frances", "o": "erro: o cotovelo abre na volta e fecha estendendo"},
+  "erro.curta.cotovelo": {"v": 75, "un": "graus", "selo": "desenho", "fonte": "frances", "o": "erro: o halter não desce atrás da cabeça (para com o cotovelo a 75°, como no tríceps francês com halter aprovado)"},
+  "erro.arco.lombar": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia (estende além da curva de repouso) e o tronco inclina para trás enquanto o halter sobe"},
+  "erro.arco.toracica": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima também estendem"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braço apontado para o alto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "frances"},
+  {"nome": "Braço reto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "acima da cabeça", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 a 3 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "triceps-frances-braco-parado", "pede": "só o cotovelo mexe: o braço fica parado, apontado para o alto", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-frances-unilateral-cotovelo-perto-da-cabeca", "pede": "o cotovelo apontado para cima, perto da cabeça, sem abrir para o lado", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "triceps-frances-alonga-atras-da-cabeca", "pede": "embaixo: halter atrás da cabeça, cotovelo bem dobrado", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-frances-estende-em-cima", "pede": "em cima: braço estendido acima da cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "triceps-frances-costas-retas", "pede": "tronco reto, lombar parada", "selo": "consenso", "fonte": "app"},
+  {"id": "triceps-frances-halter-livre-do-corpo", "pede": "o halter passa atrás da cabeça sem encostar na cabeça, na nuca nem nas costas", "selo": "desenho", "fonte": "desenho"},
+  {"id": "triceps-frances-unilateral-mao-na-cintura", "pede": "a outra mão na cintura (segurar o cotovelo é opcional no cartão)", "selo": "desenho", "fonte": "polia"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halter) fica perto do meio do pé", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "abre", "instante": 0, "titulo": "Abrir o cotovelo", "vista": "frontal", "oQueMuda": "o cotovelo vai para o lado e o braço sai do alto", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "o halter para acima da cabeça, sem descer atrás dela (o cotovelo a 75°)", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"},
+  {"id": "arco", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia e o tronco inclina para trás enquanto o halter sobe", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "braço apontado para o alto", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "só o cotovelo mexe", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -6,6 +6,9 @@ import amplitudesJson from './dados/amplitudes.json';
 import { angulosDoLado, f1, faixa } from './conferir-util';
 import type { Regra } from './conferir-util';
 import * as REGRAS_DAS_FAMILIAS from './regras/registro';
+import { APROVADOS } from './aprovados';
+import { AREA_MINIMA, EMPURRADA, PASSO_DA_GRADE, PERTO_DA_PEGADA, PERTO_DO_TORNOZELO, RAIO_DA_PEGADA, TOL_CONTATO, TOL_FIO, TOL_PESO, medirPinturaEFios, quadrosMedidos, resumoDaPintura, resumoDosFios, resumoDosPesos } from './conferir-pintura';
+import type { PinturaEFios } from './conferir-pintura';
 import { LADOS, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
 import { pontosDoBoneco } from './boneco';
@@ -41,6 +44,8 @@ export interface Relatorio {
   angulos: Record<string, [number, number]>;
   falhas: number;
   avisos: number;
+  /** O que as conferências da pintura e dos fios acharam (./conferir-pintura.ts). */
+  pinturaEFios?: PinturaEFios;
 }
 
 /** Regras da ficha da técnica: cada uma devolve o que mediu e se confere. */
@@ -260,6 +265,29 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   // 3) contatos: o que a ficha declara preso não sai do lugar
   const pontos: Record<string, (e: Esq, k: Lado) => V3[]> = { pe: (e, k) => [e.lado[k].bola, e.lado[k].ponta], mao: (e, k) => [e.lado[k].punho], joelho: (e, k) => [e.lado[k].joelho], pelve: (e) => [e.pelve.o] };
   for (const c of F.contatos) {
+    // "pe.R:noChao": o pé que sai do chão e volta (a caminhada lateral) fica preso só enquanto apoia; em cada trecho
+    // seguido de quadros com a bola do pé no chão, ele não sai do lugar
+    if (c.endsWith(':noChao')) {
+      const k = c.slice(3, 4) as Lado;
+      const apoia = quadros.map((q) => q.esq.lado[k].bola[1] <= 0.05);
+      // começa a contar num quadro com o pé no ar, para o trecho que atravessa o fim do ciclo não ficar partido
+      const i0 = Math.max(0, apoia.indexOf(false));
+      let d = 0,
+        ref: V3[] | undefined;
+      for (let j = 0; j < n; j++) {
+        const i = (i0 + j) % n;
+        if (!apoia[i]) {
+          ref = undefined;
+          continue;
+        }
+        const ps = pontos.pe!(quadros[i]!.esq, k);
+        if (!ref) ref = ps;
+        d = Math.max(d, ...ps.map((p, x) => dist(p, ref![x]!)));
+      }
+      const parte = apoia.filter(Boolean).length / n;
+      add('Contatos', `preso no lugar enquanto apoia: ${c.slice(0, 4)}`, `no chão em ${f1(parte * 100)}% do ciclo; desloca no máximo ${f1(d)} cm enquanto apoia`, 'tolerância 0,1 cm', d <= 0.1 && parte > 0 ? 'ok' : 'falha');
+      continue;
+    }
     const [parte, lado] = c.split('.') as [string, Lado | undefined];
     const le = pontos[parte];
     if (!le) continue;
@@ -275,13 +303,18 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   // o corpo do erro também não atravessa o chão (a revisão de 15/11/2026 achou o "quadril cai" da flexão 9,5 cm abaixo dele)
   let maisBaixoNoErro = 1e9,
     qualErro = '';
+  // (os quadros dos erros ficam guardados: a conferência da pintura usa os de u = 0, 0,5 e 1)
+  const quadrosDosErros = new Map<string, Quadro>();
   for (const er of F.erros)
-    for (let i = 0; i <= 6; i++)
-      for (const { p } of pontosDoBoneco(ex.quadro(corpo, i / 6, er.id).esq))
+    for (let i = 0; i <= 6; i++) {
+      const qe = ex.quadro(corpo, i / 6, er.id);
+      quadrosDosErros.set(`${er.id}|${i / 6}`, qe);
+      for (const { p } of pontosDoBoneco(qe.esq))
         if (p[1] < maisBaixoNoErro) {
           maisBaixoNoErro = p[1];
           qualErro = er.titulo;
         }
+    }
   if (F.erros.length) add('Chão', 'ponto mais baixo do corpo nos erros desenhados', `${f1(maisBaixoNoErro)} cm (${qualErro})`, 'não pode passar de −1,5 cm', maisBaixoNoErro >= -1.5 ? 'ok' : 'falha');
 
   // 5) objetos: a carga não voa (fica na mão) e o corpo não atravessa caixas (banco, colchonete)
@@ -330,7 +363,9 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
       const noComeco = comp[0]!.comp / repouso;
       add('Cabos', 'elástico: quanto estica no ciclo (1 = comprimento em repouso)', `de ${f1(a / repouso)} a ${f1(b / repouso)} vezes (${f1(a)} a ${f1(b)} cm); em cima, ${f1(noComeco)} vezes`, `nunca frouxo (1 ou mais), mais esticado em cima e nunca além de ${f1(maximo)} vezes (o máximo do fabricante)`, b / repouso > maximo ? 'falha' : a / repouso >= 0.98 && Math.abs(noComeco - b / repouso) < 0.02 ? 'ok' : 'aviso');
     } else {
-      const rel = OBJETOS.objetos.torre!.medidas.relacao!.v;
+      // a relação da máquina: a da coluna de polia, ou a do objeto que o quadro declarar no cabo (uma estação com a
+      // relação dela; acréscimo de 18/11/2026)
+      const rel = (comp[0]!.objeto ? OBJETOS.objetos[comp[0]!.objeto]?.medidas.relacao?.v : undefined) ?? OBJETOS.objetos.torre!.medidas.relacao!.v;
       const pilha = quadros.map((q) => q.marcas.pilha?.[1] ?? 0);
       const esperado = (b - a) / rel,
         medido = Math.max(...pilha) - Math.min(...pilha);
@@ -390,13 +425,56 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
       add('Ficha', r.pede, 'sem medição automática', r.selo, 'aviso');
       continue;
     }
-    const x = regra(meio, corpo);
+    const x = regra(meio, corpo, ex);
     add('Ficha', `${r.pede} (${r.selo})`, x.medido, 'como a ficha pede', x.ok ? 'ok' : 'falha');
   }
 
   // 12) o que ainda é provisório nesta animação
   const desenho = Object.entries(F.param).filter(([, p]) => p.selo === 'desenho' && !/^erro\./.test(p.o) && !p.o.startsWith('erro'));
   if (desenho.length) add('Provisórios', 'linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)', desenho.map(([k]) => k).join(', '), 'cada uma precisa de fonte ou do ok do Gustavo', 'aviso');
+
+  // 13) pintura e fios dentro do corpo (acréscimo de 19/11/2026, depois das auditorias de 18/11; ./conferir-pintura.ts):
+  // nas animações aprovadas antes de 17/11 o achado é aviso (para não travar o trabalho); nas outras, falha
+  const medidos = quadrosMedidos(ex, corpo, quadros, (erro, u) => quadrosDosErros.get(`${erro}|${u}`));
+  const pinturaEFios = medirPinturaEFios(ex, medidos);
+  const aprovada = APROVADOS[F.id];
+  const nivelDoAchado: Nivel = aprovada && aprovada.em < '2026-11-17' ? 'aviso' : 'falha';
+  const vistasMedidas = medidos.reduce((s, x) => s + x.vistas.length, 0);
+  const curto = (l: string[]) => (l.length > 6 ? [...l.slice(0, 6), `e mais ${l.length - 6}`] : l).join('; ');
+  {
+    const erradas = pinturaEFios.pintura.filter((a) => !a.deProposito),
+      dePropos = pinturaEFios.pintura.filter((a) => a.deProposito);
+    const r = resumoDaPintura(erradas);
+    const p = dePropos.length ? ` (fora ${resumoDaPintura(dePropos).length} caso(s) de peça que vai para trás do corpo de propósito: cenário ou empurrada)` : '';
+    add(
+      'Pintura',
+      'peça pintada por cima de uma parte do corpo que está na frente dela, ou o contrário (cada vista, a técnica e os erros, os dois lados do corpo)',
+      r.length ? curto(r) + p : `nada em ${medidos.length} quadros, ${vistasMedidas} quadro-vistas${p}`,
+      `uma parte com ${f1(AREA_MINIMA)} cm² ou mais pintados do jeito errado (grade de ${f1(PASSO_DA_GRADE)} cm); contato: mais de ${f1(TOL_CONTATO)} cm à frente ao longo do raio e mais de ${f1(TOL_CONTATO)} cm fora da outra; a mão não conta contra a peça que segura (a ${f1(RAIO_DA_PEGADA)} cm da pegada, e a mesma peça até ${f1(PERTO_DA_PEGADA)} cm); peça de cenário ou empurrada ${EMPURRADA} cm para trás não conta`,
+      r.length ? nivelDoAchado : 'ok',
+    );
+  }
+  {
+    const r = resumoDosFios(pinturaEFios.fios);
+    add(
+      'Fios',
+      'cabo, corda, fita ou elástico dentro do corpo (a técnica e os erros)',
+      r.length ? curto(r) : `nenhum entra além da tolerância em ${medidos.length} quadros`,
+      `a linha do meio do fio até ${f1(TOL_FIO)} cm dentro da pele; fora a mão, o polegar, o pé e a canela até ${PERTO_DO_TORNOZELO} cm do tornozelo (onde o fio se prende)`,
+      r.length ? nivelDoAchado : 'ok',
+    );
+  }
+  {
+    // 14) peso rígido dentro do corpo (acréscimo de 19/11/2026: o halter que entra no corpo no fim da remada)
+    const r = resumoDosPesos(pinturaEFios.pesos);
+    add(
+      'Pesos',
+      'halter, kettlebell, anilha ou barra dentro do corpo (a técnica e os erros)',
+      r.length ? curto(r) : `nenhum entra além da tolerância em ${medidos.length} quadros`,
+      `o volume do peso até ${f1(TOL_PESO)} cm dentro da pele; fora a mão e o polegar (onde a mão segura)`,
+      r.length ? nivelDoAchado : 'ok',
+    );
+  }
 
   const esquerdo = (c: keyof ReturnType<typeof angulosDoLado>) => faixa(ang.map((a) => a.R[c]));
   return {
@@ -406,6 +484,7 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
     angulos: { joelho: esquerdo('joelho'), cotovelo: esquerdo('cotovelo'), quadril: esquerdo('quadril'), ombro: esquerdo('ombro'), dorsiflexao: esquerdo('dorsiflexao'), punho: esquerdo('punho'), pronacao: esquerdo('pronacao'), clavicula: esquerdo('clavicula') },
     falhas: itens.filter((i) => i.nivel === 'falha').length,
     avisos: itens.filter((i) => i.nivel === 'aviso').length,
+    pinturaEFios,
   };
 }
 /** O que ainda é provisório nas tabelas (corpo e objetos): a conferência lista, para ninguém esquecer. */

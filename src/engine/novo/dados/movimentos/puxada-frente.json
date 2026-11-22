@@ -1,0 +1,69 @@
+{
+ "id": "puxada-frente",
+ "nome": "Puxada pela frente no puxador",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/puxada-frente.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/puxada-frente.md): sentado, coxas presas sob a almofada, braços estendidos em cima (consenso, nsca2021, não verificado); pegada pronada, mãos a ~1 a 1,5 vez a largura dos ombros (moderada, EMG: lusk2010, andersen2014); a barra desce à frente do rosto até a parte de cima do peito, nunca atrás da nuca (um estudo, difonza2026); sobe até os braços estenderem por completo, sem soltar o peso (consenso)",
+  "app": "Cartão do app (src/conteudo/exercicios/puxada-frente.json): 'Almofada das coxas ajustada para prender as pernas'; dicas 'Barra à frente do rosto.', 'Tronco quase parado.', 'Estica os braços em cima.'; erros 'Puxar atrás da nuca' (a barra passa atrás da cabeça), 'Jogar o tronco para trás' (o corpo balança para descer a barra), 'Não estender os braços' (a volta para antes de os braços esticarem)",
+  "aprovada": "A puxada ajoelhado com a barra reta aprovada (src/engine/novo/dados/movimentos/puxada-barra-reta.json, lote A5): o braço que estende para a roldana, o ombro que sobe no alto e desce no fim, a barra no alto do peito, os cotovelos para baixo e para trás, os erros 'pela nuca', 'tronco para trás' e 'volta curta'; e as animações sentadas aprovadas (o glúteo que afunda 1 cm no assento)",
+  "objetos": "src/engine/novo/dados/objetos/estacao-puxada.json (a estação de puxada e a barra longa de puxada de 48 pol)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "o glúteo e a coxa afundam 1 cm no assento, como nas animações sentadas aprovadas"},
+  "assento.quadril": {"v": -2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "sentado no meio do assento: o centro do quadril 2 cm atrás do meio dele"},
+  "pes.meiaDistancia": {"v": 13, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "os pés no chão, um pouco mais abertos que o quadril (a bola do pé a 13 cm do meio), dos dois lados da coluna dos rolos"},
+  "joelho": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés no chão, à frente dos joelhos: o pé vai para a frente até o joelho dobrar esse tanto"},
+  "rolo.amassa": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a almofada ajustada para prender as pernas (o cartão): os rolos descem até afundar 0,5 cm nas coxas"},
+  "tronco": {"v": -8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'tronco quase parado' (o cartão): o peito 8° atrás da vertical, só o bastante para a barra passar à frente do rosto (a puxada aprovada usa 6°)"},
+  "cervical": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o pescoço estende um pouco: o olhar à frente e para cima, para a barra (como na puxada aprovada)"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "a cabeça acompanha o pescoço (como na puxada aprovada)"},
+  "maos.distancia": {"v": 56, "un": "cm", "selo": "moderada", "fonte": "ficha", "o": "pegada a ~1 a 1,5 vez a largura dos ombros: os centros das mãos a 56 cm, 1,37 vez a largura entre os acrômios (40,8 cm), no trecho reto da barra (76,2 cm)"},
+  "cotovelo.alongado": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: braços estendidos por completo (o cotovelo dobra 8°, sem travar), na direção da roldana"},
+  "ombro.sobe": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "em cima, o ombro sobe com o braço estendido (a clavícula 10° além do ritmo normal), como na puxada aprovada"},
+  "ombro.desce": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "no fim, o ombro para baixo (a clavícula 6° abaixo do ritmo normal), como na puxada aprovada"},
+  "barra.abaixoDoOmbro": {"v": 6, "un": "cm", "selo": "um estudo", "fonte": "ficha", "o": "'até a parte de cima do peito': o centro da barra 6 cm abaixo do centro dos ombros (com o ombro já para baixo), ao longo do tronco, como na puxada aprovada"},
+  "barra.folga": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "no fim, a barra chega a 1 cm da pele do peito, sem bater"},
+  "cotovelo.polo": {"v": 0.6, "un": "proporção", "selo": "desenho", "fonte": "aprovada", "o": "o cotovelo aponta para baixo, para trás e um pouco para fora (quanto para fora em relação a para baixo), como na puxada aprovada"},
+  "cotovelo.poloAtras": {"v": 1.8, "un": "proporção", "selo": "desenho", "fonte": "aprovada", "o": "quanto o cotovelo aponta para trás em relação a para baixo, como na puxada aprovada"},
+  "placas": {"v": 6, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "seis placas no pino (a ficha não dá a carga)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "em cima, sem soltar o peso: as placas do pino ficam 2 cm acima das outras com os braços estendidos"},
+  "erro.nuca.cervical": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: o pescoço dobra 22° e a cabeça vai à frente, para a barra passar atrás dela (como na puxada aprovada)"},
+  "erro.nuca.cabeca": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "erro: o queixo vai ao peito (10°)"},
+  "erro.nuca.acima": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "erro: no fim, o centro da barra fica 9 cm acima do centro dos ombros, atrás do pescoço"},
+  "erro.nuca.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "erro: a barra passa a 2 cm da pele da nuca e do alto da cabeça"},
+  "erro.tronco": {"v": -30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o corpo balança para descer a barra (o cartão): o peito vai a 30° atrás da vertical no fim (a puxada aprovada usa 32°)"},
+  "erro.curta": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: a volta para antes de os braços esticarem (o cartão): só até 45% do caminho, como na puxada aprovada"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "em cima", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Puxar · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Barra no peito", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segura", "selo": "desenho", "fonte": "aprovada"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s, sem soltar o peso", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "estacao-puxada-sentado-com-as-coxas-presas", "pede": "sentado, coxas presas sob a almofada, os pés no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-no-comeco", "pede": "em cima: braços estendidos por completo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "estacao-puxada-pegada", "pede": "pegada a ~1 a 1,5 vez a largura dos ombros, no trecho reto da barra", "selo": "moderada", "fonte": "ficha"},
+  {"id": "palmas-para-baixo", "pede": "pegada pronada (palmas para a frente)", "selo": "moderada", "fonte": "ficha"},
+  {"id": "estacao-puxada-barra-a-frente-do-rosto", "pede": "a barra desce à frente do rosto, nunca atrás da nuca", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "estacao-puxada-barra-no-alto-do-peito", "pede": "a barra desce até a parte de cima do peito", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "puxada-barra-cotovelos-para-baixo-e-para-tras", "pede": "no fim, os cotovelos para baixo e para trás", "selo": "desenho", "fonte": "aprovada"},
+  {"id": "ombro-desce", "pede": "no fim, o ombro está mais baixo que em cima", "selo": "desenho", "fonte": "aprovada"},
+  {"id": "tronco-quase-parado", "pede": "tronco quase parado", "selo": "consenso", "fonte": "app"},
+  {"id": "estacao-puxada-barra-livre-do-corpo", "pede": "a barra (o trecho reto e as pontas) e o cabo não atravessam o corpo", "selo": "desenho", "fonte": "desenho"},
+  {"id": "estacao-cabo-da-roldana-a-pegada", "pede": "o cabo sai reto da roldana até o mosquetão, que fica na barra o tempo todo; a pilha sobe o que o cabo anda (1:1)", "selo": "desenho", "fonte": "objetos"}
+ ],
+ "erros": [
+  {"id": "nuca", "instante": 1, "titulo": "Puxar atrás da nuca", "vista": "quinaTras", "oQueMuda": "a cabeça vai à frente e a barra desce atrás dela, até a nuca, com os cotovelos para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"},
+  {"id": "tronco", "instante": 1, "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco deita para trás enquanto a barra desce: o peso do corpo puxa no lugar das costas", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender os braços", "vista": "lateral", "oQueMuda": "a volta para na metade do caminho: os braços não estendem em cima", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "barra à frente do rosto", "ponto": "pegada:R", "selo": "um estudo", "fonte": "app"},
+  {"vista": "lateral", "texto": "tronco quase parado", "ponto": "lombar", "selo": "consenso", "fonte": "app", "prumo": {"de": "pelve", "alt": 62}},
+  {"vista": "quinaTras", "texto": "estica os braços em cima", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

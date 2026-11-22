@@ -32,3 +32,16 @@ Halter: o próximo peso da lista.
 - `pinto2025`: PMID 40266636 (`docs/pesquisa/fontes.md`).
 - `haugen2023`: Haugen ME et al. Effect of free-weight vs. machine-based strength training on maximal strength, hypertrophy and jump performance – a systematic review and meta-analysis. BMC Sports Sci Med Rehabil 2023;15:103. PMID 37582807 (`docs/pesquisa/fontes.md`).
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/crucifixo-halteres.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (peito; frente do ombro) e a biblioteca; a nota, dos erros 1, 2 e 4 da ficha | consenso | `nsca2021` (não verificado); revisão de anatomia (02/11/2026) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição e linha Ombro da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Descida e Ombro da tabela de técnica ("para antes de o ombro doer") | consenso | `nsca2021` (não verificado); `seguranca.dor.escala` |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/crucifixo-halteres.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** nada de essencial; a ficha não diz o que varia de pessoa para pessoa além do conforto do ombro.

@@ -1,0 +1,64 @@
+{
+ "id": "abertura-elastico",
+ "nome": "Abertura com o elástico entre as mãos, sem ponto de ancoragem",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abertura-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abertura-elastico.md, tabela Técnica): braços à frente na altura do peito, palmas para baixo; abrir em diagonal, um pouco para cima (fukunaga2022, um estudo, EMG). Segurança: elástico na altura do peito, segurar com a mão inteira (ng2022). Como a carga sobe: pegada mais fechada estica mais",
+  "app": "Cartão do app (src/conteudo/exercicios/abertura-elastico.json): em pé, braços estendidos à frente, na altura do peito, palmas para baixo; o elástico entre as mãos, um pouco esticado, seguro com a mão inteira; ~1 s abrindo para os lados e um pouco para cima, pausa curta com os ombros baixos, ~2 s voltando; no fim, braços abertos e o elástico perto do peito; as dicas e os erros (\"braços quase retos\", \"mantenha-o abaixo do rosto\")",
+  "facepull": "Face pull com elástico aprovado (src/engine/novo/dados/movimentos/face-pull-elastico.json): o corpo em pé (pés, joelhos, pescoço), a pegada de palmas para baixo e o erro de encolher os ombros",
+  "crucifixo": "Crucifixo com elástico e crucifixos na polia aprovados (src/engine/novo/exercicios/crucifixo-elastico.ts, polia-bracos.ts): o braço quase reto num arco, pela linha do ombro à mão, e a decisão de 05/11/2026 de abrir os exercícios de arco de cima",
+  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json (elástico longo em laço, faixa de 41 pol, que estica até 2,5 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "desenho", "fonte": "facepull", "o": "em pé, pés na largura do quadril: cada bola do pé a 11 cm do meio (o do face pull com elástico aprovado; o cartão só diz \"em pé\")"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "facepull", "o": "joelhos destravados (a ficha não dá número)"},
+  "tronco": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "tronco reto, em pé: o peito na vertical (o cartão não pede inclinação)"},
+  "cervical": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "facepull", "o": "pescoço longo, o olhar à frente"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "facepull", "o": "cabeça na linha do pescoço"},
+  "cotovelo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "braços estendidos, quase retos (\"braços quase retos\"): o cotovelo dobra 8°, o mesmo o movimento todo"},
+  "inicio.altura": {"v": -12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: braços à frente na altura do peito: a linha do ombro à mão 12° abaixo do plano do tórax, que deixa a mão na altura do peito (a conferência mede)"},
+  "inicio.maos": {"v": 38, "un": "cm", "selo": "desenho", "fonte": "ficha", "o": "início: o centro de cada mão a 38 cm do meio, um pouco mais aberto que os ombros: é onde a mão segura o elástico (\"pegada mais fechada estica mais\", a ficha; a mão fecha sobre a faixa dobrada e o resto do laço fica pendurado do lado de fora). O caminho do braço parte daqui"},
+  "fim.altura": {"v": 0, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "fim: o braço sobe em diagonal, um pouco (fukunaga2022): a linha do ombro à mão no plano do tórax, a mão na altura do ombro e o elástico abaixo do rosto (\"mantenha-o abaixo do rosto\", o cartão)"},
+  "fim.folgaAoPeito": {"v": 3, "un": "cm", "selo": "consenso", "fonte": "app", "o": "fim: braços abertos até o elástico chegar perto do peito: ele fica a 3 cm da pele. O fim do caminho do braço sai daqui"},
+  "mao.supinacao.inicio": {"v": -20, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "palmas para baixo (fukunaga2022): com o cotovelo apontando para fora, a pegada neutra já deixa a palma para baixo; no começo, 20° de pronação a mais a deixam voltada para o chão"},
+  "mao.supinacao.fim": {"v": -50, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "palmas para baixo também no fim: com o braço aberto para o lado, o antebraço prona 50° para a palma continuar voltada para o chão (a conferência mede o polegar deitado)"},
+  "elastico.esticaNoInicio": {"v": 1.05, "un": "vezes", "selo": "consenso", "fonte": "app", "o": "início: o elástico entre as mãos \"um pouco esticado\": a faixa entre os punhos tem 1,05 vez o comprimento em repouso. O comprimento em repouso entre as mãos (onde a mão fecha na faixa) sai daqui"},
+  "erro.cotovelos.cotovelo": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os cotovelos dobram até 80° e puxam para trás: vira uma remada"},
+  "erro.cotovelos.abre": {"v": -15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: com os cotovelos dobrados, os braços abrem 15° menos (os cotovelos vão para trás, e não as mãos para os lados)"},
+  "erro.encolher.elev": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "facepull", "o": "erro: os ombros sobem (a clavícula 16° além do ritmo normal), como no face pull com elástico aprovado"},
+  "erro.solta.abre": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a mão esquerda solta a ponta no meio da abertura; sem a faixa, o braço esquerdo vai 20° mais para trás"},
+  "erro.solta.rosto": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: \"o elástico volta no rosto\": a ponta solta da faixa passa a 9 cm da frente do rosto, voltando para a mão direita"}
+ },
+ "fases": [
+  {"nome": "Início", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "palmas para baixo", "selo": "consenso", "fonte": "app"},
+  {"nome": "Abertura · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Aberto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "ombros baixos", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "abertura-elastico-comeca-a-frente-no-peito", "pede": "início: braços estendidos à frente, na altura do peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abertura-elastico-abre-em-diagonal", "pede": "abrir os braços para os lados e um pouco para cima, em diagonal", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "abertura-elastico-bracos-quase-retos", "pede": "braços quase retos o movimento todo", "selo": "consenso", "fonte": "app"},
+  {"id": "abertura-elastico-palmas-para-baixo", "pede": "palmas para baixo", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "abertura-elastico-perto-do-peito-abaixo-do-rosto", "pede": "fim: o elástico perto do peito, abaixo do rosto", "selo": "consenso", "fonte": "app"},
+  {"id": "abertura-elastico-esticado-entre-as-maos", "pede": "o elástico um pouco esticado no início, mais esticado no fim e nunca além do máximo do fabricante", "selo": "consenso", "fonte": "app"},
+  {"id": "ombro-sem-encolher", "pede": "ombros baixos, longe das orelhas", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "o corpo parado: só os braços abrem", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-nas-maos", "pede": "o elástico seguro com a mão inteira, uma ponta em cada mão", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-livre-do-corpo", "pede": "o elástico não encosta no corpo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "elastico-bracos-juntos", "pede": "os dois braços abrem juntos", "selo": "consenso", "fonte": "app"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "cotovelos", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos dobram e vão para trás: vira uma remada, e o ombro de trás trabalha menos", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "os ombros sobem em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "solta", "instante": 1, "titulo": "Soltar uma ponta", "vista": "quina", "oQueMuda": "a mão esquerda solta a ponta: o braço dela vai para trás e o elástico volta, passando na frente do rosto", "destaca": ["bracos"], "linha": ["ombro:L", "cotovelo:L", "pegada:L"], "foco": "pegada:L"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "cima", "texto": "braços quase retos", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app", "acima": true}
+ ]
+}

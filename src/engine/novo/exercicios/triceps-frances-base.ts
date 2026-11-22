@@ -15,6 +15,9 @@
 // kettlebell). Com o estribo, só o braço direito trabalha e a outra mão fica na cintura.
 // Com o elástico (`carga: 'elastico'`), em pé como na corda, o núcleo devolve só o corpo e o chão: a faixa, pisada pelo
 // pé de trás, é montada por quem usa o núcleo.
+// Com um halter numa mão só (`carga: 'halter-unilateral'`, acréscimo de 17/11/2026): em pé, o tronco na vertical (os pés
+// lado a lado, pelas linhas da ficha), a mão direita fecha no cabo do halter com a pegada neutra (a do estribo) e o
+// cabo atravessa a mão; a mão esquerda fica na cintura, como com o estribo.
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
@@ -30,7 +33,7 @@ import { add, cross, dirRef, dist, girar, mix, mul, noRef, norm, paraRef, perp, 
 import type { V3 } from '../vec';
 import { alturaDaPegadaDoKettlebell } from './dobrar-o-quadril';
 
-export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell' | 'estribo' | 'elastico';
+export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell' | 'estribo' | 'elastico' | 'halter-unilateral';
 const rad = Math.PI / 180;
 
 /** O que muda de um quadro para o outro (e nos erros). */
@@ -69,7 +72,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const tem = (id: string) => id in F.param;
-  const emPe = carga === 'corda' || carga === 'estribo' || carga === 'elastico';
+  const emPe = carga === 'corda' || carga === 'estribo' || carga === 'elastico' || carga === 'halter-unilateral';
   /** A carga sai das mãos por um cabo (corda ou estribo): sem giro da carga nas mãos. */
   const noCabo = emPe;
   const K = formaDoKettlebell();
@@ -129,12 +132,12 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
       return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: obj('cordaTriceps', 'diam') } }, pegada, polegar };
     }
-    if (carga === 'estribo' || carga === 'elastico') {
+    if (carga === 'estribo' || carga === 'elastico' || carga === 'halter-unilateral') {
       // a pegada neutra, como na corda: o polegar para o lado de trás do tronco (a palma para o meio); a pegada do
       // estribo atravessa a mão nessa direção, e o cabo puxa ao longo do antebraço, de través à pegada
       const polegar = norm(perp(dirRef(T, [0, -1, -0.4]), a));
       const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
-      return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: carga === 'elastico' ? obj('elasticoLongo', 'pegadaDiam') : obj('estribo', 'pegadaDiam') } }, pegada, polegar };
+      return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: carga === 'elastico' ? obj('elasticoLongo', 'pegadaDiam') : carga === 'halter-unilateral' ? obj('halter', 'caboDiam') : obj('estribo', 'pegadaDiam') } }, pegada, polegar };
     }
     const punho = add(cot, mul(a, fa(corpo)));
     if (carga === 'halter') {
@@ -186,15 +189,15 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     const eixo = eixoDe(phi);
     const R = montaLado('R', phi, eixo),
       L = montaLado('L', phi, eixo);
-    // com o estribo, a outra mão fica na cintura
-    const poseL = carga === 'estribo' ? maoNaCintura(corpo, t) : L.m.pose;
+    // com o estribo e com o halter numa mão, a outra mão fica na cintura
+    const poseL = carga === 'estribo' || carga === 'halter-unilateral' ? maoNaCintura(corpo, t) : L.m.pose;
     const e = resolverMembros(t, { R: R.m.pose, L: poseL }, pernas);
     return { e, eixo, maos: { R: R.m, L: L.m }, phi };
   }
 
   /**
-   * A mão esquerda na cintura (só com o estribo): a palma aberta sobre a crista do osso do quadril, os dedos para a
-   * frente e para baixo, o polegar para cima, o cotovelo para fora e para trás.
+   * A mão esquerda na cintura (com o estribo e com o halter numa mão): a palma aberta sobre a crista do osso do
+   * quadril, os dedos para a frente e para baixo, o polegar para cima, o cotovelo para fora e para trás.
    */
   function maoNaCintura(corpo: Corpo, t: Tronco): PoseBraco {
     const P = t.pelve;
@@ -256,6 +259,10 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       polia = { ...polia, base: [0, 0, z] };
       const elo = eloPara(centroDaRoldana(polia));
       compMin = dist(elo, saidaDoCabo(polia, elo));
+    } else if (carga === 'halter-unilateral') {
+      // com uma mão só, o giro do antebraço em volta do braço fica o do alongado (a mão atrás da cabeça), como no estribo
+      const { t, pernas } = troncoEPernas(corpo, pelveY, frente, p0);
+      phi0 = bracos(corpo, t, pernas, p0).phi;
     } else if (carga === 'corda') {
       const { t, pernas } = troncoEPernas(corpo, pelveY, frente, p0);
       const b = bracos(corpo, t, pernas, p0);
@@ -337,6 +344,14 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       marcas.pilha = [0, subida, 0];
       marcas.saida = saida;
       return { esq: e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas, vies: { maoR: 1 } };
+    }
+    if (carga === 'halter-unilateral') {
+      // o halter na mão direita: o cabo atravessa a mão fechada (o eixo do halter é o do polegar)
+      const centro = R.pegada,
+        eixo = R.mao.x;
+      marcas.halter = centro;
+      marcas.maoDeApoio = L.pegada;
+      return { esq: e, prims: [chao(-70, 70, -60, 90), ...halter(centro, eixo, 0.2)], pecas: [{ t: 'halter', centro, eixo }], fios: [], cargas: [{ massa: obj('halter', 'massa'), pos: centro }], marcas, vies: { maoR: 1 } };
     }
     const meio = mul(add(R.pegada, L.pegada), 0.5);
     const banco: Peca = { t: 'bancoReto', x0: 0, z0: c.zBanco, pontaNoQuadro: f('banco.noQuadro') };

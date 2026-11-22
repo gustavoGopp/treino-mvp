@@ -52,7 +52,8 @@
   {"id": "cabo-na-frente-do-corpo", "pede": "o cabo passa na frente do corpo, reto da polia ao estribo", "selo": "consenso", "fonte": "guia"},
   {"id": "mao-de-apoio-parada", "pede": "a outra mão segura a coluna da torre, parada", "selo": "consenso", "fonte": "guia"},
   {"id": "tronco-quase-parado", "pede": "tronco reto e parado", "selo": "consenso", "fonte": "guia"},
-  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"}
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
  ],
  "erros": [
   {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa inclinado e é jogado para trás para dar o impulso, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},

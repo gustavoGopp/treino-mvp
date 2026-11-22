@@ -20,16 +20,43 @@ interface Opcoes {
   up?: V3;
   contorno?: boolean;
 }
+/**
+ * A forma 3D de um item, só para a conferência da pintura (acréscimo de 19/11/2026; não muda o desenho): as faces de
+ * um sólido convexo, as duas tampas de um prisma, uma linha (cabo, fita) com a largura do traço, uma esfera, ou uma
+ * placa fina (um pedaço de faixa elástica).
+ */
+export type Geometria3d =
+  | { faces: V3[][] }
+  | { frente: V3[]; tras: V3[] }
+  | { fio: V3[]; w: number }
+  | { esfera: V3; r: number }
+  | { placa: V3[] };
 export interface CenaRealista {
-  /** Peças desenhadas até agora: profundidade (maior = mais longe) e o SVG de cada uma. */
-  itens: { z: number; svg: string }[];
+  /** Peças desenhadas até agora: profundidade (maior = mais longe) e o SVG de cada uma (e a forma 3D, quando há). */
+  itens: {
+    z: number;
+    svg: string;
+    g3?: Geometria3d;
+    /**
+     * Os furos de uma máscara posta no item (acréscimo de 19/11/2026, o recorte do rolo, ../pecas-de-cena/cadeira-flexora.ts):
+     * os polígonos, na tela, em que o item não é pintado. Só para a conferência da pintura (não entra no desenho).
+     */
+    fora?: [number, number][][];
+  }[];
   defs: string[];
   /** Um ponto do mundo na tela: [x, y, profundidade]. */
   P(p: V3): V3;
+  /**
+   * Gira uma direção (ou um ponto, sem contar para a caixa da peça na tela) para a câmera: [x, y para cima,
+   * profundidade (maior = mais longe)]. Já existia em base.mjs; declarada aqui em 19/11.
+   */
+  rot(v: V3): V3;
   /** Um nome único para um gradiente ou filtro desta cena. */
   uid(prefixo: string): string;
   /** Uma peça desenhada à mão (SVG pronto), na profundidade dada. */
   bruto(z: number, svg: string): void;
+  /** A forma 3D do último item desenhado (para a conferência da pintura; não muda o desenho). */
+  geo(g3: Geometria3d): void;
   tubo(a: V3, b: V3, w: number, h: number, mat: Material, o?: Opcoes): void;
   cilindro(a: V3, b: V3, r: number, mat: Material, o?: Opcoes): void;
   prisma(perfil: P2[], origem: V3, e1: V3, e2: V3, extrusao: V3, mat: Material, o?: Opcoes): void;

@@ -23,7 +23,7 @@
   "cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cotovelos levemente dobrados, o mesmo ângulo o movimento todo (a ficha não dá número)"},
   "cotovelo.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "'cotovelo conduz': no alto, o úmero gira 50° para dentro e o plano em que o cotovelo dobra inclina para baixo, com o cotovelo um pouco acima da mão (a ficha não dá número)"},
   "polegar.paraCima": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no alto, o polegar fica 15° acima da pegada neutra (o texto do app aceita mão neutra ou polegar levemente para cima)"},
-  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, os halteres ficam perto das coxas: a folga entre a cabeça do halter e a pele da coxa. A elevação do braço embaixo sai desta folga"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, os halteres ficam perto das coxas: a folga entre a cabeça do halter e a pele da coxa. A elevação do braço embaixo sai desta folga. Desde 19/11/2026, também no começo do erro \"Balançar o tronco\" (opção folgaNoBalanco do núcleo): com o tronco a 30° e os joelhos dobrados, o braço na elevação do movimento certo deixava a cabeça do halter 6,7 cm dentro da coxa; agora o braço começa na elevação que deixa esta folga, com os halteres pendendo na frente das coxas"},
   "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "halteres leves (a ficha: 'halteres leves'): o sextavado de 10 lb da tabela de objetos (dados/objetos/halter-leve.json); entram no equilíbrio"},
   "erro.encolher.elev": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro)"},
   "erro.frontal.plano": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alto, o braço fica 80° à frente do plano do corpo (quase uma elevação frontal)"},
@@ -47,7 +47,9 @@
   {"id": "ombro-sem-encolher", "pede": "o ombro não sobe junto com o braço (ombro longe da orelha)", "selo": "consenso", "fonte": "guia"},
   {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, os halteres perto das coxas, sem atravessá-las", "selo": "consenso", "fonte": "guia"},
   {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "guia"},
-  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"}
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"},
+  {"id": "peso-fora-do-corpo", "pede": "nenhuma cabeça de halter entra no corpo (coxas, tronco), em nenhum quadro do ciclo nem dos erros; no começo do erro \"Balançar o tronco\", com o tronco inclinado e os joelhos dobrados, os halteres pendem na frente das coxas (até 0,5 cm, o amassado da pele)", "selo": "consenso", "fonte": "guia"}
  ],
  "erros": [
   {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa mais inclinado e é jogado para trás para dar o impulso, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},

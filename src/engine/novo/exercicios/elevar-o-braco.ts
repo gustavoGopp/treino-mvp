@@ -15,6 +15,7 @@ import { daFicha, fichaSchema, resolver1, suave } from '../movimento';
 import type { Ficha, Quadro } from '../movimento';
 import { cabo, centroDaRoldana, chao, estribo, halter, saidaDoCabo, torre } from '../pecas';
 import type { Peca, Torre } from '../pecas';
+import { caneleira, caneleiraNoAntebraco } from '../pecas-de-cena/caneleira';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, dirRef, dist, mix, mul, norm } from '../vec';
@@ -26,9 +27,11 @@ const rad = Math.PI / 180;
 /**
  * 'halteres': um halter em cada mão, os dois braços sobem. 'polia': o braço direito com o estribo da polia baixa, a mão
  * esquerda na coluna. 'elastico': um pegador do elástico em cada mão, os dois braços sobem, sem carga no equilíbrio; o
- * quadro sai só com o corpo e o chão (o elástico, que vai das mãos aos pés, é a variação que desenha).
+ * quadro sai só com o corpo e o chão (o elástico, que vai das mãos aos pés, é a variação que desenha). 'caneleira'
+ * (acréscimo de 17/11, a elevação com caneleira): uma caneleira presa em cada antebraço, logo acima do punho, a mão
+ * relaxada (não segura nada), os dois braços sobem; a carga fica no centro da caneleira.
  */
-export type MaosDaElevacao = 'halteres' | 'polia' | 'elastico';
+export type MaosDaElevacao = 'halteres' | 'polia' | 'elastico' | 'caneleira';
 
 /** O braço no referencial do tórax (lado esquerdo; o direito espelha x): elevação `a` a partir do braço pendurado, no plano `p` graus à frente do lado. */
 export function noPlano(a: number, p: number) {
@@ -43,14 +46,28 @@ export function noPlano(a: number, p: number) {
   return { umero, sobe, frente };
 }
 
+export interface OpcoesDaElevacao {
+  /** O id do halter na tabela de objetos (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb). */
+  halter?: string;
+  /**
+   * Opcional (correção de 19/11/2026, a elevação com halteres): no erro "Balançar o tronco", o braço começa na elevação
+   * em que a carga fica à mesma folga da coxa que no movimento certo (`carga.folga`), calibrada com o tronco inclinado e os
+   * joelhos dobrados do começo do erro. Sem o campo, o braço começa na elevação do movimento certo (medida com o tronco
+   * em pé), e a cabeça do halter entrava 6,7 cm na coxa, que vem para a frente com o joelho dobrado. Sem o campo, nada muda.
+   */
+  folgaNoBalanco?: boolean;
+}
 /**
  * `opcoes.halter`: o id do halter na tabela de objetos (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb).
  */
-export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: { halter?: string } = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
+export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: OpcoesDaElevacao = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const polia = maos === 'polia';
   const elastico = maos === 'elastico';
+  const naCaneleira = maos === 'caneleira';
+  /** O centro da caneleira no antebraço: do punho para o cotovelo, a borda de baixo a `caneleira.acimaDoPunho` cm. */
+  const centroDaCaneleira = (punho: V3, paraOCotovelo: V3): V3 => add(punho, mul(paraOCotovelo, f('caneleira.acimaDoPunho') + obj('caneleira', 'larg') / 2));
   const H = opcoes.halter ?? 'halter';
   const LADOS_QUE_SOBEM: Lado[] = polia ? ['R'] : [...LADOS];
   const CACHE = new WeakMap<Corpo, { a0: number; rep: number; alfa: number }>();
@@ -62,6 +79,13 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
   const esferas = (e: Esq, k: Lado): Esfera[] => {
     const L = e.lado[k];
     if (polia) return [{ c: L.pegada, r: f('mao.raio') }];
+    if (naCaneleira) {
+      // a mão relaxada e a caneleira em volta do antebraço (o raio do antebraço perto do punho mais a espessura da faixa)
+      const c = centroDaCaneleira(L.punho, L.antebraco.y),
+        ra = e.corpo.m('raio.punho') + obj('caneleira', 'esp'),
+        m = obj('caneleira', 'larg') / 2 - ra / 2;
+      return [{ c: L.pegada, r: f('mao.raio') }, ...[-1, 0, 1].map((s) => ({ c: add(c, mul(L.antebraco.y, s * m)), r: ra }))];
+    }
     if (elastico) {
       // o pegador atravessado na mão (da frente para trás, com a palma para dentro)
       const ra = obj('elastico', 'pegadorDiam') / 2,
@@ -117,6 +141,12 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
           const pg = giro - f('polegar.paraCima') * Math.sin(Math.max(0, o.a) * rad) * rad;
           const polegar = norm(add(mul(esp(n.frente), Math.cos(pg)), mul(esp(n.sobe), -Math.sin(pg))));
           pegadas[k] = add(e.lado[k].ombro, add(mul(umero, corpo.m('braco.comp')), mul(antebraco, corpo.m('antebraco.comp') + corpo.m('mao.punhoAoCentroDaPegada'))));
+          if (naCaneleira) {
+            // a mão relaxada (a caneleira não é segurada); a carga, no centro da caneleira
+            const punho = add(e.lado[k].ombro, add(mul(umero, corpo.m('braco.comp')), mul(antebraco, corpo.m('antebraco.comp'))));
+            pegadas[k] = centroDaCaneleira(punho, mul(antebraco, -1));
+            return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'relaxada' }, elev: o.elev };
+          }
           return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'pegada', diam: polia ? obj('estribo', 'pegadaDiam') : elastico ? obj('elastico', 'pegadorDiam') : obj(H, 'caboDiam') }, elev: o.elev };
         };
         if (polia) {
@@ -129,7 +159,11 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
         return { R: bR, L: bL, cargas: elastico ? [] : LADOS.map((k) => ({ massa: f('carga'), pos: pegadas[k] })) };
       },
     });
-    const cargas: Carga[] = polia || elastico ? [] : LADOS.map((k) => ({ massa: f('carga'), pos: r.e.lado[k].pegada }));
+    const cargas: Carga[] = naCaneleira
+      ? LADOS.map((k) => ({ massa: f('carga'), pos: centroDaCaneleira(r.e.lado[k].punho, r.e.lado[k].antebraco.y) }))
+      : polia || elastico
+        ? []
+        : LADOS.map((k) => ({ massa: f('carga'), pos: r.e.lado[k].pegada }));
     return { e: r.e, cargas, alfa: r.alfa };
   }
 
@@ -149,6 +183,19 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
     if (polia) c.rep = montar(corpo, 0).comp;
     return c;
   }
+  /**
+   * (opção `folgaNoBalanco`) A elevação do braço no começo do erro "Balançar o tronco": a carga à folga pedida da pele da
+   * coxa, com o tronco inclinado e os joelhos dobrados do começo do erro.
+   */
+  function inicioDoBalanco(corpo: Corpo): number {
+    return calibragem(corpo, `${F.id}:inicio-do-balanco`, () => {
+      const base: Omit<Pedido, 'a'> = { ...pedidoBase(0), tronco: f('erro.balanco.frente'), lombar: 0, joelho: f('erro.balanco.joelho') };
+      return resolver1((a) => {
+        const e = pose(corpo, { ...base, a }).e;
+        return folgaDasPernas(e, LADOS_QUE_SOBEM.flatMap((k) => esferas(e, k))) - f('carga.folga');
+      }, 0, 60, 22);
+    });
+  }
   /** O braço passa do plano de baixo para o da subida logo no começo (até 40% do caminho), sem tranco. */
   const noPlanoDeSubida = (u: number) => suave(Math.min(1, u / f('plano.transicao')));
   function pedidoBase(u: number): Omit<Pedido, 'a'> {
@@ -165,6 +212,8 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
       p.lombar = f('erro.balanco.lombar') * u;
       p.joelho = mix(f('erro.balanco.joelho'), f('joelho'), u);
       p.alfa = undefined;
+      // (opcional) o braço começa à folga da coxa com o tronco inclinado e os joelhos dobrados
+      if (opcoes.folgaNoBalanco) p.a = mix(inicioDoBalanco(corpo), f('braco.topo'), u);
     }
     return p;
   }
@@ -185,6 +234,18 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
       q.pecas = [{ t: 'estribo', pegada: L.pegada, eixo: L.mao.x, elo: es.elo }, { t: 'cabo', a: es.elo, b: saida }];
     } else if (elastico) {
       q.marcas = { mao: e.lado.R.pegada };
+    } else if (naCaneleira) {
+      // uma caneleira em cada antebraço, logo acima do punho, medida na pele do Boneco (o velcro do lado de fora)
+      const pecas: Peca[] = [];
+      for (const k of LADOS) {
+        const c = caneleiraNoAntebraco(e, k, mul(e.torax.x, sinal(k)), f('caneleira.acimaDoPunho'));
+        const p = caneleira(c);
+        q.prims.push(...p.prims);
+        pecas.push(p.peca);
+        q.marcas[`caneleira${k}`] = c.centro;
+        q.marcas[`caneleiraRaio${k}`] = [c.raio, 0, 0];
+      }
+      q.pecas = pecas;
     } else {
       const pecas: Peca[] = [];
       for (const k of LADOS) {

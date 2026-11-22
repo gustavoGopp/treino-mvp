@@ -5,7 +5,7 @@
   "target": "Peito",
   "setupEq": [
     "Banco reto centrado sob a barra: ela deve descer na linha do meio do peito.",
-    "Travas de segurança logo acima do peito."
+    "Travas de segurança logo abaixo do ponto mais baixo da descida, um pouco abaixo do peito."
   ],
   "setupBody": [
     "Pegada um pouco mais aberta que os ombros (até ~1,5 vez).",
@@ -51,6 +51,6 @@
   ],
   "carga": "Registre o total de kg em anilhas, somando os dois lados (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
   "montagem": [
-    "Centre o banco sob a barra e ajuste as travas logo acima do peito antes de começar."
+    "Centre o banco sob a barra e ajuste as travas logo abaixo do ponto mais baixo da descida antes de começar."
   ]
 }

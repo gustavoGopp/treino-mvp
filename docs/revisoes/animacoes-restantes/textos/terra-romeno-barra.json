@@ -1,0 +1,67 @@
+{
+  "id": "terra-romeno-barra",
+  "name": "Levantamento terra romeno com barra",
+  "short": "Terra romeno",
+  "target": "Posteriores da coxa e glúteos",
+  "feel": "Parte de trás da coxa, que alonga na descida. Os glúteos ajudam.",
+  "feelNote": "Se sentir a lombar, confira a coluna (desça só até onde ela fica reta, ou diminua a carga) e a barra: longe das pernas, ela aumenta a carga na lombar.",
+  "setupEq": [
+    "Barra com anilhas iguais dos dois lados, tirada de um suporte na altura da coxa ou do chão."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos um pouco dobrados.",
+    "Barra rente às coxas, pegada na largura dos ombros, coluna reta."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2–3 s. Empurra o quadril para trás e desce a barra rente às pernas até sentir os posteriores alongarem, sem arredondar a lombar."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe levando o quadril para a frente, até ficar em pé."
+    ]
+  ],
+  "range": [
+    "Início: em pé, barra nas coxas.",
+    "Fim: barra abaixo dos joelhos ou no meio da canela, coluna reta."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Quadril para trás.",
+    "Barra rente às pernas.",
+    "Coluna reta."
+  ],
+  "check": [
+    "Travas nas anilhas",
+    "Pés na largura do quadril, joelhos um pouco dobrados",
+    "Pegada na largura dos ombros",
+    "Barra rente às coxas, coluna reta"
+  ],
+  "vary": "A barra sai de um suporte na altura da coxa ou do chão. A descida vai até abaixo dos joelhos ou até o meio da canela, enquanto a coluna fica reta. O que não muda: o quadril que vai para trás, a barra rente às pernas e os joelhos só um pouco dobrados.",
+  "note": "<b>Montagem segura:</b> travas nas anilhas, e comece com a barra vazia para acertar o movimento antes de pôr carga.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar a lombar",
+      "desc": "Descer além de onde a coluna fica reta: pare antes ou diminua a carga."
+    },
+    {
+      "id": "e2",
+      "title": "Virar um agachamento",
+      "desc": "Dobrar muito os joelhos tira o trabalho dos posteriores."
+    },
+    {
+      "id": "e3",
+      "title": "Barra longe das pernas",
+      "desc": "A barra à frente aumenta a carga na lombar."
+    }
+  ],
+  "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
+}

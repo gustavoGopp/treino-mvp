@@ -1,0 +1,34 @@
+{
+ "fontes": {
+  "deltech-df308": "Deltech Fitness, Preacher Curl Bench DF308; https://deltechfitness.com/products/preacher-curl-bench-df308 (lido em 18/11/2026): \"The arm pad is set at a 45-degree angle\", \"adjusts in height from 33\\\" to 43\\\" in 1\\\" increments\", \"The seat pad adjusts in height from 18-1/2\\\" to 24-1/2\\\"\", \"Arm pad size- 24\\\" W x 12\\\" H x 2\\\" thick\", \"Seat pad: 9\\\" W x 12\\\" L x 2\\\" Thick\", \"Unit size: 29 1/2\\\" W x 40\\\" D x 36-40 1/2\\\" H\"",
+  "lf-hs26-lbr-bc": "Life Fitness e Hammer Strength, catálogo 2026, p. 216: Arm Curl Bench LBR-BC, 47 x 33 x 46 pol (119 x 84 x 117 cm); Hammer Strength, catálogo 2024, p. 63: Seated Arm Curl FW-AC, 39 x 36 x 43 pol (100 x 92 x 110 cm) (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "precor-dbr0202": "Precor, Discovery Preacher Curl Bench DBR0202, folha de venda; https://static.precor.com/sell-sheet/all/DBR/DBR0202-Preacher-Curl-Bench-ENG.pdf (lida em 18/11/2026): \"Dimensions (L x W x H): 107 x 94 x 91 cm\", \"The oversized arm pad cushions both the chest area and arm area\", \"The tapered seat ... features an intuitive, ratcheting seat adjustment\"",
+  "desenho-scott": "Escolha de desenho, sem medida de fabricante: o que a ficha não dá, com o motivo; parte do cartão de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, bancoScott)"
+ },
+ "objetos": {
+  "bancoScott": {
+   "nome": "Banco Scott (rosca Scott): assento que regula na altura, almofada dos braços a 45° num poste que regula na altura, e o suporte da barra na frente",
+   "medidas": {
+    "comp": { "v": 102, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "fundo total (40 pol); a Precor DBR0202 tem 107, a Life Fitness LBR-BC 119, a Hammer Strength FW-AC 100" },
+    "larg": { "v": 75, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "largura total (29,5 pol); a Precor tem 94, a Life Fitness 84, a Hammer Strength 92" },
+    "almofadaAngulo": { "v": 45, "un": "graus", "tipo": "medida", "fonte": "deltech-df308", "onde": "a almofada dos braços a 45° do chão" },
+    "almofadaLarg": { "v": 61, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "largura da almofada dos braços (24 pol): cabem os dois braços" },
+    "almofadaComp": { "v": 30.5, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "a almofada dos braços ao longo da rampa (12 pol, \"H\")" },
+    "almofadaEsp": { "v": 5, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "espessura da almofada dos braços (2 pol)" },
+    "almofadaAlturaMin": { "v": 84, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "a almofada regula na altura de 33 a 43 pol: lida como a altura da borda de cima dela (a ficha não diz que ponto mede)" },
+    "almofadaAlturaMax": { "v": 109, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "a ponta de cima da regulagem da almofada (43 pol)" },
+    "assentoLarg": { "v": 23, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "largura do assento (9 pol; a Precor diz que ele afina para a frente)" },
+    "assentoComp": { "v": 30.5, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "comprimento do assento (12 pol)" },
+    "assentoEsp": { "v": 5, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "espessura do assento (2 pol)" },
+    "assentoAlturaMin": { "v": 47, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "o assento regula na altura de 18,5 a 24,5 pol (a altura do tampo)" },
+    "assentoAlturaMax": { "v": 62, "un": "cm", "tipo": "medida", "fonte": "deltech-df308", "onde": "a ponta de cima da regulagem do assento (24,5 pol)" },
+    "assentoAteAlmofada": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "do meio do assento à borda de cima da almofada, na horizontal: as fichas não dão; sai do corpo da tabela sentado de tronco reto com a axila no alto da almofada: o centro do quadril fica 5 cm atrás da borda de cima, e o meio do assento 4 cm atrás do quadril, debaixo do glúteo" },
+    "posteAFrente": { "v": 54, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "o pé do poste da almofada fica 54 cm à frente da borda de cima dela: os joelhos passam por baixo da almofada, as canelas ficam dos dois lados do poste, como no cartão de hoje, e a travessa da frente fica à frente das pontas dos pés (as pontas ficam a 46 cm da borda, no corpo da tabela)" },
+    "suporteAltura": { "v": 58, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "altura dos ganchos do suporte da barra: logo abaixo do ponto mais baixo do caminho da barra na rosca, à frente da almofada (as fichas não dão)" },
+    "suporteX": { "v": 33, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "os dois ganchos a 33 cm do meio: seguram a barra W nos trechos retos, entre as mãos e as mangas" },
+    "baseLarg": { "v": 60, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "largura das travessas do chão (a largura total, 75 cm, conta os ganchos do suporte)" },
+    "tubo": { "v": 6, "un": "cm", "tipo": "desenho", "fonte": "desenho-scott", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

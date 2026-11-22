@@ -157,7 +157,7 @@
    "un": "graus",
    "selo": "desenho",
    "fonte": "hoje",
-   "o": "erro: o antebraço dobra 75° para a frente, como numa rosca; o halter não chega ao quadril"
+   "o": "erro: o antebraço dobra 75° para a frente, como numa rosca; o halter não chega ao quadril (e gira com a mão, como numa rosca martelo: correção de 19/11/2026)"
   }
  },
  "fases": [
@@ -270,6 +270,12 @@
    "pede": "pegada neutra (palmas uma para a outra)",
    "selo": "consenso",
    "fonte": "ficha"
+  },
+  {
+   "id": "peso-fora-do-corpo",
+   "pede": "nenhuma cabeça dos halteres entra no corpo (tronco, bacia, pernas, braços), em nenhum quadro do ciclo nem dos erros (até 0,5 cm, o amassado da pele); correção de 19/11/2026: no erro 'puxar só com os braços', o halter ficava deitado com o antebraço dobrado como numa rosca e entrava 2,2 cm no antebraço; agora ele gira com a mão (a pegada neutra fica a mesma)",
+   "selo": "consenso",
+   "fonte": "desenho"
   }
  ],
  "erros": [

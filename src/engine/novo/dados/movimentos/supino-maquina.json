@@ -1,0 +1,63 @@
+{
+ "id": "supino-maquina",
+ "nome": "Supino sentado na máquina",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-maquina.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/supino-maquina.md): banco na altura em que os pegadores ficam na linha do meio do peito; costas e escápulas apoiadas, pés no chão; empurra até quase estender os cotovelos, sem travar; volta até um alongamento confortável do peito; cotovelos a ~30–60° do tronco (por analogia com o supino com halteres); consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/supino-maquina.json): 'Início: alongamento confortável do peito', 'Fim: cotovelos quase estendidos'; dicas 'Pegador na linha do peito.', 'Costas no encosto.', 'Sem travar os cotovelos.'; erros 'Banco na altura errada' (o pegador fica fora da linha do peito), 'Tirar as costas' (as costas saem do encosto), 'Travar os cotovelos' (esticar com força no fim)",
+  "supinoReto": "O supino com halteres aprovado (src/engine/novo/dados/movimentos/supino-reto.json): as escápulas levemente juntas e para baixo, o cotovelo embaixo (104° de flexão no ponto mais fundo), os tempos das fases",
+  "cadeiras": "As cadeiras de joelho aprovadas, sentadas e encostadas (src/engine/novo/dados/movimentos/cadeira-extensora.json): a lombar menos curva sentado, o pescoço que compensa a inclinação do peito, o glúteo e as costas que afundam 1 cm no estofado",
+  "objetos": "src/engine/novo/dados/objetos/supino-maquina.json (o supino na máquina: o eixo acima da cabeça, o braço de 54 cm, os pegadores atravessados a 30 cm do meio, o caminho que converge 8°, o encosto a 15°)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeiras", "o": "o glúteo e as costas afundam 1 cm no estofado, como nas cadeiras aprovadas"},
+  "lombar.sentado": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "cadeiras", "o": "sentado e encostado, a bacia enrola um pouco e a lombar fica 10° menos curva que em pé"},
+  "pescoco.compensa": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "cadeiras", "o": "com o peito deitado para trás, o pescoço dobra 70% dessa inclinação para a frente: o olhar fica quase na horizontal"},
+  "pes.meiaDistancia": {"v": 18, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés no chão (a ficha), na largura do quadril: o centro da bola do pé a 18 cm do meio"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés chapados no chão com o joelho em ângulo reto (a ficha só diz 'pés no chão')"},
+  "escapula.retracao": {"v": 9, "un": "graus", "selo": "consenso", "fonte": "supinoReto", "o": "escápulas apoiadas (a ficha): levemente juntas, como no supino com halteres aprovado"},
+  "escapula.depressao": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "supinoReto", "o": "e para baixo, como no supino com halteres aprovado"},
+  "cotovelos.doTronco": {"v": 45, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "cotovelos a ~30–60° do tronco (a ficha): o cotovelo aponta a 45° do tronco, no meio da faixa; a conferência mede o ângulo que sai"},
+  "cotovelos.atras": {"v": 0.25, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta também um pouco para trás (um quarto do vetor), para ficar atrás do plano do peito embaixo, como no supino"},
+  "pegador.naLinhaDoPeito": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o assento regulado para o centro da mão (o meio do pegador) ficar na linha do meio do peito, embaixo (a ficha: 'pegadores na linha do meio do peito'); a altura do assento sai daí"},
+  "cotovelo.embaixo": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "supinoReto", "o": "embaixo, 'um alongamento confortável do peito' (a ficha): o cotovelo dobra 100°, perto dos 104° do supino com halteres aprovado; a posição inicial dos braços da máquina sai daí"},
+  "cotovelo.emCima": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os cotovelos quase estendidos, sem travar: dobrados 12° (o do supino no smith aprovado); o ângulo final dos braços da máquina sai daí"},
+  "placas": {"v": 5, "un": "placas", "selo": "desenho", "fonte": "desenho", "o": "cinco placas no pino (a ficha não dá a carga)"},
+  "erro.banco.desce": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: o assento 10 cm mais baixo que o certo, com os braços da máquina na mesma posição inicial: o pegador fica na altura dos ombros, acima da linha do peito (o cartão: 'o pegador fica fora da linha do peito')"},
+  "erro.banco.ombroNoEncosto": {"v": 2.35, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro (a auditoria de 18/11/2026): com o assento baixo, em cima os braços sobem mais em relação aos ombros, e a pele da parte de trás do ombro entrava no encosto 2,6 cm (medida na pele densa); o corpo vem para a frente o que passa de 2,35 cm, o que ela entra em cima na técnica"},
+  "erro.costas.inclina": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: no fim do empurrão, o tronco vai 18° à frente e as costas saem do encosto (o cartão: 'as costas saem do encosto')"},
+  "erro.costas.prot": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: e os ombros vão à frente 10°, as escápulas saindo do encosto"},
+  "erro.trava.cotovelo": {"v": 2.5, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: em cima, o cotovelo estica até o fim (2,5°: o mais esticado que o braço do Boneco chega sem sair do pegador), e os braços da máquina vão além do ângulo certo (o cartão: 'esticar com força no fim')"},
+  "erro.trava.prot": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: para esticar com força, os ombros vão 6° à frente"}
+ },
+ "fases": [
+  {"nome": "Embaixo · peito alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pegador na linha do peito", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Empurrar · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "supinoReto"},
+  {"nome": "Em cima · sem travar", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos quase estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s, controlada", "selo": "consenso", "fonte": "supinoReto"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "supino-maquina-pegador-na-linha-do-peito", "pede": "banco na altura em que os pegadores ficam na linha do meio do peito", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-sentado-e-encostado", "pede": "costas e escápulas apoiadas: o glúteo no assento e as costas no encosto, paradas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-maos-nos-pegadores", "pede": "as mãos presas nos pegadores o movimento todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-pegador-no-arco", "pede": "o pegador anda num arco em volta do eixo do braço da máquina, e a mão com ele", "selo": "desenho", "fonte": "objetos"},
+  {"id": "maquina-pegadores-convergem", "pede": "os pegadores se aproximam enquanto vão à frente (o caminho que converge)", "selo": "desenho", "fonte": "objetos"},
+  {"id": "supino-maquina-cotovelos-30-60", "pede": "cotovelos a ~30–60° do tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maquina-quase-estende-os-cotovelos", "pede": "empurra até quase estender os cotovelos, sem travar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cadeira-pilha-sobe-com-a-alavanca", "pede": "as placas sobem com os braços da máquina e apoiam embaixo", "selo": "desenho", "fonte": "objetos"},
+  {"id": "supino-maquina-pele-nos-estofados", "pede": "medida na pele densa (36 pontos por anel e 3 anéis entre dois vizinhos), na técnica e nos erros, nos dois lados: nenhuma parte do corpo entra no encosto, no assento ou nas peças mais que 2,5 cm (o que o estofado amassa)", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "banco", "instante": 0, "titulo": "Banco na altura errada", "vista": "lateral", "oQueMuda": "o assento baixo demais: o pegador fica na altura dos ombros, acima da linha do peito", "destaca": ["bracos"], "linha": ["ombro:R", "cotovelo:R", "pegada:R"], "foco": "pegada:R"},
+  {"id": "costas", "instante": 1, "titulo": "Tirar as costas", "vista": "lateral", "oQueMuda": "no fim do empurrão, o tronco vai à frente e as costas saem do encosto", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7"], "foco": "c7"},
+  {"id": "trava", "instante": 1, "titulo": "Travar os cotovelos", "vista": "lateral", "oQueMuda": "em cima, o cotovelo estica até o fim, travado, e os ombros vão à frente", "destaca": ["bracos"], "linha": ["ombro:R", "cotovelo:R", "pegada:R"], "foco": "cotovelo:R"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "pegador na linha do peito", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "costas no encosto", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "sem travar os cotovelos", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

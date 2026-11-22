@@ -1,0 +1,60 @@
+{
+ "id": "supino-inclinado-polia",
+ "nome": "Supino inclinado na polia, com o banco entre as torres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-inclinado-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/supino-inclinado-polia.md), por analogia ao supino inclinado com halteres; fonte citada lá: NSCA, Exercise Technique Manual for Resistance Training, 4ª ed., 2021 (não verificado): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/supino-inclinado-polia.json): 'Banco inclinado a ~30–45° no meio das duas torres, com as polias embaixo'; 'Sentado, costas e escápulas no encosto, pés no chão'; 'Mãos na altura do peito, cotovelos a ~30–60° do tronco'; 'Empurra para cima e um pouco para dentro, até quase estender os cotovelos'; 'Volta até um alongamento confortável do peito' (~2 s); erro 'Tirar as costas do encosto: arquear para ajudar'",
+  "supinoInclinado": "O supino inclinado com halteres aprovado (src/engine/novo/exercicios/supino-inclinado.ts e dados/movimentos/supino-inclinado.json): o banco regulável a 30°, o corpo sentado e apoiado (a mesma calibração, exportada de lá), o braço embaixo e a pegada. Este exercício não tinha animação: o que a ficha não dá em número sai dele",
+  "cruzamento": "O crucifixo na polia aprovado (dados/movimentos/crucifixo-polia.json): a mesma máquina de duas torres, com as roldanas a 96 cm do meio",
+  "poliaBaixa": "O tríceps francês unilateral na polia aprovado (dados/movimentos/triceps-frances-polia-unilateral.json): a polia embaixo, com o carro a 22 cm do chão (montagem conferida em 04/11)",
+  "objetos": "src/engine/novo/dados/objetos.json (banco regulável, coluna de polia, estribo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "supinoInclinado", "o": "pés no chão, um pouco mais abertos que o quadril (os do supino inclinado aprovado: o corpo sentado é o mesmo)"},
+  "cotovelos.doTronco": {"v": 45, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, os cotovelos a ~30–60° do tronco, medido no plano das costas (o número do supino inclinado aprovado)"},
+  "braco.baixo": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "supinoInclinado", "o": "embaixo, mãos na altura do peito e peito alongado: o braço 12° abaixo do plano das costas, com o antebraço na vertical (como no supino inclinado aprovado)"},
+  "topo.abre": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no topo, o braço na vertical sobre o ombro ('empurra para cima')"},
+  "topo.dentro": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no topo, 'um pouco para dentro, até quase estender os cotovelos': o antebraço inclina 14° para dentro (o cotovelo fica dobrado 14° e as mãos ficam 8 cm para dentro dos ombros; a ficha não dá número)"},
+  "pegada.giro": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "supinoInclinado", "o": "a pegada do estribo como a do halter no supino inclinado aprovado: as palmas giradas 25° uma para a outra"},
+  "escapula.retracao": {"v": 9, "un": "graus", "selo": "consenso", "fonte": "app", "o": "costas e escápulas no encosto: a clavícula 9° para trás (o número do supino inclinado aprovado)"},
+  "escapula.depressao": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "escápulas para baixo, no encosto (o número do supino inclinado aprovado)"},
+  "polia.meiaDistancia": {"v": 96, "un": "cm", "selo": "desenho", "fonte": "cruzamento", "o": "o banco no meio das duas torres: cada roldana a 96 cm do meio do banco, para o lado (a mesma máquina do crucifixo na polia aprovado)"},
+  "polia.altura": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "poliaBaixa", "o": "'com as polias embaixo': o centro da roldana a 22 cm do chão (a polia baixa dos exercícios aprovados); de cada lado, na linha do meio do caminho das mãos"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o cabo já tenso embaixo, no alongado: a pilha sai 2 cm do repouso (como no crucifixo na polia aprovado)"},
+  "erro.banco.desvio": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o banco (e a pessoa) 22 cm para a esquerda do meio das torres: o cabo da direita fica mais comprido e a pilha da direita sobe mais"},
+  "erro.banco.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: do lado da torre mais perto (a esquerda), o cabo sobe mais em pé e passa rente ao antebraço; a mão desse lado gira o estribo para o lado do cabo, as palmas a 50° (no certo, 25°), e o elo fica por fora do antebraço. Desde 20/11/2026: com a pegada do certo, o cabo entrava no antebraço esquerdo no topo"},
+  "erro.costas.frente": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a pelve, parada no assento, gira 24° à frente enquanto a carga sobe: o tronco sai do encosto"},
+  "erro.costas.lombar": {"v": -18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 18° além da curva de repouso ('arquear para ajudar')"},
+  "erro.costas.toracica": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima estendem 8° (o peito sobe)"},
+  "erro.costas.cervical": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço volta 4° para o olhar seguir à frente com a cabeça fora do encosto"}
+ },
+ "fases": [
+  {"nome": "Embaixo · peito alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Empurrar · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "polia-banco-no-meio-das-torres", "pede": "banco firme e centrado entre as torres: os dois cabos do mesmo comprimento", "selo": "consenso", "fonte": "app"},
+  {"id": "supino-inclinado-encosto-30", "pede": "banco inclinado a ~30–45°", "selo": "consenso", "fonte": "app"},
+  {"id": "supino-inclinado-apoiado-no-banco", "pede": "sentado, glúteo, costas e cabeça apoiados no banco a série toda", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-banco-cabos-por-fora-do-banco", "pede": "com as polias embaixo, os cabos sobem do chão até as mãos por fora do banco", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
+  {"id": "polia-banco-maos-ao-lado-do-peito", "pede": "início: mãos ao lado do peito, na altura dele, com o antebraço na vertical, e cotovelos a ~30–60° do tronco", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-banco-topo-para-dentro", "pede": "fim: braços quase estendidos acima do peito, as mãos um pouco para dentro dos ombros", "selo": "consenso", "fonte": "app"},
+  {"id": "cabos-fora-do-corpo-nos-erros", "pede": "nos erros, o cabo continua reto da roldana ao elo do estribo sem atravessar o corpo (no banco fora do meio, o cabo do lado mais perto passa por fora do antebraço)", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "banco", "instante": 0, "titulo": "Banco fora do meio", "vista": "cima", "oQueMuda": "o banco e a pessoa ficam 22 cm para um lado: o cabo de um lado fica bem mais comprido que o do outro, e a pilha dele sobe mais", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "costas", "instante": 1, "titulo": "Tirar as costas do encosto", "vista": "quina", "oQueMuda": "enquanto a carga sobe, a lombar arqueia e o tronco sai do encosto; o quadril fica no assento", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "quina", "texto": "sobe e fecha um pouco", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "cotovelos ~30–60° do tronco", "ponto": "cotovelo:L", "selo": "consenso", "fonte": "app", "acima": true}
+ ]
+}

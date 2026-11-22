@@ -1,0 +1,66 @@
+{
+  "id": "panturrilha-sentada",
+  "name": "Panturrilha sentada na máquina",
+  "short": "Panturrilha sentada",
+  "target": "Panturrilha (variação sentada; cresce menos que em pé)",
+  "feel": "Panturrilha (sobretudo o sóleo).",
+  "feelNote": "Com o joelho dobrado, o gastrocnêmio, a outra parte da panturrilha, quase não cresceu num estudo. Se o tronco levantar para ajudar, é impulso do quadril: tronco parado.",
+  "setupEq": [
+    "Ponta dos pés na borda da plataforma."
+  ],
+  "setupBody": [
+    "Sentado, joelhos a ~90° sob a almofada."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce o calcanhar até o alongamento máximo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa de ~1 s."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe o calcanhar ao máximo."
+    ]
+  ],
+  "range": [
+    "Embaixo: alongamento máximo.",
+    "Em cima: calcanhar o mais alto possível."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Pausa embaixo.",
+    "Tronco parado.",
+    "Amplitude toda."
+  ],
+  "check": [
+    "Trava solta antes da 1ª repetição",
+    "Sentado, joelhos a ~90° sob a almofada",
+    "Ponta dos pés na borda da plataforma",
+    "Tronco parado"
+  ],
+  "vary": "É uma variação: a panturrilha em pé cresce mais. O que não muda: a descida até o alongamento máximo, a pausa de ~1 s embaixo, a subida ao máximo e o tronco parado.",
+  "note": "<b>Montagem segura:</b> solte a trava antes da 1ª repetição e trave de novo ao terminar a série.",
+  "extLabels": [
+    "alongado",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Amplitude curta",
+      "desc": "Subida e descida curtas."
+    },
+    {
+      "id": "e2",
+      "title": "Impulso com o quadril",
+      "desc": "O tronco levanta para ajudar."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas. Em algumas máquinas, placa da torre."
+}

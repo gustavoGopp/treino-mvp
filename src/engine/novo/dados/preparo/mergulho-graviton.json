@@ -1,0 +1,50 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "lateral",
+  "quadros": {
+   "lateral": [
+    -136.52974119889592,
+    -235.7502823478596,
+    294.2112444711479,
+    220.65843335336092
+   ],
+   "quinaTras": [
+    -135.36643565705367,
+    -231.47109880513625,
+    287.23449073826566,
+    215.42586805369925
+   ]
+  },
+  "mini": [
+   -130.13384457995795,
+   -229.99397539081542,
+   281.41945123327196,
+   211.06458842495397
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -64.84823792664396,
+    -218.48136147672702,
+    86,
+    -26.60446290858707
+   ],
+   "ansur2-homem-imc-normal|quinaTras|cinza|0|": [
+    -44.29408272207756,
+    -214.61168304441196,
+    60.79570214623587,
+    -27.284841258586518
+   ],
+   "ansur2-homem-imc-normal|lateral|cinza|1|": [
+    -64.84823792664396,
+    -218.48136147672702,
+    86,
+    -26.60446290858707
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|mergulho-graviton:cotovelo-embaixo:-7:e1": 108.50804898887873,
+  "ansur2-homem-imc-normal|mergulho-graviton:cotovelo-embaixo:12:": 102.85264369100332,
+  "ansur2-homem-imc-normal|mergulho-graviton:cotovelo-embaixo:12:e2": 95.89060623198748
+ }
+}

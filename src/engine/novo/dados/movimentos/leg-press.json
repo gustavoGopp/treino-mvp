@@ -1,0 +1,60 @@
+{
+ "id": "leg-press",
+ "nome": "Leg press",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/leg-press.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/leg-press.md) e cartão do app (src/conteudo/exercicios/leg-press.json): consenso de treinadores (nsca2021, não verificado; seguranca.montagem)",
+  "aprovado": "Animações aprovadas do motor novo: o agachamento no smith (dados/movimentos/agachamento-smith.json: o ritmo de 2,4 s na descida e 1,3 s na subida, a abertura das pontas dos pés) e os deitados no chão (dados/movimentos/abdominal-chao.json: a lombar firme achata 15° além da curva de repouso)",
+  "corpo": "Tabela do corpo (src/engine/novo/dados/corpo-homem.json): o quadril a 8,35 cm do meio e os ombros a 20,4 cm",
+  "objetos": "src/engine/novo/dados/objetos/leg-press.json (o leg press 45°, o carro de 75,7 kg da Magnum) e dados/objetos/barra-longa.json (as anilhas)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.cima": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima: 'empurra a plataforma até quase estender os joelhos, sem travar'; a ficha não dá número: 12°" },
+  "joelho.baixo": { "v": 100, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo: 'dobra os joelhos até passarem de 90°, sem o quadril descolar do assento'" },
+  "lombar": { "v": 15, "un": "graus", "selo": "desenho", "fonte": "aprovado", "o": "as costas e o quadril apoiados: a lombar achata 15° além da curva de repouso contra o encosto (como nos deitados aprovados, com a lombar firme no chão); a bacia inclina até as escápulas e o glúteo encostarem juntos" },
+  "cervical": { "v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço quase neutro, a cabeça apoiada no encosto, olhando para os joelhos" },
+  "cabeca": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o queixo um pouco para o peito, olhando para os joelhos" },
+  "amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto o glúteo e as costas afundam nos estofados (o corpo apoia, não flutua)" },
+  "pes.meia": { "v": 13, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés 'na largura do quadril ou dos ombros': o meio de cada pé a 13 cm do meio, entre o quadril (8,35) e os ombros (20,4)" },
+  "pes.paraFora": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "aprovado", "o": "as pontas dos pés um pouco para fora, e os joelhos na direção delas (o cartão: 'joelhos na direção dos pés')" },
+  "pes.bolaAo": { "v": 10, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "'pés no meio da plataforma': o meio do pé (entre o calcanhar e a bola) fica no centro da chapa; a bola, 10 cm acima dele, ao longo da chapa" },
+  "anilhas": { "v": 20, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma anilha de 20 kg de cada lado ('anilhas iguais dos dois lados'); com o carro de 75,7 kg, 115,7 kg" },
+  "batente.abaixo": { "v": 4, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "os batentes de baixo ficam 4 cm abaixo do ponto mais baixo do carro no movimento certo ('adjustable bottom stop', Magnum): o carro não chega neles" },
+  "quadro.abaixo": { "v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quadro mostra a máquina do alto do encosto até 6 cm abaixo do vinco do assento, e a chapa onde ficam os pés; o chão e o pé da estrutura ficam cortados pela borda, para o corpo ocupar o quadro; as guias aparecem inteiras, até o alto, para os nomes dos erros não caírem em cima delas" },
+  "quadro.chapa": { "v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "da chapa, no ponto mais alto do carro, o quadro mostra 6 cm de cada lado do centro (onde ficam os pés); o resto é cortado pela borda" },
+  "erro.pouco.joelho": { "v": 55, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: a descida para com o joelho a 55° (no certo, 100°): 'amplitude curta'" },
+  "erro.descola.joelho": { "v": 118, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: desce além do que o quadril aguenta apoiado, o joelho a 118°" },
+  "erro.descola.rola": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no fundo, a bacia gira 25° para trás e a lombar arredonda o mesmo tanto ('a lombar arredonda e recebe a carga'); o glúteo sai do assento" },
+  "erro.travar.joelho": { "v": 1, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: em cima, o joelho estica até o fim (1°): 'esticar com força no topo'" },
+  "erro.dentro.graus": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "ficha", "o": "erro: no meio da subida, os joelhos giram 8° para dentro, em volta da linha do quadril ao tornozelo ('fechar os joelhos na subida')" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pés firmes, trava solta", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "aprovado" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "aprovado" }
+ ],
+ "contatos": ["pelve"],
+ "regras": [
+  { "id": "joelho-passa-de-90-no-trilho", "pede": "embaixo, os joelhos passam de 90°", "selo": "consenso", "fonte": "ficha" },
+  { "id": "joelhos-sem-travar-no-trilho", "pede": "em cima, os joelhos quase estendidos, sem travar (entre 5° e 20°)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "quadril-apoiado-no-assento-do-leg-press", "pede": "o quadril não descola do assento e as costas ficam no encosto, sem a lombar arredondar", "selo": "consenso", "fonte": "ficha" },
+  { "id": "pes-presos-na-chapa", "pede": "os pés ficam firmes na chapa, no mesmo lugar dela, e o carro só anda na guia", "selo": "consenso", "fonte": "ficha" },
+  { "id": "joelhos-na-linha-dos-pes-no-trilho", "pede": "os joelhos seguem a direção dos pés (não fecham para dentro)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "maos-paradas-nos-pegadores-do-trilho", "pede": "as mãos nos pegadores, paradas", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carro-acima-do-batente-do-leg-press", "pede": "o carro não chega nos batentes de baixo no movimento certo, e a trava fica solta", "selo": "consenso", "fonte": "ficha" },
+  { "id": "leg-press-corpo-por-cima-dos-estofados", "pede": "em cada vista e em cada erro, nos dois lados: o encosto e o assento não são pintados por cima de uma parte do corpo que fica na frente deles (de cima, a raiz dos braços)", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "pouco", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a descida para no meio: o joelho dobra só 55° (no certo, 100°)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },
+  { "id": "descola", "instante": 1, "titulo": "Quadril descola no fundo", "vista": "lateral", "oQueMuda": "desce até o joelho dobrar 118°: a bacia gira 25° para trás, a lombar arredonda e o glúteo sai do assento", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve"], "foco": "pelve" },
+  { "id": "travar", "instante": 0, "titulo": "Travar os joelhos", "vista": "lateral", "oQueMuda": "em cima, os joelhos esticam até o fim", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },
+  { "id": "dentro", "instante": 0.5, "titulo": "Joelhos para dentro", "vista": "cima", "oQueMuda": "no meio do caminho, os joelhos fecham para dentro, fora da linha dos pés", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "quadril no assento", "ponto": "pelve", "selo": "consenso", "fonte": "ficha", "acima": true },
+  { "vista": "cima", "texto": "joelhos na direção dos pés", "ponto": "joelho:R", "selo": "consenso", "fonte": "ficha" }
+ ]
+}

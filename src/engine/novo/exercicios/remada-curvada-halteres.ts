@@ -37,7 +37,7 @@ function base(corpo: Corpo): BaseDaRemada {
   return { tronco: D.e.pose, pernas: { R: pe(-1), L: pe(1) }, prims: [chao(-70, 70, -100, 100)], pecas: [], marcas: {} };
 }
 
-const R = criarRemada(ficha, { bracos: 'dois', carga: 'halter', base, erros: { e1: 'arredondar', e2: 'subir', e3: 'encolher', e4: 'soBracos' } });
+const R = criarRemada(ficha, { bracos: 'dois', carga: 'halter', base, erros: { e1: 'arredondar', e2: 'subir', e3: 'encolher', e4: 'soBracos' }, halterGiraComAMao: true });
 
 export const remadaCurvadaHalteres: Exercicio = {
   ficha: R.ficha,

@@ -1,0 +1,53 @@
+{
+ "fontes": {
+  "lf-haa": "Life Fitness, Insignia Series Owner's Manual 9481201 Rev BE, p. 22, Hip Abduction / Adduction (SS-HAA), a máquina que faz as duas; https://kb.cybexintl.com/Owners_Manuals/Strength/Life_Fitness_Insignia_Series_Owners_Manual_9481201_Rev_BE.pdf (lido em 18/11/2026): \"Size (L x W x H): [...] cm = 169.9 x 161.1 x 147.83\", \"Live Area (L x W x H): [...] cm = 170.2 x 226.1 x 210.1\", \"Sit down with feet on foot pegs so knees are bent 90 degrees. Position knee pads outside of the knees\" (abdução) e \"Position knee pads inside of the knees\" (adução), \"Adjust start position with range of motion adjustment\", \"Hold the handles and slowly move the pads out, pushing with knees. Hold the outward extreme position briefly\". As máquinas separadas da mesma linha (SS-HAB e SS-HAD, p. 23 e 24) têm 159 x 126 x 148 cm",
+  "precor-rsl0626": "Precor, Resolute Inner/Outer Thigh RSL0626 (a máquina que faz as duas); https://www.precor.com/en-US/products/RSL0626 (lida em 18/11/2026): \"71 x 30 x 58 in / 180 x 76 x 147 cm\", \"Weight stack tower height: 58 in / 148 cm\", \"Max leg open width: 73 in / 185 cm\", \"the slightly reclined seat back\", \"The rotating thigh pads pivot to make entry and exit simple for all exercisers\", \"Stable foot bars reinforce lower-body positioning\", \"Total thickness is 2.5 inches (65 mm)\", \"The unique ratchet adjustment allows exercisers to set or change the start position once they are seated\"",
+  "fichas-c1": "As fichas lidas na pesquisa de objetos (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1): Hammer Strength HS-HAB e HS-HAD, 155 x 67 x 140 cm cada (catálogo 2024, p. 59); Movement Next abdutora e adutora, 167 x 81 x 146 cm cada, com a torre à frente de quem senta e o \"apoio para os pés com dupla posição\" (apresentação Next Selectorized 2025, pp. 8-9); a Life Fitness SS-SHB da mesma seção (160 x 168 x 148) é a abdutora de sentar e de ficar em pé, outra máquina",
+  "corpo": "Medida derivada do corpo da tabela (src/engine/novo/dados/corpo-homem.json) sentado na máquina: as fichas não dão onde ficam o eixo, as almofadas e os apoios dos pés; a máquina só funciona se eles caem no corpo",
+  "cartao": "O cartão de hoje (scripts/desenhos-equipamento/realista/aparelhos.mjs, `abdutora`): a torre das placas atrás do assento e ao lado dele, as almofadas de 24 x 17 x 7 cm nos joelhos, os apoios dos pés, os pegadores ao lado do assento",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "cadeiraAbdutora": {
+   "nome": "Cadeira abdutora e adutora (a mesma máquina faz as duas): assento, encosto um pouco deitado, dois braços que giram cada um num eixo vertical embaixo do quadril, com a almofada do joelho (que gira para ficar por fora ou por dentro do joelho) e o apoio do pé, os pegadores ao lado do assento e a torre com a pilha de placas",
+   "medidas": {
+    "comp": { "v": 170, "un": "cm", "tipo": "medida", "fonte": "lf-haa", "onde": "comprimento total da Life Fitness SS-HAA, 169,9 cm (a Precor RSL0626 tem 180; a Movement Next, 167; a Hammer Strength HS-HAB, 155)" },
+    "larg": { "v": 161, "un": "cm", "tipo": "medida", "fonte": "lf-haa", "onde": "largura total da Life Fitness SS-HAA, 161,1 cm, com a torre ao lado do assento; 226 cm com as pernas abertas (\"Live Area\"). As outras fichas são bem mais estreitas: Precor 76, Movement 81 (com a torre à frente de quem senta), Hammer Strength 67. A peça desenhada não chega a esta largura (ver a folha)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0626", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight stack tower height\"); a Life Fitness SS-HAA tem 147,8 cm de altura total" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0626", "onde": "espessura total dos estofados: 2,5 pol (65 mm), a mesma no assento, no encosto e nas almofadas dos joelhos" },
+    "aberturaMax": { "v": 185, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0626", "onde": "a maior distância entre as pernas abertas na Precor (\"Max leg open width\"); a peça confere que as almofadas, na maior abertura desenhada, ficam dentro dela" },
+    "assentoAltura": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do chão ao topo do assento: as fichas não dão; com o joelho a 90° e o pé no apoio, a coxa fica quase na horizontal" },
+    "assentoComp": { "v": 42, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento: as fichas não dão; vai do encosto até 17 cm antes do joelho" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do assento: as fichas não dão; um pouco mais largo que o quadril do corpo da tabela (32 cm)" },
+    "encostoInclina": { "v": 15, "un": "graus", "tipo": "desenho", "fonte": "precor-rsl0626", "onde": "o encosto deita 15° para trás da vertical: a Precor diz \"slightly reclined\", sem dar o ângulo" },
+    "encostoComp": { "v": 70, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "comprimento do encosto, do assento até a altura das escápulas (o cartão de hoje tem 66)" },
+    "encostoAtras": { "v": 33.5, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "onde a face do encosto encontra o topo do assento, atrás da borda da frente: as costas do corpo da tabela, com a bacia sobre o eixo, encostam nele" },
+    "eixoAtras": { "v": 24, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "o eixo de cada braço fica 24 cm atrás da borda da frente do assento: embaixo do centro do quadril de quem senta encostado. Só assim a almofada não escorrega pela coxa quando a perna abre (a coxa gira em volta do quadril); as fichas não dão" },
+    "eixoMeiaDistancia": { "v": 8.35, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "cada eixo fica a 8,35 cm do meio, embaixo do centro do quadril (quadril.meiaDistancia na tabela do corpo)" },
+    "bracoAltura": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do braço que gira: embaixo do assento, por fora da perna" },
+    "bracoFora": { "v": 18, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto o braço passa por fora da linha do quadril ao joelho: por fora da panturrilha, para a almofada poder ir para dentro ou para fora" },
+    "montanteFrente": { "v": 70, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o montante que segura a almofada sobe a 70 cm do eixo, à frente da ponta do pé (a coxa e o pé do corpo da tabela vão até 61 cm)" },
+    "almofadaComp": { "v": 24, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "comprimento da almofada do joelho, ao longo da coxa, como no cartão de hoje" },
+    "almofadaAlt": { "v": 17, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "altura da almofada do joelho, como no cartão de hoje" },
+    "almofadaFrente": { "v": 37, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "o centro da almofada fica a 37 cm do eixo, ao longo do braço: do lado do joelho, um pouco para o lado da coxa (a coxa do corpo da tabela tem 41,3 cm)" },
+    "almofadaAltura": { "v": 59, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "altura do centro da almofada: a do centro do joelho de quem senta" },
+    "almofadaAfasta": { "v": 9.5, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "do centro do joelho ao centro da almofada, para o lado: a pele do joelho do corpo da tabela fica a 6,2 cm do centro, e a almofada tem 6,5 de espessura" },
+    "apoioPeAltura": { "v": 9.5, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "altura do topo do apoio do pé: com o assento a 50 cm, a sola do corpo da tabela fica aí com o joelho a 90° (\"knees are bent 90 degrees\", Life Fitness); a Movement tem duas alturas" },
+    "apoioPeFrente": { "v": 47.5, "un": "cm", "tipo": "derivada", "fonte": "corpo", "onde": "o centro do apoio do pé fica a 47,5 cm do eixo, ao longo do braço: embaixo do meio do pé" },
+    "apoioPeComp": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do apoio do pé (o pé do corpo da tabela tem 27 cm)" },
+    "apoioPeLarg": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do apoio do pé" },
+    "pegadorAltura": { "v": 52, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "altura dos pegadores ao lado do assento (\"Hold the handles\", Life Fitness), como no cartão de hoje" },
+    "pegadorFora": { "v": 27, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "distância do meio aos pegadores" },
+    "cameRaio": { "v": 28, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "raio do came embaixo do assento, preso ao braço esquerdo, que enrola o cabo: as placas sobem o arco dele (os dois braços giram juntos, ligados por engrenagens nos eixos)" },
+    "torreLarg": { "v": 34, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "largura da torre, como a da cadeira flexora" },
+    "torreProf": { "v": 32, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "fundo da torre" },
+    "torreAoLado": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "cartao", "onde": "a torre fica ao lado do encosto, à esquerda de quem senta, com a face de dentro a 44 cm do meio (no cartão de hoje, a 48)" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas, como na cadeira flexora" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "tubo da estrutura, como o da cadeira flexora" }
+   }
+  }
+ }
+}

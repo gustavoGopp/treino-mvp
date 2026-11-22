@@ -1,0 +1,703 @@
+[
+ {
+  "lote": "A1",
+  "nome": "halteres no banco",
+  "casos": 3751,
+  "mudaram": 590,
+  "porcento": 15.7,
+  "personas": [
+   "persona bruno: crucifixo-polia+rosca-polia-costas+face-pull → crucifixo-inverso+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres",
+   "persona carla: crucifixo-polia+face-pull+rosca-maquina → crucifixo-inverso+crucifixo-inclinado-halteres+rosca-scott-banco-inclinado",
+   "persona bruno, local 1: crucifixo-polia+rosca-polia-costas+face-pull → crucifixo-inverso+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    87
+   ],
+   [
+    "rosca-maquina → rosca-scott-banco-inclinado",
+    76
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    67
+   ],
+   [
+    "crucifixo-polia+crucifixo-invertido-polia → crucifixo-halteres+crucifixo-inverso",
+    44
+   ],
+   [
+    "face-pull → crucifixo-inverso",
+    39
+   ],
+   [
+    "crucifixo-polia+face-pull → crucifixo-inverso+crucifixo-inclinado-halteres",
+    26
+   ],
+   [
+    "crucifixo-polia+face-pull → crucifixo-halteres+crucifixo-inverso",
+    18
+   ],
+   [
+    "crucifixo-invertido-polia → crucifixo-inverso",
+    18
+   ],
+   [
+    "crucifixo-polia+face-pull+rosca-maquina → crucifixo-inverso+crucifixo-inclinado-halteres+rosca-scott-banco-inclinado",
+    15
+   ],
+   [
+    "crucifixo-polia+crucifixo-invertido-polia+rosca-polia-costas → crucifixo-halteres+rosca-scott-banco-inclinado+crucifixo-inverso",
+    15
+   ],
+   [
+    "crucifixo-polia+rosca-maquina+face-pull → crucifixo-halteres+crucifixo-inverso+rosca-scott-banco-inclinado",
+    13
+   ],
+   [
+    "crucifixo-polia → crucifixo-halteres",
+    13
+   ]
+  ]
+ },
+ {
+  "lote": "A2",
+  "nome": "elástico e mini band",
+  "casos": 3751,
+  "mudaram": 1145,
+  "porcento": 30.5,
+  "personas": [
+   "persona bruno: crucifixo-polia+rosca-polia-costas+face-pull → crucifixo-inverso+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+face-pull+rosca-maquina → crucifixo-inverso+crucifixo-inclinado-halteres+rosca-scott-banco-inclinado",
+   "persona bruno, local 1: crucifixo-polia+rosca-polia-costas+face-pull → crucifixo-inverso+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    266
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-maquina → rosca-scott-banco-inclinado",
+    76
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    67
+   ],
+   [
+    "crucifixo-polia+crucifixo-invertido-polia → crucifixo-halteres+crucifixo-inverso",
+    44
+   ],
+   [
+    "face-pull → crucifixo-inverso",
+    39
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ],
+   [
+    "face-pull-elastico → abertura-elastico",
+    31
+   ],
+   [
+    "face-pull-elastico+ponte-gluteo → abertura-elastico+coice-elastico",
+    29
+   ],
+   [
+    "crucifixo-polia+face-pull → crucifixo-inverso+crucifixo-inclinado-halteres",
+    26
+   ],
+   [
+    "remada-elastico → remada-curvada-elastico",
+    26
+   ],
+   [
+    "crucifixo-polia+face-pull → crucifixo-halteres+crucifixo-inverso",
+    18
+   ]
+  ]
+ },
+ {
+  "lote": "A3",
+  "nome": "halteres e kettlebell em pé",
+  "casos": 3751,
+  "mudaram": 2723,
+  "porcento": 72.6,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+rosca-polia-costas+face-pull → crucifixo-inverso+agachamento-halteres+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+face-pull+rosca-maquina → crucifixo-inverso+desenvolvimento-unilateral+crucifixo-inclinado-halteres+crucifixo-invertido-curvado+rosca-scott-banco-inclinado",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+rosca-polia-costas+face-pull → crucifixo-inverso+agachamento-halteres+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "bulgaro → agachamento-halteres",
+    558
+   ],
+   [
+    "goblet → agachamento-halteres",
+    474
+   ],
+   [
+    "(ordem) → (ordem)",
+    420
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "bulgaro → afundo-tras",
+    149
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    80
+   ],
+   [
+    "rosca-maquina → rosca-scott-banco-inclinado",
+    73
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    63
+   ],
+   [
+    "elevacao-lateral-deitado → elevacao-lateral-unilateral",
+    43
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ],
+   [
+    "face-pull-elastico → abertura-elastico",
+    31
+   ],
+   [
+    "crucifixo-polia+crucifixo-invertido-polia → crucifixo-halteres+crucifixo-inverso",
+    30
+   ]
+  ]
+ },
+ {
+  "lote": "A4",
+  "nome": "sentado ou deitado, com halter ou caneleira",
+  "casos": 3751,
+  "mudaram": 2902,
+  "porcento": 77.4,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+rosca-polia-costas+face-pull → crucifixo-inverso+agachamento-halteres+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+face-pull+rosca-maquina → crucifixo-inverso+desenvolvimento-unilateral+crucifixo-inclinado-halteres+crucifixo-invertido-curvado+rosca-scott-banco-inclinado",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+rosca-polia-costas+face-pull → crucifixo-inverso+agachamento-halteres+rosca-scott-banco-inclinado+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    459
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    414
+   ],
+   [
+    "goblet → agachamento-halteres",
+    365
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    122
+   ],
+   [
+    "bulgaro → afundo-tras",
+    121
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "rosca-maquina → rosca-scott-banco-inclinado",
+    69
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    58
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ]
+  ]
+ },
+ {
+  "lote": "A5",
+  "nome": "na polia",
+  "casos": 3751,
+  "mudaram": 3014,
+  "porcento": 80.4,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+face-pull+rosca-maquina → crucifixo-inverso+desenvolvimento-unilateral+crucifixo-inclinado-halteres+triceps-barra-reta+crucifixo-invertido-curvado+rosca-polia-costas",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    511
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    387
+   ],
+   [
+    "goblet → agachamento-halteres",
+    353
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    122
+   ],
+   [
+    "bulgaro → afundo-tras",
+    117
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    41
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ]
+  ]
+ },
+ {
+  "lote": "A6",
+  "nome": "pendurado, paralelas e suspensão",
+  "casos": 3751,
+  "mudaram": 3014,
+  "porcento": 80.4,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+face-pull+rosca-maquina → crucifixo-inverso+desenvolvimento-unilateral+crucifixo-inclinado-halteres+triceps-barra-reta+crucifixo-invertido-curvado+rosca-polia-costas",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    511
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    387
+   ],
+   [
+    "goblet → agachamento-halteres",
+    353
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    122
+   ],
+   [
+    "bulgaro → afundo-tras",
+    117
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    41
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ]
+  ]
+ },
+ {
+  "lote": "B1",
+  "nome": "barra longa, barra W e barra hexagonal",
+  "casos": 3751,
+  "mudaram": 3035,
+  "porcento": 80.9,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+face-pull+rosca-maquina+coice-maquina → crucifixo-inverso+desenvolvimento-barra+crucifixo-inclinado-halteres+triceps-barra-reta+crucifixo-invertido-curvado+rosca-polia-costas+hip-thrust",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    453
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    385
+   ],
+   [
+    "goblet → agachamento-halteres",
+    353
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    119
+   ],
+   [
+    "bulgaro → afundo-tras",
+    107
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "coice-maquina → hip-thrust",
+    40
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ]
+  ]
+ },
+ {
+  "lote": "B2",
+  "nome": "smith",
+  "casos": 3751,
+  "mudaram": 3035,
+  "porcento": 80.9,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+face-pull+rosca-maquina+coice-maquina → crucifixo-inverso+desenvolvimento-barra+crucifixo-inclinado-halteres+triceps-barra-reta+crucifixo-invertido-curvado+rosca-polia-costas+hip-thrust",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    448
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    385
+   ],
+   [
+    "goblet → agachamento-halteres",
+    353
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    119
+   ],
+   [
+    "bulgaro → afundo-tras",
+    104
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "coice-maquina → hip-thrust",
+    37
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ]
+  ]
+ },
+ {
+  "lote": "C1",
+  "nome": "máquinas de perna",
+  "casos": 3751,
+  "mudaram": 3034,
+  "porcento": 80.9,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+face-pull+rosca-maquina → crucifixo-inverso+desenvolvimento-barra+crucifixo-inclinado-halteres+triceps-barra-reta+crucifixo-invertido-curvado+rosca-polia-costas",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    465
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    385
+   ],
+   [
+    "goblet → agachamento-halteres",
+    353
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    119
+   ],
+   [
+    "bulgaro → afundo-tras",
+    106
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    61
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    31
+   ]
+  ]
+ },
+ {
+  "lote": "C2",
+  "nome": "máquinas de tronco",
+  "casos": 3751,
+  "mudaram": 3119,
+  "porcento": 83.2,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: supino-reto+puxada-unilateral+crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+remada-baixa+face-pull+rosca-maquina → crucifixo-inverso+supino-maquina+desenvolvimento-barra+crucifixo-inclinado-halteres+triceps-barra-reta+remada-articulada+puxada-frente+crucifixo-invertido-curvado+rosca-polia-costas",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    474
+   ],
+   [
+    "goblet → agachamento-halteres",
+    331
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    309
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    118
+   ],
+   [
+    "bulgaro → afundo-tras",
+    97
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    55
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ],
+   [
+    "rosca-scott → rosca-scott-banco-inclinado",
+    32
+   ]
+  ]
+ },
+ {
+  "lote": "C3",
+  "nome": "braço, panturrilha, abdômen e bancos especiais",
+  "casos": 3751,
+  "mudaram": 3094,
+  "porcento": 82.5,
+  "personas": [
+   "persona bruno: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado",
+   "persona ana: bulgaro → agachamento-halteres",
+   "persona diego: remada-elastico+ponte-gluteo → remada-curvada-elastico+coice-elastico",
+   "persona carla: supino-reto+puxada-unilateral+crucifixo-polia+crucifixo-invertido-polia+desenvolvimento-unilateral-kettlebell+triceps-corda+remada-baixa+face-pull → crucifixo-inverso+supino-maquina+desenvolvimento-barra+crucifixo-inclinado-halteres+triceps-barra-reta+remada-articulada+puxada-frente+crucifixo-invertido-curvado",
+   "persona bruno, local 1: crucifixo-polia+crucifixo-invertido-polia+bulgaro+triceps-corda+face-pull → crucifixo-inverso+agachamento-halteres+triceps-barra-reta+crucifixo-inclinado-halteres+crucifixo-invertido-curvado"
+  ],
+  "trocas": [
+   [
+    "(ordem) → (ordem)",
+    519
+   ],
+   [
+    "goblet → agachamento-halteres",
+    331
+   ],
+   [
+    "bulgaro → agachamento-halteres",
+    309
+   ],
+   [
+    "ponte-gluteo → coice-elastico",
+    153
+   ],
+   [
+    "rosca-martelo → rosca-concentrada",
+    118
+   ],
+   [
+    "bulgaro → afundo-tras",
+    98
+   ],
+   [
+    "goblet+rosca-martelo → agachamento-halteres+rosca-concentrada",
+    93
+   ],
+   [
+    "bulgaro+goblet → agachamento-halteres+afundo-tras",
+    55
+   ],
+   [
+    "bulgaro+ponte-gluteo-halter → agachamento-halteres+coice-caneleira",
+    44
+   ],
+   [
+    "bulgaro+ponte-kettlebell → agachamento-halteres+coice-caneleira",
+    43
+   ],
+   [
+    "ponte-gluteo → (ordem)",
+    33
+   ],
+   [
+    "face-pull-elastico → abertura-elastico",
+    31
+   ]
+  ]
+ }
+]

@@ -1,0 +1,319 @@
+{
+ "id": "abducao-elastico",
+ "nome": "Abdução de quadril em pé com elástico preso sob o outro pé",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abducao-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abducao-elastico.md): de lado para a parede, elástico sob o pé de dentro e no tornozelo de fora (consenso, docs/pesquisa-v2/17-biblioteca-ampliada.md, G3); perna para o lado, estendida, dedos para a frente, tronco reto (um estudo: revisão de EMG, macadam2015); equilíbrio numa perna, a mão na parede",
+  "app": "Cartão do app (src/conteudo/exercicios/abducao-elastico.json): em pé, de lado para a parede, a mão de dentro nela; o elástico preso sob o pé de dentro (pé inteiro) e em volta do tornozelo de fora; ~1 s abrindo, pausa curta, ~2 s voltando até a perna quase encostar na outra; 'a mão só equilibra'; as dicas e os erros",
+  "aaos": "Amplitude do quadril da AAOS (src/engine/novo/dados/amplitudes.json, quadril.abducao: média 40°, máximo 60°)",
+  "deitado": "A ficha de movimento da abdução deitado de lado aprovada (src/engine/novo/dados/movimentos/abducao-deitado.json): a perna estendida que abre com os dedos para a frente, a pausa de 1 s em cima e os erros de girar a perna e de subir com a cintura dobrada",
+  "afundo": "A ficha de movimento do afundo com o peso do corpo aprovado (src/engine/novo/dados/movimentos/afundo-peso-corpo.json): a mão na cintura",
+  "panturrilha": "A ficha de movimento da panturrilha em pé no chão aprovada (src/engine/novo/dados/movimentos/panturrilha-chao.json): a palma espalmada na parede, só para equilibrar",
+  "equilibrio": "Em pé numa perna, parado, a projeção do centro de massa cai sobre o pé de apoio (mecânica); a mão na parede só equilibra (o cartão), e o desenho põe o centro de massa sobre o meio do pé de apoio",
+  "fisica": "Física do elástico: preso sob um pé e no tornozelo do outro, ele estica quando a perna abre; a borracha não muda de volume, então a faixa afina ao esticar",
+  "objetos": "src/engine/novo/dados/objetos/elastico-longo.json e elastico-longo-pisado.json: o elástico longo em laço (41 pol), pisado de modo que só o trecho entre o pé e o tornozelo estica",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pe.apoio.paraFora": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé de apoio embaixo do quadril dele, 1 cm para fora (como em pé, parado, no corpo do Boneco)"
+  },
+  "joelho.apoio": {
+   "v": 5,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o joelho de apoio quase estendido, sem travar; daí sai a altura do quadril"
+  },
+  "pes.folga": {
+   "v": 2,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "embaixo, a perna de fora 'quase encosta na outra': 2 cm entre os pés (o lado de dentro de um ao do outro)"
+  },
+  "pe.livre.acimaDoChao": {
+   "v": 0,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "embaixo, o pé de fora só roça o chão, sem apoiar (o peso fica todo no pé de apoio); daí sai o pouco que o joelho de fora dobra"
+  },
+  "abducao.topo": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "aaos",
+   "o": "a perna de fora sobe pouco, até onde o tronco não inclina nem a bacia sobe: a coxa abre 25° a partir da linha do quadril (a ficha não dá número; abaixo da média de 40° da AAOS e dos 35° da abdução deitado aprovada, porque em pé, com a bacia parada, a perna abre menos)"
+  },
+  "pe.livre.flexaoPlantar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "deitado",
+   "o": "o pé de fora com os dedos para a frente, em ângulo reto com a canela"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "tronco reto, o pescoço na linha dele"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "cabeça na linha do pescoço, o olhar à frente"
+  },
+  "maos.naCintura.acima": {
+   "v": 11,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "afundo",
+   "o": "a mão de fora na cintura (a altura da mão acima do centro do quadril, como no afundo com o peso do corpo aprovado)"
+  },
+  "parede.mao.acimaDoOmbro": {
+   "v": 5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "panturrilha",
+   "o": "a mão de dentro espalmada na parede, os dedos para cima, como na panturrilha em pé no chão: o punho 5 cm acima do centro do ombro (com a mão mais baixa e o braço esticado até a parede, o punho dobraria 90° para trás)"
+  },
+  "parede.mao.aFrente": {
+   "v": 5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a mão na parede 5 cm à frente do ombro"
+  },
+  "parede.cotovelo": {
+   "v": 80,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o cotovelo de dentro dobrado 80° embaixo, apontando para o chão, o antebraço subindo rente à parede: é daí que sai a distância da parede (a mão só equilibra)"
+  },
+  "elastico.noTornozelo": {
+   "v": 4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o elástico em volta da perna de fora logo acima do tornozelo: o meio da faixa 4 cm acima do centro do tornozelo, acima do maléolo"
+  },
+  "elastico.folga": {
+   "v": 0.3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a faixa assenta na pele da perna (metade da espessura e a meia)"
+  },
+  "elastico.entreOsTrechos": {
+   "v": 3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as duas camadas do laço passam lado a lado sob a sola do pé de apoio, 3 cm uma da outra (de frente para trás)"
+  },
+  "elastico.sobra.direcao": {
+   "v": 55,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a sobra do laço (o que fica do outro lado do pé que pisa, sem esticar) fica deitada no chão, para fora e para a frente: 55° da direção da parede para a frente"
+  },
+  "erro.inclina.tronco": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o tronco cai 15° para o lado da parede"
+  },
+  "erro.inclina.bacia": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "deitado",
+   "o": "erro: a bacia sobe 6° do lado da perna que abre (como a cintura que dobra no erro 'alto' da abdução deitado); a coxa abre o mesmo na bacia e a perna sobe mais"
+  },
+  "erro.gira.giro": {
+   "v": 35,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "deitado",
+   "o": "erro: a perna gira 35° para fora e os dedos apontam para o lado (o número do erro de rolar da abdução deitado aprovada)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Pernas juntas",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "tronco reto",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Abertura · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Aberto · segura",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.1,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.L",
+  "mao.L"
+ ],
+ "regras": [
+  {
+   "id": "abducao-em-pe-tronco-reto",
+   "pede": "tronco reto: a bacia não sobe nem gira e o tronco não inclina para o lado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "abducao-em-pe-perna-sobe-pouco",
+   "pede": "a perna de fora vai para o lado, estendida, e volta até quase encostar na outra; sobe pouco (sem passar de ~45°)",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "quadril-dedos-para-a-frente",
+   "pede": "dedos para a frente",
+   "selo": "um estudo",
+   "fonte": "ficha"
+  },
+  {
+   "id": "quadril-pernas-sem-se-atravessar",
+   "pede": "as duas pernas não se atravessam",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "id": "abducao-em-pe-peso-no-pe-de-apoio",
+   "pede": "o peso fica sobre o pé de apoio (a mão só equilibra)",
+   "selo": "consenso",
+   "fonte": "equilibrio"
+  },
+  {
+   "id": "abducao-em-pe-mao-na-parede",
+   "pede": "a mão de dentro espalmada na parede",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-pisado-no-meio-da-sola",
+   "pede": "o pé de dentro inteiro sobre o elástico: ele passa sob o meio da sola, com o calcanhar no chão",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "abducao-em-pe-elastico-no-tornozelo",
+   "pede": "o elástico em volta do tornozelo de fora",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o elástico não atravessa o corpo",
+   "selo": "consenso",
+   "fonte": "desenho"
+  }
+ ],
+ "erros": [
+  {
+   "id": "inclina",
+   "instante": 1,
+   "titulo": "Inclinar o tronco",
+   "vista": "frontal",
+   "oQueMuda": "o tronco cai para o lado da parede e a bacia sobe do lado da perna que abre: a perna sobe mais, sem o glúteo",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "cabeca"
+  },
+  {
+   "id": "gira",
+   "instante": 1,
+   "titulo": "Girar o pé para fora",
+   "vista": "frontal",
+   "oQueMuda": "a perna gira para fora e os dedos apontam para o lado",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "calcanhar:R",
+    "ponta:R"
+   ],
+   "foco": "ponta:R"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "frontal",
+   "texto": "tronco reto",
+   "ponto": "cabeca",
+   "selo": "consenso",
+   "fonte": "app",
+   "guia": [
+    "pelve",
+    "c7"
+   ]
+  },
+  {
+   "vista": "frontal",
+   "texto": "dedos para a frente",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "posterior",
+   "texto": "a mão só equilibra",
+   "ponto": "pegada:L",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

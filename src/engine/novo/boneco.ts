@@ -6,7 +6,7 @@
 import dados from './dados/boneco.json';
 import type { Anel, Volume } from './corpo3d';
 import { Caminho, casco, contorno } from './desenho';
-import type { Camera, Item, P2 } from './desenho';
+import type { Camera, Item, P2, ParteDoItem } from './desenho';
 import { LADOS, naColuna, resolverTronco, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
 import type { Corpo } from './tabelas';
@@ -784,8 +784,14 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
     };
     return pts.every((q) => cascos.some((H) => dentro(q, H)));
   };
+  // o que cada item pinta (para o pintor por pares, ./pintor-por-pares.ts): os grupos inteiros, ou só alguns volumes
+  const pinta = new Map<Item, (x: Gr, nome?: string) => boolean>();
+  const poe = (it: Item, quem: (x: Gr, nome?: string) => boolean) => {
+    itens.push(it);
+    pinta.set(it, quem);
+  };
   // 1) membros do lado de longe: cada um com o seu contorno, antes de tudo
-  for (const x of G) if (x.longe && !escondido(x)) itens.push({ d: Math.min(x.d, corpo.d - 5) + vies(x.g.id), camada: 1, s: traco(x) + pintado(x, []) + polegarPorCima(x), cx: x.cx });
+  for (const x of G) if (x.longe && !escondido(x)) poe({ d: Math.min(x.d, corpo.d - 5) + vies(x.g.id), camada: 1, s: traco(x) + pintado(x, []) + polegarPorCima(x), cx: x.cx }, (y) => y === x);
   // 2) o corpo e as pernas de perto, num contorno só
   const pernas = G.filter((x) => x.g.id.startsWith('perna') && !x.longe);
   const atras = pernas.filter((x) => x.d < corpo.d - 1.5),
@@ -822,8 +828,28 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   const bacia = musculos('bacia');
   s += (o.estilo === 'pele' && !veu ? '' : bacia.linhas) + bacia.ativos;
   for (const x of frente) s += musculos(x.g.id).ativos;
+  // `vies.cabeca` > 0 (acréscimo de 18/11, desligado por padrão): a cabeça é pintada de novo por cima do resto do
+  // corpo, com o contorno próprio, como o polegar por cima da mão. Vista de cima, sentado, a cabeça fica dentro da
+  // silhueta dos ombros, e o contorno do corpo (um só, por fora) não a desenhava: no lugar dela ficava o alto do tronco
+  // `vies.cabecaAParte` (acréscimo de 18/11, desligado por padrão): a mesma cabeça, mas num item só dela, na
+  // profundidade da própria cabeça (mais o valor dado), e não dentro do item do corpo. Vista de cima, no voador
+  // invertido, o apoio do peito fica entre o tronco (abaixo dele) e a cabeça (acima): no item do corpo, a cabeça ia
+  // para baixo do apoio junto com o tronco
+  const cabecaAParte = o.vies?.cabecaAParte;
+  let itemDaCabeca: Item | null = null;
+  const DA_CABECA = ['cabeca', 'cabeloAtras', 'calota'];
+  if (vies('cabeca') > 0 || cabecaAParte !== undefined) {
+    const cab = corpo.cs.filter((v) => DA_CABECA.includes(v.nome!));
+    const sCab = cab.map((v) => `<path class="b-c${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + cab.map((v) => `<path class="b-p${sufDe(corpo)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
+    if (cabecaAParte === undefined) s += sCab;
+    else {
+      const c = doCorpo('cabeca');
+      itemDaCabeca = { d: c.d + cabecaAParte, camada: 1, s: sCab, cx: c.cx };
+    }
+  }
   const cxCorpo = [corpo, ...pernas].reduce<[number, number, number, number]>((a, x) => [Math.min(a[0], x.cx[0]), Math.min(a[1], x.cx[1]), Math.max(a[2], x.cx[2]), Math.max(a[3], x.cx[3])], [1e9, 1e9, -1e9, -1e9]);
-  itens.push({ d: corpo.d + vies('corpo'), camada: 1, s, cx: cxCorpo });
+  poe({ d: corpo.d + vies('corpo'), camada: 1, s, cx: cxCorpo }, (y) => y === corpo || pernas.includes(y));
+  if (itemDaCabeca) poe(itemDaCabeca, (y, nome) => y === corpo && DA_CABECA.includes(nome!));
   // 3) os braços de perto, cada um com o seu contorno, na frente ou atrás do corpo conforme a profundidade
   for (const x of G) {
     if (!x.g.id.startsWith('braco') || x.longe) continue;
@@ -841,7 +867,22 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
       return vs.map((v) => `<path class="b-c${sufDe(x)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + vs.map((v) => `<path class="b-p${sufDe(x)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
     };
     const pele = maoDebaixo ? parte(eDaMao) + parte((v) => !eDaMao(v)) : traco(x) + cheioDe(x, () => true) + polegarPorCima(x);
-    itens.push({ d: (x.d >= corpo.d - 4 ? Math.max(x.d, corpo.d + 1) : x.d) + vies(x.g.id), camada: 1, s: pele + m.linhas + m.ativos, cx: x.cx });
+    poe({ d: (x.d >= corpo.d - 4 ? Math.max(x.d, corpo.d + 1) : x.d) + vies(x.g.id), camada: 1, s: pele + m.linhas + m.ativos, cx: x.cx }, (y) => y === x);
+  }
+  // As partes de cada item, para o pintor por pares, na ordem dos grupos e dos volumes da forma. O corpo tracejado do
+  // erro (suf '-f') fica sem: ele não é ordenado com o equipamento.
+  if (suf !== '-f') {
+    const vols = new Map<Item, ParteDoItem[]>();
+    for (const x of G)
+      x.g.volumes.forEach((v) => {
+        for (const it of itens) {
+          if (!pinta.get(it)!(x, v.nome)) continue;
+          let l = vols.get(it);
+          if (!l) vols.set(it, (l = []));
+          l.push({ nome: v.nome ?? x.g.id, lado: x.g.lado, aneis: v.vol.aneis });
+        }
+      });
+    for (const [it, l] of vols) it.pp = { k: 'corpo', e, cam, vols: l };
   }
   return itens;
 }

@@ -32,3 +32,17 @@ Elástico: pelas intensidades que a pessoa tem.
 - `martinruiz2026` (`docs/pesquisa/fontes.md`).
 - `coratella2020` (`docs/pesquisa/fontes.md`).
 - `ng2022` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/elevacao-lateral-unilateral-elastico.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (ombro lateral, sem secundário) e a biblioteca; a nota, do erro "Encolher o ombro" do cartão | um estudo | `andersen2010` (EMG) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | posição do cartão e a linha Posição da tabela de técnica; a seção Segurança (pé inteiro) | consenso | `17`, G3; `ng2022` |
+| Variações (`vary`) | a linha Movimento da tabela de técnica e as dicas do cartão | consenso | `coratella2020` |
+| Nota (`note`) | a montagem do cartão, num texto só | um estudo | `ng2022` (lesões de olho com elástico que escapou) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/elevacao-lateral-unilateral-elastico.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz nada que varie de pessoa para pessoa: o `vary` só traz o que não muda.

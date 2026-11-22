@@ -1,0 +1,49 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "lateral",
+  "quadros": {
+   "lateral": [
+    -154.34629142800685,
+    -213.64,
+    300.5333333333333,
+    225.39999999999998
+   ],
+   "frontal": [
+    -150.26666666666665,
+    -213.64,
+    300.5333333333333,
+    225.39999999999998
+   ]
+  },
+  "mini": [
+   -147.81295809467355,
+   -207.76,
+   287.4666666666667,
+   215.60000000000002
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -69.5796247613402,
+    -196,
+    61.42037523865981,
+    0
+   ],
+   "ansur2-homem-imc-normal|frontal|cinza|0|": [
+    -73,
+    -196,
+    73,
+    0
+   ],
+   "ansur2-homem-imc-normal|lateral|cinza|1|": [
+    -69.5796247613402,
+    -196,
+    61.42037523865981,
+    0
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|agachamento-smith:costas": -3.0745176087000656,
+  "ansur2-homem-imc-normal|agachamento-smith:fundo": 99.86901881692002
+ }
+}

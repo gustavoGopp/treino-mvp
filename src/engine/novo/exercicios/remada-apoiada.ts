@@ -151,3 +151,9 @@ export const remadaApoiada: Exercicio = {
   papeis: { dorsal: 'p', trapMedInf: 'p', deltPost: 's', biceps: 's' },
   trajetorias: { halter: (q) => q.marcas.halter!, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };
+
+/**
+ * O corpo deitado de bruços no encosto, parado (sem os braços), e a cena: os mesmos da remada, para o crucifixo inverso
+ * com halteres (./crucifixo-inverso.ts), que usa a mesma cena. Acréscimo de 17/11/2026; nada muda na remada.
+ */
+export { base as baseNoEncostoDaRemada };

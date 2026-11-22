@@ -13,7 +13,8 @@
 // O pé fica onde, no topo, a canela fica em pé (a animação aprovada de hoje: "canela na vertical"); a conferência
 // mede, embaixo, a distância do calcanhar ao glúteo ("cerca de um palmo", na ficha).
 import { calibragem } from '../calibragens';
-import { pontosDoBoneco } from '../boneco';
+import { formaDoBoneco, pontosDoBoneco } from '../boneco';
+import type { Anel } from '../corpo3d';
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
@@ -23,7 +24,7 @@ import { chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, angulo, mix, mul, noRef, norm, paraRef, sub } from '../vec';
+import { add, angulo, comb, dist, lerp, mix, mul, noRef, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 import { bracosNoChao, folgaDaPelve, troncoDeCostas } from './flexao-joelho';
 
@@ -49,7 +50,37 @@ export const canelaDaVertical = (e: Esq) => angulo(lado(sub(e.lado.R.joelho, e.l
 
 /** As partes do corpo em que a carga pode encostar (os braços e as mãos ficam de fora: são eles que seguram). */
 const ENCOSTA = new Set(['tronco', 'cintura', 'pelve', 'coxa']);
-export const pontosOndeACargaApoia = (e: Esq): V3[] => pontosDoBoneco(e).filter((x) => ENCOSTA.has(x.parte)).map((x) => x.p);
+/**
+ * `densa` (acréscimo de 19/11/2026, desligado por padrão): a superfície inteira, e não só os 12 pontos de cada anel do
+ * Boneco: conta também a emenda da cintura (o volume que junta o tronco à bacia, ../boneco.ts) e põe pontos entre os
+ * anéis (a cada ~1 cm) e em volta deles (36 por anel). Com os pontos de cada anel só, o halter da ponte assentava entre
+ * eles e entrava 2,1 cm na emenda da cintura (3,3 cm no erro do halter rolando).
+ */
+export function pontosOndeACargaApoia(e: Esq, densa = false): V3[] {
+  if (!densa) return pontosDoBoneco(e).filter((x) => ENCOSTA.has(x.parte)).map((x) => x.p);
+  const out: V3[] = [];
+  const naElipse = (a: Anel, th: number): V3 => comb([1, a.c], [a.a * Math.cos(th), a.x], [(Math.sin(th) >= 0 ? a.f : a.b) * Math.sin(th), a.z]);
+  const anelEm = (a0: Anel, a1: Anel, w: number): Anel => ({ c: lerp(a0.c, a1.c, w), x: norm(lerp(a0.x, a1.x, w)), z: norm(lerp(a0.z, a1.z, w)), a: mix(a0.a, a1.a, w), f: mix(a0.f, a1.f, w), b: mix(a0.b, a1.b, w) });
+  for (const g of formaDoBoneco(e).grupos)
+    for (const v of g.volumes) {
+      const nome = v.nome ?? g.id;
+      if (!ENCOSTA.has(nome) && nome !== 'emendaDaCintura') continue;
+      const A = v.vol.aneis;
+      for (let i = 0; i + 1 < A.length; i++) {
+        const n = Math.max(1, Math.ceil(dist(A[i]!.c, A[i + 1]!.c)));
+        for (let k = 0; k < n || (i + 2 === A.length && k === n); k++) {
+          const a = anelEm(A[i]!, A[i + 1]!, k / n);
+          for (let j = 0; j < 36; j++) out.push(naElipse(a, (j * Math.PI) / 18));
+        }
+      }
+    }
+  return out;
+}
+/** Opções das pontes (acréscimos, desligados por padrão). */
+export interface OpcoesDaPonte {
+  /** A carga assenta sobre a superfície inteira do corpo, emenda da cintura inclusive (ver `pontosOndeACargaApoia`). Sem o campo, nada muda. */
+  superficieDensa?: boolean;
+}
 
 /**
  * O halter de través (o cabo ao longo de x), com o centro em (0, ?, z): a menor altura do centro em que nenhum ponto do
@@ -141,7 +172,7 @@ export function ponteDePesNoChao(corpo: Corpo, o: OpcoesDaPonteNoChao): Esq {
 }
 
 /* ============================== a animação ============================== */
-export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
+export function criarPonte(fichaJson: unknown, carga: CargaDaPonte, opcoes: OpcoesDaPonte = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const tem = (id: string) => id in F.param;
@@ -183,7 +214,7 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
       // para o lado da cabeça a 6 cm para o lado dos pés do meio dos quadris); daí em diante ela anda presa à bacia
       const e0 = pose(corpo, zBola, ini);
       const zQ = (e0.lado.R.quadril[2] + e0.lado.L.quadril[2]) / 2;
-      const pts = pontosOndeACargaApoia(e0);
+      const pts = pontosOndeACargaApoia(e0, opcoes.superficieDensa);
       let melhor: V3 = [0, 1e9, zQ];
       if (carga !== 'nenhuma')
         for (let z = zQ - 20; z <= zQ + 6; z += 0.5) {
@@ -222,7 +253,7 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
   /** Onde a carga fica (na dobra do quadril, presa à bacia em z, e descida na vertical até encostar) e as mãos nela. */
   function comCarga(e0: Esq, dobra: V3, rola: number, kb: { c: V3; t: V3 }, comErro = false) {
     const zDobra = noRef(e0.pelve, dobra)[2];
-    const pts = pontosOndeACargaApoia(e0);
+    const pts = pontosOndeACargaApoia(e0, opcoes.superficieDensa);
     if (carga === 'halter') {
       const comp = obj('halter', 'comp');
       // no erro do halter rolando, ele escorrega para o lado direito e assenta de novo no corpo, fora do meio

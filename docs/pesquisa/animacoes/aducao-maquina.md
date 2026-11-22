@@ -30,3 +30,16 @@ Placa da torre (número).
 - `plotkin2023`: Plotkin DL, Rodas MA, Vigotsky AD et al. Hip thrust and back squat training elicit similar gluteus muscle hypertrophy and transfer similarly to the deadlift. Front Physiol 2023;14:1279170. PMID 37877099. Resumo lido no PubMed em 01/11/2026.
 - `collings2026`: Collings TJ, Horsman A, Hams AH et al. Hip Adductor Muscle Forces during Strength Training and Rehabilitation Exercises. Med Sci Sports Exerc 2026;58(8):1751-1763. PMID 41931009. Resumo lido no PubMed em 01/11/2026.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase C, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/aducao-maquina.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (adutores) e a biblioteca; a nota, do erro "Abrir demais" e da linha Posição ("até um alongamento confortável") | consenso | `nsca2021` (não verificado) |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | linha Posição da tabela de técnica | consenso | `nsca2021` (não verificado) |
+| Variações (`vary`) | linhas Posição e Movimento e o erro "Bater as placas" | consenso | `nsca2021` (não verificado) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/aducao-maquina.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não dá número para o "alongamento confortável" (os ângulos da animação, 34° no começo e 55° no erro, são de desenho) e não diz como regular a máquina (o cartão não tem montagem). A seção Músculos ainda fala do músculo como "proposta". O cabeçalho ainda diz que o exercício não está na biblioteca nem no motor. A ficha não diz o que varia de pessoa para pessoa além da abertura.

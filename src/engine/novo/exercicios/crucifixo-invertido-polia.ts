@@ -134,7 +134,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const col = colunasECabos(c.cabos, es.map((x) => x.elo), c.repouso, f('pilha.folga'), true);
   const pecas: Peca[] = [...col.pecas!.filter((p) => p.t === 'torre'), ...es.map((x) => x.peca), ...col.pecas!.filter((p) => p.t !== 'torre')];
   const marcas: Record<string, V3> = { ...col.marcas, 'mao.R': e.lado.R.pegada, 'mao.L': e.lado.L.pegada };
-  return { esq: e, prims: [chao(-110, 110, -70, 130), ...es.flatMap((x) => x.prims), ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
+  // de cima, a cabeça fica dentro da silhueta dos ombros e o contorno único do Boneco não a desenhava (sobrava só o
+  // calombo do rosto; auditoria das aprovadas antigas, 19/11): ela ganha o contorno próprio por cima do corpo (`cabeca`,
+  // opção do Boneco)
+  return { esq: e, prims: [chao(-110, 110, -70, 130), ...es.flatMap((x) => x.prims), ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 }, viesNaVista: { cima: { cabeca: 1 } } };
 }
 
 export const crucifixoInvertidoPolia: Exercicio = {

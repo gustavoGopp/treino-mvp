@@ -1,0 +1,48 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "posterior",
+  "quadros": {
+   "lateral": [
+    -110.98333300431204,
+    -226.72,
+    318.9333333333333,
+    239.2
+   ],
+   "posterior": [
+    -159.46666666666664,
+    -226.72,
+    318.9333333333333,
+    239.2
+   ]
+  },
+  "mini": [
+   -152.5333333333333,
+   -220.48,
+   305.06666666666666,
+   228.8
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -27.337654127219388,
+    -208,
+    124.30432145192856,
+    0
+   ],
+   "ansur2-homem-imc-normal|posterior|cinza|0|": [
+    -40.20297549915777,
+    -208,
+    40.20297549915777,
+    0
+   ],
+   "ansur2-homem-imc-normal|posterior|cinza|1|": [
+    -40.20297549915777,
+    -208,
+    40.20297549915777,
+    0
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|triceps-barra-reta:tronco-embaixo": 21.25646235168717
+ }
+}

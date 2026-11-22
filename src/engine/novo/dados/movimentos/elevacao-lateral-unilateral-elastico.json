@@ -1,0 +1,68 @@
+{
+ "id": "elevacao-lateral-unilateral-elastico",
+ "nome": "Elevação lateral unilateral com elástico preso sob o pé do outro lado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-lateral-unilateral-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/elevacao-lateral-unilateral-elastico.md, tabela Técnica): elástico sob o pé do lado oposto, cruzando à frente do corpo (consenso, 17, G3); braço para o lado até a altura do ombro (coratella2020). 'Com o elástico cruzado, a tensão já começa embaixo' ([opinião]). Segurança: elástico sob o pé, pé inteiro (ng2022)",
+  "app": "Cartão do app (src/conteudo/exercicios/elevacao-lateral-unilateral-elastico.json): em pé, o pé inteiro numa ponta do elástico, a outra ponta na mão do lado oposto, cruzando à frente do corpo, braço ao lado da coxa, cotovelo levemente dobrado; ~1 s subindo até a altura do ombro, pausa curta com o ombro baixo, ~2 s descendo; as dicas e os erros",
+  "elastico": "Elevação lateral com elástico aprovada (src/engine/novo/dados/movimentos/elevacao-lateral-elastico.json): a mesma postura (pés, joelhos, bacia, pescoço) e o mesmo caminho do braço (o plano, a altura no alto, o cotovelo e o giro dele, a pegada, a folga embaixo), que ela tira da elevação com halteres aprovada; os mesmos erros de encolher. Não há animação de hoje deste exercício",
+  "polia": "Elevação lateral unilateral na polia aprovada (src/engine/novo/dados/movimentos/elevacao-lateral.json): um braço só, o direito, com o cabo cruzando à frente do corpo, e as regras dela",
+  "kettlebell": "Rosca com kettlebell aprovada (src/engine/novo/dados/movimentos/rosca-kettlebell.json): a outra mão solta ao lado do corpo",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol, que estica até 3 vezes)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "elastico", "o": "em pé, os pés na largura do quadril, apontando para a frente (os da elevação com elástico aprovada)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "joelhos destravados (a ficha não dá número)"},
+  "tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "tronco levemente inclinado à frente: a bacia inclina 12° com a coluna neutra (o da elevação com elástico aprovada)"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "cabeça na linha do pescoço"},
+  "plano.baixo": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "elastico", "o": "embaixo, o braço ao lado da coxa, no mesmo plano da subida (30° à frente do plano do corpo); a elevação embaixo sai da folga"},
+  "plano": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "elastico", "o": "o braço sobe para o lado e um pouco à frente do corpo: 30° à frente do plano do corpo (o da elevação com elástico aprovada)"},
+  "braco.topo": {"v": 96, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, o braço na altura do ombro (o número da elevação com elástico aprovada)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "cotovelo levemente dobrado (o cartão), o mesmo ângulo o movimento todo"},
+  "cotovelo.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "'cotovelo lidera': no alto, o úmero gira 50° para dentro e o cotovelo fica um pouco acima da mão"},
+  "polegar.paraCima": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "elastico", "o": "no alto, o polegar fica 15° acima da pegada neutra"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "elastico", "o": "embaixo, o braço ao lado da coxa: a folga entre o pegador e a pele da coxa (a elevação do braço embaixo sai daqui)"},
+  "livre.paraFora": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "kettlebell", "o": "a outra mão (a esquerda) solta ao lado do corpo, o braço aberto 6° (o cartão não diz o que ela faz)"},
+  "livre.cotovelo": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "kettlebell", "o": "a outra mão solta ao lado do corpo, o cotovelo quase estendido"},
+  "elastico.esticaEmbaixo": {"v": 1.1, "un": "vezes", "selo": "desenho", "fonte": "ficha", "o": "\"com o elástico cruzado, a tensão já começa embaixo\" (opinião da ficha): o trecho do tubo entre o pé e a mão já está 1,1 vez o comprimento em repouso com o braço embaixo. Para isso o pé pisa no tubo perto de uma ponta, e não no pegador: o resto do tubo, com o outro pegador, fica no chão do lado de fora do pé (pisando no pegador, sobrariam ~40 cm de tubo frouxo embaixo)"},
+  "elastico.folga": {"v": 0.8, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "o tubo passa rente à frente das pernas, onde encosta: o raio do tubo e a roupa (o da elevação com elástico aprovada)"},
+  "erro.encolher.elev": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "elastico", "o": "erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro)"},
+  "erro.inclinar.lado": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco tomba para o lado do pé que pisa enquanto o braço sobe (a lombar e as costas de cima dobram 14° para o lado): o corpo balança para levar o braço"},
+  "erro.pe.calcanhar": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pé que pisa no elástico fica só na ponta: o calcanhar sobe 20°"},
+  "erro.pe.escapa": {"v": 1.05, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: \"o elástico pode escapar\": com o pé na ponta, o tubo sai de baixo da bola do pé (0) e escorrega para a frente enquanto estica, até a borda da ponta dos dedos (1 = a ponta do pé; 1,05 = já saindo dela)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "elástico já tenso", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.3, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "ombro baixo", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "braco-no-plano-da-escapula", "pede": "o braço sobe para o lado e um pouco à frente do corpo", "selo": "consenso", "fonte": "elastico"},
+  {"id": "braco-na-linha-do-ombro", "pede": "braço para o lado até a altura do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-acima-da-mao", "pede": "cotovelo levemente dobrado; o cotovelo lidera", "selo": "consenso", "fonte": "app"},
+  {"id": "ombro-sem-encolher", "pede": "ombro baixo, longe da orelha", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado", "selo": "consenso", "fonte": "app"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "em pé, o peso sobre o meio dos pés", "selo": "desenho", "fonte": "elastico"},
+  {"id": "elastico-pisado-no-meio-da-sola", "pede": "o pé inteiro no chão, pisando no elástico no meio da sola", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elastico-livre-do-corpo", "pede": "o tubo passa à frente das pernas e do corpo sem entrar neles", "selo": "desenho", "fonte": "objetos"},
+  {"id": "elastico-unilateral-cruza-a-frente", "pede": "o elástico sai de sob o pé do lado oposto e cruza à frente do corpo até a mão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elastico-unilateral-na-mao-que-trabalha", "pede": "a ponta do elástico na mão que trabalha; a outra mão solta", "selo": "consenso", "fonte": "app"},
+  {"id": "elastico-unilateral-esticado-desde-embaixo", "pede": "o trecho entre o pé e a mão já tenso embaixo e nunca além do máximo do fabricante", "selo": "desenho", "fonte": "ficha"},
+  {"id": "cabeca-aparece-em-cada-vista", "pede": "em cada vista do guia (a de cima inclusive), a cabeça aparece com o contorno próprio onde ficaria dentro da silhueta dos ombros", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "encolher", "instante": 1, "titulo": "Encolher o ombro", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: o ombro vai em direção à orelha", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "embalo", "instante": 1, "titulo": "Inclinar o tronco", "vista": "frontal", "oQueMuda": "o tronco tomba para o lado enquanto o braço sobe: o corpo balança para levar o braço", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "pe", "instante": 1, "titulo": "Pisar só com a ponta do pé", "vista": "quinaTras", "oQueMuda": "o pé que segura o elástico pisa só com a ponta: o calcanhar sobe e o tubo escorrega para a frente, saindo de baixo dos dedos", "destaca": ["pernas"], "linha": ["joelho:L", "tornozelo:L", "calcanhar:L"], "foco": "calcanhar:L"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "ombro longe da orelha", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app", "acima": true},
+  {"vista": "frontal", "texto": "pé inteiro no elástico", "ponto": "tornozelo:L", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "cotovelo lidera", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

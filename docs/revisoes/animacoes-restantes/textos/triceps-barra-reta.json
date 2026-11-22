@@ -1,0 +1,66 @@
+{
+  "id": "triceps-barra-reta",
+  "name": "Tríceps na polia com barra reta",
+  "short": "Tríceps com barra reta",
+  "target": "Tríceps",
+  "feel": "Parte de trás do braço (tríceps).",
+  "feelNote": "Se sentir o peito, os cotovelos estão abrindo: deixe-os colados ao corpo.",
+  "setupEq": [
+    "Polia no alto, com a barra reta."
+  ],
+  "setupBody": [
+    "Em pé de frente para a torre, tronco um pouco inclinado.",
+    "Cotovelos junto ao corpo, mãos na barra na largura dos ombros."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Descer a barra",
+      "Estende os cotovelos até os braços ficarem retos, com os cotovelos parados."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta até os antebraços passarem um pouco da horizontal."
+    ]
+  ],
+  "range": [
+    "Início: cotovelos bem dobrados.",
+    "Fim: braços estendidos."
+  ],
+  "breath": "Solte o ar estendendo, inspire na volta, sem prender o ar a série inteira.",
+  "cues": [
+    "Cotovelos colados.",
+    "Estende até o fim.",
+    "Volta devagar."
+  ],
+  "check": [
+    "Polia no alto, com a barra reta",
+    "Tronco um pouco inclinado",
+    "Cotovelos junto ao corpo",
+    "Mãos na largura dos ombros"
+  ],
+  "vary": "O que não muda: os cotovelos parados, colados ao corpo, e o tronco sem debruçar sobre a barra.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Abrir os cotovelos",
+      "desc": "Cotovelos para fora viram um empurrar com o peito."
+    },
+    {
+      "id": "e2",
+      "title": "Usar o tronco",
+      "desc": "Debruçar sobre a barra para descer a carga."
+    },
+    {
+      "id": "e3",
+      "title": "Volta curta",
+      "desc": "Não dobrar os cotovelos até o fim encurta o trabalho."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

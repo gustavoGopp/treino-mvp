@@ -1,0 +1,64 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "frontal",
+  "quadros": {
+   "lateral": [
+    -135.48374517077053,
+    -172.765,
+    243.0333333333333,
+    182.27499999999998
+   ],
+   "frontal": [
+    -100.87775226122234,
+    -172.765,
+    243.0333333333333,
+    182.27499999999998
+   ]
+  },
+  "mini": [
+   -95.59441892788902,
+   -168.01,
+   232.4666666666667,
+   174.35000000000002
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -66,
+    -158.5,
+    38.06584299179225,
+    0
+   ],
+   "ansur2-homem-imc-normal|frontal|cinza|0|": [
+    -44.22217118911138,
+    -158.5,
+    85.5,
+    0
+   ],
+   "ansur2-homem-imc-normal|frontal|cinza|1|": [
+    -44.22217118911138,
+    -158.5,
+    85.5,
+    0
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|supino-maquina:cotovelo:trava": 37.8009377727285,
+  "ansur2-homem-imc-normal|supino-maquina:regulagem:0": {
+   "h": 46.11120974919163,
+   "inicio": 6.950247854925692,
+   "fim": 35.545112256892025
+  },
+  "ansur2-homem-imc-normal|supino-maquina:regulagem:10": {
+   "h": 36.11120974919163,
+   "inicio": 6.950247854925692,
+   "fim": 37.67200655210763
+  },
+  "ansur2-homem-imc-normal|supino-maquina:sentado": {
+   "y": 55.18305567000061,
+   "z": -27.32247716128083,
+   "deita": 21.827563047409058,
+   "h": 46
+  }
+ }
+}

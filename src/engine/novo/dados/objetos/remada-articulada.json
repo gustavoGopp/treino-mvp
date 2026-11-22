@@ -1,0 +1,50 @@
+{
+ "fontes": {
+  "lf-hs26-rw": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Row SS-RW, 48,6 x 55,1 x 58,1 pol (124 x 140 x 148 cm), C x L x A; a altura é a da pilha (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1). A página pública da Life Fitness (https://lifefitness.com/en-gb/catalog/strength-training/selectorized/insignia-series-row, lida em 18/11/2026) dá 124 x 141 x 148 cm, pilha de 130 kg, e: \"independent diverging movement for a natural-feeling path of motion\"",
+  "lf-ss-rw-pecas": "Life Fitness, Insignia Series Row SS-RW, Parts Manual (11/11/2016), https://www.servicesport.com/wp-content/uploads/2024/04/PM-SS-SS-RW-Row.pdf (lido em 18/11/2026): p. 8, item 3, \"PAD, CHEST 10 X 7-5/8\" (o apoio do peito, 25,4 x 19,4 cm); item 57, \"PAD, 15 X 9 RECTANGULAR\" (o assento, na vista explodida da p. 5: 38,1 x 22,9 cm); item 2, \"KNOB, ADJ\" (o botão que regula o apoio do peito); p. 17, \"GRIP, 1.25 OD\" (o pegador, 3,2 cm)",
+  "hs24-rw": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Seated Row HS-RW, 52 x 34 x 71 pol (133 x 87 x 181 cm) (pesquisa/04-objetos.md, seção 13.1). A página pública (https://lifefitness.com/en-gb/catalog/strength-training/selectorized/hammer-strength-select-seated-row, lida em 18/11/2026): \"The overhead pivot creates a natural arc of motion\", \"multiple hand positions\", \"Axis of rotation marked with red indicator\". A Movement Next \"Row\" tem 119,9 x 128,8 x 146 cm (MV-NEXT, p. 19) e a Technogym MK80, 1420 x 1185 x 1375 mm (TG-HOME, p. 83)",
+  "precor-rsl0310": "Precor, Resolute Diverging Seated Row RSL0310; https://www.precor.com/en-US/products/RSL0310 (lido em 18/11/2026): \"63 x 55 x 58 in / 160 x 140 x 147 cm\", \"Weight Stack Tower Height: 58 in / 148 cm\", \"Weight Stack: 240 lb / 109 kg\", \"Total thickness is 2.5 inches (65 mm)\", \"gas-assisted ratcheting seat\", \"The adjustable chest pad\", \"independent movement arms that diverge as they draw back for a natural-feeling rowing motion\"",
+  "desenho-remada-articulada": "Escolha de desenho, sem medida de fabricante: as fichas dão o tamanho total, a pilha, os estofados e o pegador; onde fica o eixo, o comprimento do braço, as alturas do assento e do apoio do peito não aparecem em nenhuma ficha lida"
+ },
+ "objetos": {
+  "remadaArticulada": {
+   "nome": "Remada articulada (seated row de pilha): assento que sobe e desce, apoio do peito na frente que corre para a frente e para trás, dois braços independentes que pendem de um eixo alto à frente e trazem os pegadores de pé, com o caminho que se abre, e a pilha de placas ao lado",
+   "medidas": {
+    "comp": { "v": 124, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-rw", "onde": "comprimento total da Life Fitness SS-RW (Hammer Strength 133; Movement 120; Technogym 142; Precor 160)" },
+    "larg": { "v": 140, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-rw", "onde": "largura total, com a pilha ao lado do assento (Precor 140; Movement 129; Technogym 119; a Hammer Strength, 87, tem a pilha atrás)" },
+    "altura": { "v": 181, "un": "cm", "tipo": "medida", "fonte": "hs24-rw", "onde": "altura total da Hammer Strength HS-RW, a de eixo no alto (\"overhead pivot\"); os 148 cm da Life Fitness e da Precor são a altura da pilha. A peça desenhada fica em ~178 cm, com o eixo dos braços a 170" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0310", "onde": "\"Weight Stack Tower Height: 58 in / 148 cm\" (a Life Fitness dá os mesmos 148 cm)" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0310", "onde": "\"Total thickness is 2.5 inches (65 mm)\"" },
+    "assentoComp": { "v": 22.9, "un": "cm", "tipo": "medida", "fonte": "lf-ss-rw-pecas", "onde": "o assento, \"PAD, 15 X 9 RECTANGULAR\": 9 pol de fundo" },
+    "assentoLarg": { "v": 38.1, "un": "cm", "tipo": "medida", "fonte": "lf-ss-rw-pecas", "onde": "o assento: 15 pol de largura" },
+    "apoioComp": { "v": 25.4, "un": "cm", "tipo": "medida", "fonte": "lf-ss-rw-pecas", "onde": "o apoio do peito, \"PAD, CHEST 10 X 7-5/8\": 10 pol; a lista de peças não diz qual lado fica de pé, e o desenho põe o maior na altura" },
+    "apoioLarg": { "v": 19.4, "un": "cm", "tipo": "medida", "fonte": "lf-ss-rw-pecas", "onde": "o apoio do peito: 7⅝ pol de largura (fica entre as mãos no fim da puxada)" },
+    "pegadorDiam": { "v": 3.2, "un": "cm", "tipo": "medida", "fonte": "lf-ss-rw-pecas", "onde": "\"GRIP, 1.25 OD\": o diâmetro do pegador" },
+    "converge": { "v": 2, "un": "graus", "tipo": "desenho", "fonte": "precor-rsl0310", "onde": "o eixo de cada braço inclina 5° para fora (negativo: o caminho se abre), e os pegadores se afastam enquanto vêm para trás (a Precor: \"arms that diverge as they draw back\"; a Life Fitness: \"independent diverging movement\"; nenhuma dá o ângulo)" },
+    "assentoMin": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o assento mais baixo (do chão ao topo do estofado): as fichas não dão o curso; o mesmo das máquinas de empurrar" },
+    "assentoMax": { "v": 58, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o assento mais alto" },
+    "apoioInclina": { "v": 10, "un": "graus", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o apoio do peito inclina 10° da vertical, com o alto mais à frente; as fichas não dão o ângulo" },
+    "apoioBaixo": { "v": 82, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "altura da borda de baixo do apoio do peito: ele pega o meio do peito de quem senta com o assento regulado (a Life Fitness e a Precor só dizem que o apoio corre para a frente e para trás)" },
+    "apoioMin": { "v": -5, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o apoio do peito mais perto do assento (a face, na borda de baixo, à frente da borda da frente do assento)" },
+    "apoioMax": { "v": 25, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o apoio do peito mais longe" },
+    "eixoAltura": { "v": 168, "un": "cm", "tipo": "desenho", "fonte": "hs24-rw", "onde": "altura do eixo dos braços: no alto (a Hammer Strength: \"overhead pivot\", sem dar a altura), abaixo da altura total dela (181); com o braço de 76 cm, o pegador anda quase na horizontal, na linha do peito" },
+    "eixoAFrente": { "v": 36, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "quanto o eixo fica à frente da borda da frente do assento: perto da vertical do meio do caminho dos pegadores, para eles andarem quase na horizontal" },
+    "colunaAvanca": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "quanto a coluna da frente fica à frente do eixo: ela sobe na frente dos pegadores e uma viga volta dela até o eixo. No cartão de hoje a coluna sobe inclinada até o eixo; aqui, de lado, ela passaria atrás das mãos no começo da puxada" },
+    "bracoComp": { "v": 76, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "do eixo à ponta do braço (onde sai o toco do pegador)" },
+    "bracoDobra": { "v": 20, "un": "graus", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o tubo do braço é dobrado: sai do eixo 20° à frente da linha até a ponta (o arco do pegador não muda). Reto, de lado, ele passava rente ao rosto no fim da puxada" },
+    "bracoDobraEm": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "onde fica a dobra do braço, a partir do eixo" },
+    "bracoMeio": { "v": 0, "un": "graus", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o ângulo do braço (0 = pendurado, 90 = para trás) em que o pegador fica na largura da tabela; daí o caminho abre ou fecha" },
+    "pegadaMeia": { "v": 21, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "do meio da máquina ao centro de cada pegador, no ângulo do meio: um pouco mais aberto que o apoio do peito, para as mãos passarem dos lados dele" },
+    "pegadorComp": { "v": 14, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "comprimento da borracha do pegador de pé (a pegada neutra; a Hammer Strength fala em várias pegadas, sem medida)" },
+    "pegadorInclina": { "v": 20, "un": "graus", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o pegador de pé inclina 20° para dentro, o alto mais perto do meio: com a mão nele, o punho fica alinhado e as palmas uma para a outra (a Precor: \"The movement arm handles [...] can be angled to keep wrists in correct alignment\", no supino dela; nenhuma ficha de remada dá o ângulo)" },
+    "bracoFora": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "o toco do braço ao pegador: a mão fecha em volta da borracha sem encostar no tubo do braço" },
+    "cameDiam": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "diâmetro do came no eixo do braço da esquerda (a peça redonda que enrola o cabo); o do supino na máquina" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "número de placas desenhadas; a Precor tem 109 kg de pilha, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "altura da pilha em repouso (a da cadeira flexora)" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho-remada-articulada", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

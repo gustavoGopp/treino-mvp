@@ -1,0 +1,71 @@
+{
+  "id": "hack",
+  "name": "Agachamento no hack",
+  "short": "Hack",
+  "target": "Quadríceps e glúteos",
+  "feel": "Frente da coxa e glúteos. A parte de dentro da coxa (adutores) ajuda.",
+  "feelNote": "Se sentir a lombar, ela está saindo do encosto no fundo: desça só até onde a lombar fica colada no encosto.",
+  "setupEq": [
+    "Pés no meio da plataforma, na largura do quadril ou dos ombros."
+  ],
+  "setupBody": [
+    "Costas e ombros apoiados no encosto, ombros sob as almofadas."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando até o joelho passar de 90°, sem a lombar descolar do encosto."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra a plataforma e sobe sem travar os joelhos no topo."
+    ]
+  ],
+  "range": [
+    "Embaixo: joelho além de 90°, lombar colada no encosto.",
+    "Em cima: joelhos quase estendidos, sem travar."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo, sem prender o ar a série inteira.",
+  "cues": [
+    "Desce fundo.",
+    "Joelhos na direção dos pés.",
+    "Lombar no encosto."
+  ],
+  "check": [
+    "Trava de segurança solta antes da 1ª repetição",
+    "Costas e ombros apoiados, ombros sob as almofadas",
+    "Pés no meio da plataforma",
+    "Joelhos na direção dos pés"
+  ],
+  "vary": "Os pés ficam na largura do quadril ou dos ombros. O que não muda: a lombar colada no encosto, os joelhos na direção dos pés, a descida até o joelho passar de 90° e a subida sem travar os joelhos.",
+  "note": "<b>Montagem segura:</b> solte a trava de segurança antes da 1ª repetição e trave de novo ao terminar.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta tira o trabalho da coxa."
+    },
+    {
+      "id": "e2",
+      "title": "Lombar descola",
+      "desc": "No fundo, a lombar sai do encosto."
+    },
+    {
+      "id": "e3",
+      "title": "Joelhos para dentro",
+      "desc": "Os joelhos fecham em vez de seguir a linha dos pés."
+    },
+    {
+      "id": "e4",
+      "title": "Travar os joelhos",
+      "desc": "Esticar com força no topo."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+}

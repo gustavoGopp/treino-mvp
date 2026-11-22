@@ -31,3 +31,16 @@ Halter: o próximo peso da lista.
 - `kobayashi2026` (`docs/pesquisa/fontes.md`).
 - `kassiano2025c` (`docs/pesquisa/fontes.md`).
 - `nunes2020` (`docs/pesquisa/fontes.md`).
+
+## Texto do guia (18/11/2026)
+Preparado para a ligação da fase A, sem mexer no app: `docs/revisoes/animacoes-restantes/textos/rosca-scott-banco-inclinado.json`. Os campos do cartão ficam como estão; os campos novos saem daqui:
+
+| Campo | De onde sai | Selo | Fonte |
+|---|---|---|---|
+| Onde sentir (`feel`, `feelNote`) | seção Músculos (bíceps, sem secundário) e a biblioteca; a nota, do erro "Tirar o braço do encosto" do cartão | um estudo | `kobayashi2026` |
+| Respiração (`breath`) | a regra comum das animadas ("solte o ar na fase de esforço, inspire na volta, sem prender o ar a série inteira"), nas fases da ficha de movimento | consenso | `macdougall1985` (a pressão sobe mais perto da falha e com a respiração presa; `docs/pesquisa-v2/06-populacoes-e-seguranca.md`) e consenso de treinadores |
+| Conferência (`check`) | montagem e posição do cartão; a posição da tabela de técnica | consenso | `17`, G3 |
+| Variações (`vary`) | as opções do cartão (de pé ou ajoelhado; encosto a ~45 a 60°) e a descida da tabela de técnica | consenso | `17`, G3 (a descida é **[opinião]** de `17`) |
+| Rótulos do contorno (`extLabels`) | as posições de começo e fim da ficha de movimento (`src/engine/novo/dados/movimentos/rosca-scott-banco-inclinado.json`) e a amplitude do cartão | não se aplica (nomes das posições) | cartão |
+
+**O que faltou na ficha:** a ficha não diz o que varia de pessoa para pessoa; o `vary` só junta as opções que o cartão já dá. A nota de onde sentir não tem fonte de sensação: sai do erro do cartão.

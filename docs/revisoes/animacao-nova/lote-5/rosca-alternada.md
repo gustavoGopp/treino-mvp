@@ -67,3 +67,22 @@ Bíceps (principal) e antebraço (só ajuda, listrado). A ficha da técnica list
 - **O braço vai 5° à frente da linha do tronco** (e não 0°), para a cabeça de dentro do halter não raspar a coxa no começo da subida. De lado mal se vê (`quadros/rosca-alternada.png`, "lateral:tec:f0"); a regra do cotovelo ao lado do tronco aceita até 10°.
 - **A palma fica a 85°**, não a 90°: de frente lê-se "palma para a frente".
 - **De frente, embaixo, a cabeça de dentro do halter fica na frente da coxa** ("frontal:tec:f0"): é o que acontece com a palma para a frente e o braço colado; não atravessa (−0,2 cm na quina).
+
+## Correção de 19/11 (peso dentro do corpo)
+
+Depois do aviso do Gustavo na remada sem banco ("o halter tá puxando pra dentro do próprio corpo"), a regra `peso-fora-do-corpo` (a superfície do peso contra o volume do corpo, fora as mãos que seguram, no ciclo e em cada erro em 9 instantes; tolerância de 0,5 cm) e a checagem de pesos da conferência da pintura foram passadas em todas as animações com peso livre. Nesta, **com o braço embaixo, a cabeça de dentro do halter entrava 3,4 cm na coxa**, nos dois lados, no ciclo inteiro (o braço que não sobe fica embaixo) e nos erros "Balançar o tronco" e "Cotovelo vai para a frente" (3,7 cm pela checagem da pintura). A regra de antes (`carga-fora-do-corpo-na-rosca`) tomava a cabeça por um cilindro e não via; a ficha dizia "−0,3 cm medido".
+
+**A mudança.**
+
+- O braço abre **10° para o lado**, e não 6° (`braco.paraFora`): a cabeça de dentro encosta na coxa sem entrar. Com 9°, ela ainda entrava 0,7 cm. A ficha da técnica pede "cotovelo ao lado do tronco" e não dá número; os 10° continuam ao lado do tronco.
+- O resto do movimento não muda (o braço sobe no mesmo plano, 4° mais aberto).
+
+| medido (homem) | antes | depois |
+|---|---|---|
+| a cabeça do halter entra no corpo | 3,4 cm (coxa, nos dois lados) | 0 cm |
+| abertura do braço | 6° | 10° |
+
+A ficha liga `peso-fora-do-corpo`: medida no estado de antes, ela falha (3,4 cm, na coxa esquerda, no erro "Balançar o tronco" (e na direita, no ciclo)); no de agora, passa (o peso não entra no corpo). O antes e depois está em `correcao-das-antigas/rosca-alternada-peso.png`; os quadros grandes foram regravados (`quadros/rosca-alternada.png`) e olhados vista por vista, quadro a quadro e erro a erro, nos dois lados do corpo. A conferência automática dá **0 falhas e 3 avisos** (antes: 0 falhas e 4 avisos, entre eles o de pesos).
+
+**O que ainda não ficou bom.**
+- A rosca martelo usa o mesmo núcleo com a pegada neutra (o cabo de frente para trás) e não tem o problema; não mudei.

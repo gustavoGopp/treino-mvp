@@ -22,7 +22,9 @@ test('as animações aprovadas do motor novo continuam iguais às aprovadas', as
   test.skip(!gerar && !existsSync(CAMINHO), 'linha de base do motor novo ainda não gravada');
   const bundle = await build({
     stdin: {
-      contents: `export { EXERCICIOS } from './src/engine/novo/app.ts'; export { APROVADOS } from './src/engine/novo/aprovados.ts'; export { fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo } from './src/engine/novo/ponte.ts';`,
+      // o pintor por pares, entregue ao motor como o Worker do app o entrega (src/features/programa/trabalhoBoneco.ts),
+      // para as animações em que ele está ligado (src/engine/novo/pintor-ligado.ts)
+      contents: `export { EXERCICIOS } from './src/engine/novo/app.ts'; export { APROVADOS } from './src/engine/novo/aprovados.ts'; export { fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo } from './src/engine/novo/ponte.ts'; import { registrarPintorPorPares } from './src/engine/novo/ponte.ts'; import { pintarPorPares } from './src/engine/novo/pintor-por-pares.ts'; registrarPintorPorPares((itens) => pintarPorPares(itens));`,
       resolveDir: process.cwd(),
       loader: 'ts',
     },

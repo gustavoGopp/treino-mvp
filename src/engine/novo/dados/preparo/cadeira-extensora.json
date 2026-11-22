@@ -1,0 +1,66 @@
+{
+ "enquadramento": {
+  "vistaMiniatura": "quina",
+  "quadros": {
+   "lateral": [
+    -135.76631179789322,
+    -192.16874836357215,
+    260.29416901880046,
+    195.22062676410036
+   ],
+   "quina": [
+    -116.00132658938284,
+    -171.31628213473468,
+    230.05343513334208,
+    172.54007635000656
+   ]
+  },
+  "mini": [
+   -104.77230329944533,
+   -157.30359340737564,
+   207.59538855346705,
+   155.69654141510028
+  ],
+  "caixas": {
+   "ansur2-homem-imc-normal|lateral|cinza|0|": [
+    -70.69668901417961,
+    -148.03130667547003,
+    59.45823443719368,
+    -5.5
+   ],
+   "ansur2-homem-imc-normal|quina|cinza|0|": [
+    -62.33152760244299,
+    -148.8110547847338,
+    60.38230955701939,
+    -7.268744407369915
+   ],
+   "ansur2-homem-imc-normal|quina|cinza|1|": [
+    -62.33152760244299,
+    -148.8110547847338,
+    60.38230955701939,
+    -7.268744407369915
+   ]
+  }
+ },
+ "calibragens": {
+  "ansur2-homem-imc-normal|cadeira-extensora:eixo:maos-nas-alcas": {
+   "sobe": 0,
+   "deita": 0,
+   "ombrosDescem": 10
+  },
+  "ansur2-homem-imc-normal|cadeira-extensora:quadril:maos-nas-alcas": {
+   "sobe": 3.399905204772949,
+   "deita": 1.569799780845642,
+   "ombrosDescem": 10
+  },
+  "ansur2-homem-imc-normal|cadeira-extensora:sentado": {
+   "y": 65.31754443934187,
+   "z": -36.29877922565076,
+   "deita": 29.842553585767746,
+   "encosto": 7.8829326781332885,
+   "pele": 2.9,
+   "rolo": 36.85661406043697,
+   "trava": 0
+  }
+ }
+}
