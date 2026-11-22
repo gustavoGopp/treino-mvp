@@ -2232,6 +2232,8 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 
    Um reparo ao motivo, para ficar registrado: o app não sugere carga na 1ª vez ("comece leve"), mas sugere a partir da 2ª, e a menor anilha é o passo dessas sugestões. Sem a pergunta, o passo é de 2 kg por lado, o padrão de sempre (a pergunta já era opcional). Quem tem anilhas de 1 kg vê sugestões de 2 em 2 e anota o que usou de verdade, digitando. A regra `equipamento.menor-anilha` foi reescrita assim.
 
+3. **"Cara de IA".** Na mesma revisão, o Gustavo achou o app com frases e quadrinhos demais e pediu pesquisa e critério. Saiu um levantamento de 17 telas, uma régua permanente (`.claude/skills/cara-humana/`) e a primeira mudança: as máquinas de anilha mostram e pedem **o total das anilhas**, não mais "por lado". Está em `revisoes/melhorias/cara-humana/README.md`, com as imagens e os cortes propostos.
+
 **Esperando o Gustavo**
 
 - **O texto de "Montado para um kit típico de casa. Ajustar"** e o de "Meus pesos são outros…".
