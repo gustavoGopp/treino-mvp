@@ -1,5 +1,5 @@
 import { expect, test, tocarEmEntendi } from './base';
-import { ana, folhaPronta, marcarItem } from './jornada';
+import { ana, folhaPronta, marcarItem, sobreOPrograma, verAvisos } from './jornada';
 import { semToquePequeno } from './toque';
 
 // Pacote D2, "nada se perde no meio do caminho" (22/11/2026): um teste de tela para cada item do aceite
@@ -178,4 +178,30 @@ test('sem o "Toquei sem querer", o treino encerrado por alerta continua bloquean
   await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
   await page.goto('/programa');
   await expect(page.getByRole('heading', { name: 'Treino pausado por segurança' })).toBeVisible();
+});
+
+// Decisão do Gustavo de 22/11/2026 (a saída B): gerar o programa de novo continua com um toque, e a mensagem oferece
+// "Desfazer", que traz de volta o programa e a rotina de antes.
+test('gerar o programa de novo por um ajuste oferece "Desfazer", que traz o programa e a rotina de antes', async ({ page }) => {
+  await ana(page, { minutos: '40' });
+  await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
+  const antes = await page.getByRole('tabpanel').innerText();
+  await expect(page.getByRole('button', { name: 'Desfazer', exact: true })).toHaveCount(0);
+  const avisos = await verAvisos(page);
+  await avisos.getByRole('region', { name: 'Ajustes possíveis' }).getByRole('button', { name: /^4 treinos de 40 min/ }).click();
+  await expect(page.getByRole('status')).toContainText('Programa gerado de novo');
+  await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toBeVisible();
+  const desfazer = page.getByRole('button', { name: 'Desfazer', exact: true });
+  await expect(desfazer).toBeVisible();
+  await semToquePequeno(page);
+  await desfazer.click();
+  await expect(page.getByRole('status')).toContainText('Programa de antes de volta.');
+  await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toHaveCount(0);
+  expect(await page.getByRole('tabpanel').innerText()).toBe(antes);
+  await expect(desfazer).toHaveCount(0);
+  // a volta fica guardada: recarregar mostra o programa de antes, com os 3 dias
+  await page.reload();
+  await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
+  await expect((await sobreOPrograma(page)).getByRole('list', { name: 'Resumo' })).toContainText('3x por semana');
 });

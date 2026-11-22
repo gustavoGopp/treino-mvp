@@ -34,8 +34,10 @@ const NOME_DO_KIT: Record<string, string> = { casa: 'casa', condominio: 'condom�
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');
 
 export function Programa() {
-  const { estado, atualizar } = useApp();
+  const { estado, atualizar, substituir } = useApp();
   const [aviso, setAviso] = useState('');
+  // o cadastro de antes de gerar o programa de novo, para o "Desfazer" (ver `desfazerGeracao`)
+  const [antesDeGerar, setAntesDeGerar] = useState<Estado | null>(null);
   const navigate = useNavigate();
   const [diaSel, setDiaSel] = useState(() => {
     const p = estado.programa?.programa;
@@ -92,6 +94,17 @@ export function Programa() {
   const regerar = (e: Estado): Estado => {
     return comProgramaNovo(e, agoraIso());
   };
+  // "Desfazer" depois de gerar o programa de novo (pacote D2; decisão do Gustavo de 22/11/2026, a saída B): o programa
+  // muda na hora, sem pergunta, e a mensagem oferece a volta. O que volta é o cadastro inteiro de antes do toque (o
+  // programa, a rotina e o painel de ajustes). Vale enquanto a pessoa está nesta tela: fica na memória da tela, não nos
+  // dados guardados (guardar o programa anterior pediria uma versão nova do estado).
+  const desfazerGeracao = () => {
+    if (!antesDeGerar || estado.sessaoAtual) return;
+    substituir(antesDeGerar);
+    setAntesDeGerar(null);
+    setDiaSel(0);
+    setAviso('Programa de antes de volta.');
+  };
 
   const escolher = (o: Opcao) => {
     setVerAvisos(false);
@@ -101,6 +114,7 @@ export function Programa() {
       setAviso('Programa mantido.');
       return;
     }
+    setAntesDeGerar(estado);
     atualizar((s) =>
       regerar({
         ...s,
@@ -182,6 +196,7 @@ export function Programa() {
       acao: {
         rotulo: 'Atualizar',
         fazer: () => {
+          setAntesDeGerar(estado);
           atualizar(regerar);
           setAviso('Programa atualizado com as regras novas.');
         },
@@ -400,6 +415,11 @@ export function Programa() {
         <p role="status" className="status">
           {aviso}
         </p>
+        {antesDeGerar && !estado.sessaoAtual && (
+          <button type="button" className="link-botao desfazer-geracao" onClick={desfazerGeracao}>
+            Desfazer
+          </button>
+        )}
         {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
 
         <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>

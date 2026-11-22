@@ -2368,3 +2368,42 @@ Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco
 **Verificação.** `npm run verificar`: tudo passou no fechamento e de novo depois das decisões de 22/11 (os números da última rodada estão no relato da sessão). Telas olhadas no app de verdade, também a 206 × 420: nada passa da margem, nenhum erro no console. Nenhuma pessoa e nenhum celular de verdade usaram a versão nova.
 
 **Rascunho de post.** "Meu app de treino prometia 'treine onde estiver, com o que tiver'. Aí uma análise contou os toques: 13 para quem treina numa academia completa, 24 para quem treina em casa, porque o app pedia um inventário de anilhas antes de mostrar qualquer coisa. Quem mais precisava da promessa era quem mais esperava. Agora o app chuta um kit típico, mostra o programa em 13 toques para todo mundo, diz que chutou, e deixa corrigir na hora de anotar a primeira carga, que é quando a pessoa está diante dos pesos e sabe responder. O teste que media os toques pulava justamente a tela que emperrava. O que não é medido não é cobrado."
+
+
+## Nada se perde no meio do caminho (22/11/2026)
+
+**De onde veio.** É o pacote D2 de `prompts/sessao-desenvolvimento-2.md`, o segundo item da fila das melhorias: o que ficou aberto nas revisões do frontend novo e que podia fazer a pessoa perder dados ou se perder no treino. A saída da triagem para quem ainda não foi avaliado ficou para o lote M6, como combinado.
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Trazer uma cópia | Substituía tudo, sem oferecer guardar o que havia | Oferece "Guardar antes os dados de hoje"; sem arquivo escolhido, o botão não age |
+| Apagar todos os dados | Três saídas (Voltar, Cancelar, Apagar); depois, nenhuma palavra | Duas saídas; "Guardar uma cópia antes" é um botão; a abertura diz "Dados apagados deste aparelho." |
+| Apagar um local | Não havia como | "Apagar", com confirmação, em todo local que não é o principal. Os treinos feitos nele ficam no histórico |
+| O guia que não baixa | A tela de erro do app inteiro, no meio do treino | "O guia não carregou agora", com "Voltar ao treino" e "Tentar de novo" |
+| A nota de dor no "Senti algo" | Abaixo da dobra: a 390 × 844 era preciso rolar | No topo da folha, inteira a 390 × 844 e a 320 × 640 |
+| Um sinal de alerta tocado sem querer | Encerrava o treino e travava o seguinte, sem volta | Encerra do mesmo jeito; na tela do encerramento, por 15 minutos, "Toquei sem querer. Voltar ao treino" |
+| Gerar o programa de novo | Um toque, sem volta | Um toque, e a mensagem oferece "Desfazer" |
+| Leitor de tela e teclado | Depois de salvar a série, o foco caía no corpo da página; o "Série feita" apagado saía da ordem do foco; o guia abria sem foco | O foco vai para o descanso; o botão apagado continua alcançável e diz o que falta; o guia põe o foco no nome do exercício |
+
+![O "Senti algo", antes e depois](revisoes/melhorias/d2/senti-algo-antes-e-depois.png)
+
+**Decisões do Gustavo (22/11), uma por vez**
+
+1. **A ordem do "Senti algo":** a nota de dor primeiro, os sinais que encerram em seguida, com os mesmos textos ("pode ficar assim, nota primeiro").
+2. **Encerrar por um sinal de alerta:** a saída C. Continua com um toque, a orientação de segurança aparece primeiro, e o toque errado se desfaz na tela do encerramento, com o texto "Toquei sem querer. Voltar ao treino".
+3. **Gerar o programa de novo:** a saída B, "Desfazer" depois, sem pergunta antes.
+
+**Decisões técnicas da sessão, com o motivo**
+
+- **Nada mudou no formato dos dados guardados** (a versão continua a 9). O "Desfazer" do programa fica na memória da tela e vale enquanto a pessoa está nela; guardá-lo de vez pediria uma versão nova. A volta do alerta reabre o treino que estava no fim do histórico, sem campo novo.
+- **Os 15 minutos da volta do alerta são opinião do projeto,** sem fonte: tempo para perceber o toque errado, curto o bastante para não virar um jeito de apagar um encerramento de verdade no dia seguinte. A regra `seguranca.alerta.cardiovascular` registra a saída.
+- **O que não se apaga:** o único local, o principal, o local para o qual o programa foi montado e o de um treino aberto. Assim o programa continua válido depois de qualquer apagar.
+- **O guia ganhou um limite próprio** em vez de baixar os textos um a um. O pedaço do guia traz os textos de todos os exercícios; reparti-lo mexeria em `src/conteudo/` inteiro. A falha continua possível, mas não derruba mais o app, e a tela do treino não depende desse pedaço.
+- **O "Série feita" apagado** usa o aviso de "apagado" para leitores de tela em vez de sair da ordem do foco; o teste de contraste passou a tratar esse botão como o apagado comum (a regra de contraste não se aplica a controle inativo).
+- **O peso:** a tela do programa passou do limite na primeira rodada (290,3 kB, limite de 290). O reconhecimento do kit típico saiu do formulário do cadastro para o domínio, e a tela ficou em 287,0 kB.
+
+**Verificação.** Um teste de tela para cada item do aceite (`tests/e2e/d2.spec.ts`, 11 testes) e testes de regra para apagar um local e para a volta do alerta. O resultado do `npm run verificar` da última rodada está no relato da sessão.
+
+**Rascunho de post.** "Fiz a faxina dos lugares em que meu app de treino podia apagar coisa sem avisar. Trazer um backup substituía tudo sem oferecer guardar o que havia. Apagar os dados não dizia que tinha apagado. Um toque errado em 'tontura' encerrava o treino e travava o seguinte até a pessoa jurar que tinha ido ao médico. Nenhum desses era um defeito de programação: cada um funcionava como foi escrito. O defeito era não ter volta. A regra que ficou: toda ação que destrói alguma coisa oferece guardar antes ou desfazer depois, e a que protege a pessoa (o aviso de segurança) aparece primeiro."

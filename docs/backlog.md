@@ -604,3 +604,12 @@ O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
 - **O ampliado não tem o "voltar ao começo"** nem os erros um a um, que continuam no guia completo (o livro do cabeçalho).
 - **Exercícios deitados** (supino, prancha) não foram medidos no estudo: ocupam a largura, não a altura.
 
+## Do pacote D2, nada se perde no meio do caminho (22/11/2026)
+
+O que foi feito está no devlog. Ficou para depois:
+- **O "Desfazer" do programa vale só enquanto a pessoa está na tela.** Sair ou fechar o app perde a volta. Guardar o programa anterior nos dados resolveria, com uma versão nova do estado.
+- **A volta do alerta vale por 15 minutos.** Depois disso, o toque errado só se resolve marcando "fui avaliado". Vale ouvir quem usa antes de mexer no prazo.
+- **O guia completo ainda baixa os textos de todos os exercícios num pedaço só.** A falha deixou de derrubar o app; repartir o pedaço fica para o pacote D4 (peso).
+- **A saída da triagem para quem ainda não foi avaliado** (pedido 11) está no lote M6.
+- **O histórico não diz em que local cada treino foi feito** depois que o local é apagado: a sessão guarda o código do local, e o nome some com ele.
+
