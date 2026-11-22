@@ -2201,6 +2201,17 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 
 O teste automático conferia "até 11 toques" pulando a tela de equipamento. Agora conta essa tela, nos quatro atalhos, com a meta de 15 (`tests/e2e/onboarding.spec.ts`), e o critério 1 do `PLANO-MVP.md` foi reescrito do mesmo jeito.
 
+**A qualidade dos programas, antes e depois** (as duas réguas do projeto, com os cenários "casa" e "condomínio" já usando o kit novo; o gerador não mudou)
+
+| | Antes | Depois |
+|---|---|---|
+| Programas sem dor e sem nenhum defeito (36.300) | 33.532 (92,4%) | 33.532 (92,4%) |
+| Programas com dor e sem nenhum defeito (72.600) | 66.338 | 66.335 |
+| Dias com 3 ou mais exercícios sem animação | 4.370 (12,0%) | 4.610 (12,7%) |
+| Na grade grande (911.625 programas), os 11 tipos de suspeito | | de −6 a +13 programas cada |
+
+Em palavras: o kit mais leve não cria defeito de montagem. O que piora um pouco é a parcela de dias com 3 ou mais exercícios **sem animação** nos atalhos: com halteres mais leves, o gerador escolhe mais vezes exercícios que ainda estão em cartão de texto. É o problema que o lote M2 ataca (ligar as animações que já estão aprovadas). As réguas regravadas estão em `revisoes/qualidade/` (`grade` e `regua`); a linha de base (`regua-linha-de-base.json`) e os snapshots das personas não mudaram.
+
 **Decisões técnicas da sessão, com o motivo** (o Gustavo pediu para não decidir estas)
 
 - **Os valores do kit: o lado conservador, e são opinião.** Casa: halteres de 2 a 10 kg, de 2 em 2, e 3 elásticos. Condomínio: halteres de 2 a 12 kg, de 2 em 2, e banco que não declina. Não há fonte sobre o que as pessoas têm (`pesquisa-v2/08`, seção 3, já dizia). Escolhi menos carga porque o erro para baixo custa pouco: o app monta o treino para pesos leves, e ele funciona também com pesos maiores. O erro para cima montaria um treino que depende de um peso que a pessoa não tem. A regra `equipamento.atalhos` foi reescrita (selo "consenso", como antes) e aparece em "Entenda o treino".

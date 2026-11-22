@@ -11,16 +11,16 @@ Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-b
 | defeito | o que é | sem dor | % | linha de base | com dor | % | linha de base |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | A2 | dia com menos de 3 exercícios ou sem multiarticular | 355 | 1,0% | 7,5% | 3.697 | 5,1% | 23,5% |
-| A3 | dia mais longo acima de 110% dos minutos | 1.924 | 5,3% | 9,8% | 2.108 | 2,9% | 4,5% |
+| A3 | dia mais longo acima de 110% dos minutos | 1.924 | 5,3% | 9,8% | 2.109 | 2,9% | 4,5% |
 | A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 0 | 0,0% | 5,3% | 0 | 0,0% | 0,0% |
 | B1 | o mesmo exercício em todos os dias havendo outro do mesmo nível | 0 | 0,0% | 0,3% | 0 | 0,0% | 1,3% |
-| C1 | prioritário abaixo da meta com tempo e exercício | 440 | 1,2% | 4,1% | 695 | 1,0% | 5,8% |
+| C1 | prioritário abaixo da meta com tempo e exercício | 440 | 1,2% | 4,1% | 696 | 1,0% | 5,8% |
 | D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 275 | 0,8% | 6,1% | 125 | 0,2% | 3,2% |
 | D3 | quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto) | 0 | 0,0% | 1,6% | 0 | 0,0% | 0,3% |
 | E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 0 | 0,0% | 0,2% | 0 | 0,0% | 0,0% |
 | seguranca | exercício impossível, acima da complexidade ou numa região com dor > 5 | 0 | 0,0% | 0,0% | 0 | 0,0% | 0,0% |
-| **sem nenhum defeito** |  | 33.532 | **92,4%** |  | 66.338 | 91,4% |  |
-| sem defeito, fora o D1 |  | 33.667 | 92,7% |  | 66.387 | 91,4% |  |
+| **sem nenhum defeito** |  | 33.532 | **92,4%** |  | 66.335 | 91,4% |  |
+| sem defeito, fora o D1 |  | 33.667 | 92,7% |  | 66.384 | 91,4% |  |
 
 Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampliada.md` foram descartadas com o rascunho; estas reproduzem a linha de base dele em todos os números publicados, menos o D1): o dia típico (A4) é a mediana dos dias; "tem tempo" (C1, E1) é o dia mais longo abaixo de 85% dos minutos; o foco (C1, C2) só conta músculos com exercício possível, e C2 compara com a mediana dos não prioritários que têm exercício possível; D1 e D3 só valem quando o equipamento permite puxar, e treinar quadríceps e posteriores. **O D1 usa o limite escrito na tabela 4.7 (empurrar ÷ puxar acima de 1,5)**: dá 6,1% na `main`, e não os 0,9% do protótipo, cuja leitura exata se perdeu. Por isso a linha "fora o D1" é a comparável com os 73,4% (hoje) e os 83,8% (final) do protótipo.
 
@@ -31,11 +31,11 @@ Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampli
 | nota | o que é | programas | % (sem dor) | % (3 dias ou mais) |
 | --- | --- | ---: | ---: | ---: |
 | A1 | exercícios por dia fora da faixa dos minutos | 2.998 | 8,3% |  |
-| A5 | dia mais curto abaixo de 60% do mais longo | 4.381 | 12,1% |  |
+| A5 | dia mais curto abaixo de 60% do mais longo | 4.387 | 12,1% |  |
 | B2 | o mesmo exercício em todos os dias sem opção do mesmo nível | 5.662 | 15,6% | 19,5% |
 | B3 | dois exercícios ou mais em todos os dias | 2.833 | 7,8% | 9,8% |
 | C2 | o foco não passa da mediana dos outros músculos | 4.798 | 13,2% |  |
-| G1 | dia com 3 ou mais cartões de texto | 4.370 | 12,0% |  |
+| G1 | dia com 3 ou mais cartões de texto | 4.610 | 12,7% |  |
 
 ## Medidas (sem dor)
 
@@ -44,7 +44,7 @@ Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampli
 | exercícios por dia (média) | 5,58 |
 | exercícios diferentes por semana (média) | 15 |
 | prescrições sem nenhuma alternativa | 27,8% |
-| cartões de texto por dia (média) | 0,67 |
+| cartões de texto por dia (média) | 0,69 |
 | funções com 0 opção / com 1, somando os 55 cenários (intermediário) | 277 / 356 |
 
 ## Por grupo de cenário
@@ -53,7 +53,7 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| atalhos (6) | 3.960 | 92,3% | 1,1% | 6,3% | 0,0% | 0,0% | 0,1% | 0,9% | 0,0% | 0,0% | 0,0% | 16,3% | 6,03 | 19,3 | 0,0% | 54,4% |
+| atalhos (6) | 3.960 | 92,3% | 1,1% | 6,3% | 0,0% | 0,0% | 0,1% | 0,9% | 0,0% | 0,0% | 0,0% | 16,3% | 6,03 | 19,1 | 0,0% | 60,4% |
 | personas (6) | 3.960 | 89,5% | 3,2% | 7,5% | 0,0% | 0,0% | 0,1% | 1,0% | 0,0% | 0,0% | 0,0% | 18,5% | 5,92 | 18,3 | 0,1% | 33,7% |
 | sem nada (1) | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 12,8 | 26,7% | 0,0% |
 | um item só (38) | 25.080 | 93,3% | 0,2% | 4,5% | 0,0% | 0,0% | 1,7% | 0,7% | 0,0% | 0,0% | 0,0% | 13,2% | 5,42 | 13,5 | 21,9% | 1,5% |
@@ -65,9 +65,9 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| iniciante | 12.100 | 94,4% | 1,0% | 3,2% | 0,0% | 0,0% | 1,3% | 0,5% | 0,0% | 0,0% | 0,0% | 15,3% | 5,51 | 12,8 | 40,9% | 9,3% |
-| intermediario | 12.100 | 92,8% | 1,0% | 5,6% | 0,0% | 0,0% | 0,4% | 0,8% | 0,0% | 0,0% | 0,0% | 14,1% | 5,59 | 16,1 | 2,9% | 13,5% |
-| avancado | 12.100 | 89,9% | 1,0% | 7,1% | 0,0% | 0,0% | 1,9% | 1,0% | 0,0% | 0,0% | 0,0% | 14,2% | 5,62 | 16,1 | 3,0% | 13,4% |
+| iniciante | 12.100 | 94,4% | 1,0% | 3,2% | 0,0% | 0,0% | 1,3% | 0,5% | 0,0% | 0,0% | 0,0% | 15,3% | 5,51 | 12,8 | 40,9% | 10,2% |
+| intermediario | 12.100 | 92,8% | 1,0% | 5,6% | 0,0% | 0,0% | 0,4% | 0,8% | 0,0% | 0,0% | 0,0% | 14,1% | 5,59 | 16 | 2,9% | 14,0% |
+| avancado | 12.100 | 89,9% | 1,0% | 7,1% | 0,0% | 0,0% | 1,9% | 1,0% | 0,0% | 0,0% | 0,0% | 14,2% | 5,62 | 16 | 3,0% | 13,9% |
 
 ## Por minutos
 
@@ -75,10 +75,10 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 30 min | 9.075 | 79,3% | 3,9% | 17,0% | 0,0% | 0,0% | 0,0% | 2,3% | 0,0% | 0,0% | 0,0% | 31,7% | 3,97 | 11,8 | 13,9% | 5,2% |
-| 45 min | 9.075 | 95,5% | 0,0% | 3,7% | 0,0% | 0,0% | 0,3% | 0,6% | 0,0% | 0,0% | 0,0% | 15,3% | 5,6 | 14,9 | 15,4% | 10,8% |
-| 60 min | 9.075 | 99,1% | 0,0% | 0,5% | 0,0% | 0,0% | 0,2% | 0,2% | 0,0% | 0,0% | 0,0% | 7,9% | 6,23 | 16,2 | 16,5% | 14,9% |
-| 90 min | 9.075 | 95,6% | 0,0% | 0,0% | 0,0% | 0,0% | 4,4% | 0,0% | 0,0% | 0,0% | 0,0% | 3,3% | 6,51 | 16,9 | 16,6% | 17,3% |
+| 30 min | 9.075 | 79,3% | 3,9% | 17,0% | 0,0% | 0,0% | 0,0% | 2,3% | 0,0% | 0,0% | 0,0% | 31,7% | 3,97 | 11,8 | 13,9% | 6,5% |
+| 45 min | 9.075 | 95,5% | 0,0% | 3,7% | 0,0% | 0,0% | 0,3% | 0,6% | 0,0% | 0,0% | 0,0% | 15,3% | 5,6 | 14,9 | 15,4% | 11,6% |
+| 60 min | 9.075 | 99,1% | 0,0% | 0,5% | 0,0% | 0,0% | 0,2% | 0,2% | 0,0% | 0,0% | 0,0% | 7,9% | 6,23 | 16,2 | 16,5% | 15,1% |
+| 90 min | 9.075 | 95,6% | 0,0% | 0,0% | 0,0% | 0,0% | 4,4% | 0,0% | 0,0% | 0,0% | 0,0% | 3,3% | 6,51 | 16,9 | 16,6% | 17,6% |
 
 ## Por dias
 
@@ -86,11 +86,11 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 2 dias | 7.260 | 85,1% | 0,0% | 11,0% | 0,0% | 0,0% | 2,9% | 2,2% | 0,0% | 0,0% | 0,0% | 24,0% | 6,69 | 11,7 | 0,0% | 6,0% |
-| 3 dias | 7.260 | 90,7% | 0,0% | 8,0% | 0,0% | 0,0% | 0,4% | 1,4% | 0,0% | 0,0% | 0,0% | 12,1% | 5,96 | 14,1 | 30,8% | 7,7% |
-| 4 dias | 7.260 | 95,6% | 0,0% | 3,5% | 0,0% | 0,0% | 0,9% | 0,1% | 0,0% | 0,0% | 0,0% | 9,5% | 5,59 | 15,3 | 15,8% | 13,8% |
-| 5 dias | 7.260 | 94,8% | 2,4% | 2,4% | 0,0% | 0,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 12,2% | 5,27 | 16,2 | 15,8% | 14,4% |
-| 6 dias | 7.260 | 95,6% | 2,5% | 1,6% | 0,0% | 0,0% | 0,8% | 0,1% | 0,0% | 0,0% | 0,0% | 14,9% | 5,26 | 17,5 | 15,6% | 18,2% |
+| 2 dias | 7.260 | 85,1% | 0,0% | 11,0% | 0,0% | 0,0% | 2,9% | 2,2% | 0,0% | 0,0% | 0,0% | 24,0% | 6,69 | 11,7 | 0,0% | 6,9% |
+| 3 dias | 7.260 | 90,7% | 0,0% | 8,1% | 0,0% | 0,0% | 0,4% | 1,4% | 0,0% | 0,0% | 0,0% | 12,1% | 5,96 | 14,1 | 30,8% | 8,1% |
+| 4 dias | 7.260 | 95,6% | 0,0% | 3,4% | 0,0% | 0,0% | 0,9% | 0,1% | 0,0% | 0,0% | 0,0% | 9,5% | 5,59 | 15,3 | 15,8% | 14,4% |
+| 5 dias | 7.260 | 94,8% | 2,4% | 2,4% | 0,0% | 0,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 12,2% | 5,27 | 16,2 | 15,8% | 15,1% |
+| 6 dias | 7.260 | 95,6% | 2,5% | 1,6% | 0,0% | 0,0% | 0,8% | 0,1% | 0,0% | 0,0% | 0,0% | 14,9% | 5,26 | 17,5 | 15,6% | 19,0% |
 
 ## Por foco
 
@@ -98,17 +98,17 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nenhum | 3.300 | 98,5% | 1,5% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 5,33 | 14,6 | 15,4% | 11,1% |
-| peito | 3.300 | 90,6% | 0,0% | 4,9% | 0,0% | 0,0% | 2,5% | 5,1% | 0,0% | 0,0% | 0,0% | 0,4% | 5,38 | 14,6 | 15,4% | 12,7% |
-| costas | 3.300 | 91,4% | 1,5% | 4,1% | 0,0% | 0,0% | 2,6% | 0,5% | 0,0% | 0,0% | 0,0% | 1,0% | 5,35 | 14,6 | 15,4% | 10,8% |
-| ombros | 3.300 | 99,8% | 0,0% | 0,1% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 6,6% | 5,57 | 15 | 15,4% | 14,1% |
-| bracos | 3.300 | 98,6% | 0,9% | 0,4% | 0,0% | 0,0% | 0,1% | 0,1% | 0,0% | 0,0% | 0,0% | 8,2% | 5,48 | 14,9 | 17,0% | 13,3% |
-| pernas | 3.300 | 88,7% | 1,5% | 9,7% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 44,5% | 5,81 | 15,4 | 15,2% | 10,9% |
-| gluteos | 3.300 | 94,2% | 1,5% | 4,9% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,5% | 5,82 | 15,5 | 15,0% | 11,2% |
-| abdomen | 3.300 | 99,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 22,5% | 5,47 | 14,6 | 15,4% | 10,2% |
-| superiores | 3.300 | 87,7% | 1,6% | 8,4% | 0,0% | 0,0% | 1,3% | 1,6% | 0,0% | 0,0% | 0,0% | 14,1% | 5,69 | 15,2 | 17,0% | 14,0% |
-| inferiores | 3.300 | 79,1% | 1,5% | 18,2% | 0,0% | 0,0% | 2,2% | 0,0% | 0,0% | 0,0% | 0,0% | 45,7% | 6,03 | 15,7 | 15,0% | 11,4% |
-| peito+costas | 3.300 | 88,6% | 0,0% | 7,5% | 0,0% | 0,0% | 3,4% | 1,1% | 0,0% | 0,0% | 0,0% | 1,8% | 5,4 | 14,6 | 15,4% | 12,7% |
+| nenhum | 3.300 | 98,5% | 1,5% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 5,33 | 14,6 | 15,4% | 11,7% |
+| peito | 3.300 | 90,6% | 0,0% | 4,9% | 0,0% | 0,0% | 2,5% | 5,1% | 0,0% | 0,0% | 0,0% | 0,4% | 5,38 | 14,6 | 15,4% | 13,3% |
+| costas | 3.300 | 91,4% | 1,5% | 4,1% | 0,0% | 0,0% | 2,6% | 0,5% | 0,0% | 0,0% | 0,0% | 1,0% | 5,35 | 14,6 | 15,4% | 11,6% |
+| ombros | 3.300 | 99,8% | 0,0% | 0,1% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 6,6% | 5,57 | 15 | 15,4% | 14,9% |
+| bracos | 3.300 | 98,6% | 0,9% | 0,4% | 0,0% | 0,0% | 0,1% | 0,1% | 0,0% | 0,0% | 0,0% | 8,2% | 5,48 | 14,9 | 17,0% | 13,7% |
+| pernas | 3.300 | 88,7% | 1,5% | 9,6% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 44,5% | 5,81 | 15,4 | 15,2% | 11,6% |
+| gluteos | 3.300 | 94,2% | 1,5% | 4,9% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,5% | 5,82 | 15,5 | 15,0% | 11,8% |
+| abdomen | 3.300 | 99,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 22,5% | 5,47 | 14,6 | 15,4% | 11,2% |
+| superiores | 3.300 | 87,7% | 1,6% | 8,4% | 0,0% | 0,0% | 1,3% | 1,6% | 0,0% | 0,0% | 0,0% | 14,1% | 5,69 | 15,1 | 17,0% | 14,5% |
+| inferiores | 3.300 | 79,1% | 1,5% | 18,2% | 0,0% | 0,0% | 2,2% | 0,0% | 0,0% | 0,0% | 0,0% | 45,7% | 6,03 | 15,6 | 15,0% | 12,0% |
+| peito+costas | 3.300 | 88,6% | 0,0% | 7,5% | 0,0% | 0,0% | 3,4% | 1,1% | 0,0% | 0,0% | 0,0% | 1,8% | 5,4 | 14,6 | 15,4% | 13,4% |
 
 ## Por cenário
 
@@ -123,8 +123,8 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | bruno | 660 | 92,9% | 0,0% | 6,2% | 0,0% | 0,0% | 0,2% | 1,2% | 0,0% | 0,0% | 0,0% | 16,5% | 6,07 | 19,2 | 0,0% | 24,4% |
 | casa | 660 | 85,5% | 6,5% | 9,4% | 0,0% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 19,0% | 5,92 | 17,3 | 0,0% | 5,8% |
 | casa+ | 660 | 92,7% | 0,0% | 6,5% | 0,0% | 0,0% | 0,2% | 1,1% | 0,0% | 0,0% | 0,0% | 16,0% | 6,08 | 20,2 | 0,0% | 9,7% |
-| condominio | 660 | 93,8% | 0,0% | 5,5% | 0,0% | 0,0% | 0,2% | 1,1% | 0,0% | 0,0% | 0,0% | 17,8% | 5,94 | 18,4 | 0,0% | 41,4% |
-| condominio+ | 660 | 93,5% | 0,0% | 6,2% | 0,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 15,8% | 6,08 | 19,6 | 0,0% | 84,2% |
+| condominio | 660 | 93,8% | 0,0% | 5,5% | 0,0% | 0,0% | 0,2% | 1,1% | 0,0% | 0,0% | 0,0% | 17,8% | 5,94 | 18 | 0,0% | 63,8% |
+| condominio+ | 660 | 93,5% | 0,0% | 6,2% | 0,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 15,8% | 6,08 | 18,3 | 0,0% | 98,2% |
 | diego | 660 | 85,0% | 6,1% | 10,2% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 21,7% | 5,9 | 18,8 | 0,2% | 24,4% |
 | elasticos | 660 | 84,1% | 6,1% | 10,9% | 0,0% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 21,7% | 5,9 | 18,1 | 0,2% | 24,4% |
 | halteres | 660 | 93,6% | 0,0% | 6,1% | 0,0% | 0,0% | 0,2% | 0,6% | 0,0% | 0,0% | 0,0% | 17,8% | 5,77 | 17,3 | 0,0% | 22,9% |
@@ -193,21 +193,20 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | nordico | sim | 15.446 | 42,6% |
 | afundo-tras-peso-corpo | sim | 9.942 | 27,4% |
 | afundo | sim | 9.240 | 25,5% |
-| stiff | sim | 9.240 | 25,5% |
+| stiff | sim | 8.800 | 24,2% |
 | goblet | sim | 7.260 | 20,0% |
-| triceps-frances-halter | sim | 6.930 | 19,1% |
-| elevacao-halteres | sim | 6.776 | 18,7% |
+| triceps-frances-halter | sim | 6.929 | 19,1% |
+| elevacao-halteres | sim | 6.777 | 18,7% |
 | pike | sim | 5.979 | 16,5% |
-| supino-reto | sim | 5.940 | 16,4% |
 | ponte-gluteo-halter | sim | 5.460 | 15,0% |
-| remada-curvada-halteres | sim | 4.624 | 12,7% |
+| supino-reto | sim | 5.280 | 14,5% |
 | supino-inclinado | sim | 4.620 | 12,7% |
+| remada-curvada-halteres | sim | 4.580 | 12,6% |
 | aducao-deitado | sim | 4.232 | 11,7% |
+| crucifixo-invertido-sentado | **cartão** | 4.014 | 11,1% |
 | puxada-frente | **cartão** | 3.960 | 10,9% |
-| remada-apoiada | sim | 3.840 | 10,6% |
 | rosca-alternada | sim | 3.750 | 10,3% |
 | rosca-inclinada | sim | 3.749 | 10,3% |
-| crucifixo-invertido-sentado | **cartão** | 3.682 | 10,1% |
 | extensao-joelho-elastico | sim | 3.564 | 9,8% |
 | flexao-joelho-elastico | sim | 3.478 | 9,6% |
 | remada-unilateral-sem-banco | sim | 3.217 | 8,9% |
@@ -216,18 +215,19 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | cadeira-flexora | **cartão** | 3.036 | 8,4% |
 | triceps-testa-halteres | **cartão** | 3.030 | 8,3% |
 | cadeira-extensora | **cartão** | 3.003 | 8,3% |
-| panturrilha-bilateral-step | sim | 2.781 | 7,7% |
-| panturrilha | sim | 2.681 | 7,4% |
+| remada-apoiada | sim | 2.784 | 7,7% |
+| panturrilha-bilateral-step | sim | 2.779 | 7,7% |
+| panturrilha | sim | 2.683 | 7,4% |
 | agachamento-elastico | sim | 2.640 | 7,3% |
 | stiff-elastico | sim | 2.640 | 7,3% |
 | bulgaro-peso-corpo | sim | 2.578 | 7,1% |
-| crucifixo-halteres | **cartão** | 2.473 | 6,8% |
 | remada-elastico | sim | 2.385 | 6,6% |
-| crucifixo-inverso | **cartão** | 2.339 | 6,4% |
+| remada-baixa-estacao | **cartão** | 2.382 | 6,6% |
+| crucifixo-halteres | **cartão** | 2.347 | 6,5% |
+| crucifixo-inverso | **cartão** | 2.338 | 6,4% |
 | triceps-elastico-acima | sim | 2.329 | 6,4% |
-| stiff-unilateral | sim | 2.301 | 6,3% |
 | hip-thrust | **cartão** | 2.184 | 6,0% |
-| remada-unilateral-halter | sim | 2.180 | 6,0% |
+| stiff-unilateral | sim | 2.131 | 5,9% |
 | crucifixo-elastico | sim | 2.072 | 5,7% |
 | elevacao-lateral-elastico | sim | 2.064 | 5,7% |
 | face-pull-elastico | sim | 1.949 | 5,4% |
@@ -236,7 +236,7 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | leg-press | **cartão** | 1.762 | 4,9% |
 | barra-fixa | sim | 1.760 | 4,8% |
 | triceps-frances | sim | 1.748 | 4,8% |
-| triceps-frances-unilateral-halter | **cartão** | 1.645 | 4,5% |
+| remada-unilateral-halter | sim | 1.683 | 4,6% |
 | rosca-martelo | sim | 1.623 | 4,5% |
 | abdominal-maquina | **cartão** | 1.616 | 4,5% |
 | rosca-elastico | sim | 1.613 | 4,4% |
@@ -244,13 +244,14 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | remada-baixa | sim | 1.593 | 4,4% |
 | abdominal-polia | sim | 1.586 | 4,4% |
 | supino-chao-halteres | **cartão** | 1.556 | 4,3% |
+| triceps-frances-unilateral-halter | **cartão** | 1.481 | 4,1% |
 | barra-fixa-supinada | sim | 1.455 | 4,0% |
 | voador | **cartão** | 1.405 | 3,9% |
 | puxada-barra-reta | **cartão** | 1.376 | 3,8% |
-| desenvolvimento-unilateral | **cartão** | 1.361 | 3,7% |
+| desenvolvimento-unilateral | **cartão** | 1.340 | 3,7% |
 | afundo-tras | **cartão** | 1.324 | 3,6% |
+| supino-maquina | **cartão** | 1.324 | 3,6% |
 | panturrilha-leg-press | **cartão** | 1.322 | 3,6% |
-| remada-baixa-estacao | **cartão** | 1.320 | 3,6% |
 | remada-invertida | **cartão** | 1.320 | 3,6% |
 | remada-suspensao | sim | 1.320 | 3,6% |
 | crucifixo-polia | sim | 1.256 | 3,5% |
@@ -266,16 +267,15 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | face-pull | sim | 1.008 | 2,8% |
 | elevacao-lateral-unilateral-elastico | **cartão** | 973 | 2,7% |
 | triceps-corda | sim | 957 | 2,6% |
-| supino-maquina | **cartão** | 895 | 2,5% |
+| terra-romeno-barra | **cartão** | 950 | 2,6% |
+| triceps-frances-kettlebell | sim | 931 | 2,6% |
 | agachamento-barra | **cartão** | 880 | 2,4% |
 | remada-curvada-elastico | **cartão** | 816 | 2,2% |
-| triceps-frances-kettlebell | sim | 756 | 2,1% |
 | stiff-kettlebell | sim | 730 | 2,0% |
 | panturrilha-sentada-halter | sim | 717 | 2,0% |
 | desenvolvimento-elastico | sim | 712 | 2,0% |
 | yt-suspensao | sim | 704 | 1,9% |
 | rosca-martelo-elastico | **cartão** | 693 | 1,9% |
-| crucifixo-invertido-curvado | **cartão** | 665 | 1,8% |
 | afundo-kettlebell | sim | 660 | 1,8% |
 | agachamento-smith | **cartão** | 660 | 1,8% |
 | barra-fixa-graviton | **cartão** | 660 | 1,8% |
@@ -298,7 +298,6 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | coice-maquina | **cartão** | 570 | 1,6% |
 | rosca-barra-w | **cartão** | 558 | 1,5% |
 | rosca-kettlebell | sim | 553 | 1,5% |
-| terra-romeno-barra | **cartão** | 548 | 1,5% |
 | rosca-polia-costas | **cartão** | 528 | 1,5% |
 | abertura-elastico | **cartão** | 498 | 1,4% |
 | crucifixo-invertido-caneleira | **cartão** | 462 | 1,3% |
@@ -311,14 +310,15 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | mergulho-graviton | **cartão** | 392 | 1,1% |
 | crucifixo-inclinado-halteres | **cartão** | 378 | 1,0% |
 | abducao-elastico | **cartão** | 354 | 1,0% |
+| crucifixo-invertido-curvado | **cartão** | 333 | 0,9% |
 | agachamento-halteres | **cartão** | 325 | 0,9% |
 | roda-abdominal | sim | 277 | 0,8% |
 | elevacao-joelhos-paralelas | sim | 274 | 0,8% |
 | crucifixo-polia-baixo | **cartão** | 264 | 0,7% |
+| desenvolvimento-unilateral-kettlebell | sim | 264 | 0,7% |
 | rosca-concentrada | **cartão** | 263 | 0,7% |
 | aducao-maquina | **cartão** | 253 | 0,7% |
 | coice-elastico | **cartão** | 243 | 0,7% |
-| desenvolvimento-unilateral-kettlebell | sim | 242 | 0,7% |
 | aducao-caneleira | sim | 214 | 0,6% |
 | supino-inclinado-polia | **cartão** | 210 | 0,6% |
 | abducao-maquina | **cartão** | 208 | 0,6% |
