@@ -10,11 +10,11 @@ import {
   type Inventario,
   type ItemId,
 } from '../../domain/taxonomia/equipamentos';
-import { ATALHO, ITENS_DE_ANILHA, SO_NA_FOTO, type Atalho } from '../../domain/taxonomia/atalhos';
+import { ATALHO, ATALHOS_COM_KIT, ITENS_DE_ANILHA, SO_NA_FOTO, type Atalho } from '../../domain/taxonomia/atalhos';
 
 // Conversão entre o checklist da tela e o Inventario da taxonomia. Função pura, testada em tests/unit/inventario-form.test.ts.
-// Nada vem pré-preenchido: um valor padrão errado mudaria a carga prescrita sem a pessoa perceber
-// (docs/pesquisa/09-decisoes-m3.md, seção 7).
+// Nada vem pré-preenchido antes de um toque (docs/pesquisa/09-decisoes-m3.md, seção 7). O toque num atalho de lugar traz
+// o kit típico dele (`aplicarAtalho`; lote M1 da análise crítica, 19/11/2026).
 
 export type FormInventario = {
   marcados: ItemId[];
@@ -347,7 +347,8 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
 /**
  * Atalho de cenário (equipamento.atalhos): marca o conjunto típico e nunca desmarca o que a pessoa já marcou.
  * As estações do multifuncional só entram se a pessoa ainda não tiver escolhido nenhuma. Os "às vezes tem"
- * ficam desmarcados. Nenhum detalhe é preenchido: a tela continua perguntando.
+ * ficam desmarcados. Os detalhes vêm do kit típico do atalho (`padroes`), só onde a pessoa ainda não respondeu: o
+ * programa sai na hora, e o ajuste fica para depois (lote M1 da análise crítica, 19/11/2026).
  */
 export function aplicarAtalho(f: FormInventario, id: Atalho['id']): FormInventario {
   const a = ATALHO[id];
@@ -363,5 +364,24 @@ export function aplicarAtalho(f: FormInventario, id: Atalho['id']): FormInventar
   if (p?.voadorInvertido !== undefined && n.voador.invertido === undefined) n.voador.invertido = p.voadorInvertido;
   if (p?.bancoDeclina !== undefined && n.bancoRegulavel.declina === undefined) n.bancoRegulavel.declina = p.bancoDeclina;
   if (p?.tricepsAcimaDaCabeca !== undefined && n.tricepsMaquina.acimaDaCabeca === undefined) n.tricepsMaquina.acimaDaCabeca = p.tricepsAcimaDaCabeca;
+  if (p?.elasticos && !n.elasticos.intensidades.trim()) n.elasticos.intensidades = String(p.elasticos.intensidades);
   return n;
+}
+
+/** O inventário que um atalho gera sozinho, sem nenhum toque a mais: o kit típico daquele lugar. */
+export function inventarioDoKit(id: Atalho['id']): Inventario | null {
+  return deForm(aplicarAtalho(formVazio(), id)).inventario;
+}
+
+const canonico = (v: unknown): unknown =>
+  Array.isArray(v) ? v.map(canonico) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canonico((v as Record<string, unknown>)[k])])) : v;
+
+/**
+ * O inventário é, sem tirar nem pôr, o kit típico de um atalho? Serve para o programa dizer "montado para um kit
+ * típico" enquanto a pessoa não ajustou nada. Nada é guardado: sai da comparação, e some no primeiro ajuste.
+ */
+export function kitTipicoDe(inv: Inventario | undefined): Atalho['id'] | undefined {
+  if (!inv) return undefined;
+  const alvo = JSON.stringify(canonico(inv));
+  return ATALHOS_COM_KIT.find((id) => JSON.stringify(canonico(inventarioDoKit(id))) === alvo);
 }

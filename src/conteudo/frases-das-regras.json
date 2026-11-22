@@ -445,7 +445,7 @@
   },
   "equipamento.atalhos": {
     "titulo": "Atalhos na tela de equipamento",
-    "frase": "Nenhum atalho vem selecionado. “Casa com halteres e elásticos”, “Condomínio com multifuncional” e “Academia completa” marcam o conjunto típico sem desmarcar o que você marcou; “Corpo livre” desmarca tudo. Os detalhes que mudam o programa continuam sendo perguntados, menos em “Academia completa”, que preenche o que falta com valores típicos (halteres de 2 a 40 kg, de 2 em 2) e, nos aparelhos, a opção mais conservadora, editáveis em “Meus locais”. A 1ª série de cada exercício acerta a carga."
+    "frase": "Nenhum atalho vem selecionado. “Casa”, “Condomínio” e “Academia completa” marcam o conjunto típico, sem desmarcar o que você marcou, e supõem um kit típico para o programa sair na hora: halteres de 2 a 10 kg e 3 elásticos em casa; de 2 a 12 kg no condomínio; de 2 a 40 kg na academia. São palpites do app, do lado mais leve: corrija em “Meus locais” ou ao anotar a carga (“Meus pesos são outros”). “Corpo livre” desmarca tudo."
   },
   "equipamento.menor-anilha": {
     "titulo": "Menor anilha das máquinas e barras",

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, itensDaCategoria, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
-import { ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
+import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, inventarioDoKit, itensDaCategoria, kitTipicoDe, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
+import { ATALHO, ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { cargasHalter, HALTER, inventarioSchema, ITEM_IDS, sanarInventario, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { migrar } from '../../src/storage/migracao';
@@ -202,9 +202,48 @@ describe('atalhos de cenário (equipamento.atalhos)', () => {
     expect(f.halteres).toEqual({ min: '1', max: '12', passo: '1' });
     expect(f.voador.invertido).toBe(true);
   });
-  it('nos outros atalhos, os detalhes continuam sendo perguntados', () => {
-    const { erros } = deForm(aplicarAtalho(formVazio(), 'condominio'));
-    expect(Object.keys(erros)).toEqual(expect.arrayContaining(['halteres.min', 'bancoRegulavel.declina']));
+  // Lote M1 da análise crítica (decisão do Gustavo de 19/11/2026, "programa na hora"): revoga "nos outros atalhos, os
+  // detalhes continuam sendo perguntados". Os três atalhos com equipamento trazem um kit típico e passam sem pergunta.
+  it('condomínio vem com o kit típico e passa sem pergunta nenhuma', () => {
+    const f = aplicarAtalho(formVazio(), 'condominio');
+    const { inventario, erros } = deForm(f);
+    expect(erros).toEqual({});
+    expect(f.halteres).toEqual({ min: '2', max: '12', passo: '2' });
+    // o lado conservador no "sim ou não"
+    expect(f.bancoRegulavel.declina).toBe(false);
+    expect(inventario!.multifuncional).toMatchObject({ puxador: true, remadaBaixa: true, extensora: false });
+    expect(gerarPrograma(carla.perfil, inventario!).status).toBe('ok');
+  });
+  it('casa vem com o kit típico (halteres comuns, não de montar, e elásticos) e passa sem pergunta nenhuma', () => {
+    const f = aplicarAtalho(formVazio(), 'casa');
+    const { inventario, erros } = deForm(f);
+    expect(erros).toEqual({});
+    expect(inventario).toEqual({ halteres_fixos: { minKg: 2, maxKg: 10, passoKg: 2 }, elasticos: { intensidades: 3 } });
+    expect(gerarPrograma(carla.perfil, inventario!).status).toBe('ok');
+  });
+  it('o kit de casa e o do condomínio não passam por cima do que a pessoa já respondeu', () => {
+    const ja: FormInventario = { ...formVazio(), halteres: { min: '1', max: '6', passo: '1' }, elasticos: { intensidades: '5' }, bancoRegulavel: { declina: true } };
+    expect(aplicarAtalho(ja, 'casa')).toMatchObject({ halteres: ja.halteres, elasticos: ja.elasticos });
+    expect(aplicarAtalho(ja, 'condominio')).toMatchObject({ halteres: ja.halteres, bancoRegulavel: { declina: true } });
+  });
+  it('quem monta os próprios halteres marca "Anilhas e manoplas", e aí os detalhes são perguntados', () => {
+    const f = aplicarAtalho(formVazio(), 'casa');
+    expect(ATALHO.casa.asVezes).toContain('anilhas_e_manoplas');
+    const { erros } = deForm({ ...f, marcados: [...f.marcados, 'anilhas_e_manoplas'] });
+    expect(Object.keys(erros)).toEqual(expect.arrayContaining(['anilhas.manoplas', 'anilhas.manoplaKg', 'anilhas.linhas']));
+  });
+  it('kitTipicoDe reconhece o inventário que saiu de um atalho sem ajuste, e só ele', () => {
+    for (const id of ['casa', 'condominio', 'academia'] as const) expect(kitTipicoDe(inventarioDoKit(id)!)).toBe(id);
+    // "Corpo livre" não tem kit; o inventário vazio não é kit de ninguém
+    expect(kitTipicoDe(inventarioDoKit('corpo')!)).toBeUndefined();
+    expect(kitTipicoDe(undefined)).toBeUndefined();
+    // qualquer ajuste desfaz: outro peso, um item a mais, um item a menos
+    const casa = inventarioDoKit('casa')!;
+    expect(kitTipicoDe({ ...casa, halteres_fixos: { minKg: 2, maxKg: 8, passoKg: 2 } })).toBeUndefined();
+    expect(kitTipicoDe({ ...casa, banco_reto: {} })).toBeUndefined();
+    expect(kitTipicoDe({ halteres_fixos: casa.halteres_fixos })).toBeUndefined();
+    // a ordem das chaves não importa
+    expect(kitTipicoDe({ elasticos: { intensidades: 3 }, halteres_fixos: { passoKg: 2, maxKg: 10, minKg: 2 } })).toBe('casa');
   });
   it('academia completa com os detalhes mínimos gera o programa', () => {
     const f = aplicarAtalho(formVazio(), 'academia');

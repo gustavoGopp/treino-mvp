@@ -30,7 +30,11 @@ function deAtalho(id: 'casa' | 'condominio' | 'academia', extras: 'sem' | 'com',
   const itens = [...a.marca, ...(extras === 'com' ? a.asVezes : [])];
   const inv: Record<string, object> = {};
   for (const k of itens) inv[k] = { ...(ATRIBUTOS[k] ?? {}) };
-  if (id === 'academia') inv.halteres_fixos = { minKg: 2, maxKg: 40, passoKg: 2 };
+  // O kit típico do próprio atalho (lote M1, 19/11/2026): a auditoria mede o inventário que a pessoa recebe ao tocar.
+  const p = a.padroes;
+  if (p?.halteres && inv.halteres_fixos) inv.halteres_fixos = { ...p.halteres };
+  if (p?.elasticos && inv.elasticos) inv.elasticos = { ...p.elasticos };
+  if (p?.bancoDeclina !== undefined && inv.banco_regulavel) inv.banco_regulavel = { declina: p.bancoDeclina };
   return { ...inv, ...ajuste } as Inventario;
 }
 

@@ -2,7 +2,11 @@ import type { EstacaoMultifuncional, ItemId } from './equipamentos';
 
 // Atalhos de cenário na tela de equipamento (equipamento.atalhos; pesquisa-v2/08, seção 3). Nenhum vem
 // selecionado (decisão 7 do M3): o toque marca o conjunto típico, sem desmarcar nada, e os "às vezes tem"
-// aparecem logo abaixo, desmarcados. Os detalhes que mudam o programa continuam sendo perguntados.
+// aparecem logo abaixo, desmarcados.
+// "Programa na hora" (decisão do Gustavo de 19/11/2026, lote M1 da análise crítica): os três atalhos com equipamento
+// trazem um kit típico nos detalhes (`padroes`), e o programa sai sem pergunta nenhuma. Isso revoga "os detalhes que
+// mudam o programa continuam sendo perguntados" (devlog de 03/11): o ajuste fica para depois, na hora de anotar a carga
+// ("Meus pesos são outros") ou em "Meus locais". Quem marca item por item continua respondendo os detalhes.
 // "Corpo livre" (sessão de equipamento mínimo, decisão do Gustavo de 03/11/2026) é a escolha explícita de treinar
 // sem equipamento: o toque desmarca tudo, e o programa usa o chão, uma parede e uma cadeira firme.
 // [opinião] Os conjuntos vêm do T7 (guias de condomínio, páginas de rede e lojas, não verificados).
@@ -22,8 +26,8 @@ export type Atalho = {
   /** Texto curto mostrado logo abaixo, depois do toque. */
   ajuda?: string;
   /**
-   * Respostas típicas dos detalhes, preenchidas só onde a pessoa ainda não respondeu (design v2, item D: "academia
-   * completa" sem perguntar os pesos). Ficam editáveis em "Meus locais"; a 1ª série de cada exercício acerta a carga.
+   * Kit típico: respostas típicas dos detalhes, preenchidas só onde a pessoa ainda não respondeu (design v2, item D, e
+   * o lote M1 de 19/11/2026). Ficam editáveis em "Meus locais"; a 1ª série de cada exercício acerta a carga.
    */
   padroes?: {
     halteres?: { minKg: number; maxKg: number; passoKg: number };
@@ -31,6 +35,7 @@ export type Atalho = {
     voadorInvertido?: boolean;
     bancoDeclina?: boolean;
     tricepsAcimaDaCabeca?: boolean;
+    elasticos?: { intensidades: number };
   };
 };
 
@@ -38,14 +43,22 @@ export const ATALHOS: Atalho[] = [
   {
     id: 'casa',
     nome: 'Casa com halteres e elásticos',
-    marca: ['anilhas_e_manoplas', 'elasticos'],
-    asVezes: ['banco_reto', 'banco_regulavel', 'barra_fixa', 'kettlebell', 'suspensao', 'step', 'bola_suica', 'caneleiras', 'mini_band', 'roda_abdominal'],
+    // Halteres comuns, não de montar (lote M1): é o que a maioria tem em casa; quem monta os seus marca "Anilhas e
+    // manoplas" logo abaixo, e aí responde os detalhes.
+    marca: ['halteres_fixos', 'elasticos'],
+    // [opinião] O lado conservador: poucos pares e leves (2 a 10 kg, de 2 em 2) e 3 elásticos de forças diferentes (os
+    // kits costumam vir com 3 a 5). Sem fonte: é juízo do projeto, corrigido pela pessoa no primeiro treino.
+    padroes: { halteres: { minKg: 2, maxKg: 10, passoKg: 2 }, elasticos: { intensidades: 3 } },
+    asVezes: ['anilhas_e_manoplas', 'banco_reto', 'banco_regulavel', 'barra_fixa', 'kettlebell', 'suspensao', 'step', 'bola_suica', 'caneleiras', 'mini_band', 'roda_abdominal'],
   },
   {
     id: 'condominio',
     nome: 'Condomínio com multifuncional',
     marca: ['multifuncional', 'banco_regulavel', 'halteres_fixos', 'bola_suica'],
     estacoes: ['puxador', 'remadaBaixa'],
+    // [opinião] O lado conservador: halteres de 2 a 12 kg, de 2 em 2, e banco que não declina. Sem fonte (pesquisa-v2/08,
+    // seção 3: não há lista oficial do que um prédio tem); a pessoa corrige no primeiro treino.
+    padroes: { halteres: { minKg: 2, maxKg: 12, passoKg: 2 }, bancoDeclina: false },
     asVezes: ['barra_longa', 'barra_w', 'barra_fixa', 'elasticos', 'step', 'kettlebell', 'caneleiras', 'mini_band', 'roda_abdominal'],
   },
   {
@@ -116,3 +129,6 @@ export const ITENS_DE_ANILHA: ItemId[] = ['leg_press', 'hack', 'smith', 'panturr
 
 /** Itens só reconhecidos na foto, fora da lista de treino (cardio não é prescrito no MVP). */
 export const SO_NA_FOTO: ItemId[] = ['esteira'];
+
+/** Os atalhos que trazem um kit típico (todos menos "Corpo livre", que não tem equipamento). */
+export const ATALHOS_COM_KIT = ATALHOS.filter((a) => a.padroes).map((a) => a.id);
