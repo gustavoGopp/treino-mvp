@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
+import { calibrar, emCalibracao, faixaDoPerto, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
 import { calibracaoNaSessao, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
 import { sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
 import { cargasHalter } from '../../src/domain/taxonomia/equipamentos';
-import { ana, bruno } from '../personas';
+import { ana, bruno, PERSONAS } from '../personas';
+import { PERSONAS_NOVAS } from '../personas/todos';
+import { gerarPrograma } from '../../src/domain/gerador';
 
 // progressao.calibracao: os casos C1 a C7 do T6 (pesquisa-v2/07, seção 2.3), agora no R1b (pesquisa-v2/09).
 const halterAna: OpcoesCarga = { tipo: 'halter', lista: cargasHalter(ana.inventario) };
@@ -72,8 +74,10 @@ describe('progressao.calibracao: os 5 tipos de carga (pesquisa-v2/08, tabela 1.1
     expect(calibrar({ carga: { tipo: 'placa', placa: 1 }, reps: 4, rir: 1 }, alvo, { tipo: 'polia' }).acao).toBe('manter');
   });
   it('kg conhecido com até 12 repetições somadas: a fórmula para cima, para baixo no inventário', () => {
-    // faixa 6–10, RIR 1–2 → A = 9,5; 10 kg × 10 + 2 = 12 → 10 × 27,5 / 25 = 11 kg
-    expect(calibrar({ carga: kg(10), reps: 10, rir: 2 }, { reps: [6, 10], rir: [1, 2] }, halterAna).proxima).toEqual(kg(11));
+    // faixa 5–8, RIR 1–2 → A = 8; a tela mostra de 6 a 10; 10 kg × 8 + 3 = 11 (acima) → 10 × 29 / 26 = 11,2 → 11 kg
+    // (até 22/11/2026 o exemplo era 6–10 com 10 + 2 = 12: hoje isso é o topo da faixa mostrada, e a carga fica)
+    expect(calibrar({ carga: kg(10), reps: 8, rir: 3 }, { reps: [5, 8], rir: [1, 2] }, halterAna).proxima).toEqual(kg(11));
+    expect(calibrar({ carga: kg(10), reps: 10, rir: 2 }, { reps: [6, 10], rir: [1, 2] }, halterAna).acao).toBe('manter');
   });
 });
 
@@ -138,3 +142,37 @@ describe('progressao.calibracao: a saída (R5a; d-longo-prazo.md, D1)', () => {
   });
 });
 
+
+// Lote M3 da análise crítica (decisão do Gustavo em 22/11/2026): a tela e a regra dizem a mesma coisa. Quem fica dentro
+// da meta que a tela mostra (as repetições da faixa, com a reserva pedida) mantém a carga. Antes, a regra só aceitava
+// o meio da faixa (A ± 2), e 8 repetições sobrando 3 numa faixa de 8 a 15, sobrando 3 ou 4, baixavam a carga.
+describe('progressao.calibracao: dentro da meta mostrada, o app mantém a carga', () => {
+  const todas = Object.values({ ...PERSONAS, ...PERSONAS_NOVAS });
+  it('em todo exercício de toda persona, qualquer repetição da faixa com qualquer reserva pedida mantém a carga', () => {
+    let n = 0;
+    for (const p of todas) {
+      const r = gerarPrograma(p.perfil, p.inventario);
+      if (r.status !== 'ok') continue;
+      for (const x of r.programa.dias.flatMap((d) => d.exercicios))
+        for (let reps = x.reps[0]; reps <= x.reps[1]; reps++)
+          for (let rir = x.rir[0]; rir <= x.rir[1]; rir++) {
+            n++;
+            const res = calibrar({ carga: kg(10), reps, rir }, { reps: x.reps, rir: x.rir }, halterAna);
+            expect([res.acao, res.perto], `${p.nome}: ${x.exId} ${reps} × RIR ${rir}`).toEqual(['manter', true]);
+          }
+    }
+    expect(n).toBeGreaterThan(1000);
+  });
+  it('o exemplo da análise: 8 repetições sobrando 3, na faixa de 8 a 15 sobrando 3 ou 4, mantém (antes, descia)', () => {
+    expect(calibrar({ carga: kg(4), reps: 8, rir: 3 }, { reps: [8, 15], rir: [3, 4] }, halterAna).acao).toBe('manter');
+  });
+  it('fora da meta mostrada, a carga continua mudando: abaixo desce, acima sobe', () => {
+    const alvo = { reps: [8, 15] as [number, number], rir: [3, 4] as [number, number] };
+    expect(calibrar({ carga: kg(6), reps: 6, rir: 1 }, alvo, halterAna).acao).toBe('descer');
+    expect(calibrar({ carga: kg(6), reps: 20, rir: 3 }, alvo, halterAna).acao).toBe('subir');
+  });
+  it('a faixa do perto nunca é mais estreita que A ± 2', () => {
+    expect(faixaDoPerto({ reps: [8, 15], rir: [3, 4] })).toEqual([11, 19]);
+    expect(faixaDoPerto({ reps: [10, 10], rir: [2, 2] })).toEqual([10, 14]);
+  });
+});

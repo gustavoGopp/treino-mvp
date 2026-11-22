@@ -209,7 +209,7 @@
   },
   "progressao.calibracao": {
     "titulo": "Acerto da carga, série a série",
-    "frase": "Vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. A cada série, o app soma repetições e reserva e compara com o alvo (meio da faixa de repetições mais meio da reserva pedida): 1) até 2 de diferença, mantém; 2) pesada, desce; 3) leve, sobe, no máximo 25%. Na semana 1 da volta de pausa, a carga só desce. Após 3 séries sem chegar perto, fica a carga mais próxima do alvo (no empate, a mais leve). Com dor de nota 3 ou mais, quem manda é a regra da dor."
+    "frase": "Vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. A cada série, o app soma repetições e reserva: 1) dentro da faixa que a tela mostra (do mínimo de repetições com a menor reserva ao máximo com a maior), mantém; 2) abaixo dela, a carga está pesada e desce; 3) acima, está leve e sobe, no máximo 25%. A conta mira o meio da faixa. Na semana 1 da volta de pausa, a carga só desce. Após 3 séries sem chegar perto, fica a carga mais próxima do alvo (no empate, a mais leve). Com dor de nota 3 ou mais, quem manda é a regra da dor."
   },
   "progressao.troca-equivalente": {
     "titulo": "Ao trocar por um exercício equivalente",

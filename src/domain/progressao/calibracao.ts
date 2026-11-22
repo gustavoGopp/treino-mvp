@@ -4,6 +4,9 @@ import { existeNoPasso, noPassoAbaixo, proximaCarga, textoDaCargaSimples, valorD
 // Calibração da carga, série a série (progressao.calibracao; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09).
 // Vale na 1ª vez de um exercício e na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local.
 // R = repetições feitas + reserva relatada; A = meio da faixa + meio do RIR alvo.
+// "Perto" (mantém a carga) é a faixa que a tela mostra, do mínimo de repetições com a menor reserva pedida ao máximo com
+// a maior, ou até 2 de A (decisão do Gustavo em 22/11/2026, lote M3: antes só valia A ± 2, e quem ficava no começo da
+// faixa mostrada via a carga cair). Fora dela, a conta continua mirando A.
 // Os números ±2, +25% e 12 são do projeto (consenso); a fórmula é a de Brzycki (Mayhew 1995).
 
 export type ResultadoCalibracao = {
@@ -19,6 +22,12 @@ export type ResultadoCalibracao = {
 export const alvoDaCalibracao = (a: Alvo) => (a.reps[0] + a.reps[1]) / 2 + (a.rir[0] + a.rir[1]) / 2;
 
 const FOLGA = 2;
+/** A faixa de R em que a carga está certa: a que a tela mostra, nunca mais estreita que A ± 2. */
+export const faixaDoPerto = (a: Alvo): [number, number] => {
+  const alvo = alvoDaCalibracao(a);
+  return [Math.min(a.reps[0] + a.rir[0], alvo - FOLGA), Math.max(a.reps[1] + a.rir[1], alvo + FOLGA)];
+};
+const noPerto = (rr: number, a: Alvo) => rr >= faixaDoPerto(a)[0] && rr <= faixaDoPerto(a)[1];
 const FOLGA_DOIS_PASSOS = 6;
 const REPS_FORMULA = 12;
 const TETO_SUBIDA = 0.25;
@@ -47,9 +56,9 @@ export function calibrar(s: Pick<SerieRegistrada, 'carga' | 'reps' | 'rir'>, alv
   const a = alvoDaCalibracao(alvo);
   const manter = (motivo: string, perto: boolean): ResultadoCalibracao => ({ acao: 'manter', proxima: c, perto, motivo, regraId });
 
-  if (Math.abs(rr - a) <= FOLGA) return manter('Carga certa para a faixa: mantenha nas próximas séries.', true);
+  if (noPerto(rr, alvo)) return manter('Carga certa para a faixa: mantenha nas próximas séries.', true);
 
-  if (rr < a - FOLGA) {
+  if (rr < a) {
     // Pesada demais: a fórmula só em kg conhecido; nos outros tipos, passos.
     let prox: Carga | undefined;
     if (c.tipo === 'kg') {
@@ -86,7 +95,7 @@ export const semCalibracao = (h: SessaoExercicio[]): SessaoExercicio[] =>
 export const emCalibracao = (h: SessaoExercicio[]) => semCalibracao(h).length === 0;
 
 /**
- * A saída da calibração (progressao.calibracao; R5a): depois de 3 séries de acerto sem cair em A ± 2, a carga com R mais
+ * A saída da calibração (progressao.calibracao; R5a): depois de 3 séries de acerto sem cair perto, a carga com R mais
  * perto de A vira a de trabalho (no empate, a mais leve). Acontece quando o próximo peso possível é um salto grande
  * (halter de 4 kg dá R = 24 e o de 5 kg, R = 12). Devolve undefined enquanto a calibração ainda segue.
  */
