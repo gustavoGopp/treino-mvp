@@ -145,7 +145,10 @@ describe('motor novo: a ponte com as telas', () => {
     } finally {
       usarPreparoGuardado(true);
     }
-  });
+    // Limite de 30 s, com a medida (22/11/2026): com a cobertura ligada, 1,9 a 2,1 s nesta máquina (a etapa inteira em 54 s).
+    // No GitHub, a rodada 522 da main levou 134 s na mesma etapa (2,5 vezes mais), e o teste passou dos 5 s do padrão; na
+    // rodada anterior, com a etapa em 75 s, passou. O teste lê os 171 arquivos e refaz o cálculo de três animações.
+  }, 30_000);
 
   it('o CSS do Boneco que o app carrega é o que o motor gera (node scripts/animacao-nova/css-do-boneco.mjs)', () => {
     expect(readFileSync('src/engine/novo/boneco.gerado.css', 'utf8').split('\n').slice(1).join('\n')).toBe(cssDoBoneco());
