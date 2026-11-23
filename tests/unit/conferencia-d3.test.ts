@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { cortarTempo, gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { cortarTempo, gerarPrograma, nadaParaPuxar, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { inventarioDe } from '../../scripts/auditoria/ver-lib';
 import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
+import { opcoesDeDivisao } from '../../src/domain/gerador/divisoes';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
 import { ana, bruno } from '../personas';
@@ -119,6 +120,34 @@ describe('readaptacao.gatilho: o RIR +1 da pausa de 2 semanas do cadastro vale n
     expect(quatro.dias.some((d) => tres.dias.some((x) => x.id === d.id))).toBe(false);
     const h = hojeNoPrograma(quatro, historico, dia(71));
     expect(h.rirMais1).toEqual([]);
+  });
+});
+
+describe('divisao.sem-puxar: a tela marca a recomendada como o gerador escolhe', () => {
+  const soBanco: Inventario = { banco_reto: {} };
+  it('só com o banco reto, nada puxa', () => {
+    expect(nadaParaPuxar(perfil({ nivel: 'iniciante', dias: 4, min: 45 }), soBanco)).toBe(true);
+    expect(nadaParaPuxar(perfil({ nivel: 'iniciante', dias: 4, min: 45 }), ana.inventario)).toBe(false);
+  });
+
+  it('com 4 dias, a recomendada é o Corpo todo 4x, a mesma que o programa usa', () => {
+    const opcoes = opcoesDeDivisao(4, 10, true);
+    expect(opcoes.filter((o) => o.recomendada).map((o) => o.id)).toEqual(['ct-4x']);
+    expect(opcoes.find((o) => o.id === 'ct-4x')!.descricao).toMatch(/sem exercício de puxar no seu equipamento/);
+    expect(ok(perfil({ nivel: 'iniciante', dias: 4, min: 45 }), soBanco).divisaoId).toBe('ct-4x');
+    // sem a falta de puxar, nada muda
+    expect(opcoesDeDivisao(4, 10).filter((o) => o.recomendada).map((o) => o.id)).toEqual(['si-2x']);
+  });
+
+  it('com 6 dias, nenhuma das oferecidas é a recomendada, e o aviso de quem escolheu manda deixar o app escolher', () => {
+    expect(opcoesDeDivisao(6, 10, true).some((o) => o.recomendada)).toBe(false);
+    const p = ok(perfil({ nivel: 'iniciante', dias: 6, min: 45, divisao: 'ppl-2x' }), soBanco);
+    const aviso = p.avisos.find((a) => a.regraId === 'divisao.sem-puxar')!;
+    expect(aviso.texto).toMatch(/toque em “Deixar o app escolher” na rotina\.$/);
+    expect(ok(perfil({ nivel: 'iniciante', dias: 6, min: 45 }), soBanco).divisaoId).toBe('ct-6x');
+    // com 4 dias, a tela tem o corpo todo: o aviso continua mandando escolhê-lo
+    const q = ok(perfil({ nivel: 'iniciante', dias: 4, min: 45, divisao: 'si-2x' }), soBanco);
+    expect(q.avisos.find((a) => a.regraId === 'divisao.sem-puxar')!.texto).toMatch(/escolha Corpo todo na rotina\.$/);
   });
 });
 

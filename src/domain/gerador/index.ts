@@ -4,7 +4,7 @@ import { faixaTexto, porCento, tempoPorExtenso } from '../numero';
 import { DESCANSO, LIMITE_DO_DIA, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
-import { CORPO_TODO_SEM_PUXAR, divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
+import { CORPO_TODO_SEM_PUXAR, DIVISOES, divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { contaPara, EMPURRAR_PUXAR_MAX, FAMILIAS, familiasCobertas } from './familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from './funcoes';
 
@@ -401,6 +401,15 @@ export function contextoDeSelecao(
   };
 }
 export type ContextoDeSelecao = ReturnType<typeof contextoDeSelecao>;
+
+/**
+ * Nada para puxar no equipamento (equipamento.sem-ancoragem; divisao.sem-puxar): nenhuma das duas funções de puxar tem
+ * exercício possível, e não por causa da dor. A tela da rotina usa para marcar a recomendada como o gerador a escolhe.
+ */
+export function nadaParaPuxar(perfil: Perfil, inventario: Inventario): boolean {
+  const { resolver, perdidaPorDor } = contextoDeSelecao(perfil, inventario, avaliarTriagem(perfil.triagem));
+  return (['puxar-vertical', 'puxar-horizontal'] as const).every((f) => !resolver({ funcao: f }) && !perdidaPorDor({ funcao: f }));
+}
 
 /** O dia fraco da régua (A2): menos de 3 exercícios, ou sem multiarticular. Conta também os dias que saíram do programa. */
 const diasFracos = (p: Programa, dias: number) => dias - p.dias.length + p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
@@ -863,7 +872,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /puxar|superior|costas/i.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, escolha Corpo todo na rotina.`,
+      // Com 6 dias, a tela não oferece corpo todo: o caminho é deixar o app escolher, que usa o Corpo todo 6x (conferência
+      // regra por regra, pacote D3, 23/11/2026: o aviso mandava escolher uma opção que a tela não tem).
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, ${
+        OPCOES_POR_DIAS[perfil.diasSemana].some((id) => !temDiaDeTronco(DIVISOES[id])) ? 'escolha Corpo todo na rotina' : 'toque em “Deixar o app escolher” na rotina'
+      }.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa). O texto diz
   // o que o programa tem de fato (R5-CL): com a puxada de elástico no programa, as costas não treinam "só com remadas".

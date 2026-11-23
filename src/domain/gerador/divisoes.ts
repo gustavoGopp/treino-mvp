@@ -481,23 +481,26 @@ export type OpcaoDivisao = {
 const PORQUE_RECOMENDADA =
   'Por que é a recomendada: cada músculo treina 2 vezes ou mais por semana, os treinos têm duração parecida e, se você faltar a um, perde só parte da semana daquele músculo.';
 export const AVISO_CLASSICA = 'Cada músculo treina 1 vez por semana: faltar a um dia tira a semana inteira daquele músculo.';
+const PORQUE_SEM_PUXAR = 'Por que é a recomendada: sem exercício de puxar no seu equipamento, os dias de puxar das outras ficariam com outros músculos.';
 
 /**
  * Opções que cabem nos dias, na ordem do T1. A clássica só aparece quando a maior meta semanal
  * cabe em 1 sessão por músculo (divisao.classica). Nada vem pré-marcado: quem marca é a pessoa.
+ * Sem nenhum exercício de puxar possível (`semPuxar`), a recomendada é a de corpo todo do mesmo número de dias, como no
+ * gerador (divisao.sem-puxar); com 6 dias, nenhuma das oferecidas é: o gerador usa o Corpo todo 6x quando a pessoa deixa
+ * o app escolher (conferência regra por regra, pacote D3, 23/11/2026: a tela marcava a divisão de sempre).
  */
-export function opcoesDeDivisao(dias: DiasSemana, metaMax: number): OpcaoDivisao[] {
-  return OPCOES_POR_DIAS[dias]
-    .map((id) => DIVISOES[id])
-    .filter((d) => !d.classica || metaMax <= META_MAX_CLASSICA)
-    .map((d, i) => ({
-      id: d.id,
-      nome: d.nome,
-      frequencia: d.frequencia,
-      descricao: i === 0 ? `${d.descricao} ${PORQUE_RECOMENDADA}` : d.descricao,
-      recomendada: i === 0,
-      ...(d.classica ? { aviso: AVISO_CLASSICA } : {}),
-    }));
+export function opcoesDeDivisao(dias: DiasSemana, metaMax: number, semPuxar = false): OpcaoDivisao[] {
+  const opcoes = OPCOES_POR_DIAS[dias].map((id) => DIVISOES[id]).filter((d) => !d.classica || metaMax <= META_MAX_CLASSICA);
+  const recomendada = semPuxar ? opcoes.find((d) => !temDiaDeTronco(d))?.id : opcoes[0]?.id;
+  return opcoes.map((d) => ({
+    id: d.id,
+    nome: d.nome,
+    frequencia: d.frequencia,
+    descricao: d.id === recomendada ? `${d.descricao} ${semPuxar ? PORQUE_SEM_PUXAR : PORQUE_RECOMENDADA}` : d.descricao,
+    recomendada: d.id === recomendada,
+    ...(d.classica ? { aviso: AVISO_CLASSICA } : {}),
+  }));
 }
 
 /**
