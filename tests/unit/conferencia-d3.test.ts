@@ -166,6 +166,25 @@ describe('iniciante.fase-aprendizado: o iniciante com pausa de 2 semanas tem a f
   });
 });
 
+describe('tempo.superserie: o iniciante não tem dupla nas semanas 1 e 2 de uma volta de pausa', () => {
+  // Iniciante, 2 dias de 30 min, academia completa, "parei há 3 meses": antes, a semana 1 saía com leg press e supino em dupla.
+  const p = programaDe(perfil({ nivel: 'iniciante', dias: 2, min: 30, parado: 12 }), inventarioDe('academia+'));
+  const duplas = (s: number) => prescricaoDaSemana(p, s).flatMap((d) => d.exercicios).filter((x) => x.supersetCom).length;
+
+  it('a volta do cadastro: sem dupla nas semanas 1 e 2; a partir da 3ª, como no programa', () => {
+    expect(p.fases[0]!.regraId).toBe('readaptacao.semana1');
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.supersetCom)).toBe(true);
+    expect([duplas(1), duplas(2)]).toEqual([0, 0]);
+    expect(duplas(3)).toBeGreaterThan(0);
+  });
+
+  it('o intermediário segue com a dupla na volta (a regra é só do iniciante)', () => {
+    const q = programaDe(perfil({ nivel: 'intermediario', dias: 2, min: 30, parado: 12 }), inventarioDe('academia+'));
+    const total = q.dias.flatMap((d) => d.exercicios).filter((x) => x.supersetCom).length;
+    expect(prescricaoDaSemana(q, 1).flatMap((d) => d.exercicios).filter((x) => x.supersetCom).length).toBe(total);
+  });
+});
+
 describe('selecao.aducao-complemento: a adução entra por último e sai primeiro', () => {
   const todos = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
   it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: a adução não toma o lugar do abdominal', () => {

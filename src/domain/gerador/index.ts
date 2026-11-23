@@ -2370,7 +2370,7 @@ export function faseNaSemana(fases: Fase[], semana: number): Fase | undefined {
  * não há drop set, porque ele pede chegar perto da falha (tempo.corte); a série do drop set volta a ser normal.
  */
 export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fase[] = programa.fases): DiaPrograma[] {
-  return aplicarFase(programa.dias, faseNaSemana(fases, semana), colchaoDe(programa));
+  return aplicarFase(programa.dias, faseNaSemana(fases, semana), colchaoDe(programa), programa.nivel);
 }
 
 /**
@@ -2379,9 +2379,12 @@ export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fa
  * margem dele (`colchao`: a pessoal, se o programa foi gerado com ela; senão, a padrão). Antes, ficavam os minutos do
  * programa completo (auditoria de 12/11/2026).
  */
-export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao: number = TEMPO.colchao): DiaPrograma[] {
+export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao: number = TEMPO.colchao, nivel?: Nivel): DiaPrograma[] {
   if (!fase || fase.fatorSeries === 1) return dias;
-  const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado';
+  // tempo.superserie: o iniciante só tem supersérie a partir da 3ª semana; nas semanas 1 e 2 de uma volta de pausa (a do
+  // cadastro ou a detectada no uso) também não (conferência regra por regra, pacote D3, 23/11/2026). O nível vem do
+  // programa guardado; no programa antigo, sem ele, fica como antes.
+  const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado' || (nivel === 'iniciante' && (fase.regraId === 'readaptacao.semana1' || fase.regraId === 'readaptacao.semana2'));
   const semDropSet = !!fase.rir && fase.rir[0] >= 3;
   return dias.map((d) => {
     const exercicios = d.exercicios.map((x) => {

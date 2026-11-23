@@ -176,7 +176,7 @@ export function hojeNoPrograma(
   // A semana leve não deixa mais pesado do que a semana já está (por exemplo, a semana 1 de uma volta).
   const fase = leve && !(daSemana && daSemana.fatorSeries <= SEMANA_LEVE.fatorSeries) ? FASE_SEMANA_LEVE : daSemana;
   const rirMais1 = diasComRirMais1(programa, historico, bloco, hojeIso, fuso);
-  const dias = aplicarFase(programa.dias, fase, colchaoDe(programa)).map((d) => (rirMais1.includes(d.id) ? comRirMais1(d) : d));
+  const dias = aplicarFase(programa.dias, fase, colchaoDe(programa), programa.nivel).map((d) => (rirMais1.includes(d.id) ? comRirMais1(d) : d));
   const dst = diasSemTreino(historico, hojeIso, fuso);
   return {
     ...(dst !== undefined ? { diasSemTreino: dst, faixa: faixaDaPausa(dst).faixa } : {}),
