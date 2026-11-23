@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { carregarCartao, temCartao } from '../../src/conteudo/cartoes';
+import { carregarTextoDoGuia, NOME_CURTO } from '../../src/conteudo/guia';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { APROVADOS } from '../../src/engine/novo/aprovados';
 
@@ -77,5 +78,17 @@ describe('conteúdo dos exercícios', () => {
       expect(temCartao(ex.id), ex.id).toBe(!!CARTOES[ex.id]);
       expect(await carregarCartao(ex.id), ex.id).toEqual(CARTOES[ex.id] ?? null);
     }
+  });
+
+  // Pacote D4 (23/11/2026): o guia baixa só o texto do exercício aberto (src/conteudo/guia.ts), e os nomes dos botões
+  // do dia vêm de um arquivo pequeno, gerado dos textos.
+  it('o texto do guia carregado sob demanda é o mesmo do índice completo, para toda animação', async () => {
+    for (const id of Object.keys(CONTEUDO)) expect(await carregarTextoDoGuia(id), id).toEqual(CONTEUDO[id]);
+    await expect(carregarTextoDoGuia('nao-existe')).rejects.toThrow(/não há texto do guia/);
+  });
+
+  it('os nomes curtos do guia estão em dia com os textos (node scripts/gerar-nomes-do-guia.mjs)', () => {
+    expect(NOME_CURTO).toEqual(Object.fromEntries(Object.entries(CONTEUDO).map(([id, c]) => [id, c.short])));
+    expect(readFileSync('src/conteudo/nomes-curtos.json', 'utf8')).toBe(JSON.stringify(NOME_CURTO, null, 1) + '\n');
   });
 });

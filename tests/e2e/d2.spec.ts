@@ -77,9 +77,9 @@ test('apagar um local: o principal e o único não se apagam; o outro apaga com 
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
 });
 
-test('o guia que não baixa mostra um aviso com a volta ao treino, sem a tela de erro do app', async ({ browser }) => {
+test('o guia que não baixa mostra um aviso com a volta ao treino, sem a tela de erro do app', async ({ browser, baseURL }) => {
   // sem o service worker, para o pedido do pedaço do guia passar pela rede do teste
-  const contexto = await browser.newContext({ serviceWorkers: 'block', baseURL: 'http://localhost:4173', viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const contexto = await browser.newContext({ serviceWorkers: 'block', baseURL, viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
   const page = await contexto.newPage();
   await tocarEmEntendi(page);
   await page.route(/\/assets\/Guia-[\w-]+\.js$/, (rota) => rota.abort());
