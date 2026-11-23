@@ -221,7 +221,7 @@
   },
   "progressao.estagnacao": {
     "titulo": "Quando um exercício para de evoluir",
-    "frase": "Estagnar é passar vários treinos seguidos do mesmo exercício, com a mesma carga, sem ganhar nenhuma repetição: 4 treinos para o iniciante, 8 para o intermediário e 16 para o avançado. A saída segue esta ordem: 1) faixa de repetições mais larga; 2) carga 10% menor, para reconstruir; 3) semana leve, se 2 ou mais exercícios estagnarem; 4) troca por uma variação equivalente. Na fase de aprendizado do iniciante não existe “estagnado”: o app pede 1 repetição a mais."
+    "frase": "Estagnar é passar vários treinos seguidos no mesmo exercício e na mesma carga sem ganhar repetição: 4 treinos para o iniciante, 8 para o intermediário e 16 para o avançado. O aviso aparece uma vez e só volta depois de outros tantos treinos parados. A saída, nesta ordem: 1) faixa de repetições mais larga; 2) carga 10% menor; 3) semana leve, se 2 ou mais estagnarem; 4) variação equivalente. Na fase de aprendizado do iniciante não há esse aviso."
   },
   "readaptacao.gatilho": {
     "titulo": "Volta de pausa informada no cadastro",
