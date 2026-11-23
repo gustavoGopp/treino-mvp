@@ -6,13 +6,13 @@
   "academia|ajustar": 823,
   "academia|bom": 6071,
   "academia|limite": 9681,
-  "ajustar": 64666,
+  "ajustar": 64195,
   "bairro|ajustar": 1035,
   "bairro|bom": 6026,
   "bairro|limite": 9514,
-  "banco+halteres-leves|ajustar": 1277,
+  "banco+halteres-leves|ajustar": 1197,
   "banco+halteres-leves|bom": 6139,
-  "banco+halteres-leves|limite": 9159,
+  "banco+halteres-leves|limite": 9239,
   "bom": 104369,
   "bruno|ajustar": 1358,
   "bruno|bom": 5961,
@@ -20,36 +20,36 @@
   "casa+|ajustar": 1285,
   "casa+|bom": 6060,
   "casa+|limite": 9230,
-  "casa|ajustar": 1235,
+  "casa|ajustar": 1114,
   "casa|bom": 5742,
-  "casa|limite": 9598,
+  "casa|limite": 9719,
   "condominio+|ajustar": 966,
   "condominio+|bom": 6012,
   "condominio+|limite": 9597,
   "condominio|ajustar": 1211,
   "condominio|bom": 6136,
   "condominio|limite": 9228,
-  "diego|ajustar": 1331,
+  "diego|ajustar": 1286,
   "diego|bom": 4989,
-  "diego|limite": 10255,
-  "elasticos|ajustar": 1447,
+  "diego|limite": 10300,
+  "elasticos|ajustar": 1404,
   "elasticos|bom": 4941,
-  "elasticos|limite": 10187,
-  "halteres-banco|ajustar": 1277,
+  "elasticos|limite": 10230,
+  "halteres-banco|ajustar": 1197,
   "halteres-banco|bom": 6139,
-  "halteres-banco|limite": 9159,
-  "halteres+bola|ajustar": 1135,
+  "halteres-banco|limite": 9239,
+  "halteres+bola|ajustar": 1134,
   "halteres+bola|bom": 6006,
-  "halteres+bola|limite": 9434,
-  "halteres|ajustar": 1093,
+  "halteres+bola|limite": 9435,
+  "halteres|ajustar": 1092,
   "halteres|bom": 6072,
-  "halteres|limite": 9410,
-  "limite": 742590,
+  "halteres|limite": 9411,
+  "limite": 743061,
   "so:abdominal_maquina|ajustar": 967,
   "so:abdominal_maquina|limite": 15608,
-  "so:anilhas_e_manoplas|ajustar": 1093,
+  "so:anilhas_e_manoplas|ajustar": 1092,
   "so:anilhas_e_manoplas|bom": 6072,
-  "so:anilhas_e_manoplas|limite": 9410,
+  "so:anilhas_e_manoplas|limite": 9411,
   "so:banco_romano|ajustar": 1389,
   "so:banco_romano|limite": 15186,
   "so:barra_fixa|ajustar": 1143,
@@ -72,8 +72,8 @@
   "so:caneleiras|limite": 14959,
   "so:desenvolvimento_maquina|ajustar": 1075,
   "so:desenvolvimento_maquina|limite": 15500,
-  "so:estacao_polia_dupla|ajustar": 1755,
-  "so:estacao_polia_dupla|limite": 14820,
+  "so:estacao_polia_dupla|ajustar": 1743,
+  "so:estacao_polia_dupla|limite": 14832,
   "so:estacao_puxada|ajustar": 1192,
   "so:estacao_puxada|limite": 15383,
   "so:estacao_remada|ajustar": 1304,
@@ -84,9 +84,9 @@
   "so:graviton|limite": 15371,
   "so:hack|ajustar": 1082,
   "so:hack|limite": 15493,
-  "so:halteres_fixos|ajustar": 1297,
+  "so:halteres_fixos|ajustar": 1309,
   "so:halteres_fixos|bom": 6050,
-  "so:halteres_fixos|limite": 9228,
+  "so:halteres_fixos|limite": 9216,
   "so:kettlebell|ajustar": 1357,
   "so:kettlebell|limite": 15218,
   "so:leg_press|ajustar": 969,
@@ -123,12 +123,12 @@
   "so:triceps_maquina|limite": 15495,
   "so:voador|ajustar": 949,
   "so:voador|limite": 15626,
-  "step+elasticos|ajustar": 1508,
+  "step+elasticos|ajustar": 1464,
   "step+elasticos|bom": 4931,
-  "step+elasticos|limite": 10136,
-  "suspensao+elasticos|ajustar": 1549,
+  "step+elasticos|limite": 10180,
+  "suspensao+elasticos|ajustar": 1494,
   "suspensao+elasticos|bom": 4951,
-  "suspensao+elasticos|limite": 10075,
+  "suspensao+elasticos|limite": 10130,
   "vazio|ajustar": 1077,
   "vazio|limite": 15498
  },
@@ -139,12 +139,12 @@
   "equipamento.sem-puxada-vertical": 240175,
   "seguranca.dor.programa": 375375,
   "selecao.alongado": 153000,
-  "selecao.dia-sem-principal": 265754,
+  "selecao.dia-sem-principal": 265580,
   "selecao.isolador-obrigatorio": 679575,
-  "tempo.corte": 326248,
-  "tempo.sobra": 335928,
-  "volume.prioridade.competicao": 142129,
-  "volume.semanal.alvo": 612923
+  "tempo.corte": 326269,
+  "tempo.sobra": 335924,
+  "volume.prioridade.competicao": 142024,
+  "volume.semanal.alvo": 612898
  },
  "avisosPorCenario": {
   "academia+|seguranca.dor.programa": 6825,
@@ -168,12 +168,12 @@
   "banco+halteres-leves|equipamento.escada-carga-leve": 16575,
   "banco+halteres-leves|equipamento.sem-puxada-vertical": 13650,
   "banco+halteres-leves|seguranca.dor.programa": 6825,
-  "banco+halteres-leves|selecao.dia-sem-principal": 4284,
+  "banco+halteres-leves|selecao.dia-sem-principal": 4262,
   "banco+halteres-leves|selecao.isolador-obrigatorio": 16575,
   "banco+halteres-leves|tempo.corte": 7524,
-  "banco+halteres-leves|tempo.sobra": 5042,
+  "banco+halteres-leves|tempo.sobra": 5040,
   "banco+halteres-leves|volume.prioridade.competicao": 3043,
-  "banco+halteres-leves|volume.semanal.alvo": 10125,
+  "banco+halteres-leves|volume.semanal.alvo": 10117,
   "bruno|seguranca.dor.programa": 6825,
   "bruno|selecao.dia-sem-principal": 4085,
   "bruno|tempo.corte": 7508,
@@ -190,10 +190,10 @@
   "casa|equipamento.escada-carga-leve": 16575,
   "casa|equipamento.sem-puxada-vertical": 14625,
   "casa|seguranca.dor.programa": 6825,
-  "casa|selecao.dia-sem-principal": 4091,
-  "casa|tempo.corte": 7817,
+  "casa|selecao.dia-sem-principal": 4054,
+  "casa|tempo.corte": 7793,
   "casa|tempo.sobra": 4381,
-  "casa|volume.prioridade.competicao": 3179,
+  "casa|volume.prioridade.competicao": 3164,
   "casa|volume.semanal.alvo": 10668,
   "condominio+|equipamento.escada-carga-leve": 16575,
   "condominio+|seguranca.dor.programa": 6825,
@@ -213,35 +213,35 @@
   "diego|equipamento.escada-carga-leve": 16575,
   "diego|seguranca.dor.programa": 6825,
   "diego|selecao.alongado": 3825,
-  "diego|selecao.dia-sem-principal": 4791,
-  "diego|tempo.corte": 8092,
+  "diego|selecao.dia-sem-principal": 4769,
+  "diego|tempo.corte": 8094,
   "diego|tempo.sobra": 4393,
-  "diego|volume.prioridade.competicao": 3372,
+  "diego|volume.prioridade.competicao": 3358,
   "diego|volume.semanal.alvo": 11010,
   "elasticos|equipamento.escada-carga-leve": 16575,
   "elasticos|equipamento.sem-puxada-vertical": 13650,
   "elasticos|seguranca.dor.programa": 6825,
   "elasticos|selecao.alongado": 3825,
-  "elasticos|selecao.dia-sem-principal": 4788,
-  "elasticos|tempo.corte": 8161,
+  "elasticos|selecao.dia-sem-principal": 4766,
+  "elasticos|tempo.corte": 8164,
   "elasticos|tempo.sobra": 4339,
-  "elasticos|volume.prioridade.competicao": 3440,
+  "elasticos|volume.prioridade.competicao": 3414,
   "elasticos|volume.semanal.alvo": 11050,
   "halteres-banco|equipamento.escada-carga-leve": 16575,
   "halteres-banco|equipamento.sem-puxada-vertical": 13650,
   "halteres-banco|seguranca.dor.programa": 6825,
-  "halteres-banco|selecao.dia-sem-principal": 4284,
+  "halteres-banco|selecao.dia-sem-principal": 4262,
   "halteres-banco|selecao.isolador-obrigatorio": 16575,
   "halteres-banco|tempo.corte": 7524,
-  "halteres-banco|tempo.sobra": 5042,
+  "halteres-banco|tempo.sobra": 5040,
   "halteres-banco|volume.prioridade.competicao": 3043,
-  "halteres-banco|volume.semanal.alvo": 10125,
+  "halteres-banco|volume.semanal.alvo": 10117,
   "halteres+bola|equipamento.escada-carga-leve": 16575,
   "halteres+bola|equipamento.sem-puxada-vertical": 13650,
   "halteres+bola|seguranca.dor.programa": 6825,
   "halteres+bola|selecao.dia-sem-principal": 4308,
   "halteres+bola|selecao.isolador-obrigatorio": 16575,
-  "halteres+bola|tempo.corte": 7241,
+  "halteres+bola|tempo.corte": 7244,
   "halteres+bola|tempo.sobra": 4984,
   "halteres+bola|volume.prioridade.competicao": 3128,
   "halteres+bola|volume.semanal.alvo": 10203,
@@ -249,7 +249,7 @@
   "halteres|seguranca.dor.programa": 6825,
   "halteres|selecao.dia-sem-principal": 4331,
   "halteres|selecao.isolador-obrigatorio": 16575,
-  "halteres|tempo.corte": 7279,
+  "halteres|tempo.corte": 7282,
   "halteres|tempo.sobra": 4958,
   "halteres|volume.prioridade.competicao": 3030,
   "halteres|volume.semanal.alvo": 10137,
@@ -269,7 +269,7 @@
   "so:anilhas_e_manoplas|seguranca.dor.programa": 6825,
   "so:anilhas_e_manoplas|selecao.dia-sem-principal": 4331,
   "so:anilhas_e_manoplas|selecao.isolador-obrigatorio": 16575,
-  "so:anilhas_e_manoplas|tempo.corte": 7279,
+  "so:anilhas_e_manoplas|tempo.corte": 7282,
   "so:anilhas_e_manoplas|tempo.sobra": 4958,
   "so:anilhas_e_manoplas|volume.prioridade.competicao": 3030,
   "so:anilhas_e_manoplas|volume.semanal.alvo": 10137,
@@ -392,12 +392,12 @@
   "so:estacao_polia_dupla|equipamento.escada-carga-leve": 16575,
   "so:estacao_polia_dupla|seguranca.dor.programa": 6825,
   "so:estacao_polia_dupla|selecao.alongado": 3825,
-  "so:estacao_polia_dupla|selecao.dia-sem-principal": 4859,
+  "so:estacao_polia_dupla|selecao.dia-sem-principal": 4850,
   "so:estacao_polia_dupla|selecao.isolador-obrigatorio": 16575,
-  "so:estacao_polia_dupla|tempo.corte": 8554,
+  "so:estacao_polia_dupla|tempo.corte": 8572,
   "so:estacao_polia_dupla|tempo.sobra": 4354,
-  "so:estacao_polia_dupla|volume.prioridade.competicao": 3594,
-  "so:estacao_polia_dupla|volume.semanal.alvo": 10800,
+  "so:estacao_polia_dupla|volume.prioridade.competicao": 3596,
+  "so:estacao_polia_dupla|volume.semanal.alvo": 10791,
   "so:estacao_puxada|equipamento.escada-carga-leve": 16575,
   "so:estacao_puxada|seguranca.dor.programa": 6825,
   "so:estacao_puxada|selecao.alongado": 3825,
@@ -453,7 +453,7 @@
   "so:halteres_fixos|seguranca.dor.programa": 6825,
   "so:halteres_fixos|selecao.dia-sem-principal": 4330,
   "so:halteres_fixos|selecao.isolador-obrigatorio": 16575,
-  "so:halteres_fixos|tempo.corte": 7278,
+  "so:halteres_fixos|tempo.corte": 7281,
   "so:halteres_fixos|tempo.sobra": 4958,
   "so:halteres_fixos|volume.prioridade.competicao": 3075,
   "so:halteres_fixos|volume.semanal.alvo": 10137,
@@ -646,19 +646,19 @@
   "step+elasticos|equipamento.sem-puxada-vertical": 13650,
   "step+elasticos|seguranca.dor.programa": 6825,
   "step+elasticos|selecao.alongado": 3825,
-  "step+elasticos|selecao.dia-sem-principal": 4790,
-  "step+elasticos|tempo.corte": 8448,
+  "step+elasticos|selecao.dia-sem-principal": 4768,
+  "step+elasticos|tempo.corte": 8453,
   "step+elasticos|tempo.sobra": 4272,
-  "step+elasticos|volume.prioridade.competicao": 3438,
+  "step+elasticos|volume.prioridade.competicao": 3412,
   "step+elasticos|volume.semanal.alvo": 11063,
   "suspensao+elasticos|equipamento.escada-carga-leve": 16575,
   "suspensao+elasticos|equipamento.sem-puxada-vertical": 14625,
   "suspensao+elasticos|seguranca.dor.programa": 6825,
   "suspensao+elasticos|selecao.alongado": 3825,
-  "suspensao+elasticos|selecao.dia-sem-principal": 4777,
-  "suspensao+elasticos|tempo.corte": 8149,
+  "suspensao+elasticos|selecao.dia-sem-principal": 4759,
+  "suspensao+elasticos|tempo.corte": 8154,
   "suspensao+elasticos|tempo.sobra": 4364,
-  "suspensao+elasticos|volume.prioridade.competicao": 3449,
+  "suspensao+elasticos|volume.prioridade.competicao": 3423,
   "suspensao+elasticos|volume.semanal.alvo": 11031,
   "vazio|divisao.sem-puxar": 23,
   "vazio|equipamento.escada-carga-leve": 16575,
@@ -674,27 +674,27 @@
  },
  "competem": {
   "avancado|abdomen": {
-   "abaixo": 7502,
+   "abaixo": 7503,
    "competem": 0,
    "n": 23375
   },
   "avancado|bracos": {
-   "abaixo": 18444,
-   "competem": 10152,
+   "abaixo": 18438,
+   "competem": 10148,
    "n": 23375
   },
   "avancado|costas": {
-   "abaixo": 17339,
+   "abaixo": 17340,
    "competem": 0,
    "n": 23375
   },
   "avancado|costas+ombros": {
-   "abaixo": 19895,
-   "competem": 3071,
+   "abaixo": 19896,
+   "competem": 3023,
    "n": 23375
   },
   "avancado|gluteos": {
-   "abaixo": 7461,
+   "abaixo": 7469,
    "competem": 0,
    "n": 23375
   },
@@ -730,36 +730,36 @@
   },
   "avancado|pernas+gluteos+abdomen": {
    "abaixo": 21088,
-   "competem": 14178,
+   "competem": 14242,
    "n": 23375
   },
   "iniciante|abdomen": {
-   "abaixo": 5688,
+   "abaixo": 5697,
    "competem": 0,
    "n": 23375
   },
   "iniciante|bracos": {
-   "abaixo": 16670,
-   "competem": 11180,
+   "abaixo": 16671,
+   "competem": 11181,
    "n": 23375
   },
   "iniciante|costas": {
-   "abaixo": 14867,
+   "abaixo": 14857,
    "competem": 0,
    "n": 23375
   },
   "iniciante|costas+ombros": {
-   "abaixo": 18447,
-   "competem": 4122,
+   "abaixo": 18394,
+   "competem": 4061,
    "n": 23375
   },
   "iniciante|gluteos": {
-   "abaixo": 4976,
+   "abaixo": 4986,
    "competem": 0,
    "n": 23375
   },
   "iniciante|ombros": {
-   "abaixo": 17465,
+   "abaixo": 17433,
    "competem": 0,
    "n": 23375
   },
@@ -790,36 +790,36 @@
   },
   "iniciante|pernas+gluteos+abdomen": {
    "abaixo": 15760,
-   "competem": 12555,
+   "competem": 12504,
    "n": 23375
   },
   "intermediario|abdomen": {
-   "abaixo": 6380,
+   "abaixo": 6434,
    "competem": 0,
    "n": 23375
   },
   "intermediario|bracos": {
    "abaixo": 18028,
-   "competem": 10928,
+   "competem": 10950,
    "n": 23375
   },
   "intermediario|costas": {
-   "abaixo": 15016,
+   "abaixo": 15006,
    "competem": 0,
    "n": 23375
   },
   "intermediario|costas+ombros": {
-   "abaixo": 18943,
-   "competem": 4354,
+   "abaixo": 18890,
+   "competem": 4358,
    "n": 23375
   },
   "intermediario|gluteos": {
-   "abaixo": 6250,
+   "abaixo": 6257,
    "competem": 0,
    "n": 23375
   },
   "intermediario|ombros": {
-   "abaixo": 17824,
+   "abaixo": 17782,
    "competem": 0,
    "n": 23375
   },
@@ -850,19 +850,19 @@
   },
   "intermediario|pernas+gluteos+abdomen": {
    "abaixo": 16845,
-   "competem": 11865,
+   "competem": 11864,
    "n": 23375
   }
  },
  "contagem": {
   "avaliador.ajustar-sem-aviso": 237,
   "dia.poucos-exercicios": 273876,
-  "monotonia.todos-os-dias": 176082,
+  "monotonia.todos-os-dias": 176073,
   "prioridade.abaixo-com-tempo": 24056,
-  "regua.A2": 40427,
+  "regua.A2": 36290,
   "regua.A3": 15817,
   "regua.C1": 15660,
-  "regua.D1": 4719,
+  "regua.D1": 4718,
   "regua.D3": 1374,
   "regua.E1": 6,
   "tempo.uso-baixo": 158100
@@ -966,19 +966,19 @@
    "6": 61,
    "7": 399,
    "8": 229,
-   "9": 355,
-   "10": 873,
-   "11": 569,
-   "12": 774,
-   "13": 930,
-   "14": 923,
-   "15": 1013,
-   "16": 1718,
-   "17": 1451,
-   "18": 1024,
-   "19": 909,
-   "20": 1095,
-   "21": 608,
+   "9": 356,
+   "10": 875,
+   "11": 574,
+   "12": 766,
+   "13": 966,
+   "14": 952,
+   "15": 1067,
+   "16": 1636,
+   "17": 1468,
+   "18": 1006,
+   "19": 875,
+   "20": 1094,
+   "21": 607,
    "22": 897,
    "23": 825,
    "24": 1092,
@@ -1023,17 +1023,17 @@
    "7": 248,
    "8": 368,
    "9": 222,
-   "10": 612,
-   "11": 518,
-   "12": 559,
-   "13": 756,
-   "14": 1092,
-   "15": 1398,
-   "16": 1148,
-   "17": 1716,
-   "18": 1457,
+   "10": 611,
+   "11": 511,
+   "12": 551,
+   "13": 765,
+   "14": 1073,
+   "15": 1420,
+   "16": 1104,
+   "17": 1667,
+   "18": 1491,
    "19": 1421,
-   "20": 819,
+   "20": 882,
    "21": 1370,
    "22": 1109,
    "23": 1113,
@@ -1132,20 +1132,20 @@
    "7": 52,
    "8": 277,
    "9": 345,
-   "10": 364,
-   "11": 646,
-   "12": 518,
-   "13": 639,
-   "14": 786,
-   "15": 1181,
-   "16": 1258,
-   "17": 1276,
-   "18": 1497,
-   "19": 1197,
-   "20": 763,
-   "21": 721,
-   "22": 764,
-   "23": 840,
+   "10": 363,
+   "11": 641,
+   "12": 517,
+   "13": 646,
+   "14": 773,
+   "15": 1192,
+   "16": 1239,
+   "17": 1261,
+   "18": 1452,
+   "19": 1212,
+   "20": 762,
+   "21": 738,
+   "22": 784,
+   "23": 870,
    "24": 1185,
    "25": 762,
    "26": 574,
@@ -1160,19 +1160,19 @@
    "7": 49,
    "8": 287,
    "9": 409,
-   "10": 579,
-   "11": 401,
-   "12": 536,
-   "13": 707,
-   "14": 909,
-   "15": 1392,
-   "16": 1184,
-   "17": 1443,
-   "18": 1550,
-   "19": 1186,
-   "20": 1068,
-   "21": 841,
-   "22": 1014,
+   "10": 578,
+   "11": 396,
+   "12": 530,
+   "13": 715,
+   "14": 896,
+   "15": 1408,
+   "16": 1163,
+   "17": 1379,
+   "18": 1558,
+   "19": 1208,
+   "20": 1084,
+   "21": 851,
+   "22": 1044,
    "23": 1069,
    "24": 802,
    "25": 551,
@@ -1185,17 +1185,17 @@
    "6": 19,
    "7": 184,
    "8": 388,
-   "9": 430,
+   "9": 431,
    "10": 798,
-   "11": 532,
-   "12": 916,
-   "13": 855,
-   "14": 1011,
-   "15": 1220,
-   "16": 1546,
-   "17": 1721,
-   "18": 1204,
-   "19": 1098,
+   "11": 538,
+   "12": 914,
+   "13": 879,
+   "14": 1032,
+   "15": 1206,
+   "16": 1527,
+   "17": 1704,
+   "18": 1206,
+   "19": 1096,
    "20": 766,
    "21": 666,
    "22": 848,
@@ -1210,19 +1210,19 @@
    "6": 61,
    "7": 399,
    "8": 229,
-   "9": 355,
-   "10": 873,
-   "11": 569,
-   "12": 774,
-   "13": 930,
-   "14": 923,
-   "15": 1013,
-   "16": 1718,
-   "17": 1451,
-   "18": 1024,
-   "19": 909,
-   "20": 1095,
-   "21": 608,
+   "9": 356,
+   "10": 875,
+   "11": 574,
+   "12": 766,
+   "13": 966,
+   "14": 952,
+   "15": 1067,
+   "16": 1636,
+   "17": 1468,
+   "18": 1006,
+   "19": 875,
+   "20": 1094,
+   "21": 607,
    "22": 897,
    "23": 825,
    "24": 1092,
@@ -1237,16 +1237,16 @@
    "7": 183,
    "8": 399,
    "9": 445,
-   "10": 792,
-   "11": 547,
-   "12": 795,
-   "13": 925,
-   "14": 1000,
-   "15": 1105,
-   "16": 1528,
-   "17": 1781,
-   "18": 1152,
-   "19": 1206,
+   "10": 793,
+   "11": 549,
+   "12": 799,
+   "13": 948,
+   "14": 1018,
+   "15": 1094,
+   "16": 1505,
+   "17": 1773,
+   "18": 1148,
+   "19": 1204,
    "20": 807,
    "21": 1067,
    "22": 942,
@@ -1277,17 +1277,17 @@
    "6": 19,
    "7": 184,
    "8": 388,
-   "9": 430,
+   "9": 431,
    "10": 798,
-   "11": 532,
-   "12": 916,
-   "13": 855,
-   "14": 1011,
-   "15": 1220,
-   "16": 1546,
-   "17": 1721,
-   "18": 1204,
-   "19": 1098,
+   "11": 538,
+   "12": 914,
+   "13": 879,
+   "14": 1032,
+   "15": 1206,
+   "16": 1527,
+   "17": 1704,
+   "18": 1206,
+   "19": 1096,
    "20": 766,
    "21": 666,
    "22": 848,
@@ -1491,15 +1491,15 @@
    "6": 32,
    "7": 181,
    "8": 463,
-   "9": 760,
-   "10": 655,
-   "11": 601,
-   "12": 922,
-   "13": 1618,
-   "14": 1149,
-   "15": 1461,
-   "16": 1824,
-   "17": 1721,
+   "9": 754,
+   "10": 657,
+   "11": 604,
+   "12": 947,
+   "13": 1647,
+   "14": 1186,
+   "15": 1412,
+   "16": 1793,
+   "17": 1711,
    "18": 968,
    "19": 1326,
    "20": 1341,
@@ -1595,17 +1595,17 @@
    "6": 19,
    "7": 188,
    "8": 383,
-   "9": 435,
+   "9": 436,
    "10": 800,
-   "11": 540,
-   "12": 915,
-   "13": 867,
-   "14": 1024,
-   "15": 1201,
-   "16": 1590,
-   "17": 1728,
-   "18": 1189,
-   "19": 1071,
+   "11": 546,
+   "12": 913,
+   "13": 893,
+   "14": 1041,
+   "15": 1189,
+   "16": 1571,
+   "17": 1711,
+   "18": 1191,
+   "19": 1069,
    "20": 772,
    "21": 655,
    "22": 844,
@@ -1928,19 +1928,19 @@
    "7": 49,
    "8": 287,
    "9": 409,
-   "10": 575,
-   "11": 420,
-   "12": 567,
-   "13": 769,
-   "14": 826,
-   "15": 1350,
-   "16": 1153,
-   "17": 1445,
-   "18": 1437,
-   "19": 1141,
-   "20": 1018,
-   "21": 757,
-   "22": 591,
+   "10": 574,
+   "11": 415,
+   "12": 561,
+   "13": 778,
+   "14": 818,
+   "15": 1363,
+   "16": 1124,
+   "17": 1389,
+   "18": 1439,
+   "19": 1170,
+   "20": 1026,
+   "21": 771,
+   "22": 621,
    "23": 985,
    "24": 1027,
    "25": 760,
@@ -1955,18 +1955,18 @@
    "7": 239,
    "8": 387,
    "9": 184,
-   "10": 615,
-   "11": 528,
-   "12": 494,
-   "13": 638,
-   "14": 1031,
-   "15": 1249,
-   "16": 1029,
-   "17": 1184,
-   "18": 1484,
-   "19": 1657,
-   "20": 1265,
-   "21": 1163,
+   "10": 612,
+   "11": 520,
+   "12": 488,
+   "13": 641,
+   "14": 1041,
+   "15": 1237,
+   "16": 1046,
+   "17": 1094,
+   "18": 1498,
+   "19": 1656,
+   "20": 1307,
+   "21": 1197,
    "22": 1264,
    "23": 1016,
    "24": 429,
@@ -2241,9 +2241,9 @@
   "30|banco+halteres-leves": {
    "1": 14,
    "2": 36,
-   "3": 1581,
-   "4": 10754,
-   "5": 847,
+   "3": 1159,
+   "4": 11181,
+   "5": 842,
    "6": 28
   },
   "30|bruno": {
@@ -2257,9 +2257,9 @@
   "30|casa": {
    "1": 14,
    "2": 109,
-   "3": 1412,
-   "4": 10447,
-   "5": 1272,
+   "3": 888,
+   "4": 10975,
+   "5": 1268,
    "6": 6
   },
   "30|casa+": {
@@ -2288,18 +2288,18 @@
   },
   "30|diego": {
    "1": 17,
-   "2": 118,
-   "3": 1378,
-   "4": 10505,
-   "5": 1232,
+   "2": 115,
+   "3": 900,
+   "4": 10994,
+   "5": 1224,
    "6": 10
   },
   "30|elasticos": {
    "1": 17,
-   "2": 118,
-   "3": 1420,
-   "4": 10465,
-   "5": 1227,
+   "2": 115,
+   "3": 917,
+   "4": 10979,
+   "5": 1219,
    "6": 13
   },
   "30|halteres": {
@@ -2313,9 +2313,9 @@
   "30|halteres-banco": {
    "1": 14,
    "2": 36,
-   "3": 1581,
-   "4": 10754,
-   "5": 847,
+   "3": 1159,
+   "4": 11181,
+   "5": 842,
    "6": 28
   },
   "30|halteres+bola": {
@@ -2410,9 +2410,9 @@
   },
   "30|so:estacao_polia_dupla": {
    "2": 21,
-   "3": 1901,
-   "4": 10596,
-   "5": 740,
+   "3": 1895,
+   "4": 10603,
+   "5": 739,
    "6": 2
   },
   "30|so:estacao_puxada": {
@@ -2572,18 +2572,18 @@
   },
   "30|step+elasticos": {
    "1": 17,
-   "2": 118,
-   "3": 1420,
-   "4": 10465,
-   "5": 1227,
+   "2": 115,
+   "3": 917,
+   "4": 10979,
+   "5": 1219,
    "6": 13
   },
   "30|suspensao+elasticos": {
    "1": 17,
    "2": 119,
-   "3": 1475,
-   "4": 10407,
-   "5": 1241,
+   "3": 1004,
+   "4": 10885,
+   "5": 1234,
    "6": 1
   },
   "30|vazio": {
@@ -9165,8 +9165,8 @@
    "5": 12
   },
   "dias|5|30|banco+halteres-leves": {
-   "3": 27,
-   "4": 166,
+   "3": 12,
+   "4": 181,
    "5": 2
   },
   "dias|5|30|bruno": {
@@ -9174,8 +9174,8 @@
    "5": 12
   },
   "dias|5|30|casa": {
-   "3": 29,
-   "4": 154,
+   "3": 10,
+   "4": 173,
    "5": 12
   },
   "dias|5|30|casa+": {
@@ -9192,13 +9192,13 @@
    "5": 12
   },
   "dias|5|30|diego": {
-   "3": 31,
-   "4": 153,
+   "3": 12,
+   "4": 172,
    "5": 11
   },
   "dias|5|30|elasticos": {
-   "3": 34,
-   "4": 150,
+   "3": 13,
+   "4": 171,
    "5": 11
   },
   "dias|5|30|halteres": {
@@ -9207,8 +9207,8 @@
    "5": 2
   },
   "dias|5|30|halteres-banco": {
-   "3": 27,
-   "4": 166,
+   "3": 12,
+   "4": 181,
    "5": 2
   },
   "dias|5|30|halteres+bola": {
@@ -9397,13 +9397,13 @@
    "5": 6
   },
   "dias|5|30|step+elasticos": {
-   "3": 34,
-   "4": 150,
+   "3": 13,
+   "4": 171,
    "5": 11
   },
   "dias|5|30|suspensao+elasticos": {
-   "3": 33,
-   "4": 151,
+   "3": 13,
+   "4": 171,
    "5": 11
   },
   "dias|5|30|vazio": {
@@ -10905,8 +10905,8 @@
    "5": 36
   },
   "dias|6|30|banco+halteres-leves": {
-   "3": 38,
-   "4": 193,
+   "3": 22,
+   "4": 209,
    "5": 3
   },
   "dias|6|30|bruno": {
@@ -10915,8 +10915,8 @@
    "5": 9
   },
   "dias|6|30|casa": {
-   "3": 44,
-   "4": 181,
+   "3": 26,
+   "4": 199,
    "5": 9
   },
   "dias|6|30|casa+": {
@@ -10935,13 +10935,13 @@
    "5": 36
   },
   "dias|6|30|diego": {
-   "3": 39,
-   "4": 186,
+   "3": 22,
+   "4": 203,
    "5": 9
   },
   "dias|6|30|elasticos": {
-   "3": 39,
-   "4": 186,
+   "3": 22,
+   "4": 203,
    "5": 9
   },
   "dias|6|30|halteres": {
@@ -10950,8 +10950,8 @@
    "5": 3
   },
   "dias|6|30|halteres-banco": {
-   "3": 38,
-   "4": 193,
+   "3": 22,
+   "4": 209,
    "5": 3
   },
   "dias|6|30|halteres+bola": {
@@ -11024,8 +11024,8 @@
    "5": 8
   },
   "dias|6|30|so:estacao_polia_dupla": {
-   "3": 37,
-   "4": 197
+   "3": 38,
+   "4": 196
   },
   "dias|6|30|so:estacao_puxada": {
    "3": 138,
@@ -11141,13 +11141,13 @@
    "5": 8
   },
   "dias|6|30|step+elasticos": {
-   "3": 39,
-   "4": 186,
+   "3": 22,
+   "4": 203,
    "5": 9
   },
   "dias|6|30|suspensao+elasticos": {
-   "3": 39,
-   "4": 186,
+   "3": 22,
+   "4": 203,
    "5": 9
   },
   "dias|6|30|vazio": {
@@ -12738,8 +12738,8 @@
    "6": 4
   },
   "limpo|30|banco+halteres-leves": {
-   "3": 97,
-   "4": 618,
+   "3": 66,
+   "4": 649,
    "5": 63,
    "6": 2
   },
@@ -12750,8 +12750,8 @@
    "6": 3
   },
   "limpo|30|casa": {
-   "3": 76,
-   "4": 615,
+   "3": 39,
+   "4": 652,
    "5": 89
   },
   "limpo|30|casa+": {
@@ -12773,13 +12773,13 @@
    "6": 4
   },
   "limpo|30|diego": {
-   "3": 72,
-   "4": 622,
+   "3": 36,
+   "4": 658,
    "5": 86
   },
   "limpo|30|elasticos": {
-   "3": 75,
-   "4": 619,
+   "3": 37,
+   "4": 657,
    "5": 86
   },
   "limpo|30|halteres": {
@@ -12789,8 +12789,8 @@
    "6": 13
   },
   "limpo|30|halteres-banco": {
-   "3": 97,
-   "4": 618,
+   "3": 66,
+   "4": 649,
    "5": 63,
    "6": 2
   },
@@ -12869,8 +12869,8 @@
    "5": 60
   },
   "limpo|30|so:estacao_polia_dupla": {
-   "3": 96,
-   "4": 624,
+   "3": 97,
+   "4": 623,
    "5": 60
   },
   "limpo|30|so:estacao_puxada": {
@@ -12997,13 +12997,13 @@
    "5": 60
   },
   "limpo|30|step+elasticos": {
-   "3": 75,
-   "4": 619,
+   "3": 37,
+   "4": 657,
    "5": 86
   },
   "limpo|30|suspensao+elasticos": {
-   "3": 74,
-   "4": 620,
+   "3": 37,
+   "4": 657,
    "5": 86
   },
   "limpo|30|vazio": {
@@ -14761,7 +14761,7 @@
    "programas": 5100
   },
   "cenario|casa|3": {
-   "mediaPct": 51.7,
+   "mediaPct": 51.6,
    "programas": 1275
   },
   "cenario|condominio+|1": {
@@ -14797,7 +14797,7 @@
    "programas": 5100
   },
   "cenario|diego|3": {
-   "mediaPct": 51.4,
+   "mediaPct": 51.3,
    "programas": 1275
   },
   "cenario|elasticos|1": {
@@ -14809,7 +14809,7 @@
    "programas": 5100
   },
   "cenario|elasticos|3": {
-   "mediaPct": 51.3,
+   "mediaPct": 51.2,
    "programas": 1275
   },
   "cenario|halteres-banco|1": {
@@ -15013,7 +15013,7 @@
    "programas": 5100
   },
   "cenario|so:estacao_polia_dupla|3": {
-   "mediaPct": 50.2,
+   "mediaPct": 50.1,
    "programas": 1275
   },
   "cenario|so:estacao_puxada|1": {
@@ -15313,7 +15313,7 @@
    "programas": 5100
   },
   "cenario|step+elasticos|3": {
-   "mediaPct": 51.3,
+   "mediaPct": 51.2,
    "programas": 1275
   },
   "cenario|suspensao+elasticos|1": {
@@ -15385,7 +15385,7 @@
    "programas": 56100
   },
   "dias|5|3": {
-   "mediaPct": 58,
+   "mediaPct": 57.9,
    "programas": 14025
   },
   "dias|6|1": {
@@ -15838,7 +15838,7 @@
   "so:estacao_polia_dupla": {
    "comOpcao": 0,
    "programas": 13260,
-   "todosOsDias": 2841
+   "todosOsDias": 2837
   },
   "so:estacao_puxada": {
    "comOpcao": 0,
@@ -15968,7 +15968,7 @@
   "suspensao+elasticos": {
    "comOpcao": 0,
    "programas": 13260,
-   "todosOsDias": 963
+   "todosOsDias": 958
   },
   "vazio": {
    "comOpcao": 0,
@@ -16320,9 +16320,9 @@
    "85": 14,
    "90": 2,
    "95": 337,
-   "100": 1535,
+   "100": 1534,
    "105": 652,
-   "110": 574,
+   "110": 575,
    "115": 8,
    "120": 1,
    "125": 59,
@@ -16350,11 +16350,11 @@
    "175": 11
   },
   "30|casa": {
-   "90": 5,
-   "95": 191,
-   "100": 1777,
-   "105": 498,
-   "110": 450,
+   "90": 4,
+   "95": 216,
+   "100": 1803,
+   "105": 460,
+   "110": 438,
    "115": 56,
    "120": 4,
    "125": 83,
@@ -16417,11 +16417,11 @@
    "155": 22
   },
   "30|diego": {
-   "90": 5,
-   "95": 836,
-   "100": 1074,
-   "105": 764,
-   "110": 181,
+   "90": 6,
+   "95": 828,
+   "100": 1073,
+   "105": 773,
+   "110": 180,
    "115": 32,
    "120": 47,
    "125": 48,
@@ -16438,11 +16438,11 @@
    "190": 10
   },
   "30|elasticos": {
-   "90": 4,
-   "95": 717,
-   "100": 1183,
-   "105": 769,
-   "110": 174,
+   "90": 5,
+   "95": 706,
+   "100": 1199,
+   "105": 781,
+   "110": 156,
    "115": 38,
    "120": 50,
    "125": 22,
@@ -16462,8 +16462,8 @@
   "30|halteres": {
    "85": 6,
    "90": 6,
-   "95": 328,
-   "100": 1629,
+   "95": 338,
+   "100": 1619,
    "105": 587,
    "110": 551,
    "115": 13,
@@ -16479,9 +16479,9 @@
    "85": 14,
    "90": 2,
    "95": 337,
-   "100": 1535,
+   "100": 1534,
    "105": 652,
-   "110": 574,
+   "110": 575,
    "115": 8,
    "120": 1,
    "125": 59,
@@ -16493,8 +16493,8 @@
   "30|halteres+bola": {
    "85": 6,
    "90": 4,
-   "95": 336,
-   "100": 1616,
+   "95": 346,
+   "100": 1606,
    "105": 591,
    "110": 549,
    "115": 19,
@@ -16524,8 +16524,8 @@
   "30|so:anilhas_e_manoplas": {
    "85": 6,
    "90": 6,
-   "95": 328,
-   "100": 1629,
+   "95": 338,
+   "100": 1619,
    "105": 587,
    "110": 551,
    "115": 13,
@@ -16717,11 +16717,11 @@
    "155": 11
   },
   "30|so:estacao_polia_dupla": {
-   "90": 9,
-   "95": 438,
-   "100": 1548,
-   "105": 542,
-   "110": 415,
+   "90": 11,
+   "95": 386,
+   "100": 1587,
+   "105": 530,
+   "110": 438,
    "115": 33,
    "120": 60,
    "125": 34,
@@ -16822,8 +16822,8 @@
   "30|so:halteres_fixos": {
    "85": 6,
    "90": 28,
-   "95": 277,
-   "100": 1570,
+   "95": 278,
+   "100": 1569,
    "105": 624,
    "110": 572,
    "115": 38,
@@ -17136,10 +17136,10 @@
    "155": 11
   },
   "30|step+elasticos": {
-   "95": 273,
-   "100": 1633,
-   "105": 768,
-   "110": 173,
+   "95": 276,
+   "100": 1637,
+   "105": 779,
+   "110": 155,
    "115": 38,
    "120": 50,
    "125": 22,
@@ -17157,11 +17157,11 @@
    "190": 10
   },
   "30|suspensao+elasticos": {
-   "90": 3,
-   "95": 770,
-   "100": 1150,
-   "105": 773,
-   "110": 154,
+   "90": 4,
+   "95": 785,
+   "100": 1146,
+   "105": 775,
+   "110": 140,
    "115": 48,
    "120": 44,
    "125": 22,
@@ -21058,11 +21058,11 @@
    "equipamento": 0
   },
   "banco+halteres-leves|avancado|afundo": {
-   "dor": 868,
+   "dor": 863,
    "equipamento": 0
   },
   "banco+halteres-leves|avancado|agachar": {
-   "dor": 765,
+   "dor": 762,
    "equipamento": 0
   },
   "banco+halteres-leves|avancado|biceps": {
@@ -21095,14 +21095,14 @@
   },
   "banco+halteres-leves|avancado|extensora": {
    "dor": 0,
-   "equipamento": 8942
+   "equipamento": 8939
   },
   "banco+halteres-leves|avancado|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "banco+halteres-leves|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "banco+halteres-leves|avancado|panturrilha-sentada": {
@@ -21138,11 +21138,11 @@
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|afundo": {
-   "dor": 896,
+   "dor": 888,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|agachar": {
-   "dor": 775,
+   "dor": 770,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|biceps": {
@@ -21175,14 +21175,14 @@
   },
   "banco+halteres-leves|iniciante|extensora": {
    "dor": 0,
-   "equipamento": 8889
+   "equipamento": 8891
   },
   "banco+halteres-leves|iniciante|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|panturrilha-sentada": {
@@ -21190,11 +21190,11 @@
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|puxar-horizontal": {
-   "dor": 1608,
+   "dor": 1611,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|puxar-vertical": {
-   "dor": 2182,
+   "dor": 2185,
    "equipamento": 0
   },
   "banco+halteres-leves|iniciante|triceps-acima-cabeca": {
@@ -21218,11 +21218,11 @@
    "equipamento": 0
   },
   "banco+halteres-leves|intermediario|afundo": {
-   "dor": 885,
+   "dor": 879,
    "equipamento": 0
   },
   "banco+halteres-leves|intermediario|agachar": {
-   "dor": 772,
+   "dor": 769,
    "equipamento": 0
   },
   "banco+halteres-leves|intermediario|biceps": {
@@ -21255,14 +21255,14 @@
   },
   "banco+halteres-leves|intermediario|extensora": {
    "dor": 0,
-   "equipamento": 8915
+   "equipamento": 8912
   },
   "banco+halteres-leves|intermediario|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "banco+halteres-leves|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "banco+halteres-leves|intermediario|panturrilha-sentada": {
@@ -21778,11 +21778,11 @@
    "equipamento": 0
   },
   "casa|avancado|afundo": {
-   "dor": 820,
+   "dor": 814,
    "equipamento": 0
   },
   "casa|avancado|agachar": {
-   "dor": 740,
+   "dor": 736,
    "equipamento": 0
   },
   "casa|avancado|biceps": {
@@ -21814,7 +21814,7 @@
    "equipamento": 0
   },
   "casa|avancado|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "casa|avancado|ombro-posterior": {
@@ -21822,7 +21822,7 @@
    "equipamento": 0
   },
   "casa|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "casa|avancado|panturrilha-sentada": {
@@ -21858,11 +21858,11 @@
    "equipamento": 0
   },
   "casa|iniciante|afundo": {
-   "dor": 811,
+   "dor": 803,
    "equipamento": 0
   },
   "casa|iniciante|agachar": {
-   "dor": 731,
+   "dor": 726,
    "equipamento": 0
   },
   "casa|iniciante|biceps": {
@@ -21894,7 +21894,7 @@
    "equipamento": 0
   },
   "casa|iniciante|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "casa|iniciante|ombro-posterior": {
@@ -21902,7 +21902,7 @@
    "equipamento": 0
   },
   "casa|iniciante|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "casa|iniciante|panturrilha-sentada": {
@@ -21938,11 +21938,11 @@
    "equipamento": 0
   },
   "casa|intermediario|afundo": {
-   "dor": 826,
+   "dor": 819,
    "equipamento": 0
   },
   "casa|intermediario|agachar": {
-   "dor": 737,
+   "dor": 733,
    "equipamento": 0
   },
   "casa|intermediario|biceps": {
@@ -21974,7 +21974,7 @@
    "equipamento": 0
   },
   "casa|intermediario|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "casa|intermediario|ombro-posterior": {
@@ -21982,7 +21982,7 @@
    "equipamento": 0
   },
   "casa|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "casa|intermediario|panturrilha-sentada": {
@@ -22498,11 +22498,11 @@
    "equipamento": 0
   },
   "diego|avancado|afundo": {
-   "dor": 824,
+   "dor": 816,
    "equipamento": 0
   },
   "diego|avancado|agachar": {
-   "dor": 741,
+   "dor": 736,
    "equipamento": 0
   },
   "diego|avancado|biceps": {
@@ -22534,7 +22534,7 @@
    "equipamento": 0
   },
   "diego|avancado|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "diego|avancado|ombro-posterior": {
@@ -22542,7 +22542,7 @@
    "equipamento": 0
   },
   "diego|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "diego|avancado|panturrilha-sentada": {
@@ -22566,7 +22566,7 @@
    "equipamento": 0
   },
   "diego|iniciante|abdomen": {
-   "dor": 859,
+   "dor": 860,
    "equipamento": 0
   },
   "diego|iniciante|abducao": {
@@ -22578,11 +22578,11 @@
    "equipamento": 0
   },
   "diego|iniciante|afundo": {
-   "dor": 810,
+   "dor": 802,
    "equipamento": 0
   },
   "diego|iniciante|agachar": {
-   "dor": 731,
+   "dor": 726,
    "equipamento": 0
   },
   "diego|iniciante|biceps": {
@@ -22614,7 +22614,7 @@
    "equipamento": 0
   },
   "diego|iniciante|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "diego|iniciante|ombro-posterior": {
@@ -22658,11 +22658,11 @@
    "equipamento": 0
   },
   "diego|intermediario|afundo": {
-   "dor": 826,
+   "dor": 818,
    "equipamento": 0
   },
   "diego|intermediario|agachar": {
-   "dor": 737,
+   "dor": 732,
    "equipamento": 0
   },
   "diego|intermediario|biceps": {
@@ -22694,7 +22694,7 @@
    "equipamento": 0
   },
   "diego|intermediario|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "diego|intermediario|ombro-posterior": {
@@ -22702,7 +22702,7 @@
    "equipamento": 0
   },
   "diego|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "diego|intermediario|panturrilha-sentada": {
@@ -22738,11 +22738,11 @@
    "equipamento": 0
   },
   "elasticos|avancado|afundo": {
-   "dor": 824,
+   "dor": 816,
    "equipamento": 0
   },
   "elasticos|avancado|agachar": {
-   "dor": 739,
+   "dor": 734,
    "equipamento": 0
   },
   "elasticos|avancado|biceps": {
@@ -22774,7 +22774,7 @@
    "equipamento": 0
   },
   "elasticos|avancado|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "elasticos|avancado|ombro-posterior": {
@@ -22782,7 +22782,7 @@
    "equipamento": 0
   },
   "elasticos|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "elasticos|avancado|panturrilha-sentada": {
@@ -22794,7 +22794,7 @@
    "equipamento": 0
   },
   "elasticos|avancado|puxar-vertical": {
-   "dor": 2045,
+   "dor": 2037,
    "equipamento": 0
   },
   "elasticos|avancado|triceps-acima-cabeca": {
@@ -22806,7 +22806,7 @@
    "equipamento": 0
   },
   "elasticos|iniciante|abdomen": {
-   "dor": 859,
+   "dor": 860,
    "equipamento": 0
   },
   "elasticos|iniciante|abducao": {
@@ -22818,11 +22818,11 @@
    "equipamento": 0
   },
   "elasticos|iniciante|afundo": {
-   "dor": 810,
+   "dor": 802,
    "equipamento": 0
   },
   "elasticos|iniciante|agachar": {
-   "dor": 731,
+   "dor": 726,
    "equipamento": 0
   },
   "elasticos|iniciante|biceps": {
@@ -22854,7 +22854,7 @@
    "equipamento": 0
   },
   "elasticos|iniciante|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "elasticos|iniciante|ombro-posterior": {
@@ -22874,7 +22874,7 @@
    "equipamento": 0
   },
   "elasticos|iniciante|puxar-vertical": {
-   "dor": 2119,
+   "dor": 2111,
    "equipamento": 0
   },
   "elasticos|iniciante|triceps-acima-cabeca": {
@@ -22898,11 +22898,11 @@
    "equipamento": 0
   },
   "elasticos|intermediario|afundo": {
-   "dor": 826,
+   "dor": 818,
    "equipamento": 0
   },
   "elasticos|intermediario|agachar": {
-   "dor": 736,
+   "dor": 731,
    "equipamento": 0
   },
   "elasticos|intermediario|biceps": {
@@ -22934,7 +22934,7 @@
    "equipamento": 0
   },
   "elasticos|intermediario|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "elasticos|intermediario|ombro-posterior": {
@@ -22942,7 +22942,7 @@
    "equipamento": 0
   },
   "elasticos|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "elasticos|intermediario|panturrilha-sentada": {
@@ -22954,7 +22954,7 @@
    "equipamento": 0
   },
   "elasticos|intermediario|puxar-vertical": {
-   "dor": 2089,
+   "dor": 2081,
    "equipamento": 0
   },
   "elasticos|intermediario|triceps-acima-cabeca": {
@@ -22978,11 +22978,11 @@
    "equipamento": 0
   },
   "halteres-banco|avancado|afundo": {
-   "dor": 868,
+   "dor": 863,
    "equipamento": 0
   },
   "halteres-banco|avancado|agachar": {
-   "dor": 765,
+   "dor": 762,
    "equipamento": 0
   },
   "halteres-banco|avancado|biceps": {
@@ -23015,14 +23015,14 @@
   },
   "halteres-banco|avancado|extensora": {
    "dor": 0,
-   "equipamento": 8942
+   "equipamento": 8939
   },
   "halteres-banco|avancado|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "halteres-banco|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "halteres-banco|avancado|panturrilha-sentada": {
@@ -23058,11 +23058,11 @@
    "equipamento": 0
   },
   "halteres-banco|iniciante|afundo": {
-   "dor": 896,
+   "dor": 888,
    "equipamento": 0
   },
   "halteres-banco|iniciante|agachar": {
-   "dor": 775,
+   "dor": 770,
    "equipamento": 0
   },
   "halteres-banco|iniciante|biceps": {
@@ -23095,14 +23095,14 @@
   },
   "halteres-banco|iniciante|extensora": {
    "dor": 0,
-   "equipamento": 8889
+   "equipamento": 8891
   },
   "halteres-banco|iniciante|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "halteres-banco|iniciante|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "halteres-banco|iniciante|panturrilha-sentada": {
@@ -23110,11 +23110,11 @@
    "equipamento": 0
   },
   "halteres-banco|iniciante|puxar-horizontal": {
-   "dor": 1608,
+   "dor": 1611,
    "equipamento": 0
   },
   "halteres-banco|iniciante|puxar-vertical": {
-   "dor": 2182,
+   "dor": 2185,
    "equipamento": 0
   },
   "halteres-banco|iniciante|triceps-acima-cabeca": {
@@ -23138,11 +23138,11 @@
    "equipamento": 0
   },
   "halteres-banco|intermediario|afundo": {
-   "dor": 885,
+   "dor": 879,
    "equipamento": 0
   },
   "halteres-banco|intermediario|agachar": {
-   "dor": 772,
+   "dor": 769,
    "equipamento": 0
   },
   "halteres-banco|intermediario|biceps": {
@@ -23175,14 +23175,14 @@
   },
   "halteres-banco|intermediario|extensora": {
    "dor": 0,
-   "equipamento": 8915
+   "equipamento": 8912
   },
   "halteres-banco|intermediario|ombro-posterior": {
    "dor": 520,
    "equipamento": 0
   },
   "halteres-banco|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "halteres-banco|intermediario|panturrilha-sentada": {
@@ -27066,11 +27066,11 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|afundo": {
-   "dor": 1037,
+   "dor": 1033,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|agachar": {
-   "dor": 848,
+   "dor": 846,
    "equipamento": 325
   },
   "so:estacao_polia_dupla|avancado|biceps": {
@@ -27082,7 +27082,7 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|dobrar-quadril": {
-   "dor": 483,
+   "dor": 482,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|elevacao-lateral": {
@@ -27107,10 +27107,10 @@
   },
   "so:estacao_polia_dupla|avancado|extensora": {
    "dor": 0,
-   "equipamento": 8905
+   "equipamento": 8901
   },
   "so:estacao_polia_dupla|avancado|flexao-joelho": {
-   "dor": 763,
+   "dor": 759,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|ombro-posterior": {
@@ -27123,14 +27123,14 @@
   },
   "so:estacao_polia_dupla|avancado|panturrilha-sentada": {
    "dor": 0,
-   "equipamento": 1359
+   "equipamento": 1358
   },
   "so:estacao_polia_dupla|avancado|puxar-horizontal": {
-   "dor": 1579,
+   "dor": 1576,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|puxar-vertical": {
-   "dor": 2029,
+   "dor": 2025,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|avancado|triceps-acima-cabeca": {
@@ -27154,7 +27154,7 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|afundo": {
-   "dor": 1056,
+   "dor": 1055,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|agachar": {
@@ -27170,7 +27170,7 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|dobrar-quadril": {
-   "dor": 491,
+   "dor": 490,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|elevacao-lateral": {
@@ -27195,10 +27195,10 @@
   },
   "so:estacao_polia_dupla|iniciante|extensora": {
    "dor": 0,
-   "equipamento": 8928
+   "equipamento": 8925
   },
   "so:estacao_polia_dupla|iniciante|flexao-joelho": {
-   "dor": 758,
+   "dor": 757,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|ombro-posterior": {
@@ -27206,19 +27206,19 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|panturrilha-em-pe": {
-   "dor": 534,
+   "dor": 535,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|panturrilha-sentada": {
    "dor": 0,
-   "equipamento": 1429
+   "equipamento": 1428
   },
   "so:estacao_polia_dupla|iniciante|puxar-horizontal": {
-   "dor": 1605,
+   "dor": 1602,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|puxar-vertical": {
-   "dor": 2162,
+   "dor": 2161,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|iniciante|triceps-acima-cabeca": {
@@ -27242,11 +27242,11 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|afundo": {
-   "dor": 1040,
+   "dor": 1037,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|agachar": {
-   "dor": 853,
+   "dor": 851,
    "equipamento": 325
   },
   "so:estacao_polia_dupla|intermediario|biceps": {
@@ -27258,7 +27258,7 @@
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|dobrar-quadril": {
-   "dor": 482,
+   "dor": 481,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|elevacao-lateral": {
@@ -27283,10 +27283,10 @@
   },
   "so:estacao_polia_dupla|intermediario|extensora": {
    "dor": 0,
-   "equipamento": 8903
+   "equipamento": 8899
   },
   "so:estacao_polia_dupla|intermediario|flexao-joelho": {
-   "dor": 767,
+   "dor": 764,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|ombro-posterior": {
@@ -27299,14 +27299,14 @@
   },
   "so:estacao_polia_dupla|intermediario|panturrilha-sentada": {
    "dor": 0,
-   "equipamento": 1358
+   "equipamento": 1356
   },
   "so:estacao_polia_dupla|intermediario|puxar-horizontal": {
-   "dor": 1578,
+   "dor": 1575,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|puxar-vertical": {
-   "dor": 2056,
+   "dor": 2053,
    "equipamento": 0
   },
   "so:estacao_polia_dupla|intermediario|triceps-acima-cabeca": {
@@ -33618,11 +33618,11 @@
    "equipamento": 0
   },
   "step+elasticos|avancado|afundo": {
-   "dor": 825,
+   "dor": 817,
    "equipamento": 0
   },
   "step+elasticos|avancado|agachar": {
-   "dor": 741,
+   "dor": 736,
    "equipamento": 0
   },
   "step+elasticos|avancado|biceps": {
@@ -33654,7 +33654,7 @@
    "equipamento": 0
   },
   "step+elasticos|avancado|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "step+elasticos|avancado|ombro-posterior": {
@@ -33662,7 +33662,7 @@
    "equipamento": 0
   },
   "step+elasticos|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "step+elasticos|avancado|panturrilha-sentada": {
@@ -33674,7 +33674,7 @@
    "equipamento": 0
   },
   "step+elasticos|avancado|puxar-vertical": {
-   "dor": 2045,
+   "dor": 2037,
    "equipamento": 0
   },
   "step+elasticos|avancado|triceps-acima-cabeca": {
@@ -33686,7 +33686,7 @@
    "equipamento": 0
   },
   "step+elasticos|iniciante|abdomen": {
-   "dor": 859,
+   "dor": 860,
    "equipamento": 0
   },
   "step+elasticos|iniciante|abducao": {
@@ -33698,11 +33698,11 @@
    "equipamento": 0
   },
   "step+elasticos|iniciante|afundo": {
-   "dor": 810,
+   "dor": 802,
    "equipamento": 0
   },
   "step+elasticos|iniciante|agachar": {
-   "dor": 731,
+   "dor": 726,
    "equipamento": 0
   },
   "step+elasticos|iniciante|biceps": {
@@ -33734,7 +33734,7 @@
    "equipamento": 0
   },
   "step+elasticos|iniciante|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "step+elasticos|iniciante|ombro-posterior": {
@@ -33754,7 +33754,7 @@
    "equipamento": 0
   },
   "step+elasticos|iniciante|puxar-vertical": {
-   "dor": 2119,
+   "dor": 2111,
    "equipamento": 0
   },
   "step+elasticos|iniciante|triceps-acima-cabeca": {
@@ -33778,11 +33778,11 @@
    "equipamento": 0
   },
   "step+elasticos|intermediario|afundo": {
-   "dor": 826,
+   "dor": 818,
    "equipamento": 0
   },
   "step+elasticos|intermediario|agachar": {
-   "dor": 736,
+   "dor": 731,
    "equipamento": 0
   },
   "step+elasticos|intermediario|biceps": {
@@ -33814,7 +33814,7 @@
    "equipamento": 0
   },
   "step+elasticos|intermediario|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "step+elasticos|intermediario|ombro-posterior": {
@@ -33822,7 +33822,7 @@
    "equipamento": 0
   },
   "step+elasticos|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "step+elasticos|intermediario|panturrilha-sentada": {
@@ -33834,7 +33834,7 @@
    "equipamento": 0
   },
   "step+elasticos|intermediario|puxar-vertical": {
-   "dor": 2090,
+   "dor": 2082,
    "equipamento": 0
   },
   "step+elasticos|intermediario|triceps-acima-cabeca": {
@@ -33858,11 +33858,11 @@
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|afundo": {
-   "dor": 822,
+   "dor": 817,
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|agachar": {
-   "dor": 738,
+   "dor": 735,
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|biceps": {
@@ -33894,7 +33894,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|ombro-posterior": {
@@ -33902,7 +33902,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "suspensao+elasticos|avancado|panturrilha-sentada": {
@@ -33938,11 +33938,11 @@
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|afundo": {
-   "dor": 810,
+   "dor": 802,
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|agachar": {
-   "dor": 731,
+   "dor": 726,
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|biceps": {
@@ -33974,7 +33974,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|ombro-posterior": {
@@ -33982,7 +33982,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "suspensao+elasticos|iniciante|panturrilha-sentada": {
@@ -34018,11 +34018,11 @@
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|afundo": {
-   "dor": 826,
+   "dor": 818,
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|agachar": {
-   "dor": 736,
+   "dor": 731,
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|biceps": {
@@ -34054,7 +34054,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|extensora": {
-   "dor": 521,
+   "dor": 520,
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|ombro-posterior": {
@@ -34062,7 +34062,7 @@
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|panturrilha-em-pe": {
-   "dor": 536,
+   "dor": 535,
    "equipamento": 0
   },
   "suspensao+elasticos|intermediario|panturrilha-sentada": {
@@ -34415,25 +34415,25 @@
    "vagas": 167743
   },
   "banco+halteres-leves|avancado": {
-   "comExercicio": 145375,
+   "comExercicio": 145321,
    "dias": 22100,
-   "foraPorMinutos": 19873,
+   "foraPorMinutos": 19673,
    "programas": 5525,
-   "vagas": 168316
+   "vagas": 168250
   },
   "banco+halteres-leves|iniciante": {
-   "comExercicio": 146176,
+   "comExercicio": 146135,
    "dias": 22100,
-   "foraPorMinutos": 20279,
+   "foraPorMinutos": 20093,
    "programas": 5525,
-   "vagas": 169466
+   "vagas": 169419
   },
   "banco+halteres-leves|intermediario": {
-   "comExercicio": 146046,
+   "comExercicio": 145985,
    "dias": 22100,
-   "foraPorMinutos": 19733,
+   "foraPorMinutos": 19534,
    "programas": 5525,
-   "vagas": 169262
+   "vagas": 169188
   },
   "bruno|avancado": {
    "comExercicio": 154755,
@@ -34478,25 +34478,25 @@
    "vagas": 168253
   },
   "casa|avancado": {
-   "comExercicio": 153969,
+   "comExercicio": 153895,
    "dias": 22100,
-   "foraPorMinutos": 22677,
+   "foraPorMinutos": 22433,
    "programas": 5525,
-   "vagas": 167202
+   "vagas": 167116
   },
   "casa|iniciante": {
-   "comExercicio": 154227,
+   "comExercicio": 154160,
    "dias": 22100,
-   "foraPorMinutos": 22825,
+   "foraPorMinutos": 22556,
    "programas": 5525,
-   "vagas": 167843
+   "vagas": 167761
   },
   "casa|intermediario": {
-   "comExercicio": 154247,
+   "comExercicio": 154166,
    "dias": 22100,
-   "foraPorMinutos": 22503,
+   "foraPorMinutos": 22264,
    "programas": 5525,
-   "vagas": 167760
+   "vagas": 167666
   },
   "condominio+|avancado": {
    "comExercicio": 154288,
@@ -34541,67 +34541,67 @@
    "vagas": 168404
   },
   "diego|avancado": {
-   "comExercicio": 151766,
+   "comExercicio": 151695,
    "dias": 22100,
-   "foraPorMinutos": 21920,
+   "foraPorMinutos": 21709,
    "programas": 5525,
-   "vagas": 167180
+   "vagas": 167094
   },
   "diego|iniciante": {
-   "comExercicio": 151956,
+   "comExercicio": 151905,
    "dias": 22100,
-   "foraPorMinutos": 21970,
+   "foraPorMinutos": 21749,
    "programas": 5525,
-   "vagas": 167781
+   "vagas": 167717
   },
   "diego|intermediario": {
-   "comExercicio": 152009,
+   "comExercicio": 151938,
    "dias": 22100,
-   "foraPorMinutos": 21735,
+   "foraPorMinutos": 21508,
    "programas": 5525,
-   "vagas": 167688
+   "vagas": 167602
   },
   "elasticos|avancado": {
-   "comExercicio": 151163,
+   "comExercicio": 151100,
    "dias": 22100,
-   "foraPorMinutos": 21972,
+   "foraPorMinutos": 21764,
    "programas": 5525,
-   "vagas": 167168
+   "vagas": 167082
   },
   "elasticos|iniciante": {
-   "comExercicio": 151363,
+   "comExercicio": 151320,
    "dias": 22100,
-   "foraPorMinutos": 22057,
+   "foraPorMinutos": 21810,
    "programas": 5525,
-   "vagas": 167781
+   "vagas": 167717
   },
   "elasticos|intermediario": {
-   "comExercicio": 151412,
+   "comExercicio": 151349,
    "dias": 22100,
-   "foraPorMinutos": 21741,
+   "foraPorMinutos": 21516,
    "programas": 5525,
-   "vagas": 167685
+   "vagas": 167599
   },
   "halteres-banco|avancado": {
-   "comExercicio": 145375,
+   "comExercicio": 145321,
    "dias": 22100,
-   "foraPorMinutos": 19873,
+   "foraPorMinutos": 19673,
    "programas": 5525,
-   "vagas": 168316
+   "vagas": 168250
   },
   "halteres-banco|iniciante": {
-   "comExercicio": 146176,
+   "comExercicio": 146135,
    "dias": 22100,
-   "foraPorMinutos": 20279,
+   "foraPorMinutos": 20093,
    "programas": 5525,
-   "vagas": 169466
+   "vagas": 169419
   },
   "halteres-banco|intermediario": {
-   "comExercicio": 146046,
+   "comExercicio": 145985,
    "dias": 22100,
-   "foraPorMinutos": 19733,
+   "foraPorMinutos": 19534,
    "programas": 5525,
-   "vagas": 169262
+   "vagas": 169188
   },
   "halteres+bola|avancado": {
    "comExercicio": 138042,
@@ -34919,25 +34919,25 @@
    "vagas": 202039
   },
   "so:estacao_polia_dupla|avancado": {
-   "comExercicio": 141514,
+   "comExercicio": 141473,
    "dias": 22100,
-   "foraPorMinutos": 17857,
+   "foraPorMinutos": 17813,
    "programas": 5525,
-   "vagas": 168272
+   "vagas": 168208
   },
   "so:estacao_polia_dupla|iniciante": {
-   "comExercicio": 142191,
+   "comExercicio": 142183,
    "dias": 22100,
-   "foraPorMinutos": 19024,
+   "foraPorMinutos": 19002,
    "programas": 5525,
-   "vagas": 170083
+   "vagas": 170065
   },
   "so:estacao_polia_dupla|intermediario": {
-   "comExercicio": 141790,
+   "comExercicio": 141753,
    "dias": 22100,
-   "foraPorMinutos": 17533,
+   "foraPorMinutos": 17485,
    "programas": 5525,
-   "vagas": 168621
+   "vagas": 168563
   },
   "so:estacao_puxada|avancado": {
    "comExercicio": 106138,
@@ -35444,46 +35444,46 @@
    "vagas": 202073
   },
   "step+elasticos|avancado": {
-   "comExercicio": 151187,
+   "comExercicio": 151124,
    "dias": 22100,
-   "foraPorMinutos": 21972,
+   "foraPorMinutos": 21764,
    "programas": 5525,
-   "vagas": 167199
+   "vagas": 167113
   },
   "step+elasticos|iniciante": {
-   "comExercicio": 151363,
+   "comExercicio": 151320,
    "dias": 22100,
-   "foraPorMinutos": 22017,
+   "foraPorMinutos": 21769,
    "programas": 5525,
-   "vagas": 167781
+   "vagas": 167717
   },
   "step+elasticos|intermediario": {
-   "comExercicio": 151414,
+   "comExercicio": 151351,
    "dias": 22100,
-   "foraPorMinutos": 21734,
+   "foraPorMinutos": 21509,
    "programas": 5525,
-   "vagas": 167695
+   "vagas": 167609
   },
   "suspensao+elasticos|avancado": {
-   "comExercicio": 151742,
+   "comExercicio": 151685,
    "dias": 22100,
-   "foraPorMinutos": 22083,
+   "foraPorMinutos": 21897,
    "programas": 5525,
-   "vagas": 167149
+   "vagas": 167082
   },
   "suspensao+elasticos|iniciante": {
-   "comExercicio": 152056,
+   "comExercicio": 151985,
    "dias": 22100,
-   "foraPorMinutos": 22286,
+   "foraPorMinutos": 22029,
    "programas": 5525,
-   "vagas": 167883
+   "vagas": 167797
   },
   "suspensao+elasticos|intermediario": {
-   "comExercicio": 152008,
+   "comExercicio": 151926,
    "dias": 22100,
-   "foraPorMinutos": 21911,
+   "foraPorMinutos": 21687,
    "programas": 5525,
-   "vagas": 167686
+   "vagas": 167589
   },
   "vazio|avancado": {
    "comExercicio": 117954,
@@ -35807,10 +35807,10 @@
   },
   "avancado|banco+halteres-leves|abdomen": {
    "abaixoMeta": 372,
-   "abaixoPiso": 653,
+   "abaixoPiso": 651,
    "n": 5525,
    "prio": 850,
-   "soma": 30466,
+   "soma": 30464,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35819,7 +35819,7 @@
    "abaixoPiso": 502,
    "n": 5525,
    "prio": 850,
-   "soma": 48176.5,
+   "soma": 48192.5,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -35828,16 +35828,16 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 43291,
+   "soma": 43279,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "avancado|banco+halteres-leves|gluteos": {
-   "abaixoMeta": 620,
+   "abaixoMeta": 621,
    "abaixoPiso": 146,
    "n": 5525,
    "prio": 1275,
-   "soma": 57975.5,
+   "soma": 57961.5,
    "zero": 13,
    "zeroSemAviso": 0
   },
@@ -35846,7 +35846,7 @@
    "abaixoPiso": 960,
    "n": 5525,
    "prio": 850,
-   "soma": 36742,
+   "soma": 36735,
    "zero": 1035,
    "zeroSemAviso": 0
   },
@@ -35855,16 +35855,16 @@
    "abaixoPiso": 764,
    "n": 5525,
    "prio": 0,
-   "soma": 40640.5,
+   "soma": 40654.5,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "avancado|banco+halteres-leves|panturrilha": {
    "abaixoMeta": 947,
-   "abaixoPiso": 525,
+   "abaixoPiso": 524,
    "n": 5525,
    "prio": 1275,
-   "soma": 36253,
+   "soma": 36255,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35873,7 +35873,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 49018,
+   "soma": 49026,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -35882,7 +35882,7 @@
    "abaixoPiso": 240,
    "n": 5525,
    "prio": 1275,
-   "soma": 49835,
+   "soma": 49834,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -35891,16 +35891,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 41174,
+   "soma": 41168,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "avancado|banco+halteres-leves|triceps": {
-   "abaixoMeta": 422,
+   "abaixoMeta": 421,
    "abaixoPiso": 854,
    "n": 5525,
    "prio": 850,
-   "soma": 44379,
+   "soma": 44493,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36103,11 +36103,11 @@
    "zeroSemAviso": 0
   },
   "avancado|casa|abdomen": {
-   "abaixoMeta": 411,
-   "abaixoPiso": 654,
+   "abaixoMeta": 397,
+   "abaixoPiso": 652,
    "n": 5525,
    "prio": 850,
-   "soma": 29826,
+   "soma": 29841,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36116,7 +36116,7 @@
    "abaixoPiso": 546,
    "n": 5525,
    "prio": 850,
-   "soma": 47222.5,
+   "soma": 47244.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36125,7 +36125,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 45777,
+   "soma": 45761,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36134,7 +36134,7 @@
    "abaixoPiso": 602,
    "n": 5525,
    "prio": 1275,
-   "soma": 46674.5,
+   "soma": 46657,
    "zero": 77,
    "zeroSemAviso": 0
   },
@@ -36143,7 +36143,7 @@
    "abaixoPiso": 1028,
    "n": 5525,
    "prio": 850,
-   "soma": 35360,
+   "soma": 35338,
    "zero": 1106,
    "zeroSemAviso": 0
   },
@@ -36152,16 +36152,16 @@
    "abaixoPiso": 924,
    "n": 5525,
    "prio": 0,
-   "soma": 40317.5,
+   "soma": 40340.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|casa|panturrilha": {
    "abaixoMeta": 1005,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 33281,
+   "soma": 33285,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36170,7 +36170,7 @@
    "abaixoPiso": 273,
    "n": 5525,
    "prio": 1275,
-   "soma": 47486,
+   "soma": 47497,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -36179,7 +36179,7 @@
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 47758,
+   "soma": 47742,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -36188,7 +36188,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 48080,
+   "soma": 48072,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -36197,7 +36197,7 @@
    "abaixoPiso": 597,
    "n": 5525,
    "prio": 850,
-   "soma": 46123,
+   "soma": 46159,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -36400,11 +36400,11 @@
    "zeroSemAviso": 0
   },
   "avancado|diego|abdomen": {
-   "abaixoMeta": 405,
-   "abaixoPiso": 636,
+   "abaixoMeta": 393,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29844,
+   "soma": 29811,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36413,7 +36413,7 @@
    "abaixoPiso": 542,
    "n": 5525,
    "prio": 850,
-   "soma": 46420,
+   "soma": 46455.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36422,25 +36422,25 @@
    "abaixoPiso": 466,
    "n": 5525,
    "prio": 1275,
-   "soma": 49845,
+   "soma": 49854,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|diego|gluteos": {
-   "abaixoMeta": 818,
+   "abaixoMeta": 820,
    "abaixoPiso": 624,
    "n": 5525,
    "prio": 1275,
-   "soma": 46567.5,
+   "soma": 46547,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "avancado|diego|ombro_lateral": {
-   "abaixoMeta": 389,
+   "abaixoMeta": 401,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 35182,
+   "soma": 35119,
    "zero": 1064,
    "zeroSemAviso": 0
   },
@@ -36449,16 +36449,16 @@
    "abaixoPiso": 904,
    "n": 5525,
    "prio": 0,
-   "soma": 40264,
+   "soma": 40270.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|diego|panturrilha": {
    "abaixoMeta": 1071,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 32268,
+   "soma": 32273,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36467,7 +36467,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 49408,
+   "soma": 49480,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -36476,7 +36476,7 @@
    "abaixoPiso": 234,
    "n": 5525,
    "prio": 1275,
-   "soma": 47474,
+   "soma": 47460,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -36485,25 +36485,25 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 48454,
+   "soma": 48450,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "avancado|diego|triceps": {
-   "abaixoMeta": 450,
+   "abaixoMeta": 448,
    "abaixoPiso": 594,
    "n": 5525,
    "prio": 850,
-   "soma": 45144,
+   "soma": 45157,
    "zero": 359,
    "zeroSemAviso": 0
   },
   "avancado|elasticos|abdomen": {
-   "abaixoMeta": 409,
-   "abaixoPiso": 636,
+   "abaixoMeta": 396,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29758,
+   "soma": 29728,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36512,7 +36512,7 @@
    "abaixoPiso": 543,
    "n": 5525,
    "prio": 850,
-   "soma": 46137,
+   "soma": 46170.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36521,25 +36521,25 @@
    "abaixoPiso": 466,
    "n": 5525,
    "prio": 1275,
-   "soma": 49444,
+   "soma": 49452.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|elasticos|gluteos": {
-   "abaixoMeta": 824,
+   "abaixoMeta": 825,
    "abaixoPiso": 624,
    "n": 5525,
    "prio": 1275,
-   "soma": 46460,
+   "soma": 46440.5,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "avancado|elasticos|ombro_lateral": {
-   "abaixoMeta": 404,
+   "abaixoMeta": 416,
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 35060,
+   "soma": 35000,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -36548,16 +36548,16 @@
    "abaixoPiso": 917,
    "n": 5525,
    "prio": 0,
-   "soma": 40000,
+   "soma": 40005.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|elasticos|panturrilha": {
    "abaixoMeta": 1074,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 32198,
+   "soma": 32203,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36566,7 +36566,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 49280,
+   "soma": 49363,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -36575,7 +36575,7 @@
    "abaixoPiso": 234,
    "n": 5525,
    "prio": 1275,
-   "soma": 47319,
+   "soma": 47305,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -36584,25 +36584,25 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 48363,
+   "soma": 48359,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "avancado|elasticos|triceps": {
-   "abaixoMeta": 452,
+   "abaixoMeta": 450,
    "abaixoPiso": 594,
    "n": 5525,
    "prio": 850,
-   "soma": 44975,
+   "soma": 44994,
    "zero": 359,
    "zeroSemAviso": 0
   },
   "avancado|halteres-banco|abdomen": {
    "abaixoMeta": 372,
-   "abaixoPiso": 653,
+   "abaixoPiso": 651,
    "n": 5525,
    "prio": 850,
-   "soma": 30466,
+   "soma": 30464,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36611,7 +36611,7 @@
    "abaixoPiso": 502,
    "n": 5525,
    "prio": 850,
-   "soma": 48176.5,
+   "soma": 48192.5,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -36620,16 +36620,16 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 43291,
+   "soma": 43279,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "avancado|halteres-banco|gluteos": {
-   "abaixoMeta": 620,
+   "abaixoMeta": 621,
    "abaixoPiso": 146,
    "n": 5525,
    "prio": 1275,
-   "soma": 57975.5,
+   "soma": 57961.5,
    "zero": 13,
    "zeroSemAviso": 0
   },
@@ -36638,7 +36638,7 @@
    "abaixoPiso": 960,
    "n": 5525,
    "prio": 850,
-   "soma": 36742,
+   "soma": 36735,
    "zero": 1035,
    "zeroSemAviso": 0
   },
@@ -36647,16 +36647,16 @@
    "abaixoPiso": 764,
    "n": 5525,
    "prio": 0,
-   "soma": 40640.5,
+   "soma": 40654.5,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "avancado|halteres-banco|panturrilha": {
    "abaixoMeta": 947,
-   "abaixoPiso": 525,
+   "abaixoPiso": 524,
    "n": 5525,
    "prio": 1275,
-   "soma": 36253,
+   "soma": 36255,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36665,7 +36665,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 49018,
+   "soma": 49026,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -36674,7 +36674,7 @@
    "abaixoPiso": 240,
    "n": 5525,
    "prio": 1275,
-   "soma": 49835,
+   "soma": 49834,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -36683,16 +36683,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 41174,
+   "soma": 41168,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "avancado|halteres-banco|triceps": {
-   "abaixoMeta": 422,
+   "abaixoMeta": 421,
    "abaixoPiso": 854,
    "n": 5525,
    "prio": 850,
-   "soma": 44379,
+   "soma": 44493,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36764,7 +36764,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43394,
+   "soma": 43390,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36791,7 +36791,7 @@
    "abaixoPiso": 854,
    "n": 5525,
    "prio": 850,
-   "soma": 48401,
+   "soma": 48398,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36863,7 +36863,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43472,
+   "soma": 43468,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -36890,7 +36890,7 @@
    "abaixoPiso": 854,
    "n": 5525,
    "prio": 850,
-   "soma": 48429,
+   "soma": 48426,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -37061,7 +37061,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43472,
+   "soma": 43468,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -37088,7 +37088,7 @@
    "abaixoPiso": 854,
    "n": 5525,
    "prio": 850,
-   "soma": 48429,
+   "soma": 48426,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -38182,20 +38182,20 @@
    "zeroSemAviso": 0
   },
   "avancado|so:estacao_polia_dupla|abdomen": {
-   "abaixoMeta": 385,
-   "abaixoPiso": 660,
+   "abaixoMeta": 387,
+   "abaixoPiso": 658,
    "n": 5525,
    "prio": 850,
-   "soma": 30196,
+   "soma": 30155,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|so:estacao_polia_dupla|biceps": {
    "abaixoMeta": 467,
-   "abaixoPiso": 787,
+   "abaixoPiso": 786,
    "n": 5525,
    "prio": 850,
-   "soma": 43354.5,
+   "soma": 43371.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -38209,11 +38209,11 @@
    "zeroSemAviso": 0
   },
   "avancado|so:estacao_polia_dupla|gluteos": {
-   "abaixoMeta": 634,
+   "abaixoMeta": 635,
    "abaixoPiso": 281,
    "n": 5525,
    "prio": 1275,
-   "soma": 53385,
+   "soma": 53377,
    "zero": 33,
    "zeroSemAviso": 0
   },
@@ -38222,16 +38222,16 @@
    "abaixoPiso": 932,
    "n": 5525,
    "prio": 850,
-   "soma": 35270,
+   "soma": 35233,
    "zero": 1017,
    "zeroSemAviso": 0
   },
   "avancado|so:estacao_polia_dupla|ombro_posterior": {
    "abaixoMeta": 0,
-   "abaixoPiso": 776,
+   "abaixoPiso": 775,
    "n": 5525,
    "prio": 0,
-   "soma": 40387.5,
+   "soma": 40399.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -38240,7 +38240,7 @@
    "abaixoPiso": 527,
    "n": 5525,
    "prio": 1275,
-   "soma": 35957,
+   "soma": 35949,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -38249,7 +38249,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 54601,
+   "soma": 54591,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -38258,7 +38258,7 @@
    "abaixoPiso": 478,
    "n": 5525,
    "prio": 1275,
-   "soma": 46041,
+   "soma": 46038,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -38267,16 +38267,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 40540,
+   "soma": 40527,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "avancado|so:estacao_polia_dupla|triceps": {
    "abaixoMeta": 466,
-   "abaixoPiso": 838,
+   "abaixoPiso": 837,
    "n": 5525,
    "prio": 850,
-   "soma": 41616,
+   "soma": 41807,
    "zero": 671,
    "zeroSemAviso": 0
   },
@@ -38870,7 +38870,7 @@
    "abaixoPiso": 853,
    "n": 5525,
    "prio": 850,
-   "soma": 47991,
+   "soma": 47990,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -40657,11 +40657,11 @@
    "zeroSemAviso": 0
   },
   "avancado|step+elasticos|abdomen": {
-   "abaixoMeta": 411,
-   "abaixoPiso": 636,
+   "abaixoMeta": 398,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29760,
+   "soma": 29730,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40670,7 +40670,7 @@
    "abaixoPiso": 543,
    "n": 5525,
    "prio": 850,
-   "soma": 46117.5,
+   "soma": 46151,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40679,25 +40679,25 @@
    "abaixoPiso": 466,
    "n": 5525,
    "prio": 1275,
-   "soma": 49385,
+   "soma": 49393.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|step+elasticos|gluteos": {
-   "abaixoMeta": 823,
+   "abaixoMeta": 824,
    "abaixoPiso": 635,
    "n": 5525,
    "prio": 1275,
-   "soma": 46376.5,
+   "soma": 46358.5,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "avancado|step+elasticos|ombro_lateral": {
-   "abaixoMeta": 404,
+   "abaixoMeta": 416,
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 35044,
+   "soma": 34984,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -40706,16 +40706,16 @@
    "abaixoPiso": 917,
    "n": 5525,
    "prio": 0,
-   "soma": 39950.5,
+   "soma": 39956,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|step+elasticos|panturrilha": {
    "abaixoMeta": 1067,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 32173,
+   "soma": 32179,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40724,7 +40724,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 49255,
+   "soma": 49338,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -40733,7 +40733,7 @@
    "abaixoPiso": 234,
    "n": 5525,
    "prio": 1275,
-   "soma": 47271,
+   "soma": 47257,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -40742,61 +40742,61 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 48131,
+   "soma": 48127,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "avancado|step+elasticos|triceps": {
-   "abaixoMeta": 453,
+   "abaixoMeta": 451,
    "abaixoPiso": 594,
    "n": 5525,
    "prio": 850,
-   "soma": 44913.5,
+   "soma": 44932.5,
    "zero": 359,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|abdomen": {
-   "abaixoMeta": 411,
-   "abaixoPiso": 634,
+   "abaixoMeta": 398,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29804,
+   "soma": 29772,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|biceps": {
    "abaixoMeta": 352,
-   "abaixoPiso": 555,
+   "abaixoPiso": 554,
    "n": 5525,
    "prio": 850,
-   "soma": 46040.5,
+   "soma": 46070,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|costas": {
-   "abaixoMeta": 575,
+   "abaixoMeta": 577,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 49085,
+   "soma": 49086,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|gluteos": {
-   "abaixoMeta": 816,
+   "abaixoMeta": 818,
    "abaixoPiso": 634,
    "n": 5525,
    "prio": 1275,
-   "soma": 46287,
+   "soma": 46270,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|ombro_lateral": {
-   "abaixoMeta": 403,
+   "abaixoMeta": 416,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 35050,
+   "soma": 34986,
    "zero": 1064,
    "zeroSemAviso": 0
   },
@@ -40805,16 +40805,16 @@
    "abaixoPiso": 922,
    "n": 5525,
    "prio": 0,
-   "soma": 39785.5,
+   "soma": 39792,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "avancado|suspensao+elasticos|panturrilha": {
    "abaixoMeta": 1071,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 32242,
+   "soma": 32244,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -40823,7 +40823,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 46253,
+   "soma": 46355,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -40832,7 +40832,7 @@
    "abaixoPiso": 234,
    "n": 5525,
    "prio": 1275,
-   "soma": 47092,
+   "soma": 47076,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -40841,7 +40841,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 48081,
+   "soma": 48075,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -40850,7 +40850,7 @@
    "abaixoPiso": 594,
    "n": 5525,
    "prio": 850,
-   "soma": 45085,
+   "soma": 45088.5,
    "zero": 359,
    "zeroSemAviso": 0
   },
@@ -41252,10 +41252,10 @@
   },
   "iniciante|banco+halteres-leves|abdomen": {
    "abaixoMeta": 302,
-   "abaixoPiso": 635,
+   "abaixoPiso": 631,
    "n": 5525,
    "prio": 850,
-   "soma": 28055,
+   "soma": 28058,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41264,7 +41264,7 @@
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 38239.5,
+   "soma": 38249.5,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -41273,13 +41273,13 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 35289,
+   "soma": 35271,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "iniciante|banco+halteres-leves|gluteos": {
-   "abaixoMeta": 288,
-   "abaixoPiso": 86,
+   "abaixoMeta": 289,
+   "abaixoPiso": 84,
    "n": 5525,
    "prio": 1275,
    "soma": 53810,
@@ -41291,7 +41291,7 @@
    "abaixoPiso": 965,
    "n": 5525,
    "prio": 850,
-   "soma": 29689,
+   "soma": 29681,
    "zero": 1044,
    "zeroSemAviso": 0
   },
@@ -41300,16 +41300,16 @@
    "abaixoPiso": 767,
    "n": 5525,
    "prio": 0,
-   "soma": 34240.5,
+   "soma": 34238.5,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "iniciante|banco+halteres-leves|panturrilha": {
    "abaixoMeta": 612,
-   "abaixoPiso": 528,
+   "abaixoPiso": 527,
    "n": 5525,
    "prio": 1275,
-   "soma": 30376,
+   "soma": 30390,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41318,7 +41318,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 39359,
+   "soma": 39391,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41327,7 +41327,7 @@
    "abaixoPiso": 252,
    "n": 5525,
    "prio": 1275,
-   "soma": 39908,
+   "soma": 39903,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -41336,16 +41336,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33150,
+   "soma": 33147,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "iniciante|banco+halteres-leves|triceps": {
-   "abaixoMeta": 271,
+   "abaixoMeta": 258,
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 37053,
+   "soma": 37208.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -41548,11 +41548,11 @@
    "zeroSemAviso": 0
   },
   "iniciante|casa|abdomen": {
-   "abaixoMeta": 302,
-   "abaixoPiso": 641,
+   "abaixoMeta": 314,
+   "abaixoPiso": 638,
    "n": 5525,
    "prio": 850,
-   "soma": 27720,
+   "soma": 27700,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41561,7 +41561,7 @@
    "abaixoPiso": 547,
    "n": 5525,
    "prio": 850,
-   "soma": 37508,
+   "soma": 37523,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41570,7 +41570,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 37648,
+   "soma": 37624,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -41579,16 +41579,16 @@
    "abaixoPiso": 548,
    "n": 5525,
    "prio": 1275,
-   "soma": 39182.5,
+   "soma": 39168.5,
    "zero": 78,
    "zeroSemAviso": 0
   },
   "iniciante|casa|ombro_lateral": {
-   "abaixoMeta": 278,
+   "abaixoMeta": 263,
    "abaixoPiso": 1024,
    "n": 5525,
    "prio": 850,
-   "soma": 28319,
+   "soma": 28351,
    "zero": 1104,
    "zeroSemAviso": 0
   },
@@ -41597,16 +41597,16 @@
    "abaixoPiso": 941,
    "n": 5525,
    "prio": 0,
-   "soma": 33353,
+   "soma": 33359,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|casa|panturrilha": {
    "abaixoMeta": 676,
-   "abaixoPiso": 921,
+   "abaixoPiso": 920,
    "n": 5525,
    "prio": 1275,
-   "soma": 28032,
+   "soma": 28042,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41615,7 +41615,7 @@
    "abaixoPiso": 273,
    "n": 5525,
    "prio": 1275,
-   "soma": 38353,
+   "soma": 38414,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -41624,7 +41624,7 @@
    "abaixoPiso": 254,
    "n": 5525,
    "prio": 1275,
-   "soma": 38838,
+   "soma": 38830,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -41633,7 +41633,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40204,
+   "soma": 40200,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -41642,7 +41642,7 @@
    "abaixoPiso": 593,
    "n": 5525,
    "prio": 850,
-   "soma": 38585.5,
+   "soma": 38630,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -41845,11 +41845,11 @@
    "zeroSemAviso": 0
   },
   "iniciante|diego|abdomen": {
-   "abaixoMeta": 301,
-   "abaixoPiso": 633,
+   "abaixoMeta": 312,
+   "abaixoPiso": 629,
    "n": 5525,
    "prio": 850,
-   "soma": 27750,
+   "soma": 27723,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41858,7 +41858,7 @@
    "abaixoPiso": 544,
    "n": 5525,
    "prio": 850,
-   "soma": 36610,
+   "soma": 36621,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41867,16 +41867,16 @@
    "abaixoPiso": 473,
    "n": 5525,
    "prio": 1275,
-   "soma": 43198,
+   "soma": 43182,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|diego|gluteos": {
-   "abaixoMeta": 470,
-   "abaixoPiso": 579,
+   "abaixoMeta": 472,
+   "abaixoPiso": 578,
    "n": 5525,
    "prio": 1275,
-   "soma": 38856.5,
+   "soma": 38846,
    "zero": 78,
    "zeroSemAviso": 0
   },
@@ -41885,7 +41885,7 @@
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 28441,
+   "soma": 28445,
    "zero": 1066,
    "zeroSemAviso": 0
   },
@@ -41900,10 +41900,10 @@
   },
   "iniciante|diego|panturrilha": {
    "abaixoMeta": 786,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 27524,
+   "soma": 27525,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41912,16 +41912,16 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 41913,
+   "soma": 41941,
    "zero": 419,
    "zeroSemAviso": 0
   },
   "iniciante|diego|posteriores": {
    "abaixoMeta": 637,
-   "abaixoPiso": 240,
+   "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 38570,
+   "soma": 38563,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -41930,34 +41930,34 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40120,
+   "soma": 40119,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "iniciante|diego|triceps": {
-   "abaixoMeta": 278,
+   "abaixoMeta": 280,
    "abaixoPiso": 590,
    "n": 5525,
    "prio": 850,
-   "soma": 37588.5,
+   "soma": 37609.5,
    "zero": 360,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|abdomen": {
-   "abaixoMeta": 304,
-   "abaixoPiso": 635,
+   "abaixoMeta": 315,
+   "abaixoPiso": 631,
    "n": 5525,
    "prio": 850,
-   "soma": 27702,
+   "soma": 27675,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|biceps": {
-   "abaixoMeta": 214,
+   "abaixoMeta": 212,
    "abaixoPiso": 545,
    "n": 5525,
    "prio": 850,
-   "soma": 36449.5,
+   "soma": 36464.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -41966,25 +41966,25 @@
    "abaixoPiso": 473,
    "n": 5525,
    "prio": 1275,
-   "soma": 43127,
+   "soma": 43111,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|gluteos": {
-   "abaixoMeta": 488,
-   "abaixoPiso": 581,
+   "abaixoMeta": 490,
+   "abaixoPiso": 580,
    "n": 5525,
    "prio": 1275,
-   "soma": 38749.5,
+   "soma": 38739,
    "zero": 78,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|ombro_lateral": {
-   "abaixoMeta": 291,
+   "abaixoMeta": 265,
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 28339,
+   "soma": 28369,
    "zero": 1064,
    "zeroSemAviso": 0
   },
@@ -41999,10 +41999,10 @@
   },
   "iniciante|elasticos|panturrilha": {
    "abaixoMeta": 786,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 27517,
+   "soma": 27518,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -42011,16 +42011,16 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 41854,
+   "soma": 41878,
    "zero": 419,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|posteriores": {
    "abaixoMeta": 651,
-   "abaixoPiso": 240,
+   "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 38434,
+   "soma": 38427,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -42029,25 +42029,25 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40049,
+   "soma": 40048,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "iniciante|elasticos|triceps": {
-   "abaixoMeta": 278,
+   "abaixoMeta": 280,
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 37502.5,
+   "soma": 37549.5,
    "zero": 362,
    "zeroSemAviso": 0
   },
   "iniciante|halteres-banco|abdomen": {
    "abaixoMeta": 302,
-   "abaixoPiso": 635,
+   "abaixoPiso": 631,
    "n": 5525,
    "prio": 850,
-   "soma": 28055,
+   "soma": 28058,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -42056,7 +42056,7 @@
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 38239.5,
+   "soma": 38249.5,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -42065,13 +42065,13 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 35289,
+   "soma": 35271,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "iniciante|halteres-banco|gluteos": {
-   "abaixoMeta": 288,
-   "abaixoPiso": 86,
+   "abaixoMeta": 289,
+   "abaixoPiso": 84,
    "n": 5525,
    "prio": 1275,
    "soma": 53810,
@@ -42083,7 +42083,7 @@
    "abaixoPiso": 965,
    "n": 5525,
    "prio": 850,
-   "soma": 29689,
+   "soma": 29681,
    "zero": 1044,
    "zeroSemAviso": 0
   },
@@ -42092,16 +42092,16 @@
    "abaixoPiso": 767,
    "n": 5525,
    "prio": 0,
-   "soma": 34240.5,
+   "soma": 34238.5,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "iniciante|halteres-banco|panturrilha": {
    "abaixoMeta": 612,
-   "abaixoPiso": 528,
+   "abaixoPiso": 527,
    "n": 5525,
    "prio": 1275,
-   "soma": 30376,
+   "soma": 30390,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -42110,7 +42110,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 39359,
+   "soma": 39391,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -42119,7 +42119,7 @@
    "abaixoPiso": 252,
    "n": 5525,
    "prio": 1275,
-   "soma": 39908,
+   "soma": 39903,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -42128,16 +42128,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33150,
+   "soma": 33147,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "iniciante|halteres-banco|triceps": {
-   "abaixoMeta": 271,
+   "abaixoMeta": 258,
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 37053,
+   "soma": 37208.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42209,7 +42209,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33989,
+   "soma": 33979,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42236,7 +42236,7 @@
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 41583.5,
+   "soma": 41578.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42308,7 +42308,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33983,
+   "soma": 33973,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42335,7 +42335,7 @@
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 41570.5,
+   "soma": 41565.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42506,7 +42506,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33983,
+   "soma": 33973,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -42533,7 +42533,7 @@
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 41570.5,
+   "soma": 41565.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -43627,11 +43627,11 @@
    "zeroSemAviso": 0
   },
   "iniciante|so:estacao_polia_dupla|abdomen": {
-   "abaixoMeta": 314,
+   "abaixoMeta": 323,
    "abaixoPiso": 630,
    "n": 5525,
    "prio": 850,
-   "soma": 27963,
+   "soma": 27927,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -43640,16 +43640,16 @@
    "abaixoPiso": 786,
    "n": 5525,
    "prio": 850,
-   "soma": 36305,
+   "soma": 36317,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "iniciante|so:estacao_polia_dupla|costas": {
-   "abaixoMeta": 493,
+   "abaixoMeta": 483,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 37524,
+   "soma": 37530,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -43658,16 +43658,16 @@
    "abaixoPiso": 99,
    "n": 5525,
    "prio": 1275,
-   "soma": 52675,
+   "soma": 52663.5,
    "zero": 20,
    "zeroSemAviso": 0
   },
   "iniciante|so:estacao_polia_dupla|ombro_lateral": {
-   "abaixoMeta": 316,
+   "abaixoMeta": 334,
    "abaixoPiso": 908,
    "n": 5525,
    "prio": 850,
-   "soma": 29787,
+   "soma": 29753,
    "zero": 971,
    "zeroSemAviso": 0
   },
@@ -43676,7 +43676,7 @@
    "abaixoPiso": 778,
    "n": 5525,
    "prio": 0,
-   "soma": 34562,
+   "soma": 34572,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -43685,7 +43685,7 @@
    "abaixoPiso": 521,
    "n": 5525,
    "prio": 1275,
-   "soma": 30531,
+   "soma": 30520,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -43694,7 +43694,7 @@
    "abaixoPiso": 250,
    "n": 5525,
    "prio": 1275,
-   "soma": 47255,
+   "soma": 47273,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -43703,25 +43703,25 @@
    "abaixoPiso": 534,
    "n": 5525,
    "prio": 1275,
-   "soma": 34019,
+   "soma": 34021,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|so:estacao_polia_dupla|quadriceps": {
-   "abaixoMeta": 549,
+   "abaixoMeta": 550,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33479,
+   "soma": 33482,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "iniciante|so:estacao_polia_dupla|triceps": {
    "abaixoMeta": 342,
-   "abaixoPiso": 844,
+   "abaixoPiso": 843,
    "n": 5525,
    "prio": 850,
-   "soma": 35119,
+   "soma": 35279,
    "zero": 694,
    "zeroSemAviso": 0
   },
@@ -44288,7 +44288,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 33898,
+   "soma": 33886,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -44311,11 +44311,11 @@
    "zeroSemAviso": 0
   },
   "iniciante|so:halteres_fixos|triceps": {
-   "abaixoMeta": 244,
+   "abaixoMeta": 256,
    "abaixoPiso": 849,
    "n": 5525,
    "prio": 850,
-   "soma": 41227,
+   "soma": 41221,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -46102,20 +46102,20 @@
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|abdomen": {
-   "abaixoMeta": 306,
-   "abaixoPiso": 635,
+   "abaixoMeta": 317,
+   "abaixoPiso": 631,
    "n": 5525,
    "prio": 850,
-   "soma": 27705,
+   "soma": 27678,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|biceps": {
-   "abaixoMeta": 214,
+   "abaixoMeta": 212,
    "abaixoPiso": 545,
    "n": 5525,
    "prio": 850,
-   "soma": 36435.5,
+   "soma": 36450.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46124,25 +46124,25 @@
    "abaixoPiso": 473,
    "n": 5525,
    "prio": 1275,
-   "soma": 43112,
+   "soma": 43096,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|gluteos": {
-   "abaixoMeta": 488,
-   "abaixoPiso": 592,
+   "abaixoMeta": 490,
+   "abaixoPiso": 591,
    "n": 5525,
    "prio": 1275,
-   "soma": 38751,
+   "soma": 38740.5,
    "zero": 78,
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|ombro_lateral": {
-   "abaixoMeta": 293,
+   "abaixoMeta": 267,
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 28354,
+   "soma": 28384,
    "zero": 1064,
    "zeroSemAviso": 0
   },
@@ -46157,10 +46157,10 @@
   },
   "iniciante|step+elasticos|panturrilha": {
    "abaixoMeta": 783,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 27524,
+   "soma": 27525,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46169,16 +46169,16 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 41865,
+   "soma": 41889,
    "zero": 419,
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|posteriores": {
    "abaixoMeta": 648,
-   "abaixoPiso": 240,
+   "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 38444,
+   "soma": 38437,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -46187,34 +46187,34 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40036,
+   "soma": 40035,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "iniciante|step+elasticos|triceps": {
-   "abaixoMeta": 278,
+   "abaixoMeta": 280,
    "abaixoPiso": 592,
    "n": 5525,
    "prio": 850,
-   "soma": 37502,
+   "soma": 37549,
    "zero": 362,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|abdomen": {
-   "abaixoMeta": 303,
-   "abaixoPiso": 635,
+   "abaixoMeta": 314,
+   "abaixoPiso": 631,
    "n": 5525,
    "prio": 850,
-   "soma": 27716,
+   "soma": 27689,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|biceps": {
-   "abaixoMeta": 175,
-   "abaixoPiso": 557,
+   "abaixoMeta": 174,
+   "abaixoPiso": 555,
    "n": 5525,
    "prio": 850,
-   "soma": 36474.5,
+   "soma": 36489.5,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46223,25 +46223,25 @@
    "abaixoPiso": 473,
    "n": 5525,
    "prio": 1275,
-   "soma": 42835,
+   "soma": 42817.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|gluteos": {
-   "abaixoMeta": 486,
+   "abaixoMeta": 488,
    "abaixoPiso": 570,
    "n": 5525,
    "prio": 1275,
-   "soma": 38800,
+   "soma": 38784,
    "zero": 78,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|ombro_lateral": {
-   "abaixoMeta": 293,
+   "abaixoMeta": 265,
    "abaixoPiso": 990,
    "n": 5525,
    "prio": 850,
-   "soma": 28343,
+   "soma": 28376,
    "zero": 1064,
    "zeroSemAviso": 0
   },
@@ -46250,16 +46250,16 @@
    "abaixoPiso": 934,
    "n": 5525,
    "prio": 0,
-   "soma": 32539.5,
+   "soma": 32544.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|panturrilha": {
    "abaixoMeta": 786,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 27527,
+   "soma": 27528,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46268,7 +46268,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 37483,
+   "soma": 37509,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -46277,7 +46277,7 @@
    "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 38498,
+   "soma": 38486,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -46286,16 +46286,16 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 40087,
+   "soma": 40083,
    "zero": 351,
    "zeroSemAviso": 0
   },
   "iniciante|suspensao+elasticos|triceps": {
-   "abaixoMeta": 263,
+   "abaixoMeta": 277,
    "abaixoPiso": 591,
    "n": 5525,
    "prio": 850,
-   "soma": 37818,
+   "soma": 37867,
    "zero": 362,
    "zeroSemAviso": 0
   },
@@ -46697,7 +46697,7 @@
   },
   "intermediario|banco+halteres-leves|abdomen": {
    "abaixoMeta": 303,
-   "abaixoPiso": 639,
+   "abaixoPiso": 637,
    "n": 5525,
    "prio": 850,
    "soma": 29779,
@@ -46709,7 +46709,7 @@
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 44999,
+   "soma": 45018,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -46718,16 +46718,16 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 40802,
+   "soma": 40790,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "intermediario|banco+halteres-leves|gluteos": {
-   "abaixoMeta": 471,
+   "abaixoMeta": 472,
    "abaixoPiso": 140,
    "n": 5525,
    "prio": 1275,
-   "soma": 55176,
+   "soma": 55158,
    "zero": 13,
    "zeroSemAviso": 0
   },
@@ -46736,7 +46736,7 @@
    "abaixoPiso": 972,
    "n": 5525,
    "prio": 850,
-   "soma": 35192,
+   "soma": 35163,
    "zero": 1050,
    "zeroSemAviso": 0
   },
@@ -46745,16 +46745,16 @@
    "abaixoPiso": 767,
    "n": 5525,
    "prio": 0,
-   "soma": 38601,
+   "soma": 38615,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "intermediario|banco+halteres-leves|panturrilha": {
    "abaixoMeta": 654,
-   "abaixoPiso": 526,
+   "abaixoPiso": 525,
    "n": 5525,
    "prio": 1275,
-   "soma": 34654,
+   "soma": 34655,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -46772,7 +46772,7 @@
    "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 46682,
+   "soma": 46677,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -46781,7 +46781,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 38891,
+   "soma": 38885,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -46790,7 +46790,7 @@
    "abaixoPiso": 841,
    "n": 5525,
    "prio": 850,
-   "soma": 42256.5,
+   "soma": 42372,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -46994,37 +46994,37 @@
   },
   "intermediario|casa|abdomen": {
    "abaixoMeta": 319,
-   "abaixoPiso": 641,
+   "abaixoPiso": 639,
    "n": 5525,
    "prio": 850,
-   "soma": 29151,
+   "soma": 29165,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|casa|biceps": {
-   "abaixoMeta": 246,
+   "abaixoMeta": 231,
    "abaixoPiso": 548,
    "n": 5525,
    "prio": 850,
-   "soma": 43938.5,
+   "soma": 43986,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|casa|costas": {
-   "abaixoMeta": 436,
+   "abaixoMeta": 421,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 43233,
+   "soma": 43234,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|casa|gluteos": {
-   "abaixoMeta": 598,
+   "abaixoMeta": 599,
    "abaixoPiso": 591,
    "n": 5525,
    "prio": 1275,
-   "soma": 44250.5,
+   "soma": 44231.5,
    "zero": 77,
    "zeroSemAviso": 0
   },
@@ -47033,7 +47033,7 @@
    "abaixoPiso": 1028,
    "n": 5525,
    "prio": 850,
-   "soma": 34086,
+   "soma": 34040,
    "zero": 1104,
    "zeroSemAviso": 0
   },
@@ -47042,16 +47042,16 @@
    "abaixoPiso": 939,
    "n": 5525,
    "prio": 0,
-   "soma": 38134.5,
+   "soma": 38178,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|casa|panturrilha": {
    "abaixoMeta": 760,
-   "abaixoPiso": 924,
+   "abaixoPiso": 923,
    "n": 5525,
    "prio": 1275,
-   "soma": 32351,
+   "soma": 32355,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47060,7 +47060,7 @@
    "abaixoPiso": 273,
    "n": 5525,
    "prio": 1275,
-   "soma": 45334,
+   "soma": 45340,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -47069,7 +47069,7 @@
    "abaixoPiso": 253,
    "n": 5525,
    "prio": 1275,
-   "soma": 44825,
+   "soma": 44806,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47078,7 +47078,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 45013,
+   "soma": 45005,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -47087,7 +47087,7 @@
    "abaixoPiso": 584,
    "n": 5525,
    "prio": 850,
-   "soma": 44102,
+   "soma": 44137,
    "zero": 340,
    "zeroSemAviso": 0
   },
@@ -47290,20 +47290,20 @@
    "zeroSemAviso": 0
   },
   "intermediario|diego|abdomen": {
-   "abaixoMeta": 323,
-   "abaixoPiso": 637,
+   "abaixoMeta": 334,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29143,
+   "soma": 29104,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|diego|biceps": {
-   "abaixoMeta": 259,
+   "abaixoMeta": 257,
    "abaixoPiso": 543,
    "n": 5525,
    "prio": 850,
-   "soma": 43046.5,
+   "soma": 43070,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47312,25 +47312,25 @@
    "abaixoPiso": 483,
    "n": 5525,
    "prio": 1275,
-   "soma": 46842.5,
+   "soma": 46843,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|diego|gluteos": {
-   "abaixoMeta": 670,
+   "abaixoMeta": 671,
    "abaixoPiso": 613,
    "n": 5525,
    "prio": 1275,
-   "soma": 44014.5,
+   "soma": 43995,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "intermediario|diego|ombro_lateral": {
-   "abaixoMeta": 314,
+   "abaixoMeta": 300,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 34050,
+   "soma": 34002,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -47339,16 +47339,16 @@
    "abaixoPiso": 919,
    "n": 5525,
    "prio": 0,
-   "soma": 37739.5,
+   "soma": 37769,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|diego|panturrilha": {
    "abaixoMeta": 847,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 31630,
+   "soma": 31635,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47357,7 +47357,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 46823,
+   "soma": 46882,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -47366,7 +47366,7 @@
    "abaixoPiso": 235,
    "n": 5525,
    "prio": 1275,
-   "soma": 44243,
+   "soma": 44229,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47375,7 +47375,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 44886,
+   "soma": 44882,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -47384,52 +47384,52 @@
    "abaixoPiso": 583,
    "n": 5525,
    "prio": 850,
-   "soma": 42979,
+   "soma": 43008.5,
    "zero": 362,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|abdomen": {
-   "abaixoMeta": 327,
-   "abaixoPiso": 637,
+   "abaixoMeta": 338,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29064,
+   "soma": 29025,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|biceps": {
-   "abaixoMeta": 259,
+   "abaixoMeta": 257,
    "abaixoPiso": 544,
    "n": 5525,
    "prio": 850,
-   "soma": 42951,
+   "soma": 42983,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|costas": {
-   "abaixoMeta": 424,
+   "abaixoMeta": 410,
    "abaixoPiso": 483,
    "n": 5525,
    "prio": 1275,
-   "soma": 46645,
+   "soma": 46658,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|gluteos": {
-   "abaixoMeta": 676,
+   "abaixoMeta": 677,
    "abaixoPiso": 624,
    "n": 5525,
    "prio": 1275,
-   "soma": 43928,
+   "soma": 43908.5,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|ombro_lateral": {
-   "abaixoMeta": 330,
+   "abaixoMeta": 303,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 33902,
+   "soma": 33872,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -47438,16 +47438,16 @@
    "abaixoPiso": 921,
    "n": 5525,
    "prio": 0,
-   "soma": 37633,
+   "soma": 37668,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|elasticos|panturrilha": {
    "abaixoMeta": 847,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 31598,
+   "soma": 31603,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47456,7 +47456,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 46672,
+   "soma": 46728,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -47465,7 +47465,7 @@
    "abaixoPiso": 235,
    "n": 5525,
    "prio": 1275,
-   "soma": 44169,
+   "soma": 44155,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47474,7 +47474,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 44804,
+   "soma": 44800,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -47483,13 +47483,13 @@
    "abaixoPiso": 583,
    "n": 5525,
    "prio": 850,
-   "soma": 42807.5,
+   "soma": 42848.5,
    "zero": 362,
    "zeroSemAviso": 0
   },
   "intermediario|halteres-banco|abdomen": {
    "abaixoMeta": 303,
-   "abaixoPiso": 639,
+   "abaixoPiso": 637,
    "n": 5525,
    "prio": 850,
    "soma": 29779,
@@ -47501,7 +47501,7 @@
    "abaixoPiso": 503,
    "n": 5525,
    "prio": 850,
-   "soma": 44999,
+   "soma": 45018,
    "zero": 342,
    "zeroSemAviso": 0
   },
@@ -47510,16 +47510,16 @@
    "abaixoPiso": 750,
    "n": 5525,
    "prio": 1275,
-   "soma": 40802,
+   "soma": 40790,
    "zero": 975,
    "zeroSemAviso": 0
   },
   "intermediario|halteres-banco|gluteos": {
-   "abaixoMeta": 471,
+   "abaixoMeta": 472,
    "abaixoPiso": 140,
    "n": 5525,
    "prio": 1275,
-   "soma": 55176,
+   "soma": 55158,
    "zero": 13,
    "zeroSemAviso": 0
   },
@@ -47528,7 +47528,7 @@
    "abaixoPiso": 972,
    "n": 5525,
    "prio": 850,
-   "soma": 35192,
+   "soma": 35163,
    "zero": 1050,
    "zeroSemAviso": 0
   },
@@ -47537,16 +47537,16 @@
    "abaixoPiso": 767,
    "n": 5525,
    "prio": 0,
-   "soma": 38601,
+   "soma": 38615,
    "zero": 364,
    "zeroSemAviso": 0
   },
   "intermediario|halteres-banco|panturrilha": {
    "abaixoMeta": 654,
-   "abaixoPiso": 526,
+   "abaixoPiso": 525,
    "n": 5525,
    "prio": 1275,
-   "soma": 34654,
+   "soma": 34655,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -47564,7 +47564,7 @@
    "abaixoPiso": 239,
    "n": 5525,
    "prio": 1275,
-   "soma": 46682,
+   "soma": 46677,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -47573,7 +47573,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 38891,
+   "soma": 38885,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47582,7 +47582,7 @@
    "abaixoPiso": 841,
    "n": 5525,
    "prio": 850,
-   "soma": 42256.5,
+   "soma": 42372,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47654,7 +47654,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 40610,
+   "soma": 40609,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47681,7 +47681,7 @@
    "abaixoPiso": 843,
    "n": 5525,
    "prio": 850,
-   "soma": 46284,
+   "soma": 46283.5,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47753,7 +47753,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 40621,
+   "soma": 40620,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47780,7 +47780,7 @@
    "abaixoPiso": 843,
    "n": 5525,
    "prio": 850,
-   "soma": 46257.5,
+   "soma": 46257,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47951,7 +47951,7 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 40621,
+   "soma": 40620,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -47978,7 +47978,7 @@
    "abaixoPiso": 843,
    "n": 5525,
    "prio": 850,
-   "soma": 46257.5,
+   "soma": 46257,
    "zero": 650,
    "zeroSemAviso": 0
   },
@@ -49072,38 +49072,38 @@
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|abdomen": {
-   "abaixoMeta": 307,
-   "abaixoPiso": 631,
+   "abaixoMeta": 317,
+   "abaixoPiso": 629,
    "n": 5525,
    "prio": 850,
-   "soma": 29435,
+   "soma": 29373,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|biceps": {
-   "abaixoMeta": 371,
-   "abaixoPiso": 787,
+   "abaixoMeta": 383,
+   "abaixoPiso": 786,
    "n": 5525,
    "prio": 850,
-   "soma": 40718,
+   "soma": 40678,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|costas": {
-   "abaixoMeta": 546,
+   "abaixoMeta": 535,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 42294,
+   "soma": 42298,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|gluteos": {
-   "abaixoMeta": 544,
+   "abaixoMeta": 545,
    "abaixoPiso": 272,
    "n": 5525,
    "prio": 1275,
-   "soma": 50661,
+   "soma": 50648,
    "zero": 33,
    "zeroSemAviso": 0
   },
@@ -49112,16 +49112,16 @@
    "abaixoPiso": 941,
    "n": 5525,
    "prio": 850,
-   "soma": 33997,
+   "soma": 33976,
    "zero": 1016,
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|ombro_posterior": {
    "abaixoMeta": 0,
-   "abaixoPiso": 776,
+   "abaixoPiso": 775,
    "n": 5525,
    "prio": 0,
-   "soma": 38045,
+   "soma": 38062,
    "zero": 338,
    "zeroSemAviso": 0
   },
@@ -49130,7 +49130,7 @@
    "abaixoPiso": 526,
    "n": 5525,
    "prio": 1275,
-   "soma": 34193,
+   "soma": 34187,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -49148,7 +49148,7 @@
    "abaixoPiso": 478,
    "n": 5525,
    "prio": 1275,
-   "soma": 43287,
+   "soma": 43274,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -49157,16 +49157,16 @@
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 38295,
+   "soma": 38282,
    "zero": 650,
    "zeroSemAviso": 0
   },
   "intermediario|so:estacao_polia_dupla|triceps": {
    "abaixoMeta": 435,
-   "abaixoPiso": 835,
+   "abaixoPiso": 834,
    "n": 5525,
    "prio": 850,
-   "soma": 39636.5,
+   "soma": 39808.5,
    "zero": 670,
    "zeroSemAviso": 0
   },
@@ -51547,47 +51547,47 @@
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|abdomen": {
-   "abaixoMeta": 327,
-   "abaixoPiso": 637,
+   "abaixoMeta": 338,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29068,
+   "soma": 29029,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|biceps": {
-   "abaixoMeta": 259,
+   "abaixoMeta": 257,
    "abaixoPiso": 544,
    "n": 5525,
    "prio": 850,
-   "soma": 42950,
+   "soma": 42982,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|costas": {
-   "abaixoMeta": 425,
+   "abaixoMeta": 411,
    "abaixoPiso": 484,
    "n": 5525,
    "prio": 1275,
-   "soma": 46633.5,
+   "soma": 46646.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|gluteos": {
-   "abaixoMeta": 677,
+   "abaixoMeta": 678,
    "abaixoPiso": 626,
    "n": 5525,
    "prio": 1275,
-   "soma": 43946.5,
+   "soma": 43927.5,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|ombro_lateral": {
-   "abaixoMeta": 330,
+   "abaixoMeta": 303,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 33889,
+   "soma": 33859,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -51596,16 +51596,16 @@
    "abaixoPiso": 921,
    "n": 5525,
    "prio": 0,
-   "soma": 37630,
+   "soma": 37665,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|step+elasticos|panturrilha": {
    "abaixoMeta": 845,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 31566,
+   "soma": 31572,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -51614,7 +51614,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 46651,
+   "soma": 46707,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -51623,7 +51623,7 @@
    "abaixoPiso": 235,
    "n": 5525,
    "prio": 1275,
-   "soma": 44191,
+   "soma": 44177,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -51632,7 +51632,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 44637,
+   "soma": 44633,
    "zero": 351,
    "zeroSemAviso": 0
   },
@@ -51641,52 +51641,52 @@
    "abaixoPiso": 583,
    "n": 5525,
    "prio": 850,
-   "soma": 42779,
+   "soma": 42820,
    "zero": 362,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|abdomen": {
-   "abaixoMeta": 326,
-   "abaixoPiso": 637,
+   "abaixoMeta": 337,
+   "abaixoPiso": 633,
    "n": 5525,
    "prio": 850,
-   "soma": 29095,
+   "soma": 29056,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|biceps": {
-   "abaixoMeta": 270,
-   "abaixoPiso": 553,
+   "abaixoMeta": 257,
+   "abaixoPiso": 552,
    "n": 5525,
    "prio": 850,
-   "soma": 42957,
+   "soma": 42996,
    "zero": 325,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|costas": {
-   "abaixoMeta": 429,
+   "abaixoMeta": 417,
    "abaixoPiso": 500,
    "n": 5525,
    "prio": 1275,
-   "soma": 46449,
+   "soma": 46458.5,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|gluteos": {
-   "abaixoMeta": 666,
+   "abaixoMeta": 667,
    "abaixoPiso": 624,
    "n": 5525,
    "prio": 1275,
-   "soma": 43924,
+   "soma": 43904,
    "zero": 77,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|ombro_lateral": {
-   "abaixoMeta": 330,
+   "abaixoMeta": 302,
    "abaixoPiso": 992,
    "n": 5525,
    "prio": 850,
-   "soma": 33902,
+   "soma": 33871,
    "zero": 1062,
    "zeroSemAviso": 0
   },
@@ -51695,16 +51695,16 @@
    "abaixoPiso": 924,
    "n": 5525,
    "prio": 0,
-   "soma": 37646,
+   "soma": 37684,
    "zero": 338,
    "zeroSemAviso": 0
   },
   "intermediario|suspensao+elasticos|panturrilha": {
    "abaixoMeta": 847,
-   "abaixoPiso": 925,
+   "abaixoPiso": 924,
    "n": 5525,
    "prio": 1275,
-   "soma": 31590,
+   "soma": 31595,
    "zero": 325,
    "zeroSemAviso": 0
   },
@@ -51713,7 +51713,7 @@
    "abaixoPiso": 331,
    "n": 5525,
    "prio": 1275,
-   "soma": 44169,
+   "soma": 44224,
    "zero": 419,
    "zeroSemAviso": 0
   },
@@ -51722,7 +51722,7 @@
    "abaixoPiso": 235,
    "n": 5525,
    "prio": 1275,
-   "soma": 44227,
+   "soma": 44207,
    "zero": 0,
    "zeroSemAviso": 0
   },
@@ -51731,7 +51731,7 @@
    "abaixoPiso": 270,
    "n": 5525,
    "prio": 1275,
-   "soma": 44842,
+   "soma": 44836,
    "zero": 350,
    "zeroSemAviso": 0
   },
@@ -51740,7 +51740,7 @@
    "abaixoPiso": 583,
    "n": 5525,
    "prio": 850,
-   "soma": 43154,
+   "soma": 43161.5,
    "zero": 362,
    "zeroSemAviso": 0
   },
