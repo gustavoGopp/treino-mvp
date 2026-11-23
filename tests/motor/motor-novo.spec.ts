@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 import { build } from 'esbuild';
+import { enxugar } from '../../scripts/animacao-nova/enxugar.mjs';
 
 // Linha de base do motor novo (src/engine/novo): cada animação aprovada (src/engine/novo/aprovados.ts), como o app a
 // mostra (pela ponte: corpo padrão, desenho cinza, tema claro), em cada vista e modo, em cada erro e na miniatura, a
@@ -107,4 +108,82 @@ test('o que vem calculado de antemão é o que o motor calcula', () => {
     saida = `${erro.stdout ?? ''}${erro.stderr ?? ''}`;
   }
   expect(saida).toContain('as tabelas conferem');
+});
+
+// O pacote do app não leva os dados do motor inteiros: o build troca por "-" os textos que o desenho não lê (a fonte de
+// cada medida, o que a ficha da técnica pede, o que muda em cada erro; scripts/animacao-nova/enxugar.mjs, ligado em
+// vite.config.ts). O teste de cima monta o motor com os arquivos inteiros; este o monta dos dois jeitos, no mesmo
+// navegador, e compara o que as telas recebem: a ficha, cada quadro com o texto da fase, a miniatura e os dois desenhos.
+// Se um dia o desenho ou a tela passar a ler um texto que o build tira, a diferença aparece aqui.
+// Dois tempos por vista e modo bastam: o texto tirado não depende do tempo.
+test('o motor que vai para o celular, sem os textos de fonte, desenha o mesmo e entrega a mesma ficha', async ({ page }) => {
+  test.setTimeout(600_000);
+  const entrada = `export { EXERCICIOS } from './src/engine/novo/app.ts'; export { APROVADOS } from './src/engine/novo/aprovados.ts'; export { fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo } from './src/engine/novo/ponte.ts'; import { registrarPintorPorPares } from './src/engine/novo/ponte.ts'; import { pintarPorPares } from './src/engine/novo/pintor-por-pares.ts'; registrarPintorPorPares((itens) => pintarPorPares(itens));`;
+  let enxugados = 0;
+  const montar = async (globalName: string, enxuto: boolean) =>
+    (
+      await build({
+        stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' },
+        bundle: true,
+        format: 'iife',
+        globalName,
+        write: false,
+        loader: { '.json': 'json' },
+        plugins: enxuto
+          ? [
+              {
+                name: 'enxugar-dados-do-motor',
+                setup(b) {
+                  b.onLoad({ filter: /src[\\/]engine[\\/]novo[\\/]dados[\\/].*\.json$/ }, (a) => {
+                    const texto = enxugar(a.path, readFileSync(a.path, 'utf8'));
+                    if (texto === null) return null;
+                    enxugados++;
+                    return { contents: texto, loader: 'json' };
+                  });
+                },
+              },
+            ]
+          : [],
+      })
+    ).outputFiles[0]!.text;
+  const inteiro = await montar('INTEIRO', false);
+  const enxuto = await montar('ENXUTO', true);
+  // a função pegou os arquivos (as fichas de movimento, os objetos, os dois corpos) e o pacote ficou menor
+  expect(enxugados).toBeGreaterThan(200);
+  expect(enxuto.length).toBeLessThan(inteiro.length * 0.9);
+  await page.setContent('<!doctype html><title>motor novo, inteiro e enxuto</title>');
+  await page.addScriptTag({ content: inteiro });
+  await page.addScriptTag({ content: enxuto });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const ids = await page.evaluate(() => Object.keys((globalThis as any).INTEIRO.APROVADOS).sort());
+  expect(ids.length).toBeGreaterThan(100);
+  const diferentes: string[] = [];
+  for (const id of ids) {
+    diferentes.push(
+      ...(await page.evaluate((id) => {
+        // tudo o que as telas recebem do motor para um exercício, como texto
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const tudo = (M: any): Record<string, string> => {
+          const ex = M.EXERCICIOS[id];
+          const F = M.fichaDoMotorNovo(ex);
+          const titulos: string[] = ex.ficha.erros.map((e: { titulo: string }) => e.titulo);
+          const out: Record<string, string> = { ficha: JSON.stringify(F) };
+          const tempos = [0.2, 0.7].map((k) => k * F.T);
+          for (const v of F.views as string[]) for (const modo of ['tec', 'mus', 'traj']) out[`${v}|${modo}`] = JSON.stringify(tempos.map((t) => M.quadroDoMotorNovo(ex, v, modo, t, 0, '')));
+          (F.errors as { id: string; view: string }[]).forEach((e, i) => (out[`${e.view}|err|${e.id}`] = JSON.stringify(tempos.map((t) => M.quadroDoMotorNovo(ex, e.view, 'err', t, i, titulos[i])))));
+          out['pele'] = JSON.stringify(['tec', 'mus'].map((modo) => M.quadroDoMotorNovo(ex, F.views[0], modo, tempos[1], 0, '', 'claro', 'pele')));
+          out['miniatura'] = JSON.stringify([M.miniaturaDoMotorNovo(ex), M.miniaturaDoMotorNovo(ex, 'claro', 'pele')]);
+          return out;
+        };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const G = globalThis as any;
+        const a = tudo(G.INTEIRO),
+          b = tudo(G.ENXUTO);
+        return Object.keys(a)
+          .filter((k) => a[k] !== b[k])
+          .map((k) => `${id}: ${k}`);
+      }, id)),
+    );
+  }
+  expect(diferentes, 'o que muda quando os dados do motor são enxugados').toEqual([]);
 });
