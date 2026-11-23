@@ -427,8 +427,27 @@ const REFAZER_ESCOLHIDO = new WeakMap<Programa, () => Programa>();
 const comAjustes = (p: Programa): Programa => REFAZER_ESCOLHIDO.get(p)?.() ?? p;
 const comAjustesNoResultado = (r: Resultado): Resultado => (r.status === 'ok' ? { ...r, programa: comAjustes(r.programa) } : r);
 
+/** selecao.peitoral-inclinado (pacote D3 da conferência): montar com o 2º empurrar como antes, e se a regra nova mudou algo. */
+type OpcaoDoInclinado = { comoAntes: boolean; mudou: boolean };
+
 export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
-  const base = gerarNaDivisao(perfil, inventarioOriginal);
+  const op: OpcaoDoInclinado = { comoAntes: false, mudou: false };
+  const novo = gerarProgramaCom(perfil, inventarioOriginal, op);
+  // selecao.peitoral-inclinado (pacote D3 da conferência, 23/11/2026): o 2º empurrar no dia em que a vaga de empurrar
+  // horizontal não coube só vale se não custar um dia acima de 110% do tempo nem um dia fraco que a conta de antes (o modelo
+  // do dia) não teria. A comparação é no programa pronto, porque o dia que deixa de ser fraco também deixa de pedir a troca
+  // de divisão pela dor (selecao.dia-sem-principal), e a divisão de antes podia ser a que cabia no tempo. Sem esta trava, o
+  // dia acima de 110% subia em 28 a 34 programas da população. A 2ª montagem só acontece quando a regra nova mudou algo.
+  if (!op.mudou || novo.status !== 'ok') return novo;
+  const velho = gerarProgramaCom(perfil, inventarioOriginal, { comoAntes: true, mudou: false });
+  if (velho.status !== 'ok') return novo;
+  const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+  const [pn, pv] = [novo.programa, velho.programa];
+  return acima(pn) > acima(pv) || diasFracos(pn, perfil.diasSemana) > diasFracos(pv, perfil.diasSemana) ? velho : novo;
+}
+
+function gerarProgramaCom(perfil: Perfil, inventarioOriginal: Inventario, op: OpcaoDoInclinado): Resultado {
+  const base = gerarNaDivisao(perfil, inventarioOriginal, false, op);
   if (perfil.divisao || base.status !== 'ok' || !base.programa.regioesExcluidas.length || !diasFracos(base.programa, perfil.diasSemana)) return comAjustesNoResultado(base);
   const p0 = base.programa;
   const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
@@ -451,7 +470,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   let melhor = p0;
   let resultado: Resultado = base;
   for (const id of opcoes) {
-    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal, id === recuo);
+    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal, id === recuo, op);
     if (r.status === 'ok' && r.programa.divisaoId === id && diasFracos(r.programa, perfil.diasSemana) < diasFracos(melhor, perfil.diasSemana) && naoCusta(r.programa)) {
       melhor = r.programa;
       resultado = r;
@@ -491,30 +510,22 @@ const temLimiteDoIniciante = (perfil: Perfil) => {
   return perfil.nivel === 'iniciante' && perfil.diasSemana === dias && perfil.minutosSessao <= ateMinutos && exerciciosPorSessao(perfil.minutosSessao) > maximo;
 };
 
-function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false): Resultado {
+function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false, op: OpcaoDoInclinado = { comoAntes: false, mudou: false }): Resultado {
   const triagem = avaliarTriagem(perfil.triagem);
   if (triagem.bloqueado) return { status: 'bloqueado', triagem };
   // tempo.musculo-protegido (15/11/2026): entre o abdômen e a panturrilha, escolhe primeiro o que tem menos dias onde
   // entrar (a panturrilha só tem vaga num dia do Corpo todo A/B; o abdômen vai para o outro), salvo se isso puser mais
   // dias acima de 110% do tempo que a ordem de antes.
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
-  const fracos = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
   const montar = (focoPrimeiro: boolean, semPratica: boolean) => {
     const info: InfoDaMontagem = { protegidosSemVaga: 0 };
-    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica);
+    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica, false, undefined, op.comoAntes);
+    if (info.segundoEmpurrarNovo) op.mudou = true;
     // A ordem só importa quando os dois ficaram sem vaga: senão, uma montagem basta.
-    let escolhido = a;
-    let raro = false;
-    if (info.protegidosSemVaga >= 2) {
-      const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info, aceitaRecuo, semPratica);
-      if (acima(b) <= acima(a)) [escolhido, raro] = [b, true];
-    }
-    // selecao.peitoral-inclinado (pacote D3 da conferência, 23/11/2026): o 2º empurrar no dia em que a vaga de empurrar
-    // horizontal não coube só vale se não custar um dia acima de 110% do tempo nem um dia fraco que a regra de antes (olhar
-    // o modelo do dia) não teria. A 1ª versão, sem esta trava, punha 28 programas a mais acima de 110% na população.
-    if (!info.segundoEmpurrarNovo) return escolhido;
-    const antes = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, raro, undefined, aceitaRecuo, semPratica, false, undefined, true);
-    return acima(escolhido) > acima(antes) || fracos(escolhido) > fracos(antes) ? antes : escolhido;
+    if (info.protegidosSemVaga < 2) return a;
+    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info, aceitaRecuo, semPratica, false, undefined, op.comoAntes);
+    if (info.segundoEmpurrarNovo) op.mudou = true;
+    return acima(b) > acima(a) ? a : b;
   };
   // volume.prioridade.foco-primeiro: com foco, os isoladores de quem não é foco entram depois das vagas do foco, e o
   // músculo do foco protegido com 30 min não fica preso em 2 séries, salvo se isso deixar um dia acima de 110% dos

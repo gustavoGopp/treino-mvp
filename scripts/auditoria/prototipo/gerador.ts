@@ -163,6 +163,7 @@ const INICIANTE_MAX_EXERCICIOS = 99;
 let SEM_PRATICA = false;
 /** PROTÓTIPO: 'dc-inclinado': a montagem de comparação, com o 2º empurrar como antes (o modelo do dia). */
 let INCLINADO_COMO_ANTES = false;
+let INCLINADO_MUDOU = false;
 const INICIANTE_LIMITE_DESDE_DIAS = 3;
 /**
  * EXPERIMENTO (ini-6-3x60; teste próprio pedido pelo Gustavo em 16/11/2026, feito em 17/11): o limite de 6 exercícios do
@@ -450,6 +451,26 @@ const comAjustes = (p: Programa): Programa => REFAZER_ESCOLHIDO.get(p)?.() ?? p;
 const comAjustesNoResultado = (r: Resultado): Resultado => (r.status === 'ok' ? { ...r, programa: comAjustes(r.programa) } : r);
 
 export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
+  // PROTÓTIPO: 'dc-inclinado' (D3 da conferência): a regra nova só vale se não custar, no programa pronto, um dia acima de
+  // 110% do tempo nem um dia fraco que a conta de antes não teria.
+  const guardado = [INCLINADO_COMO_ANTES, INCLINADO_MUDOU] as const;
+  try {
+    INCLINADO_COMO_ANTES = false;
+    INCLINADO_MUDOU = false;
+    const novo = gerarProgramaCom(perfil, inventarioOriginal);
+    if (!INCLINADO_MUDOU || novo.status !== 'ok') return novo;
+    INCLINADO_COMO_ANTES = true;
+    const velho = gerarProgramaCom(perfil, inventarioOriginal);
+    if (velho.status !== 'ok') return novo;
+    const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+    const fracos = (p: Programa) => perfil.diasSemana - p.dias.length + p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+    return acima(novo.programa) > acima(velho.programa) || fracos(novo.programa) > fracos(velho.programa) ? velho : novo;
+  } finally {
+    [INCLINADO_COMO_ANTES, INCLINADO_MUDOU] = guardado;
+  }
+}
+
+function gerarProgramaCom(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
   const base = gerarNaDivisao(perfil, inventarioOriginal);
   if (!prot('dor') || perfil.divisao || base.status !== 'ok' || !base.programa.regioesExcluidas.length || !diasFracos(base, perfil.diasSemana)) return comAjustesNoResultado(base);
   // EXPERIMENTO (dor-ct6): com 6 dias, também o Corpo todo 6x (hoje só o recuo de divisao.sem-puxar; decisão do Gustavo).
@@ -509,25 +530,14 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
   // PROTÓTIPO (curto): o músculo protegido que tem menos dias onde entrar escolhe primeiro (a panturrilha só tem vaga num
   // dia do Corpo todo A/B; o abdômen vai para o outro), salvo se isso puser mais dias acima de 110% do tempo.
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
-  const fracos = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
   const montar = (focoPrimeiro: boolean) => {
     const info: { protegidosSemVaga: number; segundoEmpurrarNovo?: boolean } = { protegidosSemVaga: 0 };
     const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info);
-    let escolhido = a;
-    let raro = false;
-    if (prot('curto') && info.protegidosSemVaga >= 2) {
-      const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info);
-      if (acima(b) <= acima(a)) [escolhido, raro] = [b, true];
-    }
-    // PROTÓTIPO: 'dc-inclinado' (D3 da conferência): o 2º empurrar novo só vale se não custar um dia acima de 110% nem um dia fraco.
-    if (!info.segundoEmpurrarNovo) return escolhido;
-    INCLINADO_COMO_ANTES = true;
-    try {
-      const antes = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, raro);
-      return acima(escolhido) > acima(antes) || fracos(escolhido) > fracos(antes) ? antes : escolhido;
-    } finally {
-      INCLINADO_COMO_ANTES = false;
-    }
+    if (info.segundoEmpurrarNovo) INCLINADO_MUDOU = true;
+    if (!prot('curto') || info.protegidosSemVaga < 2) return a;
+    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info);
+    if (info.segundoEmpurrarNovo) INCLINADO_MUDOU = true;
+    return acima(b) > acima(a) ? a : b;
   };
   const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
   const escolher = () => {
