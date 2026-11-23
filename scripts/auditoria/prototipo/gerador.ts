@@ -1253,7 +1253,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           // 2º passo, iniciante: fora do foco, só os multiarticulares sobem, e até 3 séries (praticar o básico, com folga no dia).
           // (Medido e recusado em 13/11/2026: subir tudo até o alvo de 8, `PROT=usa-tempo,inic-tudo`; a revisão cega baixou a nota
           // de 2 de 5 iniciantes, com o dia no limite do tempo. `inic-nada`: o iniciante sem o 2º passo.)
-          if (!prot('inic-tudo')) if (emTodos && nivel === 'iniciante' && !prioritarios.has(m) && (x.tipo !== 'composto' || x.series >= VOLUME.sobraDoIniciante)) return;
+          if (!prot('inic-tudo')) if ((emTodos || prot('dc-sobra-inic')) && nivel === 'iniciante' && !prioritarios.has(m) && (x.tipo !== 'composto' || x.series >= VOLUME.sobraDoIniciante)) return;
           // 2º passo: com 30 min ou menos, o exercício protegido que não é do foco fica com 2 séries (tempo.musculo-protegido).
           if (emTodos && perfil.minutosSessao <= TEMPO.protegidoCurto && !prioritarios.has(m) && x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) return;
           if (deUmaSerie(e).some(([k, n]) => (noDia[k] ?? 0) + n > VOLUME.sessaoTeto + 1e-9)) return;
@@ -1497,7 +1497,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             regraId: r('tempo.sobra-series'),
             texto: focoPossivel
               ? `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`
-              : `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série: os músculos que dá para treinar sobem até ~${VOLUME.sobraAte[nivel]} séries por semana.`,
+              : prot('dc-sobra-inic') && nivel === 'iniciante'
+                ? `Nos dias com vaga sem exercício possível, o tempo que sobrou virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
+                : `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série: os músculos que dá para treinar sobem até ~${VOLUME.sobraAte[nivel]} séries por semana.`,
           },
         ]
       : []),

@@ -82,6 +82,20 @@ describe('selecao.panturrilha-alongada: com o degrau possível, a panturrilha no
   });
 });
 
+describe('tempo.sobra-series: a trava do iniciante vale também nos dias com vaga vazia', () => {
+  // Iniciante sem foco, sem equipamento, 2 dias de 60 min (a persona Iara): os dias têm vaga sem exercício possível (as
+  // costas), e o 1º passo do tempo que sobra subia os isoladores até 4 séries (a flexão de joelho deslizante com 4 nos dois
+  // dias: 8 séries de posteriores com meta de 6).
+  it('nenhum isolador passa da meta pela sobra: só os multiarticulares sobem, até 3 séries', () => {
+    const p = ok(perfil({ nivel: 'iniciante', dias: 2, min: 60 }), {});
+    const flexoes = p.dias.flatMap((d) => d.exercicios).filter((x) => x.exId === 'flexao-joelho-deslizante');
+    expect(flexoes.length).toBe(2);
+    expect(flexoes.reduce((t, x) => t + x.series, 0)).toBeLessThanOrEqual(p.metas.posteriores ?? 0);
+    for (const x of p.dias.flatMap((d) => d.exercicios)) if (x.tipo === 'composto') expect(x.series, x.exId).toBeLessThanOrEqual(4);
+    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series' && /sobem até ~8/.test(q.texto))).toBe(false);
+  });
+});
+
 describe('selecao.aducao-complemento: a adução entra por último e sai primeiro', () => {
   const todos = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
   it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: a adução não toma o lugar do abdominal', () => {
