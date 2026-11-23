@@ -41,6 +41,13 @@ describe('selecao.peitoral-inclinado: o 2º empurrar olha a vaga que coube no di
     }
   });
 
+  it('só vale se não custar: com dor forte no joelho, a divisão de corpo todo, que cabe no tempo, continua', () => {
+    // Sem a trava, o Empurrar deixava de ser fraco, a troca de divisão pela dor não acontecia, e o dia de Pernas ficava
+    // com 39 min em 30 (o dia acima de 110% subia em 28 a 34 programas da população).
+    const p = ok(perfil({ nivel: 'intermediario', dias: 5, min: 30, focos: ['gluteos'], dores: [{ articulacao: 'joelho', nota: 7 }] }), ana.inventario);
+    expect(Math.max(...p.dias.map((d) => d.minutosEstimados))).toBeLessThanOrEqual(33);
+  });
+
   it('com tempo, o dia que já tem a vaga de empurrar horizontal não ganha dois supinos retos', () => {
     const p = ok(perfil({ nivel: 'intermediario', dias: 5, min: 60 }), ana.inventario);
     for (const d of p.dias) expect(d.exercicios.filter((x) => x.exId === 'supino-reto').length).toBeLessThanOrEqual(1);
