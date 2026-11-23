@@ -726,7 +726,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const { funcao } = x.res;
       // selecao.peitoral-inclinado: o 2º empurrar (sem banco inclinável) só num dia sem outra vaga de empurrar horizontal,
       // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
-      const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
+      // PROTÓTIPO: 'dc-inclinado' (D3 da conferência, 23/11/2026): conta a vaga de empurrar horizontal que coube no dia.
+      const segundoEmpurrar =
+        funcao.id === 'empurrar-inclinado' && (prot('dc-inclinado') ? mantidas.some((w) => w.vaga.funcao === 'empurrar-horizontal') : dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal'));
       const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID[id]!.padrao === 'empurrar-h' && !POR_ID[id]!.tags.includes('inclinado'));
       // Um afundo por dia (selecao.funcao-da-vaga; R5a): fora da vaga de afundo, o afundo fica por último no nível
       // quando o dia já tem um ou ainda vai ter (a vaga de afundo com exercício).
