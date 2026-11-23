@@ -904,7 +904,7 @@
   },
   {
     "id": "iniciante.fase-aprendizado",
-    "regra": "Fase de aprendizado do iniciante. **Conferência regra por regra de 22/11/2026:** o app faz sempre 2 semanas; o iniciante que declara pausa recebe a readaptação no lugar, ou nada com 2 semanas de pausa (pacote D3)",
+    "regra": "Fase de aprendizado do iniciante. **Conferência regra por regra de 22/11/2026:** o app faz sempre 2 semanas; o iniciante que declara pausa de 3 semanas ou mais recebe a readaptação no lugar (`readaptacao.semana1` a `semana3`, com menos séries na semana 1 e RIR 3–4). **Desde 23/11/2026 (os itens da conferência regra por regra no pacote D3), o iniciante que declara pausa de 2 semanas recebe a fase de aprendizado** (antes, só o RIR +1 na 1ª sessão de cada dia, com o programa completo, superséries e \"estagnado\" desde a semana 1): a fase já tem mais reserva que o +1. Decisão da sessão [opinião], por ser a mais cautelosa das duas",
     "valores": {
       "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa (3/4 das séries do programa: 6 de 8; com o foco a 10 desde o R5d, o foco fica com ~7,5) e foco técnico; carga sobe quando a técnica estiver estável; nessas semanas, nem \"estagnado\" nem semana leve sugerida (R5a)",
       "intermediario": "não se aplica (usa `readaptacao.*` se houver pausa)",

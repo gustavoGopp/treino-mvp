@@ -2322,7 +2322,9 @@ function passoDoMotivo(motivo: string, foco: boolean): string {
 
 function fases(p: Perfil): Fase[] {
   if (p.semanasParado >= READAPTACAO.semanasProtocolo) return fasesDeReadaptacao();
-  if (p.semanasParado >= READAPTACAO.semanasNormal)
+  // iniciante.fase-aprendizado (pacote D3 da conferência, 23/11/2026): o iniciante com pausa de 2 semanas recebe a fase de
+  // aprendizado, que já tem mais reserva (RIR 3–4) que o +1 da 1ª sessão. Antes, ficava só com o +1, sem a fase.
+  if (p.nivel !== 'iniciante' && p.semanasParado >= READAPTACAO.semanasNormal)
     return [{ semanas: '1ª sessão', fatorSeries: 1, rir: null, texto: 'Primeira sessão de cada treino com 1 repetição a mais de reserva.', regraId: r('readaptacao.gatilho') }];
   if (p.nivel === 'iniciante')
     return [

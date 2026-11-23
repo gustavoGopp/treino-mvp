@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cortarTempo, gerarPrograma, nadaParaPuxar, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { cortarTempo, gerarPrograma, nadaParaPuxar, prescricaoDaSemana, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { inventarioDe } from '../../scripts/auditoria/ver-lib';
 import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
 import { opcoesDeDivisao } from '../../src/domain/gerador/divisoes';
@@ -148,6 +148,21 @@ describe('divisao.sem-puxar: a tela marca a recomendada como o gerador escolhe',
     // com 4 dias, a tela tem o corpo todo: o aviso continua mandando escolhê-lo
     const q = ok(perfil({ nivel: 'iniciante', dias: 4, min: 45, divisao: 'si-2x' }), soBanco);
     expect(q.avisos.find((a) => a.regraId === 'divisao.sem-puxar')!.texto).toMatch(/escolha Corpo todo na rotina\.$/);
+  });
+});
+
+describe('iniciante.fase-aprendizado: o iniciante com pausa de 2 semanas tem a fase de aprendizado', () => {
+  // "Menos de 6 meses" de treino e "parei há umas 2 semanas": antes, só o RIR +1 na 1ª sessão de cada dia, com o programa
+  // completo e superséries desde a semana 1.
+  it('as semanas 1 e 2 com RIR 3–4, 3/4 das séries e sem supersérie', () => {
+    const p = programaDe(perfil({ nivel: 'iniciante', dias: 2, min: 30, parado: 2 }), inventarioDe('academia+'));
+    expect(p.fases.map((f) => f.regraId)).toEqual(['iniciante.fase-aprendizado', 'iniciante.fase-aprendizado']);
+    for (const s of [1, 2]) for (const x of prescricaoDaSemana(p, s).flatMap((d) => d.exercicios)) expect([x.rir, x.supersetCom]).toEqual([[3, 4], undefined]);
+  });
+
+  it('o intermediário com a mesma pausa continua com o RIR +1 da 1ª sessão', () => {
+    const p = programaDe(perfil({ nivel: 'intermediario', dias: 2, min: 30, parado: 2 }), inventarioDe('academia+'));
+    expect(p.fases.map((f) => f.regraId)).toEqual(['readaptacao.gatilho']);
   });
 });
 
