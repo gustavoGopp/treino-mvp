@@ -66,7 +66,11 @@ const GRUPO_DA_REGRA: [RegExp, string][] = [
 ];
 const grupoDe = (id: string) => GRUPO_DA_REGRA.find(([re]) => re.test(id))?.[1] ?? 'Outras regras';
 
-/** Todas as regras do app, com o nível de evidência e as fontes; baixadas quando o bloco abre. */
+/**
+ * Todas as regras do app, com o nível de evidência e as fontes. Os arquivos das regras e das frases são baixados assim que
+ * a página abre, e não quando o bloco abre: o <details> fechado já monta este componente (conferência regra por regra,
+ * 22/11/2026; corrigido só o comentário, sem mudar o comportamento).
+ */
 function TodasAsRegras() {
   const [regras, setRegras] = useState<Regra[] | null | 'erro'>(null);
   const [frases, setFrases] = useState<Record<string, FraseDaRegra>>({});
