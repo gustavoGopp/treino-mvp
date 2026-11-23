@@ -402,21 +402,26 @@ const diasFracos = (p: Programa, dias: number) => dias - p.dias.length + p.dias.
  * não custar outra coisa que a recomendada não tinha.
  */
 /**
- * tempo.corte, último degrau (pacote D3, 23/11/2026): quantos dias de um programa só couberam em 110% dos minutos porque o
- * último degrau tirou séries do foco. As comparações entre montagens ("a regra só vale se não custar um dia acima do
- * tempo") contam esses dias como acima do tempo: o degrau muda as séries do programa escolhido, e não qual é escolhido.
- * É uma anotação de dentro do gerador (não vai para o programa guardado) e depende só das entradas.
+ * Pacote D3 (23/11/2026): como refazer um programa com os dois ajustes do pacote ligados, o último degrau do corte
+ * (tempo.corte) e a subida de quem não é foco com 3 grupos de foco ou mais (tempo.sobra-series). Os dois ficam fora de
+ * todas as comparações entre montagens e entre divisões ("a regra só vale se não custar um dia acima do tempo, um dia
+ * fraco..."): o programa é escolhido como sempre e, se um dos ajustes puder valer (um dia acima de 110% dos minutos, ou 3
+ * focos ou mais), a mesma montagem é refeita com eles. Assim eles mudam as séries do programa escolhido, e não qual é
+ * escolhido (medido: ligados nas comparações, trocavam a divisão de alguns casos com dor, e o dia fraco e empurrar ÷ puxar
+ * subiam em alguns grupos). É uma anotação de dentro do gerador (não vai para o programa guardado) e depende só das
+ * entradas.
  */
-const RESGATADOS = new WeakMap<Programa, number>();
-const diasAcimaDoTempo = (p: Programa, minutosSessao: number) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * minutosSessao).length + (RESGATADOS.get(p) ?? 0);
+const REFAZER_ESCOLHIDO = new WeakMap<Programa, () => Programa>();
+const comAjustes = (p: Programa): Programa => REFAZER_ESCOLHIDO.get(p)?.() ?? p;
+const comAjustesNoResultado = (r: Resultado): Resultado => (r.status === 'ok' ? { ...r, programa: comAjustes(r.programa) } : r);
 
 export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
   const base = gerarNaDivisao(perfil, inventarioOriginal);
-  if (perfil.divisao || base.status !== 'ok' || !base.programa.regioesExcluidas.length || !diasFracos(base.programa, perfil.diasSemana)) return base;
+  if (perfil.divisao || base.status !== 'ok' || !base.programa.regioesExcluidas.length || !diasFracos(base.programa, perfil.diasSemana)) return comAjustesNoResultado(base);
   const p0 = base.programa;
   const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
   const empurraDemais = (p: Programa) => seriesDe(p, PADROES_PUXAR) > 0 && seriesDe(p, PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * seriesDe(p, PADROES_PUXAR);
-  const passaDoTempo = (p: Programa) => diasAcimaDoTempo(p, perfil.minutosSessao) > 0;
+  const passaDoTempo = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
   const metasDoFoco = metasDoPerfil(perfil.nivel, perfil.prioridades);
   const focoDoPerfil = perfil.prioridades.flatMap((g) => GRUPOS[g] as readonly Musculo[]);
   // Não esquece um músculo que a recomendada treinava; não tira a coxa da faixa; não passa empurrar ÷ puxar de 1,5; não
@@ -440,7 +445,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       resultado = r;
     }
   }
-  if (melhor === p0 || resultado.status !== 'ok') return base;
+  if (melhor === p0 || resultado.status !== 'ok') return comAjustesNoResultado(base);
+  // (a divisão já está escolhida: o último degrau do corte entra agora, antes do aviso da troca)
+  melhor = comAjustes(melhor);
   const dores = melhor.regioesExcluidas.map((a) => textoDor(a, resultado.triagem.dores.find((d) => d.articulacao === a)?.nota)).join(' e ');
   return {
     ...resultado,
@@ -478,7 +485,7 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRe
   // tempo.musculo-protegido (15/11/2026): entre o abdômen e a panturrilha, escolhe primeiro o que tem menos dias onde
   // entrar (a panturrilha só tem vaga num dia do Corpo todo A/B; o abdômen vai para o outro), salvo se isso puser mais
   // dias acima de 110% do tempo que a ordem de antes.
-  const acima = (p: Programa) => diasAcimaDoTempo(p, perfil.minutosSessao);
+  const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
   const montar = (focoPrimeiro: boolean, semPratica: boolean) => {
     const info = { protegidosSemVaga: 0 };
     const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica);
@@ -490,7 +497,7 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRe
   // volume.prioridade.foco-primeiro: com foco, os isoladores de quem não é foco entram depois das vagas do foco, e o
   // músculo do foco protegido com 30 min não fica preso em 2 séries, salvo se isso deixar um dia acima de 110% dos
   // minutos (régua da G5, A3) que a montagem de antes não deixava.
-  const passa = (p: Programa) => diasAcimaDoTempo(p, perfil.minutosSessao) > 0;
+  const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
   const escolher = (semPratica: boolean) => {
     const comFoco = montar(true, semPratica);
     if (!perfil.prioridades.length || !passa(comFoco)) return comFoco;
@@ -529,7 +536,12 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   if (dias.length === programa.dias.length) return { status: 'ok', triagem, programa };
   if (dias.length) {
     const semVazios = { ...programa, dias };
-    if (RESGATADOS.has(programa)) RESGATADOS.set(semVazios, RESGATADOS.get(programa)!);
+    const refazer = REFAZER_ESCOLHIDO.get(programa);
+    if (refazer)
+      REFAZER_ESCOLHIDO.set(semVazios, () => {
+        const refeito = refazer();
+        return { ...refeito, dias: refeito.dias.filter((d) => d.exercicios.length > 0) };
+      });
     return { status: 'ok', triagem, programa: semVazios };
   }
   const dores = programa.regioesExcluidas.map((a) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota));
@@ -548,7 +560,7 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   };
 }
 
-function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false, semPratica = false): Programa {
+function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false, semPratica = false, refeito = false, duplaForcada?: 'com' | 'sem'): Programa {
   const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem, semPratica);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
@@ -1150,8 +1162,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
               Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO),
               // 2º passo, com 3 grupos de foco ou mais (pacote D3, 23/11/2026): o foco fica na meta, e "6 abaixo do foco"
               // é a própria meta de quem não é foco, que assim nunca subia (o dia de pernas do Bruno: 39 min em 70).
-              // Quem não é foco sobe até o mínimo do nível, com o foco mais fraco pelo menos 1,3 vez acima.
-              emTodos && perfil.prioridades.length > VOLUME.focosComSobra ? Math.min(VOLUME.minimo[nivel], Math.floor(menorFoco(ds) / VOLUME.destaqueDoFoco)) : 0,
+              // Quem não é foco sobe até o mínimo do nível, com o foco mais fraco pelo menos 1,3 vez acima. Só na montagem
+              // refeita do programa já escolhido (`refeito`; ver REFAZER_ESCOLHIDO).
+              refeito && emTodos && perfil.prioridades.length > VOLUME.focosComSobra ? Math.min(VOLUME.minimo[nivel], Math.floor(menorFoco(ds) / VOLUME.destaqueDoFoco)) : 0,
             );
   let seriesNaSobra = false;
   let seriesEmTodos = false;
@@ -1267,23 +1280,29 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     // o dia ficava com menos de 2 exercícios de força.
     return ehDeForca(x) && novo.tipo === 'composto' && comCarga(c) ? comForca(novo) : novo;
   };
-  let diasResgatados = 0;
   // tempo.superserie (16/11/2026): a dupla de dois exercícios que carregam a lombar sem apoio é o último recurso. O corte é
   // feito sem ela; se isso custar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que o corte
-  // com ela não teria, vale o corte com ela.
+  // com ela não teria, vale o corte com ela. O último degrau do corte (pacote D3) fica fora desta comparação: só entra na
+  // montagem refeita (`refeito`), que já vem com a escolha feita (`duplaForcada`).
+  let comDupla = false;
   {
     const copia = () => programaDias.map((d) => ({ ...d, exercicios: d.exercicios.map((x) => ({ ...x })) }));
-    const [avSem, avCom]: [Porque[], Porque[]] = [[], []];
-    // (os dias que só couberam em 110% pelo último degrau do corte contam como acima do tempo: a comparação é a de sempre)
-    const [rSem, rCom] = [{ dias: 0 }, { dias: 0 }];
-    const sem = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, avSem, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, true, rSem);
-    const com = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, avCom, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, false, rCom);
-    const acima = (ds: DiaPrograma[], resg: { dias: number }) => ds.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length + resg.dias;
-    const fracosDe = (ds: DiaPrograma[]) => ds.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
-    const custa = acima(sem, rSem) > acima(com, rCom) || fracosDe(sem) > fracosDe(com) || (empurraDemais(sem) && !empurraDemais(com));
-    programaDias = custa ? com : sem;
-    avisos.push(...(custa ? avCom : avSem));
-    diasResgatados = (custa ? rCom : rSem).dias;
+    const cortar = (av: Porque[], semDupla: boolean) =>
+      cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, av, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, semDupla, refeito);
+    if (duplaForcada) {
+      comDupla = duplaForcada === 'com';
+      programaDias = cortar(avisos, !comDupla);
+    } else {
+      const [avSem, avCom]: [Porque[], Porque[]] = [[], []];
+      const sem = cortar(avSem, true);
+      const com = cortar(avCom, false);
+      const acima = (ds: DiaPrograma[]) => ds.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+      const fracosDe = (ds: DiaPrograma[]) => ds.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+      const custa = acima(sem) > acima(com) || fracosDe(sem) > fracosDe(com) || (empurraDemais(sem) && !empurraDemais(com));
+      comDupla = custa;
+      programaDias = custa ? com : sem;
+      avisos.push(...(custa ? avCom : avSem));
+    }
   }
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // tempo.sobra-series, 2º passo (13/11/2026): com o programa montado, cortado e completado, o tempo que ainda sobra vira
@@ -1412,7 +1431,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
                 ? `O tempo que sobrava nos treinos virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
                 : `O tempo que sobrava nos treinos virou série: cada músculo sobe até ~${VOLUME.sobraAte[nivel]} séries por semana, o alvo do seu nível, enquanto o treino couber nos ${perfil.minutosSessao} min.`
               : perfil.prioridades.length > VOLUME.focosComSobra
-                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. Os outros músculos sobem até ~${VOLUME.minimo[nivel]} séries por semana, sem encostar no foco.`
+                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. ${refeito ? `Os outros músculos sobem até ~${VOLUME.minimo[nivel]} séries por semana, sem encostar no foco.` : `Os outros músculos ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`}`
                 : `O tempo que sobrava nos treinos virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`,
           },
         ]
@@ -1459,7 +1478,12 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     // só quando muda a estimativa: com a margem igual à padrão, o programa sai idêntico ao de quem não tem margem
     ...(perfil.margemTempo !== undefined && perfil.margemTempo !== TEMPO.colchao ? { margemTempo: perfil.margemTempo } : {}),
   };
-  if (diasResgatados) RESGATADOS.set(programa, diasResgatados);
+  // O programa em que um dos ajustes do pacote D3 pode valer (um dia acima de 110% dos minutos, ou 3 grupos de foco ou mais)
+  // sabe se refazer com eles (REFAZER_ESCOLHIDO).
+  if (!refeito && (perfil.prioridades.length > VOLUME.focosComSobra || programa.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao)))
+    REFAZER_ESCOLHIDO.set(programa, () =>
+      montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, protegidoRaroPrimeiro, undefined, aceitaRecuo, semPratica, true, comDupla ? 'com' : 'sem'),
+    );
   return programa;
 }
 
@@ -1996,6 +2020,9 @@ export const NOME_MUSCULO: Record<Musculo, string> = {
  * 3) drop set na última série de isoladores; 4) menos exercícios, mantendo multiarticulares e isoladores
  * obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários.
  */
+/** tempo.corte, último degrau: abaixo desta fração dos minutos, o dia típico tem folga (o mesmo 85% do uso bom da régua). */
+const USO_BOM_DO_DEGRAU = 0.85;
+
 export function cortarTempo(
   dias: DiaPrograma[],
   limite: number,
@@ -2011,8 +2038,8 @@ export function cortarTempo(
   maisRapido?: (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]) => ExercicioPrescrito | null,
   /** tempo.superserie (16/11/2026): sem a dupla de dois exercícios que carregam a lombar sem apoio (a 1ª tentativa do corte). */
   semDuplaDeLombar = false,
-  /** Saída: quantos dias só couberam em 110% dos minutos pelo último degrau (as comparações entre montagens contam esses dias como acima do tempo). */
-  resgatados?: { dias: number },
+  /** tempo.corte, último degrau (pacote D3): ligado só na montagem refeita do programa já escolhido. */
+  ultimoDegrau = false,
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
@@ -2142,15 +2169,34 @@ export function cortarTempo(
   //    perde séries também abaixo do mínimo do nível do foco, uma por vez, até caber em 110%. Sem descer do piso de 4 por
   //    músculo, de 2 por exercício nem tirar a coxa da faixa; só a série que encurta o dia; e, se nem assim o dia couber
   //    em 110%, nada sai. Antes, com tudo no foco e o foco no mínimo, nada podia sair (pernas sem equipamento com dor
-  //    forte no ombro: 51 a 54 min em 45). É um passo à parte para não mudar os cortes dos outros dias.
+  //    forte no ombro: 51 a 54 min em 45). É um passo à parte para não mudar os cortes dos outros dias, e só roda na
+  //    montagem refeita do programa já escolhido (`ultimoDegrau`).
   for (let di = 0; di < dias.length; di++) {
     const d = dias[di]!;
-    if (d.minutosEstimados > LIMITE_DO_DIA * limite) {
+    if (ultimoDegrau && d.minutosEstimados > LIMITE_DO_DIA * limite) {
       let exs = d.exercicios;
       for (;;) {
         const agora = minutos(exs, colchao);
         if (agora <= LIMITE_DO_DIA * limite) break;
         const v = volumePorMusculo(dias.flatMap((z, k) => (k === di ? exs : z.exercicios).map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) }))));
+        // A série que sai não leva empurrar ÷ puxar acima de 1,5 (se já estava acima, não trava).
+        const razao = (ds: ExercicioPrescrito[][]) => {
+          const soma = (ps: Padrao[]) => ds.flat().filter((y) => ps.includes(y.padrao)).reduce((t, y) => t + seriesDeVolume(y), 0);
+          return soma(PADROES_PUXAR) > 0 && soma(PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * soma(PADROES_PUXAR);
+        };
+        const semana = (doDia: ExercicioPrescrito[]) => dias.map((z, k) => (k === di ? doDia : z.exercicios));
+        const desequilibra = (doDia: ExercicioPrescrito[]) => razao(semana(doDia)) && !razao(semana(exs));
+        // Com folga na semana (o dia típico, a mediana dos dias, abaixo de 85% dos minutos), nenhum músculo desce do
+        // mínimo do nível por causa do degrau: ali sobra tempo nos outros dias, e cortar o foco seria trocar um dia longo
+        // por um músculo abaixo da faixa com tempo sobrando (cuidado 4 do retrato; o mesmo 85% do "uso bom").
+        const comFolga = (doDia: ExercicioPrescrito[]) => {
+          const t = dias.map((z, k) => (k === di ? minutos(doDia, colchao) : z.minutosEstimados)).sort((a, b) => a - b);
+          const n = t.length;
+          return (n % 2 ? t[(n - 1) / 2]! : (t[n / 2 - 1]! + t[n / 2]!) / 2) < USO_BOM_DO_DEGRAU * limite;
+        };
+        // (as duas travas valem juntas: quem já estava entre 4 e o mínimo do nível continua sem descer de 4)
+        const cabeNoDegrau = (y: ExercicioPrescrito, doDia: ExercicioPrescrito[]) =>
+          cabe(y, 1, v, () => VOLUME.minimoEficazPiso) && (!comFolga(doDia) || cabe(y, 1, v, (m) => (m === 'abdomen' ? 0 : VOLUME.minimo[nivel])));
         // Numa dupla com as mesmas séries, o tempo só cai se os dois perderem uma série: saem juntas.
         const juntos = (x: ExercicioPrescrito) => {
           const par = x.supersetCom ? exs.find((y) => y.exId === x.supersetCom) : undefined;
@@ -2159,7 +2205,7 @@ export function cortarTempo(
         const semUma = (alvo: ExercicioPrescrito) => exs.map((x) => (juntos(alvo).includes(x) ? { ...x, series: x.series - 1 } : x));
         const alvo = exs
           .map((x, i) => ({ x, i }))
-          .filter(({ x }) => juntos(x).every((y) => y.series > VOLUME.seriesPorExercicio.min && cabe(y, 1, v, () => VOLUME.minimoEficazPiso)) && minutos(semUma(x), colchao) < agora)
+          .filter(({ x }) => juntos(x).every((y) => y.series > VOLUME.seriesPorExercicio.min && cabeNoDegrau(y, semUma(x))) && minutos(semUma(x), colchao) < agora && !desequilibra(semUma(x)))
           .sort((a, b) => naoPrioPrimeiro(a, b) || b.x.series - a.x.series || b.i - a.i)[0]?.x;
         if (!alvo) break;
         exs = semUma(alvo);
@@ -2167,8 +2213,6 @@ export function cortarTempo(
       if (exs !== d.exercicios && minutos(exs, colchao) <= LIMITE_DO_DIA * limite) {
         dias[di] = recalcular({ ...d, exercicios: exs });
         usados.add('series');
-        // O dia que só coube em 110% por este degrau continua contando como "acima do tempo" para quem compara montagens.
-        if (resgatados) resgatados.dias++;
       }
     }
     const fim = dias[di]!;

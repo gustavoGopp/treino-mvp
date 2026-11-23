@@ -109,42 +109,55 @@ describe('tempo.corte, último degrau, num dia montado à mão', () => {
     const funcao = Object.values(FUNCAO).find((f) => f.niveis.flat().includes(exId))!.id;
     return { exId, nome: e.nome, padrao: e.padrao, tipo: e.tipo, funcao, series, reps: e.faixaReps, rir: [1, 2], descansoSeg: e.tipo === 'composto' ? 105 : 75, unilateral: e.unilateral, animacaoId: e.animacaoId, alternativas: [], porque: [] };
   };
-  // O peito é o foco e está no mínimo do nível (10 séries na semana): 8 no dia A e 2 no dia B.
-  const [diaA, diaB] = [[px('supino-reto', 4), px('crucifixo-polia', 4)], [px('supino-inclinado', 2)]];
+  // O peito é o foco e está no mínimo do nível (10 séries na semana): 8 no dia A e 2 no dia B. O dia B tem também uma
+  // remada, para a semana não ter folga (o dia típico perto dos minutos); `diaCurto` é o dia B sem ela.
+  const [diaA, diaB] = [[px('supino-reto', 4), px('crucifixo-polia', 4)], [px('supino-inclinado', 2), px('remada-baixa', 3)]];
+  const diaCurto = [px('supino-inclinado', 2)];
   const metas = { peito: 12 } as Partial<Record<Musculo, number>>;
   const foco = new Set<Musculo>(['peito']);
-  const semana = (): DiaPrograma[] => [diaA, diaB].map((exs, i) => ({ id: `d${i}`, nome: `Dia ${i}`, exercicios: exs.map((x) => ({ ...x })), minutosEstimados: minutos(exs) }));
-  // (ninguém pode drop set, e não há dupla possível: dois exercícios de peito competem)
-  const cortar = (limite: number, comDegrau: boolean, resgatados?: { dias: number }) =>
-    comDegrau ? cortarTempo(semana(), limite, metas, 'intermediario', foco, [], () => false, undefined, false, undefined, false, resgatados) : semana();
+  const semana = (b = diaB): DiaPrograma[] => [diaA, b].map((exs, i) => ({ id: `d${i}`, nome: `Dia ${i}`, exercicios: exs.map((x) => ({ ...x })), minutosEstimados: minutos(exs) }));
+  // (ninguém pode drop set; a dupla, se houver, é a mesma com e sem o degrau)
+  const cortar = (limite: number, ultimoDegrau: boolean, b = diaB) => cortarTempo(semana(b), limite, metas, 'intermediario', foco, [], () => false, undefined, false, undefined, false, ultimoDegrau);
   const resumo = (ds: DiaPrograma[]) => ds.map((d) => d.exercicios.map((x) => `${x.exId} ${x.series}`));
 
   it('a semana montada à mão tem o peito no mínimo do nível, e por isso os degraus de antes não tiram nada', () => {
     expect(volume(semana()).peito).toBe(VOLUME.minimo.intermediario);
   });
 
-  it('o dia a 120% do tempo perde séries só até caber em 110%, e conta como resgatado', () => {
+  it('o dia a 120% do tempo perde séries só até caber em 110%, e só com o degrau ligado', () => {
     const limite = Math.floor(minutos(diaA) / 1.2);
     expect(minutos(diaB)).toBeLessThanOrEqual(limite);
-    const resgatados = { dias: 0 };
-    const [a] = cortar(limite, true, resgatados);
+    // sem o degrau (a montagem que as comparações entre montagens e divisões veem), o dia fica como estava
+    const semDegrau = cortar(limite, false);
+    expect(semDegrau[0]!.minutosEstimados).toBeGreaterThan(LIMITE_DO_DIA * limite);
+    const [a] = cortar(limite, true);
     expect(a!.minutosEstimados).toBeLessThanOrEqual(LIMITE_DO_DIA * limite);
     // parou assim que coube: saíram 2 séries (8 → 6), e não as 4 que o piso de 4 deixaria sair; com uma a menos não cabia
     expect(a!.exercicios.reduce((t, x) => t + x.series, 0)).toBe(6);
     expect(Math.min(...a!.exercicios.map((_, i) => minutos(a!.exercicios.map((y, j) => (j === i ? { ...y, series: y.series + 1 } : y)))))).toBeGreaterThan(LIMITE_DO_DIA * limite);
-    expect(resgatados.dias).toBe(1);
     expect(a!.exercicios.map((x) => x.exId)).toEqual(['supino-reto', 'crucifixo-polia']);
+    // fora o degrau, o corte é o mesmo
+    expect(resumo(cortar(limite, true)).slice(1)).toEqual(resumo(semDegrau).slice(1));
     for (const x of a!.exercicios) expect(x.series).toBeGreaterThanOrEqual(VOLUME.seriesPorExercicio.min);
     const peito = volume(cortar(limite, true)).peito!;
     expect(peito).toBeLessThan(VOLUME.minimo.intermediario);
     expect(peito).toBeGreaterThanOrEqual(VOLUME.minimoEficazPiso);
   });
 
+  it('com folga na semana (o dia típico abaixo de 85% dos minutos), o foco não desce do mínimo do nível, e nada sai', () => {
+    const limite = Math.floor(minutos(diaA) / 1.2);
+    // dois dias, o típico é a média: com o dia B curto, fica abaixo de 85% mesmo depois do degrau
+    expect((LIMITE_DO_DIA * limite + minutos(diaCurto)) / 2).toBeLessThan(0.85 * limite);
+    const d = cortar(limite, true, diaCurto);
+    expect(d[0]!.minutosEstimados).toBeGreaterThan(LIMITE_DO_DIA * limite);
+    expect(volume(d).peito).toBe(VOLUME.minimo.intermediario);
+  });
+
   it('se nem tirando tudo o que pode o dia couber em 110%, nada sai', () => {
-    const resgatados = { dias: 0 };
-    const d = cortar(8, true, resgatados);
+    const d = cortar(8, true);
     expect(d[0]!.minutosEstimados).toBeGreaterThan(LIMITE_DO_DIA * 8);
-    expect(resgatados.dias).toBe(0);
-    expect(resumo(d)).toEqual(resumo(semana()));
+    // (os degraus de antes podem cortar a remada do dia B, que não é foco; o último degrau não tira nada)
+    expect(resumo(d)).toEqual(resumo(cortar(8, false)));
+    expect(resumo(d)[0]).toEqual(resumo(semana())[0]);
   });
 });
