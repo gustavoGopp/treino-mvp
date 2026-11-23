@@ -1025,7 +1025,7 @@
   },
   {
     "id": "selecao.estabilidade",
-    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante. **Conferência regra por regra de 22/11/2026:** \"estável\" é a marca do exercício, e 13 dos 21 de polia não a têm (pacote D3)",
+    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante. **Desde 23/11/2026 (os itens da conferência regra por regra no pacote D3):** todo exercício de polia conta como estável, pela carga, como a regra lista; antes, \"estável\" era só a marca do exercício, que 13 dos 21 de polia não tinham, e o iniciante recebia o crucifixo com halteres \"por ser mais estável\" que o crucifixo na polia",
     "valores": {
       "iniciante": "desempate dentro do nível da função",
       "intermediario": "não se aplica",

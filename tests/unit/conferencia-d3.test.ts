@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
-import { ana } from '../personas';
+import { ana, bruno } from '../personas';
 
 // Os itens que a conferência regra por regra (pacote D1, 22/11/2026) deixou para o pacote D3, feitos em 23/11/2026
 // (`docs/revisoes/melhorias/d3-conferencia/README.md`). Cada bloco prende o exemplo que o conferente rodou.
@@ -40,5 +40,23 @@ describe('selecao.peitoral-inclinado: o 2º empurrar olha a vaga que coube no di
   it('com tempo, o dia que já tem a vaga de empurrar horizontal não ganha dois supinos retos', () => {
     const p = ok(perfil({ nivel: 'intermediario', dias: 5, min: 60 }), ana.inventario);
     for (const d of p.dias) expect(d.exercicios.filter((x) => x.exId === 'supino-reto').length).toBeLessThanOrEqual(1);
+  });
+});
+
+describe('selecao.estabilidade: a polia conta como estável, como a regra lista', () => {
+  // Polia dupla, halteres e banco regulável (o inventário do Bruno), iniciante de 4 dias de 60 min: antes, a vaga de
+  // crucifixo ia para o crucifixo com halteres, "mais estável e apoiado" que o crucifixo na polia, que vem antes na lista.
+  it('o iniciante com polia recebe o crucifixo na polia, e o porquê não diz "apoiado" de um exercício de polia', () => {
+    const p = ok(perfil({ nivel: 'iniciante', dias: 4, min: 60 }), bruno.inventario);
+    const cruci = p.dias.flatMap((d) => d.exercicios).filter((x) => x.funcao === 'crucifixo');
+    expect(cruci.map((x) => x.exId)).toContain('crucifixo-polia');
+    expect(cruci.map((x) => x.exId)).not.toContain('crucifixo-halteres');
+    for (const x of p.dias.flatMap((d) => d.exercicios).filter((y) => y.exId.includes('polia')))
+      for (const q of x.porque) expect(q.texto).not.toMatch(/estável e apoiado/);
+  });
+
+  it('o intermediário não muda: o desempate é só do iniciante', () => {
+    const p = ok(perfil({ nivel: 'intermediario', dias: 4, min: 60 }), bruno.inventario);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'crucifixo-polia')).toBe(true);
   });
 });
