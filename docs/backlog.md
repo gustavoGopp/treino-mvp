@@ -676,3 +676,4 @@ O que foi feito está no devlog e em `revisoes/melhorias/d4/README.md`. Ficou pa
 - **Juntar os três palcos** (treino, guia, abertura) num componente só: não muda nada para quem usa e mexe em três telas já conferidas.
 - **Desenhar as miniaturas na hora de publicar**, para a tela do programa não precisar do motor (cerca de 70 kB).
 - **A Íris com um dia de 50 min em 45** (seção "Da ligação das 81 animações") é do gerador: fica para o D3 ou depois.
+- **Teste de tela que falhou 1 vez em 39** (23/11/2026; registro em `revisoes/melhorias/d4/README.md`): "o guia grande abre sozinho na 1ª vez", no toque em "Ampliar o guia" depois de recarregar. Não se repetiu; se voltar, investigar com o rastro ligado.

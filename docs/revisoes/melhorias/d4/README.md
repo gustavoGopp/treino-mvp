@@ -86,3 +86,12 @@ Medida nova: `scripts/animacao-nova/tempo-da-primeira-volta.mjs` (o tempo de cad
 - **Juntar os três palcos** (treino, guia, abertura) num componente só: não muda nada para quem usa e mexe em três telas já conferidas.
 - **Desenhar as miniaturas na hora de publicar**, para a tela do programa não precisar do motor: mudaria o desenho das miniaturas.
 - **Medir num celular de verdade**: a primeira volta foi medida no Chromium do computador.
+
+## Uma falha de teste que não se repetiu (23/11/2026)
+
+Na 2ª rodada do `npm run verificar` deste ramo, um teste de tela falhou uma vez: `tests/e2e/treino.spec.ts`, "na 1ª vez de um exercício o guia grande abre sozinho...". Depois de recarregar a página, o toque em "Ampliar o guia" não abriu a folha "Como fazer" em 5 s. O retrato da tela mostra o treino normal, sem folha nenhuma e sem erro.
+
+- **Não é do D4:** o ramo não mexe na tela do treino nem na folha; o toque só liga um estado. Na `main`, o mesmo teste passou em todas as rodadas do GitHub.
+- **Não se repetiu:** depois, só esse teste passou 8 vezes em 8 e, 4 de cada vez, 30 vezes em 30, com a máquina sobrecarregada (carga de 10 a 26 em 4 núcleos; a auditoria do D3 rodava junto). Foi 1 falha em 39 rodadas.
+- **Hipótese não confirmada:** com a máquina carregada, a tela muda de lugar entre o momento em que o teste mira o botão e o toque, e o toque cai fora dele.
+- **O que fica:** se voltar a falhar, rodar o teste com `--trace on` e ler o rastro. Não foi afrouxado nem posto para repetir.
