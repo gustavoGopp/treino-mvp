@@ -149,7 +149,10 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(page.getByRole('heading', { name: /2 de 3 treinos/ })).toBeVisible();
   // sessão de textos (16/11/2026): a frase da semana saiu da tela e fica em "Entenda o treino"
   await expect(page.getByText(/Se der, o Corpo todo C/)).toHaveCount(0);
+  // lote M5 (22/11/2026): a tabela de músculos foi para uma gaveta; a tela abre pelos treinos e pelas semanas
   const musculos = page.getByRole('list', { name: 'Séries efetivas por músculo nesta semana' });
+  await expect(musculos).toBeHidden();
+  await page.locator('summary', { hasText: 'Séries por músculo nesta semana' }).click();
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
   // Os 4 estados em palavras, nunca em vermelho.
@@ -157,8 +160,8 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   const cores = await musculos.locator('.m-barra i').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundColor));
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
-  await expect(page.getByRole('heading', { name: 'Últimas 3 semanas' })).toBeVisible();
-  // a contagem em palavras fica no nome acessível dos quadradinhos
+  // lote M5: a contagem em palavras é o título da faixa, à vista (antes, só no nome acessível dos quadradinhos)
+  await expect(page.getByRole('heading', { name: '2 de 3 semanas com treino' })).toBeVisible();
   await expect(page.getByRole('img', { name: '2 de 3 semanas com treino' })).toBeVisible();
   await print(page, 'semana');
   await semToquePequeno(page);
@@ -204,7 +207,9 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "Subiu nest
   // o fim do treino mostra a última sessão
   await page.goto('/treino/fim');
   const mudou = page.getByRole('region', { name: 'O que mudou hoje' });
-  await expect(mudou).toContainText('2 de 3');
+  // lote M5: o treino na semana e o que melhorou, em palavras
+  await expect(mudou.getByRole('link', { name: '2º treino da semana. Falta 1.' })).toBeVisible();
+  await expect(mudou).toContainText('Você bateu 1 recorde.');
   await expect(mudou.getByRole('list', { name: 'Recordes de hoje' })).toContainText(/recorde\s*Supino reto com halteres:\s*8 kg × 12/);
   await semToquePequeno(page);
 
@@ -274,4 +279,80 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await (await verAvisos(page)).getByRole('button', { name: 'Voltar ao normal' }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toHaveCount(0);
   await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
+});
+
+// Lote M5 da análise crítica (22/11/2026): um motivo para voltar.
+test('M5: quem volta depois de 9 dias é recebido; com 3 dias, que é o intervalo de sempre, não', async ({ page }) => {
+  const antes = [
+    { dia: 0, quando: '2026-10-05T13:00:00.000Z' },
+    { dia: 1, quando: '2026-10-13T13:00:00.000Z' },
+    { dia: 2, quando: '2026-10-20T13:00:00.000Z' },
+  ];
+  // o último treino terminou em 27/10; hoje, 05/11: 9 dias
+  await comHistorico(page, [...antes, { dia: 0, quando: '2026-10-27T13:00:00.000Z' }]);
+  const recepcao = page.getByText('Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma.');
+  await expect(recepcao).toBeVisible();
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeInViewport({ ratio: 1 });
+  await semToquePequeno(page);
+  // o último treino em 02/11: 3 dias
+  await comHistorico(page, [...antes, { dia: 0, quando: '2026-10-27T13:00:00.000Z' }, { dia: 1, quando: '2026-11-02T13:00:00.000Z' }]);
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
+  await expect(page.getByText(/Bom te ver de novo/)).toHaveCount(0);
+});
+
+const SEMANA_DO_CARTAO = [
+  { dia: 0, quando: '2026-10-27T13:00:00.000Z' },
+  { dia: 0, quando: '2026-11-02T13:00:00.000Z' },
+  { dia: 1, quando: '2026-11-03T13:00:00.000Z' },
+];
+
+test('M5: o cartão da semana sai pelo compartilhar do celular, só com a frequência', async ({ page }) => {
+  await comHistorico(page, SEMANA_DO_CARTAO);
+  await page.goto('/treino/fim');
+  await page.evaluate(() => {
+    const w = window as unknown as { __mandado: unknown };
+    navigator.canShare = (d?: ShareData) => !!d?.files?.length;
+    navigator.share = async (d?: ShareData) => {
+      const f = d!.files![0]!;
+      w.__mandado = { nome: f.name, tipo: f.type, bytes: f.size, texto: d!.text, chaves: Object.keys(d!).sort() };
+    };
+  });
+  await page.getByRole('button', { name: 'Mandar a minha semana' }).click();
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __mandado?: { nome: string } }).__mandado?.nome)).toBe('minha-semana-de-treino.png');
+  const mandado = await page.evaluate(() => (window as unknown as { __mandado: { tipo: string; bytes: number; texto: string; chaves: string[] } }).__mandado);
+  expect(mandado.tipo).toBe('image/png');
+  expect(mandado.bytes).toBeGreaterThan(2000);
+  // só a imagem e a frase da frequência: nada de carga, de exercício ou de endereço
+  expect(mandado.chaves).toEqual(['files', 'text']);
+  expect(mandado.texto).toBe('2 de 3 treinos nesta semana. 2ª semana seguida.');
+  await semToquePequeno(page);
+});
+
+test('M5: sem compartilhar no aparelho, o cartão é salvo como imagem; e o próximo treino vira um compromisso da agenda', async ({ page }) => {
+  await comHistorico(page, SEMANA_DO_CARTAO);
+  await page.goto('/treino/fim');
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: undefined });
+  });
+  const [imagem] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Mandar a minha semana' }).click()]);
+  expect(imagem.suggestedFilename()).toBe('minha-semana-de-treino.png');
+  await expect(page.getByRole('status').filter({ hasText: 'Imagem salva. Mande para quem você quiser.' })).toBeVisible();
+  if (process.env.PRINTS) await imagem.saveAs('reports/m5-cartao.png');
+
+  // "Quando é o próximo?": o treino de hoje começou às 10:00 (Brasília) de 03/11; com 3 treinos por semana, a sugestão é 06/11 às 10:00
+  const quando = page.getByRole('region', { name: 'Quando é o próximo?' });
+  await expect(quando.getByLabel('Dia e hora do próximo treino')).toHaveValue('2026-11-06T10:00');
+  const [agenda] = await Promise.all([page.waitForEvent('download'), quando.getByRole('button', { name: 'Pôr na agenda' }).click()]);
+  expect(agenda.suggestedFilename()).toBe('proximo-treino.ics');
+  const texto = (await (await import('node:fs/promises')).readFile(await agenda.path(), 'utf8')).split('\r\n');
+  expect(texto).toContain('DTSTART:20261106T100000');
+  expect(texto).toContain('SUMMARY:Treino: Corpo todo C');
+  expect(texto).toContain('TRIGGER:-PT30M');
+  // o compromisso leva só o nome do treino
+  expect(texto.join('\n')).not.toMatch(/kg|séries|dor/i);
+  // a pessoa escolhe outro dia e outra hora
+  await quando.getByLabel('Dia e hora do próximo treino').fill('2026-11-07T18:30');
+  const [outra] = await Promise.all([page.waitForEvent('download'), quando.getByRole('button', { name: 'Pôr na agenda' }).click()]);
+  expect(await (await import('node:fs/promises')).readFile(await outra.path(), 'utf8')).toContain('DTSTART:20261107T183000');
+  await semToquePequeno(page);
 });

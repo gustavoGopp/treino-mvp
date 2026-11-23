@@ -2594,3 +2594,30 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 1
 **Verificação.** `npm run check` limpo (1.154 testes); `npm run test:cobertura` limpo, sem teste perto do limite de tempo; a auditoria inteira duas vezes (`npm run auditoria:verificar`): 39 arquivos idênticos nas duas rodadas, e a grade da régua dentro da linha de base. Os relatórios regenerados estão num commit próprio; como as cópias da `main` eram de antes dos consertos do D1, a diferença deles traz também esses consertos. `npm run verificar` e os testes de tela não rodaram nesta rodada (o outro pacote usava a máquina); nenhuma tela mudou.
 
 **Rascunho de post.** "O meu app de treino tinha três defeitos medidos e guardados para depois. Corrigi os três, e a medida achou um quarto: a minha própria correção. Para o dia de pernas caber nos 45 minutos, o app passava a cortar séries; mas o corte entrava na hora de escolher a divisão da semana e, em uns poucos casos, trocava a divisão e criava um dia fraco. A regra do projeto é que nenhum defeito piora, nem em 1 programa de 680 mil. A correção ficou assim: o app escolhe a semana como antes e só depois ajusta as séries."
+
+## Um motivo para voltar: feito no ramo, à espera das decisões do Gustavo (22/11/2026)
+
+**De onde veio.** O lote M5 da análise crítica: nada trazia a pessoa de volta na primeira e na segunda semana. Feito no ramo `claude/m5-um-motivo-para-voltar`, a pedido do Gustavo, com o M4 ainda à espera do teste nos aparelhos. **Nada disto está na `main`.** O registro completo está em `revisoes/melhorias/m5/README.md`.
+
+**O que muda para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Fim do treino | "A sua semana · 1 de 3" | "1º treino da semana. Faltam 2." e, com recorde, "Você subiu a carga em 2 exercícios e bateu 1 recorde." |
+| Quem volta depois de alguns dias | nada, até os 14 dias | "Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma." |
+| Tela da semana | abria com a tabela de músculos | abre pelos treinos e pelas semanas com treino; a tabela foi para uma gaveta |
+| O próximo treino | nada | "Quando é o próximo?" cria um compromisso na agenda do celular |
+| Mostrar a semana | nada | "Mandar a minha semana": uma imagem só com a frequência, pelo compartilhar do celular |
+
+![O fim do treino, depois](revisoes/melhorias/m5/fim-depois.png)
+![O cartão da semana](revisoes/melhorias/m5/cartao-da-semana.png)
+
+**Decisões técnicas, com o motivo**
+- **A recepção conta a partir de 2 dias além do intervalo da rotina** (6 dias com 2 treinos por semana, 5 com 3, 4 com 4 ou mais), e não a partir de 3 para todos: com 3 treinos por semana, 3 dias é o intervalo de sempre.
+- **"Semana seguida" só no cartão, e só da 2ª em diante.** No app continua "X das últimas 8 semanas com treino", que não zera.
+- **Sem servidor:** o compromisso é um arquivo de calendário, e o cartão é desenhado no aparelho.
+
+**À espera do Gustavo:** os textos do fim do treino e da recepção, o desenho do cartão, os textos da agenda e a frase do `CLAUDE.md` sobre recursos sociais. **Sem medida em aparelho:** o arquivo da agenda no iPhone e o compartilhar de verdade.
+
+**Rascunho de post.** Fica para o fechamento do lote.
+

@@ -257,7 +257,7 @@
   },
   "acompanhamento.mensagens": {
     "titulo": "Mensagens sem culpa",
-    "frase": "As mensagens do acompanhamento trazem o fato e o próximo passo: nunca “você falhou”, “perdeu” ou “deveria”, nem risco de morte ou comparação com outras pessoas. Semana sem treino não gera aviso. Com 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta), o app oferece um programa com menos dias, que só muda com o seu aceite."
+    "frase": "As mensagens do acompanhamento trazem o fato e o próximo passo: nunca “você falhou”, “perdeu” ou “deveria”, nem risco de morte ou comparação com outras pessoas. Semana sem treino não gera aviso. Com 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta), o app oferece um programa com menos dias, que só muda com o seu aceite. Quem volta depois de poucos dias (menos de 14) é recebido; nada muda."
   },
   "acompanhamento.evolucao": {
     "titulo": "Evolução de cada exercício",
