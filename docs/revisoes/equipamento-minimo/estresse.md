@@ -80,7 +80,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | vazio (= 10 outros) | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,6 | 7,6 | 12,4 | 9 | 4,8 |
-| estacao_polia_dupla | 9,1 | 5,9 | 7 | 6,2 | 6,6 | 6,4 | 7,1 | 6,9 | 11,3 | 8 | 4,1 |
+| estacao_polia_dupla | 9,1 | 5,9 | 6,9 | 6,2 | 6,6 | 6,4 | 7,1 | 6,9 | 11,3 | 8 | 4,1 |
 | barra_fixa | 7 | 7,7 | 0,6 | 7,4 | 3,8 | 7,1 | 7,5 | 7,5 | 12 | 8,7 | 4,5 |
 | halteres_fixos | 7,1 | 5,2 | 7,5 | 6,1 | 7,9 | 7,9 | 6,8 | 8,3 | 11,7 | 8 | 4,2 |
 | anilhas_e_manoplas | 7,1 | 5,2 | 7,6 | 6,2 | 7,9 | 8 | 6,8 | 8,3 | 11,7 | 8 | 4,2 |
@@ -93,7 +93,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | mesa_flexora | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,8 | 8,1 | 11,2 | 9 | 4,8 |
 | cadeira_flexora | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,8 | 8,1 | 11,2 | 9 | 4,8 |
 | paralelas | 8,1 | 0 | 0,7 | 5,4 | 0 | 8,6 | 7,6 | 7,5 | 12,3 | 8,8 | 4,7 |
-| elasticos | 8,2 | 8,2 | 7,1 | 6,4 | 8 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
+| elasticos | 8,2 | 8,2 | 7 | 6,4 | 8 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
 | step | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,6 | 7,6 | 12,4 | 9 | 4,8 |
 | bola_suica | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,2 | 7,7 | 13 | 9 | 4,8 |
 | barra_hexagonal | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,3 | 8,4 | 13,3 | 9,1 | 4,8 |
@@ -119,11 +119,11 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | caneleiras | 7,1 | 0 | 7,9 | 5 | 0 | 7,1 | 8,4 | 7,5 | 10,9 | 8,5 | 4,6 |
 | mini_band | 7,3 | 0 | 0,7 | 5,3 | 0 | 7,4 | 8,5 | 7,7 | 11,8 | 8,9 | 4,8 |
 | roda_abdominal | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,6 | 7,6 | 12,4 | 9 | 4,8 |
-| barra-porta+elasticos | 8,2 | 8,4 | 7,1 | 6,5 | 8,1 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
+| barra-porta+elasticos | 8,3 | 8,4 | 7 | 6,5 | 8,1 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
 | halteres+bola | 7,1 | 5,2 | 7,6 | 6,2 | 7,9 | 8 | 6,6 | 8,2 | 12,1 | 8,1 | 4,2 |
-| suspensao+elasticos | 7,8 | 8,3 | 7,1 | 6,5 | 8,1 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
-| banco+halteres-leves | 8,5 | 5,1 | 7,4 | 6,1 | 7,8 | 7 | 6,8 | 8,2 | 11,6 | 8 | 4,1 |
-| step+elasticos | 8,2 | 8,2 | 7,1 | 6,4 | 8 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
+| suspensao+elasticos | 7,9 | 8,3 | 7 | 6,5 | 8,1 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
+| banco+halteres-leves | 8,6 | 5,1 | 7,4 | 6,1 | 7,8 | 7,1 | 6,8 | 8,2 | 11,6 | 8 | 4,1 |
+| step+elasticos | 8,2 | 8,2 | 7 | 6,4 | 8 | 7,5 | 7,5 | 7,9 | 9,5 | 7,3 | 4 |
 
 ### Sem dor: % dos programas com o músculo em 0 série na semana
 
@@ -488,8 +488,8 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | vazio (= 10 outros) | 45 | 6 | 4,9 | 2,8 | 28,3% | 45 | 0,6% |
 | vazio (= 10 outros) | 60 | 8 | 5,5 | 2,9 | 35,9% | 59 | 3,9% |
 | vazio (= 10 outros) | 90 | 12 | 5,9 | 2,9 | 41,6% | 80 | 35% |
-| estacao_polia_dupla | 20 | 3 | 3,3 | 2,4 | 13% | 31 | 0% |
-| estacao_polia_dupla | 30 | 4 | 4 | 2,5 | 13,8% | 32 | 0% |
+| estacao_polia_dupla | 20 | 3 | 3,3 | 2,4 | 13,1% | 31 | 0% |
+| estacao_polia_dupla | 30 | 4 | 4 | 2,5 | 12,9% | 32 | 0% |
 | estacao_polia_dupla | 45 | 6 | 5,6 | 2,6 | 17,4% | 45 | 0% |
 | estacao_polia_dupla | 60 | 8 | 6,9 | 2,6 | 19,5% | 60 | 0% |
 | estacao_polia_dupla | 90 | 12 | 8 | 2,7 | 26,8% | 87 | 10,6% |
@@ -553,8 +553,8 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | paralelas | 45 | 6 | 4,9 | 2,8 | 27,4% | 45 | 0,6% |
 | paralelas | 60 | 8 | 5,5 | 2,9 | 35,4% | 59 | 3,9% |
 | paralelas | 90 | 12 | 5,9 | 2,9 | 40,9% | 77 | 32,8% |
-| elasticos | 20 | 3 | 3,3 | 2,5 | 16,8% | 32 | 0% |
-| elasticos | 30 | 4 | 4,1 | 2,6 | 17,3% | 32 | 0% |
+| elasticos | 20 | 3 | 3,3 | 2,4 | 15,1% | 32 | 0% |
+| elasticos | 30 | 4 | 4,1 | 2,5 | 15,7% | 32 | 0% |
 | elasticos | 45 | 6 | 5,7 | 2,6 | 17,3% | 45 | 0% |
 | elasticos | 60 | 8 | 6,9 | 2,7 | 20,2% | 60 | 0% |
 | elasticos | 90 | 12 | 8,1 | 2,7 | 24,8% | 88 | 11,1% |
@@ -603,7 +603,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | supino_maquina | 45 | 6 | 4,9 | 2,8 | 28,3% | 45 | 0,6% |
 | supino_maquina | 60 | 8 | 5,5 | 2,9 | 35,1% | 59 | 3,3% |
 | supino_maquina | 90 | 12 | 5,9 | 2,9 | 41,1% | 77 | 35,6% |
-| voador | 20 | 3 | 3 | 2,5 | 17,5% | 23 | 0% |
+| voador | 20 | 3 | 3,1 | 2,5 | 15,7% | 23 | 0% |
 | voador | 30 | 4 | 3,8 | 2,7 | 23,1% | 31 | 0% |
 | voador | 45 | 6 | 5 | 2,8 | 26,9% | 45 | 0,6% |
 | voador | 60 | 8 | 5,7 | 2,8 | 33,6% | 59 | 2,8% |
@@ -683,8 +683,8 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | roda_abdominal | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | roda_abdominal | 60 | 8 | 5,5 | 2,9 | 36% | 59 | 3,9% |
 | roda_abdominal | 90 | 12 | 5,9 | 2,9 | 41,5% | 80 | 35% |
-| barra-porta+elasticos | 20 | 3 | 3,3 | 2,5 | 17,2% | 32 | 0% |
-| barra-porta+elasticos | 30 | 4 | 4,1 | 2,6 | 17,5% | 32 | 0% |
+| barra-porta+elasticos | 20 | 3 | 3,3 | 2,5 | 15,5% | 32 | 0% |
+| barra-porta+elasticos | 30 | 4 | 4,1 | 2,6 | 15,9% | 32 | 0% |
 | barra-porta+elasticos | 45 | 6 | 5,7 | 2,6 | 17,8% | 45 | 0% |
 | barra-porta+elasticos | 60 | 8 | 6,9 | 2,7 | 20,6% | 59 | 0% |
 | barra-porta+elasticos | 90 | 12 | 8,1 | 2,7 | 24,9% | 88 | 11,1% |
@@ -693,18 +693,18 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | halteres+bola | 45 | 6 | 5,6 | 2,7 | 23,1% | 45 | 0% |
 | halteres+bola | 60 | 8 | 6,8 | 2,8 | 26% | 60 | 0% |
 | halteres+bola | 90 | 12 | 8 | 2,8 | 31,5% | 84 | 13,9% |
-| suspensao+elasticos | 20 | 3 | 3,3 | 2,5 | 17,1% | 32 | 0% |
-| suspensao+elasticos | 30 | 4 | 4 | 2,6 | 18,1% | 32 | 0% |
+| suspensao+elasticos | 20 | 3 | 3,3 | 2,5 | 15,4% | 32 | 0% |
+| suspensao+elasticos | 30 | 4 | 4,1 | 2,6 | 16,5% | 32 | 0% |
 | suspensao+elasticos | 45 | 6 | 5,7 | 2,6 | 18,4% | 45 | 0% |
 | suspensao+elasticos | 60 | 8 | 6,9 | 2,7 | 21,8% | 60 | 0% |
 | suspensao+elasticos | 90 | 12 | 8,1 | 2,8 | 25,8% | 88 | 10,6% |
-| banco+halteres-leves | 20 | 3 | 3,3 | 2,4 | 14% | 29 | 0% |
-| banco+halteres-leves | 30 | 4 | 4 | 2,6 | 16% | 32 | 0% |
+| banco+halteres-leves | 20 | 3 | 3,3 | 2,4 | 12,5% | 29 | 0% |
+| banco+halteres-leves | 30 | 4 | 4 | 2,6 | 14,2% | 32 | 0% |
 | banco+halteres-leves | 45 | 6 | 5,6 | 2,8 | 22,9% | 45 | 0% |
 | banco+halteres-leves | 60 | 8 | 6,9 | 2,8 | 24,2% | 59 | 0% |
 | banco+halteres-leves | 90 | 12 | 8,1 | 2,8 | 27,3% | 85 | 17,8% |
-| step+elasticos | 20 | 3 | 3,3 | 2,5 | 16,8% | 32 | 0% |
-| step+elasticos | 30 | 4 | 4,1 | 2,6 | 17,3% | 32 | 0% |
+| step+elasticos | 20 | 3 | 3,3 | 2,4 | 15,1% | 32 | 0% |
+| step+elasticos | 30 | 4 | 4,1 | 2,5 | 15,7% | 32 | 0% |
 | step+elasticos | 45 | 6 | 5,7 | 2,6 | 17,1% | 45 | 0% |
 | step+elasticos | 60 | 8 | 6,9 | 2,7 | 20,2% | 60 | 0% |
 | step+elasticos | 90 | 12 | 8,1 | 2,7 | 24,7% | 88 | 9,4% |

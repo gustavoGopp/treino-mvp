@@ -46,8 +46,10 @@ const gerar = (pf: Perfil, inv: Inventario): Programa => {
 };
 
 describe(`equipamento mínimo: o vazio e cada item sozinho (${casos.length} programas)`, () => {
-  it('nenhum dia vazio, nenhum dia só com abdominal, e nenhum exercício pede o que o inventário não tem', () => {
-    for (const { nome, inv, pf } of casos) {
+  // Em duas partes (23/11/2026): com a cobertura ligada, o teste inteiro levava 2,4 s aqui (1,9 a 2,0 s sozinho, também na
+  // main), acima dos 2 s que cabem no limite de 5 s com o GitHub 2,5 vezes mais lento (docs/verificacao/lista.md, item 3).
+  it.each([0, 1])('nenhum dia vazio, nenhum dia só com abdominal, e nenhum exercício pede o que o inventário não tem (parte %i de 2)', (parte) => {
+    for (const { nome, inv, pf } of casos.filter((_, i) => i % 2 === parte)) {
       const p = gerar(pf, inv);
       const caps = capacidades(inv);
       for (const d of p.dias) {
