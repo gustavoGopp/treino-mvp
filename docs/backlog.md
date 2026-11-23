@@ -667,3 +667,26 @@ O que foi feito está no devlog e em `revisoes/melhorias/m6/README.md`. Ficou pa
 - **Quem já usava o app e tinha marcado "coração ou pressão alta"** continua com o "sim" em coração. Para cair na regra nova, refaz a triagem. O app não avisa disso.
 - **O inventário de textos** (`scripts/textos/`) ainda cita a folha "Você não marcou estas" e as "9 perguntas".
 - **O texto do bloqueio** (item F.1, acima) perdeu o motivo para a pressão alta; vale para os outros "sim".
+
+## Do pacote D3, os ajustes do treino que já têm medida (23/11/2026)
+
+O que foi feito está no devlog e em `revisoes/melhorias/d3/README.md`. Ficou para depois:
+
+**Do próprio pacote**
+- **A troca de divisão que a 1ª versão do último degrau fazia era melhor para a pessoa t5** (intermediária, suspensão e elásticos, 6 × 30 min, dor 7 no cotovelo, foco em pernas e glúteos): Superior/Inferior 3x com 10 séries de coxa teve 4,7 · 5,7 · 4,7 na revisão cega, contra 3,7 · 3,0 · 3,0 da `main`, que é a semana dela no ramo como ficou (com o dia de pernas de 52 min em 30). Saiu porque, ligada nas comparações, a troca punha programas a mais em dois defeitos da régua. Medir uma regra própria: a dor que esvazia um dia compara as divisões já com o último degrau, desde que nenhum par grupo × defeito suba.
+- **O dia longo com folga na semana continua longo:** com o dia típico abaixo de 85% dos minutos, o degrau não corta o foco abaixo do mínimo do nível, e o dia segue acima de 110% (cerca de 860 dos 680.625 programas). O certo ali é passar séries para os dias curtos, o que o corte de tempo não faz.
+- **O "músculo abaixo da faixa com tempo sobrando" (cuidado 4 do retrato) aparece em 14 programas com foco em pernas** em que o degrau encurta o dia longo: o músculo (em geral o bíceps, com dor 7 no ombro) já estava abaixo da faixa e não perde série; o que muda é o dia típico, que cai abaixo de 85%. É a medida que marca, não um corte.
+- **O aviso de "sem melhora" não tem teste de tela:** a regra está presa nos 21 testes de `tests/unit/sem-melhora.test.ts`. Um teste de tela pediria um histórico de 4 ou mais treinos parados gravado no aparelho.
+
+**O que os revisores cegos apontaram e o pacote não mexeu** (opinião de treinador simulado; o que for de dor pede fonte ou profissional)
+- Sem equipamento, a intermediária e o avançado recebem a mesma semana (agachamento com o peso do corpo de 12 a 20, ponte sem carga): pedem variações de um lado só, cadência lenta e pausa. O mesmo com halteres de até 12 kg e supino de 6 a 10 para o avançado.
+- A divisão não acompanha o foco em pernas: com 5 ou 6 dias, só 2 são de pernas, e os dias de superiores ficam com 11 a 22 min em 30.
+- O dia A de quem treina pernas sem equipamento tem um agachamento e 8 séries de panturrilha.
+- A flexão nórdica em dupla, quase na falha, sem onde prender os pés (os três estranham); um liga à dor forte no ombro (a pessoa apara a queda com as mãos). A biblioteca não marca o ombro nesse exercício. Pede fonte ou profissional.
+- O afundo e o agachamento goblet com dor forte no tornozelo (1 de 3). A biblioteca não marca o tornozelo. Pede fonte ou profissional.
+- Dupla e drop set para o iniciante, e drop set em músculo fora do foco.
+- A mesma elevação lateral com halteres 3 vezes na semana, inclusive no dia de pernas, e as mesmas duas remadas nos dois dias de superiores.
+- Duplas com números de séries diferentes nos dois exercícios (2 com 4, 3 com 2).
+- Empurrar e Puxar com 41 a 46 min em 75 para a avançada com 4 focos (a Carla): é o "quem tem muito tempo fica com dias curtos", fora do D3.
+
+**Os 15 itens que a conferência regra por regra deixou para o D3** (seção "Da conferência regra por regra, pacote D1", acima) **não foram feitos nesta rodada**: o pacote parou nos três itens do roteiro e na medida deles. Continuam valendo como estão listados lá, cada um com o critério do D3 (personas, população e régua antes e depois; nenhum defeito pior).
