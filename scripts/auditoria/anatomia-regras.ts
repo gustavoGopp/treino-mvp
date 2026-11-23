@@ -1,13 +1,13 @@
 // Regras de leitura da revisão de anatomia: que músculo cada palavra do texto e cada forma do desenho representa.
 // Usadas pela tabela (scripts/auditoria/anatomia.ts) e pelo teste (tests/unit/anatomia.test.ts).
 import { MUSCULOS, type Musculo } from '../../src/domain/biblioteca';
-import { EX } from '../../src/engine';
-import { listaDe } from '../../src/engine/estilo/musculos';
+import { EXERCICIOS } from '../../src/engine/novo/app';
+import { MUSCULOS as GRUPOS_DO_DESENHO } from '../../src/engine/novo/tabela-musculos';
 
 /** O que o gerador não conta como músculo (aparece só no texto ou no desenho). */
-export type NaoContado = 'trapézio superior' | 'antebraço' | 'eretores (lombar)' | 'oblíquos';
+export type NaoContado = 'trapézio superior' | 'antebraço' | 'eretores (lombar)' | 'oblíquos' | 'tibial anterior';
 export type Marca = Musculo | NaoContado;
-export const NAO_CONTADOS: NaoContado[] = ['trapézio superior', 'antebraço', 'eretores (lombar)', 'oblíquos'];
+export const NAO_CONTADOS: NaoContado[] = ['trapézio superior', 'antebraço', 'eretores (lombar)', 'oblíquos', 'tibial anterior'];
 export const ehMusculo = (m: Marca): m is Musculo => (MUSCULOS as readonly string[]).includes(m);
 
 // ---------- 2. texto → músculo ----------
@@ -34,73 +34,36 @@ export const DICIONARIO: [RegExp, Marca][] = [
 export const doTexto = (t: string | undefined): Set<Marca> => new Set(t ? DICIONARIO.filter(([r]) => r.test(t)).map(([, m]) => m) : []);
 
 // ---------- 3. desenho → músculo ----------
-export const FORMA: Record<string, Marca> = {
-  dorsal: 'costas',
-  redondoMaior: 'costas',
-  romboides: 'costas',
-  trapMedio: 'costas',
-  trapInferior: 'costas',
-  peitoralClav: 'peito',
-  peitoralEst: 'peito',
-  deltAnt: 'ombro_anterior',
-  deltLat: 'ombro_lateral',
-  deltPost: 'ombro_posterior',
-  biceps: 'biceps',
-  triceps: 'triceps',
-  quadriceps: 'quadriceps',
-  posteriores: 'posteriores',
-  gluteos: 'gluteos',
-  panturrilha: 'panturrilha',
-  retoAbdominal: 'abdomen',
-  adutores: 'adutores',
-  trapSuperior: 'trapézio superior',
-  antebraco: 'antebraço',
-  eretores: 'eretores (lombar)',
-  obliquos: 'oblíquos',
-};
-/** Nome curto da forma, para mostrar de que parte das costas o desenho fala. */
-export const NOME_FORMA: Record<string, string> = {
-  dorsal: 'dorsal',
-  redondoMaior: 'redondo maior',
-  romboides: 'romboides',
-  trapMedio: 'trapézio médio',
-  trapInferior: 'trapézio inferior',
-  peitoralClav: 'peitoral (clavicular)',
-  peitoralEst: 'peitoral (esternal)',
-};
+// Desde o pacote D4 (23/11/2026) o desenho lido é o do motor novo (src/engine/novo), o único que o app mostra: cada
+// animação diz quem trabalha (`papeis`: 'p' principal, 's' secundário, 'a' só ajuda a firmar, que sai listrado), e a
+// tabela dos músculos do motor (dados/musculos.json, campo `conteudo`) diz a que grupo da biblioteca cada forma
+// corresponde. As formas que a tabela não liga a nenhum grupo da biblioteca são as que o gerador não conta.
+const SEM_GRUPO: Record<string, NaoContado> = { antebraco: 'antebraço', tibial: 'tibial anterior' };
+/** Os grupos (ou o músculo não contado) que cada forma do desenho representa. */
+export const FORMA: Record<string, Marca[]> = Object.fromEntries(
+  Object.entries(GRUPOS_DO_DESENHO.grupos).map(([id, g]) => [id, g.conteudo.length ? (g.conteudo as Musculo[]) : [SEM_GRUPO[id]!]]),
+);
+/** Nome da forma, para mostrar de que parte das costas, do ombro ou do abdômen o desenho fala. */
+export const NOME_FORMA: Record<string, string> = Object.fromEntries(Object.entries(GRUPOS_DO_DESENHO.grupos).map(([id, g]) => [id, g.nome.toLowerCase()]));
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Animacao = any;
 export function doDesenho(animacaoId: string) {
-  const ex: Animacao = EX.find((e: Animacao) => e.id === animacaoId);
+  const ex = EXERCICIOS[animacaoId];
+  if (!ex) throw new Error(`a animação "${animacaoId}" não está no motor novo`);
   const p = new Set<Marca>(),
     s = new Set<Marca>(),
+    a = new Set<Marca>(),
     formasP = new Set<string>(),
-    formasS = new Set<string>();
-  for (const [forma, , tipo] of listaDe(ex) as [string, string, 'p' | 's'][]) {
-    (tipo === 'p' ? p : s).add(FORMA[forma]!);
-    (tipo === 'p' ? formasP : formasS).add(forma);
+    formasS = new Set<string>(),
+    formasA = new Set<string>();
+  for (const [chave, papel] of Object.entries(ex.papeis)) {
+    const forma = chave.split(':')[0]!; // `dorsal:R` = só o lado direito
+    const marcas = FORMA[forma];
+    if (!marcas) throw new Error(`${animacaoId}: a forma "${forma}" não está na tabela dos músculos`);
+    for (const m of marcas) (papel === 'p' ? p : papel === 's' ? s : a).add(m);
+    (papel === 'p' ? formasP : papel === 's' ? formasS : formasA).add(forma);
   }
-  for (const m of p) s.delete(m); // o principal vence o secundário (o mesmo critério de listaDe)
-  return { p, s, formasP, formasS };
+  // o principal vence o secundário, e os dois vencem o "só ajuda"
+  for (const m of p) s.delete(m);
+  for (const m of [...p, ...s]) a.delete(m);
+  return { p, s, a, formasP, formasS, formasA };
 }
-
-/**
- * Achado 8 da revisão de anatomia (decisão do Gustavo, 02/11/2026): músculos que só ajudam ficam no desenho, em laranja,
- * sem contar no volume. Aqui, os que o gerador conta em outros exercícios e a biblioteca não lista para este.
- */
-export const AJUDANTES: Record<string, Musculo[]> = {
-  'elevacao-halteres': ['ombro_anterior'],
-  'elevacao-lateral': ['ombro_anterior'],
-  flexao: ['abdomen'],
-  'triceps-frances': ['abdomen'],
-  'flexao-bola': ['panturrilha'],
-  // Catálogo completo (04/11/2026): na ponte com os pés na bola, os posteriores seguram o calcanhar na bola sem contar série (ficha).
-  'ponte-pes-bola': ['posteriores'],
-  // R4 (05/11/2026): as versões com elástico, como as suas bases
-  'elevacao-lateral-elastico': ['ombro_anterior'],
-  'flexao-elastico': ['abdomen'],
-  'flexao-pes-elevados': ['abdomen'],
-  'triceps-elastico-acima': ['abdomen'],
-};
-
