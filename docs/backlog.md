@@ -454,16 +454,14 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 - **Do cor de pele**, que entrou com as recomendações da proposta sem ele olhar uma a uma: o secundário num tom claro do vermelho (no cinza é laranja); um tom de pele só; e, no tema escuro, o short claro com pouco contraste contra a pele.
 - **Do corpo**: a ponta do trapézio 4,9 cm acima de onde a fonte diz; o abdômen que termina na cintura; o glúteo médio e as outras porções que o desenho não separa; a forma do músculo engrossar ao encurtar.
 
-**O código do motor de hoje continua no repositório, fora do app**
-- `src/engine/` (menos a pasta `novo/`) não é mais carregado por nenhuma tela de produção, mas ainda serve a ferramentas: a auditoria de anatomia (`npm run auditoria:anatomia`), a pessoa dos cartões de equipamento (`scripts/desenhos-equipamento/realista/pessoa.mjs`), as folhas de comparação "hoje × novo" (`scripts/animacao-nova/prototipos.mjs`, `antes-e-depois.mjs`) e o laboratório do Boneco (`/lab/boneco`, que só existe em desenvolvimento e nas prévias). Os testes dele continuam rodando (`tests/unit/` e `tests/motor/equivalencia.spec.ts` e `estilo-a.spec.ts`, com as linhas de base).
-- **Para apagar de vez**: levar a auditoria de anatomia para o motor novo (hoje ela confere um desenho que o app não mostra mais; a conferência nova já mede se o músculo realçado é o do conteúdo), trocar a pessoa dos cartões, aposentar o laboratório e as folhas de comparação, e então apagar o código, os testes, as três linhas de base antigas e as regras de CSS do desenho de antes em `src/styles.css` (`.estilo-a`, `.estilo-b`, `.ea-*`, `.eb-*`).
+**O código do motor de hoje**: apagado no pacote D4 (23/11/2026), com os testes, as três linhas de base antigas e o CSS do desenho de antes (seção "Do pacote D4", abaixo).
 
 **O que não ficou no nível**
 - **Erro de ritmo sem desenho**: "Quicar embaixo", da panturrilha no degrau, não foi desenhado (o motor novo ainda não muda o tempo das fases por erro; ideia: `fases` opcionais por erro na ficha e em `cena.ts`). Nesse erro o app mostra o movimento certo.
 - **Face pull com elástico**: os antebraços não chegam à vertical.
 - **De três quartos, na abdução com mini band**, aparece entre as pernas um pedaço solto do trecho de baixo da faixa.
 - **A legenda do modo Técnica fala de "articulações"**, que o desenho novo não marca com bolinha (só o ponto de cada rótulo).
-- **A primeira volta de seis animações é pesada** (abdução deitado e com caneleira, ponte com os pés na bola, panturrilha no chão e no degrau, stiff de uma perna): de 12 a 27 ms por pose no computador, o que num celular lento dá uma primeira volta aos trancos; da segunda em diante o desenho já está guardado. A conta por quadro é uma medida da pele contra o piso a cada pose (`pernaNoPiso`, em `quadril-deitado-de-lado.ts`, e parecidas).
+- **A primeira volta de seis animações era pesada**: as três abduções deitadas passaram de 27 ms para até 2,2 ms por pose no pacote D4 (a perna de baixo vem guardada). As outras (ponte com os pés na bola, panturrilha no chão e no degrau, stiff de uma perna) ficam de 6 a 9 ms por pose: a conta delas muda a cada ponto do ciclo (seção "Do pacote D4").
 - **Pintura por profundidade**: o corpo é pintado parte por parte, cada parte numa profundidade só. A cadeira e as colunas de cenário ficam sempre atrás do corpo (`cenario`), e a mini band decide sozinha o que as pernas escondem. Uma pintura por profundidade de verdade dispensaria esses casos.
 - **Rótulo só aponta para ponto do corpo**: não dá para apontar para uma peça (a faixa, o banco).
 - **Sem revisor independente por animação**: a revisão independente foi do corpo e das regras do motor. Nas animações por delegação, quem fez foi um subagente e quem conferiu foi quem integrou.
@@ -471,7 +469,7 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 **Medidas**
 - **Provisórias**: 6 do corpo e 42 dos objetos seguem sem fonte lida (`revisoes/animacao-nova/tabelas.md` marca cada uma).
 - **Não medido**: num celular de verdade (tudo foi medido no Chromium, com a CPU 4 vezes mais lenta); o Lighthouse do guia; a memória com a animação na tela.
-- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). A tela do programa baixa 275 kB de código na primeira visita (eram 209 kB com o motor de antes), e o limite do teste (`tests/e2e/orcamento.spec.ts`) subiu de 220 para 285 kB. Caminhos para baixar: tirar os textos de fonte; ou desenhar as miniaturas na hora de publicar, para a tela do programa não precisar do motor. O app instalado guarda 668 arquivos (3,8 MB; eram 4,1 MB com os dois motores).
+- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). A tela do programa baixa 275 kB de código na primeira visita (eram 209 kB com o motor de antes), e o limite do teste (`tests/e2e/orcamento.spec.ts`) subiu de 220 para 285 kB. Caminhos para baixar: tirar os textos de fonte (feito no D4: o programa foi a 274,5 kB, com o limite em 279); ou desenhar as miniaturas na hora de publicar, para a tela do programa não precisar do motor. O app instalado guarda 668 arquivos (3,8 MB; eram 4,1 MB com os dois motores).
 
 **Ideias**
 - **Dizer em que nível pôr o banco**, por modelo de banco (pedido do Gustavo em 15/11; `revisoes/animacao-nova/pedidos-ao-conteudo.md`, item 3).
@@ -574,7 +572,7 @@ O que sobrou de animar os 81 exercícios que eram cartão de texto (`devlog.md`,
 O porquê e a manutenção estão em `verificacao/README.md`.
 - **Na `main` desde 19/11/2026** (`b55a98b`), com a verificação do GitHub passando pelo comando novo.
 - **Decidir se o portão do envio passa a barrar** (modo exigir em `scripts/verificacao/portao-envio.mjs`): depois de 2 a 3 semanas observando, conferir nos relatos das sessões quantos envios de código saíram sem o `verificar` e se houve alarme falso.
-- **A margem de 206 px como teste de verdade** (item 5 da lista): hoje é uma conferência do roteiro com `MARGEM=1`; vale uma folga mínima de alguns pixels nos cenários de zoom de 200%, para não depender de alguém olhar.
+- **A margem de 206 px virou teste** no pacote D4 (`semPassarDaMargem`, no cenário de zoom de 200%); os casos que ela achou estão na seção "Do pacote D4".
 - **Se o `verificar` passar de 10 min:** separar os testes de tela por área, para o roteiro rodar só os que o diff aciona antes do commit (o `verificar` inteiro continua antes de enviar).
 - **Fora por agora, com o motivo:** o Code Mode (não funciona nas sessões na nuvem; experimental); uma biblioteca de testes de propriedade (os daqui varrem todas as combinações, o que é mais forte que sortear); o `REVIEW.md` (só o serviço de revisão de pull requests do GitHub o lê; o que importa ficou no `CLAUDE.md`).
 
@@ -609,7 +607,7 @@ O estudo está em `revisoes/melhorias/m2/estudo-da-tela-do-treino.md`.
 O que foi feito está no devlog. Ficou para depois:
 - **O "Desfazer" do programa vale só enquanto a pessoa está na tela.** Sair ou fechar o app perde a volta. Guardar o programa anterior nos dados resolveria, com uma versão nova do estado.
 - **A volta do alerta vale por 15 minutos.** Depois disso, o toque errado só se resolve marcando "fui avaliado". Vale ouvir quem usa antes de mexer no prazo.
-- **O guia completo ainda baixa os textos de todos os exercícios num pedaço só.** A falha deixou de derrubar o app; repartir o pedaço fica para o pacote D4 (peso).
+- **O guia completo baixava os textos de todos os exercícios num pedaço só:** repartido no pacote D4 (só o do exercício aberto).
 - **A saída da triagem para quem ainda não foi avaliado** (pedido 11): feita no lote M6.
 - **O histórico não diz em que local cada treino foi feito** depois que o local é apagado: a sessão guarda o código do local, e o nome some com ele.
 
@@ -618,14 +616,14 @@ O que foi feito está no devlog. Ficou para depois:
 
 O que foi feito está no devlog. Ficou para depois:
 - **A Íris tem um dia de 50 min em 45** (1 min acima do limite de 110%) desde que todo exercício tem animação. Na régua inteira o defeito ficou igual. O corte de tempo deixa passar esse caso: olhar no pacote D4.
-- **A conferência de anatomia do desenho só cobre as 90 animações do motor de antes.** Levar `scripts/auditoria/anatomia-regras.ts` para o motor novo (D4).
+- **A conferência de anatomia do desenho cobria só as 90 animações do motor de antes:** levada ao motor novo no pacote D4 (as 171).
 - **O texto "carga" dos 81 guias está nos dados e não aparece no app;** 6 ainda dizem "de cada lado". Ou sai dos dados, ou é reescrito e ganha lugar no guia.
 - **Músculos secundários de 6 exercícios** (goblet com kettlebell, agachamento no smith, hip thrust, coice na máquina, coice na polia, voador invertido): pedido aberto em `revisoes/animacoes-restantes/pedidos-ao-conteudo.md`, seção 2. É decisão à parte.
 - **Só com halteres, a vaga do ombro de trás pode ficar de fora** quando o único equivalente já entrou no lugar da remada (cenário do achado 10, `tests/unit/locais.test.ts`). O aviso diz a verdade; vale olhar a ordem das trocas.
 - **A tela da série a 360 × 640, em exercício de peso do corpo com montagem,** fica sem o Boneco em repouso (o registro ocupa a tela); o guia ampliado continua a um toque.
 - **Juntar os três palcos (treino, guia, abertura) num componente só.** Não muda nada para quem usa e mexe em três telas já conferidas: fica para o pacote D4, junto com repartir os textos do guia.
 - **No descanso, o Boneco do "a seguir" some em celular baixo (até 700 px de altura),** como já sumia: ali não há o toque para o guia ampliado.
-- **O peso da tela do programa está a 2,2 kB do limite.**
+- **O peso da tela do programa estava a 2,2 kB do limite:** no D4, 274,5 kB com o limite em 279.
 
 ## Da conferência regra por regra, pacote D1 (22/11/2026)
 
@@ -667,3 +665,14 @@ O que foi feito está no devlog e em `revisoes/melhorias/m6/README.md`. Ficou pa
 - **Quem já usava o app e tinha marcado "coração ou pressão alta"** continua com o "sim" em coração. Para cair na regra nova, refaz a triagem. O app não avisa disso.
 - **O inventário de textos** (`scripts/textos/`) ainda cita a folha "Você não marcou estas" e as "9 perguntas".
 - **O texto do bloqueio** (item F.1, acima) perdeu o motivo para a pressão alta; vale para os outros "sim".
+
+## Do pacote D4, mais leve e sem o motor antigo (23/11/2026)
+
+O que foi feito está no devlog e em `revisoes/melhorias/d4/README.md`. Ficou para depois:
+- **O "Fechar" das folhas a 200% de zoom** sai da folha quando o título tem uma palavra longa (o goblet, 55,6 px; 4 das 14 folhas de exercício da Ana, a das perguntas completas e a dos detalhes do equipamento). Decisão de tela do Gustavo: o "Fechar" acima do título em tela estreita, ou o título com hífen. Até lá, `cenarios.spec.ts` aceita o cabeçalho da folha até 41 px além da margem; com o conserto, o limite sai.
+- **O estilo do Boneco a 200% de zoom:** o cartão "Pessoa" passa 19,7 px da margem da folha (aceito no teste até 24 px). Um cartão embaixo do outro em tela estreita resolveria.
+- **O teste de "texto cortado" não olha dentro das folhas:** a folha rola (`overflow: auto`), e o que está dentro de algo que rola não conta. A margem cobre o caso no zoom de 200%; nos outros cenários, não.
+- **A primeira volta da ponte com os pés na bola, das panturrilhas no chão e no degrau e dos stiffs de uma perna** (6 a 9 ms por pose no computador): só baixaria guardando o quadro inteiro, o que mudaria o desenho entre os pontos guardados. Medir num celular de verdade antes de decidir.
+- **Juntar os três palcos** (treino, guia, abertura) num componente só: não muda nada para quem usa e mexe em três telas já conferidas.
+- **Desenhar as miniaturas na hora de publicar**, para a tela do programa não precisar do motor (cerca de 70 kB).
+- **A Íris com um dia de 50 min em 45** (seção "Da ligação das 81 animações") é do gerador: fica para o D3 ou depois.
