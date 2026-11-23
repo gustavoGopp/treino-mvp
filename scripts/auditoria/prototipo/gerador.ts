@@ -184,7 +184,7 @@ export const metaMaxima = (nivel: Nivel, prioridades: Grupo[]) => Math.max(...Ob
  * O que é possível e como se desempata, para um perfil num inventário (selecao.funcao-da-vaga; selecao.preferencia).
  * É a mesma escolha do gerador e do treino do dia num outro local (local.treino-do-dia), para os dois nunca divergirem.
  */
-export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem = avaliarTriagem(perfil.triagem)) {
+export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem = avaliarTriagem(perfil.triagem), alongadoPrimeiro = false) {
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
@@ -319,14 +319,25 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // dor esvaziou punham a do chão no programa com o degrau possível.
   // PROTÓTIPO: 'dc-panturrilha'.
   const perdeAlongado = (funcao: Funcao, e: Exercicio) =>
+    alongadoPrimeiro &&
     prot('dc-panturrilha') && funcao.regras.includes('selecao.panturrilha-alongada') && !e.tags.includes('alongado') && funcao.niveis.flat().some((id) => naFuncao(funcao, id) && possivel.get(id)?.tags.includes('alongado'));
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
-  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => {
+  const escolher = (
+    funcao: Funcao,
+    desde: number,
+    usados: (id: string) => boolean,
+    usos: Map<string, number>,
+    evitar?: (e: Exercicio) => boolean,
+    depois?: (e: Exercicio) => boolean,
+    cansa?: (e: Exercicio) => boolean,
+  ) => {
+    // A panturrilha que não alonga entra ao lado da que alonga, num dia que já tem uma, e nunca no lugar dela.
+    const alongadaNoDia = funcao.niveis.flat().some((id) => usados(id) && !!possivel.get(id)?.tags.includes('alongado'));
     let primeiro: { ex: Exercicio; nivelFuncao: number } | null = null;
     for (let n = desde; n < funcao.niveis.length; n++) {
       const cands = [...new Set(idsDoNivel(funcao, n).filter((id) => naFuncao(funcao, id)).map(regressaoDoIniciante))]
         .map((id) => possivel.get(id))
-        .filter((e): e is Exercicio => !!e && !usados(e.id) && !perdeAlongado(funcao, e));
+        .filter((e): e is Exercicio => !!e && !usados(e.id) && (!perdeAlongado(funcao, e) || alongadaNoDia));
       const e = cands.sort(comparar(usos, () => funcao, evitar, depois, cansa))[0];
       if (!e) continue;
       // selecao.variacoes-equivalentes (frente A, m1): se o melhor do nível já está em todos os outros dias e não há
@@ -583,7 +594,7 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
 }
 
 function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, refeito = false, duplaForcada?: 'com' | 'sem'): Programa {
-  const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem);
+  const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem, refeito);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
   const grupos = new Set<Grupo>(perfil.prioridades);
@@ -716,7 +727,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // PROTÓTIPO: 'dc-aducao' (D3 da conferência, 23/11/2026).
       // selecao.aducao-complemento (pacote D3 da conferência, 23/11/2026): a adução só entra se há tempo, depois dos outros
       // complementos do dia (antes, como complemento do foco, ela ganhava o lugar do abdominal).
-      if (prot('dc-aducao') && x.res.funcao.id === 'aducao') return 3.5;
+      if (prot('dc-aducao') && refeito && x.res.funcao.id === 'aducao') return 3.5;
       if (!comVagaBase.has(m) && (MUSCULOS_COM_META as Musculo[]).includes(m)) return 1; // o único exercício direto do músculo
       return prioritarios.has(m) || x.vaga.prioridade?.some((g) => grupos.has(g)) ? 2 : 3;
     };
@@ -789,7 +800,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTeto(e) && !ctx.barraDoIniciante(e.id))
         .flatMap((e) => {
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
-          return f && !ctx.perdeAlongado(f, e) ? [{ e, f }] : [];
+          return f && (!ctx.perdeAlongado(f, e) || d.itens.some((i) => i.funcao.id === f.id && i.ex.tags.includes('alongado'))) ? [{ e, f }] : [];
         })
         .sort((a, b) => Number(afundoNoDia(a.e)) - Number(afundoNoDia(b.e)) || Number(funcoesDoDia.has(a.f.id)) - Number(funcoesDoDia.has(b.f.id)) || comparar(a.e, b.e))[0];
       if (!achado) continue;
@@ -838,7 +849,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !ctx.barraDoIniciante(e.id))
       .flatMap((e) => {
         const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
-        return f && (soCore || musculosDoDia.has(f.musculo)) && !ctx.perdeAlongado(f, e) ? [{ e, f }] : [];
+        return f && (soCore || musculosDoDia.has(f.musculo)) && (!ctx.perdeAlongado(f, e) || d.itens.some((i) => i.funcao.id === f.id && i.ex.tags.includes('alongado'))) ? [{ e, f }] : [];
       })
       .sort(
         (a, b) =>
@@ -1169,11 +1180,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             !ehProtegido(x) &&
             !(x.funcao && FUNCAO[x.funcao]?.obrigatoria) &&
             !e.musculos.primarios.some((m) => prioritarios.has(m)) &&
-            e.musculos.primarios.every((m) => (prot('dc-aducao') && m === 'adutores') || (v[m] ?? 0) - seriesDeVolume(x) > 0) &&
+            e.musculos.primarios.every((m) => (prot('dc-aducao') && refeito && m === 'adutores') || (v[m] ?? 0) - seriesDeVolume(x) > 0) &&
             mantemCoxa(e, seriesDeVolume(x), v) &&
             !unicoDiretoDePosteriores(x, programaDias),
         )
-        .sort((a, b) => (prot('dc-aducao') ? Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') : 0) || b.i - a.i)[0]?.x;
+        .sort((a, b) => (prot('dc-aducao') && refeito ? Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') : 0) || b.i - a.i)[0]?.x;
       if (!alvo) continue;
       const exercicios = d.exercicios.filter((x) => x !== alvo);
       programaDias[di] = { ...d, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
@@ -1346,7 +1357,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (prot('ultimo-recurso')) {
     const copia = () => programaDias.map((d) => ({ ...d, exercicios: d.exercicios.map((x) => ({ ...x })) }));
     const cortar = (av: Porque[], semRestricoes: boolean) =>
-      cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, av, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, semRestricoes, refeito && prot('d3-degrau'));
+      cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, av, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, semRestricoes, refeito && prot('d3-degrau'), refeito && prot('dc-aducao'));
     if (duplaForcada) {
       comDupla = duplaForcada === 'com';
       programaDias = cortar(avisos, comDupla);
@@ -1361,7 +1372,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       programaDias = custa ? sem : com;
       avisos.push(...(custa ? av2 : av1));
     }
-  } else programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, false, refeito && prot('d3-degrau'));
+  } else programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, false, refeito && prot('d3-degrau'), refeito && prot('dc-aducao'));
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // PROTÓTIPO (usa-tempo): o tempo que sobra vira série em TODOS os dias, com o programa já montado, cortado e completado:
   // os exercícios são os de hoje, e só as séries sobem. Sem foco, até o alvo do nível (8, 12, 14); com foco, o foco primeiro.
@@ -1545,7 +1556,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // (No protótipo, a prática do iniciante é um estado do módulo: a montagem refeita usa o de quando o programa nasceu.)
   const podeDegrau = prot('d3-degrau') && programa.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
   const podeOutros = prot('d3-outros') && perfil.prioridades.length > VOLUME.focosComSobra;
-  if (!refeito && (podeDegrau || podeOutros)) {
+  const podeAducao = prot('dc-aducao') && programa.dias.some((d) => d.exercicios.some((x) => x.funcao === 'aducao'));
+  const podePanturrilha = prot('dc-panturrilha') && programa.dias.some((d) => d.exercicios.some((x) => x.funcao === 'panturrilha-em-pe' && !POR_ID[x.exId]!.tags.includes('alongado')));
+  if (!refeito && (podeDegrau || podeOutros || podeAducao || podePanturrilha)) {
     const semPraticaDaqui = SEM_PRATICA;
     REFAZER_ESCOLHIDO.set(programa, () => {
       const guardado = SEM_PRATICA;
@@ -2111,6 +2124,8 @@ export function cortarTempo(
   semRestricoes = false,
   /** tempo.corte, último degrau (pacote D3): ligado só na montagem refeita do programa já escolhido. */
   ultimoDegrau = false,
+  /** selecao.aducao-complemento (pacote D3 da conferência): a adução sai primeiro; só na montagem refeita. */
+  aducaoPrimeiro = false,
 ): DiaPrograma[] {
   const tec = (nome: string) => !semRestricoes && (prot('tecnicas') || prot(nome));
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
@@ -2140,7 +2155,7 @@ export function cortarTempo(
   // mínimo: com 20 min e prioridade pernas, a flexão de joelho deslizante saía e os posteriores zeravam).
   const naoZera = (x: ExercicioPrescrito, v: Partial<Record<Musculo, number>>) =>
     // (os adutores não têm meta: a adução, complemento, sai mesmo sendo o único exercício deles; selecao.aducao-complemento)
-    POR_ID[x.exId]!.musculos.primarios.every((m) => (prot('dc-aducao') && m === 'adutores') || (v[m] ?? 0) - seriesDeVolume(x) > 0);
+    POR_ID[x.exId]!.musculos.primarios.every((m) => (aducaoPrimeiro && m === 'adutores') || (v[m] ?? 0) - seriesDeVolume(x) > 0);
   const naoPrioPrimeiro = <T extends { x: ExercicioPrescrito; i: number }>(a: T, b: T) => Number(prioritario(a.x)) - Number(prioritario(b.x));
   const usados = new Set<string>(jaTirouExercicio ? ['corte'] : []);
 
@@ -2233,7 +2248,7 @@ export function cortarTempo(
           .map((x, i) => ({ x, i }))
           .filter(({ x }) => prioritario(x) === daPrioridade && x.tipo === 'isolador' && !obrigatorio(x) && cabe(x, seriesDeVolume(x), v) && naoZera(x, v) && !unicoDiretoDePosteriores(x, dias))
           // selecao.aducao-complemento: a adução sai primeiro (pacote D3 da conferência, 23/11/2026)
-          .sort((a, b) => (prot('dc-aducao') ? Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') : 0) || b.i - a.i)[0]?.x;
+          .sort((a, b) => (aducaoPrimeiro ? Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') : 0) || b.i - a.i)[0]?.x;
         if (!removivel) break;
         salvar(
           d.exercicios

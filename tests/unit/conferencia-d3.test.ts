@@ -65,23 +65,32 @@ describe('selecao.estabilidade: a polia conta como estável, como a regra lista'
   });
 });
 
-describe('selecao.panturrilha-alongada: com o degrau possível, a panturrilha no chão não entra', () => {
-  const ids = (p: Programa) => p.dias.flatMap((d) => d.exercicios.map((x) => x.exId));
+describe('selecao.panturrilha-alongada: a panturrilha no chão nunca entra no lugar do degrau', () => {
   // Sem equipamento, foco em pernas: o degrau da escada (o calcanhar desce) vem antes do chão (o calcanhar não desce).
-  // Antes, a variedade entre os dias, a vaga vazia da panturrilha sentada e o dia que a dor esvaziou punham a do chão.
+  // Antes, a variedade entre os dias e o dia que a dor esvaziou punham a do chão num dia sem o degrau (o iniciante de 3
+  // dias de 60 min tinha o Corpo todo A só com a do chão). Ao lado do degrau, no mesmo dia, ela pode entrar: é o 2º
+  // exercício do foco (tirá-la dali deixava o foco abaixo da meta com tempo sobrando, o C1 da régua, em 674 programas).
+  const semDegrauNoDia = (p: Programa) => p.dias.filter((d) => d.exercicios.some((x) => x.exId === 'panturrilha-chao') && !d.exercicios.some((x) => x.exId === 'panturrilha-degrau'));
   it.each([
     ['iniciante', 3, 60, []],
     ['intermediario', 3, 60, []],
+    ['intermediario', 2, 60, []],
     ['intermediario', 4, 60, [{ articulacao: 'ombro', nota: 7 }]],
   ] as const)('%s, %i dias de %i min', (nivel, dias, min, dores) => {
     const p = ok(perfil({ nivel, dias, min, focos: ['pernas'], dores: [...dores] }), {});
-    expect(ids(p)).toContain('panturrilha-degrau');
-    expect(ids(p)).not.toContain('panturrilha-chao');
+    expect(p.dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('panturrilha-degrau');
+    expect(semDegrauNoDia(p).map((d) => d.nome)).toEqual([]);
+  });
+
+  it('o exemplo do iniciante: o degrau nos três dias, sem a do chão', () => {
+    const p = ok(perfil({ nivel: 'iniciante', dias: 3, min: 60, focos: ['pernas'] }), {});
+    for (const d of p.dias) expect(d.exercicios.map((x) => x.exId), d.nome).toContain('panturrilha-degrau');
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'panturrilha-chao')).toBe(false);
   });
 
   it('com dor forte no tornozelo o degrau sai, e o chão continua sendo a alternativa possível', () => {
     const p = ok(perfil({ nivel: 'intermediario', dias: 3, min: 60, focos: ['pernas'], dores: [{ articulacao: 'tornozelo', nota: 7 }] }), {});
-    expect(ids(p)).not.toContain('panturrilha-degrau');
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'panturrilha-degrau')).toBe(false);
   });
 });
 
@@ -199,7 +208,7 @@ describe('selecao.aducao-complemento: a adução entra por último e sai primeir
     const p = ok(pf, inventarioDe('academia'));
     const comAducao = p.dias.filter((d) => d.exercicios.some((x) => x.funcao === 'aducao'));
     expect(comAducao.length).toBeGreaterThan(0);
-    const cortados = cortarTempo(structuredClone(p.dias), 60, p.metas, 'intermediario', new Set(['quadriceps', 'posteriores', 'panturrilha']), [], () => false);
+    const cortados = cortarTempo(structuredClone(p.dias), 60, p.metas, 'intermediario', new Set(['quadriceps', 'posteriores', 'panturrilha']), [], () => false, undefined, false, undefined, false, false, true);
     for (const [i, d] of cortados.entries()) {
       const antes = p.dias[i]!.exercicios;
       const saiuAbdominal = antes.some((x) => x.padrao === 'core') && !d.exercicios.some((x) => x.padrao === 'core');
