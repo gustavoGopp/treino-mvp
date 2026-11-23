@@ -7,7 +7,8 @@ import { AvisoSalvar } from '../app/avisos';
 import { baixarCopia } from '../app/copia';
 import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
-import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
+import { AvisarProblema, TextoAvisoCurto, TextoFotoCurto } from '../app/privacidade';
+import { AVISO_CHAVE, avisoDisponivel, desligarAviso, estadoDoAviso, ligarAviso } from '../treino/aviso';
 import { Icone } from '../app/icones';
 import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
@@ -28,7 +29,8 @@ export function Dados() {
   const [msg, setMsg] = useState('');
   const [erro, setErro] = useState('');
   // lote 5 do redesign: cópia, estilo e apagar abrem em folhas; apagar é o único diálogo de confirmação
-  const [folha, setFolha] = useState<'estilo' | 'guardar' | 'trazer' | 'foto' | 'apagar' | null>(null);
+  const [folha, setFolha] = useState<'estilo' | 'guardar' | 'trazer' | 'foto' | 'aviso' | 'apagar' | null>(null);
+  const [aviso, setAviso] = useState(estadoDoAviso);
   const [nomeArquivo, setNomeArquivo] = useState('');
   const [ultimaCopia, setUltimaCopia] = useState(() => lerLocal(LOCAL.ultimaCopia));
   const [fotoEm, setFotoEm] = useState(() => lerLocal(LOCAL.fotoConsentimento));
@@ -110,6 +112,7 @@ export function Dados() {
   const apagar = async () => {
     await limpar();
     apagarTodosLocais();
+    void desligarAviso(); // o endereço de aviso deste aparelho também some
     apagarEstiloBoneco();
     setFolha(null);
     // a abertura diz que apagou (pacote D2): antes a pessoa caía nela sem nenhuma palavra sobre o que aconteceu
@@ -134,6 +137,11 @@ export function Dados() {
             <p>
               <TextoFotoCurto />
             </p>
+            {AVISO_CHAVE && (
+              <p>
+                <TextoAvisoCurto />
+              </p>
+            )}
           </PorQue>
         </p>
         {guardaPermanente === false && (
@@ -212,6 +220,11 @@ export function Dados() {
           {fotoEm && (
             <LinhaDados aoTocar={() => setFolha('foto')} titulo="Foto do equipamento">
               Autorizada em {dataCurta(fotoEm)}
+            </LinhaDados>
+          )}
+          {avisoDisponivel() && (
+            <LinhaDados aoTocar={() => setFolha('aviso')} titulo="Aviso do descanso">
+              {aviso === 'ligado' ? 'Ligado' : 'Desligado'}
             </LinhaDados>
           )}
           <LinhaDados para="/termos" titulo="Termos de uso e privacidade" />
@@ -326,6 +339,25 @@ export function Dados() {
               }}
             >
               Retirar a autorização da foto
+            </button>
+          </Folha>
+        )}
+        {folha === 'aviso' && (
+          <Folha titulo="Aviso do descanso" aoFechar={() => setFolha(null)}>
+            <p>
+              <TextoAvisoCurto />
+            </p>
+            <button
+              type="button"
+              className="btn sec"
+              onClick={() => {
+                void (aviso === 'ligado' ? desligarAviso().then(estadoDoAviso) : ligarAviso()).then((e) => {
+                  setAviso(e);
+                  setFolha(null);
+                });
+              }}
+            >
+              {aviso === 'ligado' ? 'Desligar o aviso' : 'Ligar o aviso'}
             </button>
           </Folha>
         )}

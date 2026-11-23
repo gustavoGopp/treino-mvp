@@ -22,6 +22,20 @@ export function TextoFotoCurto() {
   );
 }
 
+/**
+ * O aviso do descanso (lote M4, passo 2), em "o que sai daqui": o que vai para o servidor, e quando. Sem a chave do
+ * aviso no build, o recurso não existe e este texto não aparece.
+ */
+export function TextoAvisoCurto() {
+  return (
+    <>
+      Se você ligar o aviso do descanso: quando você sai do app no meio de um descanso, vão para o servidor do app o endereço de
+      aviso deste celular e o tempo que falta. Nada do treino nem da saúde vai junto. O endereço fica embaralhado numa fila (da
+      Upstash, empresa dos EUA) só até o aviso sair, e o aviso chega pelo serviço de avisos do seu celular (Apple ou Google).
+    </>
+  );
+}
+
 /** Os itens do "para onde vai a foto", na caixa de consentimento e nos termos. */
 export function ParaOndeVaiAFoto() {
   return (

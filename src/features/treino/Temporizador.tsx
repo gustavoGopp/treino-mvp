@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { desmarcarAviso, estadoDoAviso, ligarAviso, marcarAviso, prepararAviso, recusarAviso } from './aviso';
 
 // Temporizador de descanso, portado do guia original (referencia/guia-execucao-fase1.html):
-// bipes (Web Audio), vibração e ±15 s. A tela ligada vale para o treino todo (useTelaAcesa, abaixo).
+// três bipes (desde o lote M4, um som de arquivo), vibração e ±15 s. A tela ligada vale para o treino todo (useTelaAcesa, abaixo).
 // Conta pelo horário de término, não por tique: continua certo se a tela bloquear (docs/pesquisa/10-decisoes-m5.md, 8).
 
 type Estado = { fim: number; dur: number } | null;
@@ -66,50 +67,55 @@ function guardarDescanso(treino: string, e: Estado) {
   }
 }
 
+const SOM_FIM = '/sons/fim-descanso.wav'; // gerado por scripts/som/gerar-fim-descanso.mjs
+const ATRASO_MAXIMO_MS = 5000;
+const hora = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+// Lote M4 (22/11/2026): o aviso de fim é um som de arquivo, e não mais bipes gerados pelo Web Audio. No iPhone, o som
+// gerado pelo site entra na categoria "ambiente" e é calado pela chave do silencioso; o de arquivo (<audio>) não é
+// (WebKit, bugs 237322 e 252746, lidos em 22/11/2026). O elemento é criado e carregado dentro do toque que começa o
+// descanso, porque o iPhone só deixa tocar depois o elemento que um toque da pessoa preparou. É um só para o app
+// inteiro: o guia, aberto no meio do descanso, toca o mesmo elemento que o toque no treino preparou.
+let som: HTMLAudioElement | null = null;
+function prepararSom() {
+  if (som) return som;
+  try {
+    const a = new Audio(SOM_FIM);
+    a.preload = 'auto';
+    a.load();
+    som = a;
+  } catch {
+    /* sem áudio: ficam a vibração e a tela que inverte */
+  }
+  return som;
+}
+
 /** `treino`: o id do treino em andamento (a chave do descanso guardado). */
 export function useDescanso(treino = '') {
   const [estado, setEstado] = useState<Estado>(() => lerDescanso(treino));
   const [agora, setAgora] = useState(() => Date.now());
-  const audio = useRef<AudioContext | null>(null);
-  const bipes = useRef<OscillatorNode[]>([]);
+  const alarme = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const vibrou = useRef(false);
 
-  const pararBipes = () => {
-    bipes.current.forEach((o) => {
-      try {
-        o.stop(0);
-      } catch {
-        /* já parou */
-      }
-    });
-    bipes.current = [];
+  const desmarcarSom = () => {
+    clearTimeout(alarme.current);
+    alarme.current = undefined;
   };
-  const agendarBipes = (seg: number) => {
-    pararBipes();
-    try {
-      const AC = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (!AC) return;
-      audio.current ??= new AC();
-      const c = audio.current;
-      if (c.state === 'suspended') void c.resume();
-      const t0 = c.currentTime + Math.max(0, seg);
-      [0, 0.35, 0.7].forEach((d, i) => {
-        const o = c.createOscillator();
-        const g = c.createGain();
-        o.type = 'sine';
-        o.frequency.value = i === 2 ? 1175 : 880;
-        g.gain.setValueAtTime(0.0001, t0 + d);
-        g.gain.exponentialRampToValueAtTime(0.4, t0 + d + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, t0 + d + 0.26);
-        o.connect(g);
-        g.connect(c.destination);
-        o.start(t0 + d);
-        o.stop(t0 + d + 0.3);
-        bipes.current.push(o);
-      });
-    } catch {
-      /* sem áudio: fica a vibração e o relógio */
-    }
+  const marcarSom = (seg: number) => {
+    desmarcarSom();
+    const a = prepararSom();
+    if (!a) return;
+    const fim = Date.now() + Math.max(0, seg) * 1000;
+    alarme.current = setTimeout(() => {
+      // Página que ficou parada em segundo plano acorda com o relógio atrasado: som fora de hora não avisa nada.
+      if (Date.now() - fim > ATRASO_MAXIMO_MS) return;
+      try {
+        a.currentTime = 0;
+        void a.play().catch(() => {});
+      } catch {
+        /* sem áudio */
+      }
+    }, Math.max(0, seg) * 1000);
   };
 
   const iniciar = (seg: number) => {
@@ -117,7 +123,7 @@ export function useDescanso(treino = '') {
     const novo = { fim: Date.now() + seg * 1000, dur: seg };
     guardarDescanso(treino, novo);
     setEstado(novo);
-    agendarBipes(seg);
+    marcarSom(seg);
   };
   const ajustar = (d: number) =>
     setEstado((e) => {
@@ -126,13 +132,14 @@ export function useDescanso(treino = '') {
       const resta = (n.fim - Date.now()) / 1000;
       if (resta > 0) {
         vibrou.current = false;
-        agendarBipes(resta);
-      } else pararBipes(); // passou de zero: os bipes agendados para o horário antigo não tocam mais
+        marcarSom(resta);
+      } else desmarcarSom(); // passou de zero: o som marcado para o horário antigo não toca mais
       guardarDescanso(treino, n);
       return n;
     });
   const parar = () => {
-    pararBipes();
+    desmarcarSom();
+    som?.pause();
     guardarDescanso(treino, null);
     setEstado(null);
   };
@@ -142,30 +149,29 @@ export function useDescanso(treino = '') {
     const id = setInterval(() => setAgora(Date.now()), 250);
     return () => clearInterval(id);
   }, [estado]);
-  // Descanso que veio guardado (a pessoa voltou do guia): os bipes são agendados de novo para o tempo que falta.
+  // Lote M4, passo 2: quem sai do app (outro app, tela bloqueada) no meio do descanso é avisado pelo servidor, se ligou
+  // o aviso. O pedido só é feito ao sair, e é desfeito ao voltar ou quando o descanso muda (aviso.ts).
+  const fim = estado?.fim;
+  useEffect(() => {
+    if (fim === undefined) return;
+    prepararAviso();
+    const ver = () => (document.visibilityState === 'hidden' ? marcarAviso(fim) : desmarcarAviso());
+    document.addEventListener('visibilitychange', ver);
+    return () => {
+      document.removeEventListener('visibilitychange', ver);
+      desmarcarAviso();
+    };
+  }, [fim]);
+  // Descanso que veio guardado (a pessoa voltou do guia): o som é marcado de novo para o tempo que falta.
   useEffect(() => {
     const guardado = lerDescanso(treino);
     const falta = guardado ? (guardado.fim - Date.now()) / 1000 : 0;
-    if (falta > 0) agendarBipes(falta);
-    // só na montagem: depois, quem agenda é iniciar e ajustar
+    if (falta > 0) marcarSom(falta);
+    // só na montagem: depois, quem marca é iniciar e ajustar
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // Ao sair da tela: os bipes param e o contexto de áudio é fechado (antes, ficava um aberto a cada entrada no treino).
-  useEffect(
-    () => () => {
-      bipes.current.forEach((o) => {
-        try {
-          o.stop(0);
-        } catch {
-          /* já parou */
-        }
-      });
-      bipes.current = [];
-      void audio.current?.close().catch(() => {});
-      audio.current = null;
-    },
-    [],
-  );
+  // Ao sair da tela, o som marcado é desmarcado: quem toca é a tela que estiver aberta (o treino ou o guia).
+  useEffect(() => () => clearTimeout(alarme.current), []);
 
   const resta = estado ? (estado.fim - agora) / 1000 : 0;
   const acabou = !!estado && resta <= 0;
@@ -178,11 +184,12 @@ export function useDescanso(treino = '') {
       /* sem vibração */
     }
   }, [acabou]);
-  return { ativo: !!estado, resta, dur: estado?.dur ?? 0, iniciar, ajustar, parar };
+  return { ativo: !!estado, resta, dur: estado?.dur ?? 0, fim: estado?.fim ?? 0, iniciar, ajustar, parar };
 }
 
 /**
  * O descanso toma a tela (frontend novo, 12/11/2026): o relógio é o maior elemento, para ler com o celular no chão.
+ * O rótulo diz a hora do fim ("Descanso até 14:32", lote M4): quem olha o celular bloqueado ou outro app sabe quando voltar.
  * Quando o tempo acaba, a tela do treino inteira inverte (quem monta decide) e o rótulo vira "Hora da próxima série":
  * o aviso não depende de cor nem só do som. `children` é o que vem a seguir; `acao`, o botão principal, que fica por último, perto do polegar.
  */
@@ -201,7 +208,7 @@ function Painel({ d, children, acao }: { d: ReturnType<typeof useDescanso>; chil
   return (
     <section ref={ref} tabIndex={-1} className={`descanso${acabou ? ' acabou' : ''}`} aria-label="Descanso">
       <div className="descanso-topo">
-        <span>{acabou ? 'Hora da próxima série' : 'Descanso'}</span>
+        <span>{acabou ? 'Hora da próxima série' : `Descanso até ${hora.format(d.fim)}`}</span>
         <span className="tclock-mini" role="timer" aria-live="off">
           {acabou ? `+${fmt(-d.resta)}` : fmt(Math.ceil(d.resta))}
         </span>
@@ -226,11 +233,62 @@ function Painel({ d, children, acao }: { d: ReturnType<typeof useDescanso>; chil
         </button>
       </div>
       {acao}
+      {/* Depois da ação principal: medido em 22/11/2026, acima dela o pedido empurrava o "Série N feita" para fora da tela
+          em celular baixo (a 360 × 640, 100 px mais para baixo). Aqui o botão nunca desce (tests/e2e/aviso-descanso.spec.ts). */}
+      {!acabou && <PedidoDeAviso />}
       {acabou && (
         <p className="sr" role="status">
           Descanso terminado.
         </p>
       )}
     </section>
+  );
+}
+
+/**
+ * O pedido de permissão do aviso (lote M4, passo 2), na hora em que ele faz sentido: no descanso. Aparece até a pessoa
+ * responder, e nunca mais. A permissão do navegador só é pedida depois do toque em "Avisar". No iPhone pelo Safari, onde
+ * o aviso só existe com o app na tela de início, a tela diz isso (uma vez). Recusar não muda nada no resto do app.
+ */
+function PedidoDeAviso() {
+  const [aviso, setAviso] = useState(estadoDoAviso);
+  const [ocupado, setOcupado] = useState(false);
+  if (aviso !== 'perguntar' && aviso !== 'instalar') return null;
+  const nao = () => {
+    recusarAviso();
+    setAviso('nao');
+  };
+  if (aviso === 'instalar')
+    return (
+      <div className="pedido-aviso" role="group" aria-label="Aviso do descanso">
+        <p>No iPhone, o aviso com a tela bloqueada só funciona com o app na tela de início.</p>
+        <button type="button" className="link-botao" onClick={nao}>
+          Entendi
+        </button>
+      </div>
+    );
+  return (
+    <div className="pedido-aviso" role="group" aria-label="Aviso do descanso">
+      <p>Quer um aviso quando o descanso acabar, mesmo com a tela bloqueada?</p>
+      <div className="pedido-aviso-botoes">
+        <button
+          type="button"
+          className="btn sec pequeno"
+          disabled={ocupado}
+          onClick={() => {
+            setOcupado(true);
+            void ligarAviso().then((e) => {
+              setAviso(e);
+              setOcupado(false);
+            });
+          }}
+        >
+          Avisar
+        </button>
+        <button type="button" className="link-botao" onClick={nao}>
+          Agora não
+        </button>
+      </div>
+    </div>
   );
 }

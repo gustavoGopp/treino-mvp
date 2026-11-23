@@ -26,6 +26,8 @@ export default defineConfig({
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
     // A foto fica desligada na produção até haver um convite por pessoa (08/11/2026); os testes a ligam.
-    env: { VITE_FOTO: 'ligada' },
+    // O aviso do descanso (lote M4) só existe com a chave pública no build; os testes o ligam com uma chave de teste (chave
+    // pública não é segredo; o par privado dela foi jogado fora).
+    env: { VITE_FOTO: 'ligada', VITE_AVISO_CHAVE: 'BGSTWBQq13SebSBKKRz3Qb9Ysr4zNc89J_2bqQonnBLotZL9bu3bCKa-VeC0M-ES6O-sokI1itjfSwuzab8_ae8' },
   },
 });
