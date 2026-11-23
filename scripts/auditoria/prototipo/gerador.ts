@@ -1170,7 +1170,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         ? Math.max(metas[m] ?? 0, VOLUME.maximo[nivel])
         : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || ((emTodos || prot('d1-foco')) && empurrarNoLimite(ds))))
           ? Math.max(metas[m] ?? 0, VOLUME.sobraAte[nivel])
-          : Math.max(metas[m] ?? 0, Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO));
+          : Math.max(
+              metas[m] ?? 0,
+              Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO),
+              // PROTÓTIPO (d3-outros; pacote D3, 23/11/2026): com 3 grupos de foco ou mais, quem não é foco sobe no 2º passo
+              // até o mínimo do nível, com o foco mais fraco pelo menos 1,3 vez acima.
+              prot('d3-outros') && emTodos && perfil.prioridades.length > VOLUME.focosComSobra ? Math.min(VOLUME.minimo[nivel], Math.floor(menorFoco(ds) / VOLUME.destaqueDoFoco)) : 0,
+            );
   let seriesNaSobra = false;
   let seriesEmTodos = false;
   // PROTÓTIPO (usa-tempo): o mesmo laço serve aos dois passos. `emTodos` = o passo novo, depois dos cortes e do
@@ -1433,7 +1439,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
                 ? `O tempo que sobrava nos treinos virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
                 : `O tempo que sobrava nos treinos virou série: cada músculo sobe até ~${VOLUME.sobraAte[nivel]} séries por semana, o alvo do seu nível, enquanto o treino couber nos ${perfil.minutosSessao} min.`
               : perfil.prioridades.length > VOLUME.focosComSobra
-                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. Os outros músculos ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`
+                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. ${prot('d3-outros') ? `Os outros músculos sobem até ~${VOLUME.minimo[nivel]} séries por semana, sem encostar no foco.` : `Os outros músculos ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`}`
                 : `O tempo que sobrava nos treinos virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`,
           },
         ]

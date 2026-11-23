@@ -1125,14 +1125,21 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     const series = (ps: Padrao[]) => ds.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
     return series(PADROES_EMPURRAR) + 1 > EMPURRAR_PUXAR_MAX * series(PADROES_PUXAR);
   };
-  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[]) =>
+  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[], emTodos = false) =>
     m === 'abdomen' && !prioritarios.has(m)
       ? (metas[m] ?? 0)
       : prioritarios.has(m)
         ? Math.max(metas[m] ?? 0, VOLUME.maximo[nivel])
         : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || empurrarNoLimite(ds)))
           ? Math.max(metas[m] ?? 0, VOLUME.sobraAte[nivel])
-          : Math.max(metas[m] ?? 0, Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO));
+          : Math.max(
+              metas[m] ?? 0,
+              Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO),
+              // 2º passo, com 3 grupos de foco ou mais (pacote D3, 23/11/2026): o foco fica na meta, e "6 abaixo do foco"
+              // é a própria meta de quem não é foco, que assim nunca subia (o dia de pernas do Bruno: 39 min em 70).
+              // Quem não é foco sobe até o mínimo do nível, com o foco mais fraco pelo menos 1,3 vez acima.
+              emTodos && perfil.prioridades.length > VOLUME.focosComSobra ? Math.min(VOLUME.minimo[nivel], Math.floor(menorFoco(ds) / VOLUME.destaqueDoFoco)) : 0,
+            );
   let seriesNaSobra = false;
   let seriesEmTodos = false;
   /**
@@ -1150,7 +1157,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         // Com foco, quem não é foco e está abaixo do piso de 4 (volume.semanal.minimo-eficaz) sobe até o piso também pelas
         // séries indiretas (o glúteo sem exercício próprio sobe com o agachamento): os outros não ficam abaixo do piso.
         const viaIndireta = focoPossivel && !prioritarios.has(m) && (v[m] ?? 0) < VOLUME.minimoEficazPiso;
-        const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias);
+        const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias, emTodos);
         // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
         // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
         const direto = prioritarios.has(m)
@@ -1388,7 +1395,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
                 ? `O tempo que sobrava nos treinos virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
                 : `O tempo que sobrava nos treinos virou série: cada músculo sobe até ~${VOLUME.sobraAte[nivel]} séries por semana, o alvo do seu nível, enquanto o treino couber nos ${perfil.minutosSessao} min.`
               : perfil.prioridades.length > VOLUME.focosComSobra
-                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. Os outros músculos ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`
+                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. Os outros músculos sobem até ~${VOLUME.minimo[nivel]} séries por semana, sem encostar no foco.`
                 : `O tempo que sobrava nos treinos virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`,
           },
         ]
