@@ -1,5 +1,5 @@
 import { botaoEntendi, expect, test, tocarEmEntendi, type Page } from './base';
-import { criterios } from './criterios';
+import { criterios as osQuatro, semPassarDaMargem } from './criterios';
 import { abrirExercicio, abrirTrocar, ana, detalhesDo, entenda, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
@@ -8,14 +8,15 @@ import { abrirExercicio, abrirTrocar, ana, detalhesDo, entenda, folhaPronta, mai
 // lado). Uma combinação que o app de hoje ainda não cumpre fica como `fixme`, com o lote que reconstrói aquela tela;
 // quando o lote entrar, o `fixme` sai.
 
-type Cenario = { nome: string; largura?: number; altura?: number; tema: 'light' | 'dark'; letra?: number };
+type Cenario = { nome: string; largura?: number; altura?: number; tema: 'light' | 'dark'; letra?: number; margem?: true };
+// No zoom de 200%, também a margem da página (desde 23/11/2026, pacote D4).
 const CENARIOS: Cenario[] = [
   { nome: 'claro', tema: 'light' },
   { nome: 'escuro', tema: 'dark' },
   { nome: 'pequeno', largura: 360, altura: 740, tema: 'light' },
   { nome: 'baixo', largura: 412, altura: 640, tema: 'light' },
   { nome: 'estreito', largura: 320, altura: 640, tema: 'light' },
-  { nome: 'zoom200', largura: 206, altura: 420, tema: 'light' },
+  { nome: 'zoom200', largura: 206, altura: 420, tema: 'light', margem: true },
   { nome: 'letra125', tema: 'light', letra: 125 },
 ];
 
@@ -23,6 +24,20 @@ const CENARIOS: Cenario[] = [
 // Lote 2 (06/11/2026): treino e guia passaram a cumprir os 4 critérios nos 7 cenários; sobram os de outros lotes.
 const PENDENTE: Record<string, string> = {
 };
+
+// Pacote D4 (23/11/2026): no zoom de 200%, além dos 4 critérios, nada entra na margem da página (semPassarDaMargem, item 5
+// de docs/verificacao/lista.md). O que já passava quando o teste nasceu, medido aqui a 206 px, fica de fora até o máximo
+// medido com 4 px a mais (a letra sai um pouco mais larga no GitHub); o conserto é decisão de tela, no backlog ("Da
+// verificação permanente"): o "Fechar" do cabeçalho das folhas, empurrado por uma palavra longa do título (37,2 px na
+// dos detalhes do equipamento e 23,5 na das perguntas completas, que passam da borda da folha; 12,6 na dos avisos e 0,6
+// na do exercício), e o cartão "Pessoa" do estilo do Boneco (19,7 px).
+const MARGEM_CONHECIDA = { '.folha-cab': 41, '.estilos-boneco': 24 };
+let comMargem = false;
+
+async function criterios(page: Page) {
+  await osQuatro(page);
+  if (comMargem) await semPassarDaMargem(page, MARGEM_CONHECIDA);
+}
 
 async function preparar(page: Page, c: Cenario) {
   await page.emulateMedia({ colorScheme: c.tema });
@@ -224,6 +239,7 @@ for (const c of CENARIOS)
       const pendente = PENDENTE[`${c.nome}/${grupo}`];
       test.fixme(!!pendente, pendente);
       test.setTimeout(120_000);
+      comMargem = !!c.margem;
       await preparar(page, c);
       await percorrer(page);
     });
