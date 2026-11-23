@@ -32,12 +32,11 @@ export function quePedemVerificacao(caminhos) {
 
 /**
  * Um comando que regrava um gabarito: os snapshots das personas (`vitest -u`, `--update`) ou as linhas de base do
- * motor (`--update-snapshots`, as variáveis `ATUALIZAR_*`, `scripts/linha-de-base-motor.mjs`). O gabarito é o que julga
+ * motor (`--update-snapshots`, as variáveis `ATUALIZAR_*`). O gabarito é o que julga
  * a mudança; regravá-lo é decisão do Gustavo (CLAUDE.md, "Verificação").
  */
 export function regravaGabarito(comando) {
   if (/\bATUALIZAR_[A-Z_]+=/.test(comando)) return true;
-  if (/linha-de-base-motor\.mjs/.test(comando)) return true;
   if (/--update-snapshots\b/.test(comando)) return true;
   const rodaTeste = /\b(vitest|playwright|npm (run )?test|npx vitest|npx playwright)\b/.test(comando);
   return rodaTeste && /(^|\s)(-u|--update)(\s|$)/.test(comando);
