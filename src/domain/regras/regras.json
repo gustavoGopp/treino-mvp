@@ -1499,7 +1499,7 @@
   },
   {
     "id": "selecao.aducao-complemento",
-    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas. **Conferência regra por regra de 22/11/2026:** no corte de tempo a adução não sai primeiro: sai o último isolador sem foco do dia, que costuma ser o abdominal. Trocar a ordem muda programas: backlog, pacote D3",
+    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas. **Desde 23/11/2026 (os itens da conferência regra por regra no pacote D3):** a vaga da adução entra por último, depois dos outros complementos do dia, e no corte de tempo ela é o primeiro isolador a sair, mesmo sendo o único exercício dos adutores (que não têm meta). Antes, como complemento do foco, ela ganhava o lugar do abdominal, e no corte saía o último isolador sem foco do dia, que costuma ser o abdominal (a conferência de 22/11/2026 achou)",
     "valores": {
       "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
       "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",

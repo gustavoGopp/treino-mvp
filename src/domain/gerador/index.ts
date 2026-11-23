@@ -667,6 +667,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // bíceps, crucifixo...) entra depois das vagas do foco, se o músculo tem outra vaga-base na semana.
       if (focoPrimeiro && !x.vaga.complemento && focoPossivel && !prioritarios.has(m) && ISOLADORES_ADIAVEIS.has(x.res.funcao.id) && (basesDoMusculo.get(m) ?? 0) > 1) return 2.5;
       if (!x.vaga.complemento) return 0;
+      // selecao.aducao-complemento (pacote D3 da conferência, 23/11/2026): a adução só entra se há tempo, depois dos outros
+      // complementos do dia (antes, como complemento do foco, ela ganhava o lugar do abdominal).
+      if (x.res.funcao.id === 'aducao') return 3.5;
       if (!comVagaBase.has(m) && (MUSCULOS_COM_META as Musculo[]).includes(m)) return 1; // o único exercício direto do músculo
       return prioritarios.has(m) || x.vaga.prioridade?.some((g) => grupos.has(g)) ? 2 : 3;
     };
@@ -1120,11 +1123,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             !ehProtegido(x) &&
             !(x.funcao && FUNCAO[x.funcao]?.obrigatoria) &&
             !e.musculos.primarios.some((m) => prioritarios.has(m)) &&
-            e.musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0) &&
+            e.musculos.primarios.every((m) => m === 'adutores' || (v[m] ?? 0) - seriesDeVolume(x) > 0) &&
             mantemCoxa(e, seriesDeVolume(x), v) &&
             !unicoDiretoDePosteriores(x, programaDias),
         )
-        .sort((a, b) => b.i - a.i)[0]?.x;
+        .sort((a, b) => Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') || b.i - a.i)[0]?.x;
       if (!alvo) continue;
       const exercicios = d.exercicios.filter((x) => x !== alvo);
       programaDias[di] = { ...d, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
@@ -2065,7 +2068,8 @@ export function cortarTempo(
   // O corte nunca tira o único exercício de um músculo: mesmo abaixo do piso, ele não vai a zero (sessão de equipamento
   // mínimo: com 20 min e prioridade pernas, a flexão de joelho deslizante saía e os posteriores zeravam).
   const naoZera = (x: ExercicioPrescrito, v: Partial<Record<Musculo, number>>) =>
-    POR_ID[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0);
+    // (os adutores não têm meta: a adução, complemento, sai mesmo sendo o único exercício deles; selecao.aducao-complemento)
+    POR_ID[x.exId]!.musculos.primarios.every((m) => m === 'adutores' || (v[m] ?? 0) - seriesDeVolume(x) > 0);
   const naoPrioPrimeiro = <T extends { x: ExercicioPrescrito; i: number }>(a: T, b: T) => Number(prioritario(a.x)) - Number(prioritario(b.x));
   const usados = new Set<string>(jaTirouExercicio ? ['corte'] : []);
 
@@ -2148,7 +2152,8 @@ export function cortarTempo(
         const removivel = d.exercicios
           .map((x, i) => ({ x, i }))
           .filter(({ x }) => prioritario(x) === daPrioridade && x.tipo === 'isolador' && !obrigatorio(x) && cabe(x, seriesDeVolume(x), v) && naoZera(x, v) && !unicoDiretoDePosteriores(x, dias))
-          .sort((a, b) => b.i - a.i)[0]?.x;
+          // selecao.aducao-complemento: a adução sai primeiro (pacote D3 da conferência, 23/11/2026)
+          .sort((a, b) => Number(b.x.funcao === 'aducao') - Number(a.x.funcao === 'aducao') || b.i - a.i)[0]?.x;
         if (!removivel) break;
         salvar(
           d.exercicios

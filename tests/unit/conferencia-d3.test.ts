@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { cortarTempo, gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { inventarioDe } from '../../scripts/auditoria/ver-lib';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
 import { ana, bruno } from '../personas';
@@ -58,5 +59,30 @@ describe('selecao.estabilidade: a polia conta como estável, como a regra lista'
   it('o intermediário não muda: o desempate é só do iniciante', () => {
     const p = ok(perfil({ nivel: 'intermediario', dias: 4, min: 60 }), bruno.inventario);
     expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'crucifixo-polia')).toBe(true);
+  });
+});
+
+describe('selecao.aducao-complemento: a adução entra por último e sai primeiro', () => {
+  const todos = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
+  it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: o abdominal fica e a adução sai', () => {
+    // Antes, o Corpo todo B tinha a adução deitado de lado e não tinha o abdominal.
+    const p = ok(perfil({ nivel: 'iniciante', dias: 3, min: 75, focos: ['pernas', 'gluteos'] }), {});
+    for (const d of p.dias) expect(d.exercicios.some((x) => x.padrao === 'core'), d.nome).toBe(true);
+    expect(todos(p).some((x) => x.funcao === 'aducao')).toBe(false);
+  });
+
+  it('no corte de tempo, a adução sai antes do abdominal (academia, corpo todo 4x, pernas, de 90 para 60 min)', () => {
+    const pf = perfil({ nivel: 'intermediario', dias: 4, min: 90, focos: ['pernas'], divisao: 'ct-4x' });
+    const p = ok(pf, inventarioDe('academia'));
+    const comAducao = p.dias.filter((d) => d.exercicios.some((x) => x.funcao === 'aducao'));
+    expect(comAducao.length).toBeGreaterThan(0);
+    const cortados = cortarTempo(structuredClone(p.dias), 60, p.metas, 'intermediario', new Set(['quadriceps', 'posteriores', 'panturrilha']), [], () => false);
+    for (const [i, d] of cortados.entries()) {
+      const antes = p.dias[i]!.exercicios;
+      const saiuAbdominal = antes.some((x) => x.padrao === 'core') && !d.exercicios.some((x) => x.padrao === 'core');
+      if (saiuAbdominal) expect(d.exercicios.some((x) => x.funcao === 'aducao'), d.nome).toBe(false);
+    }
+    // e alguma adução saiu
+    expect(cortados.flatMap((d) => d.exercicios).filter((x) => x.funcao === 'aducao').length).toBeLessThan(comAducao.length);
   });
 });
