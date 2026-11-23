@@ -157,6 +157,7 @@
  "seguranca.montagem": "consenso",
  "visao.desambiguacao": "consenso",
  "privacidade.foto": "consenso",
+ "privacidade.aviso-descanso": "consenso",
  "dados.copia": "consenso",
  "dados.instalar-iphone": "consenso",
  "dados.persistente": "consenso",

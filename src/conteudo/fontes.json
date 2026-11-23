@@ -959,6 +959,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/41718208/",
   "leitura": "resumo"
  },
+ "upstash-qstash": {
+  "citacao": "Upstash (s.d.). QStash Pricing; Delay; Cancel a message.",
+  "link": "https://upstash.com/pricing/qstash",
+  "leitura": "texto-completo"
+ },
  "varovic2025": {
   "citacao": "Varovic D, Wolf M, Schoenfeld BJ, Steele J, Grgic J, Mikulic P (2025). Does Muscle Length Influence Regional Hypertrophy? A Systematic Review and Meta-Analysis. Int J Sports Med 46(14):1027–1036.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/40570881/",
@@ -983,6 +988,11 @@
   "citacao": "Warburton DER, Jamnik VK, Bredin SSD, Gledhill N (2011). The Physical Activity Readiness Questionnaire for Everyone (PAR-Q+) and Electronic Physical Activity Readiness Medical Examination (ePARmed-X+). Health Fit J Can 4(2):3–17.",
   "link": "https://hfjc.library.ubc.ca/",
   "leitura": "busca"
+ },
+ "webkit-push2023": {
+  "citacao": "WebKit (2023). Web Push for Web Apps on iOS and iPadOS. WebKit blog.",
+  "link": "https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/",
+  "leitura": "texto-completo"
  },
  "webkit2020": {
   "citacao": "Wilander J (2020). Full Third-Party Cookie Blocking and More. WebKit blog.",

@@ -2340,7 +2340,7 @@
   },
   {
     "id": "privacidade.foto",
-    "regra": "Texto da foto do equipamento e consentimento antes do 1º envio (R5c, 07/11/2026). A foto é o único dado que sai do aparelho e pode ser dado pessoal (mostra a casa, o espelho, outras pessoas); ir a uma empresa dos EUA é transferência internacional, que pode se apoiar no consentimento específico e em destaque, com informação prévia do caráter internacional (LGPD, art. 33, VIII); o consentimento pode ser revogado a qualquer momento, de graça (art. 8º, § 5º). O que a Anthropic diz por escrito: apaga o que a API recebe em até 30 dias, salvo envio marcado como violação da política de uso (até 2 anos) ou exigência da lei; não treina modelos com o conteúdo do cliente; guarda o dado nos EUA e pode processá-lo também na Europa, na Ásia e na Austrália. Não é parecer jurídico; a revisão por um advogado foi dispensada pelo Gustavo em 08/11/2026 para abrir a família e amigos",
+    "regra": "Texto da foto do equipamento e consentimento antes do 1º envio (R5c, 07/11/2026). A foto sai do aparelho só se a pessoa usar (desde o lote M4, 23/11/2026, o aviso do descanso também pode sair: `privacidade.aviso-descanso`) e pode ser dado pessoal (mostra a casa, o espelho, outras pessoas); ir a uma empresa dos EUA é transferência internacional, que pode se apoiar no consentimento específico e em destaque, com informação prévia do caráter internacional (LGPD, art. 33, VIII); o consentimento pode ser revogado a qualquer momento, de graça (art. 8º, § 5º). O que a Anthropic diz por escrito: apaga o que a API recebe em até 30 dias, salvo envio marcado como violação da política de uso (até 2 anos) ou exigência da lei; não treina modelos com o conteúdo do cliente; guarda o dado nos EUA e pode processá-lo também na Europa, na Ásia e na Austrália. Não é parecer jurídico; a revisão por um advogado foi dispensada pelo Gustavo em 08/11/2026 para abrir a família e amigos",
     "valores": {
       "iniciante": "as 3 telas (boas-vindas, foto e Meus dados) dizem para onde a foto vai, por quanto tempo fica lá e que o servidor do app não a guarda; uma caixa desmarcada antes do 1º envio libera o botão das fotos; a data do aceite fica só no aparelho (`localStorage`) e \"Retirar a autorização\" apaga essa data; sem a caixa, a lista de equipamento funciona igual",
       "intermediario": "as 3 telas (boas-vindas, foto e Meus dados) dizem para onde a foto vai, por quanto tempo fica lá e que o servidor do app não a guarda; uma caixa desmarcada antes do 1º envio libera o botão das fotos; a data do aceite fica só no aparelho (`localStorage`) e \"Retirar a autorização\" apaga essa data; sem a caixa, a lista de equipamento funciona igual",
@@ -2352,6 +2352,21 @@
       "anthropic-retencao",
       "anthropic-termos",
       "anthropic-servidores"
+    ]
+  },
+  {
+    "id": "privacidade.aviso-descanso",
+    "regra": "O que sai do aparelho com o aviso de fim do descanso (lote M4, 22/11/2026; entrou na `main` em 23/11/2026, com o \"faça tudo que falta\" do Gustavo). O endereço de aviso do celular não é dado de saúde, mas é dado pessoal (LGPD, art. 5º, I) e vai a empresas dos EUA",
+    "valores": {
+      "iniciante": "o aviso só existe se a pessoa tocar em \"Avisar\" no 1º descanso (ou o ligar em \"Meus dados\") e o celular der a permissão; com o app aberto, nada sai do aparelho; quando a pessoa sai do app no meio de um descanso, vão para o servidor do app o endereço de aviso do celular e o tempo que falta, e nada do treino nem da saúde; o endereço fica embaralhado numa fila da Upstash (EUA) só até o aviso sair, ou até a pessoa voltar ao app, quando o pedido é desfeito; o aviso chega pelo serviço de avisos do celular (Apple ou Google). \"Agora não\" e a permissão negada não mudam nada no treino. \"Meus dados\" e os termos dizem isso",
+      "intermediario": "o aviso só existe se a pessoa tocar em \"Avisar\" no 1º descanso (ou o ligar em \"Meus dados\") e o celular der a permissão; com o app aberto, nada sai do aparelho; quando a pessoa sai do app no meio de um descanso, vão para o servidor do app o endereço de aviso do celular e o tempo que falta, e nada do treino nem da saúde; o endereço fica embaralhado numa fila da Upstash (EUA) só até o aviso sair, ou até a pessoa voltar ao app, quando o pedido é desfeito; o aviso chega pelo serviço de avisos do celular (Apple ou Google). \"Agora não\" e a permissão negada não mudam nada no treino. \"Meus dados\" e os termos dizem isso",
+      "avancado": "o aviso só existe se a pessoa tocar em \"Avisar\" no 1º descanso (ou o ligar em \"Meus dados\") e o celular der a permissão; com o app aberto, nada sai do aparelho; quando a pessoa sai do app no meio de um descanso, vão para o servidor do app o endereço de aviso do celular e o tempo que falta, e nada do treino nem da saúde; o endereço fica embaralhado numa fila da Upstash (EUA) só até o aviso sair, ou até a pessoa voltar ao app, quando o pedido é desfeito; o aviso chega pelo serviço de avisos do celular (Apple ou Google). \"Agora não\" e a permissão negada não mudam nada no treino. \"Meus dados\" e os termos dizem isso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lgpd",
+      "upstash-qstash",
+      "webkit-push2023"
     ]
   },
   {
