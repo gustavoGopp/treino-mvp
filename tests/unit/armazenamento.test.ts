@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
+import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { gerarPrograma, type Programa } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
@@ -336,6 +337,21 @@ describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
     const { versao: _b, ...depois } = r.estado;
     void _a;
     void _b;
+    // desde 23/11/2026, o exercício do programa salvo sem animação ganha a da biblioteca (storage/ids.ts); só isso muda
+    const ganharam: string[] = [];
+    const programaAntes = (antes as { programa: { programa: { dias: { exercicios: { exId: string; animacaoId: string | null }[] }[] } } }).programa.programa;
+    programaAntes.dias.forEach((d, i) =>
+      d.exercicios.forEach((x, j) => {
+        const agora = depois.programa!.programa.dias[i]!.exercicios[j]!.animacaoId;
+        if (x.animacaoId !== agora) {
+          expect(x.animacaoId).toBeNull();
+          expect(agora).toBe(BIBLIOTECA.find((b) => b.id === x.exId)!.animacaoId);
+          ganharam.push(x.exId);
+          x.animacaoId = agora;
+        }
+      }),
+    );
+    expect(ganharam.length).toBeGreaterThan(0);
     expect(depois).toEqual(antes);
     expect(r.estado.rotina?.objetivo).toBe('forca');
     expect(r.estado.respostas?.semanaLeveEm).toBe('2026-10-09T12:00:00.000Z');
@@ -429,6 +445,26 @@ describe('ids de exercício que saíram da biblioteca (storage/ids.ts)', () => {
     const lido = acertarIds(bruto, { 'nome-antigo': feito.exId });
     expect(lido).toEqual(JSON.parse(JSON.stringify(e)));
     expect(estadoSchema.safeParse(lido).success).toBe(true);
+  });
+
+  // 23/11/2026: o programa gerado antes de 22/11 guardava "sem animação" em 81 exercícios, e o guia não aparecia neles
+  // até a pessoa tocar em "Atualizar". Ao abrir, a animação de hoje entra; nenhum exercício nem série muda.
+  it('o exercício do programa salvo sem animação ganha a da biblioteca, e nada mais muda', () => {
+    const e = estadoSchema.parse(estadoDe(PERSONAS.ana));
+    const antes = JSON.parse(JSON.stringify(e)) as Estado;
+    const doPrograma = antes.programa!.programa.dias.flatMap((d) => d.exercicios);
+    expect(doPrograma.length).toBeGreaterThan(2);
+    for (const x of doPrograma) x.animacaoId = null;
+    const r = migrar(antes as unknown as Record<string, unknown>);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado).toEqual(e);
+    // a animação que já está guardada não é trocada, nem a de um id que a biblioteca não anima
+    const comOutra = JSON.parse(JSON.stringify(e)) as Estado;
+    comOutra.programa!.programa.dias[0]!.exercicios[0]!.animacaoId = 'outra-animacao';
+    const lido = acertarIds(comOutra as unknown as Record<string, unknown>, {}, undefined, new Map()) as unknown as Estado;
+    expect(lido.programa!.programa.dias[0]!.exercicios[0]!.animacaoId).toBe('outra-animacao');
+    const semNenhuma = acertarIds(antes as unknown as Record<string, unknown>, {}, undefined, new Map()) as unknown as Estado;
+    expect(semNenhuma.programa!.programa.dias.flatMap((d) => d.exercicios).every((x) => x.animacaoId === null)).toBe(true);
   });
 });
 
