@@ -89,7 +89,9 @@ export default defineConfig({
     include: ['tests/unit/**/*.test.ts', 'tests/repo/**/*.test.ts'],
     // Um núcleo fica livre para o processo principal: com todos ocupados pelos testes pesados do gerador, ele demorava a
     // responder e o Vitest acusava "Timeout calling onTaskUpdate" (2 de 3 rodadas na main de 09/11; 0 de 3 assim).
-    maxWorkers: Math.max(1, availableParallelism() - 1),
+    // No GitHub (4 núcleos, com cobertura), dois ficam livres desde 23/11/2026: depois do pacote D3, que deixou o gerador
+    // mais pesado, o mesmo erro voltou em 2 de 3 rodadas da main (527 e 529), com todos os testes passando.
+    maxWorkers: Math.max(1, availableParallelism() - (process.env.CI ? 2 : 1)),
     coverage: {
       include: ['src/domain/**'],
       thresholds: { lines: 90, statements: 90, functions: 90, branches: 90 },
