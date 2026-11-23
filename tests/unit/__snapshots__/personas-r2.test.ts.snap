@@ -63,7 +63,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
     "dia": "Superior A",
   },
   {
-    "antes": "semana 6: 13 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 16 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Agachamento goblet com calcanhar elevado: 10 kg → 8 kg",
       "Stiff com halteres: 10 kg → 8 kg",
@@ -72,7 +72,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
       "Panturrilha no leg press: 40 kg de anilhas → 30 kg de anilhas",
       "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 7 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
     "dia": "Inferior A",
   },
   {
@@ -92,7 +92,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
     "dia": "Superior B",
   },
   {
-    "antes": "semana 6: 19 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 21 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 8 kg",
       "Ponte de glúteo com halter: 10 kg → 8 kg",
@@ -103,7 +103,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
       "Panturrilha no leg press: 40 kg de anilhas → 30 kg de anilhas",
       "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 10 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 11 séries, RIR 3–4",
     "dia": "Inferior B",
   },
 ]
@@ -170,7 +170,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "dia": "Puxar",
   },
   {
-    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 25 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 8 kg",
       "Stiff com halteres: 10 kg → 8 kg",
@@ -181,7 +181,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
       "Panturrilha sentada na máquina: 40 kg de anilhas → 36 kg de anilhas",
       "Adução na cadeira adutora: placa 8 → placa 7",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 14 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 15 séries, RIR 3–4",
     "dia": "Pernas",
   },
 ]

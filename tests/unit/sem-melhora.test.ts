@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { gerarPrograma, hashDasEntradas } from '../../src/domain/gerador';
 import { janelaDeEstagnacao, sugerirProgressao, sugerirSemanaLeve, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
 import { PROGRESSAO, type Nivel } from '../../src/domain/regras';
+import { semanaLeveDeHoje } from '../../src/domain/acompanhamento/semana-leve';
 import { hojeNoPrograma, opcoesDeHoje, sugestaoDoExercicio } from '../../src/domain/sessao';
 import { PERSONAS } from '../personas';
 import { PERSONAS_NOVAS } from '../personas/todos';
@@ -124,5 +125,65 @@ describe('o programa guarda o nível para o qual foi montado (pacote 5)', () => 
     const naOitava = sug(8);
     expect(naOitava.acao).toBe('estagnado');
     expect(naOitava.motivo).toMatch(/^Oito sessões sem melhora: /);
+  });
+});
+
+// Pacote D3 (23/11/2026): uma vez parado, o aviso vinha em todo treino (17 de 48 sessões no simulador). Agora ele sai na
+// sessão em que a janela enche e só volta depois de outra janela inteira parada.
+describe('progressao.estagnacao: o aviso não se repete a cada treino (pacote D3)', () => {
+  /** Em quais sessões (contadas de 1) o aviso sai, treinando `n` vezes parado. */
+  const avisos = (h: SessaoExercicio[], janela: number) => h.map((_, i) => sugerirProgressao(h.slice(0, i + 1), alvo, halter, janela)).flatMap((x, i) => (x.acao === 'estagnado' ? [i + 1] : []));
+
+  it.each([
+    [3, [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36]],
+    [4, [4, 8, 12, 16, 20, 24, 28, 32, 36]],
+    [8, [8, 16, 24, 32]],
+    [16, [16, 32]],
+  ])('com a janela de %i e 36 sessões paradas, o aviso sai só nas sessões %j', (janela, esperado) => {
+    expect(avisos(paradas(36), janela)).toEqual(esperado);
+  });
+
+  it('no intervalo, a sugestão é a de sempre, com a marca de parado; antes de a janela encher, sem a marca', () => {
+    expect(sugerirProgressao(paradas(7), alvo, halter, 8).parado).toBeUndefined();
+    expect(sugerirProgressao(paradas(8), alvo, halter, 8)).toMatchObject({ acao: 'estagnado', parado: true });
+    for (const n of [9, 12, 15]) expect(sugerirProgressao(paradas(n), alvo, halter, 8)).toEqual({ acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: 'progressao.manter', parado: true });
+    expect(sugerirProgressao(paradas(16), alvo, halter, 8).acao).toBe('estagnado');
+  });
+
+  it('quem ganha uma repetição sai do parado; se parar de novo, o aviso só volta com outra janela cheia', () => {
+    const h = [...paradas(5), ...Array.from({ length: 12 }, () => sessao(kg(12), [10, 10, 9]))];
+    // parado da 4ª à 5ª; a 6ª ganha uma repetição; a janela de 4 volta a encher na 9ª (6ª a 9ª iguais)
+    expect(avisos(h, 4)).toEqual([4, 9, 13, 17]);
+    expect(sugerirProgressao(h.slice(0, 6), alvo, halter, 4).parado).toBeUndefined();
+  });
+
+  it('a troca de carga zera tudo: o aviso da carga nova sai quando a janela dela enche', () => {
+    const h = [...paradas(6), ...Array.from({ length: 6 }, () => sessao(kg(10), [11, 10, 10]))];
+    expect(avisos(h, 4)).toEqual([4, 10]);
+  });
+
+  it('a janela que alterna entre parada e não parada não faz o aviso piscar', () => {
+    // 10, 9, 10, 9…: a janela que começa no 10 está parada (sessões 4, 6, 8…), a que começa no 9 não (5, 7, 9…);
+    // sem a espera de uma janela, o aviso sairia em 4, 6, 8, 10, 12, 14 e 16
+    const h = Array.from({ length: 16 }, (_, i) => sessao(kg(12), [i % 2 === 0 ? 10 : 9, 9, 9]));
+    expect(avisos(h, 4)).toEqual([4, 8, 12, 16]);
+  });
+
+  it('a semana leve continua contando o exercício parado no intervalo entre dois avisos (o Bruno, na 10ª semana)', () => {
+    let e = estadoDe(PERSONAS.bruno);
+    const programa = e.programa!.programa;
+    const d = programa.dias[0]!;
+    const sug = (ate: number, i: number) => sugestaoDoExercicio(e.historico, d.exercicios[i]!, PERSONAS.bruno.inventario, { local: { localId: 'local-1' }, ...opcoesDeHoje(hojeNoPrograma(programa, e.historico, dia(ate * 7))) });
+    const leve = (ate: number) => semanaLeveDeHoje(programa, e.historico, dia(ate * 7), { inventario: () => PERSONAS.bruno.inventario, localDe: () => 'local-1' });
+    const acoes: string[] = [];
+    for (let w = 0; w < 10; w++) {
+      e = treinar(e, w * 7, d.id, 'local-1', (id) => ({ ...serieTipica(id), reps: (d.exercicios.find((x) => x.exId === id)?.reps[1] ?? 12) - 1 }));
+      acoes.push(sug(w + 1, 0).acao);
+    }
+    // o aviso saiu uma vez, na 8ª sessão; na 9ª e na 10ª, "manter", ainda parado
+    expect(acoes.map((a, i) => (a === 'estagnado' ? i + 1 : 0)).filter(Boolean)).toEqual([8]);
+    expect(sug(10, 0)).toMatchObject({ acao: 'manter', parado: true });
+    const s = leve(10);
+    expect(s.motivos.some((m) => / exercícios sem progresso em 8 treinos$/.test(m))).toBe(true);
   });
 });

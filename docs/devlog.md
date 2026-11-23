@@ -2553,3 +2553,44 @@ Os limites do teste de peso desceram com a medida: o pacote inicial de 175 para 
 **Verificação.** `npm run check`, a regressão do motor (3 testes, sem diferença) e o `npm run conferir:animacao` (relatório idêntico ao guardado) rodaram aqui. O projeto "celular" dos testes de tela não rodou nesta rodada; os cenários de zoom de 200% com a margem rodaram por um roteiro fora do git, numa prévia na porta 4311. O `npm run verificar` fica para antes da junção.
 
 **Rascunho de post.** "Apaguei quase 50 mil linhas do meu app de treino sem mudar nada na tela. Era o motor antigo do boneco que mostra os exercícios, aposentado desde que o novo ficou pronto, e os gabaritos dele. De carona, o app ficou mais leve: abrir o guia de um exercício baixava o texto de todos os 171; agora baixa só o dele, e o peso caiu de 457 para 254 kB. E um teste novo achou um defeito que ninguém tinha visto: com o zoom do celular no máximo, o botão de fechar de algumas janelas sai da tela."
+
+## Os ajustes do treino que já têm medida: o pacote D3 (23/11/2026)
+
+**De onde veio.** Três defeitos do programa medidos na sessão "treino para todos" e deixados para depois (`backlog.md`, pacote 5 e fechamento da etapa 2). Fora da `main`, no ramo `claude/d3-ajustes-do-treino`, à espera do ok do Gustavo. O pacote D4 corre ao mesmo tempo, noutra cópia. O registro inteiro está em `revisoes/melhorias/d3/README.md`.
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Um exercício empacado | "Sem melhora" em todo treino, depois que empacava (17 de 48 treinos no simulador) | O aviso sai uma vez e só volta depois de outra janela parada: 8,4, 3,7 e 1,9 de 48 (iniciante, intermediário, avançado). O texto é o mesmo |
+| Quem escolhe 3 grupos de foco ou mais (o Bruno: 4 grupos de cima, 4 × 70 min) | Pernas com 8 séries, o dia de pernas com 39 min | Pernas com 9, glúteos com 9, panturrilha com 8; o dia com 47 min. O foco não muda |
+| Pernas sem equipamento, dor forte no ombro, 2 dias de 45 min | O dia mais longo com 51 a 54 min | 48 min (o mesmo treino, com menos séries) |
+
+**Antes e depois medidos** (contra a `main`, a mesma régua e a mesma biblioteca)
+
+| Medida | `main` | O ramo |
+|---|---:|---:|
+| População (680.625): programas sem nenhum defeito da régua, grade · ponderada | 91,0% · 97,1% | 92,6% · 98,2% |
+| População: dia mais longo acima de 110% dos minutos | 22.415 | 10.064 |
+| População: pares "grupo × defeito da régua" que sobem | | 0 (225 descem) |
+| Grade de qualidade (911.625): dia acima de 110% | 35.365 | 15.817 |
+| Grade de qualidade: suspeitos que sobem | | nenhum |
+| Grade da régua (108.900): sem dor, sem defeito | 92,4% | 95,2% |
+| Personas que mudam | | 2 de 12 (o Bruno e a Carla, item 2) |
+| Revisão cega (12 pessoas fictícias, 6 revisores simulados) | | 4 melhoram de 0,7 a 1,3 ponto, 1 sobe 0,3, 7 iguais, nenhuma piora |
+
+O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 100 programas (o degrau tira séries do foco para o dia caber); "o mesmo músculo com 3 séries diretas em dias seguidos" em 445 (as pernas do Bruno); e o cuidado "músculo abaixo da faixa com tempo sobrando" em 3 grupos (14 programas), que, conferido um a um, marca músculos que já estavam abaixo da faixa e não perdem série: o dia longo encurta e o dia típico cai abaixo de 85%.
+
+**Decidido pela sessão, com o motivo e a medida**
+- **Os ajustes que mudam programas ficam fora das comparações entre divisões e montagens.** O gerador escolhe como na `main` e só depois refaz o programa escolhido com eles. A 1ª versão do último degrau (já enviada, `57d3a86`) e a do item 2 (`2e38abb`) entravam nas comparações e trocavam a divisão de alguns casos com dor: 23 pares "grupo × defeito" subiam na população, e o dia fraco subia na grade de qualidade. A regra do pacote é que nenhum defeito piora; o conserto está em commit próprio, sem reescrever o que foi enviado.
+- **Com folga na semana, o degrau não corta o foco abaixo do mínimo do nível** [opinião]: ali sobra tempo nos outros dias. Custa cerca de 860 programas que ficam com o dia longo (10.064 em vez de 9.200), entre eles a pessoa t5 da revisão cega, que a 1ª versão melhorava trocando a divisão. Está no backlog.
+- **A revisão cega teve uma 2ª rodada,** com três revisores novos sem o repositório, porque a página de uma pessoa mudou depois da 1ª.
+- **Os snapshots do Bruno e da Carla foram regravados** (`a277445`), com o motivo medido no commit; as outras 10 personas ficam iguais. O Gustavo vê o antes e o depois antes da junção.
+
+**Para o Gustavo decidir.** A frase do aviso de "sem melhora" não mudou; o que muda é quando ela aparece. A frase nova de "Entenda o treino" para a regra: "O aviso aparece uma vez e só volta depois de outros tantos treinos parados."
+
+**O que ficou de fora.** Os 15 itens que a conferência regra por regra deixou para o D3 não foram feitos; ficam como estão no backlog, com o critério do D3. Os apontamentos dos revisores também estão lá ("Do pacote D3").
+
+**Verificação.** `npm run check` limpo (1.154 testes); `npm run test:cobertura` limpo, sem teste perto do limite de tempo; a auditoria inteira duas vezes (`npm run auditoria:verificar`): 39 arquivos idênticos nas duas rodadas, e a grade da régua dentro da linha de base. Os relatórios regenerados estão num commit próprio; como as cópias da `main` eram de antes dos consertos do D1, a diferença deles traz também esses consertos. `npm run verificar` e os testes de tela não rodaram nesta rodada (o outro pacote usava a máquina); nenhuma tela mudou.
+
+**Rascunho de post.** "O meu app de treino tinha três defeitos medidos e guardados para depois. Corrigi os três, e a medida achou um quarto: a minha própria correção. Para o dia de pernas caber nos 45 minutos, o app passava a cortar séries; mas o corte entrava na hora de escolher a divisão da semana e, em uns poucos casos, trocava a divisão e criava um dia fraco. A regra do projeto é que nenhum defeito piora, nem em 1 programa de 680 mil. A correção ficou assim: o app escolhe a semana como antes e só depois ajusta as séries."

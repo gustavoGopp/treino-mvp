@@ -14,7 +14,7 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
   },
   {
     "avisos": [],
-    "dia": "Inferior A: goblet 2×8–15 | stiff 2×8–12 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
+    "dia": "Inferior A: goblet 3×8–15 | stiff 3×8–12 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 4×10–15 | abdominal-chao 2×12–20",
     "trocas": [
       "aqui não tem bola suíça: flexão de joelho na bola suíça → flexão de joelho na cadeira flexora (sentado)",
       "aqui não tem elásticos: extensão de joelho sentado com elástico → cadeira extensora",
@@ -33,7 +33,7 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
   },
   {
     "avisos": [],
-    "dia": "Inferior B: afundo 2×8–12 | ponte-gluteo-halter 2×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 4×12–20 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–20",
+    "dia": "Inferior B: afundo 2×8–12 | ponte-gluteo-halter 3×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 4×12–20 | cadeira-flexora 2×8–15 | cadeira-extensora 2×10–15 | panturrilha-leg-press 4×10–15 | abdominal-chao 2×12–20",
     "trocas": [
       "aqui não tem elásticos: flexão de joelho com elástico → flexão de joelho na cadeira flexora (sentado)",
       "aqui não tem elásticos: extensão de joelho sentado com elástico → cadeira extensora",

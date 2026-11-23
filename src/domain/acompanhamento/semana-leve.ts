@@ -72,7 +72,7 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
     const localId = o.localDe(ultima);
     const local: LocalDaCarga | undefined = localId ? { localId, ...(o.localPadrao ? { localPadrao: o.localPadrao } : {}) } : undefined;
     const h = semCalibracao(historicoDoExercicio(historico, exId, local, { semLeve: true, ...(desde ? { desde } : {}) }));
-    if (sugerirProgressao(h, { reps: x.reps, rir: x.rir }, opcoesCarga(exId, o.inventario(localId)), janelaDeEstagnacao(programa.nivel)).acao === 'estagnado') estagnados++;
+    if (sugerirProgressao(h, { reps: x.reps, rir: x.rir }, opcoesCarga(exId, o.inventario(localId)), janelaDeEstagnacao(programa.nivel)).parado) estagnados++;
   }
 
   // 2) "Pesado demais" nos últimos 3 treinos (o toque opcional do fim do treino).

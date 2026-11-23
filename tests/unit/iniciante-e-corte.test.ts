@@ -72,9 +72,19 @@ describe('tempo.corte, degrau 1b: dois lados no lugar de um lado só quando o di
     }
     expect(comTroca).toBeGreaterThan(0);
     expect(melhoram).toBeGreaterThan(0);
+  });
+
+  it('o exemplo medido: sem a troca, o dia de 34 min só cabe em 110% perdendo série no último degrau do corte; com a troca, cabe sem perder nenhuma', async () => {
+    // Desde o pacote D3 (23/11/2026) o corte tem um último degrau, que tira séries do dia que ainda passa de 110%. O
+    // "antes" de sempre (sem a troca) passou a caber por ele; para ver o dia longo, o exemplo tira também esse degrau.
+    const semOsDois = await carregarAntes('app,-corte-lado,-d3-degrau');
     const [perfil, inventario] = [perfilDe(EXEMPLO), inventarioDe(EXEMPLO.cenario)];
-    expect(acimaDoTempo(programa(antes, perfil, inventario), 30)).toBeGreaterThan(0);
-    expect(acimaDoTempo(programa(gerarPrograma, perfil, inventario), 30)).toBe(0);
+    const [semNada, semTroca, app] = [programa(semOsDois, perfil, inventario), programa(antes, perfil, inventario), programa(gerarPrograma, perfil, inventario)];
+    expect(acimaDoTempo(semNada, 30)).toBeGreaterThan(0);
+    expect(acimaDoTempo(semTroca, 30)).toBe(0);
+    expect(acimaDoTempo(app, 30)).toBe(0);
+    expect(series(semTroca)).toBeLessThan(series(semNada));
+    expect(series(app)).toBe(series(semNada));
   });
 
   it('o exercício que entra é de dois lados, do mesmo nível da mesma função, e traz o porquê com o nome de quem saiu', () => {

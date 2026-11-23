@@ -5927,12 +5927,12 @@
     "repeteSemOpcao": 0
    },
    "afundo": {
-    "aparece2": 3204,
+    "aparece2": 3216,
     "repeteComOpcao": 1036,
     "repeteSemOpcao": 68
    },
    "agachar": {
-    "aparece2": 761,
+    "aparece2": 749,
     "repeteComOpcao": 58,
     "repeteSemOpcao": 575
    },
@@ -5943,12 +5943,12 @@
    },
    "crucifixo": {
     "aparece2": 345,
-    "repeteComOpcao": 72,
+    "repeteComOpcao": 88,
     "repeteSemOpcao": 153
    },
    "dobrar-quadril": {
     "aparece2": 858,
-    "repeteComOpcao": 211,
+    "repeteComOpcao": 237,
     "repeteSemOpcao": 225
    },
    "elevacao-lateral": {
@@ -5958,7 +5958,7 @@
    },
    "empurrar-horizontal": {
     "aparece2": 2964,
-    "repeteComOpcao": 846,
+    "repeteComOpcao": 882,
     "repeteSemOpcao": 1092
    },
    "empurrar-inclinado": {
@@ -5998,7 +5998,7 @@
    },
    "puxar-horizontal": {
     "aparece2": 1352,
-    "repeteComOpcao": 210,
+    "repeteComOpcao": 246,
     "repeteSemOpcao": 380
    },
    "puxar-vertical": {

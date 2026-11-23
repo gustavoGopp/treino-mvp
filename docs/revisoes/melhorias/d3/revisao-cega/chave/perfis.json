@@ -1,0 +1,62 @@
+[
+ {
+  "id": "f1",
+  "descricao": "Intermediário, voltando de 3 meses parado; academia de prédio (polia dupla, barra fixa, banco regulável, halteres de 1 a 10 kg, halteres montáveis); 4 dias de 70 min; sem dor; quer peito, costas, ombros e braços.",
+  "pedido": { "cenario": "bruno", "nivel": "intermediario", "dias": "4", "min": 70, "focos": ["peito", "costas", "ombros", "bracos"], "dores": [], "semanasParado": 12 }
+ },
+ {
+  "id": "f2",
+  "descricao": "Avançada; academia completa, com todos os equipamentos do catálogo; 5 dias de 75 min; sem dor; quer peito, costas, ombros e pernas.",
+  "pedido": { "cenario": "academia+", "nivel": "avancado", "dias": "5", "min": 75, "focos": ["peito", "costas", "ombros", "pernas"], "dores": [], "semanasParado": 0 }
+ },
+ {
+  "id": "f3",
+  "descricao": "Intermediária; em casa, com halteres e elásticos; 4 dias de 75 min; dor forte no joelho (nota 7); quer peito, costas, ombros e braços.",
+  "pedido": { "cenario": "casa", "nivel": "intermediario", "dias": "4", "min": 75, "focos": ["peito", "costas", "ombros", "bracos"], "dores": [{ "articulacao": "joelho", "nota": 7 }], "semanasParado": 0 }
+ },
+ {
+  "id": "f4",
+  "descricao": "Intermediário; academia completa; 4 dias de 60 min; sem dor; quer peito, costas, ombros e braços.",
+  "pedido": { "cenario": "academia", "nivel": "intermediario", "dias": "4", "min": 60, "focos": ["peito", "costas", "ombros", "bracos"], "dores": [], "semanasParado": 0 }
+ },
+ {
+  "id": "f5",
+  "descricao": "Avançado; em casa, com halteres de 1 a 12 kg e banco reto; 4 dias de 60 min; sem dor; quer peito, costas, ombros e braços.",
+  "pedido": { "cenario": "halteres-banco", "nivel": "avancado", "dias": "4", "min": 60, "focos": ["peito", "costas", "ombros", "bracos"], "dores": [], "semanasParado": 0 }
+ },
+ {
+  "id": "t1",
+  "descricao": "Intermediária; em casa, sem nenhum equipamento; 2 dias de 45 min; dor forte no ombro (nota 7); quer pernas e glúteos.",
+  "pedido": { "cenario": "vazio", "nivel": "intermediario", "dias": "2", "min": 45, "focos": ["pernas", "gluteos"], "dores": [{ "articulacao": "ombro", "nota": 7 }], "semanasParado": 0 }
+ },
+ {
+  "id": "t2",
+  "descricao": "Avançado; em casa, sem nenhum equipamento; 2 dias de 45 min; dor forte no ombro (nota 7); quer pernas e glúteos.",
+  "pedido": { "cenario": "vazio", "nivel": "avancado", "dias": "2", "min": 45, "focos": ["pernas", "gluteos"], "dores": [{ "articulacao": "ombro", "nota": 7 }], "semanasParado": 0 }
+ },
+ {
+  "id": "t3",
+  "descricao": "Iniciante; em casa, com halteres e elásticos; 5 dias de 30 min; dor leve no quadril (nota 4); quer pernas e glúteos.",
+  "pedido": { "cenario": "casa", "nivel": "iniciante", "dias": "5", "min": 30, "focos": ["pernas", "gluteos"], "dores": [{ "articulacao": "quadril", "nota": 4 }], "semanasParado": 0 }
+ },
+ {
+  "id": "t4",
+  "descricao": "Intermediário; em casa, só com halteres montáveis (anilhas e manoplas); 2 dias de 45 min; dor forte no tornozelo (nota 7); quer pernas e glúteos.",
+  "pedido": { "cenario": "so:anilhas_e_manoplas", "nivel": "intermediario", "dias": "2", "min": 45, "focos": ["pernas", "gluteos"], "dores": [{ "articulacao": "tornozelo", "nota": 7 }], "semanasParado": 0 }
+ },
+ {
+  "id": "t5",
+  "descricao": "Intermediária; em casa, com fita de suspensão e elásticos; 6 dias de 30 min; dor forte no cotovelo (nota 7); quer pernas e glúteos.",
+  "pedido": { "cenario": "suspensao+elasticos", "nivel": "intermediario", "dias": "6", "min": 30, "focos": ["pernas", "gluteos"], "dores": [{ "articulacao": "cotovelo", "nota": 7 }], "semanasParado": 0 }
+ },
+ {
+  "id": "c1",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": { "cenario": "academia", "nivel": "intermediario", "dias": "4", "min": 60, "focos": [], "dores": [], "semanasParado": 0 }
+ },
+ {
+  "id": "c2",
+  "descricao": "Iniciante; em casa, com halteres de 1 a 12 kg e banco reto; 3 dias de 45 min; sem dor; quer glúteos e pernas.",
+  "pedido": { "cenario": "halteres-banco", "nivel": "iniciante", "dias": "3", "min": 45, "focos": ["gluteos", "pernas"], "dores": [], "semanasParado": 0 }
+ }
+]

@@ -18,7 +18,7 @@ export type ResumoDoExport = {
   semanasComTreino: number;
   /** Quantas vezes cada sugestão apareceu, na hora de cada exercício feito (subir, manter, estagnado, calibrar…). */
   sugestoes: Record<string, number>;
-  /** Maior sequência de "estagnado" seguidos num mesmo exercício. */
+  /** Maior sequência de sessões paradas (a janela de "sem melhora" cheia) num mesmo exercício. */
   estagnadoSeguidoMax: number;
   /** Exercícios que ficaram estagnados em algum momento. */
   exerciciosEstagnados: number;
@@ -62,7 +62,8 @@ export function resumirExport(e: Estado): ResumoDoExport {
         const x = feito.exId === vaga.exId ? vaga : prescricaoDaVaga(vaga, feito.exId);
         const sug = sugestaoDoExercicio(antes.historico, x, inv, opc);
         sugestoes[sug.acao] = (sugestoes[sug.acao] ?? 0) + 1;
-        estagSeguido[feito.exId] = sug.acao === 'estagnado' ? (estagSeguido[feito.exId] ?? 0) + 1 : 0;
+        // (pacote D3: o aviso sai uma vez por janela; a sequência conta as sessões paradas, com ou sem o aviso)
+        estagSeguido[feito.exId] = sug.acao === 'estagnado' || sug.parado ? (estagSeguido[feito.exId] ?? 0) + 1 : 0;
         if (sug.acao === 'estagnado') estagnados.add(feito.exId);
         estagnadoSeguidoMax = Math.max(estagnadoSeguidoMax, estagSeguido[feito.exId]!);
       }

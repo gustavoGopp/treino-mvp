@@ -1,0 +1,8 @@
+{
+ "_": "Rodada 2 (23/11/2026): a pessoa t5 nas três versões que existiam, e a pessoa c1 duas vezes (controle). \"antes\" = main; \"depois-v1\" = o último degrau como estava no commit 57d3a86 (as páginas da rodada 1); \"depois-v2\" = o último degrau refeito depois da escolha, ainda sem a trava da semana com folga. Na versão que ficou no ramo, a semana de t5 é igual à da main.",
+ "R1": { "pessoa": "c1", "versao": "antes" },
+ "R2": { "pessoa": "t5", "versao": "depois-v2" },
+ "R3": { "pessoa": "t5", "versao": "antes" },
+ "R4": { "pessoa": "c1", "versao": "depois" },
+ "R5": { "pessoa": "t5", "versao": "depois-v1" }
+}
