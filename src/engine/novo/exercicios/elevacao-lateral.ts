@@ -25,7 +25,7 @@ export const elevacaoLateral: Exercicio = {
   vistas: ['frontal', 'cima'],
   quadro,
   // a lateral do ombro direito (principal) e a frente do ombro listrada (só ajuda), sem o trapézio de cima (achado 3 da
-  // revisão de anatomia, correção de 02/11/2026; src/engine/estilo/musculos.ts)
+  // revisão de anatomia, correção de 02/11/2026)
   papeis: { 'deltLat:R': 'p', 'deltAnt:R': 'a' },
   trajetorias: { mão: (q) => q.esq.lado.R.pegada, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };

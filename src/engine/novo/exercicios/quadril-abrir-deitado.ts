@@ -4,6 +4,7 @@
 // um pouco atrás da linha do corpo, com os dedos para a frente; a bacia não sai do lugar.
 // Os números vêm da ficha de cada exercício (as mesmas linhas nas duas); o corpo deitado vem do núcleo
 // ./quadril-deitado-de-lado.ts.
+import { calibragem } from '../calibragens';
 import { resolverMembros } from '../esqueleto';
 import type { Esq, PosePerna } from '../esqueleto';
 import type { Ficha } from '../movimento';
@@ -51,7 +52,13 @@ export function abducaoDeLado(corpo: Corpo, F: Ficha, piso: number, p: PoseDaAbd
   // a perna de baixo, dobrada à frente, deitada no chão; o pé de lado no chão, em ângulo reto com a canela
   const fq = f('pernaDeBaixo.quadril'),
     fk = fq - f('pernaDeBaixo.joelho');
-  const deBaixo = pernaNoPiso(t, bracos, o, 'L', deCima, fq, fk, (d) => norm(perp(direcao(t, 'L', fk + 90 - f('pe.flexaoPlantar'), 0), d)));
+  const noPiso = () => pernaNoPiso(t, bracos, o, 'L', deCima, fq, fk, (d) => norm(perp(direcao(t, 'L', fk + 90 - f('pe.flexaoPlantar'), 0), d)));
+  // A perna de baixo é achada por tentativa (44 poses do corpo inteiro) e só depende do tronco: com a bacia sem rolar e a
+  // cintura no lugar (o movimento certo e o erro "frente"), é a mesma em todas as poses do ciclo. Aí a conta é feita uma
+  // vez e, para o corpo do app, já vem guardada (../calibragens.ts). Antes era refeita a cada pose: 26 ms por pose no
+  // computador, contra 0,3 ms das outras animações (pacote D4, 23/11/2026; scripts/animacao-nova/tempo-da-primeira-volta.mjs).
+  // Nos erros em que a bacia rola ou a cintura sobe, o tronco muda a cada pose e a conta continua sendo feita na hora.
+  const deBaixo = p.rola === 0 && p.cintura === 0 ? calibragem(corpo, `${F.id}:perna-de-baixo:${piso}`, noPiso) : noPiso();
   return resolverMembros(t, bracos, { R: deCima, L: deBaixo });
 }
 

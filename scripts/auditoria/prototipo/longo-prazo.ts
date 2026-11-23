@@ -78,7 +78,7 @@ function cargaInicial(caso: Caso, reps: [number, number], rir: number): Carga {
 }
 
 const RITMO: Record<Nivel, number> = { iniciante: 0.01, intermediario: 0.004, avancado: 0.0015 };
-const JANELAS: Record<string, Record<Nivel, number>> = { 'janela 3, 5, 8': { iniciante: 3, intermediario: 5, avancado: 8 }, 'janela 4, 8, 16': { iniciante: 4, intermediario: 8, avancado: 16 } };
+const JANELAS: Record<string, Record<Nivel, number>> = { 'janela 3, 5, 8': { iniciante: 3, intermediario: 5, avancado: 8 }, 'janela 4, 8, 16, a cada treino (o app até 23/11)': { iniciante: 4, intermediario: 8, avancado: 16 } };
 const SESSOES = 48; // 24 semanas, 2 sessões por semana do mesmo exercício
 const total = (s: SessaoExercicio) => s.series.reduce((t, x) => t + x.reps, 0);
 
@@ -109,7 +109,10 @@ function simular(caso: Caso, nivel: Nivel, janela: number, doApp = false) {
     hist.push({ series });
     // "o app de agora": a própria regra do app, com a janela do nível (pacote 5, 16/11/2026); as outras variantes são a
     // regra de antes (3 sessões) e as janelas do protótipo, aplicadas por fora.
-    const bruta = sugerirProgressao(hist, { reps, rir }, op);
+    // Desde o pacote D3 (23/11/2026) o app não repete o aviso a cada treino; as variantes de antes continuam medidas
+    // com o aviso em toda sessão parada (a marca `parado` da sugestão é a condição de antes).
+    const deAgora = sugerirProgressao(hist, { reps, rir }, op);
+    const bruta: Sugestao = deAgora.parado ? { ...deAgora, acao: 'estagnado' } : deAgora;
     const sug = doApp ? sugerirProgressao(hist, { reps, rir }, op, janelaDeEstagnacao(nivel)) : comJanela(bruta, hist, janela);
     acoes[sug.acao] = (acoes[sug.acao] ?? 0) + 1;
     const prox = sug.proxima ? noInventario(sug.proxima, op).carga : undefined;
@@ -120,7 +123,7 @@ function simular(caso: Caso, nivel: Nivel, janela: number, doApp = false) {
 }
 
 const NIVEIS: Nivel[] = ['iniciante', 'intermediario', 'avancado'];
-const APP = 'o app de agora (4, 8, 16)';
+const APP = 'o app de agora (4, 8, 16; avisa uma vez por janela)';
 const VARIANTES = ['antes (3 sessões)', ...Object.keys(JANELAS), APP];
 const janelaDe = (v: string, n: Nivel) => JANELAS[v]?.[n] ?? 3;
 const media = (xs: number[]) => (xs.reduce((t, x) => t + x, 0) / xs.length).toFixed(1).replace('.', ',');

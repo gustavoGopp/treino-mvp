@@ -4,11 +4,11 @@
 
 Em quantas das 48 sessões de um exercício a pessoa lê "três sessões sem melhora" (média dos 15 casos), e quantas vezes a carga sobe.
 
-| nível | "sem melhora": antes (3 sessões) | "sem melhora": janela 3, 5, 8 | "sem melhora": janela 4, 8, 16 | "sem melhora": o app de agora (4, 8, 16) | a carga sobe (igual em todas) |
+| nível | "sem melhora": antes (3 sessões) | "sem melhora": janela 3, 5, 8 | "sem melhora": janela 4, 8, 16, a cada treino (o app até 23/11) | "sem melhora": o app de agora (4, 8, 16; avisa uma vez por janela) | a carga sobe (igual em todas) |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| iniciante | 24,1 | 24,1 | 16,7 | 16,7 | 1,9 |
-| intermediario | 35,9 | 28,1 | 16,9 | 16,9 | 0,7 |
-| avancado | 40,7 | 31,4 | 17,2 | 17,2 | 0,5 |
+| iniciante | 24,1 | 24,1 | 16,7 | 8,4 | 1,9 |
+| intermediario | 35,9 | 28,1 | 16,9 | 3,7 | 0,7 |
+| avancado | 40,7 | 31,4 | 17,2 | 1,9 | 0,5 |
 
 ## Por caso (antes, com 3 sessões)
 

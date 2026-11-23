@@ -29,6 +29,9 @@ export const VOLUME = {
   sobraAte: { iniciante: 8, intermediario: 12, avancado: 14 } as PorNivel<number>,
   // tempo.sobra-series, 2º passo (13/11/2026): até quantos grupos de foco o tempo que sobra leva o foco além da meta.
   focosComSobra: 2,
+  // tempo.sobra-series, 2º passo com 3 grupos de foco ou mais (pacote D3, 23/11/2026): quem não é foco sobe até o mínimo
+  // do nível, e o foco mais fraco fica pelo menos isto acima (escolha do projeto; é a medida de "o foco aparece" da régua).
+  destaqueDoFoco: 1.3,
   // tempo.sobra-series, 2º passo, iniciante: fora do foco, só os multiarticulares sobem, até este número de séries.
   sobraDoIniciante: 3,
   // iniciante.fase-aprendizado: a fração das séries nas semanas 1–2 (6 de 8, a mesma de antes do R5d).

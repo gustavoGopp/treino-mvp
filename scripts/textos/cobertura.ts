@@ -51,7 +51,7 @@ export const COBERTURA: Linha[] = [
   l('src/App.tsx:59', 'rota', '`/guia/:id` Guia de execução', ['guia/tecnica', 'guia/pelo-programa-tecnica', 'guia/catalogo']),
   l('src/App.tsx:60', 'rota', '`/termos` Termos de uso e privacidade', ['termos-e-foto/termos']),
   l('src/App.tsx:62', 'rota', '`/entenda` Entenda o treino (Meus dados → "Entenda o treino")', ['dados-e-locais/entenda']),
-  l('src/App.tsx:61', 'rota', '`/dev/gerador` e `/lab/boneco`', [], 'só em desenvolvimento e nas prévias: fora do app publicado, não colhidas'),
+  l('src/App.tsx:61', 'rota', '`/dev/gerador`', [], 'só em desenvolvimento: fora do app publicado, não colhida (o laboratório `/lab/boneco` saiu no pacote D4, 23/11/2026)'),
   l('src/App.tsx:81', 'rota', 'rota desconhecida (leva a `/`)', ['cadastro/boas-vindas'], 'não tem texto próprio: abre a Boas-vindas ou o Início'),
 
   // ---- peças comuns ----

@@ -1,11 +1,9 @@
 import type { CSSProperties } from 'react';
 
-// O desenho do Boneco sai do motor como um trecho de SVG com ids fixos (o padrão das listras, `mh-listras`, e os
+// O desenho do Boneco sai do motor como um trecho de SVG com ids fixos (o padrão das listras, `b-listras`, e os
 // recortes do corpo). Com várias miniaturas na mesma página, os ids se repetiam: HTML inválido, e a referência
 // `url(#id)` de cada desenho resolvia para o 1º da página. Aqui cada desenho ganha os ids dele; o motor não muda
 // (as linhas de base da regressão visual continuam valendo).
-
-const ID_DAS_LISTRAS = 'mh-listras';
 
 /** O mesmo trecho de SVG, com cada id (e cada referência a ele) terminando em `-<sufixo>`. */
 export function comIdsUnicos(html: string, sufixo: string): string {
@@ -19,11 +17,10 @@ export function comIdsUnicos(html: string, sufixo: string): string {
 }
 
 /**
- * O estilo do `<svg>` que aponta o preenchimento das listras para o padrão deste desenho: a regra do CSS
- * (`.ea-mh{fill:var(--mh-listras, url(#mh-listras))}`) não tem como saber o id de cada um.
+ * O estilo do `<svg>` que aponta o preenchimento das listras para o padrão deste desenho: a regra do CSS do motor
+ * (`.boneco .b-ma{fill:var(--b-listras, url(#b-listras))}`) não tem como saber o id de cada um.
  */
 export const estiloDasListras = (sufixo: string): CSSProperties => {
   const s = sufixo.replace(/[^a-zA-Z0-9_-]/g, '');
-  // `--b-listras`: o mesmo, para o padrão das listras do motor novo (`b-listras`)
-  return { '--mh-listras': `url(#${ID_DAS_LISTRAS}-${s})`, '--b-listras': `url(#b-listras-${s})` } as CSSProperties;
+  return { '--b-listras': `url(#b-listras-${s})` } as CSSProperties;
 };

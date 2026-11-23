@@ -30,7 +30,14 @@ export type SessaoExercicio = { series: SerieRegistrada[] };
 export type Alvo = { reps: [number, number]; rir: [number, number] };
 
 export type Acao = 'subir' | 'manter' | 'reduzir' | 'voltar' | 'estagnado' | 'ajustar' | 'interromper' | 'calibrar';
-export type Sugestao = { acao: Acao; proxima?: Carga; motivo: string; regraId: string };
+export type Sugestao = {
+  acao: Acao;
+  proxima?: Carga;
+  motivo: string;
+  regraId: string;
+  /** A janela de "sem melhora" está parada (progressao.estagnacao), com ou sem o aviso nesta sessão: o sinal da semana leve. */
+  parado?: true;
+};
 
 export type OpcoesCarga = {
   tipo: Exercicio['carga'];
@@ -355,24 +362,47 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
 
   // Estagnação (progressao.estagnacao): `janela` sessões seguidas, mesma carga, sem ganhar nenhuma repetição no total.
   // A janela vem do nível (4, 8 ou 16); sem nível (programa guardado antes da versão 9), 3.
-  // As sessões são comparadas pelas séries que todas têm em comum: o mesmo exercício com 3 séries num dia e 2 no outro
-  // não "ganha" nem "perde" repetição só por causa disso (antes, o aviso piscava de um treino para o outro).
-  const ultimas = historico.slice(-janela);
-  const emComum = Math.min(...ultimas.map((s) => validas(s).length));
-  const repsEmComum = (s: SessaoExercicio) => validas(s).slice(0, emComum).reduce((t, x) => t + x.reps, 0);
-  if (
-    ultimas.length === janela &&
-    ultimas.every((s) => s.series[0] && igual(s.series[0].carga, carga)) &&
-    Math.max(...ultimas.slice(1).map(repsEmComum)) <= repsEmComum(ultimas[0]!)
-  )
+  // Desde 23/11/2026 (pacote D3), o aviso não se repete a cada treino: aparece na sessão em que a janela enche e só
+  // volta depois de outra janela inteira parada. No intervalo, a sugestão é a de sempre ("busque +1 repetição"), com
+  // a marca `parado`, que a semana leve continua contando (deload.semana-leve).
+  const parado = janelaParada(historico, historico.length - 1, janela);
+  if (parado && avisaAgora(historico, janela))
     return {
       acao: 'estagnado',
       // A saída "reduza 10%" só entra quando há uma carga menor para usar.
       motivo: `${sessoesPorExtenso(janela)} sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', `reduza ${porCento(PROGRESSAO.reducaoEstagnacao)}% e reconstrua`, 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
       regraId: r('progressao.estagnacao'),
+      parado: true,
     };
 
-  return { acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: r('progressao.manter') };
+  return { acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: r('progressao.manter'), ...(parado ? { parado: true as const } : {}) };
+}
+
+/**
+ * A janela que termina na sessão `fim` (índice) está parada (progressao.estagnacao): `janela` sessões com a mesma
+ * carga, e nenhuma depois da 1ª com mais repetições que ela. As sessões são comparadas pelas séries que todas têm em
+ * comum: o mesmo exercício com 3 séries num dia e 2 no outro não "ganha" nem "perde" repetição só por causa disso
+ * (antes, o aviso piscava de um treino para o outro).
+ */
+function janelaParada(historico: SessaoExercicio[], fim: number, janela: number): boolean {
+  if (fim + 1 < janela) return false;
+  const ultimas = historico.slice(fim + 1 - janela, fim + 1);
+  const carga = ultimas.at(-1)!.series[0]?.carga;
+  if (!carga) return false;
+  const emComum = Math.min(...ultimas.map((s) => validas(s).length));
+  const repsEmComum = (s: SessaoExercicio) => validas(s).slice(0, emComum).reduce((t, x) => t + x.reps, 0);
+  return ultimas.every((s) => s.series[0] && igual(s.series[0].carga, carga)) && Math.max(...ultimas.slice(1).map(repsEmComum)) <= repsEmComum(ultimas[0]!);
+}
+
+/**
+ * O aviso de "sem melhora" sai nesta sessão (a última, já parada)? Sai na 1ª sessão parada e só volta `janela` sessões
+ * depois do último aviso (progressao.estagnacao, pacote D3). A conta anda do começo do histórico para o fim, para o
+ * aviso não piscar quando a janela alterna entre parada e não parada.
+ */
+function avisaAgora(historico: SessaoExercicio[], janela: number): boolean {
+  let ultimoAviso = -Infinity;
+  for (let i = janela - 1; i < historico.length; i++) if (i - ultimoAviso >= janela && janelaParada(historico, i, janela)) ultimoAviso = i;
+  return ultimoAviso === historico.length - 1;
 }
 
 /** "Três sessões", "Quatro sessões", "Oito sessões", "Dezesseis sessões" (o começo do aviso de progressao.estagnacao). */

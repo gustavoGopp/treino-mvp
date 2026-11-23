@@ -346,16 +346,26 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
       }
     }
   }, 30_000); // percorre todas as variações do gerador: leva ~5 s nesta máquina (R5c, 08/11/2026)
-  it('nenhum músculo desce do piso nos cortes de tempo (prioritário: mínimo do nível; demais: 4), salvo limite estrutural já presente antes do corte', () => {
+  it('nenhum músculo desce do piso nos cortes de tempo (prioritário: mínimo do nível; demais: 4), salvo limite estrutural já presente antes do corte ou o último degrau do corte', () => {
+    let peloUltimoDegrau = 0;
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
       const prio = new Set<Musculo>(v.perfil.prioridades.flatMap((g) => GRUPOS[g]));
       const estrutural = p.avisos.filter((a) => a.regraId === 'volume.semanal.alvo' || a.regraId === 'equipamento.sem-ancoragem').flatMap(musculosDoAviso);
+      // tempo.corte, último degrau (pacote D3, 23/11/2026): o dia que ainda passava de 110% dos minutos tira séries do foco
+      // abaixo do mínimo do nível, sem descer de 4; o programa avisa "menos séries" e o foco abaixo da meta por falta de tempo.
+      const porTempo = p.avisos.filter((a) => a.regraId === 'tempo.corte' && a.texto.startsWith('Abaixo da meta por falta de tempo')).flatMap(musculosDoAviso);
+      const cortouSeries = p.avisos.some((a) => a.regraId === 'tempo.corte' && /^Para caber no tempo: .*menos séries/.test(a.texto));
       for (const [m, meta] of Object.entries(p.metas) as [Musculo, number][]) {
         const piso = Math.min(meta, prio.has(m) ? VOLUME.minimo[v.perfil.nivel] : VOLUME.minimoEficazPiso);
-        if ((p.volumeSemanal[m] ?? 0) < piso) expect(estrutural, `${v.nome} ${m}`).toContain(m);
+        const series = p.volumeSemanal[m] ?? 0;
+        if (series >= piso || estrutural.includes(m)) continue;
+        peloUltimoDegrau++;
+        expect(prio.has(m) && cortouSeries && porTempo.includes(m), `${v.nome} ${m}`).toBe(true);
+        expect(series, `${v.nome} ${m}`).toBeGreaterThanOrEqual(VOLUME.minimoEficazPiso);
       }
     }
+    expect(peloUltimoDegrau).toBeGreaterThan(0);
   }, 20_000); // gera centenas de programas: leva 5 a 6 s nesta máquina (já passava do limite de 5 s às vezes; devlog do R5c)
   it('Ana: com prioridade em pernas, pernas e glúteos ganham volume em relação a sem prioridade', () => {
     const com = ok(ana.perfil, ana.inventario).volumeSemanal;

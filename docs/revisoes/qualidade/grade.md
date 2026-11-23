@@ -12,13 +12,13 @@
 | --- | ---: | ---: |
 | `dia.poucos-exercicios` | 273.876 | 7,5% dos dias |
 | `monotonia.todos-os-dias` | 176.082 | 19,3% dos programas |
-| `tempo.uso-baixo` | 158.106 | 17,3% dos programas |
+| `tempo.uso-baixo` | 158.100 | 17,3% dos programas |
 | `regua.A2` | 40.427 | 4,4% dos programas |
-| `regua.A3` | 35.365 | 3,9% dos programas |
 | `prioridade.abaixo-com-tempo` | 24.056 | 2,6% dos programas |
-| `regua.C1` | 15.671 | 1,7% dos programas |
-| `regua.D1` | 4.817 | 0,5% dos programas |
-| `regua.D3` | 1.376 | 0,2% dos programas |
+| `regua.A3` | 15.817 | 1,7% dos programas |
+| `regua.C1` | 15.660 | 1,7% dos programas |
+| `regua.D1` | 4.719 | 0,5% dos programas |
+| `regua.D3` | 1.374 | 0,2% dos programas |
 | `avaliador.ajustar-sem-aviso` | 237 | 0% dos programas |
 | `regua.E1` | 6 | 0% dos programas |
 
@@ -122,11 +122,11 @@ Minutos estimados do dia mais longo ÷ minutos escolhidos (% dos programas).
 
 | minutos | mediana do uso | < 50% | < 70% | ≥ 100% |
 | ---: | ---: | ---: | ---: | ---: |
-| 30 | 100% | 0% | 0% | 82,4% |
+| 30 | 100% | 0% | 0% | 82,3% |
 | 45 | 100% | 0% | 0% | 77,4% |
 | 60 | 95% | 0% | 5,8% | 46,6% |
-| 75 | 85% | 1,2% | 24,3% | 25% |
-| 90 | 70% | 7,7% | 46,7% | 13,3% |
+| 75 | 85% | 1,2% | 24,3% | 25,1% |
+| 90 | 70% | 7,7% | 46,7% | 13,4% |
 
 ## Séries por músculo
 
@@ -144,7 +144,7 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | tríceps | 7,7 | 28,6% | 17,1% | 13,9% | 0 |
 | quadríceps | 7 | 36,4% | 10,4% | 10,4% | 0 |
 | posteriores da coxa | 7,5 | 44,1% | 7,9% | 3,7% | 0 |
-| glúteos | 10,2 | 21% | 3,1% | 0,5% | 0 |
+| glúteos | 10,2 | 21,3% | 3,1% | 0,5% | 0 |
 | panturrilha | 5,7 | 44,6% | 11,7% | 5,9% | 0 |
 | abdômen | 6 | 31,1% | 11,9% | 5,9% | 0 |
 
@@ -152,15 +152,15 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 
 | músculo | média | prioritário abaixo da meta | demais abaixo de 4 | zero | zero sem aviso |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| peito | 8,9 | 28% | 13,6% | 13,6% | 0 |
+| peito | 8,9 | 28,5% | 13,6% | 13,6% | 0 |
 | costas | 4,2 | 65,5% | 52,8% | 52,3% | 0 |
-| ombro (lateral) | 2,6 | 76,8% | 70,4% | 53,6% | 0 |
+| ombro (lateral) | 2,7 | 76,8% | 70,4% | 53,6% | 0 |
 | ombro (posterior) | 6,3 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 3,9 | 70,8% | 52,3% | 47,1% | 0 |
 | tríceps | 8,7 | 36% | 17,1% | 13,8% | 0 |
 | quadríceps | 8,2 | 47,2% | 10,4% | 10,4% | 0 |
 | posteriores da coxa | 8,9 | 36,9% | 7,7% | 3,6% | 0 |
-| glúteos | 10,4 | 31,3% | 4,9% | 0,6% | 0 |
+| glúteos | 10,4 | 31,4% | 4,9% | 0,6% | 0 |
 | panturrilha | 6,5 | 50,7% | 11,8% | 5,9% | 0 |
 | abdômen | 6,3 | 35,2% | 12,1% | 5,9% | 0 |
 
@@ -168,15 +168,15 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 
 | músculo | média | prioritário abaixo da meta | demais abaixo de 4 | zero | zero sem aviso |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| peito | 9,6 | 40,6% | 13,6% | 13,6% | 0 |
+| peito | 9,6 | 40,7% | 13,6% | 13,6% | 0 |
 | costas | 4,5 | 75,2% | 52,8% | 52,3% | 0 |
 | ombro (lateral) | 2,8 | 80,4% | 68% | 53,6% | 0 |
 | ombro (posterior) | 6,5 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 4,2 | 75,2% | 52,5% | 47,1% | 0 |
-| tríceps | 9,2 | 40,6% | 17,1% | 13,8% | 0 |
-| quadríceps | 8,9 | 64% | 10,4% | 10,4% | 0 |
-| posteriores da coxa | 9,7 | 47,8% | 7,7% | 3,6% | 0 |
-| glúteos | 11,2 | 37,9% | 4,6% | 0,6% | 0 |
+| tríceps | 9,3 | 40,6% | 17,1% | 13,8% | 0 |
+| quadríceps | 8,8 | 64% | 10,4% | 10,4% | 0 |
+| posteriores da coxa | 9,7 | 47,7% | 7,7% | 3,6% | 0 |
+| glúteos | 11,1 | 38,6% | 4,6% | 0,6% | 0 |
 | panturrilha | 6,9 | 63,9% | 11,8% | 5,9% | 0 |
 | abdômen | 6,5 | 42,4% | 12,1% | 5,9% | 0 |
 
@@ -246,25 +246,25 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 
 | nível | 1 prioridade | 2 prioridades | 3 prioridades |
 | --- | ---: | ---: | ---: |
-| iniciante | 15% | 26,8% | 57,6% |
-| intermediario | 16,5% | 28,8% | 59,4% |
-| avancado | 16,9% | 29,5% | 60,5% |
+| iniciante | 15% | 26,7% | 57,5% |
+| intermediario | 16,4% | 28,8% | 58,5% |
+| avancado | 16,9% | 29,4% | 59,6% |
 
 | dias por semana | 1 prioridade | 2 prioridades | 3 prioridades |
 | ---: | ---: | ---: | ---: |
-| 2 | 16,3% | 28,6% | 60% |
-| 3 | 17% | 30,2% | 61,8% |
-| 4 | 16,4% | 28,8% | 60,1% |
-| 5 | 16% | 28% | 58,6% |
-| 6 | 14,9% | 26,3% | 55,4% |
+| 2 | 16,2% | 28,5% | 59,7% |
+| 3 | 17% | 30,1% | 61,1% |
+| 4 | 16,4% | 28,7% | 59,1% |
+| 5 | 16% | 27,9% | 58% |
+| 6 | 14,9% | 26,3% | 54,8% |
 
 | minutos | 1 prioridade | 2 prioridades | 3 prioridades |
 | ---: | ---: | ---: | ---: |
-| 30 | 15,7% | 28,9% | 57,3% |
-| 45 | 16,1% | 28,1% | 60% |
-| 60 | 16,2% | 28,1% | 59,4% |
-| 75 | 16,3% | 28,3% | 59,7% |
-| 90 | 16,4% | 28,4% | 59,5% |
+| 30 | 15,6% | 28,6% | 56,6% |
+| 45 | 16,1% | 28% | 59,7% |
+| 60 | 16,2% | 28,1% | 59,1% |
+| 75 | 16,3% | 28,3% | 58,7% |
+| 90 | 16,4% | 28,4% | 58,4% |
 
 ### Por prioridade e nível (média %), e quando as prioridades competem
 
@@ -272,37 +272,37 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 
 | prioridade | iniciante: fatia | abaixo | competem | intermediario: fatia | abaixo | competem | avancado: fatia | abaixo | competem |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| peito | 12% | 34,6% | — | 14,2% | 28% | — | 14,7% | 41,7% | — |
+| peito | 12% | 34,6% | — | 14,1% | 28% | — | 14,6% | 41,7% | — |
 | costas | 6% | 63,6% | — | 6,9% | 64,2% | — | 7,1% | 74,2% | — |
 | ombros | 4,8% | 74,7% | — | 5,2% | 76,3% | — | 5,2% | 79,5% | — |
 | bracos | 18,3% | 71,3% | — | 19,8% | 77,1% | — | 20% | 78,9% | — |
-| pernas | 32,8% | 56% | — | 36,4% | 55,2% | — | 37,6% | 64,5% | — |
+| pernas | 32,7% | 56% | — | 36,3% | 55,2% | — | 37,5% | 64,5% | — |
 | gluteos | 18,2% | 21,3% | — | 17,8% | 26,7% | — | 18,4% | 31,9% | — |
 | abdomen | 13% | 24,3% | — | 15% | 27,3% | — | 15,4% | 32,1% | — |
-| peito+costas | 17,3% | 67,6% | 36% | 20% | 69% | 43,5% | 20,6% | 77,9% | 40% |
-| pernas+gluteos | 49,3% | 61,8% | 47,6% | 51,3% | 67,7% | 43,7% | 52,5% | 87,4% | 56% |
-| peito+bracos | 30,2% | 75,1% | 52,5% | 32,7% | 77,1% | 54,2% | 33,3% | 82,2% | 49,6% |
+| peito+costas | 17,3% | 67,6% | 36% | 20% | 69% | 43,5% | 20,5% | 77,9% | 40% |
+| pernas+gluteos | 49,1% | 61,8% | 46,7% | 51,1% | 67,7% | 43,5% | 52,2% | 87,4% | 55,1% |
+| peito+bracos | 30,2% | 75,1% | 52,5% | 32,6% | 77,1% | 52,8% | 33,3% | 82,2% | 49,4% |
 | costas+ombros | 10,3% | 78,9% | 17,6% | 11,3% | 81% | 18,6% | 11,5% | 85,1% | 13,1% |
-| pernas+gluteos+abdomen | 57,6% | 67,4% | 53,8% | 59,4% | 72,1% | 50,9% | 60,5% | 90,2% | 61,6% |
+| pernas+gluteos+abdomen | 57,5% | 67,4% | 53,7% | 58,5% | 72,1% | 50,8% | 59,6% | 90,2% | 60,7% |
 
 ### Por cenário, com 1 prioridade (média %)
 
 | cenário | fatia |
 | --- | ---: |
-| academia | 17,8% |
+| academia | 17,7% |
 | academia+ | 17,8% |
 | bairro | 17,5% |
-| banco+halteres-leves | 17,3% |
+| banco+halteres-leves | 17,2% |
 | bruno | 17,6% |
 | casa | 17,7% |
 | casa+ | 17,6% |
 | condominio | 17,1% |
 | condominio+ | 17,7% |
 | diego | 17,4% |
-| elasticos | 17,4% |
+| elasticos | 17,3% |
 | halteres | 17,3% |
-| halteres-banco | 17,3% |
-| halteres+bola | 17,3% |
+| halteres-banco | 17,2% |
+| halteres+bola | 17,2% |
 | so:abdominal_maquina | 15,2% |
 | so:anilhas_e_manoplas | 17,3% |
 | so:banco_romano | 14,9% |
@@ -323,12 +323,12 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:graviton | 15,6% |
 | so:hack | 15,1% |
 | so:halteres_fixos | 17,3% |
-| so:kettlebell | 16,5% |
+| so:kettlebell | 16,4% |
 | so:leg_press | 15,1% |
 | so:mesa_flexora | 15,2% |
-| so:mini_band | 15,6% |
+| so:mini_band | 15,5% |
 | so:multifuncional | 15,7% |
-| so:panturrilha_em_pe_maquina | 15,2% |
+| so:panturrilha_em_pe_maquina | 15,1% |
 | so:panturrilha_sentada_maquina | 15,2% |
 | so:paralelas | 15,1% |
 | so:rack_de_agachamento | 15,7% |
@@ -341,7 +341,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:suspensao | 16,6% |
 | so:triceps_maquina | 15,5% |
 | so:voador | 15% |
-| step+elasticos | 17,4% |
+| step+elasticos | 17,3% |
 | suspensao+elasticos | 17,6% |
 | vazio | 15,1% |
 
@@ -585,60 +585,60 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 
 | cenário | bom | limite | ajustar | bloqueado | bom ou só limite |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| **todos** | 11,4% | 81,4% | 7,2% | 0% | 92,8% |
-| academia | 36,6% | 58,5% | 4,9% | 0% | 95,1% |
-| academia+ | 36,6% | 58,5% | 4,9% | 0% | 95,1% |
-| bairro | 36,4% | 57,5% | 6,1% | 0% | 93,9% |
-| banco+halteres-leves | 37% | 54,6% | 8,3% | 0% | 91,7% |
-| bruno | 36% | 56,1% | 7,9% | 0% | 92,1% |
-| casa | 34,6% | 57,8% | 7,5% | 0% | 92,5% |
-| casa+ | 36,6% | 56% | 7,5% | 0% | 92,5% |
-| condominio | 37% | 54,7% | 8,3% | 0% | 91,7% |
-| condominio+ | 36,3% | 58,3% | 5,4% | 0% | 94,6% |
-| diego | 30,1% | 61,8% | 8,1% | 0% | 91,9% |
-| elasticos | 29,8% | 61,4% | 8,7% | 0% | 91,3% |
-| halteres | 36,6% | 55,9% | 7,5% | 0% | 92,5% |
-| halteres-banco | 37% | 54,6% | 8,3% | 0% | 91,7% |
-| halteres+bola | 36,2% | 55,8% | 8% | 0% | 92% |
-| so:abdominal_maquina | 0% | 94,1% | 5,9% | 0% | 94,1% |
-| so:anilhas_e_manoplas | 36,6% | 55,9% | 7,5% | 0% | 92,5% |
+| **todos** | 11,4% | 81,5% | 7,1% | 0% | 92,9% |
+| academia | 36,6% | 58,4% | 5% | 0% | 95% |
+| academia+ | 36,6% | 58,4% | 5% | 0% | 95% |
+| bairro | 36,4% | 57,4% | 6,2% | 0% | 93,8% |
+| banco+halteres-leves | 37% | 55,3% | 7,7% | 0% | 92,3% |
+| bruno | 36% | 55,8% | 8,2% | 0% | 91,8% |
+| casa | 34,6% | 57,9% | 7,5% | 0% | 92,5% |
+| casa+ | 36,6% | 55,7% | 7,8% | 0% | 92,2% |
+| condominio | 37% | 55,7% | 7,3% | 0% | 92,7% |
+| condominio+ | 36,3% | 57,9% | 5,8% | 0% | 94,2% |
+| diego | 30,1% | 61,9% | 8% | 0% | 92% |
+| elasticos | 29,8% | 61,5% | 8,7% | 0% | 91,3% |
+| halteres | 36,6% | 56,8% | 6,6% | 0% | 93,4% |
+| halteres-banco | 37% | 55,3% | 7,7% | 0% | 92,3% |
+| halteres+bola | 36,2% | 56,9% | 6,8% | 0% | 93,2% |
+| so:abdominal_maquina | 0% | 94,2% | 5,8% | 0% | 94,2% |
+| so:anilhas_e_manoplas | 36,6% | 56,8% | 6,6% | 0% | 93,4% |
 | so:banco_romano | 0% | 91,6% | 8,4% | 0% | 91,6% |
 | so:barra_fixa | 0% | 93,1% | 6,9% | 0% | 93,1% |
-| so:barra_hexagonal | 0% | 93,4% | 6,6% | 0% | 93,4% |
-| so:barra_longa | 0% | 92,6% | 7,4% | 0% | 92,6% |
-| so:barra_w | 0% | 92,4% | 7,6% | 0% | 92,4% |
-| so:bola_suica | 0% | 93,9% | 6,1% | 0% | 93,9% |
-| so:cadeira_abdutora_adutora | 0% | 94,3% | 5,7% | 0% | 94,3% |
-| so:cadeira_extensora | 0% | 94,1% | 5,9% | 0% | 94,1% |
+| so:barra_hexagonal | 0% | 93,3% | 6,7% | 0% | 93,3% |
+| so:barra_longa | 0% | 93,2% | 6,8% | 0% | 93,2% |
+| so:barra_w | 0% | 92,3% | 7,7% | 0% | 92,3% |
+| so:bola_suica | 0% | 93,8% | 6,2% | 0% | 93,8% |
+| so:cadeira_abdutora_adutora | 0% | 94,2% | 5,8% | 0% | 94,2% |
+| so:cadeira_extensora | 0% | 94% | 6% | 0% | 94% |
 | so:cadeira_flexora | 0% | 93,6% | 6,4% | 0% | 93,6% |
-| so:caneleiras | 0% | 90,4% | 9,6% | 0% | 90,4% |
+| so:caneleiras | 0% | 90,3% | 9,7% | 0% | 90,3% |
 | so:desenvolvimento_maquina | 0% | 93,5% | 6,5% | 0% | 93,5% |
-| so:estacao_polia_dupla | 0% | 89,7% | 10,3% | 0% | 89,7% |
-| so:estacao_puxada | 0% | 92,9% | 7,1% | 0% | 92,9% |
-| so:estacao_remada | 0% | 92,2% | 7,8% | 0% | 92,2% |
+| so:estacao_polia_dupla | 0% | 89,4% | 10,6% | 0% | 89,4% |
+| so:estacao_puxada | 0% | 92,8% | 7,2% | 0% | 92,8% |
+| so:estacao_remada | 0% | 92,1% | 7,9% | 0% | 92,1% |
 | so:gluteo_maquina | 0% | 93,6% | 6,4% | 0% | 93,6% |
-| so:graviton | 0% | 92,8% | 7,2% | 0% | 92,8% |
-| so:hack | 0% | 93,4% | 6,6% | 0% | 93,4% |
-| so:halteres_fixos | 36,5% | 54,8% | 8,7% | 0% | 91,3% |
-| so:kettlebell | 0% | 91% | 9% | 0% | 91% |
+| so:graviton | 0% | 92,7% | 7,3% | 0% | 92,7% |
+| so:hack | 0% | 93,5% | 6,5% | 0% | 93,5% |
+| so:halteres_fixos | 36,5% | 55,7% | 7,8% | 0% | 92,2% |
+| so:kettlebell | 0% | 91,8% | 8,2% | 0% | 91,8% |
 | so:leg_press | 0% | 94,2% | 5,8% | 0% | 94,2% |
 | so:mesa_flexora | 0% | 93,6% | 6,4% | 0% | 93,6% |
-| so:mini_band | 0% | 94% | 6% | 0% | 94% |
-| so:multifuncional | 0% | 93,2% | 6,8% | 0% | 93,2% |
-| so:panturrilha_em_pe_maquina | 0% | 93,9% | 6,1% | 0% | 93,9% |
-| so:panturrilha_sentada_maquina | 0% | 93,4% | 6,6% | 0% | 93,4% |
-| so:paralelas | 0% | 93,3% | 6,7% | 0% | 93,3% |
+| so:mini_band | 0% | 93,9% | 6,1% | 0% | 93,9% |
+| so:multifuncional | 0% | 93,1% | 6,9% | 0% | 93,1% |
+| so:panturrilha_em_pe_maquina | 0% | 94% | 6% | 0% | 94% |
+| so:panturrilha_sentada_maquina | 0% | 93,3% | 6,7% | 0% | 93,3% |
+| so:paralelas | 0% | 93,4% | 6,6% | 0% | 93,4% |
 | so:rack_de_agachamento | 0% | 92,5% | 7,5% | 0% | 92,5% |
-| so:remada_articulada | 0% | 92,4% | 7,6% | 0% | 92,4% |
+| so:remada_articulada | 0% | 92,3% | 7,7% | 0% | 92,3% |
 | so:roda_abdominal | 0% | 93,5% | 6,5% | 0% | 93,5% |
-| so:rosca_maquina | 0% | 92,8% | 7,2% | 0% | 92,8% |
-| so:smith | 0% | 92,6% | 7,4% | 0% | 92,6% |
+| so:rosca_maquina | 0% | 92,6% | 7,4% | 0% | 92,6% |
+| so:smith | 0% | 92,7% | 7,3% | 0% | 92,7% |
 | so:step | 0% | 92,7% | 7,3% | 0% | 92,7% |
-| so:supino_maquina | 0% | 93,4% | 6,6% | 0% | 93,4% |
-| so:suspensao | 0% | 91,6% | 8,4% | 0% | 91,6% |
-| so:triceps_maquina | 0% | 93,4% | 6,6% | 0% | 93,4% |
+| so:supino_maquina | 0% | 93,5% | 6,5% | 0% | 93,5% |
+| so:suspensao | 0% | 91,5% | 8,5% | 0% | 91,5% |
+| so:triceps_maquina | 0% | 93,5% | 6,5% | 0% | 93,5% |
 | so:voador | 0% | 94,3% | 5,7% | 0% | 94,3% |
-| step+elasticos | 29,7% | 61,1% | 9,1% | 0% | 90,9% |
+| step+elasticos | 29,7% | 61,2% | 9,1% | 0% | 90,9% |
 | suspensao+elasticos | 29,9% | 60,8% | 9,3% | 0% | 90,7% |
 | vazio | 0% | 93,5% | 6,5% | 0% | 93,5% |
 
@@ -653,7 +653,7 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | `volume.semanal.alvo` | 612.923 | 67,2% |
 | `equipamento.sem-ancoragem` | 419.900 | 46,1% |
 | `seguranca.dor.programa` | 375.375 | 41,2% |
-| `tempo.sobra` | 336.986 | 37% |
+| `tempo.sobra` | 335.928 | 36,8% |
 | `tempo.corte` | 326.248 | 35,8% |
 | `selecao.dia-sem-principal` | 265.754 | 29,2% |
 | `equipamento.sem-puxada-vertical` | 240.175 | 26,3% |
