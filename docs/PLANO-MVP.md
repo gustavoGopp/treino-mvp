@@ -191,6 +191,8 @@ As correções da remada baixa e da barra fixa entram depois do M0-R, como mudan
 >
 > **Atualizado em 23/11/2026:** o pacote **D3** está feito e fora da `main`, no ramo `claude/d3-ajustes-do-treino`, à espera do ok do Gustavo: o aviso de "sem melhora" sai uma vez por janela; com 3 focos ou mais, quem não é foco sobe até o mínimo do nível; e o corte de tempo ganhou um último degrau para o dia acima de 110%. Os dois ajustes que mudam programas valem só no programa já escolhido. Na população, o dia acima de 110% vai de 22.415 para 10.064, sem nenhum defeito da régua pior; registro em `revisoes/melhorias/d3/README.md`. Os 15 itens que a conferência deixou para o D3 continuam no `backlog.md`. O D4 corre em paralelo.
 
+> **Atualizado em 23/11/2026 (fim da fila da análise crítica):** M1 a M6 e D1 a D4 estão na `main`. O código da versão inicial está pronto. O que falta precisa de um celular ou de uma pessoa de verdade: está em `roteiro-gente-de-verdade.md` (as cinco pessoas, o teste do descanso nos dois celulares, as 4 semanas de uso, o teste da foto e a revisão da triagem por profissionais).
+
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|
 | **P Pesquisa v2: a base, sem premissas** | Refazer o estudo de como montar o programa, para todos e para o Gustavo, sem partir do programa de referência: divisão e frequência; panorama das variáveis; universo de equipamentos; escolha dos exercícios por músculo; montagem da sessão; iniciantes, pausas e populações; progressão e acompanhamento; e por fim o programa do Gustavo. Plano e resultados em `docs/pesquisa-v2/`. | Cada tema aprovado pelo Gustavo, com as mudanças em `regras.md` listadas; toda fonte com o resumo lido no PubMed (ou marcada como não verificada) | 1–2 semanas |

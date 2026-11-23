@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CONTATO_EMAIL, FOTO_LIGADA, RESPONSAVEL } from '../app/contato';
 import { useApp } from '../app/estado';
-import { ParaOndeVaiAFoto } from '../app/privacidade';
+import { ParaOndeVaiAFoto, TextoAvisoCurto } from '../app/privacidade';
+import { AVISO_CHAVE } from '../treino/aviso';
 import { Explicacoes, Selo, Titulo, Topo } from '../app/ui';
 
 // Termos de uso e aviso de privacidade (R5c, P2). Sem revisão jurídica: o Gustavo decidiu dispensá-la em 08/11/2026.
@@ -84,6 +85,20 @@ export function Termos() {
             alguém se quiser.
           </p>
         </section>
+
+        {AVISO_CHAVE && (
+          <section aria-labelledby="aviso-titulo" id="aviso">
+            <h2 id="aviso-titulo">O aviso do fim do descanso</h2>
+            <p>
+              O aviso é opcional e só existe se você tocar em “Avisar” e o celular der a permissão. Você pode desligar em “Meus dados”.{' '}
+              <Selo id="privacidade.aviso-descanso" />
+            </p>
+            <p>
+              <TextoAvisoCurto />
+            </p>
+            <p>Se você volta ao app antes do fim do descanso, o pedido é desfeito e o aviso não sai.</p>
+          </section>
+        )}
 
         <section aria-labelledby="foto-titulo" id="foto">
           <h2 id="foto-titulo">A foto do equipamento</h2>

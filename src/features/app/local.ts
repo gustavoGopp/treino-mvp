@@ -14,6 +14,8 @@ export const LOCAL = {
   copiaAdiada: 'treino-copia-adiada',
   /** Data do "Entendi" no aviso de instalar no iPhone (dados.instalar-iphone). */
   avisoInstalar: 'treino-aviso-instalar',
+  /** A resposta ao "quer ser avisado no fim do descanso?" (lote M4): 'sim' ou 'nao'. */
+  avisoDescanso: 'treino-aviso-descanso',
 } as const;
 
 export type ChaveLocal = (typeof LOCAL)[keyof typeof LOCAL];

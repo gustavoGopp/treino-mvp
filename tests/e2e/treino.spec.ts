@@ -85,8 +85,9 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
   await expect(page.locator('.subtitulo')).toContainText('Corpo todo A');
-  // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje
-  await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
+  // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje.
+  // Lote M5 (22/11/2026): em palavras; antes, "A sua semana · 1 de 3".
+  await expect(page.getByRole('region', { name: 'O que mudou hoje' }).getByRole('link', { name: '1º treino da semana. Faltam 2.' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Próxima vez' })).toBeVisible();
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
   // sessão de textos (16/11/2026): o motivo da sugestão, com o selo, saiu do fim do treino e está em "Entenda o treino"
@@ -385,36 +386,51 @@ test('"Senti algo" abre e fecha a folha, e passa por cima de qualquer outra folh
 });
 
 // Auditoria de 12/11/2026: o descanso vivia só na tela do treino. Abrir o guia no meio do descanso parava o
-// temporizador; o contexto de áudio nunca era fechado; e, ao passar de zero com "−15 s", os bipes já agendados para
-// o horário antigo ainda tocavam.
-test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipes param quando o tempo passa de zero', async ({ page }) => {
-  await page.addInitScript(() => {
-    const w = window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } };
-    w.__audio = { criados: 0, fechados: 0, osciladores: [] };
-    const AC = window.AudioContext;
-    window.AudioContext = class extends AC {
-      constructor() {
-        super();
-        w.__audio.criados++;
-      }
-      close() {
-        w.__audio.fechados++;
-        return super.close();
-      }
-      createOscillator() {
-        const o = super.createOscillator();
-        const marca = { cedo: false };
-        w.__audio.osciladores.push(marca);
-        const parar = o.stop.bind(o);
-        o.stop = (quando?: number) => {
-          if (!quando) marca.cedo = true;
-          parar(quando);
-        };
-        return o;
-      }
+// temporizador; e, ao passar de zero com "−15 s", o aviso já marcado para o horário antigo ainda tocava.
+// Lote M4 (22/11/2026): o aviso deixou de ser bipes do Web Audio e passou a ser um som de arquivo. O teste conferia
+// os osciladores e o fechamento do contexto de áudio, que não existem mais; agora conta as vezes em que o arquivo toca.
+const contarSom = (page: Page) =>
+  page.addInitScript(() => {
+    const w = window as unknown as { __som: string[] };
+    w.__som = [];
+    HTMLMediaElement.prototype.play = function (this: HTMLMediaElement) {
+      w.__som.push(new URL(this.src).pathname);
+      return Promise.resolve();
     };
   });
-  const audio = () => page.evaluate(() => (window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } }).__audio);
+/** Quanto falta, em ms, para o fim do descanso guardado (o horário que a tela marcou para o som). */
+const faltaParaOFim = (page: Page) =>
+  page.evaluate(() => (JSON.parse(sessionStorage.getItem('treino-mvp:descanso')!) as { fim: number }).fim - Date.now());
+const som = (page: Page) => page.evaluate(() => (window as unknown as { __som: string[] }).__som);
+
+test('no fim do descanso toca o som de arquivo, uma vez, e o rótulo diz a hora do fim', async ({ page }) => {
+  await contarSom(page);
+  await page.clock.install();
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const descanso = page.getByRole('region', { name: 'Descanso' });
+  await expect(descanso.getByText(/^Descanso até \d\d:\d\d$/)).toBeVisible();
+  // a hora mostrada é a do relógio do aparelho mais o tempo que falta
+  const esperado = await page.evaluate((resta) => {
+    const [m, s] = resta.split(':').map(Number);
+    return new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(Date.now() + (m! * 60 + s!) * 1000);
+  }, (await descanso.getByRole('timer').textContent())!);
+  const mostrado = (await descanso.getByText(/^Descanso até/).textContent())!.slice(-5);
+  const minutos = (h: string) => Number(h.slice(0, 2)) * 60 + Number(h.slice(3));
+  expect(Math.abs(minutos(mostrado) - minutos(esperado)) % (24 * 60)).toBeLessThanOrEqual(1);
+  expect(await som(page)).toEqual([]);
+  // o relógio salta até meio segundo depois do fim (um salto maior contaria como página parada, e som atrasado não toca)
+  await page.clock.fastForward((await faltaParaOFim(page)) + 500);
+  await expect(descanso.getByText('Hora da próxima série')).toBeVisible();
+  expect(await som(page)).toEqual(['/sons/fim-descanso.wav']);
+});
+
+test('o descanso sobrevive à ida ao guia e o som marcado não toca quando o tempo passa de zero', async ({ page }) => {
+  await contarSom(page);
+  await page.clock.install();
   await ana(page);
   await comecar(page);
   await page.getByLabel('Carga', { exact: true }).selectOption('8');
@@ -422,13 +438,10 @@ test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipe
   await page.getByRole('button', { name: /^Série feita/ }).click();
   const descanso = page.getByRole('region', { name: 'Descanso' });
   await expect(descanso).toBeVisible();
-  expect((await audio()).criados).toBe(1);
 
-  // vai ao guia e volta: o descanso continua contando, e o áudio da tela que saiu foi fechado
+  // vai ao guia e volta: o descanso continua contando
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/.+de=treino/);
-  // a tela do treino só sai quando o pedaço do guia termina de carregar
-  await expect.poll(async () => (await audio()).fechados).toBe(1);
   await page.goBack();
   await expect(page).toHaveURL(/\/treino$/);
   await expect(descanso).toBeVisible();
@@ -437,12 +450,13 @@ test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipe
   await page.reload();
   await expect(descanso).toBeVisible();
 
-  // "−15 s" até passar de zero: nenhum bipe fica agendado para o horário antigo
+  // "−15 s" até passar de zero: o som marcado para o horário antigo não toca, nem depois de esse horário chegar
   for (let i = 0; i < 12 && !(await descanso.getByText('Hora da próxima série').isVisible()); i++) await descanso.getByRole('button', { name: '−15 s' }).click();
   await expect(descanso.getByText('Hora da próxima série')).toBeVisible();
-  const a = await audio();
-  expect(a.osciladores.length).toBeGreaterThan(0);
-  expect(a.osciladores.every((o) => o.cedo)).toBe(true);
+  // O último horário marcado ficou a até 15 s daqui. Saltos de 3 s, para o som antigo, se ainda estivesse marcado, sair
+  // dentro da tolerância de atraso (5 s) e ser contado. Conferido em 22/11/2026: sem o desmarcar, este teste falha.
+  for (let i = 0; i < 6; i++) await page.clock.fastForward(3000);
+  expect(await som(page)).toEqual([]);
   // "Ok" encerra o descanso, e ele não volta ao recarregar
   await descanso.getByRole('button', { name: 'Ok' }).click();
   await expect(descanso).toHaveCount(0);

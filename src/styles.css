@@ -282,9 +282,11 @@ details.campo .opcoes{margin-top:var(--s8)}
 .folha .alca{display:none}
 .folha-cab{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s16);position:sticky;top:0;z-index:2;margin:calc(-1 * var(--s24)) calc(-1 * var(--s24)) 0;padding:var(--s24) var(--s24) var(--s8);background:var(--fundo)}
 .folha{scroll-padding-top:calc(var(--h64) + var(--s16))}
-.folha-cab h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding-top:var(--s8)}
+/* 23/11/2026: com a letra em 200%, uma palavra longa do título empurrava o "Fechar" para fora da folha; agora o título
+   encolhe e quebra a palavra, e o botão fica no lugar */
+.folha-cab h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding-top:var(--s8);min-width:0;overflow-wrap:anywhere;hyphens:auto}
 .folha-cab h2:focus{outline:none}
-.folha-cab .btn{margin:calc(-1 * var(--s4)) calc(-1 * var(--s8)) 0 0}
+.folha-cab .btn{margin:calc(-1 * var(--s4)) calc(-1 * var(--s8)) 0 0;flex:none}
 @keyframes sobe{from{transform:translateY(var(--s32));opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion: reduce){.folha{animation:none}.app *{scroll-behavior:auto;transition:none !important}}
 
@@ -784,6 +786,10 @@ button.ver-movimento{flex:none;min-width:44px;min-height:44px;border:0;padding:0
 .salva-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);margin:0;min-height:var(--h48);font-size:var(--t-apoio);color:var(--texto-2);border-top:1px solid var(--linha)}
 .salva-linha > span{display:inline-flex;align-items:center;gap:var(--s8)}
 .salva-linha .icone{width:1.25rem}
+/* o pedido de aviso do descanso (lote M4): uma linha de texto e os dois toques, sem caixa */
+.pedido-aviso{display:flex;flex-direction:column;gap:var(--s4);border-top:1px solid var(--linha);padding-top:var(--s8)}
+.pedido-aviso p{margin:0;font-size:var(--t-apoio);color:var(--texto)}
+.pedido-aviso-botoes{display:flex;align-items:center;gap:var(--s24);flex-wrap:wrap}
 .tctl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s8)}
 .tctl.so-um{grid-template-columns:1fr}
 /* (6) o botão desligado diz o que falta */
@@ -816,6 +822,8 @@ a.faixa-descanso{text-decoration:none}
 .mudou{display:flex;flex-direction:column;gap:var(--s8)}
 .mudou h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .mudou p{margin:0}
+/* lote M5: o próximo treino na agenda; o campo de data e hora com o toque de 48 px e a letra do app */
+.quando-proximo input{min-height:var(--h48);width:100%;border:1px solid var(--borda);border-radius:var(--r8);background:var(--superficie);color:var(--texto);font:inherit;padding:0 var(--s16)}
 .mudou-semana{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8) var(--s16)}
 .marcas-hoje{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s8)}
 .marca{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto);white-space:nowrap}
@@ -865,7 +873,8 @@ a.faixa-descanso{text-decoration:none}
 .resumo-evolucao{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
 
 /* ---------- Meus dados, termos, tela de erro e avisos ---------- */
-.estilos-boneco{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16)}
+/* lado a lado quando cabem (todo celular com a letra normal); um embaixo do outro com a letra grande (23/11/2026) */
+.estilos-boneco{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,7rem),1fr));gap:var(--s16)}
 .estilo-boneco{position:relative;display:flex;flex-direction:column;gap:var(--s8);padding:var(--s8) var(--s8) var(--s16);text-align:center;border-radius:var(--r8);background:var(--superficie-2);cursor:pointer}
 .estilo-boneco:has(input:checked){box-shadow:inset 0 0 0 2px var(--acao)}
 .estilo-boneco:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}

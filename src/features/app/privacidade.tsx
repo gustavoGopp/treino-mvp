@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { linkDoProblema, textoDoProblema } from '../../domain/dados';
 import { CONTATO_EMAIL, FOTO_LIGADA } from './contato';
+import { AVISO_CHAVE } from '../treino/aviso';
 import { Selo } from './ui';
 
 // Textos e peças da abertura para família e amigos (R5c): a foto (privacidade.foto) e o "Avisar um problema" (P5).
@@ -12,12 +13,33 @@ import { Selo } from './ui';
  * fica na tela da foto; o completo, nos termos.
  */
 export function TextoFotoCurto() {
-  if (!FOTO_LIGADA) return <>Nada sai do aparelho: por enquanto, o reconhecimento pela foto está desligado.</>;
+  // Desde o lote M4 (23/11/2026), o aviso do descanso também pode sair do aparelho: a frase não diz mais "a única coisa".
+  if (!FOTO_LIGADA)
+    return AVISO_CHAVE ? (
+      <>Nada do treino nem da saúde sai do aparelho. Por enquanto, o reconhecimento pela foto está desligado.</>
+    ) : (
+      <>Nada sai do aparelho: por enquanto, o reconhecimento pela foto está desligado.</>
+    );
   return (
     <>
-      A única coisa que sai do aparelho é a foto do equipamento, se você usar: ela vai reduzida e sem a localização para a
+      A foto do equipamento só sai do aparelho se você usar: ela vai reduzida e sem a localização para a
       Anthropic, empresa dos EUA que faz o reconhecimento. O servidor do app não guarda a foto; a Anthropic diz que apaga o que
       recebe em até 30 dias, com exceções (veja os <Link to="/termos#foto">termos</Link>). <Selo id="privacidade.foto" />
+    </>
+  );
+}
+
+/**
+ * O aviso do descanso (lote M4, passo 2), em "o que sai daqui": o que vai para o servidor, e quando. Sem a chave do
+ * aviso no build, o recurso não existe e este texto não aparece.
+ */
+export function TextoAvisoCurto() {
+  return (
+    <>
+      Se você ligar o aviso do descanso: quando você sai do app no meio de um descanso, vão para o servidor do app o endereço de
+      aviso deste celular e o tempo que falta. Nada do treino nem da saúde vai junto. O endereço fica embaralhado numa fila (da
+      Upstash, empresa dos EUA) só até o aviso sair, e o aviso chega pelo serviço de avisos do seu celular (Apple ou Google).{' '}
+      <Selo id="privacidade.aviso-descanso" />
     </>
   );
 }

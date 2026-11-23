@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID } from '../../domain/biblioteca';
-import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
-import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
+import { marcasDaSessao, oQueMelhorouEmPalavras, type Marca } from '../../domain/acompanhamento/evolucao';
+import { compromissoDoTreino, proximaDataSugerida } from '../../domain/acompanhamento/agenda';
+import { cartaoDaSemana, semanasSeguidas, treinoNaSemanaEmPalavras } from '../../domain/acompanhamento/semana';
+import { proximoDia, resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
 import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga, podeVoltarDoAlerta, voltarDoAlerta } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
-import { FaixaSemana } from '../acompanhamento/Semana';
+import { Icone } from '../app/icones';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
+import { mandarCartao } from '../acompanhamento/cartao';
 import { Titulo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
@@ -34,11 +37,31 @@ const HOJE_FOI = [
 
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
 
+/** "2026-11-23T18:30": a data e a hora no relógio do aparelho, no formato do campo de data e hora. */
+function horaLocal(d: Date): string {
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function baixar(blob: Blob, nome: string): void {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nome;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 export function Resumo() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   // "Apagar este treino" (registro.treino-feito; R5a): o mínimo funcional, com confirmação; a tela é pedido ao design.
   const [apagar, setApagar] = useState(false);
+  // lote M5: o cartão da semana e o compromisso do próximo treino
+  const [aviso, setAviso] = useState('');
+  const [quando, setQuando] = useState<string | null>(null);
   const s = estado.historico.at(-1);
   const programa = estado.programa?.programa;
   if (!s || !programa) return <Navigate to="/programa" replace />;
@@ -57,6 +80,17 @@ export function Resumo() {
   // "O que mudou hoje" (lote 4; agente 1, 4.1): a semana já com o treino de hoje, os recordes do dia e as cargas que sobem.
   const semana = semanaDoEstado(estado, agoraIso(), fuso);
   const marcas = marcasDaSessao(estado.historico, s.id, (x) => localDaSessao(estado, x));
+  // Lote M5. O cartão só leva frequência (cartaoDaSemana). Treino encerrado por um sinal de alerta não oferece cartão nem agenda.
+  const cartao = semana && !s.encerradaPorAlerta ? cartaoDaSemana(semana, semanasSeguidas(estado.historico, agoraIso(), fuso)) : null;
+  const proximo = proximoDia(programa, estado.historico);
+  const sugerido = proximaDataSugerida(horaLocal(new Date(s.inicio)), estado.rotina?.diasSemana ?? programa.dias.length);
+  const dataDoProximo = quando ?? sugerido;
+  const porNaAgenda = () => {
+    const ics = compromissoDoTreino({ nome: proximo.nome, inicioLocal: dataDoProximo, minutos: estado.rotina?.minutosSessao ?? 60, criadoEm: agoraIso() });
+    if (!ics) return setAviso('Escolha o dia e a hora.');
+    baixar(new Blob([ics], { type: 'text/calendar' }), 'proximo-treino.ics');
+    setAviso('Compromisso criado. Abra o arquivo para pôr na sua agenda.');
+  };
 
   return (
     <div className="wrap app">
@@ -118,7 +152,30 @@ export function Resumo() {
         {(semana || marcas.length > 0) && (
           <section className="mudou" aria-labelledby="mudou">
             <h2 id="mudou" className="sr">O que mudou hoje</h2>
-            {semana && <FaixaSemana r={semana} />}
+            {/* lote M5: o treino de hoje dentro da semana, em palavras ("2º treino da semana. Falta 1."); antes, "A sua
+                semana · 2 de 3". O toque continua levando à semana. */}
+            {semana && semana.feitos > 0 && (
+              <Link className="faixa-semana" to="/semana">
+                <b>{treinoNaSemanaEmPalavras(semana)}</b>
+                <span className="seta" aria-hidden="true">
+                  <Icone nome="chevron-right" />
+                </span>
+              </Link>
+            )}
+            {marcas.length > 0 && <p className="melhorou">{oQueMelhorouEmPalavras(marcas)}</p>}
+            {cartao && (
+              <button
+                type="button"
+                className="btn sec"
+                onClick={() => {
+                  void mandarCartao(cartao)
+                    .then((r) => setAviso(r === 'salvo' ? 'Imagem salva. Mande para quem você quiser.' : ''))
+                    .catch(() => setAviso('Não deu para montar a imagem.'));
+                }}
+              >
+                Mandar a minha semana
+              </button>
+            )}
             {marcas.length > 0 && (
               <ul className="marcas-hoje" aria-label="Recordes de hoje">
                 {marcas.map((m) => (
@@ -165,6 +222,23 @@ export function Resumo() {
             ))}
           </ul>
         </section>
+        {!s.encerradaPorAlerta && sugerido && (
+          <section aria-labelledby="quando" className="pilha quando-proximo">
+            <h2 id="quando" className="rotulo">
+              Quando é o próximo?
+            </h2>
+            <label className="campo">
+              <span className="sr">Dia e hora do próximo treino</span>
+              <input type="datetime-local" value={dataDoProximo} onChange={(e) => setQuando(e.target.value)} />
+            </label>
+            <button type="button" className="btn sec" onClick={porNaAgenda}>
+              Pôr na agenda
+            </button>
+          </section>
+        )}
+        <p role="status" className="status">
+          {aviso}
+        </p>
         <SemanaLeve />
         {apagar ? (
           <div className="warnbox" role="group" aria-label="Apagar este treino?">

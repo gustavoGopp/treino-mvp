@@ -2594,3 +2594,75 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 1
 **Verificação.** `npm run check` limpo (1.154 testes); `npm run test:cobertura` limpo, sem teste perto do limite de tempo; a auditoria inteira duas vezes (`npm run auditoria:verificar`): 39 arquivos idênticos nas duas rodadas, e a grade da régua dentro da linha de base. Os relatórios regenerados estão num commit próprio; como as cópias da `main` eram de antes dos consertos do D1, a diferença deles traz também esses consertos. `npm run verificar` e os testes de tela não rodaram nesta rodada (o outro pacote usava a máquina); nenhuma tela mudou.
 
 **Rascunho de post.** "O meu app de treino tinha três defeitos medidos e guardados para depois. Corrigi os três, e a medida achou um quarto: a minha própria correção. Para o dia de pernas caber nos 45 minutos, o app passava a cortar séries; mas o corte entrava na hora de escolher a divisão da semana e, em uns poucos casos, trocava a divisão e criava um dia fraco. A regra do projeto é que nenhum defeito piora, nem em 1 programa de 680 mil. A correção ficou assim: o app escolhe a semana como antes e só depois ajusta as séries."
+
+## Um motivo para voltar: feito no ramo, à espera das decisões do Gustavo (22/11/2026)
+
+**De onde veio.** O lote M5 da análise crítica: nada trazia a pessoa de volta na primeira e na segunda semana. Feito no ramo `claude/m5-um-motivo-para-voltar`, a pedido do Gustavo, com o M4 ainda à espera do teste nos aparelhos. **Nada disto está na `main`.** O registro completo está em `revisoes/melhorias/m5/README.md`.
+
+## O descanso avisa: feito nos ramos, à espera do teste nos aparelhos (22/11/2026)
+
+**De onde veio.** O lote M4 da análise crítica. **Nada disto está na `main`:** o passo 1 está no ramo `claude/m4-o-descanso-avisa` (PR 5, rascunho) e o passo 2 no ramo `claude/m4-passo-2-aviso`. O lote só fecha com a tabela medida num Android e num iPhone, os quatro textos decididos pelo Gustavo e o ok dele. O registro completo, com as fontes conferidas e as decisões técnicas, está em `revisoes/melhorias/m4/README.md`.
+
+**O que muda para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Fim do treino | "A sua semana · 1 de 3" | "1º treino da semana. Faltam 2." e, com recorde, "Você subiu a carga em 2 exercícios e bateu 1 recorde." |
+| Quem volta depois de alguns dias | nada, até os 14 dias | "Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma." |
+| Tela da semana | abria com a tabela de músculos | abre pelos treinos e pelas semanas com treino; a tabela foi para uma gaveta |
+| O próximo treino | nada | "Quando é o próximo?" cria um compromisso na agenda do celular |
+| Mostrar a semana | nada | "Mandar a minha semana": uma imagem só com a frequência, pelo compartilhar do celular |
+
+![O fim do treino, depois](revisoes/melhorias/m5/fim-depois.png)
+![O cartão da semana](revisoes/melhorias/m5/cartao-da-semana.png)
+
+**Decisões técnicas, com o motivo**
+- **A recepção conta a partir de 2 dias além do intervalo da rotina** (6 dias com 2 treinos por semana, 5 com 3, 4 com 4 ou mais), e não a partir de 3 para todos: com 3 treinos por semana, 3 dias é o intervalo de sempre.
+- **"Semana seguida" só no cartão, e só da 2ª em diante.** No app continua "X das últimas 8 semanas com treino", que não zera.
+- **Sem servidor:** o compromisso é um arquivo de calendário, e o cartão é desenhado no aparelho.
+
+**À espera do Gustavo:** os textos do fim do treino e da recepção, o desenho do cartão, os textos da agenda e a frase do `CLAUDE.md` sobre recursos sociais. **Sem medida em aparelho:** o arquivo da agenda no iPhone e o compartilhar de verdade.
+
+**Rascunho de post.** Fica para o fechamento do lote.
+
+| Som no fim do descanso | três bipes gerados pelo site, que o iPhone cala no silencioso | os mesmos três bipes num arquivo de som, que o iPhone não cala (a confirmar no aparelho) |
+| Hora do fim | não aparecia | "Descanso até 17:28" |
+| Quem sai do app ou bloqueia a tela no descanso | não era avisado | recebe "Hora da próxima série", se ligou o aviso |
+| O que sai do aparelho | só a foto, se usada | também, para quem liga o aviso e só ao sair do app no descanso: o endereço de aviso do celular e o tempo que falta |
+
+![A tela do descanso com a hora do fim](revisoes/melhorias/m4/descanso-ate.png)
+![O pedido de aviso](revisoes/melhorias/m4/pedido-de-aviso.png)
+
+**Feito pelo Gustavo em 22/11:** as três chaves na Vercel e a proteção por login dos endereços de teste desligada. Conferido no endereço de teste: a fila gratuita aceita marcar e desfazer.
+
+**O que escapou e virou item da lista.** A função do servidor quebrava ao iniciar na Vercel (o jeito de importar a biblioteca `web-push`), com tipos, testes e `npm run verificar` passando. Apareceu numa chamada ao endereço de teste. Agora há um teste que carrega cada função no Node, como a Vercel (item 15 de `verificacao/lista.md`).
+
+**O que ninguém mediu ainda.** Se o som novo toca num iPhone; se ele para a música de quem treina de fone; se o aviso chega com som e vibração em cada celular. É a tabela do README.
+
+**Rascunho de post.** Fica para o fechamento do lote, com a tabela medida.
+
+
+## O descanso avisa, um motivo para voltar, e o fim da fila (23/11/2026)
+
+**De onde veio.** Os lotes M4 e M5 da análise crítica estavam feitos desde 22/11, fora da `main`, à espera de nove decisões de texto e do ok. Em 23/11 o Gustavo pediu: "quero encerrar por completo o que falta para finalizarmos essa versão inicial, faça tudo que falta". As decisões foram aplicadas como estavam propostas (a lista está no fechamento de `revisoes/melhorias/m4/README.md` e de `m5/README.md`; ele pode vetar qualquer uma).
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Fim do descanso | três bipes gerados pela página (calados pelo silencioso do iPhone) | um som de arquivo, e a hora do fim na tela ("Descanso até 17:28") |
+| Sair do app no descanso | nada avisava | aviso do celular, se a pessoa ligar ("Avisar"; desligado até as chaves estarem na Vercel) |
+| Fim do treino | "A sua semana · 1 de 3" | "1º treino da semana. Faltam 2." e o que melhorou |
+| Quem volta depois de alguns dias | nada antes de 14 dias | "Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma." |
+| Tela da semana | abria com a tabela de séries | abre pelas semanas com treino; a tabela foi para uma gaveta |
+| Próximo treino | nada | "Pôr na agenda" (compromisso com lembrete, sem servidor) |
+| Mostrar a semana | nada | "Mandar a minha semana": uma imagem só com a frequência |
+| Letra em 200% | o "Fechar" de algumas folhas e o cartão "Pessoa" passavam da tela | ficam dentro |
+
+**A privacidade mudou de letra.** Com o aviso ligado, o endereço de aviso do celular e o tempo que falta vão ao servidor e a uma fila da Upstash (EUA), só até o aviso sair. Nada de treino nem de saúde. A regra `privacidade.aviso-descanso`, os termos, a frase curta de "Meus dados" e o `CLAUDE.md` dizem isso.
+
+**O que não dá para conferir daqui.** Se o som e o aviso chegam num celular de verdade, e se a agenda e o compartilhar abrem no iPhone. O passo a passo está em `roteiro-gente-de-verdade.md`, junto com o teste das cinco pessoas.
+
+**Verificação.** O resultado do `npm run verificar` da junção está no relato da sessão.
+
+**Rascunho de post.** "Meu app de treino avisava o fim do descanso com três bipes que o iPhone calava no silencioso. Agora é um som de arquivo, a tela diz a hora do fim, e quem sai do app pode receber um aviso do celular. E o fim do treino virou uma frase: '2º treino da semana. Falta 1.'"

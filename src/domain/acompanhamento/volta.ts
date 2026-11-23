@@ -44,3 +44,25 @@ export function mensagemDeVolta(hoje: Pick<Hoje, 'diasSemTreino' | 'faixa' | 'bl
     regraId: r('readaptacao.durante-uso'),
   };
 }
+
+/**
+ * A partir de quantos dias sem treino a pessoa é recebida (lote M5 da análise crítica, 22/11/2026). O roteiro do lote
+ * pede "entre 3 e 13 dias"; com 2 ou 3 treinos por semana, 3 dias é o intervalo normal entre dois treinos, e a recepção
+ * viraria ruído. Por isso conta a partir de 2 dias além do intervalo da rotina (7 ÷ treinos por semana, para cima), e
+ * nunca antes de 3: 6 dias com 2 treinos por semana, 5 com 3, 4 com 4 ou mais. [opinião]
+ */
+export function diasParaRecepcao(planejados: number): number {
+  return Math.max(3, Math.ceil(7 / Math.max(1, planejados)) + 2);
+}
+
+/**
+ * A recepção de quem volta depois de alguns dias, antes de a pausa mudar o treino (até 13 dias; de 14 em diante vale a
+ * mensagem de volta, acima). No mesmo tom: o fato e o que vale hoje, sem "você parou" nem contagem de faltas.
+ * Só com o treino normal: na volta gradual e na semana leve, a tela já diz o que muda. Null: nenhuma recepção.
+ */
+export function recepcaoCurta(hoje: Pick<Hoje, 'diasSemTreino' | 'faixa' | 'fase'>, planejados: number): string | null {
+  const d = hoje.diasSemTreino;
+  // a fase que corta séries (começo leve, volta gradual, semana leve) já tem a sua linha na tela
+  if (d === undefined || hoje.faixa !== 'normal' || (hoje.fase && hoje.fase.fatorSeries < 1) || d < diasParaRecepcao(planejados)) return null;
+  return `Bom te ver de novo. Faz ${tempoDaPausa(d)} do último treino, e a carga é a mesma.`;
+}

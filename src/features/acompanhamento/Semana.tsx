@@ -70,8 +70,9 @@ export function Semana() {
         {/* sem semana nenhuma contada ainda (programa novo, sem treino), a faixa das semanas não aparece */}
         {r.semanas.length > 1 && (
           <section aria-labelledby="semanas" className="pilha">
+            {/* lote M5: a frase estava só no leitor de tela; agora é o título da faixa */}
             <h2 id="semanas" className="secao">
-              {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
+              {r.comTreino} de {r.semanas.length} semanas com treino
             </h2>
             <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
               {r.semanas.map((t, i) => (
@@ -108,27 +109,6 @@ export function Semana() {
           </section>
         )}
 
-        <section aria-labelledby="musculos" className="pilha">
-          <h2 id="musculos" className="secao">
-            Séries por músculo nesta semana
-          </h2>
-          <ul className="musculos" aria-label="Séries efetivas por músculo nesta semana">
-            {r.musculos.map((m) => (
-              <li key={m.musculo} className={`m-${m.estado}`}>
-                <span className="m-nome">{m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}</span>
-                <span className="m-barra" aria-hidden="true">
-                  <i style={{ width: `${Math.round((m.feitas / escala) * 100)}%` }} />
-                  <u style={{ left: `${Math.round((m.meta / escala) * 100)}%` }} />
-                </span>
-                <span className="m-num">
-                  {num(m.feitas)} de {num(m.meta)}
-                </span>
-                {m.estado !== 'sem-treino' && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
-              </li>
-            ))}
-          </ul>
-        </section>
-
         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
         {r.revisao && !estado.sessaoAtual && (
           <section className="box volta" aria-labelledby="revisao">
@@ -148,6 +128,26 @@ export function Semana() {
         )}
 
         <SemanaLeve />
+
+        {/* lote M5: a tabela de músculos saiu da abertura e foi para uma gaveta; a tela abre pelos treinos e pelas semanas */}
+        <details className="box dobra">
+          <summary>Séries por músculo nesta semana</summary>
+          <ul className="musculos" aria-label="Séries efetivas por músculo nesta semana">
+            {r.musculos.map((m) => (
+              <li key={m.musculo} className={`m-${m.estado}`}>
+                <span className="m-nome">{m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}</span>
+                <span className="m-barra" aria-hidden="true">
+                  <i style={{ width: `${Math.round((m.feitas / escala) * 100)}%` }} />
+                  <u style={{ left: `${Math.round((m.meta / escala) * 100)}%` }} />
+                </span>
+                <span className="m-num">
+                  {num(m.feitas)} de {num(m.meta)}
+                </span>
+                {m.estado !== 'sem-treino' && <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>}
+              </li>
+            ))}
+          </ul>
+        </details>
 
         {exercicios.length > 0 && (
           <details className="box dobra">

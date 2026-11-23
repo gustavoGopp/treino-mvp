@@ -700,3 +700,32 @@ O que foi feito está no devlog e em `revisoes/melhorias/d3/README.md`. Ficou pa
 - Empurrar e Puxar com 41 a 46 min em 75 para a avançada com 4 focos (a Carla): é o "quem tem muito tempo fica com dias curtos", fora do D3.
 
 **Os 15 itens que a conferência regra por regra deixou para o D3** (seção "Da conferência regra por regra, pacote D1", acima) **não foram feitos nesta rodada**: o pacote parou nos três itens do roteiro e na medida deles. Continuam valendo como estão listados lá, cada um com o critério do D3 (personas, população e régua antes e depois; nenhum defeito pior).
+
+## Do M5, um motivo para voltar (22/11/2026)
+
+- Medir num Android e num iPhone: o arquivo da agenda (.ics) abre a agenda? E com o app instalado na tela de início? O compartilhar mostra o WhatsApp e manda a imagem?
+- A tela da semana na 1ª semana fica quase vazia (o número de treinos e duas gavetas). Vale pensar no que mostrar ali antes de haver semanas para contar.
+- O cartão da semana não leva o nome do app (adiado em 21/11/2026). Quando houver nome, entra no alto do cartão.
+- O limite de dias da recepção e os 30 min do lembrete da agenda são opinião; rever com o uso.
+- O roteiro de gente de verdade pede o teste do cartão no grupo da família por 4 semanas (`prompts/sessao-melhorias-analise-critica.md`, "Depois dos lotes").
+
+## Do M4, o descanso avisa (22/11/2026)
+
+**O que só um aplicativo de loja resolveria** (fora do escopo: não é gratuito; `revisoes/analise-critica/decisoes-e-plano.md`, "Avisos do descanso"):
+- O descanso visível na tela de bloqueio, contando o tempo (o que o Hevy e o Strong fazem). Não há equivalente para um site.
+- A vibração no iPhone. Um site não vibra no iPhone.
+- O som do aviso no iPhone com garantia. Há relato de aviso de site que chega sem som (fórum da Apple, 728022); só o aparelho diz.
+
+**Do passo 2, por fazer ou por medir:**
+- A entrega do aviso num Android e num iPhone de verdade (a linha C da tabela de `revisoes/melhorias/m4/README.md`).
+- O limite de 300 pedidos de aviso por IP por dia é opinião; rever com o uso.
+- Se o som de arquivo parar a música no iPhone (linha E da tabela), medir a saída técnica `navigator.audioSession` antes de levar a escolha ao Gustavo.
+- Os textos de privacidade já aprovados que dizem que a foto é a única coisa que sai do aparelho (`privacidade.tsx`, a regra `privacidade.foto`, os termos) esperam a frase nova do Gustavo.
+- `api/descanso.ts`, `apagar`: desfazer um número que a fila não conhece volta como erro `fila` (502), porque a fila não responde 404 nesse caso. O app ignora a resposta; falta só o log dizer o código que a fila devolveu.
+
+## Do fechamento da versão inicial (23/11/2026)
+
+- **O que só o Gustavo pode fazer** está em `roteiro-gente-de-verdade.md`: as cinco pessoas, o cartão no grupo da família, a tabela do descanso nos dois celulares, a agenda e o compartilhar no iPhone, as 4 semanas de uso e o teste da foto.
+- **As nove decisões de texto do M4 e do M5** foram aplicadas como propostas, sem leitura uma por uma. Se o Gustavo vetar alguma, é só texto.
+- **O aviso do descanso** continua desligado na produção até as três chaves (`VITE_AVISO_CHAVE`, `AVISO_CHAVE_PRIVADA`, `QSTASH_TOKEN`) estarem no ambiente de produção da Vercel, não só no de teste.
+- O "Fechar" das folhas e o cartão "Pessoa" com a letra em 200%: consertados; saem da lista do D4.

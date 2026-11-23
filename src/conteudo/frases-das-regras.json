@@ -257,7 +257,7 @@
   },
   "acompanhamento.mensagens": {
     "titulo": "Mensagens sem culpa",
-    "frase": "As mensagens do acompanhamento trazem o fato e o próximo passo: nunca “você falhou”, “perdeu” ou “deveria”, nem risco de morte ou comparação com outras pessoas. Semana sem treino não gera aviso. Com 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta), o app oferece um programa com menos dias, que só muda com o seu aceite."
+    "frase": "As mensagens do acompanhamento trazem o fato e o próximo passo: nunca “você falhou”, “perdeu” ou “deveria”, nem risco de morte ou comparação com outras pessoas. Semana sem treino não gera aviso. Com 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta), o app oferece um programa com menos dias, que só muda com o seu aceite. Quem volta depois de poucos dias (menos de 14) é recebido; nada muda."
   },
   "acompanhamento.evolucao": {
     "titulo": "Evolução de cada exercício",
@@ -627,9 +627,13 @@
     "titulo": "Aparelhos parecidos nas fotos",
     "frase": "O pedido de reconhecimento das fotos leva 16 dicas para não confundir aparelhos parecidos, como hack e leg press, voador e polia dupla, multifuncional e estação de polia, smith e rack, caneleira e tornozeleira da polia, mini-band e elásticos longos. Nos testes do app, apontar o aparelho parecido que não está na foto conta como erro grave."
   },
+  "privacidade.aviso-descanso": {
+    "titulo": "O aviso do fim do descanso",
+    "frase": "O aviso só existe se você tocar em “Avisar” e o celular der a permissão. Com o app aberto, nada sai do aparelho. Se você sai do app no meio de um descanso, vão para o servidor do app o endereço de aviso do celular e o tempo que falta, e nada do treino nem da saúde. O endereço fica embaralhado numa fila da Upstash, empresa dos EUA, só até o aviso sair ou você voltar ao app."
+  },
   "privacidade.foto": {
     "titulo": "Foto do equipamento e sua autorização",
-    "frase": "A foto do equipamento é o único dado que sai do aparelho, e pode ser dado pessoal: pode mostrar a casa, o espelho e outras pessoas. Ela vai para a Anthropic, empresa dos EUA. Isso é uma transferência internacional, que pode se apoiar no seu consentimento específico e em destaque, dado depois de você saber que o envio é para fora do país (LGPD, art. 33, VIII). Você pode retirar o consentimento quando quiser, de graça (art. 8º, § 5º). A Anthropic diz por escrito que apaga o que recebe em até 30 dias, salvo envio marcado como violação da política de uso dela (até 2 anos) ou exigência da lei; que não treina modelos com o conteúdo; e que guarda o dado nos EUA e pode processá-lo também na Europa, na Ásia e na Austrália. As 3 telas que falam da foto (boas-vindas, foto e “Meus dados”) dizem para onde ela vai, por quanto tempo fica lá e que o servidor do app não a guarda. O botão das fotos só é liberado depois de você marcar a caixa de autorização, que vem desmarcada antes do 1º envio; sem marcar, a lista de equipamento funciona igual. A data do aceite fica só no aparelho, e “Retirar a autorização” apaga essa data. Este texto não é parecer jurídico."
+    "frase": "A foto do equipamento só sai do aparelho se você usar, e pode ser dado pessoal: pode mostrar a casa, o espelho e outras pessoas. Ela vai para a Anthropic, empresa dos EUA. Isso é uma transferência internacional, que pode se apoiar no seu consentimento específico e em destaque, dado depois de você saber que o envio é para fora do país (LGPD, art. 33, VIII). Você pode retirar o consentimento quando quiser, de graça (art. 8º, § 5º). A Anthropic diz por escrito que apaga o que recebe em até 30 dias, salvo envio marcado como violação da política de uso dela (até 2 anos) ou exigência da lei; que não treina modelos com o conteúdo; e que guarda o dado nos EUA e pode processá-lo também na Europa, na Ásia e na Austrália. As 3 telas que falam da foto (boas-vindas, foto e “Meus dados”) dizem para onde ela vai, por quanto tempo fica lá e que o servidor do app não a guarda. O botão das fotos só é liberado depois de você marcar a caixa de autorização, que vem desmarcada antes do 1º envio; sem marcar, a lista de equipamento funciona igual. A data do aceite fica só no aparelho, e “Retirar a autorização” apaga essa data. Este texto não é parecer jurídico."
   },
   "dados.copia": {
     "titulo": "Lembrete de exportar uma cópia",

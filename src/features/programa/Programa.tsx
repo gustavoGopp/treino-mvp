@@ -2,7 +2,7 @@ import { lazy, Suspense, useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito } from '../../domain/gerador';
-import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
+import { mensagemDeVolta, recepcaoCurta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { diaEMes as dataCurta, faixaPorExtenso, reservaPorExtenso, seriesPorExtenso, tempoNoRelogio as tempo } from '../../domain/numero';
 import { avaliarTriagem, CUIDADOS_PRESSAO, efeitoDaDor } from '../../domain/triagem';
@@ -285,6 +285,8 @@ export function Programa() {
     navigate('/treino');
   };
   const mostrarVolta = volta && !estado.sessaoAtual;
+  // Lote M5: quem volta depois de alguns dias (menos de 14) é recebido, no tom da volta de pausa; nada muda no treino.
+  const recepcao = estado.sessaoAtual ? null : recepcaoCurta(hoje, estado.rotina?.diasSemana ?? salvo.dias.length);
   // Lote M3 da análise crítica (22/11/2026): a semana leve do começo se anuncia. O programa mostrava menos séries e
   // menos minutos que o pedido sem dizer por quê; a explicação inteira continua em "Entenda o treino".
   // (iniciante.fase-aprendizado, readaptacao.semana1 e readaptacao.semana2; a semana leve pedida tem a sua própria linha.)
@@ -373,6 +375,7 @@ export function Programa() {
                 </div>
               </div>
               {comecoLeve && <p className="ajuda comeco-leve">{comecoLeve}</p>}
+              {recepcao && <p className="ajuda recepcao">{recepcao}</p>}
             </>
           )}
           {!estado.sessaoAtual && locais.length > 1 && (

@@ -26,12 +26,9 @@ const PENDENTE: Record<string, string> = {
 };
 
 // Pacote D4 (23/11/2026): no zoom de 200%, além dos 4 critérios, nada entra na margem da página (semPassarDaMargem, item 5
-// de docs/verificacao/lista.md). O que já passava quando o teste nasceu, medido aqui a 206 px, fica de fora até o máximo
-// medido com 4 px a mais (a letra sai um pouco mais larga no GitHub); o conserto é decisão de tela, no backlog ("Da
-// verificação permanente"): o "Fechar" do cabeçalho das folhas, empurrado por uma palavra longa do título (37,2 px na
-// dos detalhes do equipamento e 23,5 na das perguntas completas, que passam da borda da folha; 12,6 na dos avisos e 0,6
-// na do exercício), e o cartão "Pessoa" do estilo do Boneco (19,7 px).
-const MARGEM_CONHECIDA = { '.folha-cab': 41, '.estilos-boneco': 24 };
+// de docs/verificacao/lista.md). Os dois casos que já passavam quando o teste nasceu (o "Fechar" das folhas, empurrado por
+// uma palavra longa do título, e o cartão "Pessoa" do estilo do Boneco) foram consertados no mesmo dia: sem exceções.
+const MARGEM_CONHECIDA = {};
 let comMargem = false;
 
 async function criterios(page: Page) {
