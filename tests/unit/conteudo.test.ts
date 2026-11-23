@@ -3,20 +3,15 @@ import { existsSync, readFileSync } from 'node:fs';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { carregarCartao, temCartao } from '../../src/conteudo/cartoes';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
-import { EX } from '../../src/engine';
 import { APROVADOS } from '../../src/engine/novo/aprovados';
 
 describe('conteúdo dos exercícios', () => {
-  // ligação das 81 animações (22/11/2026): a lista de animações é a das aprovadas no motor novo (171); o motor de antes só tem as 90
-  // primeiras, e a ordem dos erros delas continua conferida contra ele, logo abaixo. A das 81 é conferida contra a ficha
-  // de movimento do motor novo por `scripts/animacao-nova/conferir-textos-restantes.ts`.
+  // A lista de animações é a das aprovadas no motor novo (171). A ordem dos erros de cada uma é conferida contra a ficha
+  // de movimento do motor em tests/unit/motor-novo-ponte.test.ts ("os erros de cada animação nova têm os títulos do
+  // texto do app, na mesma ordem"); a conferência igual contra o motor de antes saiu com ele (pacote D4, 23/11/2026).
   it('todo exercício animado tem texto, e todo texto tem animação', () => {
     expect(Object.keys(CONTEUDO).sort()).toEqual(Object.keys(APROVADOS).sort());
     expect(Object.keys(CARTOES)).toEqual([]);
-  });
-
-  it.each(EX.map((e) => [e.id, e] as const))('%s: cada erro animado tem título e descrição, na mesma ordem', (id, ex) => {
-    expect(CONTEUDO[id]!.errors.map((e) => e.id)).toEqual(ex.errors.map((e: { id: string }) => e.id));
   });
 
   it('R1: nenhum texto de técnica traz prescrição fixa (RIR com número, faixa de kg do programa de referência, "rx")', () => {

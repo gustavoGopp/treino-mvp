@@ -24,7 +24,7 @@ export const desenvolvimento: Exercicio = {
   vistas: ['lateral', 'frontal'],
   quadro,
   // a frente do ombro (principal); a lateral do ombro e o tríceps (secundários, achado 4 da revisão de anatomia,
-  // 02/11/2026); o trapézio de cima listrado (só ajuda), como o desenho de hoje (src/engine/estilo/musculos.ts)
+  // 02/11/2026); o trapézio de cima listrado (só ajuda), como no desenho de antes
   papeis: { deltAnt: 'p', deltLat: 's', triceps: 's', trapSup: 'a' },
   trajetorias: { halter: (q) => q.esq.lado.R.pegada, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };
