@@ -10,8 +10,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 14,
-   "estagnado": 17,
+   "manter": 25,
+   "estagnado": 6,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -28,8 +28,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 15,
-   "estagnado": 16,
+   "manter": 25,
+   "estagnado": 6,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -64,8 +64,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 21,
-   "estagnado": 11
+   "manter": 27,
+   "estagnado": 5
   },
   "cargaInexistente": [],
   "veredito": "não sobe"
@@ -81,8 +81,8 @@
   "voltas": 1,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 17,
-   "estagnado": 13,
+   "manter": 24,
+   "estagnado": 6,
    "subir": 1,
    "voltar": 1
   },
@@ -100,8 +100,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 15,
-   "estagnado": 16,
+   "manter": 25,
+   "estagnado": 6,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -118,8 +118,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 15,
-   "estagnado": 16,
+   "manter": 25,
+   "estagnado": 6,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -136,8 +136,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 15,
-   "estagnado": 16,
+   "manter": 25,
+   "estagnado": 6,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -147,15 +147,15 @@
   "id": "leg-press",
   "nome": "Leg press, menor anilha de 5 kg",
   "exercicio": "leg-press",
-  "inicial": "30 kg por lado",
-  "final": "35 kg por lado",
+  "inicial": "60 kg de anilhas",
+  "final": "70 kg de anilhas",
   "forcaCresceu": "+17% (modelo)",
   "subidas": 1,
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 16,
-   "estagnado": 15,
+   "manter": 24,
+   "estagnado": 7,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -172,8 +172,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 14,
-   "estagnado": 17,
+   "manter": 24,
+   "estagnado": 7,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -190,8 +190,8 @@
   "voltas": 2,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 16,
-   "estagnado": 12,
+   "manter": 23,
+   "estagnado": 5,
    "subir": 2,
    "voltar": 2
   },
@@ -209,8 +209,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 15,
-   "estagnado": 16,
+   "manter": 24,
+   "estagnado": 7,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -227,8 +227,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 16,
-   "estagnado": 15,
+   "manter": 24,
+   "estagnado": 7,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -245,8 +245,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
-   "manter": 16,
-   "estagnado": 15,
+   "manter": 24,
+   "estagnado": 7,
    "subir": 1
   },
   "cargaInexistente": [],
@@ -263,8 +263,8 @@
   "voltas": 0,
   "maiorTravaEmSessoes": 31,
   "acoes": {
-   "manter": 2,
-   "estagnado": 30
+   "manter": 22,
+   "estagnado": 10
   },
   "cargaInexistente": [],
   "veredito": "trava"

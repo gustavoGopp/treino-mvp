@@ -8,39 +8,39 @@
 
 | veredito | programas | % |
 | --- | ---: | ---: |
-| bom | 2.680 | 45,8% |
-| limite | 2.701 | 46,2% |
-| ajustar | 469 | 8% |
+| bom | 2.684 | 45,9% |
+| limite | 2.719 | 46,5% |
+| ajustar | 447 | 7,6% |
 | bloqueado | 0 | 0% |
-| **está bom ou só limite** | **5.381** | **92%** |
+| **está bom ou só limite** | **5.403** | **92,4%** |
 | com um ajuste, alerta ou segurança que o gerador não avisa | 0 | 0% |
 
 ## Por cenário
 
 | cenário | bom | limite | ajustar | bloqueado |
 | --- | ---: | ---: | ---: | ---: |
-| academia | 551 | 381 | 43 | 0 |
-| condominio | 555 | 328 | 92 | 0 |
-| casa | 522 | 378 | 75 | 0 |
-| elasticos | 494 | 391 | 90 | 0 |
-| halteres-banco | 558 | 324 | 93 | 0 |
-| sem-nada | 0 | 899 | 76 | 0 |
+| academia | 552 | 377 | 46 | 0 |
+| condominio | 558 | 338 | 79 | 0 |
+| casa | 522 | 379 | 74 | 0 |
+| elasticos | 494 | 392 | 89 | 0 |
+| halteres-banco | 558 | 333 | 84 | 0 |
+| sem-nada | 0 | 900 | 75 | 0 |
 
 ## Achados (programas com o achado)
 
 | gravidade e tipo | programas | % |
 | --- | ---: | ---: |
-| limite abaixo-da-meta | 1.978 | 33,8% |
-| limite abaixo-do-piso | 1.367 | 23,4% |
+| limite abaixo-da-meta | 1.958 | 33,5% |
+| limite abaixo-do-piso | 1.363 | 23,3% |
 | limite funcoes | 1.344 | 23% |
 | limite sem-exercicio | 975 | 16,7% |
 | info maximo | 877 | 15% |
-| limite tempo | 753 | 12,9% |
+| limite tempo | 751 | 12,8% |
 | limite obrigatorio | 479 | 8,2% |
-| ajustar abaixo-da-meta | 350 | 6% |
-| ajustar abaixo-do-piso | 86 | 1,5% |
-| limite empurrar-puxar | 62 | 1,1% |
-| ajustar tempo | 49 | 0,8% |
+| ajustar abaixo-da-meta | 355 | 6,1% |
+| ajustar abaixo-do-piso | 90 | 1,5% |
+| limite empurrar-puxar | 59 | 1% |
+| ajustar tempo | 19 | 0,3% |
 
 ## Sem aviso do gerador (o que a régua cobra)
 
