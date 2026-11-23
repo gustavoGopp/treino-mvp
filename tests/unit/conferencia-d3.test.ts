@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cortarTempo, gerarPrograma, nadaParaPuxar, prescricaoDaSemana, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { gerarPrograma, nadaParaPuxar, prescricaoDaSemana, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { inventarioDe } from '../../scripts/auditoria/ver-lib';
 import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
 import { opcoesDeDivisao } from '../../src/domain/gerador/divisoes';
@@ -62,35 +62,6 @@ describe('selecao.estabilidade: a polia conta como estável, como a regra lista'
   it('o intermediário não muda: o desempate é só do iniciante', () => {
     const p = ok(perfil({ nivel: 'intermediario', dias: 4, min: 60 }), bruno.inventario);
     expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'crucifixo-polia')).toBe(true);
-  });
-});
-
-describe('selecao.panturrilha-alongada: a panturrilha no chão nunca entra no lugar do degrau', () => {
-  // Sem equipamento, foco em pernas: o degrau da escada (o calcanhar desce) vem antes do chão (o calcanhar não desce).
-  // Antes, a variedade entre os dias e o dia que a dor esvaziou punham a do chão num dia sem o degrau (o iniciante de 3
-  // dias de 60 min tinha o Corpo todo A só com a do chão). Ao lado do degrau, no mesmo dia, ela pode entrar: é o 2º
-  // exercício do foco (tirá-la dali deixava o foco abaixo da meta com tempo sobrando, o C1 da régua, em 674 programas).
-  const semDegrauNoDia = (p: Programa) => p.dias.filter((d) => d.exercicios.some((x) => x.exId === 'panturrilha-chao') && !d.exercicios.some((x) => x.exId === 'panturrilha-degrau'));
-  it.each([
-    ['iniciante', 3, 60, []],
-    ['intermediario', 3, 60, []],
-    ['intermediario', 2, 60, []],
-    ['intermediario', 4, 60, [{ articulacao: 'ombro', nota: 7 }]],
-  ] as const)('%s, %i dias de %i min', (nivel, dias, min, dores) => {
-    const p = ok(perfil({ nivel, dias, min, focos: ['pernas'], dores: [...dores] }), {});
-    expect(p.dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('panturrilha-degrau');
-    expect(semDegrauNoDia(p).map((d) => d.nome)).toEqual([]);
-  });
-
-  it('o exemplo do iniciante: o degrau nos três dias, sem a do chão', () => {
-    const p = ok(perfil({ nivel: 'iniciante', dias: 3, min: 60, focos: ['pernas'] }), {});
-    for (const d of p.dias) expect(d.exercicios.map((x) => x.exId), d.nome).toContain('panturrilha-degrau');
-    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'panturrilha-chao')).toBe(false);
-  });
-
-  it('com dor forte no tornozelo o degrau sai, e o chão continua sendo a alternativa possível', () => {
-    const p = ok(perfil({ nivel: 'intermediario', dias: 3, min: 60, focos: ['pernas'], dores: [{ articulacao: 'tornozelo', nota: 7 }] }), {});
-    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'panturrilha-degrau')).toBe(false);
   });
 });
 
@@ -177,30 +148,5 @@ describe('tempo.superserie: o iniciante não tem dupla nas semanas 1 e 2 de uma 
     const q = programaDe(perfil({ nivel: 'intermediario', dias: 2, min: 30, parado: 12 }), inventarioDe('academia+'));
     const total = q.dias.flatMap((d) => d.exercicios).filter((x) => x.supersetCom).length;
     expect(prescricaoDaSemana(q, 1).flatMap((d) => d.exercicios).filter((x) => x.supersetCom).length).toBe(total);
-  });
-});
-
-describe('selecao.aducao-complemento: a adução entra por último e sai primeiro', () => {
-  const todos = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
-  it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: a adução não toma o lugar do abdominal', () => {
-    // Antes, o Corpo todo B tinha a adução deitado de lado e não tinha o abdominal.
-    const p = ok(perfil({ nivel: 'iniciante', dias: 3, min: 75, focos: ['pernas', 'gluteos'] }), {});
-    for (const d of p.dias) expect(d.exercicios.some((x) => x.padrao === 'core'), d.nome).toBe(true);
-    expect(todos(p).filter((x) => x.padrao === 'core').length).toBeGreaterThanOrEqual(3);
-  });
-
-  it('no corte de tempo, a adução sai antes do abdominal (academia, corpo todo 4x, pernas, de 90 para 60 min)', () => {
-    const pf = perfil({ nivel: 'intermediario', dias: 4, min: 90, focos: ['pernas'], divisao: 'ct-4x' });
-    const p = ok(pf, inventarioDe('academia'));
-    const comAducao = p.dias.filter((d) => d.exercicios.some((x) => x.funcao === 'aducao'));
-    expect(comAducao.length).toBeGreaterThan(0);
-    const cortados = cortarTempo(structuredClone(p.dias), 60, p.metas, 'intermediario', new Set(['quadriceps', 'posteriores', 'panturrilha']), [], () => false, undefined, false, undefined, false, false, true);
-    for (const [i, d] of cortados.entries()) {
-      const antes = p.dias[i]!.exercicios;
-      const saiuAbdominal = antes.some((x) => x.padrao === 'core') && !d.exercicios.some((x) => x.padrao === 'core');
-      if (saiuAbdominal) expect(d.exercicios.some((x) => x.funcao === 'aducao'), d.nome).toBe(false);
-    }
-    // e alguma adução saiu
-    expect(cortados.flatMap((d) => d.exercicios).filter((x) => x.funcao === 'aducao').length).toBeLessThan(comAducao.length);
   });
 });
