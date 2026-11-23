@@ -161,6 +161,8 @@ const posicaoDeReferencia = (f: Funcao, id: string) => f.niveis.flat().indexOf(i
 const INICIANTE_MAX_EXERCICIOS = 99;
 /** EXPERIMENTO (ini-sem-custo): a 2ª montagem do iniciante, sem a prática antes da variedade, para comparar o custo. */
 let SEM_PRATICA = false;
+/** PROTÓTIPO: 'dc-inclinado': a montagem de comparação, com o 2º empurrar como antes (o modelo do dia). */
+let INCLINADO_COMO_ANTES = false;
 const INICIANTE_LIMITE_DESDE_DIAS = 3;
 /**
  * EXPERIMENTO (ini-6-3x60; teste próprio pedido pelo Gustavo em 16/11/2026, feito em 17/11): o limite de 6 exercícios do
@@ -507,12 +509,25 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
   // PROTÓTIPO (curto): o músculo protegido que tem menos dias onde entrar escolhe primeiro (a panturrilha só tem vaga num
   // dia do Corpo todo A/B; o abdômen vai para o outro), salvo se isso puser mais dias acima de 110% do tempo.
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+  const fracos = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
   const montar = (focoPrimeiro: boolean) => {
-    const info = { protegidosSemVaga: 0 };
+    const info: { protegidosSemVaga: number; segundoEmpurrarNovo?: boolean } = { protegidosSemVaga: 0 };
     const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info);
-    if (!prot('curto') || info.protegidosSemVaga < 2) return a;
-    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true);
-    return acima(b) > acima(a) ? a : b;
+    let escolhido = a;
+    let raro = false;
+    if (prot('curto') && info.protegidosSemVaga >= 2) {
+      const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info);
+      if (acima(b) <= acima(a)) [escolhido, raro] = [b, true];
+    }
+    // PROTÓTIPO: 'dc-inclinado' (D3 da conferência): o 2º empurrar novo só vale se não custar um dia acima de 110% nem um dia fraco.
+    if (!info.segundoEmpurrarNovo) return escolhido;
+    INCLINADO_COMO_ANTES = true;
+    try {
+      const antes = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, raro);
+      return acima(escolhido) > acima(antes) || fracos(escolhido) > fracos(antes) ? antes : escolhido;
+    } finally {
+      INCLINADO_COMO_ANTES = false;
+    }
   };
   const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
   const escolher = () => {
@@ -574,7 +589,8 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   };
 }
 
-function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, refeito = false, duplaForcada?: 'com' | 'sem'): Programa {
+function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number; segundoEmpurrarNovo?: boolean }, refeito = false, duplaForcada?: 'com' | 'sem'): Programa {
+  const inclinadoComoAntes = INCLINADO_COMO_ANTES;
   const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
@@ -728,8 +744,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // selecao.peitoral-inclinado: o 2º empurrar (sem banco inclinável) só num dia sem outra vaga de empurrar horizontal,
       // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
       // PROTÓTIPO: 'dc-inclinado' (D3 da conferência, 23/11/2026): conta a vaga de empurrar horizontal que coube no dia.
-      const segundoEmpurrar =
-        funcao.id === 'empurrar-inclinado' && (prot('dc-inclinado') ? mantidas.some((w) => w.vaga.funcao === 'empurrar-horizontal') : dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal'));
+      const noModelo = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
+      const coube = funcao.id === 'empurrar-inclinado' && mantidas.some((w) => w.vaga.funcao === 'empurrar-horizontal');
+      if (prot('dc-inclinado') && noModelo && !coube && !inclinadoComoAntes && info) info.segundoEmpurrarNovo = true;
+      const segundoEmpurrar = prot('dc-inclinado') && !inclinadoComoAntes ? coube : noModelo;
       const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID[id]!.padrao === 'empurrar-h' && !POR_ID[id]!.tags.includes('inclinado'));
       // Um afundo por dia (selecao.funcao-da-vaga; R5a): fora da vaga de afundo, o afundo fica por último no nível
       // quando o dia já tem um ou ainda vai ter (a vaga de afundo com exercício).
@@ -1534,12 +1552,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (!refeito && (podeDegrau || podeOutros)) {
     const semPraticaDaqui = SEM_PRATICA;
     REFAZER_ESCOLHIDO.set(programa, () => {
-      const guardado = SEM_PRATICA;
+      const guardado = [SEM_PRATICA, INCLINADO_COMO_ANTES] as const;
       SEM_PRATICA = semPraticaDaqui;
+      INCLINADO_COMO_ANTES = inclinadoComoAntes;
       try {
         return montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, protegidoRaroPrimeiro, undefined, true, comDupla ? 'com' : 'sem');
       } finally {
-        SEM_PRATICA = guardado;
+        [SEM_PRATICA, INCLINADO_COMO_ANTES] = guardado;
       }
     });
   }
