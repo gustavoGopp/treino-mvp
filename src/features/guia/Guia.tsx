@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { NotaDoGuia } from './NotaDoGuia';
 import { metaPorExtenso, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { CONTEUDO } from '../../conteudo';
+import { carregarTextoDoGuia, NOME_CURTO } from '../../conteudo/guia';
+import type { ConteudoExercicio } from '../../conteudo/schema';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { NOME_DA_VISTA } from '../../engine/novo/vistas';
@@ -63,6 +64,28 @@ function checklistComRir(itens: string[], rir: string): string[] {
   return trocado.some((i, k) => i !== itens[k]) ? trocado : [...itens, `Carga para parar com ${rir} sobrando`];
 }
 
+/**
+ * O texto do exercício aberto, baixado sozinho (pacote D4: antes, o guia pedia os textos de todos os exercícios). Se o
+ * arquivo não baixa, o erro sobe na hora de desenhar e o guia mostra a sua saída ("O guia não carregou agora").
+ */
+function useTextoDoGuia(animacaoId: string | null): ConteudoExercicio | undefined {
+  const [r, setR] = useState<{ id: string; txt?: ConteudoExercicio; erro?: unknown } | null>(null);
+  useEffect(() => {
+    if (!animacaoId) return;
+    let vivo = true;
+    carregarTextoDoGuia(animacaoId).then(
+      (txt) => vivo && setR({ id: animacaoId, txt }),
+      (erro: unknown) => vivo && setR({ id: animacaoId, erro: erro ?? new Error('o texto do guia não baixou') }),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, [animacaoId]);
+  if (!r || r.id !== animacaoId) return undefined;
+  if (r.erro) throw r.erro;
+  return r.txt;
+}
+
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 export function Guia() {
@@ -74,9 +97,11 @@ export function Guia() {
   const catalogo = useDoBoneco<Catalogo>({ tipo: 'catalogo' });
   const valido = !!catalogo && !!id && catalogo.todos.includes(id);
   const ex = useDoBoneco<Ficha | null>(valido ? { tipo: 'ficha', animacaoId: id!, estilo } : null);
+  // o texto é pedido junto com a ficha (não depois dela), para os dois chegarem no mesmo instante
+  const txt = useTextoDoGuia(id && id in NOME_CURTO ? id : null);
   if (catalogo && !valido) return <Navigate to={`/guia/${catalogo.todos[0]}`} replace />;
-  // até a ficha chegar (do Worker, em milissegundos): o fundo da tela e o palco vazio, do mesmo tamanho
-  if (!catalogo || !ex)
+  // até a ficha (do Worker) e o texto chegarem, em milissegundos: o fundo da tela e o palco vazio, do mesmo tamanho
+  if (!catalogo || !ex || !txt || txt.id !== ex.id)
     return (
       <div className="wrap guia" aria-busy="true">
         <main className="conteudo-guia">
@@ -86,11 +111,10 @@ export function Guia() {
         </main>
       </div>
     );
-  return <GuiaExercicio key={`${ex.id}-${estilo}`} ex={ex} grupos={gruposDo(catalogo)} />;
+  return <GuiaExercicio key={`${ex.id}-${estilo}`} ex={ex} txt={txt} grupos={gruposDo(catalogo)} />;
 }
 
-function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
-  const txt = CONTEUDO[ex.id]!;
+function GuiaExercicio({ ex, txt, grupos }: { ex: Ficha; txt: ConteudoExercicio; grupos: Grupo[] }) {
   const titulo = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     titulo.current?.focus({ preventScroll: true });
@@ -331,7 +355,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
               {dia.ex.map((e: string, i: number) => (
                 <button key={e} className="chip" aria-pressed={e === ex.id} onClick={() => irPara(i)}>
                   <i>{i + 1}</i>
-                  {CONTEUDO[e]!.short}
+                  {NOME_CURTO[e]}
                 </button>
               ))}
             </div>
@@ -477,7 +501,7 @@ function InfoModo({
   estilo: Estilo;
   modo: Modo;
   erro: number;
-  txt: (typeof CONTEUDO)[string];
+  txt: ConteudoExercicio;
   onErro: (i: number) => void;
 }) {
   // as amostras da legenda seguem as cores do desenho escolhido (cinza ou cor de pele): src/styles.css, `.legend.pele`
@@ -591,7 +615,7 @@ const Lista = ({ itens }: { itens: string[] }) => (
   </ul>
 );
 
-function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
+function Detalhes({ txt }: { txt: ConteudoExercicio }) {
   return (
     <section className="secao-guia">
       <details className="box">

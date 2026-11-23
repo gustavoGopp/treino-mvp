@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from './base';
 import { ana } from './jornada';
 
@@ -126,4 +127,38 @@ test('no guia aberto pelo treino, "Senti algo" volta ao treino com a folha de se
   await expect(page).toHaveURL(/\/treino$/);
   await expect(page.getByRole('dialog', { name: 'O que você sentiu?' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: 'Dor, pressão ou aperto no peito' })).toBeVisible();
+});
+
+// Pacote D4 (23/11/2026): o guia baixa só o texto do exercício aberto, não os de todos. Se esse arquivo não baixa (sem
+// rede e sem a cópia guardada, ou uma versão nova publicada no meio do uso), vale a saída do pacote D2: o aviso do
+// guia, e não a tela de erro do app. Sem o service worker, para o pedido passar pela rede do teste.
+test('o texto do exercício que não baixa mostra o aviso do guia, sem a tela de erro do app', async ({ browser, baseURL }) => {
+  const contexto = await browser.newContext({ serviceWorkers: 'block', baseURL, viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+  const page = await contexto.newPage();
+  // o arquivo de texto do exercício é o que traz "onde sentir" (feel); os do motor, com o mesmo nome, passam
+  let barrados = 0;
+  await page.route(/\/assets\/goblet-[\w-]+\.js$/, (rota) => {
+    // lido do build (dist/), como no teste de peso
+    const ehOTexto = /\bfeel\b/.test(readFileSync(`dist${new URL(rota.request().url()).pathname}`, 'utf8'));
+    if (ehOTexto) barrados++;
+    return ehOTexto ? rota.abort() : rota.continue();
+  });
+  await page.goto('/guia/goblet');
+  await expect(page.getByRole('heading', { name: 'O guia não carregou agora' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Algo deu errado nesta tela' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Voltar ao início' })).toBeVisible();
+  expect(barrados).toBe(1);
+  await contexto.close();
+});
+
+test('trocar de exercício no guia traz o texto do novo exercício', async ({ page }) => {
+  await page.goto('/guia/goblet');
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+  // os botões do dia mostram o nome curto de cada exercício, sem baixar o texto deles
+  await expect(page.getByRole('group', { name: 'Exercícios' }).getByRole('button')).toHaveCount(6);
+  await page.getByRole('button', { name: 'Próximo exercício' }).click();
+  await expect(page).toHaveURL(/\/guia\/stiff$/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Stiff');
+  await page.getByRole('button', { name: 'Exercício anterior' }).click();
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
 });

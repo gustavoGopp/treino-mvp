@@ -38,15 +38,21 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
 // alternativa sem peso seria uma imagem pronta, que deixa de ser o desenho do motor.
 // 22/11/2026, depois da junção com a main das animações (o motor cresceu cerca de 6 kB): total medido de 246,7 kB em 18
 // arquivos, ainda abaixo de 250; o componente do Boneco da abertura saiu do pacote inicial (162,2 kB) para um arquivo à parte.
-test('a boas-vindas espera só o pacote inicial, de menos de 175 kB comprimidos; o motor do Boneco chega depois, e o total fica abaixo de 250 kB', async ({ page }) => {
+// Pacote D4 (23/11/2026): o build deixou de levar os textos de fonte das fichas de movimento e das tabelas do corpo
+// (scripts/animacao-nova/enxugar.mjs). Medido antes e depois no mesmo commit: de 246,2 para 240,5 kB em 18 arquivos (o
+// pacote inicial, 161,4, não muda). O limite do total desce de 250 para 245.
+// No mesmo pacote, o guia passou a baixar só o texto do exercício aberto (src/conteudo/guia.ts), e o pacote inicial
+// deixou de levar a lista dos 171 arquivos de texto que o guia pedia: de 161,4 para 158,4 kB, e o total, 237,5. Os
+// limites descem para 163 (o pacote inicial, que era 175) e 242 (o total).
+test('a boas-vindas espera só o pacote inicial, de menos de 163 kB comprimidos; o motor do Boneco chega depois, e o total fica abaixo de 242 kB', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
   const inicial = arquivos.filter((f) => /^assets\/index-/.test(f));
   expect(inicial, 'o pacote inicial é um arquivo só').toHaveLength(1);
-  expect(gzipSync(readFileSync(`dist/${inicial[0]}`)).length / 1000, 'o pacote inicial').toBeLessThan(175);
+  expect(gzipSync(readFileSync(`dist/${inicial[0]}`)).length / 1000, 'o pacote inicial').toBeLessThan(163);
   // o motor não entra no pacote inicial, e as outras telas e os textos do guia não vêm junto
   expect(readFileSync('dist/index.html', 'utf8')).not.toMatch(/boneco|ponte|movimento/);
   expect(arquivos.some((f) => /\/(Guia|Treino|Inventario|Dados|Programa)-/.test('/' + f)), arquivos.join(', ')).toBe(false);
-  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(250);
+  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(242);
 });
 
 test('no celular mais baixo (320 × 568) a boas-vindas não mostra o Boneco e não baixa o motor', async ({ page }) => {
@@ -65,12 +71,32 @@ test('no celular mais baixo (320 × 568) a boas-vindas não mostra o Boneco e n�
 // se precisar"). O pintor por pares (src/engine/novo/pintor-por-pares.ts, cerca de 8 kB comprimidos) é baixado à parte,
 // só quando o dia tem uma animação em que ele está ligado (src/engine/novo/pintor-ligado.ts), e com ele o programa
 // passaria do limite de antes (docs/revisoes/animacao-nova/estudo-do-pintor.md, "Etapa 1" e "Etapa 2").
-test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 290 kB comprimidos', async ({ page, context }) => {
+// Pacote D4 (23/11/2026): sem os textos de fonte das fichas de movimento e das tabelas do corpo no pacote
+// (scripts/animacao-nova/enxugar.mjs), o programa foi de 289,1 para 277,5 kB em 36 arquivos, medido antes e depois no
+// mesmo commit (o arquivo das tabelas, de 30,6 para 26,3; cada exercício do dia, cerca de 1,4 a menos). O limite desce de 290
+// para 282: a folga de 4,5 kB é a de um exercício a mais no dia, não a de uma função nova no pacote inicial.
+// Com o pacote inicial 3 kB menor (o guia baixa só o texto do exercício aberto), medido: 274,5 kB. O limite fica em 279.
+test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 279 kB comprimidos', async ({ page, context }) => {
   await ana(page);
   const outra = await context.newPage();
   const { kB, arquivos } = await jsDaTela(outra, () => outra.goto('/programa'));
   await expect(outra.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   // os textos do guia e as outras telas não vêm junto
   expect(arquivos.some((f) => /\/(Guia|Treino|Inventario|Dados)-/.test('/' + f)), arquivos.join(', ')).toBe(false);
-  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(290);
+  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(279);
+});
+
+// Pacote D4 (23/11/2026): o guia baixava o texto dos 171 exercícios ao abrir um (191 arquivos, 457,0 kB comprimidos,
+// medido no começo do pacote). Agora baixa o pacote inicial, a tela, o motor, o exercício aberto e o texto dele:
+// 253,7 kB em 21 arquivos, medido no agachamento goblet. Os limites (260 kB e 30 arquivos) deixam folga para um
+// exercício com mais peças, e nenhuma para a volta dos textos de todos.
+test('o guia baixa só o texto do exercício aberto: menos de 260 kB comprimidos, em até 30 arquivos', async ({ page }) => {
+  const { kB, arquivos } = await jsDaTela(page, () => page.goto('/guia/goblet'));
+  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+  // dos arquivos de texto (os que trazem "onde sentir"), só o do exercício aberto
+  const textos = arquivos.filter((f) => !/^assets\/(index|Guia)-/.test(f) && /\bfeel:/.test(readFileSync(`dist/${f}`, 'utf8')));
+  expect(textos, textos.join(', ')).toHaveLength(1);
+  expect(textos[0]).toMatch(/^assets\/goblet-/);
+  expect(arquivos.length, arquivos.join(', ')).toBeLessThanOrEqual(30);
+  expect(kB, `JS do guia: ${arquivos.join(', ')}`).toBeLessThan(260);
 });

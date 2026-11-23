@@ -4,7 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist', 'dev-dist', 'referencia', 'privado', 'coverage', 'playwright-report', 'test-results', 'research_notes', 'reports', '.claude'] },
+  { ignores: ['dist', 'dev-dist', 'referencia', 'privado', 'coverage', 'playwright-report', 'test-results', 'research_notes', 'reports', '.claude', '.verificacao'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -20,12 +20,9 @@ export default tseslint.config(
     languageOptions: { ecmaVersion: 2023, sourceType: 'module', globals: { ...globals.browser, ...globals.node } },
   },
   {
-    // Port mecânico do guia original (scripts/extrair-motor.mjs): o código fica como no original até a tipagem real.
+    // O motor do Boneco: um parâmetro que a função recebe e não usa leva o nome começado por "_" (3 casos em
+    // exercicios/). A exceção de antes, mais larga, era do port do guia original, apagado no pacote D4 (23/11/2026).
     files: ['src/engine/**/*.ts'],
-    rules: {
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
-      'prefer-rest-params': 'off',
-    },
+    rules: { '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }] },
   },
 );

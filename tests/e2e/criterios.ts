@@ -88,6 +88,52 @@ export async function semFocoCoberto(page: Page) {
   expect(cobertos, 'alvo com o foco coberto').toEqual([]);
 }
 
+/**
+ * Quem entra na margem da página: a de 16 px dos lados ou, com uma folha aberta, a de 24 px dela (no cabeçalho da folha,
+ * 16 px, porque o "Fechar" avança 8 px de propósito, para o toque). Devolve um item por elemento, com quanto ele passa,
+ * em px. Ficam de fora as peças de borda a borda (as que começam na borda esquerda, a barra de baixo, o botão preso no pé,
+ * o palco do Boneco), o que está numa faixa que rola de lado de propósito (os dias e os exercícios do guia) e o que está
+ * dentro de um bloco de `conhecidos` (seletor → o máximo em px) sem passar do máximo. É a conferência `MARGEM=1` de
+ * scripts/design/frontend-novo/olhar.mjs, como teste.
+ */
+export async function foraDaMargem(page: Page, conhecidos: Record<string, number> = {}): Promise<{ quem: string; passa: number }[]> {
+  return page.evaluate((conhecidos) => {
+    const w = document.documentElement.clientWidth;
+    const folhas = Array.from(document.querySelectorAll<HTMLElement>('.folha')).filter((f) => !f.closest('[inert]'));
+    const raiz: HTMLElement = folhas.at(-1) ?? document.body;
+    const borda = folhas.length ? raiz.getBoundingClientRect().right : w;
+    const limiteDe = (el: Element) => borda - (folhas.length && !el.closest('.folha-cab') ? 23.5 : 15.5);
+    const rolaDeLado = (el: Element) => {
+      for (let x = el.parentElement; x && x !== raiz; x = x.parentElement) {
+        const o = getComputedStyle(x).overflowX;
+        if (o === 'auto' || o === 'scroll') return true;
+      }
+      return false;
+    };
+    const out: { quem: string; passa: number }[] = [];
+    for (const el of Array.from(raiz.querySelectorAll<HTMLElement>('*'))) {
+      const r = el.getBoundingClientRect();
+      const passa = Math.round((r.right - limiteDe(el)) * 10) / 10;
+      if (r.left < 1 || !r.width || !r.height || passa <= 0 || !el.checkVisibility()) continue;
+      if (el.closest('svg, [inert], .acao-fixa, .nav-inferior, .palco-treino, .stage, .veu > :not(.folha), .sr') || rolaDeLado(el)) continue;
+      if (Object.entries(conhecidos).some(([sel, max]) => el.closest(sel) && passa <= max)) continue;
+      const classe = typeof el.className === 'string' ? el.className.split(' ')[0] : '';
+      out.push({ quem: `${el.tagName.toLowerCase()}${classe ? '.' + classe : ''} "${(el.textContent || '').trim().slice(0, 24)}"`, passa });
+    }
+    return out;
+  }, conhecidos);
+}
+
+/**
+ * Nada entra na margem da página, nem por poucos pixels (item 5 de docs/verificacao/lista.md). Vale no cenário de zoom
+ * de 200% (206 px de largura), o mais apertado. A margem é a folga: em 13/11/2026 uma tela cabia aqui por 2,6 px e o
+ * texto saiu cortado na verificação do GitHub, onde a letra sai um pouco mais larga; o que respeita a margem tem 16 px
+ * de sobra.
+ */
+export async function semPassarDaMargem(page: Page, conhecidos: Record<string, number> = {}) {
+  expect(await foraDaMargem(page, conhecidos), 'passa da margem da página').toEqual([]);
+}
+
 /** Os 4 critérios de uma tela: toque, contraste, texto cortado e foco coberto. */
 export async function criterios(page: Page) {
   await page.evaluate(() => document.fonts.ready);

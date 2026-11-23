@@ -2520,3 +2520,36 @@ Imagens do antes e do depois em `revisoes/melhorias/m6/`.
 **Verificação.** O resultado do `npm run verificar` da última rodada está no relato da sessão. As telas foram vistas num navegador de teste, não num celular.
 
 **Rascunho de post.** "Meu app de treino perguntava: 'você tem problema no coração ou pressão alta?'. Quem respondia a verdade era barrado, e quem marcava uma caixinha passava. Separei as duas perguntas. Agora quem tem pressão alta responde se ela está controlada e se o médico limitou exercício. Se está tudo certo, treina, com quatro cuidados na tela. Não sou da área de saúde, e o app diz isso."
+
+## Pacote D4: mais leve e sem o motor antigo (22 e 23/11/2026)
+
+**De onde veio.** O último pacote da sessão de desenvolvimento 2: apagar o motor do Boneco que o app não usa desde 16/11, baixar o peso que ele deixou e tirar o engasgo da primeira volta de algumas animações. Feito em paralelo com o D3 (ok do Gustavo em 22/11), no ramo `claude/d4-mais-leve`, fora da `main`, à espera do ok dele. O registro completo, com as medidas, está em `revisoes/melhorias/d4/README.md`.
+
+**O que mudou para quem usa.** Na tela, nada. O app baixa menos; o guia abre mesmo se o texto de outro exercício não baixar; e as três abduções deitadas deixam de engasgar na primeira volta.
+
+| | Antes | Depois |
+|---|---|---|
+| Código que a boas-vindas baixa (kB comprimidos) | 246,2 | 237,5 |
+| A tela do programa, para quem volta | 289,1 | 274,5 |
+| O guia, ao abrir um exercício | 457,0, em 191 arquivos | 253,7, em 21 |
+| O que a instalação guarda | 6.487 KiB | 5.185 KiB |
+| Primeira volta das abduções deitadas (computador) | 1,3 s, 27 ms por pose | 0,14 a 0,24 s, até 2,2 ms por pose |
+| O motor de antes no repositório | 105 arquivos e 3 linhas de base (2,6 MB) | nada; o ramo tem 49.589 linhas a menos |
+
+Os limites do teste de peso desceram com a medida: o pacote inicial de 175 para 163 kB, a boas-vindas de 250 para 242, o programa de 290 para 279, e o guia ganhou o seu (260 kB, até 30 arquivos).
+
+**A margem de 206 px virou teste.** No zoom de 200%, nada pode entrar na margem da página. O teste achou o "Fechar" das folhas empurrado para fora por títulos com palavra longa (no goblet, 55,6 px: o "Fechar" sai cortado) e o cartão "Pessoa" do estilo do Boneco apertado. Como esta rodada não mexe na tela, os casos de hoje ficaram como conhecidos no teste, com o máximo medido; o conserto é decisão do Gustavo.
+
+![O "Fechar" das folhas e o cartão "Pessoa" a 206 px](revisoes/melhorias/d4/margem-206.png)
+
+**Decisões técnicas da sessão, com o motivo**
+- **As três linhas de base de antes saíram num commit só delas** (`ef3a193`): apagar gabarito pede o ok do Gustavo, e assim ele pode ser desfeito sozinho.
+- **Os textos de fonte saem do pacote no build, não dos arquivos:** a conferência e os testes continuam lendo as fichas inteiras, e um teste compara o motor inteiro com o enxuto nas 171 animações.
+- **Só as abduções deitadas ganharam a conta guardada:** nas outras quatro da lista de 16/11 a conta pesada muda a cada ponto do ciclo, e guardar o quadro inteiro mudaria o desenho entre os pontos guardados.
+- **A margem com casos conhecidos**, em vez de consertar as telas nesta rodada.
+
+**Decisões para o Gustavo.** Apagar as três linhas de base antigas; o "Fechar" das folhas e o estilo do Boneco a 200% de zoom (as opções estão no registro).
+
+**Verificação.** `npm run check`, a regressão do motor (3 testes, sem diferença) e o `npm run conferir:animacao` (relatório idêntico ao guardado) rodaram aqui. O projeto "celular" dos testes de tela não rodou nesta rodada; os cenários de zoom de 200% com a margem rodaram por um roteiro fora do git, numa prévia na porta 4311. O `npm run verificar` fica para antes da junção.
+
+**Rascunho de post.** "Apaguei quase 50 mil linhas do meu app de treino sem mudar nada na tela. Era o motor antigo do boneco que mostra os exercícios, aposentado desde que o novo ficou pronto, e os gabaritos dele. De carona, o app ficou mais leve: abrir o guia de um exercício baixava o texto de todos os 171; agora baixa só o dele, e o peso caiu de 457 para 254 kB. E um teste novo achou um defeito que ninguém tinha visto: com o zoom do celular no máximo, o botão de fechar de algumas janelas sai da tela."

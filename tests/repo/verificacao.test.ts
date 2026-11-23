@@ -50,8 +50,7 @@ describe('o que regrava um gabarito', () => {
       'npm run test -- -u',
       'npx vitest run tests/unit/gerador.test.ts --update',
       'npx playwright test --update-snapshots',
-      'ATUALIZAR_ESTILO_A=1 npx playwright test tests/motor/estilo-a.spec.ts',
-      'node scripts/linha-de-base-motor.mjs',
+      'ATUALIZAR_MOTOR_NOVO=1 npx playwright test --project=motor motor-novo',
     ])
       expect(regravaGabarito(c), c).toBe(true);
   });
@@ -63,7 +62,7 @@ describe('o que regrava um gabarito', () => {
 
   it('reconhece os arquivos de gabarito', () => {
     expect(ehGabarito('tests/unit/__snapshots__/gerador.test.ts.snap')).toBe(true);
-    expect(ehGabarito('tests/visual/linha-de-base/motor.json')).toBe(true);
+    expect(ehGabarito('tests/visual/linha-de-base/motor-novo.json')).toBe(true);
     expect(ehGabarito('tests/unit/gerador.test.ts')).toBe(false);
   });
 });
@@ -75,7 +74,7 @@ describe('os ganchos, rodados de verdade', () => {
   it('a guarda pede confirmação ao regravar um gabarito, e fica calada no resto', () => {
     const pede = JSON.parse(rodar('guarda-gabarito.mjs', { tool_name: 'Bash', tool_input: { command: 'npx vitest run -u' } }));
     expect(pede.hookSpecificOutput.permissionDecision).toBe('ask');
-    const edita = JSON.parse(rodar('guarda-gabarito.mjs', { tool_name: 'Write', tool_input: { file_path: join(process.cwd(), 'tests/visual/linha-de-base/motor.json') } }));
+    const edita = JSON.parse(rodar('guarda-gabarito.mjs', { tool_name: 'Write', tool_input: { file_path: join(process.cwd(), 'tests/visual/linha-de-base/motor-novo.json') } }));
     expect(edita.hookSpecificOutput.permissionDecision).toBe('ask');
     expect(rodar('guarda-gabarito.mjs', { tool_name: 'Bash', tool_input: { command: 'npm run check' } })).toBe('');
     expect(rodar('guarda-gabarito.mjs', { tool_name: 'Edit', tool_input: { file_path: join(process.cwd(), 'src/App.tsx') } })).toBe('');

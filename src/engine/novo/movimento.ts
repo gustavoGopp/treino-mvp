@@ -105,7 +105,7 @@ export interface Exercicio {
   quadro(corpo: Corpo, u: number, erro?: string): Quadro;
   /**
    * Quem trabalha, nos grupos musculares do desenho: 'p' principal, 's' secundário, 'a' só ajuda. `dorsal:R` = só o
-   * lado direito. É a mesma lista que o guia de hoje desenha (src/engine/estilo/musculos.ts); este motor não decide músculo.
+   * lado direito. Veio da lista que o motor de antes desenhava (apagado em 23/11/2026); quem confere é tests/unit/anatomia.test.ts.
    */
   papeis: Record<string, 'p' | 's' | 'a'>;
   /** Trajetórias do modo Trajetória: nome do ponto → função que o lê no quadro. */

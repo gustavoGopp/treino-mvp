@@ -1,5 +1,7 @@
 # Animações novas: como cada uma é feita e aprovada
 
+> **Nota de 23/11/2026 (pacote D4).** O ritual abaixo é o do motor de antes (`src/engine/exercicios/`, `scripts/folha-animacao.mjs`), que foi apagado: as 171 animações do app estão no motor novo (`src/engine/novo/`), e a conferência de hoje é `npm run conferir:animacao` mais a regressão visual (`npx playwright test --project=motor`). O texto fica como registro de como as primeiras animações foram feitas; as fichas de técnica desta pasta continuam valendo.
+
 O guia original tinha 25 animações. As outras 48 da biblioteca entram aqui, em lotes, sempre pelo mesmo ritual
 (`CLAUDE.md`: precisão vale mais que quantidade; nada de animação improvisada).
 

@@ -2,8 +2,9 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
-import { EX } from '../../src/engine';
-import { AJUDANTES, doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
+import { EXERCICIOS } from '../../src/engine/novo/app';
+import { fichaDoMotorNovo, quadroDoMotorNovo } from '../../src/engine/novo/ponte';
+import { doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
 
 // Revisão de anatomia (docs/revisoes/anatomia.md, 02/11/2026): os músculos de cada exercício, decididos item a item
 // pelo Gustavo. O secundário conta meia série (volume.serie-indireta.peso), então cada regra aqui muda o volume.
@@ -78,37 +79,67 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
 });
 
 describe('desenho do boneco × biblioteca (revisão de anatomia)', () => {
-  // Esta conferência lê a lista de músculos do motor de antes (src/engine), que só tem as 90 primeiras animações. As 81
-  // ligadas em 22/11/2026 são do motor novo, e nelas quem confere "o desenho só realça músculo que a biblioteca lista" é
-  // `npm run conferir:animacao`. Levar esta auditoria para o motor novo está no pacote D4.
-  const NO_MOTOR_DE_ANTES = new Set<string>(EX.map((x: { id: string }) => x.id));
-  const DO_MOTOR_DE_ANTES = BIBLIOTECA.filter((x) => x.animacaoId && NO_MOTOR_DE_ANTES.has(x.animacaoId));
+  // Desde o pacote D4 (23/11/2026) esta conferência lê o desenho do motor novo (src/engine/novo), o único que o app
+  // mostra: os `papeis` de cada animação, traduzidos para os grupos da biblioteca pela tabela dos músculos do motor
+  // (scripts/auditoria/anatomia-regras.ts, `doDesenho`). Cobre todas as animações (antes, só as 90 do motor de antes).
+  const COM_DESENHO = BIBLIOTECA.filter((x) => x.animacaoId);
+
+  it('todo exercício da biblioteca tem o seu desenho no motor novo', () => {
+    expect(COM_DESENHO.length).toBe(BIBLIOTECA.length);
+    for (const e of COM_DESENHO) expect(EXERCICIOS[e.animacaoId!], e.id).toBeDefined();
+  });
+
   it('achados 2 e 4: o principal do desenho é o principal da biblioteca, nem mais nem menos', () => {
-    for (const e of DO_MOTOR_DE_ANTES) {
+    for (const e of COM_DESENHO) {
       const d = doDesenho(e.animacaoId!);
       expect([...d.p].filter(ehMusculo).sort(), e.id).toEqual([...e.musculos.primarios].sort());
     }
   });
 
   it('achado 6: todo secundário da biblioteca aparece no desenho', () => {
-    for (const e of DO_MOTOR_DE_ANTES) {
+    for (const e of COM_DESENHO) {
       const d = doDesenho(e.animacaoId!);
       for (const m of e.musculos.secundarios) expect([...d.p, ...d.s], `${e.id}: ${m}`).toContain(m);
     }
   });
 
-  it('achado 8: o desenho só mostra músculo contado que a biblioteca lista, ou um ajudante da lista', () => {
-    for (const e of DO_MOTOR_DE_ANTES) {
+  it('achado 8: o desenho só mostra como principal ou secundário o músculo que a biblioteca conta naquele exercício', () => {
+    for (const e of COM_DESENHO) {
       const d = doDesenho(e.animacaoId!);
-      const conta = new Set<string>([...e.musculos.primarios, ...e.musculos.secundarios, ...(AJUDANTES[e.id] ?? [])]);
+      const conta = new Set<string>([...e.musculos.primarios, ...e.musculos.secundarios]);
       for (const m of [...d.p, ...d.s].filter(ehMusculo)) expect(conta, `${e.id}: ${m}`).toContain(m);
     }
   });
 
-  it('achado 3: as elevações laterais não realçam o trapézio superior', () => {
+  it('achado 8 e legenda A: o músculo que só ajuda a firmar nunca é um que a biblioteca conta naquele exercício', () => {
+    // Decisões do Gustavo de 02 e 03/11/2026: o músculo que só ajuda fica no desenho, listrado, sem contar no volume.
+    const comAjuda: string[] = [];
+    for (const e of COM_DESENHO) {
+      const d = doDesenho(e.animacaoId!);
+      const conta = new Set<string>([...e.musculos.primarios, ...e.musculos.secundarios]);
+      for (const m of d.a) expect(conta, `${e.id}: ${m}`).not.toContain(m);
+      if ([...d.a].some(ehMusculo)) comAjuda.push(e.id);
+    }
+    // os músculos contados em outros exercícios que aqui só ajudam (os do achado 8 e os das versões deles)
+    expect(comAjuda.sort()).toEqual(['desenvolvimento', 'elevacao-halteres', 'elevacao-lateral', 'elevacao-lateral-caneleira', 'elevacao-lateral-deitado', 'elevacao-lateral-elastico', 'elevacao-lateral-unilateral', 'elevacao-lateral-unilateral-elastico', 'flexao', 'flexao-elastico', 'flexao-pes-elevados', 'ponte-pes-bola']);
+  });
+
+  it('legenda A: o músculo que só ajuda sai listrado no modo Músculos; onde nenhum só ajuda, não há listra', () => {
+    const desenho = (id: string) => {
+      const ex = EXERCICIOS[id]!;
+      const F = fichaDoMotorNovo(ex);
+      return F.views.map((v: string) => quadroDoMotorNovo(ex, v, 'mus', F.T / 2, 0, '').html).join('');
+    };
+    expect(doDesenho('rosca-alternada').formasA).toContain('antebraco');
+    expect(desenho('rosca-alternada')).toMatch(/class="[^"]*\bb-ma\b/);
+    expect(doDesenho('supino-reto').formasA.size).toBe(0);
+    expect(desenho('supino-reto')).not.toMatch(/class="[^"]*\bb-ma\b/);
+  });
+
+  it('achado 3: as elevações laterais não realçam o trapézio', () => {
     for (const id of ['elevacao-halteres', 'elevacao-lateral']) {
       const d = doDesenho(id);
-      expect([...d.p, ...d.s], id).not.toContain('trapézio superior');
+      for (const forma of ['trapezio', 'trapSup', 'trapMedInf']) expect([...d.formasP, ...d.formasS, ...d.formasA], id).not.toContain(forma);
     }
   });
 });
