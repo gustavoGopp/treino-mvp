@@ -2,8 +2,10 @@
 // Proporções de desenho (aproximadas, escolhidas para o desenho, não medidas): cabeça ~23 cm, ombros ~2 cabeças
 // de largura (com o deltoide), quadril mais estreito que os ombros, cotovelo na altura da cintura e punho na altura
 // da virilha com o braço solto, coxa ≈ perna, pé ~1 cabeça.
-// Inspirada no boneco do guia (src/engine/estilo/corpo.ts: tronco por anéis elípticos e membros cônicos), mas é
-// código à parte: não importa nem muda o motor.
+// Desenhada como o Boneco do guia de antes (tronco por anéis elípticos e membros cônicos), mas é código à parte: do
+// motor só usa as contas de vetor e de sombra de src/engine/novo/realista/base.mjs. Não depende do motor de antes,
+// apagado no pacote D4 (23/11/2026). Trocá-la pelo corpo do motor novo mudaria os 49 desenhos aprovados dos cartões de
+// equipamento: é decisão de produto e está no backlog.
 // O tronco é a união dos cascos de cada par de anéis vizinhos (assim aparecem a cintura e a curva da lombar); o
 // contorno é desenhado por trás do recheio, para ficar só a borda de fora.
 import { V, f1, hull, mix } from '../../../src/engine/novo/realista/base.mjs';
