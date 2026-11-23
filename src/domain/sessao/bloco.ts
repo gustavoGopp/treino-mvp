@@ -128,8 +128,11 @@ function diasComRirMais1(programa: Programa, historico: Sessao[], bloco: Bloco, 
   const d = READAPTACAO.duranteUso;
   const media = (dias: number) => dias > d.normalAte && dias <= d.rirMais1Ate;
   let desde: number | undefined;
-  if (bloco.pausaDias === undefined && programa.fases.some((f) => f.regraId === 'readaptacao.gatilho')) desde = 0;
   const t = bloco.treinos;
+  // A pausa de 2 semanas dita no cadastro vale na 1ª volta pelo programa: enquanto o 1º bloco tem menos treinos que dias
+  // no programa (readaptacao.gatilho; conferência regra por regra, pacote D3, 23/11/2026). Antes, valia para todo dia ainda
+  // não feito no bloco, e a pessoa que mudava a rotina meses depois recebia o RIR +1 em todos os dias novos.
+  if (bloco.pausaDias === undefined && t.length < programa.dias.length && programa.fases.some((f) => f.regraId === 'readaptacao.gatilho')) desde = 0;
   for (let i = 1; i < t.length; i++) if (media(diaLocal(t[i]!.inicio, fusoMin) - diaLocal(t[i - 1]!.fim!, fusoMin))) desde = i;
   const hoje = diasSemTreino(historico, hojeIso, fusoMin);
   if (hoje !== undefined && media(hoje)) desde = t.length;

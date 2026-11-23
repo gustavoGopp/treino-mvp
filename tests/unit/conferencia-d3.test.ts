@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { cortarTempo, gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { inventarioDe } from '../../scripts/auditoria/ver-lib';
+import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
 import { ana, bruno } from '../personas';
+import { dia, programaDe, serieTipica } from './apoio-treino';
 
 // Os itens que a conferência regra por regra (pacote D1, 22/11/2026) deixou para o pacote D3, feitos em 23/11/2026
 // (`docs/revisoes/melhorias/d3-conferencia/README.md`). Cada bloco prende o exemplo que o conferente rodou.
@@ -93,6 +95,30 @@ describe('tempo.sobra-series: a trava do iniciante vale também nos dias com vag
     expect(flexoes.reduce((t, x) => t + x.series, 0)).toBeLessThanOrEqual(p.metas.posteriores ?? 0);
     for (const x of p.dias.flatMap((d) => d.exercicios)) if (x.tipo === 'composto') expect(x.series, x.exId).toBeLessThanOrEqual(4);
     expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series' && /sobem até ~8/.test(q.texto))).toBe(false);
+  });
+});
+
+describe('readaptacao.gatilho: o RIR +1 da pausa de 2 semanas do cadastro vale na 1ª volta pelo programa', () => {
+  // Intermediário que disse no cadastro "parei há umas 2 semanas": a 1ª sessão de cada dia leva RIR +1. Antes, todo dia
+  // ainda não feito no 1º bloco levava o RIR +1, e quem mudava a rotina 10 semanas depois recebia o +1 nos dias novos.
+  const tres = programaDe(perfil({ nivel: 'intermediario', dias: 3, min: 60, parado: 2 }), bruno.inventario);
+  const quatro = programaDe(perfil({ nivel: 'intermediario', dias: 4, min: 60, parado: 2 }), bruno.inventario);
+  const sessao = (n: number, diaId: string, p: Programa): Sessao => {
+    const d = p.dias.find((x) => x.id === diaId)!;
+    return { id: dia(n), diaId, semana: 1, inicio: dia(n), fim: dia(n, 11), exercicios: d.exercicios.map((x) => ({ exId: x.exId, series: [serieTipica(x.exId)] })) };
+  };
+
+  it('na 1ª volta, os dias ainda não feitos levam o +1', () => {
+    expect(tres.fases.map((f) => f.regraId)).toEqual(['readaptacao.gatilho']);
+    const h = hojeNoPrograma(tres, [sessao(0, tres.dias[0]!.id, tres)], dia(2));
+    expect(h.rirMais1).toEqual(tres.dias.slice(1).map((d) => d.id));
+  });
+
+  it('10 semanas depois, com a rotina trocada para 4 dias, nenhum dia novo leva o +1', () => {
+    const historico = Array.from({ length: 30 }, (_, i) => sessao(Math.floor(i / 3) * 7 + (i % 3) * 2, tres.dias[i % 3]!.id, tres));
+    expect(quatro.dias.some((d) => tres.dias.some((x) => x.id === d.id))).toBe(false);
+    const h = hojeNoPrograma(quatro, historico, dia(71));
+    expect(h.rirMais1).toEqual([]);
   });
 });
 
