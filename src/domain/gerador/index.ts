@@ -133,10 +133,7 @@ export const MUSCULOS_COM_META = MUSCULOS.filter((m) => m !== 'ombro_anterior' &
 /** Séries que contam no volume: a última série em drop set vale 2 (tempo.drop-set). */
 export const seriesDeVolume = (x: { series: number; dropSet?: boolean }) => x.series + (x.dropSet ? 1 : 0);
 
-// selecao.estabilidade: máquina, banco ou polia (a regra lista os três). A polia conta pela carga, e não pela marca: 13 dos
-// 21 exercícios de polia não tinham a marca "estável", e o crucifixo com halteres ganhava do crucifixo na polia "por ser mais
-// estável" (conferência regra por regra; pacote D3, 23/11/2026).
-const estavel = (e: Exercicio) => e.carga === 'polia' || e.tags.some((t) => t === 'estavel' || t === 'apoiado' || t === 'maquina');
+const estavel = (e: Exercicio) => e.tags.some((t) => t === 'estavel' || t === 'apoiado' || t === 'maquina');
 
 /** Metas semanais por músculo (volume.semanal.alvo; volume.semanal.minimo-eficaz). */
 export function metasDoPerfil(nivel: Nivel, prioridades: Grupo[]): Partial<Record<Musculo, number>> {
@@ -315,7 +312,7 @@ export function contextoDeSelecao(
     }
     const criterios: [(x: Exercicio) => number, string][] = [
       [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
-      [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), e.carga === 'polia' ? 'é mais estável (a polia guia o movimento), mais fácil de aprender' : 'é mais estável e apoiado, mais fácil de aprender'],
+      [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), 'é mais estável e apoiado, mais fácil de aprender'],
       [(x) => -cargaPossivel(x), 'deixa pôr mais carga com o seu equipamento'],
       [(x) => umLadoSemPrecisar(funcao, x), 'trabalha os dois lados de uma vez, e cada série leva metade do tempo'],
       [(x) => (preferido(funcao, x) ? 0 : 1), 'você prefere este'],
@@ -1915,7 +1912,7 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
   }
   const doEquipamento = porqueDoEquipamento(e);
   if (doEquipamento) p.push(doEquipamento);
-  if (nivel === 'iniciante' && estavel(e)) p.push({ regraId: r('selecao.estabilidade'), texto: e.carga === 'polia' ? 'Exercício estável (a polia guia o movimento), mais fácil de aprender.' : 'Exercício estável e apoiado, mais fácil de aprender.' });
+  if (nivel === 'iniciante' && estavel(e)) p.push({ regraId: r('selecao.estabilidade'), texto: 'Exercício estável e apoiado, mais fácil de aprender.' });
   if (e.tags.includes('montagem'))
     p.push({ regraId: r('seguranca.montagem'), texto: 'Antes da 1ª série, monte com segurança: travas, apoios e ancoragem, como no cartão do exercício.' });
   p.push({ regraId: r('selecao.equivalencia'), texto: 'As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado.' });

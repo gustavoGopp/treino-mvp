@@ -1025,7 +1025,7 @@
   },
   {
     "id": "selecao.estabilidade",
-    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante. **Desde 23/11/2026 (os itens da conferência regra por regra no pacote D3):** todo exercício de polia conta como estável, pela carga, como a regra lista; antes, \"estável\" era só a marca do exercício, que 13 dos 21 de polia não tinham, e o iniciante recebia o crucifixo com halteres \"por ser mais estável\" que o crucifixo na polia",
+    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante. **Conferência regra por regra de 22/11/2026:** \"estável\" é a marca do exercício, e 13 dos 21 de polia não a têm (o iniciante com polia, halteres e banco recebe o crucifixo com halteres \"por ser mais estável\" que o da polia). Medido no pacote D3 (23/11/2026) e recusado: contar toda polia como estável não mexia em nenhum defeito da régua, mas, na população (680.625 programas), punha mais músculos com 1 a 3 séries havendo exercício (+10) e mais músculos fora do foco com menos de 4 séries (+6), em geral por exercícios de polia de um lado só, que levam o dobro do tempo; nenhuma medida melhorava. Fica como está (`docs/revisoes/melhorias/d3-conferencia/README.md`)",
     "valores": {
       "iniciante": "desempate dentro do nível da função",
       "intermediario": "não se aplica",

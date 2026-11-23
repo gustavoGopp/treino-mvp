@@ -54,24 +54,6 @@ describe('selecao.peitoral-inclinado: o 2º empurrar olha a vaga que coube no di
   });
 });
 
-describe('selecao.estabilidade: a polia conta como estável, como a regra lista', () => {
-  // Polia dupla, halteres e banco regulável (o inventário do Bruno), iniciante de 4 dias de 60 min: antes, a vaga de
-  // crucifixo ia para o crucifixo com halteres, "mais estável e apoiado" que o crucifixo na polia, que vem antes na lista.
-  it('o iniciante com polia recebe o crucifixo na polia, e o porquê não diz "apoiado" de um exercício de polia', () => {
-    const p = ok(perfil({ nivel: 'iniciante', dias: 4, min: 60 }), bruno.inventario);
-    const cruci = p.dias.flatMap((d) => d.exercicios).filter((x) => x.funcao === 'crucifixo');
-    expect(cruci.map((x) => x.exId)).toContain('crucifixo-polia');
-    expect(cruci.map((x) => x.exId)).not.toContain('crucifixo-halteres');
-    for (const x of p.dias.flatMap((d) => d.exercicios).filter((y) => y.exId.includes('polia')))
-      for (const q of x.porque) expect(q.texto).not.toMatch(/estável e apoiado/);
-  });
-
-  it('o intermediário não muda: o desempate é só do iniciante', () => {
-    const p = ok(perfil({ nivel: 'intermediario', dias: 4, min: 60 }), bruno.inventario);
-    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'crucifixo-polia')).toBe(true);
-  });
-});
-
 describe('readaptacao.gatilho: o RIR +1 da pausa de 2 semanas do cadastro vale na 1ª volta pelo programa', () => {
   // Intermediário que disse no cadastro "parei há umas 2 semanas": a 1ª sessão de cada dia leva RIR +1. Antes, todo dia
   // ainda não feito no 1º bloco levava o RIR +1, e quem mudava a rotina 10 semanas depois recebia o +1 nos dias novos.
