@@ -217,8 +217,13 @@ describe(`propriedades (${variacoes.length} combinações)`, { timeout: 30_000 }
   it('mesma entrada → mesma saída', () => {
     for (const v of variacoes.slice(0, 40)) expect(JSON.stringify(gerarPrograma(v.perfil, v.inv)), v.nome).toBe(JSON.stringify(gerarPrograma(v.perfil, v.inv)));
   });
-  it('nada exige equipamento fora do inventário, nem carrega articulação com dor > 5, nem passa da complexidade do nível', () => {
-    for (const v of variacoes) {
+  // Em 3 partes (23/11/2026): este é o 1º caso que gera os 2.106 programas (os seguintes reaproveitam, por `ok`), e o
+  // D3 fez o gerador trabalhar mais. Medido com cobertura aqui: o caso inteiro foi de 10,5 s para 14,0 s; no GitHub, que
+  // é cerca de 2,5 vezes mais lento, passou de 30 s (rodada 527). Cada parte confere o mesmo, num terço das combinações:
+  // medidas com cobertura aqui, 5,6 s, 6,1 s e 2,8 s.
+  it.each([1, 2, 3])('nada exige equipamento fora do inventário, nem carrega articulação com dor > 5, nem passa da complexidade do nível (parte %i de 3)', (parte) => {
+    const tamanho = Math.ceil(variacoes.length / 3);
+    for (const v of variacoes.slice((parte - 1) * tamanho, parte * tamanho)) {
       const p = ok(v.perfil, v.inv);
       const caps = capacidades(Object.fromEntries(Object.entries(v.inv).filter(([k]) => !v.perfil.evitarEquipamentos.includes(k as never))));
       const doidas = doresDe(v.perfil).filter((d) => d.nota! > 5).map((d) => d.articulacao);

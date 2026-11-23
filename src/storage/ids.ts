@@ -13,6 +13,8 @@ import { BIBLIOTECA } from '../domain/biblioteca';
 export const IDS_ANTIGOS: Record<string, string | null> = {};
 
 const IDS_DA_BIBLIOTECA: ReadonlySet<string> = new Set(BIBLIOTECA.map((e) => e.id));
+/** A animação aprovada de cada exercício, para completar o programa salvo antes de ela existir. */
+const ANIMACAO_DA_BIBLIOTECA: ReadonlyMap<string, string> = new Map(BIBLIOTECA.flatMap((e) => (e.animacaoId ? [[e.id, e.animacaoId] as const] : [])));
 
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): v is Obj => !!v && typeof v === 'object' && !Array.isArray(v);
@@ -24,10 +26,19 @@ const obj = (v: unknown): v is Obj => !!v && typeof v === 'object' && !Array.isA
  *   `foraDaBiblioteca` da própria sessão: o registro não se perde e continua no arquivo de exportação;
  * - em "algo a evitar" e "prefiro este", o id desconhecido sai (não há mais o que evitar ou preferir);
  * - no programa salvo, a alternativa desconhecida sai; se um exercício prescrito é desconhecido, o programa salvo
- *   sai, e o app gera outro ao abrir (ele é derivado do cadastro).
+ *   sai, e o app gera outro ao abrir (ele é derivado do cadastro);
+ * - no programa salvo, o exercício guardado sem animação ganha a que a biblioteca tem hoje (23/11/2026). O programa
+ *   anota a animação de cada exercício; quem o gerou antes de 22/11, quando 81 exercícios ganharam a animação, via o
+ *   cartão de texto nesses até tocar em "Atualizar", e "Atualizar" também pode trocar exercícios. Completar a animação
+ *   não troca nenhum exercício nem série: só deixa o guia aparecer.
  * Nada é inventado, e o que tem formato inesperado fica como está, para o esquema recusar.
  */
-export function acertarIds(dados: Obj, antigos: Record<string, string | null> = IDS_ANTIGOS, conhecidos: ReadonlySet<string> = IDS_DA_BIBLIOTECA): Obj {
+export function acertarIds(
+  dados: Obj,
+  antigos: Record<string, string | null> = IDS_ANTIGOS,
+  conhecidos: ReadonlySet<string> = IDS_DA_BIBLIOTECA,
+  animacoes: ReadonlyMap<string, string> = ANIMACAO_DA_BIBLIOTECA,
+): Obj {
   const novo = (id: unknown): string | undefined => {
     if (typeof id !== 'string') return undefined;
     const trocado = antigos[id] ?? id;
@@ -82,7 +93,8 @@ export function acertarIds(dados: Obj, antigos: Record<string, string | null> = 
           const alternativas = Array.isArray(x.alternativas) ? x.alternativas.map(novo).filter((a) => a !== undefined) : x.alternativas;
           // o par do superset é outro exercício do mesmo dia: se foi renomeado, acompanha
           const par = typeof x.supersetCom === 'string' ? { supersetCom: novo(x.supersetCom) ?? x.supersetCom } : {};
-          return { ...x, exId: exId ?? x.exId, alternativas, ...par };
+          const animacao = x.animacaoId == null && exId ? animacoes.get(exId) : undefined;
+          return { ...x, exId: exId ?? x.exId, alternativas, ...par, ...(animacao ? { animacaoId: animacao } : {}) };
         }),
       };
     });
