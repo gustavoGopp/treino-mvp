@@ -6,13 +6,15 @@
 //   um toque é o nome acessível de um botão ou link; "css:<seletor>" toca num seletor; "html:<seletor>" imprime o HTML;
 //   "lista:<seletor>=<n>" escolhe a opção n de uma lista
 // Opções por variável: LETRA=125 (letra do sistema em 125%), PARADO=1 (prefers-reduced-motion), INTEIRA=1 (página inteira),
-// ERRO=1 (força a tela de erro, pela chave de teste do app), MARGEM=1 (lista quem passa da margem de 16 px da página)
+// ERRO=1 (força a tela de erro, pela chave de teste do app), MARGEM=1 (lista quem passa da margem de 16 px da página),
+// PORTA=4311 (outra porta, para não usar o servidor de outra sessão na 4173; o padrão é 4173)
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { build } from 'esbuild';
 import { chromium } from 'playwright';
 
 const [pasta, tamanho, tema, ...telas] = process.argv.slice(2);
+const PORTA = process.env.PORTA || '4173';
 const [largura, altura] = tamanho.split('x').map(Number);
 mkdirSync(pasta, { recursive: true });
 
@@ -41,10 +43,10 @@ const estado = {
 };
 if (!M.estadoSchema.safeParse(estado).success) throw new Error('estado da Ana inválido');
 
-const noAr = async () => { try { return (await fetch('http://localhost:4173/')).ok; } catch { return false; } };
+const noAr = async () => { try { return (await fetch(`http://localhost:${PORTA}/`)).ok; } catch { return false; } };
 let servidor = null;
 if (!(await noAr())) {
-  servidor = spawn('npx', ['vite', 'preview', '--port', '4173', '--strictPort'], { stdio: 'ignore', detached: true });
+  servidor = spawn('npx', ['vite', 'preview', '--port', PORTA, '--strictPort'], { stdio: 'ignore', detached: true });
   for (let i = 0; i < 60 && !(await noAr()); i++) await new Promise((ok) => setTimeout(ok, 500));
 }
 const navegador = await chromium.launch();
@@ -57,7 +59,7 @@ try {
     const erros = [];
     page.on('console', (m) => m.type() === 'error' && erros.push(m.text()));
     page.on('pageerror', (e) => erros.push(String(e)));
-    await page.goto('http://localhost:4173/termos');
+    await page.goto(`http://localhost:${PORTA}/termos`);
     await page.evaluate(async (e) => {
       const db = await new Promise((ok, erro) => {
         const p = indexedDB.open('keyval-store');
@@ -72,7 +74,7 @@ try {
       });
     }, estado);
     if (process.env.ERRO) await page.evaluate(() => sessionStorage.setItem('treino-teste-erro', '1'));
-    await page.goto(`http://localhost:4173${rota}`);
+    await page.goto(`http://localhost:${PORTA}${rota}`);
     // a letra maior do sistema, como nos testes (pelo estilo do elemento: a política de segurança do app barra uma folha de estilo embutida)
     if (process.env.LETRA) await page.evaluate((p) => (document.documentElement.style.fontSize = `${p}%`), process.env.LETRA);
     await page.waitForTimeout(1200);
