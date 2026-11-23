@@ -75,7 +75,7 @@
   color-scheme:dark;
 }
 /* o palco e as prévias do Boneco usam os tons de sempre */
-.stage,.miniatura,.estilo-boneco > svg,.lab-mini{--ink:var(--st-ink);--muted:var(--st-muted);--line:var(--st-line)}
+.stage,.miniatura,.estilo-boneco > svg{--ink:var(--st-ink);--muted:var(--st-muted);--line:var(--st-line)}
 
 /* ---------- base ---------- */
 *{box-sizing:border-box}
@@ -1009,20 +1009,6 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   /* com zoom de 200%, o "Começar" quebra em 2 ou 3 linhas: o foco que rola até um selo precisa de mais folga */
   html:has(.nav-inferior):has(.acao-fixa){scroll-padding-bottom:calc(var(--h64) * 4)}
 }
-
-/* ---------- o laboratório do Boneco (rota só de desenvolvimento e das prévias) ---------- */
-.lab .lab-estilo{margin:var(--s8)}
-.lab .lab-estilo button{flex:1;min-height:var(--h48)}
-.lab .lab-modos{grid-template-columns:repeat(2,1fr)}
-.lab-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s8)}
-.lab-mini{border:0;border-radius:var(--r8);background:var(--stage);padding:0;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;color:var(--st-ink)}
-.lab-mini[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--acao)}
-.lab-mini svg{width:100%;aspect-ratio:4/3;display:block}
-.lab-mini span{font-size:var(--t-rotulo);padding:var(--s4) 0;background:var(--superficie-2);color:var(--texto)}
-.lab-legenda{margin-top:var(--s8)}
-.lab-cor{display:inline-block;width:var(--s16);height:var(--s8)}
-.lab-cor.p{background:var(--m-p)}
-.lab-cor.s{background:var(--m-s)}
 
 /* BONECO:INICIO os estilos do corpo do Boneco (R4 e acabamento A2), do motor (não mudam) */
 /* R4 (experimento do boneco): estilos novos do corpo, A (boneco aprimorado) e B (silhueta limpa).

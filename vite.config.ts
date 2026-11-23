@@ -17,9 +17,6 @@ const commit = () => {
   }
 };
 
-// Rota de laboratório do boneco (R4): só em `npm run dev` e nas prévias da Vercel (nunca na produção).
-const lab = (mode: string) => mode === 'development' || process.env.VERCEL_ENV === 'preview';
-
 // A prévia local (`npm run preview`, usada pelo e2e) responde com os mesmos cabeçalhos da produção (vercel.json):
 // assim a Content-Security-Policy é exercitada por toda a suíte, com o service worker e os desenhos do guia.
 const cabecalhosDaVercel = (): Record<string, string> => {
@@ -52,13 +49,12 @@ const enxugarObjetos = (): Plugin => ({
   },
 });
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   preview: { headers: cabecalhosDaVercel() },
   // O Worker do Boneco carrega cada exercício do motor novo só quando ele é pedido (um arquivo por exercício): para
   // isso o pacote do Worker precisa ser um módulo, que aceita ser dividido em partes.
   worker: { format: 'es', plugins: () => [enxugarObjetos()] },
   define: {
-    __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),
     __DATA_BUILD__: JSON.stringify(new Date().toISOString()),
   },
@@ -104,4 +100,4 @@ export default defineConfig(({ mode }) => ({
       thresholds: { lines: 90, statements: 90, functions: 90, branches: 90 },
     },
   },
-}));
+});
