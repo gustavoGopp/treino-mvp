@@ -700,3 +700,32 @@ O que foi feito está no devlog e em `revisoes/melhorias/d3/README.md`. Ficou pa
 - Empurrar e Puxar com 41 a 46 min em 75 para a avançada com 4 focos (a Carla): é o "quem tem muito tempo fica com dias curtos", fora do D3.
 
 **Os 15 itens que a conferência regra por regra deixou para o D3** (seção "Da conferência regra por regra, pacote D1", acima) **não foram feitos nesta rodada**: o pacote parou nos três itens do roteiro e na medida deles. Continuam valendo como estão listados lá, cada um com o critério do D3 (personas, população e régua antes e depois; nenhum defeito pior).
+
+## Dos 15 itens da conferência que ficaram para o D3 (23/11/2026)
+
+O que foi feito está no devlog e em `revisoes/melhorias/d3-conferencia/README.md`, com a medida de cada item. Da lista "Para o pacote D3" da seção "Da conferência regra por regra, pacote D1", acima:
+
+**Saíram da lista (feitos)**
+- ~~`selecao.peitoral-inclinado`~~: o dia de Empurrar tem o supino ou a flexão, quando isso não custa tempo nem um dia fraco.
+- ~~`iniciante.fase-aprendizado`~~: o iniciante com pausa de 2 semanas recebe a fase de aprendizado.
+- ~~`readaptacao.gatilho`~~: o +1 da pausa do cadastro vale na 1ª volta pelo programa.
+- ~~`divisao.sem-puxar`~~: a tela da rotina marca a mesma divisão que o programa usa, e o aviso de 6 dias manda deixar o app escolher.
+- ~~`tempo.superserie`, a metade do iniciante~~: sem supersérie nas semanas 1 e 2 de uma volta de pausa.
+
+**Continuam abertos, com a medida** (cada um foi tentado e piorava algum defeito em algum grupo; a regra registra o número)
+- `tempo.superserie`, a outra metade: a tela do treino não conduz a dupla (cada série ganha o descanso inteiro). É tela e decisão de produto: conduzir a dupla, ou o tempo estimado deixar de contar a economia.
+- `selecao.dia-sem-principal`: o aviso ainda culpa a dor por um dia fraco que já existia sem ela em 39 de 39.600 programas com dor 7 (eram 81). Um texto novo pede gerar o programa sem a dor em cada troca (cerca de 1/3 a mais de conta nesses casos); a outra saída é mudar a condição da troca. Decisão.
+- `selecao.triceps-acima-cabeca` (30 min): garantir 1 por semana punha o dia acima de 110% em 208 programas. Pede tirar uma vaga-base de um dia de 4 exercícios: decisão de produto.
+- `selecao.estabilidade`: a polia como estável subia dois cuidados do retrato (+10 e +6), por exercícios de polia de um lado só. A tentar: só a polia de dois lados conta como estável.
+- `selecao.panturrilha-alongada`: tirar a do chão do lugar do degrau subia o C1 (o foco abaixo da meta com tempo) em 20 a 674 programas, conforme a versão.
+- `selecao.aducao-complemento`: a adução por último baixava o dia longo (−248) e o C1 (−37) no total, mas fazia subir algum defeito em 12 grupos (1 a 3 programas cada).
+- `volume.semanal.minimo`: poupar o foco abaixo do mínimo no corte punha o dia acima de 110% em 1.390 programas.
+- `volume.equilibrio-coxa`: conferir a razão na distribuição tirava 815 dos 818 casos fora da faixa, mas subia o C1 (+13) e o dia longo (+9).
+- `tempo.sobra-series`: a trava do iniciante nos dias com vaga vazia subia o dia fraco (+12), o C1 e o E1, mesmo só no programa já escolhido.
+
+**Para o Gustavo decidir**
+- `selecao.complementos`: 2 exercícios de tríceps por semana (esta regra) ou 1, 2 se for foco (`selecao.exercicios-por-musculo`, mais nova, que o app segue)?
+- `volume.semanal.maximo`: o máximo de séries do nível é limite de verdade (pede tirar exercícios do programa) ou só o alvo do tempo que sobra, como a frase diz hoje?
+
+**Da verificação desta rodada**
+- O teste de tela novo do item da rotina (`tests/e2e/onboarding.spec.ts`, "divisão sem nada para puxar") está escrito e não rodou; `npm run verificar` também não (combinado).
