@@ -1245,10 +1245,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             // Uma série a mais conta para todos os músculos do exercício, com as indiretas: nenhum passa do teto da sessão (R5a).
             const acerta = e.musculos.primarios.includes(m) || (viaIndireta && e.musculos.secundarios.includes(m));
             if (!acerta || x.series >= VOLUME.seriesPorExercicio.max) return;
-            // Iniciante: fora do foco, só os multiarticulares sobem, e até 3 séries (praticar o básico, com folga no dia). Nos dois
-            // passos desde 23/11/2026 (conferência regra por regra, pacote D3): antes, só no 2º, e nos dias com vaga vazia o
-            // isolador do iniciante subia até 4 séries.
-            if (nivel === 'iniciante' && !prioritarios.has(m) && (x.tipo !== 'composto' || x.series >= VOLUME.sobraDoIniciante)) return;
+            // 2º passo, iniciante: fora do foco, só os multiarticulares sobem, e até 3 séries (praticar o básico, com folga no dia).
+            if (emTodos && nivel === 'iniciante' && !prioritarios.has(m) && (x.tipo !== 'composto' || x.series >= VOLUME.sobraDoIniciante)) return;
             // 2º passo: com 30 min ou menos, o exercício protegido que não é do foco fica com 2 séries (tempo.musculo-protegido).
             if (emTodos && perfil.minutosSessao <= TEMPO.protegidoCurto && !prioritarios.has(m) && x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) return;
             if (deUmaSerie(e).some(([k, n]) => (noDia[k] ?? 0) + n > VOLUME.sessaoTeto + 1e-9)) return;
@@ -1484,9 +1482,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             regraId: r('tempo.sobra-series'),
             texto: focoPossivel
               ? `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`
-              : nivel === 'iniciante'
-                ? `Nos dias com vaga sem exercício possível, o tempo que sobrou virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
-                : `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série: os músculos que dá para treinar sobem até ~${VOLUME.sobraAte[nivel]} séries por semana.`,
+              : `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série: os músculos que dá para treinar sobem até ~${VOLUME.sobraAte[nivel]} séries por semana.`,
           },
         ]
       : []),

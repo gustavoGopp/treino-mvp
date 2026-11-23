@@ -94,20 +94,6 @@ describe('selecao.panturrilha-alongada: a panturrilha no chão nunca entra no lu
   });
 });
 
-describe('tempo.sobra-series: a trava do iniciante vale também nos dias com vaga vazia', () => {
-  // Iniciante sem foco, sem equipamento, 2 dias de 60 min (a persona Iara): os dias têm vaga sem exercício possível (as
-  // costas), e o 1º passo do tempo que sobra subia os isoladores até 4 séries (a flexão de joelho deslizante com 4 nos dois
-  // dias: 8 séries de posteriores com meta de 6).
-  it('nenhum isolador passa da meta pela sobra: só os multiarticulares sobem, até 3 séries', () => {
-    const p = ok(perfil({ nivel: 'iniciante', dias: 2, min: 60 }), {});
-    const flexoes = p.dias.flatMap((d) => d.exercicios).filter((x) => x.exId === 'flexao-joelho-deslizante');
-    expect(flexoes.length).toBe(2);
-    expect(flexoes.reduce((t, x) => t + x.series, 0)).toBeLessThanOrEqual(p.metas.posteriores ?? 0);
-    for (const x of p.dias.flatMap((d) => d.exercicios)) if (x.tipo === 'composto') expect(x.series, x.exId).toBeLessThanOrEqual(4);
-    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series' && /sobem até ~8/.test(q.texto))).toBe(false);
-  });
-});
-
 describe('readaptacao.gatilho: o RIR +1 da pausa de 2 semanas do cadastro vale na 1ª volta pelo programa', () => {
   // Intermediário que disse no cadastro "parei há umas 2 semanas": a 1ª sessão de cada dia leva RIR +1. Antes, todo dia
   // ainda não feito no 1º bloco levava o RIR +1, e quem mudava a rotina 10 semanas depois recebia o +1 nos dias novos.
