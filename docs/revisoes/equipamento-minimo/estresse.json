@@ -665,7 +665,7 @@
    "mediaSeries": {
     "peito": 9.1,
     "costas": 5.9,
-    "ombro_lateral": 7,
+    "ombro_lateral": 6.9,
     "ombro_posterior": 6.2,
     "biceps": 6.6,
     "triceps": 6.4,
@@ -691,10 +691,10 @@
    "abaixoDe4SemDorPct": {
     "peito": 0,
     "costas": 0,
-    "ombro_lateral": 23.6,
+    "ombro_lateral": 25.1,
     "ombro_posterior": 3.8,
     "biceps": 3.6,
-    "triceps": 11.2,
+    "triceps": 10.8,
     "quadriceps": 0,
     "posteriores": 8.3,
     "gluteos": 2.2,
@@ -716,7 +716,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 274299,
+    "animacao": 274263,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -966,7 +966,7 @@
      "exerciciosPorDia": 3.3,
      "cabem": 3,
      "seriesPorExercicio": 2.4,
-     "noTetoDeSeriesPct": 13,
+     "noTetoDeSeriesPct": 13.1,
      "diaMaisLongoMediana": 31,
      "sobraMaisDe30Pct": 0
     },
@@ -975,7 +975,7 @@
      "exerciciosPorDia": 4,
      "cabem": 4,
      "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 13.8,
+     "noTetoDeSeriesPct": 12.9,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -5519,7 +5519,7 @@
    "mediaSeries": {
     "peito": 8.2,
     "costas": 8.2,
-    "ombro_lateral": 7.1,
+    "ombro_lateral": 7,
     "ombro_posterior": 6.4,
     "biceps": 8,
     "triceps": 7.5,
@@ -5543,17 +5543,17 @@
     "abdomen": 0
    },
    "abaixoDe4SemDorPct": {
-    "peito": 0.3,
+    "peito": 0.1,
     "costas": 0,
-    "ombro_lateral": 22.9,
+    "ombro_lateral": 24.2,
     "ombro_posterior": 4.5,
     "biceps": 3.5,
-    "triceps": 10,
+    "triceps": 9.7,
     "quadriceps": 0,
     "posteriores": 6.3,
     "gluteos": 5.8,
     "panturrilha": 27.4,
-    "abdomen": 21.2
+    "abdomen": 21.7
    },
    "vagasSemOpcao": {
     "panturrilha-sentada": {
@@ -5567,7 +5567,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 281971,
+    "animacao": 282174,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -5879,8 +5879,8 @@
      "programas": 180,
      "exerciciosPorDia": 3.3,
      "cabem": 3,
-     "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 16.8,
+     "seriesPorExercicio": 2.4,
+     "noTetoDeSeriesPct": 15.1,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -5888,8 +5888,8 @@
      "programas": 180,
      "exerciciosPorDia": 4.1,
      "cabem": 4,
-     "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 17.3,
+     "seriesPorExercicio": 2.5,
+     "noTetoDeSeriesPct": 15.7,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -9302,7 +9302,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22792,
    "guia": {
-    "animacao": 224783,
+    "animacao": 224867,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -9520,10 +9520,10 @@
    "tempo": {
     "20": {
      "programas": 180,
-     "exerciciosPorDia": 3,
+     "exerciciosPorDia": 3.1,
      "cabem": 3,
      "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 17.5,
+     "noTetoDeSeriesPct": 15.7,
      "diaMaisLongoMediana": 23,
      "sobraMaisDe30Pct": 0
     },
@@ -15025,9 +15025,9 @@
   "barra-porta+elasticos": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 8.2,
+    "peito": 8.3,
     "costas": 8.4,
-    "ombro_lateral": 7.1,
+    "ombro_lateral": 7,
     "ombro_posterior": 6.5,
     "biceps": 8.1,
     "triceps": 7.5,
@@ -15051,17 +15051,17 @@
     "abdomen": 0
    },
    "abaixoDe4SemDorPct": {
-    "peito": 0.3,
+    "peito": 0.1,
     "costas": 0,
-    "ombro_lateral": 22.6,
+    "ombro_lateral": 24.4,
     "ombro_posterior": 4.5,
     "biceps": 3.5,
-    "triceps": 9.8,
+    "triceps": 9,
     "quadriceps": 0,
     "posteriores": 6.3,
     "gluteos": 5.8,
     "panturrilha": 27.4,
-    "abdomen": 21.2
+    "abdomen": 21.7
    },
    "vagasSemOpcao": {
     "panturrilha-sentada": {
@@ -15075,7 +15075,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 283414,
+    "animacao": 283637,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -15405,7 +15405,7 @@
      "exerciciosPorDia": 3.3,
      "cabem": 3,
      "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 17.2,
+     "noTetoDeSeriesPct": 15.5,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -15414,7 +15414,7 @@
      "exerciciosPorDia": 4.1,
      "cabem": 4,
      "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 17.5,
+     "noTetoDeSeriesPct": 15.9,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -15905,9 +15905,9 @@
   "suspensao+elasticos": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 7.8,
+    "peito": 7.9,
     "costas": 8.3,
-    "ombro_lateral": 7.1,
+    "ombro_lateral": 7,
     "ombro_posterior": 6.5,
     "biceps": 8.1,
     "triceps": 7.5,
@@ -15931,17 +15931,17 @@
     "abdomen": 0
    },
    "abaixoDe4SemDorPct": {
-    "peito": 0.3,
+    "peito": 0.1,
     "costas": 0,
-    "ombro_lateral": 22.7,
+    "ombro_lateral": 24,
     "ombro_posterior": 4.5,
     "biceps": 3.5,
-    "triceps": 10,
+    "triceps": 9.7,
     "quadriceps": 0,
     "posteriores": 6.3,
     "gluteos": 5.8,
     "panturrilha": 27.4,
-    "abdomen": 21.1
+    "abdomen": 21.7
    },
    "vagasSemOpcao": {
     "panturrilha-sentada": {
@@ -15955,7 +15955,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 282488,
+    "animacao": 282677,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -16282,16 +16282,16 @@
      "exerciciosPorDia": 3.3,
      "cabem": 3,
      "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 17.1,
+     "noTetoDeSeriesPct": 15.4,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
     "30": {
      "programas": 180,
-     "exerciciosPorDia": 4,
+     "exerciciosPorDia": 4.1,
      "cabem": 4,
      "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 18.1,
+     "noTetoDeSeriesPct": 16.5,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -16354,12 +16354,12 @@
   "banco+halteres-leves": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 8.5,
+    "peito": 8.6,
     "costas": 5.1,
     "ombro_lateral": 7.4,
     "ombro_posterior": 6.1,
     "biceps": 7.8,
-    "triceps": 7,
+    "triceps": 7.1,
     "quadriceps": 6.8,
     "posteriores": 8.2,
     "gluteos": 11.6,
@@ -16382,15 +16382,15 @@
    "abaixoDe4SemDorPct": {
     "peito": 0,
     "costas": 0,
-    "ombro_lateral": 20.1,
+    "ombro_lateral": 21,
     "ombro_posterior": 3.8,
     "biceps": 3.4,
-    "triceps": 9.7,
+    "triceps": 9.6,
     "quadriceps": 0,
     "posteriores": 5.8,
     "gluteos": 1.7,
     "panturrilha": 23.8,
-    "abdomen": 20.1
+    "abdomen": 20.9
    },
    "vagasSemOpcao": {
     "extensora": {
@@ -16404,7 +16404,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 277414,
+    "animacao": 277665,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -16711,7 +16711,7 @@
      "exerciciosPorDia": 3.3,
      "cabem": 3,
      "seriesPorExercicio": 2.4,
-     "noTetoDeSeriesPct": 14,
+     "noTetoDeSeriesPct": 12.5,
      "diaMaisLongoMediana": 29,
      "sobraMaisDe30Pct": 0
     },
@@ -16720,7 +16720,7 @@
      "exerciciosPorDia": 4,
      "cabem": 4,
      "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 16,
+     "noTetoDeSeriesPct": 14.2,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -16785,7 +16785,7 @@
    "mediaSeries": {
     "peito": 8.2,
     "costas": 8.2,
-    "ombro_lateral": 7.1,
+    "ombro_lateral": 7,
     "ombro_posterior": 6.4,
     "biceps": 8,
     "triceps": 7.5,
@@ -16809,17 +16809,17 @@
     "abdomen": 0
    },
    "abaixoDe4SemDorPct": {
-    "peito": 0.3,
+    "peito": 0.1,
     "costas": 0,
-    "ombro_lateral": 22.9,
+    "ombro_lateral": 24.2,
     "ombro_posterior": 4.5,
     "biceps": 3.5,
-    "triceps": 10,
+    "triceps": 9.7,
     "quadriceps": 0,
     "posteriores": 6.3,
     "gluteos": 5.8,
     "panturrilha": 27.4,
-    "abdomen": 21.2
+    "abdomen": 21.7
    },
    "vagasSemOpcao": {
     "panturrilha-sentada": {
@@ -16833,7 +16833,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 282194,
+    "animacao": 282397,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -17161,8 +17161,8 @@
      "programas": 180,
      "exerciciosPorDia": 3.3,
      "cabem": 3,
-     "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 16.8,
+     "seriesPorExercicio": 2.4,
+     "noTetoDeSeriesPct": 15.1,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },
@@ -17170,8 +17170,8 @@
      "programas": 180,
      "exerciciosPorDia": 4.1,
      "cabem": 4,
-     "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 17.3,
+     "seriesPorExercicio": 2.5,
+     "noTetoDeSeriesPct": 15.7,
      "diaMaisLongoMediana": 32,
      "sobraMaisDe30Pct": 0
     },

@@ -2646,6 +2646,10 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 1
 
 **De onde veio.** Os lotes M4 e M5 da análise crítica estavam feitos desde 22/11, fora da `main`, à espera de nove decisões de texto e do ok. Em 23/11 o Gustavo pediu: "quero encerrar por completo o que falta para finalizarmos essa versão inicial, faça tudo que falta". As decisões foram aplicadas como estavam propostas (a lista está no fechamento de `revisoes/melhorias/m4/README.md` e de `m5/README.md`; ele pode vetar qualquer uma).
 
+## Os 15 itens da conferência regra por regra que ficaram para o D3 (23/11/2026)
+
+O Gustavo pediu, em 23/11, para "fazer tudo que falta" para fechar a versão inicial. Esta rodada pegou os 15 apontamentos do gerador que a conferência regra por regra (pacote D1) deixou para o D3, com o critério do D3: reproduzir o exemplo do conferente, escrever a regra antes do código, prender o defeito num teste, consertar e medir antes e depois (as personas, a grade da régua e a população de 680.625 programas, cada item ligado e desligado). Nenhum par "grupo × defeito da régua" pode piorar, nem em 1 programa. No ramo `claude/d3-conferencia`, fora da `main`, à espera da verificação completa e do ok do Gustavo. O registro inteiro, item por item, está em `revisoes/melhorias/d3-conferencia/README.md`.
+
 **O que mudou para quem usa**
 
 | | Antes | Depois |
@@ -2666,3 +2670,46 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 1
 **Verificação.** O resultado do `npm run verificar` da junção está no relato da sessão.
 
 **Rascunho de post.** "Meu app de treino avisava o fim do descanso com três bipes que o iPhone calava no silencioso. Agora é um som de arquivo, a tela diz a hora do fim, e quem sai do app pode receber um aviso do celular. E o fim do treino virou uma frase: '2º treino da semana. Falta 1.'"
+
+| Sem banco inclinável, 5 ou 6 dias de 30 min | O dia de Empurrar saía com crucifixo, elevação e tríceps, sem supino nem flexão | O dia tem o supino (ou a flexão), quando isso não custa tempo nem um dia fraco |
+| Iniciante que diz "parei há umas 2 semanas" | Só 1 repetição de reserva a mais na 1ª vez de cada dia; programa completo e superséries desde a semana 1 | A fase de aprendizado: 2 semanas com mais reserva, 3/4 das séries, sem supersérie |
+| Iniciante que volta de 3 semanas ou mais parado | Supersérie já nas semanas 1 e 2 da volta | Supersérie só a partir da 3ª semana |
+| Quem disse no cadastro "parei há umas 2 semanas" e troca a rotina meses depois | 1 repetição de reserva a mais em todos os dias novos | Nada: o +1 vale na 1ª volta pelo programa |
+| Sem nada para puxar (só o banco, por exemplo), na tela da rotina | "Recomendada" numa divisão que o programa não usa; com 6 dias, o aviso mandava escolher uma opção que a tela não tem | A etiqueta na mesma divisão do programa; com 6 dias, o aviso manda tocar em "Deixar o app escolher" |
+
+**Os 15, em resumo**
+
+| Ficou | Itens |
+|---|---|
+| Entraram | 1 (o 2º empurrar, na 3ª tentativa), 13 (a fase de aprendizado), 14 (o +1 da pausa), 15 (a etiqueta da rotina), e metade do 12 (a supersérie do iniciante na volta) |
+| Reduzido pelo item 1 | 6 (o aviso que culpa a dor por um dia fraco que já existia: 81 → 39) |
+| Tentados, medidos e saíram | 2 (tríceps acima da cabeça com 30 min), 4 (a polia como estável), 5 (a panturrilha no chão), 7 (a adução por último), 8 (o foco abaixo do mínimo no corte), 10 (a coxa na distribuição), 11 (a trava do iniciante nos dias com vaga vazia) |
+| Decisão do Gustavo | 3 (2 exercícios de tríceps: duas regras dizem coisas diferentes), 9 (o máximo de séries do nível: limite de verdade ou só o alvo do tempo que sobra) |
+
+Cada item que saiu resolvia o caso apontado, mas piorava algum defeito em algum grupo de programas: o tríceps punha o dia acima do tempo em 208 programas; o corte que poupa o foco, em 1.390; a panturrilha e a coxa deixavam o foco abaixo da meta com tempo sobrando; a adução fazia subir algum defeito em 12 grupos, de 1 a 3 programas cada; a polia, dois cuidados do retrato (+10 e +6), sem melhorar nenhuma medida. A regra de cada um registra a medida.
+
+**Antes e depois medidos** (o ramo contra a `main`, a mesma régua e a mesma biblioteca)
+
+| Medida | `main` | O ramo |
+|---|---:|---:|
+| População (680.625): programas sem nenhum defeito da régua, grade · ponderada | 92,6% · 98,18% | 93,1% · 98,48% |
+| População: dia com menos de 3 exercícios ou sem multiarticular | 28.394 | 24.858 |
+| População: dia mais longo acima de 110% dos minutos | 10.064 | 10.056 |
+| População: pares "grupo × defeito da régua" que sobem | | 0 (82 descem) |
+| Grade da régua com a divisão escolhida (39.600): dia fraco | 4.950 | 4.656 |
+| Grade de qualidade (911.625): dia fraco · suspeitos que sobem | 40.427 · | 36.290 · nenhum |
+| Grade da régua (108.900): sem dor, sem defeito | 95,2% | 96,1% |
+| Personas que mudam | | nenhuma das 12 |
+
+O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 4 programas, e o cuidado "músculo abaixo da faixa com tempo sobrando" em 27 (55 pares grupo × cuidado, de 1 a 30 programas cada): é a troca de divisão pela dor que deixa de acontecer quando o dia de Empurrar deixa de ser fraco. Não foi conferido caso a caso.
+
+**Decidido pela sessão, com o motivo e a medida**
+- **O 2º empurrar só vale se não custar, e a comparação é no programa pronto.** A 1ª versão tirava o dia fraco de 3.555 programas, mas punha o dia acima de 110% em 28 a mais: o dia de Empurrar que deixa de ser fraco também deixa de pedir a troca de divisão pela dor, e a divisão de corpo todo, a de antes, era a que cabia no tempo. Uma trava na montagem não pegou o caso (34 a mais); a comparação no programa pronto pegou (nenhum grupo pior).
+- **O iniciante com pausa de 2 semanas recebe a fase de aprendizado** [opinião]: das duas proteções, é a mais cautelosa. Com 3 semanas ou mais, segue a readaptação, mais leve na semana 1.
+- **Os itens que saíram foram revertidos em commits próprios,** com a medida na mensagem e na regra; os que foram medidos antes do commit (2, 8, 10) estão só no registro.
+
+**Textos de tela novos:** na rotina, quando nada puxa, "Por que é a recomendada: sem exercício de puxar no seu equipamento, os dias de puxar das outras ficariam com outros músculos."; no aviso de 6 dias, "Para trocar, toque em “Deixar o app escolher” na rotina."; e a frase de `divisao.sem-puxar` em "Entenda o treino".
+
+**Verificação.** O agente foi parado no meio da 2ª rodada da auditoria (23/11/2026, a pedido do Gustavo); a medida acima é a da 1ª rodada, conferida contra a `main` pela sessão principal. A junção passou pelo `npm run verificar` antes de ir à `main`.
+
+**Rascunho de post.** "Peguei 15 defeitos que uma conferência apontou no gerador de treinos e tentei consertar todos. Entraram quatro e meio. Os outros consertavam o caso apontado e estragavam outros: pôr o tríceps em todo programa de 30 minutos deixava 208 treinos acima do tempo; poupar o foco no corte deixava 1.390. O que mais ensinou foi o que entrou: botar o supino de volta no dia de empurrar parecia óbvio, mas, em 28 casos, desfazia uma troca de divisão que fazia o treino caber. Agora o app só aceita a correção quando ela não custa nada."

@@ -77,6 +77,22 @@ test('divisão: escolhida em Meus dados, sem nada marcado, com a recomendada exp
   await expect(page.getByRole('group', { name: /Como prefere dividir/ }).getByLabel(/Superior\/Inferior \+ Corpo todo/)).toBeChecked();
 });
 
+test('divisão sem nada para puxar: a recomendada é a de corpo todo, como o programa (divisao.sem-puxar)', async ({ page }) => {
+  // Conferência regra por regra (pacote D3, 23/11/2026): só com o banco reto, nada puxa; a tela marcava como recomendada a
+  // Superior/Inferior, e o programa saía em Corpo todo 4x.
+  await ana(page, { equipamentoExtra: (p) => marcarItem(p, 'Halteres fixos', false).then(() => undefined) });
+  await page.goto('/dados');
+  await page.getByRole('link', { name: 'Rotina e divisão' }).click();
+  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('4 dias').check();
+  const divisao = page.getByRole('group', { name: /Como prefere dividir/ });
+  await expect(divisao.locator('label', { hasText: 'Corpo todo 4x' }).getByText('Recomendada', { exact: true })).toBeVisible();
+  await expect(divisao.getByText('Recomendada', { exact: true })).toHaveCount(1);
+  await expect(divisao.getByText(/sem exercício de puxar no seu equipamento/)).toBeVisible();
+  // Com 6 dias, nenhuma das duas oferecidas é a recomendada: deixando o app escolher, ele usa o Corpo todo 6x.
+  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('6 dias').check();
+  await expect(divisao.getByText('Recomendada', { exact: true })).toHaveCount(0);
+});
+
 test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();

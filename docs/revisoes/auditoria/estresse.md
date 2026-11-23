@@ -8,7 +8,7 @@
 
 | problema | ocorrências |
 | --- | ---: |
-| `monotonia.repete-com-opcao` | 95.680 |
+| `monotonia.repete-com-opcao` | 95.729 |
 | `tempo.sobra-com-meta-abaixo` | 31.463 |
 | `volume.abaixo-sem-aviso` | 11.452 |
 | `volume.excesso.gluteos` | 5.507 |
@@ -33,17 +33,17 @@ Limiar: a meta, se o músculo é prioridade; senão, 4 séries (o piso do mínim
 
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| casa | 43.8% | 50.8% | 47.2% | 28.3% | 25.5% | 31.5% | 41.4% | 38% | 19.3% | 36.8% | 38.5% |
+| casa | 43.7% | 50.8% | 47.2% | 28.3% | 25.5% | 31.6% | 41.4% | 38% | 19.3% | 36.8% | 38.5% |
 | casa+ | 39.5% | 47.1% | 46.7% | 28.7% | 25% | 31.3% | 40.2% | 36.5% | 14% | 35.7% | 38.4% |
 | condominio | 39.3% | 47.4% | 46.5% | 27.9% | 24.5% | 49.1% | 51.6% | 38.6% | 11.4% | 31.6% | 38.4% |
 | condominio+ | 39.3% | 47.4% | 46.7% | 28.7% | 25.1% | 31.4% | 38.7% | 34.6% | 17% | 36% | 38.3% |
 | academia | 39.2% | 47.1% | 46.4% | 28.6% | 24.6% | 27.6% | 38.3% | 34.1% | 15.2% | 34.7% | 38% |
 | academia+ | 39.2% | 47.1% | 46.4% | 28.6% | 24.6% | 27.6% | 38.3% | 34.1% | 15.1% | 34.7% | 38% |
 | peso-corpo | 44.7% | 100% | 99.4% | 28% | 100% | 43.2% | 43.6% | 45.5% | 10.3% | 25% | 34.7% |
-| elasticos | 43.4% | 50.8% | 47.4% | 28.3% | 26.8% | 32.6% | 41.9% | 41.7% | 20.5% | 39.5% | 38.6% |
+| elasticos | 43.3% | 50.8% | 47.5% | 28.3% | 26.8% | 32.6% | 41.9% | 41.7% | 20.5% | 39.5% | 38.6% |
 | halteres | 53.9% | 69.4% | 44.3% | 28.9% | 25.1% | 47.4% | 48% | 36.2% | 12.1% | 30.5% | 38.5% |
-| halteres-banco | 42.9% | 69.3% | 45% | 29.5% | 25.2% | 48.4% | 48.4% | 36.7% | 12.3% | 31.1% | 38.5% |
-| diego | 43.2% | 48.4% | 47.6% | 28.2% | 26.3% | 32.7% | 41.8% | 41.6% | 20.5% | 39.4% | 38.6% |
+| halteres-banco | 42.5% | 69.4% | 45.1% | 29.5% | 25.2% | 48.4% | 48.4% | 36.7% | 12.3% | 31.1% | 38.5% |
+| diego | 43.1% | 48.4% | 47.6% | 28.2% | 26.2% | 32.6% | 41.8% | 41.6% | 20.5% | 39.4% | 38.6% |
 | bruno | 39.3% | 47.4% | 46.7% | 28.7% | 25% | 28% | 41.7% | 36.8% | 13.9% | 36.8% | 38.3% |
 | bairro | 38.9% | 47% | 46.4% | 28.7% | 24.5% | 49.9% | 38.2% | 34.1% | 16.1% | 33.6% | 38.2% |
 
@@ -110,14 +110,14 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| casa | 7 | 6,2 | 6,1 | 5,6 | 8 | 7,6 | 7,5 | 8,1 | 9,7 | 7,5 | 4,1 |
+| casa | 7,1 | 6,2 | 6,1 | 5,6 | 8 | 7,6 | 7,5 | 8,1 | 9,7 | 7,5 | 4,1 |
 | casa+ | 7,5 | 6,4 | 6,1 | 5,7 | 8,1 | 7,7 | 7,5 | 8,2 | 10,7 | 7,8 | 4,1 |
 | condominio | 7,6 | 6,4 | 6,2 | 5,8 | 8,3 | 5,9 | 6,7 | 8,2 | 12,3 | 8,2 | 4,2 |
 | condominio+ | 7,5 | 6,4 | 6,2 | 5,7 | 8,1 | 7,7 | 7,6 | 8,4 | 9,8 | 7,8 | 4,1 |
 | academia | 7,6 | 6,7 | 6,2 | 5,8 | 8,2 | 7,9 | 7,7 | 8,5 | 9,9 | 7,9 | 4,2 |
 | academia+ | 7,6 | 6,4 | 6,2 | 5,8 | 8,2 | 7,9 | 7,7 | 8,5 | 9,9 | 7,9 | 4,2 |
 | peso-corpo | 7,3 | 0 | 0,7 | 4,6 | 0 | 7,4 | 7,7 | 7,7 | 12,5 | 9,2 | 4,8 |
-| elasticos | 7,4 | 6,9 | 6 | 5,5 | 7,9 | 7,5 | 7,6 | 7,9 | 9,6 | 7,4 | 4,1 |
+| elasticos | 7,5 | 6,9 | 6 | 5,5 | 7,9 | 7,5 | 7,6 | 7,9 | 9,6 | 7,4 | 4,1 |
 | halteres | 6 | 3,9 | 6,6 | 5,2 | 7,9 | 6,7 | 6,9 | 8,4 | 12,1 | 8,3 | 4,3 |
 | halteres-banco | 7,3 | 3,8 | 6,5 | 5,1 | 7,7 | 5,9 | 6,9 | 8,4 | 12 | 8,2 | 4,2 |
 | diego | 7,5 | 7,1 | 6 | 5,6 | 8 | 7,5 | 7,6 | 8 | 9,7 | 7,4 | 4,1 |
@@ -126,7 +126,7 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 
 ## Equilíbrio
 
-- Séries de puxar ÷ séries de empurrar: mediana 1.09 (10% dos programas abaixo de 0.8, 10% acima de 1.6).
+- Séries de puxar ÷ séries de empurrar: mediana 1.08 (10% dos programas abaixo de 0.8, 10% acima de 1.5).
 - Posteriores ÷ quadríceps (volume semanal): mediana 1 (p10 0.67, p90 1.13).
 
 ## Escolha
@@ -135,15 +135,15 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 
 | exercício | vezes | guia |
 | --- | ---: | --- |
-| elevacao-halteres | 168.502 | animação |
+| elevacao-halteres | 168.454 | animação |
 | panturrilha-degrau | 136.817 | animação |
 | abdominal-chao | 135.642 | animação |
 | ponte-gluteo-halter | 106.261 | animação |
 | stiff | 102.662 | animação |
 | afundo | 99.399 | animação |
 | aducao-deitado | 81.498 | animação |
-| supino-reto | 79.286 | animação |
-| flexao | 66.160 | animação |
+| supino-reto | 79.627 | animação |
+| flexao | 66.470 | animação |
 | hip-thrust | 64.795 | animação |
 | goblet | 64.694 | animação |
 | cadeira-flexora | 64.688 | animação |
@@ -152,14 +152,14 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | rosca-scott-banco-inclinado | 56.453 | animação |
 | crucifixo-inverso | 54.070 | animação |
 | puxada-frente | 52.589 | animação |
-| triceps-frances-halter | 51.831 | animação |
+| triceps-frances-halter | 51.782 | animação |
 | flexao-joelho-deslizante | 50.933 | animação |
 | panturrilha-sentada-halter | 49.424 | animação |
 | cadeira-extensora | 48.092 | animação |
 | extensao-joelho-elastico | 47.714 | animação |
-| abdominal-invertido | 47.290 | animação |
-| crucifixo-halteres | 46.998 | animação |
-| ponte-gluteo | 46.333 | animação |
+| abdominal-invertido | 47.287 | animação |
+| crucifixo-halteres | 46.959 | animação |
+| ponte-gluteo | 46.331 | animação |
 
 ### Possíveis que nunca aparecem como vaga, por cenário
 
@@ -200,11 +200,11 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 ## Monotonia
 
 - Programas de 3 dias ou mais com um exercício (fora o abdominal) em **todos** os dias: 4.191 de 137.280 (3.1%).
-- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 95.680 (69.7%).
+- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 95.729 (69.7%).
 
 ## Tempo
 
-- Dias acima dos minutos: 48.083 de 624.000 (7.7%); **sem aviso: 0**.
+- Dias acima dos minutos: 48.386 de 624.000 (7.8%); **sem aviso: 0**.
 - Programas cujo dia mais longo usa menos de 70% dos minutos: 37.542 (25.1%); destes, 0 ainda dizem que a meta ficou de fora "porque cabem cerca de N exercícios".
 
 | minutos | programas | dia mais longo (mediana, min) | sobra > 30% |

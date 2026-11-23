@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
+import { GRUPOS, metaMaxima, nadaParaPuxar, type Grupo, type Objetivo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
 import { exerciciosPorSessao } from '../../domain/regras';
+import { inventarioPrincipal, perfilDe } from '../../storage/esquema';
 import { NOME_GRUPO, notaDoFoco } from '../../domain/gerador/opcoes';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Revelar, numeroOu } from '../app/ui';
@@ -54,7 +55,13 @@ export function Rotina() {
   const minutos = numeroOu(min);
   const minOk = minutos !== undefined && Number.isInteger(minutos) && minutos >= 20 && minutos <= 150;
   const prioOrdenadas = GRUPOS_IDS.filter((g) => prio.includes(g));
-  const opcoesDivisao = dias ? opcoesDeDivisao(dias, metaMaxima(estado.nivel?.escolhido ?? 'intermediario', prioOrdenadas)) : [];
+  // divisao.sem-puxar: sem nenhum exercício de puxar no equipamento, a recomendada é a de corpo todo, como no gerador.
+  const semPuxar = useMemo(() => {
+    const perfil = perfilDe(estado);
+    const inventario = inventarioPrincipal(estado);
+    return !!perfil && !!inventario && nadaParaPuxar(perfil, inventario);
+  }, [estado]);
+  const opcoesDivisao = dias ? opcoesDeDivisao(dias, metaMaxima(estado.nivel?.escolhido ?? 'intermediario', prioOrdenadas), semPuxar) : [];
   const divisaoValida = divisao && opcoesDivisao.some((o) => o.id === divisao) ? divisao : undefined;
   const mudarDias = (d: (typeof DIAS)[number]) => {
     setDias(d);

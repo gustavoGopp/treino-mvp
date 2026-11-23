@@ -4,7 +4,7 @@ import { faixaTexto, porCento, tempoPorExtenso } from '../numero';
 import { DESCANSO, LIMITE_DO_DIA, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
-import { CORPO_TODO_SEM_PUXAR, divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
+import { CORPO_TODO_SEM_PUXAR, DIVISOES, divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { contaPara, EMPURRAR_PUXAR_MAX, FAMILIAS, familiasCobertas } from './familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from './funcoes';
 
@@ -392,6 +392,15 @@ export function contextoDeSelecao(
 }
 export type ContextoDeSelecao = ReturnType<typeof contextoDeSelecao>;
 
+/**
+ * Nada para puxar no equipamento (equipamento.sem-ancoragem; divisao.sem-puxar): nenhuma das duas funções de puxar tem
+ * exercício possível, e não por causa da dor. A tela da rotina usa para marcar a recomendada como o gerador a escolhe.
+ */
+export function nadaParaPuxar(perfil: Perfil, inventario: Inventario): boolean {
+  const { resolver, perdidaPorDor } = contextoDeSelecao(perfil, inventario, avaliarTriagem(perfil.triagem));
+  return (['puxar-vertical', 'puxar-horizontal'] as const).every((f) => !resolver({ funcao: f }) && !perdidaPorDor({ funcao: f }));
+}
+
 /** O dia fraco da régua (A2): menos de 3 exercícios, ou sem multiarticular. Conta também os dias que saíram do programa. */
 const diasFracos = (p: Programa, dias: number) => dias - p.dias.length + p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
 
@@ -415,8 +424,27 @@ const REFAZER_ESCOLHIDO = new WeakMap<Programa, () => Programa>();
 const comAjustes = (p: Programa): Programa => REFAZER_ESCOLHIDO.get(p)?.() ?? p;
 const comAjustesNoResultado = (r: Resultado): Resultado => (r.status === 'ok' ? { ...r, programa: comAjustes(r.programa) } : r);
 
+/** selecao.peitoral-inclinado (pacote D3 da conferência): montar com o 2º empurrar como antes, e se a regra nova mudou algo. */
+type OpcaoDoInclinado = { comoAntes: boolean; mudou: boolean };
+
 export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
-  const base = gerarNaDivisao(perfil, inventarioOriginal);
+  const op: OpcaoDoInclinado = { comoAntes: false, mudou: false };
+  const novo = gerarProgramaCom(perfil, inventarioOriginal, op);
+  // selecao.peitoral-inclinado (pacote D3 da conferência, 23/11/2026): o 2º empurrar no dia em que a vaga de empurrar
+  // horizontal não coube só vale se não custar um dia acima de 110% do tempo nem um dia fraco que a conta de antes (o modelo
+  // do dia) não teria. A comparação é no programa pronto, porque o dia que deixa de ser fraco também deixa de pedir a troca
+  // de divisão pela dor (selecao.dia-sem-principal), e a divisão de antes podia ser a que cabia no tempo. Sem esta trava, o
+  // dia acima de 110% subia em 28 a 34 programas da população. A 2ª montagem só acontece quando a regra nova mudou algo.
+  if (!op.mudou || novo.status !== 'ok') return novo;
+  const velho = gerarProgramaCom(perfil, inventarioOriginal, { comoAntes: true, mudou: false });
+  if (velho.status !== 'ok') return novo;
+  const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+  const [pn, pv] = [novo.programa, velho.programa];
+  return acima(pn) > acima(pv) || diasFracos(pn, perfil.diasSemana) > diasFracos(pv, perfil.diasSemana) ? velho : novo;
+}
+
+function gerarProgramaCom(perfil: Perfil, inventarioOriginal: Inventario, op: OpcaoDoInclinado): Resultado {
+  const base = gerarNaDivisao(perfil, inventarioOriginal, false, op);
   if (perfil.divisao || base.status !== 'ok' || !base.programa.regioesExcluidas.length || !diasFracos(base.programa, perfil.diasSemana)) return comAjustesNoResultado(base);
   const p0 = base.programa;
   const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
@@ -439,7 +467,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   let melhor = p0;
   let resultado: Resultado = base;
   for (const id of opcoes) {
-    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal, id === recuo);
+    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal, id === recuo, op);
     if (r.status === 'ok' && r.programa.divisaoId === id && diasFracos(r.programa, perfil.diasSemana) < diasFracos(melhor, perfil.diasSemana) && naoCusta(r.programa)) {
       melhor = r.programa;
       resultado = r;
@@ -479,7 +507,7 @@ const temLimiteDoIniciante = (perfil: Perfil) => {
   return perfil.nivel === 'iniciante' && perfil.diasSemana === dias && perfil.minutosSessao <= ateMinutos && exerciciosPorSessao(perfil.minutosSessao) > maximo;
 };
 
-function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false): Resultado {
+function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false, op: OpcaoDoInclinado = { comoAntes: false, mudou: false }): Resultado {
   const triagem = avaliarTriagem(perfil.triagem);
   if (triagem.bloqueado) return { status: 'bloqueado', triagem };
   // tempo.musculo-protegido (15/11/2026): entre o abdômen e a panturrilha, escolhe primeiro o que tem menos dias onde
@@ -487,11 +515,13 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRe
   // dias acima de 110% do tempo que a ordem de antes.
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
   const montar = (focoPrimeiro: boolean, semPratica: boolean) => {
-    const info = { protegidosSemVaga: 0 };
-    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica);
+    const info: InfoDaMontagem = { protegidosSemVaga: 0 };
+    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica, false, undefined, op.comoAntes);
+    if (info.segundoEmpurrarNovo) op.mudou = true;
     // A ordem só importa quando os dois ficaram sem vaga: senão, uma montagem basta.
     if (info.protegidosSemVaga < 2) return a;
-    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, undefined, aceitaRecuo, semPratica);
+    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, info, aceitaRecuo, semPratica, false, undefined, op.comoAntes);
+    if (info.segundoEmpurrarNovo) op.mudou = true;
     return acima(b) > acima(a) ? a : b;
   };
   // volume.prioridade.foco-primeiro: com foco, os isoladores de quem não é foco entram depois das vagas do foco, e o
@@ -560,7 +590,10 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   };
 }
 
-function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false, semPratica = false, refeito = false, duplaForcada?: 'com' | 'sem'): Programa {
+/** O que a montagem conta para quem a chamou: os protegidos sem vaga e se o 2º empurrar mudou com a regra nova (D3 da conferência). */
+type InfoDaMontagem = { protegidosSemVaga: number; segundoEmpurrarNovo?: boolean };
+
+function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: InfoDaMontagem, aceitaRecuo = false, semPratica = false, refeito = false, duplaForcada?: 'com' | 'sem', inclinadoComoAntes = false): Programa {
   const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem, semPratica);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
@@ -685,8 +718,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     for (const x of mantidas.sort((a, b) => a.ordem - b.ordem)) {
       const { funcao } = x.res;
       // selecao.peitoral-inclinado: o 2º empurrar (sem banco inclinável) só num dia sem outra vaga de empurrar horizontal,
-      // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
-      const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
+      // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo. Conta a vaga de empurrar
+      // horizontal que coube no dia, e não a do modelo (conferência regra por regra, pacote D3, 23/11/2026: com 30 min, a
+      // vaga de complemento ficava de fora e o dia de Empurrar saía com dois crucifixos e nenhum supino).
+      const noModelo = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
+      const coube = funcao.id === 'empurrar-inclinado' && mantidas.some((w) => w.vaga.funcao === 'empurrar-horizontal');
+      if (noModelo && !coube && !inclinadoComoAntes && info) info.segundoEmpurrarNovo = true;
+      const segundoEmpurrar = inclinadoComoAntes ? noModelo : coube;
       const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID[id]!.padrao === 'empurrar-h' && !POR_ID[id]!.tags.includes('inclinado'));
       // Um afundo por dia (selecao.funcao-da-vaga; R5a): fora da vaga de afundo, o afundo fica por último no nível
       // quando o dia já tem um ou ainda vai ter (a vaga de afundo com exercício).
@@ -848,7 +886,11 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /puxar|superior|costas/i.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, escolha Corpo todo na rotina.`,
+      // Com 6 dias, a tela não oferece corpo todo: o caminho é deixar o app escolher, que usa o Corpo todo 6x (conferência
+      // regra por regra, pacote D3, 23/11/2026: o aviso mandava escolher uma opção que a tela não tem).
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, ${
+        OPCOES_POR_DIAS[perfil.diasSemana].some((id) => !temDiaDeTronco(DIVISOES[id])) ? 'escolha Corpo todo na rotina' : 'toque em “Deixar o app escolher” na rotina'
+      }.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa). O texto diz
   // o que o programa tem de fato (R5-CL): com a puxada de elástico no programa, as costas não treinam "só com remadas".
@@ -1482,7 +1524,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // sabe se refazer com eles (REFAZER_ESCOLHIDO).
   if (!refeito && (perfil.prioridades.length > VOLUME.focosComSobra || programa.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao)))
     REFAZER_ESCOLHIDO.set(programa, () =>
-      montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, protegidoRaroPrimeiro, undefined, aceitaRecuo, semPratica, true, comDupla ? 'com' : 'sem'),
+      montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, protegidoRaroPrimeiro, undefined, aceitaRecuo, semPratica, true, comDupla ? 'com' : 'sem', inclinadoComoAntes),
     );
   return programa;
 }
@@ -2288,7 +2330,9 @@ function passoDoMotivo(motivo: string, foco: boolean): string {
 
 function fases(p: Perfil): Fase[] {
   if (p.semanasParado >= READAPTACAO.semanasProtocolo) return fasesDeReadaptacao();
-  if (p.semanasParado >= READAPTACAO.semanasNormal)
+  // iniciante.fase-aprendizado (pacote D3 da conferência, 23/11/2026): o iniciante com pausa de 2 semanas recebe a fase de
+  // aprendizado, que já tem mais reserva (RIR 3–4) que o +1 da 1ª sessão. Antes, ficava só com o +1, sem a fase.
+  if (p.nivel !== 'iniciante' && p.semanasParado >= READAPTACAO.semanasNormal)
     return [{ semanas: '1ª sessão', fatorSeries: 1, rir: null, texto: 'Primeira sessão de cada treino com 1 repetição a mais de reserva.', regraId: r('readaptacao.gatilho') }];
   if (p.nivel === 'iniciante')
     return [
@@ -2334,7 +2378,7 @@ export function faseNaSemana(fases: Fase[], semana: number): Fase | undefined {
  * não há drop set, porque ele pede chegar perto da falha (tempo.corte); a série do drop set volta a ser normal.
  */
 export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fase[] = programa.fases): DiaPrograma[] {
-  return aplicarFase(programa.dias, faseNaSemana(fases, semana), colchaoDe(programa));
+  return aplicarFase(programa.dias, faseNaSemana(fases, semana), colchaoDe(programa), programa.nivel);
 }
 
 /**
@@ -2343,9 +2387,12 @@ export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fa
  * margem dele (`colchao`: a pessoal, se o programa foi gerado com ela; senão, a padrão). Antes, ficavam os minutos do
  * programa completo (auditoria de 12/11/2026).
  */
-export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao: number = TEMPO.colchao): DiaPrograma[] {
+export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao: number = TEMPO.colchao, nivel?: Nivel): DiaPrograma[] {
   if (!fase || fase.fatorSeries === 1) return dias;
-  const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado';
+  // tempo.superserie: o iniciante só tem supersérie a partir da 3ª semana; nas semanas 1 e 2 de uma volta de pausa (a do
+  // cadastro ou a detectada no uso) também não (conferência regra por regra, pacote D3, 23/11/2026). O nível vem do
+  // programa guardado; no programa antigo, sem ele, fica como antes.
+  const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado' || (nivel === 'iniciante' && (fase.regraId === 'readaptacao.semana1' || fase.regraId === 'readaptacao.semana2'));
   const semDropSet = !!fase.rir && fase.rir[0] >= 3;
   return dias.map((d) => {
     const exercicios = d.exercicios.map((x) => {
