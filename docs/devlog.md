@@ -2710,6 +2710,6 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 4
 
 **Textos de tela novos:** na rotina, quando nada puxa, "Por que é a recomendada: sem exercício de puxar no seu equipamento, os dias de puxar das outras ficariam com outros músculos."; no aviso de 6 dias, "Para trocar, toque em “Deixar o app escolher” na rotina."; e a frase de `divisao.sem-puxar` em "Entenda o treino".
 
-**Verificação.** {{VERIFICACAO}}
+**Verificação.** O agente foi parado no meio da 2ª rodada da auditoria (23/11/2026, a pedido do Gustavo); a medida acima é a da 1ª rodada, conferida contra a `main` pela sessão principal. A junção passou pelo `npm run verificar` antes de ir à `main`.
 
 **Rascunho de post.** "Peguei 15 defeitos que uma conferência apontou no gerador de treinos e tentei consertar todos. Entraram quatro e meio. Os outros consertavam o caso apontado e estragavam outros: pôr o tríceps em todo programa de 30 minutos deixava 208 treinos acima do tempo; poupar o foco no corte deixava 1.390. O que mais ensinou foi o que entrou: botar o supino de volta no dia de empurrar parecia óbvio, mas, em 28 casos, desfazia uma troca de divisão que fazia o treino caber. Agora o app só aceita a correção quando ela não custa nada."
