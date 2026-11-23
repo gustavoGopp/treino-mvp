@@ -537,7 +537,7 @@
   },
   "tempo.corte": {
     "titulo": "Quando o treino não cabe no tempo",
-    "frase": "Ordem do corte: 1) só o aquecimento do próprio exercício; 2) exercício de dois lados no lugar do de um lado só, havendo equivalente; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores. A troca pelo exercício de dois lados não tira nenhuma série da semana."
+    "frase": "Ordem do corte: 1) só o aquecimento do próprio exercício; 2) exercício de dois lados no lugar do de um lado só, havendo equivalente; 3) superséries entre músculos que não competem; 4) drop set na última série dos isoladores com 3 séries ou mais, nunca nas semanas com 3–4 repetições de reserva; 5) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 6) por último, menos séries: músculos sem foco até o mínimo de 4, depois os em foco, até o mínimo do nível (6, 10 ou 12); 7) se o dia ainda passar de 110% dos minutos, o foco perde séries abaixo desse mínimo, sem descer de 4, só até o dia caber em 110%. Nenhum corte desequilibra quadríceps e posteriores (0,5 a 2) nem tira o único exercício direto de posteriores. A troca pelo exercício de dois lados não tira nenhuma série da semana."
   },
   "tempo.sobra": {
     "titulo": "Quando sobra tempo no treino",

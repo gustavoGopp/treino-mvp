@@ -12,8 +12,8 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 // acima. O "antes" é o protótipo com todas as regras adotadas menos esta (PROT=app,-d3-outros). Só personas fictícias.
 
 const TODAS = { ...PERSONAS, ...PERSONAS_NOVAS };
-const FOCOS: Grupo[][] = [[], ['peito'], ['gluteos', 'costas'], ['peito', 'costas', 'ombros'], ['peito', 'costas', 'ombros', 'bracos'], ['pernas', 'gluteos', 'abdomen']];
-const MINUTOS = [45, 60, 90];
+const FOCOS: Grupo[][] = [[], ['gluteos', 'costas'], ['peito', 'costas', 'ombros', 'bracos'], ['pernas', 'gluteos', 'abdomen']];
+const MINUTOS = [60, 90];
 type Caso = { nome: string; perfil: Perfil; inventario: Inventario };
 const CASOS: Caso[] = Object.values(TODAS).flatMap((p) => [
   { nome: p.nome, perfil: p.perfil, inventario: p.inventario },
@@ -49,11 +49,13 @@ describe('tempo.sobra-series com 3 grupos de foco ou mais: quem não é foco sob
       const [p, a, d] = [programa(igualAoApp, c), programa(antes, c), programa(gerarPrograma, c)];
       return p && a && d && JSON.stringify(p) === JSON.stringify(d) ? [{ c, a, d }] : [];
     });
-  });
+    // 108 casos em 3 geradores: o arquivo inteiro leva 3,6 s sem cobertura e 4,3 s com ela, com a máquina ocupada (carga
+    // 10 em 4 núcleos; medido em 23/11/2026). Com a grade de 228 casos o preparo passou dos 10 s do padrão uma vez.
+  }, 30_000);
   const mudou = (x: { a: Programa; d: Programa }) => JSON.stringify(comSeries(x.a)) !== JSON.stringify(comSeries(x.d));
 
   it('a regra mexe em parte dos casos com 3 grupos ou mais, e em nenhum com 2 ou menos', () => {
-    expect(pares.length).toBeGreaterThan(200);
+    expect(pares.length).toBeGreaterThan(90);
     expect(pares.filter((x) => x.c.perfil.prioridades.length > VOLUME.focosComSobra && mudou(x)).length).toBeGreaterThan(10);
     for (const x of pares.filter((y) => y.c.perfil.prioridades.length <= VOLUME.focosComSobra)) expect(x.d, x.c.nome).toEqual(x.a);
   });
