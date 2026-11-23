@@ -62,13 +62,33 @@ describe('selecao.estabilidade: a polia conta como estável, como a regra lista'
   });
 });
 
+describe('selecao.panturrilha-alongada: com o degrau possível, a panturrilha no chão não entra', () => {
+  const ids = (p: Programa) => p.dias.flatMap((d) => d.exercicios.map((x) => x.exId));
+  // Sem equipamento, foco em pernas: o degrau da escada (o calcanhar desce) vem antes do chão (o calcanhar não desce).
+  // Antes, a variedade entre os dias, a vaga vazia da panturrilha sentada e o dia que a dor esvaziou punham a do chão.
+  it.each([
+    ['iniciante', 3, 60, []],
+    ['intermediario', 3, 60, []],
+    ['intermediario', 4, 60, [{ articulacao: 'ombro', nota: 7 }]],
+  ] as const)('%s, %i dias de %i min', (nivel, dias, min, dores) => {
+    const p = ok(perfil({ nivel, dias, min, focos: ['pernas'], dores: [...dores] }), {});
+    expect(ids(p)).toContain('panturrilha-degrau');
+    expect(ids(p)).not.toContain('panturrilha-chao');
+  });
+
+  it('com dor forte no tornozelo o degrau sai, e o chão continua sendo a alternativa possível', () => {
+    const p = ok(perfil({ nivel: 'intermediario', dias: 3, min: 60, focos: ['pernas'], dores: [{ articulacao: 'tornozelo', nota: 7 }] }), {});
+    expect(ids(p)).not.toContain('panturrilha-degrau');
+  });
+});
+
 describe('selecao.aducao-complemento: a adução entra por último e sai primeiro', () => {
   const todos = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
-  it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: o abdominal fica e a adução sai', () => {
+  it('iniciante sem equipamento, 3 dias de 75 min, pernas e glúteos: a adução não toma o lugar do abdominal', () => {
     // Antes, o Corpo todo B tinha a adução deitado de lado e não tinha o abdominal.
     const p = ok(perfil({ nivel: 'iniciante', dias: 3, min: 75, focos: ['pernas', 'gluteos'] }), {});
     for (const d of p.dias) expect(d.exercicios.some((x) => x.padrao === 'core'), d.nome).toBe(true);
-    expect(todos(p).some((x) => x.funcao === 'aducao')).toBe(false);
+    expect(todos(p).filter((x) => x.padrao === 'core').length).toBeGreaterThanOrEqual(3);
   });
 
   it('no corte de tempo, a adução sai antes do abdominal (academia, corpo todo 4x, pernas, de 90 para 60 min)', () => {

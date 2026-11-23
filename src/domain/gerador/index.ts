@@ -264,13 +264,19 @@ export function contextoDeSelecao(
   /** O exercício que a regressão substitui (a barra só na descida do iniciante vale como a barra fixa; R5b, para medir as funções). */
   const noLugarDe = (id: string) => (id === BARRA_NEGATIVA && BARRA_LIVRE.some((b) => barraDoIniciante(b) && naFuncao(FUNCAO['puxar-vertical']!, b)) ? BARRA_LIVRE.find((b) => possivel.has(b))! : id);
 
+  // selecao.panturrilha-alongada (pacote D3 da conferência, 23/11/2026): a panturrilha que não alonga (no chão) não entra
+  // por variedade, nem como 2º exercício do dia, quando há uma que alonga possível (o degrau da escada): o chão fica de
+  // alternativa (selecao.corpo-livre-ampliado). Antes, a descida de nível por variedade e o preenchimento do dia que a
+  // dor esvaziou punham a do chão no programa com o degrau possível.
+  const perdeAlongado = (funcao: Funcao, e: Exercicio) =>
+    funcao.regras.includes('selecao.panturrilha-alongada') && !e.tags.includes('alongado') && funcao.niveis.flat().some((id) => naFuncao(funcao, id) && possivel.get(id)?.tags.includes('alongado'));
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
   const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => {
     let primeiro: { ex: Exercicio; nivelFuncao: number } | null = null;
     for (let n = desde; n < funcao.niveis.length; n++) {
       const cands = [...new Set(funcao.niveis[n]!.filter((id) => naFuncao(funcao, id)).map(regressaoDoIniciante))]
         .map((id) => possivel.get(id))
-        .filter((e): e is Exercicio => !!e && !usados(e.id));
+        .filter((e): e is Exercicio => !!e && !usados(e.id) && !perdeAlongado(funcao, e));
       const e = cands.sort(comparar(usos, () => funcao, evitar, depois, cansa))[0];
       if (!e) continue;
       // selecao.variacoes-equivalentes (frente A, m1): se o melhor do nível já está em todos os outros dias e não há
@@ -389,6 +395,7 @@ export function contextoDeSelecao(
     comparar,
     resolver,
     escolher,
+    perdeAlongado,
     alternativasDe,
     motivoDaEscolha,
   };
@@ -742,7 +749,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTeto(e) && !ctx.barraDoIniciante(e.id))
         .flatMap((e) => {
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
-          return f ? [{ e, f }] : [];
+          return f && !ctx.perdeAlongado(f, e) ? [{ e, f }] : [];
         })
         .sort((a, b) => Number(afundoNoDia(a.e)) - Number(afundoNoDia(b.e)) || Number(funcoesDoDia.has(a.f.id)) - Number(funcoesDoDia.has(b.f.id)) || comparar(a.e, b.e))[0];
       if (!achado) continue;
@@ -790,7 +797,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !ctx.barraDoIniciante(e.id))
       .flatMap((e) => {
         const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
-        return f && (soCore || musculosDoDia.has(f.musculo)) ? [{ e, f }] : [];
+        return f && (soCore || musculosDoDia.has(f.musculo)) && !ctx.perdeAlongado(f, e) ? [{ e, f }] : [];
       })
       .sort(
         (a, b) =>
