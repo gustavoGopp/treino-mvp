@@ -60,3 +60,14 @@
 - As cinco decisões acima.
 - O teste da agenda e do compartilhar num Android e num iPhone.
 - `docs/PLANO-MVP.md` e o `CLAUDE.md`, com o ok do Gustavo.
+
+## Fechamento (23/11/2026)
+
+Em 23/11/2026 o Gustavo pediu: "quero encerrar por completo o que falta para finalizarmos essa versão inicial, faça tudo que falta". **As cinco decisões acima foram aplicadas como estavam propostas**, sem ele ter lido uma por uma; ele pode vetar qualquer uma depois:
+1. Os textos do fim do treino, como propostos.
+2. A recepção, como proposta.
+3. O cartão como está na imagem, o botão "Mandar a minha semana", e "5ª semana seguida" no cartão (a partir da 2ª semana seguida; no app continua "X das últimas 8 semanas com treino").
+4. "Quando é o próximo?" e "Pôr na agenda".
+5. A frase do `CLAUDE.md` (Escopo), aplicada.
+
+O lote entrou na `main` junto com o M4 (ramo `claude/m4-m5-juncao`). O teste da agenda e do compartilhar num Android e num iPhone continua com o Gustavo: `docs/roteiro-gente-de-verdade.md`, item 3.

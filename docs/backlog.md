@@ -722,3 +722,10 @@ O que foi feito está no devlog e em `revisoes/melhorias/d3/README.md`. Ficou pa
 - Se o som de arquivo parar a música no iPhone (linha E da tabela), medir a saída técnica `navigator.audioSession` antes de levar a escolha ao Gustavo.
 - Os textos de privacidade já aprovados que dizem que a foto é a única coisa que sai do aparelho (`privacidade.tsx`, a regra `privacidade.foto`, os termos) esperam a frase nova do Gustavo.
 - `api/descanso.ts`, `apagar`: desfazer um número que a fila não conhece volta como erro `fila` (502), porque a fila não responde 404 nesse caso. O app ignora a resposta; falta só o log dizer o código que a fila devolveu.
+
+## Do fechamento da versão inicial (23/11/2026)
+
+- **O que só o Gustavo pode fazer** está em `roteiro-gente-de-verdade.md`: as cinco pessoas, o cartão no grupo da família, a tabela do descanso nos dois celulares, a agenda e o compartilhar no iPhone, as 4 semanas de uso e o teste da foto.
+- **As nove decisões de texto do M4 e do M5** foram aplicadas como propostas, sem leitura uma por uma. Se o Gustavo vetar alguma, é só texto.
+- **O aviso do descanso** continua desligado na produção até as três chaves (`VITE_AVISO_CHAVE`, `AVISO_CHAVE_PRIVADA`, `QSTASH_TOKEN`) estarem no ambiente de produção da Vercel, não só no de teste.
+- O "Fechar" das folhas e o cartão "Pessoa" com a letra em 200%: consertados; saem da lista do D4.

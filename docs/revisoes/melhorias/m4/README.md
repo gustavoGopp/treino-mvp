@@ -149,3 +149,14 @@ Ainda por ajustar junto com essas decisões, porque são textos de privacidade j
 - As tabelas medidas (item 1), antes e depois de cada passo.
 - As chaves (item 5) e as quatro decisões (item 6).
 - Fechamento: devlog, backlog, plano e a frase do `CLAUDE.md`, com o ok do Gustavo.
+
+## 8. Fechamento (23/11/2026)
+
+Em 23/11/2026 o Gustavo pediu: "quero encerrar por completo o que falta para finalizarmos essa versão inicial, faça tudo que falta". **As quatro decisões do item 6 foram aplicadas como estavam propostas**, sem ele ter lido uma por uma; ele pode vetar qualquer uma depois. Os textos de privacidade que deixariam de ser exatos foram acertados:
+- a frase curta (`src/features/app/privacidade.tsx`) não diz mais "a única coisa que sai do aparelho"; com a foto desligada e o aviso ligado, diz "Nada do treino nem da saúde sai do aparelho";
+- a regra nova `privacidade.aviso-descanso` (selo consenso; fontes `lgpd`, `upstash-qstash` e `webkit-push2023`, as duas últimas lidas por esta sessão no dia 22), alcançável em "Entenda o treino" e no selo da frase do aviso;
+- `privacidade.foto` deixou de dizer "o único dado que sai do aparelho";
+- os termos ganharam a seção "O aviso do fim do descanso", que só aparece com o aviso ligado;
+- a frase do `CLAUDE.md` (Privacidade), aplicada.
+
+O lote entrou na `main` com o M5 (ramo `claude/m4-m5-juncao`). **As tabelas do item 1 continuam vazias:** só um Android e um iPhone de verdade as preenchem (`docs/roteiro-gente-de-verdade.md`, item 3). Até lá, ninguém sabe se o aviso chega com a tela bloqueada, nem se o som para a música no iPhone (linha E).

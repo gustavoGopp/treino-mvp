@@ -2641,3 +2641,28 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 1
 
 **Rascunho de post.** Fica para o fechamento do lote, com a tabela medida.
 
+
+## O descanso avisa, um motivo para voltar, e o fim da fila (23/11/2026)
+
+**De onde veio.** Os lotes M4 e M5 da análise crítica estavam feitos desde 22/11, fora da `main`, à espera de nove decisões de texto e do ok. Em 23/11 o Gustavo pediu: "quero encerrar por completo o que falta para finalizarmos essa versão inicial, faça tudo que falta". As decisões foram aplicadas como estavam propostas (a lista está no fechamento de `revisoes/melhorias/m4/README.md` e de `m5/README.md`; ele pode vetar qualquer uma).
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Fim do descanso | três bipes gerados pela página (calados pelo silencioso do iPhone) | um som de arquivo, e a hora do fim na tela ("Descanso até 17:28") |
+| Sair do app no descanso | nada avisava | aviso do celular, se a pessoa ligar ("Avisar"; desligado até as chaves estarem na Vercel) |
+| Fim do treino | "A sua semana · 1 de 3" | "1º treino da semana. Faltam 2." e o que melhorou |
+| Quem volta depois de alguns dias | nada antes de 14 dias | "Bom te ver de novo. Faz 9 dias do último treino, e a carga é a mesma." |
+| Tela da semana | abria com a tabela de séries | abre pelas semanas com treino; a tabela foi para uma gaveta |
+| Próximo treino | nada | "Pôr na agenda" (compromisso com lembrete, sem servidor) |
+| Mostrar a semana | nada | "Mandar a minha semana": uma imagem só com a frequência |
+| Letra em 200% | o "Fechar" de algumas folhas e o cartão "Pessoa" passavam da tela | ficam dentro |
+
+**A privacidade mudou de letra.** Com o aviso ligado, o endereço de aviso do celular e o tempo que falta vão ao servidor e a uma fila da Upstash (EUA), só até o aviso sair. Nada de treino nem de saúde. A regra `privacidade.aviso-descanso`, os termos, a frase curta de "Meus dados" e o `CLAUDE.md` dizem isso.
+
+**O que não dá para conferir daqui.** Se o som e o aviso chegam num celular de verdade, e se a agenda e o compartilhar abrem no iPhone. O passo a passo está em `roteiro-gente-de-verdade.md`, junto com o teste das cinco pessoas.
+
+**Verificação.** O resultado do `npm run verificar` da junção está no relato da sessão.
+
+**Rascunho de post.** "Meu app de treino avisava o fim do descanso com três bipes que o iPhone calava no silencioso. Agora é um som de arquivo, a tela diz a hora do fim, e quem sai do app pode receber um aviso do celular. E o fim do treino virou uma frase: '2º treino da semana. Falta 1.'"
