@@ -570,11 +570,11 @@
   },
   {
     "id": "progressao.incremento.halteres",
-    "regra": "Incremento com halteres e kettlebell",
+    "regra": "Incremento com halteres, kettlebell e caneleira. **Desde 26/11/2026 (pedido do Gustavo):** a carga é livre; além da lista do equipamento, há \"Outro peso…\" para digitar qualquer valor, e todo peso já registrado no exercício, no mesmo local, passa a contar como peso que a pessoa tem (a sugestão não o arredonda para a lista)",
     "valores": {
-      "iniciante": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)",
-      "intermediario": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)",
-      "avancado": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)"
+      "iniciante": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`); a lista é a do equipamento somada aos pesos já registrados no exercício naquele local [opinião]",
+      "intermediario": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`); a lista é a do equipamento somada aos pesos já registrados no exercício naquele local [opinião]",
+      "avancado": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`); a lista é a do equipamento somada aos pesos já registrados no exercício naquele local [opinião]"
     },
     "selo": "consenso",
     "fontes": [
