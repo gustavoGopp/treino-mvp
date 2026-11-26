@@ -2730,3 +2730,17 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 4
 **Decisão técnica.** Sem versão nova do estado guardado: o peso digitado fica na própria série, e a lista é montada somando a do equipamento com os pesos já registrados (regra `progressao.incremento.halteres`). Um peso registrado na academia não aparece em casa.
 
 **Não dá para conferir daqui:** se o teclado do iPhone deixa digitar vírgula nesse campo (o navegador de teste só aceita ponto).
+
+## Corrigir uma série marcada errado (26/11/2026)
+
+**De onde veio.** Pedido do Gustavo: "várias vezes marquei errado e não consegui corrigir". Antes, só dava para desfazer a última série (por 5 s, ou em "Mais opções"), e depois do treino só dava para apagar o treino inteiro.
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Durante o treino | só a última série, e só desfazer | qualquer série de "Séries feitas" abre "Corrigir a Nª série": carga, repetições e quantas sobraram, ou "Apagar esta série" (com confirmação) |
+| Depois do treino | só apagar o último treino inteiro | na evolução do exercício (Semana → o exercício), cada treino abre as séries daquele dia, cada uma com "Corrigir" |
+| Sugestão da próxima série | — | sai do valor corrigido |
+
+A nota de dor, as quedas do drop set e a marca de "acertando o peso" ficam na série corrigida; ao apagar uma série, a nota de dor dela passa para a série que fica. Sem versão nova do estado guardado. Regra: `registro.treino-feito`.
