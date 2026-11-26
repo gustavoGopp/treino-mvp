@@ -601,7 +601,7 @@
   },
   "registro.treino-feito": {
     "titulo": "O que conta como treino feito",
-    "frase": "Só treino com pelo menos 1 série conta para a rotação dos dias, a semana, a pausa e a semana leve. “Terminar” sem nenhuma série oferece “Descartar este treino” ou “Guardar mesmo assim” (guardado, ele não conta). O último treino pode ser apagado, com confirmação."
+    "frase": "Só treino com pelo menos 1 série conta para a rotação dos dias, a semana, a pausa e a semana leve. “Terminar” sem nenhuma série oferece “Descartar este treino” ou “Guardar mesmo assim” (guardado, ele não conta). O último treino pode ser apagado, com confirmação. Qualquer série, do treino de hoje ou de um antigo, pode ser corrigida ou apagada."
   },
   "tecnica.flexao.punho": {
     "titulo": "Dor no punho nas flexões",

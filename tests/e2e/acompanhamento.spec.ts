@@ -1,5 +1,5 @@
 import { expect, test, type Page } from './base';
-import { ana, entenda, porQueDaSugestao, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
+import { ana, entenda, folhaPronta, porQueDaSugestao, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R2: acompanhamento. A Ana (persona fictícia) faz o cadastro pelo app; o histórico de treinos é gravado direto no
@@ -194,6 +194,31 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
   await expect(page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Semana' })).toHaveAttribute('aria-current', 'page');
   await expect(page.locator('header.top').getByRole('link', { name: 'Semana', exact: true })).toBeVisible();
   await print(page, 'evolucao');
+  await semToquePequeno(page);
+});
+
+// Pedido do Gustavo (26/11/2026; registro.treino-feito): uma série de um treino antigo se corrige pela evolução.
+test('uma série de um treino antigo se corrige pela evolução do exercício', async ({ page }) => {
+  await comHistorico(page, [
+    { dia: 0, quando: '2026-10-12T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
+    { dia: 1, quando: '2026-10-16T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
+  ]);
+  await page.goto('/evolucao/supino-reto');
+  const pontos = page.locator('.pontos-evolucao li');
+  await expect(pontos.nth(0)).toContainText('8 kg × 10');
+  await pontos.nth(0).getByRole('button', { name: /^Ver e corrigir as séries de/ }).click();
+  const treino = page.getByRole('dialog', { name: /^Treino de/ });
+  await folhaPronta(page);
+  await expect(treino.getByRole('button', { name: /^Corrigir a/ })).toHaveCount(2);
+  await treino.getByRole('button', { name: 'Corrigir a 2ª série' }).click();
+  const folha = page.getByRole('dialog', { name: 'Corrigir a 2ª série' });
+  await folhaPronta(page);
+  await folha.getByLabel('Repetições').fill('14');
+  await folha.getByRole('button', { name: 'Guardar a correção' }).click();
+  await expect(folha).toHaveCount(0);
+  // a melhor série daquele treino passa a ser a corrigida, e o recorde do treino seguinte deixa de ser recorde
+  await expect(pontos.nth(0)).toContainText('8 kg × 14');
+  await expect(pontos.nth(1)).not.toContainText('recorde');
   await semToquePequeno(page);
 });
 

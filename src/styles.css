@@ -728,6 +728,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .dicas-serie{display:flex;flex-direction:column;gap:var(--s4)}
 .series-feitas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s16);font-size:var(--t-apoio);color:var(--texto-2)}
 .series-feitas .n{color:var(--texto);font-weight:600;margin-right:var(--s4)}
+/* cada série feita abre a correção (26/11/2026): o toque tem 44 px de altura, e o sublinhado diz que é tocável */
+.series-feitas .serie-feita{min-height:44px;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:left;text-decoration:underline;text-decoration-color:var(--linha);text-underline-offset:.2em;cursor:pointer}
 .registro{display:flex;flex-direction:column;gap:var(--s16)}
 .serie-tit{display:flex;justify-content:space-between;align-items:center;gap:var(--s16)}
 .registro h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
@@ -864,7 +866,8 @@ a.faixa-descanso{text-decoration:none}
 .lista-evolucao li{border-bottom:1px solid var(--linha)}
 .lista-evolucao a{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);color:var(--texto);font-weight:500;text-decoration:none}
 .lista-evolucao .icone{color:var(--texto-2)}
-.pontos-evolucao li{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s8);align-items:center;padding:var(--s16) 0;font-size:var(--t-corpo)}
+/* cada treino abre as séries dele para corrigir (26/11/2026): a linha inteira é o botão */
+.pontos-evolucao .pe-linha{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s8);align-items:center;width:100%;min-height:44px;padding:var(--s16) 0;border:0;background:none;font:inherit;font-size:var(--t-corpo);color:var(--texto);text-align:left;cursor:pointer}
 .pe-data{color:var(--texto-2);font-size:var(--t-apoio)}
 .pe-serie{font-weight:600}
 .pe-serie small{font-weight:400;color:var(--texto-2)}
@@ -951,7 +954,7 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   /* semana e evolução: cada linha empilha (nome e número em cima, a barra embaixo; a série e a marca, uma por linha) */
   .musculos li{grid-template-columns:1fr auto;grid-template-areas:"nome num" "barra barra" "estado estado";gap:var(--s4) var(--s8)}
   .m-num{min-width:0}
-  .pontos-evolucao li{grid-template-columns:1fr}
+  .pontos-evolucao .pe-linha{grid-template-columns:1fr}
   .pe-marcas{justify-content:flex-start}
   .rx .nw{white-space:normal}
   .treino-tela{--t-relogio:4.5rem}

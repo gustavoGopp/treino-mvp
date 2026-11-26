@@ -32,7 +32,8 @@ import { Icone } from '../app/icones';
 import { Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, corrigirHalterMaisPesado, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { CorrigirSerie } from './CorrigirSerie';
+import { alternarPreferencia, anotarDor, apagarSerie, corrigirSerie, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, corrigirHalterMaisPesado, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PalcoTreino } from './PalcoTreino';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
@@ -108,6 +109,10 @@ export function Treino() {
   // Aberto sozinho, na 1ª vez da pessoa naquele exercício (ideia B do estudo da tela do treino, escolhida pelo Gustavo
   // em 22/11/2026): a folha ganha o botão "Entendi", que leva ao registro.
   const [guiaDaPrimeiraVez, setGuiaDaPrimeiraVez] = useState(false);
+  // a série que está sendo corrigida (índice na lista do exercício aberto), ou nenhuma
+  const [corrigindo, setCorrigindo] = useState<number | null>(null);
+  // cada correção refaz o registro da próxima série, para a sugestão sair do valor corrigido, e não do errado
+  const [correcoes, setCorrecoes] = useState(0);
   const [rascunho, setRascunho] = useState<Rascunho | null>(null);
   // logo depois de salvar, "Série N feita" aparece no lugar exato de "Série feita": por 1 s o botão não responde,
   // para um toque duplo não registrar a série seguinte (revisão do bloco 2, item 2)
@@ -153,6 +158,7 @@ export function Treino() {
   const nuncaFez = !feito.series.length && !estado.historico.some((s) => s.exercicios.some((e) => e.exId === x.exId && e.series.length > 0));
   const irPara = (n: number) => {
     fecharGuia();
+    setCorrigindo(null);
     setIndice(n);
     setVerSerie(true);
     setRascunho(null);
@@ -166,19 +172,23 @@ export function Treino() {
     atualizar((s) => terminarSessao(s, agoraIso(), porAlerta, alerta));
     navigate('/treino/fim', { replace: true });
   };
-  // as séries já feitas neste exercício: à vista no registro e, durante o descanso, na tela do relógio
+  // as séries já feitas neste exercício: à vista no registro e, durante o descanso, na tela do relógio. Desde 26/11/2026
+  // (pedido do Gustavo; registro.treino-feito), cada uma é um botão que abre a correção.
   const seriesFeitas = feito.series.length > 0 && (
     <ol className="series-feitas" aria-label="Séries feitas">
       {feito.series.map((s, n) => (
         <li key={n}>
-          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · sobrando {textoDoRir(s.rir, RIR.registroMax)}
-          {s.calibracao ? ' · acertando o peso' : ''}
-          {s.dor ? ` · dor ${s.dor}` : ''}
-          {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
+          <button type="button" className="serie-feita" aria-haspopup="dialog" aria-label={`Corrigir a ${n + 1}ª série`} onClick={() => setCorrigindo(n)}>
+            <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · sobrando {textoDoRir(s.rir, RIR.registroMax)}
+            {s.calibracao ? ' · acertando o peso' : ''}
+            {s.dor ? ` · dor ${s.dor}` : ''}
+            {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
+          </button>
         </li>
       ))}
     </ol>
   );
+  const serieACorrigir = corrigindo === null ? undefined : feito.series[corrigindo];
   const desfazerSalva = () => {
     if (!salva) return;
     atualizar((s) => desfazerSerie(s, salva.indice));
@@ -408,7 +418,7 @@ export function Treino() {
                 </p>
               )}
               <RegistroSerie
-                key={`${i}-${feito.exId}-${feito.series.length}`}
+                key={`${i}-${feito.exId}-${feito.series.length}-${correcoes}`}
                 x={x}
                 numero={feito.series.length + 1}
                 anteriores={feito.series}
@@ -511,6 +521,25 @@ export function Treino() {
               </button>
             )}
           </Folha>
+        )}
+        {serieACorrigir && corrigindo !== null && (
+          <CorrigirSerie
+            key={`${i}-${corrigindo}`}
+            exId={feito.exId}
+            numero={corrigindo + 1}
+            serie={serieACorrigir}
+            degraus={opcoesCarga(feito.exId, inventario).degraus?.length}
+            aoGuardar={(nova) => {
+              atualizar((e) => corrigirSerie(e, { exIndex: i, n: corrigindo }, nova));
+              setCorrigindo(null);
+              setCorrecoes((c) => c + 1);
+            }}
+            aoApagar={() => {
+              atualizar((e) => apagarSerie(e, { exIndex: i, n: corrigindo }));
+              setCorrigindo(null);
+            }}
+            aoFechar={() => setCorrigindo(null)}
+          />
         )}
         <PrimeiraVez
           chave={`${sessao.id}:${x.exId}`}

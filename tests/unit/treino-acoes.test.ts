@@ -152,9 +152,9 @@ describe('o registro que não engana (R5a; seguranca.dor.escala, registro.treino
     expect(apagarUltimoTreino(e, 'outro')).toBe(e);
     expect(iniciarSessao(apagarUltimoTreino(e, id), T1).sessaoAtual!.diaId).toBe('corpo-a');
     const certa = { ...serie, reps: 12 };
-    e = corrigirSerie(e, id, 0, 0, certa);
+    e = corrigirSerie(e, { sessaoId: id, exIndex: 0, n: 0 }, certa);
     expect(e.historico[0]!.exercicios[0]!.series[0]).toEqual(certa);
-    expect(corrigirSerie(e, id, 0, 5, serie)).toBe(e);
+    expect(corrigirSerie(e, { sessaoId: id, exIndex: 0, n: 5 }, serie)).toBe(e);
     expect(estadoSchema.parse(e)).toEqual(e);
   });
 });
