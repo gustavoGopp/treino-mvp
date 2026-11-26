@@ -347,6 +347,37 @@ test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o desca
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 8');
 });
 
+// Pedido do Gustavo (26/11/2026; registro.treino-feito): uma série marcada errado se corrige ou se apaga, não só a última.
+test('uma série feita se corrige e se apaga pela lista "Séries feitas"', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const feitas = page.getByRole('list', { name: 'Séries feitas' }).first();
+  await expect(feitas).toContainText('8 kg × 8');
+  await feitas.getByRole('button', { name: 'Corrigir a 1ª série' }).click();
+  const folha = page.getByRole('dialog', { name: 'Corrigir a 1ª série' });
+  await folhaPronta(page);
+  await folha.getByLabel('Carga', { exact: true }).fill('9');
+  await folha.getByLabel('Repetições').fill('12');
+  await folha.getByRole('group', { name: 'Quantas ainda conseguiria?' }).getByLabel('1', { exact: true }).check();
+  await folha.getByRole('button', { name: 'Guardar a correção' }).click();
+  await expect(folha).toHaveCount(0);
+  await expect(feitas).toContainText('9 kg × 12 · sobrando 1');
+  // a sugestão da próxima série sai do valor corrigido: o "A seguir" deixa de mostrar a carga que vinha de 8 kg × 8
+  await expect(page.locator('.aseguir')).not.toContainText('6 kg × 8');
+  // a correção ficou guardada: continua depois de recarregar
+  await page.reload();
+  await expect(page.getByRole('list', { name: 'Séries feitas' }).first()).toContainText('9 kg × 12');
+  // apagar pede confirmação
+  await page.getByRole('list', { name: 'Séries feitas' }).first().getByRole('button', { name: 'Corrigir a 1ª série' }).click();
+  await folhaPronta(page);
+  await page.getByRole('dialog', { name: 'Corrigir a 1ª série' }).getByRole('button', { name: 'Apagar esta série' }).click();
+  await page.getByRole('group', { name: 'Apagar esta série?' }).getByRole('button', { name: 'Apagar', exact: true }).click();
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toHaveCount(0);
+});
+
 // seguranca.montagem: no exercício com travas ou ancoragem, a montagem segura fica a um toque na tela da série e abre o
 // guia ampliado, com a nota logo abaixo do Boneco. Até 22/11/2026 (ligação das 81 animações) estes exercícios eram cartão
 // de texto, com a montagem sempre aberta; na 1ª vez o guia ampliado abre sozinho, com a nota.
