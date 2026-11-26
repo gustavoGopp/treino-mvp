@@ -140,8 +140,31 @@ function atributoDoItem(ex: Exercicio | undefined, inv: Inventario, chave: 'plac
   return undefined;
 }
 
-/** Como registrar a carga de um exercício, conforme o equipamento (progressao.incremento.*; pesquisa-v2/08, seção 1.1). */
-export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga & { registro: TipoCarga } {
+/**
+ * Os pesos que a pessoa já registrou num exercício (progressao.incremento.halteres; pedido do Gustavo, 26/11/2026): o
+ * histórico, no local de hoje (as sessões antigas, sem local, são do 1º local), e as cargas da sessão aberta.
+ */
+export type PesosUsados = { historico?: Sessao[]; local?: LocalDaCarga; daSessao?: Carga[] };
+
+function kgUsados(exId: string, u: PesosUsados): number[] {
+  const noLocal = (s: Sessao) => !u.local || (s.localId ?? u.local.localPadrao) === u.local.localId;
+  const doHistorico = (u.historico ?? []).filter(noLocal).flatMap((s) => s.exercicios.filter((e) => e.exId === exId).flatMap((e) => e.series.map((x) => x.carga)));
+  return [...doHistorico, ...(u.daSessao ?? [])].flatMap((c) => (c.tipo === 'kg' && c.kg > 0 ? [c.kg] : []));
+}
+
+/** A lista do equipamento somada aos pesos já registrados: o peso digitado em "Outro peso…" passa a existir. */
+function comPesosUsados(lista: number[], exId: string, u: PesosUsados | undefined): number[] {
+  if (!u) return lista;
+  const todos = [...lista];
+  for (const k of kgUsados(exId, u)) if (!todos.some((x) => Math.abs(x - k) < 1e-9)) todos.push(k);
+  return todos.sort((a, b) => a - b);
+}
+
+/**
+ * Como registrar a carga de um exercício, conforme o equipamento (progressao.incremento.*; pesquisa-v2/08, seção 1.1).
+ * Com `usados`, a lista de halteres, kettlebell e caneleira ganha os pesos já registrados no exercício (26/11/2026).
+ */
+export function opcoesCarga(exId: string, inventario: Inventario, usados?: PesosUsados): OpcoesCarga & { registro: TipoCarga } {
   const ex = POR_ID[exId];
   let tipo = ex?.carga ?? 'peso-corpo';
   const placas = atributoDoItem(ex, inventario, 'placas');
@@ -154,11 +177,11 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
   if (tipo === 'halter' && !cargasHalter(inventario).length) tipo = 'peso-corpo';
   switch (tipo) {
     case 'halter':
-      return { tipo, registro: 'kg', lista: cargasHalter(inventario) };
+      return { tipo, registro: 'kg', lista: comPesosUsados(cargasHalter(inventario), exId, usados) };
     case 'kettlebell':
-      return { tipo, registro: 'kg', lista: cargasKettlebell(inventario) };
+      return { tipo, registro: 'kg', lista: comPesosUsados(cargasKettlebell(inventario), exId, usados) };
     case 'caneleira':
-      return { tipo, registro: 'kg', lista: cargasCaneleiras(inventario) };
+      return { tipo, registro: 'kg', lista: comPesosUsados(cargasCaneleiras(inventario), exId, usados) };
     case 'polia':
     case 'maquina':
       return { tipo, registro: 'placa', ...(placas ? { placasMax: placas } : {}) };
@@ -322,7 +345,7 @@ export function sugestaoDoExercicio(
   inventario: Inventario,
   opcoes: OpcoesSugestao = {},
 ): Sugestao {
-  const op = opcoesCarga(x.exId, inventario);
+  const op = opcoesCarga(x.exId, inventario, { historico, ...(opcoes.local ? { local: opcoes.local } : {}) });
   // Registro por degrau: um "0 kg" antigo (antes do achado 7 da auditoria) vale como o 1º degrau.
   const deDegrau = (s: SessaoExercicio): SessaoExercicio => ({
     series: s.series.map((y) => (y.carga.tipo === 'kg' && y.carga.kg === 0 ? { ...y, carga: { tipo: 'degrau', degrau: 0 } } : y)),
@@ -417,7 +440,8 @@ export function calibracaoNaSessao(
   // A saída da calibração (progressao.calibracao; R5a): 3 séries de acerto, somando o histórico e a sessão.
   if (calibrando) {
     const fim = fimDaCalibracao([...acertosDe(longa ? doBloco! : h), ...seriesDaSessao.filter((s) => s.calibracao)], x);
-    if (fim) return { calibrando: false, fim: true, ultima: { ...fim, proxima: noInventario(fim.proxima, opcoesCarga(x.exId, inventario)).carga } };
+    const usados: PesosUsados = { historico, ...(opcoes.local ? { local: opcoes.local } : {}), daSessao: seriesDaSessao.map((y) => y.carga) };
+    if (fim) return { calibrando: false, fim: true, ultima: { ...fim, proxima: noInventario(fim.proxima, opcoesCarga(x.exId, inventario, usados)).carga } };
   }
   const s = seriesDaSessao.at(-1);
   if (!calibrando || !s) return { calibrando };
@@ -425,7 +449,7 @@ export function calibracaoNaSessao(
   // não sugere carga nenhuma, e quem orienta é a regra da dor. Antes (conferência de 22/11/2026), uma série leve com dor 4
   // ainda devolvia "Ficou leve: na próxima série, 8 kg", já preenchido, ao lado do aviso de dor.
   if ((s.dor ?? 0) >= DOR.ajustarDe) return { calibrando };
-  return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes) };
+  return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes, { historico, ...(opcoes.local ? { local: opcoes.local } : {}), daSessao: seriesDaSessao.map((y) => y.carga) }) };
 }
 
 /** As séries de acerto da calibração de um histórico (progressao.calibracao). */
@@ -437,8 +461,10 @@ export function avaliarSerieDeCalibracao(
   x: Pick<ExercicioPrescrito, 'exId' | 'reps' | 'rir'>,
   inventario: Inventario,
   opcoes: OpcoesSugestao = {},
+  usados: PesosUsados = {},
 ): ResultadoCalibracao {
-  const op = opcoesCarga(x.exId, inventario);
+  // a carga da própria série sempre conta como peso que a pessoa tem (o "Outro peso…" de 26/11/2026)
+  const op = opcoesCarga(x.exId, inventario, { ...usados, daSessao: [...(usados.daSessao ?? []), s.carga] });
   const c = calibrar(s, { reps: x.reps, rir: x.rir }, op, { soDesce: opcoes.soDesce });
   return { ...c, proxima: noInventario(c.proxima, op).carga };
 }
