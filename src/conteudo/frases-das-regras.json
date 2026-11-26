@@ -157,7 +157,7 @@
   },
   "progressao.incremento.halteres": {
     "titulo": "Aumento de carga com halteres e kettlebell",
-    "frase": "Halteres fixos: o próximo par que você tem. Halteres montáveis: a menor combinação de anilhas disponível. Kettlebell: o próximo peso da sua lista. Se o salto passar de cerca de 10%, vale a regra do salto grande de carga."
+    "frase": "Halteres fixos: o próximo par que você tem. Halteres montáveis: a menor combinação de anilhas disponível. Kettlebell: o próximo peso da sua lista. Se o salto passar de cerca de 10%, vale a regra do salto grande de carga. Você pode digitar qualquer peso em “Outro peso…”, e o que já registrou no exercício passa a contar como peso que você tem."
   },
   "progressao.incremento.polia": {
     "titulo": "Carga na polia e nas máquinas de placas",

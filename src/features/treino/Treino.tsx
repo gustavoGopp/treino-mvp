@@ -191,7 +191,7 @@ export function Treino() {
   const feita = (serie: SerieRegistrada) => {
     // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
-    const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
+    const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje, { historico: estado.historico, ...(opcoesCargaHoje.local ? { local: opcoesCargaHoje.local } : {}), daSessao: feito.series.map((y) => y.carga) }).perto;
     // A nota de dor dada antes da 1ª série está guardada no exercício e passa para esta série (registrarSerie).
     atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     setSalva({ indice: i, numero: feito.series.length + 1 });
@@ -468,7 +468,7 @@ export function Treino() {
                 // A carga de agora: a da última série feita ou, antes da 1ª, a da última vez. Sem carga menor para
                 // usar (a placa 1, o halter mais leve), a orientação não manda reduzir.
                 const cargaAgora = feito.series.at(-1)?.carga ?? ultimaSerie(estado.historico, x.exId, opcoesCargaHoje.local)?.carga;
-                const r = avaliarDor(nota, false, cargaAgora ? haCargaMenor(cargaAgora, opcoesCarga(x.exId, inventario)) : true);
+                const r = avaliarDor(nota, false, cargaAgora ? haCargaMenor(cargaAgora, opcoesCarga(x.exId, inventario, { historico: estado.historico, ...(opcoesCargaHoje.local ? { local: opcoesCargaHoje.local } : {}), daSessao: feito.series.map((y) => y.carga) })) : true);
                 // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, no exercício
                 // (e passa para a próxima série; se a dor encerra o exercício antes dela, a nota fica nele).
                 let guardada = '';
@@ -722,7 +722,8 @@ function RegistroSerie({
   /** "Meus pesos são outros": grava no local o halter mais pesado que a pessoa disse ter. */
   aoPesosOutros?: (maxKg: number) => void;
 }) {
-  const op = opcoesCarga(x.exId, inventario);
+  // a lista de cargas leva os pesos já registrados no exercício, aqui e nesta sessão (progressao.incremento.halteres)
+  const op = opcoesCarga(x.exId, inventario, { historico: estado.historico, ...(opcoes.local ? { local: opcoes.local } : {}), daSessao: anteriores.map((y) => y.carga) });
   const cal = calibracaoNaSessao(estado.historico, x, inventario, anteriores, opcoes);
   const ultima = anteriores.at(-1) ?? ultimaSerie(estado.historico, x.exId, opcoes.local);
   const sugerida = anteriores.length === 0 ? sugestaoDoExercicio(estado.historico, x, inventario, opcoes).proxima : cal.ultima?.proxima;
@@ -879,6 +880,8 @@ function RegistroSerie({
 
 /** O valor da opção "Meus pesos são outros…" na lista de cargas (não é uma carga). */
 const OUTROS_PESOS = 'outros';
+/** O valor da opção "Outro peso…" (26/11/2026): abre o campo para digitar qualquer carga. */
+const OUTRO_PESO = 'outro-peso';
 /** [opinião] Os pesos comuns de um halter mais pesado, de casa à academia; qualquer outro vai em "Outro". */
 const HALTER_MAIS_PESADO = [4, 5, 6, 8, 10, 12, 14, 16, 20, 30] as const;
 
@@ -938,27 +941,30 @@ function ControleCarga({
           {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
         </output>
       </button>
-      {digitando && (
-        <Folha titulo="Carga" aoFechar={() => setDigitando(false)}>
-          <form
-            className="form"
-            onSubmit={(ev) => {
-              ev.preventDefault();
-              ev.stopPropagation();
-              const n = numeroOu(digitado);
-              if (n === undefined || n < 0 || n > 1000) return;
-              gravar(Math.round(n * 100) / 100);
-              setDigitando(false);
-            }}
-          >
-            <Numero rotulo={campo} valor={digitado} aoMudar={setDigitado} min={0} sufixo="kg" />
-            <button type="submit" className="btn" disabled={numeroOu(digitado) === undefined}>
-              Pronto
-            </button>
-          </form>
-        </Folha>
-      )}
+      {digitando && folhaDigitar(campo, gravar)}
     </>
+  );
+  // A folha de digitar a carga: a da barra e, desde 26/11/2026, a do "Outro peso…" dos halteres, kettlebell e caneleira
+  // (progressao.incremento.halteres: qualquer valor, com vírgula; o app não trava nem pula número).
+  const folhaDigitar = (campo: string, gravar: (n: number) => void) => (
+    <Folha titulo="Carga" aoFechar={() => setDigitando(false)}>
+      <form
+        className="form"
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          ev.stopPropagation();
+          const n = numeroOu(digitado);
+          if (n === undefined || n <= 0 || n > 1000) return;
+          gravar(Math.round(n * 100) / 100);
+          setDigitando(false);
+        }}
+      >
+        <Numero rotulo={campo} valor={digitado} aoMudar={setDigitado} min={0} sufixo="kg" />
+        <button type="submit" className="btn" disabled={!((numeroOu(digitado) ?? 0) > 0)}>
+          Pronto
+        </button>
+      </form>
+    </Folha>
   );
   const numero = (n: number | string | undefined, unidade?: string) =>
     n === undefined ? (
@@ -1032,7 +1038,6 @@ function ControleCarga({
   }
   if (registro === 'placa') {
     const p = valor?.tipo === 'placa' ? valor.placa : undefined;
-    const max = placasMax ?? 30;
     return (
       <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
@@ -1046,7 +1051,7 @@ function ControleCarga({
           rotuloMenos="Placa anterior"
           rotuloMais="Próxima placa"
           semMenos={!p || p <= 1}
-          semMais={!!p && p >= max}
+          // sem trava no número de placas guardado (26/11/2026): a torre pode ter mais placas do que o app sabe
           aoMenos={() => p && aoMudar({ tipo: 'placa', placa: p - 1 })}
           aoMais={() => aoMudar({ tipo: 'placa', placa: (p ?? 0) + 1 })}
         />
@@ -1055,11 +1060,11 @@ function ControleCarga({
   }
   // kg: halter só com as cargas do inventário; a barra anda no passo do local (equipamento.menor-anilha); sem passo, de 2,5 em 2,5.
   const k = valor?.tipo === 'kg' ? valor.kg : undefined;
-  const lista = cargas?.length ? cargas : undefined;
+  // a carga digitada em "Outro peso…" entra na lista, para o número aparecer e o menos e o mais andarem a partir dela
+  const lista = cargas?.length ? (k === undefined || cargas.some((v) => Math.abs(v - k) < 1e-9) ? cargas : [...cargas, k].sort((a, b) => a - b)) : undefined;
   const passo = (dir: 1 | -1) => {
     if (lista) {
-      const pos = k === undefined ? (dir > 0 ? -1 : lista.length) : lista.findIndex((v) => Math.abs(v - k) < 1e-9);
-      const n = lista[Math.max(0, Math.min(lista.length - 1, pos + dir))];
+      const n = k === undefined ? (dir > 0 ? lista[0] : lista.at(-1)) : dir > 0 ? lista.find((v) => v > k + 1e-9) : [...lista].reverse().find((v) => v < k - 1e-9);
       if (n !== undefined) aoMudar({ tipo: 'kg', kg: n });
     } else aoMudar({ tipo: 'kg', kg: kgNoPasso(k, dir, { ...(passoKg ? { passoKg } : {}), ...(baseKg ? { baseKg } : {}) }) });
   };
@@ -1089,6 +1094,9 @@ function ControleCarga({
               if (e.target.value === OUTROS_PESOS) {
                 setMaisPesado('');
                 setCorrigindo(true);
+              } else if (e.target.value === OUTRO_PESO) {
+                setDigitado(k === undefined ? '' : String(k));
+                setDigitando(true);
               } else aoMudar({ tipo: 'kg', kg: Number(e.target.value) });
             }}
           >
@@ -1100,6 +1108,7 @@ function ControleCarga({
                 {numeroBr(v)} kg
               </option>
             ))}
+            <option value={OUTRO_PESO}>Outro peso…</option>
             {pesosOutros && <option value={OUTROS_PESOS}>Meus pesos são outros…</option>}
           </select>
         </span>
@@ -1107,6 +1116,7 @@ function ControleCarga({
         numeroLivre(k, 'Digitar a carga', 'Carga usada', (n) => aoMudar({ tipo: 'kg', kg: n }), idCarga)
       )}
       <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} />
+      {lista && digitando && folhaDigitar('Carga usada', (n) => aoMudar({ tipo: 'kg', kg: n }))}
       {corrigindo && pesosOutros && (
         <Folha titulo="Seus halteres" aoFechar={() => setCorrigindo(false)}>
           <p>

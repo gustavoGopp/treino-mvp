@@ -2713,3 +2713,20 @@ O que piora, e foi aceito: a nota "o foco não passa da mediana dos outros" em 4
 **Verificação.** O agente foi parado no meio da 2ª rodada da auditoria (23/11/2026, a pedido do Gustavo); a medida acima é a da 1ª rodada, conferida contra a `main` pela sessão principal. A junção passou pelo `npm run verificar` antes de ir à `main`.
 
 **Rascunho de post.** "Peguei 15 defeitos que uma conferência apontou no gerador de treinos e tentei consertar todos. Entraram quatro e meio. Os outros consertavam o caso apontado e estragavam outros: pôr o tríceps em todo programa de 30 minutos deixava 208 treinos acima do tempo; poupar o foco no corte deixava 1.390. O que mais ensinou foi o que entrou: botar o supino de volta no dia de empurrar parecia óbvio, mas, em 28 casos, desfazia uma troca de divisão que fazia o treino caber. Agora o app só aceita a correção quando ela não custa nada."
+
+## Peso livre (26/11/2026)
+
+**De onde veio.** Pedido do Gustavo: "não quero que ele trave em um limite ou pule números; tem treinos que faço com 9, que não aparece, e com 35, que passa do limite".
+
+**O que mudou para quem usa**
+
+| | Antes | Depois |
+|---|---|---|
+| Halteres "de 2 a 30, de 2 em 2" | só os pesos da lista | a lista e "Outro peso…", que aceita qualquer valor (9, 35, 22,5) |
+| Peso registrado fora da lista | a sugestão o arredondava para a lista | conta como peso que a pessoa tem, naquele exercício e naquele local |
+| Menos e mais depois de digitar | — | andam a partir do valor digitado (de 9, o menos vai para 8) |
+| Máquina com placas | o mais parava no número de placas guardado | sem trava |
+
+**Decisão técnica.** Sem versão nova do estado guardado: o peso digitado fica na própria série, e a lista é montada somando a do equipamento com os pesos já registrados (regra `progressao.incremento.halteres`). Um peso registrado na academia não aparece em casa.
+
+**Não dá para conferir daqui:** se o teclado do iPhone deixa digitar vírgula nesse campo (o navegador de teste só aceita ponto).

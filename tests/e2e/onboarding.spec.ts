@@ -314,9 +314,9 @@ test('kit típico de casa: o programa diz que supôs o kit, e "Meus pesos são o
   await expect(page.getByRole('region', { name: /^Marcados \(2\)/ })).toContainText('Halteres fixos');
   await page.goto('/programa');
   await page.getByRole('button', { name: /^Começar/ }).click();
-  // a lista de cargas é a do kit (2 a 10 kg, de 2 em 2), com a saída no fim
+  // a lista de cargas é a do kit (2 a 10 kg, de 2 em 2), com as saídas no fim ("Outro peso…" desde 26/11/2026)
   const carga = page.getByLabel('Carga', { exact: true });
-  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', 'Meus pesos são outros…']);
+  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', 'Outro peso…', 'Meus pesos são outros…']);
   await carga.selectOption({ label: 'Meus pesos são outros…' });
   const folha = page.getByRole('dialog', { name: 'Seus halteres' });
   await folhaPronta(page);
@@ -325,13 +325,36 @@ test('kit típico de casa: o programa diz que supôs o kit, e "Meus pesos são o
   await folha.getByLabel('16 kg', { exact: true }).check();
   await folha.getByRole('button', { name: 'Guardar' }).click();
   await expect(folha).toHaveCount(0);
-  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', '12 kg', '14 kg', '16 kg', 'Meus pesos são outros…']);
+  await expect(carga.locator('option')).toHaveText(['Escolha', '2 kg', '4 kg', '6 kg', '8 kg', '10 kg', '12 kg', '14 kg', '16 kg', 'Outro peso…', 'Meus pesos são outros…']);
   // a correção ficou no local: o programa deixa de dizer "kit típico", e a lista de cargas continua a nova depois de recarregar
   await page.reload();
-  await expect(page.getByLabel('Carga', { exact: true }).locator('option')).toHaveCount(10);
+  await expect(page.getByLabel('Carga', { exact: true }).locator('option')).toHaveCount(11);
   await terminarTreino(page);
   await page.goto('/programa');
   await expect(page.getByText('Montado para um kit típico')).toHaveCount(0);
+});
+
+// Peso livre (pedido do Gustavo, 26/11/2026; progressao.incremento.halteres): a lista de halteres "de 2 em 2" não tinha 9,
+// e nada passava do mais pesado. Agora "Outro peso…" aceita qualquer valor, e ele entra na lista.
+test('"Outro peso…" registra qualquer carga, fora do passo e acima do mais pesado da lista', async ({ page }) => {
+  await ateOEquipamento(page, 'treina');
+  await page.getByRole('button', { name: 'Casa com halteres e elásticos' }).click();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await page.getByRole('button', { name: /^Começar/ }).click();
+  const carga = page.getByLabel('Carga', { exact: true });
+  for (const [digitado, kg] of [['9', '9 kg'], ['35', '35 kg'], ['22.5', '22,5 kg']] as const) {
+    await carga.selectOption({ label: 'Outro peso…' });
+    const folha = page.getByRole('dialog', { name: 'Carga' });
+    await folhaPronta(page);
+    await folha.getByLabel('Carga usada').fill(digitado);
+    await folha.getByRole('button', { name: 'Pronto' }).click();
+    await expect(folha).toHaveCount(0);
+    // o número aparece no seletor, como uma opção da lista, e fica escolhido
+    await expect(carga.locator('option:checked')).toHaveText(kg);
+  }
+  // o menos anda a partir do valor digitado, para o peso da lista logo abaixo
+  await page.getByRole('button', { name: 'Menos carga' }).click();
+  await expect(carga.locator('option:checked')).toHaveText('10 kg');
 });
 
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {

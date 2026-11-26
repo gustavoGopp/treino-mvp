@@ -105,9 +105,15 @@ export async function escolherDivisao(page: Page, divisao: string) {
 }
 
 // Treino (redesign, lote 2): anterior, próximo, trocar e terminar ficam no "⋯" do exercício; terminar pede confirmação.
-/** Espera a folha aberta terminar de subir (200 ms), para o toque não cair no meio do movimento. */
+/**
+ * Espera a folha aberta terminar de subir (200 ms), para o toque não cair no meio do movimento. Olha as folhas que estão
+ * na página a cada instante (26/11/2026): antes, esperava a animação do elemento achado no começo, e se a tela redesenhava
+ * a folha nesse meio tempo, o elemento antigo saía da página com a animação parada, e o teste esperava para sempre (o
+ * cenário "estreito · cadastro" ficou 2 min parado uma vez; 5 de 5 passavam em 10 s).
+ */
 export async function folhaPronta(page: Page) {
-  await page.locator('.folha').last().evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+  await page.locator('.folha').last().waitFor();
+  await page.waitForFunction(() => Array.from(document.querySelectorAll('.folha')).every((f) => f.getAnimations().every((a: Animation) => a.playState !== 'running')));
 }
 /** Abre o "⋯" (Mais opções) do exercício e devolve a folha. */
 export async function maisOpcoes(page: Page) {
