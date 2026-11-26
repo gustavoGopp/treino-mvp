@@ -121,6 +121,43 @@ export function anotarDor(e: Estado, i: number, nota: number): { estado: Estado;
 export const comDor = (s: SerieRegistrada, nota?: number): SerieRegistrada =>
   nota && nota > 0 ? { ...s, dor: Math.max(s.dor ?? 0, Math.round(nota)) } : s;
 
+/** Onde está a série a corrigir: no treino aberto (sem `sessaoId`) ou num treino do histórico. */
+export type OndeSerie = { sessaoId?: string; exIndex: number; n: number };
+type ExercicioDaSessao = Sessao['exercicios'][number];
+
+/** A série apontada, se ela existe. */
+const serieEm = (e: Estado, onde: OndeSerie) =>
+  (onde.sessaoId === undefined ? e.sessaoAtual : e.historico.find((s) => s.id === onde.sessaoId))?.exercicios[onde.exIndex]?.series[onde.n];
+
+/** Muda um exercício do treino aberto ou de um treino do histórico. */
+function noExercicio(e: Estado, onde: OndeSerie, f: (x: ExercicioDaSessao) => ExercicioDaSessao): Estado {
+  const mudar = (s: Sessao): Sessao => ({ ...s, exercicios: s.exercicios.map((x, j) => (j === onde.exIndex ? f(x) : x)) });
+  if (onde.sessaoId === undefined) return e.sessaoAtual ? { ...e, sessaoAtual: mudar(e.sessaoAtual) } : e;
+  return { ...e, historico: e.historico.map((s) => (s.id === onde.sessaoId ? mudar(s) : s)) };
+}
+
+/**
+ * Corrige uma série já registrada (registro.treino-feito; pedido do Gustavo, 26/11/2026): a carga, as repetições e quantas
+ * sobraram. A nota de dor, as quedas do drop set e a marca de acerto da carga ficam como estavam.
+ */
+export function corrigirSerie(e: Estado, onde: OndeSerie, nova: Pick<SerieRegistrada, 'carga' | 'reps' | 'rir'>): Estado {
+  if (!serieEm(e, onde)) return e;
+  return noExercicio(e, onde, (x) => ({ ...x, series: x.series.map((s, k) => (k === onde.n ? { ...s, carga: nova.carga, reps: nova.reps, rir: nova.rir } : s)) }));
+}
+
+/**
+ * Apaga uma série já registrada (registro.treino-feito). A nota de dor dela não se perde: vai para a última série que
+ * fica ou, sem nenhuma, para o próprio exercício, como no "Desfazer".
+ */
+export const apagarSerie = (e: Estado, onde: OndeSerie) =>
+  !serieEm(e, onde) ? e : noExercicio(e, onde, (x) => {
+    const tirada = x.series[onde.n];
+    const series = x.series.filter((_, k) => k !== onde.n);
+    if (!tirada?.dor) return { ...x, series };
+    if (!series.length) return { ...x, series, dorSemSerie: Math.max(x.dorSemSerie ?? 0, tirada.dor) };
+    return { ...x, series: series.map((s, k) => (k === series.length - 1 ? comDor(s, tirada.dor) : s)) };
+  });
+
 export const interromperExercicio = (e: Estado, i: number) => mudarExercicio(e, i, (x) => ({ ...x, interrompido: true }));
 
 /** Troca pela alternativa só nesta sessão (decisão 7). Se já havia séries, o exercício original fica registrado e a alternativa entra depois dele. */
@@ -176,14 +213,6 @@ export const semSerie = (e: Estado) => !!e.sessaoAtual && !e.sessaoAtual.exercic
 export function apagarUltimoTreino(e: Estado, sessaoId: string): Estado {
   if (e.historico.at(-1)?.id !== sessaoId) return e;
   return { ...e, historico: e.historico.slice(0, -1) };
-}
-
-/** Corrige uma série do último treino (registro.treino-feito): a carga, as repetições, o RIR ou a dor digitados errado. */
-export function corrigirSerie(e: Estado, sessaoId: string, exercicio: number, serie: number, nova: SerieRegistrada): Estado {
-  const ult = e.historico.at(-1);
-  if (ult?.id !== sessaoId || !ult.exercicios[exercicio]?.series[serie]) return e;
-  const exercicios = ult.exercicios.map((x, j) => (j === exercicio ? { ...x, series: x.series.map((s, n) => (n === serie ? nova : s)) } : x));
-  return { ...e, historico: [...e.historico.slice(0, -1), { ...ult, exercicios }] };
 }
 
 /** Descarta o treino em andamento sem guardar. */
